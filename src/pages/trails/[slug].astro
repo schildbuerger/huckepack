@@ -844,6 +844,27 @@ const nav = [
     margin-top: 36px;
     scroll-margin-top: 64px;
   }
+  /* wide screens: section headings move into a margin column, like a printed guidebook, and
+     every section's content starts at the same indent beside its title. Separates the sections
+     and saves the heading rows. From 1080 px only: the content column stays at least 820 px wide,
+     which the one-line stage timeline and the five sleeping columns need. Key figures and the
+     map (hidden headings) keep the full width. */
+  @media (min-width: 1080px) {
+    section:has(> h2:not(.visually-hidden)) {
+      display: flow-root;
+    }
+    section > h2:not(.visually-hidden) {
+      float: left;
+      width: 136px;
+      margin: 0;
+      padding-top: 10px;
+      font-size: 1.15rem;
+      line-height: 1.25;
+    }
+    section:has(> h2:not(.visually-hidden)) > :global(:not(h2)) {
+      margin-left: 160px;
+    }
+  }
   .key {
     margin-top: 20px;
   }
