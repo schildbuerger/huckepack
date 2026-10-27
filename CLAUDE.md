@@ -11,7 +11,7 @@ npm install          # once (inside Claude Code's sandbox: npm_config_cache="$TM
 npm run dev          # local site at http://localhost:4321; runs detached (npx astro dev status | logs | stop)
                      # before starting: lsof -nP -iTCP:4321 -sTCP:LISTEN; if one is running, reuse it (it reloads
                      # on file changes). Claude Code's sandbox can't stop a detached server; the user has to.
-                     # After changing `src/content.config.ts` or adding an npm dependency, the server must be restarted: a running server serves
+                     # After changing `src/content.config.ts` (delete `.astro/data-store.json` first, or the restarted server reuses stale content) or adding an npm dependency, the server must be restarted: a running server serves
                      # the new package as "504 outdated dependency" and the page breaks.
 npm run build        # dist/: the static site; fails if a trail file doesn't match the schema
 npm run check        # type check (Astro, Svelte, TypeScript)
