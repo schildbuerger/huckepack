@@ -212,58 +212,60 @@ const nav = [
 
   <section id="location">
     <h2>Location</h2>
-    <dl class="facts">
-      <dt>Start</dt>
-      <dd>{t.termini.start.name}</dd>
-      <dt>Finish</dt>
-      <dd>{t.termini.end.name}</dd>
-      {hubs.length > 0 && (
-        <>
-          <dt>Travel hubs</dt>
-          <dd>
-            <ul class="hubs">
-              {hubs.map((h) => (
-                <li>
-                  <span class="hub-kind">
-                    <Icon name={h.kind === "station" ? "train-front" : "plane"} size={16} label={h.kind === "station" ? "Train station" : "Airport"} />
-                  </span>
-                  <span>
-                    {h.name}
-                    {h.roadKm !== undefined && derived?.access && (
-                      <span class="hub-dist">
-                        {h.roadKm} km by road to the start, {h.driveMin} min
-                      </span>
-                    )}
-                  </span>
-                </li>
-              ))}
-            </ul>
-          </dd>
-        </>
-      )}
-      <dt>Country</dt>
-      <dd>{t.countries.map(countryName).join(", ")} · {t.continents.join(", ")}</dd>
-      {t.regions.length > 0 && (
-        <>
-          <dt>Regions</dt>
-          <dd>{t.regions.join(", ")}</dd>
-        </>
-      )}
-      {t.protectedAreas.length > 0 && (
-        <>
-          <dt>Protected areas</dt>
-          <dd>{t.protectedAreas.join("; ")}</dd>
-        </>
-      )}
-      {t.waymarking && (
-        <>
-          <dt>Waymarking</dt>
-          <dd>{t.waymarking.text}</dd>
-        </>
-      )}
-      <dt>Managed by</dt>
-      <dd>{t.managedBy.map((m) => m.name).join(", ")}</dd>
-    </dl>
+    <div class="location">
+      <dl class="facts">
+        <dt>Start</dt>
+        <dd>{t.termini.start.name}</dd>
+        <dt>Finish</dt>
+        <dd>{t.termini.end.name}</dd>
+        {hubs.length > 0 && (
+          <>
+            <dt>Travel hubs</dt>
+            <dd>
+              <ul class="hubs">
+                {hubs.map((h) => (
+                  <li>
+                    <span class="hub-kind">
+                      <Icon name={h.kind === "station" ? "train-front" : "plane"} size={16} label={h.kind === "station" ? "Train station" : "Airport"} />
+                    </span>
+                    <span>
+                      {h.name}
+                      {h.roadKm !== undefined && derived?.access && (
+                        <span class="hub-dist"> · {h.roadKm} km by road, {h.driveMin} min</span>
+                      )}
+                    </span>
+                  </li>
+                ))}
+              </ul>
+            </dd>
+          </>
+        )}
+      </dl>
+      <dl class="facts">
+        <dt>Country</dt>
+        <dd>{t.countries.map(countryName).join(", ")} · {t.continents.join(", ")}</dd>
+        {t.regions.length > 0 && (
+          <>
+            <dt>Regions</dt>
+            <dd>{t.regions.join(", ")}</dd>
+          </>
+        )}
+        {t.protectedAreas.length > 0 && (
+          <>
+            <dt>Protected areas</dt>
+            <dd>{t.protectedAreas.join("; ")}</dd>
+          </>
+        )}
+        {t.waymarking && (
+          <>
+            <dt>Waymarking</dt>
+            <dd>{t.waymarking.text}</dd>
+          </>
+        )}
+        <dt>Managed by</dt>
+        <dd>{t.managedBy.map((m) => m.name).join(", ")}</dd>
+      </dl>
+    </div>
   </section>
 
   <section id="map">
@@ -394,10 +396,9 @@ const nav = [
         </li>
       </ul>
       <p class="note muted">
-        Water points within {water.withinM} m of the trail, from OpenStreetMap, which may miss some or list ones that have
-        gone. Availability is rated by the longest stretch without drinking water: frequent up to 10 km, regular up to 20
-        km, scarce beyond. Kilometres are measured along the map line ({water.routeKm} km for the main stages). Springs can
-        run dry in late summer.
+        From OpenStreetMap, within {water.withinM} m of the trail; may be incomplete. Availability by the longest stretch
+        without drinking water: frequent ≤ 10 km, regular ≤ 20 km, scarce beyond. Distances along the map line
+        ({water.routeKm} km).
       </p>
     </section>
   )}
@@ -434,7 +435,7 @@ const nav = [
     white-space: nowrap;
   }
   .crumbs {
-    margin-top: 32px;
+    margin-top: 20px;
     font-size: 0.85rem;
     color: var(--muted);
   }
@@ -452,7 +453,7 @@ const nav = [
     position: sticky;
     top: 0;
     z-index: 10;
-    margin: 24px -16px 0;
+    margin: 16px -16px 0;
     padding: 0 16px;
     background: var(--bg);
     border-bottom: 1px solid var(--line);
@@ -480,11 +481,11 @@ const nav = [
   }
 
   section {
-    margin-top: 48px;
+    margin-top: 36px;
     scroll-margin-top: 64px;
   }
   .key {
-    margin-top: 32px;
+    margin-top: 20px;
   }
   .figures {
     display: grid;
@@ -507,8 +508,9 @@ const nav = [
   }
   .figures dt {
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     gap: 5px;
+    line-height: 1.35;
     color: var(--muted);
     font-size: 0.68rem;
     font-weight: 500;
@@ -599,11 +601,20 @@ const nav = [
   }
   .card-name {
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     gap: 8px;
     font-family: var(--serif);
     font-size: 1.05rem;
     font-weight: 600;
+    line-height: 1.35;
+  }
+  /* icons sit on the first line of their label, however many lines it wraps to */
+  .figures dt :global(.icon) {
+    flex: none;
+    margin-top: 1px;
+  }
+  .card-name :global(.icon) {
+    margin-top: 2px;
   }
   .card-hint {
     color: var(--muted);
@@ -645,7 +656,6 @@ const nav = [
     color: var(--tone, var(--accent));
   }
   .hub-dist {
-    display: block;
     color: var(--muted);
     font-size: 0.85rem;
   }
@@ -686,7 +696,7 @@ const nav = [
     display: grid;
     grid-template-columns: 32px 1fr;
     gap: 14px;
-    padding-bottom: 18px;
+    padding-bottom: 10px;
   }
   .stage::before {
     content: "";
@@ -723,7 +733,7 @@ const nav = [
   .stage-route {
     margin: 0;
     font-family: var(--serif);
-    font-size: 1.1rem;
+    font-size: 1rem;
     font-weight: 600;
     line-height: 1.35;
   }
@@ -756,10 +766,33 @@ const nav = [
     font-variant-numeric: tabular-nums;
   }
   .stage-stats li {
-    min-width: 7.5em;
+    min-width: 6.8em;
   }
   .stage-stats li.wide {
-    min-width: 11em;
+    min-width: 9.8em;
+  }
+  @media (min-width: 820px) {
+    .stage-body {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      column-gap: 24px;
+      align-items: baseline;
+      padding-top: 6px;
+    }
+    .stage-stats {
+      flex-wrap: nowrap;
+      margin: 0;
+      font-size: 0.85rem;
+    }
+  }
+  .location {
+    display: grid;
+    gap: 10px 48px;
+  }
+  @media (min-width: 820px) {
+    .location {
+      grid-template-columns: 1fr 1fr;
+    }
   }
   .info {
     width: 16px;

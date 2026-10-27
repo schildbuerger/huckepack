@@ -141,7 +141,7 @@
   .map {
     width: 100%;
     aspect-ratio: 16 / 10;
-    min-height: 320px;
+    min-height: 300px;
     border: 1px solid var(--line);
     border-radius: 6px;
     overflow: hidden;
@@ -151,6 +151,11 @@
     margin: 0;
     padding: 16px;
     color: var(--muted);
+  }
+  @media (min-width: 700px) {
+    .map {
+      aspect-ratio: 11 / 5;
+    }
   }
   .legend {
     display: flex;
