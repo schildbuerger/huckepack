@@ -165,7 +165,6 @@ const MONTH_NAMES = ["January", "February", "March", "April", "May", "June", "Ju
 const CLIM = { x0: 52, x1: 992, tTop: 30, tBottom: 210, wTop: 252, wBottom: 312, dTop: 348, months: 398, height: 406 };
 const colW = (CLIM.x1 - CLIM.x0) / 12;
 const colX = (m: number) => CLIM.x0 + (m - 1) * colW;
-const place = (id: "low" | "high") => climate?.places.find((p) => p.id === id);
 const tRange = climate && {
   min: Math.floor((Math.min(...climate.months.map((m) => m.high.tmin)) - 2) / 10) * 10,
   max: Math.ceil((Math.max(...climate.months.map((m) => m.low.tmax)) + 2) / 10) * 10,
@@ -709,11 +708,11 @@ const nav = [
       <h2>Climate</h2>
       <dl class="strip spec cols" style="--cols: 4">
         <div>
-          <dt>Days {seasonMonths.length ? "in season" : ""} · {fmt(place("low")!.m)} m</dt>
+          <dt>Days {seasonMonths.length ? "in season" : ""} · lowest point</dt>
           <dd><span class="big">{between(inSeason.map((m) => m.low.tmax), "")}</span><span class="unit">°C</span></dd>
         </div>
         <div>
-          <dt>Nights {seasonMonths.length ? "in season" : ""} · {fmt(place("high")!.m)} m</dt>
+          <dt>Nights {seasonMonths.length ? "in season" : ""} · highest point</dt>
           <dd><span class="big">{between(inSeason.map((m) => m.high.tmin), "")}</span><span class="unit">°C</span></dd>
         </div>
         <div>
@@ -726,10 +725,10 @@ const nav = [
         </div>
       </dl>
 
-      <figure class="chart climate" data-months={JSON.stringify(climate.months)} data-low={place("low")!.m} data-high={place("high")!.m}>
+      <figure class="chart climate" data-months={JSON.stringify(climate.months)}>
         <ul class="legend" aria-hidden="true">
-          <li><span class="swatch-key" style="--c: var(--clim-low)"></span>{fmt(place("low")!.m)} m, lowest point</li>
-          <li><span class="swatch-key" style="--c: var(--clim-high)"></span>{fmt(place("high")!.m)} m, highest point</li>
+          <li><span class="swatch-key" style="--c: var(--clim-low)"></span>Lowest point</li>
+          <li><span class="swatch-key" style="--c: var(--clim-high)"></span>Highest point</li>
           <li><span class="swatch-key" style="--c: var(--wet)"></span>Wet days</li>
           <li><span class="swatch-key" style="--c: var(--snow)"></span>of which snow</li>
           {seasonRuns.length > 0 && <li><span class="swatch-key season-key"></span>Season</li>}
@@ -737,7 +736,7 @@ const nav = [
         <svg
           viewBox={`0 0 ${CHART.width} ${CLIM.height}`}
           role="img"
-          aria-label={`Climate by month, ${climate.years[0]}–${climate.years[1]} average: day highs and night lows at ${fmt(place("low")!.m)} m and ${fmt(place("high")!.m)} m, wet days, and daylight. A table follows.`}
+          aria-label={`Climate by month, ${climate.years[0]}–${climate.years[1]} average: day highs and night lows at the lowest and highest point, wet days, and daylight. A table follows.`}
         >
           {seasonRuns.map((run) => (
             <g>
@@ -760,7 +759,7 @@ const nav = [
             </g>
           ))}
 
-          <text class="panel-label" x="8" y={CLIM.wTop - 12}>Wet days, at {fmt(place("high")!.m)} m</text>
+          <text class="panel-label" x="8" y={CLIM.wTop - 12}>Wet days, at the highest point</text>
           {Array.from({ length: wetMax / 5 + 1 }, (_, i) => i * 5).map((d) => (
             <g>
               <line class={d === 0 ? "base" : "grid"} x1={CLIM.x0} x2={CLIM.x1} y1={yWet(d)} y2={yWet(d)} />
@@ -801,11 +800,11 @@ const nav = [
           <thead>
             <tr>
               <th scope="col">Month</th>
-              <th scope="col">{fmt(place("low")!.m)} m, day high / night low (°C)</th>
-              <th scope="col">{fmt(place("high")!.m)} m, day high / night low (°C)</th>
+              <th scope="col">Lowest point, day high / night low (°C)</th>
+              <th scope="col">Highest point, day high / night low (°C)</th>
               <th scope="col">Wet days</th>
               <th scope="col">Snow days</th>
-              <th scope="col">Frost nights at {fmt(place("high")!.m)} m</th>
+              <th scope="col">Frost nights at the highest point</th>
               <th scope="col">Daylight (h)</th>
             </tr>
           </thead>
@@ -1151,7 +1150,6 @@ const nav = [
     const svg = figure.querySelector("svg")!;
     const tip = figure.querySelector<HTMLElement>(".tip")!;
     const months: { month: number; low: Place; high: Place; daylightH: number }[] = JSON.parse(figure.dataset.months!);
-    const [lowM, highM] = [Number(figure.dataset.low), Number(figure.dataset.high)].map((m) => m.toLocaleString("en"));
     const c = (v: number) => `${v < 0 ? "−" : ""}${Math.abs(Math.round(v))}`;
     let active: SVGRectElement | null = null;
     const show = (hit: SVGRectElement) => {
@@ -1161,10 +1159,9 @@ const nav = [
       const m = months.find((x) => x.month === Number(hit.dataset.month))!;
       tip.querySelector("strong")!.textContent = MONTH_NAMES[m.month - 1];
       tip.querySelector("span")!.textContent = [
-        `${lowM} m: ${c(m.low.tmax)} °C by day, ${c(m.low.tmin)} °C at night`,
-        `${highM} m: ${c(m.high.tmax)} °C by day, ${c(m.high.tmin)} °C at night`,
-        `${Math.round(m.high.wetDays)} wet days, ${Math.round(m.high.snowDays)} with snow`,
-        `${Math.round(m.high.frostNights)} frost nights at ${highM} m`,
+        `Lowest point: ${c(m.low.tmax)} °C by day, ${c(m.low.tmin)} °C at night`,
+        `Highest point: ${c(m.high.tmax)} °C by day, ${c(m.high.tmin)} °C at night`,
+        `Highest point: ${Math.round(m.high.wetDays)} wet days, ${Math.round(m.high.snowDays)} with snow, ${Math.round(m.high.frostNights)} frost nights`,
         `${m.daylightH.toFixed(1)} h of daylight`,
       ].join("\n");
       tip.hidden = false;
@@ -2099,7 +2096,7 @@ const nav = [
     fill: var(--line);
   }
   .day-fill {
-    fill: var(--muted);
+    fill: var(--daylight);
   }
   .day-value {
     fill: var(--text);
