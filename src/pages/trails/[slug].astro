@@ -21,8 +21,14 @@ export async function getStaticPaths() {
 const { trail } = Astro.props as { trail: CollectionEntry<"trails"> };
 const t = trail.data;
 const sources = Object.fromEntries(t.sources.map((s, i) => [s.id, { ...s, n: i + 1 }]));
-const ref = (id: string) => `[${sources[id].n}]`;
+const ref = (id: string) => sources[id].n; // footnote number of a source
 const totals = stageTotals(t);
+// one length: the sum of the main stages where there are stages, else the first stated total
+const length = totals
+  ? { ...totals.km, approx: false }
+  : t.length[0]
+    ? { value: t.length[0].km, source: t.length[0].source, how: "stated total", approx: t.length[0].approx }
+    : null;
 const daily = perDay(t);
 const sac = sacGrade(t);
 const fmt = (n: number) => n.toLocaleString("en");
@@ -49,61 +55,24 @@ const routeAttribution = routeUrl && t.route ? sources[t.route.source].title.spl
     <a href={t.website}>Official website</a>
   </p>
 
-  <section>
-    <TrailMap
-      client:visible
-      routeUrl={routeUrl}
-      start={t.termini.start}
-      end={t.termini.end}
-      routeAttribution={routeAttribution}
-    />
-  </section>
-
-  <section>
-    <h2>Key figures</h2>
-    <dl class="figures">
-      {t.days && (
-        <div>
-          <dt>Days</dt>
-          <dd>
-            {t.days.min === t.days.max ? t.days.min : `${t.days.min}–${t.days.max}`} <sup>{ref(t.days.source)}</sup>
-          </dd>
-        </div>
-      )}
-      {totals && (
+  <section class="key">
+    <dl class="figures" aria-label="Key figures">
+      {length && (
         <div>
           <dt>Length</dt>
           <dd>
-            {fmt(totals.km.value)} km <sup>{ref(totals.km.source)}</sup>
-            <small>{totals.km.how}</small>
+            {length.approx && "about "}
+            {fmt(length.value)} km <sup>{ref(length.source)}</sup>
+            <small>{length.how}</small>
           </dd>
         </div>
       )}
-      {t.length.map((l) => (
-        <div>
-          <dt>Length</dt>
-          <dd>
-            {l.approx && "about "}
-            {fmt(l.km)} km <sup>{ref(l.source)}</sup>
-            <small>stated total</small>
-          </dd>
-        </div>
-      ))}
       {totals && (
         <div>
           <dt>Total ascent</dt>
           <dd>
             {fmt(totals.ascentM.value)} m <sup>{ref(totals.ascentM.source)}</sup>
-            <small>descent {fmt(totals.descentM.value)} m; {totals.ascentM.how}</small>
-          </dd>
-        </div>
-      )}
-      {daily && (
-        <div>
-          <dt>Per day</dt>
-          <dd>
-            {daily.km.value} km · {fmt(daily.ascentM.value)} m ascent <sup>{ref(daily.km.source)}</sup>
-            <small>average; {daily.km.how}</small>
+            <small>descent {fmt(totals.descentM.value)} m</small>
           </dd>
         </div>
       )}
@@ -126,6 +95,23 @@ const routeAttribution = routeUrl && t.route ? sources[t.route.source].title.spl
           </dd>
         </div>
       )}
+      {t.days && (
+        <div>
+          <dt>Suggested days</dt>
+          <dd>
+            {t.days.min === t.days.max ? t.days.min : `${t.days.min}–${t.days.max}`} <sup>{ref(t.days.source)}</sup>
+          </dd>
+        </div>
+      )}
+      {daily && (
+        <div>
+          <dt>Per day</dt>
+          <dd>
+            {daily.km.value} km · {fmt(daily.ascentM.value)} m <sup>{ref(daily.km.source)}</sup>
+            <small>average distance and ascent</small>
+          </dd>
+        </div>
+      )}
       {t.season && (
         <div>
           <dt>Season</dt>
@@ -136,6 +122,16 @@ const routeAttribution = routeUrl && t.route ? sources[t.route.source].title.spl
         </div>
       )}
     </dl>
+  </section>
+
+  <section>
+    <TrailMap
+      client:visible
+      routeUrl={routeUrl}
+      start={t.termini.start}
+      end={t.termini.end}
+      routeAttribution={routeAttribution}
+    />
   </section>
 
   <section>
@@ -241,7 +237,7 @@ const routeAttribution = routeUrl && t.route ? sources[t.route.source].title.spl
     </section>
   )}
 
-  <section>
+  <section class="sources">
     <h2>Sources</h2>
     <ol>
       {t.sources.map((s) => (
@@ -256,6 +252,9 @@ const routeAttribution = routeUrl && t.route ? sources[t.route.source].title.spl
 </Base>
 
 <style>
+  .key {
+    margin-top: 32px;
+  }
   .crumbs {
     margin-top: 32px;
     font-size: 0.85rem;
@@ -327,8 +326,29 @@ const routeAttribution = routeUrl && t.route ? sources[t.route.source].title.spl
     }
   }
   sup {
+    margin-left: 1px;
     color: var(--muted);
-    font-size: 0.7em;
+    font-family: var(--sans);
+    font-size: 0.5em;
+    font-weight: 400;
+  }
+  .facts sup,
+  h2 sup {
+    font-size: 0.65em;
+  }
+  .sources {
+    font-size: 0.8rem;
+    color: var(--muted);
+  }
+  .sources h2 {
+    font-size: 1.1rem;
+    color: var(--text);
+  }
+  .sources ol {
+    padding-left: 1.4em;
+  }
+  .sources li {
+    margin-bottom: 4px;
   }
   .scroll {
     overflow-x: auto;
