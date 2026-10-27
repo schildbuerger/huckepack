@@ -45,14 +45,28 @@ export function perDay(t: Trail) {
 // CAI grades mapped to the SAC scale for filtering. The scales overlap rather than match;
 // E covers SAC T2 to T3, and the lower bound is used.
 const CAI_TO_SAC = { T: "T1", E: "T2", EE: "T3", EEA: "T4" } as const;
+const CAI_SPAN = { T: "T1", E: "T2 to T3", EE: "T3 to T4", EEA: "T4 to T5" } as const;
 
-export function sacGrade(t: Trail): Derived<string> | undefined {
+// The SAC grade: stated by a source, converted from the Italian CAI scale, or estimated by us
+// from the source's description. `basis` says how a converted or estimated grade was reached.
+export function sacGrade(t: Trail): (Derived<string> & { basis?: string }) | undefined {
   const d = t.difficulty;
   if (d?.sac) return { value: d.sac.grade, source: d.sac.source, how: "stated" };
   if (d?.cai)
-    return { value: CAI_TO_SAC[d.cai.grade], source: d.cai.source, how: `converted from CAI ${d.cai.grade}` };
+    return {
+      value: CAI_TO_SAC[d.cai.grade],
+      source: d.cai.source,
+      how: `converted from CAI ${d.cai.grade}`,
+      basis: `The trail is graded ${d.cai.grade} on the Italian CAI scale, which spans SAC ${CAI_SPAN[d.cai.grade]}; the lower grade is shown.`,
+    };
+  if (d?.estimated)
+    return { value: d.estimated.sac, source: d.estimated.source, how: "our estimate", basis: d.estimated.basis };
   return undefined;
 }
+
+// Said wherever the SAC grade is explained (trail page, search filter).
+export const SAC_NOTE =
+  "Trails rate their difficulty in many local scales, or only describe it in words. We translate each rating into the Swiss Alpine Club's hiking scale, from T1 (easy) to T6 (very hard), so trails can be compared. It stays an estimate: how hard a trail feels depends on your fitness, experience, pack and the weather."
 
 // The compact record lists and filters work on. Lists show the stage total when there are
 // stages, else the first stated length; trail pages show every figure with its source. With the

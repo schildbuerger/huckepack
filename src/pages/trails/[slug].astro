@@ -12,6 +12,7 @@ import {
   perDay,
   sacGrade,
   stageTotals,
+  SAC_NOTE,
   SAC_SCALE,
   SLEEPING_CATEGORIES,
   SLEEPING_LABELS,
@@ -265,9 +266,9 @@ const nav = [
         <div>
           <dt>
             <Explain id="sac-info" term="Difficulty" title="SAC hiking scale">
+              <p>{SAC_NOTE}</p>
               <p>
-                The Swiss Alpine Club grades hiking routes from T1 (easy) to T6 (very hard). This trail is{" "}
-                <strong>{sac.value}</strong>{sac.how !== "stated" && ` (${sac.how})`}.
+                This trail: <strong>{sac.value}</strong>{sac.how !== "stated" && ` (${sac.how})`}.{sac.basis && ` ${sac.basis}`}
               </p>
               <ol class="sac-scale">
                 {Object.entries(SAC_SCALE).map(([grade, g]) => (

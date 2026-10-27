@@ -98,6 +98,11 @@ const trail = z
         sac: z
           .object({ grade: z.enum(["T1", "T2", "T3", "T4", "T5", "T6"]), source: sourceRef })
           .optional(),
+        // no grade published: our SAC estimate from the source's own description, which `basis`
+        // sums up (shown on the page)
+        estimated: z
+          .object({ sac: z.enum(["T1", "T2", "T3", "T4", "T5", "T6"]), basis: z.string(), source: sourceRef })
+          .optional(),
       })
       .optional(),
 
@@ -156,6 +161,7 @@ const trail = z
         t.route,
         t.difficulty?.cai,
         t.difficulty?.sac,
+        t.difficulty?.estimated,
         t.season,
         t.sleeping,
         t.wildCamping,

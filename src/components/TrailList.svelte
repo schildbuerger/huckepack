@@ -3,7 +3,7 @@
   // sleeping, water, terrain) beside a list of result cards. Everything runs in the browser
   // on the summaries built at build time; the filters live in the URL, so a search can be shared.
   import { onMount } from "svelte";
-  import { SAC_SCALE, SLEEPING_CATEGORIES, WATER_LEVELS, type TrailSummary } from "../lib/trails";
+  import { SAC_NOTE, SAC_SCALE, SLEEPING_CATEGORIES, WATER_LEVELS, type TrailSummary } from "../lib/trails";
   import Explain from "./Explain.svelte";
   import Range from "./Range.svelte";
 
@@ -220,6 +220,7 @@
     <div class="group" role="group" aria-labelledby="g-hard">
       <div class="legend" id="g-hard">
         <Explain id="x-hard" term="How hard, at most?" title="SAC hiking scale">
+          <p>{SAC_NOTE}</p>
           <p>Slide to the hardest grade you're happy with; trails up to that grade stay. Once you pick a grade, trails without one are left out.</p>
           <dl>
             {#each SAC as s}<dt>{s} · {SAC_SCALE[s].name}</dt><dd>{SAC_SCALE[s].text}</dd>{/each}
@@ -257,7 +258,10 @@
           <button type="button" class="chip" aria-pressed={sleep.includes(c.id)} onclick={() => (sleep = toggle(sleep, c.id))}>{c.label}</button>
         {/each}
       </div>
-      <div class="sub" id="wild-label">
+    </div>
+
+    <div class="group" role="group" aria-labelledby="g-wild">
+      <div class="legend" id="g-wild">
         <Explain id="x-wild" term="Wild camping">
           <dl>
             <dt>Possible</dt><dd>Allowed, or allowed only in certain places or under rules, such as designated bivouac sites.</dd>
@@ -266,7 +270,7 @@
           <p>Each trail page gives the exact rule.</p>
         </Explain>
       </div>
-      <div class="segmented" role="radiogroup" aria-labelledby="wild-label">
+      <div class="segmented" role="radiogroup" aria-labelledby="g-wild">
         <button type="button" role="radio" aria-checked={wild === ""} onclick={() => (wild = "")}>Any</button>
         <button type="button" role="radio" aria-checked={wild === "some"} onclick={() => (wild = "some")}>Possible</button>
         <button type="button" role="radio" aria-checked={wild === "allowed"} onclick={() => (wild = "allowed")}>Allowed</button>
@@ -527,13 +531,8 @@
     border: 1px solid var(--line);
     border-radius: 999px;
   }
-  .sub {
-    margin: 14px 0 0;
-    color: var(--muted);
-    font-size: 0.8rem;
-  }
-  .sub + .segmented {
-    margin-top: 6px;
+  .legend + .segmented {
+    margin-top: 0;
   }
   .segmented button {
     flex: 1;

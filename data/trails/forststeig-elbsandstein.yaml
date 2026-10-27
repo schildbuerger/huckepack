@@ -56,6 +56,17 @@ route:
   # tracks above; Sachsenforst's GPX only guides which ways, none of its geometry is used
   source: osm
   publishable: true
+difficulty:
+  # no SAC grade is published; our estimate, see the note on difficulty below
+  estimated:
+    sac: T3
+    basis: >-
+      Sachsenforst rates the route "difficult", for experienced, sure-footed and well-equipped
+      hikers. Most of it runs on simple forest paths and tracks (SAC T2), but it also follows
+      forestry lanes where the way isn't always obvious, and stage 3, which the regional tourism
+      association rates "difficult" (the other stages "medium"), leads through rock gorges and up
+      narrow metal ladders. The SAC scale grades a route by its hardest parts, so T3.
+    source: tvsaechsischeschweiz
 season:
   months: [4, 5, 6, 7, 8, 9, 10]
   text: April to October
@@ -105,9 +116,14 @@ notes:
     stage 1: 15.81 km, about 6 h.
   - The home page says 6 to 8 days; the route overview recommends 7 day stages.
   - >-
-    No difficulty grade is published (no SAC or DAV grade); Sachsenforst calls it demanding, for
-    experienced, sure-footed and well-equipped hikers, over thirteen table mountains with many
-    steep climbs and descents.
+    No difficulty grade is published (no SAC or DAV grade). Sachsenforst's home page says
+    "Schwierigkeit: schwer" and calls it demanding, for experienced, sure-footed and well-equipped
+    hikers, mostly on simple forest paths and forestry lanes. The regional tourism association
+    (saechsische-schweiz.de) rates the whole route schwer (fitness: sehr schwer), stage 3 schwer
+    (ladder up the Sachsenstein, rock gorges) and stages 1 and 4 mittel (2, 5, 6, 7 mittel per its
+    search listing, not opened). The SAC T3 in `difficulty.estimated` is our translation: T2 for
+    most of the route, T3 for stage 3 and the off-path forestry lanes; the hardest parts set the
+    grade.
   - >-
     Three of the five trekking huts (and some bivouac sites) lie on detours off the route; the
     detours aren't in the stage list.
@@ -122,6 +138,11 @@ sources:
   - id: sachsenforst-biwak
     title: "Sachsenforst: Biwakplätze im Elbsandsteingebirge, allgemeine Informationen (February 2024)"
     url: https://forststeig.sachsen.de/download/AllgemeineInfosBiwak.pdf
+    licence: All rights reserved (facts only)
+    retrieved: 2026-10-27
+  - id: tvsaechsischeschweiz
+    title: "Tourismusverband Sächsische Schweiz: Forststeig Elbsandstein and its stage pages (difficulty and fitness ratings)"
+    url: https://www.saechsische-schweiz.de/wanderungen/forststeig-elbsandstein-saechsische-boehmische-schweiz
     licence: All rights reserved (facts only)
     retrieved: 2026-10-27
   - id: osm
