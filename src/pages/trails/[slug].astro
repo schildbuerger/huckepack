@@ -36,6 +36,7 @@ const daily = perDay(t);
 const sac = sacGrade(t);
 const fmt = (n: number) => n.toLocaleString("en");
 const hours = (min: number) => `${Math.floor(min / 60)} h ${String(min % 60).padStart(2, "0")}`;
+const TRAIL_TYPES = { "point-to-point": "Point to point", loop: "Loop", network: "Network" };
 const range = (min: number, max: number) => (min === max ? `${min}` : `${min}–${max}`);
 // the map line, built by pipeline/routes.py; without it the map shows only the termini
 const routeFile = `routes/${trail.id}.geojson`;
@@ -60,10 +61,10 @@ const gapStages = (() => {
 const nav = [
   { id: "figures", label: "Key figures", show: true },
   { id: "map", label: "Map", show: true },
-  { id: "where", label: "Where", show: true },
+  { id: "location", label: "Location", show: true },
+  { id: "stages", label: "Stages", show: Boolean(t.stages) },
   { id: "sleeping", label: "Sleeping", show: Boolean(t.sleeping || t.wildCamping) },
   { id: "water", label: "Water", show: Boolean(water) },
-  { id: "stages", label: "Stages", show: Boolean(t.stages) },
   { id: "sources", label: "Sources", show: true },
 ].filter((n) => n.show);
 ---
@@ -102,16 +103,22 @@ const nav = [
           <dd>
             {length.approx && "about "}
             {fmt(length.value)} km<Ref n={ref(length.source)} />
-            <small>{length.how}</small>
           </dd>
         </div>
       )}
       {totals && (
         <div>
-          <dt>Total ascent</dt>
+          <dt>Ascent</dt>
           <dd>
             {fmt(totals.ascentM.value)} m<Ref n={ref(totals.ascentM.source)} />
-            <small>descent {fmt(totals.descentM.value)} m</small>
+          </dd>
+        </div>
+      )}
+      {totals && (
+        <div>
+          <dt>Descent</dt>
+          <dd>
+            {fmt(totals.descentM.value)} m<Ref n={ref(totals.descentM.source)} />
           </dd>
         </div>
       )}
@@ -120,7 +127,7 @@ const nav = [
           <dt>Difficulty</dt>
           <dd>
             SAC {sac.value}<Ref n={ref(sac.source)} />
-            {t.difficulty?.cai && sac.how !== "stated" && <small>converted from CAI {t.difficulty.cai.grade}</small>}
+            {t.difficulty?.cai && sac.how !== "stated" && <small>from CAI {t.difficulty.cai.grade}</small>}
             {t.difficulty?.cai && sac.how === "stated" && <small>CAI {t.difficulty.cai.grade}</small>}
           </dd>
         </div>
@@ -138,7 +145,7 @@ const nav = [
           <dt>Per day</dt>
           <dd>
             {daily.km.value} km · {fmt(daily.ascentM.value)} m<Ref n={ref(daily.km.source)} />
-            <small>average distance and ascent</small>
+            <small>average</small>
           </dd>
         </div>
       )}
@@ -147,10 +154,13 @@ const nav = [
           <dt>Season</dt>
           <dd>
             {t.season.text ?? t.season.months.map(monthName).join(", ")}<Ref n={ref(t.season.source)} />
-            {t.season.text && <small>{t.season.months.map(monthName).join(", ")}</small>}
           </dd>
         </div>
       )}
+      <div>
+        <dt>Type</dt>
+        <dd>{TRAIL_TYPES[t.trailType]}</dd>
+      </div>
     </dl>
   </section>
 
@@ -166,8 +176,8 @@ const nav = [
     />
   </section>
 
-  <section id="where">
-    <h2>Where</h2>
+  <section id="location">
+    <h2>Location</h2>
     <dl class="facts">
       <dt>Country</dt>
       <dd>{t.countries.map(countryName).join(", ")} · {t.continents.join(", ")}</dd>
@@ -187,8 +197,6 @@ const nav = [
       <dd>{t.termini.start.name}<Ref n={ref(t.termini.source)} /></dd>
       <dt>To</dt>
       <dd>{t.termini.end.name}</dd>
-      <dt>Type</dt>
-      <dd>{t.trailType}</dd>
       <dt>Managed by</dt>
       <dd>{t.managedBy.map((m) => m.name).join(", ")}</dd>
       {t.waymarking && (
@@ -199,6 +207,50 @@ const nav = [
       )}
     </dl>
   </section>
+
+  {t.stages && (
+    <section id="stages">
+      <h2>Stages<Ref n={ref(t.stages.source)} /></h2>
+      <div class="scroll">
+        <table>
+          <thead>
+            <tr>
+              <th>Stage</th>
+              <th>Route</th>
+              <th class="num">km</th>
+              <th class="num">Ascent</th>
+              <th class="num">Descent</th>
+              <th class="num">Time</th>
+              <th class="num">Start → end</th>
+            </tr>
+          </thead>
+          <tbody>
+            {t.stages.list.map((s) => (
+              <tr class={s.kind}>
+                <td>
+                  {s.number}
+                  {s.kind !== "main" && <small> {s.kind}</small>}
+                </td>
+                <td>
+                  {s.from} – {s.to}
+                </td>
+                <td class="num">{s.km.toFixed(1)}</td>
+                <td class="num">{fmt(s.ascentM)} m</td>
+                <td class="num">{fmt(s.descentM)} m</td>
+                <td class="num">{s.minutes ? hours(s.minutes) : "–"}</td>
+                <td class="num">
+                  {s.startEleM !== undefined && s.endEleM !== undefined
+                    ? `${fmt(s.startEleM)} → ${fmt(s.endEleM)} m`
+                    : "–"}
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+      <p class="note muted">Totals and averages use the main stages only, not the approach or variants.</p>
+    </section>
+  )}
 
   {(t.sleeping || t.wildCamping) && (
     <section id="sleeping">
@@ -245,78 +297,11 @@ const nav = [
           )}
         </dd>
       </dl>
-      <div class="scroll">
-        <table class="compact">
-          <thead>
-            <tr>
-              <th>Stage</th>
-              <th class="num">Drinking water</th>
-              <th class="num">Springs</th>
-            </tr>
-          </thead>
-          <tbody>
-            {water.stages.map((s) => (
-              <tr class={s.kind}>
-                <td>
-                  {s.number}
-                  {s.kind !== "main" && <small> {s.kind}</small>}
-                </td>
-                <td class="num">{s.drinking}</td>
-                <td class="num">{s.springs}</td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      </div>
       <p class="note muted">
         From OpenStreetMap, which may miss sources or list ones that have gone. Kilometres are measured along the map
         line ({water.routeKm} km for the main stages). Springs can run dry in late summer; treat water from springs and
         streams.
       </p>
-    </section>
-  )}
-
-  {t.stages && (
-    <section id="stages">
-      <h2>Stages<Ref n={ref(t.stages.source)} /></h2>
-      <div class="scroll">
-        <table>
-          <thead>
-            <tr>
-              <th>Stage</th>
-              <th>Route</th>
-              <th class="num">km</th>
-              <th class="num">Ascent</th>
-              <th class="num">Descent</th>
-              <th class="num">Time</th>
-              <th class="num">Start → end</th>
-            </tr>
-          </thead>
-          <tbody>
-            {t.stages.list.map((s) => (
-              <tr class={s.kind}>
-                <td>
-                  {s.number}
-                  {s.kind !== "main" && <small> {s.kind}</small>}
-                </td>
-                <td>
-                  {s.from} – {s.to}
-                </td>
-                <td class="num">{s.km.toFixed(1)}</td>
-                <td class="num">{fmt(s.ascentM)} m</td>
-                <td class="num">{fmt(s.descentM)} m</td>
-                <td class="num">{s.minutes ? hours(s.minutes) : "–"}</td>
-                <td class="num">
-                  {s.startEleM !== undefined && s.endEleM !== undefined
-                    ? `${fmt(s.startEleM)} → ${fmt(s.endEleM)} m`
-                    : "–"}
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      </div>
-      <p class="note muted">Totals and averages use the main stages only, not the approach or variants.</p>
     </section>
   )}
 
@@ -406,26 +391,34 @@ const nav = [
   }
   .figures {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-    gap: 12px;
+    grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+    gap: 8px;
     margin: 0;
   }
+  /* desktop: every card in one row, however many the trail has */
+  @media (min-width: 900px) {
+    .figures {
+      grid-auto-flow: column;
+      grid-auto-columns: 1fr;
+      grid-template-columns: none;
+    }
+  }
   .figures div {
-    padding: 16px;
-    border-radius: 12px;
+    padding: 10px 12px;
+    border-radius: 10px;
     background: var(--surface);
   }
   .figures dt {
     color: var(--muted);
-    font-size: 0.75rem;
+    font-size: 0.68rem;
     font-weight: 500;
     letter-spacing: 0.04em;
     text-transform: uppercase;
   }
   .figures dd {
-    margin: 4px 0 0;
+    margin: 2px 0 0;
     font-family: var(--serif);
-    font-size: 1.4rem;
+    font-size: 1.1rem;
     font-weight: 600;
     line-height: 1.3;
   }
@@ -483,11 +476,6 @@ const nav = [
     border-collapse: collapse;
     width: 100%;
     font-size: 0.95em;
-  }
-  table.compact {
-    width: auto;
-    min-width: 320px;
-    margin-top: 16px;
   }
   th,
   td {
