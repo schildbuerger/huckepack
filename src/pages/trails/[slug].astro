@@ -213,6 +213,32 @@ const nav = [
   <section id="location">
     <h2>Location</h2>
     <dl class="facts">
+      <dt>Start</dt>
+      <dd>{t.termini.start.name}</dd>
+      <dt>Finish</dt>
+      <dd>{t.termini.end.name}</dd>
+      {hubs.length > 0 && (
+        <>
+          <dt>Travel hubs</dt>
+          <dd>
+            <ul class="hubs">
+              {hubs.map((h) => (
+                <li>
+                  <span class="hub-icon">
+                    <Icon name={h.kind === "station" ? "train-front" : "plane"} size={16} label={h.kind === "station" ? "Train station" : "Airport"} />
+                  </span>
+                  <span class="hub-text">
+                    <span class="hub-name">{h.name}</span>
+                    {h.roadKm !== undefined && derived?.access && (
+                      <span class="hub-dist">{h.roadKm} km by road to the start · {h.driveMin} min</span>
+                    )}
+                  </span>
+                </li>
+              ))}
+            </ul>
+          </dd>
+        </>
+      )}
       <dt>Country</dt>
       <dd>{t.countries.map(countryName).join(", ")} · {t.continents.join(", ")}</dd>
       {t.regions.length > 0 && (
@@ -227,42 +253,14 @@ const nav = [
           <dd>{t.protectedAreas.join("; ")}</dd>
         </>
       )}
-      <dt>From</dt>
-      <dd>{t.termini.start.name}</dd>
-      <dt>To</dt>
-      <dd>{t.termini.end.name}</dd>
-      {hubs.length > 0 && (
-        <>
-          <dt>Travel hubs</dt>
-          <dd>
-            <ul class="hubs">
-              {hubs.map((h) => (
-                <li>
-                  <span class="hub-kind">
-                    <Icon name={h.kind === "station" ? "train-front" : "plane"} size={16} label={h.kind === "station" ? "Train station" : "Airport"} />
-                  </span>
-                  <span>
-                    {h.name}
-                    {h.roadKm !== undefined && derived?.access && (
-                      <span class="hub-dist">
-                        {h.roadKm} km by road to the start, {h.driveMin} min
-                      </span>
-                    )}
-                  </span>
-                </li>
-              ))}
-            </ul>
-          </dd>
-        </>
-      )}
-      <dt>Managed by</dt>
-      <dd>{t.managedBy.map((m) => m.name).join(", ")}</dd>
       {t.waymarking && (
         <>
           <dt>Waymarking</dt>
           <dd>{t.waymarking.text}</dd>
         </>
       )}
+      <dt>Managed by</dt>
+      <dd>{t.managedBy.map((m) => m.name).join(", ")}</dd>
     </dl>
   </section>
 
@@ -274,54 +272,55 @@ const nav = [
       start={t.termini.start}
       end={t.termini.end}
       routeAttribution={routeAttribution}
-      water={water?.points.map((p) => ({ lat: p.lat, lon: p.lon, kind: p.kind })) ?? []}
     />
   </section>
 
   {t.stages && (
     <section id="stages">
       <h2>Stages</h2>
-      <div class="scroll">
-        <table>
-          <thead>
-            <tr>
-              <th>Stage</th>
-              <th>Route</th>
-              <th class="num">km</th>
-              <th class="num">Ascent</th>
-              <th class="num">Descent</th>
-              <th class="num">Elevation</th>
-              <th class="num">Time</th>
-            </tr>
-          </thead>
-          <tbody>
-            {t.stages.list.map((s) => (
-              <tr class={s.kind}>
-                <td>
-                  {s.number}
-                  {s.kind !== "main" && <small> {s.kind}</small>}
-                </td>
-                <td>
-                  {s.from} – {s.to}
-                </td>
-                <td class="num">{s.km.toFixed(1)}</td>
-                <td class="num">{fmt(s.ascentM)} m</td>
-                <td class="num">{fmt(s.descentM)} m</td>
-                <td class="num">
-                  {s.startEleM !== undefined && s.endEleM !== undefined
-                    ? `${fmt(s.startEleM)} → ${fmt(s.endEleM)} m`
-                    : "–"}
-                </td>
-                <td class="num">{s.minutes ? hours(s.minutes) : "–"}</td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      </div>
-      <p class="note muted">
-        Elevation is the height at the start and end of each stage. Totals and averages use the main stages only, not the
-        approach or variants.
-      </p>
+      <ul class="stage-legend" aria-hidden="true">
+        <li><Icon name="route" size={13} />Distance</li>
+        <li><Icon name="trending-up" size={13} />Ascent</li>
+        <li><Icon name="trending-down" size={13} />Descent</li>
+        <li><Icon name="mountain" size={13} />Elevation, start → end</li>
+        <li><Icon name="clock" size={13} />Walking time</li>
+      </ul>
+      <ol class="timeline">
+        {t.stages.list.map((s) => (
+          <li class={`stage ${s.kind}`}>
+            <span class="stage-no" aria-hidden="true">{s.number}</span>
+            <div class="stage-body">
+              <p class="stage-route">
+                <span class="visually-hidden">Stage {s.number}{s.kind !== "main" && ` (${s.kind})`}: </span>
+                {s.from} <span class="arrow" aria-hidden="true">→</span> {s.to}
+                {s.kind !== "main" && <span class="stage-kind">{s.kind === "approach" ? "Approach" : "Variant"}</span>}
+              </p>
+              <ul class="stage-stats">
+                <li title="Distance">
+                  <Icon name="route" size={14} /><span class="visually-hidden">Distance </span>{s.km.toFixed(1)} km
+                </li>
+                <li title="Ascent">
+                  <Icon name="trending-up" size={14} /><span class="visually-hidden">Ascent </span>{fmt(s.ascentM)} m
+                </li>
+                <li title="Descent">
+                  <Icon name="trending-down" size={14} /><span class="visually-hidden">Descent </span>{fmt(s.descentM)} m
+                </li>
+                {s.startEleM !== undefined && s.endEleM !== undefined && (
+                  <li title="Elevation at start and end" class="wide">
+                    <Icon name="mountain" size={14} /><span class="visually-hidden">Elevation </span>{fmt(s.startEleM)} → {fmt(s.endEleM)} m
+                  </li>
+                )}
+                {s.minutes && (
+                  <li title="Walking time">
+                    <Icon name="clock" size={14} /><span class="visually-hidden">Walking time </span>{hours(s.minutes)}
+                  </li>
+                )}
+              </ul>
+            </div>
+          </li>
+        ))}
+      </ol>
+      <p class="note muted">Totals and averages use the main stages only, not the approach or variant.</p>
     </section>
   )}
 
@@ -329,38 +328,38 @@ const nav = [
     <section id="sleeping">
       <h2>Sleeping</h2>
       <ul class="cards">
-        {sleeping.map((c) =>
-          c.id === "wild-camping" ? (
-            <li class:list={[t.wildCamping ? `tone-${WILD_TONE[t.wildCamping.status]}` : "absent"]}>
-              <p class="card-name"><Icon name={SLEEPING_ICONS[c.id]} />{c.label}</p>
-              <p class="card-hint">{c.hint}</p>
-              {t.wildCamping ? (
-                <p class="card-value">
-                  {WILD_CAMPING_LABELS[t.wildCamping.status]}
-                </p>
-              ) : (
-                <p class="card-value muted">Not known</p>
-              )}
+        {sleeping.map((c) => {
+          const wild = c.id === "wild-camping";
+          const tone = wild
+            ? t.wildCamping
+              ? `tone-${WILD_TONE[t.wildCamping.status]}`
+              : "absent"
+            : c.present.length > 0
+              ? "tone-good"
+              : "absent";
+          const value = wild
+            ? t.wildCamping && WILD_CAMPING_LABELS[t.wildCamping.status]
+            : c.present.map((x) => SLEEPING_LABELS[x]).join(", ");
+          return (
+            <li class={tone} id={wild ? "wild-camping" : undefined}>
+              <span class="card-icon"><Icon name={SLEEPING_ICONS[c.id]} size={18} /></span>
+              <div class="card-body">
+                <p class="card-name">{c.label}</p>
+                <p class="card-hint">{c.hint}</p>
+                {value ? <p class="card-value">{value}</p> : <p class="card-value muted">{wild ? "Not known" : "None listed"}</p>}
+              </div>
             </li>
-          ) : (
-            <li class:list={[c.present.length > 0 ? "tone-good" : "absent"]}>
-              <p class="card-name"><Icon name={SLEEPING_ICONS[c.id]} />{c.label}</p>
-              <p class="card-hint">{c.hint}</p>
-              {c.present.length > 0 ? (
-                <p class="card-value">
-                  {c.present.map((x) => SLEEPING_LABELS[x]).join(", ")}
-                </p>
-              ) : (
-                <p class="card-value muted">None listed</p>
-              )}
-            </li>
-          ),
-        )}
+          );
+        })}
       </ul>
       {t.wildCamping && (
-        <p class="rule">
-          <strong>Wild camping rule.</strong> {t.wildCamping.rule}
-        </p>
+        <div class={`rule tone-${WILD_TONE[t.wildCamping.status]}`}>
+          <span class="card-icon"><Icon name="tent" size={18} /></span>
+          <div>
+            <p class="rule-title">Wild camping: {WILD_CAMPING_LABELS[t.wildCamping.status].toLowerCase()}</p>
+            <p>{t.wildCamping.rule}</p>
+          </div>
+        </div>
       )}
     </section>
   )}
@@ -370,26 +369,36 @@ const nav = [
       <h2>Water</h2>
       <ul class="cards">
         <li>
-          <p class="card-name"><Icon name="droplet" />Drinking water</p>
-          <p class="card-hint">Fountains, taps, drinkable springs</p>
-          <p class="card-value">{waterTotals.drinking} points</p>
+          <span class="card-icon"><Icon name="droplet" size={18} /></span>
+          <div class="card-body">
+            <p class="card-name">Drinking water</p>
+            <p class="card-hint">Fountains, taps, drinkable springs</p>
+            <p class="card-value">{waterTotals.drinking} points</p>
+          </div>
         </li>
         <li>
-          <p class="card-name"><Icon name="droplets" />Springs</p>
-          <p class="card-hint">Drinkability unknown; treat the water</p>
-          <p class="card-value">{waterTotals.springs} more</p>
+          <span class="card-icon"><Icon name="droplets" size={18} /></span>
+          <div class="card-body">
+            <p class="card-name">Springs</p>
+            <p class="card-hint">Drinkability unknown; treat the water</p>
+            <p class="card-value">{waterTotals.springs} more</p>
+          </div>
         </li>
         <li class={`tone-${WATER_TONE[level!.id]}`}>
-          <p class="card-name"><Icon name="gauge" />Availability</p>
-          <p class="card-hint">{level!.hint}</p>
-          <p class="card-value">{level!.label}</p>
+          <span class="card-icon"><Icon name="gauge" size={18} /></span>
+          <div class="card-body">
+            <p class="card-name">Availability</p>
+            <p class="card-hint">{level!.hint}</p>
+            <p class="card-value">{level!.label}</p>
+          </div>
         </li>
         <li class={`tone-${WATER_TONE[level!.id]}`}>
-          <p class="card-name"><Icon name="ruler" />Longest dry stretch</p>
-          <p class="card-hint">
-            {`km ${water.longestGapKm.drinking.fromKm}–${water.longestGapKm.drinking.toKm}${gapStages}`}
-          </p>
-          <p class="card-value">{water.longestGapKm.drinking.km} km</p>
+          <span class="card-icon"><Icon name="ruler" size={18} /></span>
+          <div class="card-body">
+            <p class="card-name">Longest dry stretch</p>
+            <p class="card-hint">{`km ${water.longestGapKm.drinking.fromKm}–${water.longestGapKm.drinking.toKm}${gapStages}`}</p>
+            <p class="card-value">{water.longestGapKm.drinking.km} km</p>
+          </div>
         </li>
       </ul>
       <p class="note muted">
@@ -504,18 +513,29 @@ const nav = [
     border-radius: 10px;
     background: var(--surface);
   }
+  /* the icon hangs left of the label; label, value and note share one left edge */
   .figures dt {
+    position: relative;
     display: flex;
     align-items: center;
-    gap: 5px;
+    min-height: 18px;
+    padding-left: 20px;
     color: var(--muted);
     font-size: 0.68rem;
     font-weight: 500;
     letter-spacing: 0.04em;
     text-transform: uppercase;
   }
+  .figures dt :global(.icon) {
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--accent);
+  }
   .figures dd {
     margin: 2px 0 0;
+    padding-left: 20px;
     font-family: var(--serif);
     font-size: 1.1rem;
     font-weight: 600;
@@ -524,14 +544,15 @@ const nav = [
   .figures small {
     display: block;
     font-family: var(--sans);
-    font-size: 0.75em;
+    font-size: 0.72rem;
     font-weight: 400;
     color: var(--muted);
   }
   .facts {
     display: grid;
     grid-template-columns: max-content 1fr;
-    gap: 6px 16px;
+    gap: 10px 24px;
+    margin: 0;
   }
   .facts dt {
     color: var(--muted);
@@ -542,69 +563,75 @@ const nav = [
   @media (max-width: 560px) {
     .facts {
       grid-template-columns: 1fr;
+      gap: 2px;
     }
     .facts dd {
-      margin-bottom: 8px;
+      margin-bottom: 12px;
     }
   }
   .note {
+    margin-top: 12px;
     font-size: 0.8rem;
   }
+
+  /* cards: an icon column, then name, hint and value on one left edge */
   .cards {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
     gap: 8px;
     margin: 0;
     padding: 0;
     list-style: none;
   }
   .cards li {
-    padding: 12px 14px;
+    display: grid;
+    grid-template-columns: 32px 1fr;
+    gap: 12px;
+    align-items: start;
+    padding: 14px;
     border-radius: 10px;
     background: var(--surface);
   }
-  .cards li.tone-good {
+  .tone-good {
     --tone: var(--good);
-    background: var(--good-soft);
+    background: var(--good-soft) !important;
   }
-  .cards li.tone-fair {
+  .tone-fair {
     --tone: var(--fair);
-    background: var(--fair-soft);
+    background: var(--fair-soft) !important;
   }
-  .cards li.tone-poor {
+  .tone-poor {
     --tone: var(--poor);
-    background: var(--poor-soft);
-  }
-  .cards li[class*="tone-"] .card-value {
-    color: var(--tone);
-    font-weight: 600;
-  }
-  .cards li[class*="tone-"] .card-value::before {
-    content: "";
-    display: inline-block;
-    width: 8px;
-    height: 8px;
-    margin-right: 6px;
-    border-radius: 50%;
-    background: var(--tone);
-    vertical-align: 1px;
+    background: var(--poor-soft) !important;
   }
   .cards li.absent {
     background: none;
     border: 1px dashed var(--line);
   }
-  .cards p {
+  .card-icon {
+    display: grid;
+    place-items: center;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: var(--bg);
+    color: var(--tone, var(--accent));
+  }
+  .absent .card-icon {
+    color: var(--muted);
+  }
+  .card-body p,
+  .rule p {
     margin: 0;
   }
   .card-name {
-    display: flex;
-    align-items: center;
-    gap: 8px;
     font-family: var(--serif);
     font-size: 1.05rem;
     font-weight: 600;
+    line-height: 1.3;
   }
   .card-hint {
+    margin-top: 2px !important;
     color: var(--muted);
     font-size: 0.78rem;
     line-height: 1.4;
@@ -613,45 +640,168 @@ const nav = [
     margin-top: 8px !important;
     font-size: 0.9rem;
     font-weight: 500;
+    line-height: 1.4;
   }
+  [class*="tone-"] .card-value {
+    color: var(--tone);
+    font-weight: 600;
+  }
+
+  /* the wild camping rule, in its card's tone, so the two read together */
+  .rule {
+    display: grid;
+    grid-template-columns: 32px 1fr;
+    gap: 12px;
+    margin-top: 8px;
+    padding: 14px;
+    border-radius: 10px;
+    font-size: 0.9rem;
+    line-height: 1.5;
+  }
+  .rule-title {
+    margin-bottom: 2px !important;
+    color: var(--tone);
+    font-weight: 600;
+  }
+
   .hubs {
+    display: grid;
+    gap: 10px;
     margin: 0;
     padding: 0;
     list-style: none;
   }
   .hubs li {
-    display: flex;
-    gap: 10px;
-    align-items: baseline;
-    margin-bottom: 6px;
+    display: grid;
+    grid-template-columns: 32px 1fr;
+    gap: 12px;
+    align-items: center;
   }
-  .hub-kind {
-    flex: none;
+  .hub-icon {
     display: grid;
     place-items: center;
-    width: 28px;
-    height: 28px;
+    width: 32px;
+    height: 32px;
     border-radius: 50%;
     background: var(--surface);
     color: var(--accent);
-    align-self: flex-start;
   }
-  .hubs li {
-    align-items: flex-start;
-  }
-  .card-name :global(.icon) {
-    flex: none;
-    color: var(--tone, var(--accent));
+  .hub-text {
+    display: flex;
+    flex-direction: column;
+    line-height: 1.35;
   }
   .hub-dist {
-    display: block;
     color: var(--muted);
     font-size: 0.85rem;
   }
-  .rule {
-    max-width: 70ch;
-    margin-top: 16px;
+
+  /* stages: a timeline, numbered dots on a line; figures in fixed columns so they compare */
+  .stage-legend {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px 16px;
+    margin: -4px 0 16px;
+    padding: 0;
+    list-style: none;
+    color: var(--muted);
+    font-size: 0.78rem;
+  }
+  .stage-legend li,
+  .stage-stats li {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+  }
+  .stage-legend :global(.icon),
+  .stage-stats :global(.icon) {
+    flex: none;
+    color: var(--muted);
+  }
+  .timeline {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+  .stage {
+    position: relative;
+    display: grid;
+    grid-template-columns: 32px 1fr;
+    gap: 14px;
+    padding-bottom: 18px;
+  }
+  .stage::before {
+    content: "";
+    position: absolute;
+    top: 32px;
+    bottom: 0;
+    left: 15px;
+    border-left: 2px solid var(--line);
+  }
+  .stage:last-child::before {
+    display: none;
+  }
+  .stage-no {
+    display: grid;
+    place-items: center;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: var(--accent);
+    color: var(--bg);
+    font-weight: 600;
     font-size: 0.9rem;
+    font-variant-numeric: tabular-nums;
+  }
+  .stage.approach .stage-no,
+  .stage.variant .stage-no {
+    border: 2px dashed var(--accent);
+    background: var(--bg);
+    color: var(--accent);
+  }
+  .stage-body {
+    padding-top: 4px;
+  }
+  .stage-route {
+    margin: 0;
+    font-family: var(--serif);
+    font-size: 1.1rem;
+    font-weight: 600;
+    line-height: 1.35;
+  }
+  .stage.approach .stage-route,
+  .stage.variant .stage-route {
+    color: var(--muted);
+  }
+  .arrow {
+    color: var(--muted);
+    font-weight: 400;
+  }
+  .stage-kind {
+    display: inline-block;
+    margin-left: 8px;
+    padding: 0 8px;
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    color: var(--muted);
+    font: 500 0.7rem/1.7 var(--sans);
+    vertical-align: 2px;
+  }
+  .stage-stats {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px 0;
+    margin: 6px 0 0;
+    padding: 0;
+    list-style: none;
+    font-size: 0.9rem;
+    font-variant-numeric: tabular-nums;
+  }
+  .stage-stats li {
+    min-width: 7.5em;
+  }
+  .stage-stats li.wide {
+    min-width: 11em;
   }
   .info {
     width: 16px;
@@ -743,35 +893,5 @@ const nav = [
   .sources li:target {
     color: var(--text);
     background: var(--accent-soft);
-  }
-  .scroll {
-    overflow-x: auto;
-  }
-  table {
-    border-collapse: collapse;
-    width: 100%;
-    font-size: 0.95em;
-  }
-  th,
-  td {
-    padding: 10px 8px;
-    border-bottom: 1px solid var(--line);
-    text-align: left;
-    white-space: nowrap;
-  }
-  th {
-    color: var(--muted);
-    font-size: 0.8rem;
-    font-weight: 500;
-    letter-spacing: 0.03em;
-    text-transform: uppercase;
-  }
-  .num {
-    text-align: right;
-    font-variant-numeric: tabular-nums;
-  }
-  tr.approach,
-  tr.variant {
-    color: var(--muted);
   }
 </style>
