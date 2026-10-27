@@ -1,6 +1,6 @@
 <script lang="ts">
   // The trail search: filters grouped by planning question (when, how long, how hard, where,
-  // sleeping, water and terrain) beside a list of result cards. Everything runs in the browser
+  // sleeping, water, terrain) beside a list of result cards. Everything runs in the browser
   // on the summaries built at build time; the filters live in the URL, so a search can be shared.
   import { onMount } from "svelte";
   import { SLEEPING_CATEGORIES, WATER_LEVELS, type TrailSummary } from "../lib/trails";
@@ -10,12 +10,12 @@
   const SAC = ["T1", "T2", "T3", "T4", "T5", "T6"];
   const MONTHS = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
   const DURATIONS = [
-    { id: "week", label: "Up to a week", min: 1, max: 7 },
-    { id: "two-weeks", label: "1–2 weeks", min: 8, max: 14 },
-    { id: "month", label: "2–4 weeks", min: 15, max: 28 },
-    { id: "long", label: "Over 4 weeks", min: 29, max: Infinity },
+    { id: "week", label: "1–7 days", min: 1, max: 7 },
+    { id: "two-weeks", label: "8–14 days", min: 8, max: 14 },
+    { id: "month", label: "15–28 days", min: 15, max: 28 },
+    { id: "long", label: "29+ days", min: 29, max: Infinity },
   ];
-  const NATURAL_SHARE = 0.6; // "mostly natural paths"
+  const NATURAL = ["50", "70"]; // least share of natural ground, in per cent
   const SORTS = {
     name: { label: "Name", value: (t: TrailSummary) => t.name },
     shortest: { label: "Shortest first", value: (t: TrailSummary) => t.lengthKm },
@@ -31,7 +31,6 @@
   type SortKey = keyof typeof SORTS;
 
   // filter state; every field maps to a URL parameter of the same name
-  let q = $state("");
   let months = $state<number[]>([]);
   let durations = $state<string[]>([]);
   let sac = $state("");
@@ -39,7 +38,7 @@
   let sleep = $state<string[]>([]);
   let wild = $state("");
   let water = $state("");
-  let natural = $state(false);
+  let natural = $state("");
   let sort = $state<SortKey>("name");
   let filtersOpen = $state(false);
   let ready = false;
@@ -55,7 +54,6 @@
   onMount(() => {
     const p = new URLSearchParams(location.search);
     const list = (k: string) => (p.get(k) ? p.get(k)!.split(",") : []);
-    q = p.get("q") ?? "";
     months = list("months").map(Number).filter((m) => m >= 1 && m <= 12);
     durations = list("durations").filter((d) => DURATIONS.some((x) => x.id === d));
     sac = SAC.includes(p.get("sac") ?? "") ? p.get("sac")! : "";
@@ -63,7 +61,7 @@
     sleep = list("sleep").filter((s) => sleepingOptions.some((c) => c.id === s));
     wild = ["allowed", "some"].includes(p.get("wild") ?? "") ? p.get("wild")! : "";
     water = ["frequent", "regular"].includes(p.get("water") ?? "") ? p.get("water")! : "";
-    natural = p.get("natural") === "1";
+    natural = NATURAL.includes(p.get("natural") ?? "") ? p.get("natural")! : "";
     sort = (p.get("sort") ?? "") in SORTS ? (p.get("sort") as SortKey) : "name";
     ready = true;
   });
@@ -71,7 +69,6 @@
   // keep the URL in step with the filters (replace, not push: the back button leaves the page)
   $effect(() => {
     const p = new URLSearchParams();
-    if (q.trim()) p.set("q", q.trim());
     if (months.length) p.set("months", [...months].sort((a, b) => a - b).join(","));
     if (durations.length) p.set("durations", durations.join(","));
     if (sac) p.set("sac", sac);
@@ -79,7 +76,7 @@
     if (sleep.length) p.set("sleep", sleep.join(","));
     if (wild) p.set("wild", wild);
     if (water) p.set("water", water);
-    if (natural) p.set("natural", "1");
+    if (natural) p.set("natural", natural);
     if (sort !== "name") p.set("sort", sort);
     if (!ready) return;
     const search = p.toString();
@@ -88,12 +85,7 @@
 
   const toggle = <T,>(list: T[], value: T) => (list.includes(value) ? list.filter((x) => x !== value) : [...list, value]);
 
-  const text = (t: TrailSummary) =>
-    [t.name, t.localName ?? "", ...t.aliases, ...t.countries, ...t.regions, ...t.tags, t.start, t.end].join(" ").toLowerCase();
-
   const passes = (t: TrailSummary) => {
-    const words = q.trim().toLowerCase().split(/\s+/).filter(Boolean);
-    if (words.length && !words.every((w) => text(t).includes(w))) return false;
     if (months.length && !(t.season && months.some((m) => t.season!.includes(m)))) return false;
     if (durations.length) {
       if (!t.days) return false;
@@ -107,7 +99,7 @@
     if (wild === "some" && t.wildCamping !== "allowed" && t.wildCamping !== "restricted") return false;
     if (water === "frequent" && t.water?.level !== "frequent") return false;
     if (water === "regular" && t.water?.level !== "frequent" && t.water?.level !== "regular") return false;
-    if (natural && !(t.surface && t.surface.natural >= NATURAL_SHARE)) return false;
+    if (natural && !(t.surface && t.surface.natural * 100 >= Number(natural))) return false;
     return true;
   };
 
@@ -125,7 +117,6 @@
   const monthList = (ms: number[]) => [...ms].sort((a, b) => a - b).map((m) => MONTHS[m - 1]).join(", ");
   let active = $derived(
     [
-      q.trim() && { label: `“${q.trim()}”`, clear: () => (q = "") },
       months.length && { label: monthList(months), clear: () => (months = []) },
       ...durations.map((id) => ({ label: DURATIONS.find((d) => d.id === id)!.label, clear: () => (durations = toggle(durations, id)) })),
       sac && { label: `Up to SAC ${sac}`, clear: () => (sac = "") },
@@ -133,16 +124,15 @@
       ...sleep.map((id) => ({ label: SLEEPING_CATEGORIES.find((c) => c.id === id)!.label, clear: () => (sleep = toggle(sleep, id)) })),
       wild && { label: wild === "allowed" ? "Wild camping allowed" : "Wild camping possible", clear: () => (wild = "") },
       water && { label: water === "frequent" ? "Frequent water" : "Regular water or better", clear: () => (water = "") },
-      natural && { label: "Mostly natural paths", clear: () => (natural = false) },
+      natural && { label: `At least ${natural} % natural ground`, clear: () => (natural = "") },
     ].filter(Boolean) as { label: string; clear: () => void }[],
   );
 
   function reset() {
-    q = where = sac = wild = water = "";
+    where = sac = wild = water = natural = "";
     months = [];
     durations = [];
     sleep = [];
-    natural = false;
   }
 
   // card helpers
@@ -174,7 +164,8 @@
   <aside class="filters" class:open={filtersOpen} aria-label="Filters">
     <div class="filters-head">
       <h2>Filters</h2>
-      {#if active.length}<button type="button" class="link" onclick={reset}>Clear all</button>{/if}
+      <!-- always in the layout, only hidden, so showing it doesn't shift the filters below -->
+      <button type="button" class="link" class:hidden={!active.length} onclick={reset}>Clear all</button>
       <button type="button" class="close" onclick={() => (filtersOpen = false)}>Show {shown.length} {shown.length === 1 ? "trail" : "trails"}</button>
     </div>
 
@@ -237,28 +228,35 @@
     </fieldset>
 
     <fieldset>
-      <legend>Water and terrain</legend>
+      <legend>Water</legend>
       <p class="sub first" id="water-label">Drinking water at least every</p>
       <div class="segmented" role="radiogroup" aria-labelledby="water-label">
         <button type="button" role="radio" aria-checked={water === ""} onclick={() => (water = "")}>Any</button>
         <button type="button" role="radio" aria-checked={water === "regular"} onclick={() => (water = "regular")}>20 km</button>
         <button type="button" role="radio" aria-checked={water === "frequent"} onclick={() => (water = "frequent")}>10 km</button>
       </div>
-      <label class="check">
-        <input type="checkbox" bind:checked={natural} />
-        Mostly natural paths ({Math.round(NATURAL_SHARE * 100)} %+)
-      </label>
+      <p class="hint">By the longest stretch without a tap, fountain or drinking spring.</p>
+    </fieldset>
+
+    <fieldset>
+      <legend>Terrain</legend>
+      <p class="sub first" id="natural-label">Natural ground at least</p>
+      <div class="segmented" role="radiogroup" aria-labelledby="natural-label">
+        <button type="button" role="radio" aria-checked={natural === ""} onclick={() => (natural = "")}>Any</button>
+        {#each NATURAL as n}
+          <button type="button" role="radio" aria-checked={natural === n} onclick={() => (natural = n)}>{n} %</button>
+        {/each}
+      </div>
+      <!-- the same colours as the surface bar on each card -->
+      <ul class="ground" aria-label="Surface categories">
+        <li><span style="background: var(--surface-natural)"></span>Natural: earth, grass, rock</li>
+        <li><span style="background: var(--surface-gravel)"></span>Gravel</li>
+        <li><span style="background: var(--surface-paved)"></span>Paved</li>
+      </ul>
     </fieldset>
   </aside>
 
   <div class="results">
-    <div class="search">
-      <input type="search" placeholder="Search by name, country, region or town…" bind:value={q} aria-label="Search trails" />
-      <button type="button" class="filters-toggle" onclick={() => (filtersOpen = true)}>
-        Filters{#if active.length}<span class="count-badge">{active.length}</span>{/if}
-      </button>
-    </div>
-
     <div class="bar">
       <p class="count" role="status">
         {#if active.length}<strong>{shown.length}</strong> of {trails.length} {trails.length === 1 ? "trail" : "trails"}
@@ -270,6 +268,9 @@
           {#each Object.entries(SORTS) as [key, s]}<option value={key}>{s.label}</option>{/each}
         </select>
       </label>
+      <button type="button" class="filters-toggle" onclick={() => (filtersOpen = true)}>
+        Filters{#if active.length}<span class="count-badge">{active.length}</span>{/if}
+      </button>
     </div>
 
     {#if active.length}
@@ -516,20 +517,37 @@
     background: var(--surface);
     color: var(--text);
   }
-  .check {
+  .ground {
+    display: grid;
+    gap: 3px;
+    margin: 10px 0 0;
+    padding: 0;
+    list-style: none;
+    color: var(--muted);
+    font-size: 0.78rem;
+  }
+  .ground li {
     display: flex;
     gap: 8px;
     align-items: center;
-    margin-top: 12px;
-    font-size: 0.85rem;
-    cursor: pointer;
   }
-  .check input {
-    accent-color: var(--accent);
+  .ground span {
+    width: 14px;
+    height: 6px;
+    border-radius: 2px;
   }
   select {
     width: 100%;
     padding: 8px 10px;
+  }
+  /* focus drawn inside the box: the global outline would stick out past the filter column */
+  .filters select:focus {
+    outline: none;
+    border-color: var(--accent);
+    box-shadow: inset 0 0 0 1px var(--accent);
+  }
+  .link.hidden {
+    visibility: hidden;
   }
   .chip:focus-visible,
   .segmented button:focus-visible,
@@ -541,21 +559,11 @@
   }
 
   /* results */
-  .search {
-    display: flex;
-    gap: 8px;
-  }
-  .search input {
-    flex: 1;
-    min-width: 0;
-    padding: 11px 16px;
-    border-radius: 999px;
-  }
   .filters-toggle {
     display: inline-flex;
     align-items: center;
     gap: 6px;
-    padding: 0 16px;
+    padding: 6px 14px;
     border: 1px solid var(--line);
     border-radius: 999px;
     background: var(--bg);
@@ -584,11 +592,11 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    gap: 16px;
-    margin: 16px 0 0;
+    gap: 12px;
+    margin: 0;
   }
   .count {
-    margin: 0;
+    margin: 0 auto 0 0;
     color: var(--muted);
   }
   .count strong {
