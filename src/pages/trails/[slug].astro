@@ -471,8 +471,8 @@ const nav = [
     <ol>
       {t.sources.map((s, i) => (
         <li id={`source-${i + 1}`}>
-          <a href={s.url}>{s.title}</a> · {s.licence} ·{" "}
-          {s.retrieved ? `retrieved ${s.retrieved.toISOString().slice(0, 10)}` : "not yet verified"}
+          <a href={s.url}>{s.title}</a> · {s.licence}
+          {!s.retrieved && <span> · not yet verified</span>}
           {s.note && <span> · {s.note}</span>}
         </li>
       ))}
