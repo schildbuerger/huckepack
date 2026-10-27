@@ -53,6 +53,9 @@ const routeUrl = t.route && existsSync(`public/${routeFile}`) ? `/${routeFile}` 
 const routeAttribution = routeUrl && t.route ? sources[t.route.source].title.split(":")[0] : null;
 
 const level = water && waterLevel(water.longestGapKm.drinking.km);
+// status colours on cards (see --good/--fair/--poor in Base.astro); the text always says it too
+const WILD_TONE = { allowed: "good", restricted: "fair", prohibited: "poor" } as const;
+const WATER_TONE = { frequent: "good", regular: "fair", scarce: "poor" } as const;
 const waterTotals = water && {
   drinking: water.points.filter((p) => p.kind === "drinking").length,
   springs: water.points.filter((p) => p.kind === "spring").length,
@@ -317,7 +320,7 @@ const nav = [
       <ul class="cards">
         {sleeping.map((c) =>
           c.id === "wild-camping" ? (
-            <li class:list={[{ absent: !t.wildCamping }]}>
+            <li class:list={[t.wildCamping ? `tone-${WILD_TONE[t.wildCamping.status]}` : "absent"]}>
               <p class="card-name">{c.label}</p>
               <p class="card-hint">{c.hint}</p>
               {t.wildCamping ? (
@@ -329,7 +332,7 @@ const nav = [
               )}
             </li>
           ) : (
-            <li class:list={[{ absent: c.present.length === 0 }]}>
+            <li class:list={[c.present.length > 0 ? "tone-good" : "absent"]}>
               <p class="card-name">{c.label}</p>
               <p class="card-hint">{c.hint}</p>
               {c.present.length > 0 ? (
@@ -355,7 +358,7 @@ const nav = [
     <section id="water">
       <h2>Water</h2>
       <ul class="cards">
-        <li>
+        <li class={`tone-${WATER_TONE[level!.id]}`}>
           <p class="card-name">Availability</p>
           <p class="card-hint">{level!.hint}</p>
           <p class="card-value">{level!.label}</p>
@@ -370,7 +373,7 @@ const nav = [
           <p class="card-hint">Drinkability unknown; treat the water</p>
           <p class="card-value">{waterTotals.springs} more</p>
         </li>
-        <li>
+        <li class={`tone-${WATER_TONE[level!.id]}`}>
           <p class="card-name">Longest dry stretch</p>
           <p class="card-hint">
             {`km ${water.longestGapKm.drinking.fromKm}–${water.longestGapKm.drinking.toKm}${gapStages}`}
@@ -545,6 +548,32 @@ const nav = [
     padding: 12px 14px;
     border-radius: 10px;
     background: var(--surface);
+  }
+  .cards li.tone-good {
+    --tone: var(--good);
+    background: var(--good-soft);
+  }
+  .cards li.tone-fair {
+    --tone: var(--fair);
+    background: var(--fair-soft);
+  }
+  .cards li.tone-poor {
+    --tone: var(--poor);
+    background: var(--poor-soft);
+  }
+  .cards li[class*="tone-"] .card-value {
+    color: var(--tone);
+    font-weight: 600;
+  }
+  .cards li[class*="tone-"] .card-value::before {
+    content: "";
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    margin-right: 6px;
+    border-radius: 50%;
+    background: var(--tone);
+    vertical-align: 1px;
   }
   .cards li.absent {
     background: none;
