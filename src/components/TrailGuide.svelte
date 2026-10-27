@@ -146,7 +146,14 @@
       {#if s.id === "when"}
         <div class="months" role="group" aria-label="Months">
           {#each MONTHS as m, i}
-            <button type="button" class="month" aria-pressed={f.months.includes(i + 1)} onclick={() => (f.months = toggle(f.months, i + 1))}>
+            <button
+              type="button"
+              class="month"
+              aria-pressed={f.months.includes(i + 1)}
+              disabled={!f.months.includes(i + 1) && countWith({ months: [i + 1] }) === 0}
+              title={!f.months.includes(i + 1) && countWith({ months: [i + 1] }) === 0 ? "No trail is in season then" : undefined}
+              onclick={() => (f.months = toggle(f.months, i + 1))}
+            >
               <span class="visually-hidden">{MONTH_NAMES[i]}</span><span aria-hidden="true">{m}</span>
             </button>
           {/each}
@@ -174,7 +181,13 @@
         {/each}
       {:else if s.id === "sleep"}
         {#each sleepingOptions as c}
-          <button type="button" class="option" aria-pressed={f.sleep.includes(c.id)} onclick={() => (f.sleep = toggle(f.sleep, c.id))}>
+          <button
+            type="button"
+            class="option"
+            aria-pressed={f.sleep.includes(c.id)}
+            disabled={!f.sleep.includes(c.id) && countWith({ sleep: [...f.sleep, c.id] }) === 0}
+            onclick={() => (f.sleep = toggle(f.sleep, c.id))}
+          >
             <span class="label">{c.label}<span class="sub">{c.hint}</span></span>
             <!-- how many trails would have this kind too -->
             <span class="count">{trailsWord(countWith({ sleep: f.sleep.includes(c.id) ? f.sleep : [...f.sleep, c.id] }))}</span>
@@ -257,7 +270,15 @@
 </div>
 
 {#snippet option(o: Option, small = false)}
-  <button type="button" class="option" class:small aria-pressed={isSet(o.set)} onclick={() => Object.assign(f, o.set)}>
+  <!-- an answer that would leave no trail can't be picked (unless it's the current one, to undo it) -->
+  <button
+    type="button"
+    class="option"
+    class:small
+    aria-pressed={isSet(o.set)}
+    disabled={!isSet(o.set) && countWith(o.set) === 0}
+    onclick={() => Object.assign(f, o.set)}
+  >
     <span class="label">{o.label}{#if o.sub}<span class="sub">{o.sub}</span>{/if}</span>
     <span class="count">{trailsWord(countWith(o.set))}</span>
   </button>
@@ -306,6 +327,7 @@
   }
   .option {
     display: flex;
+    min-width: 0;
     align-items: center;
     justify-content: space-between;
     gap: 16px;
@@ -319,8 +341,14 @@
     cursor: pointer;
     transition: border-color 0.15s ease;
   }
-  .option:hover {
+  .option:hover:not(:disabled),
+  .month:hover:not(:disabled) {
     border-color: var(--muted);
+  }
+  .option:disabled,
+  .month:disabled {
+    opacity: 0.45;
+    cursor: not-allowed;
   }
   .option[aria-pressed="true"] {
     border-color: var(--accent);
@@ -333,7 +361,9 @@
   .label {
     display: grid;
     gap: 2px;
+    min-width: 0;
     font-weight: 600;
+    overflow-wrap: anywhere;
   }
   .sub {
     color: var(--muted);
@@ -347,11 +377,12 @@
     font-size: 0.85rem;
     font-variant-numeric: tabular-nums;
   }
+  /* a continent's countries, indented beneath it; columns shrink to the space there is */
   .countries {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(min(100%, 180px), 1fr));
     gap: 8px;
-    padding-left: 20px;
+    margin-left: 16px;
   }
   .months {
     display: grid;
@@ -371,9 +402,6 @@
     color: var(--text);
     font: 600 1rem var(--sans);
     cursor: pointer;
-  }
-  .month:hover {
-    border-color: var(--muted);
   }
   .month[aria-pressed="true"] {
     border-color: var(--accent);
