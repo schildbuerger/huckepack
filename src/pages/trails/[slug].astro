@@ -817,6 +817,14 @@ const nav = [
     text-decoration: none;
     white-space: nowrap;
   }
+  /* centred with auto margins rather than justify-content: when the links overflow on a phone,
+     the row still scrolls from its first link instead of cutting it off on the left */
+  .onpage li:first-child {
+    margin-left: auto;
+  }
+  .onpage li:last-child {
+    margin-right: auto;
+  }
   .onpage a:hover {
     color: var(--text);
   }
