@@ -6,14 +6,14 @@ import a from "../../../design/logos/a-pixel-pack.svg?raw";
 import b from "../../../design/logos/b-pixel-peak.svg?raw";
 import c from "../../../design/logos/c-line.svg?raw";
 import d from "../../../design/logos/d-solid-peak.svg?raw";
-import e from "../../../design/logos/e-mat.svg?raw";
+import e from "../../../design/logos/e-duotone.svg?raw";
 
 const logos = [
-  { id: "A", name: "Pixel pack", svg: a, note: "16 × 16 pixels. Front view with carry loop, ink outline, pocket with buckle. Reads like a game sprite; strongest at small sizes." },
-  { id: "B", name: "Pixel peak", svg: b, note: "12 × 12 pixels, one colour. A solid pack with a mountain cut out of the front: pack and trail in one sign." },
-  { id: "C", name: "Line", svg: c, note: "Monoline drawing in terracotta, matching the icons on the site. The quietest option." },
-  { id: "D", name: "Solid peak", svg: d, note: "Filled silhouette with a mountain cut out and a small strap slot. Works as a stamp or favicon." },
-  { id: "E", name: "Sleeping mat", svg: e, note: "Two-tone pack with a rolled mat on top: the long-distance hiker's pack." },
+  { id: "A", name: "Pixel pack", svg: a, note: "24 × 24 pixels, traced from D: ink outline, domed lid with lid line, soft front pocket, strap behind the back panel." },
+  { id: "B", name: "Pixel peak", svg: b, note: "24 × 24 pixels, one colour: the same pack solid, with a mountain cut out of the front." },
+  { id: "C", name: "Line", svg: c, note: "Monoline side view in terracotta: domed lid, haul loop, strap with hip-belt stub, front pocket. Matches the site's icons." },
+  { id: "D", name: "Solid peak", svg: d, note: "Filled side view with the lid line and a mountain cut out. Compact; strongest at favicon size." },
+  { id: "E", name: "Duotone", svg: e, note: "The line drawing in ink with the lid and pocket filled in terracotta." },
 ];
 // inline SVGs share the page: give each copy its own mask id
 let copy = 0;
@@ -27,8 +27,8 @@ const inline = (svg: string) => {
   <p class="eyebrow">Design proposal</p>
   <h1>Logo: a backpack</h1>
   <p class="lede muted">
-    Five directions, two in pixel art and three illustrated. Each is one scalable SVG; colours follow the site's
-    theme (terracotta and ink) and fall back to them when used on their own.
+    Five directions in side view, two in pixel art and three illustrated. Each is one scalable SVG; colours follow
+    the site's theme (terracotta and ink) and fall back to them when used on their own.
   </p>
 
   <div class="logos">
