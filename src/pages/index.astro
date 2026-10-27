@@ -1,33 +1,189 @@
 ---
 import { getCollection } from "astro:content";
 import Base from "../layouts/Base.astro";
-import TrailList from "../components/TrailList.svelte";
-import { countryName, sacGrade, stageTotals } from "../lib/trails";
+import { summarize } from "../lib/trails";
 
 const trails = (await getCollection("trails"))
-  .map(({ id, data: t }) => {
-    const totals = stageTotals(t);
-    return {
-      slug: id,
-      name: t.name,
-      continents: t.continents,
-      countries: t.countries.map(countryName),
-      // lists show the stage total when there are stages, else the first stated length;
-      // trail pages show every figure with its source
-      lengthKm: totals?.km.value ?? t.length[0]?.km ?? null,
-      ascentM: totals?.ascentM.value ?? t.ascent[0]?.m ?? null,
-      days: t.days ? ([t.days.min, t.days.max] as [number, number]) : null,
-      sac: sacGrade(t)?.value ?? null,
-      wildCamping: t.wildCamping?.status ?? null,
-      sleeping: t.sleeping?.types ?? [],
-      tags: t.tags,
-      draft: t.status === "draft",
-    };
-  })
+  .map(({ id, data }) => summarize(id, data))
   .sort((a, b) => a.name.localeCompare(b.name));
+const countries = new Set(trails.flatMap((t) => t.countries)).size;
+const days = (d: [number, number] | null) => (d === null ? null : d[0] === d[1] ? `${d[0]} days` : `${d[0]}–${d[1]} days`);
+
+const features = [
+  {
+    title: "Compare the long trails",
+    text: "Length, total ascent, days and difficulty side by side, with filters for continent, country and how hard a trail is.",
+  },
+  {
+    title: "Plan by stage",
+    text: "Every official stage with distance, ascent, descent and walking time, and what a typical day on the trail asks of you.",
+  },
+  {
+    title: "Know where to sleep",
+    text: "Which kinds of places to stay exist along the way, and whether wild camping is allowed, restricted or banned, with the rule.",
+  },
+  {
+    title: "See the route",
+    text: "Each trail drawn on an OpenStreetMap map, stage by stage, with approaches and variants.",
+  },
+  {
+    title: "Every number has a source",
+    text: "Sources disagree about trails. We show where each figure comes from and when we checked it, instead of picking one quietly.",
+  },
+];
 ---
 
-<Base title="huckepack" description="Official long-distance hiking trails around the world.">
-  <h1>Long-distance trails</h1>
-  <TrailList client:load trails={trails} />
+<Base
+  title="huckepack · long-distance hiking trails, compared"
+  description="Facts about official long-distance hiking trails around the world: length, ascent, stages, difficulty, where to sleep and maps, each with its source."
+  section="home"
+>
+  <section class="hero">
+    <p class="eyebrow">Long-distance hiking trails</p>
+    <h1>Find your next long walk.</h1>
+    <p class="lede">
+      huckepack collects what you need to know about the world's official long-distance trails: how long, how
+      steep, how many days, where to sleep. Every figure comes with its source.
+    </p>
+    <p class="actions">
+      <a class="button" href="/trails/">Browse trails</a>
+      <span class="muted">{trails.length} {trails.length === 1 ? "trail" : "trails"} in {countries} {countries === 1 ? "country" : "countries"} so far</span>
+    </p>
+  </section>
+
+  <section class="features">
+    {features.map((f) => (
+      <div class="feature">
+        <h3>{f.title}</h3>
+        <p>{f.text}</p>
+      </div>
+    ))}
+  </section>
+
+  <section>
+    <h2>Trails</h2>
+    <ul class="cards">
+      {trails.map((t) => (
+        <li>
+          <a class="card" href={`/trails/${t.slug}/`}>
+            <span class="card-place muted">
+              {t.countries.join(", ")}
+              {t.regions.length > 0 && ` · ${t.regions.join(", ")}`}
+            </span>
+            <span class="card-name">
+              {t.name} {t.draft && <span class="badge">draft</span>}
+            </span>
+            {t.localName && <span class="card-local muted">{t.localName}</span>}
+            <span class="card-figures">
+              {[t.lengthKm !== null && `${t.lengthKm.toLocaleString("en")} km`, days(t.days), t.sac && `SAC ${t.sac}`]
+                .filter(Boolean)
+                .join(" · ")}
+            </span>
+          </a>
+        </li>
+      ))}
+    </ul>
+    <p><a href="/trails/">Search and compare all trails →</a></p>
+  </section>
 </Base>
+
+<style>
+  .hero {
+    padding: 48px 0 56px;
+    max-width: 680px;
+  }
+  .eyebrow {
+    margin: 0;
+    color: var(--accent);
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+  .hero h1 {
+    margin-top: 12px;
+    font-size: clamp(2.4rem, 7vw, 3.75rem);
+  }
+  .lede {
+    font-size: 1.15rem;
+    color: var(--muted);
+  }
+  .actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+    align-items: center;
+    margin-top: 28px;
+  }
+  .actions .muted {
+    font-size: 0.9rem;
+  }
+  .features {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 1px;
+    margin-bottom: 64px;
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    overflow: hidden;
+    background: var(--line);
+  }
+  .feature {
+    padding: 24px;
+    background: var(--bg);
+  }
+  .feature h3 {
+    margin: 0 0 8px;
+    font-size: 1.15rem;
+  }
+  .feature p {
+    margin: 0;
+    color: var(--muted);
+    font-size: 0.95rem;
+  }
+  .cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 16px;
+    margin: 0 0 24px;
+    padding: 0;
+    list-style: none;
+  }
+  .card {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    height: 100%;
+    padding: 20px;
+    border-radius: 12px;
+    background: var(--surface);
+    color: var(--text);
+    text-decoration: none;
+    transition: transform 0.15s ease;
+  }
+  .card:hover {
+    transform: translateY(-2px);
+  }
+  .card-place {
+    font-size: 0.8rem;
+  }
+  .card-name {
+    font-family: var(--serif);
+    font-size: 1.35rem;
+    font-weight: 600;
+  }
+  .card-local {
+    font-size: 0.9rem;
+  }
+  .card-figures {
+    margin-top: 12px;
+    color: var(--accent);
+    font-weight: 600;
+    font-size: 0.9rem;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .card {
+      transition: none;
+    }
+  }
+</style>

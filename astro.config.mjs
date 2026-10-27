@@ -6,5 +6,8 @@ export default defineConfig({
   vite: {
     // maplibre-gl is one ~1 MB chunk, loaded only when a map scrolls into view
     build: { chunkSizeWarningLimit: 1100 },
+    // The project lives in a cloud-synced Proton Drive folder, where file change events
+    // don't reliably arrive; poll so the dev server sees new and changed files.
+    server: { watch: { usePolling: true, interval: 500 } },
   },
 });

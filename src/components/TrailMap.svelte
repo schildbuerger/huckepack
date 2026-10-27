@@ -21,7 +21,7 @@
   }: { routeUrl: string | null; start: Point; end: Point; routeAttribution: string | null } = $props();
 
   const STYLE = "https://tiles.openfreemap.org/styles/liberty";
-  const ROUTE = "#c2410c";
+  const ROUTE = "#b0502a";
 
   let container: HTMLDivElement;
   let failed = $state(false);
@@ -167,10 +167,10 @@
     width: 24px;
     height: 0;
     vertical-align: middle;
-    border-top: 4px solid #c2410c;
+    border-top: 4px solid #b0502a;
   }
   .key.other {
-    border-top: 3px dashed #c2410c;
+    border-top: 3px dashed #b0502a;
     opacity: 0.7;
   }
   .key.dot {

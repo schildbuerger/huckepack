@@ -53,6 +53,30 @@ export function sacGrade(t: Trail): Derived<string> | undefined {
   return undefined;
 }
 
+// The compact record lists and filters work on. Lists show the stage total when there are
+// stages, else the first stated length; trail pages show every figure with its source.
+export function summarize(id: string, t: Trail) {
+  const totals = stageTotals(t);
+  return {
+    slug: id,
+    name: t.name,
+    localName: t.localName ?? null,
+    continents: t.continents as string[],
+    countries: t.countries.map(countryName),
+    regions: t.regions,
+    lengthKm: totals?.km.value ?? t.length[0]?.km ?? null,
+    ascentM: totals?.ascentM.value ?? t.ascent[0]?.m ?? null,
+    days: t.days ? ([t.days.min, t.days.max] as [number, number]) : null,
+    sac: sacGrade(t)?.value ?? null,
+    wildCamping: t.wildCamping?.status ?? null,
+    sleeping: t.sleeping?.types ?? [],
+    tags: t.tags,
+    draft: t.status === "draft",
+  };
+}
+
+export type TrailSummary = ReturnType<typeof summarize>;
+
 const countryNames = new Intl.DisplayNames(["en"], { type: "region" });
 export const countryName = (code: string) => countryNames.of(code) ?? code;
 

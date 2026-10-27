@@ -2,8 +2,9 @@
 interface Props {
   title: string;
   description?: string;
+  section?: "home" | "trails";
 }
-const { title, description } = Astro.props;
+const { title, description, section } = Astro.props;
 ---
 
 <!doctype html>
@@ -15,69 +16,164 @@ const { title, description } = Astro.props;
     {description && <meta name="description" content={description} />}
   </head>
   <body>
-    <header>
-      <a href="/" class="brand">huckepack</a>
+    <header class="site-header">
+      <div class="wrap">
+        <a href="/" class="brand">huckepack</a>
+        <nav>
+          <a href="/trails/" aria-current={section === "trails" ? "page" : undefined}>Trails</a>
+        </nav>
+      </div>
     </header>
-    <main>
+    <main class="wrap">
       <slot />
     </main>
+    <footer class="site-footer">
+      <div class="wrap">
+        <p>
+          huckepack collects facts about official long-distance trails. Every figure names its source.
+        </p>
+        <p>Maps and trail lines © OpenStreetMap contributors (ODbL), basemap by OpenFreeMap.</p>
+      </div>
+    </footer>
   </body>
 </html>
 
 <style is:global>
   :root {
-    --bg: #fbfaf7;
-    --text: #1f2421;
-    --muted: #5d655f;
-    --line: #dcdcd4;
-    --accent: #2f6b4f;
-    --badge-bg: #f1e7c9;
-    --badge-text: #6b5414;
+    --bg: #fbf7f1;
+    --surface: #f4ece1;
+    --text: #2a221d;
+    --muted: #75685d;
+    --line: #e6dccf;
+    --accent: #b0502a;
+    --accent-soft: #f3e2d5;
+    --badge-bg: #f1e3c6;
+    --badge-text: #73541a;
+    --serif: "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif;
+    --sans: system-ui, -apple-system, "Segoe UI", sans-serif;
+    color-scheme: light;
   }
   @media (prefers-color-scheme: dark) {
     :root {
-      --bg: #141816;
-      --text: #e7e9e4;
-      --muted: #a1a9a3;
-      --line: #2f3631;
-      --accent: #7cc4a0;
-      --badge-bg: #3e3519;
-      --badge-text: #e9d48f;
+      --bg: #1b1714;
+      --surface: #241f1a;
+      --text: #efe6da;
+      --muted: #a99b8d;
+      --line: #3a322b;
+      --accent: #e3916a;
+      --accent-soft: #3b2a20;
+      --badge-bg: #3d321c;
+      --badge-text: #e8cf91;
+      color-scheme: dark;
     }
+  }
+  * {
+    box-sizing: border-box;
   }
   body {
     margin: 0;
     background: var(--bg);
     color: var(--text);
-    font: 16px/1.5 system-ui, sans-serif;
+    font: 16px/1.6 var(--sans);
   }
-  header,
-  main {
-    max-width: 960px;
+  .wrap {
+    max-width: 1040px;
     margin: 0 auto;
     padding: 0 16px;
   }
-  header {
-    padding-top: 16px;
-    padding-bottom: 16px;
-    border-bottom: 1px solid var(--line);
+  h1,
+  h2,
+  h3 {
+    font-family: var(--serif);
+    font-weight: 600;
+    line-height: 1.2;
+    letter-spacing: -0.01em;
+  }
+  h1 {
+    font-size: clamp(2rem, 5vw, 2.75rem);
+    margin: 40px 0 8px;
+  }
+  h2 {
+    font-size: 1.5rem;
+    margin: 0 0 16px;
   }
   a {
     color: var(--accent);
-  }
-  .brand {
-    font-weight: 700;
-    text-decoration: none;
+    text-underline-offset: 3px;
   }
   .muted {
     color: var(--muted);
   }
   .badge {
     display: inline-block;
-    padding: 0 6px;
-    border-radius: 4px;
+    padding: 0 8px;
+    border-radius: 999px;
     background: var(--badge-bg);
     color: var(--badge-text);
-    font-size: 0.8em;
+    font: 500 0.75rem/1.6 var(--sans);
+    vertical-align: middle;
+    letter-spacing: 0.02em;
+  }
+  .button {
+    display: inline-block;
+    padding: 10px 20px;
+    border-radius: 999px;
+    background: var(--accent);
+    color: var(--bg);
+    font-weight: 600;
+    text-decoration: none;
+  }
+  .button:hover {
+    filter: brightness(1.08);
+  }
+  select,
+  input {
+    font: inherit;
+    color: var(--text);
+    background: var(--bg);
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    padding: 6px 10px;
+  }
+  select:focus,
+  input:focus {
+    outline: 2px solid var(--accent);
+    outline-offset: 1px;
+  }
+
+  .site-header {
+    border-bottom: 1px solid var(--line);
+  }
+  .site-header .wrap {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 60px;
+  }
+  .brand {
+    font-family: var(--serif);
+    font-size: 1.35rem;
+    font-weight: 600;
+    color: var(--text);
+    text-decoration: none;
+  }
+  .site-header nav a {
+    color: var(--muted);
+    text-decoration: none;
+    font-weight: 500;
+  }
+  .site-header nav a:hover,
+  .site-header nav a[aria-current="page"] {
+    color: var(--text);
+  }
+  .site-footer {
+    margin-top: 80px;
+    padding: 24px 0 40px;
+    border-top: 1px solid var(--line);
+    color: var(--muted);
+    font-size: 0.85rem;
+  }
+  .site-footer p {
+    margin: 0 0 4px;
   }
 </style>
