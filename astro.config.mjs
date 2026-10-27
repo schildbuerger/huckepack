@@ -2,6 +2,8 @@ import { defineConfig } from "astro/config";
 import svelte from "@astrojs/svelte";
 
 export default defineConfig({
+  // deployed to GitHub Pages under the custom domain, at the root (.github/workflows/deploy.yml)
+  site: "https://huckepack.me",
   integrations: [svelte()],
   vite: {
     // maplibre-gl is one ~1 MB chunk, loaded only when a map scrolls into view
