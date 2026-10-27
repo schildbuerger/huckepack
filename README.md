@@ -1,4 +1,4 @@
-# trailviz
+# huckepack
 
 A website that collects and visualises data about official long-distance
 hiking trails around the world, focused on the well-known routes people

@@ -2,7 +2,7 @@
 
 This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
 
-trailviz is a website that collects and visualises data about official long-distance hiking trails worldwide, focused on well-known thru-hiking routes: one page per trail plus comparisons across trails. docs/scope.md holds decisions and open questions (record new decisions there), docs/data-sources.md lists sources with their licences, docs/roadmap.md ranks candidate trails and features (update it when one is built).
+huckepack is a website that collects and visualises data about official long-distance hiking trails worldwide, focused on well-known thru-hiking routes: one page per trail plus comparisons across trails. docs/scope.md holds decisions and open questions (record new decisions there), docs/data-sources.md lists sources with their licences, docs/roadmap.md ranks candidate trails and features (update it when one is built).
 
 The project is in planning: there is no code, build or test command yet. Add a Commands section here once there is one.
 

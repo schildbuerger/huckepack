@@ -2,6 +2,9 @@
 
 ## Decisions
 
+- **Name:** huckepack (German for carrying someone piggyback, from Low German
+  *Hucke*, a load carried on the back). huckepack.com is taken; the domain
+  ending is still open (see below).
 - **Subject:** official long-distance hiking trails worldwide, focused on the
   well-known routes commonly thru-hiked. "Official" means designated or
   maintained by a government body or a recognised trail association.
@@ -32,7 +35,15 @@
   routes need a basemap, which means map tiles from an external source
   (for example MapLibre with OpenFreeMap or Protomaps) instead of
   self-contained SVG.
-- **Domain and hosting.**
+- **Domain and hosting:** candidates are huckepack.org (most trusted for a
+  reference site) and huckepack.me ("carry me"; Google treats .me as
+  generic), with huckepack.de as a cheap redirect to protect the name. A .eu
+  works for search but is less familiar outside Europe. Avoid endings that
+  are cheap only in the first year. Check availability and renewal prices
+  before deciding.
+- **Ads:** possible later. They need a GDPR consent banner and a privacy
+  policy, and they load external scripts, which conflicts with
+  self-contained pages.
 - **First trail:** see the ranking in [roadmap.md](roadmap.md).
 - **Language:** English only?
 - **Licence** for the code and for the derived data.
