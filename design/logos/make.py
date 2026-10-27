@@ -1,4 +1,4 @@
-"""Logo proposals for huckepack: pictograms in pixel art and stencil style, one SVG each.
+"""Logos for huckepack: proposals as one SVG each, and the chosen one written into the site.
 
     python3 design/logos/make.py
 
@@ -8,6 +8,7 @@ Pixel logos are drawn from the grids below: o = ink, # = accent, p = soft accent
 Small grids (12 × 12) on purpose: a pictogram has to survive at 16 px.
 """
 
+import re
 from pathlib import Path
 
 HERE = Path(__file__).resolve().parent
@@ -195,9 +196,24 @@ LOGOS = {
     "a6-cairn-micro": pixel_svg(CAIRN_MICRO, "Cairn, pixel, micro"),
 }
 
+# The chosen logo: written into the site as the header mark and the favicon.
+FINAL = "a6-cairn-micro"
+SITE = HERE.parent.parent
+
 if __name__ == "__main__":
     for old in HERE.glob("*.svg"):
         old.unlink()
     for name, svg in LOGOS.items():
         (HERE / f"{name}.svg").write_text(svg)
         print(f"design/logos/{name}.svg  {len(svg)} bytes")
+    # header mark: currentColor, so the page sets its colour (the theme's accent);
+    # favicon: plain colours, since favicons don't get the page's CSS
+    final = LOGOS[FINAL]
+    outputs = {
+        SITE / "src" / "assets" / "logo.svg": re.sub(r"var\(--logo-[a-z]+, (#[0-9a-f]{6})\)", "currentColor", final),
+        SITE / "public" / "favicon.svg": re.sub(r"var\(--logo-[a-z]+, (#[0-9a-f]{6})\)", r"\1", final),
+    }
+    for target, svg in outputs.items():
+        target.parent.mkdir(parents=True, exist_ok=True)
+        target.write_text(svg)
+        print(f"{target.relative_to(SITE)}  ({FINAL})")

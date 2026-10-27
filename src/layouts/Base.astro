@@ -1,5 +1,6 @@
 ---
 import ThemeToggle from "../components/ThemeToggle.astro";
+import logo from "../assets/logo.svg?raw"; // written by design/logos/make.py
 
 interface Props {
   title: string;
@@ -16,6 +17,7 @@ const { title, description, section } = Astro.props;
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{title}</title>
     {description && <meta name="description" content={description} />}
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
     <script is:inline>
       // apply a saved light/dark choice before the first paint; no choice means auto (system setting)
       try {
@@ -27,7 +29,10 @@ const { title, description, section } = Astro.props;
   <body>
     <header class="site-header">
       <div class="wrap">
-        <a href="/" class="brand">huckepack</a>
+        <a href="/" class="brand">
+          <span class="brand-mark" aria-hidden="true" set:html={logo} />
+          huckepack
+        </a>
         <nav>
           <a href="/trails/" aria-current={section === "trails" ? "page" : undefined}>Trails</a>
           <ThemeToggle />
@@ -211,11 +216,26 @@ const { title, description, section } = Astro.props;
     height: 60px;
   }
   .brand {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
     font-family: var(--serif);
     font-size: 1.35rem;
     font-weight: 600;
     color: var(--text);
     text-decoration: none;
+  }
+  /* the cairn: an 8 × 8 pixel logo at 24 px, three screen pixels per logo pixel */
+  .brand-mark {
+    display: block;
+    width: 24px;
+    height: 24px;
+    color: var(--accent);
+  }
+  .brand-mark svg {
+    display: block;
+    width: 100%;
+    height: 100%;
   }
   .site-header nav {
     display: flex;
