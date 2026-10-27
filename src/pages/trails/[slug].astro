@@ -153,12 +153,8 @@ const nav = [
   <nav class="crumbs" aria-label="Breadcrumb"><a href="/trails/">Trails</a> / {t.countries.map(countryName).join(", ")}</nav>
   <h1>
     {t.name}
-    {t.status === "draft" && <span class="badge">draft</span>}
   </h1>
-  <p class="subtitle muted">
-    {t.localName && <span>{t.localName} · </span>}
-    <a href={t.website}>Official website</a>
-  </p>
+  {t.localName && <p class="subtitle muted">{t.localName}</p>}
 
   <nav class="onpage" aria-label="On this page">
     <ul>
@@ -299,7 +295,10 @@ const nav = [
       )}
       <div class:list={[{ wide: t.managedBy.map((m) => m.name).join(", ").length > 40 }]}>
         <dt>Managed by</dt>
-        <dd>{t.managedBy.map((m) => m.name).join(", ")}</dd>
+        <dd>
+          {t.managedBy.map((m) => m.name).join(", ")}
+          <a class="site-link" href={t.website}>Official website</a>
+        </dd>
       </div>
     </dl>
   </section>
@@ -674,6 +673,12 @@ const nav = [
   }
   .subtitle {
     margin: 0;
+    font-style: italic;
+  }
+  .site-link {
+    display: block;
+    margin-top: 2px;
+    font-size: 0.8rem;
   }
 
   .onpage {

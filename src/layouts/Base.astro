@@ -58,10 +58,11 @@ const { title, description, section } = Astro.props;
     --poor-soft: #f8e7e0;
     /* water points in charts: the one cool colour, kept to water */
     --water: #2f6690;
-    /* surface categories in charts; validated as a categorical palette (dataviz check) */
-    --surface-natural: #008877;
-    --surface-gravel: #c37829;
-    --surface-paved: #6953a0;
+    /* surface categories in charts, checked with the dataviz validator: paved is an asphalt grey on
+       purpose (no hue), so it differs from teal and amber by lightness; every category is also named */
+    --surface-natural: #219a88;
+    --surface-gravel: #cc7f32;
+    --surface-paved: #505357;
     --surface-unknown: #d6ccbf;
     --serif: "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif;
     --sans: system-ui, -apple-system, "Segoe UI", sans-serif;
@@ -85,9 +86,9 @@ const { title, description, section } = Astro.props;
       --poor: #ee9c87;
       --poor-soft: #3b231e;
       --water: #86b6db;
-      --surface-natural: #008c74;
-      --surface-gravel: #c48139;
-      --surface-paved: #8670c0;
+      --surface-natural: #00785f;
+      --surface-gravel: #ac6820;
+      --surface-paved: #939599;
       --surface-unknown: #4a4038;
       color-scheme: dark;
     }
