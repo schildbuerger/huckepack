@@ -25,3 +25,6 @@ Thumbs.db
 
 # Logs
 *.log
+
+# Official GPX tracks: copyrighted, kept local only (the pipeline re-downloads them with --refresh)
+data/raw/*/*.gpx
