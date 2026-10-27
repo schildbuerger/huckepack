@@ -215,60 +215,64 @@ const nav = [
 
   <section id="location">
     <h2>Location</h2>
-    <div class="location">
-      <dl class="facts">
+    <dl class="loc">
+      <div>
         <dt>Start</dt>
         <dd>{t.termini.start.name}</dd>
+      </div>
+      <div>
         <dt>Finish</dt>
         <dd>{t.termini.end.name}</dd>
-        {hubs.length > 0 && (
-          <>
-            <dt>Travel hubs</dt>
-            <dd>
-              <ul class="hubs">
-                {hubs.map((h) => (
-                  <li>
-                    <span class="hub-kind">
-                      <Icon name={h.kind === "station" ? "train-front" : "plane"} size={16} label={h.kind === "station" ? "Train station" : "Airport"} />
-                    </span>
-                    <span>
-                      {h.name}
-                      {h.roadKm !== undefined && derived?.access && (
-                        <span class="hub-dist"> · {h.roadKm} km by road, {h.driveMin} min</span>
-                      )}
-                    </span>
-                  </li>
-                ))}
-              </ul>
-            </dd>
-          </>
-        )}
-      </dl>
-      <dl class="facts">
+      </div>
+      {hubs.length > 0 && (
+        <div class="wide">
+          <dt>Travel hubs</dt>
+          <dd>
+            <ul class="hubs">
+              {hubs.map((h) => (
+                <li>
+                  <span class="hub-kind">
+                    <Icon name={h.kind === "station" ? "train-front" : "plane"} size={15} label={h.kind === "station" ? "Train station" : "Airport"} />
+                  </span>
+                  <span>
+                    {h.name}
+                    {h.roadKm !== undefined && derived?.access && (
+                      <span class="hub-dist">{h.roadKm} km by road · {h.driveMin} min</span>
+                    )}
+                  </span>
+                </li>
+              ))}
+            </ul>
+          </dd>
+        </div>
+      )}
+      <div>
         <dt>Country</dt>
-        <dd>{t.countries.map(countryName).join(", ")} · {t.continents.join(", ")}</dd>
-        {t.regions.length > 0 && (
-          <>
-            <dt>Regions</dt>
-            <dd>{t.regions.join(", ")}</dd>
-          </>
-        )}
-        {t.protectedAreas.length > 0 && (
-          <>
-            <dt>Protected areas</dt>
-            <dd>{t.protectedAreas.join("; ")}</dd>
-          </>
-        )}
-        {t.waymarking && (
-          <>
-            <dt>Waymarking</dt>
-            <dd>{t.waymarking.text}</dd>
-          </>
-        )}
+        <dd>{t.countries.map(countryName).join(", ")}</dd>
+      </div>
+      {t.regions.length > 0 && (
+        <div>
+          <dt>Regions</dt>
+          <dd>{t.regions.join(", ")}</dd>
+        </div>
+      )}
+      {t.protectedAreas.length > 0 && (
+        <div class="wide">
+          <dt>Protected areas</dt>
+          <dd>{t.protectedAreas.join("; ")}</dd>
+        </div>
+      )}
+      {t.waymarking && (
+        <div>
+          <dt>Waymarking</dt>
+          <dd>{t.waymarking.text}</dd>
+        </div>
+      )}
+      <div class:list={[{ wide: t.managedBy.map((m) => m.name).join(", ").length > 40 }]}>
         <dt>Managed by</dt>
         <dd>{t.managedBy.map((m) => m.name).join(", ")}</dd>
-      </dl>
-    </div>
+      </div>
+    </dl>
   </section>
 
   <section id="map">
@@ -411,7 +415,7 @@ const nav = [
             <li><svg width="12" height="12"><circle cx="6" cy="6" r="4" class="dot spring" /></svg>Spring</li>
             <li><span class="swatch"></span>Longest dry stretch</li>
           </ul>
-          <svg viewBox={`0 0 ${CHART.width} 112`} role="img" aria-label={chartSummary}>
+          <svg viewBox={`0 0 ${CHART.width} 132`} role="img" aria-label={chartSummary}>
             <rect
               class="gap"
               x={xAt(water.longestGapKm.drinking.fromKm)}
@@ -426,24 +430,36 @@ const nav = [
               y="20"
               text-anchor="middle">{water.longestGapKm.drinking.km} km without</text>
             <line class="route" x1={CHART.x0} x2={CHART.x1} y1={CHART.axis} y2={CHART.axis} />
-            {water.stageStarts.map((st) => (
-              <g>
-                <line class="tick" x1={xAt(st.km)} x2={xAt(st.km)} y1={CHART.axis - 5} y2={CHART.axis + 5} />
-                <text class="tick-label" x={xAt(st.km) + 4} y={CHART.axis + 18}>Stage {st.number}</text>
-              </g>
-            ))}
-            <text class="tick-label" x={CHART.x1} y={CHART.axis + 18} text-anchor="end">{water.routeKm} km</text>
+            {water.stageStarts.map((st, i) => {
+              const end = water.stageStarts[i + 1]?.km ?? water.routeKm;
+              const mid = (xAt(st.km) + xAt(end)) / 2;
+              // the label sits in the middle of the stage's stretch; short stretches get the number only
+              const label = xAt(end) - xAt(st.km) > 70 ? `Stage ${st.number}` : st.number;
+              return (
+                <g>
+                  <line class="tick" x1={xAt(st.km)} x2={xAt(st.km)} y1={CHART.axis - 5} y2={CHART.axis + 5} />
+                  <text class="tick-label" x={mid} y={CHART.axis + 18} text-anchor="middle">{label}</text>
+                </g>
+              );
+            })}
+            <line class="tick" x1={CHART.x1} x2={CHART.x1} y1={CHART.axis - 5} y2={CHART.axis + 5} />
+            <text class="tick-label end" x={CHART.x0} y={CHART.axis + 36}>0 km</text>
+            <text class="tick-label end" x={CHART.x1} y={CHART.axis + 36} text-anchor="end">{water.routeKm} km</text>
             {onRoute.map((pt) => (
-              <g class="pt">
-                <title>{`${pt.kind === "drinking" ? "Drinking water" : "Spring"}${pt.name ? `: ${pt.name}` : ""} · km ${pt.km} · stage ${pt.stage}`}</title>
+              <g
+                class="pt"
+                data-tip-title={pt.kind === "drinking" ? "Drinking water" : "Spring"}
+                data-tip-text={`${pt.name ? `${pt.name} · ` : ""}km ${pt.km} · stage ${pt.stage}`}
+              >
                 <circle cx={xAt(pt.km!)} cy={CHART.lanes[pt.kind]} r="10" class="hit" />
                 <circle cx={xAt(pt.km!)} cy={CHART.lanes[pt.kind]} r={pt.kind === "drinking" ? 4.5 : 4} class={`dot ${pt.kind}`} />
               </g>
             ))}
           </svg>
+          <div class="tip" role="status" hidden><strong></strong><span></span></div>
           <figcaption class="muted">
-            Water within {water.withinM} m of the main route, from OpenStreetMap, which may be incomplete. Hover a dot for
-            details. Distances along the map line; the counts above also include the approach and variant.
+            Water within {water.withinM} m of the main route, from OpenStreetMap, which may be incomplete. Hover or tap a
+            dot for details. Distances along the map line; the counts above also include the approach and variant.
           </figcaption>
         </figure>
       )}
@@ -463,6 +479,43 @@ const nav = [
     </ol>
   </section>
 </Base>
+
+<script>
+  // Water chart tooltip: one element per chart, filled from the hovered (or tapped) dot.
+  for (const figure of document.querySelectorAll<HTMLElement>(".waterline")) {
+    const tip = figure.querySelector<HTMLElement>(".tip")!;
+    let active: SVGGElement | null = null;
+    const show = (pt: SVGGElement) => {
+      active?.classList.remove("active");
+      active = pt;
+      pt.classList.add("active");
+      tip.querySelector("strong")!.textContent = pt.dataset.tipTitle ?? "";
+      tip.querySelector("span")!.textContent = pt.dataset.tipText ?? "";
+      tip.hidden = false;
+      const dot = pt.querySelector(".dot")!.getBoundingClientRect();
+      const box = figure.getBoundingClientRect();
+      const x = dot.left + dot.width / 2 - box.left;
+      const half = tip.offsetWidth / 2;
+      tip.style.left = `${Math.min(Math.max(x, half), box.width - half)}px`;
+      tip.style.top = `${dot.top - box.top - 8}px`;
+    };
+    const hide = () => {
+      active?.classList.remove("active");
+      active = null;
+      tip.hidden = true;
+    };
+    for (const pt of figure.querySelectorAll<SVGGElement>(".pt")) {
+      pt.addEventListener("pointerenter", () => show(pt));
+      pt.addEventListener("pointerleave", (e) => e.pointerType === "mouse" && hide());
+      pt.addEventListener("click", (e) => {
+        e.stopPropagation();
+        show(pt);
+      });
+    }
+    document.addEventListener("click", hide);
+    document.addEventListener("keydown", (e) => e.key === "Escape" && hide());
+  }
+</script>
 
 <style>
   :global(html) {
@@ -606,8 +659,13 @@ const nav = [
     align-items: flex-start;
   }
   .hub-dist {
+    display: block;
     color: var(--muted);
-    font-size: 0.85rem;
+    font-size: 0.8rem;
+    line-height: 1.35;
+  }
+  .hubs li:last-child {
+    margin-bottom: 0;
   }
   /* stages: a timeline, numbered dots on a line; figures in fixed columns so they compare */
   .stage-legend {
@@ -730,14 +788,33 @@ const nav = [
       font-size: 0.85rem;
     }
   }
-  .location {
+  /* location: one grid of label-over-value items, so rows align whatever the content */
+  .loc {
     display: grid;
-    gap: 10px 48px;
+    grid-template-columns: repeat(2, 1fr);
+    margin: 0;
+    border-top: 1px solid var(--text);
   }
   @media (min-width: 820px) {
-    .location {
-      grid-template-columns: 1fr 1fr;
+    .loc {
+      grid-template-columns: repeat(4, 1fr);
     }
+  }
+  .loc > div {
+    padding: 12px 16px 12px 0;
+    border-bottom: 1px solid var(--line);
+  }
+  .loc > .wide {
+    grid-column: span 2;
+  }
+  .loc dt {
+    color: var(--muted);
+    font-size: 0.78rem;
+  }
+  .loc dd {
+    margin: 2px 0 0;
+    line-height: 1.45;
+  }
   }
   .sac-scale {
     margin: 0 0 12px;
@@ -971,7 +1048,6 @@ const nav = [
   .aside {
     display: flex;
     gap: 10px;
-    max-width: 78ch;
     margin: 12px 0 0;
     color: var(--muted);
     font-size: 0.85rem;
@@ -1032,8 +1108,42 @@ const nav = [
     fill: transparent;
     cursor: help;
   }
-  .pt:hover .dot {
-    r: 6px;
+  .dot {
+    transform-box: fill-box;
+    transform-origin: center;
+    transition: transform 0.12s ease;
+  }
+  .pt:hover .dot,
+  .pt.active .dot {
+    transform: scale(1.5);
+  }
+  .waterline {
+    position: relative;
+  }
+  .tip {
+    position: absolute;
+    z-index: 5;
+    transform: translate(-50%, -100%);
+    padding: 6px 10px;
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    background: var(--bg);
+    box-shadow: 0 6px 20px rgb(0 0 0 / 0.15);
+    font-size: 0.8rem;
+    line-height: 1.4;
+    white-space: nowrap;
+    pointer-events: none;
+  }
+  .tip strong {
+    display: block;
+  }
+  .tip span {
+    color: var(--muted);
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .dot {
+      transition: none;
+    }
   }
   .gap {
     fill: var(--fair-soft);
@@ -1054,6 +1164,9 @@ const nav = [
   .tick-label {
     fill: var(--muted);
     font: 12px var(--sans);
+  }
+  .tick-label.end {
+    font-size: 11px;
   }
   figcaption {
     margin-top: 10px;
