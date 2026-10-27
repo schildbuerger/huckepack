@@ -181,7 +181,7 @@
   .key.dot {
     width: 10px;
     height: 10px;
-    border: 2.5px solid #1f2421;
+    border: 2.5px solid var(--text);
     border-radius: 50%;
   }
   .key.start {
@@ -189,10 +189,5 @@
   }
   .key.end {
     background: #1f2421;
-  }
-  @media (prefers-color-scheme: dark) {
-    .key.dot {
-      border-color: #e7e9e4;
-    }
   }
 </style>
