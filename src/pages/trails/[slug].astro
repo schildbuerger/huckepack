@@ -1150,7 +1150,11 @@ const nav = [
     const svg = figure.querySelector("svg")!;
     const tip = figure.querySelector<HTMLElement>(".tip")!;
     const months: { month: number; low: Place; high: Place; daylightH: number }[] = JSON.parse(figure.dataset.months!);
-    const c = (v: number) => `${v < 0 ? "−" : ""}${Math.abs(Math.round(v))}`;
+    // round first, so −0.3 °C reads 0, not −0
+    const c = (v: number) => {
+      const r = Math.round(v);
+      return `${r < 0 ? "−" : ""}${Math.abs(r)}`;
+    };
     let active: SVGRectElement | null = null;
     const show = (hit: SVGRectElement) => {
       active?.classList.remove("active");
@@ -1165,6 +1169,7 @@ const nav = [
         `${m.daylightH.toFixed(1)} h of daylight`,
       ].join("\n");
       tip.hidden = false;
+      tip.style.maxWidth = `${figure.getBoundingClientRect().width}px`;
       const box = hit.getBoundingClientRect();
       const fbox = figure.getBoundingClientRect();
       const half = tip.offsetWidth / 2;
@@ -2117,6 +2122,11 @@ const nav = [
   }
   .climate .tip span {
     white-space: pre-line;
+  }
+  /* as wide as its longest line, not squeezed by the space left of the chart's edge (the script
+     caps it at the chart's width and keeps it inside) */
+  .climate .tip {
+    width: max-content;
   }
 
 </style>
