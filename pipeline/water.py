@@ -11,6 +11,10 @@ stretches of the main route without drinking water and without any water.
 
 Drinking water: amenity=drinking_water or water_point, man_made=water_tap, or a spring tagged
 drinking_water=yes. Springs: other natural=spring; whether they are drinkable is unknown.
+
+Plus the record's `waterPoints` (drinking water a source names that OSM lacks, such as the taps
+in a trail's huts), each point keeping its source; OSM drinking water within SAME_M of one of
+them is the same tap and is left out.
 """
 
 import json
@@ -18,12 +22,15 @@ import math
 import sys
 from pathlib import Path
 
+import yaml
+
 from pipeline import osm
 from pipeline.routes import Cache
 
 ROOT = Path(__file__).resolve().parent.parent
 WITHIN_M = 250
 QUERY_M = 400  # wider than WITHIN_M: the query line is thinned (see osm.around)
+SAME_M = 100  # an OSM tap this close to a record's water point is the same one
 
 
 def kind(tags):
@@ -87,11 +94,24 @@ def build(slug, refresh=False):
     data, _ = cache.get("osm-water.json", osm.OVERPASS, lambda: json.dumps(osm.fetch(query)).encode())
     data = json.loads(data)
 
-    points = []
+    trail = yaml.safe_load((ROOT / "data" / "trails" / f"{slug}.yaml").read_text())
+    extra = trail.get("waterPoints")
+    candidates = [
+        {"lat": w["lat"], "lon": w["lon"], "kind": "drinking", "name": w["name"], "source": extra["source"]}
+        for w in (extra["list"] if extra else [])
+    ]
     for node in data["elements"]:
         k = kind(node.get("tags", {}))
         if k is None:
             continue
+        p = proj.xy(node["lon"], node["lat"])
+        if k == "drinking" and any(math.dist(p, proj.xy(c["lon"], c["lat"])) < SAME_M for c in candidates if c["source"] != "osm"):
+            continue
+        candidates.append({"lat": node["lat"], "lon": node["lon"], "kind": k, "name": node.get("tags", {}).get("name"), "source": "osm"})
+
+    points = []
+    for node in candidates:
+        k = node["kind"]
         p = proj.xy(node["lon"], node["lat"])
         # the nearest stage line; main stages win ties, so a shared point counts on the main route
         nearest = min(range(len(stages)), key=lambda i: (round(along(p, lines[i])[0]), i not in offset))
@@ -104,11 +124,12 @@ def build(slug, refresh=False):
                 "lat": round(node["lat"], 5),
                 "lon": round(node["lon"], 5),
                 "kind": k,
-                "name": node.get("tags", {}).get("name"),
+                "name": node["name"],
                 "stage": props["number"],
                 "stageKind": props["kind"],
                 "km": round((offset[nearest] + a) / 1000, 1) if nearest in offset else None,
                 "offM": round(d),
+                "source": node["source"],
             }
         )
     points.sort(key=lambda w: (w["km"] is None, w["km"] or 0))
@@ -125,6 +146,7 @@ def build(slug, refresh=False):
     on_main = [w for w in points if w["km"] is not None]
     water = {
         "source": "osm",
+        "extraSources": sorted({w["source"] for w in points} - {"osm"}),
         "retrieved": cache.manifest["osm-water.json"]["retrieved"],
         "withinM": WITHIN_M,
         "routeKm": round(total_km, 1),

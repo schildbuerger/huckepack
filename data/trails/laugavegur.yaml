@@ -80,6 +80,16 @@ wildCamping:
     the designated areas and to leave nothing behind, not even food scraps or toilet paper. The
     trail runs through the Fjallabak Nature Reserve.
   source: fi
+waterPoints:
+  # FÍ's hut pages: every hut kitchen has running cold water (OSM tags almost none of it)
+  source: fi-huts
+  list:
+    - { name: Landmannalaugar hut, lat: 63.99333, lon: -19.061 }
+    - { name: Hrafntinnusker hut, lat: 63.93357, lon: -19.16848 }
+    - { name: Álftavatn huts, lat: 63.85783, lon: -19.22733 }
+    - { name: Hvanngil hut, lat: 63.83377, lon: -19.20845 }
+    - { name: Emstrur (Botnar) huts, lat: 63.76633, lon: -19.37417 }
+    - { name: Þórsmörk (Langidalur) hut, lat: 63.68267, lon: -19.51483 }
 access:
   # Iceland has no railway: the buses to Landmannalaugar leave from Reykjavík's BSÍ terminal;
   # Keflavík is the international airport. Coordinates from OSM; distances by pipeline/access.py
@@ -121,6 +131,11 @@ notes:
     No difficulty grade is published (FÍ: "suitable for experienced hikers"). The SAC T2 in
     `difficulty.estimated` is our translation; the river fords (Grashagakvísl, Bratthálskvísl,
     Bláfjallakvísl, Þröngá and others) are not part of the SAC hiking scale.
+  - >-
+    OSM tags almost no drinking water along the trail, so `waterPoints` adds the running cold water
+    FÍ lists for every hut. The Landmannalaugar hut lies about 300 m from where the OSM route starts,
+    beyond the water step's 250 m, so it isn't counted (an OSM tap at km 0 is); at Álftavatn an
+    OSM tap about 100 m from the huts counts separately.
   - Highest point on the trail is Hrafntinnusker at about 1,050 m (Wikipedia) or 1,100 m (FÍ hut page).
 sources:
   - id: fi
@@ -129,7 +144,7 @@ sources:
     licence: All rights reserved (facts only)
     retrieved: 2026-10-27
   - id: fi-huts
-    title: "Ferðafélag Íslands: mountain huts Landmannalaugar, Hrafntinnusker, Álftavatn, Emstrur, Þórsmörk (GPS, capacity, opening)"
+    title: "Ferðafélag Íslands: mountain huts Landmannalaugar, Hrafntinnusker, Álftavatn, Hvanngil, Emstrur, Þórsmörk (GPS, running water, capacity, opening)"
     url: https://www.fi.is/en/mountain-huts/all-mountain-huts/landmannalaugar
     licence: All rights reserved (facts only)
     retrieved: 2026-10-27

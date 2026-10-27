@@ -383,6 +383,9 @@
   ],
   "water": {
     "source": "osm",
+    "extraSources": [
+      "fi-huts"
+    ],
     "retrieved": "2026-10-27T22:27:14+00:00",
     "withinM": 250,
     "routeKm": 52.2,
@@ -406,13 +409,13 @@
     ],
     "longestGapKm": {
       "drinking": {
-        "km": 31.2,
-        "fromKm": 21.0,
+        "km": 15.7,
+        "fromKm": 36.5,
         "toKm": 52.2
       },
       "any": {
-        "km": 31.2,
-        "fromKm": 21.0,
+        "km": 15.7,
+        "fromKm": 36.5,
         "toKm": 52.2
       }
     },
@@ -420,25 +423,25 @@
       {
         "number": "1",
         "kind": "main",
-        "drinking": 1,
+        "drinking": 2,
         "springs": 1
       },
       {
         "number": "2",
         "kind": "main",
-        "drinking": 0,
+        "drinking": 1,
         "springs": 0
       },
       {
         "number": "3",
         "kind": "main",
-        "drinking": 1,
+        "drinking": 3,
         "springs": 0
       },
       {
         "number": "4",
         "kind": "main",
-        "drinking": 0,
+        "drinking": 1,
         "springs": 0
       }
     ],
@@ -451,7 +454,8 @@
         "stage": "1",
         "stageKind": "main",
         "km": 0.0,
-        "offM": 132
+        "offM": 132,
+        "source": "osm"
       },
       {
         "lat": 63.95632,
@@ -461,7 +465,30 @@
         "stage": "1",
         "stageKind": "main",
         "km": 7.0,
-        "offM": 6
+        "offM": 6,
+        "source": "osm"
+      },
+      {
+        "lat": 63.93357,
+        "lon": -19.16848,
+        "kind": "drinking",
+        "name": "Hrafntinnusker hut",
+        "stage": "1",
+        "stageKind": "main",
+        "km": 10.0,
+        "offM": 43,
+        "source": "fi-huts"
+      },
+      {
+        "lat": 63.85783,
+        "lon": -19.22733,
+        "kind": "drinking",
+        "name": "Álftavatn huts",
+        "stage": "2",
+        "stageKind": "main",
+        "km": 20.9,
+        "offM": 13,
+        "source": "fi-huts"
       },
       {
         "lat": 63.85655,
@@ -471,7 +498,41 @@
         "stage": "3",
         "stageKind": "main",
         "km": 21.0,
-        "offM": 136
+        "offM": 136,
+        "source": "osm"
+      },
+      {
+        "lat": 63.83377,
+        "lon": -19.20845,
+        "kind": "drinking",
+        "name": "Hvanngil hut",
+        "stage": "3",
+        "stageKind": "main",
+        "km": 24.4,
+        "offM": 25,
+        "source": "fi-huts"
+      },
+      {
+        "lat": 63.76633,
+        "lon": -19.37417,
+        "kind": "drinking",
+        "name": "Emstrur (Botnar) huts",
+        "stage": "3",
+        "stageKind": "main",
+        "km": 36.5,
+        "offM": 1,
+        "source": "fi-huts"
+      },
+      {
+        "lat": 63.68267,
+        "lon": -19.51483,
+        "kind": "drinking",
+        "name": "Þórsmörk (Langidalur) hut",
+        "stage": "4",
+        "stageKind": "main",
+        "km": 52.2,
+        "offM": 217,
+        "source": "fi-huts"
       }
     ]
   },

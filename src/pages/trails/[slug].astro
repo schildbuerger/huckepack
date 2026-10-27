@@ -32,6 +32,8 @@ const { trail } = Astro.props as { trail: CollectionEntry<"trails"> };
 const t = trail.data;
 const derived = (await getEntry("derived", trail.id))?.data;
 const water = derived?.water;
+// sources of water points besides OSM (the record's waterPoints), by their titles' first part
+const waterExtra = (water?.extraSources ?? []).map((id) => t.sources.find((x) => x.id === id)?.title.split(":")[0] ?? id);
 // travel hubs with their distance to the start (pipeline/access.py), stations first
 const hubs = t.access.map((h) => ({ ...h, ...derived?.access?.hubs.find((d) => d.name === h.name) }));
 // sleeping: each category with the types this trail has in it; camping also carries wild camping
@@ -929,7 +931,11 @@ const nav = [
         <div>
           <dt>
             <Explain id="about-drinking-water" term="Drinking water">
-              <p>Fountains, taps and springs marked as drinkable in OpenStreetMap, within {water.withinM} m of the trail.</p>
+              <p>
+                Fountains, taps and springs marked as drinkable in OpenStreetMap, within {water.withinM} m of the trail{
+                  waterExtra.length > 0 && `, and the taps the trail's managers list (${waterExtra.join(", ")})`
+                }.
+              </p>
               <p>The counts include the approach and variant; the chart shows the main route.</p>
             </Explain>
           </dt>
@@ -1011,7 +1017,8 @@ const nav = [
           </div>
           <div class="tip" role="status" hidden><strong></strong><span></span></div>
           <figcaption class="muted">
-            From OpenStreetMap, within {water.withinM} m of the main route; may be incomplete.
+            From OpenStreetMap{waterExtra.length > 0 && ` and ${waterExtra.join(", ")}`}, within {water.withinM} m of the main
+            route; may be incomplete.
           </figcaption>
         </figure>
       )}

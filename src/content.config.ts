@@ -141,6 +141,15 @@ const trail = z
       })
       .optional(),
 
+    // Drinking water a source names that OSM lacks (e.g. the taps in a trail's huts);
+    // pipeline/water.py adds them to OSM's points
+    waterPoints: z
+      .object({
+        source: sourceRef,
+        list: z.array(z.object({ name: z.string(), lat: z.number(), lon: z.number() })).min(1),
+      })
+      .optional(),
+
     // Travel hubs near the start: the nearest railway station (or, without railways, the main bus
     // station the trail's buses leave from) and airport(s). pipeline/access.py
     // derives their distance to the start by road.
@@ -176,6 +185,7 @@ const trail = z
         t.difficulty?.cai,
         t.difficulty?.sac,
         t.difficulty?.estimated,
+        t.waterPoints,
         t.season,
         t.sleeping,
         t.wildCamping,
@@ -206,6 +216,8 @@ const derived = z.object({
   water: z
     .object({
       source: sourceRef, // an id in the trail's `sources`
+      // further sources of points, from the record's `waterPoints` (each point names its own)
+      extraSources: z.array(z.string()).default([]),
       retrieved: z.coerce.date(),
       withinM: z.number(),
       routeKm: z.number(), // the main route measured along the map line
@@ -224,6 +236,7 @@ const derived = z.object({
           stageKind,
           km: z.number().nullable(), // along the main route; null on approaches and variants
           offM: z.number(),
+          source: z.string().default("osm"),
         }),
       ),
     })
