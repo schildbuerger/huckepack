@@ -179,6 +179,7 @@ const derived = z.object({
       retrieved: z.coerce.date(),
       withinM: z.number(),
       routeKm: z.number(), // the main route measured along the map line
+      stageStarts: z.array(z.object({ number: z.string(), km: z.number() })).default([]),
       longestGapKm: z.object({ drinking: gap, any: gap }),
       stages: z.array(
         z.object({ number: z.string(), kind: stageKind, drinking: z.number().int(), springs: z.number().int() }),

@@ -128,6 +128,10 @@ def build(slug, refresh=False):
         "retrieved": cache.manifest["osm-water.json"]["retrieved"],
         "withinM": WITHIN_M,
         "routeKm": round(total_km, 1),
+        # where each main stage starts along the main route, on the same map line as `km`
+        "stageStarts": [
+            {"number": stages[i]["properties"]["number"], "km": round(offset[i] / 1000, 1)} for i in main
+        ],
         "longestGapKm": {
             "drinking": longest_gap([w["km"] for w in on_main if w["kind"] == "drinking"], total_km),
             "any": longest_gap([w["km"] for w in on_main], total_km),
