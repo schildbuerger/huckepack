@@ -13,13 +13,21 @@ npm run dev          # local site at http://localhost:4321; runs detached (npx a
                      # on file changes). Claude Code's sandbox can't stop a detached server; the user has to.
 npm run build        # dist/: the static site; fails if a trail file doesn't match the schema
 npm run check        # type check (Astro, Svelte, TypeScript)
+
+python3 -m venv .venv && .venv/bin/pip install -r requirements.txt   # once (PyYAML, truststore)
+.venv/bin/python -m pipeline.routes <slug>             # map line from the stages' tracks (cached in data/raw/<slug>/)
+.venv/bin/python -m pipeline.routes <slug> --refresh   # download the tracks again
 ```
+
+Inside Claude Code's sandbox, pip needs `PIP_CACHE_DIR="$TMPDIR/pip-cache"`. Python downloads verify certificates through the OS trust store (`truststore`); never disable verification.
 
 ## Architecture
 
-- `data/trails/<slug>.yaml`: the trail database, one file per trail; the file name is the URL slug. `src/content.config.ts` is its schema (Zod): every figure names a `source` id from the trail's `sources`, and the build fails on an unknown id. A source's `retrieved: null` means its figures are not yet checked; the page says "not yet verified". `status: draft` trails are built and badged as drafts (no release mechanism yet). `notes` holds discrepancies between sources; the page lists them as open questions.
+- `data/trails/<slug>.yaml`: the trail database, one file per trail; the file name is the URL slug. `src/content.config.ts` is its schema (Zod): every figure names a `source` id from the trail's `sources`, and the build fails on an unknown id. A source's `retrieved: null` means its figures are not yet checked; the page says "not yet verified". `status: draft` trails are built and badged as drafts (no release mechanism yet). `notes` holds discrepancies between sources and open questions; they are for us, not shown on the page.
 - `src/lib/trails.ts`: derived figures, never stored: totals from the main stages (`kind: main`; approaches and variants are excluded), averages per day (only when days and stages share a source), and the SAC grade for filtering (stated, or converted from CAI with `CAI_TO_SAC`). Each result carries its source.
-- `pipeline/`: Python, downloads and processes source data into `data/raw/<trail>/` (committed cache) and writes derived figures into `data/trails/`. The site build never downloads.
+- `pipeline/`: Python, downloads and processes source data into `data/raw/<trail>/` (committed cache, with `manifest.json` retrieval times) and writes derived data. The site build never downloads. `pipeline/routes.py` turns each stage's `track` (GPX) into `public/routes/<slug>.geojson`: one simplified LineString per stage with its number and kind.
+- Maps: `src/components/TrailMap.svelte` (MapLibre GL, `client:visible`) draws the route over the OpenFreeMap "liberty" basemap (OpenStreetMap data, no API key); main stages solid, approaches and variants dashed, start and end as dots. The trail page passes the route only if `route` is set and the file exists; otherwise the map shows just the termini. The attribution names the route's source.
+- `route.publishable: false` means the geometry's licence doesn't allow republishing it (official GPX tracks usually don't). Such routes are fine for local drafts but must not be deployed: replace them with OSM-derived geometry first. `data/raw/` may hold such files too; never copy them into `public/` other than through the pipeline.
 - `src/pages/index.astro`: builds a compact summary per trail and passes it to `src/components/TrailList.svelte`, which filters in the browser (`client:load`). `src/pages/trails/[slug].astro`: one prerendered page per trail. `src/layouts/Base.astro`: shell and colour tokens, with dark mode overrides.
 - Keep pages prerendered: only interactive parts (filters, maps, charts) become Svelte islands.
 - Package versions are pinned exactly. TypeScript stays on 6.x until `@astrojs/svelte` and `@astrojs/check` support 7.

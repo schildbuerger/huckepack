@@ -41,8 +41,15 @@
   - Sleeping: only which types exist along the trail (huts, campsites,
     hostels, …), not individual places. Wild camping as allowed, restricted
     or prohibited, with the rule in words and its source.
-  - Discrepancies between sources go in the record's `notes` and are shown
-    on the page as open questions.
+  - Discrepancies between sources go in the record's `notes`; they are for
+    us and are not shown on the page.
+- **Maps:** every trail page has a map: an OpenStreetMap basemap from
+  OpenFreeMap (free, no key) with the trail drawn on top. The preferred
+  trail geometry is an OpenStreetMap route relation (ODbL, publishable with
+  attribution). Where none exists, the official GPX tracks may be used for
+  drafts, marked `route.publishable: false`; before release such a trail
+  needs OSM-derived geometry (matching the GPX to OSM paths, or adding the
+  route to OpenStreetMap) or the publisher's permission.
 
 ## What a trail page could show
 
@@ -64,6 +71,8 @@
   works for search but is less familiar outside Europe. Avoid endings that
   are cheap only in the first year. Check availability and renewal prices
   before deciding.
+- **Releasing:** there is no release mechanism yet. It must keep drafts and
+  routes with `publishable: false` out of the deployed site.
 - **Ads:** possible later. They need a GDPR consent banner and a privacy
   policy.
 - **First trail:** see the ranking in [roadmap.md](roadmap.md).

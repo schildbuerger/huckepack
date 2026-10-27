@@ -1,6 +1,8 @@
 ---
 import { getCollection, type CollectionEntry } from "astro:content";
 import Base from "../../layouts/Base.astro";
+import TrailMap from "../../components/TrailMap.svelte";
+import { existsSync } from "node:fs";
 import {
   countryName,
   monthName,
@@ -25,6 +27,11 @@ const daily = perDay(t);
 const sac = sacGrade(t);
 const fmt = (n: number) => n.toLocaleString("en");
 const hours = (min: number) => `${Math.floor(min / 60)} h ${String(min % 60).padStart(2, "0")}`;
+// the map line, built by pipeline/routes.py; without it the map shows only the termini
+const routeFile = `routes/${trail.id}.geojson`;
+const routeUrl = t.route && existsSync(`public/${routeFile}`) ? `/${routeFile}` : null;
+// attribution names the route's source: its title up to the first colon
+const routeAttribution = routeUrl && t.route ? sources[t.route.source].title.split(":")[0] : null;
 ---
 
 <Base title={`${t.name} · huckepack`}>
@@ -34,6 +41,16 @@ const hours = (min: number) => `${Math.floor(min / 60)} h ${String(min % 60).pad
   </h1>
   {t.localName && <p class="muted">{t.localName}</p>}
   <p><a href={t.website}>Official website</a></p>
+
+  <section>
+    <TrailMap
+      client:visible
+      routeUrl={routeUrl}
+      start={t.termini.start}
+      end={t.termini.end}
+      routeAttribution={routeAttribution}
+    />
+  </section>
 
   <section>
     <h2>Key figures</h2>
@@ -214,15 +231,6 @@ const hours = (min: number) => `${Math.floor(min / 60)} h ${String(min % 60).pad
         </table>
       </div>
       <p class="muted"><small>Totals and averages use the main stages only, not the approach or variants.</small></p>
-    </section>
-  )}
-
-  {t.notes.length > 0 && (
-    <section>
-      <h2>Open questions</h2>
-      <ul>
-        {t.notes.map((n) => <li>{n}</li>)}
-      </ul>
     </section>
   )}
 

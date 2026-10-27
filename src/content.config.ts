@@ -58,6 +58,7 @@ const stage = z.object({
   minutes: z.number().int().positive().optional(), // walking time in the main direction
   startEleM: z.number().int().optional(),
   endEleM: z.number().int().optional(),
+  track: z.url().optional(), // the stage's GPX track; pipeline/routes.py builds the map line from it
 });
 
 const trail = z
@@ -88,6 +89,9 @@ const trail = z
       .refine((d) => d.min <= d.max, "days.min must not exceed days.max")
       .optional(),
     stages: z.object({ source: sourceRef, list: z.array(stage).min(1) }).optional(),
+    // The map line, built by the pipeline into public/routes/<slug>.geojson. `publishable`
+    // is false when the geometry's licence doesn't allow republishing it (e.g. official GPX).
+    route: z.object({ source: sourceRef, publishable: z.boolean() }).optional(),
 
     difficulty: z
       .object({
@@ -135,6 +139,7 @@ const trail = z
         t.waymarking,
         t.days,
         t.stages,
+        t.route,
         t.difficulty?.cai,
         t.difficulty?.sac,
         t.season,
