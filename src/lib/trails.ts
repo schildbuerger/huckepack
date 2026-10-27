@@ -83,22 +83,26 @@ export const countryName = (code: string) => countryNames.of(code) ?? code;
 export const monthName = (m: number) =>
   new Date(2000, m - 1, 1).toLocaleString("en", { month: "long" });
 
+// Labels for the sleeping types, in sentence case. Generic on purpose: they cover every
+// country, so local names (rifugi, refugios, gîtes) belong in a trail's own text, not here.
 export const SLEEPING_LABELS: Record<string, string> = {
-  hut: "Huts / rifugi",
+  hut: "Mountain huts",
   bivouac: "Bivouac shelters",
   campsite: "Campsites",
   hostel: "Hostels and hiker lodges",
   guesthouse: "B&Bs and guesthouses",
   hotel: "Hotels",
-  monastery: "Monastery guest houses",
+  monastery: "Monastery guesthouses",
   "farm-stay": "Farm stays",
 };
 
 // The sleeping types grouped by what they mean for planning: what you carry, what you pay.
-// Every type belongs to exactly one category; wild camping is shown under Camping.
+// Every type belongs to exactly one category. Wild camping has no types: it comes from the
+// trail's `wildCamping` rule.
 export const SLEEPING_CATEGORIES = [
-  { id: "huts", label: "Huts & shelters", hint: "On the trail itself, often in the mountains", types: ["hut", "bivouac"] },
+  { id: "wild-camping", label: "Wild camping", hint: "A tent outside campsites", types: [] },
   { id: "camping", label: "Camping", hint: "Bring a tent", types: ["campsite"] },
+  { id: "huts", label: "Huts and shelters", hint: "On the trail, often in the mountains", types: ["hut", "bivouac"] },
   { id: "hostels", label: "Hostels", hint: "Dormitory beds for walkers", types: ["hostel"] },
   {
     id: "rooms",
@@ -110,6 +114,15 @@ export const SLEEPING_CATEGORIES = [
 
 export const sleepingCategories = (types: readonly string[]) =>
   SLEEPING_CATEGORIES.filter((c) => c.types.some((x) => types.includes(x))).map((c) => c.id);
+
+// Water along the trail, rated by the longest stretch of the main route without drinking water.
+export const WATER_LEVELS = [
+  { id: "frequent", label: "Frequent", maxGapKm: 10, hint: "Drinking water at least every 10 km" },
+  { id: "regular", label: "Regular", maxGapKm: 20, hint: "Drinking water at least every 20 km" },
+  { id: "scarce", label: "Scarce", maxGapKm: Infinity, hint: "Stretches of more than 20 km without" },
+] as const;
+
+export const waterLevel = (longestGapKm: number) => WATER_LEVELS.find((l) => longestGapKm <= l.maxGapKm)!;
 
 // The SAC hiking scale (Swiss Alpine Club) in plain words.
 export const SAC_SCALE: Record<string, { name: string; text: string }> = {

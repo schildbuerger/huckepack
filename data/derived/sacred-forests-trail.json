@@ -767,25 +767,25 @@
   },
   "access": {
     "source": "osrm",
-    "retrieved": "2026-10-27T12:19:37+00:00",
+    "retrieved": "2026-10-27T12:31:25+00:00",
     "hubs": [
       {
-        "name": "Marradi",
-        "roadKm": 27.8,
-        "driveMin": 41,
-        "straightKm": 8.5
+        "name": "Firenze Santa Maria Novella",
+        "roadKm": 80.5,
+        "driveMin": 89,
+        "straightKm": 45.9
       },
       {
-        "name": "Forlì (FRL)",
-        "roadKm": 59.0,
-        "driveMin": 66,
-        "straightKm": 34.8
-      },
-      {
-        "name": "Florence (FLR)",
+        "name": "Florence Airport (FLR)",
         "roadKm": 86.5,
         "driveMin": 100,
         "straightKm": 46.8
+      },
+      {
+        "name": "Bologna Airport (BLQ)",
+        "roadKm": 101.1,
+        "driveMin": 93,
+        "straightKm": 65.0
       }
     ]
   }

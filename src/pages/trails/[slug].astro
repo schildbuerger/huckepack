@@ -14,6 +14,7 @@ import {
   SLEEPING_CATEGORIES,
   SLEEPING_LABELS,
   WILD_CAMPING_LABELS,
+  waterLevel,
 } from "../../lib/trails";
 
 export async function getStaticPaths() {
@@ -27,7 +28,6 @@ const derived = (await getEntry("derived", trail.id))?.data;
 const water = derived?.water;
 // travel hubs with their distance to the start (pipeline/access.py), stations first
 const hubs = t.access.map((h) => ({ ...h, ...derived?.access?.hubs.find((d) => d.name === h.name) }));
-const HUB_LABELS = { station: "Nearest station", airport: "Airport" };
 // sleeping: each category with the types this trail has in it; camping also carries wild camping
 const sleeping = SLEEPING_CATEGORIES.map((c) => ({
   ...c,
@@ -54,6 +54,7 @@ const routeUrl = t.route && existsSync(`public/${routeFile}`) ? `/${routeFile}` 
 // attribution names the route's source: its title up to the first colon
 const routeAttribution = routeUrl && t.route ? sources[t.route.source].title.split(":")[0] : null;
 
+const level = water && waterLevel(water.longestGapKm.drinking.km);
 const waterTotals = water && {
   drinking: water.points.filter((p) => p.kind === "drinking").length,
   springs: water.points.filter((p) => p.kind === "spring").length,
@@ -64,7 +65,7 @@ const gapStages = (() => {
   const g = water.longestGapKm.drinking;
   const at = (km: number) => water.points.find((p) => p.km !== null && Math.abs(p.km - km) < 0.05)?.stage;
   const [a, b] = [at(g.fromKm), at(g.toKm)];
-  return a && b ? (a === b ? ` (stage ${a})` : ` (stages ${a}–${b})`) : "";
+  return a && b ? (a === b ? `, stage ${a}` : `, stages ${a}–${b}`) : "";
 })();
 
 // on-page navigation: only sections this trail has
@@ -220,21 +221,28 @@ const nav = [
       <dd>{t.termini.start.name}<Ref n={ref(t.termini.source)} /></dd>
       <dt>To</dt>
       <dd>{t.termini.end.name}</dd>
-      {hubs.map((h) => (
+      {hubs.length > 0 && (
         <>
-          <dt>{HUB_LABELS[h.kind]}</dt>
+          <dt>Travel hubs</dt>
           <dd>
-            {h.name}
-            {h.roadKm !== undefined && derived?.access && (
-              <>
-                {" "}· {h.roadKm} km by road to the start ({h.driveMin} min)<Ref n={ref(derived.access.source)} />
-              </>
-            )}
-            {h.note && <span class="muted"> · {h.note}</span>}
-            <Ref n={ref(h.source)} />
+            <ul class="hubs">
+              {hubs.map((h) => (
+                <li>
+                  <span class="hub-kind">{h.kind === "station" ? "Train" : "Air"}</span>
+                  <span>
+                    {h.name}<Ref n={ref(h.source)} />
+                    {h.roadKm !== undefined && derived?.access && (
+                      <span class="hub-dist">
+                        {h.roadKm} km by road to the start, {h.driveMin} min<Ref n={ref(derived.access.source)} />
+                      </span>
+                    )}
+                  </span>
+                </li>
+              ))}
+            </ul>
           </dd>
         </>
-      ))}
+      )}
       <dt>Managed by</dt>
       <dd>{t.managedBy.map((m) => m.name).join(", ")}</dd>
       {t.waymarking && (
@@ -270,8 +278,8 @@ const nav = [
               <th class="num">km</th>
               <th class="num">Ascent</th>
               <th class="num">Descent</th>
+              <th class="num">Elevation</th>
               <th class="num">Time</th>
-              <th class="num">Start → end</th>
             </tr>
           </thead>
           <tbody>
@@ -287,44 +295,56 @@ const nav = [
                 <td class="num">{s.km.toFixed(1)}</td>
                 <td class="num">{fmt(s.ascentM)} m</td>
                 <td class="num">{fmt(s.descentM)} m</td>
-                <td class="num">{s.minutes ? hours(s.minutes) : "–"}</td>
                 <td class="num">
                   {s.startEleM !== undefined && s.endEleM !== undefined
                     ? `${fmt(s.startEleM)} → ${fmt(s.endEleM)} m`
                     : "–"}
                 </td>
+                <td class="num">{s.minutes ? hours(s.minutes) : "–"}</td>
               </tr>
             ))}
           </tbody>
         </table>
       </div>
-      <p class="note muted">Totals and averages use the main stages only, not the approach or variants.</p>
+      <p class="note muted">
+        Elevation is the height at the start and end of each stage. Totals and averages use the main stages only, not the
+        approach or variants.
+      </p>
     </section>
   )}
 
   {(t.sleeping || t.wildCamping) && (
     <section id="sleeping">
       <h2>Sleeping</h2>
-      <ul class="sleep">
-        {sleeping.map((c) => (
-          <li class:list={[{ absent: c.present.length === 0 && !(c.id === "camping" && t.wildCamping) }]}>
-            <p class="sleep-name">{c.label}</p>
-            <p class="sleep-hint">{c.hint}</p>
-            {c.present.length > 0 ? (
-              <p class="sleep-types">
-                {c.present.map((x) => SLEEPING_LABELS[x]).join(", ")}
-                {t.sleeping && <Ref n={ref(t.sleeping.source)} />}
-              </p>
-            ) : (
-              <p class="sleep-types muted">None listed</p>
-            )}
-            {c.id === "camping" && t.wildCamping && (
-              <p class="sleep-types">
-                Wild camping: {WILD_CAMPING_LABELS[t.wildCamping.status].toLowerCase()}<Ref n={ref(t.wildCamping.source)} />
-              </p>
-            )}
-          </li>
-        ))}
+      <ul class="cards">
+        {sleeping.map((c) =>
+          c.id === "wild-camping" ? (
+            <li class:list={[{ absent: !t.wildCamping }]}>
+              <p class="card-name">{c.label}</p>
+              <p class="card-hint">{c.hint}</p>
+              {t.wildCamping ? (
+                <p class="card-value">
+                  {WILD_CAMPING_LABELS[t.wildCamping.status]}<Ref n={ref(t.wildCamping.source)} />
+                </p>
+              ) : (
+                <p class="card-value muted">Not known</p>
+              )}
+            </li>
+          ) : (
+            <li class:list={[{ absent: c.present.length === 0 }]}>
+              <p class="card-name">{c.label}</p>
+              <p class="card-hint">{c.hint}</p>
+              {c.present.length > 0 ? (
+                <p class="card-value">
+                  {c.present.map((x) => SLEEPING_LABELS[x]).join(", ")}
+                  {t.sleeping && <Ref n={ref(t.sleeping.source)} />}
+                </p>
+              ) : (
+                <p class="card-value muted">None listed</p>
+              )}
+            </li>
+          ),
+        )}
       </ul>
       {t.wildCamping && (
         <p class="rule">
@@ -337,28 +357,35 @@ const nav = [
   {water && waterTotals && (
     <section id="water">
       <h2>Water</h2>
-      <dl class="facts">
-        <dt>Drinking water</dt>
-        <dd>
-          {waterTotals.drinking} points within {water.withinM} m of the trail<Ref n={ref(water.source)} />
-        </dd>
-        <dt>Springs</dt>
-        <dd>
-          {waterTotals.springs} more, drinkability unknown<Ref n={ref(water.source)} />
-        </dd>
-        <dt>Longest stretch</dt>
-        <dd>
-          <strong>{water.longestGapKm.drinking.km} km</strong> without drinking water,{" "}
-          {`from km ${water.longestGapKm.drinking.fromKm} to ${water.longestGapKm.drinking.toKm}${gapStages}`}<Ref n={ref(water.source)} />
-          {water.longestGapKm.any.km < water.longestGapKm.drinking.km && (
-            <span class="muted"> · {water.longestGapKm.any.km} km counting springs</span>
-          )}
-        </dd>
-      </dl>
+      <ul class="cards">
+        <li>
+          <p class="card-name">Availability</p>
+          <p class="card-hint">{level!.hint}</p>
+          <p class="card-value">{level!.label}<Ref n={ref(water.source)} /></p>
+        </li>
+        <li>
+          <p class="card-name">Drinking water</p>
+          <p class="card-hint">Fountains, taps, drinkable springs</p>
+          <p class="card-value">{waterTotals.drinking} points<Ref n={ref(water.source)} /></p>
+        </li>
+        <li>
+          <p class="card-name">Springs</p>
+          <p class="card-hint">Drinkability unknown; treat the water</p>
+          <p class="card-value">{waterTotals.springs} more<Ref n={ref(water.source)} /></p>
+        </li>
+        <li>
+          <p class="card-name">Longest dry stretch</p>
+          <p class="card-hint">
+            {`km ${water.longestGapKm.drinking.fromKm}–${water.longestGapKm.drinking.toKm}${gapStages}`}
+          </p>
+          <p class="card-value">{water.longestGapKm.drinking.km} km<Ref n={ref(water.source)} /></p>
+        </li>
+      </ul>
       <p class="note muted">
-        From OpenStreetMap, which may miss sources or list ones that have gone. Kilometres are measured along the map
-        line ({water.routeKm} km for the main stages). Springs can run dry in late summer; treat water from springs and
-        streams.
+        Water points within {water.withinM} m of the trail, from OpenStreetMap, which may miss some or list ones that have
+        gone. Availability is rated by the longest stretch without drinking water: frequent up to 10 km, regular up to 20
+        km, scarce beyond. Kilometres are measured along the map line ({water.routeKm} km for the main stages). Springs can
+        run dry in late summer.
       </p>
     </section>
   )}
@@ -509,38 +536,69 @@ const nav = [
   .note {
     font-size: 0.8rem;
   }
-  .sleep {
+  .cards {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
     gap: 8px;
     margin: 0;
     padding: 0;
     list-style: none;
   }
-  .sleep li {
+  .cards li {
     padding: 12px 14px;
     border-radius: 10px;
     background: var(--surface);
   }
-  .sleep li.absent {
+  .cards li.absent {
     background: none;
     border: 1px dashed var(--line);
   }
-  .sleep p {
+  .cards p {
     margin: 0;
   }
-  .sleep-name {
+  .card-name {
     font-family: var(--serif);
-    font-size: 1.1rem;
+    font-size: 1.05rem;
     font-weight: 600;
   }
-  .sleep-hint {
+  .card-hint {
     color: var(--muted);
-    font-size: 0.8rem;
+    font-size: 0.78rem;
+    line-height: 1.4;
   }
-  .sleep-types {
+  .card-value {
     margin-top: 8px !important;
     font-size: 0.9rem;
+    font-weight: 500;
+  }
+  .hubs {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+  .hubs li {
+    display: flex;
+    gap: 10px;
+    align-items: baseline;
+    margin-bottom: 6px;
+  }
+  .hub-kind {
+    flex: none;
+    width: 3.2em;
+    padding: 1px 0;
+    border-radius: 999px;
+    background: var(--surface);
+    color: var(--muted);
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    text-align: center;
+    text-transform: uppercase;
+  }
+  .hub-dist {
+    display: block;
+    color: var(--muted);
+    font-size: 0.85rem;
   }
   .rule {
     max-width: 70ch;

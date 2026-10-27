@@ -11,6 +11,7 @@ result goes into data/derived/<slug>.json under `access`.
 
 import json
 import math
+import re
 import sys
 import urllib.request
 from pathlib import Path
@@ -37,7 +38,10 @@ def build(slug, refresh=False):
     start = trail["termini"]["start"]
     cache = Cache(slug, refresh)
     results = []
-    for i, hub in enumerate(hubs):
+    names = []
+    for hub in hubs:
+        name = "osrm-access-" + re.sub(r"[^a-z0-9]+", "-", hub["name"].lower()).strip("-") + ".json"
+        names.append(name)
         url = f"{OSRM}/{hub['lon']},{hub['lat']};{start['lon']},{start['lat']}?overview=false"
 
         def download():
@@ -45,7 +49,7 @@ def build(slug, refresh=False):
             with urllib.request.urlopen(request, timeout=60) as response:
                 return response.read()
 
-        answer, _ = cache.get(f"osrm-access-{i}.json", url, download)
+        answer, _ = cache.get(name, url, download)
         route = json.loads(answer)
         if route.get("code") != "Ok":
             raise SystemExit(f"{hub['name']}: router answered {route.get('code')}")
@@ -65,7 +69,7 @@ def build(slug, refresh=False):
     existing = json.loads(out.read_text()) if out.exists() else {}
     access = {
         "source": "osrm",
-        "retrieved": max(cache.manifest[f"osrm-access-{i}.json"]["retrieved"] for i in range(len(hubs))),
+        "retrieved": max(cache.manifest[n]["retrieved"] for n in names),
         "hubs": results,
     }
     out.write_text(json.dumps({**existing, "access": access}, indent=2, ensure_ascii=False) + "\n")
