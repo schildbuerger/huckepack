@@ -1,32 +1,92 @@
 """Elevation profile of a trail's main route.
 
     .venv/bin/python -m pipeline.elevation <slug>            # use cached elevations
-    .venv/bin/python -m pipeline.elevation <slug> --refresh  # ask the elevation API again
+    .venv/bin/python -m pipeline.elevation <slug> --refresh  # sample the terrain model again
 
 Needs public/routes/<slug>.geojson (pipeline.routes). Samples the main stages every SPACING_M
-along the map line (the same kilometres as the water and surface charts), looks up each
-sample's height with the Open-Meteo elevation API (Copernicus DEM GLO-90, CC BY 4.0; at most
-100 points per request, cached in data/raw/<slug>/elevation.json) and writes
-data/derived/<slug>.json under `elevation`: [km, metres] per sample, stage starts, and the
-highest and lowest points (with coordinates).
+along the map line (the same kilometres as the water and surface charts) and reads each
+sample's height from the Copernicus DEM GLO-30 (30 m grid; a surface model, so in forests it
+measures the canopy). Its 1° tiles come as Cloud Optimized GeoTIFFs from AWS Open Data (no
+account) and are kept in data/dem/ (git-ignored, shared by all trails; 30 to 45 MB each);
+heights are interpolated bilinearly between the four nearest cells and cached in
+data/raw/<slug>/elevation-glo30.json. Writes data/derived/<slug>.json under `elevation`:
+[km, metres] per sample, stage starts, and the highest and lowest points (with coordinates).
+Source id `copdem`; the licence asks for the notice in its record and a liability disclaimer
+in the legal notice.
 """
 
+import http.client
 import json
 import math
 import sys
-import time
 import urllib.error
 import urllib.request
 from pathlib import Path
+
+import numpy as np
+import rasterio
 
 from pipeline import osm
 from pipeline.routes import USER_AGENT, Cache
 
 ROOT = Path(__file__).resolve().parent.parent
 SPACING_M = 100
-API = "https://api.open-meteo.com/v1/elevation"
-BATCH = 100
-PAUSE_S = 15  # the free API counts every coordinate and limits them per minute
+DEM_DIR = ROOT / "data" / "dem"
+TILE_URL = "https://copernicus-dem-30m.s3.eu-central-1.amazonaws.com/{name}/{name}.tif"
+
+
+def tile_name(lon, lat):
+    """The GLO-30 tile holding a point: named after its south-west corner."""
+    ns, ew = ("N" if lat >= 0 else "S"), ("E" if lon >= 0 else "W")
+    return f"Copernicus_DSM_COG_10_{ns}{abs(math.floor(lat)):02d}_00_{ew}{abs(math.floor(lon)):03d}_00_DEM"
+
+
+def tile(name):
+    """Path of a cached tile, downloaded first if missing; None for open sea (no tile)."""
+    path = DEM_DIR / f"{name}.tif"
+    if not path.exists():
+        DEM_DIR.mkdir(parents=True, exist_ok=True)
+        request = urllib.request.Request(TILE_URL.format(name=name), headers={"User-Agent": USER_AGENT})
+        for attempt in range(4):
+            try:
+                with urllib.request.urlopen(request, timeout=300) as response:
+                    data = response.read()
+                break
+            except urllib.error.HTTPError as error:
+                if error.code in (403, 404):  # the bucket has no tiles over the sea
+                    return None
+                raise
+            except (http.client.IncompleteRead, urllib.error.URLError):
+                if attempt == 3:
+                    raise  # cut off or unreachable: try again
+        path.write_bytes(data)
+        print(f"  downloaded {name} ({len(data) // 1_000_000} MB)")
+    return path
+
+
+def heights(points):
+    """Height in metres at each (lon, lat): bilinear between the four nearest cell centres."""
+    out = [0.0] * len(points)
+    by_tile = {}
+    for i, (lon, lat) in enumerate(points):
+        by_tile.setdefault(tile_name(lon, lat), []).append(i)
+    for name, idx in by_tile.items():
+        path = tile(name)
+        if path is None:
+            continue
+        with rasterio.open(path) as ds:
+            grid = ds.read(1).astype(float)
+            inverse = ~ds.transform
+        rows, cols = grid.shape
+        for i in idx:
+            col, row = inverse * points[i]
+            x = min(max(col - 0.5, 0), cols - 1)  # from pixel corners to cell centres
+            y = min(max(row - 0.5, 0), rows - 1)
+            x0, y0 = min(int(x), cols - 2), min(int(y), rows - 2)
+            fx, fy = x - x0, y - y0
+            q = grid[y0 : y0 + 2, x0 : x0 + 2]
+            out[i] = float(np.dot([1 - fy, fy], q @ [1 - fx, fx]))
+    return out
 
 
 def build(slug, refresh=False):
@@ -56,43 +116,26 @@ def build(slug, refresh=False):
     samples.append((walked / 1000, end[0], end[1]))
 
     def download():
-        heights = []
-        for i in range(0, len(samples), BATCH):
-            chunk = samples[i : i + BATCH]
-            url = (
-                f"{API}?latitude={','.join(f'{s[2]:.5f}' for s in chunk)}"
-                f"&longitude={','.join(f'{s[1]:.5f}' for s in chunk)}"
-            )
-            request = urllib.request.Request(url, headers={"User-Agent": USER_AGENT})
-            for attempt in range(5):
-                try:
-                    with urllib.request.urlopen(request, timeout=60) as response:
-                        heights += json.loads(response.read())["elevation"]
-                    break
-                except urllib.error.HTTPError as error:
-                    if error.code != 429 or attempt == 4:
-                        raise
-                    time.sleep(60)  # rate limit: wait for the next minute
-            print(f"  elevations {len(heights)}/{len(samples)}")
-            time.sleep(PAUSE_S)
-        return json.dumps({"spacingM": SPACING_M, "samples": len(samples), "elevation": heights}).encode()
+        hs = heights([(lon, lat) for _, lon, lat in samples])
+        return json.dumps({"spacingM": SPACING_M, "samples": len(samples), "elevation": [round(h, 1) for h in hs]}).encode()
 
     cache = Cache(slug, refresh)
-    data, _ = cache.get("elevation.json", API, download)
+    names = sorted({tile_name(lon, lat) for _, lon, lat in samples})
+    data, _ = cache.get("elevation-glo30.json", " ".join(TILE_URL.format(name=n) for n in names), download)
     data = json.loads(data)
     if data["samples"] != len(samples):
         raise SystemExit("cached elevations don't match the route; run again with --refresh")
-    heights = data["elevation"]
+    heights_m = data["elevation"]
 
-    points = [[round(km, 2), round(h)] for (km, _, _), h in zip(samples, heights)]
+    points = [[round(km, 2), round(h)] for (km, _, _), h in zip(samples, heights_m)]
     hi = max(range(len(points)), key=lambda i: points[i][1])
     lo = min(range(len(points)), key=lambda i: points[i][1])
     high, low = points[hi], points[lo]
     # with coordinates, so later steps (climate) can look up these places
     at = lambda i: {"lat": round(samples[i][2], 5), "lon": round(samples[i][1], 5)}
     elevation = {
-        "source": "openmeteo",
-        "retrieved": cache.manifest["elevation.json"]["retrieved"],
+        "source": "copdem",
+        "retrieved": cache.manifest["elevation-glo30.json"]["retrieved"],
         "spacingM": SPACING_M,
         "routeKm": round(walked / 1000, 1),
         "stageStarts": starts,

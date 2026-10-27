@@ -509,7 +509,7 @@ const nav = [
         </svg>
         <div class="tip" role="status" hidden><strong></strong><span></span></div>
         <figcaption class="muted">
-          Copernicus terrain model via Open-Meteo; may differ from signposts by a few tens of metres.
+          Copernicus terrain model (30 m grid); it measures the treetops in forests, so heights may differ from signposts by some metres.
         </figcaption>
       </figure>
     </section>
@@ -654,7 +654,7 @@ const nav = [
       <p class="note muted">
         Totals and averages count the main stages only.
         {(estEle || estTime) && " ≈ marks our estimates where the source gives no figure: "}
-        {estEle && "heights from the terrain model (Copernicus DEM via Open-Meteo), to the nearest 10 m and less exact in steep valleys"}
+        {estEle && "heights from the terrain model (Copernicus DEM, 30 m grid), to the nearest 10 m"}
         {estEle && estTime && "; "}
         {estTime && "walking times from each stage's distance, ascent and descent by the German hiking standard DIN 33466 (4 km/h, 300 m/h up, 500 m/h down), without breaks"}
         {(estEle || estTime) && "."}

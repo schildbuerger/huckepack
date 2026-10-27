@@ -1,15 +1,15 @@
 {
   "climate-high.json": {
-    "retrieved": "2026-10-27T17:50:57+00:00",
-    "url": "https://archive-api.open-meteo.com/v1/archive?latitude=50.7915&longitude=14.10586&elevation=726&start_date=1995-01-01&end_date=2024-12-31&daily=temperature_2m_max,temperature_2m_min,precipitation_sum,snowfall_sum&timezone=auto"
+    "retrieved": "2026-10-27T20:11:34+00:00",
+    "url": "https://archive-api.open-meteo.com/v1/archive?latitude=50.791&longitude=14.10317&elevation=723&start_date=1995-01-01&end_date=2024-12-31&daily=temperature_2m_max,temperature_2m_min,precipitation_sum,snowfall_sum&timezone=auto"
   },
   "climate-low.json": {
-    "retrieved": "2026-10-27T17:49:28+00:00",
-    "url": "https://archive-api.open-meteo.com/v1/archive?latitude=50.91637&longitude=14.14885&elevation=116&start_date=1995-01-01&end_date=2024-12-31&daily=temperature_2m_max,temperature_2m_min,precipitation_sum,snowfall_sum&timezone=auto"
+    "retrieved": "2026-10-27T20:10:23+00:00",
+    "url": "https://archive-api.open-meteo.com/v1/archive?latitude=50.91637&longitude=14.14885&elevation=117&start_date=1995-01-01&end_date=2024-12-31&daily=temperature_2m_max,temperature_2m_min,precipitation_sum,snowfall_sum&timezone=auto"
   },
-  "elevation.json": {
-    "retrieved": "2026-10-27T17:48:17+00:00",
-    "url": "https://api.open-meteo.com/v1/elevation"
+  "elevation-glo30.json": {
+    "retrieved": "2026-10-27T20:08:44+00:00",
+    "url": "https://copernicus-dem-30m.s3.eu-central-1.amazonaws.com/Copernicus_DSM_COG_10_N50_00_E013_00_DEM/Copernicus_DSM_COG_10_N50_00_E013_00_DEM.tif https://copernicus-dem-30m.s3.eu-central-1.amazonaws.com/Copernicus_DSM_COG_10_N50_00_E014_00_DEM/Copernicus_DSM_COG_10_N50_00_E014_00_DEM.tif"
   },
   "osm-stage-1-main.json": {
     "retrieved": "2026-10-27T17:20:13+00:00",

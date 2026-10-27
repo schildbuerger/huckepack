@@ -28,3 +28,6 @@ Thumbs.db
 
 # Official GPX tracks: copyrighted, kept local only (the pipeline re-downloads them with --refresh)
 data/raw/*/*.gpx
+
+# Terrain model tiles (Copernicus DEM GLO-30, 30-45 MB each): downloaded by pipeline/elevation.py
+data/dem/
