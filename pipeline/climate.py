@@ -13,6 +13,7 @@ sunset on the 15th of each month at the trail's latitude. Writes data/derived/<s
 `climate`.
 """
 
+import http.client
 import json
 import math
 import sys
@@ -55,10 +56,11 @@ def fetch(place):
                     data = response.read()
                 time.sleep(PAUSE_S)
                 return data
-            except urllib.error.HTTPError as error:
-                if error.code != 429 or attempt == 4:
+            except (urllib.error.HTTPError, urllib.error.URLError, http.client.IncompleteRead) as error:
+                busy = not isinstance(error, urllib.error.HTTPError) or error.code in (429, 502, 503, 504)
+                if not busy or attempt == 4:
                     raise
-                time.sleep(PAUSE_S)  # rate limit: wait for the next minute
+                time.sleep(PAUSE_S)  # rate limited, busy or cut off: wait and try again
         raise AssertionError("unreachable")
 
     return url, download

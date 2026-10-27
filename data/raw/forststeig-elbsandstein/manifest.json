@@ -1,0 +1,90 @@
+{
+  "climate-high.json": {
+    "retrieved": "2026-10-27T17:50:57+00:00",
+    "url": "https://archive-api.open-meteo.com/v1/archive?latitude=50.7915&longitude=14.10586&elevation=726&start_date=1995-01-01&end_date=2024-12-31&daily=temperature_2m_max,temperature_2m_min,precipitation_sum,snowfall_sum&timezone=auto"
+  },
+  "climate-low.json": {
+    "retrieved": "2026-10-27T17:49:28+00:00",
+    "url": "https://archive-api.open-meteo.com/v1/archive?latitude=50.91637&longitude=14.14885&elevation=116&start_date=1995-01-01&end_date=2024-12-31&daily=temperature_2m_max,temperature_2m_min,precipitation_sum,snowfall_sum&timezone=auto"
+  },
+  "elevation.json": {
+    "retrieved": "2026-10-27T17:48:17+00:00",
+    "url": "https://api.open-meteo.com/v1/elevation"
+  },
+  "osm-stage-1-main.json": {
+    "retrieved": "2026-10-27T17:20:13+00:00",
+    "url": "https://overpass-api.de/api/interpreter"
+  },
+  "osm-stage-2-main.json": {
+    "retrieved": "2026-10-27T17:21:14+00:00",
+    "url": "https://overpass-api.de/api/interpreter"
+  },
+  "osm-stage-3-main.json": {
+    "retrieved": "2026-10-27T17:22:25+00:00",
+    "url": "https://overpass-api.de/api/interpreter"
+  },
+  "osm-stage-4-main.json": {
+    "retrieved": "2026-10-27T17:35:18+00:00",
+    "url": "https://overpass-api.de/api/interpreter"
+  },
+  "osm-stage-5-main.json": {
+    "retrieved": "2026-10-27T17:36:02+00:00",
+    "url": "https://overpass-api.de/api/interpreter"
+  },
+  "osm-stage-6-main.json": {
+    "retrieved": "2026-10-27T17:41:55+00:00",
+    "url": "https://overpass-api.de/api/interpreter"
+  },
+  "osm-stage-7-main.json": {
+    "retrieved": "2026-10-27T17:43:07+00:00",
+    "url": "https://overpass-api.de/api/interpreter"
+  },
+  "osm-water.json": {
+    "retrieved": "2026-10-27T17:44:58+00:00",
+    "url": "https://overpass-api.de/api/interpreter"
+  },
+  "osm-way-tags.json": {
+    "retrieved": "2026-10-27T17:45:31+00:00",
+    "url": "https://overpass-api.de/api/interpreter"
+  },
+  "osrm-access-dresden-airport-drs.json": {
+    "retrieved": "2026-10-27T17:48:18+00:00",
+    "url": "https://router.project-osrm.org/route/v1/driving/13.76929,51.13429;14.23478,50.87585?overview=false"
+  },
+  "osrm-access-dresden-hauptbahnhof.json": {
+    "retrieved": "2026-10-27T17:48:17+00:00",
+    "url": "https://router.project-osrm.org/route/v1/driving/13.73208,51.04025;14.23478,50.87585?overview=false"
+  },
+  "osrm-access-prague-airport-prg.json": {
+    "retrieved": "2026-10-27T17:48:18+00:00",
+    "url": "https://router.project-osrm.org/route/v1/driving/14.25608,50.10257;14.23478,50.87585?overview=false"
+  },
+  "stage-1-main.gpx": {
+    "retrieved": "2026-10-27T17:18:40+00:00",
+    "url": "https://nationalpark-saechsische-schweiz.de/uploads/images/Forststeig/GPX-Tracks-Forststeig/etappe-1.gpx"
+  },
+  "stage-2-main.gpx": {
+    "retrieved": "2026-10-27T17:20:19+00:00",
+    "url": "https://nationalpark-saechsische-schweiz.de/uploads/images/Forststeig/GPX-Tracks-Forststeig/etappe-2.gpx"
+  },
+  "stage-3-main.gpx": {
+    "retrieved": "2026-10-27T17:21:19+00:00",
+    "url": "https://nationalpark-saechsische-schweiz.de/uploads/images/Forststeig/GPX-Tracks-Forststeig/etappe-3.gpx"
+  },
+  "stage-4-main.gpx": {
+    "retrieved": "2026-10-27T17:22:30+00:00",
+    "url": "https://nationalpark-saechsische-schweiz.de/uploads/images/Forststeig/GPX-Tracks-Forststeig/etappe-4.gpx"
+  },
+  "stage-5-main.gpx": {
+    "retrieved": "2026-10-27T17:35:24+00:00",
+    "url": "https://nationalpark-saechsische-schweiz.de/uploads/images/Forststeig/GPX-Tracks-Forststeig/etappe-5.gpx"
+  },
+  "stage-6-main.gpx": {
+    "retrieved": "2026-10-27T17:36:07+00:00",
+    "url": "https://nationalpark-saechsische-schweiz.de/uploads/images/Forststeig/GPX-Tracks-Forststeig/etappe-6.gpx"
+  },
+  "stage-7-main.gpx": {
+    "retrieved": "2026-10-27T17:42:01+00:00",
+    "url": "https://nationalpark-saechsische-schweiz.de/uploads/images/Forststeig/GPX-Tracks-Forststeig/etappe-7.gpx"
+  }
+}

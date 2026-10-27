@@ -1,0 +1,147 @@
+name: Forststeig Elbsandstein
+aliases: [Forststeig]
+status: draft
+website: https://www.forststeig.sachsen.de/
+managedBy:
+  - name: Staatsbetrieb Sachsenforst (Nationalpark- und Forstverwaltung Sächsische Schweiz)
+    url: https://www.sachsenforst.de/
+  - name: Lesy České republiky
+    url: https://lesycr.cz/
+trailType: point-to-point
+continents: [Europe]
+countries: [DE, CZ]
+regions: [Saxony, Ústí nad Labem Region]
+protectedAreas:
+  # OSM protected areas containing points of the route (outside the national park)
+  - Landschaftsschutzgebiet Sächsische Schweiz
+  - CHKO Labské pískovce (Elbe Sandstones Protected Landscape Area)
+termini:
+  # first and last points of Sachsenforst's GPX tracks for stages 1 and 7
+  start:
+    name: Schöna station
+    lat: 50.87585
+    lon: 14.23478
+  end:
+    name: Bad Schandau station
+    lat: 50.91891
+    lon: 14.13898
+  source: sachsenforst
+established:
+  year: 2018
+  source: sachsenforst
+waymarking:
+  text: Yellow vertical stripe; green signposts on public roads and in Czechia
+  source: sachsenforst
+length:
+  - km: 105
+    source: sachsenforst
+ascent:
+  - m: 2911
+    source: sachsenforst
+days:
+  min: 7
+  max: 7
+  source: sachsenforst
+stages:
+  source: sachsenforst
+  list:
+    - { number: "1", kind: main, from: Schöna, to: Grenzbaude, km: 15, ascentM: 616, descentM: 351, track: "https://nationalpark-saechsische-schweiz.de/uploads/images/Forststeig/GPX-Tracks-Forststeig/etappe-1.gpx" }
+    - { number: "2", kind: main, from: Grenzbaude, to: Ostrov, km: 15, ascentM: 383, descentM: 323, track: "https://nationalpark-saechsische-schweiz.de/uploads/images/Forststeig/GPX-Tracks-Forststeig/etappe-2.gpx" }
+    - { number: "3", kind: main, from: Ostrov, to: Kamphütte (Beutwald), km: 14, ascentM: 187, descentM: 225, track: "https://nationalpark-saechsische-schweiz.de/uploads/images/Forststeig/GPX-Tracks-Forststeig/etappe-3.gpx" }
+    - { number: "4", kind: main, from: Kamphütte (Beutwald), to: Rotsteinhütte, km: 20, ascentM: 550, descentM: 555, track: "https://nationalpark-saechsische-schweiz.de/uploads/images/Forststeig/GPX-Tracks-Forststeig/etappe-4.gpx" }
+    - { number: "5", kind: main, from: Rotsteinhütte, to: Nikolsdorf, km: 20, ascentM: 471, descentM: 556, track: "https://nationalpark-saechsische-schweiz.de/uploads/images/Forststeig/GPX-Tracks-Forststeig/etappe-5.gpx" }
+    - { number: "6", kind: main, from: Nikolsdorf, to: Gohrisch, km: 12, ascentM: 347, descentM: 346, track: "https://nationalpark-saechsische-schweiz.de/uploads/images/Forststeig/GPX-Tracks-Forststeig/etappe-6.gpx" }
+    - { number: "7", kind: main, from: Gohrisch, to: Bad Schandau, km: 9, ascentM: 249, descentM: 455, track: "https://nationalpark-saechsische-schweiz.de/uploads/images/Forststeig/GPX-Tracks-Forststeig/etappe-7.gpx" }
+route:
+  # built by `python -m pipeline.routes forststeig-elbsandstein`: OSM ways matched to the stage
+  # tracks above; Sachsenforst's GPX only guides which ways, none of its geometry is used
+  source: osm
+  publishable: true
+season:
+  months: [4, 5, 6, 7, 8, 9, 10]
+  text: April to October
+  source: sachsenforst
+sleeping:
+  # trekking huts are unstaffed shelters (bivouac); bivouac sites are tent pitches, counted with
+  # the campsite in Ostrov; partner accommodation are guesthouses and inns
+  types: [bivouac, campsite, guesthouse]
+  source: sachsenforst
+wildCamping:
+  status: restricted
+  rule: >-
+    Tents are allowed only at Sachsenforst's bivouac sites, from April to October: for one night,
+    between 4 pm and 10 am, within 20 m of the site and at most five two-person tents, with a
+    trekking ticket (€10 per adult and night, bought in advance and validated on arrival; no
+    reservation). Neither the bivouac sites nor the trekking huts have drinking water.
+  source: sachsenforst-biwak
+access:
+  # the nearest major travel hubs: main railway station and international airports (OSM);
+  # distances by pipeline/access.py
+  - kind: station
+    name: Dresden Hauptbahnhof
+    lat: 51.04025
+    lon: 13.73208
+    source: osm
+  - kind: airport
+    name: Dresden Airport (DRS)
+    lat: 51.13429
+    lon: 13.76929
+    source: osm
+  - kind: airport
+    name: Prague Airport (PRG)
+    lat: 50.10257
+    lon: 14.25608
+    source: osm
+tags: [sandstone, table-mountains, cross-border, trekking-huts, forests]
+notes:
+  - >-
+    Sachsenforst's totals (ascent 2,911 m, descent 2,925 m) differ from the sum of its own stage
+    figures (2,803 m and 2,811 m). The page uses the stage figures.
+  - >-
+    Stage lengths are rounded to whole kilometres on the route overview, and Sachsenforst's own
+    GPX tracks differ on stages 5–7 (17.8, 14.8 and 10.6 km against 20, 12 and 9 km stated).
+  - >-
+    Sachsenforst publishes no walking times per stage. The regional tourism association's stage
+    pages (saechsische-schweiz.de, Outdooractive) give times and slightly different lengths, e.g.
+    stage 1: 15.81 km, about 6 h.
+  - The home page says 6 to 8 days; the route overview recommends 7 day stages.
+  - >-
+    No difficulty grade is published (no SAC or DAV grade); Sachsenforst calls it demanding, for
+    experienced, sure-footed and well-equipped hikers, over thirteen table mountains with many
+    steep climbs and descents.
+  - >-
+    Three of the five trekking huts (and some bivouac sites) lie on detours off the route; the
+    detours aren't in the stage list.
+  - The rules sheet (Forststeig Kodex PDF) is an image without text; the bivouac rules come from the separate bivouac information sheet.
+  - Sachsenforst asks hikers to avoid weekends and public holidays, when the forest sites are often full.
+sources:
+  - id: sachsenforst
+    title: "Sachsenforst: Forststeig Elbsandstein (home page, route overview with stage figures and GPX, overnight in the forest)"
+    url: https://www.forststeig.sachsen.de/routenuebersicht-4132.html
+    licence: All rights reserved (facts only)
+    retrieved: 2026-10-27
+  - id: sachsenforst-biwak
+    title: "Sachsenforst: Biwakplätze im Elbsandsteingebirge, allgemeine Informationen (February 2024)"
+    url: https://forststeig.sachsen.de/download/AllgemeineInfosBiwak.pdf
+    licence: All rights reserved (facts only)
+    retrieved: 2026-10-27
+  - id: osm
+    title: "OpenStreetMap contributors: paths and tracks along the trail (via Overpass API)"
+    url: https://www.openstreetmap.org/copyright
+    licence: ODbL 1.0
+    retrieved: 2026-10-27
+  - id: openmeteo
+    title: "Open-Meteo Elevation API: Copernicus DEM GLO-90"
+    url: https://open-meteo.com/en/docs/elevation-api
+    licence: CC BY 4.0 (Open-Meteo); DEM © DLR/ESA Copernicus
+    retrieved: 2026-10-27
+  - id: era5
+    title: "Open-Meteo Historical Weather API: ERA5 and ERA5-Land reanalysis, daily 1995–2024"
+    url: https://open-meteo.com/en/docs/historical-weather-api
+    licence: CC BY 4.0 (Open-Meteo); contains modified Copernicus Climate Change Service information
+    retrieved: 2026-10-27
+  - id: osrm
+    title: "OSRM: road routes on OpenStreetMap data (router.project-osrm.org)"
+    url: https://project-osrm.org/
+    licence: Route data © OpenStreetMap contributors (ODbL)
+    retrieved: 2026-10-27
