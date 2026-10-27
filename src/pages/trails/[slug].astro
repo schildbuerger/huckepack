@@ -518,10 +518,10 @@ const nav = [
   {grad && elevation && (
     <section id="steepness">
       <h2>Steepest sections</h2>
-      <dl class="strip spec three">
+      <dl class="strip spec three steep">
         <div>
           <dt>
-            <Explain id="grade-info" term="Steepest 500 m up" title="Gradient">
+            <Explain id="grade-info" term="Steepest climb" title="Gradient">
               <p>
                 The steepest 500 m of the trail in walking direction, uphill and downhill: how many metres you climb or
                 descend over that distance, as a gradient (%) and as an angle (°). On this trail, {grad.climb.changeM} m up over
@@ -545,25 +545,32 @@ const nav = [
                 Averages over 500 m from a 30 m terrain model: short pitches within them, such as steps and ladders, are
                 steeper.
               </p>
-            </Explain>{" "}
-            · stage {grad.climb.stage}
+            </Explain>
+            <span>{"\u00a0· stage "}{grad.climb.stage}</span>
           </dt>
           <dd class="ramp-value">
-            <span class="big">{grad.climb.grade}</span><span class="unit">% · +{grad.climb.changeM} m</span>
             <svg class="ramp up" viewBox="0 0 56 30" aria-hidden="true">
               <polygon points={ramp(grad.climb.grade)} />
             </svg>
-            <span class="unit">{degrees(grad.climb.grade)}°</span>
+            <span class="ramp-grade">
+              <span class="big">{grad.climb.grade}</span><span class="unit">% · {degrees(grad.climb.grade)}°</span>
+            </span>
+            <span class="ramp-detail">+{grad.climb.changeM} m over 500 m</span>
           </dd>
         </div>
         <div>
-          <dt><Explain id="grade-info" term="Steepest 500 m down" shared /> · stage {grad.descent.stage}</dt>
+          <dt>
+            <Explain id="grade-info" term="Steepest descent" shared />
+            <span>{"\u00a0· stage "}{grad.descent.stage}</span>
+          </dt>
           <dd class="ramp-value">
-            <span class="big">{signed(grad.descent.grade)}</span><span class="unit">% · {signed(grad.descent.changeM)} m</span>
             <svg class="ramp down" viewBox="0 0 56 30" aria-hidden="true">
               <polygon points={ramp(grad.descent.grade)} />
             </svg>
-            <span class="unit">{degrees(grad.descent.grade)}°</span>
+            <span class="ramp-grade">
+              <span class="big">{signed(grad.descent.grade)}</span><span class="unit">% · {degrees(grad.descent.grade)}°</span>
+            </span>
+            <span class="ramp-detail">{signed(grad.descent.changeM)} m over 500 m</span>
           </dd>
         </div>
         <div>
@@ -577,7 +584,7 @@ const nav = [
             </Explain>
           </dt>
           <dd>
-            <span class="big">{grad.steepUpKm}</span><span class="unit">km up ·</span>
+            <span class="big">{grad.steepUpKm}</span><span class="unit">km up ·{"\u00a0"}</span>
             <span class="big">{grad.steepDownKm}</span><span class="unit">km down</span>
           </dd>
         </div>
@@ -1959,18 +1966,37 @@ const nav = [
 
   /* steepness: a slope glyph at its true angle next to the value, and a gradient chart (climbs
      above the zero line, descents below; colours --grade-*, a diverging scale) */
+  /* steepest climb and descent: the slope drawn at its true angle beside the gradient, the
+     metres over 500 m beneath */
   .ramp-value {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: baseline;
-    column-gap: 2px;
+    display: grid;
+    grid-template-columns: 56px auto;
+    column-gap: 14px;
+    align-items: end;
+    justify-content: start;
   }
   .ramp {
+    grid-row: 1 / 3;
     width: 56px;
     height: 30px;
-    margin: 0 4px 0 12px;
-    align-self: flex-end;
+    margin-bottom: 4px;
     overflow: visible;
+  }
+  .ramp-detail {
+    color: var(--muted);
+    font-size: 0.85rem;
+  }
+  /* phones: climb and descent side by side, the steep kilometres on a row of their own */
+  @media (max-width: 639px) {
+    .steep {
+      grid-template-columns: repeat(2, 1fr);
+    }
+    .steep > :nth-child(3) {
+      grid-column: 1 / -1;
+      padding-left: 0;
+      border-top: 1px solid var(--line);
+      border-left: 0;
+    }
   }
   .ramp.up polygon {
     fill: var(--grade-up-steep);
