@@ -72,8 +72,8 @@
   works for search but is less familiar outside Europe. Avoid endings that
   are cheap only in the first year. Check availability and renewal prices
   before deciding.
-- **Releasing:** there is no release mechanism yet. It must keep drafts and
-  routes with `publishable: false` out of the deployed site.
+- **Releasing:** there is no draft status: every trail on `main` is published.
+  Routes with `publishable: false` must still stay out of the deployed site.
 - **Ads:** possible later. They need a GDPR consent banner and a privacy
   policy.
 - **First trail:** see the ranking in [roadmap.md](roadmap.md).

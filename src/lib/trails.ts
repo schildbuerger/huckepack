@@ -57,13 +57,12 @@ export function sacGrade(t: Trail): Derived<string> | undefined {
 // The compact record lists and filters work on. Lists show the stage total when there are
 // stages, else the first stated length; trail pages show every figure with its source. With the
 // trail's derived data (the pipeline's output) it also carries what the search page filters and
-// previews: water, surfaces, a coarse elevation profile and the nearest travel hub.
+// previews: water, surfaces and a coarse elevation profile.
 const PROFILE_POINTS = 80;
 
 export function summarize(id: string, t: Trail, d?: DerivedData) {
   const totals = stageTotals(t);
   const step = d?.elevation ? Math.max(1, Math.floor(d.elevation.points.length / PROFILE_POINTS)) : 1;
-  const hub = t.access[0] && d?.access?.hubs.find((h) => h.name === t.access[0].name);
   return {
     slug: id,
     name: t.name,
@@ -79,7 +78,6 @@ export function summarize(id: string, t: Trail, d?: DerivedData) {
     wildCamping: t.wildCamping?.status ?? null,
     sleeping: sleepingCategories(t.sleeping?.types ?? []) as string[],
     tags: t.tags,
-    draft: t.status === "draft",
     season: t.season?.months ?? null,
     start: t.termini.start.name,
     end: t.termini.end.name,
@@ -93,7 +91,6 @@ export function summarize(id: string, t: Trail, d?: DerivedData) {
       : null,
     highestM: d?.elevation?.highest.m ?? null,
     lowestM: d?.elevation?.lowest.m ?? null,
-    hub: hub ? { name: hub.name, kind: t.access[0].kind, roadKm: hub.roadKm } : null,
   };
 }
 

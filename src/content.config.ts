@@ -66,7 +66,6 @@ const trail = z
     name: z.string(),
     localName: z.string().optional(),
     aliases: z.array(z.string()).default([]),
-    status: z.enum(["draft", "published"]),
     website: z.url(),
     designation: z.string().optional(),
     managedBy: z.array(z.object({ name: z.string(), url: z.url().optional() })).min(1),

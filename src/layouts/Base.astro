@@ -71,8 +71,6 @@ const { title, description } = Astro.props;
     --line: #e6dccf;
     --accent: #b0502a;
     --accent-soft: #f3e2d5;
-    --badge-bg: #f1e3c6;
-    --badge-text: #73541a;
     /* status: good / caution / restrictive, each a strong colour and a card tint */
     --good: #4a6534;
     --good-soft: #e9eedd;
@@ -112,8 +110,6 @@ const { title, description } = Astro.props;
     --line: #3a322b;
     --accent: #e3916a;
     --accent-soft: #3b2a20;
-    --badge-bg: #3d321c;
-    --badge-text: #e8cf91;
     --good: #a9c48a;
     --good-soft: #283020;
     --fair: #e2b866;
@@ -144,8 +140,6 @@ const { title, description } = Astro.props;
       --line: #3a322b;
       --accent: #e3916a;
       --accent-soft: #3b2a20;
-      --badge-bg: #3d321c;
-      --badge-text: #e8cf91;
       --good: #a9c48a;
       --good-soft: #283020;
       --fair: #e2b866;
@@ -213,16 +207,6 @@ const { title, description } = Astro.props;
   }
   .muted {
     color: var(--muted);
-  }
-  .badge {
-    display: inline-block;
-    padding: 0 8px;
-    border-radius: 999px;
-    background: var(--badge-bg);
-    color: var(--badge-text);
-    font: 500 0.75rem/1.6 var(--sans);
-    vertical-align: middle;
-    letter-spacing: 0.02em;
   }
   .button {
     display: inline-block;

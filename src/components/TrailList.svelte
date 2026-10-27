@@ -5,18 +5,20 @@
   import { onMount } from "svelte";
   import { SAC_SCALE, SLEEPING_CATEGORIES, WATER_LEVELS, type TrailSummary } from "../lib/trails";
   import Explain from "./Explain.svelte";
+  import Range from "./Range.svelte";
 
   let { trails, eleRange }: { trails: TrailSummary[]; eleRange: [number, number] } = $props();
 
   const SAC = ["T1", "T2", "T3", "T4", "T5", "T6"];
   const MONTHS = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
-  const DURATIONS = [
-    { id: "week", label: "1–7 days", min: 1, max: 7 },
-    { id: "two-weeks", label: "8–14 days", min: 8, max: 14 },
-    { id: "month", label: "15–28 days", min: 15, max: 28 },
-    { id: "long", label: "29+ days", min: 29, max: Infinity },
-  ];
-  const NATURAL = ["50", "70"]; // least share of natural ground, in per cent
+  // slider stops; the last stop of days, difficulty and water means "no limit"
+  const DAYS = [1, 2, 3, 4, 5, 6, 7, 10, 14, 21, 30, 45, 60];
+  const DAY_STOPS = DAYS.map((d, i) => (i === DAYS.length - 1 ? `${d}+` : `${d}`));
+  const SAC_STOPS = [...SAC, "Any"];
+  const WATER_KM = [5, 10, 15, 20, 25, 30, 40];
+  const WATER_STOPS = [...WATER_KM.map((km) => `${km} km`), "Any"];
+  const NATURAL_PCT = [0, 10, 20, 30, 40, 50, 60, 70, 80, 90];
+  const NATURAL_STOPS = NATURAL_PCT.map((n) => (n ? `${n} %` : "Any"));
   const SORTS = {
     name: { label: "Name", value: (t: TrailSummary) => t.name },
     shortest: { label: "Shortest first", value: (t: TrailSummary) => t.lengthKm },
@@ -31,18 +33,25 @@
   } as const;
   type SortKey = keyof typeof SORTS;
 
-  // filter state; every field maps to a URL parameter of the same name
+  // filter state; sliders hold stop indexes. Each filter maps to a URL parameter.
+  const DAYS_ALL = DAYS.length - 1;
   let months = $state<number[]>([]);
-  let durations = $state<string[]>([]);
-  let sac = $state("");
+  let dayLo = $state(0);
+  let dayHi = $state(DAYS_ALL);
+  let sacMax = $state(SAC.length); // "Any"
   let where = $state("");
   let sleep = $state<string[]>([]);
   let wild = $state("");
-  let water = $state("");
-  let natural = $state("");
+  let waterMax = $state(WATER_KM.length); // "Any"
+  let naturalMin = $state(0); // "Any"
   let sort = $state<SortKey>("name");
   let filtersOpen = $state(false);
   let ready = false;
+
+  let daysOn = $derived(dayLo > 0 || dayHi < DAYS_ALL);
+  let sacOn = $derived(sacMax < SAC.length);
+  let waterOn = $derived(waterMax < WATER_KM.length);
+  let naturalOn = $derived(naturalMin > 0);
 
   const uniq = (xs: string[]) => [...new Set(xs)].sort((a, b) => a.localeCompare(b));
   // where: continents, each with the countries trails cross there
@@ -55,14 +64,20 @@
   onMount(() => {
     const p = new URLSearchParams(location.search);
     const list = (k: string) => (p.get(k) ? p.get(k)!.split(",") : []);
+    const stop = <T,>(values: T[], raw: string | undefined, fallback: number) => {
+      const i = values.findIndex((v) => String(v) === raw);
+      return i < 0 ? fallback : i;
+    };
     months = list("months").map(Number).filter((m) => m >= 1 && m <= 12);
-    durations = list("durations").filter((d) => DURATIONS.some((x) => x.id === d));
-    sac = SAC.includes(p.get("sac") ?? "") ? p.get("sac")! : "";
+    const [lo, hi] = (p.get("days") ?? "").split("-");
+    dayLo = stop(DAYS, lo, 0);
+    dayHi = Math.max(dayLo, stop(DAYS, hi, DAYS_ALL));
+    sacMax = stop(SAC, p.get("sac") ?? undefined, SAC.length);
     where = p.get("where") ?? "";
     sleep = list("sleep").filter((s) => sleepingOptions.some((c) => c.id === s));
     wild = ["allowed", "some"].includes(p.get("wild") ?? "") ? p.get("wild")! : "";
-    water = ["frequent", "regular"].includes(p.get("water") ?? "") ? p.get("water")! : "";
-    natural = NATURAL.includes(p.get("natural") ?? "") ? p.get("natural")! : "";
+    waterMax = stop(WATER_KM, p.get("water") ?? undefined, WATER_KM.length);
+    naturalMin = stop(NATURAL_PCT, p.get("natural") ?? undefined, 0);
     sort = (p.get("sort") ?? "") in SORTS ? (p.get("sort") as SortKey) : "name";
     ready = true;
   });
@@ -71,13 +86,13 @@
   $effect(() => {
     const p = new URLSearchParams();
     if (months.length) p.set("months", [...months].sort((a, b) => a - b).join(","));
-    if (durations.length) p.set("durations", durations.join(","));
-    if (sac) p.set("sac", sac);
+    if (daysOn) p.set("days", `${DAYS[dayLo]}-${dayHi < DAYS_ALL ? DAYS[dayHi] : ""}`);
+    if (sacOn) p.set("sac", SAC[sacMax]);
     if (where) p.set("where", where);
     if (sleep.length) p.set("sleep", sleep.join(","));
     if (wild) p.set("wild", wild);
-    if (water) p.set("water", water);
-    if (natural) p.set("natural", natural);
+    if (waterOn) p.set("water", String(WATER_KM[waterMax]));
+    if (naturalOn) p.set("natural", String(NATURAL_PCT[naturalMin]));
     if (sort !== "name") p.set("sort", sort);
     if (!ready) return;
     const search = p.toString();
@@ -88,19 +103,15 @@
 
   const passes = (t: TrailSummary) => {
     if (months.length && !(t.season && months.some((m) => t.season!.includes(m)))) return false;
-    if (durations.length) {
-      if (!t.days) return false;
-      const [lo, hi] = t.days;
-      if (!durations.some((id) => DURATIONS.some((d) => d.id === id && lo <= d.max && hi >= d.min))) return false;
-    }
-    if (sac && (t.sac === null || SAC.indexOf(t.sac) > SAC.indexOf(sac))) return false;
+    // days: the trail's range overlaps the chosen one (the top stop has no upper limit)
+    if (daysOn && !(t.days && t.days[0] <= (dayHi < DAYS_ALL ? DAYS[dayHi] : Infinity) && t.days[1] >= DAYS[dayLo])) return false;
+    if (sacOn && (t.sac === null || SAC.indexOf(t.sac) > sacMax)) return false;
     if (where && !t.continents.includes(where) && !t.countries.includes(where)) return false;
     if (sleep.length && !sleep.every((s) => t.sleeping.includes(s))) return false;
     if (wild === "allowed" && t.wildCamping !== "allowed") return false;
     if (wild === "some" && t.wildCamping !== "allowed" && t.wildCamping !== "restricted") return false;
-    if (water === "frequent" && t.water?.level !== "frequent") return false;
-    if (water === "regular" && t.water?.level !== "frequent" && t.water?.level !== "regular") return false;
-    if (natural && !(t.surface && t.surface.natural * 100 >= Number(natural))) return false;
+    if (waterOn && !(t.water && t.water.gapKm <= WATER_KM[waterMax])) return false;
+    if (naturalOn && !(t.surface && t.surface.natural * 100 >= NATURAL_PCT[naturalMin])) return false;
     return true;
   };
 
@@ -114,26 +125,37 @@
     }),
   );
 
+  // what each slider is set to, in words (beside the group title and on the chips)
+  let daysText = $derived(
+    !daysOn ? "Any length" : dayLo === dayHi ? `${DAY_STOPS[dayLo]} days` : `${DAYS[dayLo]}–${DAY_STOPS[dayHi]} days`,
+  );
+  let sacText = $derived(sacOn ? `Up to ${SAC[sacMax]}` : "Any grade");
+  let waterText = $derived(waterOn ? `Every ${WATER_KM[waterMax]} km or less` : "Any");
+  let naturalText = $derived(naturalOn ? `${NATURAL_PCT[naturalMin]} %+ natural` : "Any");
+
   // the active filters as removable chips
   const monthList = (ms: number[]) => [...ms].sort((a, b) => a - b).map((m) => MONTHS[m - 1]).join(", ");
   let active = $derived(
     [
       months.length && { label: monthList(months), clear: () => (months = []) },
-      ...durations.map((id) => ({ label: DURATIONS.find((d) => d.id === id)!.label, clear: () => (durations = toggle(durations, id)) })),
-      sac && { label: `Up to SAC ${sac}`, clear: () => (sac = "") },
+      daysOn && { label: daysText, clear: () => ((dayLo = 0), (dayHi = DAYS_ALL)) },
+      sacOn && { label: `Up to SAC ${SAC[sacMax]}`, clear: () => (sacMax = SAC.length) },
       where && { label: where, clear: () => (where = "") },
       ...sleep.map((id) => ({ label: SLEEPING_CATEGORIES.find((c) => c.id === id)!.label, clear: () => (sleep = toggle(sleep, id)) })),
       wild && { label: wild === "allowed" ? "Wild camping allowed" : "Wild camping possible", clear: () => (wild = "") },
-      water && { label: water === "frequent" ? "Frequent water" : "Regular water or better", clear: () => (water = "") },
-      natural && { label: `At least ${natural} % natural ground`, clear: () => (natural = "") },
+      waterOn && { label: `Water every ${WATER_KM[waterMax]} km or less`, clear: () => (waterMax = WATER_KM.length) },
+      naturalOn && { label: `At least ${NATURAL_PCT[naturalMin]} % natural ground`, clear: () => (naturalMin = 0) },
     ].filter(Boolean) as { label: string; clear: () => void }[],
   );
 
   function reset() {
-    where = sac = wild = water = natural = "";
+    where = wild = "";
     months = [];
-    durations = [];
     sleep = [];
+    dayLo = naturalMin = 0;
+    dayHi = DAYS_ALL;
+    sacMax = SAC.length;
+    waterMax = WATER_KM.length;
   }
 
   // card helpers
@@ -188,30 +210,24 @@
     <div class="group" role="group" aria-labelledby="g-long">
       <div class="legend" id="g-long">
         <Explain id="x-long" term="How long?" title="Walking days">
-          <p>The number of days the trail's managers suggest for the whole route. Where they give a range, such as 6–8 days, the trail matches every option it overlaps.</p>
+          <p>The number of days the trail's managers suggest for the whole route. Where they give a range, such as 6–8 days, the trail matches if that range overlaps yours.</p>
         </Explain>
+        <span class="value">{daysText}</span>
       </div>
-      <div class="chips">
-        {#each DURATIONS as d}
-          <button type="button" class="chip" aria-pressed={durations.includes(d.id)} onclick={() => (durations = toggle(durations, d.id))}>{d.label}</button>
-        {/each}
-      </div>
+      <Range stops={DAY_STOPS} bind:lo={dayLo} bind:hi={dayHi} label="Walking days" ticks={[0, 6, 8, 10, DAYS_ALL]} />
     </div>
 
     <div class="group" role="group" aria-labelledby="g-hard">
       <div class="legend" id="g-hard">
         <Explain id="x-hard" term="How hard, at most?" title="SAC hiking scale">
-          <p>Pick the hardest grade you're happy with; trails up to that grade stay. Trails without a grade are left out.</p>
+          <p>Slide to the hardest grade you're happy with; trails up to that grade stay. Once you pick a grade, trails without one are left out.</p>
           <dl>
             {#each SAC as s}<dt>{s} · {SAC_SCALE[s].name}</dt><dd>{SAC_SCALE[s].text}</dd>{/each}
           </dl>
         </Explain>
+        <span class="value">{sacText}</span>
       </div>
-      <div class="scale" role="radiogroup" aria-label="Highest SAC grade">
-        {#each SAC as s}
-          <button type="button" class="chip" role="radio" aria-checked={sac === s} onclick={() => (sac = sac === s ? "" : s)}>{s}</button>
-        {/each}
-      </div>
+      <Range stops={SAC_STOPS} bind:hi={sacMax} off={SAC.length} label="Highest SAC grade" />
     </div>
 
     <div class="group" role="group" aria-labelledby="g-where">
@@ -258,27 +274,23 @@
     </div>
 
     <div class="group" role="group" aria-labelledby="g-water">
-      <div class="legend" id="g-water">Water</div>
-      <div class="sub first" id="water-label">
-        <Explain id="x-water" term="Drinking water at least every" title="Drinking water">
-          <p>Rated by the longest stretch of the main route without drinking water: taps, fountains and drinking springs mapped in OpenStreetMap.</p>
+      <div class="legend" id="g-water">
+        <Explain id="x-water" term="Drinking water" title="Drinking water">
+          <p>The longest stretch of the main route without drinking water (taps, fountains and drinking springs mapped in OpenStreetMap) must be at most this long.</p>
+          <p>Trail pages rate it in three steps:</p>
           <dl>
             {#each WATER_LEVELS as l}<dt>{l.label}</dt><dd>{l.hint}.</dd>{/each}
           </dl>
         </Explain>
+        <span class="value">{waterText}</span>
       </div>
-      <div class="segmented" role="radiogroup" aria-labelledby="water-label">
-        <button type="button" role="radio" aria-checked={water === ""} onclick={() => (water = "")}>Any</button>
-        <button type="button" role="radio" aria-checked={water === "regular"} onclick={() => (water = "regular")}>20 km</button>
-        <button type="button" role="radio" aria-checked={water === "frequent"} onclick={() => (water = "frequent")}>10 km</button>
-      </div>
+      <Range stops={WATER_STOPS} bind:hi={waterMax} off={WATER_KM.length} label="Longest stretch without drinking water, at most" ticks={[0, 3, WATER_KM.length]} />
     </div>
 
     <div class="group" role="group" aria-labelledby="g-terrain">
-      <div class="legend" id="g-terrain">Terrain</div>
-      <div class="sub first" id="natural-label">
-        <Explain id="x-terrain" term="Natural ground at least" title="Ground underfoot">
-          <p>The share of the main route on natural ground, from OpenStreetMap's surface tags. The bar under each card's profile shows the mix:</p>
+      <div class="legend" id="g-terrain">
+        <Explain id="x-terrain" term="Natural ground" title="Ground underfoot">
+          <p>The share of the main route on natural ground at least, from OpenStreetMap's surface tags. The bar under each card's profile shows the mix:</p>
           <!-- the same colours as the surface bar on each card -->
           <ul class="ground">
             <li><span style="background: var(--surface-natural)"></span>Natural: earth, grass, rock</li>
@@ -286,13 +298,9 @@
             <li><span style="background: var(--surface-paved)"></span>Paved</li>
           </ul>
         </Explain>
+        <span class="value">{naturalText}</span>
       </div>
-      <div class="segmented" role="radiogroup" aria-labelledby="natural-label">
-        <button type="button" role="radio" aria-checked={natural === ""} onclick={() => (natural = "")}>Any</button>
-        {#each NATURAL as n}
-          <button type="button" role="radio" aria-checked={natural === n} onclick={() => (natural = n)}>{n} %</button>
-        {/each}
-      </div>
+      <Range stops={NATURAL_STOPS} bind:hi={naturalMin} off={0} fill="above" label="Share of natural ground, at least" ticks={[0, 5, 9]} />
     </div>
   </aside>
 
@@ -327,8 +335,8 @@
           <li>
             <a class="card" href={`/trails/${t.slug}/`}>
               <div class="card-main">
-                <p class="place">{[...t.countries, ...t.regions].join(" · ")}</p>
-                <h3>{t.name}{#if t.draft}<span class="badge">draft</span>{/if}</h3>
+                <p class="place">{t.countries.join(" · ")}</p>
+                <h3>{t.name}</h3>
                 {#if t.localName}<p class="local">{t.localName}</p>{/if}
                 <p class="route-ends">{t.start} → {t.end}</p>
                 <dl class="figures">
@@ -345,7 +353,6 @@
                     <li><span class={`mark ${SHAPE[t.wildCamping]} tone-${TONE[t.wildCamping]}`} aria-hidden="true"></span>{WILD[t.wildCamping]}</li>
                   {/if}
                   {#if sleepText(t)}<li>{sleepText(t)}</li>{/if}
-                  {#if t.hub}<li>{fmt(Math.round(t.hub.roadKm))} km by road from {t.hub.name}</li>{/if}
                 </ul>
               </div>
 
@@ -467,13 +474,21 @@
   .group:last-child {
     border-bottom: 0;
   }
+  .legend .value {
+    color: var(--muted);
+    font-weight: 400;
+    font-size: 0.8rem;
+  }
   .legend {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 12px;
     margin-bottom: 10px;
     font-weight: 600;
     font-size: 0.9rem;
   }
-  .chips,
-  .scale {
+  .chips {
     display: flex;
     flex-wrap: wrap;
     gap: 6px;
@@ -492,13 +507,9 @@
     font: 500 0.82rem var(--sans);
     cursor: pointer;
   }
-  .months .chip,
-  .scale .chip {
+  .months .chip {
     padding: 5px 0;
     text-align: center;
-  }
-  .scale .chip {
-    flex: 1;
   }
   .chip:hover {
     border-color: var(--muted);
@@ -520,9 +531,6 @@
     margin: 14px 0 0;
     color: var(--muted);
     font-size: 0.8rem;
-  }
-  .sub.first {
-    margin-top: 0;
   }
   .sub + .segmented {
     margin-top: 6px;
@@ -710,9 +718,6 @@
   h3 {
     margin: 2px 0 0;
     font-size: 1.35rem;
-  }
-  .badge {
-    margin-left: 8px;
   }
   .local {
     color: var(--muted);

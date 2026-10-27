@@ -9,12 +9,11 @@ before building it.
 
 In progress: **Path of Sacred Forests** (Sentiero delle Foreste Sacre, Italy,
 7 stages, about 100 km), the first record, built from the national park's
-stage pages (`data/trails/path-of-sacred-forests.yaml`, draft).
+stage pages (`data/trails/path-of-sacred-forests.yaml`).
 
 Also in progress: **Forststeig Elbsandstein** (Saxony, Germany, and Czechia, 7 stages,
 105 km), the second record and a test of the whole setup on a new trail, built from
-Sachsenforst's route overview and GPX tracks (`data/trails/forststeig-elbsandstein.yaml`,
-draft).
+Sachsenforst's route overview and GPX tracks (`data/trails/forststeig-elbsandstein.yaml`).
 
 | # | Trail | Region | Length (approx.) | Why |
 |---|---|---|---|---|
