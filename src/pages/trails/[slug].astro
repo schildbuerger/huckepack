@@ -55,9 +55,16 @@ const routeUrl = t.route && existsSync(`public/${routeFile}`) ? `/${routeFile}` 
 const routeAttribution = routeUrl && t.route ? sources[t.route.source].title.split(":")[0] : null;
 
 const level = water && waterLevel(water.longestGapKm.drinking.km);
-// status colours on cards (see --good/--fair/--poor in Base.astro); the text always says it too
-const WILD_TONE = { allowed: "good", restricted: "fair", prohibited: "poor" } as const;
-const WATER_TONE = { frequent: "good", regular: "fair", scarce: "poor" } as const;
+// status as a shape plus a word; colour (--good/--fair/--poor) only fills the shape
+type Status = { shape: "full" | "half" | "blocked" | "empty"; tone: string; word: string };
+const STATUS: Record<string, Status> = {
+  available: { shape: "full", tone: "good", word: "Available" },
+  allowed: { shape: "full", tone: "good", word: "Allowed" },
+  restricted: { shape: "half", tone: "fair", word: "Restricted" },
+  prohibited: { shape: "blocked", tone: "poor", word: "Prohibited" },
+  none: { shape: "empty", tone: "none", word: "None listed" },
+  unknown: { shape: "empty", tone: "none", word: "Not known" },
+};
 const SLEEPING_ICONS = {
   "wild-camping": "tent",
   camping: "tent-tree",
@@ -65,7 +72,25 @@ const SLEEPING_ICONS = {
   hostels: "bed-single",
   rooms: "bed-double",
 } as const;
-const TYPE_ICONS = { "point-to-point": "move-right", loop: "repeat", network: "network" } as const;
+const sleepingRows = sleeping.map((c) =>
+  c.id === "wild-camping"
+    ? { ...c, status: STATUS[t.wildCamping?.status ?? "unknown"], detail: "" }
+    : {
+        ...c,
+        status: STATUS[c.present.length > 0 ? "available" : "none"],
+        detail: c.present.map((x) => SLEEPING_LABELS[x]).join(", "),
+      },
+);
+const WATER_STATUS = { frequent: "available", regular: "restricted", scarce: "prohibited" } as const;
+const waterStatus = level && { ...STATUS[WATER_STATUS[level.id]], word: level.label };
+
+// water strip chart: the main route on the map line's kilometres
+const CHART = { width: 1000, x0: 8, x1: 992, axis: 92, lanes: { drinking: 46, spring: 70 } };
+const xAt = (km: number) => CHART.x0 + (km / (water?.routeKm || 1)) * (CHART.x1 - CHART.x0);
+const onRoute = water?.points.filter((p) => p.km !== null) ?? [];
+const chartSummary =
+  water &&
+  `Water along the main route, ${water.routeKm} km: ${onRoute.filter((p) => p.kind === "drinking").length} drinking water points and ${onRoute.filter((p) => p.kind === "spring").length} springs. The longest stretch without drinking water is ${water.longestGapKm.drinking.km} km, from km ${water.longestGapKm.drinking.fromKm} to ${water.longestGapKm.drinking.toKm}.`;
 const waterTotals = water && {
   drinking: water.points.filter((p) => p.kind === "drinking").length,
   springs: water.points.filter((p) => p.kind === "spring").length,
@@ -118,36 +143,32 @@ const nav = [
 
   <section id="figures" class="key">
     <h2 class="visually-hidden">Key figures</h2>
-    <dl class="figures">
+    <dl class="strip spec">
       {length && (
         <div>
-          <dt><Icon name="route" size={14} />Length</dt>
+          <dt>Length</dt>
           <dd>
-            {length.approx && "about "}
-            {fmt(length.value)} km
+            {length.approx && <span class="unit">about</span>}
+            <span class="big">{fmt(length.value)}</span><span class="unit">km</span>
           </dd>
         </div>
       )}
       {totals && (
         <div>
-          <dt><Icon name="trending-up" size={14} />Ascent</dt>
-          <dd>
-            {fmt(totals.ascentM.value)} m
-          </dd>
+          <dt>Ascent</dt>
+          <dd><span class="big">{fmt(totals.ascentM.value)}</span><span class="unit">m ↑</span></dd>
         </div>
       )}
       {totals && (
         <div>
-          <dt><Icon name="trending-down" size={14} />Descent</dt>
-          <dd>
-            {fmt(totals.descentM.value)} m
-          </dd>
+          <dt>Descent</dt>
+          <dd><span class="big">{fmt(totals.descentM.value)}</span><span class="unit">m ↓</span></dd>
         </div>
       )}
       {sac && (
         <div>
           <dt>
-            <Icon name="mountain" size={14} />Difficulty
+            Difficulty
             <Explain id="sac-info" title="SAC hiking scale" label={`What does SAC ${sac.value} mean?`}>
               <p>
                 The Swiss Alpine Club grades hiking routes from T1 (easy) to T6 (very hard). This trail is{" "}
@@ -164,41 +185,30 @@ const nav = [
               <a slot="foot" href="https://www.sac-cas.ch/en/ausbildung-und-sicherheit/tourenplanung/grading-systems/">The scale at the Swiss Alpine Club</a>
             </Explain>
           </dt>
-          <dd>
-            SAC {sac.value}
-            {t.difficulty?.cai && sac.how !== "stated" && <small>from CAI {t.difficulty.cai.grade}</small>}
-            {t.difficulty?.cai && sac.how === "stated" && <small>CAI {t.difficulty.cai.grade}</small>}
-          </dd>
+          <dd><span class="big">{sac.value}</span><span class="unit">SAC</span></dd>
         </div>
       )}
       {t.days && (
         <div>
-          <dt><Icon name="calendar-days" size={14} />Days</dt>
-          <dd>
-            {range(t.days.min, t.days.max)} days
-          </dd>
+          <dt>Suggested</dt>
+          <dd><span class="big">{range(t.days.min, t.days.max)}</span><span class="unit">days</span></dd>
         </div>
       )}
       {daily && (
         <div>
-          <dt><Icon name="footprints" size={14} />Per day</dt>
-          <dd>
-            {daily.km.value} km · {fmt(daily.ascentM.value)} m
-            <small>average</small>
-          </dd>
+          <dt>Per day · {fmt(daily.ascentM.value)} m ↑</dt>
+          <dd><span class="big">{daily.km.value}</span><span class="unit">km</span></dd>
         </div>
       )}
       {t.season && (
         <div>
-          <dt><Icon name="sun" size={14} />Season</dt>
-          <dd>
-            {t.season.text ?? t.season.months.map(monthName).join(", ")}
-          </dd>
+          <dt>Season</dt>
+          <dd><span class="word">{t.season.text ?? t.season.months.map(monthName).join(", ")}</span></dd>
         </div>
       )}
       <div>
-        <dt><Icon name={TYPE_ICONS[t.trailType]} size={14} />Type</dt>
-        <dd>{TRAIL_TYPES[t.trailType]}</dd>
+        <dt>Route type</dt>
+        <dd><span class="word">{TRAIL_TYPES[t.trailType]}</span></dd>
       </div>
     </dl>
   </section>
@@ -324,103 +334,119 @@ const nav = [
   {(t.sleeping || t.wildCamping) && (
     <section id="sleeping">
       <h2>Sleeping</h2>
-      <ul class="cards sleeping">
-        {sleeping.map((c) => {
-          const wild = c.id === "wild-camping";
-          const tone = wild
-            ? t.wildCamping
-              ? `tone-${WILD_TONE[t.wildCamping.status]}`
-              : "absent"
-            : c.present.length > 0
-              ? "tone-good"
-              : "absent";
-          const value = wild
-            ? t.wildCamping && WILD_CAMPING_LABELS[t.wildCamping.status]
-            : c.present.map((x) => SLEEPING_LABELS[x]).join(", ");
-          return (
-            <li class={tone}>
-              <div class="card-name">
-                <Icon name={SLEEPING_ICONS[c.id]} />
-                <span>{c.label}</span>
-                <Explain id={`about-${c.id}`} title={c.label}>
-                  <p>{c.hint}</p>
-                </Explain>
-              </div>
-              {value ? <p class="card-value">{value}</p> : <p class="card-value muted">{wild ? "Not known" : "None listed"}</p>}
-            </li>
-          );
-        })}
+      <ul class="strip avail">
+        {sleepingRows.map((c) => (
+          <li class:list={[{ off: c.status.tone === "none" }]}>
+            <p class="avail-name">
+              <Icon name={SLEEPING_ICONS[c.id]} size={15} />
+              {c.label}
+              <Explain id={`about-${c.id}`} title={c.label}><p>{c.hint}</p></Explain>
+            </p>
+            <p class="status">
+              <span class={`mark ${c.status.shape} tone-${c.status.tone}`} aria-hidden="true"></span>
+              {c.status.word}
+            </p>
+            {c.detail && <p class="detail">{c.detail}</p>}
+          </li>
+        ))}
       </ul>
       {t.wildCamping && (
-        <p class="rule">
-          <strong>Wild camping rule.</strong> {t.wildCamping.rule}
+        <p class="aside">
+          <span class={`mark ${STATUS[t.wildCamping.status].shape} tone-${STATUS[t.wildCamping.status].tone}`} aria-hidden="true"></span>
+          <span><strong>Wild camping is {WILD_CAMPING_LABELS[t.wildCamping.status].toLowerCase()}.</strong> {t.wildCamping.rule}</span>
         </p>
       )}
     </section>
   )}
 
-  {water && waterTotals && (
+  {water && waterTotals && waterStatus && (
     <section id="water">
       <h2>Water</h2>
-      <ul class="cards water">
-        <li>
-          <div class="card-name">
-            <Icon name="droplet" />
-            <span>Drinking water</span>
+      <dl class="strip spec three">
+        <div>
+          <dt>
+            Drinking water
             <Explain id="about-drinking-water" title="Drinking water">
-              <p>
-                Fountains, taps and springs marked as drinkable in OpenStreetMap, within {water.withinM} m of the trail.
-              </p>
+              <p>Fountains, taps and springs marked as drinkable in OpenStreetMap, within {water.withinM} m of the trail.</p>
             </Explain>
-          </div>
-          <p class="card-value">{waterTotals.drinking} points</p>
-        </li>
-        <li>
-          <div class="card-name">
-            <Icon name="droplets" />
-            <span>Springs</span>
+          </dt>
+          <dd><span class="big">{waterTotals.drinking}</span><span class="unit">points</span></dd>
+        </div>
+        <div>
+          <dt>
+            Drinkability unknown
             <Explain id="about-springs" title="Springs">
               <p>
                 Other springs within {water.withinM} m of the trail. Whether they are drinkable is unknown: treat the water,
                 and expect some to run dry in late summer.
               </p>
             </Explain>
-          </div>
-          <p class="card-value">{waterTotals.springs} more</p>
-        </li>
-        <li class={`tone-${WATER_TONE[level!.id]}`}>
-          <div class="card-name">
-            <Icon name="gauge" />
-            <span>Availability</span>
-            <Explain id="about-availability" title="Water availability">
-              <p>Rated by the longest stretch of the trail without drinking water:</p>
+          </dt>
+          <dd><span class="big">{waterTotals.springs}</span><span class="unit">springs</span></dd>
+        </div>
+        <div>
+          <dt>
+            Longest dry stretch
+            <Explain id="about-dry-stretch" title="Water availability">
               <p>
-                <strong>Frequent</strong>: at most 10 km. <strong>Regular</strong>: at most 20 km. <strong>Scarce</strong>:
-                more than 20 km.
-              </p>
-              <p>This trail: {level!.label.toLowerCase()} ({level!.hint.toLowerCase()}).</p>
-            </Explain>
-          </div>
-          <p class="card-value">{level!.label}</p>
-        </li>
-        <li class={`tone-${WATER_TONE[level!.id]}`}>
-          <div class="card-name">
-            <Icon name="ruler" />
-            <span>Longest dry stretch</span>
-            <Explain id="about-dry-stretch" title="Longest dry stretch">
-              <p>
-                The longest part of the main route without drinking water: from km {water.longestGapKm.drinking.fromKm} to{" "}
-                {water.longestGapKm.drinking.toKm}{gapStages}. Distances are measured along the map line ({water.routeKm} km
-                in total).
+                Rated by the longest stretch of the main route without drinking water: frequent up to 10 km, regular up to 20
+                km, scarce beyond. Here: from km {water.longestGapKm.drinking.fromKm} to {water.longestGapKm.drinking.toKm}{gapStages}.
               </p>
             </Explain>
-          </div>
-          <p class="card-value">{water.longestGapKm.drinking.km} km</p>
-        </li>
-      </ul>
-      <p class="note muted">
-        From OpenStreetMap, which may be incomplete.
-      </p>
+          </dt>
+          <dd>
+            <span class="big">{water.longestGapKm.drinking.km}</span><span class="unit">km</span>
+            <span class="status inline">
+              <span class={`mark ${waterStatus.shape} tone-${waterStatus.tone}`} aria-hidden="true"></span>
+              {waterStatus.word}
+            </span>
+          </dd>
+        </div>
+      </dl>
+
+      {water.stageStarts.length > 0 && (
+        <figure class="waterline">
+          <ul class="legend" aria-hidden="true">
+            <li><svg width="12" height="12"><circle cx="6" cy="6" r="4.5" class="dot drinking" /></svg>Drinking water</li>
+            <li><svg width="12" height="12"><circle cx="6" cy="6" r="4" class="dot spring" /></svg>Spring</li>
+            <li><span class="swatch"></span>Longest dry stretch</li>
+          </ul>
+          <svg viewBox={`0 0 ${CHART.width} 112`} role="img" aria-label={chartSummary}>
+            <rect
+              class="gap"
+              x={xAt(water.longestGapKm.drinking.fromKm)}
+              y="28"
+              width={xAt(water.longestGapKm.drinking.toKm) - xAt(water.longestGapKm.drinking.fromKm)}
+              height={CHART.axis - 28}
+              rx="4"
+            />
+            <text
+              class="gap-label"
+              x={(xAt(water.longestGapKm.drinking.fromKm) + xAt(water.longestGapKm.drinking.toKm)) / 2}
+              y="20"
+              text-anchor="middle">{water.longestGapKm.drinking.km} km without</text>
+            <line class="route" x1={CHART.x0} x2={CHART.x1} y1={CHART.axis} y2={CHART.axis} />
+            {water.stageStarts.map((st) => (
+              <g>
+                <line class="tick" x1={xAt(st.km)} x2={xAt(st.km)} y1={CHART.axis - 5} y2={CHART.axis + 5} />
+                <text class="tick-label" x={xAt(st.km) + 4} y={CHART.axis + 18}>Stage {st.number}</text>
+              </g>
+            ))}
+            <text class="tick-label" x={CHART.x1} y={CHART.axis + 18} text-anchor="end">{water.routeKm} km</text>
+            {onRoute.map((pt) => (
+              <g class="pt">
+                <title>{`${pt.kind === "drinking" ? "Drinking water" : "Spring"}${pt.name ? `: ${pt.name}` : ""} · km ${pt.km} · stage ${pt.stage}`}</title>
+                <circle cx={xAt(pt.km!)} cy={CHART.lanes[pt.kind]} r="10" class="hit" />
+                <circle cx={xAt(pt.km!)} cy={CHART.lanes[pt.kind]} r={pt.kind === "drinking" ? 4.5 : 4} class={`dot ${pt.kind}`} />
+              </g>
+            ))}
+          </svg>
+          <figcaption class="muted">
+            Water within {water.withinM} m of the main route, from OpenStreetMap, which may be incomplete. Hover a dot for
+            details. Distances along the map line; the counts above also include the approach and variant.
+          </figcaption>
+        </figure>
+      )}
     </section>
   )}
 
@@ -508,12 +534,6 @@ const nav = [
   .key {
     margin-top: 20px;
   }
-  .figures {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
-    gap: 8px;
-    margin: 0;
-  }
   /* desktop: every card in one row, however many the trail has */
   @media (min-width: 900px) {
     .figures {
@@ -521,36 +541,6 @@ const nav = [
       grid-auto-columns: 1fr;
       grid-template-columns: none;
     }
-  }
-  .figures div {
-    padding: 10px 12px;
-    border-radius: 10px;
-    background: var(--surface);
-  }
-  .figures dt {
-    display: flex;
-    align-items: flex-start;
-    gap: 5px;
-    line-height: 1.35;
-    color: var(--muted);
-    font-size: 0.68rem;
-    font-weight: 500;
-    letter-spacing: 0.04em;
-    text-transform: uppercase;
-  }
-  .figures dd {
-    margin: 2px 0 0;
-    font-family: var(--serif);
-    font-size: 1.1rem;
-    font-weight: 600;
-    line-height: 1.3;
-  }
-  .figures small {
-    display: block;
-    font-family: var(--sans);
-    font-size: 0.75em;
-    font-weight: 400;
-    color: var(--muted);
   }
   .facts {
     display: grid;
@@ -574,64 +564,6 @@ const nav = [
   .note {
     font-size: 0.8rem;
   }
-  .cards {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
-    gap: 8px;
-    margin: 0;
-    padding: 0;
-    list-style: none;
-  }
-  .cards li {
-    padding: 12px 14px;
-    border-radius: 10px;
-    background: var(--surface);
-  }
-  .cards li.tone-good {
-    --tone: var(--good);
-    background: var(--good-soft);
-  }
-  .cards li.tone-fair {
-    --tone: var(--fair);
-    background: var(--fair-soft);
-  }
-  .cards li.tone-poor {
-    --tone: var(--poor);
-    background: var(--poor-soft);
-  }
-  .cards li[class*="tone-"] .card-value {
-    color: var(--tone);
-    font-weight: 600;
-  }
-  .cards li[class*="tone-"] .card-value::before {
-    content: "";
-    display: inline-block;
-    width: 8px;
-    height: 8px;
-    margin-right: 6px;
-    border-radius: 50%;
-    background: var(--tone);
-    vertical-align: 1px;
-  }
-  .cards li.absent {
-    background: none;
-    border: 1px dashed var(--line);
-  }
-  .cards p {
-    margin: 0;
-  }
-  .card-name {
-    display: flex;
-    align-items: flex-start;
-    gap: 8px;
-    font-family: var(--serif);
-    font-size: 1rem;
-    font-weight: 600;
-    line-height: 1.35;
-  }
-  .card-name :global(.info) {
-    margin-top: 2px;
-  }
   /* desktop: each section's cards in one row, headlines on one line */
   @media (min-width: 900px) {
     .cards {
@@ -647,14 +579,6 @@ const nav = [
   .figures dt :global(.icon) {
     flex: none;
     margin-top: 1px;
-  }
-  .card-name :global(.icon) {
-    margin-top: 2px;
-  }
-  .card-value {
-    margin-top: 8px !important;
-    font-size: 0.9rem;
-    font-weight: 500;
   }
   .hubs {
     margin: 0;
@@ -681,18 +605,9 @@ const nav = [
   .hubs li {
     align-items: flex-start;
   }
-  .card-name :global(.icon) {
-    flex: none;
-    color: var(--tone, var(--accent));
-  }
   .hub-dist {
     color: var(--muted);
     font-size: 0.85rem;
-  }
-  .rule {
-    max-width: 70ch;
-    margin-top: 16px;
-    font-size: 0.9rem;
   }
   /* stages: a timeline, numbered dots on a line; figures in fixed columns so they compare */
   .stage-legend {
@@ -863,4 +778,286 @@ const nav = [
     color: var(--text);
     background: var(--accent-soft);
   }
+
+  /* strips: the shared language of key figures, sleeping and water. A rule on top,
+     hairlines between items, no filled boxes; numbers first, labels small beneath. */
+  .strip {
+    display: grid;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    border-top: 1px solid var(--text);
+    border-bottom: 1px solid var(--line);
+  }
+  .strip > * {
+    padding: 14px 16px 14px 0;
+  }
+  .strip > * + * {
+    padding-left: 16px;
+    border-left: 1px solid var(--line);
+  }
+
+  /* key figures and water figures: 2 columns on phones, 4 on tablets, one row on desktop */
+  .spec {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .spec.three {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  @media (min-width: 640px) {
+    .spec {
+      grid-template-columns: repeat(4, 1fr);
+    }
+  }
+  @media (min-width: 980px) {
+    .spec {
+      grid-template-columns: none;
+      grid-auto-flow: column;
+      grid-auto-columns: auto;
+    }
+    .spec.three {
+      grid-template-columns: repeat(3, 1fr);
+      grid-auto-flow: row;
+    }
+  }
+  @media (max-width: 979px) {
+    .spec:not(.three) > :nth-child(4n + 1) {
+      padding-left: 0;
+      border-left: 0;
+    }
+  }
+  @media (max-width: 639px) {
+    .spec:not(.three) > :nth-child(odd) {
+      padding-left: 0;
+      border-left: 0;
+    }
+    .spec:not(.three) > :nth-child(even) {
+      padding-left: 16px;
+      border-left: 1px solid var(--line);
+    }
+  }
+  /* label first in the markup (dt before dd), value first on screen */
+  .spec div {
+    display: flex;
+    flex-direction: column;
+  }
+  .spec dd {
+    order: 1;
+  }
+  .spec dt {
+    order: 2;
+  }
+  .spec dd {
+    margin: 0;
+    white-space: nowrap;
+  }
+  .big {
+    font-family: var(--serif);
+    font-size: 1.7rem;
+    font-weight: 600;
+    line-height: 1.15;
+    font-variant-numeric: lining-nums tabular-nums;
+  }
+  .word {
+    display: block;
+    padding-top: 6px;
+    font-family: var(--serif);
+    font-size: 1.05rem;
+    font-weight: 600;
+    line-height: 1.3;
+    white-space: normal;
+  }
+  .unit {
+    margin-left: 4px;
+    color: var(--muted);
+    font-size: 0.85rem;
+  }
+  .spec dt {
+    display: flex;
+    align-items: center;
+    margin-top: 2px;
+    color: var(--muted);
+    font-size: 0.78rem;
+  }
+
+  /* sleeping: availability per category */
+  .avail {
+    grid-template-columns: 1fr;
+  }
+  @media (min-width: 640px) {
+    .avail {
+      grid-template-columns: repeat(5, 1fr);
+    }
+  }
+  @media (max-width: 639px) {
+    .avail > * + * {
+      padding-left: 0;
+      border-left: 0;
+      border-top: 1px solid var(--line);
+    }
+  }
+  .avail p {
+    margin: 0;
+  }
+  .avail-name {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    color: var(--muted);
+    font-size: 0.78rem;
+    white-space: nowrap;
+  }
+  .avail-name :global(.icon) {
+    flex: none;
+  }
+  .status {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 4px !important;
+    font-family: var(--serif);
+    font-size: 1.15rem;
+    font-weight: 600;
+  }
+  .status.inline {
+    display: inline-flex;
+    margin: 0 0 0 10px !important;
+    font-family: var(--sans);
+    font-size: 0.85rem;
+    font-weight: 500;
+    vertical-align: 4px;
+  }
+  .detail {
+    margin-top: 2px !important;
+    color: var(--muted);
+    font-size: 0.8rem;
+    line-height: 1.4;
+  }
+  .off .status {
+    color: var(--muted);
+    font-weight: 400;
+  }
+
+  /* status marks: the shape carries the meaning (full, half, crossed, empty), colour supports it */
+  .mark {
+    flex: none;
+    display: inline-block;
+    width: 12px;
+    height: 12px;
+    border: 2px solid var(--mark);
+    border-radius: 50%;
+  }
+  .tone-good {
+    --mark: var(--good);
+  }
+  .tone-fair {
+    --mark: var(--fair);
+  }
+  .tone-poor {
+    --mark: var(--poor);
+  }
+  .tone-none {
+    --mark: var(--muted);
+  }
+  .mark.full {
+    background: var(--mark);
+  }
+  .mark.half {
+    background: linear-gradient(90deg, var(--mark) 50%, transparent 50%);
+  }
+  .mark.blocked {
+    background: linear-gradient(135deg, transparent 43%, var(--mark) 43%, var(--mark) 57%, transparent 57%);
+  }
+  .aside {
+    display: flex;
+    gap: 10px;
+    max-width: 78ch;
+    margin: 12px 0 0;
+    color: var(--muted);
+    font-size: 0.85rem;
+    line-height: 1.5;
+  }
+  .aside .mark {
+    margin-top: 4px;
+  }
+  .aside strong {
+    color: var(--text);
+    font-weight: 600;
+  }
+
+  /* water along the route: a strip chart on the map line's kilometres */
+  .waterline {
+    margin: 20px 0 0;
+  }
+  .waterline svg[role="img"] {
+    display: block;
+    width: 100%;
+    height: auto;
+    overflow: visible;
+  }
+  .legend {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px 18px;
+    margin: 0 0 4px;
+    padding: 0;
+    list-style: none;
+    color: var(--muted);
+    font-size: 0.78rem;
+  }
+  .legend li {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .swatch {
+    width: 16px;
+    height: 10px;
+    border-radius: 2px;
+    background: var(--fair-soft);
+    outline: 1px solid var(--fair);
+  }
+  .dot {
+    stroke: var(--bg);
+    stroke-width: 2;
+  }
+  .dot.drinking {
+    fill: var(--water);
+  }
+  .dot.spring {
+    fill: var(--bg);
+    stroke: var(--water);
+  }
+  .hit {
+    fill: transparent;
+    cursor: help;
+  }
+  .pt:hover .dot {
+    r: 6px;
+  }
+  .gap {
+    fill: var(--fair-soft);
+  }
+  .gap-label {
+    fill: var(--text);
+    font: 600 13px var(--sans);
+  }
+  .route {
+    stroke: var(--muted);
+    stroke-width: 2;
+    stroke-linecap: round;
+  }
+  .tick {
+    stroke: var(--muted);
+    stroke-width: 1.5;
+  }
+  .tick-label {
+    fill: var(--muted);
+    font: 12px var(--sans);
+  }
+  figcaption {
+    margin-top: 10px;
+    font-size: 0.8rem;
+  }
+
 </style>
