@@ -128,7 +128,10 @@ def fetch(query):
 
 
 def match(track_lonlat, osm):
-    """Return (OSM coordinates of the matched route as (lon, lat), report)."""
+    """Return (OSM coordinates of the matched route as (lon, lat), report).
+
+    report["ways"] lists the OSM ways the route uses, in order: [way id, metres], with
+    consecutive pieces of the same way merged."""
     nodes = {e["id"]: (e["lon"], e["lat"]) for e in osm["elements"] if e["type"] == "node"}
     ways = [e for e in osm["elements"] if e["type"] == "way"]
     proj = Projection(sum(lat for _, lat in track_lonlat) / len(track_lonlat))
@@ -147,8 +150,8 @@ def match(track_lonlat, osm):
             mid = ((xy[a][0] + xy[b][0]) / 2, (xy[a][1] + xy[b][1]) / 2)
             d = max(off[a], off[b], index.distance(mid))
             cost = length * (1 + (d / SIGMA_M) ** 2)
-            graph.setdefault(a, []).append((b, cost))
-            graph.setdefault(b, []).append((a, cost))
+            graph.setdefault(a, []).append((b, cost, way["id"]))
+            graph.setdefault(b, []).append((a, cost, way["id"]))
     if not graph:
         raise ValueError("no OSM ways near the track")
 
@@ -156,17 +159,17 @@ def match(track_lonlat, osm):
         return min(graph, key=lambda n: math.dist(xy[n], p))
 
     source, target = nearest(track[0]), nearest(track[-1])
-    dist, prev, heap = {source: 0.0}, {}, [(0.0, source)]
+    dist, prev, via, heap = {source: 0.0}, {}, {}, [(0.0, source)]
     while heap:
         d, n = heapq.heappop(heap)
         if n == target:
             break
         if d > dist[n]:
             continue
-        for m, cost in graph[n]:
+        for m, cost, way_id in graph[n]:
             nd = d + cost
             if nd < dist.get(m, math.inf):
-                dist[m], prev[m] = nd, n
+                dist[m], prev[m], via[m] = nd, n, way_id
                 heapq.heappush(heap, (nd, m))
     if target not in dist:
         raise ValueError("the OSM ways near the track don't connect start and end")
@@ -188,5 +191,13 @@ def match(track_lonlat, osm):
         "max_off_m": max(samples),
         "start_off_m": math.dist(matched_xy[0], track[0]),
         "end_off_m": math.dist(matched_xy[-1], track[-1]),
+        "ways": [],
     }
+    for a, b in zip(path, path[1:]):
+        metres = math.dist(xy[a], xy[b])
+        if report["ways"] and report["ways"][-1][0] == via[b]:
+            report["ways"][-1][1] += metres
+        else:
+            report["ways"].append([via[b], metres])
+    report["ways"] = [[w, round(m, 1)] for w, m in report["ways"]]
     return [nodes[n] for n in path], report

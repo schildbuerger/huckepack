@@ -100,7 +100,7 @@ def build(slug, refresh=False):
     if not stages:
         raise SystemExit(f"{slug}: no stage has a track")
     cache = Cache(slug, refresh)
-    features = []
+    features, stage_ways = [], []
     print(f"{'stage':<12} {'stated':>7} {'track':>7} {'osm':>7} {'covered':>8} {'max off':>8}")
     for stage in stages:
         label = f"{stage['number']}-{stage['kind']}"
@@ -119,6 +119,7 @@ def build(slug, refresh=False):
             f" {report['covered']:>7.0%} {report['max_off_m']:>7.0f}m"
             + ("   <- check" if report["covered"] < 0.95 else "")
         )
+        stage_ways.append({"number": stage["number"], "kind": stage["kind"], "ways": report["ways"]})
         features.append(
             {
                 "type": "Feature",
@@ -135,6 +136,10 @@ def build(slug, refresh=False):
     out = ROOT / "public" / "routes" / f"{slug}.geojson"
     out.parent.mkdir(parents=True, exist_ok=True)
     out.write_text(json.dumps({"type": "FeatureCollection", "features": features}, separators=(",", ":")) + "\n")
+    # which OSM ways each stage uses (for pipeline/surface.py), in data/derived/<slug>.json
+    derived = ROOT / "data" / "derived" / f"{slug}.json"
+    existing = json.loads(derived.read_text()) if derived.exists() else {}
+    derived.write_text(json.dumps({**existing, "routeWays": stage_ways}, indent=2, ensure_ascii=False) + "\n")
     count = sum(len(f["geometry"]["coordinates"]) for f in features)
     print(f"{out.relative_to(ROOT)}: {len(features)} stages, {count} points, {out.stat().st_size // 1024} KB")
 

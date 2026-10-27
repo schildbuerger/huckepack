@@ -198,6 +198,27 @@ const derived = z.object({
       ),
     })
     .optional(),
+  // pipeline/surface.py: surface categories along the main route, from OpenStreetMap
+  surface: z
+    .object({
+      source: sourceRef,
+      retrieved: z.coerce.date(),
+      routeKm: z.number(), // the main route on the map line, the same scale as water
+      totals: z.record(
+        z.enum(["paved", "gravel", "natural", "unknown"]),
+        z.object({ km: z.number(), share: z.number() }),
+      ),
+      inferredShare: z.number(), // share whose category comes from the way type, not a surface tag
+      runs: z.array(
+        z.object({
+          category: z.enum(["paved", "gravel", "natural", "unknown"]),
+          fromKm: z.number(),
+          toKm: z.number(),
+          stage: z.string(),
+        }),
+      ),
+    })
+    .optional(),
   // pipeline/access.py: from each travel hub in the trail's `access` to the start
   access: z
     .object({

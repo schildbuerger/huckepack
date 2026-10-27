@@ -84,9 +84,37 @@ const sleepingRows = sleeping.map((c) =>
 const WATER_STATUS = { frequent: "available", regular: "restricted", scarce: "prohibited" } as const;
 const waterStatus = level && { ...STATUS[WATER_STATUS[level.id]], word: level.label };
 
+// surfaces along the main route (pipeline/surface.py), in a fixed order, soft to hard
+const surface = derived?.surface;
+const SURFACES = [
+  {
+    id: "natural",
+    label: "Natural ground",
+    hint: "Earth, grass, rock and roots: footpaths and forest trails. Can be muddy after rain.",
+  },
+  { id: "gravel", label: "Gravel", hint: "Gravel, compacted and stony surfaces: mostly forest roads and farm tracks." },
+  { id: "paved", label: "Paved", hint: "Asphalt, concrete and cobbles: roads and village streets." },
+  { id: "unknown", label: "Unknown", hint: "Stretches whose surface OpenStreetMap doesn't record." },
+] as const;
+const surfaceRows = surface ? SURFACES.filter((c) => surface.totals[c.id]?.km > 0) : [];
+const surfaceStarts =
+  surface?.runs.filter((r, i, all) => i === 0 || all[i - 1].stage !== r.stage).map((r) => ({ number: r.stage, km: r.fromKm })) ?? [];
+const pct = (share: number) => `${Math.round(share * 100)}%`;
+
+// stage ticks for the strip charts: a tick at each stage start, the label centred on its stretch
+const stageTicks = (starts: { number: string; km: number }[], total: number) =>
+  starts.map((st, i) => {
+    const end = starts[i + 1]?.km ?? total;
+    return {
+      x: xAt(st.km, total),
+      mid: (xAt(st.km, total) + xAt(end, total)) / 2,
+      label: xAt(end, total) - xAt(st.km, total) > 70 ? `Stage ${st.number}` : st.number,
+    };
+  });
+
 // water strip chart: the main route on the map line's kilometres
 const CHART = { width: 1000, x0: 8, x1: 992, axis: 92, lanes: { drinking: 46, spring: 70 } };
-const xAt = (km: number) => CHART.x0 + (km / (water?.routeKm || 1)) * (CHART.x1 - CHART.x0);
+const xAt = (km: number, total = water?.routeKm || 1) => CHART.x0 + (km / total) * (CHART.x1 - CHART.x0);
 const onRoute = water?.points.filter((p) => p.km !== null) ?? [];
 const chartSummary =
   water &&
@@ -109,6 +137,7 @@ const nav = [
   { id: "figures", label: "Key figures", show: true },
   { id: "location", label: "Location", show: true },
   { id: "map", label: "Map", show: true },
+  { id: "surfaces", label: "Surfaces", show: Boolean(surface) },
   { id: "stages", label: "Stages", show: Boolean(t.stages) },
   { id: "sleeping", label: "Sleeping", show: Boolean(t.sleeping || t.wildCamping) },
   { id: "water", label: "Water", show: Boolean(water) },
@@ -286,6 +315,60 @@ const nav = [
     />
   </section>
 
+  {surface && (
+    <section id="surfaces">
+      <h2>Surfaces</h2>
+      <dl class="strip spec cols" style={`--cols: ${surfaceRows.length}`}>
+        {surfaceRows.map((c) => (
+          <div>
+            <dt>
+              <span class="key" style={`--c: var(--surface-${c.id})`} aria-hidden="true"></span>
+              {c.label}
+              <Explain id={`about-surface-${c.id}`} title={c.label}><p>{c.hint}</p></Explain>
+            </dt>
+            <dd>
+              <span class="big">{surface.totals[c.id].km.toFixed(1)}</span><span class="unit">km · {pct(surface.totals[c.id].share)}</span>
+            </dd>
+          </div>
+        ))}
+      </dl>
+
+      <figure class="chart surfaceline" data-runs={JSON.stringify(surface.runs)} data-total={surface.routeKm}>
+        <svg
+          viewBox={`0 0 ${CHART.width} 80`}
+          role="img"
+          aria-label={`Surfaces along the main route, ${surface.routeKm} km: ${surfaceRows.map((c) => `${c.label.toLowerCase()} ${pct(surface.totals[c.id].share)}`).join(", ")}.`}
+        >
+          {surface.runs.map((r) => (
+            <rect
+              class="run"
+              x={xAt(r.fromKm, surface.routeKm)}
+              y="6"
+              width={Math.max(xAt(r.toKm, surface.routeKm) - xAt(r.fromKm, surface.routeKm), 0.6)}
+              height="22"
+              style={`fill: var(--surface-${r.category})`}
+            />
+          ))}
+          <line class="cursor" x1="0" x2="0" y1="2" y2="32" visibility="hidden" />
+          {stageTicks(surfaceStarts, surface.routeKm).map((tk) => (
+            <g>
+              <line class="tick" x1={tk.x} x2={tk.x} y1="32" y2="40" />
+              <text class="tick-label" x={tk.mid} y="52" text-anchor="middle">{tk.label}</text>
+            </g>
+          ))}
+          <line class="tick" x1={CHART.x1} x2={CHART.x1} y1="32" y2="40" />
+          <text class="tick-label end" x={CHART.x0} y="70">0 km</text>
+          <text class="tick-label end" x={CHART.x1} y="70" text-anchor="end">{surface.routeKm} km</text>
+        </svg>
+        <div class="tip" role="status" hidden><strong></strong><span></span></div>
+        <figcaption class="muted">
+          From OpenStreetMap. {pct(surface.inferredShare)} of the route has no specific surface tag; there the way type
+          decides (footpaths count as natural ground, tracks and roads as gravel). Hover or tap the bar for details.
+        </figcaption>
+      </figure>
+    </section>
+  )}
+
   {t.stages && (
     <section id="stages">
       <h2>Stages</h2>
@@ -430,18 +513,12 @@ const nav = [
               y="20"
               text-anchor="middle">{water.longestGapKm.drinking.km} km without</text>
             <line class="route" x1={CHART.x0} x2={CHART.x1} y1={CHART.axis} y2={CHART.axis} />
-            {water.stageStarts.map((st, i) => {
-              const end = water.stageStarts[i + 1]?.km ?? water.routeKm;
-              const mid = (xAt(st.km) + xAt(end)) / 2;
-              // the label sits in the middle of the stage's stretch; short stretches get the number only
-              const label = xAt(end) - xAt(st.km) > 70 ? `Stage ${st.number}` : st.number;
-              return (
-                <g>
-                  <line class="tick" x1={xAt(st.km)} x2={xAt(st.km)} y1={CHART.axis - 5} y2={CHART.axis + 5} />
-                  <text class="tick-label" x={mid} y={CHART.axis + 18} text-anchor="middle">{label}</text>
-                </g>
-              );
-            })}
+            {stageTicks(water.stageStarts, water.routeKm).map((tk) => (
+              <g>
+                <line class="tick" x1={tk.x} x2={tk.x} y1={CHART.axis - 5} y2={CHART.axis + 5} />
+                <text class="tick-label" x={tk.mid} y={CHART.axis + 18} text-anchor="middle">{tk.label}</text>
+              </g>
+            ))}
             <line class="tick" x1={CHART.x1} x2={CHART.x1} y1={CHART.axis - 5} y2={CHART.axis + 5} />
             <text class="tick-label end" x={CHART.x0} y={CHART.axis + 36}>0 km</text>
             <text class="tick-label end" x={CHART.x1} y={CHART.axis + 36} text-anchor="end">{water.routeKm} km</text>
@@ -512,6 +589,56 @@ const nav = [
         show(pt);
       });
     }
+    document.addEventListener("click", hide);
+    document.addEventListener("keydown", (e) => e.key === "Escape" && hide());
+  }
+
+  // Surface bar tooltip: the run under the pointer, found from its position along the bar.
+  const SURFACE_LABELS: Record<string, string> = {
+    natural: "Natural ground",
+    gravel: "Gravel",
+    paved: "Paved",
+    unknown: "Unknown surface",
+  };
+  for (const figure of document.querySelectorAll<HTMLElement>(".surfaceline")) {
+    const svg = figure.querySelector("svg")!;
+    const tip = figure.querySelector<HTMLElement>(".tip")!;
+    const cursor = figure.querySelector<SVGLineElement>(".cursor")!;
+    const runs: { category: string; fromKm: number; toKm: number; stage: string }[] = JSON.parse(figure.dataset.runs!);
+    const total = Number(figure.dataset.total);
+    const X0 = 8;
+    const X1 = 992;
+    const at = (clientX: number) => {
+      const box = svg.getBoundingClientRect();
+      const vx = ((clientX - box.left) / box.width) * 1000;
+      const km = ((vx - X0) / (X1 - X0)) * total;
+      return { vx, km, run: runs.find((r) => km >= r.fromKm && km <= r.toKm) };
+    };
+    const show = (clientX: number) => {
+      const { vx, run } = at(clientX);
+      if (!run) return hide();
+      cursor.setAttribute("x1", String(vx));
+      cursor.setAttribute("x2", String(vx));
+      cursor.setAttribute("visibility", "visible");
+      tip.querySelector("strong")!.textContent = SURFACE_LABELS[run.category] ?? run.category;
+      tip.querySelector("span")!.textContent =
+        `km ${run.fromKm.toFixed(1)}–${run.toKm.toFixed(1)} · stage ${run.stage}`;
+      tip.hidden = false;
+      const box = figure.getBoundingClientRect();
+      const half = tip.offsetWidth / 2;
+      tip.style.left = `${Math.min(Math.max(clientX - box.left, half), box.width - half)}px`;
+      tip.style.top = `${svg.getBoundingClientRect().top - box.top}px`;
+    };
+    const hide = () => {
+      tip.hidden = true;
+      cursor.setAttribute("visibility", "hidden");
+    };
+    svg.addEventListener("pointermove", (e) => show(e.clientX));
+    svg.addEventListener("pointerleave", (e) => e.pointerType === "mouse" && hide());
+    svg.addEventListener("click", (e) => {
+      e.stopPropagation();
+      show(e.clientX);
+    });
     document.addEventListener("click", hide);
     document.addEventListener("keydown", (e) => e.key === "Escape" && hide());
   }
@@ -1065,6 +1192,43 @@ const nav = [
   .waterline {
     margin: 20px 0 0;
   }
+  .surfaceline {
+    margin: 16px 0 0;
+  }
+  .surfaceline svg {
+    display: block;
+    width: 100%;
+    height: auto;
+    overflow: visible;
+    cursor: crosshair;
+  }
+  .run {
+    shape-rendering: crispEdges;
+  }
+  .cursor {
+    stroke: var(--text);
+    stroke-width: 1.5;
+  }
+  .spec.cols {
+    grid-template-columns: repeat(var(--cols), 1fr) !important;
+    grid-auto-flow: row !important;
+  }
+  .spec.cols > * {
+    padding-left: 16px !important;
+    border-left: 1px solid var(--line) !important;
+  }
+  .spec.cols > :first-child {
+    padding-left: 0 !important;
+    border-left: 0 !important;
+  }
+  .key {
+    flex: none;
+    width: 10px;
+    height: 10px;
+    margin-right: 6px;
+    border-radius: 2px;
+    background: var(--c);
+  }
   .waterline svg[role="img"] {
     display: block;
     width: 100%;
@@ -1117,7 +1281,8 @@ const nav = [
   .pt.active .dot {
     transform: scale(1.5);
   }
-  .waterline {
+  .waterline,
+  .surfaceline {
     position: relative;
   }
   .tip {
