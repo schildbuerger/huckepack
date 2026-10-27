@@ -66,13 +66,6 @@ const STATUS: Record<string, Status> = {
   none: { shape: "empty", tone: "none", word: "None listed" },
   unknown: { shape: "empty", tone: "none", word: "Not known" },
 };
-const SLEEPING_ICONS = {
-  "wild-camping": "tent",
-  camping: "tent-tree",
-  huts: "house",
-  hostels: "bed-single",
-  rooms: "bed-double",
-} as const;
 const sleepingRows = sleeping.map((c) =>
   c.id === "wild-camping"
     ? { ...c, status: STATUS[t.wildCamping?.status ?? "unknown"], detail: "" }
@@ -124,8 +117,6 @@ const profileLine =
   elevation?.points.map(([km, m], i) => `${i ? "L" : "M"}${xAt(km, elevation.routeKm).toFixed(1)},${yAt(m).toFixed(1)}`).join("") ?? "";
 const profileArea =
   elevation && `${profileLine}L${xAt(elevation.routeKm, elevation.routeKm)},${PROFILE.bottom}L${CHART.x0},${PROFILE.bottom}Z`;
-const stageAt = (starts: { number: string; km: number }[], km: number) =>
-  [...starts].reverse().find((st) => km >= st.km)?.number;
 const eleFirst = elevation?.points[0][1];
 const eleLast = elevation?.points.at(-1)![1];
 
@@ -160,7 +151,6 @@ const gapStages = (() => {
 
 // on-page navigation: only sections this trail has
 const nav = [
-  { id: "figures", label: "Key figures", show: true },
   { id: "location", label: "Location", show: true },
   { id: "map", label: "Map", show: true },
   { id: "surfaces", label: "Surfaces", show: Boolean(surface) },
@@ -219,8 +209,7 @@ const nav = [
       {sac && (
         <div>
           <dt>
-            Difficulty
-            <Explain id="sac-info" title="SAC hiking scale" label={`What does SAC ${sac.value} mean?`}>
+            <Explain id="sac-info" term="Difficulty" title="SAC hiking scale">
               <p>
                 The Swiss Alpine Club grades hiking routes from T1 (easy) to T6 (very hard). This trail is{" "}
                 <strong>{sac.value}</strong>{sac.how !== "stated" && ` (${sac.how})`}.
@@ -247,8 +236,8 @@ const nav = [
       )}
       {daily && (
         <div>
-          <dt>Per day · {fmt(daily.ascentM.value)} m ↑</dt>
-          <dd><span class="big">{daily.km.value}</span><span class="unit">km</span></dd>
+          <dt>Per day</dt>
+          <dd><span class="big">{daily.km.value}</span><span class="unit">km · {fmt(daily.ascentM.value)} m ↑</span></dd>
         </div>
       )}
       {t.season && (
@@ -257,10 +246,6 @@ const nav = [
           <dd><span class="word">{t.season.text ?? t.season.months.map(monthName).join(", ")}</span></dd>
         </div>
       )}
-      <div>
-        <dt>Route type</dt>
-        <dd><span class="word">{TRAIL_TYPES[t.trailType]}</span></dd>
-      </div>
     </dl>
   </section>
 
@@ -319,6 +304,10 @@ const nav = [
           <dd>{t.waymarking.text}</dd>
         </div>
       )}
+      <div>
+        <dt>Route type</dt>
+        <dd>{TRAIL_TYPES[t.trailType]}</dd>
+      </div>
       <div class:list={[{ wide: t.managedBy.map((m) => m.name).join(", ").length > 40 }]}>
         <dt>Managed by</dt>
         <dd>
@@ -348,8 +337,7 @@ const nav = [
           <div>
             <dt>
               <span class="swatch-key" style={`--c: var(--surface-${c.id})`} aria-hidden="true"></span>
-              {c.label}
-              <Explain id={`about-surface-${c.id}`} title={c.label}><p>{c.hint}</p></Explain>
+              <Explain id={`about-surface-${c.id}`} term={c.label}><p>{c.hint}</p></Explain>
             </dt>
             <dd>
               <span class="big">{surface.totals[c.id].km.toFixed(1)}</span><span class="unit">km · {pct(surface.totals[c.id].share)}</span>
@@ -387,8 +375,7 @@ const nav = [
         </svg>
         <div class="tip" role="status" hidden><strong></strong><span></span></div>
         <figcaption class="muted">
-          From OpenStreetMap. {pct(surface.inferredShare)} of the route has no specific surface tag; there the way type
-          decides (footpaths count as natural ground, tracks and roads as gravel). Hover or tap the bar for details.
+          From OpenStreetMap; for the {pct(surface.inferredShare)} without a surface tag, the type of way decides.
         </figcaption>
       </figure>
     </section>
@@ -399,11 +386,11 @@ const nav = [
       <h2>Elevation</h2>
       <dl class="strip spec three">
         <div>
-          <dt>Highest point · km {elevation.highest.km.toFixed(1)}, stage {stageAt(elevation.stageStarts, elevation.highest.km)}</dt>
+          <dt>Highest point</dt>
           <dd><span class="big">{fmt(elevation.highest.m)}</span><span class="unit">m</span></dd>
         </div>
         <div>
-          <dt>Lowest point · km {elevation.lowest.km.toFixed(1)}, stage {stageAt(elevation.stageStarts, elevation.lowest.km)}</dt>
+          <dt>Lowest point</dt>
           <dd><span class="big">{fmt(elevation.lowest.m)}</span><span class="unit">m</span></dd>
         </div>
         <div>
@@ -446,8 +433,7 @@ const nav = [
         </svg>
         <div class="tip" role="status" hidden><strong></strong><span></span></div>
         <figcaption class="muted">
-          From the Copernicus terrain model (90 m grid) via Open-Meteo, every {elevation.spacingM} m along the map line; may
-          differ from signposts by a few tens of metres. Hover or tap the profile for heights.
+          Copernicus terrain model via Open-Meteo; may differ from signposts by a few tens of metres.
         </figcaption>
       </figure>
     </section>
@@ -456,14 +442,20 @@ const nav = [
   {t.stages && (
     <section id="stages">
       <h2>Stages</h2>
-      <ul class="stage-legend" aria-hidden="true">
-        <li><Icon name="route" size={13} />Distance</li>
-        <li><Icon name="trending-up" size={13} />Ascent</li>
-        <li><Icon name="trending-down" size={13} />Descent</li>
-        <li><Icon name="mountain" size={13} />Elevation, start → end</li>
-        <li><Icon name="clock" size={13} />Walking time</li>
-      </ul>
       <ol class="timeline">
+        <li class="stage-head" aria-hidden="true">
+          <span></span>
+          <div class="stage-body">
+            <span></span>
+            <ul class="stage-stats">
+              <li>Distance</li>
+              <li>Ascent</li>
+              <li>Descent</li>
+              <li class="wide">Elevation</li>
+              <li>Time</li>
+            </ul>
+          </div>
+        </li>
         {t.stages.list.map((s) => (
           <li class={`stage ${s.kind}`}>
             <span class="stage-no" aria-hidden="true">{s.number}</span>
@@ -474,31 +466,23 @@ const nav = [
                 {s.kind !== "main" && <span class="stage-kind">{s.kind === "approach" ? "Approach" : "Variant"}</span>}
               </p>
               <ul class="stage-stats">
-                <li title="Distance">
-                  <Icon name="route" size={14} /><span class="visually-hidden">Distance </span>{s.km.toFixed(1)} km
-                </li>
-                <li title="Ascent">
-                  <Icon name="trending-up" size={14} /><span class="visually-hidden">Ascent </span>{fmt(s.ascentM)} m
-                </li>
-                <li title="Descent">
-                  <Icon name="trending-down" size={14} /><span class="visually-hidden">Descent </span>{fmt(s.descentM)} m
-                </li>
+                <li title="Distance"><span class="visually-hidden">Distance </span>{s.km.toFixed(1)} km</li>
+                <li title="Ascent"><span class="visually-hidden">Ascent </span>{fmt(s.ascentM)} m ↑</li>
+                <li title="Descent"><span class="visually-hidden">Descent </span>{fmt(s.descentM)} m ↓</li>
                 {s.startEleM !== undefined && s.endEleM !== undefined && (
                   <li title="Elevation at start and end" class="wide">
-                    <Icon name="mountain" size={14} /><span class="visually-hidden">Elevation </span>{fmt(s.startEleM)} → {fmt(s.endEleM)} m
+                    <span class="visually-hidden">Elevation </span>{fmt(s.startEleM)} → {fmt(s.endEleM)} m
                   </li>
                 )}
                 {s.minutes && (
-                  <li title="Walking time">
-                    <Icon name="clock" size={14} /><span class="visually-hidden">Walking time </span>{hours(s.minutes)}
-                  </li>
+                  <li title="Walking time"><span class="visually-hidden">Walking time </span>{hours(s.minutes)}</li>
                 )}
               </ul>
             </div>
           </li>
         ))}
       </ol>
-      <p class="note muted">Totals and averages use the main stages only, not the approach or variant.</p>
+      <p class="note muted">Totals and averages count the main stages only.</p>
     </section>
   )}
 
@@ -509,9 +493,7 @@ const nav = [
         {sleepingRows.map((c) => (
           <li class:list={[{ off: c.status.tone === "none" }]}>
             <p class="avail-name">
-              <Icon name={SLEEPING_ICONS[c.id]} size={15} />
-              {c.label}
-              <Explain id={`about-${c.id}`} title={c.label}><p>{c.hint}</p></Explain>
+              <Explain id={`about-${c.id}`} term={c.label}><p>{c.hint}</p></Explain>
             </p>
             <p class="status">
               <span class={`mark ${c.status.shape} tone-${c.status.tone}`} aria-hidden="true"></span>
@@ -536,17 +518,16 @@ const nav = [
       <dl class="strip spec three">
         <div>
           <dt>
-            Drinking water
-            <Explain id="about-drinking-water" title="Drinking water">
+            <Explain id="about-drinking-water" term="Drinking water">
               <p>Fountains, taps and springs marked as drinkable in OpenStreetMap, within {water.withinM} m of the trail.</p>
+              <p>The counts include the approach and variant; the chart shows the main route.</p>
             </Explain>
           </dt>
           <dd><span class="big">{waterTotals.drinking}</span><span class="unit">points</span></dd>
         </div>
         <div>
           <dt>
-            Drinkability unknown
-            <Explain id="about-springs" title="Springs">
+            <Explain id="about-springs" term="Drinkability unknown" title="Springs">
               <p>
                 Other springs within {water.withinM} m of the trail. Whether they are drinkable is unknown: treat the water,
                 and expect some to run dry in late summer.
@@ -557,8 +538,7 @@ const nav = [
         </div>
         <div>
           <dt>
-            Longest dry stretch
-            <Explain id="about-dry-stretch" title="Water availability">
+            <Explain id="about-dry-stretch" term="Longest dry stretch" title="Water availability">
               <p>
                 Rated by the longest stretch of the main route without drinking water: frequent up to 10 km, regular up to 20
                 km, scarce beyond. Here: from km {water.longestGapKm.drinking.fromKm} to {water.longestGapKm.drinking.toKm}{gapStages}.
@@ -619,8 +599,7 @@ const nav = [
           </svg>
           <div class="tip" role="status" hidden><strong></strong><span></span></div>
           <figcaption class="muted">
-            Water within {water.withinM} m of the main route, from OpenStreetMap, which may be incomplete. Hover or tap a
-            dot for details. Distances along the map line; the counts above also include the approach and variant.
+            From OpenStreetMap, within {water.withinM} m of the main route; may be incomplete.
           </figcaption>
         </figure>
       )}
@@ -929,11 +908,8 @@ const nav = [
     flex: none;
     display: grid;
     place-items: center;
-    width: 28px;
-    height: 28px;
-    border-radius: 50%;
-    background: var(--surface);
-    color: var(--accent);
+    height: 1.5em;
+    color: var(--muted);
     align-self: flex-start;
   }
   .hubs li {
@@ -949,32 +925,16 @@ const nav = [
     margin-bottom: 0;
   }
   /* stages: a timeline, numbered dots on a line; figures in fixed columns so they compare */
-  .stage-legend {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 4px 16px;
-    margin: 0 0 16px;
-    border-top: 1px solid var(--text);
-    padding: 10px 0 0;
-    list-style: none;
-    color: var(--muted);
-    font-size: 0.78rem;
-  }
-  .stage-legend li,
-  .stage-stats li {
-    display: inline-flex;
-    align-items: center;
-    gap: 5px;
-  }
-  .stage-legend :global(.icon),
-  .stage-stats :global(.icon) {
-    flex: none;
-    color: var(--muted);
-  }
   .timeline {
     margin: 0;
     padding: 0;
     list-style: none;
+    border-top: 1px solid var(--text);
+    padding-top: 12px;
+  }
+  /* column header: only where the figures line up in columns; elsewhere units and arrows carry it */
+  .stage-head {
+    display: none;
   }
   .stage {
     position: relative;
@@ -1050,11 +1010,12 @@ const nav = [
     font-size: 0.9rem;
     font-variant-numeric: tabular-nums;
   }
+  /* rem, not em: the column header is set smaller than the figures and must line up with them */
   .stage-stats li {
-    min-width: 6.8em;
+    min-width: 5.2rem;
   }
   .stage-stats li.wide {
-    min-width: 9.8em;
+    min-width: 7.4rem;
   }
   @media (min-width: 820px) {
     .stage-body {
@@ -1068,6 +1029,20 @@ const nav = [
       flex-wrap: nowrap;
       margin: 0;
       font-size: 0.85rem;
+    }
+    .stage-head {
+      display: grid;
+      grid-template-columns: 32px 1fr;
+      gap: 14px;
+      padding-bottom: 6px;
+      color: var(--muted);
+      font-size: 0.75rem;
+    }
+    .stage-head .stage-stats {
+      font-size: inherit;
+    }
+    .stage-head .stage-body {
+      padding-top: 0;
     }
   }
   /* location: one grid of label-over-value items, so rows align whatever the content */
@@ -1265,9 +1240,6 @@ const nav = [
     color: var(--muted);
     font-size: 0.78rem;
     white-space: nowrap;
-  }
-  .avail-name :global(.icon) {
-    flex: none;
   }
   .status {
     display: flex;

@@ -1,16 +1,17 @@
 ---
-// A "?" button that opens a short explanation (the popover attribute: no JavaScript, closes
-// with Esc, a click outside or the Close button). Place it right after a label; the slot holds
-// the explanation. The panel resets inherited text styles, since labels are often uppercase.
+// A label that opens a short explanation: the term itself is the button, marked by a dotted
+// underline (the popover attribute: no JavaScript, closes with Esc, a click outside or the
+// Close button). The slot holds the explanation. The panel resets inherited text styles, since
+// labels are often uppercase.
 interface Props {
   id: string;
-  title: string;
-  label?: string; // accessible name of the button; defaults to "About <title>"
+  term: string; // the visible label, e.g. "Difficulty"
+  title?: string; // the panel's heading; defaults to the term
 }
-const { id, title, label } = Astro.props;
+const { id, term, title = term } = Astro.props;
 ---
 
-<button class="info" type="button" popovertarget={id} aria-label={label ?? `About ${title}`}>?</button>
+<button class="term" type="button" popovertarget={id}>{term}</button>
 <div id={id} class="pop" popover>
   <p class="pop-title">{title}</p>
   <div class="pop-text"><slot /></div>
@@ -21,27 +22,29 @@ const { id, title, label } = Astro.props;
 </div>
 
 <style>
-  .info {
-    flex: none;
-    display: inline-grid;
-    place-items: center;
-    width: 16px;
-    height: 16px;
-    margin-left: 4px;
+  .term {
     padding: 0;
-    border: 1px solid var(--muted);
-    border-radius: 50%;
+    border: 0;
     background: none;
-    color: var(--muted);
-    font: 600 0.65rem/1 var(--sans);
-    letter-spacing: 0;
-    text-transform: none;
-    cursor: pointer;
+    color: inherit;
+    font: inherit;
+    letter-spacing: inherit;
+    text-align: inherit;
+    text-transform: inherit;
+    text-decoration: underline dotted;
+    text-decoration-color: var(--muted);
+    text-underline-offset: 3px;
+    cursor: help;
   }
-  .info:hover,
-  .info:focus-visible {
-    border-color: var(--accent);
+  .term:hover,
+  .term:focus-visible {
     color: var(--accent);
+    text-decoration-color: var(--accent);
+  }
+  .term:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+    border-radius: 2px;
   }
   .pop {
     width: min(440px, calc(100vw - 32px));
