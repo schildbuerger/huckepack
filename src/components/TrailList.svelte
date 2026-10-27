@@ -315,7 +315,7 @@
         {:else}<strong>{trails.length}</strong> {trails.length === 1 ? "trail" : "trails"}{/if}
       </p>
       <label class="sort">
-        Sort
+        <span class="sort-word">Sort</span>
         <select bind:value={sort}>
           {#each Object.entries(SORTS) as [key, s]}<option value={key}>{s.label}</option>{/each}
         </select>
@@ -441,6 +441,7 @@
     }
     .close {
       position: fixed;
+      z-index: 2; /* above the sliders' thumbs */
       right: 16px;
       bottom: 16px;
       left: 16px;
@@ -517,6 +518,21 @@
   }
   .chip:hover {
     border-color: var(--muted);
+  }
+  /* touch screens: taller targets for fingers */
+  @media (pointer: coarse) {
+    .chip,
+    .months .chip {
+      padding-top: 9px;
+      padding-bottom: 9px;
+    }
+    .segmented button {
+      padding-top: 9px;
+      padding-bottom: 9px;
+    }
+    .filters-toggle {
+      min-height: 40px;
+    }
   }
   .chip[aria-pressed="true"],
   .chip[aria-checked="true"] {
@@ -626,6 +642,7 @@
   }
   .count {
     margin: 0 auto 0 0;
+    white-space: nowrap;
     color: var(--muted);
   }
   .count strong {
@@ -732,6 +749,29 @@
     flex-wrap: wrap;
     gap: 8px 24px;
     margin: 14px 0 0;
+  }
+  /* phones: the four figures in one even row, the sort label left to screen readers */
+  @media (max-width: 479px) {
+    .figures {
+      display: grid;
+      grid-template-columns: repeat(4, auto);
+      justify-content: space-between;
+      gap: 8px 12px;
+    }
+    .figures dd {
+      font-size: 1.15rem;
+    }
+    .card {
+      padding: 16px;
+    }
+    .sort-word {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      overflow: hidden;
+      clip-path: inset(50%);
+      white-space: nowrap;
+    }
   }
   .figures div {
     display: flex;

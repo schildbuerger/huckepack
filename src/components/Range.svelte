@@ -76,6 +76,12 @@
     --thumb: 18px;
     padding: 0 calc(var(--thumb) / 2);
   }
+  /* touch screens: a thumb a finger can find */
+  @media (pointer: coarse) {
+    .range {
+      --thumb: 26px;
+    }
+  }
   .rail {
     position: relative;
     height: var(--thumb);

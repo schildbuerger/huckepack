@@ -422,6 +422,7 @@ const nav = [
       </dl>
 
       <figure class="chart surfaceline" data-runs={JSON.stringify(surface.runs)} data-total={surface.routeKm}>
+        <div class="chart-scroll">
         <svg
           viewBox={`0 0 ${CHART.width} 80`}
           role="img"
@@ -448,6 +449,7 @@ const nav = [
           <text class="tick-label end" x={CHART.x0} y="70">0 km</text>
           <text class="tick-label end" x={CHART.x1} y="70" text-anchor="end">{surface.routeKm} km</text>
         </svg>
+        </div>
         <div class="tip" role="status" hidden><strong></strong><span></span></div>
         <figcaption class="muted">
           From OpenStreetMap; for the {pct(surface.inferredShare)} without a surface tag, the type of way decides.
@@ -478,6 +480,7 @@ const nav = [
       </dl>
 
       <figure class="chart profile" data-points={JSON.stringify(elevation.points)} data-total={elevation.routeKm} data-stages={JSON.stringify(elevation.stageStarts)}>
+        <div class="chart-scroll">
         <svg
           viewBox={`0 0 ${CHART.width} 166`}
           role="img"
@@ -506,6 +509,7 @@ const nav = [
           <line class="cursor" x1="0" x2="0" y1={PROFILE.top - 6} y2={PROFILE.bottom} visibility="hidden" />
           <circle class="cursor-dot" cx="0" cy="0" r="4.5" visibility="hidden" />
         </svg>
+        </div>
         <div class="tip" role="status" hidden><strong></strong><span></span></div>
         <figcaption class="muted">
           Copernicus terrain model (30 m grid); it measures the treetops in forests, so heights may differ from signposts by some metres.
@@ -597,6 +601,7 @@ const nav = [
           <li><span class="swatch-key" style="--c: var(--grade-down-steep)"></span>Steep descent</li>
           <li><span class="dash-key"></span>±{STEEP_PERCENT} %</li>
         </ul>
+        <div class="chart-scroll">
         <svg
           viewBox={`0 0 ${CHART.width} 222`}
           role="img"
@@ -628,6 +633,7 @@ const nav = [
           <text class="tick-label end" x={CHART.x1} y={GRADE.bottom + 48} text-anchor="end">{elevation.routeKm} km</text>
           <line class="cursor" x1="0" x2="0" y1={GRADE.top - 4} y2={GRADE.bottom + 4} visibility="hidden" />
         </svg>
+        </div>
         <div class="tip" role="status" hidden><strong></strong><span></span></div>
         <figcaption class="muted">
           In walking direction, per 200 m of the elevation profile; the terrain model smooths short, steep pitches.
@@ -733,6 +739,7 @@ const nav = [
           <li><span class="swatch-key" style="--c: var(--snow)"></span>of which snow</li>
           {seasonRuns.length > 0 && <li><span class="swatch-key season-key"></span>Season</li>}
         </ul>
+        <div class="chart-scroll">
         <svg
           viewBox={`0 0 ${CHART.width} ${CLIM.height}`}
           role="img"
@@ -791,6 +798,7 @@ const nav = [
             </g>
           ))}
         </svg>
+        </div>
         <div class="tip" role="status" hidden><strong></strong><span></span></div>
         <!-- a table ignores the 1 px width of .sr-only and would widen the page: hide its wrapper, pinned left so
              it doesn't sit beyond the edge after the wide chart -->
@@ -907,6 +915,7 @@ const nav = [
             <li><svg width="12" height="12"><circle cx="6" cy="6" r="4" class="dot spring" /></svg>Spring</li>
             <li><span class="swatch"></span>Longest dry stretch</li>
           </ul>
+          <div class="chart-scroll">
           <svg viewBox={`0 0 ${CHART.width} 132`} role="img" aria-label={chartSummary}>
             <rect
               class="gap"
@@ -942,6 +951,7 @@ const nav = [
               </g>
             ))}
           </svg>
+          </div>
           <div class="tip" role="status" hidden><strong></strong><span></span></div>
           <figcaption class="muted">
             From OpenStreetMap, within {water.withinM} m of the main route; may be incomplete.
@@ -1673,11 +1683,24 @@ const nav = [
       grid-template-columns: repeat(5, 1fr);
     }
   }
+  /* phones: wild camping across the top, the four kinds of beds in two columns beneath */
   @media (max-width: 639px) {
+    .avail {
+      grid-template-columns: repeat(2, 1fr);
+    }
+    .avail > :first-child {
+      grid-column: 1 / -1;
+    }
     .avail > * + * {
+      border-top: 1px solid var(--line);
+    }
+    .avail > :nth-child(even) {
       padding-left: 0;
       border-left: 0;
-      border-top: 1px solid var(--line);
+    }
+    .avail > :nth-child(odd):not(:first-child) {
+      padding-left: 16px;
+      border-left: 1px solid var(--line);
     }
   }
   .avail p {
@@ -1988,16 +2011,40 @@ const nav = [
     color: var(--muted);
     font-size: 0.85rem;
   }
-  /* phones: climb and descent side by side, the steep kilometres on a row of their own */
+  /* phones: three figures don't fit side by side; the first two share a row, the third gets its
+     own (steepness: one per row, the slope glyphs need the width) */
   @media (max-width: 639px) {
-    .steep {
+    .spec.three {
       grid-template-columns: repeat(2, 1fr);
     }
-    .steep > :nth-child(3) {
+    .spec.three > :nth-child(3) {
       grid-column: 1 / -1;
       padding-left: 0;
       border-top: 1px solid var(--line);
       border-left: 0;
+    }
+    .spec.three.steep {
+      grid-template-columns: 1fr;
+    }
+    .spec.three.steep > * + * {
+      padding-left: 0;
+      border-top: 1px solid var(--line);
+      border-left: 0;
+    }
+  }
+  /* phones: charts keep a readable width and scroll sideways along the route in their own strip
+     (labels a little larger); legends and captions stay put */
+  @media (max-width: 639px) {
+    .chart-scroll {
+      overflow-x: auto;
+      overscroll-behavior-x: contain;
+      scrollbar-width: thin;
+    }
+    .chart-scroll > svg {
+      min-width: 800px;
+    }
+    .chart-scroll text {
+      font-size: 13px;
     }
   }
   .ramp.up polygon {
