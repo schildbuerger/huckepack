@@ -2,33 +2,33 @@
 // Logo proposals (design/logos/*.svg, made by design/logos/make.py), shown at several sizes on
 // light and dark backgrounds and with the wordmark. Not linked from the site.
 import Base from "../../layouts/Base.astro";
-import a from "../../../design/logos/a-pixel-pack.svg?raw";
-import b from "../../../design/logos/b-pixel-peak.svg?raw";
-import c from "../../../design/logos/c-line.svg?raw";
-import d from "../../../design/logos/d-solid-peak.svg?raw";
-import e from "../../../design/logos/e-duotone.svg?raw";
+import a from "../../../design/logos/a-cairn.svg?raw";
+import b from "../../../design/logos/b-tent.svg?raw";
+import c from "../../../design/logos/c-signpost.svg?raw";
+import d from "../../../design/logos/d-peak-stencil.svg?raw";
+import e from "../../../design/logos/e-h-stencil.svg?raw";
 
 const logos = [
-  { id: "A", name: "Pixel pack", svg: a, note: "24 × 24 pixels, traced from D: ink outline, domed lid with lid line, soft front pocket, strap behind the back panel." },
-  { id: "B", name: "Pixel peak", svg: b, note: "24 × 24 pixels, one colour: the same pack solid, with a mountain cut out of the front." },
-  { id: "C", name: "Line", svg: c, note: "Monoline side view in terracotta: domed lid, haul loop, strap with hip-belt stub, front pocket. Matches the site's icons." },
-  { id: "D", name: "Solid peak", svg: d, note: "Filled side view with the lid line and a mountain cut out. Compact; strongest at favicon size." },
-  { id: "E", name: "Duotone", svg: e, note: "The line drawing in ink with the lid and pocket filled in terracotta." },
+  { id: "A", name: "Cairn", svg: a, note: "Pixel art, 12 × 12. Four stones stacked off-centre, the trail marker of the mountains; each stone is carried huckepack by the one below." },
+  { id: "B", name: "Tent", svg: b, note: "Pixel art, 12 × 12. An A-frame tent with a dark door and the ground line: the night on the trail." },
+  { id: "C", name: "Signpost", svg: c, note: "Pixel art, 12 × 12. An ink post with two terracotta boards pointing opposite ways: the trail sign everyone knows." },
+  { id: "D", name: "Peak and trail", svg: d, note: "Stencil. A peak with the switchback trail cut out, as if sprayed through a template." },
+  { id: "E", name: "h monogram", svg: e, note: "Stencil. The letter h with a stencil gap; the arch is a peak. Reads as a letter more than a picture." },
 ];
 // inline SVGs share the page: give each copy its own mask id
 let copy = 0;
 const inline = (svg: string) => {
   copy += 1;
-  return svg.replaceAll("hp-peak", `hp-peak-${copy}`).replace("<svg ", '<svg width="100%" height="100%" ');
+  return svg.replaceAll("hp-trail", `hp-trail-${copy}`).replace("<svg ", '<svg width="100%" height="100%" ');
 };
 ---
 
 <Base title="Logo proposals · huckepack" description="Logo proposals for huckepack." section="home">
   <p class="eyebrow">Design proposal</p>
-  <h1>Logo: a backpack</h1>
+  <h1>Logo: pictograms</h1>
   <p class="lede muted">
-    Five directions in side view, two in pixel art and three illustrated. Each is one scalable SVG; colours follow
-    the site's theme (terracotta and ink) and fall back to them when used on their own.
+    Five pictograms, three in pixel art and two in stencil style, chosen to stay recognisable at 16 px. Each is one
+    scalable SVG; colours follow the site's theme (terracotta and ink) and fall back to them on their own.
   </p>
 
   <div class="logos">
