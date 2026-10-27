@@ -3,7 +3,8 @@
   // sleeping, water, terrain) beside a list of result cards. Everything runs in the browser
   // on the summaries built at build time; the filters live in the URL, so a search can be shared.
   import { onMount } from "svelte";
-  import { SLEEPING_CATEGORIES, WATER_LEVELS, type TrailSummary } from "../lib/trails";
+  import { SAC_SCALE, SLEEPING_CATEGORIES, WATER_LEVELS, type TrailSummary } from "../lib/trails";
+  import Explain from "./Explain.svelte";
 
   let { trails, eleRange }: { trails: TrailSummary[]; eleRange: [number, number] } = $props();
 
@@ -169,37 +170,52 @@
       <button type="button" class="close" onclick={() => (filtersOpen = false)}>Show {shown.length} {shown.length === 1 ? "trail" : "trails"}</button>
     </div>
 
-    <fieldset>
-      <legend>When do you want to go?</legend>
+    <!-- groups, not fieldsets: a legend can't hold the explanation popover -->
+    <div class="group" role="group" aria-labelledby="g-when">
+      <div class="legend" id="g-when">
+        <Explain id="x-when" term="When do you want to go?" title="Season">
+          <p>A trail matches if its season includes any of the months you pick. The season is what the trail's managers recommend; outside it, huts and services may be closed or snow may block the way.</p>
+          <p>The months you pick are outlined on each card's season strip.</p>
+        </Explain>
+      </div>
       <div class="months">
         {#each MONTHS as m, i}
           <button type="button" class="chip" aria-pressed={months.includes(i + 1)} onclick={() => (months = toggle(months, i + 1))}>{m}</button>
         {/each}
       </div>
-      <p class="hint">Trails whose season includes any of these months.</p>
-    </fieldset>
+    </div>
 
-    <fieldset>
-      <legend>How long?</legend>
+    <div class="group" role="group" aria-labelledby="g-long">
+      <div class="legend" id="g-long">
+        <Explain id="x-long" term="How long?" title="Walking days">
+          <p>The number of days the trail's managers suggest for the whole route. Where they give a range, such as 6–8 days, the trail matches every option it overlaps.</p>
+        </Explain>
+      </div>
       <div class="chips">
         {#each DURATIONS as d}
           <button type="button" class="chip" aria-pressed={durations.includes(d.id)} onclick={() => (durations = toggle(durations, d.id))}>{d.label}</button>
         {/each}
       </div>
-    </fieldset>
+    </div>
 
-    <fieldset>
-      <legend>How hard, at most?</legend>
+    <div class="group" role="group" aria-labelledby="g-hard">
+      <div class="legend" id="g-hard">
+        <Explain id="x-hard" term="How hard, at most?" title="SAC hiking scale">
+          <p>Pick the hardest grade you're happy with; trails up to that grade stay. Trails without a grade are left out.</p>
+          <dl>
+            {#each SAC as s}<dt>{s} · {SAC_SCALE[s].name}</dt><dd>{SAC_SCALE[s].text}</dd>{/each}
+          </dl>
+        </Explain>
+      </div>
       <div class="scale" role="radiogroup" aria-label="Highest SAC grade">
         {#each SAC as s}
           <button type="button" class="chip" role="radio" aria-checked={sac === s} onclick={() => (sac = sac === s ? "" : s)}>{s}</button>
         {/each}
       </div>
-      <p class="hint">SAC hiking scale, T1 easy to T6 very hard.{#if sac} Trails without a grade are left out.{/if}</p>
-    </fieldset>
+    </div>
 
-    <fieldset>
-      <legend>Where?</legend>
+    <div class="group" role="group" aria-labelledby="g-where">
+      <div class="legend" id="g-where">Where?</div>
       <select bind:value={where} aria-label="Continent or country">
         <option value="">Anywhere</option>
         {#each places as p}
@@ -209,51 +225,75 @@
           </optgroup>
         {/each}
       </select>
-    </fieldset>
+    </div>
 
-    <fieldset>
-      <legend>Where to sleep</legend>
+    <div class="group" role="group" aria-labelledby="g-sleep">
+      <div class="legend" id="g-sleep">
+        <Explain id="x-sleep" term="Where to sleep">
+          <p>A trail matches if it offers every kind you pick.</p>
+          <dl>
+            {#each sleepingOptions as c}<dt>{c.label}</dt><dd>{c.hint}</dd>{/each}
+          </dl>
+        </Explain>
+      </div>
       <div class="chips">
         {#each sleepingOptions as c}
           <button type="button" class="chip" aria-pressed={sleep.includes(c.id)} onclick={() => (sleep = toggle(sleep, c.id))}>{c.label}</button>
         {/each}
       </div>
-      <p class="sub" id="wild-label">Wild camping</p>
+      <div class="sub" id="wild-label">
+        <Explain id="x-wild" term="Wild camping">
+          <dl>
+            <dt>Possible</dt><dd>Allowed, or allowed only in certain places or under rules, such as designated bivouac sites.</dd>
+            <dt>Allowed</dt><dd>Pitching a tent outside campsites is allowed along the trail.</dd>
+          </dl>
+          <p>Each trail page gives the exact rule.</p>
+        </Explain>
+      </div>
       <div class="segmented" role="radiogroup" aria-labelledby="wild-label">
         <button type="button" role="radio" aria-checked={wild === ""} onclick={() => (wild = "")}>Any</button>
         <button type="button" role="radio" aria-checked={wild === "some"} onclick={() => (wild = "some")}>Possible</button>
         <button type="button" role="radio" aria-checked={wild === "allowed"} onclick={() => (wild = "allowed")}>Allowed</button>
       </div>
-      <p class="hint">"Possible" includes trails where it's restricted to certain places.</p>
-    </fieldset>
+    </div>
 
-    <fieldset>
-      <legend>Water</legend>
-      <p class="sub first" id="water-label">Drinking water at least every</p>
+    <div class="group" role="group" aria-labelledby="g-water">
+      <div class="legend" id="g-water">Water</div>
+      <div class="sub first" id="water-label">
+        <Explain id="x-water" term="Drinking water at least every" title="Drinking water">
+          <p>Rated by the longest stretch of the main route without drinking water: taps, fountains and drinking springs mapped in OpenStreetMap.</p>
+          <dl>
+            {#each WATER_LEVELS as l}<dt>{l.label}</dt><dd>{l.hint}.</dd>{/each}
+          </dl>
+        </Explain>
+      </div>
       <div class="segmented" role="radiogroup" aria-labelledby="water-label">
         <button type="button" role="radio" aria-checked={water === ""} onclick={() => (water = "")}>Any</button>
         <button type="button" role="radio" aria-checked={water === "regular"} onclick={() => (water = "regular")}>20 km</button>
         <button type="button" role="radio" aria-checked={water === "frequent"} onclick={() => (water = "frequent")}>10 km</button>
       </div>
-      <p class="hint">By the longest stretch without a tap, fountain or drinking spring.</p>
-    </fieldset>
+    </div>
 
-    <fieldset>
-      <legend>Terrain</legend>
-      <p class="sub first" id="natural-label">Natural ground at least</p>
+    <div class="group" role="group" aria-labelledby="g-terrain">
+      <div class="legend" id="g-terrain">Terrain</div>
+      <div class="sub first" id="natural-label">
+        <Explain id="x-terrain" term="Natural ground at least" title="Ground underfoot">
+          <p>The share of the main route on natural ground, from OpenStreetMap's surface tags. The bar under each card's profile shows the mix:</p>
+          <!-- the same colours as the surface bar on each card -->
+          <ul class="ground">
+            <li><span style="background: var(--surface-natural)"></span>Natural: earth, grass, rock</li>
+            <li><span style="background: var(--surface-gravel)"></span>Gravel</li>
+            <li><span style="background: var(--surface-paved)"></span>Paved</li>
+          </ul>
+        </Explain>
+      </div>
       <div class="segmented" role="radiogroup" aria-labelledby="natural-label">
         <button type="button" role="radio" aria-checked={natural === ""} onclick={() => (natural = "")}>Any</button>
         {#each NATURAL as n}
           <button type="button" role="radio" aria-checked={natural === n} onclick={() => (natural = n)}>{n} %</button>
         {/each}
       </div>
-      <!-- the same colours as the surface bar on each card -->
-      <ul class="ground" aria-label="Surface categories">
-        <li><span style="background: var(--surface-natural)"></span>Natural: earth, grass, rock</li>
-        <li><span style="background: var(--surface-gravel)"></span>Gravel</li>
-        <li><span style="background: var(--surface-paved)"></span>Paved</li>
-      </ul>
-    </fieldset>
+    </div>
   </aside>
 
   <div class="results">
@@ -367,15 +407,8 @@
     display: grid;
     gap: 20px;
   }
-  @media (min-width: 900px) {
-    .filters {
-      position: sticky;
-      top: 16px;
-      max-height: calc(100vh - 32px);
-      overflow-y: auto;
-      padding-right: 4px;
-    }
-  }
+  /* wide screens: the sidebar scrolls with the page, no inner scroll box (its scrollbar came and
+     went with the content, which shifted everything sideways) */
   @media (max-width: 899px) {
     .filters {
       position: fixed;
@@ -427,26 +460,17 @@
     margin: 0;
     font-size: 1.15rem;
   }
-  fieldset {
-    margin: 0;
+  .group {
     padding: 0 0 20px;
-    border: 0;
     border-bottom: 1px solid var(--line);
   }
-  fieldset:last-of-type {
+  .group:last-child {
     border-bottom: 0;
   }
-  legend {
+  .legend {
     margin-bottom: 10px;
-    padding: 0;
     font-weight: 600;
     font-size: 0.9rem;
-  }
-  .hint {
-    margin: 8px 0 0;
-    color: var(--muted);
-    font-size: 0.78rem;
-    line-height: 1.4;
   }
   .chips,
   .scale {
@@ -519,12 +543,10 @@
   }
   .ground {
     display: grid;
-    gap: 3px;
-    margin: 10px 0 0;
+    gap: 4px;
+    margin: 0 0 8px;
     padding: 0;
     list-style: none;
-    color: var(--muted);
-    font-size: 0.78rem;
   }
   .ground li {
     display: flex;
@@ -532,7 +554,7 @@
     align-items: center;
   }
   .ground span {
-    width: 14px;
+    width: 18px;
     height: 6px;
     border-radius: 2px;
   }
