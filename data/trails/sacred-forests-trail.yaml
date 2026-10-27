@@ -47,9 +47,10 @@ stages:
     - { number: "6", kind: variant, from: Badia Prataglia, to: Rimbocchi, km: 10.5, ascentM: 489, descentM: 782, minutes: 195, startEleM: 842, endEleM: 549, track: "https://geohub.webmapp.it/api/ec/track/download/83878.gpx" }
     - { number: "7", kind: main, from: Rimbocchi, to: La Verna, km: 7.9, ascentM: 627, descentM: 341, minutes: 240, startEleM: 552, endEleM: 1138, track: "https://geohub.webmapp.it/api/ec/track/download/75485.gpx" }
 route:
-  # built by `python -m pipeline.routes sacred-forests-trail` from the stage tracks above
-  source: pnfc
-  publishable: false # the park's tracks are all rights reserved; replace with OSM-derived geometry before release
+  # built by `python -m pipeline.routes sacred-forests-trail`: OSM ways matched to the stage
+  # tracks above; the park's GPX only guides which ways, none of its geometry is used
+  source: osm
+  publishable: true
 difficulty:
   cai:
     grade: E
@@ -78,7 +79,11 @@ notes:
   - The park publishes no total length or difficulty grade; both come from a travel magazine.
   - >-
     OpenStreetMap has no route relation for the trail (checked 2026-10-27), only the park's
-    numbered paths. The map line uses the park's GPX tracks, which may not be published.
+    numbered paths. The map line is OSM ways matched to the park's GPX: 94–100% of each
+    stage's track lies within 30 m of it. Stage 5 has two stretches where OSM has no path
+    near the GPX (about 340 m after Camaldoli at 43.7956,11.8241 and 220 m before Badia
+    Prataglia at 43.8057,11.8710); the line follows the nearest OSM paths there, up to 79 m
+    away. Adding those paths to OSM would close the gaps.
   - >-
     The camping rule comes from a 2019 regional summary that cites the park's "provisional
     regulation"; check whether that regulation is still current.
@@ -94,6 +99,11 @@ sources:
     licence: All rights reserved (facts only)
     retrieved: 2026-10-27
     note: Travel magazine, not an official source.
+  - id: osm
+    title: "OpenStreetMap contributors: paths and tracks along the trail (via Overpass API)"
+    url: https://www.openstreetmap.org/copyright
+    licence: ODbL 1.0
+    retrieved: 2026-10-27
   - id: er-avp
     title: "Regione Emilia-Romagna: Bivacco con tenda lungo l'Alta Via dei Parchi (June 2019)"
     url: https://ambiente.regione.emilia-romagna.it/it/parchi-natura2000/fruizione/altavia/bivacco-con-tenda/avp_bivacco-con-tenda_ita_eng_giu_2019.pdf

@@ -45,11 +45,12 @@
     us and are not shown on the page.
 - **Maps:** every trail page has a map: an OpenStreetMap basemap from
   OpenFreeMap (free, no key) with the trail drawn on top. The preferred
-  trail geometry is an OpenStreetMap route relation (ODbL, publishable with
-  attribution). Where none exists, the official GPX tracks may be used for
-  drafts, marked `route.publishable: false`; before release such a trail
-  needs OSM-derived geometry (matching the GPX to OSM paths, or adding the
-  route to OpenStreetMap) or the publisher's permission.
+  trail geometry is OpenStreetMap (ODbL, publishable with attribution): the
+  official GPX tracks are matched to OSM paths by the pipeline, so only OSM
+  geometry is published. Where OSM lacks a path, the line follows the
+  nearest OSM paths and the gap is recorded in the trail's notes. Official
+  GPX geometry itself is never published (`route.publishable: false` if a
+  route ever has to use it).
 
 ## What a trail page could show
 
