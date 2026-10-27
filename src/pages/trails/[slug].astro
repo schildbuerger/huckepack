@@ -10,6 +10,8 @@ import {
   perDay,
   sacGrade,
   stageTotals,
+  SAC_SCALE,
+  SLEEPING_CATEGORIES,
   SLEEPING_LABELS,
   WILD_CAMPING_LABELS,
 } from "../../lib/trails";
@@ -23,6 +25,14 @@ const { trail } = Astro.props as { trail: CollectionEntry<"trails"> };
 const t = trail.data;
 const derived = (await getEntry("derived", trail.id))?.data;
 const water = derived?.water;
+// travel hubs with their distance to the start (pipeline/access.py), stations first
+const hubs = t.access.map((h) => ({ ...h, ...derived?.access?.hubs.find((d) => d.name === h.name) }));
+const HUB_LABELS = { station: "Nearest station", airport: "Airport" };
+// sleeping: each category with the types this trail has in it; camping also carries wild camping
+const sleeping = SLEEPING_CATEGORIES.map((c) => ({
+  ...c,
+  present: c.types.filter((x) => t.sleeping?.types.includes(x)),
+}));
 const sources = Object.fromEntries(t.sources.map((s, i) => [s.id, { ...s, n: i + 1 }]));
 const ref = (id: string) => sources[id]?.n; // footnote number of a source
 const totals = stageTotals(t);
@@ -60,8 +70,8 @@ const gapStages = (() => {
 // on-page navigation: only sections this trail has
 const nav = [
   { id: "figures", label: "Key figures", show: true },
-  { id: "map", label: "Map", show: true },
   { id: "location", label: "Location", show: true },
+  { id: "map", label: "Map", show: true },
   { id: "stages", label: "Stages", show: Boolean(t.stages) },
   { id: "sleeping", label: "Sleeping", show: Boolean(t.sleeping || t.wildCamping) },
   { id: "water", label: "Water", show: Boolean(water) },
@@ -94,6 +104,28 @@ const nav = [
     </ul>
   </nav>
 
+  {sac && (
+    <div id="sac-info" class="sac-info" popover>
+      <p class="sac-title">SAC hiking scale</p>
+      <p class="sac-lead">
+        The Swiss Alpine Club grades hiking routes from T1 (easy) to T6 (very hard). This trail is <strong>{sac.value}</strong>
+        {sac.how !== "stated" && ` (${sac.how})`}.
+      </p>
+      <ol class="sac-scale">
+        {Object.entries(SAC_SCALE).map(([grade, g]) => (
+          <li class:list={[{ current: grade === sac.value }]}>
+            <strong>{grade} · {g.name}</strong>
+            <span>{g.text}</span>
+          </li>
+        ))}
+      </ol>
+      <p class="sac-foot">
+        <a href="https://www.sac-cas.ch/en/ausbildung-und-sicherheit/tourenplanung/grading-systems/">The scale at the Swiss Alpine Club</a>
+        <button type="button" popovertarget="sac-info" popovertargetaction="hide">Close</button>
+      </p>
+    </div>
+  )}
+
   <section id="figures" class="key">
     <h2 class="visually-hidden">Key figures</h2>
     <dl class="figures">
@@ -124,7 +156,10 @@ const nav = [
       )}
       {sac && (
         <div>
-          <dt>Difficulty</dt>
+          <dt>
+            Difficulty
+            <button class="info" type="button" popovertarget="sac-info" aria-label={`What does SAC ${sac.value} mean?`}>?</button>
+          </dt>
           <dd>
             SAC {sac.value}<Ref n={ref(sac.source)} />
             {t.difficulty?.cai && sac.how !== "stated" && <small>from CAI {t.difficulty.cai.grade}</small>}
@@ -164,18 +199,6 @@ const nav = [
     </dl>
   </section>
 
-  <section id="map">
-    <h2 class="visually-hidden">Map</h2>
-    <TrailMap
-      client:visible
-      routeUrl={routeUrl}
-      start={t.termini.start}
-      end={t.termini.end}
-      routeAttribution={routeAttribution}
-      water={water?.points.map((p) => ({ lat: p.lat, lon: p.lon, kind: p.kind })) ?? []}
-    />
-  </section>
-
   <section id="location">
     <h2>Location</h2>
     <dl class="facts">
@@ -197,6 +220,21 @@ const nav = [
       <dd>{t.termini.start.name}<Ref n={ref(t.termini.source)} /></dd>
       <dt>To</dt>
       <dd>{t.termini.end.name}</dd>
+      {hubs.map((h) => (
+        <>
+          <dt>{HUB_LABELS[h.kind]}</dt>
+          <dd>
+            {h.name}
+            {h.roadKm !== undefined && derived?.access && (
+              <>
+                {" "}· {h.roadKm} km by road to the start ({h.driveMin} min)<Ref n={ref(derived.access.source)} />
+              </>
+            )}
+            {h.note && <span class="muted"> · {h.note}</span>}
+            <Ref n={ref(h.source)} />
+          </dd>
+        </>
+      ))}
       <dt>Managed by</dt>
       <dd>{t.managedBy.map((m) => m.name).join(", ")}</dd>
       {t.waymarking && (
@@ -206,6 +244,18 @@ const nav = [
         </>
       )}
     </dl>
+  </section>
+
+  <section id="map">
+    <h2 class="visually-hidden">Map</h2>
+    <TrailMap
+      client:visible
+      routeUrl={routeUrl}
+      start={t.termini.start}
+      end={t.termini.end}
+      routeAttribution={routeAttribution}
+      water={water?.points.map((p) => ({ lat: p.lat, lon: p.lon, kind: p.kind })) ?? []}
+    />
   </section>
 
   {t.stages && (
@@ -255,24 +305,32 @@ const nav = [
   {(t.sleeping || t.wildCamping) && (
     <section id="sleeping">
       <h2>Sleeping</h2>
-      <dl class="facts">
-        {t.sleeping && (
-          <>
-            <dt>Along the trail</dt>
-            <dd>
-              {t.sleeping.types.map((s) => SLEEPING_LABELS[s]).join(", ")}<Ref n={ref(t.sleeping.source)} />
-            </dd>
-          </>
-        )}
-        {t.wildCamping && (
-          <>
-            <dt>Wild camping</dt>
-            <dd>
-              <strong>{WILD_CAMPING_LABELS[t.wildCamping.status]}.</strong> {t.wildCamping.rule}<Ref n={ref(t.wildCamping.source)} />
-            </dd>
-          </>
-        )}
-      </dl>
+      <ul class="sleep">
+        {sleeping.map((c) => (
+          <li class:list={[{ absent: c.present.length === 0 && !(c.id === "camping" && t.wildCamping) }]}>
+            <p class="sleep-name">{c.label}</p>
+            <p class="sleep-hint">{c.hint}</p>
+            {c.present.length > 0 ? (
+              <p class="sleep-types">
+                {c.present.map((x) => SLEEPING_LABELS[x]).join(", ")}
+                {t.sleeping && <Ref n={ref(t.sleeping.source)} />}
+              </p>
+            ) : (
+              <p class="sleep-types muted">None listed</p>
+            )}
+            {c.id === "camping" && t.wildCamping && (
+              <p class="sleep-types">
+                Wild camping: {WILD_CAMPING_LABELS[t.wildCamping.status].toLowerCase()}<Ref n={ref(t.wildCamping.source)} />
+              </p>
+            )}
+          </li>
+        ))}
+      </ul>
+      {t.wildCamping && (
+        <p class="rule">
+          <strong>Wild camping rule.</strong> {t.wildCamping.rule}<Ref n={ref(t.wildCamping.source)} />
+        </p>
+      )}
     </section>
   )}
 
@@ -450,6 +508,117 @@ const nav = [
   }
   .note {
     font-size: 0.8rem;
+  }
+  .sleep {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 8px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+  .sleep li {
+    padding: 12px 14px;
+    border-radius: 10px;
+    background: var(--surface);
+  }
+  .sleep li.absent {
+    background: none;
+    border: 1px dashed var(--line);
+  }
+  .sleep p {
+    margin: 0;
+  }
+  .sleep-name {
+    font-family: var(--serif);
+    font-size: 1.1rem;
+    font-weight: 600;
+  }
+  .sleep-hint {
+    color: var(--muted);
+    font-size: 0.8rem;
+  }
+  .sleep-types {
+    margin-top: 8px !important;
+    font-size: 0.9rem;
+  }
+  .rule {
+    max-width: 70ch;
+    margin-top: 16px;
+    font-size: 0.9rem;
+  }
+  .info {
+    width: 16px;
+    height: 16px;
+    margin-left: 4px;
+    padding: 0;
+    border: 1px solid var(--muted);
+    border-radius: 50%;
+    background: none;
+    color: var(--muted);
+    font: 600 0.65rem/1 var(--sans);
+    vertical-align: 1px;
+    cursor: pointer;
+  }
+  .info:hover,
+  .info:focus-visible {
+    border-color: var(--accent);
+    color: var(--accent);
+  }
+  .sac-info {
+    width: min(480px, calc(100vw - 32px));
+    padding: 20px;
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    background: var(--bg);
+    color: var(--text);
+    box-shadow: 0 12px 40px rgb(0 0 0 / 0.18);
+    font-size: 0.9rem;
+  }
+  .sac-info::backdrop {
+    background: rgb(0 0 0 / 0.25);
+  }
+  .sac-info p {
+    margin: 0 0 12px;
+  }
+  .sac-title {
+    font-family: var(--serif);
+    font-size: 1.2rem;
+    font-weight: 600;
+  }
+  .sac-scale {
+    margin: 0 0 12px;
+    padding: 0;
+    list-style: none;
+  }
+  .sac-scale li {
+    padding: 8px 10px;
+    border-radius: 8px;
+    color: var(--muted);
+  }
+  .sac-scale li.current {
+    background: var(--accent-soft);
+    color: var(--text);
+  }
+  .sac-scale strong {
+    display: block;
+    color: var(--text);
+  }
+  .sac-foot {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0 !important;
+    font-size: 0.8rem;
+  }
+  .sac-foot button {
+    padding: 6px 14px;
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    background: none;
+    color: var(--text);
+    font: inherit;
+    cursor: pointer;
   }
   .sources {
     font-size: 0.8rem;

@@ -1,21 +1,11 @@
 <script lang="ts">
   // Searches, filters and sorts the trail index in the browser; the index is small enough
   // to ship whole.
-  import type { TrailSummary } from "../lib/trails";
+  import { SLEEPING_CATEGORIES, type TrailSummary } from "../lib/trails";
 
   let { trails }: { trails: TrailSummary[] } = $props();
 
   const SAC = ["T1", "T2", "T3", "T4", "T5", "T6"];
-  const SLEEPING: Record<string, string> = {
-    hut: "Huts / rifugi",
-    bivouac: "Bivouac shelters",
-    campsite: "Campsites",
-    hostel: "Hostels",
-    guesthouse: "B&Bs and guesthouses",
-    hotel: "Hotels",
-    monastery: "Monastery guest houses",
-    "farm-stay": "Farm stays",
-  };
 
   let query = $state("");
   let continent = $state("");
@@ -29,7 +19,8 @@
   const uniq = (xs: string[]) => [...new Set(xs)].sort();
   const continents = uniq(trails.flatMap((t) => t.continents));
   const countries = uniq(trails.flatMap((t) => t.countries));
-  const sleepingTypes = Object.keys(SLEEPING).filter((s) => trails.some((t) => t.sleeping.includes(s)));
+  // sleeping categories (see SLEEPING_CATEGORIES) that at least one trail has
+  const sleepingCategories = SLEEPING_CATEGORIES.filter((c) => trails.some((t) => t.sleeping.includes(c.id)));
 
   const matches = (t: TrailSummary, q: string) =>
     [t.name, t.localName ?? "", ...t.countries, ...t.regions, ...t.tags].join(" ").toLowerCase().includes(q);
@@ -133,7 +124,7 @@
     Sleeping
     <select bind:value={sleeping}>
       <option value="">Any</option>
-      {#each sleepingTypes as s}<option value={s}>{SLEEPING[s]}</option>{/each}
+      {#each sleepingCategories as c}<option value={c.id}>{c.label}</option>{/each}
     </select>
   </label>
 </div>

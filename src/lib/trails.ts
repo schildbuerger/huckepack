@@ -69,7 +69,7 @@ export function summarize(id: string, t: Trail) {
     days: t.days ? ([t.days.min, t.days.max] as [number, number]) : null,
     sac: sacGrade(t)?.value ?? null,
     wildCamping: t.wildCamping?.status ?? null,
-    sleeping: t.sleeping?.types ?? [],
+    sleeping: sleepingCategories(t.sleeping?.types ?? []) as string[],
     tags: t.tags,
     draft: t.status === "draft",
   };
@@ -87,11 +87,53 @@ export const SLEEPING_LABELS: Record<string, string> = {
   hut: "Huts / rifugi",
   bivouac: "Bivouac shelters",
   campsite: "Campsites",
-  hostel: "Hostels",
+  hostel: "Hostels and hiker lodges",
   guesthouse: "B&Bs and guesthouses",
   hotel: "Hotels",
   monastery: "Monastery guest houses",
   "farm-stay": "Farm stays",
+};
+
+// The sleeping types grouped by what they mean for planning: what you carry, what you pay.
+// Every type belongs to exactly one category; wild camping is shown under Camping.
+export const SLEEPING_CATEGORIES = [
+  { id: "huts", label: "Huts & shelters", hint: "On the trail itself, often in the mountains", types: ["hut", "bivouac"] },
+  { id: "camping", label: "Camping", hint: "Bring a tent", types: ["campsite"] },
+  { id: "hostels", label: "Hostels", hint: "Dormitory beds for walkers", types: ["hostel"] },
+  {
+    id: "rooms",
+    label: "Rooms",
+    hint: "Private rooms, usually in villages",
+    types: ["guesthouse", "hotel", "farm-stay", "monastery"],
+  },
+] as const;
+
+export const sleepingCategories = (types: readonly string[]) =>
+  SLEEPING_CATEGORIES.filter((c) => c.types.some((x) => types.includes(x))).map((c) => c.id);
+
+// The SAC hiking scale (Swiss Alpine Club) in plain words.
+export const SAC_SCALE: Record<string, { name: string; text: string }> = {
+  T1: { name: "Hiking", text: "Well-made paths, mostly flat or gently sloping. No risk of falling; trainers are enough." },
+  T2: {
+    name: "Mountain hiking",
+    text: "A continuous path, steep in places, where a fall can't be ruled out. Be sure-footed; wear hiking boots.",
+  },
+  T3: {
+    name: "Demanding mountain hiking",
+    text: "The path is not always visible; exposed spots may have chains or ropes, and you may need your hands for balance.",
+  },
+  T4: {
+    name: "Alpine hiking",
+    text: "Often no path. Hands are needed in places, terrain is exposed, and there can be easy snowfields.",
+  },
+  T5: {
+    name: "Demanding alpine hiking",
+    text: "Mostly pathless, with easy climbing and exposed, demanding terrain. Needs alpine experience.",
+  },
+  T6: {
+    name: "Difficult alpine hiking",
+    text: "Pathless, very exposed, with climbing and glaciers. For experienced mountaineers only.",
+  },
 };
 
 export const WILD_CAMPING_LABELS: Record<string, string> = {

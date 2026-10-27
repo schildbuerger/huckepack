@@ -124,6 +124,21 @@ const trail = z
       })
       .optional(),
 
+    // Travel hubs near the start: the nearest railway station and airport(s). pipeline/access.py
+    // derives their distance to the start by road.
+    access: z
+      .array(
+        z.object({
+          kind: z.enum(["station", "airport"]),
+          name: z.string(),
+          lat: z.number().min(-90).max(90),
+          lon: z.number().min(-180).max(180),
+          note: z.string().optional(),
+          source: sourceRef,
+        }),
+      )
+      .default([]),
+
     tags: z.array(z.string().regex(/^[a-z0-9-]+$/)).default([]),
     notes: z.array(z.string()).default([]), // open questions and discrepancies between sources
     sources: z.array(source).min(1),
@@ -145,6 +160,7 @@ const trail = z
         t.season,
         t.sleeping,
         t.wildCamping,
+        ...t.access,
       ].flatMap((x) => (x ? [x.source] : [])),
     ];
     for (const ref of refs) {
@@ -177,6 +193,21 @@ const derived = z.object({
           stageKind,
           km: z.number().nullable(), // along the main route; null on approaches and variants
           offM: z.number(),
+        }),
+      ),
+    })
+    .optional(),
+  // pipeline/access.py: from each travel hub in the trail's `access` to the start
+  access: z
+    .object({
+      source: sourceRef,
+      retrieved: z.coerce.date(),
+      hubs: z.array(
+        z.object({
+          name: z.string(), // matches the hub's name in the trail record
+          roadKm: z.number(),
+          driveMin: z.number(),
+          straightKm: z.number(),
         }),
       ),
     })

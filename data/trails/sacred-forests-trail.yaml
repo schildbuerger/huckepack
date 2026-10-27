@@ -70,6 +70,26 @@ wildCamping:
     they are open and full: one night, from an hour after sunset to sunrise, at most two
     tents. Outside the park, ask the individual facilities.
   source: er-avp
+access:
+  # nearest railway station and airports with scheduled flights (OSM); distances by pipeline/access.py
+  - kind: station
+    name: Marradi
+    lat: 44.07974
+    lon: 11.61903
+    note: Stage 0 walks from Marradi to the start (15.9 km).
+    source: pnfc
+  - kind: airport
+    name: Forlì (FRL)
+    lat: 44.19479
+    lon: 12.07047
+    note: Few scheduled routes, mostly Ryanair.
+    source: airportroutes
+  - kind: airport
+    name: Florence (FLR)
+    lat: 43.80918
+    lon: 11.20244
+    note: Nearest major airport.
+    source: osm
 tags: [forests, monasteries, apennines, national-park]
 notes:
   - >-
@@ -103,6 +123,16 @@ sources:
     title: "OpenStreetMap contributors: paths and tracks along the trail (via Overpass API)"
     url: https://www.openstreetmap.org/copyright
     licence: ODbL 1.0
+    retrieved: 2026-10-27
+  - id: osrm
+    title: "OSRM: road routes on OpenStreetMap data (router.project-osrm.org)"
+    url: https://project-osrm.org/
+    licence: Route data © OpenStreetMap contributors (ODbL)
+    retrieved: 2026-10-27
+  - id: airportroutes
+    title: "AirportRoutes: Forlì Airport (LIPK/FRL) routes (updated April 2026)"
+    url: https://www.airportroutes.com/airports/LIPK/
+    licence: All rights reserved (facts only)
     retrieved: 2026-10-27
   - id: er-avp
     title: "Regione Emilia-Romagna: Bivacco con tenda lungo l'Alta Via dei Parchi (June 2019)"
