@@ -1,23 +1,35 @@
 ---
-import { getCollection } from "astro:content";
+import { getCollection, getEntry } from "astro:content";
 import Base from "../../layouts/Base.astro";
 import Breadcrumbs from "../../components/Breadcrumbs.astro";
 import TrailList from "../../components/TrailList.svelte";
 import { summarize } from "../../lib/trails";
 
-const trails = (await getCollection("trails"))
-  .map(({ id, data }) => summarize(id, data))
-  .sort((a, b) => a.name.localeCompare(b.name));
+const trails = (
+  await Promise.all(
+    (await getCollection("trails")).map(async ({ id, data }) => summarize(id, data, (await getEntry("derived", id))?.data)),
+  )
+).sort((a, b) => a.name.localeCompare(b.name));
+
+// one height scale for every card's elevation profile, so the profiles compare honestly
+const lows = trails.flatMap((t) => (t.lowestM === null ? [] : [t.lowestM]));
+const highs = trails.flatMap((t) => (t.highestM === null ? [] : [t.highestM]));
+const eleRange: [number, number] = lows.length
+  ? [Math.max(0, Math.floor((Math.min(...lows) - 100) / 100) * 100), Math.ceil((Math.max(...highs) + 100) / 100) * 100]
+  : [0, 1000];
 ---
 
 <Base
   title="Trails · huckepack"
-  description="Search and compare official long-distance hiking trails by country, length, days, difficulty and where to sleep."
+  description="Find an official long-distance hiking trail by season, length, difficulty, region, where to sleep and water along the way."
 >
   <Breadcrumbs current="Trails" />
   <h1>Trails</h1>
-  <p class="lede muted">Search and compare official long-distance trails. Filter by where they are, how hard they are and where you can sleep.</p>
-  <TrailList client:load trails={trails} />
+  <p class="lede muted">
+    Narrow the list down by when you can go, how long and how hard, and how you want to sleep. Every card shows the
+    season, the elevation profile on one scale for all trails, and the ground underfoot.
+  </p>
+  <TrailList client:load trails={trails} eleRange={eleRange} />
 </Base>
 
 <style>
@@ -25,7 +37,7 @@ const trails = (await getCollection("trails"))
     margin-top: 8px;
   }
   .lede {
-    max-width: 60ch;
+    max-width: 62ch;
     margin: 0 0 32px;
   }
 </style>

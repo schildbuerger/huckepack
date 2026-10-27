@@ -4,6 +4,7 @@
 import type { CollectionEntry } from "astro:content";
 
 type Trail = CollectionEntry<"trails">["data"];
+type DerivedData = CollectionEntry<"derived">["data"];
 type Stage = NonNullable<Trail["stages"]>["list"][number];
 
 export interface Derived<T> {
@@ -54,9 +55,15 @@ export function sacGrade(t: Trail): Derived<string> | undefined {
 }
 
 // The compact record lists and filters work on. Lists show the stage total when there are
-// stages, else the first stated length; trail pages show every figure with its source.
-export function summarize(id: string, t: Trail) {
+// stages, else the first stated length; trail pages show every figure with its source. With the
+// trail's derived data (the pipeline's output) it also carries what the search page filters and
+// previews: water, surfaces, a coarse elevation profile and the nearest travel hub.
+const PROFILE_POINTS = 80;
+
+export function summarize(id: string, t: Trail, d?: DerivedData) {
   const totals = stageTotals(t);
+  const step = d?.elevation ? Math.max(1, Math.floor(d.elevation.points.length / PROFILE_POINTS)) : 1;
+  const hub = t.access[0] && d?.access?.hubs.find((h) => h.name === t.access[0].name);
   return {
     slug: id,
     name: t.name,
@@ -73,6 +80,20 @@ export function summarize(id: string, t: Trail) {
     sleeping: sleepingCategories(t.sleeping?.types ?? []) as string[],
     tags: t.tags,
     draft: t.status === "draft",
+    season: t.season?.months ?? null,
+    start: t.termini.start.name,
+    end: t.termini.end.name,
+    water: d?.water ? { level: waterLevel(d.water.longestGapKm.drinking.km).id, gapKm: d.water.longestGapKm.drinking.km } : null,
+    surface: d?.surface
+      ? { natural: d.surface.totals.natural?.share ?? 0, gravel: d.surface.totals.gravel?.share ?? 0, paved: d.surface.totals.paved?.share ?? 0 }
+      : null,
+    // [km, metres], every nth sample, the last one always included
+    profile: d?.elevation
+      ? d.elevation.points.filter((_, i, all) => i % step === 0 || i === all.length - 1)
+      : null,
+    highestM: d?.elevation?.highest.m ?? null,
+    lowestM: d?.elevation?.lowest.m ?? null,
+    hub: hub ? { name: hub.name, kind: t.access[0].kind, roadKm: hub.roadKm } : null,
   };
 }
 
