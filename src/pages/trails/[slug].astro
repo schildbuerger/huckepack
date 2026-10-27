@@ -1,7 +1,8 @@
 ---
-import { getCollection, type CollectionEntry } from "astro:content";
+import { getCollection, getEntry, type CollectionEntry } from "astro:content";
 import Base from "../../layouts/Base.astro";
 import TrailMap from "../../components/TrailMap.svelte";
+import Ref from "../../components/Ref.astro";
 import { existsSync } from "node:fs";
 import {
   countryName,
@@ -20,8 +21,10 @@ export async function getStaticPaths() {
 
 const { trail } = Astro.props as { trail: CollectionEntry<"trails"> };
 const t = trail.data;
+const derived = (await getEntry("derived", trail.id))?.data;
+const water = derived?.water;
 const sources = Object.fromEntries(t.sources.map((s, i) => [s.id, { ...s, n: i + 1 }]));
-const ref = (id: string) => sources[id].n; // footnote number of a source
+const ref = (id: string) => sources[id]?.n; // footnote number of a source
 const totals = stageTotals(t);
 // one length: the sum of the main stages where there are stages, else the first stated total
 const length = totals
@@ -33,16 +36,41 @@ const daily = perDay(t);
 const sac = sacGrade(t);
 const fmt = (n: number) => n.toLocaleString("en");
 const hours = (min: number) => `${Math.floor(min / 60)} h ${String(min % 60).padStart(2, "0")}`;
+const range = (min: number, max: number) => (min === max ? `${min}` : `${min}–${max}`);
 // the map line, built by pipeline/routes.py; without it the map shows only the termini
 const routeFile = `routes/${trail.id}.geojson`;
 const routeUrl = t.route && existsSync(`public/${routeFile}`) ? `/${routeFile}` : null;
 // attribution names the route's source: its title up to the first colon
 const routeAttribution = routeUrl && t.route ? sources[t.route.source].title.split(":")[0] : null;
+
+const waterTotals = water && {
+  drinking: water.points.filter((p) => p.kind === "drinking").length,
+  springs: water.points.filter((p) => p.kind === "spring").length,
+};
+// the stage(s) of the longest dry stretch, from the water points at either end of it
+const gapStages = (() => {
+  if (!water) return "";
+  const g = water.longestGapKm.drinking;
+  const at = (km: number) => water.points.find((p) => p.km !== null && Math.abs(p.km - km) < 0.05)?.stage;
+  const [a, b] = [at(g.fromKm), at(g.toKm)];
+  return a && b ? (a === b ? ` (stage ${a})` : ` (stages ${a}–${b})`) : "";
+})();
+
+// on-page navigation: only sections this trail has
+const nav = [
+  { id: "figures", label: "Key figures", show: true },
+  { id: "map", label: "Map", show: true },
+  { id: "where", label: "Where", show: true },
+  { id: "sleeping", label: "Sleeping", show: Boolean(t.sleeping || t.wildCamping) },
+  { id: "water", label: "Water", show: Boolean(water) },
+  { id: "stages", label: "Stages", show: Boolean(t.stages) },
+  { id: "sources", label: "Sources", show: true },
+].filter((n) => n.show);
 ---
 
 <Base
   title={`${t.name} · huckepack`}
-  description={`${t.name}${t.localName ? ` (${t.localName})` : ""}: stages, length, ascent, difficulty, where to sleep and a map.`}
+  description={`${t.name}${t.localName ? ` (${t.localName})` : ""}: stages, length, ascent, difficulty, where to sleep, water and a map.`}
   section="trails"
 >
   <nav class="crumbs" aria-label="Breadcrumb"><a href="/trails/">Trails</a> / {t.countries.map(countryName).join(", ")}</nav>
@@ -55,14 +83,25 @@ const routeAttribution = routeUrl && t.route ? sources[t.route.source].title.spl
     <a href={t.website}>Official website</a>
   </p>
 
-  <section class="key">
-    <dl class="figures" aria-label="Key figures">
+  <nav class="onpage" aria-label="On this page">
+    <ul>
+      {nav.map((n) => (
+        <li>
+          <a href={`#${n.id}`}>{n.label}</a>
+        </li>
+      ))}
+    </ul>
+  </nav>
+
+  <section id="figures" class="key">
+    <h2 class="visually-hidden">Key figures</h2>
+    <dl class="figures">
       {length && (
         <div>
           <dt>Length</dt>
           <dd>
             {length.approx && "about "}
-            {fmt(length.value)} km <sup>{ref(length.source)}</sup>
+            {fmt(length.value)} km<Ref n={ref(length.source)} />
             <small>{length.how}</small>
           </dd>
         </div>
@@ -71,27 +110,18 @@ const routeAttribution = routeUrl && t.route ? sources[t.route.source].title.spl
         <div>
           <dt>Total ascent</dt>
           <dd>
-            {fmt(totals.ascentM.value)} m <sup>{ref(totals.ascentM.source)}</sup>
+            {fmt(totals.ascentM.value)} m<Ref n={ref(totals.ascentM.source)} />
             <small>descent {fmt(totals.descentM.value)} m</small>
           </dd>
         </div>
       )}
-      {(t.difficulty?.cai || sac) && (
+      {sac && (
         <div>
           <dt>Difficulty</dt>
           <dd>
-            {t.difficulty?.cai && (
-              <>
-                CAI {t.difficulty.cai.grade} <sup>{ref(t.difficulty.cai.source)}</sup>
-              </>
-            )}
-            {t.difficulty?.cai && sac && " · "}
-            {sac && (
-              <>
-                SAC {sac.value} <sup>{ref(sac.source)}</sup>
-              </>
-            )}
-            {sac && sac.how !== "stated" && <small>SAC {sac.how}</small>}
+            SAC {sac.value}<Ref n={ref(sac.source)} />
+            {t.difficulty?.cai && sac.how !== "stated" && <small>converted from CAI {t.difficulty.cai.grade}</small>}
+            {t.difficulty?.cai && sac.how === "stated" && <small>CAI {t.difficulty.cai.grade}</small>}
           </dd>
         </div>
       )}
@@ -99,7 +129,7 @@ const routeAttribution = routeUrl && t.route ? sources[t.route.source].title.spl
         <div>
           <dt>Suggested days</dt>
           <dd>
-            {t.days.min === t.days.max ? t.days.min : `${t.days.min}–${t.days.max}`} <sup>{ref(t.days.source)}</sup>
+            {range(t.days.min, t.days.max)} days<Ref n={ref(t.days.source)} />
           </dd>
         </div>
       )}
@@ -107,7 +137,7 @@ const routeAttribution = routeUrl && t.route ? sources[t.route.source].title.spl
         <div>
           <dt>Per day</dt>
           <dd>
-            {daily.km.value} km · {fmt(daily.ascentM.value)} m <sup>{ref(daily.km.source)}</sup>
+            {daily.km.value} km · {fmt(daily.ascentM.value)} m<Ref n={ref(daily.km.source)} />
             <small>average distance and ascent</small>
           </dd>
         </div>
@@ -116,7 +146,7 @@ const routeAttribution = routeUrl && t.route ? sources[t.route.source].title.spl
         <div>
           <dt>Season</dt>
           <dd>
-            {t.season.text ?? t.season.months.map(monthName).join(", ")} <sup>{ref(t.season.source)}</sup>
+            {t.season.text ?? t.season.months.map(monthName).join(", ")}<Ref n={ref(t.season.source)} />
             {t.season.text && <small>{t.season.months.map(monthName).join(", ")}</small>}
           </dd>
         </div>
@@ -124,17 +154,19 @@ const routeAttribution = routeUrl && t.route ? sources[t.route.source].title.spl
     </dl>
   </section>
 
-  <section>
+  <section id="map">
+    <h2 class="visually-hidden">Map</h2>
     <TrailMap
       client:visible
       routeUrl={routeUrl}
       start={t.termini.start}
       end={t.termini.end}
       routeAttribution={routeAttribution}
+      water={water?.points.map((p) => ({ lat: p.lat, lon: p.lon, kind: p.kind })) ?? []}
     />
   </section>
 
-  <section>
+  <section id="where">
     <h2>Where</h2>
     <dl class="facts">
       <dt>Country</dt>
@@ -152,7 +184,7 @@ const routeAttribution = routeUrl && t.route ? sources[t.route.source].title.spl
         </>
       )}
       <dt>From</dt>
-      <dd>{t.termini.start.name} <sup>{ref(t.termini.source)}</sup></dd>
+      <dd>{t.termini.start.name}<Ref n={ref(t.termini.source)} /></dd>
       <dt>To</dt>
       <dd>{t.termini.end.name}</dd>
       <dt>Type</dt>
@@ -162,21 +194,21 @@ const routeAttribution = routeUrl && t.route ? sources[t.route.source].title.spl
       {t.waymarking && (
         <>
           <dt>Waymarking</dt>
-          <dd>{t.waymarking.text} <sup>{ref(t.waymarking.source)}</sup></dd>
+          <dd>{t.waymarking.text}<Ref n={ref(t.waymarking.source)} /></dd>
         </>
       )}
     </dl>
   </section>
 
   {(t.sleeping || t.wildCamping) && (
-    <section>
+    <section id="sleeping">
       <h2>Sleeping</h2>
       <dl class="facts">
         {t.sleeping && (
           <>
             <dt>Along the trail</dt>
             <dd>
-              {t.sleeping.types.map((s) => SLEEPING_LABELS[s]).join(", ")} <sup>{ref(t.sleeping.source)}</sup>
+              {t.sleeping.types.map((s) => SLEEPING_LABELS[s]).join(", ")}<Ref n={ref(t.sleeping.source)} />
             </dd>
           </>
         )}
@@ -184,8 +216,7 @@ const routeAttribution = routeUrl && t.route ? sources[t.route.source].title.spl
           <>
             <dt>Wild camping</dt>
             <dd>
-              <strong>{WILD_CAMPING_LABELS[t.wildCamping.status]}.</strong> {t.wildCamping.rule}{" "}
-              <sup>{ref(t.wildCamping.source)}</sup>
+              <strong>{WILD_CAMPING_LABELS[t.wildCamping.status]}.</strong> {t.wildCamping.rule}<Ref n={ref(t.wildCamping.source)} />
             </dd>
           </>
         )}
@@ -193,9 +224,61 @@ const routeAttribution = routeUrl && t.route ? sources[t.route.source].title.spl
     </section>
   )}
 
+  {water && waterTotals && (
+    <section id="water">
+      <h2>Water</h2>
+      <dl class="facts">
+        <dt>Drinking water</dt>
+        <dd>
+          {waterTotals.drinking} points within {water.withinM} m of the trail<Ref n={ref(water.source)} />
+        </dd>
+        <dt>Springs</dt>
+        <dd>
+          {waterTotals.springs} more, drinkability unknown<Ref n={ref(water.source)} />
+        </dd>
+        <dt>Longest stretch</dt>
+        <dd>
+          <strong>{water.longestGapKm.drinking.km} km</strong> without drinking water,{" "}
+          {`from km ${water.longestGapKm.drinking.fromKm} to ${water.longestGapKm.drinking.toKm}${gapStages}`}<Ref n={ref(water.source)} />
+          {water.longestGapKm.any.km < water.longestGapKm.drinking.km && (
+            <span class="muted"> · {water.longestGapKm.any.km} km counting springs</span>
+          )}
+        </dd>
+      </dl>
+      <div class="scroll">
+        <table class="compact">
+          <thead>
+            <tr>
+              <th>Stage</th>
+              <th class="num">Drinking water</th>
+              <th class="num">Springs</th>
+            </tr>
+          </thead>
+          <tbody>
+            {water.stages.map((s) => (
+              <tr class={s.kind}>
+                <td>
+                  {s.number}
+                  {s.kind !== "main" && <small> {s.kind}</small>}
+                </td>
+                <td class="num">{s.drinking}</td>
+                <td class="num">{s.springs}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+      <p class="note muted">
+        From OpenStreetMap, which may miss sources or list ones that have gone. Kilometres are measured along the map
+        line ({water.routeKm} km for the main stages). Springs can run dry in late summer; treat water from springs and
+        streams.
+      </p>
+    </section>
+  )}
+
   {t.stages && (
-    <section>
-      <h2>Stages <sup>{ref(t.stages.source)}</sup></h2>
+    <section id="stages">
+      <h2>Stages<Ref n={ref(t.stages.source)} /></h2>
       <div class="scroll">
         <table>
           <thead>
@@ -233,18 +316,18 @@ const routeAttribution = routeUrl && t.route ? sources[t.route.source].title.spl
           </tbody>
         </table>
       </div>
-      <p class="muted"><small>Totals and averages use the main stages only, not the approach or variants.</small></p>
+      <p class="note muted">Totals and averages use the main stages only, not the approach or variants.</p>
     </section>
   )}
 
-  <section class="sources">
+  <section id="sources" class="sources">
     <h2>Sources</h2>
     <ol>
-      {t.sources.map((s) => (
-        <li>
+      {t.sources.map((s, i) => (
+        <li id={`source-${i + 1}`}>
           <a href={s.url}>{s.title}</a> · {s.licence} ·{" "}
           {s.retrieved ? `retrieved ${s.retrieved.toISOString().slice(0, 10)}` : "not yet verified"}
-          {s.note && <span class="muted"> · {s.note}</span>}
+          {s.note && <span> · {s.note}</span>}
         </li>
       ))}
     </ol>
@@ -252,8 +335,21 @@ const routeAttribution = routeUrl && t.route ? sources[t.route.source].title.spl
 </Base>
 
 <style>
-  .key {
-    margin-top: 32px;
+  :global(html) {
+    scroll-behavior: smooth;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    :global(html) {
+      scroll-behavior: auto;
+    }
+  }
+  .visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    white-space: nowrap;
   }
   .crumbs {
     margin-top: 32px;
@@ -269,8 +365,44 @@ const routeAttribution = routeUrl && t.route ? sources[t.route.source].title.spl
   .subtitle {
     margin: 0;
   }
+
+  .onpage {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    margin: 24px -16px 0;
+    padding: 0 16px;
+    background: var(--bg);
+    border-bottom: 1px solid var(--line);
+  }
+  .onpage ul {
+    display: flex;
+    gap: 24px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+  .onpage a {
+    display: block;
+    padding: 12px 0;
+    color: var(--muted);
+    font-size: 0.9rem;
+    font-weight: 500;
+    text-decoration: none;
+    white-space: nowrap;
+  }
+  .onpage a:hover {
+    color: var(--text);
+  }
+
   section {
     margin-top: 48px;
+    scroll-margin-top: 64px;
+  }
+  .key {
+    margin-top: 32px;
   }
   .figures {
     display: grid;
@@ -298,10 +430,8 @@ const routeAttribution = routeUrl && t.route ? sources[t.route.source].title.spl
     line-height: 1.3;
   }
   .figures small {
-    font-family: var(--sans);
-  }
-  .figures small {
     display: block;
+    font-family: var(--sans);
     font-size: 0.75em;
     font-weight: 400;
     color: var(--muted);
@@ -325,16 +455,8 @@ const routeAttribution = routeUrl && t.route ? sources[t.route.source].title.spl
       margin-bottom: 8px;
     }
   }
-  sup {
-    margin-left: 1px;
-    color: var(--muted);
-    font-family: var(--sans);
-    font-size: 0.5em;
-    font-weight: 400;
-  }
-  .facts sup,
-  h2 sup {
-    font-size: 0.65em;
+  .note {
+    font-size: 0.8rem;
   }
   .sources {
     font-size: 0.8rem;
@@ -350,6 +472,10 @@ const routeAttribution = routeUrl && t.route ? sources[t.route.source].title.spl
   .sources li {
     margin-bottom: 4px;
   }
+  .sources li:target {
+    color: var(--text);
+    background: var(--accent-soft);
+  }
   .scroll {
     overflow-x: auto;
   }
@@ -357,6 +483,11 @@ const routeAttribution = routeUrl && t.route ? sources[t.route.source].title.spl
     border-collapse: collapse;
     width: 100%;
     font-size: 0.95em;
+  }
+  table.compact {
+    width: auto;
+    min-width: 320px;
+    margin-top: 16px;
   }
   th,
   td {

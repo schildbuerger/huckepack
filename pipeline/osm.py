@@ -88,21 +88,31 @@ def resample(points, step):
     return out
 
 
-def overpass_query(track_lonlat, tolerance_points=150):
-    """Ways around a polyline; the polyline is thinned to keep the query short."""
-    stride = max(1, len(track_lonlat) // tolerance_points)
-    thin = track_lonlat[::stride] + [track_lonlat[-1]]
-    coords = ",".join(f"{lat:.5f},{lon:.5f}" for lon, lat in thin)
+def around(line_lonlat, max_points=150):
+    """Overpass `around` coordinates for a polyline, thinned to keep the query short.
+    Thinning cuts corners, so callers query a wider radius and filter precisely afterwards."""
+    stride = max(1, len(line_lonlat) // max_points)
+    thin = line_lonlat[::stride] + [line_lonlat[-1]]
+    return ",".join(f"{lat:.5f},{lon:.5f}" for lon, lat in thin)
+
+
+def overpass_query(track_lonlat):
+    """Ways around a track."""
     return (
         f"[out:json][timeout:120];"
         f'way["highway"]["highway"!~"^(motorway|motorway_link|trunk|trunk_link|construction|proposed|platform)$"]'
-        f"(around:{SEARCH_RADIUS_M},{coords});"
+        f"(around:{SEARCH_RADIUS_M},{around(track_lonlat)});"
         f"out skel;>;out skel qt;"
     )
 
 
 def fetch_ways(track_lonlat):
-    body = urllib.parse.urlencode({"data": overpass_query(track_lonlat)}).encode()
+    return fetch(overpass_query(track_lonlat))
+
+
+def fetch(query):
+    """Run an Overpass query, retrying while the server is busy."""
+    body = urllib.parse.urlencode({"data": query}).encode()
     request = urllib.request.Request(OVERPASS, data=body, headers={"User-Agent": USER_AGENT})
     for attempt in range(5):
         try:

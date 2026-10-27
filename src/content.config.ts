@@ -152,9 +152,44 @@ const trail = z
     }
   });
 
+// Data the pipeline derives for a trail (data/derived/<slug>.json, never edited by hand).
+const gap = z.object({ km: z.number(), fromKm: z.number(), toKm: z.number() });
+const stageKind = z.enum(["main", "approach", "variant"]);
+const derived = z.object({
+  // pipeline/water.py: drinking water and springs near the route, from OpenStreetMap
+  water: z
+    .object({
+      source: sourceRef, // an id in the trail's `sources`
+      retrieved: z.coerce.date(),
+      withinM: z.number(),
+      routeKm: z.number(), // the main route measured along the map line
+      longestGapKm: z.object({ drinking: gap, any: gap }),
+      stages: z.array(
+        z.object({ number: z.string(), kind: stageKind, drinking: z.number().int(), springs: z.number().int() }),
+      ),
+      points: z.array(
+        z.object({
+          lat: z.number(),
+          lon: z.number(),
+          kind: z.enum(["drinking", "spring"]),
+          name: z.string().nullable(),
+          stage: z.string(),
+          stageKind,
+          km: z.number().nullable(), // along the main route; null on approaches and variants
+          offM: z.number(),
+        }),
+      ),
+    })
+    .optional(),
+});
+
 export const collections = {
   trails: defineCollection({
     loader: glob({ pattern: "*.yaml", base: "./data/trails" }),
     schema: trail,
+  }),
+  derived: defineCollection({
+    loader: glob({ pattern: "*.json", base: "./data/derived" }),
+    schema: derived,
   }),
 };

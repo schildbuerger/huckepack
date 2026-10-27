@@ -1,0 +1,26 @@
+---
+// Footnote marker: the source's number, linking to it in the page's source list. Place it
+// right after the figure, with no space: `101.2 km<Ref n={…} />`.
+interface Props {
+  n: number | undefined;
+}
+const { n } = Astro.props;
+---
+{n !== undefined && <sup class="ref"><a href={`#source-${n}`}>{n}</a></sup>}
+<style>
+  .ref {
+    margin-left: 1px;
+    font-family: var(--sans);
+    font-size: 0.68rem;
+    font-weight: 400;
+    line-height: 0;
+    letter-spacing: 0;
+  }
+  .ref a {
+    color: var(--muted);
+    text-decoration: none;
+  }
+  .ref a:hover {
+    color: var(--accent);
+  }
+</style>

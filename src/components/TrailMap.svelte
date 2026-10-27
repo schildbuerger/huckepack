@@ -18,10 +18,18 @@
     start,
     end,
     routeAttribution,
-  }: { routeUrl: string | null; start: Point; end: Point; routeAttribution: string | null } = $props();
+    water = [],
+  }: {
+    routeUrl: string | null;
+    start: Point;
+    end: Point;
+    routeAttribution: string | null;
+    water?: { lat: number; lon: number; kind: "drinking" | "spring" }[];
+  } = $props();
 
   const STYLE = "https://tiles.openfreemap.org/styles/liberty";
   const ROUTE = "#b0502a";
+  const WATER = "#2b6a9a";
 
   let container: HTMLDivElement;
   let failed = $state(false);
@@ -92,6 +100,30 @@
             paint: { "line-color": ROUTE, "line-width": 4 },
           });
         }
+        if (water.length > 0) {
+          map.addSource("water", {
+            type: "geojson",
+            data: {
+              type: "FeatureCollection",
+              features: water.map((w) => ({
+                type: "Feature",
+                properties: { kind: w.kind },
+                geometry: { type: "Point", coordinates: [w.lon, w.lat] },
+              })),
+            },
+          });
+          map.addLayer({
+            id: "water",
+            type: "circle",
+            source: "water",
+            paint: {
+              "circle-radius": ["interpolate", ["linear"], ["zoom"], 9, 3, 14, 6],
+              "circle-color": ["case", ["==", ["get", "kind"], "drinking"], WATER, "#ffffff"],
+              "circle-stroke-color": WATER,
+              "circle-stroke-width": 1.5,
+            },
+          });
+        }
         map.addSource("termini", {
           type: "geojson",
           data: {
@@ -135,6 +167,8 @@
   <li><span class="key other"></span> Approach or variant</li>
   <li><span class="key dot start"></span> {start.name}</li>
   <li><span class="key dot end"></span> {end.name}</li>
+  {#if water.some((w) => w.kind === "drinking")}<li><span class="key water drinking"></span> Drinking water</li>{/if}
+  {#if water.some((w) => w.kind === "spring")}<li><span class="key water spring"></span> Spring</li>{/if}
 </ul>
 
 <style>
@@ -184,6 +218,18 @@
   }
   .key.end {
     background: #1f2421;
+  }
+  .key.water {
+    width: 9px;
+    height: 9px;
+    border: 1.5px solid #2b6a9a;
+    border-radius: 50%;
+  }
+  .key.drinking {
+    background: #2b6a9a;
+  }
+  .key.spring {
+    background: #ffffff;
   }
   @media (prefers-color-scheme: dark) {
     .key.dot {
