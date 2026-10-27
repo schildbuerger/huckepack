@@ -1,6 +1,7 @@
 <script lang="ts">
   // Searches, filters and sorts the trail index in the browser; the index is small enough
   // to ship whole.
+  import { onMount } from "svelte";
   import { SLEEPING_CATEGORIES, type TrailSummary } from "../lib/trails";
 
   let { trails }: { trails: TrailSummary[] } = $props();
@@ -8,6 +9,10 @@
   const SAC = ["T1", "T2", "T3", "T4", "T5", "T6"];
 
   let query = $state("");
+  // a search handed over from elsewhere, e.g. the home page: /trails/?q=…
+  onMount(() => {
+    query = new URLSearchParams(location.search).get("q") ?? "";
+  });
   let continent = $state("");
   let country = $state("");
   let maxSac = $state("");

@@ -1,88 +1,168 @@
 ---
-import { getCollection } from "astro:content";
+import { getCollection, getEntry } from "astro:content";
 import Base from "../layouts/Base.astro";
 import Icon, { type IconName } from "../components/Icon.astro";
-import { summarize } from "../lib/trails";
+import { mainStages, summarize } from "../lib/trails";
 
-const trails = (await getCollection("trails"))
-  .map(({ id, data }) => summarize(id, data))
-  .sort((a, b) => a.name.localeCompare(b.name));
-const countries = new Set(trails.flatMap((t) => t.countries)).size;
-const days = (d: [number, number] | null) => (d === null ? null : d[0] === d[1] ? `${d[0]} days` : `${d[0]}–${d[1]} days`);
+const entries = (await getCollection("trails")).sort((a, b) => a.data.name.localeCompare(b.data.name));
+const trails = entries.map(({ id, data }) => summarize(id, data));
+const fmt = (n: number) => n.toLocaleString("en");
+const days = (d: [number, number] | null) => (d === null ? null : d[0] === d[1] ? `${d[0]}` : `${d[0]}–${d[1]}`);
+
+// totals for the strip under the hero
+const totals = {
+  trails: trails.length,
+  countries: new Set(trails.flatMap((t) => t.countries)).size,
+  km: Math.round(trails.reduce((sum, t) => sum + (t.lengthKm ?? 0), 0)),
+  stages: entries.reduce((sum, e) => sum + mainStages(e.data).length, 0),
+};
+
+// the featured trail: the first one for now; its elevation profile and surfaces as previews
+const featured = trails[0];
+const featuredDerived = featured && (await getEntry("derived", featured.slug))?.data;
+const elevation = featuredDerived?.elevation;
+const surface = featuredDerived?.surface;
+const W = 1000;
+const H = 110;
+const spark = (() => {
+  if (!elevation) return null;
+  const step = Math.max(1, Math.floor(elevation.points.length / 200));
+  const pts = elevation.points.filter((_, i) => i % step === 0);
+  const lo = elevation.lowest.m - 80;
+  const hi = elevation.highest.m + 40;
+  const x = (km: number) => (km / elevation.routeKm) * W;
+  const y = (m: number) => H - ((m - lo) / (hi - lo)) * (H - 8);
+  const line = pts.map(([km, m], i) => `${i ? "L" : "M"}${x(km).toFixed(1)},${y(m).toFixed(1)}`).join("");
+  return { line, area: `${line}L${W},${H}L0,${H}Z`, peak: elevation.highest.m };
+})();
 
 const features: { icon: IconName; title: string; text: string }[] = [
-  {
-    icon: "chart-column",
-    title: "Compare the long trails",
-    text: "Length, total ascent, days and difficulty side by side, with filters for continent, country and how hard a trail is.",
-  },
-  {
-    icon: "list-ordered",
-    title: "Plan by stage",
-    text: "Every official stage with distance, ascent, descent and walking time, and what a typical day on the trail asks of you.",
-  },
-  {
-    icon: "tent",
-    title: "Know where to sleep",
-    text: "Which kinds of places to stay exist along the way, and whether wild camping is allowed, restricted or banned, with the rule.",
-  },
-  {
-    icon: "map",
-    title: "See the route",
-    text: "Each trail drawn on an OpenStreetMap map, stage by stage, with approaches and variants.",
-  },
-  {
-    icon: "badge-check",
-    title: "Every number has a source",
-    text: "Sources disagree about trails. We show where each figure comes from and when we checked it, instead of picking one quietly.",
-  },
+  { icon: "chart-column", title: "Key figures", text: "Length, ascent and descent, difficulty on the SAC scale, days, distance per day and the season." },
+  { icon: "map", title: "Map", text: "The route on an OpenStreetMap map, stage by stage, with approaches and variants." },
+  { icon: "footprints", title: "Surfaces", text: "How much is natural ground, gravel or paved, and where along the trail." },
+  { icon: "mountain", title: "Elevation", text: "The full profile with the highest and lowest points, on the same kilometres as everything else." },
+  { icon: "list-ordered", title: "Stages", text: "Every official stage with distance, ascent, descent, elevation and walking time." },
+  { icon: "tent", title: "Sleeping", text: "Huts, campsites, hostels and rooms along the way, and whether wild camping is allowed." },
+  { icon: "droplet", title: "Water", text: "Drinking water and springs along the route, and the longest stretch without." },
+  { icon: "train-front", title: "Getting there", text: "The nearest main station and airports, with the road distance to the start." },
+];
+
+const sources = [
+  { name: "Trail operators", what: "Official stages, distances, times and rules" },
+  { name: "OpenStreetMap", what: "Route, surfaces, water points and the map" },
+  { name: "Copernicus DEM", what: "Elevation profile, via Open-Meteo" },
+  { name: "OSRM", what: "Road distances from travel hubs" },
 ];
 ---
 
 <Base
-  title="huckepack · long-distance hiking trails, compared"
-  description="Facts about official long-distance hiking trails around the world: length, ascent, stages, difficulty, where to sleep and maps, each with its source."
+  title="huckepack · find your next outdoor adventure"
+  description="Official long-distance hiking trails, compared: length, ascent, stages, surfaces, elevation, where to sleep, water and maps, each with its source."
   section="home"
 >
   <section class="hero">
     <p class="eyebrow">Long-distance hiking trails</p>
-    <h1>Find your next long walk.</h1>
+    <h1>Find your next outdoor adventure.</h1>
     <p class="lede">
-      huckepack collects what you need to know about the world's official long-distance trails: how long, how
-      steep, how many days, where to sleep. Every figure comes with its source.
+      huckepack collects what you need to plan a long walk on the world's official trails: how long and how steep,
+      how many days, what's underfoot, where to sleep and where to find water. Every figure comes with its source.
     </p>
-    <p class="actions">
-      <a class="button" href="/trails/">Browse trails</a>
-      <span class="muted">{trails.length} {trails.length === 1 ? "trail" : "trails"} in {countries} {countries === 1 ? "country" : "countries"} so far</span>
-    </p>
+    <form class="search" action="/trails/" method="get" role="search">
+      <label class="visually-hidden" for="home-q">Search trails</label>
+      <input id="home-q" type="search" name="q" placeholder="Search a trail, country or region…" />
+      <button class="button" type="submit">Find trails</button>
+    </form>
   </section>
 
-  <section class="features">
-    {features.map((f) => (
-      <div class="feature">
-        <span class="feature-icon"><Icon name={f.icon} size={20} /></span>
-        <h3>{f.title}</h3>
-        <p>{f.text}</p>
-      </div>
-    ))}
+  <dl class="strip totals">
+    <div><dt>Trails</dt><dd>{totals.trails}</dd></div>
+    <div><dt>{totals.countries === 1 ? "Country" : "Countries"}</dt><dd>{totals.countries}</dd></div>
+    <div><dt>Kilometres documented</dt><dd>{fmt(totals.km)}</dd></div>
+    <div><dt>Official stages</dt><dd>{totals.stages}</dd></div>
+  </dl>
+
+  {featured && (
+    <section class="block">
+      <h2>Featured trail</h2>
+      <a class="featured" href={`/trails/${featured.slug}/`}>
+        <div class="featured-head">
+          <p class="place">{[...featured.countries, ...featured.regions].join(" · ")}</p>
+          <p class="name">{featured.name}</p>
+          {featured.localName && <p class="local">{featured.localName}</p>}
+        </div>
+        <dl class="featured-figures">
+          {featured.lengthKm !== null && <div><dt>Length</dt><dd>{fmt(featured.lengthKm)}<span>km</span></dd></div>}
+          {featured.ascentM !== null && <div><dt>Ascent</dt><dd>{fmt(featured.ascentM)}<span>m ↑</span></dd></div>}
+          {featured.days && <div><dt>Suggested</dt><dd>{days(featured.days)}<span>days</span></dd></div>}
+          {featured.sac && <div><dt>Difficulty</dt><dd>{featured.sac}<span>SAC</span></dd></div>}
+        </dl>
+        {spark && (
+          <div class="preview" aria-hidden="true">
+            <svg class="spark" viewBox={`0 0 ${W} ${H}`} preserveAspectRatio="none">
+              <path class="spark-area" d={spark.area} />
+              <path class="spark-line" d={spark.line} vector-effect="non-scaling-stroke" />
+            </svg>
+            {surface && (
+              <svg class="surf" viewBox={`0 0 ${W} 8`} preserveAspectRatio="none">
+                {surface.runs.map((r) => (
+                  <rect
+                    x={(r.fromKm / surface.routeKm) * W}
+                    width={Math.max(((r.toKm - r.fromKm) / surface.routeKm) * W, 0.6)}
+                    height="8"
+                    style={`fill: var(--surface-${r.category})`}
+                  />
+                ))}
+              </svg>
+            )}
+            <p class="preview-caption">Elevation profile (highest point {fmt(spark.peak)} m) and surfaces along the trail</p>
+          </div>
+        )}
+        <span class="open">Open the trail →</span>
+      </a>
+    </section>
+  )}
+
+  <section class="block">
+    <h2>On every trail page</h2>
+    <ul class="features">
+      {features.map((f) => (
+        <li>
+          <span class="feature-icon"><Icon name={f.icon} size={18} /></span>
+          <div>
+            <p class="feature-title">{f.title}</p>
+            <p class="feature-text">{f.text}</p>
+          </div>
+        </li>
+      ))}
+    </ul>
   </section>
 
-  <section>
-    <h2>Trails</h2>
+  <section class="block">
+    <h2>Built on open data</h2>
+    <p class="intro muted">
+      Sources disagree about trails, so we don't pick a number quietly: every figure names where it comes from, and each
+      trail page lists its sources with their licences.
+    </p>
+    <dl class="strip sources">
+      {sources.map((s) => (
+        <div>
+          <dt>{s.name}</dt>
+          <dd>{s.what}</dd>
+        </div>
+      ))}
+    </dl>
+  </section>
+
+  <section class="block">
+    <h2>All trails</h2>
     <ul class="cards">
       {trails.map((t) => (
         <li>
           <a class="card" href={`/trails/${t.slug}/`}>
-            <span class="card-place muted">
-              {t.countries.join(", ")}
-              {t.regions.length > 0 && ` · ${t.regions.join(", ")}`}
-            </span>
-            <span class="card-name">
-              {t.name} {t.draft && <span class="badge">draft</span>}
-            </span>
-            {t.localName && <span class="card-local muted">{t.localName}</span>}
+            <span class="card-place">{t.countries.join(", ")}</span>
+            <span class="card-name">{t.name}</span>
             <span class="card-figures">
-              {[t.lengthKm !== null && `${t.lengthKm.toLocaleString("en")} km`, days(t.days), t.sac && `SAC ${t.sac}`]
+              {[t.lengthKm !== null && `${fmt(t.lengthKm)} km`, t.days && `${days(t.days)} days`, t.sac && `SAC ${t.sac}`]
                 .filter(Boolean)
                 .join(" · ")}
             </span>
@@ -95,9 +175,17 @@ const features: { icon: IconName; title: string; text: string }[] = [
 </Base>
 
 <style>
+  .visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    white-space: nowrap;
+  }
   .hero {
-    padding: 32px 0 40px;
-    max-width: 680px;
+    padding: 40px 0 32px;
+    max-width: 720px;
   }
   .eyebrow {
     margin: 0;
@@ -108,61 +196,235 @@ const features: { icon: IconName; title: string; text: string }[] = [
     text-transform: uppercase;
   }
   .hero h1 {
-    margin-top: 12px;
-    font-size: clamp(2.4rem, 7vw, 3.75rem);
+    margin: 12px 0 0;
+    font-size: clamp(2.3rem, 6.5vw, 3.6rem);
   }
   .lede {
-    font-size: 1.15rem;
+    margin: 16px 0 0;
     color: var(--muted);
+    font-size: 1.12rem;
   }
-  .actions {
+  .search {
     display: flex;
     flex-wrap: wrap;
-    gap: 16px;
-    align-items: center;
+    gap: 8px;
     margin-top: 28px;
   }
-  .actions .muted {
-    font-size: 0.9rem;
+  .search input {
+    flex: 1 1 260px;
+    padding: 11px 16px;
+    border-radius: 999px;
   }
+  .search .button {
+    border: 0;
+    font: inherit;
+    font-weight: 600;
+    cursor: pointer;
+  }
+
+  /* strips: a rule on top, hairlines between items, like the trail pages; label first in the
+     markup (dt before dd), value first on screen */
+  .strip {
+    display: grid;
+    margin: 0;
+    border-top: 1px solid var(--text);
+    border-bottom: 1px solid var(--line);
+  }
+  .strip > div {
+    padding: 14px 16px;
+    border-left: 1px solid var(--line);
+  }
+  .strip > div:first-child {
+    padding-left: 0;
+    border-left: 0;
+  }
+  .totals,
+  .sources {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  @media (min-width: 720px) {
+    .totals,
+    .sources {
+      grid-template-columns: repeat(4, 1fr);
+    }
+  }
+  @media (max-width: 719px) {
+    .totals > div:nth-child(3),
+    .sources > div:nth-child(3) {
+      padding-left: 0;
+      border-left: 0;
+    }
+    .totals > div:nth-child(n + 3),
+    .sources > div:nth-child(n + 3) {
+      border-top: 1px solid var(--line);
+    }
+  }
+  .totals div,
+  .featured-figures div {
+    display: flex;
+    flex-direction: column;
+  }
+  .totals dd,
+  .featured-figures dd {
+    order: 1;
+    margin: 0;
+    font-family: var(--serif);
+    font-weight: 600;
+    line-height: 1.15;
+  }
+  .totals dd {
+    font-size: 1.9rem;
+  }
+  .totals dt,
+  .featured-figures dt {
+    order: 2;
+    color: var(--muted);
+    font-size: 0.8rem;
+  }
+
+  .block {
+    margin-top: 56px;
+  }
+  .block h2 {
+    margin-bottom: 14px;
+  }
+
+  /* featured trail */
+  .featured {
+    display: grid;
+    gap: 20px;
+    padding: 24px;
+    border-radius: 14px;
+    background: var(--surface);
+    color: var(--text);
+    text-decoration: none;
+  }
+  .featured:hover .open {
+    text-decoration: underline;
+  }
+  .featured-head p {
+    margin: 0;
+  }
+  .place {
+    color: var(--muted);
+    font-size: 0.85rem;
+  }
+  .name {
+    font-family: var(--serif);
+    font-size: clamp(1.6rem, 4vw, 2.1rem);
+    font-weight: 600;
+    line-height: 1.2;
+  }
+  .local {
+    color: var(--muted);
+    font-style: italic;
+  }
+  .featured-figures {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px 32px;
+    margin: 0;
+  }
+  .featured-figures dd {
+    font-size: 1.5rem;
+  }
+  .featured-figures dd span {
+    margin-left: 4px;
+    color: var(--muted);
+    font-family: var(--sans);
+    font-size: 0.8rem;
+    font-weight: 400;
+  }
+  .preview svg {
+    display: block;
+    width: 100%;
+  }
+  .spark {
+    height: 90px;
+  }
+  .spark-area {
+    fill: var(--accent);
+    opacity: 0.14;
+  }
+  .spark-line {
+    fill: none;
+    stroke: var(--accent);
+    stroke-width: 2;
+    stroke-linejoin: round;
+  }
+  .surf {
+    height: 8px;
+    margin-top: 4px;
+    border-radius: 2px;
+  }
+  .preview-caption {
+    margin: 8px 0 0;
+    color: var(--muted);
+    font-size: 0.78rem;
+  }
+  .open {
+    color: var(--accent);
+    font-weight: 600;
+  }
+
+  /* features */
   .features {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-    gap: 1px;
-    margin-bottom: 48px;
-    border: 1px solid var(--line);
-    border-radius: 12px;
-    overflow: hidden;
-    background: var(--line);
+    grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+    gap: 20px 28px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
   }
-  .feature {
-    padding: 24px;
-    background: var(--bg);
+  .features li {
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
   }
   .feature-icon {
+    flex: none;
     display: grid;
     place-items: center;
-    width: 36px;
-    height: 36px;
-    margin-bottom: 12px;
+    width: 34px;
+    height: 34px;
     border-radius: 10px;
     background: var(--accent-soft);
     color: var(--accent);
   }
-  .feature h3 {
-    margin: 0 0 8px;
-    font-size: 1.15rem;
-  }
-  .feature p {
+  .features p {
     margin: 0;
-    color: var(--muted);
-    font-size: 0.95rem;
   }
+  .feature-title {
+    font-family: var(--serif);
+    font-size: 1.05rem;
+    font-weight: 600;
+  }
+  .feature-text {
+    color: var(--muted);
+    font-size: 0.88rem;
+    line-height: 1.45;
+  }
+
+  /* sources */
+  .intro {
+    max-width: 66ch;
+    margin: 0 0 16px;
+  }
+  .sources dt {
+    font-weight: 600;
+  }
+  .sources dd {
+    margin: 2px 0 0;
+    color: var(--muted);
+    font-size: 0.85rem;
+  }
+
+  /* all trails */
   .cards {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-    gap: 16px;
-    margin: 0 0 24px;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 12px;
+    margin: 0 0 16px;
     padding: 0;
     list-style: none;
   }
@@ -171,36 +433,28 @@ const features: { icon: IconName; title: string; text: string }[] = [
     flex-direction: column;
     gap: 4px;
     height: 100%;
-    padding: 20px;
+    padding: 18px;
+    border: 1px solid var(--line);
     border-radius: 12px;
-    background: var(--surface);
     color: var(--text);
     text-decoration: none;
-    transition: transform 0.15s ease;
   }
   .card:hover {
-    transform: translateY(-2px);
+    border-color: var(--accent);
   }
   .card-place {
+    color: var(--muted);
     font-size: 0.8rem;
   }
   .card-name {
     font-family: var(--serif);
-    font-size: 1.35rem;
+    font-size: 1.25rem;
     font-weight: 600;
-  }
-  .card-local {
-    font-size: 0.9rem;
   }
   .card-figures {
-    margin-top: 12px;
+    margin-top: 8px;
     color: var(--accent);
-    font-weight: 600;
     font-size: 0.9rem;
-  }
-  @media (prefers-reduced-motion: reduce) {
-    .card {
-      transition: none;
-    }
+    font-weight: 600;
   }
 </style>
