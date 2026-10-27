@@ -85,6 +85,10 @@ const sleepingRows = sleeping.map((c) =>
 const WATER_STATUS = { frequent: "available", regular: "restricted", scarce: "prohibited" } as const;
 const waterStatus = level && { ...STATUS[WATER_STATUS[level.id]], word: level.label };
 
+// strip charts (water, surfaces, elevation) share one geometry: a 1000-unit wide viewBox, km across
+const CHART = { width: 1000, x0: 8, x1: 992, axis: 92, lanes: { drinking: 46, spring: 70 } };
+const xAt = (km: number, total = water?.routeKm || 1) => CHART.x0 + (km / total) * (CHART.x1 - CHART.x0);
+
 // surfaces along the main route (pipeline/surface.py), in a fixed order, soft to hard
 const surface = derived?.surface;
 const SURFACES = [
@@ -102,6 +106,29 @@ const surfaceStarts =
   surface?.runs.filter((r, i, all) => i === 0 || all[i - 1].stage !== r.stage).map((r) => ({ number: r.stage, km: r.fromKm })) ?? [];
 const pct = (share: number) => `${Math.round(share * 100)}%`;
 
+// elevation profile (pipeline/elevation.py): an area chart on the same kilometres
+const elevation = derived?.elevation;
+const PROFILE = { top: 18, bottom: 120 };
+const eleRange = elevation && {
+  min: Math.floor((elevation.lowest.m - 50) / 200) * 200,
+  max: Math.ceil((elevation.highest.m + 50) / 200) * 200,
+};
+const yAt = (m: number) =>
+  eleRange ? PROFILE.bottom - ((m - eleRange.min) / (eleRange.max - eleRange.min)) * (PROFILE.bottom - PROFILE.top) : 0;
+const eleGrid = eleRange
+  ? Array.from({ length: 10 }, (_, i) => eleRange.min + i * (eleRange.max - eleRange.min > 1000 ? 400 : 200)).filter(
+      (m) => m > eleRange.min && m < eleRange.max,
+    )
+  : [];
+const profileLine =
+  elevation?.points.map(([km, m], i) => `${i ? "L" : "M"}${xAt(km, elevation.routeKm).toFixed(1)},${yAt(m).toFixed(1)}`).join("") ?? "";
+const profileArea =
+  elevation && `${profileLine}L${xAt(elevation.routeKm, elevation.routeKm)},${PROFILE.bottom}L${CHART.x0},${PROFILE.bottom}Z`;
+const stageAt = (starts: { number: string; km: number }[], km: number) =>
+  [...starts].reverse().find((st) => km >= st.km)?.number;
+const eleFirst = elevation?.points[0][1];
+const eleLast = elevation?.points.at(-1)![1];
+
 // stage ticks for the strip charts: a tick at each stage start, the label centred on its stretch
 const stageTicks = (starts: { number: string; km: number }[], total: number) =>
   starts.map((st, i) => {
@@ -114,8 +141,6 @@ const stageTicks = (starts: { number: string; km: number }[], total: number) =>
   });
 
 // water strip chart: the main route on the map line's kilometres
-const CHART = { width: 1000, x0: 8, x1: 992, axis: 92, lanes: { drinking: 46, spring: 70 } };
-const xAt = (km: number, total = water?.routeKm || 1) => CHART.x0 + (km / total) * (CHART.x1 - CHART.x0);
 const onRoute = water?.points.filter((p) => p.km !== null) ?? [];
 const chartSummary =
   water &&
@@ -139,6 +164,7 @@ const nav = [
   { id: "location", label: "Location", show: true },
   { id: "map", label: "Map", show: true },
   { id: "surfaces", label: "Surfaces", show: Boolean(surface) },
+  { id: "elevation", label: "Elevation", show: Boolean(elevation) },
   { id: "stages", label: "Stages", show: Boolean(t.stages) },
   { id: "sleeping", label: "Sleeping", show: Boolean(t.sleeping || t.wildCamping) },
   { id: "water", label: "Water", show: Boolean(water) },
@@ -369,6 +395,65 @@ const nav = [
     </section>
   )}
 
+  {elevation && eleRange && (
+    <section id="elevation">
+      <h2>Elevation</h2>
+      <dl class="strip spec three">
+        <div>
+          <dt>Highest point · km {elevation.highest.km.toFixed(1)}, stage {stageAt(elevation.stageStarts, elevation.highest.km)}</dt>
+          <dd><span class="big">{fmt(elevation.highest.m)}</span><span class="unit">m</span></dd>
+        </div>
+        <div>
+          <dt>Lowest point · km {elevation.lowest.km.toFixed(1)}, stage {stageAt(elevation.stageStarts, elevation.lowest.km)}</dt>
+          <dd><span class="big">{fmt(elevation.lowest.m)}</span><span class="unit">m</span></dd>
+        </div>
+        <div>
+          <dt>Start → finish</dt>
+          <dd>
+            <span class="big">{fmt(eleFirst!)}</span><span class="unit">→</span>
+            <span class="big">{fmt(eleLast!)}</span><span class="unit">m</span>
+          </dd>
+        </div>
+      </dl>
+
+      <figure class="chart profile" data-points={JSON.stringify(elevation.points)} data-total={elevation.routeKm} data-stages={JSON.stringify(elevation.stageStarts)}>
+        <svg
+          viewBox={`0 0 ${CHART.width} 166`}
+          role="img"
+          aria-label={`Elevation along the main route, ${elevation.routeKm} km: from ${fmt(eleFirst!)} m to ${fmt(eleLast!)} m, highest ${fmt(elevation.highest.m)} m at km ${elevation.highest.km.toFixed(1)}, lowest ${fmt(elevation.lowest.m)} m at km ${elevation.lowest.km.toFixed(1)}.`}
+        >
+          {eleGrid.map((m) => (
+            <g>
+              <line class="grid" x1={CHART.x0} x2={CHART.x1} y1={yAt(m)} y2={yAt(m)} />
+              <text class="grid-label" x={CHART.x0 + 2} y={yAt(m) - 4}>{fmt(m)} m</text>
+            </g>
+          ))}
+          <path class="area" d={profileArea} />
+          <path class="line" d={profileLine} />
+          <circle class="peak" cx={xAt(elevation.highest.km, elevation.routeKm)} cy={yAt(elevation.highest.m)} r="4" />
+          <text class="peak-label" x={xAt(elevation.highest.km, elevation.routeKm)} y={yAt(elevation.highest.m) - 9} text-anchor="middle">{fmt(elevation.highest.m)} m</text>
+          <line class="base" x1={CHART.x0} x2={CHART.x1} y1={PROFILE.bottom} y2={PROFILE.bottom} />
+          {stageTicks(elevation.stageStarts, elevation.routeKm).map((tk) => (
+            <g>
+              <line class="tick" x1={tk.x} x2={tk.x} y1={PROFILE.bottom} y2={PROFILE.bottom + 8} />
+              <text class="tick-label" x={tk.mid} y={PROFILE.bottom + 22} text-anchor="middle">{tk.label}</text>
+            </g>
+          ))}
+          <line class="tick" x1={CHART.x1} x2={CHART.x1} y1={PROFILE.bottom} y2={PROFILE.bottom + 8} />
+          <text class="tick-label end" x={CHART.x0} y={PROFILE.bottom + 40}>0 km</text>
+          <text class="tick-label end" x={CHART.x1} y={PROFILE.bottom + 40} text-anchor="end">{elevation.routeKm} km</text>
+          <line class="cursor" x1="0" x2="0" y1={PROFILE.top - 6} y2={PROFILE.bottom} visibility="hidden" />
+          <circle class="cursor-dot" cx="0" cy="0" r="4.5" visibility="hidden" />
+        </svg>
+        <div class="tip" role="status" hidden><strong></strong><span></span></div>
+        <figcaption class="muted">
+          From the Copernicus terrain model (90 m grid) via Open-Meteo, every {elevation.spacingM} m along the map line; may
+          differ from signposts by a few tens of metres. Hover or tap the profile for heights.
+        </figcaption>
+      </figure>
+    </section>
+  )}
+
   {t.stages && (
     <section id="stages">
       <h2>Stages</h2>
@@ -589,6 +674,57 @@ const nav = [
         show(pt);
       });
     }
+    document.addEventListener("click", hide);
+    document.addEventListener("keydown", (e) => e.key === "Escape" && hide());
+  }
+
+  // Elevation profile: a crosshair and the height at the pointer's kilometre.
+  for (const figure of document.querySelectorAll<HTMLElement>(".profile")) {
+    const svg = figure.querySelector("svg")!;
+    const tip = figure.querySelector<HTMLElement>(".tip")!;
+    const cursor = figure.querySelector<SVGLineElement>(".cursor")!;
+    const dot = figure.querySelector<SVGCircleElement>(".cursor-dot")!;
+    const points: [number, number][] = JSON.parse(figure.dataset.points!);
+    const stages: { number: string; km: number }[] = JSON.parse(figure.dataset.stages!);
+    const total = Number(figure.dataset.total);
+    const line = figure.querySelector<SVGPathElement>(".line")!;
+    const X0 = 8;
+    const X1 = 992;
+    const show = (clientX: number) => {
+      const box = svg.getBoundingClientRect();
+      const vx = Math.min(Math.max(((clientX - box.left) / box.width) * 1000, X0), X1);
+      const km = ((vx - X0) / (X1 - X0)) * total;
+      const [pkm, m] = points.reduce((a, b) => (Math.abs(b[0] - km) < Math.abs(a[0] - km) ? b : a));
+      // y of the plotted point: read it off the path at the same index
+      const idx = points.findIndex((p) => p[0] === pkm);
+      const y = Number(line.getAttribute("d")!.split(/[ML]/).filter(Boolean)[idx].split(",")[1]);
+      const stage = [...stages].reverse().find((s) => pkm >= s.km)?.number;
+      cursor.setAttribute("x1", String(vx));
+      cursor.setAttribute("x2", String(vx));
+      cursor.setAttribute("visibility", "visible");
+      dot.setAttribute("cx", String(vx));
+      dot.setAttribute("cy", String(y));
+      dot.setAttribute("visibility", "visible");
+      tip.querySelector("strong")!.textContent = `${m.toLocaleString("en")} m`;
+      tip.querySelector("span")!.textContent = `km ${pkm.toFixed(1)}${stage ? ` · stage ${stage}` : ""}`;
+      tip.hidden = false;
+      const fbox = figure.getBoundingClientRect();
+      const half = tip.offsetWidth / 2;
+      const px = box.left - fbox.left + (vx / 1000) * box.width;
+      tip.style.left = `${Math.min(Math.max(px, half), fbox.width - half)}px`;
+      tip.style.top = `${box.top - fbox.top + (y / 166) * box.height - 10}px`;
+    };
+    const hide = () => {
+      tip.hidden = true;
+      cursor.setAttribute("visibility", "hidden");
+      dot.setAttribute("visibility", "hidden");
+    };
+    svg.addEventListener("pointermove", (e) => show(e.clientX));
+    svg.addEventListener("pointerleave", (e) => e.pointerType === "mouse" && hide());
+    svg.addEventListener("click", (e) => {
+      e.stopPropagation();
+      show(e.clientX);
+    });
     document.addEventListener("click", hide);
     document.addEventListener("keydown", (e) => e.key === "Escape" && hide());
   }
@@ -1282,8 +1418,55 @@ const nav = [
     transform: scale(1.5);
   }
   .waterline,
-  .surfaceline {
+  .surfaceline,
+  .profile {
     position: relative;
+  }
+  .profile {
+    margin: 16px 0 0;
+  }
+  .profile svg {
+    display: block;
+    width: 100%;
+    height: auto;
+    overflow: visible;
+    cursor: crosshair;
+  }
+  .profile .area {
+    fill: var(--accent);
+    opacity: 0.14;
+  }
+  .profile .line {
+    fill: none;
+    stroke: var(--accent);
+    stroke-width: 2;
+    stroke-linejoin: round;
+  }
+  .profile .grid {
+    stroke: var(--line);
+    stroke-width: 1;
+  }
+  .profile .grid-label {
+    fill: var(--muted);
+    font: 11px var(--sans);
+  }
+  .profile .base {
+    stroke: var(--muted);
+    stroke-width: 1.5;
+  }
+  .profile .peak {
+    fill: var(--accent);
+    stroke: var(--bg);
+    stroke-width: 2;
+  }
+  .profile .peak-label {
+    fill: var(--text);
+    font: 600 12px var(--sans);
+  }
+  .profile .cursor-dot {
+    fill: var(--accent);
+    stroke: var(--bg);
+    stroke-width: 2;
   }
   .tip {
     position: absolute;

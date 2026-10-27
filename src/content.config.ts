@@ -198,6 +198,19 @@ const derived = z.object({
       ),
     })
     .optional(),
+  // pipeline/elevation.py: heights along the main route, sampled on the map line
+  elevation: z
+    .object({
+      source: sourceRef,
+      retrieved: z.coerce.date(),
+      spacingM: z.number(),
+      routeKm: z.number(),
+      stageStarts: z.array(z.object({ number: z.string(), km: z.number() })),
+      highest: z.object({ km: z.number(), m: z.number() }),
+      lowest: z.object({ km: z.number(), m: z.number() }),
+      points: z.array(z.tuple([z.number(), z.number()])), // [km, metres]
+    })
+    .optional(),
   // pipeline/surface.py: surface categories along the main route, from OpenStreetMap
   surface: z
     .object({

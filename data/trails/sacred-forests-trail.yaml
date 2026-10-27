@@ -122,6 +122,11 @@ sources:
     url: https://www.openstreetmap.org/copyright
     licence: ODbL 1.0
     retrieved: 2026-10-27
+  - id: openmeteo
+    title: "Open-Meteo Elevation API: Copernicus DEM GLO-90"
+    url: https://open-meteo.com/en/docs/elevation-api
+    licence: CC BY 4.0 (Open-Meteo); DEM © DLR/ESA Copernicus
+    retrieved: 2026-10-27
   - id: osrm
     title: "OSRM: road routes on OpenStreetMap data (router.project-osrm.org)"
     url: https://project-osrm.org/
