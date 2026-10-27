@@ -31,6 +31,12 @@ source before using it, and record the result here.
 | Open-Meteo historical weather API (ERA5, ERA5-Land) | Daily temperature, precipitation, snow by location | CC BY 4.0; contains modified Copernicus Climate Change Service information | In use: `pipeline/climate.py`, 1995–2024 at each trail's lowest and highest point |
 | WorldClim | Gridded monthly climate normals | Free for non-commercial use, check terms | Alternative for climate normals |
 
+## Methods
+
+| Method | What | Notes |
+|---|---|---|
+| DIN 33466 (German hiking standard) | Walking time from distance, ascent and descent: 4 km/h on the flat, 300 m/h up, 500 m/h down; the larger of flat and climbing time plus half the smaller | In use: `walkingMinutes()` in `src/lib/trails.ts`, only for stages whose source gives no time; shown as an estimate (≈), without breaks |
+
 ## Points of interest and facts
 
 | Source | What | Licence | Notes |

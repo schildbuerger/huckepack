@@ -251,3 +251,37 @@ export function gradients(points: Point[], stageStarts: { number: string; km: nu
     maxAbs: Math.max(...bars.map((b) => Math.abs(b.grade))),
   };
 }
+
+// Walking time by DIN 33466 (German hiking standard): 4 km/h on the flat, 300 m/h up, 500 m/h
+// down; the larger of the flat and the climbing time plus half the smaller. Rounded to 15 min.
+export function walkingMinutes(km: number, ascentM: number, descentM: number) {
+  const flat = km / 4;
+  const climb = ascentM / 300 + descentM / 500;
+  return Math.round(((Math.max(flat, climb) + Math.min(flat, climb) / 2) * 60) / 15) * 15;
+}
+
+// Estimates for stage figures a trail's source doesn't publish, per stage number: start and end
+// height from the elevation profile, rounded to 10 m (main stages only, the profile's extent) and the walking
+// time from the stage's own stated distance, ascent and descent (walkingMinutes). Published
+// figures are never replaced; the page marks these as estimates.
+export function stageEstimates(t: Trail, d?: DerivedData) {
+  const out = new Map<string, { startEleM?: number; endEleM?: number; minutes?: number }>();
+  const e = d?.elevation;
+  for (const s of t.stages?.list ?? []) {
+    const est: { startEleM?: number; endEleM?: number; minutes?: number } = {};
+    if (!s.minutes) est.minutes = walkingMinutes(s.km, s.ascentM, s.descentM);
+    const i = e?.stageStarts.findIndex((x) => x.number === s.number) ?? -1;
+    if (e && s.kind === "main" && i >= 0 && s.startEleM === undefined && s.endEleM === undefined) {
+      const from = e.stageStarts[i].km;
+      const to = e.stageStarts[i + 1]?.km ?? Infinity; // the next stage starts after a gap on the map line
+      const pts = e.points.filter(([km]) => km >= from && km < to);
+      if (pts.length) {
+        // to 10 m: a 90 m terrain cell averages a valley floor with the slopes above it
+        est.startEleM = Math.round(pts[0][1] / 10) * 10;
+        est.endEleM = Math.round(pts.at(-1)![1] / 10) * 10;
+      }
+    }
+    if (Object.keys(est).length) out.set(s.number, est);
+  }
+  return out;
+}

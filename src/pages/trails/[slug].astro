@@ -11,6 +11,7 @@ import {
   monthName,
   perDay,
   sacGrade,
+  stageEstimates,
   stageTotals,
   SAC_NOTE,
   SAC_SCALE,
@@ -48,10 +49,25 @@ const length = totals
     : null;
 const daily = perDay(t);
 const sac = sacGrade(t);
+// stage heights and times: the published figure, else our estimate (marked ≈ on the page)
+const estimates = stageEstimates(t, derived);
+const stageView = (t.stages?.list ?? []).map((s) => {
+  const est = estimates.get(s.number);
+  const ele =
+    s.startEleM !== undefined && s.endEleM !== undefined
+      ? { from: s.startEleM, to: s.endEleM, est: false }
+      : est?.startEleM !== undefined && est.endEleM !== undefined
+        ? { from: est.startEleM, to: est.endEleM, est: true }
+        : null;
+  const time = s.minutes ? { min: s.minutes, est: false } : est?.minutes ? { min: est.minutes, est: true } : null;
+  return { ...s, ele, time };
+});
 // stage columns: only those some stage has a figure for; a stage without one keeps an empty cell,
 // so the columns stay under their header
-const stageEle = t.stages?.list.some((s) => s.startEleM !== undefined && s.endEleM !== undefined) ?? false;
-const stageTime = t.stages?.list.some((s) => s.minutes) ?? false;
+const stageEle = stageView.some((s) => s.ele);
+const stageTime = stageView.some((s) => s.time);
+const estEle = stageView.some((s) => s.ele?.est);
+const estTime = stageView.some((s) => s.time?.est);
 const fmt = (n: number) => n.toLocaleString("en");
 const hours = (min: number) => `${Math.floor(min / 60)} h ${String(min % 60).padStart(2, "0")}`;
 const TRAIL_TYPES = { "point-to-point": "Point to point", loop: "Loop", network: "Network" };
@@ -596,7 +612,7 @@ const nav = [
             </ul>
           </div>
         </li>
-        {t.stages.list.map((s) => (
+        {stageView.map((s) => (
           <li class={`stage ${s.kind}`}>
             <span class="stage-no" aria-hidden="true">{s.number}</span>
             <div class="stage-body">
@@ -610,16 +626,23 @@ const nav = [
                 <li title="Ascent"><span class="visually-hidden">Ascent </span>{fmt(s.ascentM)} m ↑</li>
                 <li title="Descent"><span class="visually-hidden">Descent </span>{fmt(s.descentM)} m ↓</li>
                 {stageEle &&
-                  (s.startEleM !== undefined && s.endEleM !== undefined ? (
-                    <li title="Elevation at start and end" class="wide">
-                      <span class="visually-hidden">Elevation </span>{fmt(s.startEleM)} → {fmt(s.endEleM)} m
+                  (s.ele ? (
+                    <li
+                      title={s.ele.est ? "Elevation at start and end, from the terrain model" : "Elevation at start and end"}
+                      class:list={["wide", { est: s.ele.est }]}
+                    >
+                      <span class="visually-hidden">{s.ele.est ? "Estimated elevation " : "Elevation "}</span>
+                      {s.ele.est && <span aria-hidden="true">≈ </span>}{fmt(s.ele.from)} → {fmt(s.ele.to)} m
                     </li>
                   ) : (
                     <li class="wide" aria-hidden="true"></li>
                   ))}
                 {stageTime &&
-                  (s.minutes ? (
-                    <li title="Walking time"><span class="visually-hidden">Walking time </span>{hours(s.minutes)}</li>
+                  (s.time ? (
+                    <li title={s.time.est ? "Estimated walking time (DIN 33466)" : "Walking time"} class:list={[{ est: s.time.est }]}>
+                      <span class="visually-hidden">{s.time.est ? "Estimated walking time " : "Walking time "}</span>
+                      {s.time.est && <span aria-hidden="true">≈ </span>}{hours(s.time.min)}
+                    </li>
                   ) : (
                     <li aria-hidden="true"></li>
                   ))}
@@ -628,7 +651,14 @@ const nav = [
           </li>
         ))}
       </ol>
-      <p class="note muted">Totals and averages count the main stages only.</p>
+      <p class="note muted">
+        Totals and averages count the main stages only.
+        {(estEle || estTime) && " ≈ marks our estimates where the source gives no figure: "}
+        {estEle && "heights from the terrain model (Copernicus DEM via Open-Meteo), to the nearest 10 m and less exact in steep valleys"}
+        {estEle && estTime && "; "}
+        {estTime && "walking times from each stage's distance, ascent and descent by the German hiking standard DIN 33466 (4 km/h, 300 m/h up, 500 m/h down), without breaks"}
+        {(estEle || estTime) && "."}
+      </p>
     </section>
   )}
 
@@ -1385,6 +1415,9 @@ const nav = [
   }
   .stage-stats li.wide {
     min-width: 7.4rem;
+  }
+  .stage-stats li.est {
+    color: var(--muted);
   }
   @media (min-width: 820px) {
     .stage-body {
