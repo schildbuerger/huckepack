@@ -28,7 +28,7 @@
   const sleepingCategories = SLEEPING_CATEGORIES.filter((c) => trails.some((t) => t.sleeping.includes(c.id)));
 
   const matches = (t: TrailSummary, q: string) =>
-    [t.name, t.localName ?? "", ...t.countries, ...t.regions, ...t.tags].join(" ").toLowerCase().includes(q);
+    [t.name, t.localName ?? "", ...t.aliases, ...t.countries, ...t.regions, ...t.tags].join(" ").toLowerCase().includes(q);
 
   const sortValue = (t: TrailSummary) => {
     switch (sortKey) {

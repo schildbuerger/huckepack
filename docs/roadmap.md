@@ -7,9 +7,9 @@ before building it.
 
 ## Trails
 
-In progress: **Sacred Forests Trail** (Sentiero delle Foreste Sacre, Italy,
+In progress: **Path of Sacred Forests** (Sentiero delle Foreste Sacre, Italy,
 7 stages, about 100 km), the first record, built from the national park's
-stage pages (`data/trails/sacred-forests-trail.yaml`, draft).
+stage pages (`data/trails/path-of-sacred-forests.yaml`, draft).
 
 | # | Trail | Region | Length (approx.) | Why |
 |---|---|---|---|---|

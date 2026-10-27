@@ -13,7 +13,7 @@ Planning notes: [docs/scope.md](docs/scope.md) (decisions and open questions),
 
 ## Status
 
-Early: a trail database schema, the first trail (the Sacred Forests Trail in
+Early: a trail database schema, the first trail (the Path of Sacred Forests in
 Italy, a draft built from the national park's stage pages), a filterable
 index page and one page per trail. Maps, charts, search and the data
 pipeline come next.

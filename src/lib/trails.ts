@@ -61,6 +61,7 @@ export function summarize(id: string, t: Trail) {
     slug: id,
     name: t.name,
     localName: t.localName ?? null,
+    aliases: t.aliases,
     continents: t.continents as string[],
     countries: t.countries.map(countryName),
     regions: t.regions,
