@@ -15,6 +15,19 @@
   page says so.
 - **Repository:** local git repository for now; if it moves to GitHub, a
   private repository like healthviz.
+- **Stack:** a static site generated from a trail database; no server.
+  - A Python pipeline (`pipeline/`) downloads and processes source data
+    (OSM, elevation, climate), cached in `data/raw/`.
+  - Trail records are one YAML file per trail in `data/trails/`, committed
+    and checked against a schema (`src/content.config.ts`) at build time.
+  - Astro builds one prerendered page per trail; Svelte islands handle the
+    interactive parts (filters, maps, charts).
+  - Filtering runs in the browser on a compact index of all trails.
+  - Planned: Pagefind for search, MapLibre GL with a Protomaps or
+    OpenFreeMap basemap, trail lines as PMTiles, and hosting on Cloudflare
+    Pages with tiles on R2.
+  - A backend (Postgres/PostGIS) only once there are accounts, user
+    contributions, daily-changing data, or thousands of trails.
 
 ## What a trail page could show
 
@@ -30,11 +43,6 @@
 
 ## Open questions
 
-- **Stack:** follow healthviz (Python build, self-contained static pages,
-  vanilla JS) or use a framework? Maps are the main difference: worldwide
-  routes need a basemap, which means map tiles from an external source
-  (for example MapLibre with OpenFreeMap or Protomaps) instead of
-  self-contained SVG.
 - **Domain and hosting:** candidates are huckepack.org (most trusted for a
   reference site) and huckepack.me ("carry me"; Google treats .me as
   generic), with huckepack.de as a cheap redirect to protect the name. A .eu
@@ -42,8 +50,7 @@
   are cheap only in the first year. Check availability and renewal prices
   before deciding.
 - **Ads:** possible later. They need a GDPR consent banner and a privacy
-  policy, and they load external scripts, which conflicts with
-  self-contained pages.
+  policy.
 - **First trail:** see the ranking in [roadmap.md](roadmap.md).
 - **Language:** English only?
 - **Licence** for the code and for the derived data.

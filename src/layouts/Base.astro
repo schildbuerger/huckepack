@@ -1,0 +1,83 @@
+---
+interface Props {
+  title: string;
+  description?: string;
+}
+const { title, description } = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    {description && <meta name="description" content={description} />}
+  </head>
+  <body>
+    <header>
+      <a href="/" class="brand">huckepack</a>
+    </header>
+    <main>
+      <slot />
+    </main>
+  </body>
+</html>
+
+<style is:global>
+  :root {
+    --bg: #fbfaf7;
+    --text: #1f2421;
+    --muted: #5d655f;
+    --line: #dcdcd4;
+    --accent: #2f6b4f;
+    --badge-bg: #f1e7c9;
+    --badge-text: #6b5414;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #141816;
+      --text: #e7e9e4;
+      --muted: #a1a9a3;
+      --line: #2f3631;
+      --accent: #7cc4a0;
+      --badge-bg: #3e3519;
+      --badge-text: #e9d48f;
+    }
+  }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--text);
+    font: 16px/1.5 system-ui, sans-serif;
+  }
+  header,
+  main {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 0 16px;
+  }
+  header {
+    padding-top: 16px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid var(--line);
+  }
+  a {
+    color: var(--accent);
+  }
+  .brand {
+    font-weight: 700;
+    text-decoration: none;
+  }
+  .muted {
+    color: var(--muted);
+  }
+  .badge {
+    display: inline-block;
+    padding: 0 6px;
+    border-radius: 4px;
+    background: var(--badge-bg);
+    color: var(--badge-text);
+    font-size: 0.8em;
+  }
+</style>

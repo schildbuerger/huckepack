@@ -13,5 +13,23 @@ Planning notes: [docs/scope.md](docs/scope.md) (decisions and open questions),
 
 ## Status
 
-Planning. Nothing is built yet: the stack and the first trail are open
-decisions in [docs/scope.md](docs/scope.md).
+Skeleton: a trail database schema, one sample trail (the Pacific Crest Trail,
+a draft with unverified figures), a filterable index page and one page per
+trail. Maps, charts, search and the data pipeline come next.
+
+## Development
+
+Node 22.12 or later.
+
+```bash
+npm install
+npm run dev     # http://localhost:4321
+npm run build   # static site in dist/
+npm run check   # type check
+```
+
+Trails live in `data/trails/`, one YAML file per trail, checked against the
+schema in `src/content.config.ts` on every build. Every figure names the
+source it comes from, and each source records its licence and when it was
+retrieved. `pipeline/` (Python) will download and process source data into
+`data/raw/` and write the results into the trail files.

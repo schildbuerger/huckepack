@@ -2,10 +2,9 @@
 .env
 .env.*
 
-# Build output: site/ (released entries, published by GitHub Actions) and preview/
-# (every entry, local only). Built from templates and the committed data in data/raw/.
-site/
-preview/
+# Build output (built from data/trails/ and src/)
+dist/
+.astro/
 
 # Dependencies and build caches
 node_modules/

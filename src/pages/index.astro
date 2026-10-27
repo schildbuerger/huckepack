@@ -1,0 +1,22 @@
+---
+import { getCollection } from "astro:content";
+import Base from "../layouts/Base.astro";
+import TrailList from "../components/TrailList.svelte";
+
+const trails = (await getCollection("trails"))
+  .map((t) => ({
+    slug: t.id,
+    name: t.data.name,
+    region: t.data.region,
+    // the first listed length is the one shown in lists; trail pages show all of them
+    lengthKm: t.data.length[0].km,
+    tags: t.data.tags,
+    draft: t.data.status === "draft",
+  }))
+  .sort((a, b) => a.name.localeCompare(b.name));
+---
+
+<Base title="huckepack" description="Official long-distance hiking trails around the world.">
+  <h1>Long-distance trails</h1>
+  <TrailList client:load trails={trails} />
+</Base>

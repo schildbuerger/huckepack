@@ -1,0 +1,86 @@
+---
+import { getCollection, type CollectionEntry } from "astro:content";
+import Base from "../../layouts/Base.astro";
+
+export async function getStaticPaths() {
+  const trails = await getCollection("trails");
+  return trails.map((trail) => ({ params: { slug: trail.id }, props: { trail } }));
+}
+
+const { trail } = Astro.props as { trail: CollectionEntry<"trails"> };
+const t = trail.data;
+const sourceTitle = (id: string) => t.sources.find((s) => s.id === id)?.title ?? id;
+const monthName = (m: number) => new Date(2000, m - 1, 1).toLocaleString("en", { month: "long" });
+---
+
+<Base title={`${t.name} · huckepack`}>
+  <h1>
+    {t.name}
+    {t.status === "draft" && <span class="badge">draft</span>}
+  </h1>
+  {t.aliases.length > 0 && <p class="muted">Also known as {t.aliases.join(", ")}</p>}
+
+  <dl>
+    {t.designation && (
+      <>
+        <dt>Designation</dt>
+        <dd>{t.designation}</dd>
+      </>
+    )}
+    <dt>Managed by</dt>
+    <dd>{t.managedBy.map((m) => m.name).join(", ")}</dd>
+    <dt>From</dt>
+    <dd>{t.termini.start.name}</dd>
+    <dt>To</dt>
+    <dd>{t.termini.end.name}</dd>
+    <dt>Length</dt>
+    {t.length.map((l) => (
+      <dd>
+        {l.km.toLocaleString("en")} km <span class="muted">({sourceTitle(l.source)})</span>
+      </dd>
+    ))}
+    {t.established && (
+      <>
+        <dt>Established</dt>
+        <dd>
+          {t.established.year} <span class="muted">({sourceTitle(t.established.source)})</span>
+        </dd>
+      </>
+    )}
+    {t.season && (
+      <>
+        <dt>Season</dt>
+        <dd>
+          {t.season.months.map(monthName).join(", ")}{" "}
+          <span class="muted">({sourceTitle(t.season.source)})</span>
+        </dd>
+      </>
+    )}
+  </dl>
+
+  <h2>Sources</h2>
+  <ul>
+    {t.sources.map((s) => (
+      <li>
+        <a href={s.url}>{s.title}</a> · {s.licence} ·{" "}
+        {s.retrieved ? `retrieved ${s.retrieved.toISOString().slice(0, 10)}` : "not yet verified"}
+      </li>
+    ))}
+  </ul>
+</Base>
+
+<style>
+  dl {
+    display: grid;
+    grid-template-columns: max-content 1fr;
+    gap: 4px 16px;
+  }
+  dt {
+    grid-column: 1;
+    color: var(--muted);
+  }
+  dd {
+    grid-column: 2;
+    margin: 0;
+  }
+</style>
