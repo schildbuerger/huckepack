@@ -3,6 +3,7 @@ import { getCollection, getEntry, type CollectionEntry } from "astro:content";
 import Base from "../../layouts/Base.astro";
 import TrailMap from "../../components/TrailMap.svelte";
 import Icon from "../../components/Icon.astro";
+import Explain from "../../components/Explain.astro";
 import { existsSync } from "node:fs";
 import {
   countryName,
@@ -115,28 +116,6 @@ const nav = [
     </ul>
   </nav>
 
-  {sac && (
-    <div id="sac-info" class="sac-info" popover>
-      <p class="sac-title">SAC hiking scale</p>
-      <p class="sac-lead">
-        The Swiss Alpine Club grades hiking routes from T1 (easy) to T6 (very hard). This trail is <strong>{sac.value}</strong>
-        {sac.how !== "stated" && ` (${sac.how})`}.
-      </p>
-      <ol class="sac-scale">
-        {Object.entries(SAC_SCALE).map(([grade, g]) => (
-          <li class:list={[{ current: grade === sac.value }]}>
-            <strong>{grade} · {g.name}</strong>
-            <span>{g.text}</span>
-          </li>
-        ))}
-      </ol>
-      <p class="sac-foot">
-        <a href="https://www.sac-cas.ch/en/ausbildung-und-sicherheit/tourenplanung/grading-systems/">The scale at the Swiss Alpine Club</a>
-        <button type="button" popovertarget="sac-info" popovertargetaction="hide">Close</button>
-      </p>
-    </div>
-  )}
-
   <section id="figures" class="key">
     <h2 class="visually-hidden">Key figures</h2>
     <dl class="figures">
@@ -169,7 +148,21 @@ const nav = [
         <div>
           <dt>
             <Icon name="mountain" size={14} />Difficulty
-            <button class="info" type="button" popovertarget="sac-info" aria-label={`What does SAC ${sac.value} mean?`}>?</button>
+            <Explain id="sac-info" title="SAC hiking scale" label={`What does SAC ${sac.value} mean?`}>
+              <p>
+                The Swiss Alpine Club grades hiking routes from T1 (easy) to T6 (very hard). This trail is{" "}
+                <strong>{sac.value}</strong>{sac.how !== "stated" && ` (${sac.how})`}.
+              </p>
+              <ol class="sac-scale">
+                {Object.entries(SAC_SCALE).map(([grade, g]) => (
+                  <li class:list={[{ current: grade === sac.value }]}>
+                    <strong>{grade} · {g.name}</strong>
+                    <span>{g.text}</span>
+                  </li>
+                ))}
+              </ol>
+              <a slot="foot" href="https://www.sac-cas.ch/en/ausbildung-und-sicherheit/tourenplanung/grading-systems/">The scale at the Swiss Alpine Club</a>
+            </Explain>
           </dt>
           <dd>
             SAC {sac.value}
@@ -331,34 +324,32 @@ const nav = [
   {(t.sleeping || t.wildCamping) && (
     <section id="sleeping">
       <h2>Sleeping</h2>
-      <ul class="cards">
-        {sleeping.map((c) =>
-          c.id === "wild-camping" ? (
-            <li class:list={[t.wildCamping ? `tone-${WILD_TONE[t.wildCamping.status]}` : "absent"]}>
-              <p class="card-name"><Icon name={SLEEPING_ICONS[c.id]} />{c.label}</p>
-              <p class="card-hint">{c.hint}</p>
-              {t.wildCamping ? (
-                <p class="card-value">
-                  {WILD_CAMPING_LABELS[t.wildCamping.status]}
-                </p>
-              ) : (
-                <p class="card-value muted">Not known</p>
-              )}
+      <ul class="cards sleeping">
+        {sleeping.map((c) => {
+          const wild = c.id === "wild-camping";
+          const tone = wild
+            ? t.wildCamping
+              ? `tone-${WILD_TONE[t.wildCamping.status]}`
+              : "absent"
+            : c.present.length > 0
+              ? "tone-good"
+              : "absent";
+          const value = wild
+            ? t.wildCamping && WILD_CAMPING_LABELS[t.wildCamping.status]
+            : c.present.map((x) => SLEEPING_LABELS[x]).join(", ");
+          return (
+            <li class={tone}>
+              <div class="card-name">
+                <Icon name={SLEEPING_ICONS[c.id]} />
+                <span>{c.label}</span>
+                <Explain id={`about-${c.id}`} title={c.label}>
+                  <p>{c.hint}</p>
+                </Explain>
+              </div>
+              {value ? <p class="card-value">{value}</p> : <p class="card-value muted">{wild ? "Not known" : "None listed"}</p>}
             </li>
-          ) : (
-            <li class:list={[c.present.length > 0 ? "tone-good" : "absent"]}>
-              <p class="card-name"><Icon name={SLEEPING_ICONS[c.id]} />{c.label}</p>
-              <p class="card-hint">{c.hint}</p>
-              {c.present.length > 0 ? (
-                <p class="card-value">
-                  {c.present.map((x) => SLEEPING_LABELS[x]).join(", ")}
-                </p>
-              ) : (
-                <p class="card-value muted">None listed</p>
-              )}
-            </li>
-          ),
-        )}
+          );
+        })}
       </ul>
       {t.wildCamping && (
         <p class="rule">
@@ -371,34 +362,64 @@ const nav = [
   {water && waterTotals && (
     <section id="water">
       <h2>Water</h2>
-      <ul class="cards">
+      <ul class="cards water">
         <li>
-          <p class="card-name"><Icon name="droplet" />Drinking water</p>
-          <p class="card-hint">Fountains, taps, drinkable springs</p>
+          <div class="card-name">
+            <Icon name="droplet" />
+            <span>Drinking water</span>
+            <Explain id="about-drinking-water" title="Drinking water">
+              <p>
+                Fountains, taps and springs marked as drinkable in OpenStreetMap, within {water.withinM} m of the trail.
+              </p>
+            </Explain>
+          </div>
           <p class="card-value">{waterTotals.drinking} points</p>
         </li>
         <li>
-          <p class="card-name"><Icon name="droplets" />Springs</p>
-          <p class="card-hint">Drinkability unknown; treat the water</p>
+          <div class="card-name">
+            <Icon name="droplets" />
+            <span>Springs</span>
+            <Explain id="about-springs" title="Springs">
+              <p>
+                Other springs within {water.withinM} m of the trail. Whether they are drinkable is unknown: treat the water,
+                and expect some to run dry in late summer.
+              </p>
+            </Explain>
+          </div>
           <p class="card-value">{waterTotals.springs} more</p>
         </li>
         <li class={`tone-${WATER_TONE[level!.id]}`}>
-          <p class="card-name"><Icon name="gauge" />Availability</p>
-          <p class="card-hint">{level!.hint}</p>
+          <div class="card-name">
+            <Icon name="gauge" />
+            <span>Availability</span>
+            <Explain id="about-availability" title="Water availability">
+              <p>Rated by the longest stretch of the trail without drinking water:</p>
+              <p>
+                <strong>Frequent</strong>: at most 10 km. <strong>Regular</strong>: at most 20 km. <strong>Scarce</strong>:
+                more than 20 km.
+              </p>
+              <p>This trail: {level!.label.toLowerCase()} ({level!.hint.toLowerCase()}).</p>
+            </Explain>
+          </div>
           <p class="card-value">{level!.label}</p>
         </li>
         <li class={`tone-${WATER_TONE[level!.id]}`}>
-          <p class="card-name"><Icon name="ruler" />Longest dry stretch</p>
-          <p class="card-hint">
-            {`km ${water.longestGapKm.drinking.fromKm}–${water.longestGapKm.drinking.toKm}${gapStages}`}
-          </p>
+          <div class="card-name">
+            <Icon name="ruler" />
+            <span>Longest dry stretch</span>
+            <Explain id="about-dry-stretch" title="Longest dry stretch">
+              <p>
+                The longest part of the main route without drinking water: from km {water.longestGapKm.drinking.fromKm} to{" "}
+                {water.longestGapKm.drinking.toKm}{gapStages}. Distances are measured along the map line ({water.routeKm} km
+                in total).
+              </p>
+            </Explain>
+          </div>
           <p class="card-value">{water.longestGapKm.drinking.km} km</p>
         </li>
       </ul>
       <p class="note muted">
-        From OpenStreetMap, within {water.withinM} m of the trail; may be incomplete. Availability by the longest stretch
-        without drinking water: frequent ≤ 10 km, regular ≤ 20 km, scarce beyond. Distances along the map line
-        ({water.routeKm} km).
+        From OpenStreetMap, which may be incomplete.
       </p>
     </section>
   )}
@@ -604,9 +625,23 @@ const nav = [
     align-items: flex-start;
     gap: 8px;
     font-family: var(--serif);
-    font-size: 1.05rem;
+    font-size: 1rem;
     font-weight: 600;
     line-height: 1.35;
+  }
+  .card-name :global(.info) {
+    margin-top: 2px;
+  }
+  /* desktop: each section's cards in one row, headlines on one line */
+  @media (min-width: 900px) {
+    .cards {
+      grid-auto-flow: column;
+      grid-auto-columns: 1fr;
+      grid-template-columns: none;
+    }
+    .card-name > span {
+      white-space: nowrap;
+    }
   }
   /* icons sit on the first line of their label, however many lines it wraps to */
   .figures dt :global(.icon) {
@@ -615,11 +650,6 @@ const nav = [
   }
   .card-name :global(.icon) {
     margin-top: 2px;
-  }
-  .card-hint {
-    color: var(--muted);
-    font-size: 0.78rem;
-    line-height: 1.4;
   }
   .card-value {
     margin-top: 8px !important;
@@ -794,49 +824,13 @@ const nav = [
       grid-template-columns: 1fr 1fr;
     }
   }
-  .info {
-    width: 16px;
-    height: 16px;
-    margin-left: 4px;
-    padding: 0;
-    border: 1px solid var(--muted);
-    border-radius: 50%;
-    background: none;
-    color: var(--muted);
-    font: 600 0.65rem/1 var(--sans);
-    vertical-align: 1px;
-    cursor: pointer;
-  }
-  .info:hover,
-  .info:focus-visible {
-    border-color: var(--accent);
-    color: var(--accent);
-  }
-  .sac-info {
-    width: min(480px, calc(100vw - 32px));
-    padding: 20px;
-    border: 1px solid var(--line);
-    border-radius: 12px;
-    background: var(--bg);
-    color: var(--text);
-    box-shadow: 0 12px 40px rgb(0 0 0 / 0.18);
-    font-size: 0.9rem;
-  }
-  .sac-info::backdrop {
-    background: rgb(0 0 0 / 0.25);
-  }
-  .sac-info p {
-    margin: 0 0 12px;
-  }
-  .sac-title {
-    font-family: var(--serif);
-    font-size: 1.2rem;
-    font-weight: 600;
-  }
   .sac-scale {
     margin: 0 0 12px;
     padding: 0;
     list-style: none;
+  }
+  .sac-scale {
+    margin-bottom: 0;
   }
   .sac-scale li {
     padding: 8px 10px;
@@ -850,22 +844,6 @@ const nav = [
   .sac-scale strong {
     display: block;
     color: var(--text);
-  }
-  .sac-foot {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin: 0 !important;
-    font-size: 0.8rem;
-  }
-  .sac-foot button {
-    padding: 6px 14px;
-    border: 1px solid var(--line);
-    border-radius: 999px;
-    background: none;
-    color: var(--text);
-    font: inherit;
-    cursor: pointer;
   }
   .sources {
     font-size: 0.8rem;

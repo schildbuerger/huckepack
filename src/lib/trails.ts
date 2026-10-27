@@ -100,14 +100,34 @@ export const SLEEPING_LABELS: Record<string, string> = {
 // Every type belongs to exactly one category. Wild camping has no types: it comes from the
 // trail's `wildCamping` rule.
 export const SLEEPING_CATEGORIES = [
-  { id: "wild-camping", label: "Wild camping", hint: "A tent outside campsites", types: [] },
-  { id: "camping", label: "Camping", hint: "Bring a tent", types: ["campsite"] },
-  { id: "huts", label: "Huts and shelters", hint: "On the trail, often in the mountains", types: ["hut", "bivouac"] },
-  { id: "hostels", label: "Hostels", hint: "Dormitory beds for walkers", types: ["hostel"] },
+  {
+    id: "wild-camping",
+    label: "Wild camping",
+    hint: "Pitching a tent outside campsites. Whether it is allowed, restricted or prohibited depends on the land and the country; the rule for this trail is below the cards.",
+    types: [],
+  },
+  {
+    id: "camping",
+    label: "Camping",
+    hint: "Official campsites along the trail. Bring your own tent.",
+    types: ["campsite"],
+  },
+  {
+    id: "huts",
+    label: "Huts",
+    hint: "Mountain huts (often staffed, with meals) and unstaffed bivouac shelters, usually on the trail itself.",
+    types: ["hut", "bivouac"],
+  },
+  {
+    id: "hostels",
+    label: "Hostels",
+    hint: "Dormitory beds for walkers: hostels, hiker lodges and pilgrim hostels.",
+    types: ["hostel"],
+  },
   {
     id: "rooms",
     label: "Rooms",
-    hint: "Private rooms, usually in villages",
+    hint: "Private rooms, usually in villages near the trail: B&Bs, guesthouses, hotels, farm stays and monastery guesthouses.",
     types: ["guesthouse", "hotel", "farm-stay", "monastery"],
   },
 ] as const;
