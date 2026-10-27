@@ -2,7 +2,6 @@
 import { getCollection, getEntry, type CollectionEntry } from "astro:content";
 import Base from "../../layouts/Base.astro";
 import TrailMap from "../../components/TrailMap.svelte";
-import Ref from "../../components/Ref.astro";
 import { existsSync } from "node:fs";
 import {
   countryName,
@@ -34,7 +33,6 @@ const sleeping = SLEEPING_CATEGORIES.map((c) => ({
   present: c.types.filter((x) => t.sleeping?.types.includes(x)),
 }));
 const sources = Object.fromEntries(t.sources.map((s, i) => [s.id, { ...s, n: i + 1 }]));
-const ref = (id: string) => sources[id]?.n; // footnote number of a source
 const totals = stageTotals(t);
 // one length: the sum of the main stages where there are stages, else the first stated total
 const length = totals
@@ -135,7 +133,7 @@ const nav = [
           <dt>Length</dt>
           <dd>
             {length.approx && "about "}
-            {fmt(length.value)} km<Ref n={ref(length.source)} />
+            {fmt(length.value)} km
           </dd>
         </div>
       )}
@@ -143,7 +141,7 @@ const nav = [
         <div>
           <dt>Ascent</dt>
           <dd>
-            {fmt(totals.ascentM.value)} m<Ref n={ref(totals.ascentM.source)} />
+            {fmt(totals.ascentM.value)} m
           </dd>
         </div>
       )}
@@ -151,7 +149,7 @@ const nav = [
         <div>
           <dt>Descent</dt>
           <dd>
-            {fmt(totals.descentM.value)} m<Ref n={ref(totals.descentM.source)} />
+            {fmt(totals.descentM.value)} m
           </dd>
         </div>
       )}
@@ -162,7 +160,7 @@ const nav = [
             <button class="info" type="button" popovertarget="sac-info" aria-label={`What does SAC ${sac.value} mean?`}>?</button>
           </dt>
           <dd>
-            SAC {sac.value}<Ref n={ref(sac.source)} />
+            SAC {sac.value}
             {t.difficulty?.cai && sac.how !== "stated" && <small>from CAI {t.difficulty.cai.grade}</small>}
             {t.difficulty?.cai && sac.how === "stated" && <small>CAI {t.difficulty.cai.grade}</small>}
           </dd>
@@ -172,7 +170,7 @@ const nav = [
         <div>
           <dt>Suggested days</dt>
           <dd>
-            {range(t.days.min, t.days.max)} days<Ref n={ref(t.days.source)} />
+            {range(t.days.min, t.days.max)} days
           </dd>
         </div>
       )}
@@ -180,7 +178,7 @@ const nav = [
         <div>
           <dt>Per day</dt>
           <dd>
-            {daily.km.value} km · {fmt(daily.ascentM.value)} m<Ref n={ref(daily.km.source)} />
+            {daily.km.value} km · {fmt(daily.ascentM.value)} m
             <small>average</small>
           </dd>
         </div>
@@ -189,7 +187,7 @@ const nav = [
         <div>
           <dt>Season</dt>
           <dd>
-            {t.season.text ?? t.season.months.map(monthName).join(", ")}<Ref n={ref(t.season.source)} />
+            {t.season.text ?? t.season.months.map(monthName).join(", ")}
           </dd>
         </div>
       )}
@@ -218,7 +216,7 @@ const nav = [
         </>
       )}
       <dt>From</dt>
-      <dd>{t.termini.start.name}<Ref n={ref(t.termini.source)} /></dd>
+      <dd>{t.termini.start.name}</dd>
       <dt>To</dt>
       <dd>{t.termini.end.name}</dd>
       {hubs.length > 0 && (
@@ -230,10 +228,10 @@ const nav = [
                 <li>
                   <span class="hub-kind">{h.kind === "station" ? "Train" : "Air"}</span>
                   <span>
-                    {h.name}<Ref n={ref(h.source)} />
+                    {h.name}
                     {h.roadKm !== undefined && derived?.access && (
                       <span class="hub-dist">
-                        {h.roadKm} km by road to the start, {h.driveMin} min<Ref n={ref(derived.access.source)} />
+                        {h.roadKm} km by road to the start, {h.driveMin} min
                       </span>
                     )}
                   </span>
@@ -248,7 +246,7 @@ const nav = [
       {t.waymarking && (
         <>
           <dt>Waymarking</dt>
-          <dd>{t.waymarking.text}<Ref n={ref(t.waymarking.source)} /></dd>
+          <dd>{t.waymarking.text}</dd>
         </>
       )}
     </dl>
@@ -268,7 +266,7 @@ const nav = [
 
   {t.stages && (
     <section id="stages">
-      <h2>Stages<Ref n={ref(t.stages.source)} /></h2>
+      <h2>Stages</h2>
       <div class="scroll">
         <table>
           <thead>
@@ -324,7 +322,7 @@ const nav = [
               <p class="card-hint">{c.hint}</p>
               {t.wildCamping ? (
                 <p class="card-value">
-                  {WILD_CAMPING_LABELS[t.wildCamping.status]}<Ref n={ref(t.wildCamping.source)} />
+                  {WILD_CAMPING_LABELS[t.wildCamping.status]}
                 </p>
               ) : (
                 <p class="card-value muted">Not known</p>
@@ -337,7 +335,6 @@ const nav = [
               {c.present.length > 0 ? (
                 <p class="card-value">
                   {c.present.map((x) => SLEEPING_LABELS[x]).join(", ")}
-                  {t.sleeping && <Ref n={ref(t.sleeping.source)} />}
                 </p>
               ) : (
                 <p class="card-value muted">None listed</p>
@@ -348,7 +345,7 @@ const nav = [
       </ul>
       {t.wildCamping && (
         <p class="rule">
-          <strong>Wild camping rule.</strong> {t.wildCamping.rule}<Ref n={ref(t.wildCamping.source)} />
+          <strong>Wild camping rule.</strong> {t.wildCamping.rule}
         </p>
       )}
     </section>
@@ -361,24 +358,24 @@ const nav = [
         <li>
           <p class="card-name">Availability</p>
           <p class="card-hint">{level!.hint}</p>
-          <p class="card-value">{level!.label}<Ref n={ref(water.source)} /></p>
+          <p class="card-value">{level!.label}</p>
         </li>
         <li>
           <p class="card-name">Drinking water</p>
           <p class="card-hint">Fountains, taps, drinkable springs</p>
-          <p class="card-value">{waterTotals.drinking} points<Ref n={ref(water.source)} /></p>
+          <p class="card-value">{waterTotals.drinking} points</p>
         </li>
         <li>
           <p class="card-name">Springs</p>
           <p class="card-hint">Drinkability unknown; treat the water</p>
-          <p class="card-value">{waterTotals.springs} more<Ref n={ref(water.source)} /></p>
+          <p class="card-value">{waterTotals.springs} more</p>
         </li>
         <li>
           <p class="card-name">Longest dry stretch</p>
           <p class="card-hint">
             {`km ${water.longestGapKm.drinking.fromKm}–${water.longestGapKm.drinking.toKm}${gapStages}`}
           </p>
-          <p class="card-value">{water.longestGapKm.drinking.km} km<Ref n={ref(water.source)} /></p>
+          <p class="card-value">{water.longestGapKm.drinking.km} km</p>
         </li>
       </ul>
       <p class="note muted">
