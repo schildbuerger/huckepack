@@ -31,7 +31,7 @@
   // z12 is about 30 m per pixel, enough for shading and contours, and overzoomed beyond
   const TERRAIN = "https://s3.amazonaws.com/elevation-tiles-prod/terrarium/{z}/{x}/{y}.png";
   const TERRAIN_ATTRIBUTION =
-    '<a href="https://github.com/tilezen/joerd/blob/master/docs/attribution.md">Terrain: Mapzen, AWS Open Data</a>';
+    '<a href="https://github.com/tilezen/joerd/blob/master/docs/attribution.md" target="_blank" rel="noopener noreferrer">Terrain: Mapzen, AWS Open Data</a>';
   // contour spacing per zoom, [minor, major] in metres; major lines are labelled
   const CONTOURS = { 10: [200, 1000], 11: [100, 500], 12: [50, 250], 13: [20, 100], 15: [10, 50] };
   // terrain colours per theme: warm browns on Liberty, light ink on Dark, kept faint so the route leads

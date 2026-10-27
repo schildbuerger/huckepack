@@ -49,6 +49,16 @@ const { title, description } = Astro.props;
         <p class="legal-links"><a href="/legal-notice/">Legal notice</a><a href="/privacy/">Privacy</a></p>
       </div>
     </footer>
+    <script>
+      // links to other websites open in a new tab (with a note for screen readers); links within
+      // huckepack stay in the same tab, so back and the breadcrumbs work as usual
+      for (const a of document.querySelectorAll<HTMLAnchorElement>("a[href]")) {
+        if (!a.protocol.startsWith("http") || a.host === location.host || a.target) continue;
+        a.target = "_blank";
+        a.rel = "noopener noreferrer";
+        a.insertAdjacentHTML("beforeend", '<span class="sr-only"> (opens in a new tab)</span>');
+      }
+    </script>
   </body>
 </html>
 
@@ -164,6 +174,15 @@ const { title, description } = Astro.props;
   a {
     color: var(--accent);
     text-underline-offset: 3px;
+  }
+  /* read by screen readers, not shown */
+  .sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    white-space: nowrap;
   }
   .muted {
     color: var(--muted);
