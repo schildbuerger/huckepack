@@ -13,6 +13,8 @@ npm run dev          # local site at http://localhost:4321; runs detached (npx a
                      # on file changes). Claude Code's sandbox can't stop a detached server; the user has to.
                      # After changing `src/content.config.ts` (delete `.astro/data-store.json` first, or the restarted server reuses stale content) or adding an npm dependency, the server must be restarted: a running server serves
                      # the new package as "504 outdated dependency" and the page breaks.
+                     # Dev errors (e.g. a bare "FailedToLoadModuleSSR" page) are logged in .astro/dev.log. Create a new
+                     # component file before importing it; if an import failed meanwhile, touch the importing file.
 npm run build        # dist/: the static site; fails if a trail file doesn't match the schema
 npm run check        # type check (Astro, Svelte, TypeScript)
 
