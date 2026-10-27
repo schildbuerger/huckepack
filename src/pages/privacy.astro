@@ -9,7 +9,7 @@ import Legal from "../layouts/Legal.astro";
   <ul>
     <li>No cookies, no tracking, no analytics, no ads, no accounts and no forms.</li>
     <li>Our host processes your IP address to deliver the pages, as every web server must.</li>
-    <li>When a trail page shows its map, your browser loads map tiles from OpenFreeMap.</li>
+    <li>When a trail page shows its map, your browser loads map tiles from OpenFreeMap and elevation tiles from Amazon Web Services.</li>
     <li>Your light or dark mode choice is stored in your own browser only.</li>
   </ul>
 
@@ -50,6 +50,20 @@ import Legal from "../layouts/Legal.astro";
     Legal basis: Art. 6 (1) (f) GDPR. Our legitimate interest is showing the trail on a map without paying for or
     building our own map server. If you'd rather not load the map, don't scroll to it; everything else on the page
     works without it.
+  </p>
+
+  <h3>Elevation tiles: Amazon Web Services</h3>
+  <p>
+    The map's hill shading and contour lines are drawn in your browser from open elevation data (the
+    <a href="https://registry.opendata.aws/terrain-tiles/">Terrain Tiles</a> dataset), which your browser loads from
+    <code>s3.amazonaws.com</code>, a service of Amazon Web Services, Inc., 410 Terry Avenue North, Seattle, WA 98109,
+    USA. Like any web request, it sends AWS your IP address and browser details; nothing else, and no cookies. This
+    happens together with the map, so the same applies: if you don't scroll to the map, nothing is loaded.
+  </p>
+  <p>
+    Legal basis: Art. 6 (1) (f) GDPR. Our legitimate interest is showing the terrain along the trail. AWS may process
+    the data in the USA; Amazon is certified under the EU–U.S. Data Privacy Framework (Art. 45 GDPR). Details:
+    <a href="https://aws.amazon.com/privacy/">AWS Privacy Notice</a>.
   </p>
 
   <h2>Your browser's local storage</h2>

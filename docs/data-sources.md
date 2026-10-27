@@ -22,6 +22,7 @@ source before using it, and record the result here.
 |---|---|---|---|
 | Copernicus DEM GLO-30 | Global 30 m elevation | Free use with attribution | For elevation profiles |
 | ESA WorldCover | Global land cover at 10 m | CC BY 4.0 | Terrain along the route |
+| AWS Terrain Tiles (Mapzen, Terrarium PNGs) | Elevation tiles for the map's hill shading and contour lines | Open data; attribution to Mapzen and the underlying sources ([list](https://github.com/tilezen/joerd/blob/master/docs/attribution.md)) | In use: loaded by the browser from s3.amazonaws.com, no key; named in the privacy policy |
 
 ## Climate
 
