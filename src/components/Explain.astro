@@ -2,24 +2,32 @@
 // A label that opens a short explanation: the term itself is the button, marked by a dotted
 // underline (the popover attribute: no JavaScript, closes with Esc, a click outside or the
 // Close button). The slot holds the explanation. The panel resets inherited text styles, since
-// labels are often uppercase.
+// labels are often uppercase. With `shared`, it renders only the term, opening the popover of
+// another Explain with that id (two labels, one explanation).
 interface Props {
   id: string;
   term: string; // the visible label, e.g. "Difficulty"
   title?: string; // the panel's heading; defaults to the term
+  shared?: boolean;
 }
-const { id, term, title = term } = Astro.props;
+const { id, term, title = term, shared = false } = Astro.props;
 ---
 
 <button class="term" type="button" popovertarget={id}>{term}</button>
-<div id={id} class="pop" popover>
-  <p class="pop-title">{title}</p>
-  <div class="pop-text"><slot /></div>
-  <p class="pop-foot">
-    <slot name="foot" />
-    <button type="button" popovertarget={id} popovertargetaction="hide">Close</button>
-  </p>
-</div>
+{
+  !shared && (
+    <div id={id} class="pop" popover>
+      <p class="pop-title">{title}</p>
+      <div class="pop-text">
+        <slot />
+      </div>
+      <p class="pop-foot">
+        <slot name="foot" />
+        <button type="button" popovertarget={id} popovertargetaction="hide">Close</button>
+      </p>
+    </div>
+  )
+}
 
 <style>
   .term {
@@ -76,6 +84,22 @@ const { id, term, title = term } = Astro.props;
   }
   .pop-text :global(p) {
     margin: 0 0 8px;
+  }
+  .pop-text :global(table) {
+    margin: 4px 0 12px;
+    border-collapse: collapse;
+    font-variant-numeric: tabular-nums;
+  }
+  .pop-text :global(th),
+  .pop-text :global(td) {
+    padding: 3px 16px 3px 0;
+    border-bottom: 1px solid var(--line);
+    text-align: left;
+  }
+  .pop-text :global(th) {
+    color: var(--muted);
+    font-weight: 500;
+    font-size: 0.8rem;
   }
   .pop-foot {
     display: flex;

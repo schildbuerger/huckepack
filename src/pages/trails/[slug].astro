@@ -520,7 +520,34 @@ const nav = [
       <h2>Steepest sections</h2>
       <dl class="strip spec three">
         <div>
-          <dt>Steepest 500 m up · stage {grad.climb.stage}</dt>
+          <dt>
+            <Explain id="grade-info" term="Steepest 500 m up" title="Gradient">
+              <p>
+                The steepest 500 m of the trail in walking direction, uphill and downhill: how many metres you climb or
+                descend over that distance, as a gradient (%) and as an angle (°). On this trail, {grad.climb.changeM} m up over
+                500 m is {grad.climb.grade}{"\u00a0"}%, or {degrees(grad.climb.grade)}°; {Math.abs(grad.descent.changeM)} m down is{" "}
+                {signed(grad.descent.grade)}{"\u00a0"}%, or {degrees(grad.descent.grade)}°.
+              </p>
+              <p>
+                A gradient is height per distance: 20 % means 20 m up for every 100 m forward. Percent and degrees don't
+                grow alike: 100 % is 45°, not 90°. The wedge is drawn at the true angle.
+              </p>
+              <table>
+                <thead><tr><th>Gradient</th><th>Angle</th><th>Feels like</th></tr></thead>
+                <tbody>
+                  <tr><td>10 %</td><td>6°</td><td>Noticeable on a road</td></tr>
+                  <tr><td>20 %</td><td>11°</td><td>A steep path, slow going</td></tr>
+                  <tr><td>30 %</td><td>17°</td><td>Very steep, often steps</td></tr>
+                  <tr><td>100 %</td><td>45°</td><td>Scrambling</td></tr>
+                </tbody>
+              </table>
+              <p>
+                Averages over 500 m from a 30 m terrain model: short pitches within them, such as steps and ladders, are
+                steeper.
+              </p>
+            </Explain>{" "}
+            · stage {grad.climb.stage}
+          </dt>
           <dd class="ramp-value">
             <span class="big">{grad.climb.grade}</span><span class="unit">% · +{grad.climb.changeM} m</span>
             <svg class="ramp up" viewBox="0 0 56 30" aria-hidden="true">
@@ -530,7 +557,7 @@ const nav = [
           </dd>
         </div>
         <div>
-          <dt>Steepest 500 m down · stage {grad.descent.stage}</dt>
+          <dt><Explain id="grade-info" term="Steepest 500 m down" shared /> · stage {grad.descent.stage}</dt>
           <dd class="ramp-value">
             <span class="big">{signed(grad.descent.grade)}</span><span class="unit">% · {signed(grad.descent.changeM)} m</span>
             <svg class="ramp down" viewBox="0 0 56 30" aria-hidden="true">
@@ -540,7 +567,15 @@ const nav = [
           </dd>
         </div>
         <div>
-          <dt>Steeper than {STEEP_PERCENT} %</dt>
+          <dt>
+            <Explain id="steep-info" term={`Steeper than ${STEEP_PERCENT} %`} title="Steep stretches">
+              <p>
+                How many kilometres of the main route climb or descend at {STEEP_PERCENT} % or more ({degrees(STEEP_PERCENT)}°,
+                15 m of height per 100 m), measured in 200 m stretches: the bars beyond the dashed lines in the chart
+                below. Such stretches are slow going uphill and hard on the knees downhill.
+              </p>
+            </Explain>
+          </dt>
           <dd>
             <span class="big">{grad.steepUpKm}</span><span class="unit">km up ·</span>
             <span class="big">{grad.steepDownKm}</span><span class="unit">km down</span>
@@ -751,7 +786,10 @@ const nav = [
           ))}
         </svg>
         <div class="tip" role="status" hidden><strong></strong><span></span></div>
-        <table class="sr-only">
+        <!-- a table ignores the 1 px width of .sr-only and would widen the page: hide its wrapper, pinned left so
+             it doesn't sit beyond the edge after the wide chart -->
+        <div class="sr-only" style="top: 0; left: 0">
+        <table>
           <caption>Climate by month, {climate.years[0]}–{climate.years[1]} average</caption>
           <thead>
             <tr>
@@ -778,6 +816,7 @@ const nav = [
             ))}
           </tbody>
         </table>
+        </div>
         <figcaption class="muted">
           Averages for {climate.years[0]}–{climate.years[1]} from ERA5 reanalysis via Open-Meteo, adjusted to each point's
           elevation; daylight from sunrise to sunset mid-month.
@@ -1738,17 +1777,20 @@ const nav = [
     stroke: var(--text);
     stroke-width: 1.5;
   }
-  .spec.cols {
-    grid-template-columns: repeat(var(--cols), 1fr) !important;
-    grid-auto-flow: row !important;
-  }
-  .spec.cols > * {
-    padding-left: 16px !important;
-    border-left: 1px solid var(--line) !important;
-  }
-  .spec.cols > :first-child {
-    padding-left: 0 !important;
-    border-left: 0 !important;
+  /* equal columns from 640 px; phones keep the strips' two columns (four would overflow) */
+  @media (min-width: 640px) {
+    .spec.cols {
+      grid-template-columns: repeat(var(--cols), 1fr) !important;
+      grid-auto-flow: row !important;
+    }
+    .spec.cols > * {
+      padding-left: 16px !important;
+      border-left: 1px solid var(--line) !important;
+    }
+    .spec.cols > :first-child {
+      padding-left: 0 !important;
+      border-left: 0 !important;
+    }
   }
   /* colour key in the surface figures (not .key: that is the key figures section) */
   .swatch-key {
