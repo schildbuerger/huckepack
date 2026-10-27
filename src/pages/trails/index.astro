@@ -1,6 +1,7 @@
 ---
 import { getCollection } from "astro:content";
 import Base from "../../layouts/Base.astro";
+import Breadcrumbs from "../../components/Breadcrumbs.astro";
 import TrailList from "../../components/TrailList.svelte";
 import { summarize } from "../../lib/trails";
 
@@ -14,12 +15,16 @@ const trails = (await getCollection("trails"))
   description="Search and compare official long-distance hiking trails by country, length, days, difficulty and where to sleep."
   section="trails"
 >
+  <Breadcrumbs current="Trails" />
   <h1>Trails</h1>
   <p class="lede muted">Search and compare official long-distance trails. Filter by where they are, how hard they are and where you can sleep.</p>
   <TrailList client:load trails={trails} />
 </Base>
 
 <style>
+  h1 {
+    margin-top: 8px;
+  }
   .lede {
     max-width: 60ch;
     margin: 0 0 32px;

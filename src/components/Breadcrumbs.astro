@@ -1,0 +1,46 @@
+---
+// Breadcrumb for every page except the home page: Start › … › the current page. Pass the
+// pages above the current one as `trail` ({ label, href }); "Start" is always first.
+interface Props {
+  trail?: { label: string; href: string }[];
+  current: string;
+}
+const { trail = [], current } = Astro.props;
+const links = [{ label: "Start", href: "/" }, ...trail];
+---
+
+<nav class="crumbs" aria-label="Breadcrumb">
+  <ol>
+    {links.map((l) => (
+      <li>
+        <a href={l.href}>{l.label}</a>
+      </li>
+    ))}
+    <li aria-current="page">{current}</li>
+  </ol>
+</nav>
+
+<style>
+  .crumbs {
+    margin-top: 20px;
+    font-size: 0.85rem;
+    color: var(--muted);
+  }
+  .crumbs ol {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+  .crumbs li + li::before {
+    content: "›";
+    margin: 0 8px;
+  }
+  .crumbs a {
+    color: var(--muted);
+  }
+  .crumbs [aria-current="page"] {
+    color: var(--text);
+  }
+</style>

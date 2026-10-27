@@ -4,6 +4,7 @@ import Base from "../../layouts/Base.astro";
 import TrailMap from "../../components/TrailMap.svelte";
 import Icon from "../../components/Icon.astro";
 import Explain from "../../components/Explain.astro";
+import Breadcrumbs from "../../components/Breadcrumbs.astro";
 import { existsSync } from "node:fs";
 import {
   countryName,
@@ -150,13 +151,7 @@ const nav = [
   description={`${t.name}${t.localName ? ` (${t.localName})` : ""}: stages, length, ascent, difficulty, where to sleep, water and a map.`}
   section="trails"
 >
-  <nav class="crumbs" aria-label="Breadcrumb">
-    <ol>
-      <li><a href="/">Start</a></li>
-      <li><a href="/trails/">Trails</a></li>
-      <li aria-current="page">{t.name}</li>
-    </ol>
-  </nav>
+  <Breadcrumbs trail={[{ label: "Trails", href: "/trails/" }]} current={t.name} />
   <h1>
     {t.name}
   </h1>
@@ -665,28 +660,6 @@ const nav = [
     overflow: hidden;
     clip: rect(0 0 0 0);
     white-space: nowrap;
-  }
-  .crumbs {
-    margin-top: 20px;
-    font-size: 0.85rem;
-    color: var(--muted);
-  }
-  .crumbs ol {
-    display: flex;
-    flex-wrap: wrap;
-    margin: 0;
-    padding: 0;
-    list-style: none;
-  }
-  .crumbs li + li::before {
-    content: "›";
-    margin: 0 8px;
-  }
-  .crumbs a {
-    color: var(--muted);
-  }
-  .crumbs [aria-current="page"] {
-    color: var(--text);
   }
   h1 {
     margin-top: 8px;
