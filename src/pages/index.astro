@@ -58,20 +58,16 @@ const sources = [
 <Base
   title="huckepack · find your next outdoor adventure"
   description="Official long-distance hiking trails, compared: length, ascent, stages, surfaces, elevation, where to sleep, water and maps, each with its source."
-  section="home"
 >
   <section class="hero">
     <p class="eyebrow">Long-distance hiking trails</p>
     <h1>Find your next outdoor adventure.</h1>
     <p class="lede">
-      huckepack collects what you need to plan a long walk on the world's official trails: how long and how steep,
-      how many days, what's underfoot, where to sleep and where to find water. Every figure comes with its source.
+      Planning a long trail usually means a dozen open tabs: the operator's stage list, a forum thread about water, a
+      hut directory, a map. huckepack stacks it all on one page, like stones on a cairn: distance and climb, the ground
+      underfoot, beds and water along the way. Each figure rests on the source it came from.
     </p>
-    <form class="search" action="/trails/" method="get" role="search">
-      <label class="visually-hidden" for="home-q">Search trails</label>
-      <input id="home-q" type="search" name="q" placeholder="Search a trail, country or region…" />
-      <button class="button" type="submit">Find trails</button>
-    </form>
+    <a class="button cta" href="/trails/">Explore the trails <span aria-hidden="true">→</span></a>
   </section>
 
   <dl class="strip totals">
@@ -175,17 +171,11 @@ const sources = [
 </Base>
 
 <style>
-  .visually-hidden {
-    position: absolute;
-    width: 1px;
-    height: 1px;
-    overflow: hidden;
-    clip: rect(0 0 0 0);
-    white-space: nowrap;
-  }
   .hero {
-    padding: 40px 0 32px;
     max-width: 720px;
+    margin: 0 auto;
+    padding: 56px 0 48px;
+    text-align: center;
   }
   .eyebrow {
     margin: 0;
@@ -200,26 +190,30 @@ const sources = [
     font-size: clamp(2.3rem, 6.5vw, 3.6rem);
   }
   .lede {
-    margin: 16px 0 0;
+    margin: 18px auto 0;
+    max-width: 60ch;
     color: var(--muted);
     font-size: 1.12rem;
   }
-  .search {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 8px;
-    margin-top: 28px;
+  .cta {
+    margin-top: 32px;
+    padding: 16px 36px;
+    font-size: 1.15rem;
+    box-shadow: 0 6px 20px -8px var(--accent);
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
   }
-  .search input {
-    flex: 1 1 260px;
-    padding: 11px 16px;
-    border-radius: 999px;
+  .cta:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 10px 24px -8px var(--accent);
   }
-  .search .button {
-    border: 0;
-    font: inherit;
-    font-weight: 600;
-    cursor: pointer;
+  .cta:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 3px;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .cta {
+      transition: none;
+    }
   }
 
   /* strips: a rule on top, hairlines between items, like the trail pages; label first in the

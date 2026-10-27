@@ -5,9 +5,8 @@ import logo from "../assets/logo.svg?raw"; // written by design/logos/make.py
 interface Props {
   title: string;
   description?: string;
-  section?: "home" | "trails";
 }
-const { title, description, section } = Astro.props;
+const { title, description } = Astro.props;
 ---
 
 <!doctype html>
@@ -35,10 +34,7 @@ const { title, description, section } = Astro.props;
           <span class="brand-mark" aria-hidden="true" set:html={logo} />
           huckepack
         </a>
-        <nav>
-          <a href="/trails/" aria-current={section === "trails" ? "page" : undefined}>Trails</a>
-          <ThemeToggle />
-        </nav>
+        <ThemeToggle />
       </div>
     </header>
     <main class="wrap">
@@ -50,6 +46,7 @@ const { title, description, section } = Astro.props;
           huckepack collects facts about official long-distance trails. Every figure names its source.
         </p>
         <p>Maps and trail lines © OpenStreetMap contributors (ODbL), basemap by OpenFreeMap.</p>
+        <p class="legal-links"><a href="/legal-notice/">Legal notice</a><a href="/privacy/">Privacy</a></p>
       </div>
     </footer>
   </body>
@@ -239,20 +236,6 @@ const { title, description, section } = Astro.props;
     width: 100%;
     height: 100%;
   }
-  .site-header nav {
-    display: flex;
-    align-items: center;
-    gap: 20px;
-  }
-  .site-header nav a {
-    color: var(--muted);
-    text-decoration: none;
-    font-weight: 500;
-  }
-  .site-header nav a:hover,
-  .site-header nav a[aria-current="page"] {
-    color: var(--text);
-  }
   .site-footer {
     margin-top: 56px;
     padding: 24px 0 40px;
@@ -262,5 +245,16 @@ const { title, description, section } = Astro.props;
   }
   .site-footer p {
     margin: 0 0 4px;
+  }
+  .legal-links {
+    display: flex;
+    gap: 20px;
+    margin-top: 12px !important;
+  }
+  .legal-links a {
+    color: var(--muted);
+  }
+  .legal-links a:hover {
+    color: var(--text);
   }
 </style>

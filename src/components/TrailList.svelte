@@ -9,7 +9,7 @@
   const SAC = ["T1", "T2", "T3", "T4", "T5", "T6"];
 
   let query = $state("");
-  // a search handed over from elsewhere, e.g. the home page: /trails/?q=…
+  // a search handed over in the link: /trails/?q=…
   onMount(() => {
     query = new URLSearchParams(location.search).get("q") ?? "";
   });

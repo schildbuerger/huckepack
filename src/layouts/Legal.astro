@@ -1,0 +1,57 @@
+---
+// Legal pages (legal notice, privacy policy): breadcrumbs, title, last update and readable text.
+// Details not filled in yet are marked with <mark class="todo">, so they stand out until replaced.
+import Base from "./Base.astro";
+import Breadcrumbs from "../components/Breadcrumbs.astro";
+
+interface Props {
+  title: string;
+  description: string;
+  updated: string;
+}
+const { title, description, updated } = Astro.props;
+---
+
+<Base title={`${title} · huckepack`} description={description}>
+  <Breadcrumbs current={title} />
+  <article class="legal">
+    <h1>{title}</h1>
+    <p class="updated">Last updated {updated}</p>
+    <slot />
+  </article>
+</Base>
+
+<style>
+  .legal {
+    max-width: 68ch;
+  }
+  h1 {
+    margin-top: 8px;
+  }
+  .updated {
+    margin: 0 0 32px;
+    color: var(--muted);
+    font-size: 0.85rem;
+  }
+  .legal :global(h2) {
+    margin: 36px 0 8px;
+  }
+  .legal :global(h3) {
+    margin: 24px 0 6px;
+    font-size: 1.05rem;
+  }
+  .legal :global(p),
+  .legal :global(ul) {
+    margin: 0 0 12px;
+  }
+  .legal :global(address) {
+    margin: 0 0 12px;
+    font-style: normal;
+  }
+  .legal :global(mark.todo) {
+    padding: 0 4px;
+    border-radius: 4px;
+    background: var(--accent-soft);
+    color: var(--text);
+  }
+</style>
