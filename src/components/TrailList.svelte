@@ -168,7 +168,6 @@
       <div class="legend" id="g-when">
         <Explain id="x-when" term="When do you want to go?" title="Season">
           <p>A trail matches if its season includes any of the months you pick. The season is what the trail's managers recommend; outside it, huts and services may be closed or snow may block the way.</p>
-          <p>The months you pick are outlined on each card's season strip.</p>
         </Explain>
       </div>
       <div class="months">
@@ -335,7 +334,7 @@
                 {#if t.season}
                   <div class="season" aria-label={`Season: ${seasonText(t.season)}`}>
                     {#each MONTHS as m, i}
-                      <span class="month" class:in={t.season.includes(i + 1)} class:picked={months.includes(i + 1)} title={m}>{m[0]}</span>
+                      <span class="month" class:in={t.season.includes(i + 1)} title={m}>{m[0]}</span>
                     {/each}
                   </div>
                 {/if}
@@ -834,10 +833,6 @@
   .month.in {
     background: color-mix(in srgb, var(--text) 72%, var(--bg));
     color: var(--bg);
-  }
-  .month.picked {
-    outline: 2px solid var(--accent);
-    outline-offset: 1px;
   }
   .profile {
     margin: 0;
