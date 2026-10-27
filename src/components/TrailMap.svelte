@@ -3,6 +3,9 @@
   // public/routes/<slug>.geojson. Main stages are solid; approaches and variants dashed.
   import { onMount } from "svelte";
   import "maplibre-gl/dist/maplibre-gl.css";
+  // MapLibre looks for its worker next to its own script, which isn't there once Vite
+  // bundles it; hand it the worker's URL instead (the worker file is self-contained).
+  import workerUrl from "maplibre-gl/dist/maplibre-gl-worker.mjs?url";
 
   interface Point {
     name: string;
@@ -21,6 +24,7 @@
   const ROUTE = "#c2410c";
 
   let container: HTMLDivElement;
+  let failed = $state(false);
 
   onMount(() => {
     let map: import("maplibre-gl").Map | undefined;
@@ -28,7 +32,13 @@
 
     (async () => {
       const maplibre = await import("maplibre-gl");
-      const route = routeUrl ? await fetch(routeUrl).then((r) => r.json()) : null;
+      maplibre.setWorkerUrl(workerUrl);
+      const route = routeUrl
+        ? await fetch(routeUrl).then((r) => {
+            if (!r.ok) throw new Error(`route ${routeUrl}: HTTP ${r.status}`);
+            return r.json();
+          })
+        : null;
       if (cancelled) return;
 
       const lons = [start.lon, end.lon];
@@ -105,7 +115,10 @@
           },
         });
       });
-    })();
+    })().catch((error) => {
+      console.error("Trail map failed to load:", error);
+      failed = true;
+    });
 
     return () => {
       cancelled = true;
@@ -114,7 +127,9 @@
   });
 </script>
 
-<div class="map" bind:this={container} role="region" aria-label="Map of the trail"></div>
+<div class="map" bind:this={container} role="region" aria-label="Map of the trail">
+  {#if failed}<p class="failed">The map couldn't be loaded.</p>{/if}
+</div>
 <ul class="legend">
   <li><span class="key main"></span> Trail</li>
   <li><span class="key other"></span> Approach or variant</li>
@@ -131,6 +146,11 @@
     border-radius: 6px;
     overflow: hidden;
     background: var(--line);
+  }
+  .failed {
+    margin: 0;
+    padding: 16px;
+    color: var(--muted);
   }
   .legend {
     display: flex;
