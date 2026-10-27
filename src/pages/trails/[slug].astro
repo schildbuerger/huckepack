@@ -1,6 +1,15 @@
 ---
 import { getCollection, type CollectionEntry } from "astro:content";
 import Base from "../../layouts/Base.astro";
+import {
+  countryName,
+  monthName,
+  perDay,
+  sacGrade,
+  stageTotals,
+  SLEEPING_LABELS,
+  WILD_CAMPING_LABELS,
+} from "../../lib/trails";
 
 export async function getStaticPaths() {
   const trails = await getCollection("trails");
@@ -9,8 +18,13 @@ export async function getStaticPaths() {
 
 const { trail } = Astro.props as { trail: CollectionEntry<"trails"> };
 const t = trail.data;
-const sourceTitle = (id: string) => t.sources.find((s) => s.id === id)?.title ?? id;
-const monthName = (m: number) => new Date(2000, m - 1, 1).toLocaleString("en", { month: "long" });
+const sources = Object.fromEntries(t.sources.map((s, i) => [s.id, { ...s, n: i + 1 }]));
+const ref = (id: string) => `[${sources[id].n}]`;
+const totals = stageTotals(t);
+const daily = perDay(t);
+const sac = sacGrade(t);
+const fmt = (n: number) => n.toLocaleString("en");
+const hours = (min: number) => `${Math.floor(min / 60)} h ${String(min % 60).padStart(2, "0")}`;
 ---
 
 <Base title={`${t.name} · huckepack`}>
@@ -18,69 +32,288 @@ const monthName = (m: number) => new Date(2000, m - 1, 1).toLocaleString("en", {
     {t.name}
     {t.status === "draft" && <span class="badge">draft</span>}
   </h1>
-  {t.aliases.length > 0 && <p class="muted">Also known as {t.aliases.join(", ")}</p>}
+  {t.localName && <p class="muted">{t.localName}</p>}
+  <p><a href={t.website}>Official website</a></p>
 
-  <dl>
-    {t.designation && (
-      <>
-        <dt>Designation</dt>
-        <dd>{t.designation}</dd>
-      </>
-    )}
-    <dt>Managed by</dt>
-    <dd>{t.managedBy.map((m) => m.name).join(", ")}</dd>
-    <dt>From</dt>
-    <dd>{t.termini.start.name}</dd>
-    <dt>To</dt>
-    <dd>{t.termini.end.name}</dd>
-    <dt>Length</dt>
-    {t.length.map((l) => (
-      <dd>
-        {l.km.toLocaleString("en")} km <span class="muted">({sourceTitle(l.source)})</span>
-      </dd>
-    ))}
-    {t.established && (
-      <>
-        <dt>Established</dt>
-        <dd>
-          {t.established.year} <span class="muted">({sourceTitle(t.established.source)})</span>
-        </dd>
-      </>
-    )}
-    {t.season && (
-      <>
-        <dt>Season</dt>
-        <dd>
-          {t.season.months.map(monthName).join(", ")}{" "}
-          <span class="muted">({sourceTitle(t.season.source)})</span>
-        </dd>
-      </>
-    )}
-  </dl>
+  <section>
+    <h2>Key figures</h2>
+    <dl class="figures">
+      {t.days && (
+        <div>
+          <dt>Days</dt>
+          <dd>
+            {t.days.min === t.days.max ? t.days.min : `${t.days.min}–${t.days.max}`} <sup>{ref(t.days.source)}</sup>
+          </dd>
+        </div>
+      )}
+      {totals && (
+        <div>
+          <dt>Length</dt>
+          <dd>
+            {fmt(totals.km.value)} km <sup>{ref(totals.km.source)}</sup>
+            <small>{totals.km.how}</small>
+          </dd>
+        </div>
+      )}
+      {t.length.map((l) => (
+        <div>
+          <dt>Length</dt>
+          <dd>
+            {l.approx && "about "}
+            {fmt(l.km)} km <sup>{ref(l.source)}</sup>
+            <small>stated total</small>
+          </dd>
+        </div>
+      ))}
+      {totals && (
+        <div>
+          <dt>Total ascent</dt>
+          <dd>
+            {fmt(totals.ascentM.value)} m <sup>{ref(totals.ascentM.source)}</sup>
+            <small>descent {fmt(totals.descentM.value)} m; {totals.ascentM.how}</small>
+          </dd>
+        </div>
+      )}
+      {daily && (
+        <div>
+          <dt>Per day</dt>
+          <dd>
+            {daily.km.value} km · {fmt(daily.ascentM.value)} m ascent <sup>{ref(daily.km.source)}</sup>
+            <small>average; {daily.km.how}</small>
+          </dd>
+        </div>
+      )}
+      {(t.difficulty?.cai || sac) && (
+        <div>
+          <dt>Difficulty</dt>
+          <dd>
+            {t.difficulty?.cai && (
+              <>
+                CAI {t.difficulty.cai.grade} <sup>{ref(t.difficulty.cai.source)}</sup>
+              </>
+            )}
+            {t.difficulty?.cai && sac && " · "}
+            {sac && (
+              <>
+                SAC {sac.value} <sup>{ref(sac.source)}</sup>
+              </>
+            )}
+            {sac && sac.how !== "stated" && <small>SAC {sac.how}</small>}
+          </dd>
+        </div>
+      )}
+      {t.season && (
+        <div>
+          <dt>Season</dt>
+          <dd>
+            {t.season.text ?? t.season.months.map(monthName).join(", ")} <sup>{ref(t.season.source)}</sup>
+            {t.season.text && <small>{t.season.months.map(monthName).join(", ")}</small>}
+          </dd>
+        </div>
+      )}
+    </dl>
+  </section>
 
-  <h2>Sources</h2>
-  <ul>
-    {t.sources.map((s) => (
-      <li>
-        <a href={s.url}>{s.title}</a> · {s.licence} ·{" "}
-        {s.retrieved ? `retrieved ${s.retrieved.toISOString().slice(0, 10)}` : "not yet verified"}
-      </li>
-    ))}
-  </ul>
+  <section>
+    <h2>Where</h2>
+    <dl class="facts">
+      <dt>Country</dt>
+      <dd>{t.countries.map(countryName).join(", ")} · {t.continents.join(", ")}</dd>
+      {t.regions.length > 0 && (
+        <>
+          <dt>Regions</dt>
+          <dd>{t.regions.join(", ")}</dd>
+        </>
+      )}
+      {t.protectedAreas.length > 0 && (
+        <>
+          <dt>Protected areas</dt>
+          <dd>{t.protectedAreas.join("; ")}</dd>
+        </>
+      )}
+      <dt>From</dt>
+      <dd>{t.termini.start.name} <sup>{ref(t.termini.source)}</sup></dd>
+      <dt>To</dt>
+      <dd>{t.termini.end.name}</dd>
+      <dt>Type</dt>
+      <dd>{t.trailType}</dd>
+      <dt>Managed by</dt>
+      <dd>{t.managedBy.map((m) => m.name).join(", ")}</dd>
+      {t.waymarking && (
+        <>
+          <dt>Waymarking</dt>
+          <dd>{t.waymarking.text} <sup>{ref(t.waymarking.source)}</sup></dd>
+        </>
+      )}
+    </dl>
+  </section>
+
+  {(t.sleeping || t.wildCamping) && (
+    <section>
+      <h2>Sleeping</h2>
+      <dl class="facts">
+        {t.sleeping && (
+          <>
+            <dt>Along the trail</dt>
+            <dd>
+              {t.sleeping.types.map((s) => SLEEPING_LABELS[s]).join(", ")} <sup>{ref(t.sleeping.source)}</sup>
+            </dd>
+          </>
+        )}
+        {t.wildCamping && (
+          <>
+            <dt>Wild camping</dt>
+            <dd>
+              <strong>{WILD_CAMPING_LABELS[t.wildCamping.status]}.</strong> {t.wildCamping.rule}{" "}
+              <sup>{ref(t.wildCamping.source)}</sup>
+            </dd>
+          </>
+        )}
+      </dl>
+    </section>
+  )}
+
+  {t.stages && (
+    <section>
+      <h2>Stages <sup>{ref(t.stages.source)}</sup></h2>
+      <div class="scroll">
+        <table>
+          <thead>
+            <tr>
+              <th>Stage</th>
+              <th>Route</th>
+              <th class="num">km</th>
+              <th class="num">Ascent</th>
+              <th class="num">Descent</th>
+              <th class="num">Time</th>
+              <th class="num">Start → end</th>
+            </tr>
+          </thead>
+          <tbody>
+            {t.stages.list.map((s) => (
+              <tr class={s.kind}>
+                <td>
+                  {s.number}
+                  {s.kind !== "main" && <small> {s.kind}</small>}
+                </td>
+                <td>
+                  {s.from} – {s.to}
+                </td>
+                <td class="num">{s.km.toFixed(1)}</td>
+                <td class="num">{fmt(s.ascentM)} m</td>
+                <td class="num">{fmt(s.descentM)} m</td>
+                <td class="num">{s.minutes ? hours(s.minutes) : "–"}</td>
+                <td class="num">
+                  {s.startEleM !== undefined && s.endEleM !== undefined
+                    ? `${fmt(s.startEleM)} → ${fmt(s.endEleM)} m`
+                    : "–"}
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+      <p class="muted"><small>Totals and averages use the main stages only, not the approach or variants.</small></p>
+    </section>
+  )}
+
+  {t.notes.length > 0 && (
+    <section>
+      <h2>Open questions</h2>
+      <ul>
+        {t.notes.map((n) => <li>{n}</li>)}
+      </ul>
+    </section>
+  )}
+
+  <section>
+    <h2>Sources</h2>
+    <ol>
+      {t.sources.map((s) => (
+        <li>
+          <a href={s.url}>{s.title}</a> · {s.licence} ·{" "}
+          {s.retrieved ? `retrieved ${s.retrieved.toISOString().slice(0, 10)}` : "not yet verified"}
+          {s.note && <span class="muted"> · {s.note}</span>}
+        </li>
+      ))}
+    </ol>
+  </section>
 </Base>
 
 <style>
-  dl {
-    display: grid;
-    grid-template-columns: max-content 1fr;
-    gap: 4px 16px;
+  section {
+    margin-top: 32px;
   }
-  dt {
-    grid-column: 1;
+  .figures {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 12px;
+    margin: 0;
+  }
+  .figures div {
+    padding: 12px;
+    border: 1px solid var(--line);
+    border-radius: 6px;
+  }
+  .figures dt {
+    color: var(--muted);
+    font-size: 0.85em;
+  }
+  .figures dd {
+    margin: 0;
+    font-size: 1.15em;
+    font-weight: 600;
+  }
+  .figures small {
+    display: block;
+    font-size: 0.75em;
+    font-weight: 400;
     color: var(--muted);
   }
-  dd {
-    grid-column: 2;
+  .facts {
+    display: grid;
+    grid-template-columns: max-content 1fr;
+    gap: 6px 16px;
+  }
+  .facts dt {
+    color: var(--muted);
+  }
+  .facts dd {
     margin: 0;
+  }
+  @media (max-width: 560px) {
+    .facts {
+      grid-template-columns: 1fr;
+    }
+    .facts dd {
+      margin-bottom: 8px;
+    }
+  }
+  sup {
+    color: var(--muted);
+    font-size: 0.7em;
+  }
+  .scroll {
+    overflow-x: auto;
+  }
+  table {
+    border-collapse: collapse;
+    width: 100%;
+    font-size: 0.95em;
+  }
+  th,
+  td {
+    padding: 6px 8px;
+    border-bottom: 1px solid var(--line);
+    text-align: left;
+    white-space: nowrap;
+  }
+  .num {
+    text-align: right;
+    font-variant-numeric: tabular-nums;
+  }
+  tr.approach,
+  tr.variant {
+    color: var(--muted);
   }
 </style>

@@ -13,9 +13,10 @@ Planning notes: [docs/scope.md](docs/scope.md) (decisions and open questions),
 
 ## Status
 
-Skeleton: a trail database schema, one sample trail (the Pacific Crest Trail,
-a draft with unverified figures), a filterable index page and one page per
-trail. Maps, charts, search and the data pipeline come next.
+Early: a trail database schema, the first trail (the Sacred Forests Trail in
+Italy, a draft built from the national park's stage pages), a filterable
+index page and one page per trail. Maps, charts, search and the data
+pipeline come next.
 
 ## Development
 

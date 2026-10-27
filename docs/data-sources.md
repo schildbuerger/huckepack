@@ -1,5 +1,9 @@
 # Data sources
 
+Sources for a single trail (its official website, stage pages, local rules)
+are listed in that trail's record in `data/trails/`, with licence and
+retrieval date. This file lists sources used across many trails.
+
 Candidates, not yet verified. Check the current licence and terms of each
 source before using it, and record the result here.
 

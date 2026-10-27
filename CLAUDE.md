@@ -15,7 +15,8 @@ npm run check        # type check (Astro, Svelte, TypeScript)
 
 ## Architecture
 
-- `data/trails/<slug>.yaml`: the trail database, one file per trail; the file name is the URL slug. `src/content.config.ts` is its schema (Zod): every figure (`length`, `established`, `season`) names a `source` id from the trail's `sources`, and the build fails on an unknown id. A source's `retrieved: null` means its figures are not yet checked; the page says "not yet verified". `status: draft` trails are built and badged as drafts (no release mechanism yet).
+- `data/trails/<slug>.yaml`: the trail database, one file per trail; the file name is the URL slug. `src/content.config.ts` is its schema (Zod): every figure names a `source` id from the trail's `sources`, and the build fails on an unknown id. A source's `retrieved: null` means its figures are not yet checked; the page says "not yet verified". `status: draft` trails are built and badged as drafts (no release mechanism yet). `notes` holds discrepancies between sources; the page lists them as open questions.
+- `src/lib/trails.ts`: derived figures, never stored: totals from the main stages (`kind: main`; approaches and variants are excluded), averages per day (only when days and stages share a source), and the SAC grade for filtering (stated, or converted from CAI with `CAI_TO_SAC`). Each result carries its source.
 - `pipeline/`: Python, downloads and processes source data into `data/raw/<trail>/` (committed cache) and writes derived figures into `data/trails/`. The site build never downloads.
 - `src/pages/index.astro`: builds a compact summary per trail and passes it to `src/components/TrailList.svelte`, which filters in the browser (`client:load`). `src/pages/trails/[slug].astro`: one prerendered page per trail. `src/layouts/Base.astro`: shell and colour tokens, with dark mode overrides.
 - Keep pages prerendered: only interactive parts (filters, maps, charts) become Svelte islands.
@@ -24,5 +25,5 @@ npm run check        # type check (Astro, Svelte, TypeScript)
 ## Ground rules
 
 - Only official trails: a route designated or maintained by a government body or a recognised trail association. Unofficial routes (for example the Hayduke Trail) are out of scope unless docs/scope.md says otherwise.
-- Every figure on a page must come from a source listed in docs/data-sources.md, with its licence and retrieval date. Check a source's licence before using it: official GPX tracks are often copyrighted, and OpenStreetMap data requires ODbL attribution.
+- Every figure on a page must come from a source listed in the trail's record (or, for sources used across trails, in docs/data-sources.md), with its licence and retrieval date. Check a source's licence before using it: official GPX tracks are often copyrighted, and OpenStreetMap data requires ODbL attribution.
 - Trail lengths, elevation gain and similar numbers differ between sources. Show which source a number comes from rather than silently picking one, and never mix them in one figure.

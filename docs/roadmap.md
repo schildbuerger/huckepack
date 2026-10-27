@@ -7,6 +7,10 @@ before building it.
 
 ## Trails
 
+In progress: **Sacred Forests Trail** (Sentiero delle Foreste Sacre, Italy,
+7 stages, about 100 km), the first record, built from the national park's
+stage pages (`data/trails/sacred-forests-trail.yaml`, draft).
+
 | # | Trail | Region | Length (approx.) | Why |
 |---|---|---|---|---|
 | 1 | Pacific Crest Trail | USA | 4,265 km | Most-hiked long trail; public US agency data; completion lists |

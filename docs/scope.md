@@ -29,6 +29,21 @@
   - A backend (Postgres/PostGIS) only once there are accounts, user
     contributions, daily-changing data, or thousands of trails.
 
+- **Trail record** (schema in `src/content.config.ts`):
+  - Difficulty: show the trail's own scale (e.g. CAI) and SAC side by side;
+    filter on SAC. Where only CAI is known, SAC is converted (T→T1, E→T2,
+    EE→T3, EEA→T4, the lower bound where the scales overlap) and labelled as
+    converted.
+  - Stages are recorded per trail (km, ascent, descent, time, start and end
+    elevation), marked as main, approach or variant. Totals and averages per
+    day are computed from the main stages, never stored, and only from
+    figures of the same source.
+  - Sleeping: only which types exist along the trail (huts, campsites,
+    hostels, …), not individual places. Wild camping as allowed, restricted
+    or prohibited, with the rule in words and its source.
+  - Discrepancies between sources go in the record's `notes` and are shown
+    on the page as open questions.
+
 ## What a trail page could show
 
 - Route on a map, with sections or stages

@@ -2,17 +2,28 @@
 import { getCollection } from "astro:content";
 import Base from "../layouts/Base.astro";
 import TrailList from "../components/TrailList.svelte";
+import { countryName, sacGrade, stageTotals } from "../lib/trails";
 
 const trails = (await getCollection("trails"))
-  .map((t) => ({
-    slug: t.id,
-    name: t.data.name,
-    region: t.data.region,
-    // the first listed length is the one shown in lists; trail pages show all of them
-    lengthKm: t.data.length[0].km,
-    tags: t.data.tags,
-    draft: t.data.status === "draft",
-  }))
+  .map(({ id, data: t }) => {
+    const totals = stageTotals(t);
+    return {
+      slug: id,
+      name: t.name,
+      continents: t.continents,
+      countries: t.countries.map(countryName),
+      // lists show the stage total when there are stages, else the first stated length;
+      // trail pages show every figure with its source
+      lengthKm: totals?.km.value ?? t.length[0]?.km ?? null,
+      ascentM: totals?.ascentM.value ?? t.ascent[0]?.m ?? null,
+      days: t.days ? ([t.days.min, t.days.max] as [number, number]) : null,
+      sac: sacGrade(t)?.value ?? null,
+      wildCamping: t.wildCamping?.status ?? null,
+      sleeping: t.sleeping?.types ?? [],
+      tags: t.tags,
+      draft: t.status === "draft",
+    };
+  })
   .sort((a, b) => a.name.localeCompare(b.name));
 ---
 

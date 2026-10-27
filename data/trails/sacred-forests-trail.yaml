@@ -1,0 +1,94 @@
+name: Sacred Forests Trail
+localName: Sentiero delle Foreste Sacre
+aliases: [Trail of the Sacred Forests]
+status: draft
+website: https://trekking.parcoforestecasentinesi.it/en/sacred-forests/
+managedBy:
+  - name: Parco Nazionale delle Foreste Casentinesi, Monte Falterona e Campigna
+    url: https://www.parcoforestecasentinesi.it/
+trailType: point-to-point
+continents: [Europe]
+countries: [IT]
+regions: [Emilia-Romagna, Tuscany]
+protectedAreas:
+  - Parco Nazionale delle Foreste Casentinesi, Monte Falterona e Campigna
+termini:
+  # first and last points of the park's GPX tracks for stages 1 and 7
+  start:
+    name: Lago di Ponte, Tredozio
+    lat: 44.03032
+    lon: 11.69999
+  end:
+    name: Santuario della Verna
+    lat: 43.70719
+    lon: 11.93163
+  source: pnfc
+waymarking:
+  text: Standard CAI waymarks
+  source: thewom
+length:
+  - km: 100
+    approx: true
+    source: thewom
+days:
+  min: 7
+  max: 7
+  source: pnfc
+stages:
+  source: pnfc
+  list:
+    - { number: "0", kind: approach, from: Marradi, to: Lago di Ponte, km: 15.9, ascentM: 980, descentM: 680, minutes: 375, startEleM: 330, endEleM: 666 }
+    - { number: "1", kind: main, from: Lago di Ponte, to: San Benedetto in Alpe, km: 8.3, ascentM: 440, descentM: 570, minutes: 210, startEleM: 665, endEleM: 525 }
+    - { number: "2", kind: main, from: San Benedetto in Alpe, to: Castagno d'Andrea, km: 19.7, ascentM: 1130, descentM: 900, minutes: 420, startEleM: 567, endEleM: 730 }
+    - { number: "3", kind: main, from: Castagno d'Andrea, to: Campigna, km: 19.4, ascentM: 1080, descentM: 740, minutes: 480, startEleM: 675, endEleM: 1464 }
+    - { number: "4", kind: main, from: Campigna, to: Camaldoli, km: 14.0, ascentM: 640, descentM: 890, minutes: 330, startEleM: 1464, endEleM: 849 }
+    - { number: "5", kind: main, from: Camaldoli, to: Badia Prataglia, km: 13.4, ascentM: 920, descentM: 770, minutes: 300, startEleM: 847, endEleM: 1055 }
+    - { number: "6", kind: main, from: Badia Prataglia, to: Rimbocchi, km: 18.5, ascentM: 650, descentM: 700, minutes: 300, startEleM: 1004, endEleM: 552 }
+    - { number: "6", kind: variant, from: Badia Prataglia, to: Rimbocchi, km: 10.5, ascentM: 489, descentM: 782, minutes: 195, startEleM: 842, endEleM: 549 }
+    - { number: "7", kind: main, from: Rimbocchi, to: La Verna, km: 7.9, ascentM: 627, descentM: 341, minutes: 240, startEleM: 552, endEleM: 1138 }
+difficulty:
+  cai:
+    grade: E
+    source: thewom
+season:
+  months: [3, 4, 5, 9, 10, 11]
+  text: Spring and autumn
+  source: thewom
+sleeping:
+  types: [hut, campsite, hostel, guesthouse, hotel, monastery]
+  source: pnfc
+wildCamping:
+  status: restricted
+  rule: >-
+    Inside the national park, tents are allowed only at authorised campsites and farms.
+    Next to huts, bivouacs and other hikers' facilities you may pitch a tent only while
+    they are open and full: one night, from an hour after sunset to sunrise, at most two
+    tents. Outside the park, ask the individual facilities.
+  source: er-avp
+tags: [forests, monasteries, apennines, national-park]
+notes:
+  - >-
+    The park's stage pages state distances that differ from its own GPX tracks (stage 3:
+    19.4 km stated, 13.4 km in the GPX). The stated figures are used; check them against
+    OpenStreetMap.
+  - The park publishes no total length or difficulty grade; both come from a travel magazine.
+  - >-
+    The camping rule comes from a 2019 regional summary that cites the park's "provisional
+    regulation"; check whether that regulation is still current.
+sources:
+  - id: pnfc
+    title: "Parco Nazionale Foreste Casentinesi: Trail of the Sacred Forests (overview and stage pages, GPX)"
+    url: https://trekking.parcoforestecasentinesi.it/en/sacred-forests/
+    licence: All rights reserved (facts only)
+    retrieved: 2026-10-27
+  - id: thewom
+    title: "The Wom Travel: Sentiero delle Foreste Sacre (Rosanna Carrizzo, updated 2026-02-28)"
+    url: https://travel.thewom.it/italia/toscana/sentiero-delle-foreste-sacre.html
+    licence: All rights reserved (facts only)
+    retrieved: 2026-10-27
+    note: Travel magazine, not an official source.
+  - id: er-avp
+    title: "Regione Emilia-Romagna: Bivacco con tenda lungo l'Alta Via dei Parchi (June 2019)"
+    url: https://ambiente.regione.emilia-romagna.it/it/parchi-natura2000/fruizione/altavia/bivacco-con-tenda/avp_bivacco-con-tenda_ita_eng_giu_2019.pdf
+    licence: Not stated (facts only)
+    retrieved: 2026-10-27
