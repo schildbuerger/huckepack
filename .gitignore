@@ -1,0 +1,28 @@
+# Secrets and local environment
+.env
+.env.*
+
+# Build output: site/ (released entries, published by GitHub Actions) and preview/
+# (every entry, local only). Built from templates and the committed data in data/raw/.
+site/
+preview/
+
+# Dependencies and build caches
+node_modules/
+.venv/
+__pycache__/
+*.egg-info/
+.pytest_cache/
+
+# Editor, OS and personal tool files
+.DS_Store
+Thumbs.db
+*.code-workspace
+.vscode/
+.idea/
+*.swp
+.claude/settings.local.json
+.claude/.cc-writes/
+
+# Logs
+*.log
