@@ -9,6 +9,8 @@ huckepack is a website that collects and visualises data about official long-dis
 ```bash
 npm install          # once (inside Claude Code's sandbox: npm_config_cache="$TMPDIR/npm-cache" npm install)
 npm run dev          # local site at http://localhost:4321; runs detached (npx astro dev status | logs | stop)
+                     # before starting: lsof -nP -iTCP:4321 -sTCP:LISTEN; if one is running, reuse it (it reloads
+                     # on file changes). Claude Code's sandbox can't stop a detached server; the user has to.
 npm run build        # dist/: the static site; fails if a trail file doesn't match the schema
 npm run check        # type check (Astro, Svelte, TypeScript)
 ```
