@@ -53,12 +53,16 @@ const stage = z.object({
   from: z.string(),
   to: z.string(),
   km: z.number().positive(),
-  ascentM: z.number().int().nonnegative(),
-  descentM: z.number().int().nonnegative(),
+  // ascent and descent: optional, some sources give neither (the page then estimates them, ≈)
+  ascentM: z.number().int().nonnegative().optional(),
+  descentM: z.number().int().nonnegative().optional(),
   minutes: z.number().int().positive().optional(), // walking time in the main direction
+  maxMinutes: z.number().int().positive().optional(), // when the source gives a range: minutes to maxMinutes
   startEleM: z.number().int().optional(),
   endEleM: z.number().int().optional(),
   track: z.url().optional(), // the stage's GPX track; pipeline/routes.py builds the map line from it
+  // without a track: where the stage ends, to split the route's OSM relation (route.relation)
+  end: z.object({ lat: z.number(), lon: z.number() }).optional(),
 });
 
 const trail = z
@@ -90,7 +94,16 @@ const trail = z
     stages: z.object({ source: sourceRef, list: z.array(stage).min(1) }).optional(),
     // The map line, built by the pipeline into public/routes/<slug>.geojson. `publishable`
     // is false when the geometry's licence doesn't allow republishing it (e.g. official GPX).
-    route: z.object({ source: sourceRef, publishable: z.boolean() }).optional(),
+    route: z
+      .object({
+        source: sourceRef,
+        publishable: z.boolean(),
+        // the trail's OSM hiking relation, to guide the map line when there are no GPX tracks;
+        // `alternatives`: ways with role "alternative" to use, where the main members leave a gap
+        relation: z.number().int().optional(),
+        alternatives: z.array(z.number().int()).default([]),
+      })
+      .optional(),
 
     difficulty: z
       .object({
@@ -128,12 +141,13 @@ const trail = z
       })
       .optional(),
 
-    // Travel hubs near the start: the nearest railway station and airport(s). pipeline/access.py
+    // Travel hubs near the start: the nearest railway station (or, without railways, the main bus
+    // station the trail's buses leave from) and airport(s). pipeline/access.py
     // derives their distance to the start by road.
     access: z
       .array(
         z.object({
-          kind: z.enum(["station", "airport"]),
+          kind: z.enum(["station", "bus", "airport"]),
           name: z.string(),
           lat: z.number().min(-90).max(90),
           lon: z.number().min(-180).max(180),

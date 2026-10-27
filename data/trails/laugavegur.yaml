@@ -1,0 +1,160 @@
+name: Laugavegur
+aliases: [Laugavegur Trail, Laugavegurinn]
+website: https://www.fi.is/en/moya/adverts/425
+managedBy:
+  - name: Ferðafélag Íslands (Iceland Touring Association)
+    url: https://www.fi.is/en
+trailType: point-to-point
+continents: [Europe]
+countries: [IS]
+regions: [Southern Region]
+protectedAreas:
+  # OSM protected areas containing the huts along the route
+  - Friðland að Fjallabaki (Fjallabak Nature Reserve)
+  - Katla UNESCO Global Geopark
+termini:
+  # the FÍ huts at either end (GPS on FÍ's hut pages)
+  start:
+    name: Landmannalaugar
+    lat: 63.99333
+    lon: -19.061
+  end:
+    name: Þórsmörk (Langidalur)
+    lat: 63.68267
+    lon: -19.51483
+  source: fi-huts
+established:
+  year: 1978
+  source: wikipedia
+waymarking:
+  text: Signposted throughout
+  source: wikipedia
+length:
+  - km: 54
+    source: fi
+days:
+  min: 4
+  max: 4
+  source: fi
+stages:
+  # FÍ's standard 4-day itinerary between its huts; times are FÍ's ranges. FÍ gives no ascent and
+  # descent per stage (only one rounded height change each, see notes), so the page estimates them.
+  # No GPX: `end` (the hut's GPS from FÍ) splits the OSM relation in `route`.
+  source: fi
+  list:
+    - { number: "1", kind: main, from: Landmannalaugar, to: Hrafntinnusker, km: 12, minutes: 240, maxMinutes: 300, end: { lat: 63.93357, lon: -19.16848 } }
+    - { number: "2", kind: main, from: Hrafntinnusker, to: Álftavatn, km: 12, minutes: 240, maxMinutes: 300, end: { lat: 63.85783, lon: -19.22733 } }
+    - { number: "3", kind: main, from: Álftavatn, to: Emstrur (Botnar), km: 16, minutes: 360, maxMinutes: 420, end: { lat: 63.76633, lon: -19.37417 } }
+    - { number: "4", kind: main, from: Emstrur (Botnar), to: Þórsmörk (Langidalur), km: 15, minutes: 360, maxMinutes: 420, end: { lat: 63.68267, lon: -19.51483 } }
+route:
+  # built by `python -m pipeline.routes laugavegur`: OSM ways matched to the OSM hiking relation
+  # "Laugavegur" (1225037), split at the huts. Way 166493841 (role alternative, 2.8 km) closes a
+  # 2.6 km gap in the main members after Álftavatn; 979223680 a 70 m one.
+  source: osm
+  publishable: true
+  relation: 1225037
+  alternatives: [166493841, 979223680]
+difficulty:
+  # no grade is published; our estimate, see the note on difficulty below
+  estimated:
+    sac: T2
+    basis: >-
+      FÍ publishes no grade. The trail follows a continuous, signposted path, steep in places
+      (from 550 m to about 1,100 m at Hrafntinnusker and down again), often in fog, with snow
+      patches early in the season and at least three unbridged rivers to wade. That is mountain
+      hiking (T2); the river crossings and the weather make it harder than the grade suggests.
+    source: fi
+season:
+  # huts open about 25 June to 15 September, depending on when the F-roads open
+  months: [6, 7, 8, 9]
+  text: Late June to mid-September
+  source: fi
+sleeping:
+  # FÍ mountain huts (sleeping-bag accommodation, wardens in summer) with campsites beside each
+  types: [hut, campsite]
+  source: fi
+wildCamping:
+  status: prohibited
+  rule: >-
+    Tents only at the campsites beside the huts, booked in advance; FÍ asks hikers to pitch only in
+    the designated areas and to leave nothing behind, not even food scraps or toilet paper. The
+    trail runs through the Fjallabak Nature Reserve.
+  source: fi
+access:
+  # Iceland has no railway: the buses to Landmannalaugar leave from Reykjavík's BSÍ terminal;
+  # Keflavík is the international airport. Coordinates from OSM; distances by pipeline/access.py
+  - kind: bus
+    name: BSÍ bus terminal, Reykjavík
+    lat: 64.13751
+    lon: -21.93461
+    source: osm
+  - kind: airport
+    name: Keflavík International Airport (KEF)
+    lat: 63.98455
+    lon: -22.62598
+    source: osm
+tags: [highlands, volcanic, geothermal, river-crossings, huts]
+notes:
+  - >-
+    FÍ's trail page gives 54 km in its key figures and "55-kilometer route" in the text; its four
+    stages add up to 55 km (12 + 12 + 16 + 15). Its itinerary list gives Álftavatn – Emstrur as
+    17 km against 16 km in the stage table.
+  - >-
+    FÍ's stage table gives one rounded height figure per stage (470 m ascent, 490 m descent, 40 m
+    descent, 300 m descent), apparently the net change between the huts, not the total climb and
+    descent, so they aren't used as ascent and descent; its key figures give "500 m" elevation.
+  - >-
+    FÍ also lists 2- and 3-day itineraries (Landmannalaugar – Hvanngil – Þórsmörk; Landmannalaugar
+    – Álftavatn – Emstrur – Þórsmörk) and a 4-day variant via Hvanngil (Hrafntinnusker – Hvanngil
+    16 km, Hvanngil – Emstrur 13 km). The record keeps the standard 4 days.
+  - >-
+    The Fimmvörðuháls trail (Þórsmörk – Skógar, 27 km over two days) is a popular extension; it is
+    a separate route (OSM relation 396940, operator Ferðafélagið Útivist) and not in this record.
+  - >-
+    Season months 6 and 9 are partial: the huts open about 25 June and close about 15–18
+    September, depending on snow and when the Road Authority opens the F-roads. The Þórsmörk huts
+    are open from early May to early October.
+  - >-
+    Huts and campsites must be booked before starting; Emstrur can't be booked on its own, only in a
+    package. Garbage must be carried from Hrafntinnusker and Emstrur to the next hut.
+  - >-
+    No difficulty grade is published (FÍ: "suitable for experienced hikers"). The SAC T2 in
+    `difficulty.estimated` is our translation; the river fords (Grashagakvísl, Bratthálskvísl,
+    Bláfjallakvísl, Þröngá and others) are not part of the SAC hiking scale.
+  - Highest point on the trail is Hrafntinnusker at about 1,050 m (Wikipedia) or 1,100 m (FÍ hut page).
+sources:
+  - id: fi
+    title: "Ferðafélag Íslands: Trails: Laugavegur (stages, itineraries, season, river crossings, camping)"
+    url: https://www.fi.is/en/moya/adverts/425
+    licence: All rights reserved (facts only)
+    retrieved: 2026-10-27
+  - id: fi-huts
+    title: "Ferðafélag Íslands: mountain huts Landmannalaugar, Hrafntinnusker, Álftavatn, Emstrur, Þórsmörk (GPS, capacity, opening)"
+    url: https://www.fi.is/en/mountain-huts/all-mountain-huts/landmannalaugar
+    licence: All rights reserved (facts only)
+    retrieved: 2026-10-27
+  - id: wikipedia
+    title: "Wikipedia: Laugavegur (established, signposting)"
+    url: https://en.wikipedia.org/wiki/Laugavegur
+    licence: CC BY-SA 4.0
+    retrieved: 2026-10-27
+  - id: osm
+    title: "OpenStreetMap contributors: the Laugavegur hiking relation, paths along the trail and travel hubs (via Overpass API)"
+    url: https://www.openstreetmap.org/relation/1225037
+    licence: ODbL 1.0
+    retrieved: 2026-10-27
+  - id: copdem
+    title: "Copernicus DEM GLO-30 (30 m terrain model), tiles from AWS Open Data"
+    url: https://registry.opendata.aws/copernicus-dem/
+    licence: "Copernicus WorldDEM-30 licence, free; produced using Copernicus WorldDEM-30 © DLR e.V. 2010-2014 and © Airbus Defence and Space GmbH 2014-2018 provided under COPERNICUS by the European Union and ESA; all rights reserved"
+    retrieved: 2026-10-27
+  - id: era5
+    title: "Open-Meteo Historical Weather API: ERA5 and ERA5-Land reanalysis, daily 1995–2024"
+    url: https://open-meteo.com/en/docs/historical-weather-api
+    licence: CC BY 4.0 (Open-Meteo); contains modified Copernicus Climate Change Service information
+    retrieved: 2026-10-27
+  - id: osrm
+    title: "OSRM: road routes on OpenStreetMap data (router.project-osrm.org)"
+    url: https://project-osrm.org/
+    licence: Route data © OpenStreetMap contributors (ODbL)
+    retrieved: 2026-10-27

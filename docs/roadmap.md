@@ -15,6 +15,10 @@ Also in progress: **Forststeig Elbe Sandstone** (Forststeig Elbsandstein, Saxony
 105 km), the second record and a test of the whole setup on a new trail, built from
 Sachsenforst's route overview and GPX tracks (`data/trails/forststeig-elbe-sandstone.yaml`).
 
+Also in progress: **Laugavegur** (Iceland, Landmannalaugar – Þórsmörk, 4 stages, 54 km), the third
+record, built from Ferðafélag Íslands' trail and hut pages; no official GPX, so the map line follows
+the OSM hiking relation (`data/trails/laugavegur.yaml`).
+
 | # | Trail | Region | Length (approx.) | Why |
 |---|---|---|---|---|
 | 1 | Pacific Crest Trail | USA | 4,265 km | Most-hiked long trail; public US agency data; completion lists |

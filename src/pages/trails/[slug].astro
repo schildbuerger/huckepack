@@ -59,9 +59,29 @@ const stageView = (t.stages?.list ?? []).map((s) => {
       : est?.startEleM !== undefined && est.endEleM !== undefined
         ? { from: est.startEleM, to: est.endEleM, est: true }
         : null;
-  const time = s.minutes ? { min: s.minutes, est: false } : est?.minutes ? { min: est.minutes, est: true } : null;
-  return { ...s, ele, time };
+  const time = s.minutes
+    ? { min: s.minutes, max: s.maxMinutes, est: false }
+    : est?.minutes
+      ? { min: est.minutes, max: undefined, est: true }
+      : null;
+  const climb =
+    s.ascentM !== undefined && s.descentM !== undefined
+      ? { up: s.ascentM, down: s.descentM, est: false }
+      : est?.ascentM !== undefined && est.descentM !== undefined
+        ? { up: est.ascentM, down: est.descentM, est: true }
+        : null;
+  return { ...s, ele, time, climb };
 });
+// total ascent and descent: the stated stage sums, else the sum of the terrain model's estimates
+// for every main stage (marked ≈)
+const mainView = stageView.filter((s) => s.kind === "main");
+const climbTotal =
+  totals?.ascentM && totals.descentM
+    ? { up: totals.ascentM.value, down: totals.descentM.value, est: false }
+    : mainView.length && mainView.every((s) => s.climb)
+      ? { up: mainView.reduce((a, s) => a + s.climb!.up, 0), down: mainView.reduce((a, s) => a + s.climb!.down, 0), est: true }
+      : null;
+const estClimb = stageView.some((s) => s.climb?.est);
 // stage columns: only those some stage has a figure for; a stage without one keeps an empty cell,
 // so the columns stay under their header
 const stageEle = stageView.some((s) => s.ele);
@@ -70,6 +90,9 @@ const estEle = stageView.some((s) => s.ele?.est);
 const estTime = stageView.some((s) => s.time?.est);
 const fmt = (n: number) => n.toLocaleString("en");
 const hours = (min: number) => `${Math.floor(min / 60)} h ${String(min % 60).padStart(2, "0")}`;
+// a walking time, or a range of whole hours as "4–5 h"
+const timeText = (min: number, max?: number) =>
+  max === undefined ? hours(min) : min % 60 === 0 && max % 60 === 0 ? `${min / 60}–${max / 60} h` : `${hours(min)}–${hours(max)}`;
 const TRAIL_TYPES = { "point-to-point": "Point to point", loop: "Loop", network: "Network" };
 const range = (min: number, max: number) => (min === max ? `${min}` : `${min}–${max}`);
 // the map line, built by pipeline/routes.py; without it the map shows only the termini
@@ -269,16 +292,22 @@ const nav = [
           </dd>
         </div>
       )}
-      {totals && (
+      {climbTotal && (
         <div>
-          <dt>Ascent</dt>
-          <dd><span class="big">{fmt(totals.ascentM.value)}</span><span class="unit">m ↑</span></dd>
+          <dt>Ascent{climbTotal.est && " (estimate)"}</dt>
+          <dd>
+            {climbTotal.est && <span class="unit approx" aria-hidden="true">≈</span>}
+            <span class="big">{fmt(climbTotal.up)}</span><span class="unit">m ↑</span>
+          </dd>
         </div>
       )}
-      {totals && (
+      {climbTotal && (
         <div>
-          <dt>Descent</dt>
-          <dd><span class="big">{fmt(totals.descentM.value)}</span><span class="unit">m ↓</span></dd>
+          <dt>Descent{climbTotal.est && " (estimate)"}</dt>
+          <dd>
+            {climbTotal.est && <span class="unit approx" aria-hidden="true">≈</span>}
+            <span class="big">{fmt(climbTotal.down)}</span><span class="unit">m ↓</span>
+          </dd>
         </div>
       )}
       {sac && (
@@ -312,7 +341,7 @@ const nav = [
       {daily && (
         <div>
           <dt>Per day</dt>
-          <dd><span class="big">{daily.km.value}</span><span class="unit">km · {fmt(daily.ascentM.value)} m ↑</span></dd>
+          <dd><span class="big">{daily.km.value}</span><span class="unit">km{daily.ascentM && ` · ${fmt(daily.ascentM.value)} m ↑`}</span></dd>
         </div>
       )}
       {t.season && (
@@ -351,7 +380,11 @@ const nav = [
               {hubs.map((h) => (
                 <li>
                   <span class="hub-kind">
-                    <Icon name={h.kind === "station" ? "train-front" : "plane"} size={15} label={h.kind === "station" ? "Train station" : "Airport"} />
+                    <Icon
+                      name={h.kind === "station" ? "train-front" : h.kind === "bus" ? "bus" : "plane"}
+                      size={15}
+                      label={h.kind === "station" ? "Train station" : h.kind === "bus" ? "Bus station" : "Airport"}
+                    />
                   </span>
                   <span>
                     {h.name}
@@ -678,8 +711,23 @@ const nav = [
               </p>
               <ul class="stage-stats">
                 <li title="Distance"><span class="visually-hidden">Distance </span>{s.km.toFixed(1)} km</li>
-                <li title="Ascent"><span class="visually-hidden">Ascent </span>{fmt(s.ascentM)} m ↑</li>
-                <li title="Descent"><span class="visually-hidden">Descent </span>{fmt(s.descentM)} m ↓</li>
+                {s.climb ? (
+                  <>
+                    <li title={s.climb.est ? "Ascent, from the terrain model" : "Ascent"} class:list={[{ est: s.climb.est }]}>
+                      <span class="visually-hidden">{s.climb.est ? "Estimated ascent " : "Ascent "}</span>
+                      {s.climb.est && <span aria-hidden="true">≈ </span>}{fmt(s.climb.up)} m ↑
+                    </li>
+                    <li title={s.climb.est ? "Descent, from the terrain model" : "Descent"} class:list={[{ est: s.climb.est }]}>
+                      <span class="visually-hidden">{s.climb.est ? "Estimated descent " : "Descent "}</span>
+                      {s.climb.est && <span aria-hidden="true">≈ </span>}{fmt(s.climb.down)} m ↓
+                    </li>
+                  </>
+                ) : (
+                  <>
+                    <li aria-hidden="true"></li>
+                    <li aria-hidden="true"></li>
+                  </>
+                )}
                 {stageEle &&
                   (s.ele ? (
                     <li
@@ -696,7 +744,7 @@ const nav = [
                   (s.time ? (
                     <li title={s.time.est ? "Estimated walking time (DIN 33466)" : "Walking time"} class:list={[{ est: s.time.est }]}>
                       <span class="visually-hidden">{s.time.est ? "Estimated walking time " : "Walking time "}</span>
-                      {s.time.est && <span aria-hidden="true">≈ </span>}{hours(s.time.min)}
+                      {s.time.est && <span aria-hidden="true">≈ </span>}{timeText(s.time.min, s.time.max)}
                     </li>
                   ) : (
                     <li aria-hidden="true"></li>
@@ -708,11 +756,12 @@ const nav = [
       </ol>
       <p class="note muted">
         Totals and averages count the main stages only.
-        {(estEle || estTime) && " ≈ marks our estimates where the source gives no figure: "}
-        {estEle && "heights from the terrain model (Copernicus DEM, 30 m grid), to the nearest 10 m"}
-        {estEle && estTime && "; "}
+        {(estEle || estClimb || estTime) && " ≈ marks our estimates where the source gives no figure: "}
+        {(estEle || estClimb) &&
+          `${[estClimb && "ascent and descent", estEle && "heights"].filter(Boolean).join(" and ")} from the terrain model (Copernicus DEM, 30 m grid, sampled every 100 m), to the nearest 10 m`}
+        {(estEle || estClimb) && estTime && "; "}
         {estTime && "walking times from each stage's distance, ascent and descent by the German hiking standard DIN 33466 (4 km/h, 300 m/h up, 500 m/h down), without breaks"}
-        {(estEle || estTime) && "."}
+        {(estEle || estClimb || estTime) && "."}
       </p>
     </section>
   )}
@@ -1668,6 +1717,10 @@ const nav = [
     font-weight: 600;
     line-height: 1.3;
     white-space: normal;
+  }
+  /* "≈" before an estimated key figure */
+  .unit.approx {
+    margin: 0 3px 0 0;
   }
   .unit {
     margin-left: 4px;

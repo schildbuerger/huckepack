@@ -22,10 +22,12 @@ export function stageTotals(t: Trail) {
   if (!t.stages || main.length === 0) return undefined;
   const sum = (f: (s: Stage) => number) => main.reduce((a, s) => a + f(s), 0);
   const how = `sum of the ${main.length} main stages`;
+  // ascent and descent only when every main stage states them (some sources give neither)
+  const climbs = main.every((s) => s.ascentM !== undefined && s.descentM !== undefined);
   return {
     km: { value: Math.round(sum((s) => s.km) * 10) / 10, source: t.stages.source, how },
-    ascentM: { value: sum((s) => s.ascentM), source: t.stages.source, how },
-    descentM: { value: sum((s) => s.descentM), source: t.stages.source, how },
+    ascentM: climbs ? { value: sum((s) => s.ascentM!), source: t.stages.source, how } : undefined,
+    descentM: climbs ? { value: sum((s) => s.descentM!), source: t.stages.source, how } : undefined,
   };
 }
 
@@ -38,7 +40,7 @@ export function perDay(t: Trail) {
   const how = `stage totals over ${t.days.min === t.days.max ? t.days.min : `${t.days.min}–${t.days.max}`} days`;
   return {
     km: { value: Math.round((totals.km.value / days) * 10) / 10, source: totals.km.source, how },
-    ascentM: { value: Math.round(totals.ascentM.value / days / 10) * 10, source: totals.km.source, how },
+    ascentM: totals.ascentM && { value: Math.round(totals.ascentM.value / days / 10) * 10, source: totals.km.source, how },
   };
 }
 
@@ -86,7 +88,7 @@ export function summarize(id: string, t: Trail, d?: DerivedData) {
     countries: t.countries.map(countryName),
     regions: t.regions,
     lengthKm: totals?.km.value ?? t.length[0]?.km ?? null,
-    ascentM: totals?.ascentM.value ?? t.ascent[0]?.m ?? null,
+    ascentM: totals?.ascentM?.value ?? t.ascent[0]?.m ?? null,
     days: t.days ? ([t.days.min, t.days.max] as [number, number]) : null,
     sac: sacGrade(t)?.value ?? null,
     wildCamping: t.wildCamping?.status ?? null,
@@ -260,25 +262,37 @@ export function walkingMinutes(km: number, ascentM: number, descentM: number) {
   return Math.round(((Math.max(flat, climb) + Math.min(flat, climb) / 2) * 60) / 15) * 15;
 }
 
-// Estimates for stage figures a trail's source doesn't publish, per stage number: start and end
-// height from the elevation profile, rounded to 10 m (main stages only, the profile's extent) and the walking
-// time from the stage's own stated distance, ascent and descent (walkingMinutes). Published
-// figures are never replaced; the page marks these as estimates.
+// Estimates for stage figures a trail's source doesn't publish, per stage number, from the
+// elevation profile (main stages only, the profile's extent): start and end height, and ascent
+// and descent (the climbs and drops between the 100 m samples), all to 10 m; and the walking
+// time from the stage's own stated distance, ascent and descent (walkingMinutes; never from
+// estimated climbs, so a time doesn't mix sources). Published figures are never replaced; the
+// page marks these as estimates.
+type StageEstimate = { startEleM?: number; endEleM?: number; ascentM?: number; descentM?: number; minutes?: number };
 export function stageEstimates(t: Trail, d?: DerivedData) {
-  const out = new Map<string, { startEleM?: number; endEleM?: number; minutes?: number }>();
+  const out = new Map<string, StageEstimate>();
   const e = d?.elevation;
+  const to10 = (m: number) => Math.round(m / 10) * 10;
   for (const s of t.stages?.list ?? []) {
-    const est: { startEleM?: number; endEleM?: number; minutes?: number } = {};
-    if (!s.minutes) est.minutes = walkingMinutes(s.km, s.ascentM, s.descentM);
+    const est: StageEstimate = {};
+    if (!s.minutes && s.ascentM !== undefined && s.descentM !== undefined)
+      est.minutes = walkingMinutes(s.km, s.ascentM, s.descentM);
     const i = e?.stageStarts.findIndex((x) => x.number === s.number) ?? -1;
-    if (e && s.kind === "main" && i >= 0 && s.startEleM === undefined && s.endEleM === undefined) {
+    if (e && s.kind === "main" && i >= 0) {
       const from = e.stageStarts[i].km;
       const to = e.stageStarts[i + 1]?.km ?? Infinity; // the next stage starts after a gap on the map line
       const pts = e.points.filter(([km]) => km >= from && km < to);
       if (pts.length) {
         // to 10 m: the terrain model is a 30 m grid and measures the treetops in forests
-        est.startEleM = Math.round(pts[0][1] / 10) * 10;
-        est.endEleM = Math.round(pts.at(-1)![1] / 10) * 10;
+        if (s.startEleM === undefined && s.endEleM === undefined) {
+          est.startEleM = to10(pts[0][1]);
+          est.endEleM = to10(pts.at(-1)![1]);
+        }
+        if (s.ascentM === undefined && s.descentM === undefined) {
+          const steps = pts.slice(1).map((p, k) => p[1] - pts[k][1]);
+          est.ascentM = to10(steps.filter((x) => x > 0).reduce((a, x) => a + x, 0));
+          est.descentM = to10(-steps.filter((x) => x < 0).reduce((a, x) => a + x, 0));
+        }
       }
     }
     if (Object.keys(est).length) out.set(s.number, est);

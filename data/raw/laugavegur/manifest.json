@@ -1,0 +1,50 @@
+{
+  "climate-high.json": {
+    "retrieved": "2026-10-27T22:30:15+00:00",
+    "url": "https://archive-api.open-meteo.com/v1/archive?latitude=63.93712&longitude=-19.16758&elevation=1053&start_date=1995-01-01&end_date=2024-12-31&daily=temperature_2m_max,temperature_2m_min,precipitation_sum,snowfall_sum&timezone=auto"
+  },
+  "climate-low.json": {
+    "retrieved": "2026-10-27T22:29:03+00:00",
+    "url": "https://archive-api.open-meteo.com/v1/archive?latitude=63.6843&longitude=-19.51238&elevation=218&start_date=1995-01-01&end_date=2024-12-31&daily=temperature_2m_max,temperature_2m_min,precipitation_sum,snowfall_sum&timezone=auto"
+  },
+  "elevation-glo30.json": {
+    "retrieved": "2026-10-27T22:27:49+00:00",
+    "url": "https://copernicus-dem-30m.s3.eu-central-1.amazonaws.com/Copernicus_DSM_COG_10_N63_00_W020_00_DEM/Copernicus_DSM_COG_10_N63_00_W020_00_DEM.tif"
+  },
+  "osm-relation.json": {
+    "retrieved": "2026-10-27T22:12:00+00:00",
+    "url": "https://overpass-api.de/api/interpreter"
+  },
+  "osm-stage-1-main.json": {
+    "retrieved": "2026-10-27T22:12:49+00:00",
+    "url": "https://overpass-api.de/api/interpreter"
+  },
+  "osm-stage-2-main.json": {
+    "retrieved": "2026-10-27T22:24:24+00:00",
+    "url": "https://overpass-api.de/api/interpreter"
+  },
+  "osm-stage-3-main.json": {
+    "retrieved": "2026-10-27T22:25:11+00:00",
+    "url": "https://overpass-api.de/api/interpreter"
+  },
+  "osm-stage-4-main.json": {
+    "retrieved": "2026-10-27T22:26:05+00:00",
+    "url": "https://overpass-api.de/api/interpreter"
+  },
+  "osm-water.json": {
+    "retrieved": "2026-10-27T22:27:14+00:00",
+    "url": "https://overpass-api.de/api/interpreter"
+  },
+  "osm-way-tags.json": {
+    "retrieved": "2026-10-27T22:27:47+00:00",
+    "url": "https://overpass-api.de/api/interpreter"
+  },
+  "osrm-access-bs-bus-terminal-reykjav-k.json": {
+    "retrieved": "2026-10-27T22:27:49+00:00",
+    "url": "https://router.project-osrm.org/route/v1/driving/-21.93461,64.13751;-19.061,63.99333?overview=false"
+  },
+  "osrm-access-keflav-k-international-airport-kef.json": {
+    "retrieved": "2026-10-27T22:27:50+00:00",
+    "url": "https://router.project-osrm.org/route/v1/driving/-22.62598,63.98455;-19.061,63.99333?overview=false"
+  }
+}

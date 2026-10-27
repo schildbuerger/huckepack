@@ -3,6 +3,11 @@
     .venv/bin/python -m pipeline.routes <slug>            # use cached downloads in data/raw/<slug>/
     .venv/bin/python -m pipeline.routes <slug> --refresh  # download tracks and OSM ways again
 
+Trails without GPX tracks can name their OSM hiking relation instead (`route.relation`, plus
+`route.alternatives`, ways with role "alternative" that close gaps in the main members): its
+ways are chained into one line from the start, split at each stage's `end` point, and each piece
+guides the matcher like a GPX track would (cached as osm-relation.json).
+
 For each stage with a `track` URL in data/trails/<slug>.yaml: download the GPX and the OSM
 ways around it (both cached in data/raw/<slug>/, with manifest.json recording when each was
 retrieved), match the track to the ways (pipeline/osm.py) and write
@@ -32,6 +37,7 @@ truststore.inject_into_ssl()
 
 ROOT = Path(__file__).resolve().parent.parent
 TOLERANCE_M = 10
+MAX_RELATION_GAP_M = 1000  # a longer jump between relation ways ends the chained line
 USER_AGENT = "huckepack-pipeline (personal project)"
 
 
@@ -94,18 +100,80 @@ def simplify(points, tolerance_m):
     return [p for p, k in zip(points, keep) if k]
 
 
+def relation_line(relation, alternatives, start):
+    """The relation's main ways (and the chosen alternatives) chained into one (lon, lat) line
+    from the end nearest `start`; each next way is the one whose end is nearest, flipped to fit."""
+    elements = relation["elements"]
+    rel = next(e for e in elements if e["type"] == "relation")
+    ways = {e["id"]: e for e in elements if e["type"] == "way"}
+    wanted = [
+        ways[m["ref"]]["geometry"]
+        for m in rel["members"]
+        if m["type"] == "way" and (m.get("role", "") == "" or m["ref"] in alternatives)
+    ]
+    proj = osm.Projection(start[1])
+    xy = lambda p: proj.xy(p["lon"], p["lat"])
+    s = proj.xy(*start)
+    first = min(wanted, key=lambda g: min(math.dist(xy(g[0]), s), math.dist(xy(g[-1]), s)))
+    wanted.remove(first)
+    line = first if math.dist(xy(first[0]), s) <= math.dist(xy(first[-1]), s) else first[::-1]
+    jumps = []
+    while wanted:
+        end = xy(line[-1])
+        gap, g = min(((min(math.dist(end, xy(g[0])), math.dist(end, xy(g[-1]))), g) for g in wanted), key=lambda t: t[0])
+        if gap > MAX_RELATION_GAP_M:
+            break  # the rest doesn't continue the line (pieces bypassed by an alternative)
+        wanted.remove(g)
+        line = line + (g if math.dist(end, xy(g[0])) <= math.dist(end, xy(g[-1])) else g[::-1])[1:]
+        if gap > 20:
+            jumps.append(round(gap))
+    if jumps:
+        print(f"  relation: gaps of {jumps} m between its ways (the matcher bridges them)")
+    if wanted:
+        km = sum(math.dist(xy(a), xy(b)) for g in wanted for a, b in zip(g, g[1:])) / 1000
+        print(f"  relation: {len(wanted)} ways ({km:.1f} km) left out, they don't continue the line")
+    return [(p["lon"], p["lat"]) for p in line]
+
+
+def split_at(line, stages):
+    """One piece of the line per stage, cut at the point nearest each stage's end."""
+    proj = osm.Projection(line[0][1])
+    xy = [proj.xy(*p) for p in line]
+    pieces, i = [], 0
+    for stage in stages:
+        target = proj.xy(stage["end"]["lon"], stage["end"]["lat"])
+        j = min(range(i, len(line)), key=lambda k: math.dist(xy[k], target))
+        pieces.append(line[i : j + 1])
+        i = j
+    return pieces
+
+
 def build(slug, refresh=False):
     trail = yaml.safe_load((ROOT / "data" / "trails" / f"{slug}.yaml").read_text())
-    stages = [s for s in trail.get("stages", {}).get("list", []) if s.get("track")]
-    if not stages:
-        raise SystemExit(f"{slug}: no stage has a track")
+    all_stages = trail.get("stages", {}).get("list", [])
+    stages = [s for s in all_stages if s.get("track")]
     cache = Cache(slug, refresh)
+    guides = {}
+    relation = trail.get("route", {}).get("relation")
+    if not stages and relation:
+        # no GPX: the OSM relation, split at the stage ends, guides the matcher
+        stages = [s for s in all_stages if s.get("end")]
+        query = f"[out:json][timeout:120];relation({relation});out body;way(r);out geom;"
+        data, _ = cache.get("osm-relation.json", osm.OVERPASS, lambda: json.dumps(osm.fetch(query), separators=(",", ":")).encode())
+        start = trail["termini"]["start"]
+        line = relation_line(json.loads(data), trail["route"].get("alternatives", []), (start["lon"], start["lat"]))
+        guides = {s["number"]: piece for s, piece in zip(stages, split_at(line, stages))}
+    if not stages:
+        raise SystemExit(f"{slug}: no stage has a track (or an end point and a route.relation)")
     features, stage_ways = [], []
     print(f"{'stage':<12} {'stated':>7} {'track':>7} {'osm':>7} {'covered':>8} {'max off':>8}")
     for stage in stages:
         label = f"{stage['number']}-{stage['kind']}"
-        gpx, _ = cache.get(f"stage-{label}.gpx", stage["track"], lambda: http_get(stage["track"]))
-        track = track_points(gpx)
+        if stage["number"] in guides:
+            track = guides[stage["number"]]
+        else:
+            gpx, _ = cache.get(f"stage-{label}.gpx", stage["track"], lambda: http_get(stage["track"]))
+            track = track_points(gpx)
 
         def download_ways():
             return json.dumps(osm.fetch_ways(track), separators=(",", ":")).encode()
