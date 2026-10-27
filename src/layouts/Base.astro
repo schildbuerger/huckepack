@@ -168,6 +168,11 @@ const { title, description } = Astro.props;
   * {
     box-sizing: border-box;
   }
+  /* always keep the scrollbar's space, so pages don't shift sideways when content grows past the
+     window or shrinks back (e.g. stepping through the guide's questions, filtering the search) */
+  html {
+    scrollbar-gutter: stable;
+  }
   body {
     margin: 0;
     background: var(--bg);
