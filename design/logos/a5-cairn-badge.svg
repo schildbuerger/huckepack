@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" role="img">
+<title>Cairn, badge</title>
+<defs><mask id="hp-cairn"><rect width="24" height="24" fill="#fff"/>
+<g fill="#000">
+<ellipse cx="12.3" cy="6.4" rx="1.9" ry="1.3" transform="rotate(-8 12.3 6.4)"/>
+<ellipse cx="11.4" cy="9.6" rx="3" ry="1.5" transform="rotate(5 11.4 9.6)"/>
+<ellipse cx="12.6" cy="13.1" rx="4" ry="1.7" transform="rotate(-4 12.6 13.1)"/>
+<ellipse cx="12" cy="17.2" rx="5.6" ry="2"/>
+</g></mask></defs>
+<circle cx="12" cy="12" r="11.5" fill="var(--logo-accent, #b0502a)" mask="url(#hp-cairn)"/>
+</svg>

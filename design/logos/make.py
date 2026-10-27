@@ -104,12 +104,95 @@ MONOGRAM = f"""<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" role=
 </svg>
 """
 
+# ---- Cairn variations ----
+
+# A2 · pixel, 16 × 16, two-tone: four rounder stones (3 rows each), alternating colours,
+# set off-centre in turn, wider towards the ground
+CAIRN_TWO = """
+................
+......####......
+.....######.....
+................
+.....oooooo.....
+....oooooooo....
+.....oooooo.....
+................
+.....########...
+....##########..
+.....########...
+................
+...oooooooooo...
+..oooooooooooo..
+.oooooooooooooo.
+................
+"""
+
+# A3 · pixel, 16 × 16, organic: irregular stones touching, soft / accent / ink / accent, on a
+# ground line
+CAIRN_ORGANIC = """
+................
+................
+.......ppp......
+......ppppp.....
+.....#####......
+....########....
+.....######.....
+......oooooooo..
+.....oooooooooo.
+......oooooooo..
+...#########....
+..############..
+.##############.
+..############..
+oooooooooooooooo
+................
+"""
+
+# A4 · stencil: four pebbles, each tilted a little, apart by stencil gaps
+CAIRN_STENCIL = f"""<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" role="img">
+<title>Cairn, stencil</title>
+<g fill="{ACCENT}">
+<ellipse cx="12.4" cy="4.6" rx="2.7" ry="1.8" transform="rotate(-8 12.4 4.6)"/>
+<ellipse cx="11.2" cy="8.9" rx="4.2" ry="2.1" transform="rotate(5 11.2 8.9)"/>
+<ellipse cx="12.9" cy="13.7" rx="5.6" ry="2.4" transform="rotate(-4 12.9 13.7)"/>
+<ellipse cx="12" cy="19.3" rx="8" ry="2.8"/>
+</g>
+</svg>
+"""
+
+# A5 · stencil badge: a circle with the cairn cut out
+CAIRN_BADGE = f"""<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" role="img">
+<title>Cairn, badge</title>
+<defs><mask id="hp-cairn"><rect width="24" height="24" fill="#fff"/>
+<g fill="#000">
+<ellipse cx="12.3" cy="6.4" rx="1.9" ry="1.3" transform="rotate(-8 12.3 6.4)"/>
+<ellipse cx="11.4" cy="9.6" rx="3" ry="1.5" transform="rotate(5 11.4 9.6)"/>
+<ellipse cx="12.6" cy="13.1" rx="4" ry="1.7" transform="rotate(-4 12.6 13.1)"/>
+<ellipse cx="12" cy="17.2" rx="5.6" ry="2"/>
+</g></mask></defs>
+<circle cx="12" cy="12" r="11.5" fill="{ACCENT}" mask="url(#hp-cairn)"/>
+</svg>
+"""
+
+# A6 · pixel, 8 × 8, micro: for favicons at 16 px (two screen pixels per grid pixel)
+CAIRN_MICRO = """
+...##...
+........
+..####..
+........
+.#####..
+........
+########
+........
+"""
+
 LOGOS = {
-    "a-cairn": pixel_svg(CAIRN, "Cairn, pixel"),
-    "b-tent": pixel_svg(TENT, "Tent, pixel"),
-    "c-signpost": pixel_svg(SIGNPOST, "Signpost, pixel"),
-    "d-peak-stencil": PEAK,
-    "e-h-stencil": MONOGRAM,
+    "a1-cairn": pixel_svg(CAIRN, "Cairn, pixel"),
+    "a2-cairn-two-tone": pixel_svg(CAIRN_TWO, "Cairn, pixel, two-tone"),
+    "a3-cairn-organic": pixel_svg(CAIRN_ORGANIC, "Cairn, pixel, organic"),
+    "a4-cairn-stencil": CAIRN_STENCIL,
+    "a5-cairn-badge": CAIRN_BADGE,
+    "a6-cairn-micro": pixel_svg(CAIRN_MICRO, "Cairn, pixel, micro"),
 }
 
 if __name__ == "__main__":
