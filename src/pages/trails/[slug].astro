@@ -150,7 +150,13 @@ const nav = [
   description={`${t.name}${t.localName ? ` (${t.localName})` : ""}: stages, length, ascent, difficulty, where to sleep, water and a map.`}
   section="trails"
 >
-  <nav class="crumbs" aria-label="Breadcrumb"><a href="/trails/">Trails</a> / {t.countries.map(countryName).join(", ")}</nav>
+  <nav class="crumbs" aria-label="Breadcrumb">
+    <ol>
+      <li><a href="/">Start</a></li>
+      <li><a href="/trails/">Trails</a></li>
+      <li aria-current="page">{t.name}</li>
+    </ol>
+  </nav>
   <h1>
     {t.name}
   </h1>
@@ -665,8 +671,22 @@ const nav = [
     font-size: 0.85rem;
     color: var(--muted);
   }
+  .crumbs ol {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+  .crumbs li + li::before {
+    content: "›";
+    margin: 0 8px;
+  }
   .crumbs a {
     color: var(--muted);
+  }
+  .crumbs [aria-current="page"] {
+    color: var(--text);
   }
   h1 {
     margin-top: 8px;
