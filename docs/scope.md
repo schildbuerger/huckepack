@@ -10,7 +10,8 @@
 - **Provenance:** every page names its sources, their licences and when the
   data was retrieved. Where sources disagree (length is the usual case), the
   page says so.
-- **Repository:** private GitHub repository, like healthviz.
+- **Repository:** local git repository for now; if it moves to GitHub, a
+  private repository like healthviz.
 
 ## What a trail page could show
 
