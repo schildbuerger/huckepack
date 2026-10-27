@@ -48,6 +48,10 @@ const length = totals
     : null;
 const daily = perDay(t);
 const sac = sacGrade(t);
+// stage columns: only those some stage has a figure for; a stage without one keeps an empty cell,
+// so the columns stay under their header
+const stageEle = t.stages?.list.some((s) => s.startEleM !== undefined && s.endEleM !== undefined) ?? false;
+const stageTime = t.stages?.list.some((s) => s.minutes) ?? false;
 const fmt = (n: number) => n.toLocaleString("en");
 const hours = (min: number) => `${Math.floor(min / 60)} h ${String(min % 60).padStart(2, "0")}`;
 const TRAIL_TYPES = { "point-to-point": "Point to point", loop: "Loop", network: "Network" };
@@ -587,8 +591,8 @@ const nav = [
               <li>Distance</li>
               <li>Ascent</li>
               <li>Descent</li>
-              <li class="wide">Elevation</li>
-              <li>Time</li>
+              {stageEle && <li class="wide">Elevation</li>}
+              {stageTime && <li>Time</li>}
             </ul>
           </div>
         </li>
@@ -605,14 +609,20 @@ const nav = [
                 <li title="Distance"><span class="visually-hidden">Distance </span>{s.km.toFixed(1)} km</li>
                 <li title="Ascent"><span class="visually-hidden">Ascent </span>{fmt(s.ascentM)} m ↑</li>
                 <li title="Descent"><span class="visually-hidden">Descent </span>{fmt(s.descentM)} m ↓</li>
-                {s.startEleM !== undefined && s.endEleM !== undefined && (
-                  <li title="Elevation at start and end" class="wide">
-                    <span class="visually-hidden">Elevation </span>{fmt(s.startEleM)} → {fmt(s.endEleM)} m
-                  </li>
-                )}
-                {s.minutes && (
-                  <li title="Walking time"><span class="visually-hidden">Walking time </span>{hours(s.minutes)}</li>
-                )}
+                {stageEle &&
+                  (s.startEleM !== undefined && s.endEleM !== undefined ? (
+                    <li title="Elevation at start and end" class="wide">
+                      <span class="visually-hidden">Elevation </span>{fmt(s.startEleM)} → {fmt(s.endEleM)} m
+                    </li>
+                  ) : (
+                    <li class="wide" aria-hidden="true"></li>
+                  ))}
+                {stageTime &&
+                  (s.minutes ? (
+                    <li title="Walking time"><span class="visually-hidden">Walking time </span>{hours(s.minutes)}</li>
+                  ) : (
+                    <li aria-hidden="true"></li>
+                  ))}
               </ul>
             </div>
           </li>
