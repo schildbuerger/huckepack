@@ -2828,11 +2828,15 @@
     ],
     "highest": {
       "km": 40.4,
-      "m": 1649
+      "m": 1649,
+      "lat": 43.87728,
+      "lon": 11.71053
     },
     "lowest": {
       "km": 26.9,
-      "m": 500
+      "m": 500,
+      "lat": 43.91114,
+      "lon": 11.65498
     },
     "points": [
       [
@@ -6647,6 +6651,274 @@
         95.11,
         1134
       ]
+    ]
+  },
+  "climate": {
+    "source": "era5",
+    "retrieved": "2026-10-27T16:55:56+00:00",
+    "years": [
+      1995,
+      2024
+    ],
+    "places": [
+      {
+        "id": "low",
+        "label": "Lowest point",
+        "km": 26.9,
+        "m": 500,
+        "lat": 43.91114,
+        "lon": 11.65498
+      },
+      {
+        "id": "high",
+        "label": "Highest point",
+        "km": 40.4,
+        "m": 1649,
+        "lat": 43.87728,
+        "lon": 11.71053
+      }
+    ],
+    "months": [
+      {
+        "month": 1,
+        "low": {
+          "tmax": 7.6,
+          "tmin": 1.4,
+          "wetDays": 10.5,
+          "snowDays": 1.2,
+          "frostNights": 9.9,
+          "precipMm": 73
+        },
+        "high": {
+          "tmax": 0.1,
+          "tmin": -6.2,
+          "wetDays": 10.4,
+          "snowDays": 3.8,
+          "frostNights": 29.8,
+          "precipMm": 72
+        },
+        "daylightH": 9.2
+      },
+      {
+        "month": 2,
+        "low": {
+          "tmax": 8.9,
+          "tmin": 1.5,
+          "wetDays": 9.6,
+          "snowDays": 1.2,
+          "frostNights": 8.1,
+          "precipMm": 84
+        },
+        "high": {
+          "tmax": 1.4,
+          "tmin": -6.1,
+          "wetDays": 9.7,
+          "snowDays": 3.4,
+          "frostNights": 27.2,
+          "precipMm": 84
+        },
+        "daylightH": 10.4
+      },
+      {
+        "month": 3,
+        "low": {
+          "tmax": 12.1,
+          "tmin": 3.6,
+          "wetDays": 11.3,
+          "snowDays": 0.3,
+          "frostNights": 4.2,
+          "precipMm": 85
+        },
+        "high": {
+          "tmax": 4.5,
+          "tmin": -3.9,
+          "wetDays": 11.3,
+          "snowDays": 2.0,
+          "frostNights": 27.4,
+          "precipMm": 82
+        },
+        "daylightH": 11.8
+      },
+      {
+        "month": 4,
+        "low": {
+          "tmax": 15.7,
+          "tmin": 6.6,
+          "wetDays": 12.9,
+          "snowDays": 0.0,
+          "frostNights": 0.4,
+          "precipMm": 89
+        },
+        "high": {
+          "tmax": 8.1,
+          "tmin": -0.9,
+          "wetDays": 13.0,
+          "snowDays": 0.4,
+          "frostNights": 17.5,
+          "precipMm": 87
+        },
+        "daylightH": 13.4
+      },
+      {
+        "month": 5,
+        "low": {
+          "tmax": 19.8,
+          "tmin": 10.8,
+          "wetDays": 12.9,
+          "snowDays": 0.0,
+          "frostNights": 0.0,
+          "precipMm": 93
+        },
+        "high": {
+          "tmax": 12.3,
+          "tmin": 3.3,
+          "wetDays": 13.4,
+          "snowDays": 0.1,
+          "frostNights": 2.3,
+          "precipMm": 96
+        },
+        "daylightH": 14.7
+      },
+      {
+        "month": 6,
+        "low": {
+          "tmax": 24.7,
+          "tmin": 14.9,
+          "wetDays": 9.0,
+          "snowDays": 0.0,
+          "frostNights": 0.0,
+          "precipMm": 65
+        },
+        "high": {
+          "tmax": 17.2,
+          "tmin": 7.5,
+          "wetDays": 9.4,
+          "snowDays": 0.0,
+          "frostNights": 0.0,
+          "precipMm": 64
+        },
+        "daylightH": 15.5
+      },
+      {
+        "month": 7,
+        "low": {
+          "tmax": 27.7,
+          "tmin": 17.4,
+          "wetDays": 7.6,
+          "snowDays": 0.0,
+          "frostNights": 0.0,
+          "precipMm": 44
+        },
+        "high": {
+          "tmax": 20.2,
+          "tmin": 10.0,
+          "wetDays": 7.8,
+          "snowDays": 0.0,
+          "frostNights": 0.0,
+          "precipMm": 47
+        },
+        "daylightH": 15.2
+      },
+      {
+        "month": 8,
+        "low": {
+          "tmax": 27.6,
+          "tmin": 17.6,
+          "wetDays": 9.0,
+          "snowDays": 0.0,
+          "frostNights": 0.0,
+          "precipMm": 54
+        },
+        "high": {
+          "tmax": 20.1,
+          "tmin": 10.2,
+          "wetDays": 9.3,
+          "snowDays": 0.0,
+          "frostNights": 0.0,
+          "precipMm": 58
+        },
+        "daylightH": 14.0
+      },
+      {
+        "month": 9,
+        "low": {
+          "tmax": 22.3,
+          "tmin": 13.7,
+          "wetDays": 10.1,
+          "snowDays": 0.0,
+          "frostNights": 0.0,
+          "precipMm": 86
+        },
+        "high": {
+          "tmax": 14.8,
+          "tmin": 6.2,
+          "wetDays": 10.4,
+          "snowDays": 0.0,
+          "frostNights": 0.2,
+          "precipMm": 85
+        },
+        "daylightH": 12.4
+      },
+      {
+        "month": 10,
+        "low": {
+          "tmax": 17.9,
+          "tmin": 10.5,
+          "wetDays": 10.8,
+          "snowDays": 0.0,
+          "frostNights": 0.0,
+          "precipMm": 94
+        },
+        "high": {
+          "tmax": 10.5,
+          "tmin": 3.0,
+          "wetDays": 10.8,
+          "snowDays": 0.1,
+          "frostNights": 4.8,
+          "precipMm": 93
+        },
+        "daylightH": 10.9
+      },
+      {
+        "month": 11,
+        "low": {
+          "tmax": 12.3,
+          "tmin": 6.0,
+          "wetDays": 12.6,
+          "snowDays": 0.2,
+          "frostNights": 1.6,
+          "precipMm": 118
+        },
+        "high": {
+          "tmax": 4.8,
+          "tmin": -1.5,
+          "wetDays": 12.6,
+          "snowDays": 1.2,
+          "frostNights": 18.6,
+          "precipMm": 116
+        },
+        "daylightH": 9.6
+      },
+      {
+        "month": 12,
+        "low": {
+          "tmax": 8.5,
+          "tmin": 2.5,
+          "wetDays": 12.4,
+          "snowDays": 0.7,
+          "frostNights": 6.4,
+          "precipMm": 103
+        },
+        "high": {
+          "tmax": 1.0,
+          "tmin": -5.0,
+          "wetDays": 12.3,
+          "snowDays": 3.4,
+          "frostNights": 28.0,
+          "precipMm": 98
+        },
+        "daylightH": 8.9
+      }
     ]
   }
 }

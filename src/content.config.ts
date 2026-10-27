@@ -171,6 +171,17 @@ const trail = z
 // Data the pipeline derives for a trail (data/derived/<slug>.json, never edited by hand).
 const gap = z.object({ km: z.number(), fromKm: z.number(), toKm: z.number() });
 const stageKind = z.enum(["main", "approach", "variant"]);
+// one month at one place (pipeline/climate.py): mean day high and night low in °C; per year:
+// wet days (≥ 1 mm), snow days (≥ 1 cm), frost nights (< 0 °C) and precipitation in mm
+const climateMonth = z.object({
+  tmax: z.number(),
+  tmin: z.number(),
+  wetDays: z.number(),
+  snowDays: z.number(),
+  frostNights: z.number(),
+  precipMm: z.number(),
+});
+
 const derived = z.object({
   // pipeline/water.py: drinking water and springs near the route, from OpenStreetMap
   water: z
@@ -209,6 +220,25 @@ const derived = z.object({
       highest: z.object({ km: z.number(), m: z.number() }),
       lowest: z.object({ km: z.number(), m: z.number() }),
       points: z.array(z.tuple([z.number(), z.number()])), // [km, metres]
+    })
+    .optional(),
+  // pipeline/climate.py: monthly averages at the trail's lowest and highest points, and daylight
+  climate: z
+    .object({
+      source: sourceRef,
+      retrieved: z.coerce.date(),
+      years: z.tuple([z.number(), z.number()]),
+      places: z.array(
+        z.object({ id: z.enum(["low", "high"]), label: z.string(), km: z.number(), m: z.number(), lat: z.number(), lon: z.number() }),
+      ),
+      months: z.array(
+        z.object({
+          month: z.number(),
+          low: climateMonth,
+          high: climateMonth,
+          daylightH: z.number(),
+        }),
+      ),
     })
     .optional(),
   // pipeline/surface.py: surface categories along the main route, from OpenStreetMap

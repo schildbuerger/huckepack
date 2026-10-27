@@ -15,6 +15,8 @@ import {
   SAC_SCALE,
   SLEEPING_CATEGORIES,
   SLEEPING_LABELS,
+  STEEP_PERCENT,
+  gradients,
   WILD_CAMPING_LABELS,
   waterLevel,
 } from "../../lib/trails";
@@ -120,6 +122,57 @@ const profileArea =
 const eleFirst = elevation?.points[0][1];
 const eleLast = elevation?.points.at(-1)![1];
 
+// gradients (src/lib/trails.ts): bars above the zero line climb, below descend, on the same km
+const grad = elevation && gradients(elevation.points, elevation.stageStarts);
+const GRADE = { top: 12, zero: 92, bottom: 172 };
+const gradeLimit = grad ? Math.max(30, Math.ceil(grad.maxAbs / 10) * 10) : 30;
+const yGrade = (g: number) =>
+  GRADE.zero - (Math.max(-gradeLimit, Math.min(gradeLimit, g)) / gradeLimit) * (GRADE.zero - GRADE.top);
+const gradeClass = (g: number) => `${g >= 0 ? "up" : "down"}${Math.abs(g) >= STEEP_PERCENT ? " steep" : ""}`;
+const degrees = (g: number) => Math.round((Math.atan(Math.abs(g) / 100) * 180) / Math.PI);
+// a slope drawn at its true angle: rise over run, like a road sign's triangle
+const ramp = (g: number) => {
+  const w = 56;
+  const h = Math.min(30, (w * Math.abs(g)) / 100);
+  return g >= 0 ? `0,30 ${w},30 ${w},${30 - h}` : `0,${30 - h} 0,30 ${w},30`;
+};
+
+// climate (pipeline/climate.py): twelve month columns; the season from the record is shaded
+const climate = derived?.climate;
+const MONTHS = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+const MONTH_NAMES = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+const CLIM = { x0: 52, x1: 992, tTop: 30, tBottom: 210, wTop: 252, wBottom: 312, dTop: 348, months: 398, height: 406 };
+const colW = (CLIM.x1 - CLIM.x0) / 12;
+const colX = (m: number) => CLIM.x0 + (m - 1) * colW;
+const place = (id: "low" | "high") => climate?.places.find((p) => p.id === id);
+const tRange = climate && {
+  min: Math.floor((Math.min(...climate.months.map((m) => m.high.tmin)) - 2) / 10) * 10,
+  max: Math.ceil((Math.max(...climate.months.map((m) => m.low.tmax)) + 2) / 10) * 10,
+};
+const yTemp = (c: number) =>
+  tRange ? CLIM.tBottom - ((c - tRange.min) / (tRange.max - tRange.min)) * (CLIM.tBottom - CLIM.tTop) : 0;
+const tempGrid = tRange ? Array.from({ length: (tRange.max - tRange.min) / 10 + 1 }, (_, i) => tRange.min + i * 10) : [];
+const wetMax = climate ? Math.ceil(Math.max(...climate.months.map((m) => m.high.wetDays)) / 5) * 5 : 15;
+const yWet = (d: number) => CLIM.wBottom - (d / wetMax) * (CLIM.wBottom - CLIM.wTop);
+const seasonMonths = t.season?.months ?? [];
+// contiguous runs of season months, each shaded as one band
+const seasonRuns = seasonMonths
+  .slice()
+  .sort((a, b) => a - b)
+  .reduce<number[][]>((runs, m) => {
+    const last = runs.at(-1);
+    if (last && m === last.at(-1)! + 1) last.push(m);
+    else runs.push([m]);
+    return runs;
+  }, []);
+const signed = (c: number) => `${c < 0 ? "−" : ""}${Math.abs(Math.round(c))}`;
+const between = (values: number[], unit: string, digits = 0) => {
+  const [lo, hi] = [Math.min(...values), Math.max(...values)];
+  const f = (v: number) => (digits ? v.toFixed(digits) : signed(v));
+  return `${f(lo)}${lo < 0 ? " to " : "–"}${f(hi)}${unit ? ` ${unit}` : ""}`;
+};
+const inSeason = climate ? climate.months.filter((m) => seasonMonths.length === 0 || seasonMonths.includes(m.month)) : [];
+
 // stage ticks for the strip charts: a tick at each stage start, the label centred on its stretch
 const stageTicks = (starts: { number: string; km: number }[], total: number) =>
   starts.map((st, i) => {
@@ -155,7 +208,9 @@ const nav = [
   { id: "map", label: "Map", show: true },
   { id: "surfaces", label: "Surfaces", show: Boolean(surface) },
   { id: "elevation", label: "Elevation", show: Boolean(elevation) },
+  { id: "steepness", label: "Steepness", show: Boolean(grad) },
   { id: "stages", label: "Stages", show: Boolean(t.stages) },
+  { id: "climate", label: "Climate", show: Boolean(climate) },
   { id: "sleeping", label: "Sleeping", show: Boolean(t.sleeping || t.wildCamping) },
   { id: "water", label: "Water", show: Boolean(water) },
   { id: "sources", label: "Sources", show: true },
@@ -439,6 +494,86 @@ const nav = [
     </section>
   )}
 
+  {grad && elevation && (
+    <section id="steepness">
+      <h2>Steepest sections</h2>
+      <dl class="strip spec three">
+        <div>
+          <dt>Steepest 500 m up · stage {grad.climb.stage}</dt>
+          <dd class="ramp-value">
+            <span class="big">{grad.climb.grade}</span><span class="unit">% · +{grad.climb.changeM} m</span>
+            <svg class="ramp up" viewBox="0 0 56 30" aria-hidden="true">
+              <polygon points={ramp(grad.climb.grade)} />
+            </svg>
+            <span class="unit">{degrees(grad.climb.grade)}°</span>
+          </dd>
+        </div>
+        <div>
+          <dt>Steepest 500 m down · stage {grad.descent.stage}</dt>
+          <dd class="ramp-value">
+            <span class="big">{signed(grad.descent.grade)}</span><span class="unit">% · {signed(grad.descent.changeM)} m</span>
+            <svg class="ramp down" viewBox="0 0 56 30" aria-hidden="true">
+              <polygon points={ramp(grad.descent.grade)} />
+            </svg>
+            <span class="unit">{degrees(grad.descent.grade)}°</span>
+          </dd>
+        </div>
+        <div>
+          <dt>Steeper than {STEEP_PERCENT} %</dt>
+          <dd>
+            <span class="big">{grad.steepUpKm}</span><span class="unit">km up ·</span>
+            <span class="big">{grad.steepDownKm}</span><span class="unit">km down</span>
+          </dd>
+        </div>
+      </dl>
+
+      <figure class="chart gradeline" data-bars={JSON.stringify(grad.bars)} data-total={elevation.routeKm}>
+        <ul class="legend" aria-hidden="true">
+          <li><span class="swatch-key" style="--c: var(--grade-up)"></span>Climb</li>
+          <li><span class="swatch-key" style="--c: var(--grade-up-steep)"></span>Steep climb, {STEEP_PERCENT} % or more</li>
+          <li><span class="swatch-key" style="--c: var(--grade-down)"></span>Descent</li>
+          <li><span class="swatch-key" style="--c: var(--grade-down-steep)"></span>Steep descent</li>
+          <li><span class="dash-key"></span>±{STEEP_PERCENT} %</li>
+        </ul>
+        <svg
+          viewBox={`0 0 ${CHART.width} 222`}
+          role="img"
+          aria-label={`Gradients along the main route, ${elevation.routeKm} km, per 200 m in walking direction: ${grad.steepUpKm} km climb at ${STEEP_PERCENT} % or more and ${grad.steepDownKm} km descend that steeply. Steepest climb ${grad.climb.grade} % over 500 m from km ${grad.climb.fromKm.toFixed(1)} (stage ${grad.climb.stage}); steepest descent ${grad.descent.grade} % from km ${grad.descent.fromKm.toFixed(1)} (stage ${grad.descent.stage}).`}
+        >
+          {[STEEP_PERCENT, -STEEP_PERCENT].map((g) => (
+            <line class="steep-line" x1={CHART.x0} x2={CHART.x1} y1={yGrade(g)} y2={yGrade(g)} />
+          ))}
+          {grad.bars.map((b) => (
+            <rect
+              class={`bar ${gradeClass(b.grade)}`}
+              x={xAt(b.fromKm, elevation.routeKm) + 0.3}
+              y={Math.min(yGrade(b.grade), GRADE.zero)}
+              width={Math.max(xAt(b.toKm, elevation.routeKm) - xAt(b.fromKm, elevation.routeKm) - 0.6, 0.6)}
+              height={Math.abs(yGrade(b.grade) - GRADE.zero)}
+            />
+          ))}
+          <line class="zero" x1={CHART.x0} x2={CHART.x1} y1={GRADE.zero} y2={GRADE.zero} />
+          <text class="peak-label" x={xAt((grad.climb.fromKm + grad.climb.toKm) / 2, elevation.routeKm)} y={yGrade(grad.climb.grade) - 6} text-anchor="middle">{grad.climb.grade} %</text>
+          <text class="peak-label" x={xAt((grad.descent.fromKm + grad.descent.toKm) / 2, elevation.routeKm)} y={yGrade(grad.descent.grade) + 16} text-anchor="middle">{signed(grad.descent.grade)} %</text>
+          {stageTicks(elevation.stageStarts, elevation.routeKm).map((tk) => (
+            <g>
+              <line class="tick" x1={tk.x} x2={tk.x} y1={GRADE.bottom + 10} y2={GRADE.bottom + 18} />
+              <text class="tick-label" x={tk.mid} y={GRADE.bottom + 32} text-anchor="middle">{tk.label}</text>
+            </g>
+          ))}
+          <line class="tick" x1={CHART.x1} x2={CHART.x1} y1={GRADE.bottom + 10} y2={GRADE.bottom + 18} />
+          <text class="tick-label end" x={CHART.x0} y={GRADE.bottom + 48}>0 km</text>
+          <text class="tick-label end" x={CHART.x1} y={GRADE.bottom + 48} text-anchor="end">{elevation.routeKm} km</text>
+          <line class="cursor" x1="0" x2="0" y1={GRADE.top - 4} y2={GRADE.bottom + 4} visibility="hidden" />
+        </svg>
+        <div class="tip" role="status" hidden><strong></strong><span></span></div>
+        <figcaption class="muted">
+          In walking direction, per 200 m of the elevation profile; the terrain model smooths short, steep pitches.
+        </figcaption>
+      </figure>
+    </section>
+  )}
+
   {t.stages && (
     <section id="stages">
       <h2>Stages</h2>
@@ -483,6 +618,130 @@ const nav = [
         ))}
       </ol>
       <p class="note muted">Totals and averages count the main stages only.</p>
+    </section>
+  )}
+
+  {climate && tRange && (
+    <section id="climate">
+      <h2>Climate</h2>
+      <dl class="strip spec cols" style="--cols: 4">
+        <div>
+          <dt>Days {seasonMonths.length ? "in season" : ""} · {fmt(place("low")!.m)} m</dt>
+          <dd><span class="big">{between(inSeason.map((m) => m.low.tmax), "")}</span><span class="unit">°C</span></dd>
+        </div>
+        <div>
+          <dt>Nights {seasonMonths.length ? "in season" : ""} · {fmt(place("high")!.m)} m</dt>
+          <dd><span class="big">{between(inSeason.map((m) => m.high.tmin), "")}</span><span class="unit">°C</span></dd>
+        </div>
+        <div>
+          <dt>Wet days a month</dt>
+          <dd><span class="big">{between(inSeason.map((m) => m.high.wetDays), "")}</span></dd>
+        </div>
+        <div>
+          <dt>Daylight</dt>
+          <dd><span class="big">{between(inSeason.map((m) => m.daylightH), "", 1)}</span><span class="unit">h</span></dd>
+        </div>
+      </dl>
+
+      <figure class="chart climate" data-months={JSON.stringify(climate.months)} data-low={place("low")!.m} data-high={place("high")!.m}>
+        <ul class="legend" aria-hidden="true">
+          <li><span class="swatch-key" style="--c: var(--clim-low)"></span>{fmt(place("low")!.m)} m, lowest point</li>
+          <li><span class="swatch-key" style="--c: var(--clim-high)"></span>{fmt(place("high")!.m)} m, highest point</li>
+          <li><span class="swatch-key" style="--c: var(--wet)"></span>Wet days</li>
+          <li><span class="swatch-key" style="--c: var(--snow)"></span>of which snow</li>
+          {seasonRuns.length > 0 && <li><span class="swatch-key season-key"></span>Season</li>}
+        </ul>
+        <svg
+          viewBox={`0 0 ${CHART.width} ${CLIM.height}`}
+          role="img"
+          aria-label={`Climate by month, ${climate.years[0]}–${climate.years[1]} average: day highs and night lows at ${fmt(place("low")!.m)} m and ${fmt(place("high")!.m)} m, wet days, and daylight. A table follows.`}
+        >
+          {seasonRuns.map((run) => (
+            <g>
+              <rect class="season" x={colX(run[0])} y="0" width={colW * run.length} height={CLIM.months + 6} rx="6" />
+              <text class="season-label" x={colX(run[0]) + (colW * run.length) / 2} y="16" text-anchor="middle">Season</text>
+            </g>
+          ))}
+
+          <text class="panel-label" x="8" y={CLIM.tTop - 12}>Day high and night low</text>
+          {tempGrid.map((c) => (
+            <g>
+              <line class={c === 0 ? "zero" : "grid"} x1={CLIM.x0} x2={CLIM.x1} y1={yTemp(c)} y2={yTemp(c)} />
+              <text class="grid-label" x={CLIM.x0 - 8} y={yTemp(c) + 4} text-anchor="end">{signed(c)} °C</text>
+            </g>
+          ))}
+          {climate.months.map((m) => (
+            <g>
+              <rect class="temp low" x={colX(m.month) + colW / 2 - 13} y={yTemp(m.low.tmax)} width="11" height={yTemp(m.low.tmin) - yTemp(m.low.tmax)} rx="4" />
+              <rect class="temp high" x={colX(m.month) + colW / 2 + 2} y={yTemp(m.high.tmax)} width="11" height={yTemp(m.high.tmin) - yTemp(m.high.tmax)} rx="4" />
+            </g>
+          ))}
+
+          <text class="panel-label" x="8" y={CLIM.wTop - 12}>Wet days, at {fmt(place("high")!.m)} m</text>
+          {Array.from({ length: wetMax / 5 + 1 }, (_, i) => i * 5).map((d) => (
+            <g>
+              <line class={d === 0 ? "base" : "grid"} x1={CLIM.x0} x2={CLIM.x1} y1={yWet(d)} y2={yWet(d)} />
+              {d > 0 && <text class="grid-label" x={CLIM.x0 - 8} y={yWet(d) + 4} text-anchor="end">{d}</text>}
+            </g>
+          ))}
+          {climate.months.map((m) => (
+            <g>
+              <rect class="wet" x={colX(m.month) + colW / 2 - 12} y={yWet(m.high.wetDays)} width="24" height={Math.max(yWet(m.high.snowDays) - yWet(m.high.wetDays) - (m.high.snowDays >= 0.5 ? 2 : 0), 0)} rx="3" />
+              {m.high.snowDays >= 0.5 && (
+                <rect class="snow" x={colX(m.month) + colW / 2 - 12} y={yWet(m.high.snowDays)} width="24" height={CLIM.wBottom - yWet(m.high.snowDays)} />
+              )}
+            </g>
+          ))}
+
+          <text class="panel-label" x="8" y={CLIM.dTop - 12}>Daylight</text>
+          {climate.months.map((m) => (
+            <g>
+              <rect class="day-track" x={colX(m.month) + 8} y={CLIM.dTop + 8} width={colW - 16} height="8" rx="4" />
+              <rect class="day-fill" x={colX(m.month) + colW / 2 - ((colW - 16) * m.daylightH) / 48} y={CLIM.dTop + 8} width={((colW - 16) * m.daylightH) / 24} height="8" rx="4" />
+              <text class="day-value" x={colX(m.month) + colW / 2} y={CLIM.dTop + 34} text-anchor="middle">{m.daylightH.toFixed(1)} h</text>
+            </g>
+          ))}
+
+          {climate.months.map((m) => (
+            <g>
+              <text class="month" x={colX(m.month) + colW / 2} y={CLIM.months} text-anchor="middle">{MONTHS[m.month - 1]}</text>
+              <rect class="col-hit" data-month={m.month} x={colX(m.month)} y="0" width={colW} height={CLIM.height} />
+            </g>
+          ))}
+        </svg>
+        <div class="tip" role="status" hidden><strong></strong><span></span></div>
+        <table class="sr-only">
+          <caption>Climate by month, {climate.years[0]}–{climate.years[1]} average</caption>
+          <thead>
+            <tr>
+              <th scope="col">Month</th>
+              <th scope="col">{fmt(place("low")!.m)} m, day high / night low (°C)</th>
+              <th scope="col">{fmt(place("high")!.m)} m, day high / night low (°C)</th>
+              <th scope="col">Wet days</th>
+              <th scope="col">Snow days</th>
+              <th scope="col">Frost nights at {fmt(place("high")!.m)} m</th>
+              <th scope="col">Daylight (h)</th>
+            </tr>
+          </thead>
+          <tbody>
+            {climate.months.map((m) => (
+              <tr>
+                <th scope="row">{MONTH_NAMES[m.month - 1]}</th>
+                <td>{m.low.tmax} / {m.low.tmin}</td>
+                <td>{m.high.tmax} / {m.high.tmin}</td>
+                <td>{m.high.wetDays}</td>
+                <td>{m.high.snowDays}</td>
+                <td>{m.high.frostNights}</td>
+                <td>{m.daylightH}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+        <figcaption class="muted">
+          Averages for {climate.years[0]}–{climate.years[1]} from ERA5 reanalysis via Open-Meteo, adjusted to each point's
+          elevation; daylight from sunrise to sunset mid-month.
+        </figcaption>
+      </figure>
     </section>
   )}
 
@@ -753,6 +1012,94 @@ const nav = [
       e.stopPropagation();
       show(e.clientX);
     });
+    document.addEventListener("click", hide);
+    document.addEventListener("keydown", (e) => e.key === "Escape" && hide());
+  }
+
+  // Gradient chart tooltip: the 200 m bar under the pointer.
+  for (const figure of document.querySelectorAll<HTMLElement>(".gradeline")) {
+    const svg = figure.querySelector("svg")!;
+    const tip = figure.querySelector<HTMLElement>(".tip")!;
+    const cursor = figure.querySelector<SVGLineElement>(".cursor")!;
+    const bars: { fromKm: number; toKm: number; grade: number; stage: string }[] = JSON.parse(figure.dataset.bars!);
+    const total = Number(figure.dataset.total);
+    const X0 = 8;
+    const X1 = 992;
+    const show = (clientX: number) => {
+      const box = svg.getBoundingClientRect();
+      const vx = ((clientX - box.left) / box.width) * 1000;
+      const km = ((vx - X0) / (X1 - X0)) * total;
+      const bar = bars.find((b) => km >= b.fromKm && km <= b.toKm);
+      if (!bar) return hide();
+      cursor.setAttribute("x1", String(vx));
+      cursor.setAttribute("x2", String(vx));
+      cursor.setAttribute("visibility", "visible");
+      const way = bar.grade > 0 ? "climb" : bar.grade < 0 ? "descent" : "level";
+      tip.querySelector("strong")!.textContent = `${Math.abs(Math.round(bar.grade))} % ${way}`;
+      tip.querySelector("span")!.textContent = `km ${bar.fromKm.toFixed(1)}–${bar.toKm.toFixed(1)} · stage ${bar.stage}`;
+      tip.hidden = false;
+      const fbox = figure.getBoundingClientRect();
+      const half = tip.offsetWidth / 2;
+      tip.style.left = `${Math.min(Math.max(clientX - fbox.left, half), fbox.width - half)}px`;
+      tip.style.top = `${box.top - fbox.top}px`;
+    };
+    const hide = () => {
+      tip.hidden = true;
+      cursor.setAttribute("visibility", "hidden");
+    };
+    svg.addEventListener("pointermove", (e) => show(e.clientX));
+    svg.addEventListener("pointerleave", (e) => e.pointerType === "mouse" && hide());
+    svg.addEventListener("click", (e) => {
+      e.stopPropagation();
+      show(e.clientX);
+    });
+    document.addEventListener("click", hide);
+    document.addEventListener("keydown", (e) => e.key === "Escape" && hide());
+  }
+
+  // Climate tooltip: everything about the month under the pointer.
+  const MONTH_NAMES = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+  type Place = { tmax: number; tmin: number; wetDays: number; snowDays: number; frostNights: number };
+  for (const figure of document.querySelectorAll<HTMLElement>(".climate")) {
+    const svg = figure.querySelector("svg")!;
+    const tip = figure.querySelector<HTMLElement>(".tip")!;
+    const months: { month: number; low: Place; high: Place; daylightH: number }[] = JSON.parse(figure.dataset.months!);
+    const [lowM, highM] = [Number(figure.dataset.low), Number(figure.dataset.high)].map((m) => m.toLocaleString("en"));
+    const c = (v: number) => `${v < 0 ? "−" : ""}${Math.abs(Math.round(v))}`;
+    let active: SVGRectElement | null = null;
+    const show = (hit: SVGRectElement) => {
+      active?.classList.remove("active");
+      active = hit;
+      hit.classList.add("active");
+      const m = months.find((x) => x.month === Number(hit.dataset.month))!;
+      tip.querySelector("strong")!.textContent = MONTH_NAMES[m.month - 1];
+      tip.querySelector("span")!.textContent = [
+        `${lowM} m: ${c(m.low.tmax)} °C by day, ${c(m.low.tmin)} °C at night`,
+        `${highM} m: ${c(m.high.tmax)} °C by day, ${c(m.high.tmin)} °C at night`,
+        `${Math.round(m.high.wetDays)} wet days, ${Math.round(m.high.snowDays)} with snow`,
+        `${Math.round(m.high.frostNights)} frost nights at ${highM} m`,
+        `${m.daylightH.toFixed(1)} h of daylight`,
+      ].join("\n");
+      tip.hidden = false;
+      const box = hit.getBoundingClientRect();
+      const fbox = figure.getBoundingClientRect();
+      const half = tip.offsetWidth / 2;
+      tip.style.left = `${Math.min(Math.max(box.left + box.width / 2 - fbox.left, half), fbox.width - half)}px`;
+      tip.style.top = `${svg.getBoundingClientRect().top - fbox.top + 24}px`;
+    };
+    const hide = () => {
+      tip.hidden = true;
+      active?.classList.remove("active");
+      active = null;
+    };
+    for (const hit of figure.querySelectorAll<SVGRectElement>(".col-hit")) {
+      hit.addEventListener("pointerenter", () => show(hit));
+      hit.addEventListener("click", (e) => {
+        e.stopPropagation();
+        show(hit);
+      });
+    }
+    svg.addEventListener("pointerleave", (e) => e.pointerType === "mouse" && hide());
     document.addEventListener("click", hide);
     document.addEventListener("keydown", (e) => e.key === "Escape" && hide());
   }
@@ -1522,6 +1869,145 @@ const nav = [
   figcaption {
     margin-top: 10px;
     font-size: 0.8rem;
+  }
+
+  /* steepness: a slope glyph at its true angle next to the value, and a gradient chart (climbs
+     above the zero line, descents below; colours --grade-*, a diverging scale) */
+  .ramp-value {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    column-gap: 2px;
+  }
+  .ramp {
+    width: 56px;
+    height: 30px;
+    margin: 0 4px 0 12px;
+    align-self: flex-end;
+    overflow: visible;
+  }
+  .ramp.up polygon {
+    fill: var(--grade-up-steep);
+  }
+  .ramp.down polygon {
+    fill: var(--grade-down-steep);
+  }
+  .gradeline,
+  .climate {
+    position: relative;
+    margin: 16px 0 0;
+  }
+  .gradeline svg,
+  .climate svg {
+    display: block;
+    width: 100%;
+    height: auto;
+    overflow: visible;
+  }
+  .gradeline svg {
+    cursor: crosshair;
+  }
+  .bar {
+    shape-rendering: crispEdges;
+  }
+  .bar.up {
+    fill: var(--grade-up);
+  }
+  .bar.up.steep {
+    fill: var(--grade-up-steep);
+  }
+  .bar.down {
+    fill: var(--grade-down);
+  }
+  .bar.down.steep {
+    fill: var(--grade-down-steep);
+  }
+  .dash-key {
+    width: 18px;
+    border-top: 1px dashed var(--muted);
+  }
+  .steep-line {
+    stroke: var(--muted);
+    stroke-width: 1;
+    stroke-dasharray: 4 4;
+    opacity: 0.7;
+  }
+  .gradeline .zero,
+  .climate .zero,
+  .climate .base {
+    stroke: var(--muted);
+    stroke-width: 1.5;
+  }
+  .gradeline .grid-label,
+  .climate .grid-label {
+    fill: var(--muted);
+    font: 11px var(--sans);
+  }
+  .gradeline .peak-label {
+    fill: var(--text);
+    font: 600 12px var(--sans);
+  }
+
+  /* climate: twelve month columns in three panels (temperatures, wet days, daylight), each with its
+     own scale; the season from the record shaded behind them */
+  .climate .season {
+    fill: var(--surface);
+  }
+  .season-label {
+    fill: var(--muted);
+    font: 600 11px var(--sans);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+  .season-key {
+    background: var(--surface) !important;
+    outline: 1px solid var(--line);
+  }
+  .panel-label {
+    fill: var(--text);
+    font: 600 12px var(--sans);
+  }
+  .climate .grid {
+    stroke: var(--line);
+    stroke-width: 1;
+  }
+  .temp.low {
+    fill: var(--clim-low);
+  }
+  .temp.high {
+    fill: var(--clim-high);
+  }
+  .wet {
+    fill: var(--wet);
+  }
+  .snow {
+    fill: var(--snow);
+  }
+  .day-track {
+    fill: var(--line);
+  }
+  .day-fill {
+    fill: var(--muted);
+  }
+  .day-value {
+    fill: var(--text);
+    font: 12px var(--sans);
+  }
+  .month {
+    fill: var(--muted);
+    font: 600 12px var(--sans);
+  }
+  .col-hit {
+    fill: var(--text);
+    fill-opacity: 0;
+    cursor: help;
+  }
+  .col-hit:hover,
+  .col-hit.active {
+    fill-opacity: 0.05;
+  }
+  .climate .tip span {
+    white-space: pre-line;
   }
 
 </style>

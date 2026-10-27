@@ -8,7 +8,7 @@ along the map line (the same kilometres as the water and surface charts), looks 
 sample's height with the Open-Meteo elevation API (Copernicus DEM GLO-90, CC BY 4.0; at most
 100 points per request, cached in data/raw/<slug>/elevation.json) and writes
 data/derived/<slug>.json under `elevation`: [km, metres] per sample, stage starts, and the
-highest and lowest points.
+highest and lowest points (with coordinates).
 """
 
 import json
@@ -85,16 +85,19 @@ def build(slug, refresh=False):
     heights = data["elevation"]
 
     points = [[round(km, 2), round(h)] for (km, _, _), h in zip(samples, heights)]
-    high = max(points, key=lambda p: p[1])
-    low = min(points, key=lambda p: p[1])
+    hi = max(range(len(points)), key=lambda i: points[i][1])
+    lo = min(range(len(points)), key=lambda i: points[i][1])
+    high, low = points[hi], points[lo]
+    # with coordinates, so later steps (climate) can look up these places
+    at = lambda i: {"lat": round(samples[i][2], 5), "lon": round(samples[i][1], 5)}
     elevation = {
         "source": "openmeteo",
         "retrieved": cache.manifest["elevation.json"]["retrieved"],
         "spacingM": SPACING_M,
         "routeKm": round(walked / 1000, 1),
         "stageStarts": starts,
-        "highest": {"km": high[0], "m": high[1]},
-        "lowest": {"km": low[0], "m": low[1]},
+        "highest": {"km": high[0], "m": high[1], **at(hi)},
+        "lowest": {"km": low[0], "m": low[1], **at(lo)},
         "points": points,
     }
 

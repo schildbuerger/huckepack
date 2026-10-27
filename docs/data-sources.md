@@ -28,7 +28,7 @@ source before using it, and record the result here.
 
 | Source | What | Licence | Notes |
 |---|---|---|---|
-| Open-Meteo (historical / climate API) | Temperature, precipitation, snow by location | CC BY 4.0 | Monthly climate along the route |
+| Open-Meteo historical weather API (ERA5, ERA5-Land) | Daily temperature, precipitation, snow by location | CC BY 4.0; contains modified Copernicus Climate Change Service information | In use: `pipeline/climate.py`, 1995–2024 at each trail's lowest and highest point |
 | WorldClim | Gridded monthly climate normals | Free for non-commercial use, check terms | Alternative for climate normals |
 
 ## Points of interest and facts

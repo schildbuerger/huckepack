@@ -88,6 +88,17 @@ const { title, description } = Astro.props;
     --surface-gravel: #cc7f32;
     --surface-paved: #505357;
     --surface-unknown: #d6ccbf;
+    /* climate (validated with the dataviz validator): the trail's low and high ground; wet days in
+       water blue with snow days as its light step */
+    --clim-low: #c46a1f;
+    --clim-high: #4c5aa3;
+    --wet: #2f6690;
+    --snow: #86afd0;
+    /* gradients, diverging: climbs warm, descents violet, each a moderate and a steep (≥ 15 %) step */
+    --grade-up: #e0956a;
+    --grade-up-steep: #a8432a;
+    --grade-down: #9d95d6;
+    --grade-down-steep: #4d4498;
     --serif: "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif;
     --sans: system-ui, -apple-system, "Segoe UI", sans-serif;
     color-scheme: light;
@@ -114,6 +125,14 @@ const { title, description } = Astro.props;
     --surface-gravel: #ac6820;
     --surface-paved: #939599;
     --surface-unknown: #4a4038;
+    --clim-low: #c97a37;
+    --clim-high: #7f8ce6;
+    --wet: #4a7aa1;
+    --snow: #c4dcef;
+    --grade-up: #8f4a2e;
+    --grade-up-steep: #ee9f76;
+    --grade-down: #5a529e;
+    --grade-down-steep: #b3acf0;
     color-scheme: dark;
   }
   @media (prefers-color-scheme: dark) {
@@ -138,6 +157,14 @@ const { title, description } = Astro.props;
       --surface-gravel: #ac6820;
       --surface-paved: #939599;
       --surface-unknown: #4a4038;
+      --clim-low: #c97a37;
+      --clim-high: #7f8ce6;
+      --wet: #4a7aa1;
+      --snow: #c4dcef;
+      --grade-up: #8f4a2e;
+      --grade-up-steep: #ee9f76;
+      --grade-down: #5a529e;
+      --grade-down-steep: #b3acf0;
       color-scheme: dark;
     }
   }

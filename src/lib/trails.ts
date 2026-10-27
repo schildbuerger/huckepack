@@ -175,3 +175,47 @@ export const WILD_CAMPING_LABELS: Record<string, string> = {
   restricted: "Restricted",
   prohibited: "Prohibited",
 };
+
+// Gradients along the main route, from the elevation profile ([km, metres] every ~100 m), in the
+// direction of travel. Measured within each stage only: consecutive stages on the map line don't
+// always join (a few hundred metres apart in places), and a gradient across that jump is not real.
+// Bars are 200 m long (two samples), which also smooths the terrain model's noise; the steepest
+// climb and descent are the steepest 500 m. A terrain model with a 90 m grid flattens and blurs
+// short pitches, so real gradients differ in places.
+export const STEEP_PERCENT = 15;
+const BAR_SAMPLES = 2;
+const STEEPEST_SAMPLES = 5;
+
+type Point = [number, number];
+type Stretch = { fromKm: number; toKm: number; grade: number; stage: string };
+
+export function gradients(points: Point[], stageStarts: { number: string; km: number }[]) {
+  const grade = (a: Point, b: Point) => ((b[1] - a[1]) / ((b[0] - a[0]) * 1000)) * 100;
+  const stageOf = (km: number) => [...stageStarts].reverse().find((s) => km >= s.km)?.number ?? "";
+  const byStage = new Map<string, Point[]>();
+  for (const p of points) byStage.set(stageOf(p[0]), [...(byStage.get(stageOf(p[0])) ?? []), p]);
+
+  const bars: Stretch[] = [];
+  const windows: (Stretch & { changeM: number })[] = [];
+  for (const [stage, pts] of byStage) {
+    for (let i = 0; i + 1 < pts.length; i += BAR_SAMPLES) {
+      const a = pts[i];
+      const b = pts[Math.min(i + BAR_SAMPLES, pts.length - 1)];
+      bars.push({ fromKm: a[0], toKm: b[0], grade: Math.round(grade(a, b) * 10) / 10, stage });
+    }
+    for (let i = 0; i + STEEPEST_SAMPLES < pts.length; i++) {
+      const [a, b] = [pts[i], pts[i + STEEPEST_SAMPLES]];
+      windows.push({ fromKm: a[0], toKm: b[0], grade: Math.round(grade(a, b)), changeM: b[1] - a[1], stage });
+    }
+  }
+  const steepKm = (keep: (g: number) => boolean) =>
+    Math.round(bars.filter((b) => keep(b.grade)).reduce((sum, b) => sum + (b.toKm - b.fromKm), 0) * 10) / 10;
+  return {
+    bars,
+    climb: windows.reduce((a, b) => (b.grade > a.grade ? b : a)),
+    descent: windows.reduce((a, b) => (b.grade < a.grade ? b : a)),
+    steepUpKm: steepKm((g) => g >= STEEP_PERCENT),
+    steepDownKm: steepKm((g) => g <= -STEEP_PERCENT),
+    maxAbs: Math.max(...bars.map((b) => Math.abs(b.grade))),
+  };
+}

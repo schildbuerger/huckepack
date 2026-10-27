@@ -127,6 +127,11 @@ sources:
     url: https://open-meteo.com/en/docs/elevation-api
     licence: CC BY 4.0 (Open-Meteo); DEM © DLR/ESA Copernicus
     retrieved: 2026-10-27
+  - id: era5
+    title: "Open-Meteo Historical Weather API: ERA5 and ERA5-Land reanalysis, daily 1995–2024"
+    url: https://open-meteo.com/en/docs/historical-weather-api
+    licence: CC BY 4.0 (Open-Meteo); contains modified Copernicus Climate Change Service information
+    retrieved: 2026-10-27
   - id: osrm
     title: "OSRM: road routes on OpenStreetMap data (router.project-osrm.org)"
     url: https://project-osrm.org/

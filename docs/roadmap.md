@@ -32,6 +32,6 @@ Track, European long-distance path E1.
 ## Features
 
 1. Trail page: map, elevation profile, key facts with sources
-2. Climate along the route by month and the resulting season
+2. ~~Climate along the route by month~~ (done: climate by month and daylight; steepest sections from the elevation profile)
 3. Comparison page across trails (length, ascent, season, duration)
 4. Resupply and water along the route
