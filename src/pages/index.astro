@@ -1,6 +1,7 @@
 ---
 import { getCollection } from "astro:content";
 import Base from "../layouts/Base.astro";
+import Icon, { type IconName } from "../components/Icon.astro";
 import { summarize } from "../lib/trails";
 
 const trails = (await getCollection("trails"))
@@ -9,24 +10,29 @@ const trails = (await getCollection("trails"))
 const countries = new Set(trails.flatMap((t) => t.countries)).size;
 const days = (d: [number, number] | null) => (d === null ? null : d[0] === d[1] ? `${d[0]} days` : `${d[0]}–${d[1]} days`);
 
-const features = [
+const features: { icon: IconName; title: string; text: string }[] = [
   {
+    icon: "chart-column",
     title: "Compare the long trails",
     text: "Length, total ascent, days and difficulty side by side, with filters for continent, country and how hard a trail is.",
   },
   {
+    icon: "list-ordered",
     title: "Plan by stage",
     text: "Every official stage with distance, ascent, descent and walking time, and what a typical day on the trail asks of you.",
   },
   {
+    icon: "tent",
     title: "Know where to sleep",
     text: "Which kinds of places to stay exist along the way, and whether wild camping is allowed, restricted or banned, with the rule.",
   },
   {
+    icon: "map",
     title: "See the route",
     text: "Each trail drawn on an OpenStreetMap map, stage by stage, with approaches and variants.",
   },
   {
+    icon: "badge-check",
     title: "Every number has a source",
     text: "Sources disagree about trails. We show where each figure comes from and when we checked it, instead of picking one quietly.",
   },
@@ -54,6 +60,7 @@ const features = [
   <section class="features">
     {features.map((f) => (
       <div class="feature">
+        <span class="feature-icon"><Icon name={f.icon} size={20} /></span>
         <h3>{f.title}</h3>
         <p>{f.text}</p>
       </div>
@@ -131,6 +138,16 @@ const features = [
   .feature {
     padding: 24px;
     background: var(--bg);
+  }
+  .feature-icon {
+    display: grid;
+    place-items: center;
+    width: 36px;
+    height: 36px;
+    margin-bottom: 12px;
+    border-radius: 10px;
+    background: var(--accent-soft);
+    color: var(--accent);
   }
   .feature h3 {
     margin: 0 0 8px;

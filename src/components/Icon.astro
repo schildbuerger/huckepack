@@ -1,0 +1,81 @@
+---
+// Lucide icons (lucide-static, ISC licence), inlined as SVG at build time; no client JavaScript.
+// Add an icon by importing its file below and listing it in ICONS. Decorative by default
+// (hidden from screen readers); pass `label` when the icon stands alone without text.
+import badgeCheck from "lucide-static/icons/badge-check.svg?raw";
+import bedDouble from "lucide-static/icons/bed-double.svg?raw";
+import bedSingle from "lucide-static/icons/bed-single.svg?raw";
+import calendarDays from "lucide-static/icons/calendar-days.svg?raw";
+import chartColumn from "lucide-static/icons/chart-column.svg?raw";
+import droplet from "lucide-static/icons/droplet.svg?raw";
+import droplets from "lucide-static/icons/droplets.svg?raw";
+import footprints from "lucide-static/icons/footprints.svg?raw";
+import gauge from "lucide-static/icons/gauge.svg?raw";
+import house from "lucide-static/icons/house.svg?raw";
+import listOrdered from "lucide-static/icons/list-ordered.svg?raw";
+import map from "lucide-static/icons/map.svg?raw";
+import mountain from "lucide-static/icons/mountain.svg?raw";
+import moveRight from "lucide-static/icons/move-right.svg?raw";
+import network from "lucide-static/icons/network.svg?raw";
+import plane from "lucide-static/icons/plane.svg?raw";
+import repeat from "lucide-static/icons/repeat.svg?raw";
+import route from "lucide-static/icons/route.svg?raw";
+import ruler from "lucide-static/icons/ruler.svg?raw";
+import sun from "lucide-static/icons/sun.svg?raw";
+import tent from "lucide-static/icons/tent.svg?raw";
+import tentTree from "lucide-static/icons/tent-tree.svg?raw";
+import trainFront from "lucide-static/icons/train-front.svg?raw";
+import trendingDown from "lucide-static/icons/trending-down.svg?raw";
+import trendingUp from "lucide-static/icons/trending-up.svg?raw";
+
+const ICONS = {
+  "badge-check": badgeCheck,
+  "bed-double": bedDouble,
+  "bed-single": bedSingle,
+  "calendar-days": calendarDays,
+  "chart-column": chartColumn,
+  droplet,
+  droplets,
+  footprints,
+  gauge,
+  house,
+  "list-ordered": listOrdered,
+  map,
+  mountain,
+  "move-right": moveRight,
+  network,
+  plane,
+  repeat,
+  route,
+  ruler,
+  sun,
+  tent,
+  "tent-tree": tentTree,
+  "train-front": trainFront,
+  "trending-down": trendingDown,
+  "trending-up": trendingUp,
+};
+
+export type IconName = keyof typeof ICONS;
+
+interface Props {
+  name: IconName;
+  size?: number;
+  label?: string;
+  class?: string;
+}
+const { name, size = 18, label, class: className } = Astro.props;
+
+const svg = ICONS[name]
+  .replace(/<!--.*?-->\s*/s, "")
+  .replace(/width="24"/, `width="${size}"`)
+  .replace(/height="24"/, `height="${size}"`)
+  .replace(/stroke-width="2"/, 'stroke-width="1.75"')
+  .replace(/class="([^"]*)"/, `class="$1 icon${className ? ` ${className}` : ""}"`)
+  .replace(
+    "<svg",
+    label ? `<svg role="img" aria-label="${label.replace(/"/g, "&quot;")}"` : '<svg aria-hidden="true" focusable="false"',
+  );
+---
+
+<Fragment set:html={svg} />

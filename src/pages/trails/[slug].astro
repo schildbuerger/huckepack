@@ -2,6 +2,7 @@
 import { getCollection, getEntry, type CollectionEntry } from "astro:content";
 import Base from "../../layouts/Base.astro";
 import TrailMap from "../../components/TrailMap.svelte";
+import Icon from "../../components/Icon.astro";
 import { existsSync } from "node:fs";
 import {
   countryName,
@@ -56,6 +57,14 @@ const level = water && waterLevel(water.longestGapKm.drinking.km);
 // status colours on cards (see --good/--fair/--poor in Base.astro); the text always says it too
 const WILD_TONE = { allowed: "good", restricted: "fair", prohibited: "poor" } as const;
 const WATER_TONE = { frequent: "good", regular: "fair", scarce: "poor" } as const;
+const SLEEPING_ICONS = {
+  "wild-camping": "tent",
+  camping: "tent-tree",
+  huts: "house",
+  hostels: "bed-single",
+  rooms: "bed-double",
+} as const;
+const TYPE_ICONS = { "point-to-point": "move-right", loop: "repeat", network: "network" } as const;
 const waterTotals = water && {
   drinking: water.points.filter((p) => p.kind === "drinking").length,
   springs: water.points.filter((p) => p.kind === "spring").length,
@@ -133,7 +142,7 @@ const nav = [
     <dl class="figures">
       {length && (
         <div>
-          <dt>Length</dt>
+          <dt><Icon name="route" size={14} />Length</dt>
           <dd>
             {length.approx && "about "}
             {fmt(length.value)} km
@@ -142,7 +151,7 @@ const nav = [
       )}
       {totals && (
         <div>
-          <dt>Ascent</dt>
+          <dt><Icon name="trending-up" size={14} />Ascent</dt>
           <dd>
             {fmt(totals.ascentM.value)} m
           </dd>
@@ -150,7 +159,7 @@ const nav = [
       )}
       {totals && (
         <div>
-          <dt>Descent</dt>
+          <dt><Icon name="trending-down" size={14} />Descent</dt>
           <dd>
             {fmt(totals.descentM.value)} m
           </dd>
@@ -159,7 +168,7 @@ const nav = [
       {sac && (
         <div>
           <dt>
-            Difficulty
+            <Icon name="mountain" size={14} />Difficulty
             <button class="info" type="button" popovertarget="sac-info" aria-label={`What does SAC ${sac.value} mean?`}>?</button>
           </dt>
           <dd>
@@ -171,7 +180,7 @@ const nav = [
       )}
       {t.days && (
         <div>
-          <dt>Suggested days</dt>
+          <dt><Icon name="calendar-days" size={14} />Suggested days</dt>
           <dd>
             {range(t.days.min, t.days.max)} days
           </dd>
@@ -179,7 +188,7 @@ const nav = [
       )}
       {daily && (
         <div>
-          <dt>Per day</dt>
+          <dt><Icon name="footprints" size={14} />Per day</dt>
           <dd>
             {daily.km.value} km · {fmt(daily.ascentM.value)} m
             <small>average</small>
@@ -188,14 +197,14 @@ const nav = [
       )}
       {t.season && (
         <div>
-          <dt>Season</dt>
+          <dt><Icon name="sun" size={14} />Season</dt>
           <dd>
             {t.season.text ?? t.season.months.map(monthName).join(", ")}
           </dd>
         </div>
       )}
       <div>
-        <dt>Type</dt>
+        <dt><Icon name={TYPE_ICONS[t.trailType]} size={14} />Type</dt>
         <dd>{TRAIL_TYPES[t.trailType]}</dd>
       </div>
     </dl>
@@ -229,7 +238,9 @@ const nav = [
             <ul class="hubs">
               {hubs.map((h) => (
                 <li>
-                  <span class="hub-kind">{h.kind === "station" ? "Train" : "Air"}</span>
+                  <span class="hub-kind">
+                    <Icon name={h.kind === "station" ? "train-front" : "plane"} size={16} label={h.kind === "station" ? "Train station" : "Airport"} />
+                  </span>
                   <span>
                     {h.name}
                     {h.roadKm !== undefined && derived?.access && (
@@ -321,7 +332,7 @@ const nav = [
         {sleeping.map((c) =>
           c.id === "wild-camping" ? (
             <li class:list={[t.wildCamping ? `tone-${WILD_TONE[t.wildCamping.status]}` : "absent"]}>
-              <p class="card-name">{c.label}</p>
+              <p class="card-name"><Icon name={SLEEPING_ICONS[c.id]} />{c.label}</p>
               <p class="card-hint">{c.hint}</p>
               {t.wildCamping ? (
                 <p class="card-value">
@@ -333,7 +344,7 @@ const nav = [
             </li>
           ) : (
             <li class:list={[c.present.length > 0 ? "tone-good" : "absent"]}>
-              <p class="card-name">{c.label}</p>
+              <p class="card-name"><Icon name={SLEEPING_ICONS[c.id]} />{c.label}</p>
               <p class="card-hint">{c.hint}</p>
               {c.present.length > 0 ? (
                 <p class="card-value">
@@ -358,23 +369,23 @@ const nav = [
     <section id="water">
       <h2>Water</h2>
       <ul class="cards">
-        <li class={`tone-${WATER_TONE[level!.id]}`}>
-          <p class="card-name">Availability</p>
-          <p class="card-hint">{level!.hint}</p>
-          <p class="card-value">{level!.label}</p>
-        </li>
         <li>
-          <p class="card-name">Drinking water</p>
+          <p class="card-name"><Icon name="droplet" />Drinking water</p>
           <p class="card-hint">Fountains, taps, drinkable springs</p>
           <p class="card-value">{waterTotals.drinking} points</p>
         </li>
         <li>
-          <p class="card-name">Springs</p>
+          <p class="card-name"><Icon name="droplets" />Springs</p>
           <p class="card-hint">Drinkability unknown; treat the water</p>
           <p class="card-value">{waterTotals.springs} more</p>
         </li>
         <li class={`tone-${WATER_TONE[level!.id]}`}>
-          <p class="card-name">Longest dry stretch</p>
+          <p class="card-name"><Icon name="gauge" />Availability</p>
+          <p class="card-hint">{level!.hint}</p>
+          <p class="card-value">{level!.label}</p>
+        </li>
+        <li class={`tone-${WATER_TONE[level!.id]}`}>
+          <p class="card-name"><Icon name="ruler" />Longest dry stretch</p>
           <p class="card-hint">
             {`km ${water.longestGapKm.drinking.fromKm}–${water.longestGapKm.drinking.toKm}${gapStages}`}
           </p>
@@ -494,6 +505,9 @@ const nav = [
     background: var(--surface);
   }
   .figures dt {
+    display: flex;
+    align-items: center;
+    gap: 5px;
     color: var(--muted);
     font-size: 0.68rem;
     font-weight: 500;
@@ -583,6 +597,9 @@ const nav = [
     margin: 0;
   }
   .card-name {
+    display: flex;
+    align-items: center;
+    gap: 8px;
     font-family: var(--serif);
     font-size: 1.05rem;
     font-weight: 600;
@@ -610,16 +627,21 @@ const nav = [
   }
   .hub-kind {
     flex: none;
-    width: 3.2em;
-    padding: 1px 0;
-    border-radius: 999px;
+    display: grid;
+    place-items: center;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
     background: var(--surface);
-    color: var(--muted);
-    font-size: 0.7rem;
-    font-weight: 600;
-    letter-spacing: 0.04em;
-    text-align: center;
-    text-transform: uppercase;
+    color: var(--accent);
+    align-self: flex-start;
+  }
+  .hubs li {
+    align-items: flex-start;
+  }
+  .card-name :global(.icon) {
+    flex: none;
+    color: var(--tone, var(--accent));
   }
   .hub-dist {
     display: block;
