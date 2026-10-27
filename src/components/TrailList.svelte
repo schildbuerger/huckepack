@@ -4,20 +4,28 @@
   // on the summaries built at build time; the filters live in the URL, so a search can be shared.
   import { onMount } from "svelte";
   import { SAC_NOTE, SAC_SCALE, SLEEPING_CATEGORIES, WATER_LEVELS, type TrailSummary } from "../lib/trails";
+  import {
+    DAYS,
+    DAYS_ALL,
+    MONTHS,
+    NATURAL_PCT,
+    SAC,
+    WATER_KM,
+    fromParams,
+    matches,
+    places as placesOf,
+    toParams,
+    type Filters,
+  } from "../lib/filters";
   import Explain from "./Explain.svelte";
   import Range from "./Range.svelte";
 
   let { trails, eleRange }: { trails: TrailSummary[]; eleRange: [number, number] } = $props();
 
-  const SAC = ["T1", "T2", "T3", "T4", "T5", "T6"];
-  const MONTHS = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
-  // slider stops; the last stop of days, difficulty and water means "no limit"
-  const DAYS = [1, 2, 3, 4, 5, 6, 7, 10, 14, 21, 30, 45, 60];
+  // slider labels for the shared stops (src/lib/filters.ts)
   const DAY_STOPS = DAYS.map((d, i) => (i === DAYS.length - 1 ? `${d}+` : `${d}`));
   const SAC_STOPS = [...SAC, "Any"];
-  const WATER_KM = [5, 10, 15, 20, 25, 30, 40];
   const WATER_STOPS = [...WATER_KM.map((km) => `${km} km`), "Any"];
-  const NATURAL_PCT = [0, 10, 20, 30, 40, 50, 60, 70, 80, 90];
   const NATURAL_STOPS = NATURAL_PCT.map((n) => (n ? `${n} %` : "Any"));
   const SORTS = {
     name: { label: "Name", value: (t: TrailSummary) => t.name },
@@ -34,14 +42,13 @@
   type SortKey = keyof typeof SORTS;
 
   // filter state; sliders hold stop indexes. Each filter maps to a URL parameter.
-  const DAYS_ALL = DAYS.length - 1;
   let months = $state<number[]>([]);
   let dayLo = $state(0);
   let dayHi = $state(DAYS_ALL);
   let sacMax = $state(SAC.length); // "Any"
   let where = $state("");
   let sleep = $state<string[]>([]);
-  let wild = $state("");
+  let wild = $state<Filters["wild"]>("");
   let waterMax = $state(WATER_KM.length); // "Any"
   let naturalMin = $state(0); // "Any"
   let sort = $state<SortKey>("name");
@@ -53,46 +60,24 @@
   let waterOn = $derived(waterMax < WATER_KM.length);
   let naturalOn = $derived(naturalMin > 0);
 
-  const uniq = (xs: string[]) => [...new Set(xs)].sort((a, b) => a.localeCompare(b));
-  // where: continents, each with the countries trails cross there
-  const places = uniq(trails.flatMap((t) => t.continents)).map((c) => ({
-    continent: c,
-    countries: uniq(trails.filter((t) => t.continents.includes(c)).flatMap((t) => t.countries)),
-  }));
+  const places = placesOf(trails);
   const sleepingOptions = SLEEPING_CATEGORIES.filter((c) => c.id !== "wild-camping");
 
   onMount(() => {
     const p = new URLSearchParams(location.search);
-    const list = (k: string) => (p.get(k) ? p.get(k)!.split(",") : []);
-    const stop = <T,>(values: T[], raw: string | undefined, fallback: number) => {
-      const i = values.findIndex((v) => String(v) === raw);
-      return i < 0 ? fallback : i;
-    };
-    months = list("months").map(Number).filter((m) => m >= 1 && m <= 12);
-    const [lo, hi] = (p.get("days") ?? "").split("-");
-    dayLo = stop(DAYS, lo, 0);
-    dayHi = Math.max(dayLo, stop(DAYS, hi, DAYS_ALL));
-    sacMax = stop(SAC, p.get("sac") ?? undefined, SAC.length);
-    where = p.get("where") ?? "";
-    sleep = list("sleep").filter((s) => sleepingOptions.some((c) => c.id === s));
-    wild = ["allowed", "some"].includes(p.get("wild") ?? "") ? p.get("wild")! : "";
-    waterMax = stop(WATER_KM, p.get("water") ?? undefined, WATER_KM.length);
-    naturalMin = stop(NATURAL_PCT, p.get("natural") ?? undefined, 0);
+    ({ months, dayLo, dayHi, sacMax, where, sleep, wild, waterMax, naturalMin } = fromParams(
+      p,
+      sleepingOptions.map((c) => c.id),
+    ));
     sort = (p.get("sort") ?? "") in SORTS ? (p.get("sort") as SortKey) : "name";
     ready = true;
   });
 
+  let current: Filters = $derived({ months, dayLo, dayHi, sacMax, where, sleep, wild, waterMax, naturalMin });
+
   // keep the URL in step with the filters (replace, not push: the back button leaves the page)
   $effect(() => {
-    const p = new URLSearchParams();
-    if (months.length) p.set("months", [...months].sort((a, b) => a - b).join(","));
-    if (daysOn) p.set("days", `${DAYS[dayLo]}-${dayHi < DAYS_ALL ? DAYS[dayHi] : ""}`);
-    if (sacOn) p.set("sac", SAC[sacMax]);
-    if (where) p.set("where", where);
-    if (sleep.length) p.set("sleep", sleep.join(","));
-    if (wild) p.set("wild", wild);
-    if (waterOn) p.set("water", String(WATER_KM[waterMax]));
-    if (naturalOn) p.set("natural", String(NATURAL_PCT[naturalMin]));
+    const p = toParams(current);
     if (sort !== "name") p.set("sort", sort);
     if (!ready) return;
     const search = p.toString();
@@ -101,22 +86,8 @@
 
   const toggle = <T,>(list: T[], value: T) => (list.includes(value) ? list.filter((x) => x !== value) : [...list, value]);
 
-  const passes = (t: TrailSummary) => {
-    if (months.length && !(t.season && months.some((m) => t.season!.includes(m)))) return false;
-    // days: the trail's range overlaps the chosen one (the top stop has no upper limit)
-    if (daysOn && !(t.days && t.days[0] <= (dayHi < DAYS_ALL ? DAYS[dayHi] : Infinity) && t.days[1] >= DAYS[dayLo])) return false;
-    if (sacOn && (t.sac === null || SAC.indexOf(t.sac) > sacMax)) return false;
-    if (where && !t.continents.includes(where) && !t.countries.includes(where)) return false;
-    if (sleep.length && !sleep.every((s) => t.sleeping.includes(s))) return false;
-    if (wild === "allowed" && t.wildCamping !== "allowed") return false;
-    if (wild === "some" && t.wildCamping !== "allowed" && t.wildCamping !== "restricted") return false;
-    if (waterOn && !(t.water && t.water.gapKm <= WATER_KM[waterMax])) return false;
-    if (naturalOn && !(t.surface && t.surface.natural * 100 >= NATURAL_PCT[naturalMin])) return false;
-    return true;
-  };
-
   let shown = $derived(
-    trails.filter(passes).sort((a, b) => {
+    trails.filter((t) => matches(t, current)).sort((a, b) => {
       const [x, y] = [SORTS[sort].value(a), SORTS[sort].value(b)];
       if (x === y) return a.name.localeCompare(b.name);
       if (x === null) return 1; // unknown values last
@@ -214,7 +185,7 @@
         </Explain>
         <span class="value">{daysText}</span>
       </div>
-      <Range stops={DAY_STOPS} bind:lo={dayLo} bind:hi={dayHi} label="Walking days" ticks={[0, 6, 8, 10, DAYS_ALL]} />
+      <Range stops={DAY_STOPS} bind:lo={dayLo} bind:hi={dayHi} label="Walking days" ticks={[0, 6, 9, 12, DAYS_ALL]} />
     </div>
 
     <div class="group" role="group" aria-labelledby="g-hard">

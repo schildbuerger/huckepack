@@ -67,7 +67,10 @@ const sources = [
       hut directory, a map. huckepack stacks it all on one page, like stones on a cairn: distance and climb, the ground
       underfoot, beds and water along the way. Each figure rests on the source it came from.
     </p>
-    <a class="button cta" href="/trails/">Explore the trails <span aria-hidden="true">→</span></a>
+    <div class="ctas">
+      <a class="button cta" href="/trails/">Explore the trails <span aria-hidden="true">→</span></a>
+      <a class="cta-secondary" href="/trails/guide/">Help me choose</a>
+    </div>
   </section>
 
   <dl class="strip totals">
@@ -195,8 +198,33 @@ const sources = [
     color: var(--muted);
     font-size: 1.12rem;
   }
-  .cta {
+  /* the main call to action, and beside it the guided questions as a quieter outlined button */
+  .ctas {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 12px 16px;
     margin-top: 32px;
+  }
+  .cta-secondary {
+    padding: 15px 30px;
+    border: 1px solid var(--accent);
+    border-radius: 999px;
+    color: var(--accent);
+    font-size: 1.15rem;
+    font-weight: 600;
+    text-decoration: none;
+    transition: background 0.15s ease;
+  }
+  .cta-secondary:hover {
+    background: var(--accent-soft);
+  }
+  .cta-secondary:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 3px;
+  }
+  .cta {
     padding: 16px 36px;
     font-size: 1.15rem;
     box-shadow: 0 6px 20px -8px var(--accent);
@@ -211,7 +239,8 @@ const sources = [
     outline-offset: 3px;
   }
   @media (prefers-reduced-motion: reduce) {
-    .cta {
+    .cta,
+    .cta-secondary {
       transition: none;
     }
   }
