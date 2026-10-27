@@ -196,6 +196,35 @@ LOGOS = {
     "a6-cairn-micro": pixel_svg(CAIRN_MICRO, "Cairn, pixel, micro"),
 }
 
+def pixel_png(grid, size, scale, background=None, colour="#b0502a"):
+    """The grid as a PNG, every logo pixel a scale × scale block, centred on a size × size canvas.
+    Standard library only (zlib); `background` None means transparent."""
+    import struct
+    import zlib
+
+    rows = grid.strip("\n").split("\n")
+    w, h = len(rows[0]), len(rows)
+    off_x, off_y = (size - w * scale) // 2, (size - h * scale) // 2
+    rgba = lambda hexcolour: bytes(int(hexcolour[i : i + 2], 16) for i in (1, 3, 5)) + b"\xff"
+    bg = rgba(background) if background else b"\x00\x00\x00\x00"
+    fg = rgba(colour)
+    raw = bytearray()
+    for y in range(size):
+        raw.append(0)  # filter: none
+        gy = (y - off_y) // scale if y >= off_y else -1
+        for x in range(size):
+            gx = (x - off_x) // scale if x >= off_x else -1
+            inside = 0 <= gy < h and 0 <= gx < w and rows[gy][gx] != "."
+            raw += fg if inside else bg
+    chunk = lambda kind, data: struct.pack(">I", len(data)) + kind + data + struct.pack(">I", zlib.crc32(kind + data))
+    return (
+        b"\x89PNG\r\n\x1a\n"
+        + chunk(b"IHDR", struct.pack(">IIBBBBB", size, size, 8, 6, 0, 0, 0))
+        + chunk(b"IDAT", zlib.compress(bytes(raw), 9))
+        + chunk(b"IEND", b"")
+    )
+
+
 # The chosen logo: written into the site as the header mark and the favicon.
 FINAL = "a6-cairn-micro"
 SITE = HERE.parent.parent
@@ -217,3 +246,12 @@ if __name__ == "__main__":
         target.parent.mkdir(parents=True, exist_ok=True)
         target.write_text(svg)
         print(f"{target.relative_to(SITE)}  ({FINAL})")
+    # PNG versions at whole-number scales of the 8 × 8 grid, so the pixels stay sharp
+    pngs = {
+        "apple-touch-icon.png": pixel_png(CAIRN_MICRO, 180, 18, background="#fbf7f1"),  # iOS home screen
+        "favicon-32.png": pixel_png(CAIRN_MICRO, 32, 4),  # browsers without SVG favicons
+        "icon-512.png": pixel_png(CAIRN_MICRO, 512, 56, background="#fbf7f1"),  # large square icon
+    }
+    for name, data in pngs.items():
+        (SITE / "public" / name).write_bytes(data)
+        print(f"public/{name}  {len(data)} bytes")
