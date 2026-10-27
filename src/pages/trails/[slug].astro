@@ -322,7 +322,7 @@ const nav = [
         {surfaceRows.map((c) => (
           <div>
             <dt>
-              <span class="key" style={`--c: var(--surface-${c.id})`} aria-hidden="true"></span>
+              <span class="swatch-key" style={`--c: var(--surface-${c.id})`} aria-hidden="true"></span>
               {c.label}
               <Explain id={`about-surface-${c.id}`} title={c.label}><p>{c.hint}</p></Explain>
             </dt>
@@ -799,8 +799,9 @@ const nav = [
     display: flex;
     flex-wrap: wrap;
     gap: 4px 16px;
-    margin: -4px 0 16px;
-    padding: 0;
+    margin: 0 0 16px;
+    border-top: 1px solid var(--text);
+    padding: 10px 0 0;
     list-style: none;
     color: var(--muted);
     font-size: 0.78rem;
@@ -1221,7 +1222,8 @@ const nav = [
     padding-left: 0 !important;
     border-left: 0 !important;
   }
-  .key {
+  /* colour key in the surface figures (not .key: that is the key figures section) */
+  .swatch-key {
     flex: none;
     width: 10px;
     height: 10px;
