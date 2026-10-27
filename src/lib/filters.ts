@@ -16,7 +16,7 @@ export interface Filters {
   dayLo: number;
   dayHi: number;
   sacMax: number; // SAC.length: any grade, ungraded trails included
-  where: string; // continent or country name
+  where: string[]; // continents and countries, any of them; never a continent and one of its countries
   sleep: string[]; // sleeping category ids, all required
   wild: "" | "some" | "allowed";
   waterMax: number; // WATER_KM.length: any
@@ -28,7 +28,7 @@ export const noFilters = (): Filters => ({
   dayLo: 0,
   dayHi: DAYS_ALL,
   sacMax: SAC.length,
-  where: "",
+  where: [],
   sleep: [],
   wild: "",
   waterMax: WATER_KM.length,
@@ -46,7 +46,7 @@ export function matches(t: TrailSummary, f: Filters) {
   if (daysOn(f) && !(t.days && t.days[0] <= (f.dayHi < DAYS_ALL ? DAYS[f.dayHi] : Infinity) && t.days[1] >= DAYS[f.dayLo]))
     return false;
   if (sacOn(f) && (t.sac === null || SAC.indexOf(t.sac) > f.sacMax)) return false;
-  if (f.where && !t.continents.includes(f.where) && !t.countries.includes(f.where)) return false;
+  if (f.where.length && !f.where.some((w) => t.continents.includes(w) || t.countries.includes(w))) return false;
   if (f.sleep.length && !f.sleep.every((s) => t.sleeping.includes(s))) return false;
   if (f.wild === "allowed" && t.wildCamping !== "allowed") return false;
   if (f.wild === "some" && t.wildCamping !== "allowed" && t.wildCamping !== "restricted") return false;
@@ -61,7 +61,7 @@ export function toParams(f: Filters) {
   if (f.months.length) p.set("months", [...f.months].sort((a, b) => a - b).join(","));
   if (daysOn(f)) p.set("days", `${DAYS[f.dayLo]}-${f.dayHi < DAYS_ALL ? DAYS[f.dayHi] : ""}`);
   if (sacOn(f)) p.set("sac", SAC[f.sacMax]);
-  if (f.where) p.set("where", f.where);
+  if (f.where.length) p.set("where", f.where.join(","));
   if (f.sleep.length) p.set("sleep", f.sleep.join(","));
   if (f.wild) p.set("wild", f.wild);
   if (waterOn(f)) p.set("water", String(WATER_KM[f.waterMax]));
@@ -83,12 +83,23 @@ export function fromParams(p: URLSearchParams, sleepIds: string[]): Filters {
     dayLo,
     dayHi: Math.max(dayLo, stop(DAYS, hi, DAYS_ALL)),
     sacMax: stop(SAC, p.get("sac"), SAC.length),
-    where: p.get("where") ?? "",
+    where: list("where"),
     sleep: list("sleep").filter((s) => sleepIds.includes(s)),
     wild: wild === "some" || wild === "allowed" ? wild : "",
     waterMax: stop(WATER_KM, p.get("water"), WATER_KM.length),
     naturalMin: stop(NATURAL_PCT, p.get("natural"), 0),
   };
+}
+
+// Pick or unpick a place. A continent stands for all its countries, so choosing one drops its
+// countries from the choice, and choosing a country drops the continents it lies in (narrowing
+// "Europe" to "Germany"). Places on the same level combine: Germany and Italy, Europe and Asia.
+export function toggleWhere(where: string[], value: string, all: ReturnType<typeof places>) {
+  if (where.includes(value)) return where.filter((w) => w !== value);
+  const continent = all.find((p) => p.continent === value);
+  if (continent) return [...where.filter((w) => !continent.countries.includes(w)), value];
+  const parents = all.filter((p) => p.countries.includes(value)).map((p) => p.continent);
+  return [...where.filter((w) => !parents.includes(w)), value];
 }
 
 // continents, each with the countries trails cross there (the "where" choices)

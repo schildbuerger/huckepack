@@ -14,6 +14,7 @@
     fromParams,
     matches,
     places as placesOf,
+    toggleWhere,
     toParams,
     type Filters,
   } from "../lib/filters";
@@ -46,7 +47,7 @@
   let dayLo = $state(0);
   let dayHi = $state(DAYS_ALL);
   let sacMax = $state(SAC.length); // "Any"
-  let where = $state("");
+  let where = $state<string[]>([]);
   let sleep = $state<string[]>([]);
   let wild = $state<Filters["wild"]>("");
   let waterMax = $state(WATER_KM.length); // "Any"
@@ -111,7 +112,7 @@
       months.length && { label: monthList(months), clear: () => (months = []) },
       daysOn && { label: daysText, clear: () => ((dayLo = 0), (dayHi = DAYS_ALL)) },
       sacOn && { label: `Up to SAC ${SAC[sacMax]}`, clear: () => (sacMax = SAC.length) },
-      where && { label: where, clear: () => (where = "") },
+      ...where.map((w) => ({ label: w, clear: () => (where = where.filter((x) => x !== w)) })),
       ...sleep.map((id) => ({ label: SLEEPING_CATEGORIES.find((c) => c.id === id)!.label, clear: () => (sleep = toggle(sleep, id)) })),
       wild && { label: wild === "allowed" ? "Wild camping allowed" : "Wild camping possible", clear: () => (wild = "") },
       waterOn && { label: `Water every ${WATER_KM[waterMax]} km or less`, clear: () => (waterMax = WATER_KM.length) },
@@ -120,7 +121,8 @@
   );
 
   function reset() {
-    where = wild = "";
+    wild = "";
+    where = [];
     months = [];
     sleep = [];
     dayLo = naturalMin = 0;
@@ -202,16 +204,33 @@
     </div>
 
     <div class="group" role="group" aria-labelledby="g-where">
-      <div class="legend" id="g-where">Where?</div>
-      <select bind:value={where} aria-label="Continent or country">
-        <option value="">Anywhere</option>
-        {#each places as p}
-          <optgroup label={p.continent}>
-            <option value={p.continent}>All of {p.continent}</option>
-            {#each p.countries as c}<option value={c}>{c}</option>{/each}
-          </optgroup>
-        {/each}
-      </select>
+      <div class="legend" id="g-where">
+        <Explain id="x-where" term="Where?" title="Continents and countries">
+          <p>Pick as many as you like; a trail matches if it runs through any of them.</p>
+          <p>A continent includes all its countries. Picking a country within a chosen continent narrows the choice to that country.</p>
+        </Explain>
+      </div>
+      <!-- a continent, its countries beneath; countries a chosen continent covers show as included -->
+      {#each places as p}
+        <div class="place">
+          <button type="button" class="chip" aria-pressed={where.includes(p.continent)} onclick={() => (where = toggleWhere(where, p.continent, places))}>
+            {p.continent}
+          </button>
+          <div class="chips countries">
+            {#each p.countries as c}
+              <button
+                type="button"
+                class="chip"
+                class:included={where.includes(p.continent)}
+                aria-pressed={where.includes(c)}
+                onclick={() => (where = toggleWhere(where, c, places))}
+              >
+                {c}
+              </button>
+            {/each}
+          </div>
+        </div>
+      {/each}
     </div>
 
     <div class="group" role="group" aria-labelledby="g-sleep">
@@ -467,6 +486,16 @@
     display: flex;
     flex-wrap: wrap;
     gap: 6px;
+  }
+  .place + .place {
+    margin-top: 10px;
+  }
+  .countries {
+    margin: 6px 0 0 14px;
+  }
+  .chip.included {
+    border-color: color-mix(in srgb, var(--accent) 45%, var(--line));
+    background: var(--accent-soft);
   }
   .months {
     display: grid;

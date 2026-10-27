@@ -14,6 +14,7 @@
     matches,
     noFilters,
     places as placesOf,
+    toggleWhere,
     toParams,
     type Filters,
   } from "../lib/filters";
@@ -59,7 +60,7 @@
     { id: "when", question: "When would you like to go?", help: "Pick every month that works. Trails whose season includes any of them stay." },
     { id: "days", question: "How many days do you have?", help: "A trail stays if the days its managers suggest overlap yours." },
     { id: "hard", question: "How demanding may it be?", help: "The Swiss Alpine Club's hiking scale; we translate each trail's own rating into it." },
-    { id: "where", question: "Where would you like to hike?" },
+    { id: "where", question: "Where would you like to hike?", help: "Pick as many places as you like. A continent includes all its countries." },
     { id: "sleep", question: "Where would you like to sleep?", help: "Pick everything you'll need. A trail stays if it offers all of them." },
     { id: "wild", question: "Would you like to camp in the wild?" },
     { id: "water", question: "How far can you go between drinking water?", help: "The longest stretch of the trail without a tap, fountain or drinking spring." },
@@ -72,7 +73,9 @@
 
   const count = (filters: Filters) => trails.filter((t) => matches(t, filters)).length;
   const countWith = (set: Partial<Filters>) => count({ ...f, ...set });
-  const isSet = (set: Partial<Filters>) => Object.entries(set).every(([k, v]) => f[k as keyof Filters] === v);
+  // lists (months, places, sleeping) compare by content
+  const isSet = (set: Partial<Filters>) =>
+    Object.entries(set).every(([k, v]) => JSON.stringify(f[k as keyof Filters]) === JSON.stringify(v));
   const toggle = <T,>(list: T[], value: T) => (list.includes(value) ? list.filter((x) => x !== value) : [...list, value]);
   const trailsWord = (n: number) => `${n} ${n === 1 ? "trail" : "trails"}`;
   let total = $derived(count(f));
@@ -83,7 +86,7 @@
       when: f.months.length > 0,
       days: f.dayLo > 0 || f.dayHi < DAYS_ALL,
       hard: f.sacMax < SAC.length,
-      where: f.where !== "",
+      where: f.where.length > 0,
       sleep: f.sleep.length > 0,
       wild: f.wild !== "",
       water: f.waterMax < WATER_KM.length,
@@ -96,7 +99,7 @@
       when: [...f.months].sort((a, b) => a - b).map((m) => MONTH_NAMES[m - 1]).join(", "),
       days: pick(DAY_OPTIONS),
       hard: pick(SAC_OPTIONS),
-      where: f.where,
+      where: f.where.join(", "),
       sleep: sleepingOptions.filter((c) => f.sleep.includes(c.id)).map((c) => c.label).join(", "),
       wild: pick(WILD_OPTIONS),
       water: pick(WATER_OPTIONS),
@@ -108,7 +111,7 @@
       when: { months: [] },
       days: { dayLo: 0, dayHi: DAYS_ALL },
       hard: { sacMax: SAC.length },
-      where: { where: "" },
+      where: { where: [] },
       sleep: { sleep: [] },
       wild: { wild: "" as const },
       water: { waterMax: WATER_KM.length },
@@ -170,12 +173,12 @@
           {@render option(o)}
         {/each}
       {:else if s.id === "where"}
-        {@render option({ label: "Anywhere", set: { where: "" } })}
+        {@render option({ label: "Anywhere", set: { where: [] } })}
         {#each places as p}
-          {@render option({ label: `Anywhere in ${p.continent}`, set: { where: p.continent } })}
+          {@render place(p.continent, `Anywhere in ${p.continent}`)}
           <div class="countries">
             {#each p.countries as c}
-              {@render option({ label: c, set: { where: c } }, true)}
+              {@render place(c, c, true, f.where.includes(p.continent))}
             {/each}
           </div>
         {/each}
@@ -269,6 +272,24 @@
   {/if}
 </div>
 
+<!-- a continent or country, several at once (src/lib/filters.ts toggleWhere); "included": covered by a chosen continent -->
+{#snippet place(value: string, label: string, small = false, included = false)}
+  {@const on = f.where.includes(value)}
+  {@const n = countWith({ where: on ? f.where : toggleWhere(f.where, value, places) })}
+  <button
+    type="button"
+    class="option"
+    class:small
+    class:included
+    aria-pressed={on}
+    disabled={!on && n === 0}
+    onclick={() => (f.where = toggleWhere(f.where, value, places))}
+  >
+    <span class="label">{label}</span>
+    <span class="count">{trailsWord(n)}</span>
+  </button>
+{/snippet}
+
 {#snippet option(o: Option, small = false)}
   <!-- an answer that would leave no trail can't be picked (unless it's the current one, to undo it) -->
   <button
@@ -357,6 +378,10 @@
   }
   .option.small {
     padding: 10px 14px;
+  }
+  .option.included {
+    border-color: color-mix(in srgb, var(--accent) 45%, var(--line));
+    background: color-mix(in srgb, var(--accent-soft) 50%, var(--bg));
   }
   .label {
     display: grid;
