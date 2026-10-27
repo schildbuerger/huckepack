@@ -318,7 +318,15 @@ const nav = [
       {t.season && (
         <div>
           <dt>Season</dt>
-          <dd><span class="word">{t.season.text ?? t.season.months.map(monthName).join(", ")}</span></dd>
+          <dd>
+            <span class="visually-hidden">{t.season.text ?? t.season.months.map(monthName).join(", ")}</span>
+            <!-- the search cards' month strip, in two rows of six -->
+            <span class="season-grid" aria-hidden="true">
+              {MONTHS.map((m, i) => (
+                <span class:list={["month", { in: t.season!.months.includes(i + 1) }]} title={monthName(i + 1)}>{m[0]}</span>
+              ))}
+            </span>
+          </dd>
         </div>
       )}
     </dl>
@@ -1672,6 +1680,28 @@ const nav = [
     margin-top: 2px;
     color: var(--muted);
     font-size: 0.78rem;
+  }
+
+  /* season key figure: twelve month cells in two rows, season months filled (as on the search cards) */
+  /* two 14 px rows: as tall as the big numbers beside it, so the labels beneath line up */
+  .season-grid {
+    display: grid;
+    grid-template-columns: repeat(6, 1.25rem);
+    grid-auto-rows: 14px;
+    gap: 3px;
+  }
+  .season-grid .month {
+    border-radius: 3px;
+    background: var(--surface);
+    color: var(--muted);
+    font-size: 0.6rem;
+    font-weight: 600;
+    line-height: 14px;
+    text-align: center;
+  }
+  .season-grid .month.in {
+    background: color-mix(in srgb, var(--text) 72%, var(--bg));
+    color: var(--bg);
   }
 
   /* sleeping: availability per category */
