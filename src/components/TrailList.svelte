@@ -87,6 +87,19 @@
 
   const toggle = <T,>(list: T[], value: T) => (list.includes(value) ? list.filter((x) => x !== value) : [...list, value]);
 
+  // options that would leave no trail with the other filters as set are disabled (an option that's
+  // on never is, so it can be undone); sliders mark those stops and won't move onto them
+  const NONE = "No trail matches this with your other filters";
+  const countWith = (set: Partial<Filters>) => trails.filter((t) => matches(t, { ...current, ...set })).length;
+  const dead = (on: boolean, set: Partial<Filters>) => !on && countWith(set) === 0;
+  const liveStops = (n: number, set: (i: number) => Partial<Filters>) => Array.from({ length: n }, (_, i) => countWith(set(i)) > 0);
+  // a day thumb can't pass the other one, so stops beyond it count as live (nothing to mark there)
+  let dayLoLive = $derived(liveStops(DAYS.length, (i) => ({ dayLo: i })).map((ok, i) => ok || i > dayHi));
+  let dayHiLive = $derived(liveStops(DAYS.length, (i) => ({ dayHi: i })).map((ok, i) => ok || i < dayLo));
+  let sacLive = $derived(liveStops(SAC_STOPS.length, (i) => ({ sacMax: i })));
+  let waterLive = $derived(liveStops(WATER_STOPS.length, (i) => ({ waterMax: i })));
+  let naturalLive = $derived(liveStops(NATURAL_STOPS.length, (i) => ({ naturalMin: i })));
+
   let shown = $derived(
     trails.filter((t) => matches(t, current)).sort((a, b) => {
       const [x, y] = [SORTS[sort].value(a), SORTS[sort].value(b)];
@@ -174,7 +187,8 @@
       </div>
       <div class="months">
         {#each MONTHS as m, i}
-          <button type="button" class="chip" aria-pressed={months.includes(i + 1)} onclick={() => (months = toggle(months, i + 1))}>{m}</button>
+          {@const off = dead(months.includes(i + 1), { months: toggle(months, i + 1) })}
+          <button type="button" class="chip" aria-pressed={months.includes(i + 1)} disabled={off} title={off ? NONE : undefined} onclick={() => (months = toggle(months, i + 1))}>{m}</button>
         {/each}
       </div>
     </div>
@@ -186,7 +200,7 @@
         </Explain>
         <span class="value">{daysText}</span>
       </div>
-      <Range stops={DAY_STOPS} bind:lo={dayLo} bind:hi={dayHi} label="Walking days" ticks={[0, 6, 9, 12, DAYS_ALL]} />
+      <Range stops={DAY_STOPS} bind:lo={dayLo} bind:hi={dayHi} live={dayHiLive} liveLo={dayLoLive} label="Walking days" ticks={[0, 6, 9, 12, DAYS_ALL]} />
     </div>
 
     <div class="group" role="group" aria-labelledby="g-hard">
@@ -200,7 +214,7 @@
         </Explain>
         <span class="value">{sacText}</span>
       </div>
-      <Range stops={SAC_STOPS} bind:hi={sacMax} off={SAC.length} label="Highest SAC grade" />
+      <Range stops={SAC_STOPS} bind:hi={sacMax} live={sacLive} off={SAC.length} label="Highest SAC grade" />
     </div>
 
     <div class="group" role="group" aria-labelledby="g-where">
@@ -212,17 +226,21 @@
       </div>
       <!-- a continent, its countries beneath; countries a chosen continent covers show as included -->
       {#each places as p}
+        {@const off = dead(where.includes(p.continent), { where: toggleWhere(where, p.continent, places) })}
         <div class="place">
-          <button type="button" class="chip" aria-pressed={where.includes(p.continent)} onclick={() => (where = toggleWhere(where, p.continent, places))}>
+          <button type="button" class="chip" aria-pressed={where.includes(p.continent)} disabled={off} title={off ? NONE : undefined} onclick={() => (where = toggleWhere(where, p.continent, places))}>
             {p.continent}
           </button>
           <div class="chips countries">
             {#each p.countries as c}
+              {@const off = dead(where.includes(c), { where: toggleWhere(where, c, places) })}
               <button
                 type="button"
                 class="chip"
                 class:included={where.includes(p.continent)}
                 aria-pressed={where.includes(c)}
+                disabled={off}
+                title={off ? NONE : undefined}
                 onclick={() => (where = toggleWhere(where, c, places))}
               >
                 {c}
@@ -244,7 +262,8 @@
       </div>
       <div class="chips">
         {#each sleepingOptions as c}
-          <button type="button" class="chip" aria-pressed={sleep.includes(c.id)} onclick={() => (sleep = toggle(sleep, c.id))}>{c.label}</button>
+          {@const off = dead(sleep.includes(c.id), { sleep: toggle(sleep, c.id) })}
+          <button type="button" class="chip" aria-pressed={sleep.includes(c.id)} disabled={off} title={off ? NONE : undefined} onclick={() => (sleep = toggle(sleep, c.id))}>{c.label}</button>
         {/each}
       </div>
     </div>
@@ -260,9 +279,9 @@
         </Explain>
       </div>
       <div class="segmented" role="radiogroup" aria-labelledby="g-wild">
-        <button type="button" role="radio" aria-checked={wild === ""} onclick={() => (wild = "")}>Any</button>
-        <button type="button" role="radio" aria-checked={wild === "some"} onclick={() => (wild = "some")}>Possible</button>
-        <button type="button" role="radio" aria-checked={wild === "allowed"} onclick={() => (wild = "allowed")}>Allowed</button>
+        <button type="button" role="radio" aria-checked={wild === ""} disabled={dead(wild === "", { wild: "" })} title={dead(wild === "", { wild: "" }) ? NONE : undefined} onclick={() => (wild = "")}>Any</button>
+        <button type="button" role="radio" aria-checked={wild === "some"} disabled={dead(wild === "some", { wild: "some" })} title={dead(wild === "some", { wild: "some" }) ? NONE : undefined} onclick={() => (wild = "some")}>Possible</button>
+        <button type="button" role="radio" aria-checked={wild === "allowed"} disabled={dead(wild === "allowed", { wild: "allowed" })} title={dead(wild === "allowed", { wild: "allowed" }) ? NONE : undefined} onclick={() => (wild = "allowed")}>Allowed</button>
       </div>
     </div>
 
@@ -277,7 +296,7 @@
         </Explain>
         <span class="value">{waterText}</span>
       </div>
-      <Range stops={WATER_STOPS} bind:hi={waterMax} off={WATER_KM.length} label="Longest stretch without drinking water, at most" ticks={[0, 3, WATER_KM.length]} />
+      <Range stops={WATER_STOPS} bind:hi={waterMax} live={waterLive} off={WATER_KM.length} label="Longest stretch without drinking water, at most" ticks={[0, 3, WATER_KM.length]} />
     </div>
 
     <div class="group" role="group" aria-labelledby="g-terrain">
@@ -293,7 +312,7 @@
         </Explain>
         <span class="value">{naturalText}</span>
       </div>
-      <Range stops={NATURAL_STOPS} bind:hi={naturalMin} off={0} fill="above" label="Share of natural ground, at least" ticks={[0, 5, 9]} />
+      <Range stops={NATURAL_STOPS} bind:hi={naturalMin} live={naturalLive} off={0} fill="above" label="Share of natural ground, at least" ticks={[0, 5, 9]} />
     </div>
   </aside>
 
@@ -390,8 +409,10 @@
 </div>
 
 <style>
+  /* minmax(0, …): the column never grows past the screen to fit the bar above the results */
   .layout {
     display: grid;
+    grid-template-columns: minmax(0, 1fr);
     gap: 32px;
     align-items: start;
   }
@@ -515,8 +536,14 @@
     padding: 5px 0;
     text-align: center;
   }
-  .chip:hover {
+  .chip:hover:not(:disabled) {
     border-color: var(--muted);
+  }
+  /* would leave no trail with the other filters */
+  .chip:disabled,
+  .segmented button:disabled {
+    opacity: 0.45;
+    cursor: not-allowed;
   }
   /* touch screens: taller targets for fingers */
   @media (pointer: coarse) {
@@ -634,6 +661,7 @@
   }
   .bar {
     display: flex;
+    flex-wrap: wrap;
     align-items: center;
     justify-content: space-between;
     gap: 12px;

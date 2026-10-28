@@ -1,7 +1,9 @@
 <script lang="ts">
   // A slider over a fixed list of stops, for the search filters: one thumb (`hi` only), or two
   // (`lo` and `hi`, a range). Values are stop indexes. Built from native range inputs, so keyboard
-  // and screen readers work as usual; two inputs stacked on one track make the range.
+  // and screen readers work as usual; two inputs stacked on one track make the range. Stops that
+  // `live` (and `liveLo` for the lower thumb) mark false would leave no trail: the track shows them
+  // dashed and a thumb won't move onto them, except back to where it already is.
   let {
     stops,
     lo = $bindable(),
@@ -10,6 +12,8 @@
     fill = "below",
     ticks = stops.map((_, i) => i),
     off,
+    live,
+    liveLo,
   }: {
     stops: string[]; // the label of each stop, read out by screen readers
     lo?: number;
@@ -18,6 +22,8 @@
     fill?: "below" | "above"; // single thumb: shade the part the filter keeps
     ticks?: number[]; // stops labelled under the track
     off?: number; // single thumb: the stop where the filter keeps everything ("Any"): no fill there
+    live?: boolean[]; // per stop: may the (upper) thumb go there
+    liveLo?: boolean[]; // per stop: may the lower thumb go there
   } = $props();
 
   const last = stops.length - 1;
@@ -28,19 +34,40 @@
   // nothing filtered: an empty track, so the slider doesn't look switched on
   let idle = $derived(dual ? lo === 0 && hi === last : hi === off);
 
+  // the stop nearest v on the way back to the thumb's current stop that it may go to
+  const allowed = (v: number, cur: number, ok?: boolean[]) => {
+    while (ok && v !== cur && !ok[v]) v += v > cur ? -1 : 1;
+    return v;
+  };
+  // the dead stops as runs along the track, each reaching halfway to its live neighbours
+  let dead = $derived.by(() => {
+    const isDead = stops.map((_, i) => (live && !live[i]) || (liveLo && !liveLo[i]));
+    const runs: [number, number][] = [];
+    isDead.forEach((d, i) => {
+      if (!d) return;
+      if (runs.length && runs.at(-1)![1] === i - 1) runs.at(-1)![1] = i;
+      else runs.push([i, i]);
+    });
+    return runs.map(([a, b]) => [pct(Math.max(a - 0.5, 0)), pct(Math.min(b + 0.5, last))]);
+  });
+
   function setLo(e: Event & { currentTarget: HTMLInputElement }) {
-    lo = Math.min(Number(e.currentTarget.value), hi);
+    lo = allowed(Math.min(Number(e.currentTarget.value), hi), lo!, liveLo);
     e.currentTarget.value = String(lo);
   }
   function setHi(e: Event & { currentTarget: HTMLInputElement }) {
-    hi = dual ? Math.max(Number(e.currentTarget.value), lo!) : Number(e.currentTarget.value);
+    hi = allowed(dual ? Math.max(Number(e.currentTarget.value), lo!) : Number(e.currentTarget.value), hi, live);
     e.currentTarget.value = String(hi);
   }
 </script>
 
 <div class="range">
   <div class="rail">
-    <div class="track"><span class="fill" class:idle style={`left: ${from}%; right: ${100 - to}%`}></span></div>
+    <div class="track">
+      <span class="fill" class:idle style={`left: ${from}%; right: ${100 - to}%`}></span>
+      <!-- over the fill, so the dashes show inside the part the filter keeps too -->
+      {#each dead as [a, b]}<span class="dead" style={`left: ${a}%; right: ${100 - b}%`}></span>{/each}
+    </div>
     {#if dual}
       <!-- the lower thumb on top once it's past the middle, so two thumbs at the end can still be pulled apart -->
       <input
@@ -98,6 +125,13 @@
   }
   .fill.idle {
     display: none;
+  }
+  /* stops that would leave no trail: the track breaks into dashes there */
+  .dead {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    background: repeating-linear-gradient(90deg, var(--bg) 0 3px, transparent 3px 7px);
   }
   .fill {
     position: absolute;
