@@ -83,12 +83,51 @@ const sources = [
     </div>
   </section>
 
+  <!-- each figure twice: the final value for screen readers, and a copy the script below counts up -->
   <dl class="strip totals">
-    <div><dt>Trails</dt><dd>{totals.trails}</dd></div>
-    <div><dt>{totals.countries === 1 ? "Country" : "Countries"}</dt><dd>{totals.countries}</dd></div>
-    <div><dt>Kilometres documented</dt><dd>{fmt(totals.km)}</dd></div>
-    <div><dt>Official stages</dt><dd>{totals.stages}</dd></div>
+    {[
+      ["Trails", totals.trails],
+      [totals.countries === 1 ? "Country" : "Countries", totals.countries],
+      ["Kilometres documented", totals.km],
+      ["Official stages", totals.stages],
+    ].map(([label, n]) => (
+      <div>
+        <dt>{label}</dt>
+        <dd><span class="sr-only">{fmt(n as number)}</span><span class="count" aria-hidden="true" data-count={n}>{fmt(n as number)}</span></dd>
+      </div>
+    ))}
   </dl>
+  <script is:inline>
+    // The totals count up from 0 the first time the strip is on screen (1.2 s, ease-out, all
+    // together). Runs right after the strip, before the first paint, so the final numbers never
+    // flash first; without JavaScript or with reduced motion they simply stand.
+    (() => {
+      if (matchMedia("(prefers-reduced-motion: reduce)").matches || !("IntersectionObserver" in window)) return;
+      const strip = document.currentScript.previousElementSibling;
+      const counts = [...strip.querySelectorAll("[data-count]")];
+      // keep each number's final width, so nothing shifts while it counts
+      for (const el of counts) {
+        el.style.minWidth = `${el.getBoundingClientRect().width}px`;
+        el.textContent = "0";
+      }
+      const run = () => {
+        const start = performance.now();
+        const frame = (now) => {
+          const t = Math.min((now - start) / 1200, 1);
+          const eased = 1 - Math.pow(1 - t, 3);
+          for (const el of counts) el.textContent = Math.round(Number(el.dataset.count) * eased).toLocaleString("en");
+          if (t < 1) requestAnimationFrame(frame);
+        };
+        requestAnimationFrame(frame);
+      };
+      const io = new IntersectionObserver((entries) => {
+        if (!entries.some((e) => e.isIntersecting)) return;
+        io.disconnect();
+        run();
+      }, { threshold: 0.5 });
+      io.observe(strip);
+    })();
+  </script>
 
   {featured && (
     <section class="block">
@@ -314,6 +353,10 @@ const sources = [
   .featured-figures div {
     display: flex;
     flex-direction: column;
+  }
+  .totals .count {
+    display: inline-block;
+    font-variant-numeric: tabular-nums;
   }
   .totals dd,
   .featured-figures dd {
