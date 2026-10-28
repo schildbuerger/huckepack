@@ -153,13 +153,18 @@
       Eight short questions, one at a time. Skip any that don't matter to you; at the end you'll see the trails that fit.
     </p>
   {/if}
-  <div class="progress" aria-hidden="true">
-    <span style={`width: ${(Math.min(step, STEPS.length) / STEPS.length) * 100}%`}></span>
+  <!-- the guide's status: the bar and its counter on one line; question n of 8 fills n/8 -->
+  <div class="steps">
+    <div class="progress" aria-hidden="true">
+      <span style={`width: ${(Math.min(step + 1, STEPS.length) / STEPS.length) * 100}%`}></span>
+    </div>
+    <p class="step-no">
+      {#if step < STEPS.length}<span class="visually-hidden">Question </span>{step + 1} of {STEPS.length}{:else}Your answers{/if}
+    </p>
   </div>
 
   {#if step < STEPS.length}
     {@const s = STEPS[step]}
-    <p class="step-no">Question {step + 1} of {STEPS.length}</p>
     <h2 tabindex="-1" bind:this={heading}>{s.question}</h2>
     {#if s.help}<p class="help">{s.help}</p>{/if}
 
@@ -246,7 +251,6 @@
       </button>
     </div>
   {:else}
-    <p class="step-no">Your answers</p>
     <h2 tabindex="-1" bind:this={heading}>
       {total === 0 ? "No trail matches all your answers" : `${trailsWord(total)} ${total === 1 ? "matches" : "match"} your answers`}
     </h2>
@@ -340,10 +344,16 @@
     color: var(--muted);
     text-align: center;
   }
-  .progress {
+  .steps {
+    display: flex;
     flex: none;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 14px;
+  }
+  .progress {
+    flex: 1;
     height: 4px;
-    margin-bottom: 16px;
     border-radius: 2px;
     background: var(--line);
     overflow: hidden;
@@ -355,9 +365,11 @@
     transition: width 0.25s ease;
   }
   .step-no {
+    flex: none;
     margin: 0;
     color: var(--muted);
     font-size: 0.85rem;
+    font-variant-numeric: tabular-nums;
   }
   h2 {
     margin: 2px 0 6px;
