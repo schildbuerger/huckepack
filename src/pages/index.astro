@@ -95,7 +95,7 @@ const sources = [
       <h2>Featured trail</h2>
       <a class="featured" href={`/trails/${featured.slug}/`}>
         <div class="featured-head">
-          <p class="place">{[...featured.countries, ...featured.regions].join(" · ")}</p>
+          <p class="place">{featured.countries.join(" · ")}</p>
           <p class="name">{featured.name}</p>
           {featured.localName && <p class="local">{featured.localName}</p>}
         </div>
