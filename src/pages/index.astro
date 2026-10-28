@@ -9,6 +9,13 @@ const trails = entries.map(({ id, data }) => summarize(id, data));
 const fmt = (n: number) => n.toLocaleString("en");
 const days = (d: [number, number] | null) => (d === null ? null : d[0] === d[1] ? `${d[0]}` : `${d[0]}–${d[1]}`);
 
+// what sets huckepack apart, as bullets under the headline
+const usps = [
+  "Everything on one page: stages, climbs, ground underfoot, beds and water",
+  "Every figure names its source",
+  "Compare and filter trails, or let the guide help you choose",
+];
+
 // totals for the strip under the hero
 const totals = {
   trails: trails.length,
@@ -62,11 +69,14 @@ const sources = [
   <section class="hero">
     <p class="eyebrow">Long-distance hiking trails</p>
     <h1>Find your next outdoor adventure.</h1>
-    <p class="lede">
-      Planning a long trail usually means a dozen open tabs: the operator's stage list, a forum thread about water, a
-      hut directory, a map. huckepack stacks it all on one page, like stones on a cairn: distance and climb, the ground
-      underfoot, beds and water along the way. Each figure rests on the source it came from.
-    </p>
+    <ul class="usps">
+      {usps.map((u) => (
+        <li>
+          <Icon name="check" size={18} class="usp-mark" />
+          {u}
+        </li>
+      ))}
+    </ul>
     <div class="ctas">
       <a class="button cta" href="/trails/">Explore the trails <span aria-hidden="true">→</span></a>
       <a class="cta-secondary" href="/trails/guide/">Help me choose</a>
@@ -192,11 +202,29 @@ const sources = [
     margin: 12px 0 0;
     font-size: clamp(2.3rem, 6.5vw, 3.6rem);
   }
-  .lede {
-    margin: 18px auto 0;
-    max-width: 60ch;
+  /* the list is centred as a block, its items left-aligned so the check marks line up */
+  .usps {
+    display: grid;
+    gap: 8px;
+    width: fit-content;
+    max-width: 100%;
+    margin: 20px auto 0;
+    padding: 0;
+    list-style: none;
     color: var(--muted);
-    font-size: 1.12rem;
+    font-size: 1.1rem;
+    text-align: left;
+  }
+  .usps li {
+    display: flex;
+    gap: 10px;
+    align-items: baseline;
+  }
+  .usps :global(.usp-mark) {
+    flex: none;
+    position: relative;
+    top: 3px;
+    color: var(--accent);
   }
   /* the main call to action, and beside it the guided questions as a quieter outlined button */
   .ctas {

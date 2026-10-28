@@ -1040,6 +1040,44 @@ const nav = [
 </Base>
 
 <script>
+  // On-page navigation: marks the link of the section in view. The section counts as in view
+  // once its top passes just below where a link click puts it (its scroll-margin-top); the last
+  // one that did wins.
+  {
+    const links = [...document.querySelectorAll<HTMLAnchorElement>(".onpage a")];
+    const sections = links.map((a) => document.getElementById(a.hash.slice(1))).filter((el) => el !== null);
+    const bar = document.querySelector<HTMLElement>(".onpage")!;
+    let current: HTMLAnchorElement | undefined;
+    const update = () => {
+      const line = Math.max(bar.getBoundingClientRect().bottom, parseFloat(getComputedStyle(sections[0]).scrollMarginTop)) + 8;
+      const atEnd = innerHeight + scrollY >= document.documentElement.scrollHeight - 2;
+      const passed = sections.filter((el) => el.getBoundingClientRect().top <= line);
+      const section = atEnd ? sections.at(-1) : passed.at(-1);
+      const link = links.find((a) => a.hash === `#${section?.id}`);
+      if (link === current) return;
+      current?.removeAttribute("aria-current");
+      current = link;
+      if (!link) return;
+      link.setAttribute("aria-current", "location");
+      // keep it visible in the row that scrolls sideways on phones, without moving the page
+      const row = link.closest("ul")!;
+      const { left, right } = link.getBoundingClientRect();
+      const box = row.getBoundingClientRect();
+      if (left < box.left || right > box.right) row.scrollBy({ left: left < box.left ? left - box.left - 16 : right - box.right + 16 });
+    };
+    let queued = false;
+    addEventListener("scroll", () => {
+      if (queued) return;
+      queued = true;
+      requestAnimationFrame(() => {
+        queued = false;
+        update();
+      });
+    }, { passive: true });
+    addEventListener("resize", update);
+    update();
+  }
+
   // Water chart tooltip: one element per chart, filled from the hovered (or tapped) dot.
   for (const figure of document.querySelectorAll<HTMLElement>(".waterline")) {
     const tip = figure.querySelector<HTMLElement>(".tip")!;
@@ -1307,7 +1345,7 @@ const nav = [
     z-index: 10;
     margin: 16px -16px 0;
     padding: 0 16px;
-    background: var(--bg);
+    background: var(--surface);
     border-bottom: 1px solid var(--line);
   }
   .onpage ul {
@@ -1319,10 +1357,12 @@ const nav = [
     overflow-x: auto;
     scrollbar-width: none;
   }
+  /* the underline's space is reserved by a transparent border, so marking a link shifts nothing */
   .onpage a {
     display: block;
-    padding: 12px 0;
-    color: var(--muted);
+    padding: 12px 0 10px;
+    border-bottom: 2px solid transparent;
+    color: var(--text);
     font-size: 0.9rem;
     font-weight: 500;
     text-decoration: none;
@@ -1336,8 +1376,13 @@ const nav = [
   .onpage li:last-child {
     margin-right: auto;
   }
-  .onpage a:hover {
-    color: var(--text);
+  .onpage a:hover,
+  .onpage a:focus-visible {
+    border-bottom-color: var(--muted);
+  }
+  /* the section in view, set by the script below */
+  .onpage a[aria-current] {
+    border-bottom-color: var(--accent);
   }
 
   section {
