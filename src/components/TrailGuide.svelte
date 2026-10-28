@@ -70,6 +70,7 @@
   let f = $state<Filters>(noFilters());
   let step = $state(0); // STEPS.length: the summary
   let heading = $state<HTMLElement>();
+  let guide = $state<HTMLElement>();
 
   const count = (filters: Filters) => trails.filter((t) => matches(t, filters)).length;
   const countWith = (set: Partial<Filters>) => count({ ...f, ...set });
@@ -119,22 +120,39 @@
     })[id]!;
 
   // each question is a history entry, so the browser's back button goes to the previous one
+  // a new question starts at its top: scrolled down a long list on a phone, the page goes back up
   function go(to: number) {
     step = to;
     history.pushState({ step: to }, "", `#${to < STEPS.length ? STEPS[to].id : "summary"}`);
-    queueMicrotask(() => heading?.focus());
+    queueMicrotask(() => {
+      if (guide && guide.getBoundingClientRect().top < 0) scrollTo({ top: 0 });
+      heading?.focus({ preventScroll: true });
+    });
   }
+  // the guide fills the screen below what's above it, so the pinned bar sits at the screen's
+  // bottom edge on every question (CSS has an estimate for before this runs)
+  const fit = () => guide?.style.setProperty("--top", `${guide.getBoundingClientRect().top + scrollY}px`);
   onMount(() => {
     history.replaceState({ step: 0 }, "", location.pathname);
     const back = (e: PopStateEvent) => (step = e.state?.step ?? 0);
     addEventListener("popstate", back);
-    return () => removeEventListener("popstate", back);
+    addEventListener("resize", fit);
+    fit();
+    return () => {
+      removeEventListener("popstate", back);
+      removeEventListener("resize", fit);
+    };
   });
 
   let resultsHref = $derived(`/trails/${toParams(f).toString() ? `?${toParams(f)}` : ""}`);
 </script>
 
-<div class="guide">
+<div class="guide" bind:this={guide}>
+  {#if step === 0}
+    <p class="intro">
+      Eight short questions, one at a time. Skip any that don't matter to you; at the end you'll see the trails that fit.
+    </p>
+  {/if}
   <div class="progress" aria-hidden="true">
     <span style={`width: ${(Math.min(step, STEPS.length) / STEPS.length) * 100}%`}></span>
   </div>
@@ -145,7 +163,8 @@
     <h2 tabindex="-1" bind:this={heading}>{s.question}</h2>
     {#if s.help}<p class="help">{s.help}</p>{/if}
 
-    <div class="answers">
+    <!-- longer lists take two columns on wide screens -->
+    <div class="answers" class:two={["days", "hard", "sleep"].includes(s.id)}>
       {#if s.id === "when"}
         <div class="months" role="group" aria-label="Months">
           {#each MONTHS as m, i}
@@ -212,16 +231,16 @@
       {/if}
     </div>
 
-    <p class="status" role="status">
-      {#if total === 0}
-        <strong>No trail matches all your answers so far.</strong> Change this answer, or go on and see what to drop at the end.
-      {:else}
-        <strong>{trailsWord(total)}</strong> {total === 1 ? "matches" : "match"} your answers so far.
-      {/if}
-    </p>
-
+    <!-- the pinned bar: Back, the count so far and Next stay in one place on every question -->
     <div class="nav">
       {#if step > 0}<button type="button" class="back" onclick={() => history.back()}>← Back</button>{/if}
+      <p class="status" role="status">
+        {#if total === 0}
+          <strong>No trail matches</strong> all your answers so far.
+        {:else}
+          <strong>{trailsWord(total)}</strong> {total === 1 ? "matches" : "match"} your answers so far.
+        {/if}
+      </p>
       <button type="button" class="next" onclick={() => go(step + 1)}>
         {answered(s.id) ? (step === STEPS.length - 1 ? "See the result" : "Next") : "Skip"}
       </button>
@@ -306,13 +325,25 @@
 {/snippet}
 
 <style>
+  /* the guide fills the screen below the title (--top, set by the script) and its bar sits at the
+     bottom; the site footer comes after it */
   .guide {
-    max-width: 640px;
+    display: flex;
+    flex-direction: column;
+    max-width: 820px;
+    min-height: calc(100dvh - var(--top, 170px));
     margin: 0 auto;
   }
+  .intro {
+    max-width: 52ch;
+    margin: -8px auto 16px;
+    color: var(--muted);
+    text-align: center;
+  }
   .progress {
+    flex: none;
     height: 4px;
-    margin-bottom: 28px;
+    margin-bottom: 16px;
     border-radius: 2px;
     background: var(--line);
     overflow: hidden;
@@ -329,8 +360,8 @@
     font-size: 0.85rem;
   }
   h2 {
-    margin: 4px 0 8px;
-    font-size: clamp(1.5rem, 4vw, 2rem);
+    margin: 2px 0 6px;
+    font-size: clamp(1.4rem, 3.5vw, 1.8rem);
     line-height: 1.2;
   }
   h2:focus {
@@ -344,7 +375,37 @@
   .relax {
     display: grid;
     gap: 8px;
-    margin-top: 20px;
+    margin-top: 14px;
+  }
+  @media (min-width: 900px) {
+    .answers.two {
+      grid-template-columns: 1fr 1fr;
+      gap: 6px;
+    }
+    /* an odd last answer ("any") spans both columns */
+    .answers.two > :last-child:nth-child(odd) {
+      grid-column: 1 / -1;
+    }
+    /* the count moves up beside the title, so the description gets the card's full width */
+    .answers.two .option {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      align-items: baseline;
+      align-content: start;
+      gap: 2px 16px;
+      padding-block: 8px;
+    }
+    .answers.two .label {
+      display: contents;
+    }
+    .answers.two .sub {
+      grid-column: 1 / -1;
+      grid-row: 2;
+    }
+    .answers.two .count {
+      grid-column: 2;
+      grid-row: 1;
+    }
   }
   .option {
     display: flex;
@@ -352,7 +413,7 @@
     align-items: center;
     justify-content: space-between;
     gap: 16px;
-    padding: 14px 18px;
+    padding: 10px 16px;
     border: 1px solid var(--line);
     border-radius: 12px;
     background: var(--bg);
@@ -420,7 +481,7 @@
     }
   }
   .month {
-    padding: 14px 0;
+    padding: 12px 0;
     border: 1px solid var(--line);
     border-radius: 12px;
     background: var(--bg);
@@ -434,20 +495,47 @@
     color: var(--bg);
   }
   .status {
-    margin: 20px 0 0;
+    grid-area: status;
+    margin: 0;
     color: var(--muted);
+    font-size: 0.95rem;
+    text-align: center;
   }
   .status strong {
     color: var(--text);
   }
+  /* pinned to the bottom of the screen: pushed there by the guide's height, and sticky when the
+     answers are longer than the screen. Phones put the count above the buttons, so the buttons
+     keep their place however long it is. */
   .nav {
-    display: flex;
+    position: sticky;
+    bottom: 0;
+    z-index: 1;
+    display: grid;
+    grid-template-areas: "back status next";
+    grid-template-columns: 1fr auto 1fr;
     align-items: center;
-    justify-content: space-between;
-    gap: 12px;
-    margin-top: 28px;
+    gap: 8px 16px;
+    margin: auto 0 0;
+    padding: 12px 0 calc(12px + env(safe-area-inset-bottom));
+    border-top: 1px solid var(--line);
+    background: var(--bg);
+  }
+  @media (max-width: 639px) {
+    .nav {
+      grid-template-areas: "status status" "back next";
+      grid-template-columns: 1fr 1fr;
+      align-items: end;
+      margin-inline: -16px;
+      padding-inline: 16px;
+    }
+  }
+  .guide > :nth-last-child(2) {
+    margin-bottom: 16px;
   }
   .back {
+    grid-area: back;
+    justify-self: start;
     padding: 12px 4px;
     border: 0;
     background: none;
@@ -459,7 +547,8 @@
     color: var(--text);
   }
   .next {
-    margin-left: auto;
+    grid-area: next;
+    justify-self: end;
     padding: 12px 28px;
     border: 0;
     border-radius: 999px;
@@ -473,12 +562,21 @@
     filter: brightness(1.08);
   }
   .summary {
-    margin: 24px 0 0;
+    margin: 16px 0 0;
     border-top: 1px solid var(--text);
   }
   .summary > div {
-    padding: 12px 0;
+    padding: 8px 0;
     border-bottom: 1px solid var(--line);
+  }
+  /* wide screens: question and answer on one line, so the summary fits a laptop screen */
+  @media (min-width: 640px) {
+    .summary > div {
+      display: grid;
+      grid-template-columns: 2fr 3fr;
+      align-items: baseline;
+      gap: 16px;
+    }
   }
   .summary dt {
     color: var(--muted);
