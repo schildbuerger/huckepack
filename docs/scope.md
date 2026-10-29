@@ -11,6 +11,11 @@
   independent source (at most 10 % apart, larger gaps noted and shown with
   their sources), or, where none exists, checked on the finished trail page
   against the original source (CLAUDE.md, "Working rules").
+- **Official figures stay primary:** when a second source disagrees by more
+  than 10 %, the page keeps the trail operator's figure and shows the other
+  value with its source in the data check, even where the operator's figure
+  is probably the outlier (decided 2026-10-29 for the Forststeig's stages 5–7
+  and the Path of Sacred Forests' stage 3).
 
 - **Name:** huckepack (German for carrying someone piggyback, from Low German
   *Hucke*, a load carried on the back). huckepack.com is taken; the domain
