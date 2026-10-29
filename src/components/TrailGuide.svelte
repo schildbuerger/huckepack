@@ -3,7 +3,8 @@
   // the search page with those filters in its URL. Every answer shows how many trails it
   // would leave, counted with the same test as the search page (src/lib/filters.ts).
   import { onMount } from "svelte";
-  import { SAC_SCALE, SLEEPING_CATEGORIES, type TrailSummary } from "../lib/trails";
+  import { SAC_SCALE, SLEEPING_CATEGORIES } from "../lib/trails";
+  import type { SearchTrail } from "../lib/search";
   import {
     DAYS,
     DAYS_ALL,
@@ -19,7 +20,7 @@
     type Filters,
   } from "../lib/filters";
 
-  let { trails }: { trails: TrailSummary[] } = $props();
+  let { trails }: { trails: SearchTrail[] } = $props();
 
   const at = (stops: number[], v: number) => stops.indexOf(v);
   const sleepingOptions = SLEEPING_CATEGORIES.filter((c) => c.id !== "wild-camping");

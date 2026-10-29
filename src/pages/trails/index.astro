@@ -3,11 +3,11 @@ import { getCollection, getEntry } from "astro:content";
 import Base from "../../layouts/Base.astro";
 import Breadcrumbs from "../../components/Breadcrumbs.astro";
 import TrailList from "../../components/TrailList.svelte";
-import { summarize } from "../../lib/trails";
+import { searchSummary } from "../../lib/search";
 
 const trails = (
   await Promise.all(
-    (await getCollection("trails")).map(async ({ id, data }) => summarize(id, data, (await getEntry("derived", id))?.data)),
+    (await getCollection("trails")).map(async ({ id, data }) => searchSummary(id, data, (await getEntry("derived", id))?.data)),
   )
 ).sort((a, b) => a.name.localeCompare(b.name));
 

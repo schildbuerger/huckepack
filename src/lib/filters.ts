@@ -1,7 +1,7 @@
 // The trail filters, shared by the search page (TrailList) and the guided questions (TrailGuide):
 // the slider stops, one filter state, its URL parameters and the test a trail must pass. Sliders
 // hold stop indexes; the last stop of days, difficulty and water means "no limit".
-import type { TrailSummary } from "./trails";
+import type { SearchTrail } from "./search";
 
 export const SAC = ["T1", "T2", "T3", "T4", "T5", "T6"];
 export const MONTHS = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
@@ -10,6 +10,20 @@ export const DAYS = [1, 2, 3, 4, 5, 6, 7, 8, 10, 14, 15, 21, 30, 45, 60];
 export const DAYS_ALL = DAYS.length - 1;
 export const WATER_KM = [5, 10, 15, 20, 25, 30, 40];
 export const NATURAL_PCT = [0, 10, 20, 30, 40, 50, 60, 70, 80, 90];
+// difficulty levels (src/lib/difficulty.ts LEVELS), the last stop "Any"
+export const LEVEL_IDS = ["easy", "moderate", "demanding", "hard"];
+export const LEVEL_WORDS = ["Easy", "Moderate", "Demanding", "Hard"];
+// landscape groups a trail can be picked by, with their short names; a trail has a landscape when
+// at least LANDSCAPE_SHARE of its main route is that group
+export const LANDSCAPES = [
+  { id: "forest", label: "Forest" },
+  { id: "open", label: "Grassland" },
+  { id: "moss", label: "Moss" },
+  { id: "bare", label: "Rock" },
+  { id: "water", label: "Water" },
+  { id: "farm", label: "Farmland" },
+];
+export const LANDSCAPE_SHARE = 0.2;
 
 export interface Filters {
   months: number[];
@@ -21,6 +35,10 @@ export interface Filters {
   wild: "" | "some" | "allowed";
   waterMax: number; // WATER_KM.length: any
   naturalMin: number; // 0: any
+  terrainMax: number; // difficulty level index; LEVEL_IDS.length: any
+  climateMax: number;
+  effortMax: number;
+  land: string[]; // landscape group ids, any of them
 }
 
 export const noFilters = (): Filters => ({
@@ -33,14 +51,32 @@ export const noFilters = (): Filters => ({
   wild: "",
   waterMax: WATER_KM.length,
   naturalMin: 0,
+  terrainMax: LEVEL_IDS.length,
+  climateMax: LEVEL_IDS.length,
+  effortMax: LEVEL_IDS.length,
+  land: [],
 });
 
 export const daysOn = (f: Filters) => f.dayLo > 0 || f.dayHi < DAYS_ALL;
 export const sacOn = (f: Filters) => f.sacMax < SAC.length;
 export const waterOn = (f: Filters) => f.waterMax < WATER_KM.length;
 export const naturalOn = (f: Filters) => f.naturalMin > 0;
+export const terrainOn = (f: Filters) => f.terrainMax < LEVEL_IDS.length;
+export const climateOn = (f: Filters) => f.climateMax < LEVEL_IDS.length;
+export const effortOn = (f: Filters) => f.effortMax < LEVEL_IDS.length;
 
-export function matches(t: TrailSummary, f: Filters) {
+// the climate a trail asks for: its hardest month among the months picked that lie in its season,
+// or its whole season when no month is picked (levels 1–4; null when it has no climate rating)
+export function climateLevel(t: SearchTrail, months: number[]) {
+  if (!t.climateByMonth.length) return null;
+  const season = t.season?.length ? t.season : [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
+  const ms = months.length ? season.filter((m) => months.includes(m)) : season;
+  return ms.length ? Math.max(...ms.map((m) => t.climateByMonth[m - 1])) : null;
+}
+// a level filter: once set, trails without that rating drop out
+const within = (level: number | null, max: number) => level !== null && level - 1 <= max;
+
+export function matches(t: SearchTrail, f: Filters) {
   if (f.months.length && !(t.season && f.months.some((m) => t.season!.includes(m)))) return false;
   // days: the trail's range overlaps the chosen one (the top stop has no upper limit)
   if (daysOn(f) && !(t.days && t.days[0] <= (f.dayHi < DAYS_ALL ? DAYS[f.dayHi] : Infinity) && t.days[1] >= DAYS[f.dayLo]))
@@ -52,10 +88,15 @@ export function matches(t: TrailSummary, f: Filters) {
   if (f.wild === "some" && t.wildCamping !== "allowed" && t.wildCamping !== "restricted") return false;
   if (waterOn(f) && !(t.water && t.water.gapKm <= WATER_KM[f.waterMax])) return false;
   if (naturalOn(f) && !(t.surface && t.surface.natural * 100 >= NATURAL_PCT[f.naturalMin])) return false;
+  if (terrainOn(f) && !within(t.terrainLevel, f.terrainMax)) return false;
+  if (climateOn(f) && !within(climateLevel(t, f.months), f.climateMax)) return false;
+  if (effortOn(f) && !within(t.effortLevel, f.effortMax)) return false;
+  if (f.land.length && !f.land.some((g) => (t.landscape?.[g] ?? 0) >= LANDSCAPE_SHARE)) return false;
   return true;
 }
 
 // URL parameters: months=4,5 days=4-7 sac=T3 where=Italy sleep=huts wild=some water=20 natural=50
+// terrain=demanding climate=moderate effort=moderate land=forest,bare
 export function toParams(f: Filters) {
   const p = new URLSearchParams();
   if (f.months.length) p.set("months", [...f.months].sort((a, b) => a - b).join(","));
@@ -66,6 +107,10 @@ export function toParams(f: Filters) {
   if (f.wild) p.set("wild", f.wild);
   if (waterOn(f)) p.set("water", String(WATER_KM[f.waterMax]));
   if (naturalOn(f)) p.set("natural", String(NATURAL_PCT[f.naturalMin]));
+  if (terrainOn(f)) p.set("terrain", LEVEL_IDS[f.terrainMax]);
+  if (climateOn(f)) p.set("climate", LEVEL_IDS[f.climateMax]);
+  if (effortOn(f)) p.set("effort", LEVEL_IDS[f.effortMax]);
+  if (f.land.length) p.set("land", f.land.join(","));
   return p;
 }
 
@@ -88,6 +133,10 @@ export function fromParams(p: URLSearchParams, sleepIds: string[]): Filters {
     wild: wild === "some" || wild === "allowed" ? wild : "",
     waterMax: stop(WATER_KM, p.get("water"), WATER_KM.length),
     naturalMin: stop(NATURAL_PCT, p.get("natural"), 0),
+    terrainMax: stop(LEVEL_IDS, p.get("terrain"), LEVEL_IDS.length),
+    climateMax: stop(LEVEL_IDS, p.get("climate"), LEVEL_IDS.length),
+    effortMax: stop(LEVEL_IDS, p.get("effort"), LEVEL_IDS.length),
+    land: list("land").filter((g) => LANDSCAPES.some((l) => l.id === g)),
   };
 }
 
@@ -103,7 +152,7 @@ export function toggleWhere(where: string[], value: string, all: ReturnType<type
 }
 
 // continents, each with the countries trails cross there (the "where" choices)
-export function places(trails: TrailSummary[]) {
+export function places(trails: SearchTrail[]) {
   const uniq = (xs: string[]) => [...new Set(xs)].sort((a, b) => a.localeCompare(b));
   return uniq(trails.flatMap((t) => t.continents)).map((c) => ({
     continent: c,

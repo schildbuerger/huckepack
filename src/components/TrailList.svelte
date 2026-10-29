@@ -1,16 +1,23 @@
 <script lang="ts">
-  // The trail search: filters grouped by planning question (when, how long, how hard, where,
-  // sleeping, water, terrain) beside a list of result cards. Everything runs in the browser
+  // The trail search: filters grouped by planning question, in the order a hiker decides (when,
+  // where, how long, how hard, what it looks like, the ground, sleeping, wild camping, water)
+  // beside a list of result cards. Everything runs in the browser
   // on the summaries built at build time; the filters live in the URL, so a search can be shared.
   import { onMount } from "svelte";
-  import { SAC_NOTE, SAC_SCALE, SLEEPING_CATEGORIES, WATER_LEVELS, type TrailSummary } from "../lib/trails";
+  import { SAC_NOTE, SAC_SCALE, SLEEPING_CATEGORIES, WATER_LEVELS } from "../lib/trails";
+  import type { SearchTrail } from "../lib/search";
   import {
     DAYS,
     DAYS_ALL,
+    LANDSCAPES,
+    LANDSCAPE_SHARE,
+    LEVEL_IDS,
+    LEVEL_WORDS,
     MONTHS,
     NATURAL_PCT,
     SAC,
     WATER_KM,
+    climateLevel,
     fromParams,
     matches,
     places as placesOf,
@@ -21,24 +28,34 @@
   import Explain from "./Explain.svelte";
   import Range from "./Range.svelte";
 
-  let { trails, eleRange }: { trails: TrailSummary[]; eleRange: [number, number] } = $props();
+  let { trails, eleRange }: { trails: SearchTrail[]; eleRange: [number, number] } = $props();
 
   // slider labels for the shared stops (src/lib/filters.ts)
   const DAY_STOPS = DAYS.map((d, i) => (i === DAYS.length - 1 ? `${d}+` : `${d}`));
   const SAC_STOPS = [...SAC, "Any"];
   const WATER_STOPS = [...WATER_KM.map((km) => `${km} km`), "Any"];
   const NATURAL_STOPS = NATURAL_PCT.map((n) => (n ? `${n} %` : "Any"));
+  const LEVEL_STOPS = [...LEVEL_WORDS, "Any"];
+  const ANY_LEVEL = LEVEL_IDS.length;
+  // the hardest of a trail's three ratings over its season (for sorting)
+  const hardest = (t: SearchTrail) => {
+    const xs = [t.terrainLevel, t.effortLevel, climateLevel(t, [])].filter((x) => x !== null) as number[];
+    return xs.length ? Math.max(...xs) : null;
+  };
   const SORTS = {
-    name: { label: "Name", value: (t: TrailSummary) => t.name },
-    shortest: { label: "Shortest first", value: (t: TrailSummary) => t.lengthKm },
-    longest: { label: "Longest first", value: (t: TrailSummary) => (t.lengthKm === null ? null : -t.lengthKm) },
-    days: { label: "Fewest days", value: (t: TrailSummary) => t.days?.[0] ?? null },
-    easiest: { label: "Easiest first", value: (t: TrailSummary) => (t.sac === null ? null : SAC.indexOf(t.sac)) },
+    name: { label: "Name", value: (t: SearchTrail) => t.name },
+    shortest: { label: "Shortest first", value: (t: SearchTrail) => t.lengthKm },
+    longest: { label: "Longest first", value: (t: SearchTrail) => (t.lengthKm === null ? null : -t.lengthKm) },
+    days: { label: "Fewest days", value: (t: SearchTrail) => t.days?.[0] ?? null },
+    easiest: {
+      label: "Easiest first",
+      value: (t: SearchTrail) => (hardest(t) === null ? null : hardest(t)! * 10 + (t.sac === null ? 9 : SAC.indexOf(t.sac))),
+    },
     flattest: {
       label: "Least climbing per km",
-      value: (t: TrailSummary) => (t.ascentM === null || !t.lengthKm ? null : t.ascentM / t.lengthKm),
+      value: (t: SearchTrail) => (t.ascentM === null || !t.lengthKm ? null : t.ascentM / t.lengthKm),
     },
-    natural: { label: "Most natural ground", value: (t: TrailSummary) => (t.surface ? -t.surface.natural : null) },
+    natural: { label: "Most natural ground", value: (t: SearchTrail) => (t.surface ? -t.surface.natural : null) },
   } as const;
   type SortKey = keyof typeof SORTS;
 
@@ -52,6 +69,10 @@
   let wild = $state<Filters["wild"]>("");
   let waterMax = $state(WATER_KM.length); // "Any"
   let naturalMin = $state(0); // "Any"
+  let terrainMax = $state(LEVEL_IDS.length); // "Any"
+  let climateMax = $state(LEVEL_IDS.length);
+  let effortMax = $state(LEVEL_IDS.length);
+  let land = $state<string[]>([]);
   let sort = $state<SortKey>("name");
   let filtersOpen = $state(false);
   let ready = false;
@@ -60,13 +81,16 @@
   let sacOn = $derived(sacMax < SAC.length);
   let waterOn = $derived(waterMax < WATER_KM.length);
   let naturalOn = $derived(naturalMin > 0);
+  let terrainOn = $derived(terrainMax < ANY_LEVEL);
+  let climateOn = $derived(climateMax < ANY_LEVEL);
+  let effortOn = $derived(effortMax < ANY_LEVEL);
 
   const places = placesOf(trails);
   const sleepingOptions = SLEEPING_CATEGORIES.filter((c) => c.id !== "wild-camping");
 
   onMount(() => {
     const p = new URLSearchParams(location.search);
-    ({ months, dayLo, dayHi, sacMax, where, sleep, wild, waterMax, naturalMin } = fromParams(
+    ({ months, dayLo, dayHi, sacMax, where, sleep, wild, waterMax, naturalMin, terrainMax, climateMax, effortMax, land } = fromParams(
       p,
       sleepingOptions.map((c) => c.id),
     ));
@@ -74,7 +98,7 @@
     ready = true;
   });
 
-  let current: Filters = $derived({ months, dayLo, dayHi, sacMax, where, sleep, wild, waterMax, naturalMin });
+  let current: Filters = $derived({ months, dayLo, dayHi, sacMax, where, sleep, wild, waterMax, naturalMin, terrainMax, climateMax, effortMax, land });
 
   // keep the URL in step with the filters (replace, not push: the back button leaves the page)
   $effect(() => {
@@ -99,6 +123,9 @@
   let sacLive = $derived(liveStops(SAC_STOPS.length, (i) => ({ sacMax: i })));
   let waterLive = $derived(liveStops(WATER_STOPS.length, (i) => ({ waterMax: i })));
   let naturalLive = $derived(liveStops(NATURAL_STOPS.length, (i) => ({ naturalMin: i })));
+  let terrainLive = $derived(liveStops(LEVEL_STOPS.length, (i) => ({ terrainMax: i })));
+  let climateLive = $derived(liveStops(LEVEL_STOPS.length, (i) => ({ climateMax: i })));
+  let effortLive = $derived(liveStops(LEVEL_STOPS.length, (i) => ({ effortMax: i })));
 
   let shown = $derived(
     trails.filter((t) => matches(t, current)).sort((a, b) => {
@@ -117,19 +144,24 @@
   let sacText = $derived(sacOn ? `Up to ${SAC[sacMax]}` : "Any grade");
   let waterText = $derived(waterOn ? `Every ${WATER_KM[waterMax]} km or less` : "Any");
   let naturalText = $derived(naturalOn ? `${NATURAL_PCT[naturalMin]} %+ natural` : "Any");
+  const levelText = (i: number) => (i < ANY_LEVEL ? (i === 0 ? "Easy" : `Up to ${LEVEL_WORDS[i].toLowerCase()}`) : "Any");
 
   // the active filters as removable chips
   const monthList = (ms: number[]) => [...ms].sort((a, b) => a - b).map((m) => MONTHS[m - 1]).join(", ");
   let active = $derived(
     [
       months.length && { label: monthList(months), clear: () => (months = []) },
-      daysOn && { label: daysText, clear: () => ((dayLo = 0), (dayHi = DAYS_ALL)) },
-      sacOn && { label: `Up to SAC ${SAC[sacMax]}`, clear: () => (sacMax = SAC.length) },
       ...where.map((w) => ({ label: w, clear: () => (where = where.filter((x) => x !== w)) })),
+      daysOn && { label: daysText, clear: () => ((dayLo = 0), (dayHi = DAYS_ALL)) },
+      terrainOn && { label: `Terrain: ${levelText(terrainMax).toLowerCase()}`, clear: () => (terrainMax = ANY_LEVEL) },
+      climateOn && { label: `Climate: ${levelText(climateMax).toLowerCase()}`, clear: () => (climateMax = ANY_LEVEL) },
+      effortOn && { label: `Effort: ${levelText(effortMax).toLowerCase()}`, clear: () => (effortMax = ANY_LEVEL) },
+      sacOn && { label: `Up to SAC ${SAC[sacMax]}`, clear: () => (sacMax = SAC.length) },
+      ...land.map((g) => ({ label: LANDSCAPES.find((l) => l.id === g)!.label, clear: () => (land = toggle(land, g)) })),
+      naturalOn && { label: `At least ${NATURAL_PCT[naturalMin]} % natural ground`, clear: () => (naturalMin = 0) },
       ...sleep.map((id) => ({ label: SLEEPING_CATEGORIES.find((c) => c.id === id)!.label, clear: () => (sleep = toggle(sleep, id)) })),
       wild && { label: wild === "allowed" ? "Wild camping allowed" : "Wild camping possible", clear: () => (wild = "") },
       waterOn && { label: `Water every ${WATER_KM[waterMax]} km or less`, clear: () => (waterMax = WATER_KM.length) },
-      naturalOn && { label: `At least ${NATURAL_PCT[naturalMin]} % natural ground`, clear: () => (naturalMin = 0) },
     ].filter(Boolean) as { label: string; clear: () => void }[],
   );
 
@@ -138,6 +170,8 @@
     where = [];
     months = [];
     sleep = [];
+    land = [];
+    terrainMax = climateMax = effortMax = ANY_LEVEL;
     dayLo = naturalMin = 0;
     dayHi = DAYS_ALL;
     sacMax = SAC.length;
@@ -159,7 +193,7 @@
     const pts = profile.map(([km, m]) => `${((km / total) * W).toFixed(1)},${(H - ((m - lo) / (hi - lo)) * (H - 4)).toFixed(1)}`);
     return area ? `M0,${H}L${pts.join("L")}L${W},${H}Z` : `M${pts.join("L")}`;
   };
-  const sleepText = (t: TrailSummary) =>
+  const sleepText = (t: SearchTrail) =>
     SLEEPING_CATEGORIES.filter((c) => c.id !== "wild-camping" && t.sleeping.includes(c.id))
       .map((c) => c.label)
       .join(" · ");
@@ -191,30 +225,6 @@
           <button type="button" class="chip" aria-pressed={months.includes(i + 1)} disabled={off} title={off ? NONE : undefined} onclick={() => (months = toggle(months, i + 1))}>{m}</button>
         {/each}
       </div>
-    </div>
-
-    <div class="group" role="group" aria-labelledby="g-long">
-      <div class="legend" id="g-long">
-        <Explain id="x-long" term="How long?" title="Walking days">
-          <p>The number of days the trail's managers suggest for the whole route. Where they give a range, such as 6–8 days, the trail matches if that range overlaps yours.</p>
-        </Explain>
-        <span class="value">{daysText}</span>
-      </div>
-      <Range stops={DAY_STOPS} bind:lo={dayLo} bind:hi={dayHi} live={dayHiLive} liveLo={dayLoLive} label="Walking days" ticks={[0, 6, 9, 12, DAYS_ALL]} />
-    </div>
-
-    <div class="group" role="group" aria-labelledby="g-hard">
-      <div class="legend" id="g-hard">
-        <Explain id="x-hard" term="How hard, at most?" title="SAC hiking scale">
-          <p>{SAC_NOTE}</p>
-          <p>Slide to the hardest grade you're happy with; trails up to that grade stay. Once you pick a grade, trails without one are left out.</p>
-          <dl>
-            {#each SAC as s}<dt>{s} · {SAC_SCALE[s].name}</dt><dd>{SAC_SCALE[s].text}</dd>{/each}
-          </dl>
-        </Explain>
-        <span class="value">{sacText}</span>
-      </div>
-      <Range stops={SAC_STOPS} bind:hi={sacMax} live={sacLive} off={SAC.length} label="Highest SAC grade" />
     </div>
 
     <div class="group" role="group" aria-labelledby="g-where">
@@ -251,6 +261,80 @@
       {/each}
     </div>
 
+    <div class="group" role="group" aria-labelledby="g-long">
+      <div class="legend" id="g-long">
+        <Explain id="x-long" term="How long?" title="Walking days">
+          <p>The number of days the trail's managers suggest for the whole route. Where they give a range, such as 6–8 days, the trail matches if that range overlaps yours.</p>
+        </Explain>
+        <span class="value">{daysText}</span>
+      </div>
+      <Range stops={DAY_STOPS} bind:lo={dayLo} bind:hi={dayHi} live={dayHiLive} liveLo={dayLoLive} label="Walking days" ticks={[0, 6, 9, 12, DAYS_ALL]} />
+    </div>
+
+    <div class="group" role="group" aria-labelledby="g-hard">
+      <div class="legend" id="g-hard">
+        <Explain id="x-hard" term="How hard, at most?" title="Difficulty">
+          <p>The ratings on each trail page's Difficulty section, from Easy to Hard with the same thresholds for every trail; slide each to the most you're happy with. Once you set one, trails without that rating drop out.</p>
+          <dl>
+            <dt>Terrain</dt><dd>The path grade, how much and how steeply it climbs, and how much is natural ground.</dd>
+            <dt>Climate</dt><dd>Heat, cold, wet days, snow and wind: in the months you picked above (within the trail's season), or over its whole season.</dd>
+            <dt>Effort</dt><dd>The longest day: up to 4 h is easy, 4–6 h moderate, 6–8 h demanding, more is hard.</dd>
+            <dt>Path grade</dt><dd>The SAC hiking scale, T1 to T6: how hard the path itself is to walk (see below).</dd>
+          </dl>
+        </Explain>
+      </div>
+      <div class="sub">
+        <span>Terrain</span><span class="value">{levelText(terrainMax)}</span>
+      </div>
+      <Range stops={LEVEL_STOPS} bind:hi={terrainMax} live={terrainLive} off={ANY_LEVEL} label="Terrain, at most" ticks={[0, 3, 4]} />
+      <div class="sub">
+        <span>Climate{months.length ? " in your months" : ""}</span><span class="value">{levelText(climateMax)}</span>
+      </div>
+      <Range stops={LEVEL_STOPS} bind:hi={climateMax} live={climateLive} off={ANY_LEVEL} label="Climate, at most" ticks={[0, 3, 4]} />
+      <div class="sub">
+        <span>Effort, longest day</span><span class="value">{levelText(effortMax)}</span>
+      </div>
+      <Range stops={LEVEL_STOPS} bind:hi={effortMax} live={effortLive} off={ANY_LEVEL} label="Effort, at most" ticks={[0, 3, 4]} />
+      <div class="sub">
+        <Explain id="x-sac" term="Path grade (SAC)" title="SAC hiking scale">
+          <p>{SAC_NOTE}</p>
+          <p>Slide to the hardest grade you're happy with; trails up to that grade stay. Once you pick a grade, trails without one are left out.</p>
+          <dl>
+            {#each SAC as s}<dt>{s} · {SAC_SCALE[s].name}</dt><dd>{SAC_SCALE[s].text}</dd>{/each}
+          </dl>
+        </Explain>
+        <span class="value">{sacText}</span>
+      </div>
+      <Range stops={SAC_STOPS} bind:hi={sacMax} live={sacLive} off={SAC.length} label="Highest SAC grade" />
+    </div>
+    <div class="group" role="group" aria-labelledby="g-land">
+      <div class="legend" id="g-land">
+        <Explain id="x-land" term="Landscape" title="Landscape">
+          <p>What the trail passes through, from ESA WorldCover satellite land cover: a trail matches if at least {Math.round(LANDSCAPE_SHARE * 100)} % of its main route is a landscape you pick (any of them).</p>
+        </Explain>
+      </div>
+      <div class="chips">
+        {#each LANDSCAPES as l}
+          {@const off = dead(land.includes(l.id), { land: toggle(land, l.id) })}
+          <button type="button" class="chip" aria-pressed={land.includes(l.id)} disabled={off} title={off ? NONE : undefined} onclick={() => (land = toggle(land, l.id))}>{l.label}</button>
+        {/each}
+      </div>
+    </div>
+    <div class="group" role="group" aria-labelledby="g-terrain">
+      <div class="legend" id="g-terrain">
+        <Explain id="x-terrain" term="Natural ground" title="Ground underfoot">
+          <p>The share of the main route on natural ground at least, from OpenStreetMap's surface tags. The bar under each card's profile shows the mix:</p>
+          <!-- the same colours as the surface bar on each card -->
+          <ul class="ground">
+            <li><span style="background: var(--surface-natural)"></span>Natural: earth, grass, rock</li>
+            <li><span style="background: var(--surface-gravel)"></span>Gravel</li>
+            <li><span style="background: var(--surface-paved)"></span>Paved</li>
+          </ul>
+        </Explain>
+        <span class="value">{naturalText}</span>
+      </div>
+      <Range stops={NATURAL_STOPS} bind:hi={naturalMin} live={naturalLive} off={0} fill="above" label="Share of natural ground, at least" ticks={[0, 5, 9]} />
+    </div>
     <div class="group" role="group" aria-labelledby="g-sleep">
       <div class="legend" id="g-sleep">
         <Explain id="x-sleep" term="Where to sleep">
@@ -299,21 +383,6 @@
       <Range stops={WATER_STOPS} bind:hi={waterMax} live={waterLive} off={WATER_KM.length} label="Longest stretch without drinking water, at most" ticks={[0, 3, WATER_KM.length]} />
     </div>
 
-    <div class="group" role="group" aria-labelledby="g-terrain">
-      <div class="legend" id="g-terrain">
-        <Explain id="x-terrain" term="Natural ground" title="Ground underfoot">
-          <p>The share of the main route on natural ground at least, from OpenStreetMap's surface tags. The bar under each card's profile shows the mix:</p>
-          <!-- the same colours as the surface bar on each card -->
-          <ul class="ground">
-            <li><span style="background: var(--surface-natural)"></span>Natural: earth, grass, rock</li>
-            <li><span style="background: var(--surface-gravel)"></span>Gravel</li>
-            <li><span style="background: var(--surface-paved)"></span>Paved</li>
-          </ul>
-        </Explain>
-        <span class="value">{naturalText}</span>
-      </div>
-      <Range stops={NATURAL_STOPS} bind:hi={naturalMin} live={naturalLive} off={0} fill="above" label="Share of natural ground, at least" ticks={[0, 5, 9]} />
-    </div>
   </aside>
 
   <div class="results">
@@ -572,6 +641,22 @@
     padding: 2px;
     border: 1px solid var(--line);
     border-radius: 999px;
+  }
+  /* the difficulty group: one small label and value over each slider */
+  .sub {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 12px;
+    margin: 14px 0 4px;
+    font-size: 0.85rem;
+  }
+  .legend + .sub {
+    margin-top: 0;
+  }
+  .sub .value {
+    color: var(--muted);
+    font-size: 0.8rem;
   }
   .legend + .segmented {
     margin-top: 0;
