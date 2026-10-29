@@ -773,7 +773,7 @@ const nav = [
           >
             {landRows.map((g, i) => (
               <g>
-                <text class="lane-label" x={CHART.x0} y={i * 26 + 17}>{g.label}</text>
+                <text class="lane-label" x={CHART.x0} y={i * 26 + 18}>{g.label}</text>
                 <line class="lane-track" x1={LANE_X0} x2={LANE_X1} y1={i * 26 + 13} y2={i * 26 + 13} />
                 {landcover.runs.filter((r) => r.group === g.id).map((r) => (
                   <rect
@@ -787,7 +787,7 @@ const nav = [
                     <title>{g.label}, km {r.fromKm.toFixed(1)}–{r.toKm.toFixed(1)}</title>
                   </rect>
                 ))}
-                <text class="lane-share" x={CHART.x1} y={i * 26 + 17} text-anchor="end">{pct(landcover.shares[g.id])}</text>
+                <text class="lane-share" x={CHART.x1} y={i * 26 + 18} text-anchor="end">{pct(landcover.shares[g.id])}</text>
               </g>
             ))}
             {landcover.stageStarts.map((st, i) => {
@@ -2228,13 +2228,14 @@ const nav = [
   .lanes {
     margin: 4px 0 0;
   }
+  /* 15 units in a 1000-unit chart: about 13 px at the content column's width */
   .lanes .lane-label {
     fill: var(--text);
-    font: 12px var(--sans);
+    font: 15px var(--sans);
   }
   .lanes .lane-share {
     fill: var(--muted);
-    font: 12px var(--sans);
+    font: 15px var(--sans);
   }
   .lanes .lane-track {
     stroke: var(--line);
