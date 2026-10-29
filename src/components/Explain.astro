@@ -3,17 +3,28 @@
 // underline (the popover attribute: no JavaScript, closes with Esc, a click outside or the
 // Close button). The slot holds the explanation. The panel resets inherited text styles, since
 // labels are often uppercase. With `shared`, it renders only the term, opening the popover of
-// another Explain with that id (two labels, one explanation).
+// another Explain with that id (two labels, one explanation). With `icon`, the button is an (i)
+// icon instead of the term (the term becomes its accessible name): for what explains a chart.
 interface Props {
   id: string;
   term: string; // the visible label, e.g. "Difficulty"
   title?: string; // the panel's heading; defaults to the term
   shared?: boolean;
+  icon?: boolean;
 }
-const { id, term, title = term, shared = false } = Astro.props;
+const { id, term, title = term, shared = false, icon = false } = Astro.props;
+const ICON = '<svg class="info" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9.5" /><path d="M12 16.5v-5.5M12 7.6v.1" /></svg>';
 ---
 
-<button class="term" type="button" popovertarget={id}>{term}</button>
+{
+  icon ? (
+    <button class="term icon" type="button" popovertarget={id} aria-label={term} title={term}>
+      <Fragment set:html={ICON} />
+    </button>
+  ) : (
+    <button class="term" type="button" popovertarget={id}>{term}</button>
+  )
+}
 {
   !shared && (
     <div id={id} class="pop" popover>
@@ -30,6 +41,20 @@ const { id, term, title = term, shared = false } = Astro.props;
 }
 
 <style>
+  /* icon: an (i) button for what explains a chart (sources, method), so the page shows no caption
+     lines; the term is its accessible name */
+  .term.icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 28px;
+    height: 28px;
+    margin: -5px;
+    border-radius: 50%;
+    color: var(--muted);
+    text-decoration: none;
+    cursor: pointer;
+  }
   .term {
     padding: 0;
     border: 0;

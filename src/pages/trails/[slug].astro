@@ -718,9 +718,15 @@ const nav = [
           </tbody>
         </table>
         </div>
-        <figcaption class="muted">
-          Averages for {climate.years[0]}–{climate.years[1]} from ERA5 reanalysis via Open-Meteo, adjusted to each point's
-          elevation; daylight from sunrise to sunset mid-month.
+        <figcaption class="chart-info">
+          <Explain id="about-climate-chart" term="About this chart" title="Climate by month" icon>
+            <p>
+              Averages for {climate.years[0]}–{climate.years[1]} from ERA5 reanalysis via Open-Meteo, at the trail's lowest
+              and highest point, adjusted to each point's elevation. Bars span the mean night low to the mean day high; wet
+              days have at least 1 mm of rain, snow days at least 1 cm of snow. Daylight runs from sunrise to sunset in the
+              middle of the month. The shaded months are the trail's season.
+            </p>
+          </Explain>
         </figcaption>
       </figure>
     </section>
@@ -952,9 +958,23 @@ const nav = [
               </ul>
             )}
           </div>
-          <figcaption class="muted">
-            Copernicus terrain model (30 m grid; it measures the treetops in forests), gradients per 200 m in walking
-            direction{surface && `; ground from OpenStreetMap, where the ${pct(surface.inferredShare)} without a surface tag take the type of way`}.
+          <figcaption class="chart-info">
+            <Explain id="about-terrain-chart" term="About this chart" title="Terrain along the route" icon>
+              <p>
+                Heights from the Copernicus terrain model (30 m grid, every 100 m along the main route); it measures the
+                treetops in forests, so heights may differ from signposts by some metres.
+              </p>
+              <p>
+                Elevation colours each 200 m by its gradient in walking direction: the steeper, the darker, climbs warm and
+                descents violet, from level ground to ±{RAMP_MAX} % and beyond.
+              </p>
+              {surface && (
+                <p>
+                  Surfaces come from OpenStreetMap; for the {pct(surface.inferredShare)} of the route without a surface tag,
+                  the type of way decides (footpaths natural, tracks gravel).
+                </p>
+              )}
+            </Explain>
           </figcaption>
         </figure>
       </div>
@@ -1004,7 +1024,15 @@ const nav = [
             <text class="tick-label end" x={LANE_X1} y={landRows.length * 26 + 38} text-anchor="end">{landcover.routeKm} km</text>
           </svg>
         </div>
-        <figcaption class="muted">ESA WorldCover (10 m satellite land cover, 2021), every 100 m along the route.</figcaption>
+        <figcaption class="chart-info">
+          <Explain id="about-landscape-chart" term="About this chart" title="Landscape along the route" icon>
+            <p>
+              Land cover from ESA WorldCover 2021 (10 m satellite map), every 100 m along the main route; each point takes
+              the most common class within 30 m, so the path itself doesn't count as bare ground. Its eleven classes are
+              folded into the six groups shown. It says what the landscape looks like, not which plants grow there.
+            </p>
+          </Explain>
+        </figcaption>
       </figure>
     </section>
   )}
@@ -1127,9 +1155,13 @@ const nav = [
           </svg>
           </div>
           <div class="tip" role="status" hidden><strong></strong><span></span></div>
-          <figcaption class="muted">
-            From OpenStreetMap{waterExtra.length > 0 && ` and ${waterExtra.join(", ")}`}, within {water.withinM} m of the main
-            route; may be incomplete.
+          <figcaption class="chart-info">
+            <Explain id="about-water-chart" term="About this chart" title="Water along the route" icon>
+              <p>
+                Drinking water and springs from OpenStreetMap{waterExtra.length > 0 && ` and ${waterExtra.join(", ")}`}, within{" "}
+                {water.withinM} m of the main route. The map may miss taps or list ones that have run dry, so check locally.
+              </p>
+            </Explain>
           </figcaption>
         </figure>
       )}
@@ -2584,6 +2616,12 @@ const nav = [
   figcaption {
     margin-top: 10px;
     font-size: 0.8rem;
+  }
+  /* a chart's explanation behind an (i) at its lower right, instead of a caption line */
+  figcaption.chart-info {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 6px;
   }
 
   /* phones: three figures don't fit side by side; the first two share a row, the third gets its own */

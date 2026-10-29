@@ -3,10 +3,23 @@
   // closes with Esc, a click outside or Close). Keep the two in step.
   import type { Snippet } from "svelte";
 
-  let { id, term, title = term, children }: { id: string; term: string; title?: string; children: Snippet } = $props();
+  // with `icon`, an (i) button instead of the term (the term is its accessible name), for charts
+  let {
+    id,
+    term,
+    title = term,
+    icon = false,
+    children,
+  }: { id: string; term: string; title?: string; icon?: boolean; children: Snippet } = $props();
 </script>
 
-<button class="term" type="button" popovertarget={id}>{term}</button>
+{#if icon}
+  <button class="term icon" type="button" popovertarget={id} aria-label={term} title={term}>
+    <svg class="info" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9.5" /><path d="M12 16.5v-5.5M12 7.6v.1" /></svg>
+  </button>
+{:else}
+  <button class="term" type="button" popovertarget={id}>{term}</button>
+{/if}
 <div {id} class="pop" popover="auto">
   <p class="pop-title">{title}</p>
   <div class="pop-text">{@render children()}</div>
@@ -16,6 +29,20 @@
 </div>
 
 <style>
+  /* icon: an (i) button for what explains a chart (sources, method), so the page shows no caption
+     lines; the term is its accessible name */
+  .term.icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 28px;
+    height: 28px;
+    margin: -5px;
+    border-radius: 50%;
+    color: var(--muted);
+    text-decoration: none;
+    cursor: pointer;
+  }
   .term {
     padding: 0;
     border: 0;
