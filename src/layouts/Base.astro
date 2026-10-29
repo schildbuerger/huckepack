@@ -104,6 +104,14 @@ const { title, description, personal = false } = Astro.props;
     --wet: #2f6690;
     --snow: #86afd0;
     --daylight: #e8a800; /* strong yellow; below 3:1 on cream, so every pill carries its value */
+    /* landscape groups (pipeline/landcover.py), in this fixed order; checked with the dataviz
+       validator: neighbours apart in both modes, every group named in text */
+    --land-forest: #1f6e3a;
+    --land-open: #b9b62c;
+    --land-moss: #22b2a6;
+    --land-bare: #9264ac;
+    --land-water: #2c5cc2;
+    --land-farm: #e06a4f;
     /* gradients, diverging: climbs warm, descents violet, each a moderate and a steep (≥ 15 %) step */
     --grade-up: #e0956a;
     --grade-up-steep: #a8432a;
@@ -138,6 +146,12 @@ const { title, description, personal = false } = Astro.props;
     --wet: #4a7aa1;
     --snow: #c4dcef;
     --daylight: #f5c518;
+    --land-forest: #4ba22a;
+    --land-open: #656a08;
+    --land-moss: #0a9b94;
+    --land-bare: #8e3da5;
+    --land-water: #298afe;
+    --land-farm: #a84900;
     --grade-up: #8f4a2e;
     --grade-up-steep: #ee9f76;
     --grade-down: #5a529e;
@@ -169,6 +183,12 @@ const { title, description, personal = false } = Astro.props;
       --wet: #4a7aa1;
       --snow: #c4dcef;
       --daylight: #f5c518;
+      --land-forest: #4ba22a;
+      --land-open: #656a08;
+      --land-moss: #0a9b94;
+      --land-bare: #8e3da5;
+      --land-water: #298afe;
+      --land-farm: #a84900;
       --grade-up: #8f4a2e;
       --grade-up-steep: #ee9f76;
       --grade-down: #5a529e;

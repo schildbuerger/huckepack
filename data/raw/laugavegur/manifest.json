@@ -11,6 +11,10 @@
     "retrieved": "2026-10-27T22:27:49+00:00",
     "url": "https://copernicus-dem-30m.s3.eu-central-1.amazonaws.com/Copernicus_DSM_COG_10_N63_00_W020_00_DEM/Copernicus_DSM_COG_10_N63_00_W020_00_DEM.tif"
   },
+  "landcover.json": {
+    "retrieved": "2026-10-29T15:58:35+00:00",
+    "url": "https://esa-worldcover.s3.eu-central-1.amazonaws.com/v200/2021/map/ESA_WorldCover_10m_2021_v200_\u2026_Map.tif"
+  },
   "osm-relation.json": {
     "retrieved": "2026-10-27T22:12:00+00:00",
     "url": "https://overpass-api.de/api/interpreter"

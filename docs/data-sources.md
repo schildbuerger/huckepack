@@ -23,7 +23,7 @@ source before using it, and record the result here.
 | Copernicus DEM GLO-30 | Global 30 m elevation (a surface model: treetops in forests) | Copernicus WorldDEM-30 licence: free, publishing and adapting allowed; notice "produced using Copernicus WorldDEM-30 © DLR e.V. 2010-2014 and © Airbus Defence and Space GmbH 2014-2018 provided under COPERNICUS by the European Union and ESA; all rights reserved" and a liability disclaimer (in the legal notice) required | In use: `pipeline/elevation.py`, tiles from AWS Open Data (`copernicus-dem-30m`, no account); not released for Armenia and Azerbaijan |
 | Saxony DGM1 (GeoSN) | 1 m bare-earth lidar terrain model of Saxony | Datenlizenz Deutschland – Namensnennung 2.0, "Geodaten Sachsen" | Candidate for the Forststeig; text grid tiles in EPSG:25833 |
 | ČÚZK DMR 5G | Czech bare-earth lidar terrain model | CC BY 4.0 (ČÚZK open data) | Candidate; LAZ point clouds, would need gridding |
-| ESA WorldCover | Global land cover at 10 m | CC BY 4.0 | Terrain along the route |
+| ESA WorldCover 2021 | Global land cover at 10 m (11 classes) | CC BY 4.0; "© ESA WorldCover project 2021 / Contains modified Copernicus Sentinel data (2021) processed by ESA WorldCover consortium" | In use: `pipeline/landcover.py` reads the COG tiles on AWS Open Data (`esa-worldcover`, no account, only the blocks near the route) at the elevation profile's samples; the trail page's Landscape section |
 | AWS Terrain Tiles (Mapzen, Terrarium PNGs) | Elevation tiles for the map's hill shading and contour lines | Open data; attribution to Mapzen and the underlying sources ([list](https://github.com/tilezen/joerd/blob/master/docs/attribution.md)) | In use: loaded by the browser from s3.amazonaws.com, no key; named in the privacy policy |
 
 ## Climate

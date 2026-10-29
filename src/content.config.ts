@@ -241,6 +241,20 @@ const derived = z.object({
       ),
     })
     .optional(),
+  // pipeline/landcover.py: ESA WorldCover land cover at the elevation profile's samples, in six
+  // groups (forest, open, moss, bare, water, farm)
+  landcover: z
+    .object({
+      source: sourceRef,
+      retrieved: z.coerce.date(),
+      spacingM: z.number(),
+      routeKm: z.number(),
+      stageStarts: z.array(z.object({ number: z.string(), km: z.number() })),
+      shares: z.record(z.string(), z.number()),
+      runs: z.array(z.object({ group: z.string(), fromKm: z.number(), toKm: z.number() })),
+      highestForest: z.object({ km: z.number(), m: z.number() }).nullable(),
+    })
+    .optional(),
   // pipeline/elevation.py: heights along the main route, sampled on the map line
   elevation: z
     .object({

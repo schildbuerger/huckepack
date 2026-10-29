@@ -3191,5 +3191,703 @@
         "daylightH": 4.4
       }
     ]
+  },
+  "landcover": {
+    "source": "worldcover",
+    "retrieved": "2026-10-29T15:58:35+00:00",
+    "spacingM": 100,
+    "routeKm": 52.2,
+    "stageStarts": [
+      {
+        "number": "1",
+        "km": 0.0
+      },
+      {
+        "number": "2",
+        "km": 10.04
+      },
+      {
+        "number": "3",
+        "km": 20.92
+      },
+      {
+        "number": "4",
+        "km": 36.55
+      }
+    ],
+    "shares": {
+      "forest": 0.006,
+      "open": 0.132,
+      "moss": 0.258,
+      "bare": 0.534,
+      "water": 0.071,
+      "farm": 0.0
+    },
+    "runs": [
+      {
+        "group": "open",
+        "fromKm": 0.0,
+        "toKm": 0.05
+      },
+      {
+        "group": "moss",
+        "fromKm": 0.05,
+        "toKm": 0.45
+      },
+      {
+        "group": "open",
+        "fromKm": 0.45,
+        "toKm": 0.55
+      },
+      {
+        "group": "moss",
+        "fromKm": 0.55,
+        "toKm": 1.35
+      },
+      {
+        "group": "bare",
+        "fromKm": 1.35,
+        "toKm": 1.55
+      },
+      {
+        "group": "moss",
+        "fromKm": 1.55,
+        "toKm": 1.95
+      },
+      {
+        "group": "bare",
+        "fromKm": 1.95,
+        "toKm": 2.25
+      },
+      {
+        "group": "moss",
+        "fromKm": 2.25,
+        "toKm": 2.35
+      },
+      {
+        "group": "bare",
+        "fromKm": 2.35,
+        "toKm": 2.45
+      },
+      {
+        "group": "moss",
+        "fromKm": 2.45,
+        "toKm": 2.65
+      },
+      {
+        "group": "bare",
+        "fromKm": 2.65,
+        "toKm": 3.25
+      },
+      {
+        "group": "moss",
+        "fromKm": 3.25,
+        "toKm": 3.85
+      },
+      {
+        "group": "bare",
+        "fromKm": 3.85,
+        "toKm": 4.35
+      },
+      {
+        "group": "water",
+        "fromKm": 4.35,
+        "toKm": 4.45
+      },
+      {
+        "group": "bare",
+        "fromKm": 4.45,
+        "toKm": 7.75
+      },
+      {
+        "group": "water",
+        "fromKm": 7.75,
+        "toKm": 7.85
+      },
+      {
+        "group": "bare",
+        "fromKm": 7.85,
+        "toKm": 8.15
+      },
+      {
+        "group": "water",
+        "fromKm": 8.15,
+        "toKm": 8.65
+      },
+      {
+        "group": "bare",
+        "fromKm": 8.65,
+        "toKm": 9.15
+      },
+      {
+        "group": "water",
+        "fromKm": 9.15,
+        "toKm": 9.75
+      },
+      {
+        "group": "bare",
+        "fromKm": 9.75,
+        "toKm": 10.25
+      },
+      {
+        "group": "water",
+        "fromKm": 10.25,
+        "toKm": 10.45
+      },
+      {
+        "group": "bare",
+        "fromKm": 10.45,
+        "toKm": 10.65
+      },
+      {
+        "group": "water",
+        "fromKm": 10.65,
+        "toKm": 10.75
+      },
+      {
+        "group": "bare",
+        "fromKm": 10.75,
+        "toKm": 11.05
+      },
+      {
+        "group": "water",
+        "fromKm": 11.05,
+        "toKm": 11.35
+      },
+      {
+        "group": "bare",
+        "fromKm": 11.35,
+        "toKm": 11.55
+      },
+      {
+        "group": "water",
+        "fromKm": 11.55,
+        "toKm": 11.65
+      },
+      {
+        "group": "bare",
+        "fromKm": 11.65,
+        "toKm": 11.85
+      },
+      {
+        "group": "moss",
+        "fromKm": 11.85,
+        "toKm": 11.95
+      },
+      {
+        "group": "bare",
+        "fromKm": 11.95,
+        "toKm": 12.15
+      },
+      {
+        "group": "moss",
+        "fromKm": 12.15,
+        "toKm": 12.35
+      },
+      {
+        "group": "water",
+        "fromKm": 12.35,
+        "toKm": 12.45
+      },
+      {
+        "group": "bare",
+        "fromKm": 12.45,
+        "toKm": 12.55
+      },
+      {
+        "group": "water",
+        "fromKm": 12.55,
+        "toKm": 13.45
+      },
+      {
+        "group": "bare",
+        "fromKm": 13.45,
+        "toKm": 14.05
+      },
+      {
+        "group": "water",
+        "fromKm": 14.05,
+        "toKm": 14.15
+      },
+      {
+        "group": "bare",
+        "fromKm": 14.15,
+        "toKm": 14.25
+      },
+      {
+        "group": "water",
+        "fromKm": 14.25,
+        "toKm": 14.85
+      },
+      {
+        "group": "bare",
+        "fromKm": 14.85,
+        "toKm": 15.65
+      },
+      {
+        "group": "moss",
+        "fromKm": 15.65,
+        "toKm": 15.75
+      },
+      {
+        "group": "bare",
+        "fromKm": 15.75,
+        "toKm": 16.25
+      },
+      {
+        "group": "moss",
+        "fromKm": 16.25,
+        "toKm": 16.55
+      },
+      {
+        "group": "bare",
+        "fromKm": 16.55,
+        "toKm": 16.75
+      },
+      {
+        "group": "moss",
+        "fromKm": 16.75,
+        "toKm": 17.25
+      },
+      {
+        "group": "open",
+        "fromKm": 17.25,
+        "toKm": 17.35
+      },
+      {
+        "group": "moss",
+        "fromKm": 17.35,
+        "toKm": 17.45
+      },
+      {
+        "group": "open",
+        "fromKm": 17.45,
+        "toKm": 17.65
+      },
+      {
+        "group": "moss",
+        "fromKm": 17.65,
+        "toKm": 18.45
+      },
+      {
+        "group": "bare",
+        "fromKm": 18.45,
+        "toKm": 18.55
+      },
+      {
+        "group": "moss",
+        "fromKm": 18.55,
+        "toKm": 18.65
+      },
+      {
+        "group": "open",
+        "fromKm": 18.65,
+        "toKm": 18.95
+      },
+      {
+        "group": "moss",
+        "fromKm": 18.95,
+        "toKm": 19.65
+      },
+      {
+        "group": "open",
+        "fromKm": 19.65,
+        "toKm": 19.95
+      },
+      {
+        "group": "moss",
+        "fromKm": 19.95,
+        "toKm": 20.05
+      },
+      {
+        "group": "bare",
+        "fromKm": 20.05,
+        "toKm": 21.05
+      },
+      {
+        "group": "moss",
+        "fromKm": 21.05,
+        "toKm": 21.15
+      },
+      {
+        "group": "open",
+        "fromKm": 21.15,
+        "toKm": 21.25
+      },
+      {
+        "group": "moss",
+        "fromKm": 21.25,
+        "toKm": 21.65
+      },
+      {
+        "group": "open",
+        "fromKm": 21.65,
+        "toKm": 22.65
+      },
+      {
+        "group": "moss",
+        "fromKm": 22.65,
+        "toKm": 22.95
+      },
+      {
+        "group": "bare",
+        "fromKm": 22.95,
+        "toKm": 23.05
+      },
+      {
+        "group": "moss",
+        "fromKm": 23.05,
+        "toKm": 23.15
+      },
+      {
+        "group": "open",
+        "fromKm": 23.15,
+        "toKm": 23.25
+      },
+      {
+        "group": "moss",
+        "fromKm": 23.25,
+        "toKm": 23.85
+      },
+      {
+        "group": "open",
+        "fromKm": 23.85,
+        "toKm": 23.95
+      },
+      {
+        "group": "moss",
+        "fromKm": 23.95,
+        "toKm": 24.15
+      },
+      {
+        "group": "open",
+        "fromKm": 24.15,
+        "toKm": 24.25
+      },
+      {
+        "group": "moss",
+        "fromKm": 24.25,
+        "toKm": 24.45
+      },
+      {
+        "group": "open",
+        "fromKm": 24.45,
+        "toKm": 24.55
+      },
+      {
+        "group": "moss",
+        "fromKm": 24.55,
+        "toKm": 24.75
+      },
+      {
+        "group": "bare",
+        "fromKm": 24.75,
+        "toKm": 25.45
+      },
+      {
+        "group": "moss",
+        "fromKm": 25.45,
+        "toKm": 25.55
+      },
+      {
+        "group": "bare",
+        "fromKm": 25.55,
+        "toKm": 25.65
+      },
+      {
+        "group": "moss",
+        "fromKm": 25.65,
+        "toKm": 25.85
+      },
+      {
+        "group": "bare",
+        "fromKm": 25.85,
+        "toKm": 26.05
+      },
+      {
+        "group": "moss",
+        "fromKm": 26.05,
+        "toKm": 26.55
+      },
+      {
+        "group": "bare",
+        "fromKm": 26.55,
+        "toKm": 29.45
+      },
+      {
+        "group": "moss",
+        "fromKm": 29.45,
+        "toKm": 29.55
+      },
+      {
+        "group": "bare",
+        "fromKm": 29.55,
+        "toKm": 29.65
+      },
+      {
+        "group": "moss",
+        "fromKm": 29.65,
+        "toKm": 29.75
+      },
+      {
+        "group": "bare",
+        "fromKm": 29.75,
+        "toKm": 36.55
+      },
+      {
+        "group": "moss",
+        "fromKm": 36.55,
+        "toKm": 36.65
+      },
+      {
+        "group": "bare",
+        "fromKm": 36.65,
+        "toKm": 37.05
+      },
+      {
+        "group": "moss",
+        "fromKm": 37.05,
+        "toKm": 37.25
+      },
+      {
+        "group": "bare",
+        "fromKm": 37.25,
+        "toKm": 38.15
+      },
+      {
+        "group": "moss",
+        "fromKm": 38.15,
+        "toKm": 38.55
+      },
+      {
+        "group": "bare",
+        "fromKm": 38.55,
+        "toKm": 38.95
+      },
+      {
+        "group": "moss",
+        "fromKm": 38.95,
+        "toKm": 39.15
+      },
+      {
+        "group": "open",
+        "fromKm": 39.15,
+        "toKm": 39.35
+      },
+      {
+        "group": "moss",
+        "fromKm": 39.35,
+        "toKm": 39.45
+      },
+      {
+        "group": "open",
+        "fromKm": 39.45,
+        "toKm": 39.55
+      },
+      {
+        "group": "moss",
+        "fromKm": 39.55,
+        "toKm": 39.65
+      },
+      {
+        "group": "bare",
+        "fromKm": 39.65,
+        "toKm": 39.85
+      },
+      {
+        "group": "moss",
+        "fromKm": 39.85,
+        "toKm": 40.15
+      },
+      {
+        "group": "bare",
+        "fromKm": 40.15,
+        "toKm": 41.35
+      },
+      {
+        "group": "moss",
+        "fromKm": 41.35,
+        "toKm": 41.95
+      },
+      {
+        "group": "bare",
+        "fromKm": 41.95,
+        "toKm": 42.05
+      },
+      {
+        "group": "moss",
+        "fromKm": 42.05,
+        "toKm": 42.35
+      },
+      {
+        "group": "open",
+        "fromKm": 42.35,
+        "toKm": 42.45
+      },
+      {
+        "group": "moss",
+        "fromKm": 42.45,
+        "toKm": 42.65
+      },
+      {
+        "group": "bare",
+        "fromKm": 42.65,
+        "toKm": 42.75
+      },
+      {
+        "group": "moss",
+        "fromKm": 42.75,
+        "toKm": 42.95
+      },
+      {
+        "group": "open",
+        "fromKm": 42.95,
+        "toKm": 43.15
+      },
+      {
+        "group": "moss",
+        "fromKm": 43.15,
+        "toKm": 43.25
+      },
+      {
+        "group": "open",
+        "fromKm": 43.25,
+        "toKm": 43.35
+      },
+      {
+        "group": "moss",
+        "fromKm": 43.35,
+        "toKm": 43.55
+      },
+      {
+        "group": "open",
+        "fromKm": 43.55,
+        "toKm": 43.75
+      },
+      {
+        "group": "bare",
+        "fromKm": 43.75,
+        "toKm": 44.45
+      },
+      {
+        "group": "moss",
+        "fromKm": 44.45,
+        "toKm": 44.65
+      },
+      {
+        "group": "bare",
+        "fromKm": 44.65,
+        "toKm": 44.75
+      },
+      {
+        "group": "moss",
+        "fromKm": 44.75,
+        "toKm": 45.15
+      },
+      {
+        "group": "bare",
+        "fromKm": 45.15,
+        "toKm": 46.95
+      },
+      {
+        "group": "moss",
+        "fromKm": 46.95,
+        "toKm": 47.45
+      },
+      {
+        "group": "open",
+        "fromKm": 47.45,
+        "toKm": 47.75
+      },
+      {
+        "group": "bare",
+        "fromKm": 47.75,
+        "toKm": 47.85
+      },
+      {
+        "group": "moss",
+        "fromKm": 47.85,
+        "toKm": 47.95
+      },
+      {
+        "group": "open",
+        "fromKm": 47.95,
+        "toKm": 48.05
+      },
+      {
+        "group": "moss",
+        "fromKm": 48.05,
+        "toKm": 48.25
+      },
+      {
+        "group": "open",
+        "fromKm": 48.25,
+        "toKm": 48.75
+      },
+      {
+        "group": "moss",
+        "fromKm": 48.75,
+        "toKm": 48.85
+      },
+      {
+        "group": "open",
+        "fromKm": 48.85,
+        "toKm": 48.95
+      },
+      {
+        "group": "moss",
+        "fromKm": 48.95,
+        "toKm": 49.25
+      },
+      {
+        "group": "bare",
+        "fromKm": 49.25,
+        "toKm": 49.35
+      },
+      {
+        "group": "forest",
+        "fromKm": 49.35,
+        "toKm": 49.55
+      },
+      {
+        "group": "open",
+        "fromKm": 49.55,
+        "toKm": 50.45
+      },
+      {
+        "group": "forest",
+        "fromKm": 50.45,
+        "toKm": 50.55
+      },
+      {
+        "group": "open",
+        "fromKm": 50.55,
+        "toKm": 50.75
+      },
+      {
+        "group": "bare",
+        "fromKm": 50.75,
+        "toKm": 50.85
+      },
+      {
+        "group": "open",
+        "fromKm": 50.85,
+        "toKm": 52.15
+      },
+      {
+        "group": "moss",
+        "fromKm": 52.15,
+        "toKm": 52.2
+      },
+      {
+        "group": "bare",
+        "fromKm": 52.2,
+        "toKm": 52.21
+      }
+    ],
+    "highestForest": {
+      "km": 50.5,
+      "m": 259
+    }
   }
 }

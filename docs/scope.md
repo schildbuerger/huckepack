@@ -59,6 +59,11 @@
   page as text. None of this stops a scraper that ignores the rules; the
   pages themselves must stay publicly reachable by law.
 
+- **Landscape:** the trail page shows the landscape along the route from
+  ESA WorldCover (satellite land cover, 10 m) in six groups, as a sentence and
+  one lane per group (issue #3; of three proposals, the lanes were chosen).
+  Species or habitat detail would need another source.
+
 ## What a trail page could show
 
 - Route on a map, with sections or stages

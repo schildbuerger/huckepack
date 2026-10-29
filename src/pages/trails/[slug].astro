@@ -128,6 +128,10 @@ const waterStatus = level && { ...STATUS[WATER_STATUS[level.id]], word: level.la
 
 // strip charts (water, surfaces, elevation) share one geometry: a 1000-unit wide viewBox, km across
 const CHART = { width: 1000, x0: 8, x1: 992, axis: 92, lanes: { drinking: 46, spring: 70 } };
+// landscape lanes: labels on the left, the route's km across the rest
+const LANE_X0 = 220;
+const LANE_X1 = 940;
+const laneX = (km: number) => LANE_X0 + (km / (derived?.landcover?.routeKm || 1)) * (LANE_X1 - LANE_X0);
 const xAt = (km: number, total = water?.routeKm || 1) => CHART.x0 + (km / total) * (CHART.x1 - CHART.x0);
 
 // surfaces along the main route (pipeline/surface.py), in a fixed order, soft to hard
@@ -146,6 +150,39 @@ const surfaceRows = surface ? SURFACES.filter((c) => surface.totals[c.id]?.km > 
 const surfaceStarts =
   surface?.runs.filter((r, i, all) => i === 0 || all[i - 1].stage !== r.stage).map((r) => ({ number: r.stage, km: r.fromKm })) ?? [];
 const pct = (share: number) => `${Math.round(share * 100)}%`;
+
+// landscape (pipeline/landcover.py): ESA WorldCover groups along the main route, on the elevation
+// profile's kilometres; colours --land-* in this fixed order
+const landcover = derived?.landcover;
+const elevationTop = derived?.elevation?.highest.m;
+const LAND = [
+  { id: "forest", label: "Forest" },
+  { id: "open", label: "Grassland and shrubs" },
+  { id: "moss", label: "Moss and lichen" },
+  { id: "bare", label: "Bare rock and sand" },
+  { id: "water", label: "Water, snow and ice" },
+  { id: "farm", label: "Farmland and villages" },
+];
+const landRows = landcover ? LAND.filter((g) => (landcover.shares[g.id] ?? 0) > 0) : [];
+// one sentence: the main landscape, then the rest from 2 % up, smaller ones as "patches of"
+const landSummary = (() => {
+  if (!landcover) return "";
+  const rows = [...landRows].sort((a, b) => landcover.shares[b.id] - landcover.shares[a.id]);
+  const say = (g: (typeof LAND)[number]) => `${g.label.toLowerCase()} (${pct(landcover.shares[g.id])})`;
+  const list = (xs: string[]) => (xs.length < 2 ? xs.join("") : `${xs.slice(0, -1).join(", ")} and ${xs.at(-1)}`);
+  const [first, ...rest] = rows;
+  const more = rest.filter((g) => landcover.shares[g.id] >= 0.02);
+  const bits = rest.filter((g) => landcover.shares[g.id] < 0.02).map((g) => g.label.toLowerCase());
+  const head = landcover.shares[first.id] >= 0.5 ? `Mostly ${say(first)}` : `A mix of ${say(first)}`;
+  return `${head}${more.length ? `, with ${list(more.map(say))}` : ""}${bits.length ? `${more.length ? "; " : ", "}patches of ${list(bits)}` : ""}.`;
+})();
+// how high the forest goes: up to the top, or only low down
+const forestLine = (() => {
+  const top = landcover?.highestForest;
+  if (!landcover || !elevationTop) return null;
+  if (!top) return "No forest along the main route.";
+  return top.m >= elevationTop - 20 ? `Forest up to the highest point (${fmt(top.m)} m).` : `No forest above ${fmt(Math.ceil(top.m / 10) * 10)} m.`;
+})();
 
 // elevation profile (pipeline/elevation.py): an area chart on the same kilometres
 const elevation = derived?.elevation;
@@ -252,6 +289,7 @@ const nav = [
   { id: "location", label: "Location", show: true },
   { id: "map", label: "Map", show: true },
   { id: "surfaces", label: "Surfaces", show: Boolean(surface) },
+  { id: "landscape", label: "Landscape", show: Boolean(landcover) },
   { id: "elevation", label: "Elevation", show: Boolean(elevation) },
   { id: "steepness", label: "Steepness", show: Boolean(grad) },
   { id: "stages", label: "Stages", show: Boolean(t.stages) },
@@ -497,6 +535,55 @@ const nav = [
         <figcaption class="muted">
           From OpenStreetMap; for the {pct(surface.inferredShare)} without a surface tag, the type of way decides.
         </figcaption>
+      </figure>
+    </section>
+  )}
+
+  {landcover && (
+    <section id="landscape">
+      <h2>Landscape</h2>
+      <p class="land-lead">{landSummary} {forestLine}</p>
+      <figure class="chart lanes">
+        <div class="chart-scroll">
+          <svg
+            viewBox={`0 0 ${CHART.width} ${landRows.length * 26 + 44}`}
+            role="img"
+            aria-label={`Landscape along the main route, ${landcover.routeKm} km: ${landSummary}`}
+          >
+            {landRows.map((g, i) => (
+              <g>
+                <text class="lane-label" x={CHART.x0} y={i * 26 + 17}>{g.label}</text>
+                <line class="lane-track" x1={LANE_X0} x2={LANE_X1} y1={i * 26 + 13} y2={i * 26 + 13} />
+                {landcover.runs.filter((r) => r.group === g.id).map((r) => (
+                  <rect
+                    x={laneX(r.fromKm)}
+                    y={i * 26 + 5}
+                    width={Math.max(laneX(r.toKm) - laneX(r.fromKm), 0.8)}
+                    height="16"
+                    rx="2"
+                    style={`fill: var(--land-${g.id})`}
+                  >
+                    <title>{g.label}, km {r.fromKm.toFixed(1)}–{r.toKm.toFixed(1)}</title>
+                  </rect>
+                ))}
+                <text class="lane-share" x={CHART.x1} y={i * 26 + 17} text-anchor="end">{pct(landcover.shares[g.id])}</text>
+              </g>
+            ))}
+            {landcover.stageStarts.map((st, i) => {
+              const end = landcover.stageStarts[i + 1]?.km ?? landcover.routeKm;
+              const y = landRows.length * 26 + 4;
+              return (
+                <g>
+                  <line class="tick" x1={laneX(st.km)} x2={laneX(st.km)} y1={y} y2={y + 8} />
+                  <text class="tick-label" x={(laneX(st.km) + laneX(end)) / 2} y={y + 20} text-anchor="middle">Stage {st.number}</text>
+                </g>
+              );
+            })}
+            <text class="tick-label end" x={LANE_X0} y={landRows.length * 26 + 38}>0 km</text>
+            <text class="tick-label end" x={LANE_X1} y={landRows.length * 26 + 38} text-anchor="end">{landcover.routeKm} km</text>
+          </svg>
+        </div>
+        <figcaption class="muted">ESA WorldCover (10 m satellite land cover, 2021), every 100 m along the route.</figcaption>
       </figure>
     </section>
   )}
@@ -1958,6 +2045,28 @@ const nav = [
       padding-left: 0 !important;
       border-left: 0 !important;
     }
+  }
+  /* landscape: the summary as a lead sentence, then one lane per group along the route */
+  .land-lead {
+    margin: 0 0 12px;
+    font-family: var(--serif);
+    font-size: 1.15rem;
+    line-height: 1.45;
+  }
+  .lanes {
+    margin: 4px 0 0;
+  }
+  .lanes .lane-label {
+    fill: var(--text);
+    font: 12px var(--sans);
+  }
+  .lanes .lane-share {
+    fill: var(--muted);
+    font: 12px var(--sans);
+  }
+  .lanes .lane-track {
+    stroke: var(--line);
+    stroke-width: 1;
   }
   /* colour key in the surface figures (not .key: that is the key figures section) */
   .swatch-key {

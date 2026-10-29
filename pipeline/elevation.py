@@ -89,7 +89,10 @@ def heights(points):
     return out
 
 
-def build(slug, refresh=False):
+def route_samples(slug):
+    """Points every SPACING_M along the main stages of the map line, as (km, lon, lat), the km
+    where each main stage starts, and the main route's length in metres. Shared with
+    pipeline/landcover.py, so its samples fall on the elevation profile's kilometres."""
     route = json.loads((ROOT / "public" / "routes" / f"{slug}.geojson").read_text())
     stages = sorted(
         (f for f in route["features"] if f["properties"]["kind"] == "main"),
@@ -114,6 +117,11 @@ def build(slug, refresh=False):
             walked += seg
     end = stages[-1]["geometry"]["coordinates"][-1]
     samples.append((walked / 1000, end[0], end[1]))
+    return samples, starts, walked
+
+
+def build(slug, refresh=False):
+    samples, starts, walked = route_samples(slug)
 
     def download():
         hs = heights([(lon, lat) for _, lon, lat in samples])
