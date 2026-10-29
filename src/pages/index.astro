@@ -37,9 +37,7 @@ const perTrail = entries.map((e, i) => {
     }),
   );
   const taps = d?.water?.points.filter((p) => p.kind === "drinking").length ?? 0;
-  // the climate step averages every day of its years at the trail's lowest and highest point
-  const weatherDays = d?.climate ? Math.round((d.climate.years[1] - d.climate.years[0] + 1) * 365.25) * d.climate.places.length : 0;
-  return { climbed, minutes, taps, weatherDays };
+  return { climbed, minutes, taps };
 });
 const totals = {
   trails: trails.length,
@@ -49,7 +47,6 @@ const totals = {
   climbed: Math.round(sum(perTrail.map((t) => t.climbed)) / 10) * 10,
   hours: Math.round(sum(perTrail.map((t) => t.minutes)) / 60),
   taps: sum(perTrail.map((t) => t.taps)),
-  weatherDays: sum(perTrail.map((t) => t.weatherDays)),
 };
 const everests = (totals.climbed / EVEREST_M).toFixed(1);
 
@@ -127,7 +124,6 @@ const sources = [
       [`Metres climbed, ${everests} × Everest`, totals.climbed],
       ["Hours of walking", totals.hours],
       ["Drinking water points", totals.taps],
-      ["Days of weather averaged", totals.weatherDays],
     ].map(([label, n]) => (
       <div>
         <dt>{label}</dt>
@@ -369,7 +365,7 @@ const sources = [
     padding-left: 0;
     border-left: 0;
   }
-  /* totals: two columns on phones, rows of four from 720 px; sources: two columns on phones, three
+  /* totals: two columns on phones, rows of four from 720 px, one row from 1080 px; sources: two columns on phones, three
      from 720 px (six sources, two full rows) */
   .totals,
   .sources {
@@ -385,6 +381,20 @@ const sources = [
     }
     .totals > div:nth-child(n + 5) {
       border-top: 1px solid var(--line);
+    }
+  }
+  @media (min-width: 1080px) {
+    .totals {
+      grid-template-columns: none;
+      grid-auto-flow: column;
+      grid-auto-columns: minmax(max-content, 1fr);
+    }
+    .totals > div:nth-child(4n + 1):not(:first-child) {
+      padding-left: 16px;
+      border-left: 1px solid var(--line);
+    }
+    .totals > div:nth-child(n + 5) {
+      border-top: 0;
     }
     .sources {
       grid-template-columns: repeat(3, 1fr);
