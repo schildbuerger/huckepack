@@ -304,7 +304,6 @@ const nav = [
   { id: "climate", label: "Climate", show: Boolean(climate) },
   { id: "sleeping", label: "Sleeping", show: Boolean(t.sleeping || t.wildCamping) },
   { id: "water", label: "Water", show: Boolean(water) },
-  { id: "sources", label: "Sources", show: true },
 ].filter((n) => n.show);
 ---
 
@@ -1207,7 +1206,8 @@ const nav = [
     </section>
   )}
 
-  <section id="sources" class="sources">
+  <!-- the sources as a footnote: below a short rule, small and muted, not in the navigation -->
+  <footer id="sources" class="sources">
     <h2>Sources</h2>
     <ol>
       {t.sources.filter((s) => !s.checkOnly).map((s, i) => (
@@ -1218,7 +1218,7 @@ const nav = [
         </li>
       ))}
     </ol>
-  </section>
+  </footer>
 </Base>
 
 <script>
@@ -1991,18 +1991,38 @@ const nav = [
     color: var(--text);
   }
   .sources {
-    font-size: 0.8rem;
+    margin-top: 72px;
+    font-size: 0.75rem;
+    line-height: 1.5;
     color: var(--muted);
+    scroll-margin-top: 64px;
+  }
+  /* a short rule, like a printed footnote's */
+  .sources::before {
+    content: "";
+    display: block;
+    width: 120px;
+    margin-bottom: 12px;
+    border-top: 1px solid var(--line);
   }
   .sources h2 {
-    font-size: 1.1rem;
-    color: var(--text);
+    margin: 0 0 6px;
+    font-family: var(--sans);
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--muted);
   }
   .sources ol {
-    padding-left: 1.4em;
+    margin: 0;
+    padding-left: 1.6em;
   }
   .sources li {
-    margin-bottom: 4px;
+    margin-bottom: 2px;
+  }
+  .sources a {
+    color: inherit;
   }
   .sources li:target {
     color: var(--text);
