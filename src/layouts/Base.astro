@@ -211,8 +211,10 @@ const { title, description, personal = false } = Astro.props;
     color: var(--text);
     font: 16px/1.6 var(--sans);
   }
+  /* 1200 px of content (plus the 16 px gutters), centred: the 2026 desktop standard for 1280–1440 px
+     screens; at 1280 px with a scrollbar it still keeps the gutters */
   .wrap {
-    max-width: 1040px;
+    max-width: 1232px;
     margin: 0 auto;
     padding: 0 16px;
   }
