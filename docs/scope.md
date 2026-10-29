@@ -2,6 +2,9 @@
 
 ## Decisions
 
+- **Mission:** see [mission.md](mission.md). Every decision below and every new one
+  is checked against it.
+
 - **Name:** huckepack (German for carrying someone piggyback, from Low German
   *Hucke*, a load carried on the back). huckepack.com is taken; the domain
   ending is still open (see below).

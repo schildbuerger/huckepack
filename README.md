@@ -1,5 +1,11 @@
 # huckepack
 
+**Mission:** huckepack helps outdoor enthusiasts find the long-distance trail
+that suits them, and plan the journey with the data that matters on the way,
+from official and open sources, named on every page and comparable across
+trails. See [docs/mission.md](docs/mission.md); every product decision starts
+there.
+
 A website that collects and visualises data about official long-distance
 hiking trails around the world, focused on the well-known routes people
 thru-hike: the Appalachian Trail, the Pacific Crest Trail, Te Araroa, the GR 20,
@@ -7,7 +13,8 @@ the Camino Francés and their peers. Each trail gets one page with its route,
 elevation profile, terrain, climate along the way, resupply points, permits and
 season, and the site compares trails with each other.
 
-Planning notes: [docs/scope.md](docs/scope.md) (decisions and open questions),
+Planning notes: [docs/mission.md](docs/mission.md) (mission, principles and how to decide),
+[docs/scope.md](docs/scope.md) (decisions and open questions),
 [docs/data-sources.md](docs/data-sources.md) (sources and licences),
 [docs/roadmap.md](docs/roadmap.md) (trails and features, ranked).
 
