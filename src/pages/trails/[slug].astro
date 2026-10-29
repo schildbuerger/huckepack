@@ -2237,9 +2237,12 @@ const nav = [
       border-left: 0 !important;
     }
   }
-  /* landscape: one lane per group along the route */
+  /* landscape: one lane per group along the route; the chart opens the section, so it carries the
+     strips' rule in text colour on top, like every other section */
   .lanes {
-    margin: 4px 0 0;
+    margin: 0;
+    padding-top: 14px;
+    border-top: 1px solid var(--text);
   }
   /* 15 units in a 1000-unit chart: about 13 px at the content column's width */
   .lanes .lane-label {
