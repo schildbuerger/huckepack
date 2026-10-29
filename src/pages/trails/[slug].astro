@@ -6,6 +6,7 @@ import Icon from "../../components/Icon.astro";
 import Explain from "../../components/Explain.astro";
 import Breadcrumbs from "../../components/Breadcrumbs.astro";
 import Meter from "../../components/Meter.astro";
+import Waymark from "../../components/Waymark.astro";
 import { difficulty, levelText, DIFFICULTY_NOTE, DIMENSION_TEXT, LEVELS, SCALES, type Level } from "../../lib/difficulty";
 import { existsSync } from "node:fs";
 import {
@@ -503,7 +504,10 @@ const nav = [
       {t.waymarking && (
         <div>
           <dt>Waymarking</dt>
-          <dd>{t.waymarking.text}</dd>
+          <dd class:list={{ marked: t.waymarking.symbol }}>
+            {t.waymarking.symbol && <Waymark symbol={t.waymarking.symbol} />}
+            <span>{t.waymarking.text}</span>
+          </dd>
         </div>
       )}
       <div>
@@ -1848,6 +1852,15 @@ const nav = [
   .loc dd {
     margin: 2px 0 0;
     line-height: 1.45;
+  }
+  /* waymarking with its mark redrawn small, first line beside the mark */
+  .loc dd.marked {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+  }
+  .loc dd.marked :global(.waymark) {
+    margin-top: 3px;
   }
   /* difficulty key figure: one bar per dimension (initial beneath), as tall as its level; the
      hardest level as a word beside it. As tall as the big numbers, so the labels line up */

@@ -82,7 +82,11 @@ const trail = z
     protectedAreas: z.array(z.string()).default([]),
     termini: z.object({ start: point, end: point, source: sourceRef }),
     established: z.object({ year: z.number().int(), source: sourceRef }).optional(),
-    waymarking: z.object({ text: z.string(), source: sourceRef }).optional(),
+    // `symbol`: the waymark redrawn small on the page (src/components/Waymark.astro), only where a
+    // source describes it
+    waymarking: z
+      .object({ text: z.string(), symbol: z.enum(["cai", "yellow-vertical-stripe"]).optional(), source: sourceRef })
+      .optional(),
 
     // Stated totals, as a source gives them; totals summed from the stages are computed.
     length: z
