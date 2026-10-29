@@ -137,6 +137,23 @@ notes:
     beyond the water step's 250 m, so it isn't counted (an OSM tap at km 0 is); at Álftavatn an
     OSM tap about 100 m from the huts counts separately.
   - Highest point on the trail is Hrafntinnusker at about 1,050 m (Wikipedia) or 1,100 m (FÍ hut page).
+  - >-
+    Data check (2026-10-29). Second source for the overview: Wikipedia (54 km against the stage sum
+    of 55 km, 4 days, June to September, highest point 1,050 m against 1,053 m from the terrain
+    model), all within 10 %. No independent source gives stage figures (only tour operators and
+    blogs, which disagree), so the stage lengths, times, huts, season, sleeping and camping rules
+    were checked on the built page against FÍ's trail and hut pages: they match. More than 10 %
+    apart: Wikipedia's "500 m" elevation gain and loss (apparently the net height difference, also
+    FÍ's key figure) against our terrain-model estimate of ≈ 1,400 m up and ≈ 1,750 m down; guides
+    quote around 1,700 m up, so our estimate is likely low (listed in `dataCheck`, shown on the page).
+dataCheck:
+  # working rule 2: Wikipedia for the overview; the stages, which no independent source gives,
+  # checked on the page against FÍ
+  date: 2026-10-29
+  against: [wikipedia]
+  pageAgainst: [fi, fi-huts]
+  deviations:
+    - { figure: "Ascent and descent", ours: "≈ 1,400 / ≈ 1,750 m (our estimate)", theirs: "500 m", source: wikipedia }
 sources:
   - id: fi
     title: "Ferðafélag Íslands: Trails: Laugavegur (stages, itineraries, season, river crossings, camping)"
@@ -149,10 +166,10 @@ sources:
     licence: All rights reserved (facts only)
     retrieved: 2026-10-27
   - id: wikipedia
-    title: "Wikipedia: Laugavegur (established, signposting)"
+    title: "Wikipedia: Laugavegur (established, signposting; length, days, season and highest point for the data check)"
     url: https://en.wikipedia.org/wiki/Laugavegur
     licence: CC BY-SA 4.0
-    retrieved: 2026-10-27
+    retrieved: 2026-10-29
   - id: osm
     title: "OpenStreetMap contributors: the Laugavegur hiking relation, paths along the trail and travel hubs (via Overpass API)"
     url: https://www.openstreetmap.org/relation/1225037

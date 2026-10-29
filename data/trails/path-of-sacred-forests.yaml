@@ -104,6 +104,23 @@ notes:
   - >-
     The camping rule comes from a 2019 regional summary that cites the park's "provisional
     regulation"; check whether that regulation is still current.
+  - >-
+    Data check (2026-10-29), against the Emilia-Romagna region's trail brochure (Hiking Europe,
+    2017) for the whole route and The Wom Travel for the stages (the park is the stage source).
+    Within 10 %: ascent and descent (5,090 / 4,610 m in the brochure against 5,487 / 4,911 m from
+    the park's stage sums), 7 days, difficulty (CAI E in both), season (spring and autumn), stage
+    lengths and times 1, 2, 4, 5 and 7. More than 10 % apart (listed in `dataCheck`, shown on the
+    page): the total length (the brochure's data box says 87.5 km, its own text "about 100 km", The
+    Wom "nearly 100 km"; the park's stages add up to 101.2 km) and the lengths of stages 3
+    (12.9 km at The Wom against the park's 19.4 km) and 6 (16.2 against 18.5 km).
+dataCheck:
+  # working rule 2: the region's brochure for the whole route, The Wom Travel for the stages
+  date: 2026-10-29
+  against: [regione-er, thewom]
+  deviations:
+    - { figure: "Length", ours: "101.2 km", theirs: "87.5 km", source: regione-er }
+    - { figure: "Stage 3 length", ours: "19.4 km", theirs: "12.9 km", source: thewom }
+    - { figure: "Stage 6 length", ours: "18.5 km", theirs: "about 16.2 km", source: thewom }
 sources:
   - id: pnfc
     title: "Parco Nazionale Foreste Casentinesi: Trail of the Sacred Forests (overview and stage pages, GPX)"
@@ -114,7 +131,7 @@ sources:
     title: "The Wom Travel: Sentiero delle Foreste Sacre (Rosanna Carrizzo, updated 2026-02-28)"
     url: https://travel.thewom.it/italia/toscana/sentiero-delle-foreste-sacre.html
     licence: All rights reserved (facts only)
-    retrieved: 2026-10-27
+    retrieved: 2026-10-29
     note: Travel magazine, not an official source.
   - id: osm
     title: "OpenStreetMap contributors: paths and tracks along the trail (via Overpass API)"
@@ -146,3 +163,8 @@ sources:
     url: https://ambiente.regione.emilia-romagna.it/it/parchi-natura2000/fruizione/altavia/bivacco-con-tenda/avp_bivacco-con-tenda_ita_eng_giu_2019.pdf
     licence: Not stated (facts only)
     retrieved: 2026-10-27
+  - id: regione-er
+    title: "Regione Emilia-Romagna: Il Sentiero delle Foreste Sacre (Hiking Europe trail brochure, 2017)"
+    url: https://ambiente.regione.emilia-romagna.it/it/parchi-natura2000/fruizione/altavia/progetto-hikingeurope/HIKINGEU_ForesteSacre_IT_print.pdf/@@download/file
+    licence: All rights reserved (facts only)
+    retrieved: 2026-10-29

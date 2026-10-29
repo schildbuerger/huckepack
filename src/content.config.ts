@@ -91,7 +91,11 @@ const trail = z
       .object({ min: z.number().int().positive(), max: z.number().int().positive(), source: sourceRef })
       .refine((d) => d.min <= d.max, "days.min must not exceed days.max")
       .optional(),
-    stages: z.object({ source: sourceRef, list: z.array(stage).min(1) }).optional(),
+    // `timesSource`: when the stage times come from another source than the rest of the stage
+    // figures (e.g. the stage source publishes none); the page names it under the table
+    stages: z
+      .object({ source: sourceRef, timesSource: sourceRef.optional(), list: z.array(stage).min(1) })
+      .optional(),
     // The map line, built by the pipeline into public/routes/<slug>.geojson. `publishable`
     // is false when the geometry's licence doesn't allow republishing it (e.g. official GPX).
     route: z
@@ -168,6 +172,19 @@ const trail = z
 
     tags: z.array(z.string().regex(/^[a-z0-9-]+$/)).default([]),
     notes: z.array(z.string()).default([]), // open questions and discrepancies between sources
+    // the double check every new trail gets (CLAUDE.md, working rule 2): how and against what, and
+    // every figure more than 10 % apart from the second source, with both values; shown on the page
+    dataCheck: z
+      .object({
+        date: z.coerce.date(),
+        against: z.array(sourceRef).default([]), // second sources the figures were compared with
+        // where no second source exists: the sources the finished page was checked against
+        pageAgainst: z.array(sourceRef).default([]),
+        deviations: z
+          .array(z.object({ figure: z.string(), ours: z.string(), theirs: z.string(), source: sourceRef }))
+          .default([]),
+      })
+      .optional(),
     sources: z.array(source).min(1),
   })
   .superRefine((t, ctx) => {
@@ -186,6 +203,10 @@ const trail = z
         t.difficulty?.sac,
         t.difficulty?.estimated,
         t.waterPoints,
+        ...(t.stages?.timesSource ? [{ source: t.stages.timesSource }] : []),
+        ...(t.dataCheck
+          ? [...[...t.dataCheck.against, ...t.dataCheck.pageAgainst].map((source) => ({ source })), ...t.dataCheck.deviations]
+          : []),
         t.season,
         t.sleeping,
         t.wildCamping,
