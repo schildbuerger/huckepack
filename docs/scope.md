@@ -4,6 +4,13 @@
 
 - **Mission:** see [mission.md](mission.md). Every decision below and every new one
   is checked against it.
+- **Design changes:** every bigger design change is first built as a local
+  preview page with three different approaches; only the chosen one goes live
+  (CLAUDE.md, "Working rules").
+- **Data checks:** every new trail's figures are confirmed against a second,
+  independent source (at most 10 % apart, larger gaps noted and shown with
+  their sources), or, where none exists, checked on the finished trail page
+  against the original source (CLAUDE.md, "Working rules").
 
 - **Name:** huckepack (German for carrying someone piggyback, from Low German
   *Hucke*, a load carried on the back). huckepack.com is taken; the domain
