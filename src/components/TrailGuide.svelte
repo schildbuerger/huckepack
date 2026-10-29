@@ -1,6 +1,6 @@
 <script lang="ts">
-  // The guided search: the search page's filters as one question per screen, then a summary that
-  // opens the search page with those filters in its URL. Every answer shows how many trails it
+  // The guided search: the search page's filters as one question per screen; the last one opens
+  // the search page with those filters in its URL. Every answer shows how many trails it
   // would leave, counted with the same test as the search page (src/lib/filters.ts).
   import { onMount } from "svelte";
   import { SAC_SCALE, SLEEPING_CATEGORIES, type TrailSummary } from "../lib/trails";
@@ -68,7 +68,8 @@
   ];
 
   let f = $state<Filters>(noFilters());
-  let step = $state(0); // STEPS.length: the summary
+  let step = $state(0);
+  let s = $derived(STEPS[step]);
   let heading = $state<HTMLElement>();
   let guide = $state<HTMLElement>();
 
@@ -93,37 +94,11 @@
       water: f.waterMax < WATER_KM.length,
       terrain: f.naturalMin > 0,
     })[id]!;
-  // the answer in words, for the summary
-  const pick = (options: Option[]) => options.find((o) => isSet(o.set))?.label ?? "";
-  const answerText = (id: string) =>
-    ({
-      when: [...f.months].sort((a, b) => a - b).map((m) => MONTH_NAMES[m - 1]).join(", "),
-      days: pick(DAY_OPTIONS),
-      hard: pick(SAC_OPTIONS),
-      where: f.where.join(", "),
-      sleep: sleepingOptions.filter((c) => f.sleep.includes(c.id)).map((c) => c.label).join(", "),
-      wild: pick(WILD_OPTIONS),
-      water: pick(WATER_OPTIONS),
-      terrain: pick(TERRAIN_OPTIONS),
-    })[id]!;
-  // the filter fields one question sets, back to "any"
-  const clear = (id: string): Partial<Filters> =>
-    ({
-      when: { months: [] },
-      days: { dayLo: 0, dayHi: DAYS_ALL },
-      hard: { sacMax: SAC.length },
-      where: { where: [] },
-      sleep: { sleep: [] },
-      wild: { wild: "" as const },
-      water: { waterMax: WATER_KM.length },
-      terrain: { naturalMin: 0 },
-    })[id]!;
-
   // each question is a history entry, so the browser's back button goes to the previous one
   // a new question starts at its top: scrolled down a long list on a phone, the page goes back up
   function go(to: number) {
     step = to;
-    history.pushState({ step: to }, "", `#${to < STEPS.length ? STEPS[to].id : "summary"}`);
+    history.pushState({ step: to }, "", `#${STEPS[to].id}`);
     queueMicrotask(() => {
       if (guide && guide.getBoundingClientRect().top < 0) scrollTo({ top: 0 });
       heading?.focus({ preventScroll: true });
@@ -156,143 +131,101 @@
   <!-- the guide's status: the bar and its counter on one line; question n of 8 fills n/8 -->
   <div class="steps">
     <div class="progress" aria-hidden="true">
-      <span style={`width: ${(Math.min(step + 1, STEPS.length) / STEPS.length) * 100}%`}></span>
+      <span style={`width: ${((step + 1) / STEPS.length) * 100}%`}></span>
     </div>
     <p class="step-no">
-      {#if step < STEPS.length}<span class="visually-hidden">Question </span>{step + 1} of {STEPS.length}{:else}Your answers{/if}
+      <span class="visually-hidden">Question </span>{step + 1} of {STEPS.length}
     </p>
   </div>
 
-  {#if step < STEPS.length}
-    {@const s = STEPS[step]}
-    <h2 tabindex="-1" bind:this={heading}>{s.question}</h2>
-    {#if s.help}<p class="help">{s.help}</p>{/if}
+  <h2 tabindex="-1" bind:this={heading}>{s.question}</h2>
+  {#if s.help}<p class="help">{s.help}</p>{/if}
 
-    <!-- longer lists take two columns on wide screens -->
-    <div class="answers" class:two={["days", "hard", "sleep"].includes(s.id)}>
-      {#if s.id === "when"}
-        <div class="months" role="group" aria-label="Months">
-          {#each MONTHS as m, i}
-            <button
-              type="button"
-              class="month"
-              aria-pressed={f.months.includes(i + 1)}
-              disabled={!f.months.includes(i + 1) && countWith({ months: [i + 1] }) === 0}
-              title={!f.months.includes(i + 1) && countWith({ months: [i + 1] }) === 0 ? "No trail is in season then" : undefined}
-              onclick={() => (f.months = toggle(f.months, i + 1))}
-            >
-              <span class="visually-hidden">{MONTH_NAMES[i]}</span><span aria-hidden="true">{m}</span>
-            </button>
-          {/each}
-        </div>
-        <button type="button" class="option wide" aria-pressed={f.months.length === 0} onclick={() => (f.months = [])}>
-          <span class="label">Any time</span><span class="count">{trailsWord(countWith({ months: [] }))}</span>
-        </button>
-      {:else if s.id === "days"}
-        {#each DAY_OPTIONS as o}
-          {@render option(o)}
-        {/each}
-      {:else if s.id === "hard"}
-        {#each SAC_OPTIONS as o}
-          {@render option(o)}
-        {/each}
-      {:else if s.id === "where"}
-        {@render option({ label: "Anywhere", set: { where: [] } })}
-        {#each places as p}
-          {@render place(p.continent, `Anywhere in ${p.continent}`)}
-          <div class="countries">
-            {#each p.countries as c}
-              {@render place(c, c, true, f.where.includes(p.continent))}
-            {/each}
-          </div>
-        {/each}
-      {:else if s.id === "sleep"}
-        {#each sleepingOptions as c}
+  <!-- longer lists take two columns on wide screens -->
+  <div class="answers" class:two={["days", "hard", "sleep"].includes(s.id)}>
+    {#if s.id === "when"}
+      <div class="months" role="group" aria-label="Months">
+        {#each MONTHS as m, i}
           <button
             type="button"
-            class="option"
-            aria-pressed={f.sleep.includes(c.id)}
-            disabled={!f.sleep.includes(c.id) && countWith({ sleep: [...f.sleep, c.id] }) === 0}
-            onclick={() => (f.sleep = toggle(f.sleep, c.id))}
+            class="month"
+            aria-pressed={f.months.includes(i + 1)}
+            disabled={!f.months.includes(i + 1) && countWith({ months: [i + 1] }) === 0}
+            title={!f.months.includes(i + 1) && countWith({ months: [i + 1] }) === 0 ? "No trail is in season then" : undefined}
+            onclick={() => (f.months = toggle(f.months, i + 1))}
           >
-            <span class="label">{c.label}<span class="sub">{c.hint}</span></span>
-            <!-- how many trails would have this kind too -->
-            <span class="count">{trailsWord(countWith({ sleep: f.sleep.includes(c.id) ? f.sleep : [...f.sleep, c.id] }))}</span>
+            <span class="visually-hidden">{MONTH_NAMES[i]}</span><span aria-hidden="true">{m}</span>
           </button>
         {/each}
-        {@render option({ label: "No preference", set: { sleep: [] } })}
-      {:else if s.id === "wild"}
-        {#each WILD_OPTIONS as o}
-          {@render option(o)}
-        {/each}
-      {:else if s.id === "water"}
-        {#each WATER_OPTIONS as o}
-          {@render option(o)}
-        {/each}
-      {:else if s.id === "terrain"}
-        {#each TERRAIN_OPTIONS as o}
-          {@render option(o)}
-        {/each}
-      {/if}
-    </div>
-
-    <!-- the pinned bar: Back, the count so far and Next stay in one place on every question -->
-    <div class="nav">
-      {#if step > 0}<button type="button" class="back" onclick={() => history.back()}>← Back</button>{/if}
-      <p class="status" role="status">
-        {#if total === 0}
-          <strong>No trail matches</strong> all your answers so far.
-        {:else}
-          <strong>{trailsWord(total)}</strong> {total === 1 ? "matches" : "match"} your answers so far.
-        {/if}
-      </p>
-      <button type="button" class="next" onclick={() => go(step + 1)}>
-        {answered(s.id) ? (step === STEPS.length - 1 ? "See the result" : "Next") : "Skip"}
+      </div>
+      <button type="button" class="option wide" aria-pressed={f.months.length === 0} onclick={() => (f.months = [])}>
+        <span class="label">Any time</span><span class="count">{trailsWord(countWith({ months: [] }))}</span>
       </button>
-    </div>
-  {:else}
-    <h2 tabindex="-1" bind:this={heading}>
-      {total === 0 ? "No trail matches all your answers" : `${trailsWord(total)} ${total === 1 ? "matches" : "match"} your answers`}
-    </h2>
-
-    <dl class="summary">
-      {#each STEPS as q, i}
-        <div>
-          <dt>{q.question}</dt>
-          <dd>
-            {answered(q.id) ? answerText(q.id) : "No preference"}
-            <button type="button" class="link" onclick={() => go(i)}>Change<span class="visually-hidden">: {q.question}</span></button>
-          </dd>
-        </div>
+    {:else if s.id === "days"}
+      {#each DAY_OPTIONS as o}
+        {@render option(o)}
       {/each}
-    </dl>
-
-    {#if total === 0}
-      {@const relax = STEPS.filter((q) => answered(q.id)).map((q) => ({ q, n: count({ ...f, ...clear(q.id) }) })).filter((r) => r.n > 0)}
-      {#if relax.length}
-        <p class="help">Leave out one answer to find trails:</p>
-        <div class="relax">
-          {#each relax as r}
-            <button type="button" class="option" onclick={() => Object.assign(f, clear(r.q.id))}>
-              <span class="label">Any answer to “{r.q.question}”<span class="sub">instead of {answerText(r.q.id)}</span></span>
-              <span class="count">{trailsWord(r.n)}</span>
-            </button>
+    {:else if s.id === "hard"}
+      {#each SAC_OPTIONS as o}
+        {@render option(o)}
+      {/each}
+    {:else if s.id === "where"}
+      {@render option({ label: "Anywhere", set: { where: [] } })}
+      {#each places as p}
+        {@render place(p.continent, `Anywhere in ${p.continent}`)}
+        <div class="countries">
+          {#each p.countries as c}
+            {@render place(c, c, true, f.where.includes(p.continent))}
           {/each}
         </div>
-      {:else}
-        <p class="help">Leaving out a single answer doesn't help here: change two of them, or see all trails.</p>
-      {/if}
+      {/each}
+    {:else if s.id === "sleep"}
+      {#each sleepingOptions as c}
+        <button
+          type="button"
+          class="option"
+          aria-pressed={f.sleep.includes(c.id)}
+          disabled={!f.sleep.includes(c.id) && countWith({ sleep: [...f.sleep, c.id] }) === 0}
+          onclick={() => (f.sleep = toggle(f.sleep, c.id))}
+        >
+          <span class="label">{c.label}<span class="sub">{c.hint}</span></span>
+          <!-- how many trails would have this kind too -->
+          <span class="count">{trailsWord(countWith({ sleep: f.sleep.includes(c.id) ? f.sleep : [...f.sleep, c.id] }))}</span>
+        </button>
+      {/each}
+      {@render option({ label: "No preference", set: { sleep: [] } })}
+    {:else if s.id === "wild"}
+      {#each WILD_OPTIONS as o}
+        {@render option(o)}
+      {/each}
+    {:else if s.id === "water"}
+      {#each WATER_OPTIONS as o}
+        {@render option(o)}
+      {/each}
+    {:else if s.id === "terrain"}
+      {#each TERRAIN_OPTIONS as o}
+        {@render option(o)}
+      {/each}
     {/if}
+  </div>
 
-    <div class="nav">
-      <button type="button" class="back" onclick={() => history.back()}>← Back</button>
-      {#if total > 0}
-        <a class="next" href={resultsHref}>Show {trailsWord(total)}</a>
+  <!-- the pinned bar: Back, the count so far and Next stay in one place on every question -->
+  <div class="nav">
+    {#if step > 0}<button type="button" class="back" onclick={() => history.back()}>← Back</button>{/if}
+    <p class="status" role="status">
+      {#if total === 0}
+        <strong>No trail matches</strong> all your answers so far.
       {:else}
-        <a class="next" href="/trails/">See all trails</a>
+        <strong>{trailsWord(total)}</strong> {total === 1 ? "matches" : "match"} your answers so far.
       {/if}
-    </div>
-  {/if}
+    </p>
+    <!-- the last question leads straight to the results: the search page with these filters -->
+    {#if step < STEPS.length - 1}
+      <button type="button" class="next" onclick={() => go(step + 1)}>{answered(s.id) ? "Next" : "Skip"}</button>
+    {:else}
+      <a class="next" href={resultsHref}>{total > 0 ? `Show ${trailsWord(total)}` : "Show results"}</a>
+    {/if}
+  </div>
 </div>
 
 <!-- a continent or country, several at once (src/lib/filters.ts toggleWhere); "included": covered by a chosen continent -->
@@ -383,8 +316,7 @@
     margin: 0 0 4px;
     color: var(--muted);
   }
-  .answers,
-  .relax {
+  .answers {
     display: grid;
     gap: 8px;
     margin-top: 14px;
@@ -573,50 +505,10 @@
   .next:hover {
     filter: brightness(1.08);
   }
-  .summary {
-    margin: 16px 0 0;
-    border-top: 1px solid var(--text);
-  }
-  .summary > div {
-    padding: 8px 0;
-    border-bottom: 1px solid var(--line);
-  }
-  /* wide screens: question and answer on one line, so the summary fits a laptop screen */
-  @media (min-width: 640px) {
-    .summary > div {
-      display: grid;
-      grid-template-columns: 2fr 3fr;
-      align-items: baseline;
-      gap: 16px;
-    }
-  }
-  .summary dt {
-    color: var(--muted);
-    font-size: 0.85rem;
-  }
-  .summary dd {
-    display: flex;
-    justify-content: space-between;
-    gap: 16px;
-    margin: 2px 0 0;
-    font-weight: 600;
-  }
-  .link {
-    flex: none;
-    padding: 0;
-    border: 0;
-    background: none;
-    color: var(--accent);
-    font: 500 0.9rem var(--sans);
-    text-decoration: underline;
-    text-underline-offset: 3px;
-    cursor: pointer;
-  }
   .option:focus-visible,
   .month:focus-visible,
   .next:focus-visible,
-  .back:focus-visible,
-  .link:focus-visible {
+  .back:focus-visible {
     outline: 2px solid var(--accent);
     outline-offset: 2px;
   }
