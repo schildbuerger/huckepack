@@ -5,6 +5,8 @@ import TrailMap from "../../components/TrailMap.svelte";
 import Icon from "../../components/Icon.astro";
 import Explain from "../../components/Explain.astro";
 import Breadcrumbs from "../../components/Breadcrumbs.astro";
+import Meter from "../../components/Meter.astro";
+import { difficulty, levelText, DIFFICULTY_NOTE, DIMENSION_TEXT, LEVELS, SCALES, type Level } from "../../lib/difficulty";
 import { existsSync } from "node:fs";
 import {
   countryName,
@@ -51,6 +53,9 @@ const length = totals
     : null;
 const daily = perDay(t);
 const sac = sacGrade(t);
+// difficulty in three dimensions (src/lib/difficulty.ts); the key figure names the hardest level
+const diff = difficulty(t, derived);
+const diffTop = Math.max(1, ...diff.dims.map((d) => d.level)) as Level;
 // stage heights and times: the published figure, else our estimate (marked ≈ on the page)
 const estimates = stageEstimates(t, derived);
 const stageView = (t.stages?.list ?? []).map((s) => {
@@ -290,6 +295,7 @@ const gapStages = (() => {
 const nav = [
   { id: "location", label: "Location", show: true },
   { id: "map", label: "Map", show: true },
+  { id: "difficulty", label: "Difficulty", show: diff.dims.length > 0 },
   { id: "surfaces", label: "Surfaces", show: Boolean(surface) },
   { id: "landscape", label: "Landscape", show: Boolean(landcover) },
   { id: "elevation", label: "Elevation", show: Boolean(elevation) },
@@ -352,26 +358,39 @@ const nav = [
           </dd>
         </div>
       )}
-      {sac && (
+      {diff.dims.length > 0 && (
         <div>
           <dt>
-            <Explain id="sac-info" term="Difficulty" title="SAC hiking scale">
-              <p>{SAC_NOTE}</p>
-              <p>
-                This trail: <strong>{sac.value}</strong>{sac.how !== "stated" && ` (${sac.how})`}.{sac.basis && ` ${sac.basis}`}
-              </p>
-              <ol class="sac-scale">
-                {Object.entries(SAC_SCALE).map(([grade, g]) => (
-                  <li class:list={[{ current: grade === sac.value }]}>
-                    <strong>{grade} · {g.name}</strong>
-                    <span>{g.text}</span>
+            <Explain id="difficulty-info" term="Difficulty">
+              <p>{DIFFICULTY_NOTE}</p>
+              <ul class="diff-pop">
+                {diff.dims.map((d) => (
+                  <li>
+                    <Meter level={d.level} low={d.low} />
+                    <strong>{d.label}: {levelText(d)}</strong>
+                    <span>
+                      {SCALES[d.by.id].label}: {d.by.estimate && "≈ "}{d.by.text}{d.by.where && ` (${d.by.where})`}
+                    </span>
                   </li>
                 ))}
-              </ol>
-              <a slot="foot" href="https://www.sac-cas.ch/en/ausbildung-und-sicherheit/tourenplanung/grading-systems/">The scale at the Swiss Alpine Club</a>
+              </ul>
+              <a slot="foot" href="#difficulty">All measures</a>
             </Explain>
           </dt>
-          <dd><span class="big">{sac.value}</span><span class="unit">SAC</span></dd>
+          <dd class="diff-fig">
+            <span class="sr-only">{diff.dims.map((d) => `${d.label}: ${levelText(d)}`).join("; ")}</span>
+            <!-- one bar per dimension, as tall as its level; climate's season range lighter above -->
+            <span class="diff-bars" aria-hidden="true">
+              {diff.dims.map((d) => (
+                <span class="diff-col" title={`${d.label}: ${levelText(d)}`}>
+                  <span class="diff-bar range" style={`height: ${d.level * 25}%`}></span>
+                  <span class="diff-bar" style={`height: ${(d.low ?? d.level) * 25}%`}></span>
+                  <span class="diff-tag">{d.label[0]}</span>
+                </span>
+              ))}
+            </span>
+            <span class="big" aria-hidden="true">{LEVELS[diffTop - 1]}</span>
+          </dd>
         </div>
       )}
       {t.days && (
@@ -486,6 +505,79 @@ const nav = [
       routeAttribution={routeAttribution}
     />
   </section>
+
+  {diff.dims.length > 0 && (
+    <section id="difficulty">
+      <h2>Difficulty</h2>
+      <div class="strip diff-cards" style={`--cols: ${diff.dims.length}`}>
+        {diff.dims.map((d) => (
+          <div>
+            <p class="diff-label">
+              <Explain id={`about-${d.id}`} term={d.label}>
+                <p>{DIMENSION_TEXT[d.id].question} {DIMENSION_TEXT[d.id].how} The rating takes its hardest measure.</p>
+                {d.measures.map((m) => (
+                  <div class="bands">
+                    <p><strong>{SCALES[m.id].label}</strong>: {SCALES[m.id].from}.</p>
+                    <ol>
+                      {SCALES[m.id].bands.map((b, i) =>
+                        b !== "–" && (
+                          <li class:list={{ current: i + 1 === m.level }}>
+                            <span>{LEVELS[i]}</span>
+                            {b}
+                          </li>
+                        ),
+                      )}
+                    </ol>
+                  </div>
+                ))}
+              </Explain>
+            </p>
+            <p class="diff-level">
+              <Meter level={d.level} low={d.low} size="m" />
+              <span>{levelText(d)}</span>
+            </p>
+            <ul class="measures">
+              {d.measures.map((m) => (
+                <li class:list={{ set: m === d.by }}>
+                  <Meter level={m.level} />
+                  <span>
+                    {m.id === "sac" ? (
+                      <Explain id="sac-info" term="Path grade" title="SAC hiking scale">
+                        <p>{SAC_NOTE}</p>
+                        {sac && (
+                          <p>
+                            This trail: <strong>{sac.value}</strong>{sac.how !== "stated" && ` (${sac.how})`}.{sac.basis && ` ${sac.basis}`}
+                          </p>
+                        )}
+                        <ol class="sac-scale">
+                          {Object.entries(SAC_SCALE).map(([grade, g]) => (
+                            <li class:list={[{ current: grade === sac?.value }]}>
+                              <strong>{grade} · {g.name}</strong>
+                              <span>{g.text}</span>
+                            </li>
+                          ))}
+                        </ol>
+                        <a slot="foot" href="https://www.sac-cas.ch/en/ausbildung-und-sicherheit/tourenplanung/grading-systems/">The scale at the Swiss Alpine Club</a>
+                      </Explain>
+                    ) : (
+                      SCALES[m.id].label
+                    )}
+                    {m.where && <span class="muted"> · {m.where}</span>}
+                  </span>
+                  <span class="v">
+                    {m.estimate && <span class="approx" aria-hidden="true">≈ </span>}
+                    {m.estimate && <span class="sr-only">estimated </span>}
+                    {m.text}
+                  </span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        ))}
+      </div>
+      <p class="note muted">Our rating from this page's figures: the stages, OpenStreetMap, the terrain model and 30 years of ERA5 weather.</p>
+    </section>
+  )}
 
   {surface && (
     <section id="surfaces">
@@ -1731,6 +1823,151 @@ const nav = [
     margin: 2px 0 0;
     line-height: 1.45;
   }
+  /* difficulty key figure: one bar per dimension (initial beneath), as tall as its level; the
+     hardest level as a word beside it. As tall as the big numbers, so the labels line up */
+  .diff-fig {
+    display: flex;
+    align-items: flex-end;
+    gap: 10px;
+  }
+  .diff-bars {
+    display: flex;
+    gap: 3px;
+    height: 2rem;
+    padding-bottom: 0.15rem;
+  }
+  .diff-col {
+    position: relative;
+    width: 9px;
+    height: calc(100% - 11px);
+    background: var(--line);
+    border-radius: 2px 2px 0 0;
+  }
+  .diff-bar {
+    position: absolute;
+    inset: auto 0 0;
+    background: var(--text);
+    border-radius: 2px 2px 0 0;
+  }
+  .diff-bar.range {
+    opacity: 0.4;
+  }
+  .diff-tag {
+    position: absolute;
+    inset: auto 0 -12px;
+    font-size: 0.6rem;
+    line-height: 1;
+    text-align: center;
+    color: var(--muted);
+  }
+  .diff-pop {
+    display: grid;
+    gap: 8px;
+    margin: 10px 0;
+    padding: 0;
+    list-style: none;
+  }
+  .diff-pop li {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    column-gap: 10px;
+  }
+  .diff-pop li > :global(.meter) {
+    grid-row: span 2;
+    margin-top: 0.35em;
+  }
+  .diff-pop span {
+    color: var(--muted);
+  }
+
+  /* difficulty section: one card per dimension in a strip; its level, then every measure, the one
+     that set the level in bold */
+  .diff-cards {
+    grid-template-columns: 1fr;
+  }
+  @media (min-width: 640px) {
+    .diff-cards {
+      grid-template-columns: repeat(var(--cols), 1fr);
+    }
+  }
+  @media (max-width: 639px) {
+    .diff-fig .big {
+      font-size: 1.25rem;
+    }
+    .strip.diff-cards > * + * {
+      padding-left: 0;
+      border-left: 0;
+      border-top: 1px solid var(--line);
+    }
+  }
+  .diff-cards p {
+    margin: 0;
+  }
+  .diff-label {
+    color: var(--muted);
+    font-size: 0.78rem;
+  }
+  .diff-level {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: 4px 0 10px !important;
+    font-family: var(--serif);
+    font-size: 1.25rem;
+    font-weight: 600;
+  }
+  .measures {
+    display: grid;
+    gap: 4px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    font-size: 0.82rem;
+  }
+  .measures li {
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    gap: 8px;
+    align-items: baseline;
+    color: var(--muted);
+  }
+  .measures li.set {
+    color: var(--text);
+    font-weight: 600;
+  }
+  .measures li .muted {
+    font-weight: 400;
+  }
+  .measures .v {
+    white-space: nowrap;
+    font-variant-numeric: tabular-nums;
+  }
+  /* a measure's four bands in its popover, the trail's band marked */
+  .bands p {
+    margin: 10px 0 4px;
+  }
+  .bands ol {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(0, 1fr));
+    gap: 2px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    font-size: 0.85em;
+  }
+  .bands li {
+    padding: 4px 6px;
+    border-radius: 6px;
+    color: var(--muted);
+  }
+  .bands li span {
+    display: block;
+    color: var(--text);
+    font-weight: 600;
+  }
+  .bands li.current {
+    background: var(--accent-soft);
+    color: var(--text);
   }
   .sac-scale {
     margin: 0 0 12px;

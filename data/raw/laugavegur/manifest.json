@@ -1,11 +1,11 @@
 {
   "climate-high.json": {
-    "retrieved": "2026-10-27T22:30:15+00:00",
-    "url": "https://archive-api.open-meteo.com/v1/archive?latitude=63.93712&longitude=-19.16758&elevation=1053&start_date=1995-01-01&end_date=2024-12-31&daily=temperature_2m_max,temperature_2m_min,precipitation_sum,snowfall_sum&timezone=auto"
+    "retrieved": "2026-10-29T17:54:42+00:00",
+    "url": "https://archive-api.open-meteo.com/v1/archive?latitude=63.93712&longitude=-19.16758&elevation=1053&start_date=1995-01-01&end_date=2024-12-31&daily=temperature_2m_max,temperature_2m_min,precipitation_sum,snowfall_sum,wind_speed_10m_max,wind_gusts_10m_max&timezone=auto"
   },
   "climate-low.json": {
-    "retrieved": "2026-10-27T22:29:03+00:00",
-    "url": "https://archive-api.open-meteo.com/v1/archive?latitude=63.6843&longitude=-19.51238&elevation=218&start_date=1995-01-01&end_date=2024-12-31&daily=temperature_2m_max,temperature_2m_min,precipitation_sum,snowfall_sum&timezone=auto"
+    "retrieved": "2026-10-29T17:53:29+00:00",
+    "url": "https://archive-api.open-meteo.com/v1/archive?latitude=63.6843&longitude=-19.51238&elevation=218&start_date=1995-01-01&end_date=2024-12-31&daily=temperature_2m_max,temperature_2m_min,precipitation_sum,snowfall_sum,wind_speed_10m_max,wind_gusts_10m_max&timezone=auto"
   },
   "elevation-glo30.json": {
     "retrieved": "2026-10-27T22:27:49+00:00",

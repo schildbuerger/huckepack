@@ -8,9 +8,9 @@ route are the two places looked up: the trail's high and low ground. For each, 3
 daily weather (YEARS) from the Open-Meteo historical weather API (ERA5 and ERA5-Land reanalysis,
 CC BY 4.0; adjusted to the place's real elevation; cached in data/raw/<slug>/climate-*.json),
 averaged per month: day highs, night lows, wet days (at least 1 mm), snow days (at least 1 cm),
-frost nights (below 0 °C) and precipitation. Daylight is computed, not downloaded: sunrise to
-sunset on the 15th of each month at the trail's latitude. Writes data/derived/<slug>.json under
-`climate`.
+frost nights (below 0 °C), precipitation, the mean daily top wind (the highest hourly mean at
+10 m) and stormy days (gusts of GUSTY_KMH or more). Daylight is computed, not downloaded: sunrise to sunset on the 15th of each month at the trail's latitude. Writes
+data/derived/<slug>.json under `climate`.
 """
 
 import http.client
@@ -28,7 +28,8 @@ from pipeline.routes import USER_AGENT, Cache
 ROOT = Path(__file__).resolve().parent.parent
 API = "https://archive-api.open-meteo.com/v1/archive"
 YEARS = (1995, 2024)  # 30 full years, the usual length for a climate average
-DAILY = "temperature_2m_max,temperature_2m_min,precipitation_sum,snowfall_sum"
+DAILY = "temperature_2m_max,temperature_2m_min,precipitation_sum,snowfall_sum,wind_speed_10m_max,wind_gusts_10m_max"
+GUSTY_KMH = 70  # daily top gust from which a hiker can be blown off balance on exposed ground
 PAUSE_S = 70  # the free API counts long requests as many calls and limits them per minute
 PLACES = (("low", "lowest", "Lowest point"), ("high", "highest", "Highest point"))
 
@@ -82,6 +83,8 @@ def monthly(daily):
             "snowDays": round(sum((r["snowfall_sum"] or 0) >= 1 for r in rows) / years, 1),
             "frostNights": round(sum(r["temperature_2m_min"] < 0 for r in rows) / years, 1),
             "precipMm": round(sum(r["precipitation_sum"] or 0 for r in rows) / years),
+            "windKmh": round(sum(r["wind_speed_10m_max"] or 0 for r in rows) / len(rows), 1),
+            "gustDays": round(sum((r["wind_gusts_10m_max"] or 0) >= GUSTY_KMH for r in rows) / years, 1),
         }
     return out
 
@@ -122,7 +125,7 @@ def build(slug, refresh=False):
     for m in months:
         lo, hi = m["low"], m["high"]
         print(f"  {m['month']:>2}  low {lo['tmin']:>5} … {lo['tmax']:>5} °C  high {hi['tmin']:>5} … {hi['tmax']:>5} °C"
-              f"  wet {hi['wetDays']:>4}  snow {hi['snowDays']:>4}  frost {hi['frostNights']:>4}  daylight {m['daylightH']} h")
+              f"  wet {hi['wetDays']:>4}  wind {hi['windKmh']:>5} gusts {hi['gustDays']:>4}  snow {hi['snowDays']:>4}  frost {hi['frostNights']:>4}  daylight {m['daylightH']} h")
 
 
 if __name__ == "__main__":

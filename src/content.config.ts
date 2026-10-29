@@ -225,7 +225,8 @@ const trail = z
 const gap = z.object({ km: z.number(), fromKm: z.number(), toKm: z.number() });
 const stageKind = z.enum(["main", "approach", "variant"]);
 // one month at one place (pipeline/climate.py): mean day high and night low in °C; per year:
-// wet days (≥ 1 mm), snow days (≥ 1 cm), frost nights (< 0 °C) and precipitation in mm
+// wet days (≥ 1 mm), snow days (≥ 1 cm), frost nights (< 0 °C) and precipitation in mm; the mean
+// daily top wind (highest hourly mean) in km/h and stormy days (gusts ≥ 70 km/h)
 const climateMonth = z.object({
   tmax: z.number(),
   tmin: z.number(),
@@ -233,6 +234,8 @@ const climateMonth = z.object({
   snowDays: z.number(),
   frostNights: z.number(),
   precipMm: z.number(),
+  windKmh: z.number(),
+  gustDays: z.number(),
 });
 
 const derived = z.object({

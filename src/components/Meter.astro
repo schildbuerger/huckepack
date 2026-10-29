@@ -1,0 +1,42 @@
+---
+// A level as four marks, filled up to the level (shape, not colour, carries it); with `low`, the
+// marks from low to level are half-filled: a range (climate across the season).
+import { LEVELS, type Level } from "../lib/difficulty";
+interface Props {
+  level: Level;
+  low?: Level;
+  size?: "s" | "m";
+}
+const { level, low, size = "s" } = Astro.props;
+const label = low ? `${LEVELS[low - 1]} to ${LEVELS[level - 1]}` : `${LEVELS[level - 1]}, ${level} of 4`;
+---
+
+<span class:list={["meter", size]} role="img" aria-label={label}>
+  {[1, 2, 3, 4].map((n) => <i class:list={{ on: n <= (low ?? level), range: low !== undefined && n > low && n <= level }} />)}
+</span>
+
+<style>
+  .meter {
+    display: inline-flex;
+    gap: 2px;
+    vertical-align: middle;
+  }
+  i {
+    width: 7px;
+    height: 7px;
+    border-radius: 1.5px;
+    border: 1.5px solid var(--text);
+    box-sizing: border-box;
+  }
+  .m i {
+    width: 11px;
+    height: 11px;
+    border-radius: 2px;
+  }
+  .on {
+    background: var(--text);
+  }
+  .range {
+    background: linear-gradient(135deg, var(--text) 50%, transparent 50%);
+  }
+</style>

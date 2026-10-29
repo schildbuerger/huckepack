@@ -79,6 +79,12 @@
   ESA WorldCover (satellite land cover, 10 m) in six groups, as a sentence and
   one lane per group (issue #3; of three proposals, the lanes were chosen).
   Species or habitat detail would need another source.
+- **Difficulty:** rated in three dimensions, terrain, climate (including
+  wind) and effort, each Easy to Hard by fixed thresholds and its hardest
+  measure ([difficulty.md](difficulty.md), issue #16). The SAC grade is a
+  terrain measure, not a dimension of its own. Of three previews, the key
+  figure of B (bars per dimension and the hardest level) and the cards of A
+  were chosen (2026-10-29).
 
 ## What a trail page could show
 
