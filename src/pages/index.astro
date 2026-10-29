@@ -248,22 +248,6 @@ const sources = [
   </section>
 
   <section class="block">
-    <h2>Built on open data</h2>
-    <p class="intro muted">
-      Trail figures often differ from one source to the next. We never pick one quietly: every number has its source,
-      and each trail page lists them all, with their licences.
-    </p>
-    <dl class="strip sources">
-      {sources.map((s) => (
-        <div>
-          <dt>{s.name}</dt>
-          <dd>{s.what}</dd>
-        </div>
-      ))}
-    </dl>
-  </section>
-
-  <section class="block">
     <h2>All trails</h2>
     <ul class="cards">
       {trails.map((t) => (
@@ -281,6 +265,22 @@ const sources = [
       ))}
     </ul>
     <p><a href="/trails/">Search and compare all trails →</a></p>
+  </section>
+
+  <section class="block">
+    <h2>Built on open data</h2>
+    <p class="intro muted">
+      Trail figures often differ from one source to the next. We never pick one quietly: every number has its source,
+      and each trail page lists them all, with their licences.
+    </p>
+    <dl class="strip sources">
+      {sources.map((s) => (
+        <div>
+          <dt>{s.name}</dt>
+          <dd>{s.what}</dd>
+        </div>
+      ))}
+    </dl>
   </section>
 </Base>
 
