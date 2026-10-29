@@ -50,24 +50,26 @@ const totals = {
 };
 const everests = (totals.climbed / EVEREST_M).toFixed(1);
 
-// the featured trail: the first one for now; its elevation profile and surfaces as previews
-const featured = trails[0];
-const featuredDerived = featured && (await getEntry("derived", featured.slug))?.data;
-const elevation = featuredDerived?.elevation;
-const surface = featuredDerived?.surface;
+// the featured trail: every trail is rendered, and a script picks one at random on each page load
+// (without JavaScript, the first shows); each with its elevation profile and surfaces as previews
 const W = 1000;
 const H = 110;
-const spark = (() => {
-  if (!elevation) return null;
-  const step = Math.max(1, Math.floor(elevation.points.length / 200));
-  const pts = elevation.points.filter((_, i) => i % step === 0);
-  const lo = elevation.lowest.m - 80;
-  const hi = elevation.highest.m + 40;
-  const x = (km: number) => (km / elevation.routeKm) * W;
-  const y = (m: number) => H - ((m - lo) / (hi - lo)) * (H - 8);
-  const line = pts.map(([km, m], i) => `${i ? "L" : "M"}${x(km).toFixed(1)},${y(m).toFixed(1)}`).join("");
-  return { line, area: `${line}L${W},${H}L0,${H}Z`, peak: elevation.highest.m };
-})();
+const featuredAll = trails.map((t, i) => {
+  const d = derivedAll[i];
+  const elevation = d?.elevation;
+  const spark = (() => {
+    if (!elevation) return null;
+    const step = Math.max(1, Math.floor(elevation.points.length / 200));
+    const pts = elevation.points.filter((_, i) => i % step === 0);
+    const lo = elevation.lowest.m - 80;
+    const hi = elevation.highest.m + 40;
+    const x = (km: number) => (km / elevation.routeKm) * W;
+    const y = (m: number) => H - ((m - lo) / (hi - lo)) * (H - 8);
+    const line = pts.map(([km, m], i) => `${i ? "L" : "M"}${x(km).toFixed(1)},${y(m).toFixed(1)}`).join("");
+    return { line, area: `${line}L${W},${H}L0,${H}Z`, peak: elevation.highest.m };
+  })();
+  return { t, spark, surface: d?.surface };
+});
 
 const features: { icon: IconName; title: string; text: string }[] = [
   { icon: "chart-column", title: "Key figures", text: "Length, ascent and descent, difficulty, days, distance per day and the season." },
@@ -163,44 +165,55 @@ const sources = [
     })();
   </script>
 
-  {featured && (
+  {featuredAll.length > 0 && (
     <section class="block">
       <h2>Featured trail</h2>
-      <a class="featured" href={`/trails/${featured.slug}/`}>
-        <div class="featured-head">
-          <p class="place">{featured.countries.join(" · ")}</p>
-          <p class="name">{featured.name}</p>
-          {featured.localName && <p class="local">{featured.localName}</p>}
-        </div>
-        <dl class="featured-figures">
-          {featured.lengthKm !== null && <div><dt>Length</dt><dd>{fmt(featured.lengthKm)}<span>km</span></dd></div>}
-          {featured.ascentM !== null && <div><dt>Ascent</dt><dd>{fmt(featured.ascentM)}<span>m ↑</span></dd></div>}
-          {featured.days && <div><dt>Suggested</dt><dd>{days(featured.days)}<span>days</span></dd></div>}
-          {featured.sac && <div><dt>Difficulty</dt><dd>{featured.sac}<span>SAC</span></dd></div>}
-        </dl>
-        {spark && (
-          <div class="preview" aria-hidden="true">
-            <svg class="spark" viewBox={`0 0 ${W} ${H}`} preserveAspectRatio="none">
-              <path class="spark-area" d={spark.area} />
-              <path class="spark-line" d={spark.line} vector-effect="non-scaling-stroke" />
-            </svg>
-            {surface && (
-              <svg class="surf" viewBox={`0 0 ${W} 8`} preserveAspectRatio="none">
-                {surface.runs.map((r) => (
-                  <rect
-                    x={(r.fromKm / surface.routeKm) * W}
-                    width={Math.max(((r.toKm - r.fromKm) / surface.routeKm) * W, 0.6)}
-                    height="8"
-                    style={`fill: var(--surface-${r.category})`}
-                  />
-                ))}
-              </svg>
-            )}
-            <p class="preview-caption">Elevation profile (highest point {fmt(spark.peak)} m) and surfaces along the trail</p>
+      {featuredAll.map(({ t: featured, spark, surface }, i) => (
+        <a class="featured" href={`/trails/${featured.slug}/`} hidden={i > 0}>
+          <div class="featured-head">
+            <p class="place">{featured.countries.join(" · ")}</p>
+            <p class="name">{featured.name}</p>
+            {featured.localName && <p class="local">{featured.localName}</p>}
           </div>
-        )}
-        <span class="open">Open the trail →</span>
-      </a>
+          <dl class="featured-figures">
+            {featured.lengthKm !== null && <div><dt>Length</dt><dd>{fmt(featured.lengthKm)}<span>km</span></dd></div>}
+            {featured.ascentM !== null && <div><dt>Ascent</dt><dd>{fmt(featured.ascentM)}<span>m ↑</span></dd></div>}
+            {featured.days && <div><dt>Suggested</dt><dd>{days(featured.days)}<span>days</span></dd></div>}
+            {featured.sac && <div><dt>Difficulty</dt><dd>{featured.sac}<span>SAC</span></dd></div>}
+          </dl>
+          {spark && (
+            <div class="preview" aria-hidden="true">
+              <svg class="spark" viewBox={`0 0 ${W} ${H}`} preserveAspectRatio="none">
+                <path class="spark-area" d={spark.area} />
+                <path class="spark-line" d={spark.line} vector-effect="non-scaling-stroke" />
+              </svg>
+              {surface && (
+                <svg class="surf" viewBox={`0 0 ${W} 8`} preserveAspectRatio="none">
+                  {surface.runs.map((r) => (
+                    <rect
+                      x={(r.fromKm / surface.routeKm) * W}
+                      width={Math.max(((r.toKm - r.fromKm) / surface.routeKm) * W, 0.6)}
+                      height="8"
+                      style={`fill: var(--surface-${r.category})`}
+                    />
+                  ))}
+                </svg>
+              )}
+              <p class="preview-caption">Elevation profile (highest point {fmt(spark.peak)} m) and surfaces along the trail</p>
+            </div>
+          )}
+          <span class="open">Open the trail →</span>
+        </a>
+      ))}
+      <script is:inline>
+        // A random featured trail on each page load. Runs right after the cards, before the first
+        // paint, so the first trail never flashes; without JavaScript the first one stays.
+        (() => {
+          const cards = [...document.currentScript.parentElement.querySelectorAll(".featured")];
+          const pick = Math.floor(Math.random() * cards.length);
+          cards.forEach((c, i) => (c.hidden = i !== pick));
+        })();
+      </script>
     </section>
   )}
 
@@ -453,6 +466,9 @@ const sources = [
   }
 
   /* featured trail */
+  .featured[hidden] {
+    display: none;
+  }
   .featured {
     display: grid;
     gap: 20px;
