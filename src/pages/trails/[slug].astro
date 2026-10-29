@@ -2273,8 +2273,11 @@ const nav = [
      strips' rule in text colour on top, like every other section */
   .lanes {
     margin: 0;
-    padding-top: 14px;
+    padding-top: 38px;
     border-top: 1px solid var(--text);
+  }
+  .lanes > .chart-info {
+    top: 8px;
   }
   /* 15 units in a 1000-unit chart: about 13 px at the content column's width */
   .lanes .lane-label {
@@ -2349,10 +2352,6 @@ const nav = [
   .pt:hover .dot,
   .pt.active .dot {
     transform: scale(1.5);
-  }
-  .waterline,
-  .terrain-chart {
-    position: relative;
   }
   /* terrain: the key figures and the keys of both views share one grid cell each, so the toggle
      moves nothing; from 1080 px the toggle sits in the margin column left of the chart */
@@ -2617,11 +2616,23 @@ const nav = [
     margin-top: 10px;
     font-size: 0.8rem;
   }
-  /* a chart's explanation behind an (i) at its lower right, instead of a caption line */
+  /* a chart's explanation behind an (i) in its top-right corner, instead of a caption line: at the
+     end of the legend row where the chart has one on top (water, climate), else in a slim row of
+     its own above the drawing (terrain, landscape) */
+  .lanes,
+  .waterline,
+  .terrain-chart,
+  .climate {
+    position: relative;
+  }
   figcaption.chart-info {
-    display: flex;
-    justify-content: flex-end;
-    margin-top: 6px;
+    position: absolute;
+    top: -2px;
+    right: 0;
+    margin: 0;
+  }
+  .terrain-chart:has(> .chart-info) {
+    padding-top: 30px;
   }
 
   /* phones: three figures don't fit side by side; the first two share a row, the third gets its own */
