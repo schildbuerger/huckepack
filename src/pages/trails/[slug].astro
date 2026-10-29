@@ -93,8 +93,6 @@ const estTime = stageView.some((s) => s.time?.est);
 const fmt = (n: number) => n.toLocaleString("en");
 // a source by the first part of its title ("Tourismusverband Sächsische Schweiz"), for inline mentions
 const sourceShort = (id: string) => t.sources.find((s) => s.id === id)?.title.split(":")[0] ?? id;
-// several sources by name, each once (a publisher's pages share one name)
-const names = (ids: string[]) => [...new Set(ids.map(sourceShort))].join(" and ");
 const hours = (min: number) => `${Math.floor(min / 60)} h ${String(min % 60).padStart(2, "0")}`;
 // a walking time, or a range of whole hours as "4–5 h"
 const timeText = (min: number, max?: number) =>
@@ -1120,7 +1118,7 @@ const nav = [
   <section id="sources" class="sources">
     <h2>Sources</h2>
     <ol>
-      {t.sources.map((s, i) => (
+      {t.sources.filter((s) => !s.checkOnly).map((s, i) => (
         <li id={`source-${i + 1}`}>
           <a href={s.url}>{s.title}</a> · {s.licence}
           {!s.retrieved && <span> · not yet verified</span>}
@@ -1128,36 +1126,6 @@ const nav = [
         </li>
       ))}
     </ol>
-    {
-      t.dataCheck && (
-        <div class="data-check">
-          <p>
-            <strong>Data check</strong>
-            {`, ${t.dataCheck.date.toLocaleDateString("en-GB", { day: "numeric", month: "long", year: "numeric" })}: `}
-            {[
-              t.dataCheck.against.length > 0 &&
-                `figures compared with ${names(t.dataCheck.against)}${
-                  t.dataCheck.deviations.length ? ", within 10 % except as listed below" : ", all within 10 %"
-                }`,
-              t.dataCheck.pageAgainst.length > 0 &&
-                `${t.dataCheck.against.length ? "figures no second source gives" : "the figures on this page"} checked on this page against ${names(t.dataCheck.pageAgainst)}`,
-            ]
-              .filter(Boolean)
-              .join("; ")}
-            .
-          </p>
-          {t.dataCheck.deviations.length > 0 && (
-            <ul>
-              {t.dataCheck.deviations.map((d) => (
-                <li>
-                  {d.figure}: {d.ours} here, {d.theirs} ({sourceShort(d.source)})
-                </li>
-              ))}
-            </ul>
-          )}
-        </div>
-      )
-    }
   </section>
 </Base>
 
@@ -1792,21 +1760,6 @@ const nav = [
   .sources h2 {
     font-size: 1.1rem;
     color: var(--text);
-  }
-  .data-check {
-    margin-top: 16px;
-    color: var(--muted);
-    font-size: 0.85rem;
-  }
-  .data-check p {
-    margin: 0;
-  }
-  .data-check strong {
-    color: var(--text);
-  }
-  .data-check ul {
-    margin: 6px 0 0;
-    padding-left: 18px;
   }
   .sources ol {
     padding-left: 1.4em;

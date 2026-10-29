@@ -45,6 +45,8 @@ const source = z.object({
   // null until someone has checked the figures against the source
   retrieved: z.coerce.date().nullable(),
   note: z.string().optional(),
+  // used only for our data check (dataCheck), not for a figure on the page: not listed there
+  checkOnly: z.boolean().default(false),
 });
 
 const stage = z.object({
@@ -173,7 +175,8 @@ const trail = z
     tags: z.array(z.string().regex(/^[a-z0-9-]+$/)).default([]),
     notes: z.array(z.string()).default([]), // open questions and discrepancies between sources
     // the double check every new trail gets (CLAUDE.md, working rule 2): how and against what, and
-    // every figure more than 10 % apart from the second source, with both values; shown on the page
+    // every figure more than 10 % apart from the second source, with both values. Internal quality
+    // assurance: not shown on the page
     dataCheck: z
       .object({
         date: z.coerce.date(),

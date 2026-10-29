@@ -145,7 +145,7 @@ notes:
     were checked on the built page against FÍ's trail and hut pages: they match. More than 10 %
     apart: Wikipedia's "500 m" elevation gain and loss (apparently the net height difference, also
     FÍ's key figure) against our terrain-model estimate of ≈ 1,400 m up and ≈ 1,750 m down; guides
-    quote around 1,700 m up, so our estimate is likely low (listed in `dataCheck`, shown on the page).
+    quote around 1,700 m up, so our estimate is likely low (listed in `dataCheck`).
 dataCheck:
   # working rule 2: Wikipedia for the overview; the stages, which no independent source gives,
   # checked on the page against FÍ
@@ -166,7 +166,7 @@ sources:
     licence: All rights reserved (facts only)
     retrieved: 2026-10-27
   - id: wikipedia
-    title: "Wikipedia: Laugavegur (established, signposting; length, days, season and highest point for the data check)"
+    title: "Wikipedia: Laugavegur (established, signposting)"
     url: https://en.wikipedia.org/wiki/Laugavegur
     licence: CC BY-SA 4.0
     retrieved: 2026-10-29

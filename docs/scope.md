@@ -12,9 +12,10 @@
   their sources), or, where none exists, checked on the finished trail page
   against the original source (CLAUDE.md, "Working rules").
 - **Official figures stay primary:** when a second source disagrees by more
-  than 10 %, the page keeps the trail operator's figure and shows the other
-  value with its source in the data check, even where the operator's figure
-  is probably the outlier (decided 2026-10-29 for the Forststeig's stages 5–7
+  than 10 %, the page keeps the trail operator's figure, even where it is
+  probably the outlier; the other value is recorded in the trail's notes and
+  `dataCheck`. The data check is internal quality assurance and not shown on
+  the page (decided 2026-10-29) (decided 2026-10-29 for the Forststeig's stages 5–7
   and the Path of Sacred Forests' stage 3).
 
 - **Name:** huckepack (German for carrying someone piggyback, from Low German
