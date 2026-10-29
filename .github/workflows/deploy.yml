@@ -26,7 +26,14 @@ jobs:
           node-version: 22
           cache: npm
       - run: npm ci
+      # the operator's personal details for the legal pages, from the repository's Actions secrets,
+      # so they never appear in the (public) repository; see src/lib/operator.ts
       - run: npm run build
+        env:
+          LEGAL_NAME: ${{ secrets.LEGAL_NAME }}
+          LEGAL_STREET: ${{ secrets.LEGAL_STREET }}
+          LEGAL_CITY: ${{ secrets.LEGAL_CITY }}
+          LEGAL_EMAIL: ${{ secrets.LEGAL_EMAIL }}
       - uses: actions/upload-pages-artifact@v3
         with:
           path: dist

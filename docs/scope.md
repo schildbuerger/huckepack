@@ -51,6 +51,13 @@
   nearest OSM paths and the gap is recorded in the trail's notes. Official
   GPX geometry itself is never published (`route.publishable: false` if a
   route ever has to use it).
+- **Operator's personal data:** the legal notice and privacy policy must
+  name the operator with a postal address and email, but those details stay
+  out of the public repository (build-time Actions secrets). The two pages
+  are noindex for search engines, reserve text and data mining, and are
+  closed to known AI crawlers in robots.txt; the email address isn't in the
+  page as text. None of this stops a scraper that ignores the rules; the
+  pages themselves must stay publicly reachable by law.
 
 ## What a trail page could show
 

@@ -1,6 +1,8 @@
 ---
 // Legal pages (legal notice, privacy policy): breadcrumbs, title, last update and readable text.
 // Details not filled in yet are marked with <mark class="todo">, so they stand out until replaced.
+// The operator's personal details come from src/lib/operator.ts; these pages ask search engines not
+// to index them and AI crawlers not to use them (`personal` in Base, and public/robots.txt).
 import Base from "./Base.astro";
 import Breadcrumbs from "../components/Breadcrumbs.astro";
 
@@ -12,7 +14,7 @@ interface Props {
 const { title, description, updated } = Astro.props;
 ---
 
-<Base title={`${title} · huckepack`} description={description}>
+<Base title={`${title} · huckepack`} description={description} personal>
   <Breadcrumbs current={title} />
   <article class="legal">
     <h1>{title}</h1>

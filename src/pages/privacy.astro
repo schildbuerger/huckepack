@@ -2,6 +2,7 @@
 // Privacy policy under the GDPR and the German TDDDG. Keep it in step with what the site loads:
 // today only GitHub Pages (hosting) and OpenFreeMap (map tiles); fonts and scripts are self-hosted.
 import Legal from "../layouts/Legal.astro";
+import Operator from "../components/Operator.astro";
 ---
 
 <Legal title="Privacy policy" description="What data huckepack processes when you visit, and your rights." updated="27 October 2026">
@@ -15,13 +16,7 @@ import Legal from "../layouts/Legal.astro";
 
   <h2>Controller</h2>
   <p>The controller under the General Data Protection Regulation (GDPR) is:</p>
-  <address>
-    <mark class="todo">First name Last name</mark><br />
-    <mark class="todo">Street and number</mark><br />
-    <mark class="todo">Postcode City</mark><br />
-    Germany<br />
-    Email: <mark class="todo">contact address</mark>
-  </address>
+  <Operator email />
 
   <h2>Hosting: GitHub Pages</h2>
   <p>

@@ -5,8 +5,9 @@ import logo from "../assets/logo.svg?raw"; // written by design/logos/make.py
 interface Props {
   title: string;
   description?: string;
+  personal?: boolean; // a page with the operator's personal details (legal notice, privacy policy)
 }
-const { title, description } = Astro.props;
+const { title, description, personal = false } = Astro.props;
 ---
 
 <!doctype html>
@@ -16,6 +17,16 @@ const { title, description } = Astro.props;
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{title}</title>
     {description && <meta name="description" content={description} />}
+    {
+      personal && (
+        <>
+          <!-- personal details: not in search results, caches or snippets; text and data mining
+               reserved (EU DSM Directive Art. 4, TDMRep), against AI training -->
+          <meta name="robots" content="noindex, nofollow, noarchive, nosnippet, noimageindex" />
+          <meta name="tdm-reservation" content="1" />
+        </>
+      )
+    }
     <link rel="icon" href="/favicon-32.png" sizes="32x32" type="image/png" />
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
@@ -46,7 +57,7 @@ const { title, description } = Astro.props;
           huckepack collects facts about official long-distance trails. Every figure names its source.
         </p>
         <p>Maps and trail lines © OpenStreetMap contributors (ODbL), basemap by OpenFreeMap.</p>
-        <p class="legal-links"><a href="/legal-notice/">Legal notice</a><a href="/privacy/">Privacy</a></p>
+        <p class="legal-links"><a href="/legal-notice/" rel="nofollow">Legal notice</a><a href="/privacy/" rel="nofollow">Privacy</a></p>
       </div>
     </footer>
     <script>

@@ -1,0 +1,27 @@
+---
+// An email address that isn't in the page as text: the HTML carries it reversed and base64-encoded,
+// and a script turns it into a mailto link. Without JavaScript it reads "name (at) example (dot) org".
+interface Props {
+  address: string | null;
+}
+const { address } = Astro.props;
+const encoded = address && Buffer.from([...address].reverse().join("")).toString("base64");
+const spelled = address?.replace("@", " (at) ").replaceAll(".", " (dot) ");
+---
+
+{address ? (
+  <span class="email" data-m={encoded}>{spelled}</span>
+) : (
+  <mark class="todo">contact address</mark>
+)}
+
+<script>
+  for (const el of document.querySelectorAll<HTMLElement>(".email[data-m]")) {
+    const address = [...atob(el.dataset.m!)].reverse().join("");
+    const a = document.createElement("a");
+    a.href = `mailto:${address}`;
+    a.textContent = address;
+    el.replaceChildren(a);
+    el.removeAttribute("data-m");
+  }
+</script>

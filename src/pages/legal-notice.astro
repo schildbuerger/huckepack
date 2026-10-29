@@ -1,24 +1,22 @@
 ---
 // Legal notice (Impressum) under German law, § 5 DDG and § 18 (2) MStV.
 import Legal from "../layouts/Legal.astro";
+import Email from "../components/Email.astro";
+import Operator from "../components/Operator.astro";
+import { operator } from "../lib/operator";
 ---
 
 <Legal title="Legal notice" description="Who runs huckepack and how to reach us (Impressum)." updated="27 October 2026">
   <p>Information pursuant to § 5 DDG (German Digital Services Act).</p>
 
   <h2>Operator</h2>
-  <address>
-    <mark class="todo">First name Last name</mark><br />
-    <mark class="todo">Street and number</mark><br />
-    <mark class="todo">Postcode City</mark><br />
-    Germany
-  </address>
+  <Operator />
 
   <h2>Contact</h2>
-  <p>Email: <mark class="todo">contact address</mark></p>
+  <p>Email: <Email address={operator.email} /></p>
 
   <h2>Responsible for the content</h2>
-  <p>Pursuant to § 18 (2) MStV (German Interstate Media Treaty): <mark class="todo">First name Last name</mark>, address as above.</p>
+  <p>Pursuant to § 18 (2) MStV (German Interstate Media Treaty): {operator.name ?? <mark class="todo">First name Last name</mark>}, address as above.</p>
 
   <h2>Liability for content</h2>
   <p>

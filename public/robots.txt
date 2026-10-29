@@ -1,0 +1,39 @@
+# huckepack.me
+#
+# Search engines may crawl everything. The legal notice and the privacy policy carry
+# <meta name="robots" content="noindex, …">; they are not blocked here, because a crawler that
+# can't fetch a page can't see its noindex and may still list the bare URL.
+User-agent: *
+Allow: /
+
+# AI crawlers and AI training: keep out of the pages with the operator's personal details.
+# (A bot that matches a group below follows only that group.)
+User-agent: GPTBot
+User-agent: ChatGPT-User
+User-agent: OAI-SearchBot
+User-agent: ClaudeBot
+User-agent: Claude-User
+User-agent: Claude-SearchBot
+User-agent: anthropic-ai
+User-agent: Google-Extended
+User-agent: Applebot-Extended
+User-agent: CCBot
+User-agent: PerplexityBot
+User-agent: Perplexity-User
+User-agent: Bytespider
+User-agent: Amazonbot
+User-agent: meta-externalagent
+User-agent: meta-externalfetcher
+User-agent: FacebookBot
+User-agent: cohere-ai
+User-agent: cohere-training-data-crawler
+User-agent: MistralAI-User
+User-agent: DuckAssistBot
+User-agent: Diffbot
+User-agent: YouBot
+User-agent: Timpibot
+User-agent: ImagesiftBot
+User-agent: omgili
+User-agent: omgilibot
+Disallow: /legal-notice/
+Disallow: /privacy/

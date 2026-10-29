@@ -1,0 +1,17 @@
+---
+// The operator's postal address (and, with `email`, the email address) from src/lib/operator.ts.
+import Email from "./Email.astro";
+import { operator } from "../lib/operator";
+
+interface Props {
+  email?: boolean;
+}
+const { email = false } = Astro.props;
+---
+
+<address>
+  {operator.name ?? <mark class="todo">First name Last name</mark>}<br />
+  {operator.street ?? <mark class="todo">Street and number</mark>}<br />
+  {operator.city ?? <mark class="todo">Postcode City</mark>}<br />
+  Germany{email && <><br />Email: <Email address={operator.email} /></>}
+</address>
