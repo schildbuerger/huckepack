@@ -2,7 +2,7 @@
 import { getCollection, getEntry } from "astro:content";
 import Base from "../layouts/Base.astro";
 import Icon, { type IconName } from "../components/Icon.astro";
-import { mainStages, summarize } from "../lib/trails";
+import { mainStages, stageEstimates, stageTotals, summarize, walkingMinutes } from "../lib/trails";
 
 const entries = (await getCollection("trails")).sort((a, b) => a.data.name.localeCompare(b.data.name));
 const trails = entries.map(({ id, data }) => summarize(id, data));
@@ -16,13 +16,42 @@ const usps = [
   "Every figure from official and open sources, named on the page",
 ];
 
-// totals for the strip under the hero
+// totals for the strip under the hero: the plain counts, then a few for fun, each summed from
+// the same figures the trail pages show
+const derivedAll = await Promise.all(entries.map(async (e) => (await getEntry("derived", e.id))?.data));
+const EVEREST_M = 8849;
+const sum = (xs: number[]) => xs.reduce((a, b) => a + b, 0);
+const perTrail = entries.map((e, i) => {
+  const d = derivedAll[i];
+  const est = stageEstimates(e.data, d);
+  const main = mainStages(e.data);
+  // climbs as the key figures have them: the stated stage sums, else the terrain model's estimate
+  const stated = stageTotals(e.data)?.ascentM?.value;
+  const climbed = stated ?? sum(main.map((s) => est.get(s.number)?.ascentM ?? 0));
+  // walking time: each main stage's stated time, else DIN 33466 from its climbs (stated or estimated)
+  const minutes = sum(
+    main.map((s) => {
+      const up = s.ascentM ?? est.get(s.number)?.ascentM;
+      const down = s.descentM ?? est.get(s.number)?.descentM;
+      return s.minutes ?? (up !== undefined && down !== undefined ? walkingMinutes(s.km, up, down) : 0);
+    }),
+  );
+  const taps = d?.water?.points.filter((p) => p.kind === "drinking").length ?? 0;
+  // the climate step averages every day of its years at the trail's lowest and highest point
+  const weatherDays = d?.climate ? Math.round((d.climate.years[1] - d.climate.years[0] + 1) * 365.25) * d.climate.places.length : 0;
+  return { climbed, minutes, taps, weatherDays };
+});
 const totals = {
   trails: trails.length,
   countries: new Set(trails.flatMap((t) => t.countries)).size,
   km: Math.round(trails.reduce((sum, t) => sum + (t.lengthKm ?? 0), 0)),
   stages: entries.reduce((sum, e) => sum + mainStages(e.data).length, 0),
+  climbed: Math.round(sum(perTrail.map((t) => t.climbed)) / 10) * 10,
+  hours: Math.round(sum(perTrail.map((t) => t.minutes)) / 60),
+  taps: sum(perTrail.map((t) => t.taps)),
+  weatherDays: sum(perTrail.map((t) => t.weatherDays)),
 };
+const everests = (totals.climbed / EVEREST_M).toFixed(1);
 
 // the featured trail: the first one for now; its elevation profile and surfaces as previews
 const featured = trails[0];
@@ -95,6 +124,10 @@ const sources = [
       [totals.countries === 1 ? "Country" : "Countries", totals.countries],
       ["Kilometres documented", totals.km],
       ["Official stages", totals.stages],
+      [`Metres climbed, ${everests} × Everest`, totals.climbed],
+      ["Hours of walking", totals.hours],
+      ["Drinking water points", totals.taps],
+      ["Days of weather averaged", totals.weatherDays],
     ].map(([label, n]) => (
       <div>
         <dt>{label}</dt>
@@ -336,7 +369,7 @@ const sources = [
     padding-left: 0;
     border-left: 0;
   }
-  /* totals: 2 × 2 on phones, one row of four from 720 px; sources: two columns on phones, three
+  /* totals: two columns on phones, rows of four from 720 px; sources: two columns on phones, three
      from 720 px (six sources, two full rows) */
   .totals,
   .sources {
@@ -345,6 +378,13 @@ const sources = [
   @media (min-width: 720px) {
     .totals {
       grid-template-columns: repeat(4, 1fr);
+    }
+    .totals > div:nth-child(4n + 1) {
+      padding-left: 0;
+      border-left: 0;
+    }
+    .totals > div:nth-child(n + 5) {
+      border-top: 1px solid var(--line);
     }
     .sources {
       grid-template-columns: repeat(3, 1fr);
