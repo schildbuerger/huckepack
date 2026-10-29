@@ -160,7 +160,6 @@ const pct = (share: number) => `${Math.round(share * 100)}%`;
 // landscape (pipeline/landcover.py): ESA WorldCover groups along the main route, on the elevation
 // profile's kilometres; colours --land-* in this fixed order
 const landcover = derived?.landcover;
-const elevationTop = derived?.elevation?.highest.m;
 const LAND = [
   { id: "forest", label: "Forest", short: "Forest" },
   { id: "open", label: "Grassland and shrubs", short: "Grassland" },
@@ -172,7 +171,8 @@ const LAND = [
 const landRows = landcover ? LAND.filter((g) => (landcover.shares[g.id] ?? 0) > 0) : [];
 // the key figure: the main landscape by its short name, and every group's share as a bar
 const landMain = landcover ? [...landRows].sort((a, b) => landcover.shares[b.id] - landcover.shares[a.id])[0] : undefined;
-// one sentence: the main landscape, then the rest from 2 % up, smaller ones as "patches of"
+// the chart's accessible name in one sentence: the main landscape, then the rest from 2 % up,
+// smaller ones as "patches of"
 const landSummary = (() => {
   if (!landcover) return "";
   const rows = [...landRows].sort((a, b) => landcover.shares[b.id] - landcover.shares[a.id]);
@@ -183,13 +183,6 @@ const landSummary = (() => {
   const bits = rest.filter((g) => landcover.shares[g.id] < 0.02).map((g) => g.label.toLowerCase());
   const head = landcover.shares[first.id] >= 0.5 ? `Mostly ${say(first)}` : `A mix of ${say(first)}`;
   return `${head}${more.length ? `, with ${list(more.map(say))}` : ""}${bits.length ? `${more.length ? "; " : ", "}patches of ${list(bits)}` : ""}.`;
-})();
-// how high the forest goes: up to the top, or only low down
-const forestLine = (() => {
-  const top = landcover?.highestForest;
-  if (!landcover || !elevationTop) return null;
-  if (!top) return "No forest along the main route.";
-  return top.m >= elevationTop - 20 ? `Forest up to the highest point (${fmt(top.m)} m).` : `No forest above ${fmt(Math.ceil(top.m / 10) * 10)} m.`;
 })();
 
 // terrain (issue #15): one elevation profile (pipeline/elevation.py) on the same kilometres as the
@@ -971,7 +964,6 @@ const nav = [
   {landcover && (
     <section id="landscape">
       <h2>Landscape</h2>
-      <p class="land-lead">{landSummary} {forestLine}</p>
       <figure class="chart lanes">
         <div class="chart-scroll">
           <svg
@@ -2245,13 +2237,7 @@ const nav = [
       border-left: 0 !important;
     }
   }
-  /* landscape: the summary as a lead sentence, then one lane per group along the route */
-  .land-lead {
-    margin: 0 0 12px;
-    font-family: var(--serif);
-    font-size: 1.15rem;
-    line-height: 1.45;
-  }
+  /* landscape: one lane per group along the route */
   .lanes {
     margin: 4px 0 0;
   }
