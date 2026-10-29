@@ -3,14 +3,16 @@
   // the search page with those filters in its URL. Every answer shows how many trails it
   // would leave, counted with the same test as the search page (src/lib/filters.ts).
   import { onMount } from "svelte";
-  import { SAC_SCALE, SLEEPING_CATEGORIES } from "../lib/trails";
+  import { SLEEPING_CATEGORIES } from "../lib/trails";
   import type { SearchTrail } from "../lib/search";
   import {
     DAYS,
     DAYS_ALL,
+    LANDSCAPES,
+    LANDSCAPE_SHARE,
+    LEVEL_IDS,
     MONTHS,
     NATURAL_PCT,
-    SAC,
     WATER_KM,
     matches,
     noFilters,
@@ -36,9 +38,25 @@
     { label: "Longer than two weeks", sub: "15 days or more", set: { dayLo: at(DAYS, 15), dayHi: DAYS_ALL } },
     { label: "Doesn't matter", set: { dayLo: 0, dayHi: DAYS_ALL } },
   ];
-  const SAC_OPTIONS: Option[] = [
-    ...SAC.map((s, i) => ({ label: `${s} · ${SAC_SCALE[s].name}`, sub: SAC_SCALE[s].text, set: { sacMax: i } })),
-    { label: "I'm not sure", sub: "Any grade, and trails without one", set: { sacMax: SAC.length } },
+  // the difficulty ratings (src/lib/difficulty.ts): each answer is the most a hiker is happy with
+  const ANY = LEVEL_IDS.length;
+  const TERRAIN_OPTIONS: Option[] = [
+    { label: "Easy", sub: "Good paths, little climbing, hardly anything steep", set: { terrainMax: 0 } },
+    { label: "Up to moderate", sub: "Steady climbs and some steep bits on clear paths", set: { terrainMax: 1 } },
+    { label: "Up to demanding", sub: "Lots of climbing, steep or rough ground, paths not always clear", set: { terrainMax: 2 } },
+    { label: "Anything goes", sub: "Hard terrain is fine, and trails not yet rated", set: { terrainMax: ANY } },
+  ];
+  const EFFORT_OPTIONS: Option[] = [
+    { label: "Up to 4 hours", sub: "Short days, time to spare", set: { effortMax: 0 } },
+    { label: "Up to 6 hours", sub: "A comfortable full day", set: { effortMax: 1 } },
+    { label: "Up to 8 hours", sub: "Long days on foot", set: { effortMax: 2 } },
+    { label: "Longer is fine", set: { effortMax: ANY } },
+  ];
+  const CLIMATE_OPTIONS: Option[] = [
+    { label: "Mild only", sub: "Pleasant days, nights above 8 °C, little rain, snow or wind", set: { climateMax: 0 } },
+    { label: "Some heat, chill or rain", sub: "Warm days, cool nights, a wet day now and then", set: { climateMax: 1 } },
+    { label: "Rough weather too", sub: "Hot days, frost at night, wet weeks or strong wind", set: { climateMax: 2 } },
+    { label: "Anything", sub: "Any weather, and trails not yet rated", set: { climateMax: ANY } },
   ];
   const WILD_OPTIONS: Option[] = [
     { label: "Yes, it should be allowed", sub: "Pitch a tent anywhere along the trail", set: { wild: "allowed" } },
@@ -51,21 +69,25 @@
     { label: "Up to 30 km", sub: "A full day's walk", set: { waterMax: at(WATER_KM, 30) } },
     { label: "Doesn't matter", sub: "I'll carry or filter what I need", set: { waterMax: WATER_KM.length } },
   ];
-  const TERRAIN_OPTIONS: Option[] = [
+  const GROUND_OPTIONS: Option[] = [
     { label: "Mostly natural paths", sub: "70 % or more on earth, grass or rock", set: { naturalMin: at(NATURAL_PCT, 70) } },
     { label: "At least half natural", sub: "50 % or more", set: { naturalMin: at(NATURAL_PCT, 50) } },
     { label: "Don't mind", sub: "Gravel tracks and paved roads are fine", set: { naturalMin: 0 } },
   ];
 
+  // the search page's filters in the same order (src/components/TrailList.svelte)
   const STEPS = [
     { id: "when", question: "When would you like to go?", help: "Pick every month that works. Trails whose season includes any of them stay." },
-    { id: "days", question: "How many days do you have?", help: "A trail stays if the days its managers suggest overlap yours." },
-    { id: "hard", question: "How demanding may it be?", help: "The Swiss Alpine Club's hiking scale; we translate each trail's own rating into it." },
     { id: "where", question: "Where would you like to hike?", help: "Pick as many places as you like. A continent includes all its countries." },
+    { id: "days", question: "How many days do you have?", help: "A trail stays if the days its managers suggest overlap yours." },
+    { id: "terrain", question: "How demanding may the terrain be?", help: "Our terrain rating: the path grade, how much and how steeply the trail climbs, and the ground." },
+    { id: "effort", question: "How long may a day be?", help: "The walking time of the trail's longest stage." },
+    { id: "climate", question: "What weather can you take?", help: "Our climate rating from 30 years of weather, in the months you picked (within each trail's season), or over its whole season." },
+    { id: "land", question: "What would you like to walk through?", help: "Pick as many as you like. A trail stays if at least a fifth of it is one of them." },
+    { id: "ground", question: "What would you like underfoot?" },
     { id: "sleep", question: "Where would you like to sleep?", help: "Pick everything you'll need. A trail stays if it offers all of them." },
     { id: "wild", question: "Would you like to camp in the wild?" },
     { id: "water", question: "How far can you go between drinking water?", help: "The longest stretch of the trail without a tap, fountain or drinking spring." },
-    { id: "terrain", question: "What would you like underfoot?" },
   ];
 
   let f = $state<Filters>(noFilters());
@@ -88,12 +110,15 @@
     ({
       when: f.months.length > 0,
       days: f.dayLo > 0 || f.dayHi < DAYS_ALL,
-      hard: f.sacMax < SAC.length,
       where: f.where.length > 0,
+      terrain: f.terrainMax < ANY,
+      effort: f.effortMax < ANY,
+      climate: f.climateMax < ANY,
+      land: f.land.length > 0,
       sleep: f.sleep.length > 0,
       wild: f.wild !== "",
       water: f.waterMax < WATER_KM.length,
-      terrain: f.naturalMin > 0,
+      ground: f.naturalMin > 0,
     })[id]!;
   // each question is a history entry, so the browser's back button goes to the previous one
   // a new question starts at its top: scrolled down a long list on a phone, the page goes back up
@@ -126,10 +151,10 @@
 <div class="guide" bind:this={guide}>
   {#if step === 0}
     <p class="intro">
-      Eight short questions, one at a time. Skip any that don't matter to you; at the end you'll see the trails that fit.
+      Eleven short questions, one at a time. Skip any that don't matter to you; at the end you'll see the trails that fit.
     </p>
   {/if}
-  <!-- the guide's status: the bar and its counter on one line; question n of 8 fills n/8 -->
+  <!-- the guide's status: the bar and its counter on one line; question n of 11 fills n/11 -->
   <div class="steps">
     <div class="progress" aria-hidden="true">
       <span style={`width: ${((step + 1) / STEPS.length) * 100}%`}></span>
@@ -143,7 +168,7 @@
   {#if s.help}<p class="help">{s.help}</p>{/if}
 
   <!-- longer lists take two columns on wide screens -->
-  <div class="answers" class:two={["days", "hard", "sleep"].includes(s.id)}>
+  <div class="answers" class:two={["days", "terrain", "effort", "climate", "land", "sleep"].includes(s.id)}>
     {#if s.id === "when"}
       <div class="months" role="group" aria-label="Months">
         {#each MONTHS as m, i}
@@ -166,10 +191,33 @@
       {#each DAY_OPTIONS as o}
         {@render option(o)}
       {/each}
-    {:else if s.id === "hard"}
-      {#each SAC_OPTIONS as o}
+    {:else if s.id === "terrain"}
+      {#each TERRAIN_OPTIONS as o}
         {@render option(o)}
       {/each}
+    {:else if s.id === "effort"}
+      {#each EFFORT_OPTIONS as o}
+        {@render option(o)}
+      {/each}
+    {:else if s.id === "climate"}
+      {#each CLIMATE_OPTIONS as o}
+        {@render option(o)}
+      {/each}
+    {:else if s.id === "land"}
+      {#each LANDSCAPES as l}
+        <!-- any of them: each shows how many trails it adds up to -->
+        <button
+          type="button"
+          class="option"
+          aria-pressed={f.land.includes(l.id)}
+          disabled={!f.land.includes(l.id) && countWith({ land: [...f.land, l.id] }) === 0}
+          onclick={() => (f.land = toggle(f.land, l.id))}
+        >
+          <span class="label">{l.label}<span class="sub">At least {Math.round(LANDSCAPE_SHARE * 100)} % of the route</span></span>
+          <span class="count">{trailsWord(countWith({ land: [l.id] }))}</span>
+        </button>
+      {/each}
+      {@render option({ label: "No preference", set: { land: [] } })}
     {:else if s.id === "where"}
       {@render option({ label: "Anywhere", set: { where: [] } })}
       {#each places as p}
@@ -203,8 +251,8 @@
       {#each WATER_OPTIONS as o}
         {@render option(o)}
       {/each}
-    {:else if s.id === "terrain"}
-      {#each TERRAIN_OPTIONS as o}
+    {:else if s.id === "ground"}
+      {#each GROUND_OPTIONS as o}
         {@render option(o)}
       {/each}
     {/if}
