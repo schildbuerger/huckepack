@@ -91,11 +91,12 @@ const { title, description, personal = false } = Astro.props;
     --poor-soft: #f8e7e0;
     /* water points in charts: the one cool colour, kept to water */
     --water: #2f6690;
-    /* surface categories in charts, checked with the dataviz validator: paved is an asphalt grey on
-       purpose (no hue), so it differs from teal and amber by lightness; every category is also named */
-    --surface-natural: #219a88;
-    --surface-gravel: #cc7f32;
-    --surface-paved: #505357;
+    /* surface categories in charts, in natural colours (issue #15): earth, sand, asphalt. Checked with
+       the dataviz validator in both modes: they stay apart for normal and colour-blind vision; paved
+       is an asphalt grey on purpose (no hue), so it differs by lightness; every category is named */
+    --surface-natural: #b26232;
+    --surface-gravel: #c9a64d;
+    --surface-paved: #50565c;
     --surface-unknown: #d6ccbf;
     /* climate (validated with the dataviz validator): the trail's low and high ground; wet days in
        water blue with snow days as its light step */
@@ -137,9 +138,9 @@ const { title, description, personal = false } = Astro.props;
     --poor: #ee9c87;
     --poor-soft: #3b231e;
     --water: #86b6db;
-    --surface-natural: #00785f;
-    --surface-gravel: #ac6820;
-    --surface-paved: #939599;
+    --surface-natural: #a74f21;
+    --surface-gravel: #ad8f2a;
+    --surface-paved: #babec3;
     --surface-unknown: #4a4038;
     --clim-low: #c97a37;
     --clim-high: #7f8ce6;
@@ -174,9 +175,9 @@ const { title, description, personal = false } = Astro.props;
       --poor: #ee9c87;
       --poor-soft: #3b231e;
       --water: #86b6db;
-      --surface-natural: #00785f;
-      --surface-gravel: #ac6820;
-      --surface-paved: #939599;
+      --surface-natural: #a74f21;
+      --surface-gravel: #ad8f2a;
+      --surface-paved: #babec3;
       --surface-unknown: #4a4038;
       --clim-low: #c97a37;
       --clim-high: #7f8ce6;

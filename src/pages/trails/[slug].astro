@@ -155,8 +155,6 @@ const SURFACES = [
   { id: "unknown", label: "Unknown", hint: "Stretches whose surface OpenStreetMap doesn't record." },
 ] as const;
 const surfaceRows = surface ? SURFACES.filter((c) => surface.totals[c.id]?.km > 0) : [];
-const surfaceStarts =
-  surface?.runs.filter((r, i, all) => i === 0 || all[i - 1].stage !== r.stage).map((r) => ({ number: r.stage, km: r.fromKm })) ?? [];
 const pct = (share: number) => `${Math.round(share * 100)}%`;
 
 // landscape (pipeline/landcover.py): ESA WorldCover groups along the main route, on the elevation
@@ -194,15 +192,18 @@ const forestLine = (() => {
   return top.m >= elevationTop - 20 ? `Forest up to the highest point (${fmt(top.m)} m).` : `No forest above ${fmt(Math.ceil(top.m / 10) * 10)} m.`;
 })();
 
-// elevation profile (pipeline/elevation.py): an area chart on the same kilometres
+// terrain (issue #15): one elevation profile (pipeline/elevation.py) on the same kilometres as the
+// other charts, coloured by its gradient (gradients() in src/lib/trails.ts) or by the ground under
+// it (pipeline/surface.py); a toggle switches the view and its figures
 const elevation = derived?.elevation;
-const PROFILE = { top: 18, bottom: 120 };
+const grad = elevation && gradients(elevation.points, elevation.stageStarts);
+const TERRAIN = { top: 26, bottom: 170 };
 const eleRange = elevation && {
   min: Math.floor((elevation.lowest.m - 50) / 200) * 200,
   max: Math.ceil((elevation.highest.m + 50) / 200) * 200,
 };
 const yAt = (m: number) =>
-  eleRange ? PROFILE.bottom - ((m - eleRange.min) / (eleRange.max - eleRange.min)) * (PROFILE.bottom - PROFILE.top) : 0;
+  eleRange ? TERRAIN.bottom - ((m - eleRange.min) / (eleRange.max - eleRange.min)) * (TERRAIN.bottom - TERRAIN.top) : 0;
 const eleGrid = eleRange
   ? Array.from({ length: 10 }, (_, i) => eleRange.min + i * (eleRange.max - eleRange.min > 1000 ? 400 : 200)).filter(
       (m) => m > eleRange.min && m < eleRange.max,
@@ -210,25 +211,28 @@ const eleGrid = eleRange
   : [];
 const profileLine =
   elevation?.points.map(([km, m], i) => `${i ? "L" : "M"}${xAt(km, elevation.routeKm).toFixed(1)},${yAt(m).toFixed(1)}`).join("") ?? "";
-const profileArea =
-  elevation && `${profileLine}L${xAt(elevation.routeKm, elevation.routeKm)},${PROFILE.bottom}L${CHART.x0},${PROFILE.bottom}Z`;
-const eleFirst = elevation?.points[0][1];
-const eleLast = elevation?.points.at(-1)![1];
-
-// gradients (src/lib/trails.ts): bars above the zero line climb, below descend, on the same km
-const grad = elevation && gradients(elevation.points, elevation.stageStarts);
-const GRADE = { top: 12, zero: 92, bottom: 172 };
-const gradeLimit = grad ? Math.max(30, Math.ceil(grad.maxAbs / 10) * 10) : 30;
-const yGrade = (g: number) =>
-  GRADE.zero - (Math.max(-gradeLimit, Math.min(gradeLimit, g)) / gradeLimit) * (GRADE.zero - GRADE.top);
-const gradeClass = (g: number) => `${g >= 0 ? "up" : "down"}${Math.abs(g) >= STEEP_PERCENT ? " steep" : ""}`;
+// the area under the profile in the gradient bars' 200 m slices, each with two fills: its gradient
+// on a smooth diverging ramp (the profile's tint at 0 %, the steep colour at ±RAMP_MAX %; climbs
+// warm, descents violet) and the ground at its middle
+const RAMP_MAX = 30;
+const rampFill = (g: number) =>
+  `color-mix(in oklab, var(${g >= 0 ? "--grade-up-steep" : "--grade-down-steep"}) ${Math.round((Math.min(Math.abs(g), RAMP_MAX) / RAMP_MAX) * 100)}%, var(--terrain-tint))`;
+const terrainSlices =
+  elevation && grad
+    ? grad.bars.map((b) => {
+        const top = elevation.points
+          .filter(([km]) => km >= b.fromKm && km <= b.toKm)
+          .map(([km, m]) => `${xAt(km, elevation.routeKm).toFixed(1)},${yAt(m).toFixed(1)}`)
+          .join(" ");
+        const mid = (b.fromKm + b.toKm) / 2;
+        const ground = surface?.runs.find((r) => mid >= r.fromKm && mid <= r.toKm)?.category ?? "unknown";
+        return {
+          points: `${xAt(b.fromKm, elevation.routeKm).toFixed(1)},${TERRAIN.bottom} ${top} ${xAt(b.toKm, elevation.routeKm).toFixed(1)},${TERRAIN.bottom}`,
+          style: `--g: ${rampFill(b.grade)}; --s: var(--surface-${ground})`,
+        };
+      })
+    : [];
 const degrees = (g: number) => Math.round((Math.atan(Math.abs(g) / 100) * 180) / Math.PI);
-// a slope drawn at its true angle: rise over run, like a road sign's triangle
-const ramp = (g: number) => {
-  const w = 56;
-  const h = Math.min(30, (w * Math.abs(g)) / 100);
-  return g >= 0 ? `0,30 ${w},30 ${w},${30 - h}` : `0,${30 - h} 0,30 ${w},30`;
-};
 
 // climate (pipeline/climate.py): twelve month columns; the season from the record is shaded
 const climate = derived?.climate;
@@ -299,10 +303,8 @@ const nav = [
   { id: "location", label: "Location", show: true },
   { id: "map", label: "Map", show: true },
   { id: "difficulty", label: "Difficulty", show: diff.dims.length > 0 },
-  { id: "surfaces", label: "Surfaces", show: Boolean(surface) },
+  { id: "terrain", label: "Terrain", show: Boolean(elevation && grad) },
   { id: "landscape", label: "Landscape", show: Boolean(landcover) },
-  { id: "elevation", label: "Elevation", show: Boolean(elevation) },
-  { id: "steepness", label: "Steepness", show: Boolean(grad) },
   { id: "stages", label: "Stages", show: Boolean(t.stages) },
   { id: "climate", label: "Climate", show: Boolean(climate) },
   { id: "sleeping", label: "Sleeping", show: Boolean(t.sleeping || t.wildCamping) },
@@ -608,60 +610,156 @@ const nav = [
     </section>
   )}
 
-  {surface && (
-    <section id="surfaces">
-      <h2>Surfaces</h2>
-      <dl class="strip spec cols" style={`--cols: ${surfaceRows.length}`}>
-        {surfaceRows.map((c) => (
+  {elevation && grad && eleRange && (
+    <section id="terrain" class="terrain" data-view="steep">
+      <h2>Terrain</h2>
+      <!-- the key figures of both views share one grid cell, so toggling moves nothing -->
+      <div class="terrain-figs">
+        <dl class="strip terrain-row view-steep">
+          <div>
+            <dt>Highest point</dt>
+            <dd><span class="big">{fmt(elevation.highest.m)}</span><span class="unit">m</span></dd>
+          </div>
+          <div>
+            <dt>Lowest point</dt>
+            <dd><span class="big">{fmt(elevation.lowest.m)}</span><span class="unit">m</span></dd>
+          </div>
           <div>
             <dt>
-              <span class="swatch-key" style={`--c: var(--surface-${c.id})`} aria-hidden="true"></span>
-              <Explain id={`about-surface-${c.id}`} term={c.label}><p>{c.hint}</p></Explain>
+              <Explain id="grade-info" term="Steepest climb" title="Gradient">
+                <p>
+                  The steepest 500 m of the trail in walking direction, uphill and downhill. On this trail the steepest
+                  climb is {grad.climb.grade}{"\u00a0"}% ({degrees(grad.climb.grade)}°, {grad.climb.changeM} m up over 500 m) on
+                  stage {grad.climb.stage}, the steepest descent {signed(grad.descent.grade)}{"\u00a0"}% ({degrees(grad.descent.grade)}°,{" "}
+                  {Math.abs(grad.descent.changeM)} m down) on stage {grad.descent.stage}.
+                </p>
+                <p>
+                  A gradient is height per distance: 20 % means 20 m up for every 100 m forward. Percent and degrees don't
+                  grow alike: 100 % is 45°, not 90°.
+                </p>
+                <table>
+                  <thead><tr><th>Gradient</th><th>Angle</th><th>Feels like</th></tr></thead>
+                  <tbody>
+                    <tr><td>10 %</td><td>6°</td><td>Noticeable on a road</td></tr>
+                    <tr><td>20 %</td><td>11°</td><td>A steep path, slow going</td></tr>
+                    <tr><td>30 %</td><td>17°</td><td>Very steep, often steps</td></tr>
+                    <tr><td>100 %</td><td>45°</td><td>Scrambling</td></tr>
+                  </tbody>
+                </table>
+                <p>
+                  Averages over 500 m from a 30 m terrain model: short pitches within them, such as steps and ladders, are
+                  steeper.
+                </p>
+              </Explain>
             </dt>
-            <dd>
-              <span class="big">{surface.totals[c.id].km.toFixed(1)}</span><span class="unit">km · {pct(surface.totals[c.id].share)}</span>
-            </dd>
+            <dd><span class="big">{grad.climb.grade}</span><span class="unit">%</span></dd>
           </div>
-        ))}
-      </dl>
+          <div>
+            <dt><Explain id="grade-info" term="Steepest descent" shared /></dt>
+            <dd><span class="big">{signed(grad.descent.grade)}</span><span class="unit">%</span></dd>
+          </div>
+          <div>
+            <dt>
+              <Explain id="steep-info" term={`Steeper than ${STEEP_PERCENT} %`} title="Steep stretches">
+                <p>
+                  How many kilometres of the main route climb or descend at {STEEP_PERCENT} % or more ({degrees(STEEP_PERCENT)}°,
+                  15 m of height per 100 m), measured in 200 m stretches: on this trail {grad.steepUpKm} km up and{" "}
+                  {grad.steepDownKm} km down, the darkest parts of the profile. Such stretches are slow going uphill and hard
+                  on the knees downhill.
+                </p>
+              </Explain>
+            </dt>
+            <dd><span class="big">{Math.round((grad.steepUpKm + grad.steepDownKm) * 10) / 10}</span><span class="unit">km</span></dd>
+          </div>
+        </dl>
+        {surface && (
+          <dl class="strip terrain-row view-ground">
+            {surfaceRows.map((c) => (
+              <div>
+                <dt>
+                  <span class="swatch-key" style={`--c: var(--surface-${c.id})`} aria-hidden="true"></span>
+                  <Explain id={`about-surface-${c.id}`} term={c.label}><p>{c.hint}</p></Explain>
+                </dt>
+                <dd>
+                  <span class="big">{pct(surface.totals[c.id].share)}</span><span class="unit">{surface.totals[c.id].km.toFixed(1)} km</span>
+                </dd>
+              </div>
+            ))}
+          </dl>
+        )}
+      </div>
 
-      <figure class="chart surfaceline" data-runs={JSON.stringify(surface.runs)} data-total={surface.routeKm}>
-        <div class="chart-scroll">
-        <svg
-          viewBox={`0 0 ${CHART.width} 80`}
-          role="img"
-          aria-label={`Surfaces along the main route, ${surface.routeKm} km: ${surfaceRows.map((c) => `${c.label.toLowerCase()} ${pct(surface.totals[c.id].share)}`).join(", ")}.`}
+      <div class="terrain-body">
+        <!-- a two-way toggle: the knob sits at the end of the view it shows -->
+        {surface && (
+          <button type="button" class="toggle" role="switch" aria-checked="false" aria-label="Show the ground instead of elevation and steepness">
+            <span class="track" aria-hidden="true"><span class="knob"></span></span>
+            <span class="toggle-labels" aria-hidden="true">
+              <span class="toggle-a">Elevation and steepness</span>
+              <span class="toggle-b">Ground</span>
+            </span>
+          </button>
+        )}
+        <figure
+          class="chart terrain-chart"
+          data-points={JSON.stringify(elevation.points)}
+          data-bars={JSON.stringify(grad.bars)}
+          data-runs={JSON.stringify(surface?.runs ?? [])}
+          data-total={elevation.routeKm}
         >
-          {surface.runs.map((r) => (
-            <rect
-              class="run"
-              x={xAt(r.fromKm, surface.routeKm)}
-              y="6"
-              width={Math.max(xAt(r.toKm, surface.routeKm) - xAt(r.fromKm, surface.routeKm), 0.6)}
-              height="22"
-              style={`fill: var(--surface-${r.category})`}
-            />
-          ))}
-          <line class="cursor" x1="0" x2="0" y1="2" y2="32" visibility="hidden" />
-          {stageTicks(surfaceStarts, surface.routeKm).map((tk) => (
-            <g>
-              <line class="tick" x1={tk.x} x2={tk.x} y1="32" y2="40" />
-              <text class="tick-label" x={tk.mid} y="52" text-anchor="middle">{tk.label}</text>
-            </g>
-          ))}
-          <line class="tick" x1={CHART.x1} x2={CHART.x1} y1="32" y2="40" />
-          <text class="tick-label end" x={CHART.x0} y="70">0 km</text>
-          <text class="tick-label end" x={CHART.x1} y="70" text-anchor="end">{surface.routeKm} km</text>
-        </svg>
-        </div>
-        <div class="tip" role="status" hidden><strong></strong><span></span></div>
-        <figcaption class="muted">
-          From OpenStreetMap; for the {pct(surface.inferredShare)} without a surface tag, the type of way decides.
-        </figcaption>
-      </figure>
+          <div class="chart-scroll">
+          <svg
+            viewBox={`0 0 ${CHART.width} 222`}
+            role="img"
+            aria-label={`Elevation along the main route, ${elevation.routeKm} km: highest ${fmt(elevation.highest.m)} m at km ${elevation.highest.km.toFixed(1)}, lowest ${fmt(elevation.lowest.m)} m. Steepest climb ${grad.climb.grade} % on stage ${grad.climb.stage}, steepest descent ${grad.descent.grade} % on stage ${grad.descent.stage}; ${grad.steepUpKm} km climb and ${grad.steepDownKm} km descend at ${STEEP_PERCENT} % or more.${surface ? ` Ground: ${surfaceRows.map((c) => `${c.label.toLowerCase()} ${pct(surface.totals[c.id].share)}`).join(", ")}.` : ""}`}
+          >
+            {eleGrid.map((m) => (
+              <g class="view-steep">
+                <line class="grid" x1={CHART.x0} x2={CHART.x1} y1={yAt(m)} y2={yAt(m)} />
+                <text class="grid-label" x={CHART.x0 + 2} y={yAt(m) - 4}>{fmt(m)} m</text>
+              </g>
+            ))}
+            {terrainSlices.map((sl) => <polygon class="slice" points={sl.points} style={sl.style} />)}
+            <path class="line" d={profileLine} />
+            <line class="base" x1={CHART.x0} x2={CHART.x1} y1={TERRAIN.bottom} y2={TERRAIN.bottom} />
+            <circle class="peak" cx={xAt(elevation.highest.km, elevation.routeKm)} cy={yAt(elevation.highest.m)} r="4" />
+            <text class="peak-label" x={xAt(elevation.highest.km, elevation.routeKm)} y={yAt(elevation.highest.m) - 9} text-anchor="middle">{fmt(elevation.highest.m)} m</text>
+            {stageTicks(elevation.stageStarts, elevation.routeKm).map((tk) => (
+              <g>
+                <line class="tick" x1={tk.x} x2={tk.x} y1={TERRAIN.bottom} y2={TERRAIN.bottom + 8} />
+                <text class="tick-label" x={tk.mid} y={TERRAIN.bottom + 22} text-anchor="middle">{tk.label}</text>
+              </g>
+            ))}
+            <line class="tick" x1={CHART.x1} x2={CHART.x1} y1={TERRAIN.bottom} y2={TERRAIN.bottom + 8} />
+            <text class="tick-label end" x={CHART.x0} y={TERRAIN.bottom + 40}>0 km</text>
+            <text class="tick-label end" x={CHART.x1} y={TERRAIN.bottom + 40} text-anchor="end">{elevation.routeKm} km</text>
+            <line class="cursor" x1="0" x2="0" y1={TERRAIN.top - 8} y2={TERRAIN.bottom} visibility="hidden" />
+            <circle class="cursor-dot" cx="0" cy="0" r="4.5" visibility="hidden" />
+          </svg>
+          </div>
+          <div class="tip" role="status" hidden><strong></strong><span></span></div>
+          <!-- both keys share one grid cell too -->
+          <div class="terrain-keys">
+            <div class="legend ramp-key view-steep" aria-hidden="true">
+              <span>Descent</span>
+              <span class="ramp-bar"></span>
+              <span>Climb</span>
+              <span class="ramp-ticks"><span>−{RAMP_MAX} %</span><span>0</span><span>+{RAMP_MAX} %</span></span>
+            </div>
+            {surface && (
+              <ul class="legend view-ground" aria-hidden="true">
+                {surfaceRows.map((c) => <li><span class="swatch-key" style={`--c: var(--surface-${c.id})`}></span>{c.label}</li>)}
+              </ul>
+            )}
+          </div>
+          <figcaption class="muted">
+            Copernicus terrain model (30 m grid; it measures the treetops in forests), gradients per 200 m in walking
+            direction{surface && `; ground from OpenStreetMap, where the ${pct(surface.inferredShare)} without a surface tag take the type of way`}.
+          </figcaption>
+        </figure>
+      </div>
     </section>
   )}
-
   {landcover && (
     <section id="landscape">
       <h2>Landscape</h2>
@@ -707,190 +805,6 @@ const nav = [
           </svg>
         </div>
         <figcaption class="muted">ESA WorldCover (10 m satellite land cover, 2021), every 100 m along the route.</figcaption>
-      </figure>
-    </section>
-  )}
-
-  {elevation && eleRange && (
-    <section id="elevation">
-      <h2>Elevation</h2>
-      <dl class="strip spec three">
-        <div>
-          <dt>Highest point</dt>
-          <dd><span class="big">{fmt(elevation.highest.m)}</span><span class="unit">m</span></dd>
-        </div>
-        <div>
-          <dt>Lowest point</dt>
-          <dd><span class="big">{fmt(elevation.lowest.m)}</span><span class="unit">m</span></dd>
-        </div>
-        <div>
-          <dt>Start → finish</dt>
-          <dd>
-            <span class="big">{fmt(eleFirst!)}</span><span class="unit">→</span>
-            <span class="big">{fmt(eleLast!)}</span><span class="unit">m</span>
-          </dd>
-        </div>
-      </dl>
-
-      <figure class="chart profile" data-points={JSON.stringify(elevation.points)} data-total={elevation.routeKm} data-stages={JSON.stringify(elevation.stageStarts)}>
-        <div class="chart-scroll">
-        <svg
-          viewBox={`0 0 ${CHART.width} 166`}
-          role="img"
-          aria-label={`Elevation along the main route, ${elevation.routeKm} km: from ${fmt(eleFirst!)} m to ${fmt(eleLast!)} m, highest ${fmt(elevation.highest.m)} m at km ${elevation.highest.km.toFixed(1)}, lowest ${fmt(elevation.lowest.m)} m at km ${elevation.lowest.km.toFixed(1)}.`}
-        >
-          {eleGrid.map((m) => (
-            <g>
-              <line class="grid" x1={CHART.x0} x2={CHART.x1} y1={yAt(m)} y2={yAt(m)} />
-              <text class="grid-label" x={CHART.x0 + 2} y={yAt(m) - 4}>{fmt(m)} m</text>
-            </g>
-          ))}
-          <path class="area" d={profileArea} />
-          <path class="line" d={profileLine} />
-          <circle class="peak" cx={xAt(elevation.highest.km, elevation.routeKm)} cy={yAt(elevation.highest.m)} r="4" />
-          <text class="peak-label" x={xAt(elevation.highest.km, elevation.routeKm)} y={yAt(elevation.highest.m) - 9} text-anchor="middle">{fmt(elevation.highest.m)} m</text>
-          <line class="base" x1={CHART.x0} x2={CHART.x1} y1={PROFILE.bottom} y2={PROFILE.bottom} />
-          {stageTicks(elevation.stageStarts, elevation.routeKm).map((tk) => (
-            <g>
-              <line class="tick" x1={tk.x} x2={tk.x} y1={PROFILE.bottom} y2={PROFILE.bottom + 8} />
-              <text class="tick-label" x={tk.mid} y={PROFILE.bottom + 22} text-anchor="middle">{tk.label}</text>
-            </g>
-          ))}
-          <line class="tick" x1={CHART.x1} x2={CHART.x1} y1={PROFILE.bottom} y2={PROFILE.bottom + 8} />
-          <text class="tick-label end" x={CHART.x0} y={PROFILE.bottom + 40}>0 km</text>
-          <text class="tick-label end" x={CHART.x1} y={PROFILE.bottom + 40} text-anchor="end">{elevation.routeKm} km</text>
-          <line class="cursor" x1="0" x2="0" y1={PROFILE.top - 6} y2={PROFILE.bottom} visibility="hidden" />
-          <circle class="cursor-dot" cx="0" cy="0" r="4.5" visibility="hidden" />
-        </svg>
-        </div>
-        <div class="tip" role="status" hidden><strong></strong><span></span></div>
-        <figcaption class="muted">
-          Copernicus terrain model (30 m grid); it measures the treetops in forests, so heights may differ from signposts by some metres.
-        </figcaption>
-      </figure>
-    </section>
-  )}
-
-  {grad && elevation && (
-    <section id="steepness">
-      <h2>Steepest sections</h2>
-      <dl class="strip spec three steep">
-        <div>
-          <dt>
-            <Explain id="grade-info" term="Steepest climb" title="Gradient">
-              <p>
-                The steepest 500 m of the trail in walking direction, uphill and downhill: how many metres you climb or
-                descend over that distance, as a gradient (%) and as an angle (°). On this trail, {grad.climb.changeM} m up over
-                500 m is {grad.climb.grade}{"\u00a0"}%, or {degrees(grad.climb.grade)}°; {Math.abs(grad.descent.changeM)} m down is{" "}
-                {signed(grad.descent.grade)}{"\u00a0"}%, or {degrees(grad.descent.grade)}°.
-              </p>
-              <p>
-                A gradient is height per distance: 20 % means 20 m up for every 100 m forward. Percent and degrees don't
-                grow alike: 100 % is 45°, not 90°. The wedge is drawn at the true angle.
-              </p>
-              <table>
-                <thead><tr><th>Gradient</th><th>Angle</th><th>Feels like</th></tr></thead>
-                <tbody>
-                  <tr><td>10 %</td><td>6°</td><td>Noticeable on a road</td></tr>
-                  <tr><td>20 %</td><td>11°</td><td>A steep path, slow going</td></tr>
-                  <tr><td>30 %</td><td>17°</td><td>Very steep, often steps</td></tr>
-                  <tr><td>100 %</td><td>45°</td><td>Scrambling</td></tr>
-                </tbody>
-              </table>
-              <p>
-                Averages over 500 m from a 30 m terrain model: short pitches within them, such as steps and ladders, are
-                steeper.
-              </p>
-            </Explain>
-            <span>{"\u00a0· stage "}{grad.climb.stage}</span>
-          </dt>
-          <dd class="ramp-value">
-            <svg class="ramp up" viewBox="0 0 56 30" aria-hidden="true">
-              <polygon points={ramp(grad.climb.grade)} />
-            </svg>
-            <span class="ramp-grade">
-              <span class="big">{grad.climb.grade}</span><span class="unit">% · {degrees(grad.climb.grade)}°</span>
-            </span>
-            <span class="ramp-detail">+{grad.climb.changeM} m over 500 m</span>
-          </dd>
-        </div>
-        <div>
-          <dt>
-            <Explain id="grade-info" term="Steepest descent" shared />
-            <span>{"\u00a0· stage "}{grad.descent.stage}</span>
-          </dt>
-          <dd class="ramp-value">
-            <svg class="ramp down" viewBox="0 0 56 30" aria-hidden="true">
-              <polygon points={ramp(grad.descent.grade)} />
-            </svg>
-            <span class="ramp-grade">
-              <span class="big">{signed(grad.descent.grade)}</span><span class="unit">% · {degrees(grad.descent.grade)}°</span>
-            </span>
-            <span class="ramp-detail">{signed(grad.descent.changeM)} m over 500 m</span>
-          </dd>
-        </div>
-        <div>
-          <dt>
-            <Explain id="steep-info" term={`Steeper than ${STEEP_PERCENT} %`} title="Steep stretches">
-              <p>
-                How many kilometres of the main route climb or descend at {STEEP_PERCENT} % or more ({degrees(STEEP_PERCENT)}°,
-                15 m of height per 100 m), measured in 200 m stretches: the bars beyond the dashed lines in the chart
-                below. Such stretches are slow going uphill and hard on the knees downhill.
-              </p>
-            </Explain>
-          </dt>
-          <dd>
-            <span class="big">{grad.steepUpKm}</span><span class="unit">km up ·{"\u00a0"}</span>
-            <span class="big">{grad.steepDownKm}</span><span class="unit">km down</span>
-          </dd>
-        </div>
-      </dl>
-
-      <figure class="chart gradeline" data-bars={JSON.stringify(grad.bars)} data-total={elevation.routeKm}>
-        <ul class="legend" aria-hidden="true">
-          <li><span class="swatch-key" style="--c: var(--grade-up)"></span>Climb</li>
-          <li><span class="swatch-key" style="--c: var(--grade-up-steep)"></span>Steep climb, {STEEP_PERCENT} % or more</li>
-          <li><span class="swatch-key" style="--c: var(--grade-down)"></span>Descent</li>
-          <li><span class="swatch-key" style="--c: var(--grade-down-steep)"></span>Steep descent</li>
-          <li><span class="dash-key"></span>±{STEEP_PERCENT} %</li>
-        </ul>
-        <div class="chart-scroll">
-        <svg
-          viewBox={`0 0 ${CHART.width} 222`}
-          role="img"
-          aria-label={`Gradients along the main route, ${elevation.routeKm} km, per 200 m in walking direction: ${grad.steepUpKm} km climb at ${STEEP_PERCENT} % or more and ${grad.steepDownKm} km descend that steeply. Steepest climb ${grad.climb.grade} % over 500 m from km ${grad.climb.fromKm.toFixed(1)} (stage ${grad.climb.stage}); steepest descent ${grad.descent.grade} % from km ${grad.descent.fromKm.toFixed(1)} (stage ${grad.descent.stage}).`}
-        >
-          {[STEEP_PERCENT, -STEEP_PERCENT].map((g) => (
-            <line class="steep-line" x1={CHART.x0} x2={CHART.x1} y1={yGrade(g)} y2={yGrade(g)} />
-          ))}
-          {grad.bars.map((b) => (
-            <rect
-              class={`bar ${gradeClass(b.grade)}`}
-              x={xAt(b.fromKm, elevation.routeKm) + 0.3}
-              y={Math.min(yGrade(b.grade), GRADE.zero)}
-              width={Math.max(xAt(b.toKm, elevation.routeKm) - xAt(b.fromKm, elevation.routeKm) - 0.6, 0.6)}
-              height={Math.abs(yGrade(b.grade) - GRADE.zero)}
-            />
-          ))}
-          <line class="zero" x1={CHART.x0} x2={CHART.x1} y1={GRADE.zero} y2={GRADE.zero} />
-          <text class="peak-label" x={xAt((grad.climb.fromKm + grad.climb.toKm) / 2, elevation.routeKm)} y={yGrade(grad.climb.grade) - 6} text-anchor="middle">{grad.climb.grade} %</text>
-          <text class="peak-label" x={xAt((grad.descent.fromKm + grad.descent.toKm) / 2, elevation.routeKm)} y={yGrade(grad.descent.grade) + 16} text-anchor="middle">{signed(grad.descent.grade)} %</text>
-          {stageTicks(elevation.stageStarts, elevation.routeKm).map((tk) => (
-            <g>
-              <line class="tick" x1={tk.x} x2={tk.x} y1={GRADE.bottom + 10} y2={GRADE.bottom + 18} />
-              <text class="tick-label" x={tk.mid} y={GRADE.bottom + 32} text-anchor="middle">{tk.label}</text>
-            </g>
-          ))}
-          <line class="tick" x1={CHART.x1} x2={CHART.x1} y1={GRADE.bottom + 10} y2={GRADE.bottom + 18} />
-          <text class="tick-label end" x={CHART.x0} y={GRADE.bottom + 48}>0 km</text>
-          <text class="tick-label end" x={CHART.x1} y={GRADE.bottom + 48} text-anchor="end">{elevation.routeKm} km</text>
-          <line class="cursor" x1="0" x2="0" y1={GRADE.top - 4} y2={GRADE.bottom + 4} visibility="hidden" />
-        </svg>
-        </div>
-        <div class="tip" role="status" hidden><strong></strong><span></span></div>
-        <figcaption class="muted">
-          In walking direction, per 200 m of the elevation profile; the terrain model smooths short, steep pitches.
-        </figcaption>
       </figure>
     </section>
   )}
@@ -1325,137 +1239,58 @@ const nav = [
     document.addEventListener("keydown", (e) => e.key === "Escape" && hide());
   }
 
-  // Elevation profile: a crosshair and the height at the pointer's kilometre.
-  for (const figure of document.querySelectorAll<HTMLElement>(".profile")) {
+  // Terrain: the toggle between elevation and steepness, and the ground; then a crosshair with
+  // everything at the pointer's kilometre: height, the 200 m gradient, the ground, the stage.
+  for (const section of document.querySelectorAll<HTMLElement>(".terrain")) {
+    const toggle = section.querySelector<HTMLButtonElement>(".toggle");
+    toggle?.addEventListener("click", () => {
+      const ground = toggle.getAttribute("aria-checked") !== "true";
+      toggle.setAttribute("aria-checked", String(ground));
+      section.dataset.view = ground ? "ground" : "steep";
+    });
+
+    const figure = section.querySelector<HTMLElement>(".terrain-chart")!;
     const svg = figure.querySelector("svg")!;
     const tip = figure.querySelector<HTMLElement>(".tip")!;
     const cursor = figure.querySelector<SVGLineElement>(".cursor")!;
     const dot = figure.querySelector<SVGCircleElement>(".cursor-dot")!;
-    const points: [number, number][] = JSON.parse(figure.dataset.points!);
-    const stages: { number: string; km: number }[] = JSON.parse(figure.dataset.stages!);
-    const total = Number(figure.dataset.total);
     const line = figure.querySelector<SVGPathElement>(".line")!;
+    const points: [number, number][] = JSON.parse(figure.dataset.points!);
+    const bars: { fromKm: number; toKm: number; grade: number; stage: string }[] = JSON.parse(figure.dataset.bars!);
+    const runs: { category: string; fromKm: number; toKm: number }[] = JSON.parse(figure.dataset.runs!);
+    const total = Number(figure.dataset.total);
+    const GROUND: Record<string, string> = { natural: "natural ground", gravel: "gravel", paved: "paved", unknown: "unknown surface" };
     const X0 = 8;
     const X1 = 992;
     const show = (clientX: number) => {
       const box = svg.getBoundingClientRect();
       const vx = Math.min(Math.max(((clientX - box.left) / box.width) * 1000, X0), X1);
       const km = ((vx - X0) / (X1 - X0)) * total;
-      const [pkm, m] = points.reduce((a, b) => (Math.abs(b[0] - km) < Math.abs(a[0] - km) ? b : a));
+      const idx = points.reduce((best, p, i) => (Math.abs(p[0] - km) < Math.abs(points[best][0] - km) ? i : best), 0);
+      const [pkm, m] = points[idx];
       // y of the plotted point: read it off the path at the same index
-      const idx = points.findIndex((p) => p[0] === pkm);
       const y = Number(line.getAttribute("d")!.split(/[ML]/).filter(Boolean)[idx].split(",")[1]);
-      const stage = [...stages].reverse().find((s) => pkm >= s.km)?.number;
+      const bar = bars.find((b) => pkm >= b.fromKm && pkm <= b.toKm);
+      const run = runs.find((r) => pkm >= r.fromKm && pkm <= r.toKm);
       cursor.setAttribute("x1", String(vx));
       cursor.setAttribute("x2", String(vx));
       cursor.setAttribute("visibility", "visible");
       dot.setAttribute("cx", String(vx));
       dot.setAttribute("cy", String(y));
       dot.setAttribute("visibility", "visible");
-      tip.querySelector("strong")!.textContent = `${m.toLocaleString("en")} m`;
-      tip.querySelector("span")!.textContent = `km ${pkm.toFixed(1)}${stage ? ` · stage ${stage}` : ""}`;
+      tip.querySelector("strong")!.textContent = `${m.toLocaleString("en")} m${bar ? ` · ${bar.grade > 0 ? "+" : bar.grade < 0 ? "−" : ""}${Math.abs(Math.round(bar.grade))} %` : ""}`;
+      tip.querySelector("span")!.textContent = `km ${pkm.toFixed(1)}${bar ? ` · stage ${bar.stage}` : ""}${run ? ` · ${GROUND[run.category] ?? run.category}` : ""}`;
       tip.hidden = false;
       const fbox = figure.getBoundingClientRect();
       const half = tip.offsetWidth / 2;
       const px = box.left - fbox.left + (vx / 1000) * box.width;
       tip.style.left = `${Math.min(Math.max(px, half), fbox.width - half)}px`;
-      tip.style.top = `${box.top - fbox.top + (y / 166) * box.height - 10}px`;
+      tip.style.top = `${box.top - fbox.top + (y / 222) * box.height - 10}px`;
     };
     const hide = () => {
       tip.hidden = true;
       cursor.setAttribute("visibility", "hidden");
       dot.setAttribute("visibility", "hidden");
-    };
-    svg.addEventListener("pointermove", (e) => show(e.clientX));
-    svg.addEventListener("pointerleave", (e) => e.pointerType === "mouse" && hide());
-    svg.addEventListener("click", (e) => {
-      e.stopPropagation();
-      show(e.clientX);
-    });
-    document.addEventListener("click", hide);
-    document.addEventListener("keydown", (e) => e.key === "Escape" && hide());
-  }
-
-  // Surface bar tooltip: the run under the pointer, found from its position along the bar.
-  const SURFACE_LABELS: Record<string, string> = {
-    natural: "Natural ground",
-    gravel: "Gravel",
-    paved: "Paved",
-    unknown: "Unknown surface",
-  };
-  for (const figure of document.querySelectorAll<HTMLElement>(".surfaceline")) {
-    const svg = figure.querySelector("svg")!;
-    const tip = figure.querySelector<HTMLElement>(".tip")!;
-    const cursor = figure.querySelector<SVGLineElement>(".cursor")!;
-    const runs: { category: string; fromKm: number; toKm: number; stage: string }[] = JSON.parse(figure.dataset.runs!);
-    const total = Number(figure.dataset.total);
-    const X0 = 8;
-    const X1 = 992;
-    const at = (clientX: number) => {
-      const box = svg.getBoundingClientRect();
-      const vx = ((clientX - box.left) / box.width) * 1000;
-      const km = ((vx - X0) / (X1 - X0)) * total;
-      return { vx, km, run: runs.find((r) => km >= r.fromKm && km <= r.toKm) };
-    };
-    const show = (clientX: number) => {
-      const { vx, run } = at(clientX);
-      if (!run) return hide();
-      cursor.setAttribute("x1", String(vx));
-      cursor.setAttribute("x2", String(vx));
-      cursor.setAttribute("visibility", "visible");
-      tip.querySelector("strong")!.textContent = SURFACE_LABELS[run.category] ?? run.category;
-      tip.querySelector("span")!.textContent =
-        `km ${run.fromKm.toFixed(1)}–${run.toKm.toFixed(1)} · stage ${run.stage}`;
-      tip.hidden = false;
-      const box = figure.getBoundingClientRect();
-      const half = tip.offsetWidth / 2;
-      tip.style.left = `${Math.min(Math.max(clientX - box.left, half), box.width - half)}px`;
-      tip.style.top = `${svg.getBoundingClientRect().top - box.top}px`;
-    };
-    const hide = () => {
-      tip.hidden = true;
-      cursor.setAttribute("visibility", "hidden");
-    };
-    svg.addEventListener("pointermove", (e) => show(e.clientX));
-    svg.addEventListener("pointerleave", (e) => e.pointerType === "mouse" && hide());
-    svg.addEventListener("click", (e) => {
-      e.stopPropagation();
-      show(e.clientX);
-    });
-    document.addEventListener("click", hide);
-    document.addEventListener("keydown", (e) => e.key === "Escape" && hide());
-  }
-
-  // Gradient chart tooltip: the 200 m bar under the pointer.
-  for (const figure of document.querySelectorAll<HTMLElement>(".gradeline")) {
-    const svg = figure.querySelector("svg")!;
-    const tip = figure.querySelector<HTMLElement>(".tip")!;
-    const cursor = figure.querySelector<SVGLineElement>(".cursor")!;
-    const bars: { fromKm: number; toKm: number; grade: number; stage: string }[] = JSON.parse(figure.dataset.bars!);
-    const total = Number(figure.dataset.total);
-    const X0 = 8;
-    const X1 = 992;
-    const show = (clientX: number) => {
-      const box = svg.getBoundingClientRect();
-      const vx = ((clientX - box.left) / box.width) * 1000;
-      const km = ((vx - X0) / (X1 - X0)) * total;
-      const bar = bars.find((b) => km >= b.fromKm && km <= b.toKm);
-      if (!bar) return hide();
-      cursor.setAttribute("x1", String(vx));
-      cursor.setAttribute("x2", String(vx));
-      cursor.setAttribute("visibility", "visible");
-      const way = bar.grade > 0 ? "climb" : bar.grade < 0 ? "descent" : "level";
-      tip.querySelector("strong")!.textContent = `${Math.abs(Math.round(bar.grade))} % ${way}`;
-      tip.querySelector("span")!.textContent = `km ${bar.fromKm.toFixed(1)}–${bar.toKm.toFixed(1)} · stage ${bar.stage}`;
-      tip.hidden = false;
-      const fbox = figure.getBoundingClientRect();
-      const half = tip.offsetWidth / 2;
-      tip.style.left = `${Math.min(Math.max(clientX - fbox.left, half), fbox.width - half)}px`;
-      tip.style.top = `${box.top - fbox.top}px`;
-    };
-    const hide = () => {
-      tip.hidden = true;
-      cursor.setAttribute("visibility", "hidden");
     };
     svg.addEventListener("pointermove", (e) => show(e.clientX));
     svg.addEventListener("pointerleave", (e) => e.pointerType === "mouse" && hide());
@@ -2361,16 +2196,6 @@ const nav = [
   .waterline {
     margin: 20px 0 0;
   }
-  .surfaceline {
-    margin: 16px 0 0;
-  }
-  .surfaceline svg {
-    display: block;
-    width: 100%;
-    height: auto;
-    overflow: visible;
-    cursor: crosshair;
-  }
   .run {
     shape-rendering: crispEdges;
   }
@@ -2477,55 +2302,219 @@ const nav = [
     transform: scale(1.5);
   }
   .waterline,
-  .surfaceline,
-  .profile {
+  .terrain-chart {
     position: relative;
   }
-  .profile {
+  /* terrain: the key figures and the keys of both views share one grid cell each, so the toggle
+     moves nothing; from 1080 px the toggle sits in the margin column left of the chart */
+  .terrain {
+    --terrain-tint: color-mix(in srgb, var(--accent) 18%, var(--bg));
+  }
+  .terrain-figs,
+  .terrain-keys {
+    display: grid;
+  }
+  .terrain-figs > *,
+  .terrain-keys > * {
+    grid-area: 1 / 1;
+    align-self: start;
+  }
+  .terrain[data-view="steep"] .view-ground,
+  .terrain[data-view="ground"] :is(.terrain-figs, .terrain-keys) > .view-steep {
+    visibility: hidden;
+  }
+  .terrain[data-view="ground"] svg .view-steep {
+    display: none;
+  }
+  /* key figures in one row: five columns from 640 px (ground uses the first three or four) */
+  .terrain-row {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  @media (min-width: 640px) {
+    .terrain-row {
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+    }
+  }
+  @media (max-width: 639px) {
+    .terrain-row > :nth-child(odd) {
+      padding-left: 0;
+      border-left: 0;
+    }
+  }
+  .terrain-row div {
+    display: flex;
+    flex-direction: column;
+  }
+  .terrain-row dd {
+    order: 1;
+    margin: 0;
+    white-space: nowrap;
+  }
+  .terrain-row dt {
+    display: flex;
+    align-items: center;
+    order: 2;
+    margin-top: 2px;
+    color: var(--muted);
+    font-size: 0.78rem;
+  }
+  .terrain-body {
+    position: relative;
+  }
+  .terrain-chart {
     margin: 16px 0 0;
   }
-  .profile svg {
+  .terrain-chart svg {
     display: block;
     width: 100%;
     height: auto;
     overflow: visible;
     cursor: crosshair;
   }
-  .profile .area {
-    fill: var(--accent);
-    opacity: 0.14;
+  /* the profile: 200 m slices filled by gradient (--g) or ground (--s); an edge in their own colour
+     closes the hairline seams between them */
+  .slice {
+    fill: var(--g);
+    stroke: var(--g);
+    stroke-width: 0.8;
   }
-  .profile .line {
+  .terrain[data-view="ground"] .slice {
+    fill: var(--s);
+    stroke: var(--s);
+  }
+  .terrain-chart .line {
     fill: none;
-    stroke: var(--accent);
-    stroke-width: 2;
+    stroke: var(--text);
+    stroke-width: 1.5;
     stroke-linejoin: round;
   }
-  .profile .grid {
+  .terrain-chart .grid {
     stroke: var(--line);
     stroke-width: 1;
   }
-  .profile .grid-label {
+  .terrain-chart .grid-label {
     fill: var(--muted);
     font: 11px var(--sans);
   }
-  .profile .base {
+  .terrain-chart .base {
     stroke: var(--muted);
     stroke-width: 1.5;
   }
-  .profile .peak {
+  .terrain-chart .peak {
     fill: var(--accent);
     stroke: var(--bg);
     stroke-width: 2;
   }
-  .profile .peak-label {
+  .terrain-chart .peak-label {
     fill: var(--text);
     font: 600 12px var(--sans);
   }
-  .profile .cursor-dot {
-    fill: var(--accent);
+  .terrain-chart .cursor-dot {
+    fill: var(--text);
     stroke: var(--bg);
     stroke-width: 2;
+  }
+  .terrain-keys {
+    margin-top: 8px;
+  }
+  .terrain-keys .legend {
+    margin: 0;
+  }
+  /* the gradient key: descent ← 0 → climb, the same ramp as the slices */
+  .ramp-key {
+    display: grid;
+    grid-template-columns: auto 220px auto;
+    column-gap: 8px;
+    align-items: center;
+    justify-content: start;
+  }
+  .ramp-bar {
+    height: 10px;
+    border-radius: 2px;
+    background: linear-gradient(
+      to right,
+      var(--grade-down-steep),
+      color-mix(in oklab, var(--grade-down-steep) 50%, var(--terrain-tint)),
+      var(--terrain-tint),
+      color-mix(in oklab, var(--grade-up-steep) 50%, var(--terrain-tint)),
+      var(--grade-up-steep)
+    );
+  }
+  .ramp-ticks {
+    display: flex;
+    grid-column: 2;
+    justify-content: space-between;
+    font-size: 0.72rem;
+  }
+  /* the toggle: a vertical track, the knob at the top for elevation and steepness, at the bottom
+     for the ground, each label at its end; one switch, 76 px tall to tap */
+  .toggle {
+    display: flex;
+    gap: 10px;
+    align-items: stretch;
+    margin-top: 16px;
+    padding: 4px 0;
+    border: 0;
+    background: none;
+    color: var(--text);
+    font: inherit;
+    font-size: 0.92rem;
+    text-align: left;
+    cursor: pointer;
+  }
+  @media (min-width: 1080px) {
+    .toggle {
+      position: absolute;
+      top: 0;
+      left: -160px;
+      width: 136px;
+    }
+  }
+  .track {
+    position: relative;
+    flex: none;
+    width: 26px;
+    min-height: 76px;
+    border-radius: 13px;
+    background: var(--line);
+  }
+  .knob {
+    position: absolute;
+    top: 3px;
+    left: 3px;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: var(--text);
+    transition: top 0.2s;
+  }
+  .toggle[aria-checked="true"] .knob {
+    top: calc(100% - 23px);
+  }
+  .toggle-labels {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 14px;
+    line-height: 1.25;
+  }
+  .toggle-labels > span {
+    color: var(--muted);
+  }
+  .toggle[aria-checked="false"] .toggle-a,
+  .toggle[aria-checked="true"] .toggle-b {
+    color: var(--text);
+    font-weight: 600;
+  }
+  .toggle:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 4px;
+    border-radius: 8px;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .knob {
+      transition: none;
+    }
   }
   .tip {
     position: absolute;
@@ -2580,44 +2569,13 @@ const nav = [
     font-size: 0.8rem;
   }
 
-  /* steepness: a slope glyph at its true angle next to the value, and a gradient chart (climbs
-     above the zero line, descents below; colours --grade-*, a diverging scale) */
-  /* steepest climb and descent: the slope drawn at its true angle beside the gradient, the
-     metres over 500 m beneath */
-  .ramp-value {
-    display: grid;
-    grid-template-columns: 56px auto;
-    column-gap: 14px;
-    align-items: end;
-    justify-content: start;
-  }
-  .ramp {
-    grid-row: 1 / 3;
-    width: 56px;
-    height: 30px;
-    margin-bottom: 4px;
-    overflow: visible;
-  }
-  .ramp-detail {
-    color: var(--muted);
-    font-size: 0.85rem;
-  }
-  /* phones: three figures don't fit side by side; the first two share a row, the third gets its
-     own (steepness: one per row, the slope glyphs need the width) */
+  /* phones: three figures don't fit side by side; the first two share a row, the third gets its own */
   @media (max-width: 639px) {
     .spec.three {
       grid-template-columns: repeat(2, 1fr);
     }
     .spec.three > :nth-child(3) {
       grid-column: 1 / -1;
-      padding-left: 0;
-      border-top: 1px solid var(--line);
-      border-left: 0;
-    }
-    .spec.three.steep {
-      grid-template-columns: 1fr;
-    }
-    .spec.three.steep > * + * {
       padding-left: 0;
       border-top: 1px solid var(--line);
       border-left: 0;
@@ -2638,66 +2596,24 @@ const nav = [
       font-size: 13px;
     }
   }
-  .ramp.up polygon {
-    fill: var(--grade-up-steep);
-  }
-  .ramp.down polygon {
-    fill: var(--grade-down-steep);
-  }
-  .gradeline,
   .climate {
     position: relative;
     margin: 16px 0 0;
   }
-  .gradeline svg,
   .climate svg {
     display: block;
     width: 100%;
     height: auto;
     overflow: visible;
   }
-  .gradeline svg {
-    cursor: crosshair;
-  }
-  .bar {
-    shape-rendering: crispEdges;
-  }
-  .bar.up {
-    fill: var(--grade-up);
-  }
-  .bar.up.steep {
-    fill: var(--grade-up-steep);
-  }
-  .bar.down {
-    fill: var(--grade-down);
-  }
-  .bar.down.steep {
-    fill: var(--grade-down-steep);
-  }
-  .dash-key {
-    width: 18px;
-    border-top: 1px dashed var(--muted);
-  }
-  .steep-line {
-    stroke: var(--muted);
-    stroke-width: 1;
-    stroke-dasharray: 4 4;
-    opacity: 0.7;
-  }
-  .gradeline .zero,
   .climate .zero,
   .climate .base {
     stroke: var(--muted);
     stroke-width: 1.5;
   }
-  .gradeline .grid-label,
   .climate .grid-label {
     fill: var(--muted);
     font: 11px var(--sans);
-  }
-  .gradeline .peak-label {
-    fill: var(--text);
-    font: 600 12px var(--sans);
   }
 
   /* climate: twelve month columns in three panels (temperatures, wet days, daylight), each with its

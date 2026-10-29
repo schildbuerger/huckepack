@@ -79,6 +79,11 @@
   ESA WorldCover (satellite land cover, 10 m) in six groups, as a sentence and
   one lane per group (issue #3; of three proposals, the lanes were chosen).
   Species or habitat detail would need another source.
+- **Terrain:** surfaces, elevation and steepness are one section with one
+  elevation profile and a toggle between two views (elevation and
+  steepness; ground), each with one row of key figures (issue #15; of four
+  previews, D was chosen and refined, 2026-10-29). The ground categories
+  use natural colours (earth, sand, asphalt) everywhere on the site.
 - **Difficulty:** rated in three dimensions, terrain, climate (including
   wind) and effort, each Easy to Hard by fixed thresholds and its hardest
   measure ([difficulty.md](difficulty.md), issue #16). The SAC grade is a
