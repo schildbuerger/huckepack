@@ -303,10 +303,10 @@ const nav = [
   { id: "location", label: "Location", show: true },
   { id: "map", label: "Map", show: true },
   { id: "difficulty", label: "Difficulty", show: diff.dims.length > 0 },
+  { id: "climate", label: "Climate", show: Boolean(climate) },
+  { id: "stages", label: "Stages", show: Boolean(t.stages) },
   { id: "terrain", label: "Terrain", show: Boolean(elevation && grad) },
   { id: "landscape", label: "Landscape", show: Boolean(landcover) },
-  { id: "stages", label: "Stages", show: Boolean(t.stages) },
-  { id: "climate", label: "Climate", show: Boolean(climate) },
   { id: "sleeping", label: "Sleeping", show: Boolean(t.sleeping || t.wildCamping) },
   { id: "water", label: "Water", show: Boolean(water) },
 ].filter((n) => n.show);
@@ -610,6 +610,220 @@ const nav = [
     </section>
   )}
 
+  {climate && tRange && (
+    <section id="climate">
+      <h2>Climate</h2>
+      <dl class="strip spec cols" style="--cols: 4">
+        <div>
+          <dt>Days {seasonMonths.length ? "in season" : ""} · lowest point</dt>
+          <dd><span class="big">{between(inSeason.map((m) => m.low.tmax), "")}</span><span class="unit">°C</span></dd>
+        </div>
+        <div>
+          <dt>Nights {seasonMonths.length ? "in season" : ""} · highest point</dt>
+          <dd><span class="big">{between(inSeason.map((m) => m.high.tmin), "")}</span><span class="unit">°C</span></dd>
+        </div>
+        <div>
+          <dt>Wet days a month</dt>
+          <dd><span class="big">{between(inSeason.map((m) => m.high.wetDays), "")}</span></dd>
+        </div>
+        <div>
+          <dt>Daylight</dt>
+          <dd><span class="big">{between(inSeason.map((m) => m.daylightH), "", 1)}</span><span class="unit">h</span></dd>
+        </div>
+      </dl>
+
+      <figure class="chart climate" data-months={JSON.stringify(climate.months)}>
+        <ul class="legend" aria-hidden="true">
+          <li><span class="swatch-key" style="--c: var(--clim-low)"></span>Lowest point</li>
+          <li><span class="swatch-key" style="--c: var(--clim-high)"></span>Highest point</li>
+          <li><span class="swatch-key" style="--c: var(--wet)"></span>Wet days</li>
+          <li><span class="swatch-key" style="--c: var(--snow)"></span>of which snow</li>
+          {seasonRuns.length > 0 && <li><span class="swatch-key season-key"></span>Season</li>}
+        </ul>
+        <div class="chart-scroll">
+        <svg
+          viewBox={`0 0 ${CHART.width} ${CLIM.height}`}
+          role="img"
+          aria-label={`Climate by month, ${climate.years[0]}–${climate.years[1]} average: day highs and night lows at the lowest and highest point, wet days, and daylight. A table follows.`}
+        >
+          {seasonRuns.map((run) => (
+            <g>
+              <rect class="season" x={colX(run[0])} y="0" width={colW * run.length} height={CLIM.months + 6} rx="6" />
+              <text class="season-label" x={colX(run[0]) + (colW * run.length) / 2} y="16" text-anchor="middle">Season</text>
+            </g>
+          ))}
+
+          <text class="panel-label" x="8" y={CLIM.tTop - 12}>Day high and night low</text>
+          {tempGrid.map((c) => (
+            <g>
+              <line class={c === 0 ? "zero" : "grid"} x1={CLIM.x0} x2={CLIM.x1} y1={yTemp(c)} y2={yTemp(c)} />
+              <text class="grid-label" x={CLIM.x0 - 8} y={yTemp(c) + 4} text-anchor="end">{signed(c)} °C</text>
+            </g>
+          ))}
+          {climate.months.map((m) => (
+            <g>
+              <rect class="temp low" x={colX(m.month) + colW / 2 - 13} y={yTemp(m.low.tmax)} width="11" height={yTemp(m.low.tmin) - yTemp(m.low.tmax)} rx="4" />
+              <rect class="temp high" x={colX(m.month) + colW / 2 + 2} y={yTemp(m.high.tmax)} width="11" height={yTemp(m.high.tmin) - yTemp(m.high.tmax)} rx="4" />
+            </g>
+          ))}
+
+          <text class="panel-label" x="8" y={CLIM.wTop - 12}>Wet days, at the highest point</text>
+          {Array.from({ length: wetMax / 5 + 1 }, (_, i) => i * 5).map((d) => (
+            <g>
+              <line class={d === 0 ? "base" : "grid"} x1={CLIM.x0} x2={CLIM.x1} y1={yWet(d)} y2={yWet(d)} />
+              {d > 0 && <text class="grid-label" x={CLIM.x0 - 8} y={yWet(d) + 4} text-anchor="end">{d}</text>}
+            </g>
+          ))}
+          {climate.months.map((m) => (
+            <g>
+              <rect class="wet" x={colX(m.month) + colW / 2 - 12} y={yWet(m.high.wetDays)} width="24" height={Math.max(yWet(m.high.snowDays) - yWet(m.high.wetDays) - (m.high.snowDays >= 0.5 ? 2 : 0), 0)} rx="3" />
+              {m.high.snowDays >= 0.5 && (
+                <rect class="snow" x={colX(m.month) + colW / 2 - 12} y={yWet(m.high.snowDays)} width="24" height={CLIM.wBottom - yWet(m.high.snowDays)} />
+              )}
+            </g>
+          ))}
+
+          <text class="panel-label" x="8" y={CLIM.dTop - 12}>Daylight</text>
+          {climate.months.map((m) => (
+            <g>
+              <rect class="day-track" x={colX(m.month) + 8} y={CLIM.dTop + 8} width={colW - 16} height="8" rx="4" />
+              <rect class="day-fill" x={colX(m.month) + colW / 2 - ((colW - 16) * m.daylightH) / 48} y={CLIM.dTop + 8} width={((colW - 16) * m.daylightH) / 24} height="8" rx="4" />
+              <text class="day-value" x={colX(m.month) + colW / 2} y={CLIM.dTop + 34} text-anchor="middle">{m.daylightH.toFixed(1)} h</text>
+            </g>
+          ))}
+
+          {climate.months.map((m) => (
+            <g>
+              <text class="month" x={colX(m.month) + colW / 2} y={CLIM.months} text-anchor="middle">{MONTHS[m.month - 1]}</text>
+              <rect class="col-hit" data-month={m.month} x={colX(m.month)} y="0" width={colW} height={CLIM.height} />
+            </g>
+          ))}
+        </svg>
+        </div>
+        <div class="tip" role="status" hidden><strong></strong><span></span></div>
+        <!-- a table ignores the 1 px width of .sr-only and would widen the page: hide its wrapper, pinned left so
+             it doesn't sit beyond the edge after the wide chart -->
+        <div class="sr-only" style="top: 0; left: 0">
+        <table>
+          <caption>Climate by month, {climate.years[0]}–{climate.years[1]} average</caption>
+          <thead>
+            <tr>
+              <th scope="col">Month</th>
+              <th scope="col">Lowest point, day high / night low (°C)</th>
+              <th scope="col">Highest point, day high / night low (°C)</th>
+              <th scope="col">Wet days</th>
+              <th scope="col">Snow days</th>
+              <th scope="col">Frost nights at the highest point</th>
+              <th scope="col">Daylight (h)</th>
+            </tr>
+          </thead>
+          <tbody>
+            {climate.months.map((m) => (
+              <tr>
+                <th scope="row">{MONTH_NAMES[m.month - 1]}</th>
+                <td>{m.low.tmax} / {m.low.tmin}</td>
+                <td>{m.high.tmax} / {m.high.tmin}</td>
+                <td>{m.high.wetDays}</td>
+                <td>{m.high.snowDays}</td>
+                <td>{m.high.frostNights}</td>
+                <td>{m.daylightH}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+        </div>
+        <figcaption class="muted">
+          Averages for {climate.years[0]}–{climate.years[1]} from ERA5 reanalysis via Open-Meteo, adjusted to each point's
+          elevation; daylight from sunrise to sunset mid-month.
+        </figcaption>
+      </figure>
+    </section>
+  )}
+
+  {t.stages && (
+    <section id="stages">
+      <h2>Stages</h2>
+      <ol class="timeline">
+        <li class="stage-head" aria-hidden="true">
+          <span></span>
+          <div class="stage-body">
+            <span></span>
+            <ul class="stage-stats">
+              <li>Distance</li>
+              <li>Ascent</li>
+              <li>Descent</li>
+              {stageEle && <li class="wide">Elevation</li>}
+              {stageTime && <li>Time</li>}
+            </ul>
+          </div>
+        </li>
+        {stageView.map((s) => (
+          <li class={`stage ${s.kind}`}>
+            <span class="stage-no" aria-hidden="true">{s.number}</span>
+            <div class="stage-body">
+              <p class="stage-route">
+                <span class="visually-hidden">Stage {s.number}{s.kind !== "main" && ` (${s.kind})`}: </span>
+                {s.from} <span class="arrow" aria-hidden="true">→</span> {s.to}
+                {s.kind !== "main" && <span class="stage-kind">{s.kind === "approach" ? "Approach" : "Variant"}</span>}
+              </p>
+              <ul class="stage-stats">
+                <li title="Distance"><span class="visually-hidden">Distance </span>{s.km.toFixed(1)} km</li>
+                {s.climb ? (
+                  <>
+                    <li title={s.climb.est ? "Ascent, from the terrain model" : "Ascent"} class:list={[{ est: s.climb.est }]}>
+                      <span class="visually-hidden">{s.climb.est ? "Estimated ascent " : "Ascent "}</span>
+                      {s.climb.est && <span aria-hidden="true">≈ </span>}{fmt(s.climb.up)} m ↑
+                    </li>
+                    <li title={s.climb.est ? "Descent, from the terrain model" : "Descent"} class:list={[{ est: s.climb.est }]}>
+                      <span class="visually-hidden">{s.climb.est ? "Estimated descent " : "Descent "}</span>
+                      {s.climb.est && <span aria-hidden="true">≈ </span>}{fmt(s.climb.down)} m ↓
+                    </li>
+                  </>
+                ) : (
+                  <>
+                    <li aria-hidden="true"></li>
+                    <li aria-hidden="true"></li>
+                  </>
+                )}
+                {stageEle &&
+                  (s.ele ? (
+                    <li
+                      title={s.ele.est ? "Elevation at start and end, from the terrain model" : "Elevation at start and end"}
+                      class:list={["wide", { est: s.ele.est }]}
+                    >
+                      <span class="visually-hidden">{s.ele.est ? "Estimated elevation " : "Elevation "}</span>
+                      {s.ele.est && <span aria-hidden="true">≈ </span>}{fmt(s.ele.from)} → {fmt(s.ele.to)} m
+                    </li>
+                  ) : (
+                    <li class="wide" aria-hidden="true"></li>
+                  ))}
+                {stageTime &&
+                  (s.time ? (
+                    <li title={s.time.est ? "Estimated walking time (DIN 33466)" : "Walking time"} class:list={[{ est: s.time.est }]}>
+                      <span class="visually-hidden">{s.time.est ? "Estimated walking time " : "Walking time "}</span>
+                      {s.time.est && <span aria-hidden="true">≈ </span>}{timeText(s.time.min, s.time.max)}
+                    </li>
+                  ) : (
+                    <li aria-hidden="true"></li>
+                  ))}
+              </ul>
+            </div>
+          </li>
+        ))}
+      </ol>
+      <p class="note muted">
+        Totals and averages count the main stages only.
+        {t.stages.timesSource && ` Walking times from ${sourceShort(t.stages.timesSource)}.`}
+        {(estEle || estClimb || estTime) && " ≈ marks our estimates where the source gives no figure: "}
+        {(estEle || estClimb) &&
+          `${[estClimb && "ascent and descent", estEle && "heights"].filter(Boolean).join(" and ")} from the terrain model (Copernicus DEM, 30 m grid, sampled every 100 m), to the nearest 10 m`}
+        {(estEle || estClimb) && estTime && "; "}
+        {estTime && "walking times from each stage's distance, ascent and descent by the German hiking standard DIN 33466 (4 km/h, 300 m/h up, 500 m/h down), without breaks"}
+        {(estEle || estClimb || estTime) && "."}
+      </p>
+    </section>
+  )}
+
   {elevation && grad && eleRange && (
     <section id="terrain" class="terrain" data-view="steep">
       <h2>Terrain</h2>
@@ -760,6 +974,7 @@ const nav = [
       </div>
     </section>
   )}
+
   {landcover && (
     <section id="landscape">
       <h2>Landscape</h2>
@@ -805,220 +1020,6 @@ const nav = [
           </svg>
         </div>
         <figcaption class="muted">ESA WorldCover (10 m satellite land cover, 2021), every 100 m along the route.</figcaption>
-      </figure>
-    </section>
-  )}
-
-  {t.stages && (
-    <section id="stages">
-      <h2>Stages</h2>
-      <ol class="timeline">
-        <li class="stage-head" aria-hidden="true">
-          <span></span>
-          <div class="stage-body">
-            <span></span>
-            <ul class="stage-stats">
-              <li>Distance</li>
-              <li>Ascent</li>
-              <li>Descent</li>
-              {stageEle && <li class="wide">Elevation</li>}
-              {stageTime && <li>Time</li>}
-            </ul>
-          </div>
-        </li>
-        {stageView.map((s) => (
-          <li class={`stage ${s.kind}`}>
-            <span class="stage-no" aria-hidden="true">{s.number}</span>
-            <div class="stage-body">
-              <p class="stage-route">
-                <span class="visually-hidden">Stage {s.number}{s.kind !== "main" && ` (${s.kind})`}: </span>
-                {s.from} <span class="arrow" aria-hidden="true">→</span> {s.to}
-                {s.kind !== "main" && <span class="stage-kind">{s.kind === "approach" ? "Approach" : "Variant"}</span>}
-              </p>
-              <ul class="stage-stats">
-                <li title="Distance"><span class="visually-hidden">Distance </span>{s.km.toFixed(1)} km</li>
-                {s.climb ? (
-                  <>
-                    <li title={s.climb.est ? "Ascent, from the terrain model" : "Ascent"} class:list={[{ est: s.climb.est }]}>
-                      <span class="visually-hidden">{s.climb.est ? "Estimated ascent " : "Ascent "}</span>
-                      {s.climb.est && <span aria-hidden="true">≈ </span>}{fmt(s.climb.up)} m ↑
-                    </li>
-                    <li title={s.climb.est ? "Descent, from the terrain model" : "Descent"} class:list={[{ est: s.climb.est }]}>
-                      <span class="visually-hidden">{s.climb.est ? "Estimated descent " : "Descent "}</span>
-                      {s.climb.est && <span aria-hidden="true">≈ </span>}{fmt(s.climb.down)} m ↓
-                    </li>
-                  </>
-                ) : (
-                  <>
-                    <li aria-hidden="true"></li>
-                    <li aria-hidden="true"></li>
-                  </>
-                )}
-                {stageEle &&
-                  (s.ele ? (
-                    <li
-                      title={s.ele.est ? "Elevation at start and end, from the terrain model" : "Elevation at start and end"}
-                      class:list={["wide", { est: s.ele.est }]}
-                    >
-                      <span class="visually-hidden">{s.ele.est ? "Estimated elevation " : "Elevation "}</span>
-                      {s.ele.est && <span aria-hidden="true">≈ </span>}{fmt(s.ele.from)} → {fmt(s.ele.to)} m
-                    </li>
-                  ) : (
-                    <li class="wide" aria-hidden="true"></li>
-                  ))}
-                {stageTime &&
-                  (s.time ? (
-                    <li title={s.time.est ? "Estimated walking time (DIN 33466)" : "Walking time"} class:list={[{ est: s.time.est }]}>
-                      <span class="visually-hidden">{s.time.est ? "Estimated walking time " : "Walking time "}</span>
-                      {s.time.est && <span aria-hidden="true">≈ </span>}{timeText(s.time.min, s.time.max)}
-                    </li>
-                  ) : (
-                    <li aria-hidden="true"></li>
-                  ))}
-              </ul>
-            </div>
-          </li>
-        ))}
-      </ol>
-      <p class="note muted">
-        Totals and averages count the main stages only.
-        {t.stages.timesSource && ` Walking times from ${sourceShort(t.stages.timesSource)}.`}
-        {(estEle || estClimb || estTime) && " ≈ marks our estimates where the source gives no figure: "}
-        {(estEle || estClimb) &&
-          `${[estClimb && "ascent and descent", estEle && "heights"].filter(Boolean).join(" and ")} from the terrain model (Copernicus DEM, 30 m grid, sampled every 100 m), to the nearest 10 m`}
-        {(estEle || estClimb) && estTime && "; "}
-        {estTime && "walking times from each stage's distance, ascent and descent by the German hiking standard DIN 33466 (4 km/h, 300 m/h up, 500 m/h down), without breaks"}
-        {(estEle || estClimb || estTime) && "."}
-      </p>
-    </section>
-  )}
-
-  {climate && tRange && (
-    <section id="climate">
-      <h2>Climate</h2>
-      <dl class="strip spec cols" style="--cols: 4">
-        <div>
-          <dt>Days {seasonMonths.length ? "in season" : ""} · lowest point</dt>
-          <dd><span class="big">{between(inSeason.map((m) => m.low.tmax), "")}</span><span class="unit">°C</span></dd>
-        </div>
-        <div>
-          <dt>Nights {seasonMonths.length ? "in season" : ""} · highest point</dt>
-          <dd><span class="big">{between(inSeason.map((m) => m.high.tmin), "")}</span><span class="unit">°C</span></dd>
-        </div>
-        <div>
-          <dt>Wet days a month</dt>
-          <dd><span class="big">{between(inSeason.map((m) => m.high.wetDays), "")}</span></dd>
-        </div>
-        <div>
-          <dt>Daylight</dt>
-          <dd><span class="big">{between(inSeason.map((m) => m.daylightH), "", 1)}</span><span class="unit">h</span></dd>
-        </div>
-      </dl>
-
-      <figure class="chart climate" data-months={JSON.stringify(climate.months)}>
-        <ul class="legend" aria-hidden="true">
-          <li><span class="swatch-key" style="--c: var(--clim-low)"></span>Lowest point</li>
-          <li><span class="swatch-key" style="--c: var(--clim-high)"></span>Highest point</li>
-          <li><span class="swatch-key" style="--c: var(--wet)"></span>Wet days</li>
-          <li><span class="swatch-key" style="--c: var(--snow)"></span>of which snow</li>
-          {seasonRuns.length > 0 && <li><span class="swatch-key season-key"></span>Season</li>}
-        </ul>
-        <div class="chart-scroll">
-        <svg
-          viewBox={`0 0 ${CHART.width} ${CLIM.height}`}
-          role="img"
-          aria-label={`Climate by month, ${climate.years[0]}–${climate.years[1]} average: day highs and night lows at the lowest and highest point, wet days, and daylight. A table follows.`}
-        >
-          {seasonRuns.map((run) => (
-            <g>
-              <rect class="season" x={colX(run[0])} y="0" width={colW * run.length} height={CLIM.months + 6} rx="6" />
-              <text class="season-label" x={colX(run[0]) + (colW * run.length) / 2} y="16" text-anchor="middle">Season</text>
-            </g>
-          ))}
-
-          <text class="panel-label" x="8" y={CLIM.tTop - 12}>Day high and night low</text>
-          {tempGrid.map((c) => (
-            <g>
-              <line class={c === 0 ? "zero" : "grid"} x1={CLIM.x0} x2={CLIM.x1} y1={yTemp(c)} y2={yTemp(c)} />
-              <text class="grid-label" x={CLIM.x0 - 8} y={yTemp(c) + 4} text-anchor="end">{signed(c)} °C</text>
-            </g>
-          ))}
-          {climate.months.map((m) => (
-            <g>
-              <rect class="temp low" x={colX(m.month) + colW / 2 - 13} y={yTemp(m.low.tmax)} width="11" height={yTemp(m.low.tmin) - yTemp(m.low.tmax)} rx="4" />
-              <rect class="temp high" x={colX(m.month) + colW / 2 + 2} y={yTemp(m.high.tmax)} width="11" height={yTemp(m.high.tmin) - yTemp(m.high.tmax)} rx="4" />
-            </g>
-          ))}
-
-          <text class="panel-label" x="8" y={CLIM.wTop - 12}>Wet days, at the highest point</text>
-          {Array.from({ length: wetMax / 5 + 1 }, (_, i) => i * 5).map((d) => (
-            <g>
-              <line class={d === 0 ? "base" : "grid"} x1={CLIM.x0} x2={CLIM.x1} y1={yWet(d)} y2={yWet(d)} />
-              {d > 0 && <text class="grid-label" x={CLIM.x0 - 8} y={yWet(d) + 4} text-anchor="end">{d}</text>}
-            </g>
-          ))}
-          {climate.months.map((m) => (
-            <g>
-              <rect class="wet" x={colX(m.month) + colW / 2 - 12} y={yWet(m.high.wetDays)} width="24" height={Math.max(yWet(m.high.snowDays) - yWet(m.high.wetDays) - (m.high.snowDays >= 0.5 ? 2 : 0), 0)} rx="3" />
-              {m.high.snowDays >= 0.5 && (
-                <rect class="snow" x={colX(m.month) + colW / 2 - 12} y={yWet(m.high.snowDays)} width="24" height={CLIM.wBottom - yWet(m.high.snowDays)} />
-              )}
-            </g>
-          ))}
-
-          <text class="panel-label" x="8" y={CLIM.dTop - 12}>Daylight</text>
-          {climate.months.map((m) => (
-            <g>
-              <rect class="day-track" x={colX(m.month) + 8} y={CLIM.dTop + 8} width={colW - 16} height="8" rx="4" />
-              <rect class="day-fill" x={colX(m.month) + colW / 2 - ((colW - 16) * m.daylightH) / 48} y={CLIM.dTop + 8} width={((colW - 16) * m.daylightH) / 24} height="8" rx="4" />
-              <text class="day-value" x={colX(m.month) + colW / 2} y={CLIM.dTop + 34} text-anchor="middle">{m.daylightH.toFixed(1)} h</text>
-            </g>
-          ))}
-
-          {climate.months.map((m) => (
-            <g>
-              <text class="month" x={colX(m.month) + colW / 2} y={CLIM.months} text-anchor="middle">{MONTHS[m.month - 1]}</text>
-              <rect class="col-hit" data-month={m.month} x={colX(m.month)} y="0" width={colW} height={CLIM.height} />
-            </g>
-          ))}
-        </svg>
-        </div>
-        <div class="tip" role="status" hidden><strong></strong><span></span></div>
-        <!-- a table ignores the 1 px width of .sr-only and would widen the page: hide its wrapper, pinned left so
-             it doesn't sit beyond the edge after the wide chart -->
-        <div class="sr-only" style="top: 0; left: 0">
-        <table>
-          <caption>Climate by month, {climate.years[0]}–{climate.years[1]} average</caption>
-          <thead>
-            <tr>
-              <th scope="col">Month</th>
-              <th scope="col">Lowest point, day high / night low (°C)</th>
-              <th scope="col">Highest point, day high / night low (°C)</th>
-              <th scope="col">Wet days</th>
-              <th scope="col">Snow days</th>
-              <th scope="col">Frost nights at the highest point</th>
-              <th scope="col">Daylight (h)</th>
-            </tr>
-          </thead>
-          <tbody>
-            {climate.months.map((m) => (
-              <tr>
-                <th scope="row">{MONTH_NAMES[m.month - 1]}</th>
-                <td>{m.low.tmax} / {m.low.tmin}</td>
-                <td>{m.high.tmax} / {m.high.tmin}</td>
-                <td>{m.high.wetDays}</td>
-                <td>{m.high.snowDays}</td>
-                <td>{m.high.frostNights}</td>
-                <td>{m.daylightH}</td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-        </div>
-        <figcaption class="muted">
-          Averages for {climate.years[0]}–{climate.years[1]} from ERA5 reanalysis via Open-Meteo, adjusted to each point's
-          elevation; daylight from sunrise to sunset mid-month.
-        </figcaption>
       </figure>
     </section>
   )}

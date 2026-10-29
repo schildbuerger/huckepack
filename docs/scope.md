@@ -84,6 +84,10 @@
   steepness; ground), each with one row of key figures (issue #15; of four
   previews, D was chosen and refined, 2026-10-29). The ground categories
   use natural colours (earth, sand, asphalt) everywhere on the site.
+- **Trail page order:** where is it (location, map), is it for me and when
+  (difficulty, climate), what are the days like (stages, terrain,
+  landscape), what do I need on the way (sleeping, water), then the sources
+  (2026-10-29).
 - **Difficulty:** rated in three dimensions, terrain, climate (including
   wind) and effort, each Easy to Hard by fixed thresholds and its hardest
   measure ([difficulty.md](difficulty.md), issue #16). The SAC grade is a
