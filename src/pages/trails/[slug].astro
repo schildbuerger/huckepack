@@ -346,19 +346,12 @@ const nav = [
       )}
       {climbTotal && (
         <div>
-          <dt>Ascent{climbTotal.est && " (estimate)"}</dt>
-          <dd>
-            {climbTotal.est && <span class="unit approx" aria-hidden="true">≈</span>}
-            <span class="big">{fmt(climbTotal.up)}</span><span class="unit">m ↑</span>
-          </dd>
-        </div>
-      )}
-      {climbTotal && (
-        <div>
-          <dt>Descent{climbTotal.est && " (estimate)"}</dt>
-          <dd>
-            {climbTotal.est && <span class="unit approx" aria-hidden="true">≈</span>}
-            <span class="big">{fmt(climbTotal.down)}</span><span class="unit">m ↓</span>
+          <dt>Ascent · descent</dt>
+          <!-- both climbs in one tile: two small lines, as tall as the big numbers beside them -->
+          <dd class="climbs">
+            {climbTotal.est && <span class="sr-only">estimated: </span>}
+            <span>{climbTotal.est && <span class="unit approx" aria-hidden="true">≈</span>}<span class="climb">{fmt(climbTotal.up)}</span><span class="unit">m ↑</span></span>
+            <span>{climbTotal.est && <span class="unit approx" aria-hidden="true">≈</span>}<span class="climb">{fmt(climbTotal.down)}</span><span class="unit">m ↓</span></span>
           </dd>
         </div>
       )}
@@ -1962,8 +1955,14 @@ const nav = [
       border-left: 1px solid var(--line);
     }
   }
-  /* key figures: two rows of four from 640 px (eight don't fit in one row), a hairline between */
-  @media (min-width: 640px) {
+  /* key figures: one row from 1200 px (each column as wide as its figure, the spare width shared
+     out), rows of four from 640 px with a hairline between, two shrinkable columns on phones */
+  @media (max-width: 639px) {
+    .spec.key-figs {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+  @media (min-width: 640px) and (max-width: 1199px) {
     .spec.key-figs {
       grid-template-columns: repeat(4, 1fr);
       grid-auto-flow: row;
@@ -1975,6 +1974,33 @@ const nav = [
     .spec.key-figs > :nth-child(n + 5) {
       border-top: 1px solid var(--line);
     }
+  }
+  @media (min-width: 1200px) {
+    .spec.key-figs {
+      grid-template-columns: none;
+      grid-auto-flow: column;
+      grid-auto-columns: minmax(max-content, 1fr);
+    }
+    .spec.key-figs > * + * {
+      padding-left: 16px;
+      border-left: 1px solid var(--line);
+    }
+  }
+  /* ascent and descent: two lines in a smaller serif, together as tall as one big number */
+  .climbs {
+    display: grid;
+    align-content: end;
+    min-height: 1.95rem;
+    line-height: 1.05;
+  }
+  .climb {
+    font-family: var(--serif);
+    font-size: 1.05rem;
+    font-weight: 600;
+    font-variant-numeric: lining-nums tabular-nums;
+  }
+  .climbs .unit {
+    font-size: 0.78rem;
   }
   /* landscape key figure: the main landscape in words over a bar of every group's share; as tall
      as the big numbers beside it */
