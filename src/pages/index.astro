@@ -2,23 +2,32 @@
 import { getCollection, getEntry } from "astro:content";
 import Base from "../layouts/Base.astro";
 import Icon, { type IconName } from "../components/Icon.astro";
-import { mainStages, stageEstimates, stageTotals, summarize, walkingMinutes } from "../lib/trails";
+import { mainStages, stageEstimates, stageTotals, walkingMinutes } from "../lib/trails";
+import { LEVELS } from "../lib/difficulty";
+import { climateLevel } from "../lib/filters";
+import { searchSummary } from "../lib/search";
 
 const entries = (await getCollection("trails")).sort((a, b) => a.data.name.localeCompare(b.data.name));
-const trails = entries.map(({ id, data }) => summarize(id, data));
+const derivedAll = await Promise.all(entries.map(async (e) => (await getEntry("derived", e.id))?.data));
+const trails = entries.map(({ id, data }, i) => searchSummary(id, data, derivedAll[i]));
+// a trail's difficulty in one word: the hardest of its three ratings over its season, as the
+// trail page's key figure shows it
+const difficultyWord = (t: (typeof trails)[number]) => {
+  const xs = [t.terrainLevel, t.effortLevel, climateLevel(t, [])].filter((x) => x !== null) as number[];
+  return xs.length ? LEVELS[Math.max(...xs) - 1] : null;
+};
 const fmt = (n: number) => n.toLocaleString("en");
 const days = (d: [number, number] | null) => (d === null ? null : d[0] === d[1] ? `${d[0]}` : `${d[0]}–${d[1]}`);
 
 // the mission (docs/mission.md) as bullets under the headline: find, plan, sources
 const usps = [
-  "Find trails that fit: by season, length, difficulty, region, beds and water",
-  "Plan with the data that matters: stages, climbs, ground, landscape, climate, water and getting there",
+  "Find trails that fit: by season, region, length, difficulty, landscape, ground, beds and water",
+  "Plan with the data that matters: difficulty, stages, terrain, landscape, climate, water, beds and getting there",
   "Every figure from official and open sources, named on the page",
 ];
 
 // totals for the strip under the hero: the plain counts, then a few for fun, each summed from
 // the same figures the trail pages show
-const derivedAll = await Promise.all(entries.map(async (e) => (await getEntry("derived", e.id))?.data));
 const EVEREST_M = 8849;
 const sum = (xs: number[]) => xs.reduce((a, b) => a + b, 0);
 const perTrail = entries.map((e, i) => {
@@ -37,7 +46,7 @@ const perTrail = entries.map((e, i) => {
     }),
   );
   const taps = d?.water?.points.filter((p) => p.kind === "drinking").length ?? 0;
-  return { climbed, minutes, taps };
+  return { climbed, climbedEst: stated === undefined, minutes, taps };
 });
 const totals = {
   trails: trails.length,
@@ -68,28 +77,29 @@ const featuredAll = trails.map((t, i) => {
     const line = pts.map(([km, m], i) => `${i ? "L" : "M"}${x(km).toFixed(1)},${y(m).toFixed(1)}`).join("");
     return { line, area: `${line}L${W},${H}L0,${H}Z`, peak: elevation.highest.m };
   })();
-  return { t, spark, surface: d?.surface };
+  return { t, spark, surface: d?.surface, climb: perTrail[i], level: difficultyWord(t) };
 });
 
+// what a trail page shows, in its order (src/pages/trails/[slug].astro)
 const features: { icon: IconName; title: string; text: string }[] = [
-  { icon: "chart-column", title: "Key figures", text: "Length, ascent and descent, difficulty, days, distance per day and the season." },
-  { icon: "gauge", title: "Difficulty", text: "Terrain, climate and the length of the days, each rated Easy to Hard by the same rule on every trail." },
+  { icon: "chart-column", title: "Key figures", text: "Length, ascent and descent, difficulty, days, distance per day, the season and the main landscape." },
+  { icon: "train-front", title: "Location", text: "Start and finish, the nearest main station and airports with the road distance, and the trail's waymark." },
   { icon: "map", title: "Map", text: "The route on an OpenStreetMap map, stage by stage, with approaches and variants." },
-  { icon: "mountain", title: "Terrain", text: "The elevation profile coloured by its steepness, or by the ground underfoot: earth, gravel or tarmac." },
-  { icon: "trees", title: "Landscape", text: "Forest, open hills, moss, rock or snow: what the trail passes through, and where." },
-  { icon: "list-ordered", title: "Stages", text: "Every official stage with distance, ascent, descent, elevation and walking time." },
+  { icon: "gauge", title: "Difficulty", text: "Terrain, climate and the length of the days, each rated Easy to Hard by the same rule on every trail." },
   { icon: "cloud-sun", title: "Climate", text: "Day and night temperatures, wet days, snow and daylight by month, low down and up high." },
+  { icon: "list-ordered", title: "Stages", text: "Every official stage with distance, ascent, descent, elevation and walking time." },
+  { icon: "mountain", title: "Terrain", text: "The elevation profile coloured by its steepness, or by the surfaces underfoot: earth, gravel or tarmac." },
+  { icon: "trees", title: "Landscape", text: "Forest, open hills, moss, rock or snow: what the trail passes through, and where." },
   { icon: "tent", title: "Sleeping", text: "Huts, campsites, hostels and rooms along the way, and whether wild camping is allowed." },
   { icon: "droplet", title: "Water", text: "Drinking water and springs along the route, and the longest stretch without." },
-  { icon: "train-front", title: "Getting there", text: "The nearest main station and airports, with the road distance to the start." },
 ];
 
 const sources = [
-  { name: "Trail operators", what: "Official stages, distances, times and rules" },
+  { name: "Trail operators", what: "Official stages, distances, times, waymarks and rules" },
   { name: "OpenStreetMap", what: "Route, surfaces, water points and the map" },
   { name: "Copernicus DEM", what: "Elevation profile and steepness, 30 m terrain model" },
   { name: "ESA WorldCover", what: "Landscape along the route, 10 m satellite land cover" },
-  { name: "ERA5 (Open-Meteo)", what: "Climate by month, 30 years of weather" },
+  { name: "ERA5 (Open-Meteo)", what: "Climate and wind by month, 30 years of weather" },
   { name: "OSRM", what: "Road distances from travel hubs" },
 ];
 ---
@@ -168,7 +178,7 @@ const sources = [
   {featuredAll.length > 0 && (
     <section class="block">
       <h2>Featured trail</h2>
-      {featuredAll.map(({ t: featured, spark, surface }, i) => (
+      {featuredAll.map(({ t: featured, spark, surface, climb, level }, i) => (
         <a class="featured" href={`/trails/${featured.slug}/`} hidden={i > 0}>
           <div class="featured-head">
             <p class="place">{featured.countries.join(" · ")}</p>
@@ -177,9 +187,15 @@ const sources = [
           </div>
           <dl class="featured-figures">
             {featured.lengthKm !== null && <div><dt>Length</dt><dd>{fmt(featured.lengthKm)}<span>km</span></dd></div>}
-            {featured.ascentM !== null && <div><dt>Ascent</dt><dd>{fmt(featured.ascentM)}<span>m ↑</span></dd></div>}
+            {climb.climbed > 0 && (
+              <div>
+                <dt>Ascent{climb.climbedEst && " (estimate)"}</dt>
+                <dd>{climb.climbedEst && <span class="approx">≈</span>}{fmt(climb.climbed)}<span>m ↑</span></dd>
+              </div>
+            )}
             {featured.days && <div><dt>Suggested</dt><dd>{days(featured.days)}<span>days</span></dd></div>}
-            {featured.sac && <div><dt>Difficulty</dt><dd>{featured.sac}<span>SAC</span></dd></div>}
+            {level && <div><dt>Difficulty</dt><dd>{level}</dd></div>}
+            {spark && <div><dt>Highest point</dt><dd>{fmt(spark.peak)}<span>m</span></dd></div>}
           </dl>
           {spark && (
             <div class="preview" aria-hidden="true">
@@ -199,7 +215,6 @@ const sources = [
                   ))}
                 </svg>
               )}
-              <p class="preview-caption">Elevation profile (highest point {fmt(spark.peak)} m) and surfaces along the trail</p>
             </div>
           )}
           <span class="open">Open the trail →</span>
@@ -257,7 +272,7 @@ const sources = [
             <span class="card-place">{t.countries.join(", ")}</span>
             <span class="card-name">{t.name}</span>
             <span class="card-figures">
-              {[t.lengthKm !== null && `${fmt(t.lengthKm)} km`, t.days && `${days(t.days)} days`, t.sac && `SAC ${t.sac}`]
+              {[t.lengthKm !== null && `${fmt(t.lengthKm)} km`, t.days && `${days(t.days)} days`, difficultyWord(t)]
                 .filter(Boolean)
                 .join(" · ")}
             </span>
@@ -514,6 +529,10 @@ const sources = [
     font-size: 0.8rem;
     font-weight: 400;
   }
+  /* our estimate, as on the trail pages */
+  .featured-figures dd span.approx {
+    margin: 0 3px 0 0;
+  }
   .preview svg {
     display: block;
     width: 100%;
@@ -535,11 +554,6 @@ const sources = [
     height: 8px;
     margin-top: 4px;
     border-radius: 2px;
-  }
-  .preview-caption {
-    margin: 8px 0 0;
-    color: var(--muted);
-    font-size: 0.78rem;
   }
   .open {
     color: var(--accent);
