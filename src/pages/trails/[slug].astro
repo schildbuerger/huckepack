@@ -760,7 +760,7 @@ const nav = [
   {t.stages && (
     <section id="stages">
       <h2>Stages</h2>
-      <ol class="timeline">
+      <ol class="timeline" style={`--stat-cols: ${3 + (stageEle ? 1 : 0) + (stageTime ? 1 : 0)}`}>
         <li class="stage-head" aria-hidden="true">
           <span></span>
           <div class="stage-body">
@@ -1679,23 +1679,47 @@ const nav = [
   .stage-stats li.est {
     color: var(--muted);
   }
+  /* from 820 px one grid for the whole timeline: each row and its figures sit on it (subgrid),
+     so every column is as wide as its widest figure or header on this trail and nothing touches */
   @media (min-width: 820px) {
+    .timeline {
+      display: grid;
+      /* 46 px: the 32 px dot and the 14 px gap to the route */
+      grid-template-columns: 46px minmax(0, 1fr) repeat(var(--stat-cols), max-content);
+    }
+    .stage,
+    .stage-head {
+      grid-column: 1 / -1;
+      grid-template-columns: subgrid;
+      column-gap: 0;
+    }
     .stage-body {
       display: grid;
-      grid-template-columns: minmax(0, 1fr) auto;
-      column-gap: 24px;
+      grid-column: 2 / -1;
+      grid-template-columns: subgrid;
       align-items: baseline;
       padding-top: 6px;
     }
+    .stage-route {
+      padding-right: 24px;
+    }
     .stage-stats {
-      flex-wrap: nowrap;
+      display: grid;
+      grid-column: 2 / -1;
+      grid-template-columns: subgrid;
       margin: 0;
       font-size: 0.85rem;
     }
+    .stage-stats li,
+    .stage-stats li.wide {
+      min-width: 0;
+      padding-right: 1.25rem;
+    }
+    .stage-stats li:last-child {
+      padding-right: 0;
+    }
     .stage-head {
       display: grid;
-      grid-template-columns: 32px 1fr;
-      gap: 14px;
       padding-bottom: 6px;
       color: var(--muted);
       font-size: 0.75rem;
