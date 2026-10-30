@@ -17,6 +17,13 @@
   `dataCheck`. The data check is internal quality assurance and not shown on
   the page (decided 2026-10-29) (decided 2026-10-29 for the Forststeig's stages 5–7
   and the Path of Sacred Forests' stage 3).
+- **Hut circuits:** a hut-to-hut route run by its huts (their keepers or
+  their association) rather than by a park or a trail association counts as
+  official when it has its own official website (Carros de Foc, El Anillo de
+  Picos). The record's `managedBy` then says who runs it, e.g. "Carros de Foc
+  (the nine refuges of the national park)", so the page doesn't suggest a
+  park or government designates it. Without an official website it stays out
+  (the Alta Ruta de los Perdidos, 2026-10-30) (decided 2026-10-30).
 - **Trail length:** the key figure, page title, search cards and home page show
   the operator's stated total where the record has one, not the sum of the
   stages: stage lists often include the paths into the stage towns (the

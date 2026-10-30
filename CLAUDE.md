@@ -74,7 +74,7 @@ Inside Claude Code's sandbox, pip needs `PIP_CACHE_DIR="$TMPDIR/pip-cache"`. Pyt
 
 ## Ground rules
 
-- Only official trails: a route designated or maintained by a government body or a recognised trail association. Unofficial routes (for example the Hayduke Trail) are out of scope unless docs/scope.md says otherwise.
+- Only official trails: a route designated or maintained by a government body or a recognised trail association. Unofficial routes (for example the Hayduke Trail) are out of scope unless docs/scope.md says otherwise. A hut circuit run by its huts counts when it has its own official website; its `managedBy` names who runs it (docs/scope.md).
 - Every figure on a page must come from a source listed in the trail's record (or, for sources used across trails, in docs/data-sources.md), with its licence and retrieval date. Check a source's licence before using it: official GPX tracks are often copyrighted, and OpenStreetMap data requires ODbL attribution.
 - Trail lengths, elevation gain and similar numbers differ between sources. Show which source a number comes from rather than silently picking one, and never mix them in one figure.
 
