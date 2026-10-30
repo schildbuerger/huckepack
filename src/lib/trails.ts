@@ -114,7 +114,6 @@ export const SAC_NOTE =
 const PROFILE_POINTS = 80;
 
 export function summarize(id: string, t: Trail, d?: DerivedData) {
-  const totals = stageTotals(t);
   const step = d?.elevation ? Math.max(1, Math.floor(d.elevation.points.length / PROFILE_POINTS)) : 1;
   return {
     slug: id,

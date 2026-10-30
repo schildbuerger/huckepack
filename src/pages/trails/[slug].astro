@@ -407,7 +407,7 @@ const nav = [
             </Explain>
           </dt>
           <dd>
-            {length.approx && <span class="unit">about</span>}
+            {length.approx && <span class="unit before">about</span>}
             <span class="big">{fmt(length.value)}</span><span class="unit">km</span>
           </dd>
         </div>
@@ -2252,6 +2252,10 @@ const nav = [
     font-weight: 600;
     line-height: 1.3;
     white-space: normal;
+  }
+  /* a word before the number ("about 285 km") */
+  .unit.before {
+    margin: 0 4px 0 0;
   }
   /* "≈" before an estimated key figure */
   .unit.approx {
