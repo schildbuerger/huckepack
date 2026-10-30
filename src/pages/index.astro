@@ -304,6 +304,22 @@ const sources = [
     </section>
   )}
 
+  <section class="block">
+    <!-- the map as an entry point of its own (issue #33), quieter than the hero's buttons: a static
+         teaser drawn at build time, the interactive map one click away -->
+    <a class="map-teaser" href="/trails/map/">
+      <span class="map-teaser-text">
+        <h2>Explore on the map</h2>
+        <span class="muted">All {entries.length} trails in {countryCount} countries on one map. Zoom into a region and see its trails.</span>
+        <span class="map-teaser-open">Open the map <span aria-hidden="true">→</span></span>
+      </span>
+      <svg class="map-teaser-svg" viewBox={`0 0 ${MAP_W} ${MAP_H}`} aria-hidden="true">
+        <path class="map-land" d={landPath} />
+        {mapDots.map(([x, y]) => <circle cx={x} cy={y} r="6" />)}
+      </svg>
+    </a>
+  </section>
+
   <!-- shown by the script below only where the time zone gives a place; without JavaScript it stays hidden -->
   <section class="block near" hidden>
     <div class="block-head">
@@ -361,22 +377,6 @@ const sources = [
       section.hidden = false;
     }
   </script>
-
-  <section class="block">
-    <!-- the map as an entry point of its own (issue #33), quieter than the hero's buttons: a static
-         teaser drawn at build time, the interactive map one click away -->
-    <a class="map-teaser" href="/trails/map/">
-      <span class="map-teaser-text">
-        <h2>Explore on the map</h2>
-        <span class="muted">All {entries.length} trails in {countryCount} countries on one map. Zoom into a region and see its trails.</span>
-        <span class="map-teaser-open">Open the map <span aria-hidden="true">→</span></span>
-      </span>
-      <svg class="map-teaser-svg" viewBox={`0 0 ${MAP_W} ${MAP_H}`} aria-hidden="true">
-        <path class="map-land" d={landPath} />
-        {mapDots.map(([x, y]) => <circle cx={x} cy={y} r="6" />)}
-      </svg>
-    </a>
-  </section>
 
   <section class="block">
     <h2>On every trail page</h2>
