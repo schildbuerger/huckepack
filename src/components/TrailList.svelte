@@ -404,6 +404,8 @@
       <p class="count" role="status">
         {#if active.length}<strong>{shown.length}</strong> of {trails.length} {trails.length === 1 ? "trail" : "trails"}
         {:else}<strong>{trails.length}</strong> {trails.length === 1 ? "trail" : "trails"}{/if}
+        <!-- the trail map (issue #33), a quiet way to the same trails by place -->
+        <a class="map-link" href="/trails/map/">Map view <span aria-hidden="true">→</span></a>
       </p>
       <label class="sort">
         <span class="sort-word">Sort</span>
@@ -798,6 +800,10 @@
   }
   .count strong {
     color: var(--text);
+  }
+  .map-link {
+    margin-left: 12px;
+    font-size: 0.9rem;
   }
   .sort {
     display: flex;

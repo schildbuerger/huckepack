@@ -10,6 +10,7 @@ import { LEVELS } from "../lib/difficulty";
 import { climateLevel } from "../lib/filters";
 import { searchSummary } from "../lib/search";
 import zones from "../lib/timezones.json";
+import { readFileSync } from "node:fs";
 
 const entries = (await getCollection("trails")).sort((a, b) => a.data.name.localeCompare(b.data.name));
 const derivedAll = await Promise.all(entries.map(async (e) => (await getEntry("derived", e.id))?.data));
@@ -113,6 +114,28 @@ const ends = entries.map((e) => [
 ]);
 const figureLine = (t: (typeof trails)[number]) =>
   [t.lengthKm !== null && `${fmt(t.lengthKm)} km`, t.days && `${days(t.days)} days`, difficultyWord(t)].filter(Boolean).join(" · ");
+
+// the map teaser (issue #33): the land (Natural Earth 1:110m, public domain) around the trails with a
+// dot at each start, drawn at build time, so the home page loads no map library; it links to
+// /trails/map/. Equirectangular, longitudes scaled by the cosine of the middle latitude.
+const MAP_W = 600;
+const starts = entries.map((e) => [e.data.termini.start.lon, e.data.termini.start.lat] as [number, number]);
+const lon0 = Math.min(...starts.map((p) => p[0])) - 14;
+const lon1 = Math.max(...starts.map((p) => p[0])) + 14;
+const lat0 = Math.min(...starts.map((p) => p[1])) - 6;
+const lat1 = Math.max(...starts.map((p) => p[1])) + 5;
+const kx = Math.cos((((lat0 + lat1) / 2) * Math.PI) / 180);
+const scale = MAP_W / ((lon1 - lon0) * kx);
+const MAP_H = Math.round((lat1 - lat0) * scale);
+const project = ([lon, lat]: number[]) => [((lon - lon0) * kx * scale).toFixed(1), ((lat1 - lat) * scale).toFixed(1)];
+const land = JSON.parse(readFileSync("data/reference/ne_110m_land.geojson", "utf8"));
+const landPath = land.features
+  .flatMap((f: any) => (f.geometry.type === "Polygon" ? [f.geometry.coordinates] : f.geometry.coordinates))
+  .filter((poly: number[][][]) => poly[0].some(([lon, lat]) => lon > lon0 - 30 && lon < lon1 + 30 && lat > lat0 - 20 && lat < lat1 + 20))
+  .flatMap((poly: number[][][]) => poly.map((ring) => `M${ring.map((pt) => project(pt).join(",")).join("L")}Z`))
+  .join("");
+const mapDots = starts.map((pt) => project(pt));
+const countryCount = new Set(entries.flatMap((e) => e.data.countries)).size;
 
 // what a trail page shows, in its order (src/pages/trails/[slug].astro)
 const features: { icon: IconName; title: string; text: string }[] = [
@@ -338,6 +361,22 @@ const sources = [
       section.hidden = false;
     }
   </script>
+
+  <section class="block">
+    <!-- the map as an entry point of its own (issue #33), quieter than the hero's buttons: a static
+         teaser drawn at build time, the interactive map one click away -->
+    <a class="map-teaser" href="/trails/map/">
+      <span class="map-teaser-text">
+        <h2>Explore on the map</h2>
+        <span class="muted">All {entries.length} trails in {countryCount} countries on one map. Zoom into a region and see its trails.</span>
+        <span class="map-teaser-open">Open the map <span aria-hidden="true">→</span></span>
+      </span>
+      <svg class="map-teaser-svg" viewBox={`0 0 ${MAP_W} ${MAP_H}`} aria-hidden="true">
+        <path class="map-land" d={landPath} />
+        {mapDots.map(([x, y]) => <circle cx={x} cy={y} r="6" />)}
+      </svg>
+    </a>
+  </section>
 
   <section class="block">
     <h2>On every trail page</h2>
@@ -837,6 +876,53 @@ const sources = [
     margin-top: 10px;
     color: var(--muted);
     font-size: 0.8rem;
+  }
+
+  /* the map teaser (issue #33): text and a static outline map in one link, like the featured card */
+  .map-teaser {
+    display: grid;
+    gap: 18px;
+    align-items: center;
+    padding: 22px 24px;
+    border-radius: 14px;
+    background: var(--surface);
+    color: var(--text);
+    text-decoration: none;
+  }
+  @media (min-width: 720px) {
+    .map-teaser {
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1.3fr);
+      gap: 32px;
+    }
+  }
+  .map-teaser-text {
+    display: grid;
+    gap: 8px;
+  }
+  .map-teaser-text h2 {
+    margin: 0;
+  }
+  .map-teaser-open {
+    margin-top: 6px;
+    color: var(--accent);
+    font-weight: 600;
+  }
+  .map-teaser:hover .map-teaser-open {
+    text-decoration: underline;
+  }
+  .map-teaser-svg {
+    display: block;
+    width: 100%;
+    height: auto;
+    max-height: 300px;
+  }
+  .map-land {
+    fill: color-mix(in srgb, var(--text) 12%, var(--surface));
+  }
+  .map-teaser-svg circle {
+    fill: var(--accent);
+    stroke: var(--surface);
+    stroke-width: 2.5;
   }
 
   /* features */

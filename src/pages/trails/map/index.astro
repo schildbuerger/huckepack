@@ -1,0 +1,49 @@
+---
+// The trail map (issue #33; of three previews, approach B): every trail on one map beside a list of
+// the trails in view (src/components/TrailsMap.svelte). Linked from the home page's "Explore on
+// the map" and the search page.
+import { getCollection, getEntry } from "astro:content";
+import Base from "../../../layouts/Base.astro";
+import Breadcrumbs from "../../../components/Breadcrumbs.astro";
+import TrailsMap from "../../../components/TrailsMap.svelte";
+import { searchSummary } from "../../../lib/search";
+import { climateLevel } from "../../../lib/filters";
+import { LEVELS } from "../../../lib/difficulty";
+
+const trails = (
+  await Promise.all(
+    (await getCollection("trails")).map(async (e) => {
+      const s = searchSummary(e.id, e.data, (await getEntry("derived", e.id))?.data);
+      const xs = [s.terrainLevel, s.effortLevel, climateLevel(s, [])].filter((x) => x !== null) as number[];
+      return { ...s, startLonLat: [e.data.termini.start.lon, e.data.termini.start.lat] as [number, number], level: xs.length ? LEVELS[Math.max(...xs) - 1] : null };
+    }),
+  )
+).sort((a, b) => a.name.localeCompare(b.name));
+const countries = new Set(trails.flatMap((t) => t.countries)).size;
+---
+
+<Base
+  title="Trail map · huckepack"
+  description={`All ${trails.length} official long-distance hiking trails on one map, in ${countries} countries: zoom into a region and see its trails with length, days and difficulty.`}
+>
+  <Breadcrumbs trail={[{ label: "Trails", href: "/trails/" }]} current="Map" />
+  <h1>Trail map</h1>
+  <p class="lede muted">
+    Every trail on one map. Zoom into a region and the list beside it shows the trails there; pick one to open its page.
+  </p>
+  <TrailsMap client:load trails={trails} />
+  <!-- without JavaScript the map can't show; the list of all trails stays one link away -->
+  <noscript><p class="muted">The map needs JavaScript. <a href="/trails/">See all trails as a list.</a></p></noscript>
+</Base>
+
+<style>
+  h1 {
+    margin-top: 8px;
+    text-align: center;
+  }
+  .lede {
+    max-width: 60ch;
+    margin: 0 auto 24px;
+    text-align: center;
+  }
+</style>
