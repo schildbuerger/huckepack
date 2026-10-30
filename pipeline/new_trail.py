@@ -21,6 +21,7 @@ TEMPLATE = """\
 # {name}: created {today} by pipeline/new_trail.py. Fill every null or delete the field (optional
 # ones only, with a note why); every figure names a source id from `sources` below.
 name: {name}
+added: {today}  # the day the trail goes on the site (the home page's "Recent trails"); update if it goes live later
 localName: null  # the name in the local language, if it differs; else delete
 aliases: []  # other names people search for
 website: null  # the official website (managing body or trail portal)

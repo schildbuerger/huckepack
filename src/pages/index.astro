@@ -10,6 +10,14 @@ import { searchSummary } from "../lib/search";
 const entries = (await getCollection("trails")).sort((a, b) => a.data.name.localeCompare(b.data.name));
 const derivedAll = await Promise.all(entries.map(async (e) => (await getEntry("derived", e.id))?.data));
 const trails = entries.map(({ id, data }, i) => searchSummary(id, data, derivedAll[i]));
+// the most recently added trails (issue #80), newest first, by the record's `added` date
+const RECENT = 6;
+const addedOf = new Map(entries.map((e) => [e.id, e.data.added]));
+const recent = [...trails]
+  .sort((a, b) => addedOf.get(b.slug)!.getTime() - addedOf.get(a.slug)!.getTime() || a.name.localeCompare(b.name))
+  .slice(0, RECENT);
+const addedText = (slug: string) =>
+  addedOf.get(slug)!.toLocaleDateString("en-GB", { day: "numeric", month: "long", year: "numeric", timeZone: "UTC" });
 // a trail's difficulty in one word: the hardest of its three ratings over its season, as the
 // trail page's key figure shows it
 const difficultyWord = (t: (typeof trails)[number]) => {
@@ -248,9 +256,9 @@ const sources = [
   </section>
 
   <section class="block">
-    <h2>All trails</h2>
-    <ul class="cards">
-      {trails.map((t) => (
+    <h2>Recent trails</h2>
+    <ul class="cards recent">
+      {recent.map((t) => (
         <li>
           <a class="card" href={`/trails/${t.slug}/`}>
             <span class="card-place">{t.countries.join(", ")}</span>
@@ -260,11 +268,12 @@ const sources = [
                 .filter(Boolean)
                 .join(" · ")}
             </span>
+            <span class="card-added">Added {addedText(t.slug)}</span>
           </a>
         </li>
       ))}
     </ul>
-    <p><a href="/trails/">Search and compare all trails →</a></p>
+    <p><a href="/trails/">Search all {trails.length} trails →</a></p>
   </section>
 
   <section class="block">
@@ -648,5 +657,21 @@ const sources = [
     color: var(--accent);
     font-size: 0.9rem;
     font-weight: 600;
+  }
+  .card-added {
+    margin-top: 6px;
+    color: var(--muted);
+    font-size: 0.8rem;
+  }
+  /* recent trails (issue #80): six, in two even rows of three from 900 px, two columns from 560 px */
+  @media (min-width: 560px) {
+    .cards.recent {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+  @media (min-width: 900px) {
+    .cards.recent {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
   }
 </style>

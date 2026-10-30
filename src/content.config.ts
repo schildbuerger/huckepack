@@ -77,6 +77,8 @@ const stage = z.object({
 const trail = z
   .object({
     name: z.string(),
+    // the day the trail was added to huckepack (the home page's "Recent trails")
+    added: z.coerce.date(),
     localName: z.string().optional(),
     aliases: z.array(z.string()).default([]),
     website: z.url(),
