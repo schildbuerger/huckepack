@@ -122,6 +122,10 @@ def parse(page, url):
     vonnach = re.search(r"\bvon (.+?) nach (.+?)(?:\s+-\s+.*)?$", title, re.I)
     route = title.split(":", 1)[1] if ":" in title else title
     ends = [vonnach.group(1), vonnach.group(2)] if vonnach else re.split(r"\s+[-–—>]\s+|\s+to\s+|\s+nach\s+", route.strip(), maxsplit=1)
+    # "Etappe 1: Kirn-Bundenbach" (Soonwaldsteig): a single hyphen without spaces; with more than
+    # one, a place's own name may hold it (Bernkastel-Kues), so those are left to check by hand
+    if len(ends) == 1 and route.count("-") == 1:
+        ends = route.strip().split("-")
     duration = re.search(rf"\b{l['time']} (\d+):(\d+) h\b", text)
     return {
         "title": title,
