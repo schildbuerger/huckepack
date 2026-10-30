@@ -17,6 +17,7 @@ import {
   mainStages,
   stageEstimates,
   stageTotals,
+  trailLength,
   SAC_NOTE,
   SAC_SCALE,
   SLEEPING_CATEGORIES,
@@ -47,12 +48,8 @@ const sleeping = SLEEPING_CATEGORIES.map((c) => ({
 }));
 const sources = Object.fromEntries(t.sources.map((s, i) => [s.id, { ...s, n: i + 1 }]));
 const totals = stageTotals(t);
-// one length: the sum of the main stages where there are stages, else the first stated total
-const length = totals
-  ? { ...totals.km, approx: false }
-  : t.length[0]
-    ? { value: t.length[0].km, source: t.length[0].source, how: "stated total", approx: t.length[0].approx }
-    : null;
+// one length: the first stated total, else the sum of the main stages (trailLength())
+const length = trailLength(t);
 const daily = perDay(t);
 const sac = sacGrade(t);
 // difficulty in three dimensions (src/lib/difficulty.ts); the key figure names the hardest level

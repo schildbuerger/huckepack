@@ -17,6 +17,12 @@
   `dataCheck`. The data check is internal quality assurance and not shown on
   the page (decided 2026-10-29) (decided 2026-10-29 for the Forststeig's stages 5–7
   and the Path of Sacred Forests' stage 3).
+- **Trail length:** the key figure, page title, search cards and home page show
+  the operator's stated total where the record has one, not the sum of the
+  stages: stage lists often include the paths into the stage towns (the
+  Moselsteig's 24 stages add up to 392.8 km against its 365 km). The stage
+  sums stay in the stages table and feed the per-day averages and difficulty,
+  which must share a source with the stages (decided 2026-10-30).
 
 - **Name:** huckepack (German for carrying someone piggyback, from Low German
   *Hucke*, a load carried on the back). huckepack.com is taken; the domain

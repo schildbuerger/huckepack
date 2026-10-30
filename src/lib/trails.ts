@@ -31,6 +31,16 @@ export function stageTotals(t: Trail) {
   };
 }
 
+// The trail's length: the first stated total where the record has one (the official figure; stage
+// lists often include the paths into the stage towns, e.g. the Moselsteig's 392.8 km against its
+// 365 km), else the sum of the main stages.
+export function trailLength(t: Trail) {
+  const stated = t.length[0];
+  if (stated) return { value: stated.km, source: stated.source, how: "stated total", approx: stated.approx ?? false };
+  const totals = stageTotals(t);
+  return totals ? { ...totals.km, approx: false } : null;
+}
+
 // Averages per day only when the days and the stage totals come from the same source,
 // so figures from different sources are never mixed.
 export function perDay(t: Trail) {
@@ -87,7 +97,7 @@ export function summarize(id: string, t: Trail, d?: DerivedData) {
     continents: t.continents as string[],
     countries: t.countries.map(countryName),
     regions: t.regions,
-    lengthKm: totals?.km.value ?? t.length[0]?.km ?? null,
+    lengthKm: trailLength(t)?.value ?? null,
     ascentM: totals?.ascentM?.value ?? t.ascent[0]?.m ?? null,
     days: t.days ? ([t.days.min, t.days.max] as [number, number]) : null,
     sac: sacGrade(t)?.value ?? null,
