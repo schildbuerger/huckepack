@@ -117,12 +117,12 @@ const climbTotal = climb
       ? { up: mainView.reduce((a, s) => a + s.climb!.up, 0), down: mainView.reduce((a, s) => a + s.climb!.down, 0), est: true }
       : null;
 const estClimb = stageView.some((s) => s.climb?.est);
-// trails with many stages (issue #25): from this many main stages, the stage list is a compact table
-// with bars (the first STAGES_SHOWN rows, the rest behind "Show all") and the charts' stage axes
-// label only every k-th stage over alternating stage bands
+// trails with many stages (issue #25): from MANY_STAGES main stages the charts' stage axes label only
+// every k-th stage over alternating stage bands; with more than STAGES_SHOWN, the stage table shows
+// the first STAGES_SHOWN rows and folds the rest behind "Show all"
 const MANY_STAGES = 12;
 const STAGES_SHOWN = 10;
-const manyStages = mainView.length >= MANY_STAGES;
+const foldStages = mainView.length > STAGES_SHOWN;
 const maxStageKm = Math.max(...mainView.map((s) => s.km), 1);
 const maxStageUp = Math.max(...mainView.map((s) => s.climb?.up ?? 0), 1);
 // stage columns: only those some stage has a figure for; a stage without one keeps an empty cell,
@@ -834,162 +834,92 @@ const nav = [
   {t.stages && (
     <section id="stages">
       <h2>Stages</h2>
-      <!-- many stages (issue #25): a compact table with bars for distance and ascent; the first
-           STAGES_SHOWN rows show, a script folds the rest behind "Show all" (without it all show) -->
-      {manyStages ? (
-        <div class="stage-table" data-shown={STAGES_SHOWN}>
-          <div class="table-scroll">
-            <table>
-              <thead>
-                <tr>
-                  <th scope="col"><span class="visually-hidden">Stage</span></th>
-                  <th scope="col">Route</th>
-                  <th scope="col">Distance</th>
-                  <th scope="col">Ascent</th>
-                  <th scope="col">Descent</th>
-                  {stageEle && <th scope="col">Elevation</th>}
-                  {stageTime && <th scope="col">Time</th>}
-                </tr>
-              </thead>
-              {[stageView.filter((s) => s.kind === "main"), stageView.filter((s) => s.kind !== "main")].map((rows, part) =>
-                rows.length > 0 && (
-                  <tbody class={part ? "others" : undefined}>
-                    {part === 1 && (
-                      <tr class="extra group">
-                        <th scope="rowgroup" colspan={5 + (stageEle ? 1 : 0) + (stageTime ? 1 : 0)}>
-                          {rows.every((s) => s.kind === "variant") ? "Variants" : "Approaches and variants"}
-                        </th>
-                      </tr>
-                    )}
-                    {rows.map((s, i) => (
-                      <tr class:list={[s.kind, { extra: part === 1 || i >= STAGES_SHOWN }]}>
-                        <th scope="row" class="n">{s.number}</th>
-                        <td class="route">
-                          {s.from} <span class="arrow" aria-hidden="true">→</span> {s.to}
-                          {s.kind !== "main" && <span class="visually-hidden"> ({s.kind})</span>}
-                        </td>
-                        <td class="bar">
-                          <span class="fill" style={`--w: ${Math.min(s.km / maxStageKm, 1)}`} aria-hidden="true"></span>
-                          {s.km.toFixed(1)} km
-                        </td>
-                        <td class:list={["bar up", { est: s.climb?.est }]}>
-                          {s.climb && (
-                            <>
-                              <span class="fill" style={`--w: ${Math.min(s.climb.up / maxStageUp, 1)}`} aria-hidden="true"></span>
-                              {s.climb.est && <span class="visually-hidden">estimated </span>}
-                              {s.climb.est && <span aria-hidden="true">≈ </span>}{fmt(s.climb.up)} m ↑
-                            </>
-                          )}
-                        </td>
-                        <td class:list={[{ est: s.climb?.est }]}>
-                          {s.climb && (
-                            <>
-                              {s.climb.est && <span class="visually-hidden">estimated </span>}
-                              {s.climb.est && <span aria-hidden="true">≈ </span>}{fmt(s.climb.down)} m ↓
-                            </>
-                          )}
-                        </td>
-                        {stageEle && (
-                          <td class:list={[{ est: s.ele?.est }]}>
-                            {s.ele && (
-                              <>
-                                {s.ele.est && <span class="visually-hidden">estimated </span>}
-                                {s.ele.est && <span aria-hidden="true">≈ </span>}{fmt(s.ele.from)} → {fmt(s.ele.to)} m
-                              </>
-                            )}
-                          </td>
-                        )}
-                        {stageTime && (
-                          <td class:list={[{ est: s.time?.est }]}>
-                            {s.time && (
-                              <>
-                                {s.time.est && <span class="visually-hidden">estimated </span>}
-                                {s.time.est && <span aria-hidden="true">≈ </span>}{timeText(s.time.min, s.time.max)}
-                              </>
-                            )}
-                          </td>
-                        )}
-                      </tr>
-                    ))}
-                  </tbody>
-                ),
-              )}
-            </table>
-          </div>
-          <button type="button" class="show-all" aria-expanded="false" hidden>
-            Show all {mainView.length} stages{stageView.length > mainView.length && ` and ${stageView.length - mainView.length} ${stageView.every((s) => s.kind !== "approach") ? "variants" : "approaches and variants"}`}
-          </button>
-        </div>
-      ) : (
-        <ol class="timeline" style={`--stat-cols: ${3 + (stageEle ? 1 : 0) + (stageTime ? 1 : 0)}`}>
-          <li class="stage-head" aria-hidden="true">
-            <span></span>
-            <div class="stage-body">
-              <span></span>
-              <ul class="stage-stats">
-                <li>Distance</li>
-                <li>Ascent</li>
-                <li>Descent</li>
-                {stageEle && <li class="wide">Elevation</li>}
-                {stageTime && <li>Time</li>}
-              </ul>
-            </div>
-          </li>
-          {stageView.map((s) => (
-            <li class={`stage ${s.kind}`}>
-              <span class="stage-no" aria-hidden="true">{s.number}</span>
-              <div class="stage-body">
-                <p class="stage-route">
-                  <span class="visually-hidden">Stage {s.number}{s.kind !== "main" && ` (${s.kind})`}: </span>
-                  {s.from} <span class="arrow" aria-hidden="true">→</span> {s.to}
-                  {s.kind !== "main" && <span class="stage-kind">{s.kind === "approach" ? "Approach" : "Variant"}</span>}
-                </p>
-                <ul class="stage-stats">
-                  <li title="Distance"><span class="visually-hidden">Distance </span>{s.km.toFixed(1)} km</li>
-                  {s.climb ? (
-                    <>
-                      <li title={s.climb.est ? "Ascent, from the terrain model" : "Ascent"} class:list={[{ est: s.climb.est }]}>
-                        <span class="visually-hidden">{s.climb.est ? "Estimated ascent " : "Ascent "}</span>
-                        {s.climb.est && <span aria-hidden="true">≈ </span>}{fmt(s.climb.up)} m ↑
-                      </li>
-                      <li title={s.climb.est ? "Descent, from the terrain model" : "Descent"} class:list={[{ est: s.climb.est }]}>
-                        <span class="visually-hidden">{s.climb.est ? "Estimated descent " : "Descent "}</span>
-                        {s.climb.est && <span aria-hidden="true">≈ </span>}{fmt(s.climb.down)} m ↓
-                      </li>
-                    </>
-                  ) : (
-                    <>
-                      <li aria-hidden="true"></li>
-                      <li aria-hidden="true"></li>
-                    </>
+      <!-- a compact table with bars for distance and ascent (issue #25, for every trail since
+           2026-10-30); with more than STAGES_SHOWN main stages, the first STAGES_SHOWN rows show and a
+           script folds the rest and the variants behind "Show all" (without it all show) -->
+      <div class="stage-table" data-shown={STAGES_SHOWN}>
+        <div class="table-scroll">
+          <table>
+            <thead>
+              <tr>
+                <th scope="col"><span class="visually-hidden">Stage</span></th>
+                <th scope="col">Route</th>
+                <th scope="col">Distance</th>
+                <th scope="col">Ascent</th>
+                <th scope="col">Descent</th>
+                {stageEle && <th scope="col">Elevation</th>}
+                {stageTime && <th scope="col">Time</th>}
+              </tr>
+            </thead>
+            {[stageView.filter((s) => s.kind === "main"), stageView.filter((s) => s.kind !== "main")].map((rows, part) =>
+              rows.length > 0 && (
+                <tbody class={part ? "others" : undefined}>
+                  {part === 1 && (
+                    <tr class:list={["group", { extra: foldStages }]}>
+                      <th scope="rowgroup" colspan={5 + (stageEle ? 1 : 0) + (stageTime ? 1 : 0)}>
+                        {rows.every((s) => s.kind === "variant") ? "Variants" : "Approaches and variants"}
+                      </th>
+                    </tr>
                   )}
-                  {stageEle &&
-                    (s.ele ? (
-                      <li
-                        title={s.ele.est ? "Elevation at start and end, from the terrain model" : "Elevation at start and end"}
-                        class:list={["wide", { est: s.ele.est }]}
-                      >
-                        <span class="visually-hidden">{s.ele.est ? "Estimated elevation " : "Elevation "}</span>
-                        {s.ele.est && <span aria-hidden="true">≈ </span>}{fmt(s.ele.from)} → {fmt(s.ele.to)} m
-                      </li>
-                    ) : (
-                      <li class="wide" aria-hidden="true"></li>
-                    ))}
-                  {stageTime &&
-                    (s.time ? (
-                      <li title={s.time.est ? "Estimated walking time (DIN 33466)" : "Walking time"} class:list={[{ est: s.time.est }]}>
-                        <span class="visually-hidden">{s.time.est ? "Estimated walking time " : "Walking time "}</span>
-                        {s.time.est && <span aria-hidden="true">≈ </span>}{timeText(s.time.min, s.time.max)}
-                      </li>
-                    ) : (
-                      <li aria-hidden="true"></li>
-                    ))}
-                </ul>
-              </div>
-            </li>
-          ))}
-        </ol>
-      )}
+                  {rows.map((s, i) => (
+                    <tr class:list={[s.kind, { extra: foldStages && (part === 1 || i >= STAGES_SHOWN) }]}>
+                      <th scope="row" class="n">{s.number}</th>
+                      <td class="route">
+                        {s.from} <span class="arrow" aria-hidden="true">→</span> {s.to}
+                        {s.kind !== "main" && <span class="visually-hidden"> ({s.kind})</span>}
+                      </td>
+                      <td class="bar">
+                        <span class="fill" style={`--w: ${Math.min(s.km / maxStageKm, 1)}`} aria-hidden="true"></span>
+                        {s.km.toFixed(1)} km
+                      </td>
+                      <td class:list={["bar up", { est: s.climb?.est }]}>
+                        {s.climb && (
+                          <>
+                            <span class="fill" style={`--w: ${Math.min(s.climb.up / maxStageUp, 1)}`} aria-hidden="true"></span>
+                            {s.climb.est && <span class="visually-hidden">estimated </span>}
+                            {s.climb.est && <span aria-hidden="true">≈ </span>}{fmt(s.climb.up)} m ↑
+                          </>
+                        )}
+                      </td>
+                      <td class:list={[{ est: s.climb?.est }]}>
+                        {s.climb && (
+                          <>
+                            {s.climb.est && <span class="visually-hidden">estimated </span>}
+                            {s.climb.est && <span aria-hidden="true">≈ </span>}{fmt(s.climb.down)} m ↓
+                          </>
+                        )}
+                      </td>
+                      {stageEle && (
+                        <td class:list={[{ est: s.ele?.est }]}>
+                          {s.ele && (
+                            <>
+                              {s.ele.est && <span class="visually-hidden">estimated </span>}
+                              {s.ele.est && <span aria-hidden="true">≈ </span>}{fmt(s.ele.from)} → {fmt(s.ele.to)} m
+                            </>
+                          )}
+                        </td>
+                      )}
+                      {stageTime && (
+                        <td class:list={[{ est: s.time?.est }]}>
+                          {s.time && (
+                            <>
+                              {s.time.est && <span class="visually-hidden">estimated </span>}
+                              {s.time.est && <span aria-hidden="true">≈ </span>}{timeText(s.time.min, s.time.max)}
+                            </>
+                          )}
+                        </td>
+                      )}
+                    </tr>
+                  ))}
+                </tbody>
+              ),
+            )}
+          </table>
+        </div>
+        <button type="button" class="show-all" aria-expanded="false" hidden>
+          Show all {mainView.length} stages{stageView.length > mainView.length && ` and ${stageView.length - mainView.length} ${stageView.every((s) => s.kind !== "approach") ? "variants" : "approaches and variants"}`}
+        </button>
+      </div>
       <p class="note muted">
         Totals and averages count the main stages only.
         {t.stages.timesSource && ` Walking times from ${sourceShort(t.stages.timesSource)}.`}
@@ -1688,7 +1618,7 @@ const nav = [
   /* wide screens: section headings move into a margin column, like a printed guidebook, and
      every section's content starts at the same indent beside its title. Separates the sections
      and saves the heading rows. From 1080 px only: the content column stays at least 820 px wide,
-     which the one-line stage timeline and the five sleeping columns need. Key figures and the
+     which the stage table and the five sleeping columns need. Key figures and the
      map (hidden headings) keep the full width. */
   @media (min-width: 1080px) {
     section:has(> h2:not(.visually-hidden)) {
@@ -1786,155 +1716,11 @@ const nav = [
   .hubs li:last-child {
     margin-bottom: 0;
   }
-  /* stages: a timeline, numbered dots on a line; figures in fixed columns so they compare */
-  .timeline {
-    margin: 0;
-    padding: 0;
-    list-style: none;
-    border-top: 1px solid var(--text);
-    padding-top: 12px;
-  }
-  /* column header: only where the figures line up in columns; elsewhere units and arrows carry it */
-  .stage-head {
-    display: none;
-  }
-  .stage {
-    position: relative;
-    display: grid;
-    grid-template-columns: 32px 1fr;
-    gap: 14px;
-    padding-bottom: 10px;
-  }
-  .stage::before {
-    content: "";
-    position: absolute;
-    top: 32px;
-    bottom: 0;
-    left: 15px;
-    border-left: 2px solid var(--line);
-  }
-  .stage:last-child::before {
-    display: none;
-  }
-  .stage-no {
-    display: grid;
-    place-items: center;
-    width: 32px;
-    height: 32px;
-    border-radius: 50%;
-    background: var(--accent);
-    color: var(--bg);
-    font-weight: 600;
-    font-size: 0.9rem;
-    font-variant-numeric: tabular-nums;
-  }
-  .stage.approach .stage-no,
-  .stage.variant .stage-no {
-    border: 2px dashed var(--accent);
-    background: var(--bg);
-    color: var(--accent);
-  }
-  .stage-body {
-    padding-top: 4px;
-  }
-  .stage-route {
-    margin: 0;
-    font-family: var(--serif);
-    font-size: 1rem;
-    font-weight: 600;
-    line-height: 1.35;
-  }
-  .stage.approach .stage-route,
-  .stage.variant .stage-route {
-    color: var(--muted);
-  }
   .arrow {
     color: var(--muted);
     font-weight: 400;
   }
-  .stage-kind {
-    display: inline-block;
-    margin-left: 8px;
-    padding: 0 8px;
-    border: 1px solid var(--line);
-    border-radius: 999px;
-    color: var(--muted);
-    font: 500 0.7rem/1.7 var(--sans);
-    vertical-align: 2px;
-  }
-  .stage-stats {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 4px 0;
-    margin: 6px 0 0;
-    padding: 0;
-    list-style: none;
-    font-size: 0.9rem;
-    font-variant-numeric: tabular-nums;
-  }
-  /* rem, not em: the column header is set smaller than the figures and must line up with them */
-  .stage-stats li {
-    min-width: 5.2rem;
-  }
-  .stage-stats li.wide {
-    min-width: 7.4rem;
-  }
-  .stage-stats li.est {
-    color: var(--muted);
-  }
-  /* from 820 px one grid for the whole timeline: each row and its figures sit on it (subgrid),
-     so every column is as wide as its widest figure or header on this trail and nothing touches */
-  @media (min-width: 820px) {
-    .timeline {
-      display: grid;
-      /* 46 px: the 32 px dot and the 14 px gap to the route */
-      grid-template-columns: 46px minmax(0, 1fr) repeat(var(--stat-cols), max-content);
-    }
-    .stage,
-    .stage-head {
-      grid-column: 1 / -1;
-      grid-template-columns: subgrid;
-      column-gap: 0;
-    }
-    .stage-body {
-      display: grid;
-      grid-column: 2 / -1;
-      grid-template-columns: subgrid;
-      align-items: baseline;
-      padding-top: 6px;
-    }
-    .stage-route {
-      padding-right: 24px;
-    }
-    .stage-stats {
-      display: grid;
-      grid-column: 2 / -1;
-      grid-template-columns: subgrid;
-      margin: 0;
-      font-size: 0.85rem;
-    }
-    .stage-stats li,
-    .stage-stats li.wide {
-      min-width: 0;
-      padding-right: 1.25rem;
-    }
-    .stage-stats li:last-child {
-      padding-right: 0;
-    }
-    .stage-head {
-      display: grid;
-      padding-bottom: 6px;
-      color: var(--muted);
-      font-size: 0.75rem;
-    }
-    .stage-head .stage-stats {
-      font-size: inherit;
-    }
-    .stage-head .stage-body {
-      padding-top: 0;
-    }
-  }
-  /* many stages (issue #25): a compact table, one line per stage, with small bars under the
+  /* stages (issue #25, every trail): a compact table, one line per stage, with small bars under the
      distance and the ascent so long and hard days stand out; rows after the first few fold away */
   .stage-table table {
     width: 100%;
