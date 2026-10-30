@@ -7,9 +7,10 @@
 
 Steps: routes, water, surface, elevation, landcover, climate, access (each also runs on its own,
 pipeline/<step>.py). The caches in data/raw/<slug>/ make a second run fast. When the map line
-changes, the caches that depend on it (water, way tags, heights, land cover, climate places) are
-dropped, so no step keeps answering for the old route. A step that fails stops the run with the
-command to resume it.
+changes, the caches that depend on it (water, way tags, heights, land cover) are dropped, so no
+step keeps answering for the old route (the climate step checks its own cache against the grid
+cells of the route's highest and lowest points). A step that fails stops the run with the command
+to resume it; a climate step that hits the weather API's quota leaves the trail pending instead.
 
 The check reads the record and the derived data and flags what a person should look at, mostly
 the mechanical half of working rule 2: stages the OSM match covers poorly, map-line lengths more
@@ -30,7 +31,8 @@ import yaml
 ROOT = Path(__file__).resolve().parent.parent
 STEPS = ["routes", "water", "surface", "elevation", "landcover", "climate", "access"]
 # caches that depend on the map line, dropped when it changes
-ROUTE_CACHES = ["osm-water.json", "osm-way-tags.json", "elevation-glo30.json", "landcover.json", "climate-high.json", "climate-low.json"]
+# (not the climate downloads: pipeline/climate.py keeps them while the places stay in their grid cells)
+ROUTE_CACHES = ["osm-water.json", "osm-way-tags.json", "elevation-glo30.json", "landcover.json"]
 OFF = 0.10  # working rule 2: more than 10 % apart needs a look
 DRY_KM = 25  # a longer stretch without drinking water: check OSM, or add the record's waterPoints
 UNKNOWN_SHARE = 0.10
@@ -112,6 +114,13 @@ def check(slug):
         noted = any(str(n).startswith("Tree line") for n in trail.get("notes", []))
         if elevation["highest"]["m"] >= TREE_LINE_FROM_M and not trail.get("treeLine") and not noted:
             flags.append(f"tree line: the route climbs to {elevation['highest']['m']:,} m; add the region's tree line (treeLine) or a note why not")
+
+    from pipeline.climate import pending
+
+    if pending(slug):
+        flags.append("climate: pending (the weather API's quota was used up); run `.venv/bin/python -m pipeline.climate --pending` later, and don't publish the trail before")
+    elif derived.get("climate"):
+        fine.append("climate: up to date")
 
     water = derived.get("water")
     if water:
