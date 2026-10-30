@@ -1,14 +1,14 @@
 <script lang="ts">
   // The trail map (issue #33): every trail on one map beside a list of the trails. The list holds
-  // every trail the filters leave: the trails in view first, then, under "Outside the map view", the
-  // rest, each sorted by distance from you (the main city of the browser's time zone, as the home
-  // page's "Trails near you"; else from the map's centre); the first view is centred on you, wide
+  // every trail the filters leave, sorted by distance from you (the main city of the browser's time
+  // zone, as the home page's "Trails near you"; else from the map's centre); the first view is centred on you, wide
   // enough for the nearest trails; a search at its top, like the header search
   // (TrailSearch.astro), narrows it by name or country and suggests countries (a pick frames the map
   // on their trails) and trails (a pick zooms to the route). The search page's filters
   // (FilterPanel.svelte) sit as one button per planning question along the map's top, in the same URL
   // parameters as the search page; trails they leave out leave the map and the list, and the map
-  // frames the rest. Moving or zooming the map re-sorts the list (a pick keeps it); hovering a list
+  // frames the rest. Without your place, moving or zooming the map re-sorts the list (a pick keeps
+  // it); hovering a list
   // entry highlights its route; clicking a trail on the map finds it in the list. Each list entry has
   // two actions: the entry zooms to the route and opens a preview card (TrailPreview.svelte), the
   // arrow opens the trail page; "Show all trails" (beside the zoom buttons) frames every matching
@@ -70,7 +70,6 @@
 
   // the trails whose start is in view, the map's centre, the one hovered in the list, and the one
   // picked (in the list, the search or on the map; it stays marked until another pick or "Show all")
-  let inView = $state<string[]>(trails.map((t) => t.slug));
   let center = $state<[number, number] | null>(null);
   // where you are, as far as the browser's time zone tells (its main city, [lon, lat]); worked out
   // here, nothing is sent or stored
@@ -137,11 +136,10 @@
       .filter((t) => matchSet.has(t.slug) && found(t))
       .map((t) => {
         const from = here ?? center;
-        return { t, inMap: inView.includes(t.slug), d: from ? km(from, t.startLonLat) : 0 };
+        return { t, d: from ? km(from, t.startLonLat) : 0 };
       })
-      .sort((a, b) => Number(b.inMap) - Number(a.inMap) || a.d - b.d || a.t.name.localeCompare(b.t.name)),
+      .sort((a, b) => a.d - b.d || a.t.name.localeCompare(b.t.name)),
   );
-  const firstOutside = $derived(sorted.findIndex((x) => !x.inMap));
   // rounded as far as a time zone's main city can tell: to 10, 50 or 100 km
   const round = (d: number) => (d < 100 ? Math.round(d / 10) * 10 : d < 1000 ? Math.round(d / 50) * 50 : Math.round(d / 100) * 100);
   const fromYou = (d: number) => `≈ ${fmt(round(d))} km from you`;
@@ -209,18 +207,17 @@
       .map((t) => ({ type: "Feature" as const, properties: { slug: t.slug, name: t.name }, geometry: { type: "Point" as const, coordinates: t.startLonLat } })),
   });
 
-  // re-sort the list after the map moved; after a pick from the list or the search the list stays
-  // as it was while the map shows the chosen trail, until the hiker moves the map (a drag, wheel
-  // or button: the event has an `originalEvent`) or asks for all trails or a cluster (`resetList`);
-  // a resize or a reload of the map's style (a theme switch) doesn't count
+  // without your place the list is sorted from the map's centre, re-sorted after the map moved;
+  // after a pick from the list or the search the list stays as it was while the map shows the
+  // chosen trail, until the hiker moves the map (a drag, wheel or button: the event has an
+  // `originalEvent`) or asks for all trails or a cluster (`resetList`); a resize or a reload of the
+  // map's style (a theme switch) doesn't count
   let listKept = false;
   let framedOnce = false;
-  function updateInView(e?: { originalEvent?: unknown; resetList?: boolean }) {
+  function updateCenter(e?: { originalEvent?: unknown; resetList?: boolean }) {
     if (!map) return;
     if (listKept && !e?.originalEvent && !e?.resetList) return;
     listKept = false;
-    const b = map.getBounds();
-    inView = trails.filter((t) => b.contains(t.startLonLat)).map((t) => t.slug);
     const c = map.getCenter();
     center = [c.lng, c.lat];
   }
@@ -425,7 +422,7 @@
         map.addLayer({ id: "start-labels", type: "symbol", source: "starts", filter: ["!", ["has", "point_count"]], minzoom: 3, layout: { "text-field": ["get", "name"], "text-font": ["Noto Sans Bold"], "text-size": 12, "text-offset": [0, 1.3], "text-anchor": "top" }, paint: { "text-color": ink, "text-halo-color": paper, "text-halo-width": 1.6 } });
         applyFilters();
         highlight(hovered, selected);
-        updateInView();
+        updateCenter();
         if (!framedOnce) {
           const b = aroundHere(matching);
           if (b) map.fitBounds(b, { padding: framePadding(), maxZoom: 7, animate: false }, { resetList: true });
@@ -452,7 +449,7 @@
         map.on("mouseenter", layer, () => map && (map.getCanvas().style.cursor = "pointer"));
         map.on("mouseleave", layer, () => map && (map.getCanvas().style.cursor = ""));
       }
-      map.on("moveend", updateInView);
+      map.on("moveend", updateCenter);
       const onTheme = () => {
         const next = currentTheme();
         if (!map || next === theme) return;
@@ -557,12 +554,9 @@
         <li><button type="button" class="wm-link" onclick={() => (filters = noFilters())}>Clear all</button></li>
       </ul>
     {/if}
-    <ol class="wm-list" aria-label="Trails, nearest to the map's centre first">
-      {#each sorted as { t, inMap, d }, i (t.slug)}
-        {#if i === firstOutside}
-          <li class="wm-divider">{i === 0 ? "None in the map view; the nearest:" : "Outside the map view"}</li>
-        {/if}
-        <li id={`wm-${t.slug}`} class:on={hovered === t.slug} class:picked={selected === t.slug} class:out={!inMap} onmouseenter={() => (hovered = t.slug)} onmouseleave={() => (hovered = null)}>
+    <ol class="wm-list" aria-label={here ? "Trails, nearest to you first" : "Trails, nearest to the map's centre first"}>
+      {#each sorted as { t, d } (t.slug)}
+        <li id={`wm-${t.slug}`} class:on={hovered === t.slug} class:picked={selected === t.slug} onmouseenter={() => (hovered = t.slug)} onmouseleave={() => (hovered = null)}>
           <!-- two actions: the entry zooms the map to the route, the arrow opens the trail page -->
           <button type="button" class="wm-entry" title="Show on map" aria-pressed={selected === t.slug} onclick={() => zoomTo(t.slug)}>
             <span class="wm-place">{t.countries.join(", ")}{#if here}<span class="wm-dist">{" · "}{fromYou(d)}</span>{/if}</span>
@@ -717,7 +711,7 @@
     position: relative; /* keeps the entries' screen-reader words inside the scrolling list */
     border-bottom: 1px solid var(--line);
   }
-  .wm-list li:not(.wm-none):not(.wm-divider) {
+  .wm-list li:not(.wm-none) {
     display: grid;
     grid-template-columns: minmax(0, 1fr) auto;
     align-items: center;
@@ -726,8 +720,7 @@
   .wm-list li.on {
     background: var(--surface);
   }
-  /* the picked trail: an accent bar on the left, its name in the accent colour, at full strength
-     even outside the map view */
+  /* the picked trail: an accent bar on the left, its name in the accent colour */
   .wm-list li.picked {
     background: var(--surface);
     box-shadow: inset 4px 0 0 var(--accent);
@@ -771,18 +764,6 @@
     color: var(--accent);
     font-size: 0.85rem;
     font-weight: 600;
-  }
-  /* "Outside the map view": set apart with room above it */
-  .wm-divider {
-    padding: 36px 6px 8px;
-    color: var(--muted);
-    font-size: 0.75rem;
-    font-weight: 600;
-    letter-spacing: 0.06em;
-    text-transform: uppercase;
-  }
-  .wm-list li.out:not(.picked) .wm-entry {
-    opacity: 0.75;
   }
   /* "Open the trail page": a round arrow, 40 px to tap */
   .wm-open {
