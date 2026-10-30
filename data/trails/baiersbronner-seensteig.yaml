@@ -1,0 +1,183 @@
+name: Baiersbronner Seensteig
+aliases: [Seensteig]
+website: https://www.baiersbronn.de/tour/baiersbronner-seensteig
+designation: Qualitätsweg Wanderbares Deutschland
+managedBy:
+  - name: Baiersbronn Touristik
+    url: https://www.baiersbronn.de/
+trailType: loop
+continents: [Europe]
+countries: [DE]
+regions: [Baden-Württemberg]
+protectedAreas:
+  - Nationalpark Schwarzwald
+  - Naturpark Schwarzwald Mitte/Nord
+termini:
+  # start and finish at the Wander-Informationszentrum in Baiersbronn (the official route page)
+  start:
+    name: Baiersbronn (Wander-Informationszentrum)
+    lat: 48.50486
+    lon: 8.37217
+  end:
+    name: Baiersbronn (Wander-Informationszentrum)
+    lat: 48.50486
+    lon: 8.37217
+  source: bb
+waymarking:
+  text: The Seensteig's own logo
+  source: bb
+length:
+  # the route page's figures: 89.29 km (its text says "Gesamtstreckenlänge 91 km")
+  - km: 89.29
+    source: bb
+ascent:
+  - m: 2704
+    source: bb
+days:
+  # "Auf dem Seensteig umrunden Sie Baiersbronn in fünf Tagen"
+  min: 5
+  max: 5
+  source: bb
+stages:
+  # Baiersbronn Touristik's five stage pages (destination.one), each with its GPX (kept local, it
+  # only guides the OSM matcher); stage 3 also as the Kaisersteigle variant
+  source: bb
+  list:
+    - { number: "1", kind: main, from: Baiersbronn, to: Mitteltal, km: 14.52, ascentM: 385, descentM: 365, minutes: 240, track: "https://www.baiersbronn.de/?ndsajax=destination-data-proxy&template=gpx&limit=1&mkt=de&q=globalid%3At_100276418&elevations=true&times=true&no_cache=1" }
+    - { number: "2", kind: main, from: Mitteltal, to: Schliffkopf, km: 18.69, ascentM: 754, descentM: 302, minutes: 300, track: "https://www.baiersbronn.de/?ndsajax=destination-data-proxy&template=gpx&limit=1&mkt=de&q=globalid%3At_100276403&elevations=true&times=true&no_cache=1" }
+    - { number: "3", kind: main, from: Schliffkopf, to: Mummelsee, km: 12.4, ascentM: 381, descentM: 371, minutes: 210, track: "https://www.baiersbronn.de/?ndsajax=destination-data-proxy&template=gpx&limit=1&mkt=de&q=globalid%3At_100276993&elevations=true&times=true&no_cache=1" }
+    - { number: "3", kind: variant, from: Schliffkopf (Kaisersteigle), to: Mummelsee, km: 14.8, ascentM: 408, descentM: 382, minutes: 263, track: "https://www.baiersbronn.de/?ndsajax=destination-data-proxy&template=gpx&limit=1&mkt=de&q=globalid%3At_100276425&elevations=true&times=true&no_cache=1" }
+    - { number: "4", kind: main, from: Mummelsee, to: Schönmünzach, km: 20.35, ascentM: 405, descentM: 1050, minutes: 330, track: "https://www.baiersbronn.de/?ndsajax=destination-data-proxy&template=gpx&limit=1&mkt=de&q=globalid%3At_100276861&elevations=true&times=true&no_cache=1" }
+    - { number: "5", kind: main, from: Schönmünzach, to: Baiersbronn, km: 24.1, ascentM: 640, descentM: 561, minutes: 420, track: "https://www.baiersbronn.de/?ndsajax=destination-data-proxy&template=gpx&limit=1&mkt=de&q=globalid%3At_100276420&elevations=true&times=true&no_cache=1" }
+route:
+  # built by `python -m pipeline.all baiersbronner-seensteig`: OSM ways matched to the stage GPX
+  source: osm
+  publishable: true
+difficulty:
+  # no SAC grade is published; our estimate from the official description
+  estimated:
+    sac: T2
+    basis: >-
+      Baiersbronn Touristik rates the route "Schwierigkeit: schwer, Kondition: schwer": forest
+      paths and trails to the cirque lakes and up to the Hornisgrinde (1,163 m), sturdy boots and
+      maybe poles advised, no exposed passages. That is mountain hiking on good paths (T2); the
+      "schwer" reflects the length and climbing.
+    source: bb
+season:
+  months: [5, 6, 7, 8, 9, 10]
+  text: May to October (in winter some paths in the national park are closed)
+  source: bb
+sleeping:
+  # every stage town is on the bus or train with the free KONUS guest card, so hikers can return
+  # to one hotel each evening; hotels and guesthouses in Baiersbronn and its villages
+  types: [hotel, guesthouse]
+  source: bb
+wildCamping:
+  status: restricted
+  rule: >-
+    Tents only at the Black Forest's bookable trekking camps (May to October, booked at
+    trekking-schwarzwald.de); elsewhere camping in the forest isn't allowed.
+  source: naturpark-trekking
+access:
+  # Baiersbronn station (Murgtalbahn) at the start; Karlsruhe/Baden-Baden airport. Coordinates
+  # from OSM; distances by pipeline/access.py
+  - kind: station
+    name: Baiersbronn station
+    lat: 48.5037
+    lon: 8.37204
+    source: osm
+  - kind: airport
+    name: Karlsruhe/Baden-Baden Airport (FKB)
+    lat: 48.77634
+    lon: 8.08401
+    source: osm
+tags: [black-forest, lakes, national-park, loop, forests]
+notes:
+  - >-
+    Baiersbronn Touristik's own figures differ: the route page's figures give 89.29 km, 2,704 m up
+    and 2,717 m down, its text "Gesamtstreckenlänge 91 km" and a stage list of 14.4, 18.x, 12.4,
+    21 and 20.6 km, while the five stage pages give 14.52, 18.69, 12.4, 20.35 and 24.10 km (90.06 km
+    in all, 2,565 m up). The record uses the stage pages for the stages and the route page's figures
+    for the totals.
+  - >-
+    Stage 1: Baiersbronn Touristik notes that the climb to the Sankenbach waterfall is closed after
+    a storm until further notice, with a detour (2026-10-30); check closures before walking.
+  - >-
+    Route (pipeline, 2026-10-30, Geofabrik extracts): the OSM match covers 96–100 % of the five
+    stages' GPX and 93 % of the Kaisersteigle variant (up to 148 m off), where OSM probably lacks a
+    path. The map line's main route is 87.2 km.
+  - >-
+    Water (pipeline, 2026-10-30): 9 drinking water points from OSM; the longest stretch without one
+    is 34.7 km (km 8.9–43.6, stages 1–3), past huts and inns whose taps OSM doesn't map.
+  - >-
+    Ascent: the stage pages add up to 2,565 m, the route page says 2,704 m; the terrain model gives
+    about 3,230 m (it measures the treetops, and 87 % of the route runs through forest).
+  - >-
+    Tree line: none in reach. The route tops out on the Hornisgrinde at about 1,163 m, whose bare
+    summit, like the Feldberg's, is pasture and moor rather than a natural tree line.
+  - >-
+    Data check (2026-10-30). Second sources: German Wikipedia (about 84 km, five stages of 12, 17,
+    15, 22 and 18 km, Qualitätsweg, own logo, highest point Hornisgrinde 1,164 m, "ganzjährig")
+    and Schwarzwald Tourismus's route page (89.29 km, 2,704 / 2,717 m, May to October, the same as
+    Baiersbronn's). Within 10 %: total length (89.29 against 84 km), stage 2 (18.69 against 17),
+    stage 4 (20.35 against 22), highest point, waymark, certification. More than 10 % apart (listed
+    in `dataCheck`): stage 1 (14.52 against 12 km), stage 3 (12.4 against 15 km; the Kaisersteigle
+    variant is 14.8 km), stage 5 (24.10 against 18 km; Baiersbronn's own route text says 20.6 km)
+    and the season (May to October against all year).
+dataCheck:
+  # working rule 2: German Wikipedia; Schwarzwald Tourismus for the totals and season
+  date: 2026-10-30
+  against: [wikipedia, stg]
+  deviations:
+    - { figure: "Stage 1 length", ours: "14.52 km", theirs: "12 km", source: wikipedia }
+    - { figure: "Stage 3 length", ours: "12.4 km", theirs: "15 km", source: wikipedia }
+    - { figure: "Stage 5 length", ours: "24.10 km", theirs: "18 km", source: wikipedia }
+    - { figure: "Season", ours: "May to October", theirs: "all year", source: wikipedia }
+sources:
+  - id: bb
+    title: "Baiersbronn Touristik: Baiersbronner Seensteig (route page and five stage pages: distances, times, climbs, GPX, season)"
+    url: https://www.baiersbronn.de/tour/baiersbronner-seensteig
+    licence: All rights reserved (facts only)
+    retrieved: 2026-10-30
+  - id: naturpark-trekking
+    title: "Naturpark Schwarzwald Mitte/Nord: press release on the Forbach trekking camp, 9 June 2026 (trekking camps, season)"
+    url: https://naturparkschwarzwald.de/media/acfupload/2026-06-09_PM_Trekking-Camp_in_Forbach_durch_Naturpark_eroffnet.pdf
+    licence: All rights reserved (facts only)
+    retrieved: 2026-10-30
+  - id: stg
+    title: "Schwarzwald Tourismus GmbH: Baiersbronner Seensteig (route page; data check)"
+    url: https://www.schwarzwald-tourismus.info/touren/baiersbronner-seensteig-a694b774ae
+    licence: All rights reserved (facts only)
+    retrieved: 2026-10-30
+    checkOnly: true
+  - id: wikipedia
+    title: "Wikipedia (de): Baiersbronner Seensteig (data check)"
+    url: https://de.wikipedia.org/wiki/Baiersbronner_Seensteig
+    licence: CC BY-SA 4.0
+    retrieved: 2026-10-30
+    checkOnly: true
+  - id: osm
+    title: "OpenStreetMap contributors: paths and water along the trail (Geofabrik extracts), travel hubs"
+    url: https://www.openstreetmap.org/
+    licence: ODbL 1.0
+    retrieved: 2026-10-30
+  - id: copdem
+    title: "Copernicus DEM GLO-30 (30 m terrain model), tiles from AWS Open Data"
+    url: https://registry.opendata.aws/copernicus-dem/
+    licence: "Copernicus WorldDEM-30 licence, free; produced using Copernicus WorldDEM-30 © DLR e.V. 2010-2014 and © Airbus Defence and Space GmbH 2014-2018 provided under COPERNICUS by the European Union and ESA; all rights reserved"
+    retrieved: 2026-10-30
+  - id: worldcover
+    title: "ESA WorldCover 2021: 10 m land cover (via AWS Open Data)"
+    url: https://esa-worldcover.org/
+    licence: "CC BY 4.0; © ESA WorldCover project 2021 / Contains modified Copernicus Sentinel data (2021) processed by ESA WorldCover consortium"
+    retrieved: 2026-10-30
+  - id: era5
+    title: "Open-Meteo Historical Weather API: ERA5 and ERA5-Land reanalysis, daily 1995–2024"
+    url: https://open-meteo.com/en/docs/historical-weather-api
+    licence: CC BY 4.0 (Open-Meteo); contains modified Copernicus Climate Change Service information
+    retrieved: 2026-10-30
+  - id: osrm
+    title: "OSRM: road routes on OpenStreetMap data (router.project-osrm.org)"
+    url: https://project-osrm.org/
+    licence: Route data © OpenStreetMap contributors (ODbL)
+    retrieved: 2026-10-30

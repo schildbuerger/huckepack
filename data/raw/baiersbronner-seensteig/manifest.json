@@ -1,0 +1,82 @@
+{
+  "climate-high.json": {
+    "retrieved": "2026-10-30T11:56:11+00:00",
+    "url": "https://archive-api.open-meteo.com/v1/archive?latitude=48.60591&longitude=8.20262&elevation=1161&start_date=1995-01-01&end_date=2024-12-31&daily=temperature_2m_max,temperature_2m_min,precipitation_sum,snowfall_sum,wind_speed_10m_max,wind_gusts_10m_max&timezone=auto"
+  },
+  "climate-low.json": {
+    "retrieved": "2026-10-30T11:54:59+00:00",
+    "url": "https://archive-api.open-meteo.com/v1/archive?latitude=48.6063&longitude=8.36769&elevation=462&start_date=1995-01-01&end_date=2024-12-31&daily=temperature_2m_max,temperature_2m_min,precipitation_sum,snowfall_sum,wind_speed_10m_max,wind_gusts_10m_max&timezone=auto"
+  },
+  "elevation-glo30.json": {
+    "retrieved": "2026-10-30T11:53:48+00:00",
+    "url": "https://copernicus-dem-30m.s3.eu-central-1.amazonaws.com/Copernicus_DSM_COG_10_N48_00_E008_00_DEM/Copernicus_DSM_COG_10_N48_00_E008_00_DEM.tif"
+  },
+  "landcover.json": {
+    "retrieved": "2026-10-30T11:53:48+00:00",
+    "url": "https://esa-worldcover.s3.eu-central-1.amazonaws.com/v200/2021/map/ESA_WorldCover_10m_2021_v200_\u2026_Map.tif"
+  },
+  "osm-stage-1-main.json": {
+    "retrieved": "2026-10-28T21:21:02Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-2-main.json": {
+    "retrieved": "2026-10-28T21:21:02Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-3-main.json": {
+    "retrieved": "2026-10-28T21:21:02Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-3-variant.json": {
+    "retrieved": "2026-10-28T21:21:02Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-4-main.json": {
+    "retrieved": "2026-10-28T21:21:02Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-5-main.json": {
+    "retrieved": "2026-10-28T21:21:02Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-water.json": {
+    "retrieved": "2026-10-28T21:21:02Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-way-tags.json": {
+    "retrieved": "2026-10-28T21:21:02Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osrm-access-baiersbronn-station.json": {
+    "retrieved": "2026-10-30T11:56:11+00:00",
+    "url": "https://router.project-osrm.org/route/v1/driving/8.37204,48.5037;8.37217,48.50486?overview=false"
+  },
+  "osrm-access-karlsruhe-baden-baden-airport-fkb.json": {
+    "retrieved": "2026-10-30T11:56:11+00:00",
+    "url": "https://router.project-osrm.org/route/v1/driving/8.08401,48.77634;8.37217,48.50486?overview=false"
+  },
+  "stage-1-main.gpx": {
+    "retrieved": "2026-10-30T11:52:28+00:00",
+    "url": "https://www.baiersbronn.de/?ndsajax=destination-data-proxy&template=gpx&limit=1&mkt=de&q=globalid%3At_100276418&elevations=true&times=true&no_cache=1"
+  },
+  "stage-2-main.gpx": {
+    "retrieved": "2026-10-30T11:52:29+00:00",
+    "url": "https://www.baiersbronn.de/?ndsajax=destination-data-proxy&template=gpx&limit=1&mkt=de&q=globalid%3At_100276403&elevations=true&times=true&no_cache=1"
+  },
+  "stage-3-main.gpx": {
+    "retrieved": "2026-10-30T11:52:30+00:00",
+    "url": "https://www.baiersbronn.de/?ndsajax=destination-data-proxy&template=gpx&limit=1&mkt=de&q=globalid%3At_100276993&elevations=true&times=true&no_cache=1"
+  },
+  "stage-3-variant.gpx": {
+    "retrieved": "2026-10-30T11:52:35+00:00",
+    "url": "https://www.baiersbronn.de/?ndsajax=destination-data-proxy&template=gpx&limit=1&mkt=de&q=globalid%3At_100276425&elevations=true&times=true&no_cache=1"
+  },
+  "stage-4-main.gpx": {
+    "retrieved": "2026-10-30T11:52:35+00:00",
+    "url": "https://www.baiersbronn.de/?ndsajax=destination-data-proxy&template=gpx&limit=1&mkt=de&q=globalid%3At_100276861&elevations=true&times=true&no_cache=1"
+  },
+  "stage-5-main.gpx": {
+    "retrieved": "2026-10-30T11:52:36+00:00",
+    "url": "https://www.baiersbronn.de/?ndsajax=destination-data-proxy&template=gpx&limit=1&mkt=de&q=globalid%3At_100276420&elevations=true&times=true&no_cache=1"
+  }
+}
