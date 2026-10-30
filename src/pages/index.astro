@@ -259,13 +259,12 @@ const sources = [
         )}
       </div>
       <div class="feats">
-        {popular.map(({ t, spark, surface, views }) => (
+        {popular.map(({ t, spark, surface }) => (
           <a class="feat" href={`/trails/${t.slug}/`}>
             <span class="feat-place">{t.countries.join(" · ")}</span>
             <span class="feat-name">{t.name}</span>
             <span class="feat-figures">{figureLine(t)}</span>
             {spark && <TrailSpark spark={spark} surface={surface} height={70} />}
-            <span class="feat-why">{fmt(views!)} Wikipedia page views in 12 months</span>
           </a>
         ))}
       </div>
