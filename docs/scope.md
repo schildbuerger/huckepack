@@ -80,10 +80,12 @@
   one lane per group (issue #3; of three proposals, the lanes were chosen).
   Species or habitat detail would need another source.
 - **Terrain:** surfaces, elevation and steepness are one section with one
-  elevation profile and a toggle between two views (elevation and
-  steepness; ground), each with one row of key figures (issue #15; of four
-  previews, D was chosen and refined, 2026-10-29). The ground categories
-  use natural colours (earth, sand, asphalt) everywhere on the site.
+  chart: the elevation profile coloured by its gradient over a slim strip of
+  the ground underfoot, and one row of key figures in pairs (issue #15, four
+  previews, 2026-10-29; issue #28 replaced the toggle between two views:
+  approach A's chart with approach C's figures, 2026-10-30). The ground
+  categories use natural colours (earth, sand, asphalt) everywhere on the
+  site.
 - **Trail page order:** where is it (location, map), is it for me and when
   (difficulty, climate), what are the days like (stages, terrain,
   landscape), what do I need on the way (sleeping, water), then the sources
