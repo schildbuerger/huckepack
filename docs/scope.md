@@ -32,11 +32,10 @@
   city from the tz database), worked out in the browser; no location
   permission, no IP lookup, nothing sent or stored (decided 2026-10-30).
 - **Waymarks** (issue #82): every simple painted waymark a source describes
-  is drawn on the trail page; trail logos are not redrawn (the operator's
-  design, and a hand copy is neither faithful nor licensed). A logo could only
-  be shown as the operator's own file with their permission, or a freely
-  licensed file (e.g. Wikimedia Commons) with its attribution (decided
-  2026-10-30).
+  (stripes, flags, diamonds, painted numbers) is redrawn as SVG on the trail
+  page. Complex or protected logos are left out: the waymark's text stands
+  alone (decided 2026-10-30; Wikimedia Commons was checked: its logo vectors
+  carry doubtful licences, and its photos only read when large).
 - **Trail length:** the key figure, page title, search cards and home page show
   the operator's stated total where the record has one, not the sum of the
   stages: stage lists often include the paths into the stage towns (the
