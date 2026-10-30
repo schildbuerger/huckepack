@@ -42,11 +42,12 @@
   let allBounds: [[number, number], [number, number]] | undefined;
   const routeBounds = new Map<string, [[number, number], [number, number]]>();
 
-  // the trails whose start is in view, the map's centre, and the one hovered in the list or picked
-  // on the map
+  // the trails whose start is in view, the map's centre, the one hovered in the list, and the one
+  // picked (in the list, the search or on the map; it stays marked until another pick or "Show all")
   let inView = $state<string[]>(trails.map((t) => t.slug));
   let center = $state<[number, number] | null>(null);
   let hovered = $state<string | null>(null);
+  let selected = $state<string | null>(null);
   let query = $state("");
   const all = trails.map((t) => t.slug);
 
@@ -107,6 +108,7 @@
       zoomTo(s.id);
     } else {
       query = s.label;
+      selected = null;
       listKept = true;
       const boxes = trails.filter((t) => t.countries.includes(s.id)).map((t) => routeBounds.get(t.slug) ?? [t.startLonLat, t.startLonLat]);
       if (map && boxes.length)
@@ -161,21 +163,23 @@
   function zoomTo(slug: string) {
     const t = trails.find((x) => x.slug === slug);
     if (!map || !t) return;
-    hovered = slug;
+    selected = slug;
     listKept = true;
     const b = routeBounds.get(slug);
     if (b) map.fitBounds(b, { padding: 48, maxZoom: 11 });
     else map.easeTo({ center: t.startLonLat, zoom: 9 });
   }
   function showAll() {
+    selected = null;
     if (map && allBounds) map.fitBounds(allBounds, { padding: 0 }, { resetList: true });
   }
 
-  function highlight(slug: string | null) {
+  // the hovered and the picked trail's routes are drawn thicker
+  function highlight(...slugs: (string | null)[]) {
     if (!map?.getSource("routes")) return;
-    for (const t of trails) map.setFeatureState({ source: "routes", id: t.slug }, { hover: t.slug === slug });
+    for (const t of trails) map.setFeatureState({ source: "routes", id: t.slug }, { hover: slugs.includes(t.slug) });
   }
-  $effect(() => highlight(hovered));
+  $effect(() => highlight(hovered, selected));
 
   onMount(() => {
     let cancelled = false;
@@ -243,7 +247,7 @@
         map.addLayer({ id: "cluster-count", type: "symbol", source: "starts", filter: ["has", "point_count"], layout: { "text-field": ["get", "point_count_abbreviated"], "text-font": ["Noto Sans Bold"], "text-size": 12 }, paint: { "text-color": paper } });
         map.addLayer({ id: "starts", type: "circle", source: "starts", filter: ["!", ["has", "point_count"]], paint: { "circle-color": paper, "circle-radius": 7, "circle-stroke-color": accent, "circle-stroke-width": 3 } });
         map.addLayer({ id: "start-labels", type: "symbol", source: "starts", filter: ["!", ["has", "point_count"]], minzoom: 3, layout: { "text-field": ["get", "name"], "text-font": ["Noto Sans Bold"], "text-size": 12, "text-offset": [0, 1.3], "text-anchor": "top" }, paint: { "text-color": ink, "text-halo-color": paper, "text-halo-width": 1.6 } });
-        highlight(hovered);
+        highlight(hovered, selected);
         updateInView();
       });
       // a cluster zooms in; a trail is found in the list
@@ -256,7 +260,7 @@
       const pick = (e: import("maplibre-gl").MapLayerMouseEvent) => {
         const slug = e.features?.[0]?.properties?.slug as string | undefined;
         if (!slug) return;
-        hovered = slug;
+        selected = slug;
         document.getElementById(`wm-${slug}`)?.scrollIntoView({ block: "nearest", behavior: "smooth" });
       };
       map.on("click", "starts", pick);
@@ -335,9 +339,9 @@
         {#if i === firstOutside}
           <li class="wm-divider">{i === 0 ? "None in the map view; the nearest:" : "Outside the map view"}</li>
         {/if}
-        <li id={`wm-${t.slug}`} class:on={hovered === t.slug} class:out={!here} onmouseenter={() => (hovered = t.slug)} onmouseleave={() => (hovered = null)}>
+        <li id={`wm-${t.slug}`} class:on={hovered === t.slug} class:picked={selected === t.slug} class:out={!here} onmouseenter={() => (hovered = t.slug)} onmouseleave={() => (hovered = null)}>
           <!-- two actions: the entry zooms the map to the route, the arrow opens the trail page -->
-          <button type="button" class="wm-entry" title="Show on map" onclick={() => zoomTo(t.slug)}>
+          <button type="button" class="wm-entry" title="Show on map" aria-pressed={selected === t.slug} onclick={() => zoomTo(t.slug)}>
             <span class="wm-place">{t.countries.join(", ")}</span>
             <strong class="wm-name">{t.name}</strong>
             <span class="wm-fig">{figures(t)}</span>
@@ -489,6 +493,18 @@
   .wm-list li.on {
     background: var(--surface);
   }
+  /* the picked trail: an accent bar on the left, its name in the accent colour, at full strength
+     even outside the map view */
+  .wm-list li.picked {
+    background: var(--surface);
+    box-shadow: inset 4px 0 0 var(--accent);
+  }
+  .wm-list li.picked .wm-entry {
+    padding-left: 14px;
+  }
+  .wm-list li.picked .wm-name {
+    color: var(--accent);
+  }
   /* the entry itself zooms the map to the trail */
   .wm-entry {
     display: grid;
@@ -532,7 +548,7 @@
     letter-spacing: 0.06em;
     text-transform: uppercase;
   }
-  .wm-list li.out .wm-entry {
+  .wm-list li.out:not(.picked) .wm-entry {
     opacity: 0.75;
   }
   /* "Open the trail page": a round arrow, 40 px to tap */
