@@ -1,0 +1,211 @@
+name: Westweg
+aliases: [Westweg Pforzheim–Basel]
+website: https://www.schwarzwald-tourismus.info/erleben/wandern/fernwandern/westweg
+designation: Qualitätsweg Wanderbares Deutschland
+managedBy:
+  # laid out in 1900 and maintained by the Schwarzwaldverein; promoted by Schwarzwald Tourismus
+  - name: Schwarzwaldverein
+    url: https://www.schwarzwaldverein.de/
+  - name: Schwarzwald Tourismus GmbH
+    url: https://www.schwarzwald-tourismus.info/
+trailType: point-to-point
+continents: [Europe]
+countries: [DE, CH]
+regions: [Baden-Württemberg, Basel-Stadt]
+protectedAreas:
+  - Naturpark Schwarzwald Mitte/Nord
+  - Nationalpark Schwarzwald
+  - Naturpark Südschwarzwald
+  - Biosphärengebiet Schwarzwald
+termini:
+  # the start at the Kupferhammer in Pforzheim (guidepost, OSM) and the end in Basel (the end of
+  # the OSM relation of the western variant)
+  start:
+    name: Pforzheim (Kupferhammer)
+    lat: 48.87734
+    lon: 8.69912
+  end:
+    name: Basel
+    lat: 47.56739
+    lon: 7.60681
+  source: osm
+established:
+  year: 1900
+  source: stg
+waymarking:
+  text: Red diamond on a white background
+  source: stg
+length:
+  # "rund 285 Kilometer"; the western variant's route page 290.8 km, its stages add up to 287.1 km
+  - km: 285
+    approx: true
+    source: stg
+ascent:
+  # the western variant's route page: 7,889 m up, 7,854 m down
+  - m: 7889
+    source: stg
+days:
+  # the western variant in 12 stages, the eastern in 13
+  min: 12
+  max: 13
+  source: stg
+stages:
+  # Schwarzwald Tourismus's stage pages (toubiz): distances, times, climbs. The western variant is
+  # the main route (OSM's main line too); the eastern variant's stages 9–13 are variants, listed
+  # after stage 8 where they branch off. No GPX: the map line follows OSM's Westweg relations
+  # (superroute 62900): one per stage for 1–8, the western (62897) and eastern (130310) variants
+  # for the rest, cut at each stage's end
+  source: stg
+  list:
+    - { number: "1", kind: main, from: Pforzheim, to: Dobel, km: 26.21, ascentM: 811, descentM: 368, minutes: 420, relation: 48073 }
+    - { number: "2", kind: main, from: Dobel, to: Forbach, km: 26.23, ascentM: 518, descentM: 938, minutes: 450, relation: 905947 }
+    - { number: "3", kind: main, from: Forbach, to: Unterstmatt, km: 19.59, ascentM: 1090, descentM: 474, minutes: 360, relation: 905949 }
+    - { number: "4", kind: main, from: Unterstmatt, to: Alexanderschanze, km: 27.87, ascentM: 846, descentM: 792, minutes: 510, relation: 905948 }
+    - { number: "5", kind: main, from: Alexanderschanze, to: Hark, km: 17.15, ascentM: 252, descentM: 522, minutes: 300, relation: 905950 }
+    - { number: "6", kind: main, from: Hark, to: Hausach, km: 15.65, ascentM: 423, descentM: 888, minutes: 390, relation: 905955 }
+    - { number: "7", kind: main, from: Hausach, to: Wilhelmshöhe (Schonach), km: 21.24, ascentM: 1284, descentM: 549, minutes: 450, relation: 542317 }
+    - { number: "8", kind: main, from: Wilhelmshöhe (Schonach), to: Kalte Herberge, km: 22.42, ascentM: 479, descentM: 426, minutes: 390, relation: 907520 }
+    - { number: "9 Ost", kind: variant, from: Kalte Herberge, to: Feldberg-Bärental, km: 27.33, ascentM: 574, descentM: 631, minutes: 447, relation: [907521, 130310], end: { lat: 47.86987, lon: 8.09548 } }
+    - { number: "10 Ost", kind: variant, from: Feldberg-Bärental, to: Weißenbachsattel (Todtmoos), km: 25.63, ascentM: 1072, descentM: 958, minutes: 498, relation: 130310, end: { lat: 47.76278, lon: 7.97722 } }
+    - { number: "11 Ost", kind: variant, from: Weißenbachsattel (Todtmoos), to: Schweigmatt (Schopfheim), km: 18.21, ascentM: 393, descentM: 751, minutes: 300, relation: 130310, end: { lat: 47.68148, lon: 7.88257 } }
+    - { number: "12 Ost", kind: variant, from: Schweigmatt (Schopfheim), to: Oberminseln, km: 19.9, ascentM: 322, descentM: 675, minutes: 323, relation: 130310, end: { lat: 47.60854, lon: 7.78431 } }
+    - { number: "13 Ost", kind: variant, from: Oberminseln, to: Basel, km: 24.13, ascentM: 584, descentM: 699, minutes: 418, relation: 130310, end: { lat: 47.56739, lon: 7.60681 } }
+    - { number: "9", kind: main, from: Kalte Herberge, to: Hinterzarten, km: 26.07, ascentM: 581, descentM: 707, minutes: 450, relation: [907521, 62897], end: { lat: 47.90637, lon: 8.10362 } }
+    - { number: "10", kind: main, from: Hinterzarten, to: Wiedener Eck, km: 26.52, ascentM: 882, descentM: 745, minutes: 510, relation: 62897, end: { lat: 47.84487, lon: 7.86700 } }
+    - { number: "11", kind: main, from: Wiedener Eck, to: Kandern, km: 32.04, ascentM: 1040, descentM: 1730, minutes: 480, relation: 62897, end: { lat: 47.71470, lon: 7.66109 } }
+    - { number: "12", kind: main, from: Kandern, to: Basel, km: 26.09, ascentM: 522, descentM: 609, minutes: 450, relation: 62897, end: { lat: 47.56739, lon: 7.60681 } }
+route:
+  # built by `python -m pipeline.all westweg`: OSM ways matched to the Westweg relations
+  source: osm
+  publishable: true
+difficulty:
+  # no grade is published; our estimate from the official description
+  estimated:
+    sac: T2
+    basis: >-
+      Schwarzwald Tourismus describes forest and mountain paths with about 9,000 m of climbing,
+      "teilweise ist der Weg nur ein schmaler Pfad", and snow and ice on the heights in winter;
+      no exposed or secured passages. That is mountain hiking on good paths (T2), with length and
+      climbing the main difficulty.
+    source: stg
+season:
+  # "Beste Jahreszeit: Frühsommer, Sommer oder Herbst. Im Winter ist in den Höhenlagen mit Schnee
+  # und vereisten Wegen zu rechnen"; the Feldberg stage page marks May to October
+  months: [5, 6, 7, 8, 9, 10]
+  text: Early summer to autumn; snow and ice on the heights in winter
+  source: stg
+sleeping:
+  # the official Westweg hosts: hotels, inns and guesthouses, the Karl-Bäuerle-Hütte (a hikers'
+  # hut in Dobel), a campsite in Hinterzarten; plus the trekking camps (tent pitches)
+  types: [hotel, guesthouse, hut, campsite]
+  source: stg
+wildCamping:
+  status: restricted
+  rule: >-
+    Tents only at the Black Forest's bookable trekking camps (24 in 2026, May to October, booked at
+    trekking-schwarzwald.de), several near the Westweg, e.g. in Dobel (stage 1) and above Forbach
+    (stage 2); elsewhere camping in the forest isn't allowed.
+  source: naturpark-trekking
+access:
+  # Pforzheim main station at the start; Karlsruhe/Baden-Baden (north) and EuroAirport
+  # Basel-Mulhouse (south) airports. Coordinates from OSM; distances by pipeline/access.py
+  - kind: station
+    name: Pforzheim Hauptbahnhof
+    lat: 48.89398
+    lon: 8.70326
+    source: osm
+  - kind: airport
+    name: Karlsruhe/Baden-Baden Airport (FKB)
+    lat: 48.77634
+    lon: 8.08401
+    source: osm
+  - kind: airport
+    name: EuroAirport Basel-Mulhouse (BSL)
+    lat: 47.59914
+    lon: 7.53028
+    source: osm
+tags: [black-forest, forests, ridges, classic, cross-border]
+notes:
+  - >-
+    Official lengths: "rund 285 Kilometer" on the overview, 291 km (western variant, 12 stages)
+    and 288 km (eastern, 13 stages) on its variant pages, 290.8 km and 287.1 km on the two route
+    pages; the western variant's stage pages add up to 287.1 km. Ascent "knapp 9.000 Höhenmeter"
+    on the overview, 7,889 m on the western route page.
+  - >-
+    Season: the overview recommends early summer to autumn; the western route page marks March to
+    October, the Feldberg stage (10) May to October. The record uses May to October.
+  - >-
+    The stage pages carry no track for download; the map line follows OSM's Westweg relations
+    (superroute 62900, Schwarzwaldverein). OSM's section 9 ends in Titisee, so the official stage 9
+    (to Hinterzarten) takes it and the start of the western variant's relation.
+  - >-
+    Route (pipeline, 2026-10-30, Geofabrik extracts): the OSM relations match 98–100 % of every
+    stage; the main route on the map line is 281.5 km against 287.1 km from the stage pages.
+  - >-
+    Water (pipeline, 2026-10-30): 85 drinking water points from OSM; the longest stretch without
+    one is 46.1 km (km 3.8–49.9, stages 1–2 from Pforzheim over Dobel to the Murg valley), past
+    inns and huts OSM doesn't record as water points.
+  - >-
+    Ascent: the western stage pages add up to 8,728 m, the western route page says 7,889 m and the
+    overview "knapp 9.000"; the terrain model gives about 10,540 m (it measures the treetops; 80 %
+    of the route runs through forest).
+  - >-
+    Tree line (2026-10-30): none in reach. The western variant crosses the Feldberg (1,486 m on the terrain model),
+    whose bare summit is mostly the result of clearing and pasture; its natural tree line would lie
+    higher (waldwissen.net, "Südschwarzwald: Waldwandel seit 1790"; the botanical literature calls
+    the question not fully settled). So no treeLine is recorded.
+  - >-
+    Data check (2026-10-30). Second source: German Wikipedia (ca. 285 km, laid out in 1900 by the
+    Badischer Schwarzwaldverein, red diamond on white, maintained by the Schwarzwaldverein, spring
+    to autumn). Its stage list follows an older split of the south into 13 stages; where its stages
+    run between the same places as the official ones they agree within 10 %: stages 1–8 (24.7,
+    26.0, 19.4, 27.8, 16.9, 16.5, 21.0 and 21.0 km), 9 West (26.5), 10 West (24.5), 9 Ost (26.5),
+    and the official stages 11 and 12 West together (58.1 km) against its three stages from the
+    Wiedener Eck to Basel (56.5 km). Its "1256 m" is the height range, not the ascent.
+dataCheck:
+  # working rule 2: German Wikipedia
+  date: 2026-10-30
+  against: [wikipedia]
+  deviations: []
+sources:
+  - id: stg
+    title: "Schwarzwald Tourismus GmbH: Westweg (overview, western and eastern variant pages, stage pages: distances, times, climbs, season)"
+    url: https://www.schwarzwald-tourismus.info/erleben/wandern/fernwandern/westweg
+    licence: All rights reserved (facts only)
+    retrieved: 2026-10-30
+  - id: naturpark-trekking
+    title: "Naturpark Schwarzwald Mitte/Nord: press release on the Forbach trekking camp, 9 June 2026 (trekking camps, season)"
+    url: https://naturparkschwarzwald.de/media/acfupload/2026-06-09_PM_Trekking-Camp_in_Forbach_durch_Naturpark_eroffnet.pdf
+    licence: All rights reserved (facts only)
+    retrieved: 2026-10-30
+  - id: wikipedia
+    title: "Wikipedia (de): Westweg (data check)"
+    url: https://de.wikipedia.org/wiki/Westweg
+    licence: CC BY-SA 4.0
+    retrieved: 2026-10-30
+    checkOnly: true
+  - id: osm
+    title: "OpenStreetMap contributors: the Westweg relations (superroute 62900), paths and water along the trail (Geofabrik extracts), travel hubs"
+    url: https://www.openstreetmap.org/relation/62900
+    licence: ODbL 1.0
+    retrieved: 2026-10-30
+  - id: copdem
+    title: "Copernicus DEM GLO-30 (30 m terrain model), tiles from AWS Open Data"
+    url: https://registry.opendata.aws/copernicus-dem/
+    licence: "Copernicus WorldDEM-30 licence, free; produced using Copernicus WorldDEM-30 © DLR e.V. 2010-2014 and © Airbus Defence and Space GmbH 2014-2018 provided under COPERNICUS by the European Union and ESA; all rights reserved"
+    retrieved: 2026-10-30
+  - id: worldcover
+    title: "ESA WorldCover 2021: 10 m land cover (via AWS Open Data)"
+    url: https://esa-worldcover.org/
+    licence: "CC BY 4.0; © ESA WorldCover project 2021 / Contains modified Copernicus Sentinel data (2021) processed by ESA WorldCover consortium"
+    retrieved: 2026-10-30
+  - id: era5
+    title: "Open-Meteo Historical Weather API: ERA5 and ERA5-Land reanalysis, daily 1995–2024"
+    url: https://open-meteo.com/en/docs/historical-weather-api
+    licence: CC BY 4.0 (Open-Meteo); contains modified Copernicus Climate Change Service information
+    retrieved: 2026-10-30
+  - id: osrm
+    title: "OSRM: road routes on OpenStreetMap data (router.project-osrm.org)"
+    url: https://project-osrm.org/
+    licence: Route data © OpenStreetMap contributors (ODbL)
+    retrieved: 2026-10-30
