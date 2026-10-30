@@ -380,6 +380,41 @@ const sources = [
       ))}
     </dl>
   </section>
+  <!-- issue #81 (of three previews, approach A): the two calls to action again, in a slim bar along the
+       bottom, once the hero's buttons have scrolled away and until the footer comes into view; hidden
+       from screen readers and keyboard while it is away -->
+  <div class="cta-bar" aria-hidden="true" inert>
+    <span class="cta-bar-text">Find your long-distance trail</span>
+    <span class="cta-bar-actions">
+      <a class="cta-bar-secondary" href="/trails/guide/">Help me choose</a>
+      <a class="button" href="/trails/">Explore the trails <span aria-hidden="true">→</span></a>
+    </span>
+  </div>
+  <script>
+    const bar = document.querySelector<HTMLElement>(".cta-bar")!;
+    const hero = document.querySelector<HTMLElement>(".hero .ctas");
+    const footer = document.querySelector<HTMLElement>(".site-footer");
+    if (hero && "IntersectionObserver" in window) {
+      let heroGone = false;
+      let footerIn = false;
+      const update = () => {
+        const show = heroGone && !footerIn;
+        bar.classList.toggle("shown", show);
+        bar.toggleAttribute("inert", !show);
+        bar.setAttribute("aria-hidden", String(!show));
+      };
+      // gone means scrolled past (above the screen), not merely below it
+      new IntersectionObserver(([e]) => {
+        heroGone = !e.isIntersecting && e.boundingClientRect.top < 0;
+        update();
+      }).observe(hero);
+      if (footer)
+        new IntersectionObserver(([e]) => {
+          footerIn = e.isIntersecting;
+          update();
+        }).observe(footer);
+    }
+  </script>
 </Base>
 
 <style>
@@ -472,6 +507,56 @@ const sources = [
     .cta,
     .cta-secondary {
       transition: none;
+    }
+  }
+
+  /* the sticky call to action (issue #81): a slim bar along the bottom, sliding in */
+  .cta-bar {
+    position: fixed;
+    inset: auto 0 0;
+    z-index: 50;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 8px 24px;
+    padding: 10px 16px calc(10px + env(safe-area-inset-bottom));
+    background: color-mix(in srgb, var(--bg) 92%, transparent);
+    backdrop-filter: blur(8px);
+    border-top: 1px solid var(--line);
+    visibility: hidden;
+    opacity: 0;
+    transform: translateY(100%);
+    transition: transform 0.25s ease, opacity 0.25s ease, visibility 0.25s;
+  }
+  .cta-bar.shown {
+    visibility: visible;
+    opacity: 1;
+    transform: none;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .cta-bar {
+      transition: none;
+    }
+  }
+  .cta-bar-text {
+    font-family: var(--serif);
+    font-size: 1.1rem;
+    font-weight: 600;
+  }
+  .cta-bar-actions {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+  .cta-bar-secondary {
+    color: var(--accent);
+    font-weight: 600;
+  }
+  /* phones: the two buttons only */
+  @media (max-width: 559px) {
+    .cta-bar-text {
+      display: none;
     }
   }
 
