@@ -68,6 +68,8 @@ const stage = z.object({
   // or the stage's own OSM hiking relation (a section of a superroute): chained from where the
   // previous stage ended, it guides the matcher like a track
   relation: z.number().int().positive().optional(),
+  // when this stage's figures come from another source than the list's (the page names it)
+  source: sourceRef.optional(),
 });
 
 const trail = z
@@ -214,6 +216,7 @@ const trail = z
         t.difficulty?.estimated,
         t.waterPoints,
         ...(t.stages?.timesSource ? [{ source: t.stages.timesSource }] : []),
+        ...(t.stages?.list.flatMap((s) => (s.source ? [{ source: s.source }] : [])) ?? []),
         ...(t.dataCheck
           ? [...[...t.dataCheck.against, ...t.dataCheck.pageAgainst].map((source) => ({ source })), ...t.dataCheck.deviations]
           : []),

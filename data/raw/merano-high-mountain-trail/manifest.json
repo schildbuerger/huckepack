@@ -1,18 +1,18 @@
 {
   "climate-high.json": {
-    "retrieved": "2026-10-29T21:56:40+00:00",
-    "url": "https://archive-api.open-meteo.com/v1/archive?latitude=46.75535&longitude=11.02674&elevation=2889&start_date=1995-01-01&end_date=2024-12-31&daily=temperature_2m_max,temperature_2m_min,precipitation_sum,snowfall_sum,wind_speed_10m_max,wind_gusts_10m_max&timezone=auto"
+    "retrieved": "2026-10-30T06:47:40+00:00",
+    "url": "https://archive-api.open-meteo.com/v1/archive?latitude=46.75528&longitude=11.02676&elevation=2889&start_date=1995-01-01&end_date=2024-12-31&daily=temperature_2m_max,temperature_2m_min,precipitation_sum,snowfall_sum,wind_speed_10m_max,wind_gusts_10m_max&timezone=auto"
   },
   "climate-low.json": {
-    "retrieved": "2026-10-29T21:55:28+00:00",
+    "retrieved": "2026-10-30T06:46:29+00:00",
     "url": "https://archive-api.open-meteo.com/v1/archive?latitude=46.77214&longitude=11.20305&elevation=807&start_date=1995-01-01&end_date=2024-12-31&daily=temperature_2m_max,temperature_2m_min,precipitation_sum,snowfall_sum,wind_speed_10m_max,wind_gusts_10m_max&timezone=auto"
   },
   "elevation-glo30.json": {
-    "retrieved": "2026-10-29T21:54:16+00:00",
+    "retrieved": "2026-10-30T06:45:16+00:00",
     "url": "https://copernicus-dem-30m.s3.eu-central-1.amazonaws.com/Copernicus_DSM_COG_10_N46_00_E010_00_DEM/Copernicus_DSM_COG_10_N46_00_E010_00_DEM.tif https://copernicus-dem-30m.s3.eu-central-1.amazonaws.com/Copernicus_DSM_COG_10_N46_00_E011_00_DEM/Copernicus_DSM_COG_10_N46_00_E011_00_DEM.tif"
   },
   "landcover.json": {
-    "retrieved": "2026-10-29T21:54:17+00:00",
+    "retrieved": "2026-10-30T06:45:17+00:00",
     "url": "https://esa-worldcover.s3.eu-central-1.amazonaws.com/v200/2021/map/ESA_WorldCover_10m_2021_v200_\u2026_Map.tif"
   },
   "osm-stage-1-main.json": {
@@ -28,7 +28,7 @@
     "url": "https://overpass-api.de/api/interpreter"
   },
   "osm-stage-4-main.json": {
-    "retrieved": "2026-10-29T21:38:08+00:00",
+    "retrieved": "2026-10-30T06:41:51+00:00",
     "url": "https://overpass-api.de/api/interpreter"
   },
   "osm-stage-5-main.json": {
@@ -52,7 +52,7 @@
     "url": "https://overpass-api.de/api/interpreter"
   },
   "osm-water.json": {
-    "retrieved": "2026-10-29T23:27:32+00:00",
+    "retrieved": "2026-10-30T07:39:03+00:00",
     "url": "https://overpass-api.de/api/interpreter"
   },
   "osm-way-tags.json": {
@@ -84,8 +84,8 @@
     "url": "https://www.meranerland.org/external/gpx/?id=4374&lang_id=12"
   },
   "stage-4-main.gpx": {
-    "retrieved": "2026-10-29T21:36:13+00:00",
-    "url": "https://www.meranerland.org/external/gpx/?id=4380&lang_id=12"
+    "retrieved": "2026-10-30T06:37:56+00:00",
+    "url": "https://www.merano-suedtirol.it/gsgpx/id=121154954"
   },
   "stage-5-main.gpx": {
     "retrieved": "2026-10-29T21:38:24+00:00",

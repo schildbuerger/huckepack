@@ -831,6 +831,9 @@ const nav = [
       <p class="note muted">
         Totals and averages count the main stages only.
         {t.stages.timesSource && ` Walking times from ${sourceShort(t.stages.timesSource)}.`}
+        {t.stages.list
+          .filter((s) => s.source)
+          .map((s) => ` Stage ${s.number}${s.kind !== "main" ? ` (${s.kind})` : ""} from ${sourceShort(s.source!)}.`)}
         {(estEle || estClimb || estTime) && " ≈ marks our estimates where the source gives no figure: "}
         {(estEle || estClimb) &&
           `${[estClimb && "ascent and descent", estEle && "heights"].filter(Boolean).join(" and ")} from the terrain model (Copernicus DEM, 30 m grid, sampled every 100 m), to the nearest 10 m`}

@@ -43,14 +43,18 @@ days:
   max: 8
   source: brochure
 stages:
-  # the official site's nine stages, clockwise, with its times, lengths and climbs; each with the
-  # official GPX (kept local, it only guides the OSM matcher)
+  # the nine stages of meranerland.org, clockwise, with its times, lengths and climbs; each with
+  # its GPX (kept local, it only guides the OSM matcher). Stage 4 there starts at the Leiter Alm,
+  # reached by lift: its own page ends stage 3 with the cable car down to Dorf Tirol. The trail
+  # walks on (path 24, the Hans-Frieden-Weg from Hochmuth to the Leiter Alm, brochure), so the main
+  # stage 4 is the tourist association's walked stage from Hochmuth, by the Muthöfe where stage 3
+  # ends (meranerland.org's lift start from the Leiter Alm is left out: a ride, not a route)
   source: meranerland
   list:
     - { number: "1", kind: main, from: Ausserhütt, to: Matatz, km: 12.7, ascentM: 391, descentM: 787, minutes: 240, track: "https://www.meranerland.org/external/gpx/?id=4356&lang_id=12" }
     - { number: "2", kind: main, from: Matatz, to: Vernuer, km: 12.0, ascentM: 637, descentM: 599, minutes: 230, track: "https://www.meranerland.org/external/gpx/?id=4364&lang_id=12" }
     - { number: "3", kind: main, from: Vernuer, to: Muthöfe, km: 7.8, ascentM: 582, descentM: 351, minutes: 225, track: "https://www.meranerland.org/external/gpx/?id=4374&lang_id=12" }
-    - { number: "4", kind: main, from: Leiter Alm, to: Giggelberg, km: 11.8, ascentM: 604, descentM: 555, minutes: 260, track: "https://www.meranerland.org/external/gpx/?id=4380&lang_id=12" }
+    - { number: "4", kind: main, from: Hochmuth, to: Giggelberg, km: 13.6, ascentM: 740, descentM: 533, minutes: 350, track: "https://www.merano-suedtirol.it/gsgpx/id=121154954", source: hochmuth }
     - { number: "5", kind: main, from: Giggelberg, to: Unterstell, km: 8.6, ascentM: 449, descentM: 701, minutes: 180, track: "https://www.meranerland.org/external/gpx/?id=4389&lang_id=12" }
     - { number: "6", kind: main, from: Unterstell, to: Katharinaberg, km: 7.1, ascentM: 381, descentM: 427, minutes: 150, track: "https://www.meranerland.org/external/gpx/?id=4398&lang_id=12" }
     - { number: "7", kind: main, from: Katharinaberg, to: Vorderkaser, km: 7.5, ascentM: 588, descentM: 148, minutes: 180, track: "https://www.meranerland.org/external/gpx/?id=4407&lang_id=12" }
@@ -112,10 +116,17 @@ notes:
     and "Alta Via di Merano" (meranerland.org); the German name is Meraner Höhenweg. The record
     keeps the English name with the German as the local name.
   - >-
-    The nine official stages add up to 93.9 km, 4,876 m of ascent and 5,050 m of descent, against
-    "almost 100 km". They don't join everywhere: stage 3 ends at the Muthöfe farmsteads and stage 4
-    starts at the Leiter Alm, and several stage ends are a little off the loop where cable cars
-    or buses arrive, so ascent and descent don't balance on the loop.
+    The nine main stages add up to 95.7 km, 5,012 m of ascent and 5,028 m of descent, against
+    "almost 100 km". meranerland.org's stage 4 starts at the Leiter Alm (by chair lift and basket
+    lift from Algund), so its stages don't join between the Muthöfe and the Leiter Alm; its own
+    stage 3 page takes the cable car down from Hochmuth. The brochure's trail walks that piece on
+    path 24 (the Hans-Frieden-Weg, Hochmuth – Leiteralm, 1 h), and the tourist association's own
+    stage page starts there (merano-suedtirol.it, Hochmuth – Giggelberg, 13.6 km): it is the main
+    stage 4 (2026-10-30). meranerland.org's stage 4 (Leiter Alm – Giggelberg, 11.8 km, 604 m up,
+    555 m down, 4:20 h) isn't listed, not even as a variant: it differs only by the lift ride. Some stage ends are still a little off the
+    loop where cable cars or buses arrive (stage 4 ends at the Texelbahn mountain station, about
+    1 km from the Giggelberg inn where stage 5 starts). With the meranerland stage 4 instead the
+    sum was 93.9 km, 4,876 m up and 5,050 m down.
   - >-
     Opened in 1985 at Katharinaberg; created by the AVS mountain guides Robert Schönweger and
     Helmuth Ellmenreich (brochure).
@@ -130,7 +141,7 @@ notes:
   - >-
     Route (pipeline, 2026-10-29): the OSM match covers 100 % of eight stage tracks and 91 % of
     stage 3 (Vernuer – Muthöfe), where OSM is probably missing a short path; the map line's main
-    route is 89.8 km, shorter than the 93.9 km stage sum because the stages don't join everywhere.
+    route is shorter than the stage sum because the stages don't join everywhere.
     Highest point from the terrain model 2,889 m (Eisjöchl, officially 2,895 m).
   - >-
     Data check (2026-10-29). Second source: German Wikipedia (93 km in its infobox and "ca. 100 km"
@@ -140,19 +151,33 @@ notes:
     five to eight. Its "ca. 6,000 m" of ascent and descent isn't comparable (combined or rounded).
     No independent source gives the stage figures, so the stage lengths, times and climbs were
     checked on the built page against the official stage pages.
+  - >-
+    Data check of the new main stage 4 (2026-10-30). Second source: Bergwelten (Hochmuth –
+    Giggelberg: 13.5 km, 4:30 h, 875 m up, 657 m down, highest point 1,839 m); the length agrees.
+    More than 10 % apart: the time (5:50 h against 4:30 h), the ascent (740 m against 875 m) and
+    the descent (533 m against 657 m). The association's brochure (not independent) gives 13.4 km,
+    about 6 h, 850 m up and 550 m down for the same stage.
 dataCheck:
   # working rule 2: Wikipedia for the overview; the stages checked on the page against the stage pages
-  date: 2026-10-29
-  against: [wikipedia]
+  date: 2026-10-30
+  against: [wikipedia, bergwelten]
   pageAgainst: [meranerland]
   deviations:
     - { figure: "Days", ours: "5–8 days", theirs: "4–6 days", source: wikipedia }
+    - { figure: "Stage 4 time", ours: "5:50 h", theirs: "4:30 h", source: bergwelten }
+    - { figure: "Stage 4 ascent", ours: "740 m", theirs: "875 m", source: bergwelten }
+    - { figure: "Stage 4 descent", ours: "533 m", theirs: "657 m", source: bergwelten }
 sources:
   - id: meranerland
     title: "Merano and environs: Alta Via di Merano, overview and nine stage pages (times, lengths, climbs, GPX)"
     url: https://www.meranerland.org/en/leisure-activities/mountains-and-hiking/alta-via-di-merano
     licence: All rights reserved (facts only)
     retrieved: 2026-10-29
+  - id: hochmuth
+    title: "Tourismusverband Meraner Land: Merano High Mountain Trail – from Hochmuth to Giggelberg (stage page: time, length, climbs, GPX)"
+    url: https://www.merano-suedtirol.it/de/meraner-land/meraner-hoehenweg/121154954-alta-via-di-merano-1a-tappa-hochmuth-giggelberg.html
+    licence: All rights reserved (facts only)
+    retrieved: 2026-10-30
   - id: brochure
     title: "Tourismusverband Meraner Land: Der Meraner Höhenweg im Naturpark Texelgruppe (brochure: history, stages, accommodation)"
     url: https://www.merano-suedtirol.it/media/79917956-52b8-47dd-a6b6-3d7bfd4d7471/meraner-land-meraner-hoehenweg.pdf
@@ -168,6 +193,12 @@ sources:
     url: https://www.algund.info/files/content/99395_11674_1_0/de-texelgruppe.pdf
     licence: All rights reserved (facts only)
     retrieved: 2026-10-29
+  - id: bergwelten
+    title: "Bergwelten: Meraner Höhenweg 1. Etappe, Hochmuth bis Giggelberg (data check)"
+    url: https://www.bergwelten.com/touren/meraner-hoehenweg-1etappe-hochmuth-bis-giggelberg
+    licence: All rights reserved (facts only)
+    retrieved: 2026-10-30
+    checkOnly: true
   - id: wikipedia
     title: "Wikipedia (de): Meraner Höhenweg (data check)"
     url: https://de.wikipedia.org/wiki/Meraner_H%C3%B6henweg

@@ -10,14 +10,18 @@ import heapq
 import http.client
 import json
 import math
+import os
 import time
 import urllib.parse
 import urllib.request
 from datetime import datetime, timezone
 
-OVERPASS = "https://overpass-api.de/api/interpreter"
+# OVERPASS_URL picks a mirror (same OSM data) when the main instance is busy, e.g.
+# https://overpass.kumi.systems/api/interpreter
+OVERPASS = os.environ.get("OVERPASS_URL", "https://overpass-api.de/api/interpreter")
 USER_AGENT = "huckepack-pipeline (personal project)"
 SEARCH_RADIUS_M = 200  # ways fetched around the track
+BOX_M = 1000  # the track is queried in boxes over pieces of about this length
 SIGMA_M = 15  # penalty scale: a way 15 m off the track costs double, 50 m about 12 times
 FAR_M = 300  # distances beyond this are treated as this
 NEAR_M = 30  # a track point counts as covered if the matched line is this close
@@ -99,18 +103,36 @@ def around(line_lonlat, max_points=150):
     return ",".join(p for i, p in enumerate(pairs) if i == 0 or p != pairs[i - 1])
 
 
+def boxes(line_lonlat, piece_m=BOX_M, pad_m=SEARCH_RADIUS_M):
+    """Bounding boxes (south, west, north, east) of consecutive pieces of about piece_m of a line,
+    each padded by pad_m, so together they hug the line."""
+    proj = Projection(line_lonlat[0][1])
+    out, piece, run = [], [line_lonlat[0]], 0.0
+    for a, b in zip(line_lonlat, line_lonlat[1:]):
+        piece.append(b)
+        run += math.dist(proj.xy(*a), proj.xy(*b))
+        if run >= piece_m or b is line_lonlat[-1]:
+            lons, lats = [p[0] for p in piece], [p[1] for p in piece]
+            dlat = pad_m / proj.m
+            dlon = pad_m / proj.k
+            out.append((min(lats) - dlat, min(lons) - dlon, max(lats) + dlat, max(lons) + dlon))
+            piece, run = [b], 0.0
+    return out
+
+
 def overpass_query(track_lonlat):
-    """Ways around a track."""
-    return (
-        f"[out:json][timeout:120];"
-        f'way["highway"]["highway"!~"^(motorway|motorway_link|trunk|trunk_link|construction|proposed|platform)$"]'
-        f"(around:{SEARCH_RADIUS_M},{around(track_lonlat)});"
-        f"out skel;>;out skel qt;"
-    )
+    """Ways around a track: the union of padded boxes along it. Boxes rather than Overpass's
+    polyline `around`, which sometimes silently matches nothing (see around())."""
+    way = 'way["highway"]["highway"!~"^(motorway|motorway_link|trunk|trunk_link|construction|proposed|platform)$"]'
+    union = "".join(f"{way}({s:.5f},{w:.5f},{n:.5f},{e:.5f});" for s, w, n, e in boxes(track_lonlat))
+    return f"[out:json][timeout:120];({union});out skel;>;out skel qt;"
 
 
 def fetch_ways(track_lonlat):
-    return fetch(overpass_query(track_lonlat))
+    data = fetch(overpass_query(track_lonlat))
+    if not any(e["type"] == "way" for e in data["elements"]):
+        raise RuntimeError("Overpass found no ways around the track; not caching an empty result")
+    return data
 
 
 def fetch(query):
@@ -130,7 +152,7 @@ def fetch(query):
                 continue
             data["retrieved"] = datetime.now(timezone.utc).isoformat(timespec="seconds")
             return data
-        except (urllib.error.HTTPError, urllib.error.URLError, http.client.IncompleteRead) as error:
+        except (urllib.error.HTTPError, urllib.error.URLError, http.client.IncompleteRead, ConnectionError, TimeoutError) as error:
             busy = not isinstance(error, urllib.error.HTTPError) or error.code in (429, 502, 503, 504)
             if not busy or attempt == 4:
                 raise
