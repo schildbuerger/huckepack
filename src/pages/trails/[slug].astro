@@ -18,6 +18,7 @@ import {
   stageEstimates,
   stageTotals,
   trailLength,
+  measuredLength,
   SAC_NOTE,
   SAC_SCALE,
   SLEEPING_CATEGORIES,
@@ -50,6 +51,8 @@ const sources = Object.fromEntries(t.sources.map((s, i) => [s.id, { ...s, n: i +
 const totals = stageTotals(t);
 // one length: the first stated total, else the sum of the main stages (trailLength())
 const length = trailLength(t);
+// the length on our map line, where every main stage is well matched (measuredLength())
+const measured = measuredLength(derived);
 const daily = perDay(t);
 const sac = sacGrade(t);
 // difficulty in three dimensions (src/lib/difficulty.ts); the key figure names the hardest level
@@ -382,7 +385,26 @@ const nav = [
     <dl class="strip spec key-figs">
       {length && (
         <div>
-          <dt>Length</dt>
+          <dt>
+            <Explain id="length-info" term="Length">
+              <p>
+                {length.approx ? "About " : ""}{fmt(length.value)} km: {length.how === "stated total" ? "the stated length" : `the ${length.how}`}{" "}
+                ({sources[length.source].title.split(":")[0]}).
+              </p>
+              {measured ? (
+                <p>
+                  Measured on our map line: {fmt(measured.value)} km, the route as OpenStreetMap maps it along the
+                  official track. The charts on this page run along the same line, and the search sorts trails by it, so
+                  lengths compare the same way.
+                </p>
+              ) : derived?.measured && (
+                <p>
+                  Our map line follows only {Math.round(derived.measured.minCovered * 100)} % of the official track on its
+                  weakest stage, so it isn't used as a length; the search sorts this trail by the figure above.
+                </p>
+              )}
+            </Explain>
+          </dt>
           <dd>
             {length.approx && <span class="unit">about</span>}
             <span class="big">{fmt(length.value)}</span><span class="unit">km</span>

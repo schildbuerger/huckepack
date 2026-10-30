@@ -23,6 +23,13 @@
   Moselsteig's 24 stages add up to 392.8 km against its 365 km). The stage
   sums stay in the stages table and feed the per-day averages and difficulty,
   which must share a source with the stages (decided 2026-10-30).
+- **Measured length:** where every main stage's OSM match covers at least
+  95 % of its official track, the length of our map line (the full match) is
+  the comparable length: the search sorts by it and the home page sums it, so
+  every trail is measured the same way. The page's headline stays the stated
+  figure hikers see on signs and bookings; its popover gives the measured one
+  (decided 2026-10-30). Below 95 % the stated figure stands in, since a
+  stage whose match takes a shortcut would come out short.
 
 - **Name:** huckepack (German for carrying someone piggyback, from Low German
   *Hucke*, a load carried on the back). huckepack.com is taken; the domain

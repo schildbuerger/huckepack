@@ -3937,5 +3937,36 @@
       "km": 50.5,
       "m": 259
     }
+  },
+  "measured": {
+    "source": "osm",
+    "km": 53.0,
+    "minCovered": 1.0,
+    "stages": [
+      {
+        "number": "1",
+        "kind": "main",
+        "km": 10.17,
+        "covered": 1.0
+      },
+      {
+        "number": "2",
+        "kind": "main",
+        "km": 11.07,
+        "covered": 1.0
+      },
+      {
+        "number": "3",
+        "kind": "main",
+        "km": 15.75,
+        "covered": 1.0
+      },
+      {
+        "number": "4",
+        "kind": "main",
+        "km": 15.98,
+        "covered": 1.0
+      }
+    ]
   }
 }

@@ -231,7 +231,7 @@ def build(slug, refresh=False):
         guides = {s["number"]: piece for s, piece in zip(stages, split_at(line, stages))}
     if not stages:
         raise SystemExit(f"{slug}: no stage has a track (or an end point and a route.relation)")
-    features, stage_ways = [], []
+    features, stage_ways, measured = [], [], []
     print(f"{'stage':<12} {'stated':>7} {'track':>7} {'osm':>7} {'covered':>8} {'max off':>8}")
     previous_end = (start["lon"], start["lat"])
     last = None  # the stage before, so a run of variants chains from one to the next
@@ -279,6 +279,7 @@ def build(slug, refresh=False):
             + ("   <- check" if report["covered"] < 0.95 else "")
         )
         stage_ways.append({"number": stage["number"], "kind": stage["kind"], "ways": report["ways"]})
+        measured.append({"number": stage["number"], "kind": stage["kind"], "km": round(report["km"], 2), "covered": round(report["covered"], 3)})
         features.append(
             {
                 "type": "Feature",
@@ -298,7 +299,17 @@ def build(slug, refresh=False):
     # which OSM ways each stage uses (for pipeline/surface.py), in data/derived/<slug>.json
     derived = ROOT / "data" / "derived" / f"{slug}.json"
     existing = json.loads(derived.read_text()) if derived.exists() else {}
-    derived.write_text(json.dumps({**existing, "routeWays": stage_ways}, indent=2, ensure_ascii=False) + "\n")
+    # each stage's length on the full matched line (not the simplified map line, which runs about
+    # 1 % short) and how much of its track the match covers; the site uses the main route's sum as
+    # the comparable length where every main stage is at least 95 % matched
+    main = [m for m in measured if m["kind"] == "main"]
+    length = {
+        "source": "osm",
+        "km": round(sum(m["km"] for m in main), 1),
+        "minCovered": min(m["covered"] for m in main),
+        "stages": measured,
+    }
+    derived.write_text(json.dumps({**existing, "routeWays": stage_ways, "measured": length}, indent=2, ensure_ascii=False) + "\n")
     count = sum(len(f["geometry"]["coordinates"]) for f in features)
     print(f"{out.relative_to(ROOT)}: {len(features)} stages, {count} points, {out.stat().st_size // 1024} KB")
 

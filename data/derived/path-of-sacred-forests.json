@@ -7328,5 +7328,66 @@
       "km": 40.3,
       "m": 1656
     }
+  },
+  "measured": {
+    "source": "osm",
+    "km": 96.8,
+    "minCovered": 0.94,
+    "stages": [
+      {
+        "number": "0",
+        "kind": "approach",
+        "km": 16.5,
+        "covered": 0.992
+      },
+      {
+        "number": "1",
+        "kind": "main",
+        "km": 8.66,
+        "covered": 1.0
+      },
+      {
+        "number": "2",
+        "kind": "main",
+        "km": 21.18,
+        "covered": 0.999
+      },
+      {
+        "number": "3",
+        "kind": "main",
+        "km": 13.6,
+        "covered": 0.993
+      },
+      {
+        "number": "4",
+        "kind": "main",
+        "km": 13.41,
+        "covered": 0.991
+      },
+      {
+        "number": "5",
+        "kind": "main",
+        "km": 12.18,
+        "covered": 0.94
+      },
+      {
+        "number": "6",
+        "kind": "main",
+        "km": 20.11,
+        "covered": 0.991
+      },
+      {
+        "number": "6",
+        "kind": "variant",
+        "km": 10.44,
+        "covered": 0.994
+      },
+      {
+        "number": "7",
+        "kind": "main",
+        "km": 7.71,
+        "covered": 1.0
+      }
+    ]
   }
 }

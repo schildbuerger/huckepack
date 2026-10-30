@@ -41,6 +41,20 @@ export function trailLength(t: Trail) {
   return totals ? { ...totals.km, approx: false } : null;
 }
 
+// The length measured on our map line (the full OSM match, pipeline/routes.py): one method for every
+// trail, so it is what search sorting and comparisons use; only where every main stage is at least
+// MEASURED_MIN_COVER matched, since a stage whose match takes a shortcut would come out short.
+export const MEASURED_MIN_COVER = 0.95;
+export function measuredLength(d?: DerivedData) {
+  const m = d?.measured;
+  return m && m.minCovered >= MEASURED_MIN_COVER ? { value: m.km, source: m.source } : null;
+}
+
+// the length to compare trails by: measured where the match is good, else the trail's length
+export function compareLength(t: Trail, d?: DerivedData) {
+  return measuredLength(d)?.value ?? trailLength(t)?.value ?? null;
+}
+
 // Averages per day only when the days and the stage totals come from the same source,
 // so figures from different sources are never mixed.
 export function perDay(t: Trail) {
@@ -98,6 +112,7 @@ export function summarize(id: string, t: Trail, d?: DerivedData) {
     countries: t.countries.map(countryName),
     regions: t.regions,
     lengthKm: trailLength(t)?.value ?? null,
+    compareKm: compareLength(t, d), // for sorting and totals (compareLength())
     ascentM: totals?.ascentM?.value ?? t.ascent[0]?.m ?? null,
     days: t.days ? ([t.days.min, t.days.max] as [number, number]) : null,
     sac: sacGrade(t)?.value ?? null,

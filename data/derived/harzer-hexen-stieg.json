@@ -9713,5 +9713,60 @@
         "straightKm": 90.3
       }
     ]
+  },
+  "measured": {
+    "source": "osm",
+    "km": 96.0,
+    "minCovered": 0.992,
+    "stages": [
+      {
+        "number": "1",
+        "kind": "main",
+        "km": 11.6,
+        "covered": 1.0
+      },
+      {
+        "number": "2",
+        "kind": "main",
+        "km": 21.91,
+        "covered": 0.998
+      },
+      {
+        "number": "3",
+        "kind": "main",
+        "km": 19.93,
+        "covered": 1.0
+      },
+      {
+        "number": "3",
+        "kind": "variant",
+        "km": 34.08,
+        "covered": 0.995
+      },
+      {
+        "number": "4",
+        "kind": "main",
+        "km": 28.33,
+        "covered": 0.992
+      },
+      {
+        "number": "4",
+        "kind": "variant",
+        "km": 30.06,
+        "covered": 0.995
+      },
+      {
+        "number": "5",
+        "kind": "main",
+        "km": 14.18,
+        "covered": 1.0
+      },
+      {
+        "number": "5",
+        "kind": "variant",
+        "km": 8.37,
+        "covered": 1.0
+      }
+    ]
   }
 }

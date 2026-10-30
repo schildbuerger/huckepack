@@ -8552,5 +8552,54 @@
       "km": 23.8,
       "m": 722
     }
+  },
+  "measured": {
+    "source": "osm",
+    "km": 105.3,
+    "minCovered": 0.862,
+    "stages": [
+      {
+        "number": "1",
+        "kind": "main",
+        "km": 13.74,
+        "covered": 0.862
+      },
+      {
+        "number": "2",
+        "kind": "main",
+        "km": 15.39,
+        "covered": 1.0
+      },
+      {
+        "number": "3",
+        "kind": "main",
+        "km": 13.96,
+        "covered": 1.0
+      },
+      {
+        "number": "4",
+        "kind": "main",
+        "km": 19.15,
+        "covered": 0.967
+      },
+      {
+        "number": "5",
+        "kind": "main",
+        "km": 17.77,
+        "covered": 1.0
+      },
+      {
+        "number": "6",
+        "kind": "main",
+        "km": 14.75,
+        "covered": 0.981
+      },
+      {
+        "number": "7",
+        "kind": "main",
+        "km": 10.53,
+        "covered": 0.996
+      }
+    ]
   }
 }

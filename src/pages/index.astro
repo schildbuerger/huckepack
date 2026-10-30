@@ -51,7 +51,7 @@ const perTrail = entries.map((e, i) => {
 const totals = {
   trails: trails.length,
   countries: new Set(trails.flatMap((t) => t.countries)).size,
-  km: Math.round(trails.reduce((sum, t) => sum + (t.lengthKm ?? 0), 0)),
+  km: Math.round(trails.reduce((sum, t) => sum + (t.compareKm ?? 0), 0)), // measured where the match is good
   stages: entries.reduce((sum, e) => sum + mainStages(e.data).length, 0),
   climbed: Math.round(sum(perTrail.map((t) => t.climbed)) / 10) * 10,
   hours: Math.round(sum(perTrail.map((t) => t.minutes)) / 60),

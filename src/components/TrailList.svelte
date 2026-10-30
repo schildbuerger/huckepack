@@ -42,8 +42,8 @@
   };
   const SORTS = {
     name: { label: "Name", value: (t: SearchTrail) => t.name },
-    shortest: { label: "Shortest first", value: (t: SearchTrail) => t.lengthKm },
-    longest: { label: "Longest first", value: (t: SearchTrail) => (t.lengthKm === null ? null : -t.lengthKm) },
+    shortest: { label: "Shortest first", value: (t: SearchTrail) => t.compareKm },
+    longest: { label: "Longest first", value: (t: SearchTrail) => (t.compareKm === null ? null : -t.compareKm) },
     days: { label: "Fewest days", value: (t: SearchTrail) => t.days?.[0] ?? null },
     easiest: {
       label: "Easiest first",
@@ -51,7 +51,7 @@
     },
     flattest: {
       label: "Least climbing per km",
-      value: (t: SearchTrail) => (t.climb === null || !t.lengthKm ? null : t.climb.m / t.lengthKm),
+      value: (t: SearchTrail) => (t.climb === null || !t.compareKm ? null : t.climb.m / t.compareKm),
     },
     natural: { label: "Most natural ground", value: (t: SearchTrail) => (t.surface ? -t.surface.natural : null) },
   } as const;

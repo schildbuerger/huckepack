@@ -10236,5 +10236,60 @@
         "daylightH": 6.8
       }
     ]
+  },
+  "measured": {
+    "source": "osm",
+    "km": 153.2,
+    "minCovered": 1.0,
+    "stages": [
+      {
+        "number": "1",
+        "kind": "main",
+        "km": 19.25,
+        "covered": 1.0
+      },
+      {
+        "number": "2",
+        "kind": "main",
+        "km": 23.66,
+        "covered": 1.0
+      },
+      {
+        "number": "3",
+        "kind": "main",
+        "km": 22.1,
+        "covered": 1.0
+      },
+      {
+        "number": "4",
+        "kind": "main",
+        "km": 19.4,
+        "covered": 1.0
+      },
+      {
+        "number": "5",
+        "kind": "main",
+        "km": 14.26,
+        "covered": 1.0
+      },
+      {
+        "number": "6",
+        "kind": "main",
+        "km": 15.6,
+        "covered": 1.0
+      },
+      {
+        "number": "7",
+        "kind": "main",
+        "km": 14.34,
+        "covered": 1.0
+      },
+      {
+        "number": "8",
+        "kind": "main",
+        "km": 24.63,
+        "covered": 1.0
+      }
+    ]
   }
 }

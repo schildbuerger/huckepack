@@ -26017,5 +26017,114 @@
         "straightKm": 166.4
       }
     ]
+  },
+  "measured": {
+    "source": "osm",
+    "km": 284.3,
+    "minCovered": 0.978,
+    "stages": [
+      {
+        "number": "1",
+        "kind": "main",
+        "km": 26.09,
+        "covered": 0.994
+      },
+      {
+        "number": "2",
+        "kind": "main",
+        "km": 25.66,
+        "covered": 1.0
+      },
+      {
+        "number": "3",
+        "kind": "main",
+        "km": 19.91,
+        "covered": 1.0
+      },
+      {
+        "number": "4",
+        "kind": "main",
+        "km": 27.7,
+        "covered": 1.0
+      },
+      {
+        "number": "5",
+        "kind": "main",
+        "km": 16.86,
+        "covered": 1.0
+      },
+      {
+        "number": "6",
+        "kind": "main",
+        "km": 15.7,
+        "covered": 1.0
+      },
+      {
+        "number": "7",
+        "kind": "main",
+        "km": 19.66,
+        "covered": 0.978
+      },
+      {
+        "number": "8",
+        "kind": "main",
+        "km": 22.24,
+        "covered": 1.0
+      },
+      {
+        "number": "9 Ost",
+        "kind": "variant",
+        "km": 27.03,
+        "covered": 1.0
+      },
+      {
+        "number": "10 Ost",
+        "kind": "variant",
+        "km": 24.75,
+        "covered": 1.0
+      },
+      {
+        "number": "11 Ost",
+        "kind": "variant",
+        "km": 18.51,
+        "covered": 1.0
+      },
+      {
+        "number": "12 Ost",
+        "kind": "variant",
+        "km": 19.96,
+        "covered": 1.0
+      },
+      {
+        "number": "13 Ost",
+        "kind": "variant",
+        "km": 22.75,
+        "covered": 1.0
+      },
+      {
+        "number": "9",
+        "kind": "main",
+        "km": 24.72,
+        "covered": 1.0
+      },
+      {
+        "number": "10",
+        "kind": "main",
+        "km": 27.45,
+        "covered": 1.0
+      },
+      {
+        "number": "11",
+        "kind": "main",
+        "km": 31.99,
+        "covered": 1.0
+      },
+      {
+        "number": "12",
+        "kind": "main",
+        "km": 26.33,
+        "covered": 1.0
+      }
+    ]
   }
 }

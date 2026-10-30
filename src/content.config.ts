@@ -258,6 +258,16 @@ const climateMonth = z.object({
 });
 
 const derived = z.object({
+  // pipeline/routes.py: each stage's length on the full matched OSM line and the share of its track
+  // the match covers; km is the main route's sum, minCovered the weakest main stage
+  measured: z
+    .object({
+      source: sourceRef,
+      km: z.number(),
+      minCovered: z.number(),
+      stages: z.array(z.object({ number: z.string(), kind: stageKind, km: z.number(), covered: z.number() })),
+    })
+    .optional(),
   // pipeline/water.py: drinking water and springs near the route, from OpenStreetMap
   water: z
     .object({
