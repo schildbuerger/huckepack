@@ -1,13 +1,18 @@
 <script lang="ts">
   // The trail map (issue #33; of three previews, approach B): every trail on one map beside a list
   // of the trails in view. Moving or zooming the map updates the list; hovering a list entry
-  // highlights its route; clicking a trail on the map finds it in the list. Trail starts are
+  // highlights its route; clicking a trail on the map finds it in the list. Each list entry has two
+  // actions: its name opens the trail page, its "Show on map" button zooms to the route; "Show all
+  // trails" (beside the zoom buttons) brings back the first view. Trail starts are
   // grouped into clusters where they crowd (a click zooms in), routes show from zoom 4, from
   // /trails/routes.json (src/pages/trails/routes.json.ts). Basemap and theme as in TrailMap.svelte.
   import { onMount } from "svelte";
   import "maplibre-gl/dist/maplibre-gl.css";
   import workerUrl from "maplibre-gl/dist/maplibre-gl-worker.mjs?url";
   import type { SearchTrail } from "../lib/search";
+  // Lucide icons (ISC): zoom to a trail, and back to all trails
+  import locateIcon from "lucide-static/icons/locate-fixed.svg?raw";
+  import earthIcon from "lucide-static/icons/earth.svg?raw";
 
   type Trail = SearchTrail & { startLonLat: [number, number]; level: string | null };
   let { trails }: { trails: Trail[] } = $props();
@@ -29,6 +34,9 @@
   let container: HTMLDivElement;
   let map: import("maplibre-gl").Map | undefined;
   let maplibreRef: typeof import("maplibre-gl") | undefined;
+  // the first view (every trail start) and each trail's route bounds, for the two zoom actions
+  let allBounds: [[number, number], [number, number]] | undefined;
+  const routeBounds = new Map<string, [[number, number], [number, number]]>();
 
   // the trails whose start is in view, and the one hovered in the list or picked on the map
   let inView = $state<string[]>(trails.map((t) => t.slug));
@@ -48,6 +56,21 @@
     inView = trails.filter((t) => b.contains(t.startLonLat)).map((t) => t.slug);
   }
 
+  // zoom to one trail's route (or its start where no route is drawn); on phones the list sits under
+  // the map, so bring the map back into view
+  function zoomTo(slug: string) {
+    const t = trails.find((x) => x.slug === slug);
+    if (!map || !t) return;
+    hovered = slug;
+    const b = routeBounds.get(slug);
+    if (b) map.fitBounds(b, { padding: 48, maxZoom: 11 });
+    else map.easeTo({ center: t.startLonLat, zoom: 9 });
+    if (container.getBoundingClientRect().top < 0) container.scrollIntoView({ block: "start", behavior: "smooth" });
+  }
+  function showAll() {
+    if (map && allBounds) map.fitBounds(allBounds, { padding: 0 });
+  }
+
   function highlight(slug: string | null) {
     if (!map?.getSource("routes")) return;
     for (const t of trails) map.setFeatureState({ source: "routes", id: t.slug }, { hover: t.slug === slug });
@@ -63,20 +86,50 @@
       maplibreRef = maplibre;
       const routes = await fetch("/trails/routes.json").then((r) => r.json());
       if (cancelled) return;
+      for (const f of routes.features) {
+        const pts = (f.geometry.coordinates as number[][][]).flat();
+        const xs = pts.map((p) => p[0]);
+        const ys = pts.map((p) => p[1]);
+        routeBounds.set(f.properties.slug, [
+          [Math.min(...xs), Math.min(...ys)],
+          [Math.max(...xs), Math.max(...ys)],
+        ]);
+      }
       let theme = currentTheme();
       const lons = trails.map((t) => t.startLonLat[0]);
       const lats = trails.map((t) => t.startLonLat[1]);
+      allBounds = [
+        [Math.min(...lons) - 8, Math.min(...lats) - 4],
+        [Math.max(...lons) + 8, Math.max(...lats) + 4],
+      ];
       map = new maplibre.Map({
         container,
         style: STYLES[theme],
-        bounds: [
-          [Math.min(...lons) - 8, Math.min(...lats) - 4],
-          [Math.max(...lons) + 8, Math.max(...lats) + 4],
-        ],
+        bounds: allBounds,
         cooperativeGestures: true,
         attributionControl: { customAttribution: "Routes: OpenStreetMap contributors" },
       });
       map.addControl(new maplibre.NavigationControl({ showCompass: false }), "top-right");
+      // "Show all trails": back to the first view, styled like the zoom buttons
+      map.addControl(
+        {
+          onAdd() {
+            const box = document.createElement("div");
+            box.className = "maplibregl-ctrl maplibregl-ctrl-group";
+            const button = document.createElement("button");
+            button.type = "button";
+            button.className = "wm-all";
+            button.title = "Show all trails";
+            button.setAttribute("aria-label", "Show all trails");
+            button.innerHTML = earthIcon;
+            button.addEventListener("click", showAll);
+            box.append(button);
+            return box;
+          },
+          onRemove() {},
+        },
+        "top-right",
+      );
       map.on("style.load", () => {
         if (!map) return;
         const accent = token("--accent");
@@ -136,14 +189,21 @@
   <ol class="wm-list" aria-label="Trails in view">
       {#each trails.filter((t) => inView.includes(t.slug)) as t (t.slug)}
         <li id={`wm-${t.slug}`} class:on={hovered === t.slug} onmouseenter={() => (hovered = t.slug)} onmouseleave={() => (hovered = null)}>
-          <a href={`/trails/${t.slug}/`}>
+          <!-- two actions: the name opens the trail page, the button zooms the map to the route -->
+          <a class="wm-entry" href={`/trails/${t.slug}/`}>
             <span class="wm-place">{t.countries.join(", ")}</span>
             <strong class="wm-name">{t.name}</strong>
             <span class="wm-fig">{figures(t)}</span>
           </a>
+          <button type="button" class="wm-zoom" title="Show on map" aria-label={`Show ${t.name} on the map`} onclick={() => zoomTo(t.slug)}>
+            {@html locateIcon}
+          </button>
         </li>
       {:else}
-        <li class="wm-none">No trail in this part of the map. Zoom out to see more.</li>
+        <li class="wm-none">
+          No trail in this part of the map.
+          <button type="button" class="wm-link" onclick={showAll}>Show all trails</button>
+        </li>
       {/each}
     </ol>
 </div>
@@ -175,12 +235,65 @@
   .wm-list li.on {
     background: var(--surface);
   }
-  .wm-list a {
+  .wm-list li:not(.wm-none) {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    align-items: center;
+    gap: 8px;
+    padding-right: 8px;
+  }
+  .wm-entry {
     display: grid;
     gap: 2px;
     padding: 12px 10px;
     color: var(--text);
     text-decoration: none;
+  }
+  .wm-entry:hover .wm-name,
+  .wm-entry:focus-visible .wm-name {
+    color: var(--accent);
+    text-decoration: underline;
+  }
+  /* "Show on map": a round button, 40 px to tap */
+  .wm-zoom {
+    display: grid;
+    place-items: center;
+    width: 40px;
+    height: 40px;
+    padding: 0;
+    border: 1px solid var(--line);
+    border-radius: 50%;
+    background: var(--bg);
+    color: var(--muted);
+    cursor: pointer;
+  }
+  .wm-zoom:hover,
+  .wm-zoom:focus-visible {
+    border-color: var(--accent);
+    color: var(--accent);
+  }
+  .wm-zoom :global(svg) {
+    width: 18px;
+    height: 18px;
+  }
+  .wm-link {
+    padding: 0;
+    border: 0;
+    background: none;
+    color: var(--accent);
+    font: inherit;
+    text-decoration: underline;
+    cursor: pointer;
+  }
+  /* the map's "Show all trails" control, like the zoom buttons beside it */
+  :global(.wm-all) {
+    display: grid !important;
+    place-items: center;
+  }
+  :global(.wm-all svg) {
+    width: 17px;
+    height: 17px;
+    color: #333;
   }
   .wm-none {
     padding: 16px 10px;
