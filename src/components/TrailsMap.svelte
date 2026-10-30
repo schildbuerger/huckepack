@@ -9,7 +9,8 @@
   // trails" (beside the zoom buttons) brings back the first view. Trail starts are
   // grouped into clusters where they crowd (a click zooms in), routes show from zoom 4, from
   // /trails/routes.json (src/pages/trails/routes.json.ts). Basemap and theme as in TrailMap.svelte.
-  import { onMount } from "svelte";
+  import { onMount, tick } from "svelte";
+  import TrailPreview from "./TrailPreview.svelte";
   import "maplibre-gl/dist/maplibre-gl.css";
   import workerUrl from "maplibre-gl/dist/maplibre-gl-worker.mjs?url";
   import type { SearchTrail } from "../lib/search";
@@ -159,18 +160,45 @@
     center = [c.lng, c.lat];
   }
 
-  // zoom to one trail's route (or its start where no route is drawn)
-  function zoomTo(slug: string) {
+  // the room the preview card leaves on the map: the map frames the trail beside it (left of the
+  // card on wide screens, above it on phones, where it sits along the bottom)
+  let mapWrap: HTMLDivElement;
+  function framePadding() {
+    const p = { top: 48, right: 48, bottom: 48, left: 48 };
+    const el = mapWrap?.querySelector<HTMLElement>(".tp");
+    if (!el) return p;
+    const m = container.getBoundingClientRect();
+    const c = el.getBoundingClientRect();
+    if (c.left >= m.right - 1 || c.right <= m.left + 1) return p;
+    if (c.height > m.height * 0.6) p.right = Math.min(Math.max(48, m.right - c.left + 24), m.width - 120);
+    else p.bottom = Math.min(Math.max(48, m.bottom - c.top + 24), m.height - 100);
+    return p;
+  }
+
+  // zoom to one trail's route (or its start where no route is drawn), once its preview is shown
+  async function zoomTo(slug: string) {
     const t = trails.find((x) => x.slug === slug);
     if (!map || !t) return;
     selected = slug;
     listKept = true;
+    await tick();
+    map.resize();
+    const padding = framePadding();
     const b = routeBounds.get(slug);
-    if (b) map.fitBounds(b, { padding: 48, maxZoom: 11 });
-    else map.easeTo({ center: t.startLonLat, zoom: 9 });
+    if (b) map.fitBounds(b, { padding, maxZoom: 11 });
+    else map.easeTo({ center: t.startLonLat, zoom: 9, padding });
   }
-  function showAll() {
+  const picked = $derived(trails.find((t) => t.slug === selected) ?? null);
+  async function closePreview() {
     selected = null;
+    await tick();
+    map?.resize();
+    map?.easeTo({ padding: { top: 0, right: 0, bottom: 0, left: 0 } });
+  }
+  async function showAll() {
+    selected = null;
+    await tick();
+    map?.resize();
     if (map && allBounds) map.fitBounds(allBounds, { padding: 0 }, { resetList: true });
   }
 
@@ -260,7 +288,7 @@
       const pick = (e: import("maplibre-gl").MapLayerMouseEvent) => {
         const slug = e.features?.[0]?.properties?.slug as string | undefined;
         if (!slug) return;
-        selected = slug;
+        zoomTo(slug);
         document.getElementById(`wm-${slug}`)?.scrollIntoView({ block: "nearest", behavior: "smooth" });
       };
       map.on("click", "starts", pick);
@@ -289,7 +317,12 @@
 </script>
 
 <div class="wm">
-  <div class="wm-map" bind:this={container} role="region" aria-label="World map of the trails"></div>
+  <div class="wm-mapwrap" bind:this={mapWrap}>
+    <div class="wm-map" bind:this={container} role="region" aria-label="World map of the trails"></div>
+    {#if picked}
+      {#key picked.slug}<TrailPreview trail={picked} onclose={closePreview} />{/key}
+    {/if}
+  </div>
   <aside class="wm-side">
     {#if children}<div class="wm-head">{@render children()}</div>{/if}
     <!-- the search, like the header search (TrailSearch.astro): an ARIA combobox with suggestions -->
@@ -369,6 +402,11 @@
     display: grid;
     grid-template-columns: minmax(0, 1fr) minmax(320px, 400px);
     height: 100%;
+  }
+  /* the map and, over it, the picked trail's preview card */
+  .wm-mapwrap {
+    position: relative;
+    min-height: 0;
   }
   .wm-map {
     height: 100%;
