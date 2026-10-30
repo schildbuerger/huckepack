@@ -102,7 +102,8 @@ const trail = z
       .object({
         text: z.string(),
         symbol: z.enum(["cai", "yellow-vertical-stripe", "red-diamond"]).optional(),
-        number: z.string().optional(),
+        // drawn into the waymark's SVG as text, so letters, digits and dashes only
+        number: z.string().regex(/^[A-Za-z0-9-]{1,5}$/).optional(),
         source: sourceRef,
       })
       .optional(),

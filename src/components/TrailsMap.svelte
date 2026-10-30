@@ -35,6 +35,7 @@
   import "maplibre-gl/dist/maplibre-gl.css";
   import workerUrl from "maplibre-gl/dist/maplibre-gl-worker.mjs?url";
   import zones from "../lib/timezones.json";
+  import { kmBetween as km, roundDistance } from "../lib/geo";
   import type { SearchTrail } from "../lib/search";
   // Lucide icons (ISC): zoom to a trail, and back to all trails
   import openIcon from "lucide-static/icons/arrow-right.svg?raw";
@@ -74,6 +75,7 @@
   // where you are, as far as the browser's time zone tells (its main city, [lon, lat]); worked out
   // here, nothing is sent or stored
   let here = $state<[number, number] | null>(null);
+  let failed = $state(false);
   let hovered = $state<string | null>(null);
   let selected = $state<string | null>(null);
   let query = $state("");
@@ -125,12 +127,6 @@
     const words = query.trim().toLowerCase().split(/\s+/).filter(Boolean);
     return words.every((w) => terms.get(t.slug)!.some((x) => x.startsWith(w)));
   };
-  // great-circle distance between two [lon, lat] points, km
-  const km = (a: [number, number], b: [number, number]) => {
-    const r = Math.PI / 180;
-    const h = Math.sin(((b[1] - a[1]) * r) / 2) ** 2 + Math.cos(a[1] * r) * Math.cos(b[1] * r) * Math.sin(((b[0] - a[0]) * r) / 2) ** 2;
-    return 2 * 6371 * Math.asin(Math.sqrt(h));
-  };
   const sorted = $derived(
     trails
       .filter((t) => matchSet.has(t.slug) && found(t))
@@ -140,9 +136,7 @@
       })
       .sort((a, b) => a.d - b.d || a.t.name.localeCompare(b.t.name)),
   );
-  // rounded as far as a time zone's main city can tell: to 10, 50 or 100 km
-  const round = (d: number) => (d < 100 ? Math.round(d / 10) * 10 : d < 1000 ? Math.round(d / 50) * 50 : Math.round(d / 100) * 100);
-  const fromYou = (d: number) => `≈ ${fmt(round(d))} km from you`;
+  const fromYou = (d: number) => `≈ ${fmt(roundDistance(d))} km from you`;
 
   // suggestions while typing: countries first (with how many trails), then trails by name
   const countries = [...new Set(trails.flatMap((t) => t.countries))].sort((a, b) => a.localeCompare(b));
@@ -361,7 +355,10 @@
       const maplibre = await import("maplibre-gl");
       maplibre.setWorkerUrl(workerUrl);
       maplibreRef = maplibre;
-      const routes = await fetch("/trails/routes.json").then((r) => r.json());
+      const routes = await fetch("/trails/routes.json").then((r) => {
+        if (!r.ok) throw new Error(`routes: HTTP ${r.status}`);
+        return r.json();
+      });
       if (cancelled) return;
       for (const f of routes.features) {
         const pts = (f.geometry.coordinates as number[][][]).flat();
@@ -459,7 +456,10 @@
       const observer = new MutationObserver(onTheme);
       observer.observe(document.documentElement, { attributes: true, attributeFilter: ["data-theme"] });
       stopTheme = () => observer.disconnect();
-    })().catch((error) => console.error("World map failed:", error));
+    })().catch((error) => {
+      console.error("World map failed:", error);
+      failed = true;
+    });
     return () => {
       document.removeEventListener("pointerdown", closeBar);
       document.removeEventListener("keydown", closeBar);
@@ -473,6 +473,7 @@
 <div class="wm">
   <div class="wm-mapwrap" style={`--bar-h: ${barH}px`} bind:this={mapWrap}>
     <div class="wm-map" bind:this={container} role="region" aria-label="World map of the trails"></div>
+    {#if failed}<p class="wm-failed">The map couldn't be loaded. The list beside it still works.</p>{/if}
     <!-- one button per planning question along the map's top; each opens its filters -->
       <div class="wm-bar wm-over" role="toolbar" aria-label="Filters" bind:clientHeight={barH}>
         {#each BAR as b}
@@ -862,6 +863,13 @@
     color: var(--bg);
     font: 600 0.9rem var(--sans);
     cursor: pointer;
+  }
+  .wm-failed {
+    position: absolute;
+    inset: 50% 16px auto;
+    margin: 0;
+    color: var(--muted);
+    text-align: center;
   }
   /* the filter buttons along the map's top, left of the map's own buttons; the preview card
      moves below them */

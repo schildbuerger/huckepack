@@ -3,6 +3,7 @@
 // featured, popular and nearby cards. Decorative (the cards name their figures in text). The path
 // comes from the home page (`spark`: line and area in a W × H box, each on its own height range).
 import type { CollectionEntry } from "astro:content";
+import { stripPaths } from "../lib/svg";
 
 interface Props {
   spark: { line: string; area: string };
@@ -22,13 +23,8 @@ const H = 110;
   </svg>
   {surface && (
     <svg class="surf" viewBox={`0 0 ${W} 8`} preserveAspectRatio="none">
-      {surface.runs.map((r) => (
-        <rect
-          x={(r.fromKm / surface.routeKm) * W}
-          width={Math.max(((r.toKm - r.fromKm) / surface.routeKm) * W, 0.6)}
-          height="8"
-          style={`fill: var(--surface-${r.category})`}
-        />
+      {stripPaths(surface.runs, (km) => (km / surface.routeKm) * W, 0, 8).map((p) => (
+        <path d={p.d} style={`fill: var(--surface-${p.category})`} />
       ))}
     </svg>
   )}

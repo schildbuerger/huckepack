@@ -3,7 +3,8 @@
 // are found by their files, so a new page is listed without touching this file; left out are
 // pages that ask not to be indexed (`personal` on Base adds the noindex meta: a page passes it
 // itself or through a layout that does, as the legal notice and the privacy policy do through
-// Legal.astro), dynamic routes (the trails are added from the collection) and local preview pages.
+// Legal.astro), dynamic routes (the trails are added from the collection), the 404 page and local
+// preview pages.
 // robots.txt points here.
 import type { APIRoute } from "astro";
 import { getCollection } from "astro:content";
@@ -19,7 +20,7 @@ const noindex = (source: string) => personal.test(source) || noindexLayouts.some
 
 export const GET: APIRoute = async ({ site }) => {
   const paths = Object.entries(pages)
-    .filter(([file, source]) => !file.includes("[") && !file.startsWith("./preview/") && !noindex(source))
+    .filter(([file, source]) => !file.includes("[") && file !== "./404.astro" && !file.startsWith("./preview/") && !noindex(source))
     .map(([file]) => file.replace(/^\.\//, "/").replace(/(index)?\.astro$/, "").replace(/\/?$/, "/"));
   const trails = (await getCollection("trails")).map((t) => `/trails/${t.id}/`);
   const urls = [...new Set([...paths, ...trails])].sort().map((p) => new URL(p, site).href);

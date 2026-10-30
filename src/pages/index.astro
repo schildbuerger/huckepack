@@ -349,19 +349,15 @@ const sources = [
     // Trails near you (issue #85): the browser's time zone (Europe/Berlin) stands for its main
     // city (the tz database's coordinates); the three trails whose start or finish is nearest, by
     // great-circle distance. Worked out here; nothing is sent or stored.
+    import { kmBetween, roundDistance } from "../lib/geo";
     const NEARBY = 3;
     const section = document.querySelector<HTMLElement>(".near")!;
     const zones: Record<string, [number, number]> = JSON.parse(document.getElementById("zones")!.textContent!);
     const zone = Intl.DateTimeFormat().resolvedOptions().timeZone;
     const here = zones[zone];
     if (here) {
-      const km = (a: [number, number], b: [number, number]) => {
-        const r = Math.PI / 180;
-        const h = Math.sin(((b[0] - a[0]) * r) / 2) ** 2 + Math.cos(a[0] * r) * Math.cos(b[0] * r) * Math.sin(((b[1] - a[1]) * r) / 2) ** 2;
-        return 2 * 6371 * Math.asin(Math.sqrt(h));
-      };
-      // rounded as far as a time zone's main city can tell: to 10, 50 or 100 km
-      const round = (d: number) => (d < 100 ? Math.round(d / 10) * 10 : d < 1000 ? Math.round(d / 50) * 50 : Math.round(d / 100) * 100);
+      // both points are [lat, lon] here (the tz table's and the cards' order)
+      const km = (a: [number, number], b: [number, number]) => kmBetween([a[1], a[0]], [b[1], b[0]]);
       const list = section.querySelector<HTMLElement>("[data-near-list]")!;
       const cards = [...list.querySelectorAll<HTMLElement>("[data-slug]")];
       const near = cards
@@ -369,7 +365,7 @@ const sources = [
         .sort((a, b) => a.d - b.d)
         .slice(0, NEARBY);
       for (const { card, d } of near) {
-        card.querySelector<HTMLElement>("[data-dist]")!.textContent = `≈ ${round(d).toLocaleString("en")} km from you`;
+        card.querySelector<HTMLElement>("[data-dist]")!.textContent = `≈ ${roundDistance(d).toLocaleString("en")} km from you`;
         card.hidden = false;
         list.append(card); // nearest first
       }

@@ -7,6 +7,18 @@ interface Props {
 }
 const { trail = [], current } = Astro.props;
 const links = [{ label: "Start", href: "/" }, ...trail];
+// the same path for search engines (schema.org BreadcrumbList, shown in results as the page's
+// path); "<" escaped so no name can close the script
+const ld = JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  itemListElement: [...links, { label: current, href: Astro.url.pathname }].map((l, i) => ({
+    "@type": "ListItem",
+    position: i + 1,
+    name: l.label,
+    item: new URL(l.href.replace(/\/?$/, "/"), Astro.site).href,
+  })),
+}).replace(/</g, "\\u003c");
 ---
 
 <nav class="crumbs" aria-label="Breadcrumb">
@@ -19,6 +31,7 @@ const links = [{ label: "Start", href: "/" }, ...trail];
     <li aria-current="page">{current}</li>
   </ol>
 </nav>
+<script type="application/ld+json" set:html={ld} />
 
 <style>
   .crumbs {

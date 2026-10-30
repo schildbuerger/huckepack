@@ -11,6 +11,10 @@ interface Props {
 const { title, description, personal = false, full = false } = Astro.props;
 // the address search engines and link previews should use (no query string, always with a slash)
 const canonical = new URL(Astro.url.pathname.replace(/\/?$/, "/"), Astro.site);
+// the site's name for search results (schema.org WebSite), on the home page
+const siteLd =
+  Astro.url.pathname === "/" &&
+  JSON.stringify({ "@context": "https://schema.org", "@type": "WebSite", name: "huckepack", url: new URL("/", Astro.site).href });
 ---
 
 <!doctype html>
@@ -31,6 +35,7 @@ const canonical = new URL(Astro.url.pathname.replace(/\/?$/, "/"), Astro.site);
     <meta property="og:image" content={new URL("/icon-512.png", Astro.site)} />
     <meta property="og:image:alt" content="The huckepack logo, a cairn of pixel stones" />
     <meta name="twitter:card" content="summary" />
+    {siteLd && <script type="application/ld+json" set:html={siteLd} />}
     {
       personal && (
         <>

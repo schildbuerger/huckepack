@@ -7,6 +7,7 @@ import Explain from "../../components/Explain.astro";
 import Breadcrumbs from "../../components/Breadcrumbs.astro";
 import Meter from "../../components/Meter.astro";
 import Waymark from "../../components/Waymark.astro";
+import { n1, stripPaths } from "../../lib/svg";
 import { difficulty, levelText, DIFFICULTY_NOTE, DIMENSION_TEXT, LEVELS, SCALES, type Level } from "../../lib/difficulty";
 import { existsSync } from "node:fs";
 import {
@@ -174,8 +175,9 @@ const CHART = { width: 1000, x0: 8, x1: 992, axis: 92, lanes: { drinking: 46, sp
 // landscape lanes: labels on the left, the route's km across the rest
 const LANE_X0 = 220;
 const LANE_X1 = 940;
-const laneX = (km: number) => LANE_X0 + (km / (derived?.landcover?.routeKm || 1)) * (LANE_X1 - LANE_X0);
-const xAt = (km: number, total = water?.routeKm || 1) => CHART.x0 + (km / total) * (CHART.x1 - CHART.x0);
+// (positions rounded to a tenth of a unit, finer than a pixel: keeps the long routes' charts small)
+const laneX = (km: number) => n1(LANE_X0 + (km / (derived?.landcover?.routeKm || 1)) * (LANE_X1 - LANE_X0));
+const xAt = (km: number, total = water?.routeKm || 1) => n1(CHART.x0 + (km / total) * (CHART.x1 - CHART.x0));
 
 // surfaces along the main route (pipeline/surface.py), in a fixed order, soft to hard
 const surface = derived?.surface;
@@ -234,7 +236,7 @@ const eleRange = elevation && {
   max: Math.ceil((elevation.highest.m + 50) / 200) * 200,
 };
 const yAt = (m: number) =>
-  eleRange ? TERRAIN.bottom - ((m - eleRange.min) / (eleRange.max - eleRange.min)) * (TERRAIN.bottom - TERRAIN.top) : 0;
+  eleRange ? n1(TERRAIN.bottom - ((m - eleRange.min) / (eleRange.max - eleRange.min)) * (TERRAIN.bottom - TERRAIN.top)) : 0;
 const eleGrid = eleRange
   ? Array.from({ length: 10 }, (_, i) => eleRange.min + i * (eleRange.max - eleRange.min > 1000 ? 400 : 200)).filter(
       (m) => m > eleRange.min && m < eleRange.max,
@@ -257,21 +259,45 @@ const profileLine =
 // on a smooth diverging ramp (the profile's tint at 0 %, the steep colour at ±RAMP_MAX %; climbs
 // warm, descents violet) and the ground at its middle
 const RAMP_MAX = 30;
-const rampFill = (g: number) =>
-  `color-mix(in oklab, var(${g >= 0 ? "--grade-up-steep" : "--grade-down-steep"}) ${Math.round((Math.min(Math.abs(g), RAMP_MAX) / RAMP_MAX) * 100)}%, var(--terrain-tint))`;
+// a slice's colour: up or down (the class) and how far along the ramp (`--p`); the colour mix itself
+// is in the CSS (.slice), so each slice carries only those two
+const ramp = (g: number) => ({ dir: g >= 0 ? "up" : "down", p: Math.round((Math.min(Math.abs(g), RAMP_MAX) / RAMP_MAX) * 100) });
+// neighbouring bars of the same colour are drawn as one polygon
+const sliceRuns =
+  grad?.bars.reduce<{ fromKm: number; toKm: number; dir: string; p: number }[]>((runs, b) => {
+    const { dir, p } = ramp(b.grade);
+    const last = runs.at(-1);
+    if (last && last.dir === dir && last.p === p && last.toKm >= b.fromKm) last.toKm = b.toKm;
+    else runs.push({ fromKm: b.fromKm, toKm: b.toKm, dir, p });
+    return runs;
+  }, []) ?? [];
 const terrainSlices =
   elevation && grad
-    ? grad.bars.map((b) => {
+    ? sliceRuns.map((r) => {
         const top = elevation.points
-          .filter(([km]) => km >= b.fromKm && km <= b.toKm)
+          .filter(([km]) => km >= r.fromKm && km <= r.toKm)
           .map(([km, m]) => `${xAt(km, elevation.routeKm).toFixed(1)},${yAt(m).toFixed(1)}`)
           .join(" ");
         return {
-          points: `${xAt(b.fromKm, elevation.routeKm).toFixed(1)},${TERRAIN.bottom} ${top} ${xAt(b.toKm, elevation.routeKm).toFixed(1)},${TERRAIN.bottom}`,
-          style: `--g: ${rampFill(b.grade)}`,
+          d: `M${xAt(r.fromKm, elevation.routeKm).toFixed(1)},${TERRAIN.bottom} ${top} ${xAt(r.toKm, elevation.routeKm).toFixed(1)},${TERRAIN.bottom}z`,
+          dir: r.dir,
+          p: r.p,
         };
       })
     : [];
+// the slices of one colour drawn as one path (a subpath each): the same picture in far less markup
+const slicePaths = [
+  ...terrainSlices
+    .reduce((m, sl) => {
+      const key = `${sl.dir} ${sl.p}`;
+      m.set(key, (m.get(key) ?? "") + sl.d);
+      return m;
+    }, new Map<string, string>())
+    .entries(),
+].map(([key, d]) => {
+  const [dir, p] = key.split(" ");
+  return { dir, style: `--p: ${p}%`, d };
+});
 const degrees = (g: number) => Math.round((Math.atan(Math.abs(g) / 100) * 180) / Math.PI);
 
 // climate (pipeline/climate.py): twelve month columns; the season from the record is shaded
@@ -323,7 +349,7 @@ const stageTicks = (starts: { number: string; km: number }[], total: number, at 
     return {
       x,
       end,
-      mid: (x + end) / 2,
+      mid: n1((x + end) / 2),
       band: many && i % 2 === 1,
       label: labelled ? (end - x > 70 ? `Stage ${st.number}` : st.number) : null,
     };
@@ -1036,10 +1062,10 @@ const nav = [
             aria-label={`Elevation along the main route, ${elevation.routeKm} km: highest ${fmt(elevation.highest.m)} m at km ${elevation.highest.km.toFixed(1)}, lowest ${fmt(elevation.lowest.m)} m. Steepest climb ${grad.climb.grade} % on stage ${grad.climb.stage}, steepest descent ${grad.descent.grade} % on stage ${grad.descent.stage}; ${grad.steepUpKm} km climb and ${grad.steepDownKm} km descend at ${STEEP_PERCENT} % or more.${treeLineText ? ` The route climbs above the tree line, ${treeLineText.replace("≈ ", "about ")}.` : ""}${surface ? ` Ground: ${surfaceRows.map((c) => `${c.label.toLowerCase()} ${pct(surface.totals[c.id].share)}`).join(", ")}.` : ""}`}
           >
             {stageTicks(elevation.stageStarts, elevation.routeKm).map(
-              (tk) => tk.band && <rect class="stage-band" x={tk.x} y={TERRAIN.top - 8} width={tk.end - tk.x} height={TERRAIN.bottom - TERRAIN.top + 8} />,
+              (tk) => tk.band && <rect class="stage-band" x={tk.x} y={TERRAIN.top - 8} width={n1(tk.end - tk.x)} height={TERRAIN.bottom - TERRAIN.top + 8} />,
             )}
             {eleGrid.map((m) => <line class="grid" x1={CHART.x0} x2={CHART.x1} y1={yAt(m)} y2={yAt(m)} />)}
-            {terrainSlices.map((sl) => <polygon class="slice" points={sl.points} style={sl.style} />)}
+            {slicePaths.map((sl) => <path class={`slice ${sl.dir}`} d={sl.d} style={sl.style} />)}
             <path class="line" d={profileLine} />
             <!-- height labels over the profile (with a halo), so a steep start doesn't hide them; one
                  that would meet the peak label at the left edge gives way -->
@@ -1056,16 +1082,10 @@ const nav = [
               </g>
             )}
             <line class="base" x1={CHART.x0} x2={CHART.x1} y1={TERRAIN.bottom} y2={TERRAIN.bottom} />
-            {surface?.runs.map((r) => (
-              <rect
-                class="ground"
-                x={xAt(r.fromKm, surface.routeKm)}
-                width={Math.max(xAt(r.toKm, surface.routeKm) - xAt(r.fromKm, surface.routeKm), 0.6)}
-                y={TERRAIN.bottom + 4}
-                height={GROUND_H}
-                style={`fill: var(--surface-${r.category})`}
-              />
-            ))}
+            {surface &&
+              stripPaths(surface.runs, (km) => xAt(km, surface.routeKm), TERRAIN.bottom + 4, GROUND_H).map((p) => (
+                <path class="ground" d={p.d} style={`fill: var(--surface-${p.category})`} />
+              ))}
             <circle class="peak" cx={xAt(elevation.highest.km, elevation.routeKm)} cy={yAt(elevation.highest.m)} r="4" />
             <text class="peak-label" x={peak.x} y={yAt(elevation.highest.m) - 9} text-anchor={peak.anchor}>{fmt(elevation.highest.m)} m</text>
             {stageTicks(elevation.stageStarts, elevation.routeKm).map((tk) => (
@@ -1138,7 +1158,7 @@ const nav = [
             aria-label={`Landscape along the main route, ${landcover.routeKm} km: ${landSummary}`}
           >
             {stageTicks(landcover.stageStarts, landcover.routeKm, laneX).map(
-              (tk) => tk.band && <rect class="stage-band" x={tk.x} y="0" width={tk.end - tk.x} height={landRows.length * 26 + 4} />,
+              (tk) => tk.band && <rect class="stage-band" x={tk.x} y="0" width={n1(tk.end - tk.x)} height={landRows.length * 26 + 4} />,
             )}
             {landRows.map((g, i) => (
               <g>
@@ -1148,7 +1168,7 @@ const nav = [
                   <rect
                     x={laneX(r.fromKm)}
                     y={i * 26 + 5}
-                    width={Math.max(laneX(r.toKm) - laneX(r.fromKm), 0.8)}
+                    width={n1(Math.max(laneX(r.toKm) - laneX(r.fromKm), 0.8))}
                     height="16"
                     rx="2"
                     style={`fill: var(--land-${g.id})`}
@@ -1268,13 +1288,13 @@ const nav = [
           <div class="chart-scroll">
           <svg viewBox={`0 0 ${CHART.width} 132`} role="img" aria-label={chartSummary}>
             {stageTicks(water.stageStarts, water.routeKm).map(
-              (tk) => tk.band && <rect class="stage-band" x={tk.x} y="28" width={tk.end - tk.x} height={CHART.axis - 28} />,
+              (tk) => tk.band && <rect class="stage-band" x={tk.x} y="28" width={n1(tk.end - tk.x)} height={CHART.axis - 28} />,
             )}
             <rect
               class="gap"
               x={xAt(water.longestGapKm.drinking.fromKm)}
               y="28"
-              width={xAt(water.longestGapKm.drinking.toKm) - xAt(water.longestGapKm.drinking.fromKm)}
+              width={n1(xAt(water.longestGapKm.drinking.toKm) - xAt(water.longestGapKm.drinking.fromKm))}
               height={CHART.axis - 28}
               rx="4"
             />
@@ -2618,9 +2638,13 @@ const nav = [
   /* the profile: 200 m slices filled by gradient (--g) or ground (--s); an edge in their own colour
      closes the hairline seams between them */
   .slice {
+    --g: color-mix(in oklab, var(--grade-up-steep) var(--p), var(--terrain-tint));
     fill: var(--g);
     stroke: var(--g);
     stroke-width: 0.8;
+  }
+  .slice.down {
+    --g: color-mix(in oklab, var(--grade-down-steep) var(--p), var(--terrain-tint));
   }
   .terrain-chart .line {
     fill: none;
