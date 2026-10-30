@@ -166,11 +166,12 @@ notes:
     (Forstgesetz, Carinthian camping law), Slovenia and Friuli generally forbid it.
   - >-
     Route (pipeline, 2026-10-29): the OSM match covers 96–100 % of most stage tracks; below 95 %
-    are stage 7 (Mallnitz – Obervellach, 90 %, up to 922 m off), 8 (89 %), 9 (92 %), 30 (Breg pri
-    Golem Brdu – Šmartno, 89 %, up to 684 m off) and the circular route's R6 (91 %), where OSM is
-    probably missing paths or the track takes a shortcut OSM doesn't have. Rebuilt from the full
-    Geofabrik extracts (2026-10-30): identical. Where the line detours, the map line is shorter
-    than the stated stage: stage 7 15.8 against 18.6 km, stage 30 19.1 against 21.6 km.
+    are stage 8 (89 %), 9 (92 %) and the circular route's R6 (91 %), where OSM is probably missing
+    paths or the track takes a shortcut OSM doesn't have. Rebuilt from the full Geofabrik extracts
+    (2026-10-30): identical. Stages 7 (Mallnitz – Obervellach) and 30 (Breg pri Golem Brdu –
+    Šmartno) were at 90 % and 89 %, the map line 15.8 and 19.1 km: their tracks walk out to a
+    viewpoint and back the same way, and the matcher skipped the spur. Since 2026-10-30 it matches
+    each leg of such a turnaround on its own: 100 % and 99 %, 18.6 and 21.6 km as stated.
   - >-
     Water (pipeline, 2026-10-30): 231 drinking water points and 31 springs from OSM along the
     main route; the longest stretch without drinking water is 57.2 km on stages 3–5 (Döllach –

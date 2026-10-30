@@ -1,18 +1,18 @@
 {
   "climate-high.json": {
-    "retrieved": "2026-10-30T11:56:11+00:00",
+    "retrieved": "2026-10-30T12:24:07+00:00",
     "url": "https://archive-api.open-meteo.com/v1/archive?latitude=48.60591&longitude=8.20262&elevation=1161&start_date=1995-01-01&end_date=2024-12-31&daily=temperature_2m_max,temperature_2m_min,precipitation_sum,snowfall_sum,wind_speed_10m_max,wind_gusts_10m_max&timezone=auto"
   },
   "climate-low.json": {
-    "retrieved": "2026-10-30T11:54:59+00:00",
-    "url": "https://archive-api.open-meteo.com/v1/archive?latitude=48.6063&longitude=8.36769&elevation=462&start_date=1995-01-01&end_date=2024-12-31&daily=temperature_2m_max,temperature_2m_min,precipitation_sum,snowfall_sum,wind_speed_10m_max,wind_gusts_10m_max&timezone=auto"
+    "retrieved": "2026-10-30T12:22:55+00:00",
+    "url": "https://archive-api.open-meteo.com/v1/archive?latitude=48.60684&longitude=8.36696&elevation=462&start_date=1995-01-01&end_date=2024-12-31&daily=temperature_2m_max,temperature_2m_min,precipitation_sum,snowfall_sum,wind_speed_10m_max,wind_gusts_10m_max&timezone=auto"
   },
   "elevation-glo30.json": {
-    "retrieved": "2026-10-30T11:53:48+00:00",
+    "retrieved": "2026-10-30T12:21:43+00:00",
     "url": "https://copernicus-dem-30m.s3.eu-central-1.amazonaws.com/Copernicus_DSM_COG_10_N48_00_E008_00_DEM/Copernicus_DSM_COG_10_N48_00_E008_00_DEM.tif"
   },
   "landcover.json": {
-    "retrieved": "2026-10-30T11:53:48+00:00",
+    "retrieved": "2026-10-30T12:21:44+00:00",
     "url": "https://esa-worldcover.s3.eu-central-1.amazonaws.com/v200/2021/map/ESA_WorldCover_10m_2021_v200_\u2026_Map.tif"
   },
   "osm-stage-1-main.json": {

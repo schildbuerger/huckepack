@@ -1,18 +1,18 @@
 {
   "climate-high.json": {
-    "retrieved": "2026-10-29T22:52:32+00:00",
+    "retrieved": "2026-10-30T12:21:42+00:00",
     "url": "https://archive-api.open-meteo.com/v1/archive?latitude=47.07533&longitude=12.75082&elevation=2358&start_date=1995-01-01&end_date=2024-12-31&daily=temperature_2m_max,temperature_2m_min,precipitation_sum,snowfall_sum,wind_speed_10m_max,wind_gusts_10m_max&timezone=auto"
   },
   "climate-low.json": {
-    "retrieved": "2026-10-29T22:51:21+00:00",
-    "url": "https://archive-api.open-meteo.com/v1/archive?latitude=45.78654&longitude=13.59167&elevation=1&start_date=1995-01-01&end_date=2024-12-31&daily=temperature_2m_max,temperature_2m_min,precipitation_sum,snowfall_sum,wind_speed_10m_max,wind_gusts_10m_max&timezone=auto"
+    "retrieved": "2026-10-30T12:20:30+00:00",
+    "url": "https://archive-api.open-meteo.com/v1/archive?latitude=45.78612&longitude=13.59083&elevation=1&start_date=1995-01-01&end_date=2024-12-31&daily=temperature_2m_max,temperature_2m_min,precipitation_sum,snowfall_sum,wind_speed_10m_max,wind_gusts_10m_max&timezone=auto"
   },
   "elevation-glo30.json": {
-    "retrieved": "2026-10-29T22:50:06+00:00",
+    "retrieved": "2026-10-30T12:19:16+00:00",
     "url": "https://copernicus-dem-30m.s3.eu-central-1.amazonaws.com/Copernicus_DSM_COG_10_N45_00_E013_00_DEM/Copernicus_DSM_COG_10_N45_00_E013_00_DEM.tif https://copernicus-dem-30m.s3.eu-central-1.amazonaws.com/Copernicus_DSM_COG_10_N46_00_E012_00_DEM/Copernicus_DSM_COG_10_N46_00_E012_00_DEM.tif https://copernicus-dem-30m.s3.eu-central-1.amazonaws.com/Copernicus_DSM_COG_10_N46_00_E013_00_DEM/Copernicus_DSM_COG_10_N46_00_E013_00_DEM.tif https://copernicus-dem-30m.s3.eu-central-1.amazonaws.com/Copernicus_DSM_COG_10_N46_00_E014_00_DEM/Copernicus_DSM_COG_10_N46_00_E014_00_DEM.tif https://copernicus-dem-30m.s3.eu-central-1.amazonaws.com/Copernicus_DSM_COG_10_N47_00_E012_00_DEM/Copernicus_DSM_COG_10_N47_00_E012_00_DEM.tif https://copernicus-dem-30m.s3.eu-central-1.amazonaws.com/Copernicus_DSM_COG_10_N47_00_E013_00_DEM/Copernicus_DSM_COG_10_N47_00_E013_00_DEM.tif"
   },
   "landcover.json": {
-    "retrieved": "2026-10-29T22:50:09+00:00",
+    "retrieved": "2026-10-30T12:19:20+00:00",
     "url": "https://esa-worldcover.s3.eu-central-1.amazonaws.com/v200/2021/map/ESA_WorldCover_10m_2021_v200_\u2026_Map.tif"
   },
   "osm-stage-1-main.json": {

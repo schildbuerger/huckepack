@@ -25,6 +25,7 @@ BOX_M = 1000  # the track is queried in boxes over pieces of about this length
 SIGMA_M = 15  # penalty scale: a way 15 m off the track costs double, 50 m about 12 times
 FAR_M = 300  # distances beyond this are treated as this
 NEAR_M = 30  # a track point counts as covered if the matched line is this close
+TURN_ARM_M = 150  # a turnaround: the track 150 m before and after it lies together
 
 
 class Projection:
@@ -194,18 +195,73 @@ def fetch(query):
             time.sleep(30 * (attempt + 1))  # Overpass is busy or cut the response; back off
 
 
+def turnarounds(track, step=20, arm_m=TURN_ARM_M):
+    """Indices (into resample(track, step)) where the track turns back on itself: the points
+    arm_m before and after lie together, and the turn is at least 100 m from them (a summit
+    walked up and down the same path)."""
+    pts = resample(track, step)
+    k = round(arm_m / step)
+    found = []
+    for i in range(k, len(pts) - k):
+        gap = math.dist(pts[i - k], pts[i + k])
+        if gap < NEAR_M and math.dist(pts[i], pts[i - k]) > 100:
+            if found and i - found[-1][0] <= k:
+                if gap < found[-1][1]:
+                    found[-1] = (i, gap)
+            else:
+                found.append((i, gap))
+    return pts, [i for i, _ in found]
+
+
 def match(track_lonlat, osm):
     """Return (OSM coordinates of the matched route as (lon, lat), report).
 
     report["ways"] lists the OSM ways the route uses, in order: [way id, metres], with
-    consecutive pieces of the same way merged."""
+    consecutive pieces of the same way merged. Where the track turns back on itself (out to a
+    summit and back), each leg is matched on its own: the cheapest path would skip the spur."""
     nodes = {e["id"]: (e["lon"], e["lat"]) for e in osm["elements"] if e["type"] == "node"}
     ways = [e for e in osm["elements"] if e["type"] == "way"]
     proj = Projection(sum(lat for _, lat in track_lonlat) / len(track_lonlat))
     track = [proj.xy(lon, lat) for lon, lat in track_lonlat]
-    index = SegmentIndex(track)
     xy = {n: proj.xy(*ll) for n, ll in nodes.items()}
 
+    fine, turns = turnarounds(track)
+    legs = [fine[a : b + 1] for a, b in zip([0, *turns], [*turns, len(fine) - 1])] if turns else [track]
+    # the legs meet at the same node (the one nearest the turnaround), so they chain
+    path, pairs = [], {}
+    for leg in legs:
+        leg_path, via = _cheapest_path(leg, ways, xy)
+        path += leg_path[1:] if path else leg_path
+        pairs.update({(a, b): via[b] for a, b in zip(leg_path, leg_path[1:])})
+
+    # How well the matched line follows the track: share of the track within NEAR_M of it,
+    # and the furthest the track gets from it.
+    matched_xy = [xy[n] for n in path]
+    matched_index = SegmentIndex(matched_xy)
+    samples = [matched_index.distance(p, limit=2000) for p in resample(track, 20)]
+    report = {
+        "km": sum(math.dist(a, b) for a, b in zip(matched_xy, matched_xy[1:])) / 1000,
+        "track_km": sum(math.dist(a, b) for a, b in zip(track, track[1:])) / 1000,
+        "covered": sum(d <= NEAR_M for d in samples) / len(samples),
+        "max_off_m": max(samples),
+        "start_off_m": math.dist(matched_xy[0], track[0]),
+        "end_off_m": math.dist(matched_xy[-1], track[-1]),
+        "ways": [],
+    }
+    for a, b in zip(path, path[1:]):
+        metres = math.dist(xy[a], xy[b])
+        if report["ways"] and report["ways"][-1][0] == pairs[a, b]:
+            report["ways"][-1][1] += metres
+        else:
+            report["ways"].append([pairs[a, b], metres])
+    report["ways"] = [[w, round(m, 1)] for w, m in report["ways"]]
+    return [nodes[n] for n in path], report
+
+
+def _cheapest_path(track, ways, xy):
+    """The cheapest chain of OSM nodes from the track's start to its end, and the way that
+    reaches each node."""
+    index = SegmentIndex(track)
     # node distance to the track, computed once per node
     off = {n: index.distance(p) for n, p in xy.items()}
 
@@ -245,26 +301,4 @@ def match(track_lonlat, osm):
     while path[-1] != source:
         path.append(prev[path[-1]])
     path.reverse()
-
-    # How well the matched line follows the track: share of the track within NEAR_M of it,
-    # and the furthest the track gets from it.
-    matched_xy = [xy[n] for n in path]
-    matched_index = SegmentIndex(matched_xy)
-    samples = [matched_index.distance(p, limit=2000) for p in resample(track, 20)]
-    report = {
-        "km": sum(math.dist(a, b) for a, b in zip(matched_xy, matched_xy[1:])) / 1000,
-        "track_km": sum(math.dist(a, b) for a, b in zip(track, track[1:])) / 1000,
-        "covered": sum(d <= NEAR_M for d in samples) / len(samples),
-        "max_off_m": max(samples),
-        "start_off_m": math.dist(matched_xy[0], track[0]),
-        "end_off_m": math.dist(matched_xy[-1], track[-1]),
-        "ways": [],
-    }
-    for a, b in zip(path, path[1:]):
-        metres = math.dist(xy[a], xy[b])
-        if report["ways"] and report["ways"][-1][0] == via[b]:
-            report["ways"][-1][1] += metres
-        else:
-            report["ways"].append([via[b], metres])
-    report["ways"] = [[w, round(m, 1)] for w, m in report["ways"]]
-    return [nodes[n] for n in path], report
+    return path, via
