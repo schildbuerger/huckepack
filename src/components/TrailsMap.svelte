@@ -14,7 +14,7 @@
   import workerUrl from "maplibre-gl/dist/maplibre-gl-worker.mjs?url";
   import type { SearchTrail } from "../lib/search";
   // Lucide icons (ISC): zoom to a trail, and back to all trails
-  import locateIcon from "lucide-static/icons/locate-fixed.svg?raw";
+  import openIcon from "lucide-static/icons/arrow-right.svg?raw";
   import earthIcon from "lucide-static/icons/earth.svg?raw";
 
   type Trail = SearchTrail & { startLonLat: [number, number]; level: string | null };
@@ -149,8 +149,7 @@
     center = [c.lng, c.lat];
   }
 
-  // zoom to one trail's route (or its start where no route is drawn); on phones the list sits under
-  // the map, so bring the map back into view
+  // zoom to one trail's route (or its start where no route is drawn)
   function zoomTo(slug: string) {
     const t = trails.find((x) => x.slug === slug);
     if (!map || !t) return;
@@ -158,7 +157,6 @@
     const b = routeBounds.get(slug);
     if (b) map.fitBounds(b, { padding: 48, maxZoom: 11 });
     else map.easeTo({ center: t.startLonLat, zoom: 9 });
-    if (container.getBoundingClientRect().top < 0) container.scrollIntoView({ block: "start", behavior: "smooth" });
   }
   function showAll() {
     if (map && allBounds) map.fitBounds(allBounds, { padding: 0 });
@@ -329,15 +327,16 @@
           <li class="wm-divider">{i === 0 ? "None in the map view; the nearest:" : "Outside the map view"}</li>
         {/if}
         <li id={`wm-${t.slug}`} class:on={hovered === t.slug} class:out={!here} onmouseenter={() => (hovered = t.slug)} onmouseleave={() => (hovered = null)}>
-          <!-- two actions: the name opens the trail page, the button zooms the map to the route -->
-          <a class="wm-entry" href={`/trails/${t.slug}/`}>
+          <!-- two actions: the entry zooms the map to the route, the arrow opens the trail page -->
+          <button type="button" class="wm-entry" title="Show on map" onclick={() => zoomTo(t.slug)}>
             <span class="wm-place">{t.countries.join(", ")}</span>
             <strong class="wm-name">{t.name}</strong>
             <span class="wm-fig">{figures(t)}</span>
-          </a>
-          <button type="button" class="wm-zoom" title="Show on map" aria-label={`Show ${t.name} on the map`} onclick={() => zoomTo(t.slug)}>
-            {@html locateIcon}
+            <span class="sr-only">, show on the map</span>
           </button>
+          <a class="wm-open" href={`/trails/${t.slug}/`} title="Open the trail page" aria-label={`Open the ${t.name} page`}>
+            {@html openIcon}
+          </a>
         </li>
       {:else}
         <li class="wm-none">
@@ -350,13 +349,13 @@
 </div>
 
 <style>
-  /* the page between header and footer: the map filling the space, the list column on the right
-     (the page passes `full` to Base, so there is no width cap); phones: the map, then the list */
+  /* the window between header and footer (the page passes `full` to Base: no width cap, no page
+     scrolling): the map filling the space, the list column on the right, scrolling on its own;
+     phones: the map, then the list */
   .wm {
     display: grid;
     grid-template-columns: minmax(0, 1fr) minmax(320px, 400px);
-    height: calc(100dvh - 61px);
-    border-bottom: 1px solid var(--line);
+    height: 100%;
   }
   .wm-map {
     height: 100%;
@@ -469,6 +468,7 @@
     border-top: 1px solid var(--text);
   }
   .wm-list li {
+    position: relative; /* keeps the entries' screen-reader words inside the scrolling list */
     border-bottom: 1px solid var(--line);
   }
   .wm-list li:not(.wm-none):not(.wm-divider) {
@@ -480,17 +480,26 @@
   .wm-list li.on {
     background: var(--surface);
   }
+  /* the entry itself zooms the map to the trail */
   .wm-entry {
     display: grid;
     gap: 2px;
+    width: 100%;
     padding: 12px 6px;
+    border: 0;
+    background: none;
     color: var(--text);
-    text-decoration: none;
+    font: inherit;
+    text-align: left;
+    cursor: pointer;
   }
   .wm-entry:hover .wm-name,
   .wm-entry:focus-visible .wm-name {
     color: var(--accent);
-    text-decoration: underline;
+  }
+  .wm-entry:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: -2px;
   }
   .wm-place {
     color: var(--muted);
@@ -517,8 +526,8 @@
   .wm-list li.out .wm-entry {
     opacity: 0.75;
   }
-  /* "Show on map": a round button, 40 px to tap */
-  .wm-zoom {
+  /* "Open the trail page": a round arrow, 40 px to tap */
+  .wm-open {
     display: grid;
     place-items: center;
     width: 40px;
@@ -531,12 +540,12 @@
     color: var(--muted);
     cursor: pointer;
   }
-  .wm-zoom:hover,
-  .wm-zoom:focus-visible {
+  .wm-open:hover,
+  .wm-open:focus-visible {
     border-color: var(--accent);
     color: var(--accent);
   }
-  .wm-zoom :global(svg) {
+  .wm-open :global(svg) {
     width: 18px;
     height: 18px;
   }
@@ -567,17 +576,11 @@
   @media (max-width: 899px) {
     .wm {
       grid-template-columns: 1fr;
-      height: auto;
-    }
-    .wm-map {
-      height: 62dvh;
+      grid-template-rows: 45% minmax(0, 1fr);
     }
     .wm-side {
       border-left: 0;
-      padding-bottom: 12px;
-    }
-    .wm-list {
-      overflow: visible;
+      border-top: 1px solid var(--line);
     }
   }
 </style>

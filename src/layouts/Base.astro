@@ -52,7 +52,7 @@ const canonical = new URL(Astro.url.pathname.replace(/\/?$/, "/"), Astro.site);
       } catch {}
     </script>
   </head>
-  <body>
+  <body class:list={{ full }}>
     <header class="site-header">
       <div class="wrap">
         <a href="/" class="brand">
@@ -333,12 +333,44 @@ const canonical = new URL(Astro.url.pathname.replace(/\/?$/, "/"), Astro.site);
     width: 100%;
     height: 100%;
   }
+  /* a full page (the trail map): header, page and footer fill the window exactly; only the page's
+     own panels scroll, and the footer is one slim row */
+  body.full {
+    display: flex;
+    flex-direction: column;
+    height: 100dvh;
+    overflow: hidden;
+  }
   .wrap.full {
+    overflow: clip;
+    flex: 1;
+    min-height: 0;
+    width: 100%;
     max-width: none;
     padding: 0;
   }
-  .wrap.full + .site-footer {
+  body.full .site-footer {
     margin-top: 0;
+    padding: 8px 0;
+    font-size: 0.78rem;
+  }
+  body.full .site-footer .wrap {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0 16px;
+  }
+  body.full .site-footer p {
+    margin: 0;
+  }
+  body.full .site-footer p:first-child,
+  body.full .legal-links {
+    margin-top: 0 !important;
+  }
+  /* phones: the footer keeps its links and the attribution, not the tagline */
+  @media (max-width: 639px) {
+    body.full .site-footer p:first-child {
+      display: none;
+    }
   }
   .site-footer {
     margin-top: 56px;
