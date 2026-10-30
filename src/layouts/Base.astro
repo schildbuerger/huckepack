@@ -112,9 +112,10 @@ const canonical = new URL(Astro.url.pathname.replace(/\/?$/, "/"), Astro.site);
     --surface-paved: #50565c;
     --surface-unknown: #d6ccbf;
     /* climate (validated with the dataviz validator): the trail's low and high ground; wet days in
-       water blue with snow days as its light step */
+       water blue with snow days as its light step. The high ground is a deep navy (a lavender in
+       dark mode), apart from the wet-days blue by lightness: they share a legend row (issue #24) */
     --clim-low: #c46a1f;
-    --clim-high: #4c5aa3;
+    --clim-high: #2a2f6e;
     --wet: #2f6690;
     --snow: #86afd0;
     --daylight: #e8a800; /* strong yellow; below 3:1 on cream, so every pill carries its value */
@@ -156,7 +157,7 @@ const canonical = new URL(Astro.url.pathname.replace(/\/?$/, "/"), Astro.site);
     --surface-paved: #babec3;
     --surface-unknown: #4a4038;
     --clim-low: #c97a37;
-    --clim-high: #7f8ce6;
+    --clim-high: #a99be8;
     --wet: #4a7aa1;
     --snow: #c4dcef;
     --daylight: #f5c518;
@@ -193,7 +194,7 @@ const canonical = new URL(Astro.url.pathname.replace(/\/?$/, "/"), Astro.site);
       --surface-paved: #babec3;
       --surface-unknown: #4a4038;
       --clim-low: #c97a37;
-      --clim-high: #7f8ce6;
+      --clim-high: #a99be8;
       --wet: #4a7aa1;
       --snow: #c4dcef;
       --daylight: #f5c518;
