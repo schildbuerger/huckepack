@@ -2,10 +2,12 @@
 import { getCollection, getEntry } from "astro:content";
 import Base from "../layouts/Base.astro";
 import Icon, { type IconName } from "../components/Icon.astro";
+import TrailSpark from "../components/TrailSpark.astro";
 import { mainStages, stageEstimates, trailClimb, walkingMinutes } from "../lib/trails";
 import { LEVELS } from "../lib/difficulty";
 import { climateLevel } from "../lib/filters";
 import { searchSummary } from "../lib/search";
+import zones from "../lib/timezones.json";
 
 const entries = (await getCollection("trails")).sort((a, b) => a.data.name.localeCompare(b.data.name));
 const derivedAll = await Promise.all(entries.map(async (e) => (await getEntry("derived", e.id))?.data));
@@ -69,6 +71,7 @@ const everests = (totals.climbed / EVEREST_M).toFixed(1);
 
 // the featured trail: every trail is rendered, and a script picks one at random on each page load
 // (without JavaScript, the first shows); each with its elevation profile and surfaces as previews
+// the box the profiles are drawn in (src/components/TrailSpark.astro draws them)
 const W = 1000;
 const H = 110;
 const featuredAll = trails.map((t, i) => {
@@ -87,6 +90,25 @@ const featuredAll = trails.map((t, i) => {
   })();
   return { t, spark, surface: d?.surface, climb: perTrail[i], level: difficultyWord(t) };
 });
+
+// popular trails (issue #84): the three whose Wikipedia articles people viewed most in twelve months,
+// all languages summed (pipeline/popularity.py, Wikimedia); trails without an article aren't ranked
+const POPULAR = 3;
+const popular = featuredAll
+  .map((f, i) => ({ ...f, views: derivedAll[i]?.popularity?.views ?? null }))
+  .filter((f) => f.views !== null)
+  .sort((a, b) => b.views! - a.views!)
+  .slice(0, POPULAR);
+const viewsWindow = derivedAll.find((d) => d?.popularity)?.popularity;
+const monthYear = (ym: string) => new Date(`${ym}-01T00:00:00Z`).toLocaleDateString("en-GB", { month: "long", year: "numeric", timeZone: "UTC" });
+// trails near you (issue #85): every trail's card is rendered with its start and finish; a script
+// finds the three nearest to the place the browser's time zone stands for (src/lib/timezones.json)
+const ends = entries.map((e) => [
+  [e.data.termini.start.lat, e.data.termini.start.lon],
+  [e.data.termini.end.lat, e.data.termini.end.lon],
+]);
+const figureLine = (t: (typeof trails)[number]) =>
+  [t.lengthKm !== null && `${fmt(t.lengthKm)} km`, t.days && `${days(t.days)} days`, difficultyWord(t)].filter(Boolean).join(" · ");
 
 // what a trail page shows, in its order (src/pages/trails/[slug].astro)
 const features: { icon: IconName; title: string; text: string }[] = [
@@ -205,26 +227,7 @@ const sources = [
             {level && <div><dt>Difficulty</dt><dd>{level}</dd></div>}
             {spark && <div><dt>Highest point</dt><dd>{fmt(spark.peak)}<span>m</span></dd></div>}
           </dl>
-          {spark && (
-            <div class="preview" aria-hidden="true">
-              <svg class="spark" viewBox={`0 0 ${W} ${H}`} preserveAspectRatio="none">
-                <path class="spark-area" d={spark.area} />
-                <path class="spark-line" d={spark.line} vector-effect="non-scaling-stroke" />
-              </svg>
-              {surface && (
-                <svg class="surf" viewBox={`0 0 ${W} 8`} preserveAspectRatio="none">
-                  {surface.runs.map((r) => (
-                    <rect
-                      x={(r.fromKm / surface.routeKm) * W}
-                      width={Math.max(((r.toKm - r.fromKm) / surface.routeKm) * W, 0.6)}
-                      height="8"
-                      style={`fill: var(--surface-${r.category})`}
-                    />
-                  ))}
-                </svg>
-              )}
-            </div>
-          )}
+          {spark && <TrailSpark spark={spark} surface={surface} />}
           <span class="open">Open the trail →</span>
         </a>
       ))}
@@ -239,6 +242,80 @@ const sources = [
       </script>
     </section>
   )}
+
+  {popular.length > 0 && (
+    <section class="block">
+      <h2>Popular trails</h2>
+      {viewsWindow && (
+        <p class="block-note muted">
+          By how often people read their Wikipedia articles, in every language, {monthYear(viewsWindow.from)} to{" "}
+          {monthYear(viewsWindow.to)} (Wikimedia). It measures interest in a trail, not how many hike it.
+        </p>
+      )}
+      <div class="feats">
+        {popular.map(({ t, spark, surface, views }) => (
+          <a class="feat" href={`/trails/${t.slug}/`}>
+            <span class="feat-place">{t.countries.join(" · ")}</span>
+            <span class="feat-name">{t.name}</span>
+            <span class="feat-figures">{figureLine(t)}</span>
+            {spark && <TrailSpark spark={spark} surface={surface} height={70} />}
+            <span class="feat-why">{fmt(views!)} Wikipedia page views in 12 months</span>
+          </a>
+        ))}
+      </div>
+    </section>
+  )}
+
+  <!-- shown by the script below only where the time zone gives a place; without JavaScript it stays hidden -->
+  <section class="block near" hidden>
+    <h2>Trails near you</h2>
+    <p class="block-note muted" data-near-note></p>
+    <div class="feats" data-near-list>
+      {featuredAll.map(({ t, spark, surface }, i) => (
+        <a class="feat" href={`/trails/${t.slug}/`} data-slug={t.slug} data-ends={JSON.stringify(ends[i])} hidden>
+          <span class="feat-place">{t.countries.join(" · ")}</span>
+          <span class="feat-name">{t.name}</span>
+          <span class="feat-figures">{figureLine(t)}</span>
+          {spark && <TrailSpark spark={spark} surface={surface} height={70} />}
+          <span class="feat-why" data-dist></span>
+        </a>
+      ))}
+    </div>
+  </section>
+  <script type="application/json" id="zones" set:html={JSON.stringify(zones)}></script>
+  <script>
+    // Trails near you (issue #85): the browser's time zone (Europe/Berlin) stands for its main
+    // city (the tz database's coordinates); the three trails whose start or finish is nearest, by
+    // great-circle distance. Worked out here; nothing is sent or stored.
+    const NEARBY = 3;
+    const section = document.querySelector<HTMLElement>(".near")!;
+    const zones: Record<string, [number, number]> = JSON.parse(document.getElementById("zones")!.textContent!);
+    const zone = Intl.DateTimeFormat().resolvedOptions().timeZone;
+    const here = zones[zone];
+    if (here) {
+      const km = (a: [number, number], b: [number, number]) => {
+        const r = Math.PI / 180;
+        const h = Math.sin(((b[0] - a[0]) * r) / 2) ** 2 + Math.cos(a[0] * r) * Math.cos(b[0] * r) * Math.sin(((b[1] - a[1]) * r) / 2) ** 2;
+        return 2 * 6371 * Math.asin(Math.sqrt(h));
+      };
+      // rounded as far as a time zone's main city can tell: to 10, 50 or 100 km
+      const round = (d: number) => (d < 100 ? Math.round(d / 10) * 10 : d < 1000 ? Math.round(d / 50) * 50 : Math.round(d / 100) * 100);
+      const list = section.querySelector<HTMLElement>("[data-near-list]")!;
+      const cards = [...list.querySelectorAll<HTMLElement>("[data-slug]")];
+      const near = cards
+        .map((card) => ({ card, d: Math.min(...(JSON.parse(card.dataset.ends!) as [number, number][]).map((e) => km(here, e))) }))
+        .sort((a, b) => a.d - b.d)
+        .slice(0, NEARBY);
+      for (const { card, d } of near) {
+        card.querySelector<HTMLElement>("[data-dist]")!.textContent = `≈ ${round(d).toLocaleString("en")} km from you`;
+        card.hidden = false;
+        list.append(card); // nearest first
+      }
+      section.querySelector<HTMLElement>("[data-near-note]")!.textContent =
+        `Measured from ${zone.split("/").pop()!.replace(/_/g, " ")}, the main city of your browser's time zone; worked out on your device, nothing is sent or stored.`;
+      section.hidden = false;
+    }
+  </script>
 
   <section class="block">
     <h2>On every trail page</h2>
@@ -542,31 +619,69 @@ const sources = [
   .featured-figures dd span.approx {
     margin: 0 3px 0 0;
   }
-  .preview svg {
-    display: block;
-    width: 100%;
-  }
-  .spark {
-    height: 90px;
-  }
-  .spark-area {
-    fill: var(--accent);
-    opacity: 0.14;
-  }
-  .spark-line {
-    fill: none;
-    stroke: var(--accent);
-    stroke-width: 2;
-    stroke-linejoin: round;
-  }
-  .surf {
-    height: 8px;
-    margin-top: 4px;
-    border-radius: 2px;
-  }
   .open {
     color: var(--accent);
     font-weight: 600;
+  }
+
+  /* popular trails and trails near you (issues #84, #85): the featured card's look, three in a row */
+  .block-note {
+    margin: -6px 0 14px;
+    font-size: 0.85rem;
+  }
+  .near[hidden],
+  .feat[hidden] {
+    display: none;
+  }
+  .feats {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+  @media (min-width: 640px) and (max-width: 899px) {
+    .feats {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+  @media (min-width: 900px) {
+    .feats {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+  }
+  .feat {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    padding: 18px 20px;
+    border-radius: 14px;
+    background: var(--surface);
+    color: var(--text);
+    text-decoration: none;
+  }
+  .feat:hover .feat-name {
+    color: var(--accent);
+  }
+  .feat-place {
+    color: var(--muted);
+    font-size: 0.8rem;
+  }
+  .feat-name {
+    margin-top: 2px;
+    font-family: var(--serif);
+    font-size: 1.4rem;
+    font-weight: 600;
+    line-height: 1.2;
+  }
+  .feat-figures {
+    margin: 6px 0 12px;
+    color: var(--accent);
+    font-size: 0.9rem;
+    font-weight: 600;
+  }
+  .feat-why {
+    margin-top: 10px;
+    color: var(--muted);
+    font-size: 0.8rem;
   }
 
   /* features */

@@ -1,0 +1,57 @@
+---
+// A trail's elevation profile with the surfaces underfoot as a strip beneath: the home page's
+// featured, popular and nearby cards. Decorative (the cards name their figures in text). The path
+// comes from the home page (`spark`: line and area in a W × H box, each on its own height range).
+import type { CollectionEntry } from "astro:content";
+
+interface Props {
+  spark: { line: string; area: string };
+  surface?: NonNullable<CollectionEntry<"derived">["data"]["surface"]>;
+  height?: number; // of the profile, px
+}
+const { spark, surface, height = 90 } = Astro.props;
+// the box the home page draws the paths in (src/pages/index.astro: W, H)
+const W = 1000;
+const H = 110;
+---
+
+<div class="preview" aria-hidden="true">
+  <svg class="spark" viewBox={`0 0 ${W} ${H}`} preserveAspectRatio="none" style={`height: ${height}px`}>
+    <path class="spark-area" d={spark.area} />
+    <path class="spark-line" d={spark.line} vector-effect="non-scaling-stroke" />
+  </svg>
+  {surface && (
+    <svg class="surf" viewBox={`0 0 ${W} 8`} preserveAspectRatio="none">
+      {surface.runs.map((r) => (
+        <rect
+          x={(r.fromKm / surface.routeKm) * W}
+          width={Math.max(((r.toKm - r.fromKm) / surface.routeKm) * W, 0.6)}
+          height="8"
+          style={`fill: var(--surface-${r.category})`}
+        />
+      ))}
+    </svg>
+  )}
+</div>
+
+<style>
+  .preview svg {
+    display: block;
+    width: 100%;
+  }
+  .spark-area {
+    fill: var(--accent);
+    opacity: 0.14;
+  }
+  .spark-line {
+    fill: none;
+    stroke: var(--accent);
+    stroke-width: 2;
+    stroke-linejoin: round;
+  }
+  .surf {
+    height: 8px;
+    margin-top: 4px;
+    border-radius: 2px;
+  }
+</style>

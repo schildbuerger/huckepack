@@ -24,6 +24,13 @@
   (the nine refuges of the national park)", so the page doesn't suggest a
   park or government designates it. Without an official website it stays out
   (the Alta Ruta de los Perdidos, 2026-10-30) (decided 2026-10-30).
+- **Popular trails** (issue #84): ranked by how often people read the trail's
+  Wikipedia articles in twelve months, all languages (Wikimedia, CC0): an
+  open, named measure of interest, not of hikers. huckepack keeps no visitor
+  analytics. A trail without an article isn't ranked (decided 2026-10-30).
+- **Trails near you** (issue #85): by the browser's time zone only (its main
+  city from the tz database), worked out in the browser; no location
+  permission, no IP lookup, nothing sent or stored (decided 2026-10-30).
 - **Trail length:** the key figure, page title, search cards and home page show
   the operator's stated total where the record has one, not the sum of the
   stages: stage lists often include the paths into the stage towns (the
