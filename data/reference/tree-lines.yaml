@@ -1,0 +1,75 @@
+# Tree lines by region: published figures for where trees stop growing, to reuse when a new trail
+# crosses the same region (issue #20). Not read by the site: a trail record copies the figure into
+# its own `treeLine` and the source into its own `sources` (every figure names its source on the
+# trail page). Add a region when a trail needs it, with the source's own words, and check it
+# against a second source (working rule 2). `m` is the upper limit, `fromM` the lower end where the
+# source gives a range; the terrain chart draws it only where the route climbs above `m`.
+
+- region: Austria, inner Alps, west (forest growth region 1.2; East Tyrol central Alps, upper Mölltal)
+  m: 2200
+  note: top of the high-subalpine zone, "(1650) 1950–2200 (2300)" m; locally 2,300 m
+  source:
+    title: "BFW (Kilian, Müller, Starlinger): Die forstlichen Wuchsgebiete Österreichs, 1994"
+    url: https://bfw.ac.at/300/pdf/1027.pdf
+    licence: All rights reserved (facts only)
+    retrieved: 2026-10-30
+  checkedAgainst: "German Wikipedia, Waldgrenze: \"in den Alpen liegt die Grenze zwischen 1800 und 2200 Metern\""
+  usedBy: [alpe-adria-trail]
+
+- region: Austria, other forest growth regions
+  note: >-
+    The same BFW table gives the high-subalpine zone for every region, e.g. 1.1 (inner Alps core,
+    Ötztal) 2000–2300 m, 1.3 (inner Alps, east: Hohe Tauern from the Schareck, Lungau) 1900–2100
+    (2250) m, 2.1 and 2.2 (northern intermediate Alps) 1800–2050 (2150) m, 6.1 (southern
+    marginal Alps) 1750–2000 (2100) m. Read the region's row on page 12 of the PDF above.
+  usedBy: []
+
+- region: Italy, South Tyrol
+  m: 2200
+  fromM: 1900
+  note: '"In Südtirol schwankt die natürliche Waldgrenze nämlich aktuell zwischen 1900 und 2200 Metern"; higher on south slopes'
+  source:
+    title: "stol.it: Als der Schlern noch komplett bewaldet war, 12 October 2023"
+    url: https://www.stol.it/artikel/chronik/als-der-schlern-noch-komplett-bewaldet-war
+    licence: All rights reserved (facts only)
+    retrieved: 2026-10-30
+  checkedAgainst: "BFW growth region 1.1 (Ötztal, across the main ridge): 2,000–2,300 m"
+  usedBy: [merano-high-mountain-trail]
+
+- region: Iceland, south (Þórsmörk, Goðaland)
+  m: 550
+  note: '"Birki finnst nú í meira en 550 m.h.y.s. bæði á Goðalandi og Þórsmörk"; expected to pass 600 m within decades'
+  source:
+    title: "Skógræktin (Icelandic Forest Service), Hreinn Óskarsson and Björn Traustason: 100 ára friðun birkiskóga á Þórsmerkursvæðinu, 2019"
+    url: https://web.archive.org/web/20220203201912/https://www.skogur.is/static/files/fagradstefna-2019/100-ara-fridun-thorsmerkur.pdf
+    licence: All rights reserved (facts only)
+    retrieved: 2026-10-30
+  checkedAgainst: "none current; Thoroddsen, Botany of Iceland (1914): the birch zone \"rarely higher than 300–400 metres\" (before the recent spread)"
+  usedBy: [laugavegur]
+
+- region: Scotland
+  m: 650
+  fromM: 250
+  note: '"about 650m in the central (continental) region of Scotland to around 250m in exposed places close to the west coast"'
+  source:
+    title: "Forestry Commission Scotland: Treeline woodlands and Rural Development Contracts, guidance note 13, February 2012"
+    url: https://www.ruralpayments.org/media/resources/TreelineWoodlandsGuidance.pdf
+    licence: Open Government Licence (facts only)
+    retrieved: 2026-10-30
+  checkedAgainst: "Wikipedia, Tree line: Scotland about 500 m"
+  usedBy: [west-highland-way]
+
+- region: Czechia and Poland, Krkonoše (nearest tree line to the Saxon and Bohemian uplands)
+  m: 1350
+  fromM: 1250
+  note: no tree line in the Elbe Sandstone Mountains themselves (highest about 720 m); not yet checked against a second source
+  source:
+    title: "Wikipedia: Krkonoše National Park (alpine forest boundary)"
+    url: https://en.wikipedia.org/wiki/Krkono%C5%A1e_National_Park
+    licence: CC BY-SA 4.0
+    retrieved: 2026-10-30
+  usedBy: []
+
+- region: Italy, northern Apennines (Foreste Casentinesi)
+  note: 'beech forest up to the ridge: "Sopra i 1400 metri, sino al crinale, domina la faggeta" (park, habitat 9210); a tree line only on the highest peaks from the Cisa pass to the upper Reno valley'
+  usedBy: []

@@ -1,0 +1,59 @@
+name: Add a trail
+description: Propose an official long-distance trail for the catalogue, with what its record needs.
+title: "Add Trail: <name>, <country>"
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Only official trails: designated or maintained by a government body or a recognised trail
+        association. Fill in what you know; links are enough. Unknown fields can stay empty, they
+        get researched when the trail is built (`pipeline/new_trail.py`, then `pipeline/all.py`).
+  - type: input
+    id: name
+    attributes:
+      label: Official name
+      description: "As the managing body writes it (local name too, if it differs)."
+    validations:
+      required: true
+  - type: input
+    id: where
+    attributes:
+      label: Countries and regions
+      placeholder: Germany, Baden-Württemberg
+    validations:
+      required: true
+  - type: input
+    id: website
+    attributes:
+      label: Official website
+      description: "The managing body's or the trail portal's page."
+  - type: input
+    id: managed
+    attributes:
+      label: Managed by
+      description: "Who designates or maintains the trail (tourism board, park authority, hiking club)."
+  - type: textarea
+    id: stages
+    attributes:
+      label: Official stages
+      description: "Where the stage list is, with distances, climbs and times if given. If the stage pages are on an Outdooractive portal, `pipeline/readers/outdooractive.py` reads them."
+  - type: textarea
+    id: track
+    attributes:
+      label: Track
+      description: "A GPX download per stage, a tour page carrying the track, or the OpenStreetMap route relation (openstreetmap.org/relation/…). GPX files stay local; the map line is built from OpenStreetMap."
+  - type: textarea
+    id: facts
+    attributes:
+      label: Season, sleeping and wild camping
+      description: "The recommended months, where hikers sleep (huts, campsites, rooms), and the wild camping rule, each with its source."
+  - type: input
+    id: second
+    attributes:
+      label: Second source
+      description: "An independent source for the data check (working rule 2): a national park, a national trail portal, a guidebook publisher, Wikipedia."
+  - type: textarea
+    id: notes
+    attributes:
+      label: Notes
+      description: "Variants, closures, anything unusual (very long trails, many stages, routes across borders)."

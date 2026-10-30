@@ -17,6 +17,7 @@ coarse box around its termini and stage ends; their geometry then defines the co
 import gzip
 import json
 import math
+import os
 import time
 import urllib.request
 from datetime import datetime, timezone
@@ -29,6 +30,9 @@ truststore.inject_into_ssl()
 
 ROOT = Path(__file__).resolve().parent.parent
 OSM_DIR = ROOT / "data" / "osm"
+# the extracts are large (hundreds of MB to GB each) and only re-downloadable input: keep them
+# outside a synced project folder with HUCKEPACK_OSM_EXTRACTS=/some/local/folder
+EXTRACTS_DIR = Path(os.environ.get("HUCKEPACK_OSM_EXTRACTS", OSM_DIR / "extracts"))
 INDEX_URL = "https://download.geofabrik.de/index-v1.json"
 USER_AGENT = "huckepack-pipeline (personal project)"
 MAX_AGE_DAYS = 7
@@ -110,7 +114,7 @@ def regions_for(points):
 def extract(region, url, refresh=False):
     """The region's extract on disk, downloaded when missing (or, refreshing, when older than
     MAX_AGE_DAYS). Geofabrik redirects "-latest" to a dated file; that date names the copy."""
-    folder = OSM_DIR / "extracts"
+    folder = EXTRACTS_DIR
     folder.mkdir(parents=True, exist_ok=True)
     stem = region.replace("/", "_")
     have = sorted(folder.glob(f"{stem}-*.osm.pbf"))
