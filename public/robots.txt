@@ -6,6 +6,8 @@
 User-agent: *
 Allow: /
 
+Sitemap: https://huckepack.me/sitemap.xml
+
 # AI crawlers and AI training: keep out of the pages with the operator's personal details.
 # (A bot that matches a group below follows only that group.)
 User-agent: GPTBot
