@@ -1,0 +1,190 @@
+name: Harzer Hexen-Stieg
+aliases: [Harzer Hexenstieg, Hexenstieg]
+website: https://www.harzinfo.de/erlebnisse/wandern/harzer-hexen-stieg
+designation: Qualitätsweg Wanderbares Deutschland, Top Trail of Germany
+managedBy:
+  # "ein Gemeinschaftsprojekt von Harzklub, Nationalpark Harz und Harzer Tourismusverband"
+  - name: Harzer Tourismusverband
+    url: https://www.harzinfo.de/
+  - name: Harzklub
+    url: https://www.harzklub.de/
+  - name: Nationalpark Harz
+    url: https://www.nationalpark-harz.de/
+trailType: point-to-point
+continents: [Europe]
+countries: [DE]
+regions: [Niedersachsen, Sachsen-Anhalt]
+protectedAreas:
+  - Nationalpark Harz
+termini:
+  # the first and last points of the official stage tracks: the start gate at the Bleichestelle
+  # in Osterode, the end in Thale
+  start:
+    name: Osterode am Harz (Bleichestelle)
+    lat: 51.72831
+    lon: 10.26029
+  end:
+    name: Thale
+    lat: 51.74572
+    lon: 11.03126
+  source: htv
+waymarking:
+  # Wikipedia: "Wegemarken mit Hexe auf Besen in weiß auf grünem Grund"; the portal names no mark
+  text: A white witch on a broomstick on a green background
+  source: wikipedia
+length:
+  # the main route on the portal's whole-route page; "100 Kilometer", 150 with every variant
+  - km: 96.2
+    source: htv
+ascent:
+  - m: 1571
+    source: htv
+days:
+  # "die fünf empfohlenen Etappen"
+  min: 5
+  max: 5
+  source: htv
+treeLine:
+  # "Die Baumgrenze liegt allerdings schon bei 1100 m. Grund dafür sind die extremen
+  # Witterungsverhältnisse" (the Brocken, 1,141 m); the Harz is the only German upland with a
+  # natural tree line
+  m: 1100
+  source: tuebingen
+stages:
+  # the Harzer Tourismusverband's tour portal (Outdooractive): five stages over the Brocken, the
+  # Brocken bypass, the southern variant of stage 4 and the winter detour of stage 5; each page
+  # carries its track (kept local, it only guides the OSM matcher)
+  source: htv
+  list:
+    - { number: "1", kind: main, from: Osterode, to: Buntenbock, km: 11.6, ascentM: 439, descentM: 100, minutes: 240, track: "https://touren.harzinfo.de/de/tour/fernwanderweg/harzer-hexen-stieg-1.-etappe-von-osterode-nach-buntenbock/1498029/" }
+    - { number: "2", kind: main, from: Buntenbock, to: Torfhaus, km: 21.9, ascentM: 382, descentM: 145, minutes: 330, track: "https://touren.harzinfo.de/de/tour/fernwanderweg/harzer-hexen-stieg-2.-etappe-von-buntenbock-nach-torfhaus/1512239/" }
+    - { number: "3", kind: main, from: Torfhaus, to: Drei Annen Hohne (over the Brocken), km: 19.9, ascentM: 338, descentM: 597, minutes: 300, track: "https://touren.harzinfo.de/de/tour/fernwanderweg/harzer-hexen-stieg-3.-etappe-von-torfhaus-nach-drei-annen-hohne/1511376/" }
+    - { number: "3", kind: variant, from: Torfhaus (Brocken bypass), to: Königshütte, km: 34.2, ascentM: 320, descentM: 638, minutes: 600, track: "https://touren.harzinfo.de/de/tour/fernwanderweg/harzer-hexen-stieg-brockenumgehung/1554122/" }
+    - { number: "4", kind: main, from: Drei Annen Hohne, to: Altenbrak (north, via Rübeland), km: 28.5, ascentM: 233, descentM: 504, minutes: 450, track: "https://touren.harzinfo.de/de/tour/fernwanderweg/harzer-hexen-stieg-4.-etappe-nordvariante-von-drei-annen-hohne-ueber/1485747/" }
+    - { number: "4", kind: variant, from: Drei Annen Hohne, to: Altenbrak (south, via Hasselfelde), km: 30.3, ascentM: 173, descentM: 416, minutes: 450, track: "https://touren.harzinfo.de/de/tour/fernwanderweg/harzer-hexen-stieg-4.-etappe-suedvariante-von-drei-annen-hohne-ueber/1517012/" }
+    - { number: "5", kind: main, from: Altenbrak, to: Thale, km: 14.2, ascentM: 183, descentM: 297, minutes: 240, track: "https://touren.harzinfo.de/de/tour/fernwanderweg/harzer-hexen-stieg-5.-etappe-von-altenbrak-nach-thale/1558999/" }
+    - { number: "5", kind: variant, from: Treseburg (winter detour), to: Thale, km: 8.5, ascentM: 215, descentM: 310, minutes: 180, track: "https://touren.harzinfo.de/de/tour/fernwanderweg/harzer-hexen-stieg-winterumleitung-bodetal/25092927/" }
+route:
+  # built by `python -m pipeline.all harzer-hexen-stieg`: OSM ways matched to the stage tracks
+  source: osm
+  publishable: true
+difficulty:
+  # the portal's grade for the whole route: "Schwierigkeit T3 Schwer" (SAC scale)
+  sac:
+    grade: T3
+    source: htv
+season:
+  # the portal's recommended months; the Bodetal between Treseburg and Thale is closed from
+  # November to March (rockfall), with the winter detour
+  months: [4, 5, 6, 7, 8, 9, 10]
+  text: April to October
+  source: htv
+sleeping:
+  # the tourism association lists hosts along the trail; hotels, inns and guesthouses in the
+  # stage towns
+  types: [hotel, guesthouse]
+  source: htv
+wildCamping:
+  status: prohibited
+  rule: >-
+    In the Harz National Park, which the trail crosses around the Brocken, camping and sleeping
+    outside the villages are forbidden; outside the park the forest laws of Lower Saxony and
+    Saxony-Anhalt don't allow tents in the woods either.
+  source: natphharzv
+access:
+  # Osterode Mitte, the stop the portal names for the start; Hannover airport. Coordinates from
+  # OSM; distances by pipeline/access.py
+  - kind: station
+    name: Osterode (Harz) Mitte
+    lat: 51.72606
+    lon: 10.24546
+    source: osm
+  - kind: airport
+    name: Hannover Airport (HAJ)
+    lat: 52.46089
+    lon: 9.69099
+    source: osm
+tags: [harz, brocken, national-park, reservoirs, gorges]
+notes:
+  - >-
+    The tourism association's main page gives "100 Kilometer" (150 with all variants); its
+    whole-route tour page 96.2 km, 1,571 m up, 1,615 m down; the five stage pages add up to
+    96.1 km and 1,575 m up. The southern variant of stage 4 is 30.3 km against the northern 28.5.
+  - >-
+    The portal notes a rerouting near Neuwerk (stage 5) because of forest damage, and the Bodetal
+    between Treseburg and Thale is closed from November to March (winter detour, stage 5 variant).
+    Check current closures before walking (touren.harzinfo.de lists them).
+  - >-
+    Route (pipeline, 2026-10-30, Geofabrik extracts): the OSM match covers 99–100 % of every stage
+    track. Stage 3 walks up to the Brocken summit and back down the same path (km 6.9–9.2 of its
+    track); the matcher matches each leg of such a turnaround on its own, so the map line reaches
+    the summit (1,141 m on the terrain model, 1,141.2 m in Wikipedia).
+  - >-
+    Water (pipeline, 2026-10-30): 2 drinking water points from OSM; the longest stretch without one
+    is 53.9 km (km 41.0–94.9, from the Brocken to Thale), through villages and past inns whose taps
+    OSM doesn't map.
+  - >-
+    Ascent: the stage pages add up to 1,575 m; the terrain model gives about 2,540 m (it measures
+    the treetops, and most of the route runs through forest).
+  - >-
+    Tree line (2026-10-30): the Brocken (1,141 m) is the only German upland summit above a natural
+    tree line, at about 1,100 m (Tübingen; German Wikipedia: "Der Brockengipfel liegt als einziger
+    Berg des deutschen Mittelgebirgsraumes oberhalb der natürlichen Waldgrenze", subalpine above
+    "1000 / 1100 Meter"). The Brocken bypass stays below it.
+  - >-
+    Data check (2026-10-30). Second source: German Wikipedia (main route 97 km, "knapp 100 km";
+    stages 11.6, 22.3, 19.9, 29 north or 30.3 south and 14.2 km; Brocken bypass 32.3 km; highest
+    point 1,141.2 m; the witch waymark; Harzer Tourismusverband and Harzklub; certified 2007).
+    Everything comparable agrees within 10 %. Wikipedia's "966 m" is the height range, not the
+    ascent; it gives no season.
+dataCheck:
+  # working rule 2: German Wikipedia
+  date: 2026-10-30
+  against: [wikipedia]
+  deviations: []
+sources:
+  - id: htv
+    title: "Harzer Tourismusverband: Harzer-Hexen-Stieg (main page, and its tour portal touren.harzinfo.de: whole route and stage pages with distances, times, climbs, grade, season, tracks)"
+    url: https://touren.harzinfo.de/de/list/harzer-hexen-stieg/206260397/
+    licence: All rights reserved (facts only)
+    retrieved: 2026-10-30
+  - id: tuebingen
+    title: "Universität Tübingen, Geowissenschaften (Wirtschaftsgeographie): Große Exkursion Mitteldeutschland 2021, Naturraum Harz (tree line on the Brocken)"
+    url: https://uni-tuebingen.de/de/217752
+    licence: All rights reserved (facts only)
+    retrieved: 2026-10-30
+  - id: natphharzv
+    title: "Verordnung über die Festsetzung des Nationalparks Hochharz, § 6 (1) no. 14 (no camping, no sleeping outside villages)"
+    url: https://www.gesetze-im-internet.de/natphharzv/__6.html
+    licence: Public domain (German federal law)
+    retrieved: 2026-10-30
+  - id: wikipedia
+    title: "Wikipedia (de): Harzer Hexenstieg (waymark; data check)"
+    url: https://de.wikipedia.org/wiki/Harzer_Hexenstieg
+    licence: CC BY-SA 4.0
+    retrieved: 2026-10-30
+  - id: osm
+    title: "OpenStreetMap contributors: paths and water along the trail (Geofabrik extracts), travel hubs"
+    url: https://www.openstreetmap.org/
+    licence: ODbL 1.0
+    retrieved: 2026-10-30
+  - id: copdem
+    title: "Copernicus DEM GLO-30 (30 m terrain model), tiles from AWS Open Data"
+    url: https://registry.opendata.aws/copernicus-dem/
+    licence: "Copernicus WorldDEM-30 licence, free; produced using Copernicus WorldDEM-30 © DLR e.V. 2010-2014 and © Airbus Defence and Space GmbH 2014-2018 provided under COPERNICUS by the European Union and ESA; all rights reserved"
+    retrieved: 2026-10-30
+  - id: worldcover
+    title: "ESA WorldCover 2021: 10 m land cover (via AWS Open Data)"
+    url: https://esa-worldcover.org/
+    licence: "CC BY 4.0; © ESA WorldCover project 2021 / Contains modified Copernicus Sentinel data (2021) processed by ESA WorldCover consortium"
+    retrieved: 2026-10-30
+  - id: era5
+    title: "Open-Meteo Historical Weather API: ERA5 and ERA5-Land reanalysis, daily 1995–2024"
+    url: https://open-meteo.com/en/docs/historical-weather-api
+    licence: CC BY 4.0 (Open-Meteo); contains modified Copernicus Climate Change Service information
+    retrieved: 2026-10-30
+  - id: osrm
+    title: "OSRM: road routes on OpenStreetMap data (router.project-osrm.org)"
+    url: https://project-osrm.org/
+    licence: Route data © OpenStreetMap contributors (ODbL)
+    retrieved: 2026-10-30

@@ -73,3 +73,18 @@
 - region: Italy, northern Apennines (Foreste Casentinesi)
   note: 'beech forest up to the ridge: "Sopra i 1400 metri, sino al crinale, domina la faggeta" (park, habitat 9210); a tree line only on the highest peaks from the Cisa pass to the upper Reno valley'
   usedBy: []
+
+- region: Germany, Harz (Brocken)
+  m: 1100
+  note: '"Die Baumgrenze liegt allerdings schon bei 1100 m. Grund dafür sind die extremen Witterungsverhältnisse"; the Brocken (1,141 m) is the only German upland summit above a natural tree line'
+  source:
+    title: "Universität Tübingen, Geowissenschaften: Große Exkursion Mitteldeutschland 2021, Naturraum Harz"
+    url: https://uni-tuebingen.de/de/217752
+    licence: All rights reserved (facts only)
+    retrieved: 2026-10-30
+  checkedAgainst: 'German Wikipedia, Brocken: "oberhalb der natürlichen Waldgrenze", subalpine above "1000 / 1100 Meter"'
+  usedBy: [harzer-hexen-stieg]
+
+- region: Germany, Black Forest (Feldberg, Hornisgrinde)
+  note: no natural tree line; the bare summits are cleared pasture and moor (the Feldberg's natural tree line would lie above its 1,493 m, the question not fully settled)
+  usedBy: []
