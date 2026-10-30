@@ -146,13 +146,13 @@ notes:
     were up to a third shorter than the Tourismusverband's times (4–7 h), so the page now shows its
     times instead (`stages.timesSource`).
   - >-
-    Route (pipeline, 2026-10-30): stages 1 and 5 match only 86 % and 93 % of their GPX tracks. OSM
-    has paths all along the GPX there, but they aren't connected where the track runs: on stage 1
-    (km 9.0–11.2 of the track, from 50.85679,14.17501) the map line detours up to 575 m, and two
-    path ends 9 m apart at 50.86317,14.16866 don't share a node; on stage 5 (km 7.5–8.7, from
-    50.87210,14.07193) the detour reaches 416 m, and two path nodes 2 m apart at 50.87652,14.07159
-    aren't joined. Joining them in OSM should close the detours (rerun pipeline.all afterwards).
-    The map line is therefore shorter than the stated lengths on stage 1 (13.4 against 15 km).
+    Route (pipeline, 2026-10-30): stage 1 matches only 86 % of its GPX track. OSM has paths all
+    along the GPX there, but they aren't connected where the track runs: (km 9.0–11.2 of the
+    track, from 50.85679,14.17501) the map line detours up to 574 m, and two path ends 9 m apart at
+    50.86317,14.16866 don't share a node. Joining them in OSM should close the detour (rerun
+    pipeline.all afterwards). The map line is therefore shorter than the stated length (13.7
+    against 15 km). Stage 5 (93 % until 2026-10-30) walks a short loop and back, which the matcher
+    skipped; since it matches each leg of such a loop on its own, stage 5 matches 100 %.
   - >-
     Tree line (2026-10-30): none in reach. The route tops out at about 720 m; the nearest mountains
     with a natural tree line, the Krkonoše, have it at about 1,250–1,350 m, so no treeLine is

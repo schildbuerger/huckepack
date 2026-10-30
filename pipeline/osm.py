@@ -26,6 +26,7 @@ SIGMA_M = 15  # penalty scale: a way 15 m off the track costs double, 50 m about
 FAR_M = 300  # distances beyond this are treated as this
 NEAR_M = 30  # a track point counts as covered if the matched line is this close
 TURN_ARM_M = 150  # a turnaround: the track 150 m before and after it lies together
+LOOP_GAP_M = 100  # a short loop: the track comes back within this of where it left
 
 
 class Projection:
@@ -196,9 +197,11 @@ def fetch(query):
 
 
 def turnarounds(track, step=20, arm_m=TURN_ARM_M):
-    """Indices (into resample(track, step)) where the track turns back on itself: the points
-    arm_m before and after lie together, and the turn is at least 100 m from them (a summit
-    walked up and down the same path)."""
+    """Indices (into resample(track, step)) where the track turns back on itself: a summit walked
+    up and down the same path (the points arm_m before and after lie together, and the turn is at
+    least 100 m from them), or a short loop out to a viewpoint and back on a parallel path (the
+    track leaves a point and comes back within LOOP_GAP_M of it after 0.6 to 3 km; the turn is the
+    loop's farthest point, at least three times as far out as the gap)."""
     pts = resample(track, step)
     k = round(arm_m / step)
     found = []
@@ -210,7 +213,19 @@ def turnarounds(track, step=20, arm_m=TURN_ARM_M):
                     found[-1] = (i, gap)
             else:
                 found.append((i, gap))
-    return pts, [i for i, _ in found]
+    turns = [i for i, _ in found]
+    lo, hi = round(600 / step), round(3000 / step)
+    i = 0
+    while i < len(pts) - lo:
+        j = next((j for j in range(i + lo, min(i + hi, len(pts))) if math.dist(pts[i], pts[j]) < LOOP_GAP_M), None)
+        if j is not None:
+            far = max(range(i, j), key=lambda m: math.dist(pts[i], pts[m]))
+            if math.dist(pts[i], pts[far]) > 3 * math.dist(pts[i], pts[j]) and not any(i <= t <= j for t in turns):
+                turns.append(far)
+            i = j
+        else:
+            i += 1
+    return pts, sorted(turns)
 
 
 def match(track_lonlat, osm):
@@ -226,6 +241,8 @@ def match(track_lonlat, osm):
     xy = {n: proj.xy(*ll) for n, ll in nodes.items()}
 
     fine, turns = turnarounds(track)
+    # only where OSM has a node near the turn: a stray track point must not force a detour
+    turns = [t for t in turns if min(math.dist(fine[t], q) for q in xy.values()) <= NEAR_M]
     legs = [fine[a : b + 1] for a, b in zip([0, *turns], [*turns, len(fine) - 1])] if turns else [track]
     # the legs meet at the same node (the one nearest the turnaround), so they chain
     path, pairs = [], {}

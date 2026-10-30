@@ -177,6 +177,18 @@
           869.6
         ],
         [
+          579231608,
+          29.5
+        ],
+        [
+          579231607,
+          90.3
+        ],
+        [
+          579231608,
+          29.5
+        ],
+        [
           47304056,
           119.0
         ],
@@ -1221,8 +1233,48 @@
           379.6
         ],
         [
-          33691859,
-          95.2
+          78049994,
+          650.4
+        ],
+        [
+          1426176301,
+          27.0
+        ],
+        [
+          1426176303,
+          3.9
+        ],
+        [
+          579039635,
+          3.6
+        ],
+        [
+          1241732832,
+          1.1
+        ],
+        [
+          1241732833,
+          1.0
+        ],
+        [
+          1241732834,
+          11.3
+        ],
+        [
+          1241732835,
+          2.6
+        ],
+        [
+          1241732830,
+          48.6
+        ],
+        [
+          1241732831,
+          1.5
+        ],
+        [
+          847766118,
+          563.7
         ],
         [
           78049948,
@@ -1533,6 +1585,10 @@
         [
           143999889,
           396.6
+        ],
+        [
+          579509474,
+          12.1
         ],
         [
           59309140,
@@ -2068,7 +2124,7 @@
     "extraSources": [],
     "retrieved": "2026-10-28T21:21:02Z",
     "withinM": 250,
-    "routeKm": 102.5,
+    "routeKm": 103.9,
     "stageStarts": [
       {
         "number": "1",
@@ -2076,39 +2132,39 @@
       },
       {
         "number": "2",
-        "km": 13.4
+        "km": 13.6
       },
       {
         "number": "3",
-        "km": 28.7
+        "km": 28.8
       },
       {
         "number": "4",
-        "km": 42.4
+        "km": 42.6
       },
       {
         "number": "5",
-        "km": 61.3
+        "km": 61.4
       },
       {
         "number": "6",
-        "km": 77.6
+        "km": 79.0
       },
       {
         "number": "7",
-        "km": 92.2
+        "km": 93.6
       }
     ],
     "longestGapKm": {
       "drinking": {
         "km": 24.9,
-        "fromKm": 77.6,
-        "toKm": 102.5
+        "fromKm": 79.0,
+        "toKm": 103.9
       },
       "any": {
         "km": 14.4,
-        "fromKm": 29.3,
-        "toKm": 43.7
+        "fromKm": 29.5,
+        "toKm": 43.9
       }
     },
     "stages": [
@@ -2174,7 +2230,7 @@
         "name": null,
         "stage": "1",
         "stageKind": "main",
-        "km": 11.5,
+        "km": 11.7,
         "offM": 7,
         "source": "osm"
       },
@@ -2185,7 +2241,7 @@
         "name": "studánka Sedmilhářů",
         "stage": "1",
         "stageKind": "main",
-        "km": 12.4,
+        "km": 12.5,
         "offM": 13,
         "source": "osm"
       },
@@ -2196,7 +2252,7 @@
         "name": "Hinterer hohler Born",
         "stage": "1",
         "stageKind": "main",
-        "km": 13.4,
+        "km": 13.6,
         "offM": 192,
         "source": "osm"
       },
@@ -2207,7 +2263,7 @@
         "name": "Striebsbrunnen",
         "stage": "2",
         "stageKind": "main",
-        "km": 16.4,
+        "km": 16.5,
         "offM": 175,
         "source": "osm"
       },
@@ -2218,7 +2274,7 @@
         "name": null,
         "stage": "2",
         "stageKind": "main",
-        "km": 20.8,
+        "km": 20.9,
         "offM": 27,
         "source": "osm"
       },
@@ -2229,8 +2285,8 @@
         "name": "Sněžnický potok",
         "stage": "2",
         "stageKind": "main",
-        "km": 24.8,
-        "offM": 153,
+        "km": 24.9,
+        "offM": 152,
         "source": "osm"
       },
       {
@@ -2240,7 +2296,7 @@
         "name": null,
         "stage": "3",
         "stageKind": "main",
-        "km": 28.7,
+        "km": 28.8,
         "offM": 93,
         "source": "osm"
       },
@@ -2251,7 +2307,7 @@
         "name": null,
         "stage": "3",
         "stageKind": "main",
-        "km": 28.7,
+        "km": 28.8,
         "offM": 91,
         "source": "osm"
       },
@@ -2262,7 +2318,7 @@
         "name": null,
         "stage": "3",
         "stageKind": "main",
-        "km": 29.3,
+        "km": 29.5,
         "offM": 235,
         "source": "osm"
       },
@@ -2273,7 +2329,7 @@
         "name": null,
         "stage": "4",
         "stageKind": "main",
-        "km": 43.7,
+        "km": 43.9,
         "offM": 1,
         "source": "osm"
       },
@@ -2284,7 +2340,7 @@
         "name": "Herkulesquelle",
         "stage": "4",
         "stageKind": "main",
-        "km": 43.8,
+        "km": 44.0,
         "offM": 1,
         "source": "osm"
       },
@@ -2295,7 +2351,7 @@
         "name": "Felsquelle",
         "stage": "4",
         "stageKind": "main",
-        "km": 45.3,
+        "km": 45.5,
         "offM": 201,
         "source": "osm"
       },
@@ -2306,7 +2362,7 @@
         "name": "Singeborn",
         "stage": "4",
         "stageKind": "main",
-        "km": 47.5,
+        "km": 47.6,
         "offM": 67,
         "source": "osm"
       },
@@ -2317,7 +2373,7 @@
         "name": "Zehrborn",
         "stage": "4",
         "stageKind": "main",
-        "km": 50.8,
+        "km": 50.9,
         "offM": 139,
         "source": "osm"
       },
@@ -2328,7 +2384,7 @@
         "name": null,
         "stage": "4",
         "stageKind": "main",
-        "km": 57.3,
+        "km": 57.5,
         "offM": 78,
         "source": "osm"
       },
@@ -2339,7 +2395,7 @@
         "name": null,
         "stage": "4",
         "stageKind": "main",
-        "km": 57.3,
+        "km": 57.5,
         "offM": 73,
         "source": "osm"
       },
@@ -2350,7 +2406,7 @@
         "name": null,
         "stage": "4",
         "stageKind": "main",
-        "km": 57.7,
+        "km": 57.8,
         "offM": 180,
         "source": "osm"
       },
@@ -2361,7 +2417,7 @@
         "name": null,
         "stage": "4",
         "stageKind": "main",
-        "km": 58.8,
+        "km": 58.9,
         "offM": 13,
         "source": "osm"
       },
@@ -2372,7 +2428,7 @@
         "name": "Siebentannenborn",
         "stage": "4",
         "stageKind": "main",
-        "km": 60.2,
+        "km": 60.4,
         "offM": 196,
         "source": "osm"
       },
@@ -2383,7 +2439,7 @@
         "name": "Steinhütttenborn",
         "stage": "4",
         "stageKind": "main",
-        "km": 61.0,
+        "km": 61.1,
         "offM": 208,
         "source": "osm"
       },
@@ -2394,7 +2450,7 @@
         "name": null,
         "stage": "4",
         "stageKind": "main",
-        "km": 61.1,
+        "km": 61.3,
         "offM": 34,
         "source": "osm"
       },
@@ -2405,7 +2461,7 @@
         "name": null,
         "stage": "4",
         "stageKind": "main",
-        "km": 61.2,
+        "km": 61.4,
         "offM": 219,
         "source": "osm"
       },
@@ -2416,7 +2472,7 @@
         "name": null,
         "stage": "5",
         "stageKind": "main",
-        "km": 63.2,
+        "km": 63.4,
         "offM": 212,
         "source": "osm"
       },
@@ -2427,7 +2483,7 @@
         "name": "Mäuseborn",
         "stage": "5",
         "stageKind": "main",
-        "km": 64.1,
+        "km": 64.3,
         "offM": 128,
         "source": "osm"
       },
@@ -2438,7 +2494,7 @@
         "name": null,
         "stage": "5",
         "stageKind": "main",
-        "km": 66.9,
+        "km": 67.0,
         "offM": 237,
         "source": "osm"
       },
@@ -2449,7 +2505,7 @@
         "name": "Tannenborn",
         "stage": "5",
         "stageKind": "main",
-        "km": 74.2,
+        "km": 75.5,
         "offM": 65,
         "source": "osm"
       },
@@ -2460,7 +2516,7 @@
         "name": null,
         "stage": "5",
         "stageKind": "main",
-        "km": 77.6,
+        "km": 79.0,
         "offM": 41,
         "source": "osm"
       },
@@ -2471,7 +2527,7 @@
         "name": null,
         "stage": "6",
         "stageKind": "main",
-        "km": 77.6,
+        "km": 79.0,
         "offM": 193,
         "source": "osm"
       },
@@ -2482,7 +2538,7 @@
         "name": null,
         "stage": "6",
         "stageKind": "main",
-        "km": 77.6,
+        "km": 79.0,
         "offM": 227,
         "source": "osm"
       },
@@ -2493,7 +2549,7 @@
         "name": null,
         "stage": "6",
         "stageKind": "main",
-        "km": 77.6,
+        "km": 79.0,
         "offM": 232,
         "source": "osm"
       },
@@ -2504,7 +2560,7 @@
         "name": "Silberquelle",
         "stage": "6",
         "stageKind": "main",
-        "km": 83.1,
+        "km": 84.5,
         "offM": 171,
         "source": "osm"
       },
@@ -2515,7 +2571,7 @@
         "name": "Silberquelle",
         "stage": "6",
         "stageKind": "main",
-        "km": 83.5,
+        "km": 84.8,
         "offM": 171,
         "source": "osm"
       },
@@ -2526,7 +2582,7 @@
         "name": "Hirschkequelle",
         "stage": "7",
         "stageKind": "main",
-        "km": 92.2,
+        "km": 93.6,
         "offM": 245,
         "source": "osm"
       },
@@ -2537,7 +2593,7 @@
         "name": null,
         "stage": "7",
         "stageKind": "main",
-        "km": 93.5,
+        "km": 94.8,
         "offM": 27,
         "source": "osm"
       },
@@ -2548,7 +2604,7 @@
         "name": null,
         "stage": "7",
         "stageKind": "main",
-        "km": 96.6,
+        "km": 98.0,
         "offM": 11,
         "source": "osm"
       }
@@ -2557,26 +2613,26 @@
   "surface": {
     "source": "osm",
     "retrieved": "2026-10-28T21:21:02Z",
-    "routeKm": 102.5,
+    "routeKm": 103.9,
     "totals": {
       "paved": {
         "km": 9.5,
-        "share": 0.092
+        "share": 0.091
       },
       "gravel": {
         "km": 29.1,
-        "share": 0.283
+        "share": 0.28
       },
       "natural": {
-        "km": 64.0,
-        "share": 0.624
+        "km": 65.3,
+        "share": 0.629
       },
       "unknown": {
         "km": 0.0,
         "share": 0.0
       }
     },
-    "inferredShare": 0.17,
+    "inferredShare": 0.168,
     "runs": [
       {
         "category": "paved",
@@ -2617,18 +2673,18 @@
       {
         "category": "natural",
         "fromKm": 1.82,
-        "toKm": 4.12,
+        "toKm": 4.13,
         "stage": "1"
       },
       {
         "category": "gravel",
-        "fromKm": 4.12,
-        "toKm": 4.65,
+        "fromKm": 4.13,
+        "toKm": 4.66,
         "stage": "1"
       },
       {
         "category": "natural",
-        "fromKm": 4.65,
+        "fromKm": 4.66,
         "toKm": 5.78,
         "stage": "1"
       },
@@ -2641,1054 +2697,1072 @@
       {
         "category": "natural",
         "fromKm": 7.62,
-        "toKm": 13.34,
+        "toKm": 13.5,
         "stage": "1"
       },
       {
         "category": "gravel",
-        "fromKm": 13.34,
-        "toKm": 13.4,
+        "fromKm": 13.5,
+        "toKm": 13.56,
         "stage": "1"
       },
       {
         "category": "natural",
-        "fromKm": 13.4,
-        "toKm": 13.42,
+        "fromKm": 13.56,
+        "toKm": 13.58,
         "stage": "1"
       },
       {
         "category": "gravel",
-        "fromKm": 13.42,
-        "toKm": 13.43,
+        "fromKm": 13.58,
+        "toKm": 13.58,
         "stage": "2"
       },
       {
         "category": "natural",
-        "fromKm": 13.43,
-        "toKm": 16.31,
+        "fromKm": 13.58,
+        "toKm": 16.47,
         "stage": "2"
       },
       {
         "category": "gravel",
-        "fromKm": 16.31,
-        "toKm": 16.6,
+        "fromKm": 16.47,
+        "toKm": 16.75,
         "stage": "2"
       },
       {
         "category": "natural",
-        "fromKm": 16.6,
-        "toKm": 16.95,
+        "fromKm": 16.75,
+        "toKm": 17.1,
         "stage": "2"
       },
       {
         "category": "paved",
-        "fromKm": 16.95,
-        "toKm": 17.16,
+        "fromKm": 17.1,
+        "toKm": 17.31,
         "stage": "2"
       },
       {
         "category": "gravel",
-        "fromKm": 17.16,
-        "toKm": 18.5,
+        "fromKm": 17.31,
+        "toKm": 18.65,
         "stage": "2"
       },
       {
         "category": "natural",
-        "fromKm": 18.5,
-        "toKm": 20.54,
+        "fromKm": 18.65,
+        "toKm": 20.7,
         "stage": "2"
       },
       {
         "category": "paved",
-        "fromKm": 20.54,
-        "toKm": 20.64,
+        "fromKm": 20.7,
+        "toKm": 20.8,
         "stage": "2"
       },
       {
         "category": "natural",
-        "fromKm": 20.64,
-        "toKm": 23.49,
-        "stage": "2"
-      },
-      {
-        "category": "gravel",
-        "fromKm": 23.49,
-        "toKm": 23.59,
-        "stage": "2"
-      },
-      {
-        "category": "natural",
-        "fromKm": 23.59,
+        "fromKm": 20.8,
         "toKm": 23.65,
         "stage": "2"
       },
       {
-        "category": "paved",
+        "category": "gravel",
         "fromKm": 23.65,
-        "toKm": 24.05,
+        "toKm": 23.74,
         "stage": "2"
       },
       {
         "category": "natural",
-        "fromKm": 24.05,
-        "toKm": 24.5,
+        "fromKm": 23.74,
+        "toKm": 23.81,
         "stage": "2"
       },
       {
         "category": "paved",
-        "fromKm": 24.5,
-        "toKm": 25.69,
+        "fromKm": 23.81,
+        "toKm": 24.21,
+        "stage": "2"
+      },
+      {
+        "category": "natural",
+        "fromKm": 24.21,
+        "toKm": 24.65,
+        "stage": "2"
+      },
+      {
+        "category": "paved",
+        "fromKm": 24.65,
+        "toKm": 25.84,
         "stage": "2"
       },
       {
         "category": "gravel",
-        "fromKm": 25.69,
-        "toKm": 27.69,
+        "fromKm": 25.84,
+        "toKm": 27.85,
         "stage": "2"
       },
       {
         "category": "paved",
-        "fromKm": 27.69,
-        "toKm": 28.66,
+        "fromKm": 27.85,
+        "toKm": 28.82,
         "stage": "2"
       },
       {
         "category": "gravel",
-        "fromKm": 28.66,
-        "toKm": 28.67,
+        "fromKm": 28.82,
+        "toKm": 28.82,
         "stage": "3"
       },
       {
         "category": "natural",
-        "fromKm": 28.67,
-        "toKm": 29.43,
+        "fromKm": 28.82,
+        "toKm": 29.58,
         "stage": "3"
       },
       {
         "category": "paved",
-        "fromKm": 29.43,
-        "toKm": 29.76,
+        "fromKm": 29.58,
+        "toKm": 29.91,
         "stage": "3"
       },
       {
         "category": "natural",
-        "fromKm": 29.76,
-        "toKm": 30.28,
+        "fromKm": 29.91,
+        "toKm": 30.44,
         "stage": "3"
       },
       {
         "category": "gravel",
-        "fromKm": 30.28,
-        "toKm": 32.34,
+        "fromKm": 30.44,
+        "toKm": 32.49,
         "stage": "3"
       },
       {
         "category": "natural",
-        "fromKm": 32.34,
-        "toKm": 34.73,
+        "fromKm": 32.49,
+        "toKm": 34.89,
         "stage": "3"
       },
       {
         "category": "gravel",
-        "fromKm": 34.73,
-        "toKm": 35.16,
+        "fromKm": 34.89,
+        "toKm": 35.31,
         "stage": "3"
       },
       {
         "category": "natural",
-        "fromKm": 35.16,
-        "toKm": 36.31,
+        "fromKm": 35.31,
+        "toKm": 36.46,
         "stage": "3"
       },
       {
         "category": "gravel",
-        "fromKm": 36.31,
-        "toKm": 36.4,
+        "fromKm": 36.46,
+        "toKm": 36.55,
         "stage": "3"
       },
       {
         "category": "natural",
-        "fromKm": 36.4,
-        "toKm": 37.45,
+        "fromKm": 36.55,
+        "toKm": 37.6,
         "stage": "3"
       },
       {
         "category": "gravel",
-        "fromKm": 37.45,
-        "toKm": 38.08,
+        "fromKm": 37.6,
+        "toKm": 38.24,
         "stage": "3"
       },
       {
         "category": "natural",
-        "fromKm": 38.08,
-        "toKm": 38.31,
+        "fromKm": 38.24,
+        "toKm": 38.46,
         "stage": "3"
       },
       {
         "category": "gravel",
-        "fromKm": 38.31,
-        "toKm": 38.59,
+        "fromKm": 38.46,
+        "toKm": 38.74,
         "stage": "3"
       },
       {
         "category": "natural",
-        "fromKm": 38.59,
-        "toKm": 39.26,
+        "fromKm": 38.74,
+        "toKm": 39.41,
         "stage": "3"
       },
       {
         "category": "gravel",
-        "fromKm": 39.26,
-        "toKm": 40.27,
+        "fromKm": 39.41,
+        "toKm": 40.42,
         "stage": "3"
       },
       {
         "category": "natural",
-        "fromKm": 40.27,
-        "toKm": 40.46,
+        "fromKm": 40.42,
+        "toKm": 40.61,
         "stage": "3"
       },
       {
         "category": "gravel",
-        "fromKm": 40.46,
-        "toKm": 40.47,
+        "fromKm": 40.61,
+        "toKm": 40.62,
         "stage": "3"
       },
       {
         "category": "natural",
-        "fromKm": 40.47,
-        "toKm": 41.42,
+        "fromKm": 40.62,
+        "toKm": 41.58,
         "stage": "3"
       },
       {
         "category": "gravel",
-        "fromKm": 41.42,
-        "toKm": 42.63,
+        "fromKm": 41.58,
+        "toKm": 42.78,
         "stage": "3"
       },
       {
         "category": "natural",
-        "fromKm": 42.63,
-        "toKm": 43.42,
+        "fromKm": 42.78,
+        "toKm": 43.57,
         "stage": "4"
       },
       {
         "category": "paved",
-        "fromKm": 43.42,
-        "toKm": 43.58,
+        "fromKm": 43.57,
+        "toKm": 43.74,
         "stage": "4"
       },
       {
         "category": "natural",
-        "fromKm": 43.58,
-        "toKm": 43.6,
+        "fromKm": 43.74,
+        "toKm": 43.75,
         "stage": "4"
       },
       {
         "category": "paved",
-        "fromKm": 43.6,
-        "toKm": 43.6,
+        "fromKm": 43.75,
+        "toKm": 43.76,
         "stage": "4"
       },
       {
         "category": "natural",
-        "fromKm": 43.6,
-        "toKm": 43.61,
+        "fromKm": 43.76,
+        "toKm": 43.76,
         "stage": "4"
       },
       {
         "category": "paved",
-        "fromKm": 43.61,
-        "toKm": 43.61,
+        "fromKm": 43.76,
+        "toKm": 43.77,
         "stage": "4"
       },
       {
         "category": "natural",
-        "fromKm": 43.61,
-        "toKm": 44.27,
+        "fromKm": 43.77,
+        "toKm": 44.42,
         "stage": "4"
       },
       {
         "category": "paved",
-        "fromKm": 44.27,
-        "toKm": 44.34,
+        "fromKm": 44.42,
+        "toKm": 44.49,
         "stage": "4"
       },
       {
         "category": "natural",
-        "fromKm": 44.34,
-        "toKm": 44.45,
+        "fromKm": 44.49,
+        "toKm": 44.6,
         "stage": "4"
       },
       {
         "category": "paved",
-        "fromKm": 44.45,
-        "toKm": 44.5,
+        "fromKm": 44.6,
+        "toKm": 44.66,
         "stage": "4"
       },
       {
         "category": "natural",
-        "fromKm": 44.5,
-        "toKm": 44.68,
+        "fromKm": 44.66,
+        "toKm": 44.83,
         "stage": "4"
       },
       {
         "category": "paved",
-        "fromKm": 44.68,
-        "toKm": 44.68,
+        "fromKm": 44.83,
+        "toKm": 44.84,
         "stage": "4"
       },
       {
         "category": "natural",
-        "fromKm": 44.68,
-        "toKm": 45.66,
+        "fromKm": 44.84,
+        "toKm": 45.81,
         "stage": "4"
       },
       {
         "category": "paved",
-        "fromKm": 45.66,
-        "toKm": 45.98,
-        "stage": "4"
-      },
-      {
-        "category": "gravel",
-        "fromKm": 45.98,
-        "toKm": 46.04,
-        "stage": "4"
-      },
-      {
-        "category": "natural",
-        "fromKm": 46.04,
+        "fromKm": 45.81,
         "toKm": 46.14,
         "stage": "4"
       },
       {
         "category": "gravel",
         "fromKm": 46.14,
-        "toKm": 46.17,
+        "toKm": 46.19,
+        "stage": "4"
+      },
+      {
+        "category": "natural",
+        "fromKm": 46.19,
+        "toKm": 46.29,
+        "stage": "4"
+      },
+      {
+        "category": "gravel",
+        "fromKm": 46.29,
+        "toKm": 46.33,
         "stage": "4"
       },
       {
         "category": "paved",
-        "fromKm": 46.17,
-        "toKm": 46.3,
+        "fromKm": 46.33,
+        "toKm": 46.46,
         "stage": "4"
       },
       {
         "category": "gravel",
-        "fromKm": 46.3,
-        "toKm": 46.45,
+        "fromKm": 46.46,
+        "toKm": 46.61,
         "stage": "4"
       },
       {
         "category": "natural",
-        "fromKm": 46.45,
-        "toKm": 47.39,
+        "fromKm": 46.61,
+        "toKm": 47.55,
         "stage": "4"
       },
       {
         "category": "gravel",
-        "fromKm": 47.39,
-        "toKm": 47.7,
+        "fromKm": 47.55,
+        "toKm": 47.86,
         "stage": "4"
       },
       {
         "category": "natural",
-        "fromKm": 47.7,
-        "toKm": 47.76,
+        "fromKm": 47.86,
+        "toKm": 47.92,
         "stage": "4"
       },
       {
         "category": "gravel",
-        "fromKm": 47.76,
-        "toKm": 47.77,
+        "fromKm": 47.92,
+        "toKm": 47.92,
         "stage": "4"
       },
       {
         "category": "natural",
-        "fromKm": 47.77,
-        "toKm": 50.85,
+        "fromKm": 47.92,
+        "toKm": 51.0,
         "stage": "4"
       },
       {
         "category": "gravel",
-        "fromKm": 50.85,
-        "toKm": 51.26,
+        "fromKm": 51.0,
+        "toKm": 51.41,
         "stage": "4"
       },
       {
         "category": "paved",
-        "fromKm": 51.26,
-        "toKm": 51.27,
+        "fromKm": 51.41,
+        "toKm": 51.42,
         "stage": "4"
       },
       {
         "category": "gravel",
-        "fromKm": 51.27,
-        "toKm": 51.3,
+        "fromKm": 51.42,
+        "toKm": 51.46,
         "stage": "4"
       },
       {
         "category": "natural",
-        "fromKm": 51.3,
-        "toKm": 51.44,
+        "fromKm": 51.46,
+        "toKm": 51.6,
         "stage": "4"
       },
       {
         "category": "gravel",
-        "fromKm": 51.44,
-        "toKm": 51.67,
+        "fromKm": 51.6,
+        "toKm": 51.83,
         "stage": "4"
       },
       {
         "category": "natural",
-        "fromKm": 51.67,
-        "toKm": 52.75,
+        "fromKm": 51.83,
+        "toKm": 52.9,
         "stage": "4"
       },
       {
         "category": "gravel",
-        "fromKm": 52.75,
-        "toKm": 53.82,
+        "fromKm": 52.9,
+        "toKm": 53.98,
         "stage": "4"
       },
       {
         "category": "natural",
-        "fromKm": 53.82,
-        "toKm": 54.43,
+        "fromKm": 53.98,
+        "toKm": 54.59,
         "stage": "4"
       },
       {
         "category": "gravel",
-        "fromKm": 54.43,
-        "toKm": 55.12,
+        "fromKm": 54.59,
+        "toKm": 55.28,
         "stage": "4"
       },
       {
         "category": "paved",
-        "fromKm": 55.12,
-        "toKm": 55.45,
+        "fromKm": 55.28,
+        "toKm": 55.6,
         "stage": "4"
       },
       {
         "category": "gravel",
-        "fromKm": 55.45,
-        "toKm": 57.04,
+        "fromKm": 55.6,
+        "toKm": 57.2,
         "stage": "4"
       },
       {
         "category": "natural",
-        "fromKm": 57.04,
-        "toKm": 57.83,
-        "stage": "4"
-      },
-      {
-        "category": "gravel",
-        "fromKm": 57.83,
-        "toKm": 58.63,
-        "stage": "4"
-      },
-      {
-        "category": "paved",
-        "fromKm": 58.63,
-        "toKm": 59.05,
-        "stage": "4"
-      },
-      {
-        "category": "natural",
-        "fromKm": 59.05,
-        "toKm": 61.3,
+        "fromKm": 57.2,
+        "toKm": 57.99,
         "stage": "4"
       },
       {
         "category": "gravel",
-        "fromKm": 61.3,
-        "toKm": 61.44,
+        "fromKm": 57.99,
+        "toKm": 58.79,
+        "stage": "4"
+      },
+      {
+        "category": "paved",
+        "fromKm": 58.79,
+        "toKm": 59.2,
         "stage": "4"
       },
       {
         "category": "natural",
-        "fromKm": 61.44,
-        "toKm": 62.72,
+        "fromKm": 59.2,
+        "toKm": 61.46,
+        "stage": "4"
+      },
+      {
+        "category": "gravel",
+        "fromKm": 61.46,
+        "toKm": 61.59,
+        "stage": "4"
+      },
+      {
+        "category": "natural",
+        "fromKm": 61.59,
+        "toKm": 62.87,
         "stage": "5"
       },
       {
         "category": "gravel",
-        "fromKm": 62.72,
-        "toKm": 62.75,
+        "fromKm": 62.87,
+        "toKm": 62.9,
         "stage": "5"
       },
       {
         "category": "natural",
-        "fromKm": 62.75,
-        "toKm": 64.36,
+        "fromKm": 62.9,
+        "toKm": 64.51,
         "stage": "5"
       },
       {
         "category": "paved",
-        "fromKm": 64.36,
-        "toKm": 64.36,
-        "stage": "5"
-      },
-      {
-        "category": "natural",
-        "fromKm": 64.36,
-        "toKm": 64.4,
-        "stage": "5"
-      },
-      {
-        "category": "paved",
-        "fromKm": 64.4,
-        "toKm": 64.41,
-        "stage": "5"
-      },
-      {
-        "category": "natural",
-        "fromKm": 64.41,
-        "toKm": 64.48,
-        "stage": "5"
-      },
-      {
-        "category": "paved",
-        "fromKm": 64.48,
+        "fromKm": 64.51,
         "toKm": 64.51,
         "stage": "5"
       },
       {
         "category": "natural",
         "fromKm": 64.51,
-        "toKm": 66.15,
-        "stage": "5"
-      },
-      {
-        "category": "gravel",
-        "fromKm": 66.15,
-        "toKm": 66.48,
-        "stage": "5"
-      },
-      {
-        "category": "natural",
-        "fromKm": 66.48,
-        "toKm": 66.78,
-        "stage": "5"
-      },
-      {
-        "category": "gravel",
-        "fromKm": 66.78,
-        "toKm": 66.83,
-        "stage": "5"
-      },
-      {
-        "category": "natural",
-        "fromKm": 66.83,
-        "toKm": 67.01,
+        "toKm": 64.56,
         "stage": "5"
       },
       {
         "category": "paved",
-        "fromKm": 67.01,
-        "toKm": 67.06,
-        "stage": "5"
-      },
-      {
-        "category": "gravel",
-        "fromKm": 67.06,
-        "toKm": 68.29,
+        "fromKm": 64.56,
+        "toKm": 64.56,
         "stage": "5"
       },
       {
         "category": "natural",
-        "fromKm": 68.29,
-        "toKm": 69.02,
-        "stage": "5"
-      },
-      {
-        "category": "gravel",
-        "fromKm": 69.02,
-        "toKm": 69.25,
-        "stage": "5"
-      },
-      {
-        "category": "natural",
-        "fromKm": 69.25,
-        "toKm": 69.54,
-        "stage": "5"
-      },
-      {
-        "category": "gravel",
-        "fromKm": 69.54,
-        "toKm": 70.56,
+        "fromKm": 64.56,
+        "toKm": 64.63,
         "stage": "5"
       },
       {
         "category": "paved",
-        "fromKm": 70.56,
-        "toKm": 71.29,
-        "stage": "5"
-      },
-      {
-        "category": "gravel",
-        "fromKm": 71.29,
-        "toKm": 71.61,
+        "fromKm": 64.63,
+        "toKm": 64.66,
         "stage": "5"
       },
       {
         "category": "natural",
-        "fromKm": 71.61,
-        "toKm": 72.48,
+        "fromKm": 64.66,
+        "toKm": 66.31,
         "stage": "5"
       },
       {
         "category": "gravel",
-        "fromKm": 72.48,
+        "fromKm": 66.31,
+        "toKm": 66.63,
+        "stage": "5"
+      },
+      {
+        "category": "natural",
+        "fromKm": 66.63,
+        "toKm": 66.93,
+        "stage": "5"
+      },
+      {
+        "category": "gravel",
+        "fromKm": 66.93,
+        "toKm": 66.98,
+        "stage": "5"
+      },
+      {
+        "category": "natural",
+        "fromKm": 66.98,
+        "toKm": 67.16,
+        "stage": "5"
+      },
+      {
+        "category": "paved",
+        "fromKm": 67.16,
+        "toKm": 67.21,
+        "stage": "5"
+      },
+      {
+        "category": "gravel",
+        "fromKm": 67.21,
+        "toKm": 68.43,
+        "stage": "5"
+      },
+      {
+        "category": "natural",
+        "fromKm": 68.43,
+        "toKm": 69.45,
+        "stage": "5"
+      },
+      {
+        "category": "paved",
+        "fromKm": 69.45,
+        "toKm": 69.48,
+        "stage": "5"
+      },
+      {
+        "category": "unknown",
+        "fromKm": 69.48,
+        "toKm": 69.48,
+        "stage": "5"
+      },
+      {
+        "category": "natural",
+        "fromKm": 69.48,
+        "toKm": 70.37,
+        "stage": "5"
+      },
+      {
+        "category": "gravel",
+        "fromKm": 70.37,
+        "toKm": 70.6,
+        "stage": "5"
+      },
+      {
+        "category": "natural",
+        "fromKm": 70.6,
+        "toKm": 70.89,
+        "stage": "5"
+      },
+      {
+        "category": "gravel",
+        "fromKm": 70.89,
+        "toKm": 71.91,
+        "stage": "5"
+      },
+      {
+        "category": "paved",
+        "fromKm": 71.91,
+        "toKm": 72.64,
+        "stage": "5"
+      },
+      {
+        "category": "gravel",
+        "fromKm": 72.64,
         "toKm": 72.96,
         "stage": "5"
       },
       {
-        "category": "paved",
+        "category": "natural",
         "fromKm": 72.96,
-        "toKm": 72.98,
-        "stage": "5"
-      },
-      {
-        "category": "natural",
-        "fromKm": 72.98,
-        "toKm": 74.26,
+        "toKm": 73.83,
         "stage": "5"
       },
       {
         "category": "gravel",
-        "fromKm": 74.26,
-        "toKm": 74.65,
-        "stage": "5"
-      },
-      {
-        "category": "natural",
-        "fromKm": 74.65,
-        "toKm": 75.59,
+        "fromKm": 73.83,
+        "toKm": 74.31,
         "stage": "5"
       },
       {
         "category": "paved",
-        "fromKm": 75.59,
-        "toKm": 75.64,
+        "fromKm": 74.31,
+        "toKm": 74.33,
         "stage": "5"
       },
       {
         "category": "natural",
-        "fromKm": 75.64,
-        "toKm": 76.62,
+        "fromKm": 74.33,
+        "toKm": 75.6,
         "stage": "5"
       },
       {
         "category": "gravel",
-        "fromKm": 76.62,
-        "toKm": 77.06,
+        "fromKm": 75.6,
+        "toKm": 75.99,
         "stage": "5"
       },
       {
         "category": "natural",
-        "fromKm": 77.06,
-        "toKm": 77.35,
-        "stage": "5"
-      },
-      {
-        "category": "gravel",
-        "fromKm": 77.35,
-        "toKm": 77.45,
-        "stage": "5"
-      },
-      {
-        "category": "natural",
-        "fromKm": 77.45,
-        "toKm": 77.55,
+        "fromKm": 75.99,
+        "toKm": 76.94,
         "stage": "5"
       },
       {
         "category": "paved",
-        "fromKm": 77.55,
-        "toKm": 77.65,
+        "fromKm": 76.94,
+        "toKm": 76.99,
         "stage": "5"
       },
       {
         "category": "natural",
-        "fromKm": 77.65,
-        "toKm": 77.68,
+        "fromKm": 76.99,
+        "toKm": 77.97,
+        "stage": "5"
+      },
+      {
+        "category": "gravel",
+        "fromKm": 77.97,
+        "toKm": 78.4,
+        "stage": "5"
+      },
+      {
+        "category": "natural",
+        "fromKm": 78.4,
+        "toKm": 78.7,
+        "stage": "5"
+      },
+      {
+        "category": "gravel",
+        "fromKm": 78.7,
+        "toKm": 78.79,
+        "stage": "5"
+      },
+      {
+        "category": "natural",
+        "fromKm": 78.79,
+        "toKm": 78.9,
+        "stage": "5"
+      },
+      {
+        "category": "paved",
+        "fromKm": 78.9,
+        "toKm": 79.0,
+        "stage": "5"
+      },
+      {
+        "category": "natural",
+        "fromKm": 79.0,
+        "toKm": 79.02,
         "stage": "6"
       },
       {
         "category": "gravel",
-        "fromKm": 77.68,
-        "toKm": 77.68,
+        "fromKm": 79.02,
+        "toKm": 79.03,
         "stage": "6"
       },
       {
         "category": "paved",
-        "fromKm": 77.68,
-        "toKm": 77.86,
+        "fromKm": 79.03,
+        "toKm": 79.21,
         "stage": "6"
       },
       {
         "category": "natural",
-        "fromKm": 77.86,
-        "toKm": 78.27,
+        "fromKm": 79.21,
+        "toKm": 79.62,
         "stage": "6"
       },
       {
         "category": "paved",
-        "fromKm": 78.27,
-        "toKm": 78.5,
+        "fromKm": 79.62,
+        "toKm": 79.85,
         "stage": "6"
       },
       {
         "category": "natural",
-        "fromKm": 78.5,
-        "toKm": 78.95,
+        "fromKm": 79.85,
+        "toKm": 80.29,
         "stage": "6"
       },
       {
         "category": "paved",
-        "fromKm": 78.95,
-        "toKm": 79.32,
+        "fromKm": 80.29,
+        "toKm": 80.66,
         "stage": "6"
       },
       {
         "category": "natural",
-        "fromKm": 79.32,
-        "toKm": 80.12,
+        "fromKm": 80.66,
+        "toKm": 81.46,
         "stage": "6"
       },
       {
         "category": "gravel",
-        "fromKm": 80.12,
-        "toKm": 80.85,
+        "fromKm": 81.46,
+        "toKm": 82.19,
         "stage": "6"
       },
       {
         "category": "paved",
-        "fromKm": 80.85,
-        "toKm": 80.92,
+        "fromKm": 82.19,
+        "toKm": 82.26,
         "stage": "6"
       },
       {
         "category": "gravel",
-        "fromKm": 80.92,
-        "toKm": 81.53,
+        "fromKm": 82.26,
+        "toKm": 82.88,
         "stage": "6"
       },
       {
         "category": "natural",
-        "fromKm": 81.53,
-        "toKm": 81.81,
+        "fromKm": 82.88,
+        "toKm": 83.16,
         "stage": "6"
       },
       {
         "category": "paved",
-        "fromKm": 81.81,
-        "toKm": 81.87,
+        "fromKm": 83.16,
+        "toKm": 83.21,
         "stage": "6"
       },
       {
         "category": "natural",
-        "fromKm": 81.87,
-        "toKm": 82.27,
+        "fromKm": 83.21,
+        "toKm": 83.62,
         "stage": "6"
       },
       {
         "category": "gravel",
-        "fromKm": 82.27,
-        "toKm": 83.59,
+        "fromKm": 83.62,
+        "toKm": 84.94,
         "stage": "6"
       },
       {
         "category": "natural",
-        "fromKm": 83.59,
-        "toKm": 85.41,
+        "fromKm": 84.94,
+        "toKm": 86.76,
         "stage": "6"
       },
       {
         "category": "paved",
-        "fromKm": 85.41,
-        "toKm": 85.6,
+        "fromKm": 86.76,
+        "toKm": 86.96,
         "stage": "6"
       },
       {
         "category": "natural",
-        "fromKm": 85.6,
-        "toKm": 85.91,
+        "fromKm": 86.96,
+        "toKm": 87.27,
         "stage": "6"
       },
       {
         "category": "gravel",
-        "fromKm": 85.91,
-        "toKm": 86.0,
+        "fromKm": 87.27,
+        "toKm": 87.36,
         "stage": "6"
       },
       {
         "category": "natural",
-        "fromKm": 86.0,
-        "toKm": 87.0,
+        "fromKm": 87.36,
+        "toKm": 88.35,
         "stage": "6"
       },
       {
         "category": "gravel",
-        "fromKm": 87.0,
-        "toKm": 87.21,
+        "fromKm": 88.35,
+        "toKm": 88.57,
         "stage": "6"
       },
       {
         "category": "natural",
-        "fromKm": 87.21,
-        "toKm": 87.39,
+        "fromKm": 88.57,
+        "toKm": 88.75,
         "stage": "6"
       },
       {
         "category": "gravel",
-        "fromKm": 87.39,
-        "toKm": 87.41,
+        "fromKm": 88.75,
+        "toKm": 88.76,
         "stage": "6"
       },
       {
         "category": "natural",
-        "fromKm": 87.41,
-        "toKm": 87.99,
-        "stage": "6"
-      },
-      {
-        "category": "gravel",
-        "fromKm": 87.99,
+        "fromKm": 88.76,
         "toKm": 89.34,
         "stage": "6"
       },
       {
-        "category": "natural",
+        "category": "gravel",
         "fromKm": 89.34,
-        "toKm": 89.79,
-        "stage": "6"
-      },
-      {
-        "category": "paved",
-        "fromKm": 89.79,
-        "toKm": 89.86,
+        "toKm": 90.7,
         "stage": "6"
       },
       {
         "category": "natural",
-        "fromKm": 89.86,
-        "toKm": 90.01,
+        "fromKm": 90.7,
+        "toKm": 91.15,
+        "stage": "6"
+      },
+      {
+        "category": "paved",
+        "fromKm": 91.15,
+        "toKm": 91.21,
+        "stage": "6"
+      },
+      {
+        "category": "natural",
+        "fromKm": 91.21,
+        "toKm": 91.36,
         "stage": "6"
       },
       {
         "category": "gravel",
-        "fromKm": 90.01,
-        "toKm": 90.8,
+        "fromKm": 91.36,
+        "toKm": 92.15,
         "stage": "6"
       },
       {
         "category": "natural",
-        "fromKm": 90.8,
-        "toKm": 93.27,
+        "fromKm": 92.15,
+        "toKm": 94.63,
         "stage": "6"
       },
       {
         "category": "paved",
-        "fromKm": 93.27,
-        "toKm": 93.33,
+        "fromKm": 94.63,
+        "toKm": 94.69,
         "stage": "7"
       },
       {
         "category": "natural",
-        "fromKm": 93.33,
-        "toKm": 93.38,
+        "fromKm": 94.69,
+        "toKm": 94.73,
         "stage": "7"
       },
       {
         "category": "paved",
-        "fromKm": 93.38,
-        "toKm": 93.47,
+        "fromKm": 94.73,
+        "toKm": 94.83,
         "stage": "7"
       },
       {
         "category": "natural",
-        "fromKm": 93.47,
-        "toKm": 93.52,
+        "fromKm": 94.83,
+        "toKm": 94.88,
         "stage": "7"
       },
       {
         "category": "paved",
-        "fromKm": 93.52,
-        "toKm": 93.66,
+        "fromKm": 94.88,
+        "toKm": 95.02,
         "stage": "7"
       },
       {
         "category": "natural",
-        "fromKm": 93.66,
-        "toKm": 93.94,
+        "fromKm": 95.02,
+        "toKm": 95.29,
         "stage": "7"
       },
       {
         "category": "gravel",
-        "fromKm": 93.94,
-        "toKm": 93.96,
+        "fromKm": 95.29,
+        "toKm": 95.31,
         "stage": "7"
       },
       {
         "category": "paved",
-        "fromKm": 93.96,
-        "toKm": 93.96,
-        "stage": "7"
-      },
-      {
-        "category": "natural",
-        "fromKm": 93.96,
-        "toKm": 93.99,
-        "stage": "7"
-      },
-      {
-        "category": "paved",
-        "fromKm": 93.99,
-        "toKm": 94.29,
-        "stage": "7"
-      },
-      {
-        "category": "natural",
-        "fromKm": 94.29,
-        "toKm": 94.33,
-        "stage": "7"
-      },
-      {
-        "category": "paved",
-        "fromKm": 94.33,
-        "toKm": 94.37,
-        "stage": "7"
-      },
-      {
-        "category": "natural",
-        "fromKm": 94.37,
-        "toKm": 94.43,
-        "stage": "7"
-      },
-      {
-        "category": "paved",
-        "fromKm": 94.43,
-        "toKm": 94.49,
-        "stage": "7"
-      },
-      {
-        "category": "natural",
-        "fromKm": 94.49,
-        "toKm": 94.74,
-        "stage": "7"
-      },
-      {
-        "category": "paved",
-        "fromKm": 94.74,
-        "toKm": 94.8,
-        "stage": "7"
-      },
-      {
-        "category": "natural",
-        "fromKm": 94.8,
-        "toKm": 94.85,
-        "stage": "7"
-      },
-      {
-        "category": "paved",
-        "fromKm": 94.85,
-        "toKm": 94.9,
-        "stage": "7"
-      },
-      {
-        "category": "natural",
-        "fromKm": 94.9,
-        "toKm": 95.01,
-        "stage": "7"
-      },
-      {
-        "category": "paved",
-        "fromKm": 95.01,
-        "toKm": 95.03,
-        "stage": "7"
-      },
-      {
-        "category": "natural",
-        "fromKm": 95.03,
+        "fromKm": 95.31,
         "toKm": 95.32,
         "stage": "7"
       },
       {
-        "category": "paved",
+        "category": "natural",
         "fromKm": 95.32,
         "toKm": 95.35,
         "stage": "7"
       },
       {
-        "category": "natural",
+        "category": "paved",
         "fromKm": 95.35,
-        "toKm": 96.16,
-        "stage": "7"
-      },
-      {
-        "category": "gravel",
-        "fromKm": 96.16,
-        "toKm": 96.37,
+        "toKm": 95.64,
         "stage": "7"
       },
       {
         "category": "natural",
-        "fromKm": 96.37,
-        "toKm": 96.78,
+        "fromKm": 95.64,
+        "toKm": 95.69,
         "stage": "7"
       },
       {
-        "category": "gravel",
-        "fromKm": 96.78,
-        "toKm": 98.21,
+        "category": "paved",
+        "fromKm": 95.69,
+        "toKm": 95.73,
         "stage": "7"
       },
       {
         "category": "natural",
-        "fromKm": 98.21,
-        "toKm": 101.03,
+        "fromKm": 95.73,
+        "toKm": 95.79,
         "stage": "7"
       },
       {
         "category": "paved",
-        "fromKm": 101.03,
-        "toKm": 101.25,
-        "stage": "7"
-      },
-      {
-        "category": "gravel",
-        "fromKm": 101.25,
-        "toKm": 101.45,
-        "stage": "7"
-      },
-      {
-        "category": "paved",
-        "fromKm": 101.45,
-        "toKm": 102.5,
+        "fromKm": 95.79,
+        "toKm": 95.84,
         "stage": "7"
       },
       {
         "category": "natural",
-        "fromKm": 102.5,
-        "toKm": 102.53,
+        "fromKm": 95.84,
+        "toKm": 96.1,
         "stage": "7"
       },
       {
         "category": "paved",
-        "fromKm": 102.53,
-        "toKm": 102.53,
+        "fromKm": 96.1,
+        "toKm": 96.15,
+        "stage": "7"
+      },
+      {
+        "category": "natural",
+        "fromKm": 96.15,
+        "toKm": 96.2,
+        "stage": "7"
+      },
+      {
+        "category": "paved",
+        "fromKm": 96.2,
+        "toKm": 96.25,
+        "stage": "7"
+      },
+      {
+        "category": "natural",
+        "fromKm": 96.25,
+        "toKm": 96.36,
+        "stage": "7"
+      },
+      {
+        "category": "paved",
+        "fromKm": 96.36,
+        "toKm": 96.38,
+        "stage": "7"
+      },
+      {
+        "category": "natural",
+        "fromKm": 96.38,
+        "toKm": 96.68,
+        "stage": "7"
+      },
+      {
+        "category": "paved",
+        "fromKm": 96.68,
+        "toKm": 96.71,
+        "stage": "7"
+      },
+      {
+        "category": "natural",
+        "fromKm": 96.71,
+        "toKm": 97.51,
+        "stage": "7"
+      },
+      {
+        "category": "gravel",
+        "fromKm": 97.51,
+        "toKm": 97.73,
+        "stage": "7"
+      },
+      {
+        "category": "natural",
+        "fromKm": 97.73,
+        "toKm": 98.14,
+        "stage": "7"
+      },
+      {
+        "category": "gravel",
+        "fromKm": 98.14,
+        "toKm": 99.56,
+        "stage": "7"
+      },
+      {
+        "category": "natural",
+        "fromKm": 99.56,
+        "toKm": 102.38,
+        "stage": "7"
+      },
+      {
+        "category": "paved",
+        "fromKm": 102.38,
+        "toKm": 102.6,
+        "stage": "7"
+      },
+      {
+        "category": "gravel",
+        "fromKm": 102.6,
+        "toKm": 102.8,
+        "stage": "7"
+      },
+      {
+        "category": "paved",
+        "fromKm": 102.8,
+        "toKm": 103.85,
+        "stage": "7"
+      },
+      {
+        "category": "natural",
+        "fromKm": 103.85,
+        "toKm": 103.88,
+        "stage": "7"
+      },
+      {
+        "category": "paved",
+        "fromKm": 103.88,
+        "toKm": 103.89,
         "stage": "7"
       }
     ]
   },
   "elevation": {
     "source": "copdem",
-    "retrieved": "2026-10-27T20:08:44+00:00",
+    "retrieved": "2026-10-30T13:23:31+00:00",
     "spacingM": 100,
-    "routeKm": 102.5,
+    "routeKm": 103.9,
     "stageStarts": [
       {
         "number": "1",
@@ -3696,40 +3770,40 @@
       },
       {
         "number": "2",
-        "km": 13.42
+        "km": 13.58
       },
       {
         "number": "3",
-        "km": 28.65
+        "km": 28.81
       },
       {
         "number": "4",
-        "km": 42.45
+        "km": 42.6
       },
       {
         "number": "5",
-        "km": 61.29
+        "km": 61.44
       },
       {
         "number": "6",
-        "km": 77.63
+        "km": 78.98
       },
       {
         "number": "7",
-        "km": 92.2
+        "km": 93.55
       }
     ],
     "highest": {
-      "km": 24.0,
-      "m": 723,
-      "lat": 50.791,
-      "lon": 14.10317
+      "km": 23.8,
+      "m": 722,
+      "lat": 50.79249,
+      "lon": 14.10735
     },
     "lowest": {
-      "km": 101.7,
-      "m": 117,
-      "lat": 50.91637,
-      "lon": 14.14885
+      "km": 103.1,
+      "m": 116,
+      "lat": 50.91664,
+      "lon": 14.14837
     },
     "points": [
       [
@@ -4058,7 +4132,7 @@
       ],
       [
         8.1,
-        532
+        533
       ],
       [
         8.2,
@@ -4066,11 +4140,11 @@
       ],
       [
         8.3,
-        520
+        519
       ],
       [
         8.4,
-        539
+        538
       ],
       [
         8.5,
@@ -4082,307 +4156,307 @@
       ],
       [
         8.7,
-        559
+        560
       ],
       [
         8.8,
-        547
+        563
       ],
       [
         8.9,
-        500
+        556
       ],
       [
         9.0,
-        497
+        525
       ],
       [
         9.1,
-        492
-      ],
-      [
-        9.2,
-        478
-      ],
-      [
-        9.3,
-        448
-      ],
-      [
-        9.4,
-        431
-      ],
-      [
-        9.5,
-        420
-      ],
-      [
-        9.6,
-        417
-      ],
-      [
-        9.7,
-        421
-      ],
-      [
-        9.8,
-        432
-      ],
-      [
-        9.9,
-        431
-      ],
-      [
-        10.0,
-        431
-      ],
-      [
-        10.1,
-        436
-      ],
-      [
-        10.2,
-        442
-      ],
-      [
-        10.3,
-        435
-      ],
-      [
-        10.4,
-        426
-      ],
-      [
-        10.5,
-        426
-      ],
-      [
-        10.6,
-        426
-      ],
-      [
-        10.7,
-        426
-      ],
-      [
-        10.8,
-        424
-      ],
-      [
-        10.9,
-        424
-      ],
-      [
-        11.0,
-        421
-      ],
-      [
-        11.1,
-        416
-      ],
-      [
-        11.2,
-        393
-      ],
-      [
-        11.3,
-        375
-      ],
-      [
-        11.4,
-        369
-      ],
-      [
-        11.5,
-        348
-      ],
-      [
-        11.6,
-        349
-      ],
-      [
-        11.7,
-        378
-      ],
-      [
-        11.8,
-        388
-      ],
-      [
-        11.9,
-        390
-      ],
-      [
-        12.0,
-        382
-      ],
-      [
-        12.1,
-        362
-      ],
-      [
-        12.2,
-        338
-      ],
-      [
-        12.3,
-        360
-      ],
-      [
-        12.4,
-        365
-      ],
-      [
-        12.5,
-        365
-      ],
-      [
-        12.6,
-        376
-      ],
-      [
-        12.7,
-        396
-      ],
-      [
-        12.8,
-        406
-      ],
-      [
-        12.9,
-        416
-      ],
-      [
-        13.0,
-        405
-      ],
-      [
-        13.1,
-        420
-      ],
-      [
-        13.2,
-        438
-      ],
-      [
-        13.3,
-        440
-      ],
-      [
-        13.4,
-        433
-      ],
-      [
-        13.5,
-        441
-      ],
-      [
-        13.6,
-        427
-      ],
-      [
-        13.7,
-        420
-      ],
-      [
-        13.8,
-        407
-      ],
-      [
-        13.9,
-        410
-      ],
-      [
-        14.0,
-        415
-      ],
-      [
-        14.1,
-        436
-      ],
-      [
-        14.2,
-        450
-      ],
-      [
-        14.3,
-        455
-      ],
-      [
-        14.4,
-        455
-      ],
-      [
-        14.5,
-        458
-      ],
-      [
-        14.6,
-        447
-      ],
-      [
-        14.7,
-        427
-      ],
-      [
-        14.8,
-        412
-      ],
-      [
-        14.9,
-        415
-      ],
-      [
-        15.0,
-        416
-      ],
-      [
-        15.1,
-        414
-      ],
-      [
-        15.2,
-        403
-      ],
-      [
-        15.3,
-        411
-      ],
-      [
-        15.4,
-        418
-      ],
-      [
-        15.5,
-        427
-      ],
-      [
-        15.6,
-        435
-      ],
-      [
-        15.7,
-        434
-      ],
-      [
-        15.8,
-        454
-      ],
-      [
-        15.9,
-        474
-      ],
-      [
-        16.0,
-        488
-      ],
-      [
-        16.1,
         494
       ],
       [
+        9.2,
+        495
+      ],
+      [
+        9.3,
+        491
+      ],
+      [
+        9.4,
+        464
+      ],
+      [
+        9.5,
+        442
+      ],
+      [
+        9.6,
+        425
+      ],
+      [
+        9.7,
+        416
+      ],
+      [
+        9.8,
+        416
+      ],
+      [
+        9.9,
+        428
+      ],
+      [
+        10.0,
+        433
+      ],
+      [
+        10.1,
+        430
+      ],
+      [
+        10.2,
+        433
+      ],
+      [
+        10.3,
+        440
+      ],
+      [
+        10.4,
+        442
+      ],
+      [
+        10.5,
+        431
+      ],
+      [
+        10.6,
+        425
+      ],
+      [
+        10.7,
+        425
+      ],
+      [
+        10.8,
+        427
+      ],
+      [
+        10.9,
+        426
+      ],
+      [
+        11.0,
+        425
+      ],
+      [
+        11.1,
+        422
+      ],
+      [
+        11.2,
+        419
+      ],
+      [
+        11.3,
+        408
+      ],
+      [
+        11.4,
+        381
+      ],
+      [
+        11.5,
+        375
+      ],
+      [
+        11.6,
+        361
+      ],
+      [
+        11.7,
+        342
+      ],
+      [
+        11.8,
+        363
+      ],
+      [
+        11.9,
+        385
+      ],
+      [
+        12.0,
+        390
+      ],
+      [
+        12.1,
+        386
+      ],
+      [
+        12.2,
+        374
+      ],
+      [
+        12.3,
+        349
+      ],
+      [
+        12.4,
+        352
+      ],
+      [
+        12.5,
+        364
+      ],
+      [
+        12.6,
+        365
+      ],
+      [
+        12.7,
+        370
+      ],
+      [
+        12.8,
+        384
+      ],
+      [
+        12.9,
+        403
+      ],
+      [
+        13.0,
+        408
+      ],
+      [
+        13.1,
+        411
+      ],
+      [
+        13.2,
+        417
+      ],
+      [
+        13.3,
+        422
+      ],
+      [
+        13.4,
+        440
+      ],
+      [
+        13.5,
+        434
+      ],
+      [
+        13.6,
+        439
+      ],
+      [
+        13.7,
+        439
+      ],
+      [
+        13.8,
+        418
+      ],
+      [
+        13.9,
+        409
+      ],
+      [
+        14.0,
+        416
+      ],
+      [
+        14.1,
+        406
+      ],
+      [
+        14.2,
+        426
+      ],
+      [
+        14.3,
+        444
+      ],
+      [
+        14.4,
+        452
+      ],
+      [
+        14.5,
+        453
+      ],
+      [
+        14.6,
+        458
+      ],
+      [
+        14.7,
+        455
+      ],
+      [
+        14.8,
+        439
+      ],
+      [
+        14.9,
+        417
+      ],
+      [
+        15.0,
+        410
+      ],
+      [
+        15.1,
+        413
+      ],
+      [
+        15.2,
+        416
+      ],
+      [
+        15.3,
+        406
+      ],
+      [
+        15.4,
+        407
+      ],
+      [
+        15.5,
+        415
+      ],
+      [
+        15.6,
+        421
+      ],
+      [
+        15.7,
+        432
+      ],
+      [
+        15.8,
+        432
+      ],
+      [
+        15.9,
+        438
+      ],
+      [
+        16.0,
+        461
+      ],
+      [
+        16.1,
+        479
+      ],
+      [
         16.2,
-        498
+        492
       ],
       [
         16.3,
@@ -4394,295 +4468,295 @@
       ],
       [
         16.5,
-        499
-      ],
-      [
-        16.6,
-        497
-      ],
-      [
-        16.7,
-        488
-      ],
-      [
-        16.8,
-        486
-      ],
-      [
-        16.9,
-        489
-      ],
-      [
-        17.0,
-        487
-      ],
-      [
-        17.1,
-        493
-      ],
-      [
-        17.2,
-        489
-      ],
-      [
-        17.3,
-        486
-      ],
-      [
-        17.4,
-        481
-      ],
-      [
-        17.5,
-        474
-      ],
-      [
-        17.6,
-        460
-      ],
-      [
-        17.7,
-        457
-      ],
-      [
-        17.8,
-        446
-      ],
-      [
-        17.9,
-        440
-      ],
-      [
-        18.0,
-        439
-      ],
-      [
-        18.1,
-        436
-      ],
-      [
-        18.2,
-        430
-      ],
-      [
-        18.3,
-        441
-      ],
-      [
-        18.4,
-        458
-      ],
-      [
-        18.5,
-        462
-      ],
-      [
-        18.6,
-        463
-      ],
-      [
-        18.7,
-        465
-      ],
-      [
-        18.8,
-        469
-      ],
-      [
-        18.9,
-        475
-      ],
-      [
-        19.0,
-        480
-      ],
-      [
-        19.1,
-        482
-      ],
-      [
-        19.2,
-        482
-      ],
-      [
-        19.3,
-        484
-      ],
-      [
-        19.4,
-        483
-      ],
-      [
-        19.5,
-        480
-      ],
-      [
-        19.6,
-        472
-      ],
-      [
-        19.7,
-        478
-      ],
-      [
-        19.8,
-        485
-      ],
-      [
-        19.9,
-        490
-      ],
-      [
-        20.0,
-        499
-      ],
-      [
-        20.1,
-        507
-      ],
-      [
-        20.2,
-        500
-      ],
-      [
-        20.3,
         501
       ],
       [
-        20.4,
-        497
+        16.6,
+        496
       ],
       [
-        20.5,
+        16.7,
+        498
+      ],
+      [
+        16.8,
+        494
+      ],
+      [
+        16.9,
+        485
+      ],
+      [
+        17.0,
+        489
+      ],
+      [
+        17.1,
+        490
+      ],
+      [
+        17.2,
+        486
+      ],
+      [
+        17.3,
+        492
+      ],
+      [
+        17.4,
+        488
+      ],
+      [
+        17.5,
+        485
+      ],
+      [
+        17.6,
+        476
+      ],
+      [
+        17.7,
+        470
+      ],
+      [
+        17.8,
+        457
+      ],
+      [
+        17.9,
+        453
+      ],
+      [
+        18.0,
+        443
+      ],
+      [
+        18.1,
+        442
+      ],
+      [
+        18.2,
+        439
+      ],
+      [
+        18.3,
+        430
+      ],
+      [
+        18.4,
+        433
+      ],
+      [
+        18.5,
+        449
+      ],
+      [
+        18.6,
+        461
+      ],
+      [
+        18.7,
+        458
+      ],
+      [
+        18.8,
+        464
+      ],
+      [
+        18.9,
+        468
+      ],
+      [
+        19.0,
+        472
+      ],
+      [
+        19.1,
+        477
+      ],
+      [
+        19.2,
+        480
+      ],
+      [
+        19.3,
+        480
+      ],
+      [
+        19.4,
+        481
+      ],
+      [
+        19.5,
+        484
+      ],
+      [
+        19.6,
+        482
+      ],
+      [
+        19.7,
+        480
+      ],
+      [
+        19.8,
+        474
+      ],
+      [
+        19.9,
+        482
+      ],
+      [
+        20.0,
+        487
+      ],
+      [
+        20.1,
+        492
+      ],
+      [
+        20.2,
+        503
+      ],
+      [
+        20.3,
         504
       ],
       [
+        20.4,
+        501
+      ],
+      [
+        20.5,
+        497
+      ],
+      [
         20.6,
-        516
+        500
       ],
       [
         20.7,
-        511
+        509
       ],
       [
         20.8,
-        528
+        514
       ],
       [
         20.9,
-        541
+        519
       ],
       [
         21.0,
-        556
+        534
       ],
       [
         21.1,
-        566
+        547
       ],
       [
         21.2,
-        572
+        563
       ],
       [
         21.3,
-        575
+        570
       ],
       [
         21.4,
-        576
+        573
       ],
       [
         21.5,
-        576
+        575
       ],
       [
         21.6,
-        581
+        577
       ],
       [
         21.7,
-        583
+        577
       ],
       [
         21.8,
-        587
+        583
       ],
       [
         21.9,
-        593
+        584
       ],
       [
         22.0,
-        606
+        589
       ],
       [
         22.1,
-        626
+        599
       ],
       [
         22.2,
-        644
+        615
       ],
       [
         22.3,
-        665
+        634
       ],
       [
         22.4,
-        671
+        654
       ],
       [
         22.5,
-        675
+        669
       ],
       [
         22.6,
-        677
+        673
       ],
       [
         22.7,
-        680
+        678
       ],
       [
         22.8,
-        683
+        679
       ],
       [
         22.9,
-        692
+        680
       ],
       [
         23.0,
-        700
+        687
       ],
       [
         23.1,
-        703
+        697
       ],
       [
         23.2,
-        700
+        701
       ],
       [
         23.3,
-        706
+        700
       ],
       [
         23.4,
-        709
+        701
       ],
       [
         23.5,
-        717
+        709
       ],
       [
         23.6,
-        721
+        714
       ],
       [
         23.7,
-        722
+        719
       ],
       [
         23.8,
@@ -4690,143 +4764,143 @@
       ],
       [
         23.9,
-        721
+        722
       ],
       [
         24.0,
-        723
+        722
       ],
       [
         24.1,
-        711
+        722
       ],
       [
         24.2,
-        701
+        721
       ],
       [
         24.3,
-        690
+        706
       ],
       [
         24.4,
-        678
+        698
       ],
       [
         24.5,
-        666
+        686
       ],
       [
         24.6,
-        661
+        673
       ],
       [
         24.7,
-        655
+        663
       ],
       [
         24.8,
-        642
+        658
       ],
       [
         24.9,
-        634
+        651
       ],
       [
         25.0,
-        618
+        638
       ],
       [
         25.1,
-        602
+        628
       ],
       [
         25.2,
-        594
+        609
       ],
       [
         25.3,
-        588
+        598
       ],
       [
         25.4,
-        582
+        590
       ],
       [
         25.5,
-        577
+        584
       ],
       [
         25.6,
-        578
-      ],
-      [
-        25.7,
-        576
-      ],
-      [
-        25.8,
-        576
-      ],
-      [
-        25.9,
         580
       ],
       [
-        26.0,
+        25.7,
+        578
+      ],
+      [
+        25.8,
+        578
+      ],
+      [
+        25.9,
         576
       ],
       [
-        26.1,
+        26.0,
         574
       ],
       [
+        26.1,
+        580
+      ],
+      [
         26.2,
-        571
+        574
       ],
       [
         26.3,
-        575
-      ],
-      [
-        26.4,
-        568
-      ],
-      [
-        26.5,
         571
       ],
       [
+        26.4,
+        573
+      ],
+      [
+        26.5,
+        569
+      ],
+      [
         26.6,
-        570
+        569
       ],
       [
         26.7,
-        568
+        573
       ],
       [
         26.8,
-        565
+        569
       ],
       [
         26.9,
-        562
+        566
       ],
       [
         27.0,
-        565
+        566
       ],
       [
         27.1,
-        562
+        567
       ],
       [
         27.2,
-        563
+        564
       ],
       [
         27.3,
-        564
+        561
       ],
       [
         27.4,
@@ -4834,215 +4908,215 @@
       ],
       [
         27.5,
-        562
+        564
       ],
       [
         27.6,
-        562
+        563
       ],
       [
         27.7,
-        558
+        561
       ],
       [
         27.8,
-        544
-      ],
-      [
-        27.9,
-        531
-      ],
-      [
-        28.0,
-        504
-      ],
-      [
-        28.1,
-        489
-      ],
-      [
-        28.2,
-        483
-      ],
-      [
-        28.3,
-        480
-      ],
-      [
-        28.4,
-        478
-      ],
-      [
-        28.5,
-        462
-      ],
-      [
-        28.6,
-        454
-      ],
-      [
-        28.7,
-        459
-      ],
-      [
-        28.8,
-        462
-      ],
-      [
-        28.9,
-        478
-      ],
-      [
-        29.0,
-        483
-      ],
-      [
-        29.1,
-        494
-      ],
-      [
-        29.2,
-        512
-      ],
-      [
-        29.3,
-        520
-      ],
-      [
-        29.4,
-        524
-      ],
-      [
-        29.5,
-        545
-      ],
-      [
-        29.6,
-        568
-      ],
-      [
-        29.7,
-        586
-      ],
-      [
-        29.8,
-        591
-      ],
-      [
-        29.9,
-        595
-      ],
-      [
-        30.0,
-        600
-      ],
-      [
-        30.1,
-        603
-      ],
-      [
-        30.2,
-        604
-      ],
-      [
-        30.3,
-        606
-      ],
-      [
-        30.4,
-        605
-      ],
-      [
-        30.5,
-        603
-      ],
-      [
-        30.6,
-        603
-      ],
-      [
-        30.7,
-        601
-      ],
-      [
-        30.8,
-        598
-      ],
-      [
-        30.9,
-        601
-      ],
-      [
-        31.0,
-        598
-      ],
-      [
-        31.1,
-        593
-      ],
-      [
-        31.2,
-        588
-      ],
-      [
-        31.3,
-        586
-      ],
-      [
-        31.4,
-        585
-      ],
-      [
-        31.5,
-        582
-      ],
-      [
-        31.6,
-        575
-      ],
-      [
-        31.7,
-        573
-      ],
-      [
-        31.8,
-        567
-      ],
-      [
-        31.9,
-        565
-      ],
-      [
-        32.0,
         562
       ],
       [
+        27.9,
+        554
+      ],
+      [
+        28.0,
+        540
+      ],
+      [
+        28.1,
+        523
+      ],
+      [
+        28.2,
+        494
+      ],
+      [
+        28.3,
+        486
+      ],
+      [
+        28.4,
+        480
+      ],
+      [
+        28.5,
+        478
+      ],
+      [
+        28.6,
+        474
+      ],
+      [
+        28.7,
+        458
+      ],
+      [
+        28.8,
+        457
+      ],
+      [
+        28.9,
+        455
+      ],
+      [
+        29.0,
+        471
+      ],
+      [
+        29.1,
+        478
+      ],
+      [
+        29.2,
+        488
+      ],
+      [
+        29.3,
+        502
+      ],
+      [
+        29.4,
+        520
+      ],
+      [
+        29.5,
+        521
+      ],
+      [
+        29.6,
+        534
+      ],
+      [
+        29.7,
+        555
+      ],
+      [
+        29.8,
+        578
+      ],
+      [
+        29.9,
+        588
+      ],
+      [
+        30.0,
+        594
+      ],
+      [
+        30.1,
+        597
+      ],
+      [
+        30.2,
+        602
+      ],
+      [
+        30.3,
+        603
+      ],
+      [
+        30.4,
+        607
+      ],
+      [
+        30.5,
+        605
+      ],
+      [
+        30.6,
+        604
+      ],
+      [
+        30.7,
+        603
+      ],
+      [
+        30.8,
+        602
+      ],
+      [
+        30.9,
+        598
+      ],
+      [
+        31.0,
+        601
+      ],
+      [
+        31.1,
+        601
+      ],
+      [
+        31.2,
+        595
+      ],
+      [
+        31.3,
+        590
+      ],
+      [
+        31.4,
+        587
+      ],
+      [
+        31.5,
+        586
+      ],
+      [
+        31.6,
+        582
+      ],
+      [
+        31.7,
+        579
+      ],
+      [
+        31.8,
+        575
+      ],
+      [
+        31.9,
+        569
+      ],
+      [
+        32.0,
+        565
+      ],
+      [
         32.1,
-        561
+        562
       ],
       [
         32.2,
-        561
+        562
       ],
       [
         32.3,
-        561
-      ],
-      [
-        32.4,
         560
       ],
       [
+        32.4,
+        564
+      ],
+      [
         32.5,
-        555
+        560
       ],
       [
         32.6,
-        555
+        558
       ],
       [
         32.7,
-        558
+        553
       ],
       [
         32.8,
@@ -5050,27 +5124,27 @@
       ],
       [
         32.9,
-        556
+        559
       ],
       [
         33.0,
-        556
+        557
       ],
       [
         33.1,
-        560
+        555
       ],
       [
         33.2,
-        558
+        556
       ],
       [
         33.3,
-        558
+        559
       ],
       [
         33.4,
-        556
+        559
       ],
       [
         33.5,
@@ -5078,135 +5152,135 @@
       ],
       [
         33.6,
-        556
+        557
       ],
       [
         33.7,
-        553
+        554
       ],
       [
         33.8,
-        545
+        552
       ],
       [
         33.9,
-        539
-      ],
-      [
-        34.0,
-        524
-      ],
-      [
-        34.1,
-        514
-      ],
-      [
-        34.2,
-        517
-      ],
-      [
-        34.3,
-        528
-      ],
-      [
-        34.4,
-        539
-      ],
-      [
-        34.5,
-        547
-      ],
-      [
-        34.6,
-        540
-      ],
-      [
-        34.7,
-        545
-      ],
-      [
-        34.8,
-        549
-      ],
-      [
-        34.9,
-        547
-      ],
-      [
-        35.0,
-        543
-      ],
-      [
-        35.1,
-        551
-      ],
-      [
-        35.2,
-        552
-      ],
-      [
-        35.3,
-        561
-      ],
-      [
-        35.4,
-        560
-      ],
-      [
-        35.5,
-        559
-      ],
-      [
-        35.6,
-        555
-      ],
-      [
-        35.7,
-        553
-      ],
-      [
-        35.8,
-        551
-      ],
-      [
-        35.9,
-        552
-      ],
-      [
-        36.0,
-        552
-      ],
-      [
-        36.1,
         550
       ],
       [
-        36.2,
-        543
+        34.0,
+        537
       ],
       [
-        36.3,
+        34.1,
+        535
+      ],
+      [
+        34.2,
+        518
+      ],
+      [
+        34.3,
+        516
+      ],
+      [
+        34.4,
+        521
+      ],
+      [
+        34.5,
+        535
+      ],
+      [
+        34.6,
+        546
+      ],
+      [
+        34.7,
+        547
+      ],
+      [
+        34.8,
         542
       ],
       [
-        36.4,
+        34.9,
+        546
+      ],
+      [
+        35.0,
+        549
+      ],
+      [
+        35.1,
         542
       ],
       [
-        36.5,
-        553
+        35.2,
+        548
       ],
       [
-        36.6,
-        540
+        35.3,
+        550
       ],
       [
-        36.7,
+        35.4,
+        557
+      ],
+      [
+        35.5,
+        563
+      ],
+      [
+        35.6,
+        560
+      ],
+      [
+        35.7,
+        556
+      ],
+      [
+        35.8,
+        554
+      ],
+      [
+        35.9,
         551
       ],
       [
+        36.0,
+        549
+      ],
+      [
+        36.1,
+        552
+      ],
+      [
+        36.2,
+        551
+      ],
+      [
+        36.3,
+        545
+      ],
+      [
+        36.4,
+        543
+      ],
+      [
+        36.5,
+        542
+      ],
+      [
+        36.6,
+        548
+      ],
+      [
+        36.7,
+        548
+      ],
+      [
         36.8,
-        556
+        542
       ],
       [
         36.9,
@@ -5214,7 +5288,7 @@
       ],
       [
         37.0,
-        560
+        557
       ],
       [
         37.1,
@@ -5222,123 +5296,123 @@
       ],
       [
         37.2,
-        553
+        556
       ],
       [
         37.3,
-        538
+        556
       ],
       [
         37.4,
-        521
+        549
       ],
       [
         37.5,
-        523
+        529
       ],
       [
         37.6,
-        522
+        517
       ],
       [
         37.7,
-        528
+        526
       ],
       [
         37.8,
-        518
+        526
       ],
       [
         37.9,
-        522
+        523
       ],
       [
         38.0,
-        524
+        519
       ],
       [
         38.1,
-        520
-      ],
-      [
-        38.2,
-        518
-      ],
-      [
-        38.3,
-        516
-      ],
-      [
-        38.4,
-        518
-      ],
-      [
-        38.5,
-        508
-      ],
-      [
-        38.6,
-        503
-      ],
-      [
-        38.7,
-        507
-      ],
-      [
-        38.8,
-        519
-      ],
-      [
-        38.9,
         522
       ],
       [
-        39.0,
-        519
+        38.2,
+        522
       ],
       [
-        39.1,
+        38.3,
         521
       ],
       [
-        39.2,
+        38.4,
+        517
+      ],
+      [
+        38.5,
+        517
+      ],
+      [
+        38.6,
         514
       ],
       [
+        38.7,
+        505
+      ],
+      [
+        38.8,
+        501
+      ],
+      [
+        38.9,
+        513
+      ],
+      [
+        39.0,
+        521
+      ],
+      [
+        39.1,
+        520
+      ],
+      [
+        39.2,
+        520
+      ],
+      [
         39.3,
-        504
+        520
       ],
       [
         39.4,
-        503
+        505
       ],
       [
         39.5,
-        497
+        503
       ],
       [
         39.6,
-        484
+        502
       ],
       [
         39.7,
-        481
+        490
       ],
       [
         39.8,
-        478
+        483
       ],
       [
         39.9,
-        475
+        481
       ],
       [
         40.0,
-        470
+        475
       ],
       [
         40.1,
-        470
+        474
       ],
       [
         40.2,
@@ -5346,383 +5420,383 @@
       ],
       [
         40.3,
-        467
+        470
       ],
       [
         40.4,
-        487
+        468
       ],
       [
         40.5,
-        493
+        476
       ],
       [
         40.6,
-        487
+        491
       ],
       [
         40.7,
-        487
+        491
       ],
       [
         40.8,
-        488
+        486
       ],
       [
         40.9,
-        482
+        489
       ],
       [
         41.0,
-        471
+        487
       ],
       [
         41.1,
-        467
+        475
       ],
       [
         41.2,
-        464
+        472
       ],
       [
         41.3,
-        461
+        464
       ],
       [
         41.4,
-        458
+        463
       ],
       [
         41.5,
-        454
+        459
       ],
       [
         41.6,
-        446
+        457
       ],
       [
         41.7,
-        437
+        451
       ],
       [
         41.8,
-        430
+        443
       ],
       [
         41.9,
-        430
+        426
       ],
       [
         42.0,
-        435
+        430
       ],
       [
         42.1,
-        431
-      ],
-      [
-        42.2,
-        434
-      ],
-      [
-        42.3,
-        424
-      ],
-      [
-        42.4,
-        426
-      ],
-      [
-        42.5,
-        419
-      ],
-      [
-        42.6,
-        422
-      ],
-      [
-        42.7,
-        424
-      ],
-      [
-        42.8,
-        416
-      ],
-      [
-        42.9,
-        413
-      ],
-      [
-        43.0,
-        389
-      ],
-      [
-        43.1,
-        368
-      ],
-      [
-        43.2,
-        378
-      ],
-      [
-        43.3,
-        384
-      ],
-      [
-        43.4,
-        377
-      ],
-      [
-        43.5,
-        358
-      ],
-      [
-        43.6,
-        360
-      ],
-      [
-        43.7,
-        379
-      ],
-      [
-        43.8,
-        378
-      ],
-      [
-        43.9,
-        376
-      ],
-      [
-        44.0,
-        393
-      ],
-      [
-        44.1,
-        398
-      ],
-      [
-        44.2,
-        372
-      ],
-      [
-        44.3,
-        370
-      ],
-      [
-        44.4,
-        384
-      ],
-      [
-        44.5,
-        389
-      ],
-      [
-        44.6,
-        424
-      ],
-      [
-        44.7,
-        441
-      ],
-      [
-        44.8,
-        451
-      ],
-      [
-        44.9,
-        452
-      ],
-      [
-        45.0,
-        448
-      ],
-      [
-        45.1,
-        440
-      ],
-      [
-        45.2,
-        431
-      ],
-      [
-        45.3,
-        437
-      ],
-      [
-        45.4,
-        422
-      ],
-      [
-        45.5,
-        407
-      ],
-      [
-        45.6,
-        402
-      ],
-      [
-        45.7,
-        400
-      ],
-      [
-        45.8,
-        400
-      ],
-      [
-        45.9,
-        410
-      ],
-      [
-        46.0,
-        404
-      ],
-      [
-        46.1,
-        372
-      ],
-      [
-        46.2,
-        374
-      ],
-      [
-        46.3,
-        379
-      ],
-      [
-        46.4,
-        377
-      ],
-      [
-        46.5,
-        380
-      ],
-      [
-        46.6,
-        389
-      ],
-      [
-        46.7,
-        410
-      ],
-      [
-        46.8,
-        423
-      ],
-      [
-        46.9,
-        423
-      ],
-      [
-        47.0,
         432
       ],
       [
-        47.1,
-        436
+        42.2,
+        433
       ],
       [
-        47.2,
-        446
+        42.3,
+        433
       ],
       [
-        47.3,
-        445
+        42.4,
+        430
       ],
       [
-        47.4,
-        440
+        42.5,
+        423
       ],
       [
-        47.5,
-        420
+        42.6,
+        419
       ],
       [
-        47.6,
-        409
-      ],
-      [
-        47.7,
-        403
-      ],
-      [
-        47.8,
-        410
-      ],
-      [
-        47.9,
+        42.7,
         426
       ],
       [
+        42.8,
+        422
+      ],
+      [
+        42.9,
+        422
+      ],
+      [
+        43.0,
+        415
+      ],
+      [
+        43.1,
+        404
+      ],
+      [
+        43.2,
+        371
+      ],
+      [
+        43.3,
+        370
+      ],
+      [
+        43.4,
+        382
+      ],
+      [
+        43.5,
+        382
+      ],
+      [
+        43.6,
+        370
+      ],
+      [
+        43.7,
+        356
+      ],
+      [
+        43.8,
+        375
+      ],
+      [
+        43.9,
+        374
+      ],
+      [
+        44.0,
+        372
+      ],
+      [
+        44.1,
+        384
+      ],
+      [
+        44.2,
+        395
+      ],
+      [
+        44.3,
+        388
+      ],
+      [
+        44.4,
+        369
+      ],
+      [
+        44.5,
+        371
+      ],
+      [
+        44.6,
+        377
+      ],
+      [
+        44.7,
+        405
+      ],
+      [
+        44.8,
+        432
+      ],
+      [
+        44.9,
+        445
+      ],
+      [
+        45.0,
+        453
+      ],
+      [
+        45.1,
+        450
+      ],
+      [
+        45.2,
+        445
+      ],
+      [
+        45.3,
+        434
+      ],
+      [
+        45.4,
+        436
+      ],
+      [
+        45.5,
+        431
+      ],
+      [
+        45.6,
+        412
+      ],
+      [
+        45.7,
+        395
+      ],
+      [
+        45.8,
+        405
+      ],
+      [
+        45.9,
+        399
+      ],
+      [
+        46.0,
+        407
+      ],
+      [
+        46.1,
+        415
+      ],
+      [
+        46.2,
+        380
+      ],
+      [
+        46.3,
+        375
+      ],
+      [
+        46.4,
+        372
+      ],
+      [
+        46.5,
+        379
+      ],
+      [
+        46.6,
+        378
+      ],
+      [
+        46.7,
+        380
+      ],
+      [
+        46.8,
+        400
+      ],
+      [
+        46.9,
+        417
+      ],
+      [
+        47.0,
+        422
+      ],
+      [
+        47.1,
+        426
+      ],
+      [
+        47.2,
+        436
+      ],
+      [
+        47.3,
+        439
+      ],
+      [
+        47.4,
+        445
+      ],
+      [
+        47.5,
+        444
+      ],
+      [
+        47.6,
+        430
+      ],
+      [
+        47.7,
+        419
+      ],
+      [
+        47.8,
+        398
+      ],
+      [
+        47.9,
+        404
+      ],
+      [
         48.0,
-        451
+        418
       ],
       [
         48.1,
-        482
+        435
       ],
       [
         48.2,
-        495
+        465
       ],
       [
         48.3,
-        490
+        489
       ],
       [
         48.4,
-        495
+        493
       ],
       [
         48.5,
-        495
+        492
       ],
       [
         48.6,
-        499
+        494
       ],
       [
         48.7,
-        503
+        497
       ],
       [
         48.8,
-        505
+        499
       ],
       [
         48.9,
-        508
+        501
       ],
       [
         49.0,
-        515
+        507
       ],
       [
         49.1,
-        514
+        510
       ],
       [
         49.2,
-        519
+        516
       ],
       [
         49.3,
-        522
+        516
       ],
       [
         49.4,
-        526
+        519
       ],
       [
         49.5,
-        531
+        526
       ],
       [
         49.6,
-        539
+        528
       ],
       [
         49.7,
-        539
+        535
       ],
       [
         49.8,
@@ -5730,55 +5804,55 @@
       ],
       [
         49.9,
-        543
+        540
       ],
       [
         50.0,
-        530
+        542
       ],
       [
         50.1,
-        515
+        540
       ],
       [
         50.2,
-        496
+        522
       ],
       [
         50.3,
-        485
+        507
       ],
       [
         50.4,
-        468
+        492
       ],
       [
         50.5,
-        460
+        478
       ],
       [
         50.6,
-        456
+        463
       ],
       [
         50.7,
-        451
+        458
       ],
       [
         50.8,
-        440
+        454
       ],
       [
         50.9,
-        446
+        445
       ],
       [
         51.0,
-        432
+        442
       ],
       [
         51.1,
-        428
+        437
       ],
       [
         51.2,
@@ -5786,27 +5860,27 @@
       ],
       [
         51.3,
-        440
+        429
       ],
       [
         51.4,
-        451
+        432
       ],
       [
         51.5,
-        474
+        445
       ],
       [
         51.6,
-        490
+        461
       ],
       [
         51.7,
-        517
+        485
       ],
       [
         51.8,
-        530
+        502
       ],
       [
         51.9,
@@ -5814,103 +5888,103 @@
       ],
       [
         52.0,
-        524
+        527
       ],
       [
         52.1,
-        526
+        524
       ],
       [
         52.2,
-        521
+        527
       ],
       [
         52.3,
-        521
+        525
       ],
       [
         52.4,
-        514
+        521
       ],
       [
         52.5,
-        515
+        517
       ],
       [
         52.6,
-        511
+        514
       ],
       [
         52.7,
-        503
+        515
       ],
       [
         52.8,
-        501
+        505
       ],
       [
         52.9,
-        487
+        505
       ],
       [
         53.0,
-        475
+        494
       ],
       [
         53.1,
-        465
+        482
       ],
       [
         53.2,
-        458
+        474
       ],
       [
         53.3,
-        452
-      ],
-      [
-        53.4,
-        449
-      ],
-      [
-        53.5,
-        442
-      ],
-      [
-        53.6,
-        447
-      ],
-      [
-        53.7,
-        432
-      ],
-      [
-        53.8,
-        428
-      ],
-      [
-        53.9,
         463
       ],
       [
+        53.4,
+        452
+      ],
+      [
+        53.5,
+        450
+      ],
+      [
+        53.6,
+        448
+      ],
+      [
+        53.7,
+        441
+      ],
+      [
+        53.8,
+        440
+      ],
+      [
+        53.9,
+        428
+      ],
+      [
         54.0,
-        484
+        441
       ],
       [
         54.1,
-        486
+        475
       ],
       [
         54.2,
-        484
+        489
       ],
       [
         54.3,
-        495
+        480
       ],
       [
         54.4,
-        494
+        492
       ],
       [
         54.5,
@@ -5918,19 +5992,19 @@
       ],
       [
         54.6,
-        493
+        495
       ],
       [
         54.7,
-        490
+        492
       ],
       [
         54.8,
-        496
+        492
       ],
       [
         54.9,
-        496
+        493
       ],
       [
         55.0,
@@ -5938,283 +6012,283 @@
       ],
       [
         55.1,
-        499
-      ],
-      [
-        55.2,
-        494
-      ],
-      [
-        55.3,
-        495
-      ],
-      [
-        55.4,
-        489
-      ],
-      [
-        55.5,
-        487
-      ],
-      [
-        55.6,
-        485
-      ],
-      [
-        55.7,
-        488
-      ],
-      [
-        55.8,
-        486
-      ],
-      [
-        55.9,
-        482
-      ],
-      [
-        56.0,
-        484
-      ],
-      [
-        56.1,
-        492
-      ],
-      [
-        56.2,
         496
       ],
       [
-        56.3,
-        503
+        55.2,
+        497
       ],
       [
-        56.4,
-        504
+        55.3,
+        496
       ],
       [
-        56.5,
-        504
+        55.4,
+        494
       ],
       [
-        56.6,
-        500
+        55.5,
+        491
       ],
       [
-        56.7,
-        500
+        55.6,
+        490
       ],
       [
-        56.8,
-        498
+        55.7,
+        485
       ],
       [
-        56.9,
-        498
+        55.8,
+        485
       ],
       [
-        57.0,
-        502
-      ],
-      [
-        57.1,
-        498
-      ],
-      [
-        57.2,
-        499
-      ],
-      [
-        57.3,
-        493
-      ],
-      [
-        57.4,
+        55.9,
         488
       ],
       [
+        56.0,
+        483
+      ],
+      [
+        56.1,
+        483
+      ],
+      [
+        56.2,
+        488
+      ],
+      [
+        56.3,
+        493
+      ],
+      [
+        56.4,
+        502
+      ],
+      [
+        56.5,
+        503
+      ],
+      [
+        56.6,
+        501
+      ],
+      [
+        56.7,
+        502
+      ],
+      [
+        56.8,
+        501
+      ],
+      [
+        56.9,
+        499
+      ],
+      [
+        57.0,
+        499
+      ],
+      [
+        57.1,
+        496
+      ],
+      [
+        57.2,
+        497
+      ],
+      [
+        57.3,
+        498
+      ],
+      [
+        57.4,
+        498
+      ],
+      [
         57.5,
-        487
+        486
       ],
       [
         57.6,
-        478
+        489
       ],
       [
         57.7,
-        467
+        483
       ],
       [
         57.8,
-        461
+        473
       ],
       [
         57.9,
-        454
+        464
       ],
       [
         58.0,
-        447
-      ],
-      [
-        58.1,
-        443
-      ],
-      [
-        58.2,
-        435
-      ],
-      [
-        58.3,
-        429
-      ],
-      [
-        58.4,
-        422
-      ],
-      [
-        58.5,
-        417
-      ],
-      [
-        58.6,
-        427
-      ],
-      [
-        58.7,
-        419
-      ],
-      [
-        58.8,
-        404
-      ],
-      [
-        58.9,
-        403
-      ],
-      [
-        59.0,
-        397
-      ],
-      [
-        59.1,
-        403
-      ],
-      [
-        59.2,
-        406
-      ],
-      [
-        59.3,
-        404
-      ],
-      [
-        59.4,
-        402
-      ],
-      [
-        59.5,
-        400
-      ],
-      [
-        59.6,
-        397
-      ],
-      [
-        59.7,
-        376
-      ],
-      [
-        59.8,
-        380
-      ],
-      [
-        59.9,
-        383
-      ],
-      [
-        60.0,
-        378
-      ],
-      [
-        60.1,
-        380
-      ],
-      [
-        60.2,
-        377
-      ],
-      [
-        60.3,
-        367
-      ],
-      [
-        60.4,
-        354
-      ],
-      [
-        60.5,
-        374
-      ],
-      [
-        60.6,
-        375
-      ],
-      [
-        60.7,
-        381
-      ],
-      [
-        60.8,
-        383
-      ],
-      [
-        60.9,
-        377
-      ],
-      [
-        61.0,
-        386
-      ],
-      [
-        61.1,
-        400
-      ],
-      [
-        61.2,
-        405
-      ],
-      [
-        61.3,
-        416
-      ],
-      [
-        61.4,
-        426
-      ],
-      [
-        61.5,
-        442
-      ],
-      [
-        61.6,
         456
       ],
       [
+        58.1,
+        452
+      ],
+      [
+        58.2,
+        440
+      ],
+      [
+        58.3,
+        440
+      ],
+      [
+        58.4,
+        432
+      ],
+      [
+        58.5,
+        428
+      ],
+      [
+        58.6,
+        419
+      ],
+      [
+        58.7,
+        417
+      ],
+      [
+        58.8,
+        421
+      ],
+      [
+        58.9,
+        410
+      ],
+      [
+        59.0,
+        404
+      ],
+      [
+        59.1,
+        402
+      ],
+      [
+        59.2,
+        398
+      ],
+      [
+        59.3,
+        405
+      ],
+      [
+        59.4,
+        404
+      ],
+      [
+        59.5,
+        403
+      ],
+      [
+        59.6,
+        403
+      ],
+      [
+        59.7,
+        400
+      ],
+      [
+        59.8,
+        381
+      ],
+      [
+        59.9,
+        379
+      ],
+      [
+        60.0,
+        380
+      ],
+      [
+        60.1,
+        382
+      ],
+      [
+        60.2,
+        379
+      ],
+      [
+        60.3,
+        381
+      ],
+      [
+        60.4,
+        374
+      ],
+      [
+        60.5,
+        363
+      ],
+      [
+        60.6,
+        362
+      ],
+      [
+        60.7,
+        377
+      ],
+      [
+        60.8,
+        377
+      ],
+      [
+        60.9,
+        382
+      ],
+      [
+        61.0,
+        383
+      ],
+      [
+        61.1,
+        370
+      ],
+      [
+        61.2,
+        391
+      ],
+      [
+        61.3,
+        407
+      ],
+      [
+        61.4,
+        412
+      ],
+      [
+        61.5,
+        423
+      ],
+      [
+        61.6,
+        432
+      ],
+      [
         61.7,
-        458
+        450
       ],
       [
         61.8,
-        453
+        458
       ],
       [
         61.9,
-        449
+        456
       ],
       [
         62.0,
-        444
+        452
       ],
       [
         62.1,
@@ -6222,23 +6296,23 @@
       ],
       [
         62.2,
-        457
+        443
       ],
       [
         62.3,
-        442
+        453
       ],
       [
         62.4,
-        434
+        449
       ],
       [
         62.5,
-        427
+        442
       ],
       [
         62.6,
-        418
+        434
       ],
       [
         62.7,
@@ -6246,659 +6320,659 @@
       ],
       [
         62.8,
-        424
-      ],
-      [
-        62.9,
-        430
-      ],
-      [
-        63.0,
-        427
-      ],
-      [
-        63.1,
-        419
-      ],
-      [
-        63.2,
-        428
-      ],
-      [
-        63.3,
-        445
-      ],
-      [
-        63.4,
-        450
-      ],
-      [
-        63.5,
-        452
-      ],
-      [
-        63.6,
-        466
-      ],
-      [
-        63.7,
-        470
-      ],
-      [
-        63.8,
-        471
-      ],
-      [
-        63.9,
-        470
-      ],
-      [
-        64.0,
-        473
-      ],
-      [
-        64.1,
-        464
-      ],
-      [
-        64.2,
-        458
-      ],
-      [
-        64.3,
-        453
-      ],
-      [
-        64.4,
-        437
-      ],
-      [
-        64.5,
-        432
-      ],
-      [
-        64.6,
-        414
-      ],
-      [
-        64.7,
-        398
-      ],
-      [
-        64.8,
-        400
-      ],
-      [
-        64.9,
-        402
-      ],
-      [
-        65.0,
-        401
-      ],
-      [
-        65.1,
-        401
-      ],
-      [
-        65.2,
-        406
-      ],
-      [
-        65.3,
-        406
-      ],
-      [
-        65.4,
-        403
-      ],
-      [
-        65.5,
-        396
-      ],
-      [
-        65.6,
-        392
-      ],
-      [
-        65.7,
-        384
-      ],
-      [
-        65.8,
-        379
-      ],
-      [
-        65.9,
-        369
-      ],
-      [
-        66.0,
-        365
-      ],
-      [
-        66.1,
-        356
-      ],
-      [
-        66.2,
-        359
-      ],
-      [
-        66.3,
-        358
-      ],
-      [
-        66.4,
-        359
-      ],
-      [
-        66.5,
-        356
-      ],
-      [
-        66.6,
-        341
-      ],
-      [
-        66.7,
-        322
-      ],
-      [
-        66.8,
-        303
-      ],
-      [
-        66.9,
-        311
-      ],
-      [
-        67.0,
-        311
-      ],
-      [
-        67.1,
-        316
-      ],
-      [
-        67.2,
-        334
-      ],
-      [
-        67.3,
-        338
-      ],
-      [
-        67.4,
-        347
-      ],
-      [
-        67.5,
-        360
-      ],
-      [
-        67.6,
-        369
-      ],
-      [
-        67.7,
-        376
-      ],
-      [
-        67.8,
-        384
-      ],
-      [
-        67.9,
-        388
-      ],
-      [
-        68.0,
-        394
-      ],
-      [
-        68.1,
-        414
-      ],
-      [
-        68.2,
-        423
-      ],
-      [
-        68.3,
-        424
-      ],
-      [
-        68.4,
         417
       ],
       [
-        68.5,
+        62.9,
         419
       ],
       [
-        68.6,
-        432
+        63.0,
+        429
       ],
       [
-        68.7,
-        437
+        63.1,
+        429
       ],
       [
-        68.8,
-        430
+        63.2,
+        423
       ],
       [
-        68.9,
-        421
-      ],
-      [
-        69.0,
-        411
-      ],
-      [
-        69.1,
-        415
-      ],
-      [
-        69.2,
+        63.3,
         422
       ],
       [
-        69.3,
-        414
+        63.4,
+        435
       ],
       [
-        69.4,
-        394
+        63.5,
+        451
       ],
       [
-        69.5,
-        385
+        63.6,
+        450
       ],
       [
-        69.6,
-        388
+        63.7,
+        458
       ],
       [
-        69.7,
-        386
+        63.8,
+        467
       ],
       [
-        69.8,
-        384
+        63.9,
+        472
       ],
       [
-        69.9,
-        383
+        64.0,
+        471
       ],
       [
-        70.0,
-        372
+        64.1,
+        468
       ],
       [
-        70.1,
-        378
+        64.2,
+        472
       ],
       [
-        70.2,
-        367
+        64.3,
+        461
       ],
       [
-        70.3,
-        353
+        64.4,
+        455
       ],
       [
-        70.4,
-        338
+        64.5,
+        447
       ],
       [
-        70.5,
-        328
+        64.6,
+        435
       ],
       [
-        70.6,
-        324
+        64.7,
+        418
       ],
       [
-        70.7,
-        315
+        64.8,
+        402
       ],
       [
-        70.8,
-        312
+        64.9,
+        397
       ],
       [
-        70.9,
-        308
+        65.0,
+        402
       ],
       [
-        71.0,
-        299
+        65.1,
+        404
       ],
       [
-        71.1,
-        291
+        65.2,
+        402
       ],
       [
-        71.2,
-        296
+        65.3,
+        402
       ],
       [
-        71.3,
-        294
+        65.4,
+        405
       ],
       [
-        71.4,
-        300
+        65.5,
+        407
       ],
       [
-        71.5,
-        306
-      ],
-      [
-        71.6,
-        313
-      ],
-      [
-        71.7,
-        328
-      ],
-      [
-        71.8,
-        340
-      ],
-      [
-        71.9,
-        343
-      ],
-      [
-        72.0,
-        334
-      ],
-      [
-        72.1,
-        328
-      ],
-      [
-        72.2,
-        326
-      ],
-      [
-        72.3,
-        320
-      ],
-      [
-        72.4,
-        319
-      ],
-      [
-        72.5,
-        310
-      ],
-      [
-        72.6,
-        296
-      ],
-      [
-        72.7,
-        278
-      ],
-      [
-        72.8,
-        268
-      ],
-      [
-        72.9,
-        260
-      ],
-      [
-        73.0,
-        261
-      ],
-      [
-        73.1,
-        269
-      ],
-      [
-        73.2,
-        287
-      ],
-      [
-        73.3,
-        299
-      ],
-      [
-        73.4,
-        311
-      ],
-      [
-        73.5,
-        307
-      ],
-      [
-        73.6,
-        305
-      ],
-      [
-        73.7,
-        304
-      ],
-      [
-        73.8,
-        299
-      ],
-      [
-        73.9,
-        308
-      ],
-      [
-        74.0,
-        317
-      ],
-      [
-        74.1,
-        325
-      ],
-      [
-        74.2,
-        328
-      ],
-      [
-        74.3,
-        342
-      ],
-      [
-        74.4,
-        356
-      ],
-      [
-        74.5,
-        362
-      ],
-      [
-        74.6,
-        368
-      ],
-      [
-        74.7,
-        370
-      ],
-      [
-        74.8,
-        377
-      ],
-      [
-        74.9,
-        382
-      ],
-      [
-        75.0,
-        387
-      ],
-      [
-        75.1,
-        414
-      ],
-      [
-        75.2,
-        410
-      ],
-      [
-        75.3,
-        394
-      ],
-      [
-        75.4,
-        390
-      ],
-      [
-        75.5,
-        378
-      ],
-      [
-        75.6,
-        383
-      ],
-      [
-        75.7,
-        393
-      ],
-      [
-        75.8,
+        65.6,
         399
       ],
       [
-        75.9,
-        384
+        65.7,
+        395
       ],
       [
-        76.0,
+        65.8,
         389
       ],
       [
-        76.1,
-        387
+        65.9,
+        379
       ],
       [
-        76.2,
-        386
+        66.0,
+        376
       ],
       [
-        76.3,
-        381
+        66.1,
+        367
       ],
       [
-        76.4,
-        375
+        66.2,
+        362
       ],
       [
-        76.5,
-        378
+        66.3,
+        356
       ],
       [
-        76.6,
-        392
-      ],
-      [
-        76.7,
-        384
-      ],
-      [
-        76.8,
-        377
-      ],
-      [
-        76.9,
-        374
-      ],
-      [
-        77.0,
-        372
-      ],
-      [
-        77.1,
-        366
-      ],
-      [
-        77.2,
+        66.4,
         361
       ],
       [
-        77.3,
-        354
+        66.5,
+        360
       ],
       [
-        77.4,
-        346
+        66.6,
+        361
       ],
       [
-        77.5,
-        346
-      ],
-      [
-        77.6,
-        333
-      ],
-      [
-        77.7,
-        335
-      ],
-      [
-        77.8,
+        66.7,
         348
       ],
       [
-        77.9,
-        361
+        66.8,
+        332
       ],
       [
-        78.0,
-        358
+        66.9,
+        313
       ],
       [
-        78.1,
-        372
+        67.0,
+        305
       ],
       [
-        78.2,
-        354
+        67.1,
+        311
       ],
       [
-        78.3,
-        347
+        67.2,
+        311
       ],
       [
-        78.4,
+        67.3,
+        326
+      ],
+      [
+        67.4,
+        335
+      ],
+      [
+        67.5,
+        342
+      ],
+      [
+        67.6,
         355
       ],
       [
+        67.7,
+        364
+      ],
+      [
+        67.8,
+        376
+      ],
+      [
+        67.9,
+        380
+      ],
+      [
+        68.0,
+        385
+      ],
+      [
+        68.1,
+        390
+      ],
+      [
+        68.2,
+        400
+      ],
+      [
+        68.3,
+        417
+      ],
+      [
+        68.4,
+        424
+      ],
+      [
+        68.5,
+        421
+      ],
+      [
+        68.6,
+        415
+      ],
+      [
+        68.7,
+        423
+      ],
+      [
+        68.8,
+        432
+      ],
+      [
+        68.9,
+        435
+      ],
+      [
+        69.0,
+        435
+      ],
+      [
+        69.1,
+        422
+      ],
+      [
+        69.2,
+        435
+      ],
+      [
+        69.3,
+        431
+      ],
+      [
+        69.4,
+        425
+      ],
+      [
+        69.5,
+        427
+      ],
+      [
+        69.6,
+        437
+      ],
+      [
+        69.7,
+        442
+      ],
+      [
+        69.8,
+        440
+      ],
+      [
+        69.9,
+        443
+      ],
+      [
+        70.0,
+        442
+      ],
+      [
+        70.1,
+        434
+      ],
+      [
+        70.2,
+        426
+      ],
+      [
+        70.3,
+        414
+      ],
+      [
+        70.4,
+        414
+      ],
+      [
+        70.5,
+        418
+      ],
+      [
+        70.6,
+        422
+      ],
+      [
+        70.7,
+        399
+      ],
+      [
+        70.8,
+        387
+      ],
+      [
+        70.9,
+        389
+      ],
+      [
+        71.0,
+        387
+      ],
+      [
+        71.1,
+        384
+      ],
+      [
+        71.2,
+        388
+      ],
+      [
+        71.3,
+        376
+      ],
+      [
+        71.4,
+        375
+      ],
+      [
+        71.5,
+        373
+      ],
+      [
+        71.6,
+        357
+      ],
+      [
+        71.7,
+        342
+      ],
+      [
+        71.8,
+        336
+      ],
+      [
+        71.9,
+        320
+      ],
+      [
+        72.0,
+        319
+      ],
+      [
+        72.1,
+        312
+      ],
+      [
+        72.2,
+        310
+      ],
+      [
+        72.3,
+        302
+      ],
+      [
+        72.4,
+        292
+      ],
+      [
+        72.5,
+        295
+      ],
+      [
+        72.6,
+        294
+      ],
+      [
+        72.7,
+        299
+      ],
+      [
+        72.8,
+        303
+      ],
+      [
+        72.9,
+        310
+      ],
+      [
+        73.0,
+        324
+      ],
+      [
+        73.1,
+        333
+      ],
+      [
+        73.2,
+        345
+      ],
+      [
+        73.3,
+        334
+      ],
+      [
+        73.4,
+        329
+      ],
+      [
+        73.5,
+        326
+      ],
+      [
+        73.6,
+        323
+      ],
+      [
+        73.7,
+        322
+      ],
+      [
+        73.8,
+        314
+      ],
+      [
+        73.9,
+        301
+      ],
+      [
+        74.0,
+        283
+      ],
+      [
+        74.1,
+        272
+      ],
+      [
+        74.2,
+        263
+      ],
+      [
+        74.3,
+        256
+      ],
+      [
+        74.4,
+        265
+      ],
+      [
+        74.5,
+        279
+      ],
+      [
+        74.6,
+        294
+      ],
+      [
+        74.7,
+        307
+      ],
+      [
+        74.8,
+        306
+      ],
+      [
+        74.9,
+        307
+      ],
+      [
+        75.0,
+        305
+      ],
+      [
+        75.1,
+        299
+      ],
+      [
+        75.2,
+        303
+      ],
+      [
+        75.3,
+        312
+      ],
+      [
+        75.4,
+        324
+      ],
+      [
+        75.5,
+        326
+      ],
+      [
+        75.6,
+        330
+      ],
+      [
+        75.7,
+        350
+      ],
+      [
+        75.8,
+        360
+      ],
+      [
+        75.9,
+        364
+      ],
+      [
+        76.0,
+        373
+      ],
+      [
+        76.1,
+        369
+      ],
+      [
+        76.2,
+        381
+      ],
+      [
+        76.3,
+        380
+      ],
+      [
+        76.4,
+        401
+      ],
+      [
+        76.5,
+        418
+      ],
+      [
+        76.6,
+        398
+      ],
+      [
+        76.7,
+        392
+      ],
+      [
+        76.8,
+        384
+      ],
+      [
+        76.9,
+        383
+      ],
+      [
+        77.0,
+        383
+      ],
+      [
+        77.1,
+        400
+      ],
+      [
+        77.2,
+        393
+      ],
+      [
+        77.3,
+        387
+      ],
+      [
+        77.4,
+        387
+      ],
+      [
+        77.5,
+        384
+      ],
+      [
+        77.6,
+        382
+      ],
+      [
+        77.7,
+        378
+      ],
+      [
+        77.8,
+        372
+      ],
+      [
+        77.9,
+        390
+      ],
+      [
+        78.0,
+        390
+      ],
+      [
+        78.1,
+        381
+      ],
+      [
+        78.2,
+        372
+      ],
+      [
+        78.3,
+        375
+      ],
+      [
+        78.4,
+        372
+      ],
+      [
         78.5,
-        370
+        363
       ],
       [
         78.6,
-        369
+        359
       ],
       [
         78.7,
-        369
+        348
       ],
       [
         78.8,
-        364
+        345
       ],
       [
         78.9,
-        364
+        341
       ],
       [
         79.0,
-        358
+        335
       ],
       [
         79.1,
-        358
+        341
       ],
       [
         79.2,
@@ -6906,938 +6980,990 @@
       ],
       [
         79.3,
-        353
+        355
       ],
       [
         79.4,
-        358
+        367
       ],
       [
         79.5,
-        355
+        368
       ],
       [
         79.6,
-        355
+        347
       ],
       [
         79.7,
-        354
+        349
       ],
       [
         79.8,
-        347
+        364
       ],
       [
         79.9,
-        343
+        371
       ],
       [
         80.0,
-        341
+        372
       ],
       [
         80.1,
-        338
+        365
       ],
       [
         80.2,
-        332
-      ],
-      [
-        80.3,
-        325
-      ],
-      [
-        80.4,
-        320
-      ],
-      [
-        80.5,
-        317
-      ],
-      [
-        80.6,
-        314
-      ],
-      [
-        80.7,
-        310
-      ],
-      [
-        80.8,
-        293
-      ],
-      [
-        80.9,
-        294
-      ],
-      [
-        81.0,
-        279
-      ],
-      [
-        81.1,
-        259
-      ],
-      [
-        81.2,
-        262
-      ],
-      [
-        81.3,
-        242
-      ],
-      [
-        81.4,
-        242
-      ],
-      [
-        81.5,
-        237
-      ],
-      [
-        81.6,
-        229
-      ],
-      [
-        81.7,
-        210
-      ],
-      [
-        81.8,
-        187
-      ],
-      [
-        81.9,
-        182
-      ],
-      [
-        82.0,
-        202
-      ],
-      [
-        82.1,
-        220
-      ],
-      [
-        82.2,
-        232
-      ],
-      [
-        82.3,
-        242
-      ],
-      [
-        82.4,
-        242
-      ],
-      [
-        82.5,
-        230
-      ],
-      [
-        82.6,
-        228
-      ],
-      [
-        82.7,
-        222
-      ],
-      [
-        82.8,
-        213
-      ],
-      [
-        82.9,
-        208
-      ],
-      [
-        83.0,
-        218
-      ],
-      [
-        83.1,
-        224
-      ],
-      [
-        83.2,
-        220
-      ],
-      [
-        83.3,
-        218
-      ],
-      [
-        83.4,
-        217
-      ],
-      [
-        83.5,
-        213
-      ],
-      [
-        83.6,
-        220
-      ],
-      [
-        83.7,
-        222
-      ],
-      [
-        83.8,
-        212
-      ],
-      [
-        83.9,
-        214
-      ],
-      [
-        84.0,
-        222
-      ],
-      [
-        84.1,
-        244
-      ],
-      [
-        84.2,
-        262
-      ],
-      [
-        84.3,
-        276
-      ],
-      [
-        84.4,
-        309
-      ],
-      [
-        84.5,
-        336
-      ],
-      [
-        84.6,
-        340
-      ],
-      [
-        84.7,
-        336
-      ],
-      [
-        84.8,
-        336
-      ],
-      [
-        84.9,
-        338
-      ],
-      [
-        85.0,
-        345
-      ],
-      [
-        85.1,
-        353
-      ],
-      [
-        85.2,
-        355
-      ],
-      [
-        85.3,
-        352
-      ],
-      [
-        85.4,
-        347
-      ],
-      [
-        85.5,
-        331
-      ],
-      [
-        85.6,
-        319
-      ],
-      [
-        85.7,
-        312
-      ],
-      [
-        85.8,
-        293
-      ],
-      [
-        85.9,
-        288
-      ],
-      [
-        86.0,
-        289
-      ],
-      [
-        86.1,
-        284
-      ],
-      [
-        86.2,
-        282
-      ],
-      [
-        86.3,
-        296
-      ],
-      [
-        86.4,
-        303
-      ],
-      [
-        86.5,
-        306
-      ],
-      [
-        86.6,
-        308
-      ],
-      [
-        86.7,
-        313
-      ],
-      [
-        86.8,
-        315
-      ],
-      [
-        86.9,
-        324
-      ],
-      [
-        87.0,
-        323
-      ],
-      [
-        87.1,
-        322
-      ],
-      [
-        87.2,
-        336
-      ],
-      [
-        87.3,
-        332
-      ],
-      [
-        87.4,
-        336
-      ],
-      [
-        87.5,
-        343
-      ],
-      [
-        87.6,
-        340
-      ],
-      [
-        87.7,
-        343
-      ],
-      [
-        87.8,
-        324
-      ],
-      [
-        87.9,
-        309
-      ],
-      [
-        88.0,
-        301
-      ],
-      [
-        88.1,
-        286
-      ],
-      [
-        88.2,
-        281
-      ],
-      [
-        88.3,
-        280
-      ],
-      [
-        88.4,
-        272
-      ],
-      [
-        88.5,
-        279
-      ],
-      [
-        88.6,
-        281
-      ],
-      [
-        88.7,
-        282
-      ],
-      [
-        88.8,
-        276
-      ],
-      [
-        88.9,
-        284
-      ],
-      [
-        89.0,
-        284
-      ],
-      [
-        89.1,
-        296
-      ],
-      [
-        89.2,
-        305
-      ],
-      [
-        89.3,
-        307
-      ],
-      [
-        89.4,
-        315
-      ],
-      [
-        89.5,
-        320
-      ],
-      [
-        89.6,
-        331
-      ],
-      [
-        89.7,
-        335
-      ],
-      [
-        89.8,
-        332
-      ],
-      [
-        89.9,
-        339
-      ],
-      [
-        90.0,
-        350
-      ],
-      [
-        90.1,
-        358
-      ],
-      [
-        90.2,
-        361
-      ],
-      [
-        90.3,
-        361
-      ],
-      [
-        90.4,
-        371
-      ],
-      [
-        90.5,
-        371
-      ],
-      [
-        90.6,
-        373
-      ],
-      [
-        90.7,
-        375
-      ],
-      [
-        90.8,
-        367
-      ],
-      [
-        90.9,
-        370
-      ],
-      [
-        91.0,
-        371
-      ],
-      [
-        91.1,
-        368
-      ],
-      [
-        91.2,
-        369
-      ],
-      [
-        91.3,
         363
       ],
       [
-        91.4,
-        346
+        80.3,
+        360
       ],
       [
-        91.5,
-        334
-      ],
-      [
-        91.6,
-        334
-      ],
-      [
-        91.7,
-        326
-      ],
-      [
-        91.8,
-        315
-      ],
-      [
-        91.9,
-        304
-      ],
-      [
-        92.0,
-        291
-      ],
-      [
-        92.1,
-        289
-      ],
-      [
-        92.2,
-        279
-      ],
-      [
-        92.3,
-        290
-      ],
-      [
-        92.4,
-        290
-      ],
-      [
-        92.5,
-        303
-      ],
-      [
-        92.6,
-        312
-      ],
-      [
-        92.7,
-        324
-      ],
-      [
-        92.8,
-        332
-      ],
-      [
-        92.9,
-        334
-      ],
-      [
-        93.0,
-        342
-      ],
-      [
-        93.1,
+        80.4,
         359
       ],
       [
-        93.2,
-        370
+        80.5,
+        359
       ],
       [
-        93.3,
-        392
+        80.6,
+        356
       ],
       [
-        93.4,
-        428
+        80.7,
+        359
       ],
       [
-        93.5,
-        444
+        80.8,
+        356
       ],
       [
-        93.6,
-        424
+        80.9,
+        356
       ],
       [
-        93.7,
-        412
-      ],
-      [
-        93.8,
-        393
-      ],
-      [
-        93.9,
-        374
-      ],
-      [
-        94.0,
-        367
-      ],
-      [
-        94.1,
-        387
-      ],
-      [
-        94.2,
-        407
-      ],
-      [
-        94.3,
-        426
-      ],
-      [
-        94.4,
-        447
-      ],
-      [
-        94.5,
-        422
-      ],
-      [
-        94.6,
-        408
-      ],
-      [
-        94.7,
-        402
-      ],
-      [
-        94.8,
-        383
-      ],
-      [
-        94.9,
-        368
-      ],
-      [
-        95.0,
-        340
-      ],
-      [
-        95.1,
-        337
-      ],
-      [
-        95.2,
-        331
-      ],
-      [
-        95.3,
+        81.0,
         354
       ],
       [
-        95.4,
-        371
+        81.1,
+        350
       ],
       [
-        95.5,
-        371
+        81.2,
+        343
       ],
       [
-        95.6,
-        385
+        81.3,
+        342
       ],
       [
-        95.7,
-        392
-      ],
-      [
-        95.8,
-        393
-      ],
-      [
-        95.9,
-        382
-      ],
-      [
-        96.0,
+        81.4,
         340
       ],
       [
-        96.1,
-        311
+        81.5,
+        334
       ],
       [
-        96.2,
-        300
+        81.6,
+        327
       ],
       [
-        96.3,
-        291
+        81.7,
+        323
       ],
       [
-        96.4,
-        311
+        81.8,
+        318
       ],
       [
-        96.5,
-        308
+        81.9,
+        314
       ],
       [
-        96.6,
-        294
+        82.0,
+        314
       ],
       [
-        96.7,
-        283
+        82.1,
+        304
       ],
       [
-        96.8,
-        271
+        82.2,
+        288
       ],
       [
-        96.9,
-        279
+        82.3,
+        288
       ],
       [
-        97.0,
-        280
+        82.4,
+        262
       ],
       [
-        97.1,
-        277
+        82.5,
+        263
       ],
       [
-        97.2,
-        279
-      ],
-      [
-        97.3,
-        278
-      ],
-      [
-        97.4,
-        283
-      ],
-      [
-        97.5,
-        268
-      ],
-      [
-        97.6,
-        258
-      ],
-      [
-        97.7,
-        253
-      ],
-      [
-        97.8,
+        82.6,
         246
       ],
       [
-        97.9,
-        246
-      ],
-      [
-        98.0,
-        245
-      ],
-      [
-        98.1,
+        82.7,
         242
       ],
       [
-        98.2,
-        241
+        82.8,
+        244
       ],
       [
-        98.3,
-        248
+        82.9,
+        232
       ],
       [
-        98.4,
+        83.0,
+        217
+      ],
+      [
+        83.1,
+        200
+      ],
+      [
+        83.2,
+        175
+      ],
+      [
+        83.3,
+        194
+      ],
+      [
+        83.4,
+        210
+      ],
+      [
+        83.5,
+        228
+      ],
+      [
+        83.6,
+        242
+      ],
+      [
+        83.7,
         240
       ],
       [
-        98.5,
-        237
+        83.8,
+        240
       ],
       [
-        98.6,
-        239
-      ],
-      [
-        98.7,
+        83.9,
         231
       ],
       [
-        98.8,
-        228
-      ],
-      [
-        98.9,
-        229
-      ],
-      [
-        99.0,
-        223
-      ],
-      [
-        99.1,
-        217
-      ],
-      [
-        99.2,
-        217
-      ],
-      [
-        99.3,
-        223
-      ],
-      [
-        99.4,
-        221
-      ],
-      [
-        99.5,
-        215
-      ],
-      [
-        99.6,
-        211
-      ],
-      [
-        99.7,
-        215
-      ],
-      [
-        99.8,
-        217
-      ],
-      [
-        99.9,
-        214
-      ],
-      [
-        100.0,
-        229
-      ],
-      [
-        100.1,
+        84.0,
         224
       ],
       [
-        100.2,
-        202
-      ],
-      [
-        100.3,
-        197
-      ],
-      [
-        100.4,
-        201
-      ],
-      [
-        100.5,
-        214
-      ],
-      [
-        100.6,
-        211
-      ],
-      [
-        100.7,
-        225
-      ],
-      [
-        100.8,
-        228
-      ],
-      [
-        100.9,
-        234
-      ],
-      [
-        101.0,
-        230
-      ],
-      [
-        101.1,
+        84.1,
         221
       ],
       [
+        84.2,
+        208
+      ],
+      [
+        84.3,
+        216
+      ],
+      [
+        84.4,
+        225
+      ],
+      [
+        84.5,
+        221
+      ],
+      [
+        84.6,
+        217
+      ],
+      [
+        84.7,
+        215
+      ],
+      [
+        84.8,
+        216
+      ],
+      [
+        84.9,
+        214
+      ],
+      [
+        85.0,
+        222
+      ],
+      [
+        85.1,
+        218
+      ],
+      [
+        85.2,
+        208
+      ],
+      [
+        85.3,
+        208
+      ],
+      [
+        85.4,
+        234
+      ],
+      [
+        85.5,
+        254
+      ],
+      [
+        85.6,
+        263
+      ],
+      [
+        85.7,
+        287
+      ],
+      [
+        85.8,
+        325
+      ],
+      [
+        85.9,
+        336
+      ],
+      [
+        86.0,
+        342
+      ],
+      [
+        86.1,
+        340
+      ],
+      [
+        86.2,
+        338
+      ],
+      [
+        86.3,
+        337
+      ],
+      [
+        86.4,
+        350
+      ],
+      [
+        86.5,
+        352
+      ],
+      [
+        86.6,
+        356
+      ],
+      [
+        86.7,
+        351
+      ],
+      [
+        86.8,
+        340
+      ],
+      [
+        86.9,
+        320
+      ],
+      [
+        87.0,
+        314
+      ],
+      [
+        87.1,
+        306
+      ],
+      [
+        87.2,
+        284
+      ],
+      [
+        87.3,
+        288
+      ],
+      [
+        87.4,
+        289
+      ],
+      [
+        87.5,
+        283
+      ],
+      [
+        87.6,
+        287
+      ],
+      [
+        87.7,
+        299
+      ],
+      [
+        87.8,
+        305
+      ],
+      [
+        87.9,
+        308
+      ],
+      [
+        88.0,
+        311
+      ],
+      [
+        88.1,
+        312
+      ],
+      [
+        88.2,
+        324
+      ],
+      [
+        88.3,
+        329
+      ],
+      [
+        88.4,
+        318
+      ],
+      [
+        88.5,
+        330
+      ],
+      [
+        88.6,
+        341
+      ],
+      [
+        88.7,
+        334
+      ],
+      [
+        88.8,
+        338
+      ],
+      [
+        88.9,
+        339
+      ],
+      [
+        89.0,
+        343
+      ],
+      [
+        89.1,
+        338
+      ],
+      [
+        89.2,
+        315
+      ],
+      [
+        89.3,
+        302
+      ],
+      [
+        89.4,
+        296
+      ],
+      [
+        89.5,
+        283
+      ],
+      [
+        89.6,
+        280
+      ],
+      [
+        89.7,
+        275
+      ],
+      [
+        89.8,
+        275
+      ],
+      [
+        89.9,
+        281
+      ],
+      [
+        90.0,
+        281
+      ],
+      [
+        90.1,
+        279
+      ],
+      [
+        90.2,
+        280
+      ],
+      [
+        90.3,
+        285
+      ],
+      [
+        90.4,
+        291
+      ],
+      [
+        90.5,
+        300
+      ],
+      [
+        90.6,
+        306
+      ],
+      [
+        90.7,
+        311
+      ],
+      [
+        90.8,
+        316
+      ],
+      [
+        90.9,
+        325
+      ],
+      [
+        91.0,
+        334
+      ],
+      [
+        91.1,
+        335
+      ],
+      [
+        91.2,
+        334
+      ],
+      [
+        91.3,
+        347
+      ],
+      [
+        91.4,
+        352
+      ],
+      [
+        91.5,
+        360
+      ],
+      [
+        91.6,
+        358
+      ],
+      [
+        91.7,
+        368
+      ],
+      [
+        91.8,
+        371
+      ],
+      [
+        91.9,
+        372
+      ],
+      [
+        92.0,
+        373
+      ],
+      [
+        92.1,
+        374
+      ],
+      [
+        92.2,
+        368
+      ],
+      [
+        92.3,
+        369
+      ],
+      [
+        92.4,
+        370
+      ],
+      [
+        92.5,
+        367
+      ],
+      [
+        92.6,
+        366
+      ],
+      [
+        92.7,
+        357
+      ],
+      [
+        92.8,
+        339
+      ],
+      [
+        92.9,
+        335
+      ],
+      [
+        93.0,
+        331
+      ],
+      [
+        93.1,
+        320
+      ],
+      [
+        93.2,
+        308
+      ],
+      [
+        93.3,
+        303
+      ],
+      [
+        93.4,
+        290
+      ],
+      [
+        93.5,
+        289
+      ],
+      [
+        93.6,
+        284
+      ],
+      [
+        93.7,
+        290
+      ],
+      [
+        93.8,
+        295
+      ],
+      [
+        93.9,
+        306
+      ],
+      [
+        94.0,
+        318
+      ],
+      [
+        94.1,
+        328
+      ],
+      [
+        94.2,
+        335
+      ],
+      [
+        94.3,
+        336
+      ],
+      [
+        94.4,
+        349
+      ],
+      [
+        94.5,
+        367
+      ],
+      [
+        94.6,
+        375
+      ],
+      [
+        94.7,
+        411
+      ],
+      [
+        94.8,
+        440
+      ],
+      [
+        94.9,
+        442
+      ],
+      [
+        95.0,
+        419
+      ],
+      [
+        95.1,
+        402
+      ],
+      [
+        95.2,
+        384
+      ],
+      [
+        95.3,
+        365
+      ],
+      [
+        95.4,
+        378
+      ],
+      [
+        95.5,
+        399
+      ],
+      [
+        95.6,
+        411
+      ],
+      [
+        95.7,
+        439
+      ],
+      [
+        95.8,
+        438
+      ],
+      [
+        95.9,
+        415
+      ],
+      [
+        96.0,
+        403
+      ],
+      [
+        96.1,
+        396
+      ],
+      [
+        96.2,
+        375
+      ],
+      [
+        96.3,
+        357
+      ],
+      [
+        96.4,
+        334
+      ],
+      [
+        96.5,
+        335
+      ],
+      [
+        96.6,
+        339
+      ],
+      [
+        96.7,
+        363
+      ],
+      [
+        96.8,
+        366
+      ],
+      [
+        96.9,
+        374
+      ],
+      [
+        97.0,
+        391
+      ],
+      [
+        97.1,
+        390
+      ],
+      [
+        97.2,
+        397
+      ],
+      [
+        97.3,
+        365
+      ],
+      [
+        97.4,
+        326
+      ],
+      [
+        97.5,
+        301
+      ],
+      [
+        97.6,
+        296
+      ],
+      [
+        97.7,
+        299
+      ],
+      [
+        97.8,
+        312
+      ],
+      [
+        97.9,
+        301
+      ],
+      [
+        98.0,
+        287
+      ],
+      [
+        98.1,
+        272
+      ],
+      [
+        98.2,
+        274
+      ],
+      [
+        98.3,
+        279
+      ],
+      [
+        98.4,
+        278
+      ],
+      [
+        98.5,
+        278
+      ],
+      [
+        98.6,
+        278
+      ],
+      [
+        98.7,
+        279
+      ],
+      [
+        98.8,
+        280
+      ],
+      [
+        98.9,
+        263
+      ],
+      [
+        99.0,
+        254
+      ],
+      [
+        99.1,
+        252
+      ],
+      [
+        99.2,
+        242
+      ],
+      [
+        99.3,
+        245
+      ],
+      [
+        99.4,
+        245
+      ],
+      [
+        99.5,
+        237
+      ],
+      [
+        99.6,
+        246
+      ],
+      [
+        99.7,
+        248
+      ],
+      [
+        99.8,
+        238
+      ],
+      [
+        99.9,
+        238
+      ],
+      [
+        100.0,
+        239
+      ],
+      [
+        100.1,
+        228
+      ],
+      [
+        100.2,
+        229
+      ],
+      [
+        100.3,
+        227
+      ],
+      [
+        100.4,
+        218
+      ],
+      [
+        100.5,
+        218
+      ],
+      [
+        100.6,
+        221
+      ],
+      [
+        100.7,
+        223
+      ],
+      [
+        100.8,
+        218
+      ],
+      [
+        100.9,
+        215
+      ],
+      [
+        101.0,
+        208
+      ],
+      [
+        101.1,
+        212
+      ],
+      [
         101.2,
-        207
+        219
       ],
       [
         101.3,
-        184
+        224
       ],
       [
         101.4,
-        158
+        232
       ],
       [
         101.5,
-        141
+        215
       ],
       [
         101.6,
-        137
+        189
       ],
       [
         101.7,
-        117
+        206
       ],
       [
         101.8,
-        118
+        204
       ],
       [
         101.9,
-        118
+        215
       ],
       [
         102.0,
-        118
+        215
       ],
       [
         102.1,
-        118
+        228
       ],
       [
         102.2,
-        122
+        231
       ],
       [
         102.3,
-        121
+        230
       ],
       [
         102.4,
-        122
+        227
       ],
       [
         102.5,
-        126
+        210
       ],
       [
-        102.53,
+        102.6,
+        200
+      ],
+      [
+        102.7,
+        168
+      ],
+      [
+        102.8,
+        150
+      ],
+      [
+        102.9,
+        138
+      ],
+      [
+        103.0,
+        129
+      ],
+      [
+        103.1,
+        116
+      ],
+      [
+        103.2,
+        119
+      ],
+      [
+        103.3,
+        119
+      ],
+      [
+        103.4,
+        116
+      ],
+      [
+        103.5,
+        119
+      ],
+      [
+        103.6,
+        122
+      ],
+      [
+        103.7,
+        120
+      ],
+      [
+        103.8,
+        127
+      ],
+      [
+        103.88,
         129
       ]
     ]
@@ -7877,18 +8003,18 @@
       {
         "id": "low",
         "label": "Lowest point",
-        "km": 101.7,
-        "m": 117,
-        "lat": 50.91637,
-        "lon": 14.14885
+        "km": 103.1,
+        "m": 116,
+        "lat": 50.91664,
+        "lon": 14.14837
       },
       {
         "id": "high",
         "label": "Highest point",
-        "km": 24.0,
-        "m": 723,
-        "lat": 50.791,
-        "lon": 14.10317
+        "km": 23.8,
+        "m": 722,
+        "lat": 50.79249,
+        "lon": 14.10735
       }
     ],
     "months": [
@@ -8184,9 +8310,9 @@
   },
   "landcover": {
     "source": "worldcover",
-    "retrieved": "2026-10-29T15:58:34+00:00",
+    "retrieved": "2026-10-30T13:23:31+00:00",
     "spacingM": 100,
-    "routeKm": 102.5,
+    "routeKm": 103.9,
     "stageStarts": [
       {
         "number": "1",
@@ -8194,36 +8320,36 @@
       },
       {
         "number": "2",
-        "km": 13.42
+        "km": 13.58
       },
       {
         "number": "3",
-        "km": 28.65
+        "km": 28.81
       },
       {
         "number": "4",
-        "km": 42.45
+        "km": 42.6
       },
       {
         "number": "5",
-        "km": 61.29
+        "km": 61.44
       },
       {
         "number": "6",
-        "km": 77.63
+        "km": 78.98
       },
       {
         "number": "7",
-        "km": 92.2
+        "km": 93.55
       }
     ],
     "shares": {
-      "forest": 0.962,
-      "open": 0.029,
+      "forest": 0.964,
+      "open": 0.028,
       "moss": 0.0,
       "bare": 0.0,
       "water": 0.0,
-      "farm": 0.009
+      "farm": 0.008
     },
     "runs": [
       {
@@ -8264,192 +8390,167 @@
       {
         "group": "forest",
         "fromKm": 7.45,
-        "toKm": 12.75
+        "toKm": 14.05
       },
       {
         "group": "open",
-        "fromKm": 12.75,
-        "toKm": 12.85
+        "fromKm": 14.05,
+        "toKm": 14.15
       },
       {
         "group": "forest",
-        "fromKm": 12.85,
-        "toKm": 16.85
-      },
-      {
-        "group": "open",
-        "fromKm": 16.85,
+        "fromKm": 14.15,
         "toKm": 17.05
       },
       {
-        "group": "forest",
+        "group": "farm",
         "fromKm": 17.05,
-        "toKm": 19.55
+        "toKm": 17.15
       },
       {
         "group": "open",
-        "fromKm": 19.55,
-        "toKm": 19.65
+        "fromKm": 17.15,
+        "toKm": 17.25
       },
       {
         "group": "forest",
-        "fromKm": 19.65,
-        "toKm": 25.05
+        "fromKm": 17.25,
+        "toKm": 25.15
       },
       {
         "group": "open",
-        "fromKm": 25.05,
-        "toKm": 25.25
+        "fromKm": 25.15,
+        "toKm": 25.75
+      },
+      {
+        "group": "forest",
+        "fromKm": 25.75,
+        "toKm": 28.75
       },
       {
         "group": "farm",
-        "fromKm": 25.25,
-        "toKm": 25.35
-      },
-      {
-        "group": "open",
-        "fromKm": 25.35,
-        "toKm": 25.65
+        "fromKm": 28.75,
+        "toKm": 28.85
       },
       {
         "group": "forest",
-        "fromKm": 25.65,
-        "toKm": 28.45
+        "fromKm": 28.85,
+        "toKm": 40.95
       },
       {
         "group": "open",
-        "fromKm": 28.45,
-        "toKm": 28.65
+        "fromKm": 40.95,
+        "toKm": 41.05
       },
       {
         "group": "forest",
-        "fromKm": 28.65,
-        "toKm": 40.75
+        "fromKm": 41.05,
+        "toKm": 45.55
       },
       {
         "group": "open",
-        "fromKm": 40.75,
-        "toKm": 40.85
+        "fromKm": 45.55,
+        "toKm": 45.65
       },
       {
         "group": "forest",
-        "fromKm": 40.85,
-        "toKm": 57.95
-      },
-      {
-        "group": "open",
-        "fromKm": 57.95,
-        "toKm": 58.05
-      },
-      {
-        "group": "forest",
-        "fromKm": 58.05,
-        "toKm": 60.95
-      },
-      {
-        "group": "open",
-        "fromKm": 60.95,
+        "fromKm": 45.65,
         "toKm": 61.15
       },
       {
-        "group": "forest",
+        "group": "open",
         "fromKm": 61.15,
-        "toKm": 71.25
-      },
-      {
-        "group": "open",
-        "fromKm": 71.25,
-        "toKm": 71.35
+        "toKm": 61.25
       },
       {
         "group": "forest",
-        "fromKm": 71.35,
-        "toKm": 91.35
+        "fromKm": 61.25,
+        "toKm": 61.55
       },
       {
         "group": "open",
-        "fromKm": 91.35,
-        "toKm": 91.45
+        "fromKm": 61.55,
+        "toKm": 61.65
       },
       {
         "group": "forest",
-        "fromKm": 91.45,
-        "toKm": 91.85
+        "fromKm": 61.65,
+        "toKm": 71.95
       },
       {
         "group": "open",
-        "fromKm": 91.85,
-        "toKm": 91.95
+        "fromKm": 71.95,
+        "toKm": 72.05
       },
       {
         "group": "forest",
-        "fromKm": 91.95,
-        "toKm": 92.15
+        "fromKm": 72.05,
+        "toKm": 72.65
+      },
+      {
+        "group": "open",
+        "fromKm": 72.65,
+        "toKm": 72.75
+      },
+      {
+        "group": "forest",
+        "fromKm": 72.75,
+        "toKm": 89.45
+      },
+      {
+        "group": "open",
+        "fromKm": 89.45,
+        "toKm": 89.55
+      },
+      {
+        "group": "forest",
+        "fromKm": 89.55,
+        "toKm": 93.15
+      },
+      {
+        "group": "open",
+        "fromKm": 93.15,
+        "toKm": 93.45
+      },
+      {
+        "group": "forest",
+        "fromKm": 93.45,
+        "toKm": 93.85
+      },
+      {
+        "group": "open",
+        "fromKm": 93.85,
+        "toKm": 93.95
+      },
+      {
+        "group": "forest",
+        "fromKm": 93.95,
+        "toKm": 102.95
       },
       {
         "group": "farm",
-        "fromKm": 92.15,
-        "toKm": 92.25
+        "fromKm": 102.95,
+        "toKm": 103.25
       },
       {
         "group": "forest",
-        "fromKm": 92.25,
-        "toKm": 92.35
+        "fromKm": 103.25,
+        "toKm": 103.45
       },
       {
         "group": "open",
-        "fromKm": 92.35,
-        "toKm": 92.55
-      },
-      {
-        "group": "forest",
-        "fromKm": 92.55,
-        "toKm": 92.95
-      },
-      {
-        "group": "open",
-        "fromKm": 92.95,
-        "toKm": 93.05
-      },
-      {
-        "group": "forest",
-        "fromKm": 93.05,
-        "toKm": 101.55
+        "fromKm": 103.45,
+        "toKm": 103.75
       },
       {
         "group": "farm",
-        "fromKm": 101.55,
-        "toKm": 101.85
-      },
-      {
-        "group": "forest",
-        "fromKm": 101.85,
-        "toKm": 102.05
-      },
-      {
-        "group": "open",
-        "fromKm": 102.05,
-        "toKm": 102.15
-      },
-      {
-        "group": "forest",
-        "fromKm": 102.15,
-        "toKm": 102.25
-      },
-      {
-        "group": "open",
-        "fromKm": 102.25,
-        "toKm": 102.35
-      },
-      {
-        "group": "farm",
-        "fromKm": 102.35,
-        "toKm": 102.53
+        "fromKm": 103.75,
+        "toKm": 103.88
       }
     ],
     "highestForest": {
-      "km": 24.0,
-      "m": 723
+      "km": 23.8,
+      "m": 722
     }
   }
 }
