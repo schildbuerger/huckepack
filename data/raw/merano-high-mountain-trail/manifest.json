@@ -1,0 +1,110 @@
+{
+  "climate-high.json": {
+    "retrieved": "2026-10-29T21:56:40+00:00",
+    "url": "https://archive-api.open-meteo.com/v1/archive?latitude=46.75535&longitude=11.02674&elevation=2889&start_date=1995-01-01&end_date=2024-12-31&daily=temperature_2m_max,temperature_2m_min,precipitation_sum,snowfall_sum,wind_speed_10m_max,wind_gusts_10m_max&timezone=auto"
+  },
+  "climate-low.json": {
+    "retrieved": "2026-10-29T21:55:28+00:00",
+    "url": "https://archive-api.open-meteo.com/v1/archive?latitude=46.77214&longitude=11.20305&elevation=807&start_date=1995-01-01&end_date=2024-12-31&daily=temperature_2m_max,temperature_2m_min,precipitation_sum,snowfall_sum,wind_speed_10m_max,wind_gusts_10m_max&timezone=auto"
+  },
+  "elevation-glo30.json": {
+    "retrieved": "2026-10-29T21:54:16+00:00",
+    "url": "https://copernicus-dem-30m.s3.eu-central-1.amazonaws.com/Copernicus_DSM_COG_10_N46_00_E010_00_DEM/Copernicus_DSM_COG_10_N46_00_E010_00_DEM.tif https://copernicus-dem-30m.s3.eu-central-1.amazonaws.com/Copernicus_DSM_COG_10_N46_00_E011_00_DEM/Copernicus_DSM_COG_10_N46_00_E011_00_DEM.tif"
+  },
+  "landcover.json": {
+    "retrieved": "2026-10-29T21:54:17+00:00",
+    "url": "https://esa-worldcover.s3.eu-central-1.amazonaws.com/v200/2021/map/ESA_WorldCover_10m_2021_v200_\u2026_Map.tif"
+  },
+  "osm-stage-1-main.json": {
+    "retrieved": "2026-10-29T21:30:43+00:00",
+    "url": "https://overpass-api.de/api/interpreter"
+  },
+  "osm-stage-2-main.json": {
+    "retrieved": "2026-10-29T21:33:54+00:00",
+    "url": "https://overpass-api.de/api/interpreter"
+  },
+  "osm-stage-3-main.json": {
+    "retrieved": "2026-10-29T21:36:08+00:00",
+    "url": "https://overpass-api.de/api/interpreter"
+  },
+  "osm-stage-4-main.json": {
+    "retrieved": "2026-10-29T21:38:08+00:00",
+    "url": "https://overpass-api.de/api/interpreter"
+  },
+  "osm-stage-5-main.json": {
+    "retrieved": "2026-10-29T21:39:19+00:00",
+    "url": "https://overpass-api.de/api/interpreter"
+  },
+  "osm-stage-6-main.json": {
+    "retrieved": "2026-10-29T21:40:12+00:00",
+    "url": "https://overpass-api.de/api/interpreter"
+  },
+  "osm-stage-7-main.json": {
+    "retrieved": "2026-10-29T21:48:00+00:00",
+    "url": "https://overpass-api.de/api/interpreter"
+  },
+  "osm-stage-8-main.json": {
+    "retrieved": "2026-10-29T21:49:21+00:00",
+    "url": "https://overpass-api.de/api/interpreter"
+  },
+  "osm-stage-9-main.json": {
+    "retrieved": "2026-10-29T21:50:37+00:00",
+    "url": "https://overpass-api.de/api/interpreter"
+  },
+  "osm-water.json": {
+    "retrieved": "2026-10-29T23:27:32+00:00",
+    "url": "https://overpass-api.de/api/interpreter"
+  },
+  "osm-way-tags.json": {
+    "retrieved": "2026-10-29T21:54:12+00:00",
+    "url": "https://overpass-api.de/api/interpreter"
+  },
+  "osrm-access-innsbruck-airport-inn.json": {
+    "retrieved": "2026-10-29T21:56:40+00:00",
+    "url": "https://router.project-osrm.org/route/v1/driving/11.34187,47.25973;11.13862,46.81221?overview=false"
+  },
+  "osrm-access-merano-station.json": {
+    "retrieved": "2026-10-29T21:56:40+00:00",
+    "url": "https://router.project-osrm.org/route/v1/driving/11.15009,46.67266;11.13862,46.81221?overview=false"
+  },
+  "osrm-access-verona-airport-vrn.json": {
+    "retrieved": "2026-10-29T21:56:40+00:00",
+    "url": "https://router.project-osrm.org/route/v1/driving/10.8859,45.39717;11.13862,46.81221?overview=false"
+  },
+  "stage-1-main.gpx": {
+    "retrieved": "2026-10-29T21:29:59+00:00",
+    "url": "https://www.meranerland.org/external/gpx/?id=4356&lang_id=12"
+  },
+  "stage-2-main.gpx": {
+    "retrieved": "2026-10-29T21:30:49+00:00",
+    "url": "https://www.meranerland.org/external/gpx/?id=4364&lang_id=12"
+  },
+  "stage-3-main.gpx": {
+    "retrieved": "2026-10-29T21:34:16+00:00",
+    "url": "https://www.meranerland.org/external/gpx/?id=4374&lang_id=12"
+  },
+  "stage-4-main.gpx": {
+    "retrieved": "2026-10-29T21:36:13+00:00",
+    "url": "https://www.meranerland.org/external/gpx/?id=4380&lang_id=12"
+  },
+  "stage-5-main.gpx": {
+    "retrieved": "2026-10-29T21:38:24+00:00",
+    "url": "https://www.meranerland.org/external/gpx/?id=4389&lang_id=12"
+  },
+  "stage-6-main.gpx": {
+    "retrieved": "2026-10-29T21:39:24+00:00",
+    "url": "https://www.meranerland.org/external/gpx/?id=4398&lang_id=12"
+  },
+  "stage-7-main.gpx": {
+    "retrieved": "2026-10-29T21:40:18+00:00",
+    "url": "https://www.meranerland.org/external/gpx/?id=4407&lang_id=12"
+  },
+  "stage-8-main.gpx": {
+    "retrieved": "2026-10-29T21:48:06+00:00",
+    "url": "https://www.meranerland.org/external/gpx/?id=4412&lang_id=12"
+  },
+  "stage-9-main.gpx": {
+    "retrieved": "2026-10-29T21:49:26+00:00",
+    "url": "https://www.meranerland.org/external/gpx/?id=4421&lang_id=12"
+  }
+}

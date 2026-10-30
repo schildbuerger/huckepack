@@ -1,0 +1,98 @@
+{
+  "climate-high.json": {
+    "retrieved": "2026-10-29T22:28:05+00:00",
+    "url": "https://archive-api.open-meteo.com/v1/archive?latitude=56.67625&longitude=-4.91442&elevation=549&start_date=1995-01-01&end_date=2024-12-31&daily=temperature_2m_max,temperature_2m_min,precipitation_sum,snowfall_sum,wind_speed_10m_max,wind_gusts_10m_max&timezone=auto"
+  },
+  "climate-low.json": {
+    "retrieved": "2026-10-29T22:26:53+00:00",
+    "url": "https://archive-api.open-meteo.com/v1/archive?latitude=56.81917&longitude=-5.10906&elevation=6&start_date=1995-01-01&end_date=2024-12-31&daily=temperature_2m_max,temperature_2m_min,precipitation_sum,snowfall_sum,wind_speed_10m_max,wind_gusts_10m_max&timezone=auto"
+  },
+  "elevation-glo30.json": {
+    "retrieved": "2026-10-29T22:25:38+00:00",
+    "url": "https://copernicus-dem-30m.s3.eu-central-1.amazonaws.com/Copernicus_DSM_COG_10_N55_00_W005_00_DEM/Copernicus_DSM_COG_10_N55_00_W005_00_DEM.tif https://copernicus-dem-30m.s3.eu-central-1.amazonaws.com/Copernicus_DSM_COG_10_N56_00_W005_00_DEM/Copernicus_DSM_COG_10_N56_00_W005_00_DEM.tif https://copernicus-dem-30m.s3.eu-central-1.amazonaws.com/Copernicus_DSM_COG_10_N56_00_W006_00_DEM/Copernicus_DSM_COG_10_N56_00_W006_00_DEM.tif"
+  },
+  "landcover.json": {
+    "retrieved": "2026-10-29T22:25:40+00:00",
+    "url": "https://esa-worldcover.s3.eu-central-1.amazonaws.com/v200/2021/map/ESA_WorldCover_10m_2021_v200_\u2026_Map.tif"
+  },
+  "osm-relation-19772649.json": {
+    "retrieved": "2026-10-29T21:58:39+00:00",
+    "url": "https://overpass-api.de/api/interpreter"
+  },
+  "osm-relation-19772650.json": {
+    "retrieved": "2026-10-29T22:04:09+00:00",
+    "url": "https://overpass-api.de/api/interpreter"
+  },
+  "osm-relation-19772651.json": {
+    "retrieved": "2026-10-29T22:05:28+00:00",
+    "url": "https://overpass-api.de/api/interpreter"
+  },
+  "osm-relation-19772652.json": {
+    "retrieved": "2026-10-29T22:09:59+00:00",
+    "url": "https://overpass-api.de/api/interpreter"
+  },
+  "osm-relation-19772653.json": {
+    "retrieved": "2026-10-29T22:11:50+00:00",
+    "url": "https://overpass-api.de/api/interpreter"
+  },
+  "osm-relation-19772654.json": {
+    "retrieved": "2026-10-29T22:18:16+00:00",
+    "url": "https://overpass-api.de/api/interpreter"
+  },
+  "osm-relation-19772655.json": {
+    "retrieved": "2026-10-29T22:20:07+00:00",
+    "url": "https://overpass-api.de/api/interpreter"
+  },
+  "osm-relation-19772656.json": {
+    "retrieved": "2026-10-29T22:22:58+00:00",
+    "url": "https://overpass-api.de/api/interpreter"
+  },
+  "osm-stage-1-main.json": {
+    "retrieved": "2026-10-29T21:59:34+00:00",
+    "url": "https://overpass-api.de/api/interpreter"
+  },
+  "osm-stage-2-main.json": {
+    "retrieved": "2026-10-29T22:04:48+00:00",
+    "url": "https://overpass-api.de/api/interpreter"
+  },
+  "osm-stage-3-main.json": {
+    "retrieved": "2026-10-29T22:09:23+00:00",
+    "url": "https://overpass-api.de/api/interpreter"
+  },
+  "osm-stage-4-main.json": {
+    "retrieved": "2026-10-29T22:10:45+00:00",
+    "url": "https://overpass-api.de/api/interpreter"
+  },
+  "osm-stage-5-main.json": {
+    "retrieved": "2026-10-29T22:17:39+00:00",
+    "url": "https://overpass-api.de/api/interpreter"
+  },
+  "osm-stage-6-main.json": {
+    "retrieved": "2026-10-29T22:18:59+00:00",
+    "url": "https://overpass-api.de/api/interpreter"
+  },
+  "osm-stage-7-main.json": {
+    "retrieved": "2026-10-29T22:21:05+00:00",
+    "url": "https://overpass-api.de/api/interpreter"
+  },
+  "osm-stage-8-main.json": {
+    "retrieved": "2026-10-29T22:23:39+00:00",
+    "url": "https://overpass-api.de/api/interpreter"
+  },
+  "osm-water.json": {
+    "retrieved": "2026-10-29T22:24:36+00:00",
+    "url": "https://overpass-api.de/api/interpreter"
+  },
+  "osm-way-tags.json": {
+    "retrieved": "2026-10-29T22:25:16+00:00",
+    "url": "https://overpass-api.de/api/interpreter"
+  },
+  "osrm-access-glasgow-airport-gla.json": {
+    "retrieved": "2026-10-29T22:25:21+00:00",
+    "url": "https://router.project-osrm.org/route/v1/driving/-4.4357,55.87056;-4.31783,55.94149?overview=false"
+  },
+  "osrm-access-glasgow-queen-street.json": {
+    "retrieved": "2026-10-29T22:25:21+00:00",
+    "url": "https://router.project-osrm.org/route/v1/driving/-4.25112,55.86256;-4.31783,55.94149?overview=false"
+  }
+}

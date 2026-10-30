@@ -6,7 +6,10 @@
 Trails without GPX tracks can name their OSM hiking relation instead (`route.relation`, plus
 `route.alternatives`, ways with role "alternative" that close gaps in the main members): its
 ways are chained into one line from the start, split at each stage's `end` point, and each piece
-guides the matcher like a GPX track would (cached as osm-relation.json).
+guides the matcher like a GPX track would (cached as osm-relation.json). Where OSM maps the trail
+as one relation per section (a superroute), each stage can name its own `relation` instead: its
+ways are chained from where the previous stage ended (the trail's start for the first) and guide
+that stage (cached as osm-relation-<id>.json).
 
 For each stage with a `track` URL in data/trails/<slug>.yaml: download the GPX and the OSM
 ways around it (both cached in data/raw/<slug>/, with manifest.json recording when each was
@@ -17,11 +20,13 @@ match covers the track. Prints a report; stages that cover less than 95% of thei
 a look (OSM may be missing a path there).
 """
 
+import http.client
 import json
 import math
 import re
 import sys
 import time
+import urllib.error
 import urllib.request
 from datetime import datetime, timezone
 from pathlib import Path
@@ -63,18 +68,33 @@ class Cache:
 
 
 def http_get(url):
+    """Download url, retrying when the connection drops or the server is busy."""
     request = urllib.request.Request(url, headers={"User-Agent": USER_AGENT})
-    with urllib.request.urlopen(request, timeout=60) as response:
-        return response.read()
+    for attempt in range(5):
+        try:
+            with urllib.request.urlopen(request, timeout=60) as response:
+                return response.read()
+        except (urllib.error.URLError, http.client.IncompleteRead, TimeoutError):
+            if attempt == 4:
+                raise
+            time.sleep(10 * (attempt + 1))
 
 
 def track_points(gpx):
-    """(lon, lat) of every track point, whichever order the attributes come in."""
+    """(lon, lat) of every track point, whichever order the attributes come in. A `track` can also
+    be a tour page that carries its track as schema.org data instead of a GPX file ("geo":
+    GeoShape "line": "lat lon lat lon …", as Outdooractive's pages do, whose GPX download needs a
+    login); it is cached under the same .gpx name, so it stays local like the GPX files."""
     points = []
     for attrs in re.findall(r"<trkpt\b([^>]*)>", gpx):
         lat = re.search(r'\blat="([-\d.]+)"', attrs)
         lon = re.search(r'\blon="([-\d.]+)"', attrs)
         points.append((float(lon.group(1)), float(lat.group(1))))
+    if not points:
+        shape = re.search(r'"@type"\s*:\s*"GeoShape"\s*,\s*"line"\s*:\s*"([-\d.\s]+)"', gpx)
+        if shape:
+            values = [float(v) for v in shape.group(1).split()]
+            points = [(lon, lat) for lat, lon in zip(values[::2], values[1::2])]
     if len(points) < 2:
         raise ValueError("track has fewer than two points")
     return points
@@ -104,12 +124,13 @@ def relation_line(relation, alternatives, start):
     """The relation's main ways (and the chosen alternatives) chained into one (lon, lat) line
     from the end nearest `start`; each next way is the one whose end is nearest, flipped to fit."""
     elements = relation["elements"]
-    rel = next(e for e in elements if e["type"] == "relation")
     ways = {e["id"]: e for e in elements if e["type"] == "way"}
+    # the relation's own ways, and those of its child relations where it is made of sections
     wanted = [
         ways[m["ref"]]["geometry"]
+        for rel in (e for e in elements if e["type"] == "relation")
         for m in rel["members"]
-        if m["type"] == "way" and (m.get("role", "") == "" or m["ref"] in alternatives)
+        if m["type"] == "way" and m["ref"] in ways and (m.get("role", "") == "" or m["ref"] in alternatives)
     ]
     proj = osm.Projection(start[1])
     xy = lambda p: proj.xy(p["lon"], p["lat"])
@@ -151,7 +172,7 @@ def split_at(line, stages):
 def build(slug, refresh=False):
     trail = yaml.safe_load((ROOT / "data" / "trails" / f"{slug}.yaml").read_text())
     all_stages = trail.get("stages", {}).get("list", [])
-    stages = [s for s in all_stages if s.get("track")]
+    stages = [s for s in all_stages if s.get("track") or s.get("relation")]
     cache = Cache(slug, refresh)
     guides = {}
     relation = trail.get("route", {}).get("relation")
@@ -167,10 +188,19 @@ def build(slug, refresh=False):
         raise SystemExit(f"{slug}: no stage has a track (or an end point and a route.relation)")
     features, stage_ways = [], []
     print(f"{'stage':<12} {'stated':>7} {'track':>7} {'osm':>7} {'covered':>8} {'max off':>8}")
+    start = trail["termini"]["start"]
+    previous_end = (start["lon"], start["lat"])
     for stage in stages:
         label = f"{stage['number']}-{stage['kind']}"
         if stage["number"] in guides:
             track = guides[stage["number"]]
+        elif stage.get("relation"):
+            rid = stage["relation"]
+            query = f"[out:json][timeout:120];relation({rid});(._;rel(r););out body;way(r);out geom;"
+            data, fetched = cache.get(f"osm-relation-{rid}.json", osm.OVERPASS, lambda: json.dumps(osm.fetch(query), separators=(",", ":")).encode())
+            if fetched:
+                time.sleep(5)
+            track = relation_line(json.loads(data), stage.get("alternatives", []), previous_end)
         else:
             gpx, _ = cache.get(f"stage-{label}.gpx", stage["track"], lambda: http_get(stage["track"]))
             track = track_points(gpx)
@@ -182,6 +212,8 @@ def build(slug, refresh=False):
         if fetched:
             time.sleep(5)  # be polite to the public Overpass server
         line, report = osm.match(track, json.loads(ways))
+        if stage["kind"] == "main":
+            previous_end = track[-1]
         print(
             f"{label:<12} {stage['km']:>6.1f}k {report['track_km']:>6.1f}k {report['km']:>6.1f}k"
             f" {report['covered']:>7.0%} {report['max_off_m']:>7.0f}m"

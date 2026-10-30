@@ -1,0 +1,178 @@
+name: West Highland Way
+localName: Slighe Taobh an Iar na Gàidhealtachd
+aliases: [WHW]
+website: https://www.westhighlandway.org/
+managedBy:
+  # the councils along the Way, the national park authority and NatureScot (Wikipedia)
+  - name: West Highland Way Management Group
+    url: https://www.westhighlandway.org/
+trailType: point-to-point
+continents: [Europe]
+countries: [GB]
+regions: [East Dunbartonshire, Stirling, Argyll and Bute, Highland]
+protectedAreas:
+  - Loch Lomond and The Trossachs National Park
+  - Ben Nevis and Glen Coe National Scenic Area
+termini:
+  # the start at Douglas Street in Milngavie and the end in Gordon Square, Fort William (OSM)
+  start:
+    name: Milngavie
+    lat: 55.94149
+    lon: -4.31783
+  end:
+    name: Fort William
+    lat: 56.81638
+    lon: -5.11395
+  source: osm
+established:
+  year: 1980
+  source: wikipedia
+waymarking:
+  text: Waymarked along its length
+  source: whw-faq
+length:
+  # "96 miles from Milngavie to Fort William"
+  - km: 154
+    source: whw
+days:
+  # "On average it takes six to seven days"; the suggested itineraries run from 5 to 7 days
+  min: 6
+  max: 7
+  source: whw-faq
+stages:
+  # the official site's eight route sections, with its distances and start and finish heights; it
+  # gives no ascent, descent or times. No GPX (the official link points to Walkhighlands, which
+  # doesn't allow downloads): each stage names its OSM section relation (superroute 16287)
+  source: whw
+  list:
+    - { number: "1", kind: main, from: Milngavie, to: Drymen, km: 19, startEleM: 51, endEleM: 64, relation: 19772649 }
+    - { number: "2", kind: main, from: Drymen, to: Rowardennan, km: 22.5, startEleM: 64, endEleM: 10, relation: 19772650 }
+    - { number: "3", kind: main, from: Rowardennan, to: Inverarnan, km: 22.5, startEleM: 10, endEleM: 27, relation: 19772651 }
+    - { number: "4", kind: main, from: Inverarnan, to: Tyndrum, km: 19.3, startEleM: 27, endEleM: 237, relation: 19772652 }
+    - { number: "5", kind: main, from: Tyndrum, to: Inveroran, km: 14.5, startEleM: 237, endEleM: 176, relation: 19772653 }
+    - { number: "6", kind: main, from: Inveroran, to: Kingshouse, km: 16, startEleM: 176, endEleM: 244, relation: 19772654 }
+    - { number: "7", kind: main, from: Kingshouse, to: Kinlochleven, km: 14.5, startEleM: 244, endEleM: 5, relation: 19772655 }
+    - { number: "8", kind: main, from: Kinlochleven, to: Fort William, km: 24, startEleM: 5, endEleM: 5, relation: 19772656 }
+route:
+  # built by `python -m pipeline.routes west-highland-way`: OSM ways matched to the section relations
+  source: osm
+  publishable: true
+difficulty:
+  # no grade is published; our estimate from the official section descriptions
+  estimated:
+    sac: T2
+    basis: >-
+      The official sections describe good paths and tracks most of the way, old military and
+      parliamentary roads, and one significant climb over Conic Hill; beyond Rowardennan the path
+      gets rougher, with rocky stretches, crags and boulders along Loch Lomond, and it is very
+      exposed across Rannoch Moor and before Kinlochleven (Devil's Staircase, about 550 m). That
+      is mountain hiking (T2), with weather the main difficulty.
+    source: whw
+season:
+  # the Way can be walked all year; in winter (November to March) snow and ice on the high
+  # northern ground make it a walk for the fit with winter navigation skills
+  months: [4, 5, 6, 7, 8, 9, 10]
+  text: April to October; in winter only for fit walkers with winter navigation skills
+  source: whw-faq
+sleeping:
+  # the official listings: hotels, B&Bs and guest houses, self-catering, bunkhouses and hostels, campsites
+  types: [hotel, guesthouse, hostel, campsite]
+  source: whw-places
+wildCamping:
+  status: restricted
+  rule: >-
+    Allowed under the Scottish Outdoor Access Code: lightweight, in small numbers, two or three
+    nights in one place at most, away from buildings, roads and fields, leaving no trace. In Loch
+    Lomond and The Trossachs National Park, camping byelaws apply from March to September (a
+    permit or a campsite in the camping management zones along the loch).
+  source: whw-faq
+access:
+  # trains to Milngavie leave from Glasgow Queen Street; Glasgow Airport. Coordinates from OSM;
+  # distances by pipeline/access.py
+  - kind: station
+    name: Glasgow Queen Street
+    lat: 55.86256
+    lon: -4.25112
+    source: osm
+  - kind: airport
+    name: Glasgow Airport (GLA)
+    lat: 55.87056
+    lon: -4.4357
+    source: osm
+tags: [highlands, lochs, moorland, glens]
+notes:
+  - >-
+    The official site gives 96 miles; its eight sections add up to 152.3 km (Drymen to Rowardennan
+    and Rowardennan to Inverarnan are given as 15 and 14 miles but 22.5 km each).
+  - >-
+    The official route skirts Drymen; many walkers stop in the village (official section page).
+  - >-
+    The official site gives no ascent and descent per section, only height ranges and start and
+    finish heights; the page estimates the climbs from the terrain model.
+  - >-
+    Route (pipeline, 2026-10-29): the OSM section relations (superroute 16287; the first section is
+    itself made of two sub-relations) match all eight sections to 100 %.
+  - >-
+    Data check (2026-10-29). Second source: Wikipedia (154 km, opened 6 October 1980, the management
+    group's members, the sections Milngavie – Drymen 19 km, Drymen – Rowardennan 13 + 11 km,
+    Inverarnan – Tyndrum 19.5 km, Tyndrum – Kingshouse about 30 km, Kingshouse – Kinlochleven 14 km,
+    Kinlochleven – Fort William 24 km) agrees within 10 %. More than 10 % apart: Rowardennan –
+    Inverarnan (22.5 km against 19.5 km) and the days (six to seven officially, "seven to eight"
+    on Wikipedia), and the ascent: Wikipedia gives 3,155 m, the official site none, and the page's
+    terrain-model estimate is ≈ 3,930 m up and ≈ 3,990 m down (the 30 m surface model adds the
+    treetops and small noise to every 100 m step, so it likely runs high). Highest point 549 m
+    from the terrain model against Wikipedia's 550 m (Devil's Staircase).
+dataCheck:
+  # working rule 2: Wikipedia as the second source
+  date: 2026-10-29
+  against: [wikipedia]
+  deviations:
+    - { figure: "Stage 3 length", ours: "22.5 km", theirs: "19.5 km", source: wikipedia }
+    - { figure: "Days", ours: "6–7 days", theirs: "7–8 days", source: wikipedia }
+    - { figure: "Ascent", ours: "≈ 3,930 m (our estimate)", theirs: "3,155 m", source: wikipedia }
+sources:
+  - id: whw
+    title: "West Highland Way Management Group: the official site (route sections with distances and heights)"
+    url: https://www.westhighlandway.org/the-route/milngavie-to-drymen/
+    licence: All rights reserved (facts only)
+    retrieved: 2026-10-29
+  - id: whw-faq
+    title: "West Highland Way: frequently asked questions (days, season, waymarking, camping)"
+    url: https://www.westhighlandway.org/plan-your-trip/frequently-asked-questions/
+    licence: All rights reserved (facts only)
+    retrieved: 2026-10-29
+  - id: whw-places
+    title: "West Highland Way: accommodation and services listings"
+    url: https://www.westhighlandway.org/places/category/bb-guest-house/
+    licence: All rights reserved (facts only)
+    retrieved: 2026-10-29
+  - id: wikipedia
+    title: "Wikipedia: West Highland Way (opened, management group, ascent, days)"
+    url: https://en.wikipedia.org/wiki/West_Highland_Way
+    licence: CC BY-SA 4.0
+    retrieved: 2026-10-29
+  - id: osm
+    title: "OpenStreetMap contributors: the West Highland Way section relations (superroute 16287), paths along the Way and travel hubs (via Overpass API)"
+    url: https://www.openstreetmap.org/relation/16287
+    licence: ODbL 1.0
+    retrieved: 2026-10-29
+  - id: copdem
+    title: "Copernicus DEM GLO-30 (30 m terrain model), tiles from AWS Open Data"
+    url: https://registry.opendata.aws/copernicus-dem/
+    licence: "Copernicus WorldDEM-30 licence, free; produced using Copernicus WorldDEM-30 © DLR e.V. 2010-2014 and © Airbus Defence and Space GmbH 2014-2018 provided under COPERNICUS by the European Union and ESA; all rights reserved"
+    retrieved: 2026-10-29
+  - id: worldcover
+    title: "ESA WorldCover 2021: 10 m land cover (via AWS Open Data)"
+    url: https://esa-worldcover.org/
+    licence: "CC BY 4.0; © ESA WorldCover project 2021 / Contains modified Copernicus Sentinel data (2021) processed by ESA WorldCover consortium"
+    retrieved: 2026-10-29
+  - id: era5
+    title: "Open-Meteo Historical Weather API: ERA5 and ERA5-Land reanalysis, daily 1995–2024"
+    url: https://open-meteo.com/en/docs/historical-weather-api
+    licence: CC BY 4.0 (Open-Meteo); contains modified Copernicus Climate Change Service information
+    retrieved: 2026-10-29
+  - id: osrm
+    title: "OSRM: road routes on OpenStreetMap data (router.project-osrm.org)"
+    url: https://project-osrm.org/
+    licence: Route data © OpenStreetMap contributors (ODbL)
+    retrieved: 2026-10-29

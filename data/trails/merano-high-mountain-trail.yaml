@@ -1,0 +1,201 @@
+name: Merano High Mountain Trail
+localName: Meraner Höhenweg
+aliases: [Alta Via di Merano, Path 24]
+website: https://www.meranerland.org/en/leisure-activities/mountains-and-hiking/alta-via-di-merano
+managedBy:
+  # created and marked by mountain guides of the Alpenverein Südtirol; promoted by the tourist
+  # association of Merano and environs, around the Texelgruppe Nature Park
+  - name: Tourismusverband Meraner Land (Merano and environs)
+    url: https://www.merano-suedtirol.it/en/
+  - name: Alpenverein Südtirol (AVS)
+    url: https://www.alpenverein.it/
+trailType: loop
+continents: [Europe]
+countries: [IT]
+regions: [Trentino-South Tyrol]
+protectedAreas:
+  - Texelgruppe Nature Park (Parco naturale Gruppo di Tessa)
+termini:
+  # the official stage 1 starts (and stage 9 ends) at Ausserhütt (Capanne di Fuori) in the
+  # Pfelders valley; first point of the stage 1 GPX
+  start:
+    name: Ausserhütt (Capanne di Fuori)
+    lat: 46.81221
+    lon: 11.13862
+  end:
+    name: Ausserhütt (Capanne di Fuori)
+    lat: 46.81221
+    lon: 11.13862
+  source: meranerland
+established:
+  year: 1985
+  source: brochure
+waymarking:
+  text: Path no. 24 on every section
+  source: meranerland
+length:
+  - km: 100
+    approx: true
+    source: meranerland
+days:
+  # "in five to eight daily stages"; the nine official stages can be walked one to three a day
+  min: 5
+  max: 8
+  source: brochure
+stages:
+  # the official site's nine stages, clockwise, with its times, lengths and climbs; each with the
+  # official GPX (kept local, it only guides the OSM matcher)
+  source: meranerland
+  list:
+    - { number: "1", kind: main, from: Ausserhütt, to: Matatz, km: 12.7, ascentM: 391, descentM: 787, minutes: 240, track: "https://www.meranerland.org/external/gpx/?id=4356&lang_id=12" }
+    - { number: "2", kind: main, from: Matatz, to: Vernuer, km: 12.0, ascentM: 637, descentM: 599, minutes: 230, track: "https://www.meranerland.org/external/gpx/?id=4364&lang_id=12" }
+    - { number: "3", kind: main, from: Vernuer, to: Muthöfe, km: 7.8, ascentM: 582, descentM: 351, minutes: 225, track: "https://www.meranerland.org/external/gpx/?id=4374&lang_id=12" }
+    - { number: "4", kind: main, from: Leiter Alm, to: Giggelberg, km: 11.8, ascentM: 604, descentM: 555, minutes: 260, track: "https://www.meranerland.org/external/gpx/?id=4380&lang_id=12" }
+    - { number: "5", kind: main, from: Giggelberg, to: Unterstell, km: 8.6, ascentM: 449, descentM: 701, minutes: 180, track: "https://www.meranerland.org/external/gpx/?id=4389&lang_id=12" }
+    - { number: "6", kind: main, from: Unterstell, to: Katharinaberg, km: 7.1, ascentM: 381, descentM: 427, minutes: 150, track: "https://www.meranerland.org/external/gpx/?id=4398&lang_id=12" }
+    - { number: "7", kind: main, from: Katharinaberg, to: Vorderkaser, km: 7.5, ascentM: 588, descentM: 148, minutes: 180, track: "https://www.meranerland.org/external/gpx/?id=4407&lang_id=12" }
+    - { number: "8", kind: main, from: Vorderkaser, to: Stettiner Hütte, km: 11.8, ascentM: 1212, descentM: 31, minutes: 270, track: "https://www.meranerland.org/external/gpx/?id=4412&lang_id=12" }
+    - { number: "9", kind: main, from: Stettiner Hütte, to: Ausserhütt, km: 14.6, ascentM: 32, descentM: 1451, minutes: 260, track: "https://www.meranerland.org/external/gpx/?id=4421&lang_id=12" }
+route:
+  # built by `python -m pipeline.routes merano-high-mountain-trail`: OSM ways matched to the official GPX
+  source: osm
+  publishable: true
+difficulty:
+  # no grade is published; our estimate from the official descriptions
+  estimated:
+    sac: T3
+    basis: >-
+      The tourist association writes for "experienced and sure-footed hikers": some places need
+      sure-footedness, a head for heights and care, exposed places have chains, ropes or
+      railings (steps and cables before Giggelberg, the "Thousand Steps" gorge), and the trail
+      crosses the Eisjöchl at about 2,895 m to the Stettiner Hütte; it is "often described as
+      easy and safe - but we can't quite confirm this". Secured, exposed passages make it
+      demanding mountain hiking (T3).
+    source: brochure
+season:
+  # the northern part with the Eisjöchl is a summer tour; the southern and eastern parts all year
+  months: [6, 7, 8, 9, 10]
+  text: Late June to early October for the whole loop, depending on snow
+  source: infosheet
+sleeping:
+  # the brochure lists mountain huts (Schutzhäuser), inns and guesthouses, farms with rooms or flats
+  # and a campsite in Pfelders
+  types: [hut, guesthouse, farm-stay, campsite]
+  source: brochure
+wildCamping:
+  status: prohibited
+  rule: >-
+    Camping is not allowed in the Texelgruppe Nature Park, which the trail runs around and through.
+  source: texelgruppe
+access:
+  # Merano is the main station (buses into the valleys, cable cars to the stage starts);
+  # airports at Innsbruck and Verona. Coordinates from OSM; distances by pipeline/access.py
+  - kind: station
+    name: Merano station
+    lat: 46.67266
+    lon: 11.15009
+    source: osm
+  - kind: airport
+    name: Innsbruck Airport (INN)
+    lat: 47.25973
+    lon: 11.34187
+    source: osm
+  - kind: airport
+    name: Verona Airport (VRN)
+    lat: 45.39717
+    lon: 10.8859
+    source: osm
+tags: [alpine, loop, nature-park, huts, farms]
+notes:
+  - >-
+    Name: the official English pages use both "Merano High Mountain Trail" (merano-suedtirol.it)
+    and "Alta Via di Merano" (meranerland.org); the German name is Meraner Höhenweg. The record
+    keeps the English name with the German as the local name.
+  - >-
+    The nine official stages add up to 93.9 km, 4,876 m of ascent and 5,050 m of descent, against
+    "almost 100 km". They don't join everywhere: stage 3 ends at the Muthöfe farmsteads and stage 4
+    starts at the Leiter Alm, and several stage ends are a little off the loop where cable cars
+    or buses arrive, so ascent and descent don't balance on the loop.
+  - >-
+    Opened in 1985 at Katharinaberg; created by the AVS mountain guides Robert Schönweger and
+    Helmuth Ellmenreich (brochure).
+  - >-
+    The stage pages show every month as the recommended time of year (each stage is also a day
+    hike); the season comes from the tourist association's info sheet: the northern part is a
+    summer tour from late June to early October depending on snow, the southern and eastern parts
+    are walkable all year.
+  - >-
+    A section between Katharinaberg and the Pfossental has been closed at times because of rockfall
+    (reported by third parties); check current notices before walking.
+  - >-
+    Route (pipeline, 2026-10-29): the OSM match covers 100 % of eight stage tracks and 91 % of
+    stage 3 (Vernuer – Muthöfe), where OSM is probably missing a short path; the map line's main
+    route is 89.8 km, shorter than the 93.9 km stage sum because the stages don't join everywhere.
+    Highest point from the terrain model 2,889 m (Eisjöchl, officially 2,895 m).
+  - >-
+    Data check (2026-10-29). Second source: German Wikipedia (93 km in its infobox and "ca. 100 km"
+    in the text against the official "almost 100 km" and the stage sum of 93.9 km; opened 1985;
+    highest point Eisjöchl 2,895 m; path no. 24; summer season, July to September in the infobox)
+    agrees. More than 10 % apart: Wikipedia's "four to six daily stages" against the brochure's
+    five to eight. Its "ca. 6,000 m" of ascent and descent isn't comparable (combined or rounded).
+    No independent source gives the stage figures, so the stage lengths, times and climbs were
+    checked on the built page against the official stage pages.
+dataCheck:
+  # working rule 2: Wikipedia for the overview; the stages checked on the page against the stage pages
+  date: 2026-10-29
+  against: [wikipedia]
+  pageAgainst: [meranerland]
+  deviations:
+    - { figure: "Days", ours: "5–8 days", theirs: "4–6 days", source: wikipedia }
+sources:
+  - id: meranerland
+    title: "Merano and environs: Alta Via di Merano, overview and nine stage pages (times, lengths, climbs, GPX)"
+    url: https://www.meranerland.org/en/leisure-activities/mountains-and-hiking/alta-via-di-merano
+    licence: All rights reserved (facts only)
+    retrieved: 2026-10-29
+  - id: brochure
+    title: "Tourismusverband Meraner Land: Der Meraner Höhenweg im Naturpark Texelgruppe (brochure: history, stages, accommodation)"
+    url: https://www.merano-suedtirol.it/media/79917956-52b8-47dd-a6b6-3d7bfd4d7471/meraner-land-meraner-hoehenweg.pdf
+    licence: All rights reserved (facts only)
+    retrieved: 2026-10-29
+  - id: infosheet
+    title: "Tourismusverband Meraner Land: Meraner Höhenweg info sheet 2026 (season)"
+    url: https://www.merano-suedtirol.it/media/8d9d6a04-d8f4-40f7-b8a6-7e38480fafc6/meraner-hoehenweg-2026-1.pdf
+    licence: All rights reserved (facts only)
+    retrieved: 2026-10-29
+  - id: texelgruppe
+    title: "Naturpark Texelgruppe: rules for visitors (no camping), brochure via Algund tourist office"
+    url: https://www.algund.info/files/content/99395_11674_1_0/de-texelgruppe.pdf
+    licence: All rights reserved (facts only)
+    retrieved: 2026-10-29
+  - id: wikipedia
+    title: "Wikipedia (de): Meraner Höhenweg (data check)"
+    url: https://de.wikipedia.org/wiki/Meraner_H%C3%B6henweg
+    licence: CC BY-SA 4.0
+    retrieved: 2026-10-29
+    checkOnly: true
+  - id: osm
+    title: "OpenStreetMap contributors: paths along the trail and travel hubs (via Overpass API)"
+    url: https://www.openstreetmap.org/
+    licence: ODbL 1.0
+    retrieved: 2026-10-29
+  - id: copdem
+    title: "Copernicus DEM GLO-30 (30 m terrain model), tiles from AWS Open Data"
+    url: https://registry.opendata.aws/copernicus-dem/
+    licence: "Copernicus WorldDEM-30 licence, free; produced using Copernicus WorldDEM-30 © DLR e.V. 2010-2014 and © Airbus Defence and Space GmbH 2014-2018 provided under COPERNICUS by the European Union and ESA; all rights reserved"
+    retrieved: 2026-10-29
+  - id: worldcover
+    title: "ESA WorldCover 2021: 10 m land cover (via AWS Open Data)"
+    url: https://esa-worldcover.org/
+    licence: "CC BY 4.0; © ESA WorldCover project 2021 / Contains modified Copernicus Sentinel data (2021) processed by ESA WorldCover consortium"
+    retrieved: 2026-10-29
+  - id: era5
+    title: "Open-Meteo Historical Weather API: ERA5 and ERA5-Land reanalysis, daily 1995–2024"
+    url: https://open-meteo.com/en/docs/historical-weather-api
+    licence: CC BY 4.0 (Open-Meteo); contains modified Copernicus Climate Change Service information
+    retrieved: 2026-10-29
+  - id: osrm
+    title: "OSRM: road routes on OpenStreetMap data (router.project-osrm.org)"
+    url: https://project-osrm.org/
+    licence: Route data © OpenStreetMap contributors (ODbL)
+    retrieved: 2026-10-29

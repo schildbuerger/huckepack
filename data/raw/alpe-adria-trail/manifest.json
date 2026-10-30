@@ -1,0 +1,390 @@
+{
+  "climate-high.json": {
+    "retrieved": "2026-10-29T22:52:32+00:00",
+    "url": "https://archive-api.open-meteo.com/v1/archive?latitude=47.07533&longitude=12.75082&elevation=2358&start_date=1995-01-01&end_date=2024-12-31&daily=temperature_2m_max,temperature_2m_min,precipitation_sum,snowfall_sum,wind_speed_10m_max,wind_gusts_10m_max&timezone=auto"
+  },
+  "climate-low.json": {
+    "retrieved": "2026-10-29T22:51:21+00:00",
+    "url": "https://archive-api.open-meteo.com/v1/archive?latitude=45.78654&longitude=13.59167&elevation=1&start_date=1995-01-01&end_date=2024-12-31&daily=temperature_2m_max,temperature_2m_min,precipitation_sum,snowfall_sum,wind_speed_10m_max,wind_gusts_10m_max&timezone=auto"
+  },
+  "elevation-glo30.json": {
+    "retrieved": "2026-10-29T22:50:06+00:00",
+    "url": "https://copernicus-dem-30m.s3.eu-central-1.amazonaws.com/Copernicus_DSM_COG_10_N45_00_E013_00_DEM/Copernicus_DSM_COG_10_N45_00_E013_00_DEM.tif https://copernicus-dem-30m.s3.eu-central-1.amazonaws.com/Copernicus_DSM_COG_10_N46_00_E012_00_DEM/Copernicus_DSM_COG_10_N46_00_E012_00_DEM.tif https://copernicus-dem-30m.s3.eu-central-1.amazonaws.com/Copernicus_DSM_COG_10_N46_00_E013_00_DEM/Copernicus_DSM_COG_10_N46_00_E013_00_DEM.tif https://copernicus-dem-30m.s3.eu-central-1.amazonaws.com/Copernicus_DSM_COG_10_N46_00_E014_00_DEM/Copernicus_DSM_COG_10_N46_00_E014_00_DEM.tif https://copernicus-dem-30m.s3.eu-central-1.amazonaws.com/Copernicus_DSM_COG_10_N47_00_E012_00_DEM/Copernicus_DSM_COG_10_N47_00_E012_00_DEM.tif https://copernicus-dem-30m.s3.eu-central-1.amazonaws.com/Copernicus_DSM_COG_10_N47_00_E013_00_DEM/Copernicus_DSM_COG_10_N47_00_E013_00_DEM.tif"
+  },
+  "landcover.json": {
+    "retrieved": "2026-10-29T22:50:09+00:00",
+    "url": "https://esa-worldcover.s3.eu-central-1.amazonaws.com/v200/2021/map/ESA_WorldCover_10m_2021_v200_\u2026_Map.tif"
+  },
+  "osm-stage-1-main.json": {
+    "retrieved": "2026-10-29T21:21:41+00:00",
+    "url": "https://overpass-api.de/api/interpreter"
+  },
+  "osm-stage-10-main.json": {
+    "retrieved": "2026-10-29T21:36:52+00:00",
+    "url": "https://overpass-api.de/api/interpreter"
+  },
+  "osm-stage-11-main.json": {
+    "retrieved": "2026-10-29T21:37:48+00:00",
+    "url": "https://overpass-api.de/api/interpreter"
+  },
+  "osm-stage-12-main.json": {
+    "retrieved": "2026-10-29T21:39:11+00:00",
+    "url": "https://overpass-api.de/api/interpreter"
+  },
+  "osm-stage-13-main.json": {
+    "retrieved": "2026-10-29T21:42:22+00:00",
+    "url": "https://overpass-api.de/api/interpreter"
+  },
+  "osm-stage-14-main.json": {
+    "retrieved": "2026-10-29T21:43:21+00:00",
+    "url": "https://overpass-api.de/api/interpreter"
+  },
+  "osm-stage-15-main.json": {
+    "retrieved": "2026-10-29T21:49:57+00:00",
+    "url": "https://overpass-api.de/api/interpreter"
+  },
+  "osm-stage-16-main.json": {
+    "retrieved": "2026-10-29T21:52:17+00:00",
+    "url": "https://overpass-api.de/api/interpreter"
+  },
+  "osm-stage-17-main.json": {
+    "retrieved": "2026-10-29T21:53:19+00:00",
+    "url": "https://overpass-api.de/api/interpreter"
+  },
+  "osm-stage-18-main.json": {
+    "retrieved": "2026-10-29T21:54:31+00:00",
+    "url": "https://overpass-api.de/api/interpreter"
+  },
+  "osm-stage-19-main.json": {
+    "retrieved": "2026-10-29T21:55:32+00:00",
+    "url": "https://overpass-api.de/api/interpreter"
+  },
+  "osm-stage-2-main.json": {
+    "retrieved": "2026-10-29T21:22:50+00:00",
+    "url": "https://overpass-api.de/api/interpreter"
+  },
+  "osm-stage-20-main.json": {
+    "retrieved": "2026-10-29T21:56:26+00:00",
+    "url": "https://overpass-api.de/api/interpreter"
+  },
+  "osm-stage-21-main.json": {
+    "retrieved": "2026-10-29T21:57:23+00:00",
+    "url": "https://overpass-api.de/api/interpreter"
+  },
+  "osm-stage-22-main.json": {
+    "retrieved": "2026-10-29T21:58:14+00:00",
+    "url": "https://overpass-api.de/api/interpreter"
+  },
+  "osm-stage-23-main.json": {
+    "retrieved": "2026-10-29T22:00:14+00:00",
+    "url": "https://overpass-api.de/api/interpreter"
+  },
+  "osm-stage-24-main.json": {
+    "retrieved": "2026-10-29T22:01:18+00:00",
+    "url": "https://overpass-api.de/api/interpreter"
+  },
+  "osm-stage-25-main.json": {
+    "retrieved": "2026-10-29T22:02:17+00:00",
+    "url": "https://overpass-api.de/api/interpreter"
+  },
+  "osm-stage-26-main.json": {
+    "retrieved": "2026-10-29T22:04:26+00:00",
+    "url": "https://overpass-api.de/api/interpreter"
+  },
+  "osm-stage-27-main.json": {
+    "retrieved": "2026-10-29T22:06:31+00:00",
+    "url": "https://overpass-api.de/api/interpreter"
+  },
+  "osm-stage-28-main.json": {
+    "retrieved": "2026-10-29T22:07:29+00:00",
+    "url": "https://overpass-api.de/api/interpreter"
+  },
+  "osm-stage-29-main.json": {
+    "retrieved": "2026-10-29T22:08:08+00:00",
+    "url": "https://overpass-api.de/api/interpreter"
+  },
+  "osm-stage-3-main.json": {
+    "retrieved": "2026-10-29T21:25:04+00:00",
+    "url": "https://overpass-api.de/api/interpreter"
+  },
+  "osm-stage-30-main.json": {
+    "retrieved": "2026-10-29T22:16:10+00:00",
+    "url": "https://overpass-api.de/api/interpreter"
+  },
+  "osm-stage-31-main.json": {
+    "retrieved": "2026-10-29T22:17:14+00:00",
+    "url": "https://overpass-api.de/api/interpreter"
+  },
+  "osm-stage-32-main.json": {
+    "retrieved": "2026-10-29T22:19:41+00:00",
+    "url": "https://overpass-api.de/api/interpreter"
+  },
+  "osm-stage-33-main.json": {
+    "retrieved": "2026-10-29T22:21:49+00:00",
+    "url": "https://overpass-api.de/api/interpreter"
+  },
+  "osm-stage-34-main.json": {
+    "retrieved": "2026-10-29T22:22:39+00:00",
+    "url": "https://overpass-api.de/api/interpreter"
+  },
+  "osm-stage-35-main.json": {
+    "retrieved": "2026-10-29T22:26:47+00:00",
+    "url": "https://overpass-api.de/api/interpreter"
+  },
+  "osm-stage-36-main.json": {
+    "retrieved": "2026-10-29T22:27:31+00:00",
+    "url": "https://overpass-api.de/api/interpreter"
+  },
+  "osm-stage-37-main.json": {
+    "retrieved": "2026-10-29T22:28:48+00:00",
+    "url": "https://overpass-api.de/api/interpreter"
+  },
+  "osm-stage-4-main.json": {
+    "retrieved": "2026-10-29T21:26:11+00:00",
+    "url": "https://overpass-api.de/api/interpreter"
+  },
+  "osm-stage-5-main.json": {
+    "retrieved": "2026-10-29T21:26:46+00:00",
+    "url": "https://overpass-api.de/api/interpreter"
+  },
+  "osm-stage-6-main.json": {
+    "retrieved": "2026-10-29T21:27:29+00:00",
+    "url": "https://overpass-api.de/api/interpreter"
+  },
+  "osm-stage-7-main.json": {
+    "retrieved": "2026-10-29T21:29:28+00:00",
+    "url": "https://overpass-api.de/api/interpreter"
+  },
+  "osm-stage-8-main.json": {
+    "retrieved": "2026-10-29T21:30:13+00:00",
+    "url": "https://overpass-api.de/api/interpreter"
+  },
+  "osm-stage-9-main.json": {
+    "retrieved": "2026-10-29T21:34:53+00:00",
+    "url": "https://overpass-api.de/api/interpreter"
+  },
+  "osm-stage-R1-variant.json": {
+    "retrieved": "2026-10-29T22:29:50+00:00",
+    "url": "https://overpass-api.de/api/interpreter"
+  },
+  "osm-stage-R2-variant.json": {
+    "retrieved": "2026-10-29T22:32:13+00:00",
+    "url": "https://overpass-api.de/api/interpreter"
+  },
+  "osm-stage-R3-variant.json": {
+    "retrieved": "2026-10-29T22:34:46+00:00",
+    "url": "https://overpass-api.de/api/interpreter"
+  },
+  "osm-stage-R4-variant.json": {
+    "retrieved": "2026-10-29T22:35:35+00:00",
+    "url": "https://overpass-api.de/api/interpreter"
+  },
+  "osm-stage-R5-variant.json": {
+    "retrieved": "2026-10-29T22:36:34+00:00",
+    "url": "https://overpass-api.de/api/interpreter"
+  },
+  "osm-stage-R6-variant.json": {
+    "retrieved": "2026-10-29T22:37:32+00:00",
+    "url": "https://overpass-api.de/api/interpreter"
+  },
+  "osm-stage-R7-variant.json": {
+    "retrieved": "2026-10-29T22:38:22+00:00",
+    "url": "https://overpass-api.de/api/interpreter"
+  },
+  "osm-water.json": {
+    "retrieved": "2026-10-30T00:09:52+00:00",
+    "url": "https://overpass-api.de/api/interpreter"
+  },
+  "osm-way-tags.json": {
+    "retrieved": "2026-10-29T22:49:50+00:00",
+    "url": "https://overpass-api.de/api/interpreter"
+  },
+  "osrm-access-klagenfurt-airport-klu.json": {
+    "retrieved": "2026-10-29T22:52:33+00:00",
+    "url": "https://router.project-osrm.org/route/v1/driving/14.3286,46.64348;12.75081,47.07533?overview=false"
+  },
+  "osrm-access-lienz-station.json": {
+    "retrieved": "2026-10-29T22:52:33+00:00",
+    "url": "https://router.project-osrm.org/route/v1/driving/12.77127,46.82885;12.75081,47.07533?overview=false"
+  },
+  "osrm-access-salzburg-airport-szg.json": {
+    "retrieved": "2026-10-29T22:52:33+00:00",
+    "url": "https://router.project-osrm.org/route/v1/driving/13.00183,47.79346;12.75081,47.07533?overview=false"
+  },
+  "stage-1-main.gpx": {
+    "retrieved": "2026-10-29T21:19:38+00:00",
+    "url": "https://touren.kaernten.at/en/r/1549613/"
+  },
+  "stage-10-main.gpx": {
+    "retrieved": "2026-10-29T21:19:38+00:00",
+    "url": "https://touren.kaernten.at/en/r/1528782/"
+  },
+  "stage-11-main.gpx": {
+    "retrieved": "2026-10-29T21:19:38+00:00",
+    "url": "https://touren.kaernten.at/en/r/1549733/"
+  },
+  "stage-12-main.gpx": {
+    "retrieved": "2026-10-29T21:19:38+00:00",
+    "url": "https://touren.kaernten.at/en/r/2808951/"
+  },
+  "stage-13-main.gpx": {
+    "retrieved": "2026-10-29T21:19:38+00:00",
+    "url": "https://touren.kaernten.at/en/r/1524338/"
+  },
+  "stage-14-main.gpx": {
+    "retrieved": "2026-10-29T21:19:38+00:00",
+    "url": "https://touren.kaernten.at/en/r/2808948/"
+  },
+  "stage-15-main.gpx": {
+    "retrieved": "2026-10-29T21:19:38+00:00",
+    "url": "https://touren.kaernten.at/en/r/1487114/"
+  },
+  "stage-16-main.gpx": {
+    "retrieved": "2026-10-29T21:19:38+00:00",
+    "url": "https://touren.kaernten.at/en/r/1497752/"
+  },
+  "stage-17-main.gpx": {
+    "retrieved": "2026-10-29T21:19:38+00:00",
+    "url": "https://touren.kaernten.at/en/r/1485787/"
+  },
+  "stage-18-main.gpx": {
+    "retrieved": "2026-10-29T21:19:38+00:00",
+    "url": "https://touren.kaernten.at/en/r/1549902/"
+  },
+  "stage-19-main.gpx": {
+    "retrieved": "2026-10-29T21:19:38+00:00",
+    "url": "https://touren.kaernten.at/en/r/1544341/"
+  },
+  "stage-2-main.gpx": {
+    "retrieved": "2026-10-29T21:19:38+00:00",
+    "url": "https://touren.kaernten.at/en/r/1507859/"
+  },
+  "stage-20-main.gpx": {
+    "retrieved": "2026-10-29T21:19:38+00:00",
+    "url": "https://touren.kaernten.at/en/r/1560353/"
+  },
+  "stage-21-main.gpx": {
+    "retrieved": "2026-10-29T21:19:38+00:00",
+    "url": "https://touren.kaernten.at/en/r/1519021/"
+  },
+  "stage-22-main.gpx": {
+    "retrieved": "2026-10-29T21:19:38+00:00",
+    "url": "https://touren.kaernten.at/en/r/1540088/"
+  },
+  "stage-23-main.gpx": {
+    "retrieved": "2026-10-29T21:19:38+00:00",
+    "url": "https://touren.kaernten.at/en/r/2807533/"
+  },
+  "stage-24-main.gpx": {
+    "retrieved": "2026-10-29T21:19:38+00:00",
+    "url": "https://touren.kaernten.at/en/r/2807542/"
+  },
+  "stage-25-main.gpx": {
+    "retrieved": "2026-10-29T21:19:38+00:00",
+    "url": "https://touren.kaernten.at/en/r/2807529/"
+  },
+  "stage-26-main.gpx": {
+    "retrieved": "2026-10-29T21:19:38+00:00",
+    "url": "https://touren.kaernten.at/en/r/2807520/"
+  },
+  "stage-27-main.gpx": {
+    "retrieved": "2026-10-29T21:19:38+00:00",
+    "url": "https://touren.kaernten.at/en/r/2807528/"
+  },
+  "stage-28-main.gpx": {
+    "retrieved": "2026-10-29T21:19:38+00:00",
+    "url": "https://touren.kaernten.at/en/r/2808058/"
+  },
+  "stage-29-main.gpx": {
+    "retrieved": "2026-10-29T21:19:38+00:00",
+    "url": "https://touren.kaernten.at/en/r/5579261/"
+  },
+  "stage-3-main.gpx": {
+    "retrieved": "2026-10-29T21:19:38+00:00",
+    "url": "https://touren.kaernten.at/en/r/2947576/"
+  },
+  "stage-30-main.gpx": {
+    "retrieved": "2026-10-29T21:19:38+00:00",
+    "url": "https://touren.kaernten.at/en/r/5579296/"
+  },
+  "stage-31-main.gpx": {
+    "retrieved": "2026-10-29T21:19:38+00:00",
+    "url": "https://touren.kaernten.at/en/r/2807527/"
+  },
+  "stage-32-main.gpx": {
+    "retrieved": "2026-10-29T21:19:38+00:00",
+    "url": "https://touren.kaernten.at/en/r/2808052/"
+  },
+  "stage-33-main.gpx": {
+    "retrieved": "2026-10-29T21:19:38+00:00",
+    "url": "https://touren.kaernten.at/en/r/2807523/"
+  },
+  "stage-34-main.gpx": {
+    "retrieved": "2026-10-29T21:19:38+00:00",
+    "url": "https://touren.kaernten.at/en/r/2807517/"
+  },
+  "stage-35-main.gpx": {
+    "retrieved": "2026-10-29T21:19:38+00:00",
+    "url": "https://touren.kaernten.at/en/r/2807540/"
+  },
+  "stage-36-main.gpx": {
+    "retrieved": "2026-10-29T21:19:38+00:00",
+    "url": "https://touren.kaernten.at/en/r/5579322/"
+  },
+  "stage-37-main.gpx": {
+    "retrieved": "2026-10-29T21:19:38+00:00",
+    "url": "https://touren.kaernten.at/en/r/5579364/"
+  },
+  "stage-4-main.gpx": {
+    "retrieved": "2026-10-29T21:19:38+00:00",
+    "url": "https://touren.kaernten.at/en/r/2947848/"
+  },
+  "stage-5-main.gpx": {
+    "retrieved": "2026-10-29T21:19:38+00:00",
+    "url": "https://touren.kaernten.at/en/r/3854170/"
+  },
+  "stage-6-main.gpx": {
+    "retrieved": "2026-10-29T21:19:38+00:00",
+    "url": "https://touren.kaernten.at/en/r/2809583/"
+  },
+  "stage-7-main.gpx": {
+    "retrieved": "2026-10-29T21:19:38+00:00",
+    "url": "https://touren.kaernten.at/en/r/1487683/"
+  },
+  "stage-8-main.gpx": {
+    "retrieved": "2026-10-29T21:19:38+00:00",
+    "url": "https://touren.kaernten.at/en/r/4480197/"
+  },
+  "stage-9-main.gpx": {
+    "retrieved": "2026-10-29T21:19:38+00:00",
+    "url": "https://touren.kaernten.at/en/r/1529508/"
+  },
+  "stage-R1-variant.gpx": {
+    "retrieved": "2026-10-29T21:19:38+00:00",
+    "url": "https://touren.kaernten.at/en/r/2805409/"
+  },
+  "stage-R2-variant.gpx": {
+    "retrieved": "2026-10-29T21:19:38+00:00",
+    "url": "https://touren.kaernten.at/en/r/2809539/"
+  },
+  "stage-R3-variant.gpx": {
+    "retrieved": "2026-10-29T21:19:38+00:00",
+    "url": "https://touren.kaernten.at/en/r/2809544/"
+  },
+  "stage-R4-variant.gpx": {
+    "retrieved": "2026-10-29T21:19:38+00:00",
+    "url": "https://touren.kaernten.at/en/r/2811130/"
+  },
+  "stage-R5-variant.gpx": {
+    "retrieved": "2026-10-29T21:19:38+00:00",
+    "url": "https://touren.kaernten.at/en/r/2811144/"
+  },
+  "stage-R6-variant.gpx": {
+    "retrieved": "2026-10-29T21:19:38+00:00",
+    "url": "https://touren.kaernten.at/en/r/2811158/"
+  },
+  "stage-R7-variant.gpx": {
+    "retrieved": "2026-10-29T21:19:38+00:00",
+    "url": "https://touren.kaernten.at/en/r/9891263/"
+  }
+}

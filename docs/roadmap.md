@@ -19,6 +19,11 @@ Also in progress: **Laugavegur** (Iceland, Landmannalaugar – Þórsmörk, 4 st
 record, built from Ferðafélag Íslands' trail and hut pages; no official GPX, so the map line follows
 the OSM hiking relation (`data/trails/laugavegur.yaml`).
 
+Added on 2026-10-29: **Alpe-Adria-Trail** (Austria, Slovenia, Italy, 37 main stages and the
+7-stage circular route, about 750 km; tracks from Kärnten Werbung's stage pages),
+**West Highland Way** (Scotland, 8 sections, 154 km; the OSM section relations) and the
+**Merano High Mountain Trail** (Meraner Höhenweg, South Tyrol, 9 stages, about 100 km; the official GPX).
+
 | # | Trail | Region | Length (approx.) | Why |
 |---|---|---|---|---|
 | 1 | Pacific Crest Trail | USA | 4,265 km | Most-hiked long trail; public US agency data; completion lists |
@@ -28,7 +33,7 @@ the OSM hiking relation (`data/trails/laugavegur.yaml`).
 | 5 | GR 20 | Corsica, France | 180 km | Best-known European thru-hike |
 | 6 | Continental Divide Trail | USA | 5,000 km | Completes the Triple Crown |
 | 7 | Kungsleden | Sweden | 440 km | Well-known Nordic trail |
-| 8 | West Highland Way | Scotland | 154 km | Popular, well documented |
+| 8 | ~~West Highland Way~~ (added) | Scotland | 154 km | Popular, well documented |
 | 9 | Lycian Way | Turkey | 540 km | Well-known Mediterranean route |
 | 10 | Israel National Trail | Israel | 1,000 km | Popular desert-to-sea route |
 

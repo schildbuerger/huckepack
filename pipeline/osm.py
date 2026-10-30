@@ -93,7 +93,10 @@ def around(line_lonlat, max_points=150):
     Thinning cuts corners, so callers query a wider radius and filter precisely afterwards."""
     stride = max(1, len(line_lonlat) // max_points)
     thin = line_lonlat[::stride] + [line_lonlat[-1]]
-    return ",".join(f"{lat:.5f},{lon:.5f}" for lon, lat in thin)
+    # no point twice in a row: a zero-length segment makes Overpass's `around` match nothing at
+    # all, silently (the last point is often already in the thinned line)
+    pairs = [f"{lat:.5f},{lon:.5f}" for lon, lat in thin]
+    return ",".join(p for i, p in enumerate(pairs) if i == 0 or p != pairs[i - 1])
 
 
 def overpass_query(track_lonlat):
@@ -118,6 +121,13 @@ def fetch(query):
         try:
             with urllib.request.urlopen(request, timeout=180) as response:
                 data = json.loads(response.read())
+            # Overpass reports a timeout or memory error as a remark with an empty result and status
+            # 200; never return (and cache) that as if nothing were there
+            if "runtime error" in data.get("remark", ""):
+                if attempt == 4:
+                    raise RuntimeError(f"Overpass: {data['remark']}")
+                time.sleep(30 * (attempt + 1))
+                continue
             data["retrieved"] = datetime.now(timezone.utc).isoformat(timespec="seconds")
             return data
         except (urllib.error.HTTPError, urllib.error.URLError, http.client.IncompleteRead) as error:

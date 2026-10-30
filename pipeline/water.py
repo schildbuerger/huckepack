@@ -19,6 +19,7 @@ them is the same tap and is left out.
 
 import json
 import math
+import time
 import sys
 from pathlib import Path
 
@@ -30,6 +31,7 @@ from pipeline.routes import Cache
 ROOT = Path(__file__).resolve().parent.parent
 WITHIN_M = 250
 QUERY_M = 400  # wider than WITHIN_M: the query line is thinned (see osm.around)
+CHUNK = 150  # map-line points per Overpass query (about 10 km), so each bounding box stays small
 SAME_M = 100  # an OSM tap this close to a record's water point is the same one
 
 
@@ -82,16 +84,34 @@ def build(slug, refresh=False):
         walked += sum(math.dist(a, b) for a, b in zip(lines[i], lines[i][1:]))
     total_km = walked / 1000
 
-    query = (
-        "[out:json][timeout:120];("
-        + "".join(
-            f'node{f}(around:{QUERY_M},{osm.around(every, 300)});'
-            for f in ('["amenity"~"^(drinking_water|water_point)$"]', '["man_made"="water_tap"]', '["natural"="spring"]')
+    def query(points):
+        # the bounding box of a piece of the route (plus QUERY_M); the precise WITHIN_M filter
+        # below keeps only points near the line. Boxes rather than Overpass's polyline `around`,
+        # which sometimes silently matches nothing
+        lons, lats = [p[0] for p in points], [p[1] for p in points]
+        pad = QUERY_M / 111_000
+        box = f"{min(lats) - pad:.5f},{min(lons) - pad * 1.5:.5f},{max(lats) + pad:.5f},{max(lons) + pad * 1.5:.5f}"
+        return (
+            "[out:json][timeout:120];("
+            + "".join(
+                f"node{f}({box});"
+                for f in ('["amenity"~"^(drinking_water|water_point)$"]', '["man_made"="water_tap"]', '["natural"="spring"]')
+            )
+            + ");out body;"
         )
-        + ");out body;"
-    )
+
+    def download():
+        # in pieces of about CHUNK points, so each box stays small and no query runs out of time
+        elements, last = {}, None
+        for i in range(0, len(every), CHUNK):
+            last = osm.fetch(query(every[i : i + CHUNK + 1]))
+            elements.update({e["id"]: e for e in last["elements"]})
+            if len(every) > CHUNK:
+                time.sleep(3)
+        return json.dumps({**last, "elements": list(elements.values())}).encode()
+
     cache = Cache(slug, refresh)
-    data, _ = cache.get("osm-water.json", osm.OVERPASS, lambda: json.dumps(osm.fetch(query)).encode())
+    data, _ = cache.get("osm-water.json", osm.OVERPASS, download)
     data = json.loads(data)
 
     trail = yaml.safe_load((ROOT / "data" / "trails" / f"{slug}.yaml").read_text())

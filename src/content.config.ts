@@ -65,6 +65,9 @@ const stage = z.object({
   track: z.url().optional(), // the stage's GPX track; pipeline/routes.py builds the map line from it
   // without a track: where the stage ends, to split the route's OSM relation (route.relation)
   end: z.object({ lat: z.number(), lon: z.number() }).optional(),
+  // or the stage's own OSM hiking relation (a section of a superroute): chained from where the
+  // previous stage ended, it guides the matcher like a track
+  relation: z.number().int().positive().optional(),
 });
 
 const trail = z

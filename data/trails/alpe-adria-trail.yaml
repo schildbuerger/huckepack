@@ -1,0 +1,239 @@
+name: Alpe-Adria-Trail
+aliases: [Alpe Adria Trail, AAT]
+website: https://www.alpe-adria-trail.com/en/
+managedBy:
+  # a cross-border Interreg project of the three regions' tourism boards
+  - name: Kärnten Werbung (Carinthia)
+    url: https://www.kaernten.at/
+  - name: Slovenian Tourist Board
+    url: https://www.slovenia.info/
+  - name: PromoTurismoFVG (Friuli Venezia Giulia)
+    url: https://www.turismofvg.it/
+trailType: point-to-point
+continents: [Europe]
+countries: [AT, SI, IT]
+regions: [Carinthia, Upper Carniola, Gorizia, Coastal–Karst, Friuli-Venezia Giulia]
+protectedAreas:
+  - Hohe Tauern National Park
+  - Nockberge Biosphere Park
+  - Triglav National Park
+termini:
+  # first and last points of the official tracks of stages 1 and 37
+  start:
+    name: Kaiser-Franz-Josefs-Höhe (Grossglockner)
+    lat: 47.07533
+    lon: 12.75081
+  end:
+    name: Muggia
+    lat: 45.6043
+    lon: 13.76929
+  source: aat-tours
+waymarking:
+  text: The Alpe-Adria-Trail logo on the existing hiking signposts, as stickers and painted along the path; signposted in both directions
+  source: aat
+length:
+  - km: 750
+    approx: true
+    source: aat
+days:
+  # one official daily stage a day along the main route
+  min: 37
+  max: 37
+  source: aat-tours
+stages:
+  # Kärnten Werbung's official stage pages (touren.kaernten.at, Outdooractive): 37 main stages
+  # from the Grossglockner to Muggia, and the 7 stages of the circular route around the
+  # Dreiländereck (Faaker See – Villach – Tarvisio – Kranjska Gora) as variants. Each `track` is the
+  # stage page, whose track (schema.org GeoShape) guides the route matcher; kept local like a GPX.
+  source: aat-tours
+  list:
+    - { number: "1", kind: main, from: "Kaiser-Franz-Josefs-Höhe", to: "Heiligenblut", km: 13.9, ascentM: 106, descentM: 1189, minutes: 330, track: "https://touren.kaernten.at/en/r/1549613/" }
+    - { number: "2", kind: main, from: "Heiligenblut", to: "Döllach", km: 12.5, ascentM: 424, descentM: 712, minutes: 285, track: "https://touren.kaernten.at/en/r/1507859/" }
+    - { number: "3", kind: main, from: "Döllach", to: "Marterle", km: 18.4, ascentM: 939, descentM: 127, minutes: 420, track: "https://touren.kaernten.at/en/r/2947576/" }
+    - { number: "4", kind: main, from: "Marterle", to: "Stall", km: 12.3, ascentM: 97, descentM: 1098, minutes: 270, track: "https://touren.kaernten.at/en/r/2947848/" }
+    - { number: "5", kind: main, from: "Stall", to: "Innerfragant", km: 20.2, ascentM: 1086, descentM: 836, minutes: 465, track: "https://touren.kaernten.at/en/r/3854170/" }
+    - { number: "6", kind: main, from: "Innerfragant", to: "Mallnitz", km: 23.0, ascentM: 1052, descentM: 936, minutes: 480, track: "https://touren.kaernten.at/en/r/2809583/" }
+    - { number: "7", kind: main, from: "Mallnitz", to: "Obervellach", km: 18.6, ascentM: 206, descentM: 713, minutes: 360, track: "https://touren.kaernten.at/en/r/1487683/" }
+    - { number: "8", kind: main, from: "Obervellach", to: "Kolbnitz", km: 17.5, ascentM: 753, descentM: 813, minutes: 330, track: "https://touren.kaernten.at/en/r/4480197/" }
+    - { number: "9", kind: main, from: "Kolbnitz", to: "Hühnersberg", km: 16.4, ascentM: 670, descentM: 220, minutes: 375, track: "https://touren.kaernten.at/en/r/1529508/" }
+    - { number: "10", kind: main, from: "Hühnersberg", to: "Gmünd", km: 12.6, ascentM: 151, descentM: 444, minutes: 270, track: "https://touren.kaernten.at/en/r/1528782/" }
+    - { number: "11", kind: main, from: "Gmünd", to: "Seeboden", km: 14.9, ascentM: 217, descentM: 450, minutes: 270, track: "https://touren.kaernten.at/en/r/1549733/" }
+    - { number: "12", kind: main, from: "Seeboden", to: "Millstätter Alpe", km: 21.5, ascentM: 1600, descentM: 400, minutes: 480, track: "https://touren.kaernten.at/en/r/2808951/" }
+    - { number: "13", kind: main, from: "Millstätter Alpe", to: "Döbriach", km: 24.0, ascentM: 500, descentM: 1700, minutes: 450, track: "https://touren.kaernten.at/en/r/1524338/" }
+    - { number: "14", kind: main, from: "Döbriach", to: "Langalmtal", km: 17.4, ascentM: 1050, descentM: 0, minutes: 350, track: "https://touren.kaernten.at/en/r/2808948/" }
+    - { number: "15", kind: main, from: "Langalmtal", to: "Falkerthaus/Lärchenhütte", km: 14.7, ascentM: 990, descentM: 1100, minutes: 405, track: "https://touren.kaernten.at/en/r/1487114/" }
+    - { number: "16", kind: main, from: "Falkerthaus/Lärchenhütte", to: "Bad Kleinkirchheim", km: 19.3, ascentM: 1170, descentM: 1680, minutes: 480, track: "https://touren.kaernten.at/en/r/1497752/" }
+    - { number: "17", kind: main, from: "Bad Kleinkirchheim", to: "Arriach", km: 19.1, ascentM: 1130, descentM: 1270, minutes: 420, track: "https://touren.kaernten.at/en/r/1485787/" }
+    - { number: "18", kind: main, from: "Arriach", to: "Gerlitzen Alpe", km: 16.0, ascentM: 1247, descentM: 212, minutes: 300, track: "https://touren.kaernten.at/en/r/1549902/" }
+    - { number: "19", kind: main, from: "Gerlitzen Alpe", to: "Ossiach", km: 16.9, ascentM: 93, descentM: 1473, minutes: 345, track: "https://touren.kaernten.at/en/r/1544341/" }
+    - { number: "20", kind: main, from: "Ossiach", to: "Velden", km: 17.5, ascentM: 538, descentM: 596, minutes: 360, track: "https://touren.kaernten.at/en/r/1560353/" }
+    - { number: "21", kind: main, from: "Velden", to: "Faaker See / Baumgartnerhöhe", km: 21.9, ascentM: 556, descentM: 99, minutes: 405, track: "https://touren.kaernten.at/en/r/1519021/" }
+    - { number: "22", kind: main, from: "Faaker See / Baumgartnerhöhe", to: "Kranjska Gora", km: 21.6, ascentM: 1150, descentM: 1257, minutes: 480, track: "https://touren.kaernten.at/en/r/1540088/" }
+    - { number: "23", kind: main, from: "Kranjska Gora", to: "Trenta", km: 22.6, ascentM: 952, descentM: 1116, minutes: 480, track: "https://touren.kaernten.at/en/r/2807533/" }
+    - { number: "24", kind: main, from: "Trenta", to: "Bovec", km: 21.3, ascentM: 121, descentM: 276, minutes: 390, track: "https://touren.kaernten.at/en/r/2807542/" }
+    - { number: "25", kind: main, from: "Bovec", to: "Drežnica", km: 22.7, ascentM: 462, descentM: 387, minutes: 435, track: "https://touren.kaernten.at/en/r/2807529/" }
+    - { number: "26", kind: main, from: "Drežnica", to: "Tolmin", km: 22.1, ascentM: 761, descentM: 1105, minutes: 480, track: "https://touren.kaernten.at/en/r/2807520/" }
+    - { number: "27", kind: main, from: "Tolmin", to: "Tribil Superiore", km: 19.3, ascentM: 1281, descentM: 840, minutes: 450, track: "https://touren.kaernten.at/en/r/2807528/" }
+    - { number: "28", kind: main, from: "Tribil Superiore", to: "Cividale", km: 23.9, ascentM: 507, descentM: 997, minutes: 450, track: "https://touren.kaernten.at/en/r/2808058/" }
+    - { number: "29", kind: main, from: "Cividale", to: "Breg pri Golem Brdu", km: 13.2, ascentM: 160, descentM: 157, minutes: 255, track: "https://touren.kaernten.at/en/r/5579261/" }
+    - { number: "30", kind: main, from: "Breg pri Golem Brdu", to: "Šmartno", km: 21.6, ascentM: 604, descentM: 546, minutes: 380, track: "https://touren.kaernten.at/en/r/5579296/" }
+    - { number: "31", kind: main, from: "Šmartno", to: "Cormons", km: 16.0, ascentM: 367, descentM: 570, minutes: 300, track: "https://touren.kaernten.at/en/r/2807527/" }
+    - { number: "32", kind: main, from: "Cormons", to: "Gradisca d'Isonzo", km: 19.5, ascentM: 127, descentM: 148, minutes: 315, track: "https://touren.kaernten.at/en/r/2808052/" }
+    - { number: "33", kind: main, from: "Gradisca d'Isonzo", to: "Duino", km: 27.7, ascentM: 653, descentM: 644, minutes: 450, track: "https://touren.kaernten.at/en/r/2807523/" }
+    - { number: "34", kind: main, from: "Duino", to: "Prosecco", km: 23.8, ascentM: 440, descentM: 211, minutes: 405, track: "https://touren.kaernten.at/en/r/2807517/" }
+    - { number: "35", kind: main, from: "Prosecco", to: "Lipica", km: 20.6, ascentM: 377, descentM: 229, minutes: 360, track: "https://touren.kaernten.at/en/r/2807540/" }
+    - { number: "36", kind: main, from: "Lipica", to: "Bagnoli della Rosandra", km: 17.3, ascentM: 267, descentM: 603, minutes: 360, track: "https://touren.kaernten.at/en/r/5579322/" }
+    - { number: "37", kind: main, from: "Bagnoli della Rosandra", to: "Muggia", km: 23.7, ascentM: 946, descentM: 1010, minutes: 420, track: "https://touren.kaernten.at/en/r/5579364/" }
+    - { number: "R1", kind: variant, from: "Faaker See / Baumgartnerhöhe", to: "Warmbad Villach", km: 15.3, ascentM: 76, descentM: 497, minutes: 255, track: "https://touren.kaernten.at/en/r/2805409/" }
+    - { number: "R2", kind: variant, from: "Warmbad Villach", to: "Nötsch", km: 20.6, ascentM: 190, descentM: 132, minutes: 375, track: "https://touren.kaernten.at/en/r/2809539/" }
+    - { number: "R3", kind: variant, from: "Nötsch", to: "Valbruna", km: 23.4, ascentM: 1321, descentM: 1055, minutes: 450, track: "https://touren.kaernten.at/en/r/2809544/" }
+    - { number: "R4", kind: variant, from: "Valbruna", to: "Tarvisio", km: 19.5, ascentM: 1017, descentM: 1063, minutes: 420, track: "https://touren.kaernten.at/en/r/2811130/" }
+    - { number: "R5", kind: variant, from: "Tarvisio", to: "Rifugio Zacchi", km: 19.7, ascentM: 884, descentM: 228, minutes: 420, track: "https://touren.kaernten.at/en/r/2811144/" }
+    - { number: "R6", kind: variant, from: "Rifugio Zacchi", to: "Kranjska Gora", km: 16.2, ascentM: 495, descentM: 1082, minutes: 360, track: "https://touren.kaernten.at/en/r/2811158/" }
+    - { number: "R7", kind: variant, from: "Kranjska Gora", to: "Faaker See / Baumgartnerhöhe", km: 21.4, ascentM: 1212, descentM: 1090, minutes: 510, track: "https://touren.kaernten.at/en/r/9891263/" }
+route:
+  # built by `python -m pipeline.routes alpe-adria-trail`: OSM ways matched to the official tracks
+  source: osm
+  publishable: true
+difficulty:
+  # no SAC grade is published; our estimate from the official description
+  estimated:
+    sac: T2
+    basis: >-
+      The official FAQ rates the trail "easy to moderate": no rope-secured or exposed stretches,
+      but sure-footedness on rocky sections, walking times of up to eight hours, and ascents and
+      descents of up to 1,500 m a day; the stage pages grade single stages from easy to
+      difficult (Outdooractive's scale), mostly for their length and climbing. The alpine stages
+      reach about 2,370 m on mountain paths. That is mountain hiking (T2).
+    source: aat
+season:
+  # Kärnten Werbung; the high stages near the Grossglockner set the limit, the lower ones in
+  # Slovenia and Italy can be walked for longer
+  months: [6, 7, 8, 9, 10]
+  text: Mid-June to early October
+  source: kaernten
+sleeping:
+  # each stage ends where there are rooms; huts on the alpine stages, campsites at some stages
+  types: [hut, guesthouse, hotel, farm-stay, campsite]
+  source: aat
+wildCamping:
+  status: prohibited
+  rule: >-
+    Camping is allowed only at campsites, in all three countries; not every stage has one, so the
+    whole trail can't be walked from campsite to campsite.
+  source: aat
+access:
+  # the start is reached by bus from Lienz (via Heiligenblut); airports at Klagenfurt and Salzburg.
+  # Coordinates from OSM; distances by pipeline/access.py
+  - kind: station
+    name: Lienz station
+    lat: 46.82885
+    lon: 12.77127
+    source: osm
+  - kind: airport
+    name: Klagenfurt Airport (KLU)
+    lat: 46.64348
+    lon: 14.3286
+    source: osm
+  - kind: airport
+    name: Salzburg Airport (SZG)
+    lat: 47.79346
+    lon: 13.00183
+    source: osm
+tags: [alpine, lakes, cross-border, coast, culture]
+notes:
+  - >-
+    The official site gives "circa 750 km" and "43 stages"; Kärnten Werbung's stage pages list 37
+    main stages (705.5 km in sum) plus 7 stages of the circular route (136.1 km), and an overall
+    tour of 721.2 km with 24,320 m of ascent. The 43 count most likely includes the circular route
+    with one of its stages shared or merged. The record keeps the 37 main stages for totals.
+  - >-
+    Stage 8 has ended in Kolbnitz instead of Danielsberg since the 2023 season (stage page).
+  - >-
+    Stage 14's page gives 0 m of descent (1,050 m of ascent from Döbriach at 590 m to the
+    Langalmtal); kept as published.
+  - >-
+    The official GPX downloads need a login; the stage pages carry the same track as schema.org
+    data, which only guides the OSM matcher and is not published.
+  - >-
+    Wild camping: the official FAQ says camping only at campsites, in all three countries. Austria
+    (Forstgesetz, Carinthian camping law), Slovenia and Friuli generally forbid it.
+  - >-
+    Route (pipeline, 2026-10-29): the OSM match covers 96–100 % of most stage tracks; below 95 %
+    are stage 7 (Mallnitz – Obervellach, 90 %, up to 922 m off), 8 (89 %), 9 (92 %), 30 (Breg pri
+    Golem Brdu – Šmartno, 89 %, up to 684 m off) and the circular route's R6 (91 %), where OSM is
+    probably missing paths or the track takes a shortcut OSM doesn't have.
+  - >-
+    Water (pipeline, 2026-10-30): 231 drinking water points and 31 springs from OSM along the
+    main route; the longest stretch without drinking water is 57.2 km on stages 3–5 (Döllach –
+    Innerfragant), where OSM probably misses village fountains and hut taps.
+  - >-
+    Data check (2026-10-29). Second source: German Wikivoyage, whose stage list follows an older
+    split into 34 stages. Where its stages run between the same places as the official ones they
+    agree within 10 % (stages 1, 9, 11, 12, 15, 17, 18, 20, 21, 24–29, 31–33), and its total of
+    "over 24,000 m" of ascent matches the overall tour's 24,320 m. More than 10 % apart (mostly
+    different stage ends in the older split): stage 13 (24.0 km against 28 km, to the Alexanderhütte),
+    16 (19.3 km against 15 km), 19 (16.9 km against 19 km), 22 (21.6 km against 19.5 km), 23 (22.6 km
+    against 20 km) and 34 (23.8 km against 30.5 km). Season: Wikivoyage gives mid-April to October,
+    Kärnten Werbung mid-June to early October for the whole trail (the high stages near the
+    Grossglockner set the limit); the record keeps Kärnten Werbung's.
+dataCheck:
+  # working rule 2: Wikivoyage (de) as the second source; the stages also checked on the page
+  date: 2026-10-29
+  against: [wikivoyage]
+  pageAgainst: [aat-tours]
+  deviations:
+    - { figure: "Stage 13 length", ours: "24.0 km", theirs: "28 km (to the Alexanderhütte)", source: wikivoyage }
+    - { figure: "Stage 16 length", ours: "19.3 km", theirs: "15 km", source: wikivoyage }
+    - { figure: "Stage 19 length", ours: "16.9 km", theirs: "19 km", source: wikivoyage }
+    - { figure: "Stage 22 length", ours: "21.6 km", theirs: "19.5 km", source: wikivoyage }
+    - { figure: "Stage 23 length", ours: "22.6 km", theirs: "20 km", source: wikivoyage }
+    - { figure: "Stage 34 length", ours: "23.8 km", theirs: "30.5 km", source: wikivoyage }
+    - { figure: "Season", ours: "mid-June to early October", theirs: "mid-April to October", source: wikivoyage }
+sources:
+  - id: aat
+    title: "Alpe-Adria-Trail: official website (the trail, FAQ, signposts, stages)"
+    url: https://www.alpe-adria-trail.com/en/the-trail/faqs/
+    licence: All rights reserved (facts only)
+    retrieved: 2026-10-29
+  - id: aat-tours
+    title: "Kärnten Werbung: Alpe-Adria-Trail stage pages on touren.kaernten.at (Outdooractive): distances, ascent, descent, times, tracks"
+    url: https://touren.kaernten.at/en/route/long-distance-hiking/alpe-adria-trail-overall-tour/17826187/
+    licence: All rights reserved (facts only)
+    retrieved: 2026-10-29
+  - id: kaernten
+    title: "Kärnten Werbung: Alpe-Adria-Trail (season, stages, difficulty)"
+    url: https://www.kaernten.at/wandern/weitwandern/alpe-adria-trail/
+    licence: All rights reserved (facts only)
+    retrieved: 2026-10-29
+  - id: wikivoyage
+    title: "Wikivoyage (de): Alpe-Adria-Trail (data check)"
+    url: https://de.wikivoyage.org/wiki/Alpe-Adria-Trail
+    licence: CC BY-SA 4.0
+    retrieved: 2026-10-29
+    checkOnly: true
+  - id: osm
+    title: "OpenStreetMap contributors: paths and tracks along the trail and travel hubs (via Overpass API)"
+    url: https://www.openstreetmap.org/
+    licence: ODbL 1.0
+    retrieved: 2026-10-29
+  - id: copdem
+    title: "Copernicus DEM GLO-30 (30 m terrain model), tiles from AWS Open Data"
+    url: https://registry.opendata.aws/copernicus-dem/
+    licence: "Copernicus WorldDEM-30 licence, free; produced using Copernicus WorldDEM-30 © DLR e.V. 2010-2014 and © Airbus Defence and Space GmbH 2014-2018 provided under COPERNICUS by the European Union and ESA; all rights reserved"
+    retrieved: 2026-10-29
+  - id: worldcover
+    title: "ESA WorldCover 2021: 10 m land cover (via AWS Open Data)"
+    url: https://esa-worldcover.org/
+    licence: "CC BY 4.0; © ESA WorldCover project 2021 / Contains modified Copernicus Sentinel data (2021) processed by ESA WorldCover consortium"
+    retrieved: 2026-10-29
+  - id: era5
+    title: "Open-Meteo Historical Weather API: ERA5 and ERA5-Land reanalysis, daily 1995–2024"
+    url: https://open-meteo.com/en/docs/historical-weather-api
+    licence: CC BY 4.0 (Open-Meteo); contains modified Copernicus Climate Change Service information
+    retrieved: 2026-10-29
+  - id: osrm
+    title: "OSRM: road routes on OpenStreetMap data (router.project-osrm.org)"
+    url: https://project-osrm.org/
+    licence: Route data © OpenStreetMap contributors (ODbL)
+    retrieved: 2026-10-29
