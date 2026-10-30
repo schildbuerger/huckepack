@@ -120,19 +120,54 @@ def boxes(line_lonlat, piece_m=BOX_M, pad_m=SEARCH_RADIUS_M):
     return out
 
 
-def overpass_query(track_lonlat):
-    """Ways around a track: the union of padded boxes along it. Boxes rather than Overpass's
-    polyline `around`, which sometimes silently matches nothing (see around())."""
-    way = 'way["highway"]["highway"!~"^(motorway|motorway_link|trunk|trunk_link|construction|proposed|platform)$"]'
-    union = "".join(f"{way}({s:.5f},{w:.5f},{n:.5f},{e:.5f});" for s, w, n, e in boxes(track_lonlat))
-    return f"[out:json][timeout:120];({union});out skel;>;out skel qt;"
-
-
-def fetch_ways(track_lonlat):
-    data = fetch(overpass_query(track_lonlat))
+def fetch_ways(track_lonlat, src=None):
+    data = (src or Overpass()).ways_around(boxes(track_lonlat))
     if not any(e["type"] == "way" for e in data["elements"]):
-        raise RuntimeError("Overpass found no ways around the track; not caching an empty result")
+        raise RuntimeError("no OSM ways around the track; not caching an empty result")
     return data
+
+
+# Where the OSM data come from: Geofabrik extracts on disk (pipeline/osmlocal.py, the default), or
+# the public Overpass API with OSM_SOURCE=overpass. Both answer the same questions in the same
+# shape, so the steps and their caches don't depend on which.
+SOURCE = os.environ.get("OSM_SOURCE", "geofabrik")
+
+
+class Overpass:
+    label = OVERPASS
+
+    def ways_around(self, boxes_):
+        way = 'way["highway"]["highway"!~"^(motorway|motorway_link|trunk|trunk_link|construction|proposed|platform)$"]'
+        union = "".join(f"{way}({s:.5f},{w:.5f},{n:.5f},{e:.5f});" for s, w, n, e in boxes_)
+        return fetch(f"[out:json][timeout:120];({union});out skel;>;out skel qt;")
+
+    def relation(self, rid, children=True):
+        more = "(._;rel(r););" if children else ""
+        return fetch(f"[out:json][timeout:120];relation({rid});{more}out body;way(r);out geom;")
+
+    def water(self, box):
+        s, w, n, e = box
+        b = f"{s:.5f},{w:.5f},{n:.5f},{e:.5f}"
+        tags = ('["amenity"~"^(drinking_water|water_point)$"]', '["man_made"="water_tap"]', '["natural"="spring"]')
+        return fetch("[out:json][timeout:120];(" + "".join(f"node{t}({b});" for t in tags) + ");out body;")
+
+    def way_tags(self, ids):
+        return fetch(f"[out:json][timeout:120];way(id:{','.join(map(str, ids))});out tags;")
+
+
+def source_label():
+    """What the caches' manifest records as where OSM data came from."""
+    return OVERPASS if SOURCE == "overpass" else "https://download.geofabrik.de/"
+
+
+def source(slug, guides=None, relation_ids=(), coarse=(), refresh=False):
+    """The OSM data for a trail: its local corridor (built from Geofabrik extracts when missing or
+    not covering `guides`), or Overpass. guides None: use the corridor as it is."""
+    if SOURCE == "overpass":
+        return Overpass()
+    from pipeline import osmlocal
+
+    return osmlocal.corridor(slug, guides, relation_ids, coarse, refresh)
 
 
 def fetch(query):

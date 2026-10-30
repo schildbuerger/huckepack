@@ -1842,7 +1842,7 @@
   "water": {
     "source": "osm",
     "extraSources": [],
-    "retrieved": "2026-10-30T07:39:03+00:00",
+    "retrieved": "2026-10-28T21:21:02Z",
     "withinM": 250,
     "routeKm": 91.5,
     "stageStarts": [
@@ -2165,7 +2165,7 @@
   },
   "surface": {
     "source": "osm",
-    "retrieved": "2026-10-29T21:54:12+00:00",
+    "retrieved": "2026-10-28T21:21:02Z",
     "routeKm": 91.5,
     "totals": {
       "paved": {
@@ -2177,15 +2177,15 @@
         "share": 0.252
       },
       "natural": {
-        "km": 48.1,
-        "share": 0.525
+        "km": 50.2,
+        "share": 0.549
       },
       "unknown": {
-        "km": 2.1,
-        "share": 0.023
+        "km": 0.0,
+        "share": 0.0
       }
     },
-    "inferredShare": 0.127,
+    "inferredShare": 0.15,
     "runs": [
       {
         "category": "paved",
@@ -2572,14 +2572,14 @@
         "stage": "3"
       },
       {
-        "category": "unknown",
+        "category": "paved",
         "fromKm": 30.6,
-        "toKm": 32.73,
+        "toKm": 30.63,
         "stage": "4"
       },
       {
         "category": "natural",
-        "fromKm": 32.73,
+        "fromKm": 30.63,
         "toKm": 32.89,
         "stage": "4"
       },
@@ -2754,12 +2754,6 @@
       {
         "category": "natural",
         "fromKm": 41.12,
-        "toKm": 43.58,
-        "stage": "4"
-      },
-      {
-        "category": "unknown",
-        "fromKm": 43.58,
         "toKm": 43.59,
         "stage": "4"
       },

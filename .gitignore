@@ -31,3 +31,6 @@ data/raw/*/*.gpx
 
 # Terrain model tiles (Copernicus DEM GLO-30, 30-45 MB each): downloaded by pipeline/elevation.py
 data/dem/
+
+# OpenStreetMap extracts from Geofabrik and the per-trail corridors built from them: pipeline/osmlocal.py
+data/osm/

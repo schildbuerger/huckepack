@@ -61,9 +61,9 @@ def build(slug, refresh=False):
     stage_ways = derived["routeWays"]
 
     ids = sorted({w for s in stage_ways for w, _ in s["ways"]})
-    query = f"[out:json][timeout:120];way(id:{','.join(map(str, ids))});out tags;"
     cache = Cache(slug, refresh)
-    data, _ = cache.get("osm-way-tags.json", osm.OVERPASS, lambda: json.dumps(osm.fetch(query)).encode())
+    # the tags from the trail's local OSM corridor (built by pipeline.routes), or Overpass
+    data, _ = cache.get("osm-way-tags.json", osm.source_label(), lambda: json.dumps(osm.source(slug).way_tags(ids)).encode())
     tags = {e["id"]: e.get("tags", {}) for e in json.loads(data)["elements"]}
 
     # simplified stage lengths on the map line, the scale of the water chart

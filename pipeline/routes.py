@@ -60,8 +60,15 @@ class Cache:
         """Cached file `name`, calling download() -> bytes when missing or refreshing."""
         path = self.dir / name
         if self.refresh or not path.exists():
-            path.write_bytes(download())
-            self.manifest[name] = {"url": url, "retrieved": datetime.now(timezone.utc).isoformat(timespec="seconds")}
+            body = download()
+            path.write_bytes(body)
+            # when the data carry their own date (OSM from an extract: the extract's), that one
+            retrieved = datetime.now(timezone.utc).isoformat(timespec="seconds")
+            try:
+                retrieved = json.loads(body).get("retrieved") or retrieved
+            except (ValueError, AttributeError):
+                pass
+            self.manifest[name] = {"url": url, "retrieved": retrieved}
             self.manifest_path.write_text(json.dumps(self.manifest, indent=2, sort_keys=True) + "\n")
             return path.read_text(), True
         return path.read_text(), False
@@ -176,19 +183,39 @@ def build(slug, refresh=False):
     cache = Cache(slug, refresh)
     guides = {}
     relation = trail.get("route", {}).get("relation")
+    start, end = trail["termini"]["start"], trail["termini"]["end"]
+
+    def track_of(stage):
+        label = f"{stage['number']}-{stage['kind']}"
+        gpx, _ = cache.get(f"stage-{label}.gpx", stage["track"], lambda: http_get(stage["track"]))
+        return track_points(gpx)
+
+    # the OSM data, opened only when a download is due (pipeline/osm.py source): a local corridor
+    # around every stage's GPX track, or for relation-only trails around the relations' ways
+    src = None
+
+    def osm_src():
+        nonlocal src
+        if src is None:
+            tracks = [p for s in all_stages if s.get("track") for p in track_of(s)]
+            coarse = [(start["lon"], start["lat"]), (end["lon"], end["lat"])]
+            coarse += [(s["end"]["lon"], s["end"]["lat"]) for s in all_stages if s.get("end")]
+            relation_ids = ([relation] if relation else []) + [s["relation"] for s in all_stages if s.get("relation")]
+            src = osm.source(slug, tracks + (coarse if tracks else []), relation_ids, coarse, refresh)
+        return src
+
     if not stages and relation:
         # no GPX: the OSM relation, split at the stage ends, guides the matcher
         stages = [s for s in all_stages if s.get("end")]
-        query = f"[out:json][timeout:120];relation({relation});out body;way(r);out geom;"
-        data, _ = cache.get("osm-relation.json", osm.OVERPASS, lambda: json.dumps(osm.fetch(query), separators=(",", ":")).encode())
-        start = trail["termini"]["start"]
+        data, _ = cache.get(
+            "osm-relation.json", osm.source_label(), lambda: json.dumps(osm_src().relation(relation, children=False), separators=(",", ":")).encode()
+        )
         line = relation_line(json.loads(data), trail["route"].get("alternatives", []), (start["lon"], start["lat"]))
         guides = {s["number"]: piece for s, piece in zip(stages, split_at(line, stages))}
     if not stages:
         raise SystemExit(f"{slug}: no stage has a track (or an end point and a route.relation)")
     features, stage_ways = [], []
     print(f"{'stage':<12} {'stated':>7} {'track':>7} {'osm':>7} {'covered':>8} {'max off':>8}")
-    start = trail["termini"]["start"]
     previous_end = (start["lon"], start["lat"])
     for stage in stages:
         label = f"{stage['number']}-{stage['kind']}"
@@ -196,20 +223,20 @@ def build(slug, refresh=False):
             track = guides[stage["number"]]
         elif stage.get("relation"):
             rid = stage["relation"]
-            query = f"[out:json][timeout:120];relation({rid});(._;rel(r););out body;way(r);out geom;"
-            data, fetched = cache.get(f"osm-relation-{rid}.json", osm.OVERPASS, lambda: json.dumps(osm.fetch(query), separators=(",", ":")).encode())
-            if fetched:
+            data, fetched = cache.get(
+                f"osm-relation-{rid}.json", osm.source_label(), lambda: json.dumps(osm_src().relation(rid), separators=(",", ":")).encode()
+            )
+            if fetched and osm.SOURCE == "overpass":
                 time.sleep(5)
             track = relation_line(json.loads(data), stage.get("alternatives", []), previous_end)
         else:
-            gpx, _ = cache.get(f"stage-{label}.gpx", stage["track"], lambda: http_get(stage["track"]))
-            track = track_points(gpx)
+            track = track_of(stage)
 
         def download_ways():
-            return json.dumps(osm.fetch_ways(track), separators=(",", ":")).encode()
+            return json.dumps(osm.fetch_ways(track, osm_src()), separators=(",", ":")).encode()
 
-        ways, fetched = cache.get(f"osm-stage-{label}.json", osm.OVERPASS, download_ways)
-        if fetched:
+        ways, fetched = cache.get(f"osm-stage-{label}.json", osm.source_label(), download_ways)
+        if fetched and osm.SOURCE == "overpass":
             time.sleep(5)  # be polite to the public Overpass server
         line, report = osm.match(track, json.loads(ways))
         if stage["kind"] == "main":
