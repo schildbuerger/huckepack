@@ -1,6 +1,8 @@
 <script lang="ts">
   // The trail map (issue #33; of three previews, approach B): every trail on one map beside a list
-  // of the trails in view. Moving or zooming the map updates the list; hovering a list entry
+  // of the trails. The list holds every trail, sorted by distance from the map's centre: the trails
+  // in view first, then, under "Outside the map view", the rest; a search at its top narrows it by
+  // name or country. Moving or zooming the map re-sorts the list; hovering a list entry
   // highlights its route; clicking a trail on the map finds it in the list. Each list entry has two
   // actions: its name opens the trail page, its "Show on map" button zooms to the route; "Show all
   // trails" (beside the zoom buttons) brings back the first view. Trail starts are
@@ -38,10 +40,35 @@
   let allBounds: [[number, number], [number, number]] | undefined;
   const routeBounds = new Map<string, [[number, number], [number, number]]>();
 
-  // the trails whose start is in view, and the one hovered in the list or picked on the map
+  // the trails whose start is in view, the map's centre, and the one hovered in the list or picked
+  // on the map
   let inView = $state<string[]>(trails.map((t) => t.slug));
+  let center = $state<[number, number] | null>(null);
   let hovered = $state<string | null>(null);
+  let query = $state("");
   const all = trails.map((t) => t.slug);
+
+  // the list's search: every word must start a word of the trail's names or countries
+  const terms = new Map(
+    trails.map((t) => [t.slug, [t.name, t.localName ?? "", ...t.aliases, ...t.countries].join(" ").toLowerCase().split(/[\s,/()-]+/)]),
+  );
+  const found = (t: Trail) => {
+    const words = query.trim().toLowerCase().split(/\s+/).filter(Boolean);
+    return words.every((w) => terms.get(t.slug)!.some((x) => x.startsWith(w)));
+  };
+  // great-circle distance from the map's centre to a trail's start, km
+  const km = (a: [number, number], b: [number, number]) => {
+    const r = Math.PI / 180;
+    const h = Math.sin(((b[1] - a[1]) * r) / 2) ** 2 + Math.cos(a[1] * r) * Math.cos(b[1] * r) * Math.sin(((b[0] - a[0]) * r) / 2) ** 2;
+    return 2 * 6371 * Math.asin(Math.sqrt(h));
+  };
+  const sorted = $derived(
+    trails
+      .filter(found)
+      .map((t) => ({ t, here: inView.includes(t.slug), d: center ? km(center, t.startLonLat) : 0 }))
+      .sort((a, b) => Number(b.here) - Number(a.here) || a.d - b.d || a.t.name.localeCompare(b.t.name)),
+  );
+  const firstOutside = $derived(sorted.findIndex((x) => !x.here));
 
   const startsData = (slugs: string[]) => ({
     type: "FeatureCollection" as const,
@@ -54,6 +81,8 @@
     if (!map) return;
     const b = map.getBounds();
     inView = trails.filter((t) => b.contains(t.startLonLat)).map((t) => t.slug);
+    const c = map.getCenter();
+    center = [c.lng, c.lat];
   }
 
   // zoom to one trail's route (or its start where no route is drawn); on phones the list sits under
@@ -186,9 +215,18 @@
 
 <div class="wm split">
   <div class="wm-map" bind:this={container} role="region" aria-label="World map of the trails"></div>
-  <ol class="wm-list" aria-label="Trails in view">
-      {#each trails.filter((t) => inView.includes(t.slug)) as t (t.slug)}
-        <li id={`wm-${t.slug}`} class:on={hovered === t.slug} onmouseenter={() => (hovered = t.slug)} onmouseleave={() => (hovered = null)}>
+  <div class="wm-side">
+    <label class="wm-search">
+      <span class="sr-only">Search the list by trail or country</span>
+      <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"></circle><path d="m20 20-3.5-3.5"></path></svg>
+      <input type="search" placeholder="Trail or country" bind:value={query} autocomplete="off" spellcheck="false" />
+    </label>
+  <ol class="wm-list" aria-label="Trails, nearest to the map's centre first">
+      {#each sorted as { t, here }, i (t.slug)}
+        {#if i === firstOutside}
+          <li class="wm-divider">{i === 0 ? "None in the map view; the nearest:" : "Outside the map view"}</li>
+        {/if}
+        <li id={`wm-${t.slug}`} class:on={hovered === t.slug} class:out={!here} onmouseenter={() => (hovered = t.slug)} onmouseleave={() => (hovered = null)}>
           <!-- two actions: the name opens the trail page, the button zooms the map to the route -->
           <a class="wm-entry" href={`/trails/${t.slug}/`}>
             <span class="wm-place">{t.countries.join(", ")}</span>
@@ -201,11 +239,12 @@
         </li>
       {:else}
         <li class="wm-none">
-          No trail in this part of the map.
-          <button type="button" class="wm-link" onclick={showAll}>Show all trails</button>
+          No trail matches "{query}".
+          <button type="button" class="wm-link" onclick={() => (query = "")}>Clear the search</button>
         </li>
       {/each}
     </ol>
+  </div>
 </div>
 
 <style>
@@ -221,8 +260,61 @@
     grid-template-columns: minmax(0, 1.6fr) minmax(0, 1fr);
     gap: 16px;
   }
-  .wm-list {
+  /* the list's column: the search on top, the list scrolling beneath, together as tall as the map */
+  .wm-side {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
     max-height: min(72vh, 680px);
+    min-height: 420px;
+  }
+  .wm-search {
+    position: relative;
+  }
+  .wm-search svg {
+    position: absolute;
+    left: 12px;
+    top: 50%;
+    width: 16px;
+    height: 16px;
+    transform: translateY(-50%);
+    fill: none;
+    stroke: var(--muted);
+    stroke-width: 2;
+    stroke-linecap: round;
+    pointer-events: none;
+  }
+  .wm-search input {
+    width: 100%;
+    padding: 9px 12px 9px 36px;
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    background: var(--bg);
+    color: var(--text);
+    font: inherit;
+  }
+  .wm-search input::-webkit-search-cancel-button {
+    appearance: none;
+  }
+  .wm-search input:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 1px;
+  }
+  .wm-divider {
+    padding: 14px 10px 6px;
+    color: var(--muted);
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+  /* trails outside the map view stay listed, a little quieter */
+  .wm-list li.out .wm-entry {
+    opacity: 0.75;
+  }
+  .wm-list {
+    flex: 1;
+    min-height: 0;
     overflow-y: auto;
     margin: 0;
     padding: 0;
@@ -235,7 +327,7 @@
   .wm-list li.on {
     background: var(--surface);
   }
-  .wm-list li:not(.wm-none) {
+  .wm-list li:not(.wm-none):not(.wm-divider) {
     display: grid;
     grid-template-columns: minmax(0, 1fr) auto;
     align-items: center;
@@ -315,6 +407,10 @@
   @media (max-width: 899px) {
     .split {
       grid-template-columns: 1fr;
+    }
+    .wm-side {
+      max-height: none;
+      min-height: 0;
     }
     .wm-list {
       max-height: none;
