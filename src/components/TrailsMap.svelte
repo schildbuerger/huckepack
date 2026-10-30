@@ -1,8 +1,9 @@
 <script lang="ts">
   // The trail map (issue #33; of three previews, approach B): every trail on one map beside a list
   // of the trails. The list holds every trail, sorted by distance from the map's centre: the trails
-  // in view first, then, under "Outside the map view", the rest; a search at its top narrows it by
-  // name or country. Moving or zooming the map re-sorts the list; hovering a list entry
+  // in view first, then, under "Outside the map view", the rest; a search at its top, like the
+  // header search (TrailSearch.astro), narrows it by name or country and suggests countries (a pick
+  // frames the map on their trails) and trails (a pick zooms to the route). Moving or zooming the map re-sorts the list; hovering a list entry
   // highlights its route; clicking a trail on the map finds it in the list. Each list entry has two
   // actions: its name opens the trail page, its "Show on map" button zooms to the route; "Show all
   // trails" (beside the zoom buttons) brings back the first view. Trail starts are
@@ -17,7 +18,8 @@
   import earthIcon from "lucide-static/icons/earth.svg?raw";
 
   type Trail = SearchTrail & { startLonLat: [number, number]; level: string | null };
-  let { trails }: { trails: Trail[] } = $props();
+  // `children`: the page's breadcrumb and title, shown at the top of the list column
+  let { trails, children }: { trails: Trail[]; children?: import("svelte").Snippet } = $props();
 
   const STYLES = { light: "https://tiles.openfreemap.org/styles/liberty", dark: "https://tiles.openfreemap.org/styles/dark" };
   type Theme = keyof typeof STYLES;
@@ -69,6 +71,68 @@
       .sort((a, b) => Number(b.here) - Number(a.here) || a.d - b.d || a.t.name.localeCompare(b.t.name)),
   );
   const firstOutside = $derived(sorted.findIndex((x) => !x.here));
+
+  // suggestions while typing: countries first (with how many trails), then trails by name
+  const countries = [...new Set(trails.flatMap((t) => t.countries))].sort((a, b) => a.localeCompare(b));
+  const startsWithWords = (text: string, q: string) => {
+    const words = q.trim().toLowerCase().split(/\s+/).filter(Boolean);
+    const parts = text.toLowerCase().split(/[\s,/()-]+/);
+    return words.length > 0 && words.every((w) => parts.some((x) => x.startsWith(w)));
+  };
+  const nameTerms = (t: Trail) => [t.name, t.localName ?? "", ...t.aliases].join(" ");
+  let open = $state(false);
+  let active = $state(0);
+  const suggestions = $derived(
+    query.trim()
+      ? [
+          ...countries
+            .filter((c) => startsWithWords(c, query))
+            .map((c) => ({ kind: "country" as const, id: c, label: c, note: `${trails.filter((t) => t.countries.includes(c)).length} trails` })),
+          ...trails
+            .filter((t) => startsWithWords(nameTerms(t), query))
+            .map((t) => ({ kind: "trail" as const, id: t.slug, label: t.name, note: t.countries.join(", ") })),
+        ]
+      : [],
+  );
+  $effect(() => {
+    suggestions;
+    active = 0;
+  });
+  function choose(i: number) {
+    const s = suggestions[i];
+    if (!s) return;
+    open = false;
+    if (s.kind === "trail") {
+      query = s.label;
+      zoomTo(s.id);
+    } else {
+      query = s.label;
+      const boxes = trails.filter((t) => t.countries.includes(s.id)).map((t) => routeBounds.get(t.slug) ?? [t.startLonLat, t.startLonLat]);
+      if (map && boxes.length)
+        map.fitBounds(
+          [
+            [Math.min(...boxes.map((b) => b[0][0])), Math.min(...boxes.map((b) => b[0][1]))],
+            [Math.max(...boxes.map((b) => b[1][0])), Math.max(...boxes.map((b) => b[1][1]))],
+          ],
+          { padding: 48, maxZoom: 9 },
+        );
+    }
+  }
+  function onKey(e: KeyboardEvent) {
+    if (e.key === "ArrowDown" && suggestions.length) {
+      e.preventDefault();
+      open = true;
+      active = Math.min(active + 1, suggestions.length - 1);
+    } else if (e.key === "ArrowUp" && suggestions.length) {
+      e.preventDefault();
+      active = Math.max(active - 1, 0);
+    } else if (e.key === "Enter" && open && suggestions.length) {
+      e.preventDefault();
+      choose(active);
+    } else if (e.key === "Escape") {
+      open = false;
+    }
+  }
 
   const startsData = (slugs: string[]) => ({
     type: "FeatureCollection" as const,
@@ -213,15 +277,53 @@
   });
 </script>
 
-<div class="wm split">
+<div class="wm">
   <div class="wm-map" bind:this={container} role="region" aria-label="World map of the trails"></div>
-  <div class="wm-side">
-    <label class="wm-search">
-      <span class="sr-only">Search the list by trail or country</span>
-      <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"></circle><path d="m20 20-3.5-3.5"></path></svg>
-      <input type="search" placeholder="Trail or country" bind:value={query} autocomplete="off" spellcheck="false" />
-    </label>
-  <ol class="wm-list" aria-label="Trails, nearest to the map's centre first">
+  <aside class="wm-side">
+    {#if children}<div class="wm-head">{@render children()}</div>{/if}
+    <!-- the search, like the header search (TrailSearch.astro): an ARIA combobox with suggestions -->
+    <div class="search" onfocusout={(e) => !e.currentTarget.contains(e.relatedTarget as Node) && (open = false)}>
+      <label for="wm-search" class="sr-only">Search trails and countries</label>
+      <svg class="glass" viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"></circle><path d="m20 20-3.5-3.5"></path></svg>
+      <input
+        id="wm-search"
+        type="search"
+        role="combobox"
+        autocomplete="off"
+        spellcheck="false"
+        aria-autocomplete="list"
+        aria-expanded={open && suggestions.length > 0}
+        aria-controls="wm-suggestions"
+        aria-activedescendant={open && suggestions.length ? `wm-s-${active}` : undefined}
+        placeholder="Search a trail or a country"
+        bind:value={query}
+        oninput={() => (open = true)}
+        onfocus={() => query.trim() && (open = true)}
+        onkeydown={onKey}
+      />
+      {#if open && suggestions.length}
+        <div class="results" id="wm-suggestions" role="listbox" aria-label="Suggestions">
+          {#each suggestions as s, i (s.kind + s.id)}
+            {#if i === 0 || suggestions[i - 1].kind !== s.kind}
+              <p class="group" role="presentation">{s.kind === "country" ? "Countries" : "Trails"}</p>
+            {/if}
+            <button
+              type="button"
+              role="option"
+              id={`wm-s-${i}`}
+              aria-selected={i === active}
+              tabindex="-1"
+              onmousedown={(e) => e.preventDefault()}
+              onclick={() => choose(i)}
+            >
+              <span>{s.label}</span>
+              <span class="muted">{s.note}</span>
+            </button>
+          {/each}
+        </div>
+      {/if}
+    </div>
+    <ol class="wm-list" aria-label="Trails, nearest to the map's centre first">
       {#each sorted as { t, here }, i (t.slug)}
         {#if i === firstOutside}
           <li class="wm-divider">{i === 0 ? "None in the map view; the nearest:" : "Outside the map view"}</li>
@@ -244,34 +346,45 @@
         </li>
       {/each}
     </ol>
-  </div>
+  </aside>
 </div>
 
 <style>
+  /* the page between header and footer: the map filling the space, the list column on the right
+     (the page passes `full` to Base, so there is no width cap); phones: the map, then the list */
+  .wm {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(320px, 400px);
+    height: calc(100dvh - 61px);
+    border-bottom: 1px solid var(--line);
+  }
   .wm-map {
-    height: min(72vh, 680px);
-    min-height: 420px;
-    border-radius: 14px;
-    overflow: hidden;
+    height: 100%;
+    min-height: 0;
     background: var(--surface);
   }
-  .split {
-    display: grid;
-    grid-template-columns: minmax(0, 1.6fr) minmax(0, 1fr);
-    gap: 16px;
-  }
-  /* the list's column: the search on top, the list scrolling beneath, together as tall as the map */
   .wm-side {
     display: flex;
     flex-direction: column;
-    gap: 10px;
-    max-height: min(72vh, 680px);
-    min-height: 420px;
+    gap: 12px;
+    min-height: 0;
+    padding: 12px 16px 0;
+    border-left: 1px solid var(--line);
+    background: var(--bg);
   }
-  .wm-search {
+  .wm-head :global(h1) {
+    margin: 4px 0 0;
+    font-size: 1.6rem;
+  }
+  .wm-head :global(.crumbs) {
+    margin-top: 0;
+  }
+
+  /* the search, as the header's (TrailSearch.astro) */
+  .search {
     position: relative;
   }
-  .wm-search svg {
+  .glass {
     position: absolute;
     left: 12px;
     top: 50%;
@@ -284,7 +397,7 @@
     stroke-linecap: round;
     pointer-events: none;
   }
-  .wm-search input {
+  input {
     width: 100%;
     padding: 9px 12px 9px 36px;
     border: 1px solid var(--line);
@@ -292,52 +405,85 @@
     background: var(--bg);
     color: var(--text);
     font: inherit;
+    font-size: 0.95rem;
   }
-  .wm-search input::-webkit-search-cancel-button {
+  input::-webkit-search-cancel-button {
     appearance: none;
   }
-  .wm-search input:focus-visible {
+  input:focus-visible {
     outline: 2px solid var(--accent);
-    outline-offset: 1px;
+    outline-offset: 2px;
   }
-  .wm-divider {
-    padding: 14px 10px 6px;
+  .results {
+    position: absolute;
+    z-index: 20;
+    inset: calc(100% + 6px) 0 auto;
+    max-height: 360px;
+    overflow-y: auto;
+    padding: 6px;
+    background: var(--bg);
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    box-shadow: 0 10px 30px rgb(0 0 0 / 0.14);
+  }
+  .group {
+    margin: 6px 10px 4px;
     color: var(--muted);
-    font-size: 0.75rem;
+    font-size: 0.72rem;
     font-weight: 600;
     letter-spacing: 0.06em;
     text-transform: uppercase;
   }
-  /* trails outside the map view stay listed, a little quieter */
-  .wm-list li.out .wm-entry {
-    opacity: 0.75;
+  [role="option"] {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    width: 100%;
+    padding: 9px 10px;
+    border: 0;
+    border-radius: 8px;
+    background: none;
+    color: var(--text);
+    font: inherit;
+    font-size: 0.95rem;
+    text-align: left;
+    cursor: pointer;
   }
+  [role="option"] .muted {
+    font-size: 0.85rem;
+    text-align: right;
+  }
+  [role="option"][aria-selected="true"],
+  [role="option"]:hover {
+    background: var(--surface);
+  }
+
+  /* the list: every trail, nearest to the map's centre first */
   .wm-list {
     flex: 1;
     min-height: 0;
     overflow-y: auto;
-    margin: 0;
-    padding: 0;
+    margin: 0 -16px;
+    padding: 0 16px;
     list-style: none;
     border-top: 1px solid var(--text);
   }
   .wm-list li {
     border-bottom: 1px solid var(--line);
   }
-  .wm-list li.on {
-    background: var(--surface);
-  }
   .wm-list li:not(.wm-none):not(.wm-divider) {
     display: grid;
     grid-template-columns: minmax(0, 1fr) auto;
     align-items: center;
     gap: 8px;
-    padding-right: 8px;
+  }
+  .wm-list li.on {
+    background: var(--surface);
   }
   .wm-entry {
     display: grid;
     gap: 2px;
-    padding: 12px 10px;
+    padding: 12px 6px;
     color: var(--text);
     text-decoration: none;
   }
@@ -346,12 +492,38 @@
     color: var(--accent);
     text-decoration: underline;
   }
+  .wm-place {
+    color: var(--muted);
+    font-size: 0.8rem;
+  }
+  .wm-name {
+    font-family: var(--serif);
+    font-size: 1.1rem;
+  }
+  .wm-fig {
+    color: var(--accent);
+    font-size: 0.85rem;
+    font-weight: 600;
+  }
+  /* "Outside the map view": set apart with room above it */
+  .wm-divider {
+    padding: 36px 6px 8px;
+    color: var(--muted);
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+  .wm-list li.out .wm-entry {
+    opacity: 0.75;
+  }
   /* "Show on map": a round button, 40 px to tap */
   .wm-zoom {
     display: grid;
     place-items: center;
     width: 40px;
     height: 40px;
+    margin-right: 6px;
     padding: 0;
     border: 1px solid var(--line);
     border-radius: 50%;
@@ -367,6 +539,10 @@
   .wm-zoom :global(svg) {
     width: 18px;
     height: 18px;
+  }
+  .wm-none {
+    padding: 16px 6px;
+    color: var(--muted);
   }
   .wm-link {
     padding: 0;
@@ -387,33 +563,21 @@
     height: 17px;
     color: #333;
   }
-  .wm-none {
-    padding: 16px 10px;
-    color: var(--muted);
-  }
-  .wm-place {
-    color: var(--muted);
-    font-size: 0.8rem;
-  }
-  .wm-name {
-    font-family: var(--serif);
-    font-size: 1.1rem;
-  }
-  .wm-fig {
-    color: var(--accent);
-    font-size: 0.85rem;
-    font-weight: 600;
-  }
+
   @media (max-width: 899px) {
-    .split {
+    .wm {
       grid-template-columns: 1fr;
+      height: auto;
+    }
+    .wm-map {
+      height: 62dvh;
     }
     .wm-side {
-      max-height: none;
-      min-height: 0;
+      border-left: 0;
+      padding-bottom: 12px;
     }
     .wm-list {
-      max-height: none;
+      overflow: visible;
     }
   }
 </style>

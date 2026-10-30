@@ -6,8 +6,9 @@ interface Props {
   title: string;
   description?: string;
   personal?: boolean; // a page with the operator's personal details (legal notice, privacy policy)
+  full?: boolean; // the page fills the window between header and footer, without the width cap (the trail map)
 }
-const { title, description, personal = false } = Astro.props;
+const { title, description, personal = false, full = false } = Astro.props;
 // the address search engines and link previews should use (no query string, always with a slash)
 const canonical = new URL(Astro.url.pathname.replace(/\/?$/, "/"), Astro.site);
 ---
@@ -64,7 +65,7 @@ const canonical = new URL(Astro.url.pathname.replace(/\/?$/, "/"), Astro.site);
         </div>
       </div>
     </header>
-    <main class="wrap">
+    <main class:list={["wrap", { full }]}>
       <slot />
     </main>
     <footer class="site-footer">
@@ -331,6 +332,13 @@ const canonical = new URL(Astro.url.pathname.replace(/\/?$/, "/"), Astro.site);
     display: block;
     width: 100%;
     height: 100%;
+  }
+  .wrap.full {
+    max-width: none;
+    padding: 0;
+  }
+  .wrap.full + .site-footer {
+    margin-top: 0;
   }
   .site-footer {
     margin-top: 56px;
