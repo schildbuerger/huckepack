@@ -3,6 +3,7 @@ import { getCollection, getEntry } from "astro:content";
 import Base from "../layouts/Base.astro";
 import Icon, { type IconName } from "../components/Icon.astro";
 import TrailSpark from "../components/TrailSpark.astro";
+import Explain from "../components/Explain.astro";
 import { mainStages, stageEstimates, trailClimb, walkingMinutes } from "../lib/trails";
 import { LEVELS } from "../lib/difficulty";
 import { climateLevel } from "../lib/filters";
@@ -245,13 +246,18 @@ const sources = [
 
   {popular.length > 0 && (
     <section class="block">
-      <h2>Popular trails</h2>
-      {viewsWindow && (
-        <p class="block-note muted">
-          By how often people read their Wikipedia articles, in every language, {monthYear(viewsWindow.from)} to{" "}
-          {monthYear(viewsWindow.to)} (Wikimedia). It measures interest in a trail, not how many hike it.
-        </p>
-      )}
+      <div class="block-head">
+        <h2>Popular trails</h2>
+        {viewsWindow && (
+          <Explain id="popular-info" icon term="About this list" title="Popular trails">
+            <p>
+              The trails whose Wikipedia articles people read most, in every language, {monthYear(viewsWindow.from)} to{" "}
+              {monthYear(viewsWindow.to)} (Wikimedia's page view data). It measures interest in a trail, not how many
+              hike it; a trail without an article isn't ranked.
+            </p>
+          </Explain>
+        )}
+      </div>
       <div class="feats">
         {popular.map(({ t, spark, surface, views }) => (
           <a class="feat" href={`/trails/${t.slug}/`}>
@@ -268,8 +274,16 @@ const sources = [
 
   <!-- shown by the script below only where the time zone gives a place; without JavaScript it stays hidden -->
   <section class="block near" hidden>
-    <h2>Trails near you</h2>
-    <p class="block-note muted" data-near-note></p>
+    <div class="block-head">
+      <h2>Trails near you</h2>
+      <Explain id="near-info" icon term="About this list" title="Trails near you">
+        <p>
+          The trails whose start or finish is nearest to <span data-near-city></span>,
+          the main city of your browser's time zone; distances in a straight line, rounded. Worked out on your device:
+          nothing is sent or stored, and no location permission is asked.
+        </p>
+      </Explain>
+    </div>
     <div class="feats" data-near-list>
       {featuredAll.map(({ t, spark, surface }, i) => (
         <a class="feat" href={`/trails/${t.slug}/`} data-slug={t.slug} data-ends={JSON.stringify(ends[i])} hidden>
@@ -311,8 +325,7 @@ const sources = [
         card.hidden = false;
         list.append(card); // nearest first
       }
-      section.querySelector<HTMLElement>("[data-near-note]")!.textContent =
-        `Measured from ${zone.split("/").pop()!.replace(/_/g, " ")}, the main city of your browser's time zone; worked out on your device, nothing is sent or stored.`;
+      section.querySelector<HTMLElement>("[data-near-city]")!.textContent = zone.split("/").pop()!.replace(/_/g, " ");
       section.hidden = false;
     }
   </script>
@@ -625,9 +638,16 @@ const sources = [
   }
 
   /* popular trails and trails near you (issues #84, #85): the featured card's look, three in a row */
-  .block-note {
-    margin: -6px 0 14px;
-    font-size: 0.85rem;
+  /* the section's heading with its (i) at the right, which explains how the list is made */
+  .block-head {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 12px;
+    margin-bottom: 14px;
+  }
+  .block-head h2 {
+    margin: 0;
   }
   .near[hidden],
   .feat[hidden] {
