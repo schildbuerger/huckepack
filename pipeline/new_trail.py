@@ -50,7 +50,7 @@ established:
   year: null  # opened or designated; delete if no source gives it
   source: null
 waymarking:
-  text: null  # how it is marked, in the source's words; `symbol` only if Waymark.astro draws it
+  text: null  # how it is marked, in the source's words. A simple painted mark (stripe, flag, diamond) gets `symbol` (src/components/Waymark.astro; add it there if new, `number` for a painted path number); a logo gets none
   source: null
 length:
   - km: null  # the stated total; approx: true for "about"

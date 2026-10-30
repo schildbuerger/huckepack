@@ -593,7 +593,7 @@ const nav = [
         <div>
           <dt>Waymarking</dt>
           <dd class:list={{ marked: t.waymarking.symbol }}>
-            {t.waymarking.symbol && <Waymark symbol={t.waymarking.symbol} />}
+            {t.waymarking.symbol && <Waymark symbol={t.waymarking.symbol} number={t.waymarking.number} />}
             <span>{t.waymarking.text}</span>
           </dd>
         </div>

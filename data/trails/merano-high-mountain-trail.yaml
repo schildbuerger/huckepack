@@ -33,8 +33,12 @@ established:
   year: 1985
   source: brochure
 waymarking:
-  text: Path no. 24 on every section
-  source: meranerland
+  # "durchgängig mit weiß/rot und der Nummer 24 markiert" (ich-geh-wandern.de; wandersite.ch
+  # likewise); the tourist association names the path number only
+  text: Red-white-red with the number 24, on every section
+  symbol: cai
+  number: "24"
+  source: igw
 length:
   - km: 100
     approx: true
@@ -224,6 +228,11 @@ sources:
     licence: CC0 1.0 (pageview data); Wikidata CC0
     retrieved: 2026-10-30
     checkOnly: true  # not on the trail page: the page views only rank the home page's popular trails
+  - id: igw
+    title: "ich-geh-wandern.de: Meraner Höhenweg (waymarking)"
+    url: https://www.ich-geh-wandern.de/meraner-hoehenweg
+    licence: All rights reserved (facts only)
+    retrieved: 2026-10-30
   - id: osm
     title: "OpenStreetMap contributors: paths and water along the trail (Geofabrik extract, 2026-10-28), travel hubs (via Overpass API)"
     url: https://www.openstreetmap.org/
