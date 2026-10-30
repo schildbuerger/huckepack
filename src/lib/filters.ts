@@ -178,3 +178,43 @@ export function places(trails: SearchTrail[]) {
     countries: uniq(trails.filter((t) => t.continents.includes(c)).flatMap((t) => t.countries)),
   }));
 }
+
+// what a filter is set to, in words (beside each group's title, on the chips, on the map's buttons)
+export const DAY_STOPS = DAYS.map((d, i) => (i === DAYS.length - 1 ? `${d}+` : `${d}`));
+export const WATER_STOPS = [...WATER_KM.map((km) => `${km} km`), "Any"];
+export const NATURAL_STOPS = NATURAL_PCT.map((n) => (n ? `${n} %` : "Any"));
+export const daysText = (f: Filters) =>
+  !daysOn(f) ? "Any length" : f.dayLo === f.dayHi ? `${DAY_STOPS[f.dayLo]} days` : `${DAYS[f.dayLo]}–${DAY_STOPS[f.dayHi]} days`;
+export const waterText = (f: Filters) => (waterOn(f) ? `Every ${WATER_KM[f.waterMax]} km or less` : "Any");
+export const naturalText = (f: Filters) => (naturalOn(f) ? `${NATURAL_PCT[f.naturalMin]} %+ natural` : "Any");
+// a difficulty range in words: "Any", "Demanding", "Up to moderate", "Demanding or harder",
+// "Moderate to demanding"
+export const levelText = (min: number, max: number) =>
+  min === 0 && max === LEVEL_TOP
+    ? "Any"
+    : min === max
+      ? LEVEL_WORDS[min]
+      : min === 0
+        ? `Up to ${LEVEL_WORDS[max].toLowerCase()}`
+        : max === LEVEL_TOP
+          ? `${LEVEL_WORDS[min]} or harder`
+          : `${LEVEL_WORDS[min]} to ${LEVEL_WORDS[max].toLowerCase()}`;
+export const monthList = (ms: number[]) => [...ms].sort((a, b) => a - b).map((m) => MONTHS[m - 1]).join(", ");
+
+// the filters that are set, each with its label and what undoes it (the removable chips)
+export function activeFilters(f: Filters, sleeping: { id: string; label: string }[]) {
+  const without = <T>(xs: T[], x: T) => xs.filter((y) => y !== x);
+  return [
+    f.months.length && { label: monthList(f.months), reset: { months: [] } },
+    ...f.where.map((w) => ({ label: w, reset: { where: without(f.where, w) } })),
+    daysOn(f) && { label: daysText(f), reset: { dayLo: 0, dayHi: DAYS_ALL } },
+    terrainOn(f) && { label: `Terrain: ${levelText(f.terrainMin, f.terrainMax).toLowerCase()}`, reset: { terrainMin: 0, terrainMax: LEVEL_TOP } },
+    climateOn(f) && { label: `Climate: ${levelText(f.climateMin, f.climateMax).toLowerCase()}`, reset: { climateMin: 0, climateMax: LEVEL_TOP } },
+    effortOn(f) && { label: `Effort: ${levelText(f.effortMin, f.effortMax).toLowerCase()}`, reset: { effortMin: 0, effortMax: LEVEL_TOP } },
+    ...f.land.map((g) => ({ label: LANDSCAPES.find((l) => l.id === g)!.label, reset: { land: without(f.land, g) } })),
+    naturalOn(f) && { label: `At least ${NATURAL_PCT[f.naturalMin]} % natural ground`, reset: { naturalMin: 0 } },
+    ...f.sleep.map((id) => ({ label: sleeping.find((c) => c.id === id)?.label ?? id, reset: { sleep: without(f.sleep, id) } })),
+    f.wild && { label: f.wild === "allowed" ? "Wild camping allowed" : "Wild camping possible", reset: { wild: "" as const } },
+    waterOn(f) && { label: `Water every ${WATER_KM[f.waterMax]} km or less`, reset: { waterMax: WATER_KM.length } },
+  ].filter(Boolean) as { label: string; reset: Partial<Filters> }[];
+}

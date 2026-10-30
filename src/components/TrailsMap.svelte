@@ -1,16 +1,35 @@
 <script lang="ts">
-  // The trail map (issue #33; of three previews, approach B): every trail on one map beside a list
-  // of the trails. The list holds every trail, sorted by distance from the map's centre: the trails
-  // in view first, then, under "Outside the map view", the rest; a search at its top, like the
-  // header search (TrailSearch.astro), narrows it by name or country and suggests countries (a pick
-  // frames the map on their trails) and trails (a pick zooms to the route). Moving or zooming the map re-sorts the list; hovering a list entry
-  // highlights its route; clicking a trail on the map finds it in the list. Each list entry has two
-  // actions: its name opens the trail page, its "Show on map" button zooms to the route; "Show all
-  // trails" (beside the zoom buttons) brings back the first view. Trail starts are
-  // grouped into clusters where they crowd (a click zooms in), routes show from zoom 4, from
-  // /trails/routes.json (src/pages/trails/routes.json.ts). Basemap and theme as in TrailMap.svelte.
+  // The trail map (issue #33): every trail on one map beside a list of the trails. The list holds
+  // every trail the filters leave, sorted by distance from the map's centre: the trails in view
+  // first, then, under "Outside the map view", the rest; a search at its top, like the header search
+  // (TrailSearch.astro), narrows it by name or country and suggests countries (a pick frames the map
+  // on their trails) and trails (a pick zooms to the route). The search page's filters
+  // (FilterPanel.svelte) sit as one button per planning question along the map's top, in the same URL
+  // parameters as the search page; trails they leave out leave the map and the list, and the map
+  // frames the rest. Moving or zooming the map re-sorts the list (a pick keeps it); hovering a list
+  // entry highlights its route; clicking a trail on the map finds it in the list. Each list entry has
+  // two actions: the entry zooms to the route and opens a preview card (TrailPreview.svelte), the
+  // arrow opens the trail page; "Show all trails" (beside the zoom buttons) frames every matching
+  // trail. Trail starts are grouped into clusters where they crowd (a click zooms in), routes show
+  // from zoom 4, from /trails/routes.json (src/pages/trails/routes.json.ts). Basemap and theme as in
+  // TrailMap.svelte.
   import { onMount, tick } from "svelte";
   import TrailPreview from "./TrailPreview.svelte";
+  import FilterPanel from "./FilterPanel.svelte";
+  import { SLEEPING_CATEGORIES } from "../lib/trails";
+  import {
+    activeFilters,
+    daysText,
+    fromParams,
+    levelText,
+    matches,
+    monthList,
+    noFilters,
+    toParams,
+    waterText,
+    naturalText,
+    type Filters,
+  } from "../lib/filters";
   import "maplibre-gl/dist/maplibre-gl.css";
   import workerUrl from "maplibre-gl/dist/maplibre-gl-worker.mjs?url";
   import type { SearchTrail } from "../lib/search";
@@ -20,7 +39,10 @@
 
   type Trail = SearchTrail & { startLonLat: [number, number]; level: string | null };
   // `children`: the page's breadcrumb and title, shown at the top of the list column
-  let { trails, children }: { trails: Trail[]; children?: import("svelte").Snippet } = $props();
+  let {
+    trails,
+    children,
+  }: { trails: Trail[]; children?: import("svelte").Snippet } = $props();
 
   const STYLES = { light: "https://tiles.openfreemap.org/styles/liberty", dark: "https://tiles.openfreemap.org/styles/dark" };
   type Theme = keyof typeof STYLES;
@@ -52,6 +74,44 @@
   let query = $state("");
   const all = trails.map((t) => t.slug);
 
+  // the search page's filters (src/lib/filters.ts, FilterPanel.svelte), in the URL with the same
+  // parameters, so "Map view" and "List view" carry them across; trails that don't match leave the
+  // map and the list
+  const sleepingOptions = SLEEPING_CATEGORIES.filter((c) => c.id !== "wild-camping");
+  let filters = $state<Filters>(noFilters());
+  let filtersReady = $state(false);
+  const matching = $derived(trails.filter((t) => matches(t, filters)));
+  const matchSet = $derived(new Set(matching.map((t) => t.slug)));
+  const chips = $derived(
+    activeFilters(filters, sleepingOptions).map((a) => ({ label: a.label, clear: () => Object.assign(filters, a.reset) })),
+  );
+  const listHref = $derived(`/trails/${toParams(filters).toString() ? `?${toParams(filters)}` : ""}`);
+  // the map's filter buttons: each opens one or two of the panel's groups
+  const BAR = [
+    { id: "when", label: "When", groups: ["when"], on: (f: Filters) => (f.months.length ? monthList(f.months) : "") },
+    { id: "where", label: "Where", groups: ["where"], on: (f: Filters) => f.where.join(", ") },
+    { id: "days", label: "How long", groups: ["days"], on: (f: Filters) => (daysText(f) === "Any length" ? "" : daysText(f)) },
+    {
+      id: "hard",
+      label: "How hard",
+      groups: ["hard"],
+      on: (f: Filters) =>
+        [
+          ["Terrain", f.terrainMin, f.terrainMax],
+          ["Climate", f.climateMin, f.climateMax],
+          ["Effort", f.effortMin, f.effortMax],
+        ]
+          .filter(([, a, b]) => levelText(a as number, b as number) !== "Any")
+          .map(([l, a, b]) => `${l} ${levelText(a as number, b as number).toLowerCase()}`)
+          .join(", "),
+    },
+    { id: "land", label: "Landscape", groups: ["land", "ground"], on: (f: Filters) => [f.land.length ? `${f.land.length} picked` : "", naturalText(f) !== "Any" ? naturalText(f) : ""].filter(Boolean).join(", ") },
+    { id: "sleep", label: "Nights", groups: ["sleep", "wild"], on: (f: Filters) => [f.sleep.length ? `${f.sleep.length} kinds` : "", f.wild ? "wild camping" : ""].filter(Boolean).join(", ") },
+    { id: "water", label: "Water", groups: ["water"], on: (f: Filters) => (waterText(f) === "Any" ? "" : waterText(f)) },
+  ] as const;
+  let barOpen = $state<string | null>(null);
+  let barH = $state(0);
+
   // the list's search: every word must start a word of the trail's names or countries
   const terms = new Map(
     trails.map((t) => [t.slug, [t.name, t.localName ?? "", ...t.aliases, ...t.countries].join(" ").toLowerCase().split(/[\s,/()-]+/)]),
@@ -68,7 +128,7 @@
   };
   const sorted = $derived(
     trails
-      .filter(found)
+      .filter((t) => matchSet.has(t.slug) && found(t))
       .map((t) => ({ t, here: inView.includes(t.slug), d: center ? km(center, t.startLonLat) : 0 }))
       .sort((a, b) => Number(b.here) - Number(a.here) || a.d - b.d || a.t.name.localeCompare(b.t.name)),
   );
@@ -111,15 +171,7 @@
       query = s.label;
       selected = null;
       listKept = true;
-      const boxes = trails.filter((t) => t.countries.includes(s.id)).map((t) => routeBounds.get(t.slug) ?? [t.startLonLat, t.startLonLat]);
-      if (map && boxes.length)
-        map.fitBounds(
-          [
-            [Math.min(...boxes.map((b) => b[0][0])), Math.min(...boxes.map((b) => b[0][1]))],
-            [Math.max(...boxes.map((b) => b[1][0])), Math.max(...boxes.map((b) => b[1][1]))],
-          ],
-          { padding: 48, maxZoom: 9 },
-        );
+      frame(matching.filter((t) => t.countries.includes(s.id)));
     }
   }
   function onKey(e: KeyboardEvent) {
@@ -150,6 +202,7 @@
   // or button: the event has an `originalEvent`) or asks for all trails or a cluster (`resetList`);
   // a resize or a reload of the map's style (a theme switch) doesn't count
   let listKept = false;
+  let framedOnce = false;
   function updateInView(e?: { originalEvent?: unknown; resetList?: boolean }) {
     if (!map) return;
     if (listKept && !e?.originalEvent && !e?.resetList) return;
@@ -160,19 +213,43 @@
     center = [c.lng, c.lat];
   }
 
-  // the room the preview card leaves on the map: the map frames the trail beside it (left of the
-  // card on wide screens, above it on phones, where it sits along the bottom)
+  // the room the panels over the map leave (the preview card, the filter buttons): the map
+  // frames trails beside them. A tall panel takes its side (left or right), a wide one its edge (top
+  // or bottom); the map keeps at least 120 × 100 px
   let mapWrap: HTMLDivElement;
   function framePadding() {
     const p = { top: 48, right: 48, bottom: 48, left: 48 };
-    const el = mapWrap?.querySelector<HTMLElement>(".tp");
-    if (!el) return p;
+    if (!mapWrap) return p;
     const m = container.getBoundingClientRect();
-    const c = el.getBoundingClientRect();
-    if (c.left >= m.right - 1 || c.right <= m.left + 1) return p;
-    if (c.height > m.height * 0.6) p.right = Math.min(Math.max(48, m.right - c.left + 24), m.width - 120);
-    else p.bottom = Math.min(Math.max(48, m.bottom - c.top + 24), m.height - 100);
+    for (const el of mapWrap.querySelectorAll<HTMLElement>(".tp, .wm-over")) {
+      const c = el.getBoundingClientRect();
+      if (!c.width || c.left >= m.right - 1 || c.right <= m.left + 1 || c.top >= m.bottom - 1 || c.bottom <= m.top + 1) continue;
+      if (c.height > m.height * 0.6) {
+        if (c.left + c.width / 2 < m.left + m.width / 2) p.left = Math.max(p.left, c.right - m.left + 24);
+        else p.right = Math.max(p.right, m.right - c.left + 24);
+      } else if (c.top + c.height / 2 < m.top + m.height / 2) p.top = Math.max(p.top, c.bottom - m.top + 24);
+      else p.bottom = Math.max(p.bottom, m.bottom - c.top + 24);
+    }
+    const shrink = (a: "left" | "right" | "top" | "bottom", b: "left" | "right" | "top" | "bottom", room: number) => {
+      const over = p[a] + p[b] - room;
+      if (over > 0) [p[a], p[b]] = [Math.max(0, p[a] - over / 2), Math.max(0, p[b] - over / 2)];
+    };
+    shrink("left", "right", m.width - 120);
+    shrink("top", "bottom", m.height - 100);
     return p;
+  }
+  // fit the map to some trails (their routes, else their starts) in the room the panels leave
+  function frame(ts: Trail[], eventData: object = {}) {
+    if (!map || !ts.length) return;
+    const boxes = ts.map((t) => routeBounds.get(t.slug) ?? [t.startLonLat, t.startLonLat]);
+    map.fitBounds(
+      [
+        [Math.min(...boxes.map((b) => b[0][0])), Math.min(...boxes.map((b) => b[0][1]))],
+        [Math.max(...boxes.map((b) => b[1][0])), Math.max(...boxes.map((b) => b[1][1]))],
+      ],
+      { padding: framePadding(), maxZoom: 9 },
+      eventData,
+    );
   }
 
   // zoom to one trail's route (or its start where no route is drawn), once its preview is shown
@@ -199,8 +276,40 @@
     selected = null;
     await tick();
     map?.resize();
-    if (map && allBounds) map.fitBounds(allBounds, { padding: 0 }, { resetList: true });
+    if (!map) return;
+    if (matching.length === trails.length && allBounds) map.fitBounds(allBounds, { padding: 0 }, { resetList: true });
+    else frame(matching, { resetList: true });
   }
+
+  // the filters: read from the URL once, written back on change; the map shows only the matching
+  // trails and, a moment after the filters change, frames them
+  function applyFilters() {
+    if (!map?.getSource("starts")) return;
+    const slugs = [...matchSet];
+    (map.getSource("starts") as import("maplibre-gl").GeoJSONSource).setData(startsData(slugs));
+    for (const id of ["routes-casing", "routes-line"]) map.setFilter(id, ["in", ["get", "slug"], ["literal", slugs]]);
+  }
+  $effect(() => {
+    matchSet;
+    applyFilters();
+    if (selected && !matchSet.has(selected)) selected = null;
+  });
+  $effect(() => {
+    const search = toParams(filters).toString();
+    if (!filtersReady) return;
+    history.replaceState(null, "", search ? `?${search}` : location.pathname);
+  });
+  let frameTimer: ReturnType<typeof setTimeout> | undefined;
+  let lastMatch: string | undefined;
+  $effect(() => {
+    const key = [...matchSet].join();
+    if (!filtersReady || key === lastMatch) return;
+    const first = lastMatch === undefined;
+    lastMatch = key;
+    if (first) return; // the first view: framed when the map is ready (style.load)
+    clearTimeout(frameTimer);
+    frameTimer = setTimeout(() => !selected && (matching.length === trails.length ? showAll() : frame(matching, { resetList: true })), 450);
+  });
 
   // the hovered and the picked trail's routes are drawn thicker
   function highlight(...slugs: (string | null)[]) {
@@ -210,6 +319,17 @@
   $effect(() => highlight(hovered, selected));
 
   onMount(() => {
+    filters = fromParams(
+      new URLSearchParams(location.search),
+      sleepingOptions.map((c) => c.id),
+    );
+    filtersReady = true;
+    // a filter button's group closes with Esc or a click elsewhere
+    const closeBar = (e: Event) => {
+      if (e instanceof KeyboardEvent ? e.key === "Escape" : !(e.target as Element).closest?.(".wm-bar")) barOpen = null;
+    };
+    document.addEventListener("pointerdown", closeBar);
+    document.addEventListener("keydown", closeBar);
     let cancelled = false;
     let stopTheme = () => {};
     (async () => {
@@ -275,8 +395,11 @@
         map.addLayer({ id: "cluster-count", type: "symbol", source: "starts", filter: ["has", "point_count"], layout: { "text-field": ["get", "point_count_abbreviated"], "text-font": ["Noto Sans Bold"], "text-size": 12 }, paint: { "text-color": paper } });
         map.addLayer({ id: "starts", type: "circle", source: "starts", filter: ["!", ["has", "point_count"]], paint: { "circle-color": paper, "circle-radius": 7, "circle-stroke-color": accent, "circle-stroke-width": 3 } });
         map.addLayer({ id: "start-labels", type: "symbol", source: "starts", filter: ["!", ["has", "point_count"]], minzoom: 3, layout: { "text-field": ["get", "name"], "text-font": ["Noto Sans Bold"], "text-size": 12, "text-offset": [0, 1.3], "text-anchor": "top" }, paint: { "text-color": ink, "text-halo-color": paper, "text-halo-width": 1.6 } });
+        applyFilters();
         highlight(hovered, selected);
         updateInView();
+        if (!framedOnce && matching.length < trails.length) frame(matching, { resetList: true });
+        framedOnce = true;
       });
       // a cluster zooms in; a trail is found in the list
       map.on("click", "clusters", async (e) => {
@@ -309,6 +432,8 @@
       stopTheme = () => observer.disconnect();
     })().catch((error) => console.error("World map failed:", error));
     return () => {
+      document.removeEventListener("pointerdown", closeBar);
+      document.removeEventListener("keydown", closeBar);
       cancelled = true;
       stopTheme();
       map?.remove();
@@ -317,8 +442,26 @@
 </script>
 
 <div class="wm">
-  <div class="wm-mapwrap" bind:this={mapWrap}>
+  <div class="wm-mapwrap" style={`--bar-h: ${barH}px`} bind:this={mapWrap}>
     <div class="wm-map" bind:this={container} role="region" aria-label="World map of the trails"></div>
+    <!-- one button per planning question along the map's top; each opens its filters -->
+      <div class="wm-bar wm-over" role="toolbar" aria-label="Filters" bind:clientHeight={barH}>
+        {#each BAR as b}
+          {@const value = b.on(filters)}
+          <div class="wm-bar-item">
+            <button type="button" class="wm-pill" class:set={value} aria-expanded={barOpen === b.id} onclick={() => (barOpen = barOpen === b.id ? null : b.id)}>
+              <span class="wm-pill-text">{b.label}{#if value}<span class="wm-pill-value">: {value}</span>{/if}</span>
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6 9 6 6 6-6" /></svg>
+            </button>
+            {#if barOpen === b.id}
+              <div class="wm-drop">
+                <FilterPanel trails={trails} bind:filters groups={[...b.groups]} idPrefix={`b-${b.id}-`} />
+                <button type="button" class="wm-show" onclick={() => (barOpen = null)}>Show {matching.length} {matching.length === 1 ? "trail" : "trails"}</button>
+              </div>
+            {/if}
+          </div>
+        {/each}
+    </div>
     {#if picked}
       {#key picked.slug}<TrailPreview trail={picked} onclose={closePreview} />{/key}
     {/if}
@@ -367,6 +510,21 @@
         </div>
       {/if}
     </div>
+    <!-- how many trails the filters leave, and the way to the list view with the same filters -->
+    <div class="wm-status">
+      <p role="status">
+        {#if chips.length}<strong>{matching.length}</strong> of {trails.length} trails{:else}<strong>{trails.length}</strong> trails{/if}
+        <a href={listHref}>List view <span aria-hidden="true">→</span></a>
+      </p>
+    </div>
+    {#if chips.length}
+      <ul class="wm-chips">
+        {#each chips as c}
+          <li><button type="button" onclick={c.clear} aria-label={`Remove filter: ${c.label}`}>{c.label}<span aria-hidden="true">×</span></button></li>
+        {/each}
+        <li><button type="button" class="wm-link" onclick={() => (filters = noFilters())}>Clear all</button></li>
+      </ul>
+    {/if}
     <ol class="wm-list" aria-label="Trails, nearest to the map's centre first">
       {#each sorted as { t, here }, i (t.slug)}
         {#if i === firstOutside}
@@ -386,8 +544,13 @@
         </li>
       {:else}
         <li class="wm-none">
-          No trail matches "{query}".
-          <button type="button" class="wm-link" onclick={() => (query = "")}>Clear the search</button>
+          {#if !matching.length}
+            No trail matches these filters.
+            <button type="button" class="wm-link" onclick={() => (filters = noFilters())}>Clear the filters</button>
+          {:else}
+            No trail matches "{query}".
+            <button type="button" class="wm-link" onclick={() => (query = "")}>Clear the search</button>
+          {/if}
         </li>
       {/each}
     </ol>
@@ -634,6 +797,135 @@
     width: 17px;
     height: 17px;
     color: #333;
+  }
+
+  /* the filters' count, link and button under the search */
+  .wm-status {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+  }
+  .wm-status p {
+    margin: 0;
+    color: var(--muted);
+    font-size: 0.85rem;
+  }
+  .wm-status strong {
+    color: var(--text);
+  }
+  .wm-status a {
+    margin-left: 10px;
+    color: var(--accent);
+  }
+  /* the active filters as removable chips, as on the search page */
+  .wm-chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+  .wm-chips button:not(.wm-link) {
+    display: inline-flex;
+    gap: 6px;
+    padding: 3px 10px;
+    border: 1px solid var(--accent);
+    border-radius: 999px;
+    background: var(--accent-soft);
+    color: var(--text);
+    font: 500 0.78rem var(--sans);
+    cursor: pointer;
+  }
+  .wm-chips .wm-link {
+    font-size: 0.78rem;
+  }
+  .wm-show {
+    padding: 9px 18px;
+    border: 0;
+    border-radius: 999px;
+    background: var(--accent);
+    color: var(--bg);
+    font: 600 0.9rem var(--sans);
+    cursor: pointer;
+  }
+  /* the filter buttons along the map's top, left of the map's own buttons; the preview card
+     moves below them */
+  .wm-bar {
+    position: absolute;
+    z-index: 6;
+    top: 12px;
+    left: 12px;
+    right: 56px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    pointer-events: none;
+  }
+  .wm-bar-item {
+    position: relative;
+    pointer-events: auto;
+  }
+  .wm-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    max-width: 260px;
+    padding: 7px 10px 7px 14px;
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    background: var(--bg);
+    color: var(--text);
+    font: 600 0.85rem var(--sans);
+    white-space: nowrap;
+    box-shadow: 0 2px 8px rgb(0 0 0 / 0.12);
+    cursor: pointer;
+  }
+  .wm-pill.set {
+    border-color: var(--accent);
+    background: var(--accent-soft);
+  }
+  .wm-pill-text {
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .wm-pill-value {
+    font-weight: 500;
+  }
+  .wm-pill svg {
+    flex: none;
+    width: 16px;
+    height: 16px;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 2;
+  }
+  .wm-pill[aria-expanded="true"] svg {
+    transform: rotate(180deg);
+  }
+  .wm-drop {
+    position: absolute;
+    z-index: 2;
+    top: calc(100% + 6px);
+    left: 0;
+    display: grid;
+    gap: 12px;
+    width: 320px;
+    max-width: calc(100vw - 24px);
+    max-height: 60vh;
+    overflow-y: auto;
+    padding: 16px;
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    background: var(--bg);
+    box-shadow: 0 10px 30px rgb(0 0 0 / 0.16);
+  }
+  .wm-drop .wm-show {
+    justify-self: end;
+  }
+  .wm-mapwrap :global(.tp) {
+    top: calc(var(--bar-h) + 20px);
   }
 
   @media (max-width: 899px) {

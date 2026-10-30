@@ -7,34 +7,22 @@
   import { SLEEPING_CATEGORIES, WATER_LEVELS } from "../lib/trails";
   import type { SearchTrail } from "../lib/search";
   import {
-    DAYS,
-    DAYS_ALL,
     LANDSCAPES,
-    LANDSCAPE_SHARE,
-    LEVEL_TOP,
     LEVEL_WORDS,
     MONTHS,
-    NATURAL_PCT,
     SAC,
-    WATER_KM,
+    activeFilters,
     climateLevel,
     fromParams,
     matches,
-    places as placesOf,
-    toggleWhere,
+    noFilters,
     toParams,
     type Filters,
   } from "../lib/filters";
-  import Explain from "./Explain.svelte";
-  import Range from "./Range.svelte";
+  import FilterPanel from "./FilterPanel.svelte";
 
   let { trails, eleRange }: { trails: SearchTrail[]; eleRange: [number, number] } = $props();
 
-  // slider labels for the shared stops (src/lib/filters.ts)
-  const DAY_STOPS = DAYS.map((d, i) => (i === DAYS.length - 1 ? `${d}+` : `${d}`));
-  const WATER_STOPS = [...WATER_KM.map((km) => `${km} km`), "Any"];
-  const NATURAL_STOPS = NATURAL_PCT.map((n) => (n ? `${n} %` : "Any"));
-  const LEVEL_STOPS = LEVEL_WORDS;
   // the hardest of a trail's three ratings over its season (for sorting)
   const hardest = (t: SearchTrail) => {
     const xs = [t.terrainLevel, t.effortLevel, climateLevel(t, [])].filter((x) => x !== null) as number[];
@@ -57,85 +45,36 @@
   } as const;
   type SortKey = keyof typeof SORTS;
 
-  // filter state; sliders hold stop indexes. Each filter maps to a URL parameter.
-  let months = $state<number[]>([]);
-  let dayLo = $state(0);
-  let dayHi = $state(DAYS_ALL);
-  let where = $state<string[]>([]);
-  let sleep = $state<string[]>([]);
-  let wild = $state<Filters["wild"]>("");
-  let waterMax = $state(WATER_KM.length); // "Any"
-  let naturalMin = $state(0); // "Any"
-  // difficulty ranges, Easy (0) to Hard (LEVEL_TOP); the whole range: any
-  let terrainMin = $state(0);
-  let terrainMax = $state(LEVEL_TOP);
-  let climateMin = $state(0);
-  let climateMax = $state(LEVEL_TOP);
-  let effortMin = $state(0);
-  let effortMax = $state(LEVEL_TOP);
-  let land = $state<string[]>([]);
+  // filter state (src/lib/filters.ts; sliders hold stop indexes), each filter a URL parameter;
+  // the controls are FilterPanel.svelte, shared with the trail map
+  let filters = $state<Filters>(noFilters());
   let sort = $state<SortKey>("name");
   let filtersOpen = $state(false);
   let ready = false;
 
-  let daysOn = $derived(dayLo > 0 || dayHi < DAYS_ALL);
-  let waterOn = $derived(waterMax < WATER_KM.length);
-  let naturalOn = $derived(naturalMin > 0);
-  let terrainOn = $derived(terrainMin > 0 || terrainMax < LEVEL_TOP);
-  let climateOn = $derived(climateMin > 0 || climateMax < LEVEL_TOP);
-  let effortOn = $derived(effortMin > 0 || effortMax < LEVEL_TOP);
-
-  const places = placesOf(trails);
   const sleepingOptions = SLEEPING_CATEGORIES.filter((c) => c.id !== "wild-camping");
 
   onMount(() => {
     const p = new URLSearchParams(location.search);
-    ({ months, dayLo, dayHi, where, sleep, wild, waterMax, naturalMin, terrainMin, terrainMax, climateMin, climateMax, effortMin, effortMax, land } = fromParams(
+    filters = fromParams(
       p,
       sleepingOptions.map((c) => c.id),
-    ));
+    );
     sort = (p.get("sort") ?? "") in SORTS ? (p.get("sort") as SortKey) : "name";
     ready = true;
   });
 
-  let current: Filters = $derived({
-    months, dayLo, dayHi, where, sleep, wild, waterMax, naturalMin,
-    terrainMin, terrainMax, climateMin, climateMax, effortMin, effortMax, land,
-  });
-
   // keep the URL in step with the filters (replace, not push: the back button leaves the page)
   $effect(() => {
-    const p = toParams(current);
+    const p = toParams(filters);
     if (sort !== "name") p.set("sort", sort);
     if (!ready) return;
     const search = p.toString();
     history.replaceState(null, "", search ? `?${search}` : location.pathname);
   });
 
-  const toggle = <T,>(list: T[], value: T) => (list.includes(value) ? list.filter((x) => x !== value) : [...list, value]);
-
-  // options that would leave no trail with the other filters as set are disabled (an option that's
-  // on never is, so it can be undone); sliders mark those stops and won't move onto them
-  const NONE = "No trail matches this with your other filters";
-  const countWith = (set: Partial<Filters>) => trails.filter((t) => matches(t, { ...current, ...set })).length;
-  const dead = (on: boolean, set: Partial<Filters>) => !on && countWith(set) === 0;
-  const liveStops = (n: number, set: (i: number) => Partial<Filters>) => Array.from({ length: n }, (_, i) => countWith(set(i)) > 0);
-  // a day thumb can't pass the other one, so stops beyond it count as live (nothing to mark there)
-  let dayLoLive = $derived(liveStops(DAYS.length, (i) => ({ dayLo: i })).map((ok, i) => ok || i > dayHi));
-  let dayHiLive = $derived(liveStops(DAYS.length, (i) => ({ dayHi: i })).map((ok, i) => ok || i < dayLo));
-  let waterLive = $derived(liveStops(WATER_STOPS.length, (i) => ({ waterMax: i })));
-  let naturalLive = $derived(liveStops(NATURAL_STOPS.length, (i) => ({ naturalMin: i })));
-  // difficulty thumbs, as the day thumbs: stops beyond the other thumb count as live
-  const levelLive = (key: "terrain" | "climate" | "effort", min: number, max: number) => ({
-    lo: liveStops(LEVEL_STOPS.length, (i) => ({ [`${key}Min`]: i })).map((ok, i) => ok || i > max),
-    hi: liveStops(LEVEL_STOPS.length, (i) => ({ [`${key}Max`]: i })).map((ok, i) => ok || i < min),
-  });
-  let terrainLive = $derived(levelLive("terrain", terrainMin, terrainMax));
-  let climateLive = $derived(levelLive("climate", climateMin, climateMax));
-  let effortLive = $derived(levelLive("effort", effortMin, effortMax));
-
   let shown = $derived(
-    trails.filter((t) => matches(t, current)).sort((a, b) => {
+    trails.filter((t) => matches(t, filters)).sort((a, b) => {
       const [x, y] = [SORTS[sort].value(a), SORTS[sort].value(b)];
       if (x === y) return a.name.localeCompare(b.name);
       if (x === null) return 1; // unknown values last
@@ -144,54 +83,13 @@
     }),
   );
 
-  // what each slider is set to, in words (beside the group title and on the chips)
-  let daysText = $derived(
-    !daysOn ? "Any length" : dayLo === dayHi ? `${DAY_STOPS[dayLo]} days` : `${DAYS[dayLo]}–${DAY_STOPS[dayHi]} days`,
-  );
-  let waterText = $derived(waterOn ? `Every ${WATER_KM[waterMax]} km or less` : "Any");
-  let naturalText = $derived(naturalOn ? `${NATURAL_PCT[naturalMin]} %+ natural` : "Any");
-  // a difficulty range in words: "Any", "Demanding", "Up to moderate", "Demanding or harder",
-  // "Moderate to demanding"
-  const levelText = (min: number, max: number) =>
-    min === 0 && max === LEVEL_TOP
-      ? "Any"
-      : min === max
-        ? LEVEL_WORDS[min]
-        : min === 0
-          ? `Up to ${LEVEL_WORDS[max].toLowerCase()}`
-          : max === LEVEL_TOP
-            ? `${LEVEL_WORDS[min]} or harder`
-            : `${LEVEL_WORDS[min]} to ${LEVEL_WORDS[max].toLowerCase()}`;
-
   // the active filters as removable chips
-  const monthList = (ms: number[]) => [...ms].sort((a, b) => a - b).map((m) => MONTHS[m - 1]).join(", ");
   let active = $derived(
-    [
-      months.length && { label: monthList(months), clear: () => (months = []) },
-      ...where.map((w) => ({ label: w, clear: () => (where = where.filter((x) => x !== w)) })),
-      daysOn && { label: daysText, clear: () => ((dayLo = 0), (dayHi = DAYS_ALL)) },
-      terrainOn && { label: `Terrain: ${levelText(terrainMin, terrainMax).toLowerCase()}`, clear: () => ((terrainMin = 0), (terrainMax = LEVEL_TOP)) },
-      climateOn && { label: `Climate: ${levelText(climateMin, climateMax).toLowerCase()}`, clear: () => ((climateMin = 0), (climateMax = LEVEL_TOP)) },
-      effortOn && { label: `Effort: ${levelText(effortMin, effortMax).toLowerCase()}`, clear: () => ((effortMin = 0), (effortMax = LEVEL_TOP)) },
-      ...land.map((g) => ({ label: LANDSCAPES.find((l) => l.id === g)!.label, clear: () => (land = toggle(land, g)) })),
-      naturalOn && { label: `At least ${NATURAL_PCT[naturalMin]} % natural ground`, clear: () => (naturalMin = 0) },
-      ...sleep.map((id) => ({ label: SLEEPING_CATEGORIES.find((c) => c.id === id)!.label, clear: () => (sleep = toggle(sleep, id)) })),
-      wild && { label: wild === "allowed" ? "Wild camping allowed" : "Wild camping possible", clear: () => (wild = "") },
-      waterOn && { label: `Water every ${WATER_KM[waterMax]} km or less`, clear: () => (waterMax = WATER_KM.length) },
-    ].filter(Boolean) as { label: string; clear: () => void }[],
+    activeFilters(filters, sleepingOptions).map((a) => ({ label: a.label, clear: () => Object.assign(filters, a.reset) })),
   );
 
   function reset() {
-    wild = "";
-    where = [];
-    months = [];
-    sleep = [];
-    land = [];
-    terrainMin = climateMin = effortMin = 0;
-    terrainMax = climateMax = effortMax = LEVEL_TOP;
-    dayLo = naturalMin = 0;
-    dayHi = DAYS_ALL;
-    waterMax = WATER_KM.length;
+    filters = noFilters();
   }
 
   // card helpers
@@ -238,165 +136,7 @@
       <button type="button" class="close" onclick={() => (filtersOpen = false)}>Show {shown.length} {shown.length === 1 ? "trail" : "trails"}</button>
     </div>
 
-    <!-- groups, not fieldsets: a legend can't hold the explanation popover -->
-    <div class="group" role="group" aria-labelledby="g-when">
-      <div class="legend" id="g-when">
-        <Explain id="x-when" term="When do you want to go?" title="Season">
-          <p>A trail matches if its season includes any of the months you pick. The season is what the trail's managers recommend; outside it, huts and services may be closed or snow may block the way.</p>
-        </Explain>
-      </div>
-      <div class="months">
-        {#each MONTHS as m, i}
-          {@const off = dead(months.includes(i + 1), { months: toggle(months, i + 1) })}
-          <button type="button" class="chip" aria-pressed={months.includes(i + 1)} disabled={off} title={off ? NONE : undefined} onclick={() => (months = toggle(months, i + 1))}>{m}</button>
-        {/each}
-      </div>
-    </div>
-
-    <div class="group" role="group" aria-labelledby="g-where">
-      <div class="legend" id="g-where">
-        <Explain id="x-where" term="Where?" title="Continents and countries">
-          <p>Pick as many as you like; a trail matches if it runs through any of them.</p>
-          <p>A continent includes all its countries. Picking a country within a chosen continent narrows the choice to that country.</p>
-        </Explain>
-      </div>
-      <!-- a continent, its countries beneath; countries a chosen continent covers show as included -->
-      {#each places as p}
-        {@const off = dead(where.includes(p.continent), { where: toggleWhere(where, p.continent, places) })}
-        <div class="place">
-          <button type="button" class="chip" aria-pressed={where.includes(p.continent)} disabled={off} title={off ? NONE : undefined} onclick={() => (where = toggleWhere(where, p.continent, places))}>
-            {p.continent}
-          </button>
-          <div class="chips countries">
-            {#each p.countries as c}
-              {@const off = dead(where.includes(c), { where: toggleWhere(where, c, places) })}
-              <button
-                type="button"
-                class="chip"
-                class:included={where.includes(p.continent)}
-                aria-pressed={where.includes(c)}
-                disabled={off}
-                title={off ? NONE : undefined}
-                onclick={() => (where = toggleWhere(where, c, places))}
-              >
-                {c}
-              </button>
-            {/each}
-          </div>
-        </div>
-      {/each}
-    </div>
-
-    <div class="group" role="group" aria-labelledby="g-long">
-      <div class="legend" id="g-long">
-        <Explain id="x-long" term="How long?" title="Walking days">
-          <p>The number of days the trail's managers suggest for the whole route. Where they give a range, such as 6–8 days, the trail matches if that range overlaps yours.</p>
-        </Explain>
-        <span class="value">{daysText}</span>
-      </div>
-      <Range stops={DAY_STOPS} bind:lo={dayLo} bind:hi={dayHi} live={dayHiLive} liveLo={dayLoLive} label="Walking days" ticks={[0, 6, 9, 12, DAYS_ALL]} />
-    </div>
-
-    <div class="group" role="group" aria-labelledby="g-hard">
-      <div class="legend" id="g-hard">
-        <Explain id="x-hard" term="How hard?" title="Difficulty">
-          <p>The ratings on each trail page's Difficulty section, from Easy to Hard with the same thresholds for every trail. Slide either end: the left thumb for the least, the right for the most you want. Once you set one, trails without that rating drop out.</p>
-          <dl>
-            <dt>Terrain</dt><dd>The path grade (SAC scale), how much and how steeply it climbs, and how much is natural ground.</dd>
-            <dt>Climate</dt><dd>Heat, cold, wet days, snow and wind: in the months you picked above (within the trail's season), or over its whole season.</dd>
-            <dt>Effort</dt><dd>The longest day: up to 4 h is easy, 4–6 h moderate, 6–8 h demanding, more is hard.</dd>
-          </dl>
-        </Explain>
-      </div>
-      <div class="sub">
-        <span>Terrain</span><span class="value">{levelText(terrainMin, terrainMax)}</span>
-      </div>
-      <Range stops={LEVEL_STOPS} bind:lo={terrainMin} bind:hi={terrainMax} live={terrainLive.hi} liveLo={terrainLive.lo} label="Terrain" ticks={[0, LEVEL_TOP]} />
-      <div class="sub">
-        <span>Climate{months.length ? " in your months" : ""}</span><span class="value">{levelText(climateMin, climateMax)}</span>
-      </div>
-      <Range stops={LEVEL_STOPS} bind:lo={climateMin} bind:hi={climateMax} live={climateLive.hi} liveLo={climateLive.lo} label="Climate" ticks={[0, LEVEL_TOP]} />
-      <div class="sub">
-        <span>Effort, longest day</span><span class="value">{levelText(effortMin, effortMax)}</span>
-      </div>
-      <Range stops={LEVEL_STOPS} bind:lo={effortMin} bind:hi={effortMax} live={effortLive.hi} liveLo={effortLive.lo} label="Effort, longest day" ticks={[0, LEVEL_TOP]} />
-    </div>
-    <div class="group" role="group" aria-labelledby="g-land">
-      <div class="legend" id="g-land">
-        <Explain id="x-land" term="Landscape" title="Landscape">
-          <p>What the trail passes through, from ESA WorldCover satellite land cover: a trail matches if at least {Math.round(LANDSCAPE_SHARE * 100)} % of its main route is a landscape you pick (any of them).</p>
-        </Explain>
-      </div>
-      <div class="chips">
-        {#each LANDSCAPES as l}
-          {@const off = dead(land.includes(l.id), { land: toggle(land, l.id) })}
-          <button type="button" class="chip" aria-pressed={land.includes(l.id)} disabled={off} title={off ? NONE : undefined} onclick={() => (land = toggle(land, l.id))}>{l.label}</button>
-        {/each}
-      </div>
-    </div>
-    <div class="group" role="group" aria-labelledby="g-terrain">
-      <div class="legend" id="g-terrain">
-        <Explain id="x-terrain" term="Natural ground" title="Ground underfoot">
-          <p>The share of the main route on natural ground at least, from OpenStreetMap's surface tags. The bar under each card's profile shows the mix:</p>
-          <!-- the same colours as the surface bar on each card -->
-          <ul class="ground">
-            <li><span style="background: var(--surface-natural)"></span>Natural: earth, grass, rock</li>
-            <li><span style="background: var(--surface-gravel)"></span>Gravel</li>
-            <li><span style="background: var(--surface-paved)"></span>Paved</li>
-          </ul>
-        </Explain>
-        <span class="value">{naturalText}</span>
-      </div>
-      <Range stops={NATURAL_STOPS} bind:hi={naturalMin} live={naturalLive} off={0} fill="above" label="Share of natural ground, at least" ticks={[0, 5, 9]} />
-    </div>
-    <div class="group" role="group" aria-labelledby="g-sleep">
-      <div class="legend" id="g-sleep">
-        <Explain id="x-sleep" term="Where to sleep">
-          <p>A trail matches if it offers every kind you pick.</p>
-          <dl>
-            {#each sleepingOptions as c}<dt>{c.label}</dt><dd>{c.hint}</dd>{/each}
-          </dl>
-        </Explain>
-      </div>
-      <div class="chips">
-        {#each sleepingOptions as c}
-          {@const off = dead(sleep.includes(c.id), { sleep: toggle(sleep, c.id) })}
-          <button type="button" class="chip" aria-pressed={sleep.includes(c.id)} disabled={off} title={off ? NONE : undefined} onclick={() => (sleep = toggle(sleep, c.id))}>{c.label}</button>
-        {/each}
-      </div>
-    </div>
-
-    <div class="group" role="group" aria-labelledby="g-wild">
-      <div class="legend" id="g-wild">
-        <Explain id="x-wild" term="Wild camping">
-          <dl>
-            <dt>Possible</dt><dd>Allowed, or allowed only in certain places or under rules, such as designated bivouac sites.</dd>
-            <dt>Allowed</dt><dd>Pitching a tent outside campsites is allowed along the trail.</dd>
-          </dl>
-          <p>Each trail page gives the exact rule.</p>
-        </Explain>
-      </div>
-      <div class="segmented" role="radiogroup" aria-labelledby="g-wild">
-        <button type="button" role="radio" aria-checked={wild === ""} disabled={dead(wild === "", { wild: "" })} title={dead(wild === "", { wild: "" }) ? NONE : undefined} onclick={() => (wild = "")}>Any</button>
-        <button type="button" role="radio" aria-checked={wild === "some"} disabled={dead(wild === "some", { wild: "some" })} title={dead(wild === "some", { wild: "some" }) ? NONE : undefined} onclick={() => (wild = "some")}>Possible</button>
-        <button type="button" role="radio" aria-checked={wild === "allowed"} disabled={dead(wild === "allowed", { wild: "allowed" })} title={dead(wild === "allowed", { wild: "allowed" }) ? NONE : undefined} onclick={() => (wild = "allowed")}>Allowed</button>
-      </div>
-    </div>
-
-    <div class="group" role="group" aria-labelledby="g-water">
-      <div class="legend" id="g-water">
-        <Explain id="x-water" term="Drinking water" title="Drinking water">
-          <p>The longest stretch of the main route without drinking water (taps, fountains and drinking springs mapped in OpenStreetMap) must be at most this long.</p>
-          <p>Trail pages rate it in three steps:</p>
-          <dl>
-            {#each WATER_LEVELS as l}<dt>{l.label}</dt><dd>{l.hint}.</dd>{/each}
-          </dl>
-        </Explain>
-        <span class="value">{waterText}</span>
-      </div>
-      <Range stops={WATER_STOPS} bind:hi={waterMax} live={waterLive} off={WATER_KM.length} label="Longest stretch without drinking water, at most" ticks={[0, 3, WATER_KM.length]} />
-    </div>
-
+    <FilterPanel {trails} bind:filters />
   </aside>
 
   <div class="results">
@@ -404,8 +144,8 @@
       <p class="count" role="status">
         {#if active.length}<strong>{shown.length}</strong> of {trails.length} {trails.length === 1 ? "trail" : "trails"}
         {:else}<strong>{trails.length}</strong> {trails.length === 1 ? "trail" : "trails"}{/if}
-        <!-- the trail map (issue #33), a quiet way to the same trails by place -->
-        <a class="map-link" href="/trails/map/">Map view <span aria-hidden="true">→</span></a>
+        <!-- the trail map (issue #33), a quiet way to the same trails by place, with the same filters -->
+        <a class="map-link" href={`/trails/map/${toParams(filters).toString() ? `?${toParams(filters)}` : ""}`}>Map view <span aria-hidden="true">→</span></a>
       </p>
       <label class="sort">
         <span class="sort-word">Sort</span>
@@ -592,146 +332,11 @@
     margin: 0;
     font-size: 1.15rem;
   }
-  .group {
-    padding: 0 0 20px;
-    border-bottom: 1px solid var(--line);
-  }
-  .group:last-child {
-    border-bottom: 0;
-  }
-  .legend .value {
-    color: var(--muted);
-    font-weight: 400;
-    font-size: 0.8rem;
-  }
-  .legend {
-    display: flex;
-    justify-content: space-between;
-    align-items: baseline;
-    gap: 12px;
-    margin-bottom: 10px;
-    font-weight: 600;
-    font-size: 0.9rem;
-  }
-  .chips {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 6px;
-  }
-  .place + .place {
-    margin-top: 10px;
-  }
-  .countries {
-    margin: 6px 0 0 14px;
-  }
-  .chip.included {
-    border-color: color-mix(in srgb, var(--accent) 45%, var(--line));
-    background: var(--accent-soft);
-  }
-  .months {
-    display: grid;
-    grid-template-columns: repeat(6, 1fr);
-    gap: 6px;
-  }
-  .chip {
-    padding: 5px 10px;
-    border: 1px solid var(--line);
-    border-radius: 999px;
-    background: var(--bg);
-    color: var(--text);
-    font: 500 0.82rem var(--sans);
-    cursor: pointer;
-  }
-  .months .chip {
-    padding: 5px 0;
-    text-align: center;
-  }
-  .chip:hover:not(:disabled) {
-    border-color: var(--muted);
-  }
-  /* would leave no trail with the other filters */
-  .chip:disabled,
-  .segmented button:disabled {
-    opacity: 0.45;
-    cursor: not-allowed;
-  }
-  /* touch screens: taller targets for fingers */
+  /* touch screens: a taller filter button */
   @media (pointer: coarse) {
-    .chip,
-    .months .chip {
-      padding-top: 9px;
-      padding-bottom: 9px;
-    }
-    .segmented button {
-      padding-top: 9px;
-      padding-bottom: 9px;
-    }
     .filters-toggle {
       min-height: 40px;
     }
-  }
-  .chip[aria-pressed="true"],
-  .chip[aria-checked="true"] {
-    border-color: var(--accent);
-    background: var(--accent);
-    color: var(--bg);
-  }
-  .segmented {
-    display: flex;
-    margin-top: 10px;
-    padding: 2px;
-    border: 1px solid var(--line);
-    border-radius: 999px;
-  }
-  /* the difficulty group: one small label and value over each slider */
-  .sub {
-    display: flex;
-    justify-content: space-between;
-    align-items: baseline;
-    gap: 12px;
-    margin: 14px 0 4px;
-    font-size: 0.85rem;
-  }
-  .legend + .sub {
-    margin-top: 0;
-  }
-  .sub .value {
-    color: var(--muted);
-    font-size: 0.8rem;
-  }
-  .legend + .segmented {
-    margin-top: 0;
-  }
-  .segmented button {
-    flex: 1;
-    padding: 5px 6px;
-    border: 0;
-    border-radius: 999px;
-    background: none;
-    color: var(--muted);
-    font: 500 0.78rem var(--sans);
-    cursor: pointer;
-  }
-  .segmented button[aria-checked="true"] {
-    background: var(--surface);
-    color: var(--text);
-  }
-  .ground {
-    display: grid;
-    gap: 4px;
-    margin: 0 0 8px;
-    padding: 0;
-    list-style: none;
-  }
-  .ground li {
-    display: flex;
-    gap: 8px;
-    align-items: center;
-  }
-  .ground span {
-    width: 18px;
-    height: 6px;
-    border-radius: 2px;
   }
   select {
     width: 100%;
@@ -746,8 +351,6 @@
   .link.hidden {
     visibility: hidden;
   }
-  .chip:focus-visible,
-  .segmented button:focus-visible,
   .link:focus-visible,
   .card:focus-visible,
   .active button:focus-visible {
