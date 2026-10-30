@@ -4,6 +4,7 @@ import Base from "../layouts/Base.astro";
 import Icon, { type IconName } from "../components/Icon.astro";
 import TrailSpark from "../components/TrailSpark.astro";
 import Explain from "../components/Explain.astro";
+import TrailSearch from "../components/TrailSearch.astro";
 import { mainStages, stageEstimates, trailClimb, walkingMinutes } from "../lib/trails";
 import { LEVELS } from "../lib/difficulty";
 import { climateLevel } from "../lib/filters";
@@ -139,6 +140,9 @@ const sources = [
   title="huckepack: find a long-distance hiking trail, plan the journey"
   description="Find the long-distance hiking trail that suits you and plan the journey: stages, terrain, climate, water and beds for every trail, from official and open sources."
 >
+  <!-- issue #83 (of three previews, approach B): search with suggestions, in the header -->
+  <div slot="header" class="header-search"><TrailSearch id="search-header" size="compact" placeholder="Search trails" /></div>
+
   <section class="hero">
     <p class="eyebrow">Long-distance trails, in data</p>
     <!-- the second sentence never splits, so the headline wraps between the two -->
@@ -507,6 +511,16 @@ const sources = [
     .cta,
     .cta-secondary {
       transition: none;
+    }
+  }
+
+  /* the header's search (issue #83) */
+  .header-search {
+    width: 240px;
+  }
+  @media (max-width: 559px) {
+    .header-search {
+      width: 150px;
     }
   }
 

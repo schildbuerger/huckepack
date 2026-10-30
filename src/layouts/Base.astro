@@ -58,7 +58,10 @@ const canonical = new URL(Astro.url.pathname.replace(/\/?$/, "/"), Astro.site);
           <span class="brand-mark" aria-hidden="true" set:html={logo} />
           huckepack
         </a>
-        <ThemeToggle />
+        <div class="header-end">
+          <slot name="header" />
+          <ThemeToggle />
+        </div>
       </div>
     </header>
     <main class="wrap">
@@ -300,6 +303,12 @@ const canonical = new URL(Astro.url.pathname.replace(/\/?$/, "/"), Astro.site);
     align-items: center;
     justify-content: space-between;
     height: 60px;
+  }
+  /* the header's right side: a page's own header items (the home page's search), then the theme switch */
+  .header-end {
+    display: flex;
+    align-items: center;
+    gap: 14px;
   }
   .brand {
     display: inline-flex;
