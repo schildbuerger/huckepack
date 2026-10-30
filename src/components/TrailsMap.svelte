@@ -1,7 +1,9 @@
 <script lang="ts">
   // The trail map (issue #33): every trail on one map beside a list of the trails. The list holds
-  // every trail the filters leave, sorted by distance from the map's centre: the trails in view
-  // first, then, under "Outside the map view", the rest; a search at its top, like the header search
+  // every trail the filters leave: the trails in view first, then, under "Outside the map view", the
+  // rest, each sorted by distance from you (the main city of the browser's time zone, as the home
+  // page's "Trails near you"; else from the map's centre); the first view is centred on you, wide
+  // enough for the nearest trails; a search at its top, like the header search
   // (TrailSearch.astro), narrows it by name or country and suggests countries (a pick frames the map
   // on their trails) and trails (a pick zooms to the route). The search page's filters
   // (FilterPanel.svelte) sit as one button per planning question along the map's top, in the same URL
@@ -32,6 +34,7 @@
   } from "../lib/filters";
   import "maplibre-gl/dist/maplibre-gl.css";
   import workerUrl from "maplibre-gl/dist/maplibre-gl-worker.mjs?url";
+  import zones from "../lib/timezones.json";
   import type { SearchTrail } from "../lib/search";
   // Lucide icons (ISC): zoom to a trail, and back to all trails
   import openIcon from "lucide-static/icons/arrow-right.svg?raw";
@@ -69,6 +72,9 @@
   // picked (in the list, the search or on the map; it stays marked until another pick or "Show all")
   let inView = $state<string[]>(trails.map((t) => t.slug));
   let center = $state<[number, number] | null>(null);
+  // where you are, as far as the browser's time zone tells (its main city, [lon, lat]); worked out
+  // here, nothing is sent or stored
+  let here = $state<[number, number] | null>(null);
   let hovered = $state<string | null>(null);
   let selected = $state<string | null>(null);
   let query = $state("");
@@ -120,7 +126,7 @@
     const words = query.trim().toLowerCase().split(/\s+/).filter(Boolean);
     return words.every((w) => terms.get(t.slug)!.some((x) => x.startsWith(w)));
   };
-  // great-circle distance from the map's centre to a trail's start, km
+  // great-circle distance between two [lon, lat] points, km
   const km = (a: [number, number], b: [number, number]) => {
     const r = Math.PI / 180;
     const h = Math.sin(((b[1] - a[1]) * r) / 2) ** 2 + Math.cos(a[1] * r) * Math.cos(b[1] * r) * Math.sin(((b[0] - a[0]) * r) / 2) ** 2;
@@ -129,10 +135,16 @@
   const sorted = $derived(
     trails
       .filter((t) => matchSet.has(t.slug) && found(t))
-      .map((t) => ({ t, here: inView.includes(t.slug), d: center ? km(center, t.startLonLat) : 0 }))
-      .sort((a, b) => Number(b.here) - Number(a.here) || a.d - b.d || a.t.name.localeCompare(b.t.name)),
+      .map((t) => {
+        const from = here ?? center;
+        return { t, inMap: inView.includes(t.slug), d: from ? km(from, t.startLonLat) : 0 };
+      })
+      .sort((a, b) => Number(b.inMap) - Number(a.inMap) || a.d - b.d || a.t.name.localeCompare(b.t.name)),
   );
-  const firstOutside = $derived(sorted.findIndex((x) => !x.here));
+  const firstOutside = $derived(sorted.findIndex((x) => !x.inMap));
+  // rounded as far as a time zone's main city can tell: to 10, 50 or 100 km
+  const round = (d: number) => (d < 100 ? Math.round(d / 10) * 10 : d < 1000 ? Math.round(d / 50) * 50 : Math.round(d / 100) * 100);
+  const fromYou = (d: number) => `≈ ${fmt(round(d))} km from you`;
 
   // suggestions while typing: countries first (with how many trails), then trails by name
   const countries = [...new Set(trails.flatMap((t) => t.countries))].sort((a, b) => a.localeCompare(b));
@@ -252,6 +264,20 @@
     );
   }
 
+  // the first view where your place is known: centred on it, wide enough for the nearest trails
+  const NEAREST = 3;
+  function aroundHere(ts: Trail[]): [[number, number], [number, number]] | null {
+    if (!here || !ts.length) return null;
+    const [lon, lat] = here;
+    const near = [...ts].sort((a, b) => km(here!, a.startLonLat) - km(here!, b.startLonLat)).slice(0, NEAREST);
+    const dx = Math.min(Math.max(...near.map((t) => Math.abs(t.startLonLat[0] - lon))) * 1.15 + 0.5, 170);
+    const dy = Math.max(...near.map((t) => Math.abs(t.startLonLat[1] - lat))) * 1.15 + 0.3;
+    return [
+      [lon - dx, Math.max(lat - dy, -80)],
+      [lon + dx, Math.min(lat + dy, 80)],
+    ];
+  }
+
   // zoom to one trail's route (or its start where no route is drawn), once its preview is shown
   async function zoomTo(slug: string) {
     const t = trails.find((x) => x.slug === slug);
@@ -324,6 +350,8 @@
       sleepingOptions.map((c) => c.id),
     );
     filtersReady = true;
+    const zone = (zones as Record<string, [number, number]>)[Intl.DateTimeFormat().resolvedOptions().timeZone];
+    if (zone) here = [zone[1], zone[0]];
     // a filter button's group closes with Esc or a click elsewhere
     const closeBar = (e: Event) => {
       if (e instanceof KeyboardEvent ? e.key === "Escape" : !(e.target as Element).closest?.(".wm-bar")) barOpen = null;
@@ -357,7 +385,7 @@
       map = new maplibre.Map({
         container,
         style: STYLES[theme],
-        bounds: allBounds,
+        bounds: aroundHere(matching) ?? allBounds,
         cooperativeGestures: true,
         attributionControl: { customAttribution: "Routes: OpenStreetMap contributors" },
       });
@@ -398,7 +426,11 @@
         applyFilters();
         highlight(hovered, selected);
         updateInView();
-        if (!framedOnce && matching.length < trails.length) frame(matching, { resetList: true });
+        if (!framedOnce) {
+          const b = aroundHere(matching);
+          if (b) map.fitBounds(b, { padding: framePadding(), maxZoom: 7, animate: false }, { resetList: true });
+          else if (matching.length < trails.length) frame(matching, { resetList: true });
+        }
         framedOnce = true;
       });
       // a cluster zooms in; a trail is found in the list
@@ -526,14 +558,14 @@
       </ul>
     {/if}
     <ol class="wm-list" aria-label="Trails, nearest to the map's centre first">
-      {#each sorted as { t, here }, i (t.slug)}
+      {#each sorted as { t, inMap, d }, i (t.slug)}
         {#if i === firstOutside}
           <li class="wm-divider">{i === 0 ? "None in the map view; the nearest:" : "Outside the map view"}</li>
         {/if}
-        <li id={`wm-${t.slug}`} class:on={hovered === t.slug} class:picked={selected === t.slug} class:out={!here} onmouseenter={() => (hovered = t.slug)} onmouseleave={() => (hovered = null)}>
+        <li id={`wm-${t.slug}`} class:on={hovered === t.slug} class:picked={selected === t.slug} class:out={!inMap} onmouseenter={() => (hovered = t.slug)} onmouseleave={() => (hovered = null)}>
           <!-- two actions: the entry zooms the map to the route, the arrow opens the trail page -->
           <button type="button" class="wm-entry" title="Show on map" aria-pressed={selected === t.slug} onclick={() => zoomTo(t.slug)}>
-            <span class="wm-place">{t.countries.join(", ")}</span>
+            <span class="wm-place">{t.countries.join(", ")}{#if here}<span class="wm-dist">{" · "}{fromYou(d)}</span>{/if}</span>
             <strong class="wm-name">{t.name}</strong>
             <span class="wm-fig">{figures(t)}</span>
             <span class="sr-only">, show on the map</span>
@@ -856,10 +888,11 @@
     position: absolute;
     z-index: 6;
     top: 12px;
-    left: 12px;
+    left: 56px;
     right: 56px;
     display: flex;
     flex-wrap: wrap;
+    justify-content: center;
     gap: 6px;
     pointer-events: none;
   }
@@ -921,6 +954,11 @@
     background: var(--bg);
     box-shadow: 0 10px 30px rgb(0 0 0 / 0.16);
   }
+  /* the right-hand buttons open their panel leftwards, so it stays over the map */
+  .wm-bar-item:nth-last-child(-n + 3) .wm-drop {
+    left: auto;
+    right: 0;
+  }
   .wm-drop .wm-show {
     justify-self: end;
   }
@@ -929,6 +967,9 @@
   }
 
   @media (max-width: 899px) {
+    .wm-bar {
+      left: 12px;
+    }
     .wm {
       grid-template-columns: 1fr;
       grid-template-rows: 45% minmax(0, 1fr);
