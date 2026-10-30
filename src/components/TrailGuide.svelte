@@ -10,15 +10,15 @@
     DAYS_ALL,
     LANDSCAPES,
     LANDSCAPE_SHARE,
-    LEVEL_IDS,
+    LEVEL_TOP,
     MONTHS,
     NATURAL_PCT,
     WATER_KM,
     matches,
     noFilters,
     places as placesOf,
-    toggleWhere,
     toParams,
+    toggleWhere,
     type Filters,
   } from "../lib/filters";
 
@@ -39,7 +39,8 @@
     { label: "Doesn't matter", set: { dayLo: 0, dayHi: DAYS_ALL } },
   ];
   // the difficulty ratings (src/lib/difficulty.ts): each answer is the most a hiker is happy with
-  const ANY = LEVEL_IDS.length;
+  // the whole difficulty range, Easy to Hard: no limit (unrated trails included)
+  const ANY = LEVEL_TOP;
   const TERRAIN_OPTIONS: Option[] = [
     { label: "Easy", sub: "Good paths, little climbing, hardly anything steep", set: { terrainMax: 0 } },
     { label: "Up to moderate", sub: "Steady climbs and some steep bits on clear paths", set: { terrainMax: 1 } },

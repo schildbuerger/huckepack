@@ -4,14 +4,14 @@
   // beside a list of result cards. Everything runs in the browser
   // on the summaries built at build time; the filters live in the URL, so a search can be shared.
   import { onMount } from "svelte";
-  import { SAC_NOTE, SAC_SCALE, SLEEPING_CATEGORIES, WATER_LEVELS } from "../lib/trails";
+  import { SLEEPING_CATEGORIES, WATER_LEVELS } from "../lib/trails";
   import type { SearchTrail } from "../lib/search";
   import {
     DAYS,
     DAYS_ALL,
     LANDSCAPES,
     LANDSCAPE_SHARE,
-    LEVEL_IDS,
+    LEVEL_TOP,
     LEVEL_WORDS,
     MONTHS,
     NATURAL_PCT,
@@ -32,11 +32,9 @@
 
   // slider labels for the shared stops (src/lib/filters.ts)
   const DAY_STOPS = DAYS.map((d, i) => (i === DAYS.length - 1 ? `${d}+` : `${d}`));
-  const SAC_STOPS = [...SAC, "Any"];
   const WATER_STOPS = [...WATER_KM.map((km) => `${km} km`), "Any"];
   const NATURAL_STOPS = NATURAL_PCT.map((n) => (n ? `${n} %` : "Any"));
-  const LEVEL_STOPS = [...LEVEL_WORDS, "Any"];
-  const ANY_LEVEL = LEVEL_IDS.length;
+  const LEVEL_STOPS = LEVEL_WORDS;
   // the hardest of a trail's three ratings over its season (for sorting)
   const hardest = (t: SearchTrail) => {
     const xs = [t.terrainLevel, t.effortLevel, climateLevel(t, [])].filter((x) => x !== null) as number[];
@@ -63,34 +61,36 @@
   let months = $state<number[]>([]);
   let dayLo = $state(0);
   let dayHi = $state(DAYS_ALL);
-  let sacMax = $state(SAC.length); // "Any"
   let where = $state<string[]>([]);
   let sleep = $state<string[]>([]);
   let wild = $state<Filters["wild"]>("");
   let waterMax = $state(WATER_KM.length); // "Any"
   let naturalMin = $state(0); // "Any"
-  let terrainMax = $state(LEVEL_IDS.length); // "Any"
-  let climateMax = $state(LEVEL_IDS.length);
-  let effortMax = $state(LEVEL_IDS.length);
+  // difficulty ranges, Easy (0) to Hard (LEVEL_TOP); the whole range: any
+  let terrainMin = $state(0);
+  let terrainMax = $state(LEVEL_TOP);
+  let climateMin = $state(0);
+  let climateMax = $state(LEVEL_TOP);
+  let effortMin = $state(0);
+  let effortMax = $state(LEVEL_TOP);
   let land = $state<string[]>([]);
   let sort = $state<SortKey>("name");
   let filtersOpen = $state(false);
   let ready = false;
 
   let daysOn = $derived(dayLo > 0 || dayHi < DAYS_ALL);
-  let sacOn = $derived(sacMax < SAC.length);
   let waterOn = $derived(waterMax < WATER_KM.length);
   let naturalOn = $derived(naturalMin > 0);
-  let terrainOn = $derived(terrainMax < ANY_LEVEL);
-  let climateOn = $derived(climateMax < ANY_LEVEL);
-  let effortOn = $derived(effortMax < ANY_LEVEL);
+  let terrainOn = $derived(terrainMin > 0 || terrainMax < LEVEL_TOP);
+  let climateOn = $derived(climateMin > 0 || climateMax < LEVEL_TOP);
+  let effortOn = $derived(effortMin > 0 || effortMax < LEVEL_TOP);
 
   const places = placesOf(trails);
   const sleepingOptions = SLEEPING_CATEGORIES.filter((c) => c.id !== "wild-camping");
 
   onMount(() => {
     const p = new URLSearchParams(location.search);
-    ({ months, dayLo, dayHi, sacMax, where, sleep, wild, waterMax, naturalMin, terrainMax, climateMax, effortMax, land } = fromParams(
+    ({ months, dayLo, dayHi, where, sleep, wild, waterMax, naturalMin, terrainMin, terrainMax, climateMin, climateMax, effortMin, effortMax, land } = fromParams(
       p,
       sleepingOptions.map((c) => c.id),
     ));
@@ -98,7 +98,10 @@
     ready = true;
   });
 
-  let current: Filters = $derived({ months, dayLo, dayHi, sacMax, where, sleep, wild, waterMax, naturalMin, terrainMax, climateMax, effortMax, land });
+  let current: Filters = $derived({
+    months, dayLo, dayHi, where, sleep, wild, waterMax, naturalMin,
+    terrainMin, terrainMax, climateMin, climateMax, effortMin, effortMax, land,
+  });
 
   // keep the URL in step with the filters (replace, not push: the back button leaves the page)
   $effect(() => {
@@ -120,12 +123,16 @@
   // a day thumb can't pass the other one, so stops beyond it count as live (nothing to mark there)
   let dayLoLive = $derived(liveStops(DAYS.length, (i) => ({ dayLo: i })).map((ok, i) => ok || i > dayHi));
   let dayHiLive = $derived(liveStops(DAYS.length, (i) => ({ dayHi: i })).map((ok, i) => ok || i < dayLo));
-  let sacLive = $derived(liveStops(SAC_STOPS.length, (i) => ({ sacMax: i })));
   let waterLive = $derived(liveStops(WATER_STOPS.length, (i) => ({ waterMax: i })));
   let naturalLive = $derived(liveStops(NATURAL_STOPS.length, (i) => ({ naturalMin: i })));
-  let terrainLive = $derived(liveStops(LEVEL_STOPS.length, (i) => ({ terrainMax: i })));
-  let climateLive = $derived(liveStops(LEVEL_STOPS.length, (i) => ({ climateMax: i })));
-  let effortLive = $derived(liveStops(LEVEL_STOPS.length, (i) => ({ effortMax: i })));
+  // difficulty thumbs, as the day thumbs: stops beyond the other thumb count as live
+  const levelLive = (key: "terrain" | "climate" | "effort", min: number, max: number) => ({
+    lo: liveStops(LEVEL_STOPS.length, (i) => ({ [`${key}Min`]: i })).map((ok, i) => ok || i > max),
+    hi: liveStops(LEVEL_STOPS.length, (i) => ({ [`${key}Max`]: i })).map((ok, i) => ok || i < min),
+  });
+  let terrainLive = $derived(levelLive("terrain", terrainMin, terrainMax));
+  let climateLive = $derived(levelLive("climate", climateMin, climateMax));
+  let effortLive = $derived(levelLive("effort", effortMin, effortMax));
 
   let shown = $derived(
     trails.filter((t) => matches(t, current)).sort((a, b) => {
@@ -141,10 +148,20 @@
   let daysText = $derived(
     !daysOn ? "Any length" : dayLo === dayHi ? `${DAY_STOPS[dayLo]} days` : `${DAYS[dayLo]}–${DAY_STOPS[dayHi]} days`,
   );
-  let sacText = $derived(sacOn ? `Up to ${SAC[sacMax]}` : "Any grade");
   let waterText = $derived(waterOn ? `Every ${WATER_KM[waterMax]} km or less` : "Any");
   let naturalText = $derived(naturalOn ? `${NATURAL_PCT[naturalMin]} %+ natural` : "Any");
-  const levelText = (i: number) => (i < ANY_LEVEL ? (i === 0 ? "Easy" : `Up to ${LEVEL_WORDS[i].toLowerCase()}`) : "Any");
+  // a difficulty range in words: "Any", "Demanding", "Up to moderate", "Demanding or harder",
+  // "Moderate to demanding"
+  const levelText = (min: number, max: number) =>
+    min === 0 && max === LEVEL_TOP
+      ? "Any"
+      : min === max
+        ? LEVEL_WORDS[min]
+        : min === 0
+          ? `Up to ${LEVEL_WORDS[max].toLowerCase()}`
+          : max === LEVEL_TOP
+            ? `${LEVEL_WORDS[min]} or harder`
+            : `${LEVEL_WORDS[min]} to ${LEVEL_WORDS[max].toLowerCase()}`;
 
   // the active filters as removable chips
   const monthList = (ms: number[]) => [...ms].sort((a, b) => a - b).map((m) => MONTHS[m - 1]).join(", ");
@@ -153,10 +170,9 @@
       months.length && { label: monthList(months), clear: () => (months = []) },
       ...where.map((w) => ({ label: w, clear: () => (where = where.filter((x) => x !== w)) })),
       daysOn && { label: daysText, clear: () => ((dayLo = 0), (dayHi = DAYS_ALL)) },
-      terrainOn && { label: `Terrain: ${levelText(terrainMax).toLowerCase()}`, clear: () => (terrainMax = ANY_LEVEL) },
-      climateOn && { label: `Climate: ${levelText(climateMax).toLowerCase()}`, clear: () => (climateMax = ANY_LEVEL) },
-      effortOn && { label: `Effort: ${levelText(effortMax).toLowerCase()}`, clear: () => (effortMax = ANY_LEVEL) },
-      sacOn && { label: `Up to SAC ${SAC[sacMax]}`, clear: () => (sacMax = SAC.length) },
+      terrainOn && { label: `Terrain: ${levelText(terrainMin, terrainMax).toLowerCase()}`, clear: () => ((terrainMin = 0), (terrainMax = LEVEL_TOP)) },
+      climateOn && { label: `Climate: ${levelText(climateMin, climateMax).toLowerCase()}`, clear: () => ((climateMin = 0), (climateMax = LEVEL_TOP)) },
+      effortOn && { label: `Effort: ${levelText(effortMin, effortMax).toLowerCase()}`, clear: () => ((effortMin = 0), (effortMax = LEVEL_TOP)) },
       ...land.map((g) => ({ label: LANDSCAPES.find((l) => l.id === g)!.label, clear: () => (land = toggle(land, g)) })),
       naturalOn && { label: `At least ${NATURAL_PCT[naturalMin]} % natural ground`, clear: () => (naturalMin = 0) },
       ...sleep.map((id) => ({ label: SLEEPING_CATEGORIES.find((c) => c.id === id)!.label, clear: () => (sleep = toggle(sleep, id)) })),
@@ -171,10 +187,10 @@
     months = [];
     sleep = [];
     land = [];
-    terrainMax = climateMax = effortMax = ANY_LEVEL;
+    terrainMin = climateMin = effortMin = 0;
+    terrainMax = climateMax = effortMax = LEVEL_TOP;
     dayLo = naturalMin = 0;
     dayHi = DAYS_ALL;
-    sacMax = SAC.length;
     waterMax = WATER_KM.length;
   }
 
@@ -283,39 +299,27 @@
 
     <div class="group" role="group" aria-labelledby="g-hard">
       <div class="legend" id="g-hard">
-        <Explain id="x-hard" term="How hard, at most?" title="Difficulty">
-          <p>The ratings on each trail page's Difficulty section, from Easy to Hard with the same thresholds for every trail; slide each to the most you're happy with. Once you set one, trails without that rating drop out.</p>
+        <Explain id="x-hard" term="How hard?" title="Difficulty">
+          <p>The ratings on each trail page's Difficulty section, from Easy to Hard with the same thresholds for every trail. Slide either end: the left thumb for the least, the right for the most you want. Once you set one, trails without that rating drop out.</p>
           <dl>
-            <dt>Terrain</dt><dd>The path grade, how much and how steeply it climbs, and how much is natural ground.</dd>
+            <dt>Terrain</dt><dd>The path grade (SAC scale), how much and how steeply it climbs, and how much is natural ground.</dd>
             <dt>Climate</dt><dd>Heat, cold, wet days, snow and wind: in the months you picked above (within the trail's season), or over its whole season.</dd>
             <dt>Effort</dt><dd>The longest day: up to 4 h is easy, 4–6 h moderate, 6–8 h demanding, more is hard.</dd>
-            <dt>Path grade</dt><dd>The SAC hiking scale, T1 to T6: how hard the path itself is to walk (see below).</dd>
           </dl>
         </Explain>
       </div>
       <div class="sub">
-        <span>Terrain</span><span class="value">{levelText(terrainMax)}</span>
+        <span>Terrain</span><span class="value">{levelText(terrainMin, terrainMax)}</span>
       </div>
-      <Range stops={LEVEL_STOPS} bind:hi={terrainMax} live={terrainLive} off={ANY_LEVEL} label="Terrain, at most" ticks={[0, 3, 4]} />
+      <Range stops={LEVEL_STOPS} bind:lo={terrainMin} bind:hi={terrainMax} live={terrainLive.hi} liveLo={terrainLive.lo} label="Terrain" ticks={[0, LEVEL_TOP]} />
       <div class="sub">
-        <span>Climate{months.length ? " in your months" : ""}</span><span class="value">{levelText(climateMax)}</span>
+        <span>Climate{months.length ? " in your months" : ""}</span><span class="value">{levelText(climateMin, climateMax)}</span>
       </div>
-      <Range stops={LEVEL_STOPS} bind:hi={climateMax} live={climateLive} off={ANY_LEVEL} label="Climate, at most" ticks={[0, 3, 4]} />
+      <Range stops={LEVEL_STOPS} bind:lo={climateMin} bind:hi={climateMax} live={climateLive.hi} liveLo={climateLive.lo} label="Climate" ticks={[0, LEVEL_TOP]} />
       <div class="sub">
-        <span>Effort, longest day</span><span class="value">{levelText(effortMax)}</span>
+        <span>Effort, longest day</span><span class="value">{levelText(effortMin, effortMax)}</span>
       </div>
-      <Range stops={LEVEL_STOPS} bind:hi={effortMax} live={effortLive} off={ANY_LEVEL} label="Effort, at most" ticks={[0, 3, 4]} />
-      <div class="sub">
-        <Explain id="x-sac" term="Path grade (SAC)" title="SAC hiking scale">
-          <p>{SAC_NOTE}</p>
-          <p>Slide to the hardest grade you're happy with; trails up to that grade stay. Once you pick a grade, trails without one are left out.</p>
-          <dl>
-            {#each SAC as s}<dt>{s} · {SAC_SCALE[s].name}</dt><dd>{SAC_SCALE[s].text}</dd>{/each}
-          </dl>
-        </Explain>
-        <span class="value">{sacText}</span>
-      </div>
-      <Range stops={SAC_STOPS} bind:hi={sacMax} live={sacLive} off={SAC.length} label="Highest SAC grade" />
+      <Range stops={LEVEL_STOPS} bind:lo={effortMin} bind:hi={effortMax} live={effortLive.hi} liveLo={effortLive.lo} label="Effort, longest day" ticks={[0, LEVEL_TOP]} />
     </div>
     <div class="group" role="group" aria-labelledby="g-land">
       <div class="legend" id="g-land">
