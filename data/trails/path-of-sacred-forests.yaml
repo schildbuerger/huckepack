@@ -40,7 +40,7 @@ stages:
     - { number: "0", kind: approach, from: Marradi, to: Lago di Ponte, km: 15.9, ascentM: 980, descentM: 680, minutes: 375, startEleM: 330, endEleM: 666, track: "https://geohub.webmapp.it/api/ec/track/download/75484.gpx" }
     - { number: "1", kind: main, from: Lago di Ponte, to: San Benedetto in Alpe, km: 8.3, ascentM: 440, descentM: 570, minutes: 210, startEleM: 665, endEleM: 525, track: "https://geohub.webmapp.it/api/ec/track/download/75490.gpx" }
     - { number: "2", kind: main, from: San Benedetto in Alpe, to: Castagno d'Andrea, km: 19.7, ascentM: 1130, descentM: 900, minutes: 420, startEleM: 567, endEleM: 730, track: "https://geohub.webmapp.it/api/ec/track/download/75489.gpx" }
-    - { number: "3", kind: main, from: Castagno d'Andrea, to: Campigna, km: 19.4, ascentM: 1080, descentM: 740, minutes: 480, startEleM: 675, endEleM: 1464, track: "https://geohub.webmapp.it/api/ec/track/download/75488.gpx" }
+    - { number: "3", kind: main, from: Castagno d'Andrea, to: Campigna, km: 13.5, ascentM: 1080, descentM: 740, minutes: 480, startEleM: 675, endEleM: 1464, track: "https://geohub.webmapp.it/api/ec/track/download/75488.gpx" }
     - { number: "4", kind: main, from: Campigna, to: Camaldoli, km: 14.0, ascentM: 640, descentM: 890, minutes: 330, startEleM: 1464, endEleM: 849, track: "https://geohub.webmapp.it/api/ec/track/download/75487.gpx" }
     - { number: "5", kind: main, from: Camaldoli, to: Badia Prataglia, km: 13.4, ascentM: 920, descentM: 770, minutes: 300, startEleM: 847, endEleM: 1055, track: "https://geohub.webmapp.it/api/ec/track/download/75486.gpx" }
     - { number: "6", kind: main, from: Badia Prataglia, to: Rimbocchi, km: 18.5, ascentM: 650, descentM: 700, minutes: 300, startEleM: 1004, endEleM: 552, track: "https://geohub.webmapp.it/api/ec/track/download/75483.gpx" }
@@ -91,9 +91,12 @@ access:
 tags: [forests, monasteries, apennines, national-park]
 notes:
   - >-
-    The park's stage pages state distances that differ from its own GPX tracks (stage 3:
-    19.4 km stated, 13.4 km in the GPX). The stated figures are used; check them against
-    OpenStreetMap.
+    Stage 3 length corrected (2026-10-30): the park's stage page says 19.4 km, but its own GPX
+    measures 13.5 km, and independent sources agree with the GPX (The Wom 12.9 km, the Cammino di
+    Sant'Antonio, which shares the stretch, 12.7 km); 19.4 km is taken as a slip on the page, and
+    the record uses the park's GPX length. The other stated lengths are within 10 % of the park's
+    GPX tracks except stage 5 (13.4 km stated, 12.0 km measured), kept as stated. The stage time
+    and climbs of stage 3 stay as the page gives them.
   - The park publishes no total length or difficulty grade; both come from a travel magazine.
   - >-
     OpenStreetMap has no route relation for the trail (checked 2026-10-27), only the park's
@@ -110,20 +113,19 @@ notes:
     2017) for the whole route and The Wom Travel for the stages (the park is the stage source).
     Within 10 %: ascent and descent (5,090 / 4,610 m in the brochure against 5,487 / 4,911 m from
     the park's stage sums), 7 days, difficulty (CAI E in both), season (spring and autumn), stage
-    lengths and times 1, 2, 4, 5 and 7. More than 10 % apart (listed in `dataCheck`): the total length (the brochure's data box says 87.5 km, its own text "about 100 km", The
-    Wom "nearly 100 km"; the park's stages add up to 101.2 km) and the lengths of stages 3
-    (12.9 km at The Wom against the park's 19.4 km) and 6 (16.2 against 18.5 km).
+    lengths and times 1, 2, 4, 5 and 7. Since the stage 3 correction (2026-10-30) also within 10 %: the total length (the park's
+    stages add up to 95.3 km; the brochure's data box says 87.5 km, its own text "about 100 km",
+    The Wom "nearly 100 km") and stage 3 (13.5 km against The Wom's 12.9 km; before, 19.4 km).
+    More than 10 % apart (listed in `dataCheck`): the length of stage 6 (16.2 against 18.5 km).
   - >-
     Tree line (2026-10-30): none in reach. The Foreste Casentinesi park describes beech forest from
     1,400 m "sino al crinale" (up to the ridge, parcoforestecasentinesi.it, habitat 9210); the
     route tops out at about 1,650 m, so no treeLine is recorded and the terrain chart shows none.
 dataCheck:
   # working rule 2: the region's brochure for the whole route, The Wom Travel for the stages
-  date: 2026-10-29
+  date: 2026-10-30
   against: [regione-er, thewom]
   deviations:
-    - { figure: "Length", ours: "101.2 km", theirs: "87.5 km", source: regione-er }
-    - { figure: "Stage 3 length", ours: "19.4 km", theirs: "12.9 km", source: thewom }
     - { figure: "Stage 6 length", ours: "18.5 km", theirs: "about 16.2 km", source: thewom }
 sources:
   - id: pnfc
@@ -138,7 +140,7 @@ sources:
     retrieved: 2026-10-29
     note: Travel magazine, not an official source.
   - id: osm
-    title: "OpenStreetMap contributors: paths and tracks along the trail (via Overpass API)"
+    title: "OpenStreetMap contributors: paths, tracks and water along the trail (Geofabrik extracts, 2026-10-28)"
     url: https://www.openstreetmap.org/copyright
     licence: ODbL 1.0
     retrieved: 2026-10-27
