@@ -33,9 +33,9 @@ const days = (d: [number, number] | null) => (d === null ? null : d[0] === d[1] 
 
 // the mission (docs/mission.md) as bullets under the headline: find, plan, sources
 const usps = [
-  "Find trails that fit: by season, region, length, difficulty, landscape, ground, beds and water",
-  "Plan with the data that matters: difficulty, stages, terrain, landscape, climate, water, beds and getting there",
-  "Every figure from official and open sources, named on the page",
+  "Find trails that fit: by season, region, days, difficulty, landscape, ground, beds and water",
+  "Plan with the data that matters: stages, terrain, climate, water, beds, wild camping and getting there",
+  "Every figure from official and open sources, named on the page and checked against a second source",
 ];
 
 // totals for the strip under the hero: the plain counts, then a few for fun, each summed from
@@ -119,26 +119,29 @@ const features: { icon: IconName; title: string; text: string }[] = [
   { icon: "map", title: "Map", text: "The route on an OpenStreetMap map, stage by stage, with approaches and variants." },
   { icon: "gauge", title: "Difficulty", text: "Terrain, climate and the length of the days, each rated Easy to Hard by the same rule on every trail." },
   { icon: "cloud-sun", title: "Climate", text: "Day and night temperatures, wet days, snow and daylight by month, low down and up high." },
-  { icon: "list-ordered", title: "Stages", text: "Every official stage with distance, ascent, descent, elevation and walking time." },
-  { icon: "mountain", title: "Terrain", text: "The elevation profile coloured by its steepness, or by the surfaces underfoot: earth, gravel or tarmac." },
+  { icon: "list-ordered", title: "Stages", text: "Every official stage with distance, ascent, descent, elevation and walking time; our estimates marked where a source gives none." },
+  { icon: "mountain", title: "Terrain", text: "The elevation profile coloured by its steepness, the ground underfoot beneath it, and the tree line where the trail climbs above it." },
   { icon: "trees", title: "Landscape", text: "Forest, open hills, moss, rock or snow: what the trail passes through, and where." },
   { icon: "tent", title: "Sleeping", text: "Huts, campsites, hostels and rooms along the way, and whether wild camping is allowed." },
   { icon: "droplet", title: "Water", text: "Drinking water and springs along the route, and the longest stretch without." },
 ];
 
 const sources = [
-  { name: "Trail operators", what: "Official stages, distances, times, waymarks and rules" },
-  { name: "OpenStreetMap", what: "Route, surfaces, water points and the map" },
+  { name: "Trail operators", what: "Official stages, distances, times, seasons, waymarks and rules" },
+  { name: "Second sources", what: "Wikipedia, regions, tourism boards and trail portals: every trail checked against one" },
+  { name: "OpenStreetMap", what: "Route, surfaces, water points, travel hubs and the map, its relief from AWS Terrain Tiles" },
   { name: "Copernicus DEM", what: "Elevation profile and steepness, 30 m terrain model" },
   { name: "ESA WorldCover", what: "Landscape along the route, 10 m satellite land cover" },
   { name: "ERA5 (Open-Meteo)", what: "Climate and wind by month, 30 years of weather" },
-  { name: "OSRM", what: "Road distances from travel hubs" },
+  { name: "OSRM", what: "Road distances from the travel hubs to the start" },
+  { name: "Wikimedia", what: "Wikipedia page views, which rank the popular trails" },
+  { name: "tz database (IANA)", what: "Each time zone's main city, to find the trails near you in your browser" },
 ];
 ---
 
 <Base
   title="huckepack: find a long-distance hiking trail, plan the journey"
-  description="Find the long-distance hiking trail that suits you and plan the journey: stages, terrain, climate, water and beds for every trail, from official and open sources."
+  description="Find the long-distance hiking trail that suits you and plan the journey: stages, terrain, climate, water and beds for every trail, from official and open sources, checked against a second source."
 >
   <!-- issue #83 (of three previews, approach B): search with suggestions, in the header -->
   <div slot="header" class="header-search"><TrailSearch id="search-header" size="compact" placeholder="Search trails" /></div>
@@ -372,8 +375,9 @@ const sources = [
   <section class="block">
     <h2>Built on open data</h2>
     <p class="intro muted">
-      Trail figures often differ from one source to the next. We never pick one quietly: every number has its source,
-      and each trail page lists them all, with their licences.
+      Trail figures often differ from one source to the next. We never pick one quietly: every number names its source,
+      our own estimates are marked ≈, and every trail's figures are checked against a second, independent source. Each
+      trail page lists its sources with their licences.
     </p>
     <dl class="strip sources">
       {sources.map((s) => (
