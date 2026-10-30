@@ -90,7 +90,8 @@
   compact table with bars, the first 10 stages shown and the rest behind
   "Show all"; the charts shade every other stage and label every 2nd, 5th or
   10th (issue #25, from three previews, 2026-10-30).
-- **Trail page order:** where is it (location, map), is it for me and when
+- **Trail page order:** where is it (location and map, side by side since
+  2026-10-30), is it for me and when
   (difficulty, climate), what are the days like (stages, terrain,
   landscape), what do I need on the way (sleeping, water), then the sources
   (2026-10-29).

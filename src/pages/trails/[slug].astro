@@ -350,7 +350,6 @@ const gapStages = (() => {
 // on-page navigation: only sections this trail has
 const nav = [
   { id: "location", label: "Location", show: true },
-  { id: "map", label: "Map", show: true },
   { id: "difficulty", label: "Difficulty", show: diff.dims.length > 0 },
   { id: "climate", label: "Climate", show: Boolean(climate) },
   { id: "stages", label: "Stages", show: Boolean(t.stages) },
@@ -492,8 +491,11 @@ const nav = [
     </dl>
   </section>
 
+  <!-- location and map in one section (from 900 px side by side: the facts left, the map right
+       and as tall as they are); #map still leads to the map -->
   <section id="location">
     <h2>Location</h2>
+    <div class="loc-map">
     <dl class="loc">
       <div>
         <dt>Start</dt>
@@ -566,17 +568,17 @@ const nav = [
         </dd>
       </div>
     </dl>
-  </section>
-
-  <section id="map">
-    <h2 class="visually-hidden">Map</h2>
-    <TrailMap
-      client:visible
-      routeUrl={routeUrl}
-      start={t.termini.start}
-      end={t.termini.end}
-      routeAttribution={routeAttribution}
-    />
+    <div id="map" class="map-col">
+      <TrailMap
+        client:visible
+        routeUrl={routeUrl}
+        start={t.termini.start}
+        end={t.termini.end}
+        routeAttribution={routeAttribution}
+        fill
+      />
+    </div>
+    </div>
   </section>
 
   {diff.dims.length > 0 && (
@@ -1988,6 +1990,29 @@ const nav = [
   .stage-band {
     fill: var(--line);
     opacity: 0.55;
+  }
+  /* location and map: stacked, the map beneath; from 900 px side by side, the facts in two columns
+     on the left and the map filling their height on the right */
+  .loc-map {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 20px;
+  }
+  .map-col {
+    display: flex;
+    flex-direction: column;
+    scroll-margin-top: 64px;
+  }
+  @media (min-width: 900px) {
+    .loc-map {
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1.15fr);
+      gap: 28px;
+      align-items: stretch;
+    }
+    .loc-map .loc {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      align-content: start;
+    }
   }
   /* location: one grid of label-over-value items, so rows align whatever the content */
   .loc {

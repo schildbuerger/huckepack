@@ -21,7 +21,14 @@
     start,
     end,
     routeAttribution,
-  }: { routeUrl: string | null; start: Point; end: Point; routeAttribution: string | null } = $props();
+    fill = false,
+  }: {
+    routeUrl: string | null;
+    start: Point;
+    end: Point;
+    routeAttribution: string | null;
+    fill?: boolean; // fill the height its parent gives (a flex column) instead of a fixed aspect ratio
+  } = $props();
 
   const STYLES = {
     light: "https://tiles.openfreemap.org/styles/liberty",
@@ -234,7 +241,7 @@
   });
 </script>
 
-<div class="map" bind:this={container} role="region" aria-label="Map of the trail">
+<div class="map" class:fill bind:this={container} role="region" aria-label="Map of the trail">
   {#if failed}<p class="failed">The map couldn't be loaded.</p>{/if}
 </div>
 <ul class="legend">
@@ -263,6 +270,14 @@
   @media (min-width: 700px) {
     .map {
       aspect-ratio: 11 / 5;
+    }
+  }
+  /* beside the location facts (from 900 px): as tall as they are, at least 360 px */
+  @media (min-width: 900px) {
+    .map.fill {
+      flex: 1;
+      aspect-ratio: auto;
+      min-height: 360px;
     }
   }
   .legend {
