@@ -10,8 +10,8 @@ tags, the route relations it names with their member ways, and the water points.
 cached as data/osm/corridors/<slug>.json.gz and answers the pipeline's questions in the shape
 Overpass answered them (pipeline/osm.py Source), so the steps and their caches don't change.
 
-A trail without GPX tracks (a route relation only) first has its relations' ways collected over a
-coarse box around its termini and stage ends; their geometry then defines the corridor.
+A trail without GPX tracks (route relations only) first has its relations' ways collected; their
+geometry then defines the corridor.
 """
 
 import gzip
@@ -38,7 +38,6 @@ USER_AGENT = "huckepack-pipeline (personal project)"
 MAX_AGE_DAYS = 7
 CORRIDOR_M = 600  # wider than any query: ways within 200 m of a track, water within 400 m of the route
 CELL_DEG = 0.004  # corridor grid, about 450 m north-south
-COARSE_PAD_DEG = 0.05  # relation-only trails: the box around termini and stage ends, about 5 km
 WATER_TAGS = (("amenity", "drinking_water"), ("amenity", "water_point"), ("man_made", "water_tap"), ("natural", "spring"))
 MEMBER_TYPES = {"n": "node", "w": "way", "r": "relation"}
 EXCLUDED_HIGHWAYS = {"motorway", "motorway_link", "trunk", "trunk_link", "construction", "proposed", "platform"}
@@ -276,41 +275,42 @@ def build_corridor(slug, guides, relation_ids=(), coarse=(), refresh=False):
             break  # the rest isn't in these extracts
     member_ways = {ref for ms in relations.values() for t, ref, _ in ms if t == "way"}
 
-    # 2. ways near the guides (or, for relation-only trails, in the coarse box), with locations
-    cells = _cells(guides) if guides else set()
-    box = None
-    if not guides and coarse:
-        xs, ys = [p[0] for p in coarse], [p[1] for p in coarse]
-        box = (min(ys) - COARSE_PAD_DEG, min(xs) - COARSE_PAD_DEG, max(ys) + COARSE_PAD_DEG, max(xs) + COARSE_PAD_DEG)
+    # 2. relation-only trails first: the relations' own ways, whose geometry then defines the
+    # corridor (no GPX to go by; a box around a long trail's ends would hold far too much)
+    def ways_pass(keep):
+        for _, path in paths:
+            for w in osmium.FileProcessor(str(path), osmium.osm.NODE | osmium.osm.WAY).with_locations().with_filter(
+                osmium.filter.EntityFilter(osmium.osm.WAY)
+            ):
+                locs = [(n.ref, n.lon, n.lat) for n in w.nodes if n.location.valid()]
+                if locs and keep(w, locs):
+                    yield w, locs
+
     ways, nodes = {}, {}
-    for _, path in paths:
-        for w in osmium.FileProcessor(str(path), osmium.osm.NODE | osmium.osm.WAY).with_locations().with_filter(
-            osmium.filter.EntityFilter(osmium.osm.WAY)
-        ):
-            highway = w.tags.get("highway")
-            is_member = w.id in member_ways
-            if not is_member and (not highway or highway in EXCLUDED_HIGHWAYS):
-                continue
-            locs = [(n.ref, n.lon, n.lat) for n in w.nodes if n.location.valid()]
-            near = any(_cell(lon, lat) in cells for _, lon, lat in locs) or (
-                box is not None and any(box[0] <= lat <= box[2] and box[1] <= lon <= box[3] for _, lon, lat in locs)
-            )
-            if not (is_member or near):
-                continue
-            ways[w.id] = {"nodes": [ref for ref, _, _ in locs], "tags": {t.k: t.v for t in w.tags}, "highway": highway}
-            for ref, lon, lat in locs:
-                nodes[ref] = (round(lon, 7), round(lat, 7))
 
-    # relation-only trails: the relations' ways define the corridor; drop what lies outside it
+    def add(w, locs):
+        ways[w.id] = {"nodes": [ref for ref, _, _ in locs], "tags": {t.k: t.v for t in w.tags}, "highway": w.tags.get("highway")}
+        for ref, lon, lat in locs:
+            nodes[ref] = (round(lon, 7), round(lat, 7))
+
     if not guides:
-        geometry = [nodes[n] for wid in member_ways if wid in ways for n in ways[wid]["nodes"] if n in nodes]
-        cells = _cells(geometry + list(coarse))
-        keep = {wid for wid, w in ways.items() if wid in member_ways or any(_cell(*nodes[n]) in cells for n in w["nodes"] if n in nodes)}
-        ways = {wid: w for wid, w in ways.items() if wid in keep}
-        used = {n for w in ways.values() for n in w["nodes"]}
-        nodes = {n: c for n, c in nodes.items() if n in used}
+        for w, locs in ways_pass(lambda w, locs: w.id in member_ways):
+            add(w, locs)
+        guides = [nodes[n] for w in ways.values() for n in w["nodes"]] + list(coarse)
 
-    # 3. water points in the corridor
+    # 3. the paths and roads near the guides
+    cells = _cells(guides)
+
+    def near(w, locs):
+        highway = w.tags.get("highway")
+        if w.id in member_ways:
+            return True
+        return bool(highway) and highway not in EXCLUDED_HIGHWAYS and any(_cell(lon, lat) in cells for _, lon, lat in locs)
+
+    for w, locs in ways_pass(near):
+        add(w, locs)
+
+    # 4. water points in the corridor
     water = []
     for _, path in paths:
         for n in osmium.FileProcessor(str(path), osmium.osm.NODE).with_filter(osmium.filter.TagFilter(*WATER_TAGS)):

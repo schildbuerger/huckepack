@@ -163,6 +163,23 @@ def relation_line(relation, alternatives, start):
     return [(p["lon"], p["lat"]) for p in line]
 
 
+def stage_relations(stage):
+    """A stage's OSM relations: `relation` is one id or a list of them."""
+    r = stage.get("relation")
+    return [] if r is None else r if isinstance(r, list) else [r]
+
+
+def piece(line, a, b):
+    """The part of a line between the points nearest a and b (lon, lat), in the line's direction."""
+    proj = osm.Projection(line[0][1])
+    xy = [proj.xy(*p) for p in line]
+    i = min(range(len(line)), key=lambda k: math.dist(xy[k], proj.xy(*a)))
+    j = min(range(len(line)), key=lambda k: math.dist(xy[k], proj.xy(*b)))
+    if j <= i:
+        raise ValueError(f"stage end {b} lies before its start {a} along the relation")
+    return line[i : j + 1]
+
+
 def split_at(line, stages):
     """One piece of the line per stage, cut at the point nearest each stage's end."""
     proj = osm.Projection(line[0][1])
@@ -200,7 +217,7 @@ def build(slug, refresh=False):
             tracks = [p for s in all_stages if s.get("track") for p in track_of(s)]
             coarse = [(start["lon"], start["lat"]), (end["lon"], end["lat"])]
             coarse += [(s["end"]["lon"], s["end"]["lat"]) for s in all_stages if s.get("end")]
-            relation_ids = ([relation] if relation else []) + [s["relation"] for s in all_stages if s.get("relation")]
+            relation_ids = ([relation] if relation else []) + [r for s in all_stages for r in stage_relations(s)]
             src = osm.source(slug, tracks + (coarse if tracks else []), relation_ids, coarse, refresh)
         return src
 
@@ -217,18 +234,32 @@ def build(slug, refresh=False):
     features, stage_ways = [], []
     print(f"{'stage':<12} {'stated':>7} {'track':>7} {'osm':>7} {'covered':>8} {'max off':>8}")
     previous_end = (start["lon"], start["lat"])
+    last = None  # the stage before, so a run of variants chains from one to the next
     for stage in stages:
         label = f"{stage['number']}-{stage['kind']}"
         if stage["number"] in guides:
             track = guides[stage["number"]]
         elif stage.get("relation"):
-            rid = stage["relation"]
-            data, fetched = cache.get(
-                f"osm-relation-{rid}.json", osm.source_label(), lambda: json.dumps(osm_src().relation(rid), separators=(",", ":")).encode()
-            )
-            if fetched and osm.SOURCE == "overpass":
-                time.sleep(5)
-            track = relation_line(json.loads(data), stage.get("alternatives", []), previous_end)
+            # one relation, or several in a row (an OSM section and the start of the next);
+            # chained from where the previous main stage ended, or, for a variant after a
+            # variant, from where that one ended; cut at the stage's `end` when it has one
+            elements = []
+            for rid in stage_relations(stage):
+                data, fetched = cache.get(
+                    f"osm-relation-{rid}.json", osm.source_label(), lambda rid=rid: json.dumps(osm_src().relation(rid), separators=(",", ":")).encode()
+                )
+                if fetched and osm.SOURCE == "overpass":
+                    time.sleep(5)
+                elements += json.loads(data)["elements"]
+            begin = last[1] if stage["kind"] != "main" and last and last[0] != "main" else previous_end
+            if stage.get("end"):
+                # a stage that is only part of its relations: chain them from the end nearest the
+                # trail's start (chaining from a point in the middle could head the wrong way), then
+                # keep the piece from where the stage begins to its `end`
+                full = relation_line({"elements": elements}, stage.get("alternatives", []), (start["lon"], start["lat"]))
+                track = piece(full, begin, (stage["end"]["lon"], stage["end"]["lat"]))
+            else:
+                track = relation_line({"elements": elements}, stage.get("alternatives", []), begin)
         else:
             track = track_of(stage)
 
@@ -241,6 +272,7 @@ def build(slug, refresh=False):
         line, report = osm.match(track, json.loads(ways))
         if stage["kind"] == "main":
             previous_end = track[-1]
+        last = (stage["kind"], track[-1])
         print(
             f"{label:<12} {stage['km']:>6.1f}k {report['track_km']:>6.1f}k {report['km']:>6.1f}k"
             f" {report['covered']:>7.0%} {report['max_off_m']:>7.0f}m"

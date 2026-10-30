@@ -1,10 +1,10 @@
-"""Stage lists from Outdooractive tour pages, ready to paste into a trail record.
+"""Stage lists from Outdooractive (and toubiz) tour pages, ready to paste into a trail record.
 
     .venv/bin/python -m pipeline.readers.outdooractive <stage page url> [<url> ...]
     .venv/bin/python -m pipeline.readers.outdooractive --overview <page listing the stages>
 
 Many tourism portals run on Outdooractive (outdooractive.com, touren.kaernten.at, regional
-"Tourenportal" sites); their tour pages share one layout: a title with the stage's start and
+"Tourenportal" sites) or toubiz (schwarzwald-tourismus.info), and their tour pages share one layout: a title with the stage's start and
 end, a block of figures (distance, duration, ascent, descent, highest and lowest point, in the
 page's language) and the track as schema.org data, which pipeline/routes.py reads directly. This
 reads the figures (English or German labels) and prints one stage per line in the record's
@@ -14,6 +14,8 @@ the trail's stage list), in their order there.
 
 The figures are the publisher's: copy them with the page as the source, and check them (working
 rule 2). Stage numbers come from the titles ("Stage 7", "Etappe 7"), else the order given.
+destination.one portals (baiersbronn.de) put the figures in title attributes instead; those are
+read too, with the page's own GPX download as the track where it has one.
 """
 
 import html
@@ -32,7 +34,7 @@ USER_AGENT = "huckepack-pipeline (personal project)"
 # the figure labels by page language, each with how that language writes numbers
 LABELS = {
     "en": {"km": "Distance", "time": "Duration", "up": "Ascent", "down": "Descent", "hi": "Highest point", "lo": "Lowest point", "thousands": ",", "decimal": "."},
-    "de": {"km": "Strecke", "time": "Dauer", "up": "Aufstieg", "down": "Abstieg", "hi": "Höchster Punkt", "lo": "Tiefster Punkt", "thousands": ".", "decimal": ","},
+    "de": {"km": "(?:Strecke|Distanz)", "time": "Dauer", "up": "Aufstieg", "down": "Abstieg", "hi": "Höchster Punkt", "lo": "Tiefster Punkt", "thousands": ".", "decimal": ","},
 }
 
 
@@ -53,29 +55,75 @@ def _text(page):
     return html.unescape(re.sub(r"\s+", " ", re.sub(r"<[^>]+>", " ", page)))
 
 
+def _gpx_link(page):
+    """A direct GPX download on the page (destination.one portals: "Tour herunterladen"), if any."""
+    for href in re.findall(r'href="([^"]+)"[^>]*\bdownload\b', page):
+        href = html.unescape(href)
+        if "template=gpx" in href and "reverse" not in href.lower():
+            return href
+    return None
+
+
+def parse_titles(page, url):
+    """destination.one portals (e.g. baiersbronn.de): the figures sit in title attributes,
+    "Entfernung: 14,52 km", "Höhenmeter aufsteigend: 385 m", "Dauer: 4:00 h", "Start: …"."""
+    titles = dict(re.findall(r'title="([^":]+): ([^"]+)"', page))
+    if "Entfernung" not in titles:
+        return None
+    de = lambda v: float(re.sub(r"[^\d,]", "", v).replace(",", "."))
+    duration = re.match(r"(\d+):(\d+)", titles.get("Dauer", ""))
+    title = re.split(r"[•|]", html.unescape(re.search(r"(?s)<title>(.*?)</title>", page).group(1)))[0].strip()
+    number_m = re.search(r"\b(?:Stage|Etappe|Tappa)\s*(\d+[a-z]?)\b", title, re.I)
+    return {
+        "title": title,
+        "number": number_m.group(1).lstrip("0") or "0" if number_m else None,
+        "from": html.unescape(titles["Start"]) if "Start" in titles else None,
+        "to": html.unescape(titles["Ziel"]) if "Ziel" in titles else None,
+        "km": de(titles["Entfernung"]),
+        "ascentM": int(de(titles["Höhenmeter aufsteigend"])) if "Höhenmeter aufsteigend" in titles else None,
+        "descentM": int(de(titles["Höhenmeter absteigend"])) if "Höhenmeter absteigend" in titles else None,
+        "minutes": int(duration.group(1)) * 60 + int(duration.group(2)) if duration else None,
+        "highestM": de(titles["Höchster Punkt"]) if "Höchster Punkt" in titles else None,
+        "lowestM": de(titles["Niedrigster Punkt"]) if "Niedrigster Punkt" in titles else None,
+        "track": _gpx_link(page) or url,
+    }
+
+
 def parse(page, url):
     """The stage's figures from one tour page."""
+    titled = parse_titles(page, url)
+    if titled:
+        return titled
     text = _text(page)
+    # German pages write thousands with a dot, but toubiz ones (Distanz 26.21 km) use a decimal dot
     lang = next((code for code, l in LABELS.items() if re.search(rf"\b{l['up']} [\d.,]+ h?m\b", text)), None)
     if lang is None:
         raise ValueError(f"{url}: no Outdooractive figures found (English or German)")
     l = LABELS[lang]
 
     def number(label, unit):
-        m = re.search(rf"\b{re.escape(l[label])} ([\d.,]+) {unit}\b", text)
+        m = re.search(rf"\b{l[label] if label == 'km' else re.escape(l[label])} ([\d.,]+) {unit}\b", text)
         if not m:
             return None
-        return float(m.group(1).replace(l["thousands"], "").replace(l["decimal"], "."))
+        raw = m.group(1)
+        # a decimal dot with two digits after it (26.21 km) on a German page is a decimal, not thousands
+        if lang == "de" and re.fullmatch(r"\d+\.\d{1,2}", raw) and unit == "km":
+            return float(raw)
+        return float(raw.replace(l["thousands"], "").replace(l["decimal"], "."))
 
-    title = html.unescape(re.search(r"(?s)<title>(.*?)</title>", page).group(1)).split("•")[0].strip()
+    # the site's name after "•" (Outdooractive) or "|" (toubiz) is not part of the stage's name
+    title = re.split(r"[•|]", html.unescape(re.search(r"(?s)<title>(.*?)</title>", page).group(1)))[0].strip()
     # "Stage 18 Alpe-Adria-Trail: Arriach - Gerlitzen Alpe", "Etappe 3: Hinterzarten – Titisee"
-    number_m = re.search(r"\b(?:Stage|Etappe|Tappa)\s*(\d+[a-z]?)\b", title, re.I)
+    # "Stage 7", "Etappe 7" or "7. Etappe"
+    number_m = re.search(r"\b(?:Stage|Etappe|Tappa)\s*(\d+[a-z]?)\b|\b(\d+)\.\s*Etappe\b", title, re.I)
+    # "…: From - To", or "… von From nach To" (touren.harzinfo.de)
+    vonnach = re.search(r"\bvon (.+?) nach (.+)$", title)
     route = title.split(":", 1)[1] if ":" in title else title
-    ends = re.split(r"\s+[-–—>]\s+|\s+to\s+|\s+nach\s+", route.strip(), maxsplit=1)
+    ends = [vonnach.group(1), vonnach.group(2)] if vonnach else re.split(r"\s+[-–—>]\s+|\s+to\s+|\s+nach\s+", route.strip(), maxsplit=1)
     duration = re.search(rf"\b{re.escape(l['time'])} (\d+):(\d+) h\b", text)
     return {
         "title": title,
-        "number": number_m.group(1).lstrip("0") or "0" if number_m else None,
+        "number": (number_m.group(1) or number_m.group(2)).lstrip("0") or "0" if number_m else None,
         "from": ends[0].strip() if len(ends) == 2 else None,
         "to": ends[1].strip() if len(ends) == 2 else None,
         "km": number("km", "km"),

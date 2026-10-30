@@ -67,7 +67,9 @@ const stage = z.object({
   end: z.object({ lat: z.number(), lon: z.number() }).optional(),
   // or the stage's own OSM hiking relation (a section of a superroute): chained from where the
   // previous stage ended, it guides the matcher like a track
-  relation: z.number().int().positive().optional(),
+  // (several in a row, e.g. an OSM section and the start of the next, as a list; with `end` the
+  // chained line is cut there)
+  relation: z.union([z.number().int().positive(), z.array(z.number().int().positive()).min(1)]).optional(),
   // when this stage's figures come from another source than the list's (the page names it)
   source: sourceRef.optional(),
 });
