@@ -107,6 +107,7 @@
       zoomTo(s.id);
     } else {
       query = s.label;
+      listKept = true;
       const boxes = trails.filter((t) => t.countries.includes(s.id)).map((t) => routeBounds.get(t.slug) ?? [t.startLonLat, t.startLonLat]);
       if (map && boxes.length)
         map.fitBounds(
@@ -141,8 +142,15 @@
       .map((t) => ({ type: "Feature" as const, properties: { slug: t.slug, name: t.name }, geometry: { type: "Point" as const, coordinates: t.startLonLat } })),
   });
 
-  function updateInView() {
+  // re-sort the list after the map moved; after a pick from the list or the search the list stays
+  // as it was while the map shows the chosen trail, until the hiker moves the map (a drag, wheel
+  // or button: the event has an `originalEvent`) or asks for all trails or a cluster (`resetList`);
+  // a resize or a reload of the map's style (a theme switch) doesn't count
+  let listKept = false;
+  function updateInView(e?: { originalEvent?: unknown; resetList?: boolean }) {
     if (!map) return;
+    if (listKept && !e?.originalEvent && !e?.resetList) return;
+    listKept = false;
     const b = map.getBounds();
     inView = trails.filter((t) => b.contains(t.startLonLat)).map((t) => t.slug);
     const c = map.getCenter();
@@ -154,12 +162,13 @@
     const t = trails.find((x) => x.slug === slug);
     if (!map || !t) return;
     hovered = slug;
+    listKept = true;
     const b = routeBounds.get(slug);
     if (b) map.fitBounds(b, { padding: 48, maxZoom: 11 });
     else map.easeTo({ center: t.startLonLat, zoom: 9 });
   }
   function showAll() {
-    if (map && allBounds) map.fitBounds(allBounds, { padding: 0 });
+    if (map && allBounds) map.fitBounds(allBounds, { padding: 0 }, { resetList: true });
   }
 
   function highlight(slug: string | null) {
@@ -242,7 +251,7 @@
         const f = e.features?.[0];
         if (!f || !map) return;
         const zoom = await (map.getSource("starts") as import("maplibre-gl").GeoJSONSource).getClusterExpansionZoom(f.properties.cluster_id);
-        map.easeTo({ center: (f.geometry as GeoJSON.Point).coordinates as [number, number], zoom });
+        map.easeTo({ center: (f.geometry as GeoJSON.Point).coordinates as [number, number], zoom }, { resetList: true });
       });
       const pick = (e: import("maplibre-gl").MapLayerMouseEvent) => {
         const slug = e.features?.[0]?.properties?.slug as string | undefined;
