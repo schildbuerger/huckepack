@@ -31,10 +31,11 @@ import truststore
 truststore.inject_into_ssl()
 
 USER_AGENT = "huckepack-pipeline (personal project)"
-# the figure labels by page language, each with how that language writes numbers
+# the figure labels by page language (regular expressions), each with how that language writes
+# numbers
 LABELS = {
-    "en": {"km": "Distance", "time": "Duration", "up": "Ascent", "down": "Descent", "hi": "Highest point", "lo": "Lowest point", "thousands": ",", "decimal": "."},
-    "de": {"km": "(?:Strecke|Distanz)", "time": "Dauer", "up": "Aufstieg", "down": "Abstieg", "hi": "Höchster Punkt", "lo": "Tiefster Punkt", "thousands": ".", "decimal": ","},
+    "en": {"km": "(?:Distance|Length)", "time": "Duration", "up": "(?:Elevation ascent|Ascent)", "down": "(?:Elevation descent|Descent)", "hi": "Highest point", "lo": "Lowest point", "thousands": ",", "decimal": "."},
+    "de": {"km": "(?:Strecke|Distanz|Länge)", "time": "Dauer", "up": "Aufstieg", "down": "Abstieg", "hi": "Höchster Punkt", "lo": "Tiefster Punkt", "thousands": ".", "decimal": ","},
 }
 
 
@@ -57,9 +58,10 @@ def _text(page):
 
 def _gpx_link(page):
     """A direct GPX download on the page (destination.one portals: "Tour herunterladen"), if any."""
-    for href in re.findall(r'href="([^"]+)"[^>]*\bdownload\b', page):
-        href = html.unescape(href)
-        if "template=gpx" in href and "reverse" not in href.lower():
+    for href in re.findall(r'href="([^"]*template=gpx[^"]*)"', page):
+        # only &amp; is an entity here: "&times=true" must not become "×=true"
+        href = href.replace("&amp;", "&")
+        if "reverse" not in href.lower():
             return href
     return None
 
@@ -72,7 +74,7 @@ def parse_titles(page, url):
         return None
     de = lambda v: float(re.sub(r"[^\d,]", "", v).replace(",", "."))
     duration = re.match(r"(\d+):(\d+)", titles.get("Dauer", ""))
-    title = re.split(r"[•|]", html.unescape(re.search(r"(?s)<title>(.*?)</title>", page).group(1)))[0].strip()
+    title = re.split(r"[•|]", html.unescape(re.search(r"(?s)<title[^>]*>(.*?)</title>", page).group(1)))[0].strip()
     number_m = re.search(r"\b(?:Stage|Etappe|Tappa)\s*(\d+[a-z]?)\b", title, re.I)
     return {
         "title": title,
@@ -102,7 +104,7 @@ def parse(page, url):
     l = LABELS[lang]
 
     def number(label, unit):
-        m = re.search(rf"\b{l[label] if label == 'km' else re.escape(l[label])} ([\d.,]+) {unit}\b", text)
+        m = re.search(rf"\b{l[label]} ([\d.,]+) {unit}\b", text)
         if not m:
             return None
         raw = m.group(1)
@@ -112,15 +114,15 @@ def parse(page, url):
         return float(raw.replace(l["thousands"], "").replace(l["decimal"], "."))
 
     # the site's name after "•" (Outdooractive) or "|" (toubiz) is not part of the stage's name
-    title = re.split(r"[•|]", html.unescape(re.search(r"(?s)<title>(.*?)</title>", page).group(1)))[0].strip()
+    title = re.split(r"[•|]", html.unescape(re.search(r"(?s)<title[^>]*>(.*?)</title>", page).group(1)))[0].strip()
     # "Stage 18 Alpe-Adria-Trail: Arriach - Gerlitzen Alpe", "Etappe 3: Hinterzarten – Titisee"
     # "Stage 7", "Etappe 7" or "7. Etappe"
     number_m = re.search(r"\b(?:Stage|Etappe|Tappa)\s*(\d+[a-z]?)\b|\b(\d+)\.\s*Etappe\b", title, re.I)
     # "…: From - To", or "… von From nach To" (touren.harzinfo.de)
-    vonnach = re.search(r"\bvon (.+?) nach (.+)$", title)
+    vonnach = re.search(r"\bvon (.+?) nach (.+?)(?:\s+-\s+.*)?$", title, re.I)
     route = title.split(":", 1)[1] if ":" in title else title
     ends = [vonnach.group(1), vonnach.group(2)] if vonnach else re.split(r"\s+[-–—>]\s+|\s+to\s+|\s+nach\s+", route.strip(), maxsplit=1)
-    duration = re.search(rf"\b{re.escape(l['time'])} (\d+):(\d+) h\b", text)
+    duration = re.search(rf"\b{l['time']} (\d+):(\d+) h\b", text)
     return {
         "title": title,
         "number": (number_m.group(1) or number_m.group(2)).lstrip("0") or "0" if number_m else None,
@@ -132,7 +134,7 @@ def parse(page, url):
         "minutes": int(duration.group(1)) * 60 + int(duration.group(2)) if duration else None,
         "highestM": number("hi", "m"),
         "lowestM": number("lo", "m"),
-        "track": url,
+        "track": _gpx_link(page) or url,
     }
 
 
