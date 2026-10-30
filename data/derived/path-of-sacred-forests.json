@@ -1,7 +1,8 @@
 {
   "water": {
     "source": "osm",
-    "retrieved": "2026-10-27T12:02:44+00:00",
+    "extraSources": [],
+    "retrieved": "2026-10-28T21:21:02Z",
     "withinM": 250,
     "routeKm": 95.1,
     "stageStarts": [
@@ -111,7 +112,8 @@
         "stage": "1",
         "stageKind": "main",
         "km": 0.0,
-        "offM": 8
+        "offM": 8,
+        "source": "osm"
       },
       {
         "lat": 44.02954,
@@ -121,7 +123,8 @@
         "stage": "1",
         "stageKind": "main",
         "km": 0.2,
-        "offM": 3
+        "offM": 3,
+        "source": "osm"
       },
       {
         "lat": 43.98538,
@@ -131,7 +134,8 @@
         "stage": "1",
         "stageKind": "main",
         "km": 7.9,
-        "offM": 9
+        "offM": 9,
+        "source": "osm"
       },
       {
         "lat": 43.9844,
@@ -141,7 +145,8 @@
         "stage": "1",
         "stageKind": "main",
         "km": 8.0,
-        "offM": 1
+        "offM": 1,
+        "source": "osm"
       },
       {
         "lat": 43.98234,
@@ -151,7 +156,8 @@
         "stage": "1",
         "stageKind": "main",
         "km": 8.4,
-        "offM": 131
+        "offM": 131,
+        "source": "osm"
       },
       {
         "lat": 43.98172,
@@ -161,7 +167,8 @@
         "stage": "2",
         "stageKind": "main",
         "km": 8.7,
-        "offM": 7
+        "offM": 7,
+        "source": "osm"
       },
       {
         "lat": 43.982,
@@ -171,7 +178,8 @@
         "stage": "2",
         "stageKind": "main",
         "km": 8.8,
-        "offM": 23
+        "offM": 23,
+        "source": "osm"
       },
       {
         "lat": 43.98236,
@@ -181,7 +189,8 @@
         "stage": "2",
         "stageKind": "main",
         "km": 11.3,
-        "offM": 13
+        "offM": 13,
+        "source": "osm"
       },
       {
         "lat": 43.99076,
@@ -191,7 +200,8 @@
         "stage": "2",
         "stageKind": "main",
         "km": 12.7,
-        "offM": 13
+        "offM": 13,
+        "source": "osm"
       },
       {
         "lat": 43.93274,
@@ -201,7 +211,8 @@
         "stage": "2",
         "stageKind": "main",
         "km": 22.9,
-        "offM": 31
+        "offM": 31,
+        "source": "osm"
       },
       {
         "lat": 43.90842,
@@ -211,7 +222,8 @@
         "stage": "2",
         "stageKind": "main",
         "km": 27.5,
-        "offM": 31
+        "offM": 31,
+        "source": "osm"
       },
       {
         "lat": 43.90218,
@@ -221,7 +233,8 @@
         "stage": "2",
         "stageKind": "main",
         "km": 28.5,
-        "offM": 11
+        "offM": 11,
+        "source": "osm"
       },
       {
         "lat": 43.90126,
@@ -231,7 +244,8 @@
         "stage": "2",
         "stageKind": "main",
         "km": 28.6,
-        "offM": 14
+        "offM": 14,
+        "source": "osm"
       },
       {
         "lat": 43.89758,
@@ -241,7 +255,8 @@
         "stage": "2",
         "stageKind": "main",
         "km": 29.1,
-        "offM": 7
+        "offM": 7,
+        "source": "osm"
       },
       {
         "lat": 43.8983,
@@ -251,7 +266,8 @@
         "stage": "2",
         "stageKind": "main",
         "km": 29.1,
-        "offM": 99
+        "offM": 99,
+        "source": "osm"
       },
       {
         "lat": 43.89872,
@@ -261,7 +277,8 @@
         "stage": "3",
         "stageKind": "main",
         "km": 29.7,
-        "offM": 2
+        "offM": 2,
+        "source": "osm"
       },
       {
         "lat": 43.89617,
@@ -271,7 +288,8 @@
         "stage": "3",
         "stageKind": "main",
         "km": 30.1,
-        "offM": 21
+        "offM": 21,
+        "source": "osm"
       },
       {
         "lat": 43.88997,
@@ -281,7 +299,8 @@
         "stage": "3",
         "stageKind": "main",
         "km": 31.6,
-        "offM": 3
+        "offM": 3,
+        "source": "osm"
       },
       {
         "lat": 43.88269,
@@ -291,7 +310,8 @@
         "stage": "3",
         "stageKind": "main",
         "km": 33.3,
-        "offM": 9
+        "offM": 9,
+        "source": "osm"
       },
       {
         "lat": 43.88274,
@@ -301,7 +321,8 @@
         "stage": "3",
         "stageKind": "main",
         "km": 33.3,
-        "offM": 6
+        "offM": 6,
+        "source": "osm"
       },
       {
         "lat": 43.87505,
@@ -311,7 +332,8 @@
         "stage": "3",
         "stageKind": "main",
         "km": 34.7,
-        "offM": 6
+        "offM": 6,
+        "source": "osm"
       },
       {
         "lat": 43.87445,
@@ -321,7 +343,8 @@
         "stage": "3",
         "stageKind": "main",
         "km": 34.8,
-        "offM": 43
+        "offM": 43,
+        "source": "osm"
       },
       {
         "lat": 43.87409,
@@ -331,7 +354,8 @@
         "stage": "3",
         "stageKind": "main",
         "km": 34.9,
-        "offM": 238
+        "offM": 238,
+        "source": "osm"
       },
       {
         "lat": 43.87192,
@@ -341,7 +365,8 @@
         "stage": "3",
         "stageKind": "main",
         "km": 35.1,
-        "offM": 100
+        "offM": 100,
+        "source": "osm"
       },
       {
         "lat": 43.86867,
@@ -351,7 +376,8 @@
         "stage": "3",
         "stageKind": "main",
         "km": 35.9,
-        "offM": 20
+        "offM": 20,
+        "source": "osm"
       },
       {
         "lat": 43.87908,
@@ -361,7 +387,8 @@
         "stage": "3",
         "stageKind": "main",
         "km": 40.3,
-        "offM": 196
+        "offM": 196,
+        "source": "osm"
       },
       {
         "lat": 43.86494,
@@ -371,7 +398,8 @@
         "stage": "4",
         "stageKind": "main",
         "km": 42.8,
-        "offM": 6
+        "offM": 6,
+        "source": "osm"
       },
       {
         "lat": 43.86005,
@@ -381,7 +409,8 @@
         "stage": "4",
         "stageKind": "main",
         "km": 44.0,
-        "offM": 30
+        "offM": 30,
+        "source": "osm"
       },
       {
         "lat": 43.83248,
@@ -391,7 +420,8 @@
         "stage": "4",
         "stageKind": "main",
         "km": 50.1,
-        "offM": 102
+        "offM": 102,
+        "source": "osm"
       },
       {
         "lat": 43.81011,
@@ -401,7 +431,8 @@
         "stage": "4",
         "stageKind": "main",
         "km": 53.6,
-        "offM": 8
+        "offM": 8,
+        "source": "osm"
       },
       {
         "lat": 43.81005,
@@ -411,7 +442,8 @@
         "stage": "4",
         "stageKind": "main",
         "km": 53.6,
-        "offM": 4
+        "offM": 4,
+        "source": "osm"
       },
       {
         "lat": 43.80458,
@@ -421,7 +453,8 @@
         "stage": "4",
         "stageKind": "main",
         "km": 54.5,
-        "offM": 151
+        "offM": 151,
+        "source": "osm"
       },
       {
         "lat": 43.80143,
@@ -431,7 +464,8 @@
         "stage": "4",
         "stageKind": "main",
         "km": 54.8,
-        "offM": 87
+        "offM": 87,
+        "source": "osm"
       },
       {
         "lat": 43.80128,
@@ -441,7 +475,8 @@
         "stage": "4",
         "stageKind": "main",
         "km": 54.8,
-        "offM": 21
+        "offM": 21,
+        "source": "osm"
       },
       {
         "lat": 43.80104,
@@ -451,7 +486,8 @@
         "stage": "4",
         "stageKind": "main",
         "km": 54.9,
-        "offM": 52
+        "offM": 52,
+        "source": "osm"
       },
       {
         "lat": 43.79383,
@@ -461,7 +497,8 @@
         "stage": "4",
         "stageKind": "main",
         "km": 55.7,
-        "offM": 5
+        "offM": 5,
+        "source": "osm"
       },
       {
         "lat": 43.79315,
@@ -471,7 +508,8 @@
         "stage": "4",
         "stageKind": "main",
         "km": 55.8,
-        "offM": 16
+        "offM": 16,
+        "source": "osm"
       },
       {
         "lat": 43.79302,
@@ -481,7 +519,8 @@
         "stage": "5",
         "stageKind": "main",
         "km": 57.5,
-        "offM": 14
+        "offM": 14,
+        "source": "osm"
       },
       {
         "lat": 43.80228,
@@ -491,7 +530,8 @@
         "stage": "5",
         "stageKind": "main",
         "km": 59.0,
-        "offM": 0
+        "offM": 0,
+        "source": "osm"
       },
       {
         "lat": 43.8093,
@@ -501,7 +541,8 @@
         "stage": "5",
         "stageKind": "main",
         "km": 62.0,
-        "offM": 6
+        "offM": 6,
+        "source": "osm"
       },
       {
         "lat": 43.80931,
@@ -511,7 +552,8 @@
         "stage": "5",
         "stageKind": "main",
         "km": 62.7,
-        "offM": 8
+        "offM": 8,
+        "source": "osm"
       },
       {
         "lat": 43.81154,
@@ -521,7 +563,8 @@
         "stage": "5",
         "stageKind": "main",
         "km": 63.1,
-        "offM": 57
+        "offM": 57,
+        "source": "osm"
       },
       {
         "lat": 43.8012,
@@ -531,7 +574,8 @@
         "stage": "5",
         "stageKind": "main",
         "km": 67.2,
-        "offM": 199
+        "offM": 199,
+        "source": "osm"
       },
       {
         "lat": 43.79544,
@@ -541,7 +585,8 @@
         "stage": "6",
         "stageKind": "main",
         "km": 68.2,
-        "offM": 213
+        "offM": 213,
+        "source": "osm"
       },
       {
         "lat": 43.79883,
@@ -551,7 +596,8 @@
         "stage": "6",
         "stageKind": "main",
         "km": 69.3,
-        "offM": 4
+        "offM": 4,
+        "source": "osm"
       },
       {
         "lat": 43.77365,
@@ -561,7 +607,8 @@
         "stage": "6",
         "stageKind": "main",
         "km": 82.8,
-        "offM": 1
+        "offM": 1,
+        "source": "osm"
       },
       {
         "lat": 43.75011,
@@ -571,7 +618,8 @@
         "stage": "6",
         "stageKind": "main",
         "km": 85.9,
-        "offM": 7
+        "offM": 7,
+        "source": "osm"
       },
       {
         "lat": 43.74952,
@@ -581,7 +629,8 @@
         "stage": "6",
         "stageKind": "main",
         "km": 86.0,
-        "offM": 13
+        "offM": 13,
+        "source": "osm"
       },
       {
         "lat": 43.74651,
@@ -591,7 +640,8 @@
         "stage": "6",
         "stageKind": "main",
         "km": 87.5,
-        "offM": 4
+        "offM": 4,
+        "source": "osm"
       },
       {
         "lat": 43.74635,
@@ -601,7 +651,8 @@
         "stage": "6",
         "stageKind": "main",
         "km": 87.5,
-        "offM": 7
+        "offM": 7,
+        "source": "osm"
       },
       {
         "lat": 43.70571,
@@ -611,7 +662,8 @@
         "stage": "7",
         "stageKind": "main",
         "km": 94.6,
-        "offM": 243
+        "offM": 243,
+        "source": "osm"
       },
       {
         "lat": 43.70695,
@@ -621,7 +673,8 @@
         "stage": "7",
         "stageKind": "main",
         "km": 94.7,
-        "offM": 45
+        "offM": 45,
+        "source": "osm"
       },
       {
         "lat": 43.70787,
@@ -631,7 +684,8 @@
         "stage": "7",
         "stageKind": "main",
         "km": 95.1,
-        "offM": 73
+        "offM": 73,
+        "source": "osm"
       },
       {
         "lat": 43.70745,
@@ -641,17 +695,8 @@
         "stage": "7",
         "stageKind": "main",
         "km": 95.1,
-        "offM": 35
-      },
-      {
-        "lat": 43.76529,
-        "lon": 11.90267,
-        "kind": "drinking",
-        "name": "Fontanile di Frassineta",
-        "stage": "6",
-        "stageKind": "variant",
-        "km": null,
-        "offM": 18
+        "offM": 35,
+        "source": "osm"
       },
       {
         "lat": 44.04169,
@@ -661,17 +706,8 @@
         "stage": "0",
         "stageKind": "approach",
         "km": null,
-        "offM": 18
-      },
-      {
-        "lat": 43.75169,
-        "lon": 11.91477,
-        "kind": "spring",
-        "name": "Fontefresca",
-        "stage": "6",
-        "stageKind": "variant",
-        "km": null,
-        "offM": 129
+        "offM": 18,
+        "source": "osm"
       },
       {
         "lat": 44.07812,
@@ -681,47 +717,8 @@
         "stage": "0",
         "stageKind": "approach",
         "km": null,
-        "offM": 239
-      },
-      {
-        "lat": 43.79541,
-        "lon": 11.87711,
-        "kind": "drinking",
-        "name": null,
-        "stage": "6",
-        "stageKind": "variant",
-        "km": null,
-        "offM": 94
-      },
-      {
-        "lat": 43.79428,
-        "lon": 11.8776,
-        "kind": "drinking",
-        "name": "Fonte del Prete",
-        "stage": "6",
-        "stageKind": "variant",
-        "km": null,
-        "offM": 7
-      },
-      {
-        "lat": 43.79492,
-        "lon": 11.87769,
-        "kind": "drinking",
-        "name": null,
-        "stage": "6",
-        "stageKind": "variant",
-        "km": null,
-        "offM": 24
-      },
-      {
-        "lat": 43.79012,
-        "lon": 11.88148,
-        "kind": "drinking",
-        "name": "Fonte del Pellegrino",
-        "stage": "6",
-        "stageKind": "variant",
-        "km": null,
-        "offM": 5
+        "offM": 239,
+        "source": "osm"
       },
       {
         "lat": 44.04508,
@@ -731,7 +728,8 @@
         "stage": "0",
         "stageKind": "approach",
         "km": null,
-        "offM": 31
+        "offM": 31,
+        "source": "osm"
       },
       {
         "lat": 44.04694,
@@ -741,7 +739,8 @@
         "stage": "0",
         "stageKind": "approach",
         "km": null,
-        "offM": 69
+        "offM": 69,
+        "source": "osm"
       },
       {
         "lat": 44.07544,
@@ -751,7 +750,8 @@
         "stage": "0",
         "stageKind": "approach",
         "km": null,
-        "offM": 53
+        "offM": 53,
+        "source": "osm"
       },
       {
         "lat": 44.04715,
@@ -761,7 +761,8 @@
         "stage": "0",
         "stageKind": "approach",
         "km": null,
-        "offM": 67
+        "offM": 67,
+        "source": "osm"
       },
       {
         "lat": 44.07766,
@@ -771,7 +772,8 @@
         "stage": "0",
         "stageKind": "approach",
         "km": null,
-        "offM": 217
+        "offM": 217,
+        "source": "osm"
       },
       {
         "lat": 44.0746,
@@ -781,7 +783,8 @@
         "stage": "0",
         "stageKind": "approach",
         "km": null,
-        "offM": 186
+        "offM": 186,
+        "source": "osm"
       },
       {
         "lat": 44.07635,
@@ -791,7 +794,74 @@
         "stage": "0",
         "stageKind": "approach",
         "km": null,
-        "offM": 104
+        "offM": 104,
+        "source": "osm"
+      },
+      {
+        "lat": 43.79541,
+        "lon": 11.87711,
+        "kind": "drinking",
+        "name": null,
+        "stage": "6",
+        "stageKind": "variant",
+        "km": null,
+        "offM": 94,
+        "source": "osm"
+      },
+      {
+        "lat": 43.79428,
+        "lon": 11.8776,
+        "kind": "drinking",
+        "name": "Fonte del Prete",
+        "stage": "6",
+        "stageKind": "variant",
+        "km": null,
+        "offM": 7,
+        "source": "osm"
+      },
+      {
+        "lat": 43.79492,
+        "lon": 11.87769,
+        "kind": "drinking",
+        "name": null,
+        "stage": "6",
+        "stageKind": "variant",
+        "km": null,
+        "offM": 24,
+        "source": "osm"
+      },
+      {
+        "lat": 43.79012,
+        "lon": 11.88148,
+        "kind": "drinking",
+        "name": "Fonte del Pellegrino",
+        "stage": "6",
+        "stageKind": "variant",
+        "km": null,
+        "offM": 5,
+        "source": "osm"
+      },
+      {
+        "lat": 43.76529,
+        "lon": 11.90267,
+        "kind": "drinking",
+        "name": "Fontanile di Frassineta",
+        "stage": "6",
+        "stageKind": "variant",
+        "km": null,
+        "offM": 18,
+        "source": "osm"
+      },
+      {
+        "lat": 43.75169,
+        "lon": 11.91477,
+        "kind": "spring",
+        "name": "Fontefresca",
+        "stage": "6",
+        "stageKind": "variant",
+        "km": null,
+        "offM": 129,
+        "source": "osm"
       }
     ]
   },
@@ -2329,7 +2399,7 @@
   ],
   "surface": {
     "source": "osm",
-    "retrieved": "2026-10-27T13:28:43+00:00",
+    "retrieved": "2026-10-28T21:21:02Z",
     "routeKm": 95.1,
     "totals": {
       "paved": {

@@ -168,11 +168,18 @@ notes:
     Route (pipeline, 2026-10-29): the OSM match covers 96–100 % of most stage tracks; below 95 %
     are stage 7 (Mallnitz – Obervellach, 90 %, up to 922 m off), 8 (89 %), 9 (92 %), 30 (Breg pri
     Golem Brdu – Šmartno, 89 %, up to 684 m off) and the circular route's R6 (91 %), where OSM is
-    probably missing paths or the track takes a shortcut OSM doesn't have.
+    probably missing paths or the track takes a shortcut OSM doesn't have. Rebuilt from the full
+    Geofabrik extracts (2026-10-30): identical. Where the line detours, the map line is shorter
+    than the stated stage: stage 7 15.8 against 18.6 km, stage 30 19.1 against 21.6 km.
   - >-
     Water (pipeline, 2026-10-30): 231 drinking water points and 31 springs from OSM along the
     main route; the longest stretch without drinking water is 57.2 km on stages 3–5 (Döllach –
-    Innerfragant), where OSM probably misses village fountains and hut taps.
+    Innerfragant), where OSM probably misses village fountains and hut taps. Confirmed with the
+    full Geofabrik extract (2026-10-30): OSM has no drinking water within 250 m there. The
+    official stage pages name rest stops (Landgasthof Schwaiger and Alpengasthof Marterle on stage
+    3, Gasthof Dorfschenke in Stall, Bodenhütte and Goldberghütte on stage 5) and a wooden fountain
+    on stage 4, but no drinking water, and stage 5 advises carrying sufficient drinking water; so no
+    `waterPoints` are added (they need a source naming drinking water).
   - >-
     Data check (2026-10-29). Second source: German Wikivoyage, whose stage list follows an older
     split into 34 stages. Where its stages run between the same places as the official ones they
@@ -224,7 +231,7 @@ sources:
     retrieved: 2026-10-29
     checkOnly: true
   - id: osm
-    title: "OpenStreetMap contributors: paths and tracks along the trail and travel hubs (via Overpass API)"
+    title: "OpenStreetMap contributors: paths, tracks and water along the trail (Geofabrik extracts, 2026-10-28), travel hubs (via Overpass API)"
     url: https://www.openstreetmap.org/
     licence: ODbL 1.0
     retrieved: 2026-10-29

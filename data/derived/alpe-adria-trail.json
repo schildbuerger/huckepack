@@ -14272,7 +14272,7 @@
   "water": {
     "source": "osm",
     "extraSources": [],
-    "retrieved": "2026-10-30T00:09:52+00:00",
+    "retrieved": "2026-10-28T21:21:02Z",
     "withinM": 250,
     "routeKm": 684.0,
     "stageStarts": [
@@ -17389,6 +17389,17 @@
         "source": "osm"
       },
       {
+        "lat": 46.54574,
+        "lon": 13.51747,
+        "kind": "drinking",
+        "name": null,
+        "stage": "R3",
+        "stageKind": "variant",
+        "km": null,
+        "offM": 4,
+        "source": "osm"
+      },
+      {
         "lat": 46.50108,
         "lon": 13.50156,
         "kind": "drinking",
@@ -17419,17 +17430,6 @@
         "stageKind": "variant",
         "km": null,
         "offM": 102,
-        "source": "osm"
-      },
-      {
-        "lat": 46.54574,
-        "lon": 13.51747,
-        "kind": "drinking",
-        "name": null,
-        "stage": "R3",
-        "stageKind": "variant",
-        "km": null,
-        "offM": 4,
         "source": "osm"
       },
       {
@@ -17590,7 +17590,7 @@
   },
   "surface": {
     "source": "osm",
-    "retrieved": "2026-10-29T22:49:50+00:00",
+    "retrieved": "2026-10-28T21:21:02Z",
     "routeKm": 684.2,
     "totals": {
       "paved": {
