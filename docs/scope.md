@@ -86,6 +86,10 @@
   approach A's chart with approach C's figures, 2026-10-30). The ground
   categories use natural colours (earth, sand, asphalt) everywhere on the
   site.
+- **Trails with many stages:** from 12 main stages the stage list is a
+  compact table with bars, the first 10 stages shown and the rest behind
+  "Show all"; the charts shade every other stage and label every 2nd, 5th or
+  10th (issue #25, from three previews, 2026-10-30).
 - **Trail page order:** where is it (location, map), is it for me and when
   (difficulty, climate), what are the days like (stages, terrain,
   landscape), what do I need on the way (sleeping, water), then the sources

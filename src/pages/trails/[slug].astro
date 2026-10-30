@@ -116,6 +116,14 @@ const climbTotal =
       ? { up: mainView.reduce((a, s) => a + s.climb!.up, 0), down: mainView.reduce((a, s) => a + s.climb!.down, 0), est: true }
       : null;
 const estClimb = stageView.some((s) => s.climb?.est);
+// trails with many stages (issue #25): from this many main stages, the stage list is a compact table
+// with bars (the first STAGES_SHOWN rows, the rest behind "Show all") and the charts' stage axes
+// label only every k-th stage over alternating stage bands
+const MANY_STAGES = 12;
+const STAGES_SHOWN = 10;
+const manyStages = mainView.length >= MANY_STAGES;
+const maxStageKm = Math.max(...mainView.map((s) => s.km), 1);
+const maxStageUp = Math.max(...mainView.map((s) => s.climb?.up ?? 0), 1);
 // stage columns: only those some stage has a figure for; a stage without one keeps an empty cell,
 // so the columns stay under their header
 const stageEle = stageView.some((s) => s.ele);
@@ -235,6 +243,13 @@ const eleGrid = eleRange
 // the profile only where the route climbs above it (issue #20)
 const treeLine = t.treeLine && elevation && elevation.highest.m > t.treeLine.m ? t.treeLine : null;
 const treeLineText = treeLine && (treeLine.fromM ? `${fmt(treeLine.fromM)}–${fmt(treeLine.m)} m` : `≈ ${fmt(treeLine.m)} m`);
+// the peak label: centred over the peak, or starting at it near the chart's left edge (where it
+// would hide the height labels, which then give way) and ending at it near the right edge
+const peak = (() => {
+  const x = elevation ? xAt(elevation.highest.km, elevation.routeKm) : 0;
+  const left = x < CHART.x0 + 60;
+  return { x, left, anchor: left ? "start" : x > CHART.x1 - 40 ? "end" : "middle" };
+})();
 const profileLine =
   elevation?.points.map(([km, m], i) => `${i ? "L" : "M"}${xAt(km, elevation.routeKm).toFixed(1)},${yAt(m).toFixed(1)}`).join("") ?? "";
 // the area under the profile in the gradient bars' 200 m slices, each with two fills: its gradient
@@ -293,16 +308,26 @@ const between = (values: number[], unit: string, digits = 0) => {
 };
 const inSeason = climate ? climate.months.filter((m) => seasonMonths.length === 0 || seasonMonths.includes(m.month)) : [];
 
-// stage ticks for the strip charts: a tick at each stage start, the label centred on its stretch
-const stageTicks = (starts: { number: string; km: number }[], total: number) =>
-  starts.map((st, i) => {
-    const end = starts[i + 1]?.km ?? total;
+// stage ticks for the strip charts: a tick at each stage start, the label centred on its stretch.
+// With many stages (issue #25) every other stage gets a shaded band, and only every k-th stage a
+// label (k = 1, 2, 5 or 10, the smallest that keeps labels 34 units apart; first and last always)
+const stageTicks = (starts: { number: string; km: number }[], total: number, at = (km: number) => xAt(km, total)) => {
+  const many = starts.length >= MANY_STAGES;
+  const span = at(total) - at(0);
+  const k = many ? ([1, 2, 5, 10].find((n) => (span / starts.length) * n >= 34) ?? 10) : 1;
+  return starts.map((st, i) => {
+    const x = at(st.km);
+    const end = at(starts[i + 1]?.km ?? total);
+    const labelled = !many || i === 0 || i === starts.length - 1 || (i + 1) % k === 0;
     return {
-      x: xAt(st.km, total),
-      mid: (xAt(st.km, total) + xAt(end, total)) / 2,
-      label: xAt(end, total) - xAt(st.km, total) > 70 ? `Stage ${st.number}` : st.number,
+      x,
+      end,
+      mid: (x + end) / 2,
+      band: many && i % 2 === 1,
+      label: labelled ? (end - x > 70 ? `Stage ${st.number}` : st.number) : null,
     };
   });
+};
 
 // water strip chart: the main route on the map line's kilometres
 const onRoute = water?.points.filter((p) => p.km !== null) ?? [];
@@ -765,74 +790,162 @@ const nav = [
   {t.stages && (
     <section id="stages">
       <h2>Stages</h2>
-      <ol class="timeline" style={`--stat-cols: ${3 + (stageEle ? 1 : 0) + (stageTime ? 1 : 0)}`}>
-        <li class="stage-head" aria-hidden="true">
-          <span></span>
-          <div class="stage-body">
-            <span></span>
-            <ul class="stage-stats">
-              <li>Distance</li>
-              <li>Ascent</li>
-              <li>Descent</li>
-              {stageEle && <li class="wide">Elevation</li>}
-              {stageTime && <li>Time</li>}
-            </ul>
+      <!-- many stages (issue #25): a compact table with bars for distance and ascent; the first
+           STAGES_SHOWN rows show, a script folds the rest behind "Show all" (without it all show) -->
+      {manyStages ? (
+        <div class="stage-table" data-shown={STAGES_SHOWN}>
+          <div class="table-scroll">
+            <table>
+              <thead>
+                <tr>
+                  <th scope="col"><span class="visually-hidden">Stage</span></th>
+                  <th scope="col">Route</th>
+                  <th scope="col">Distance</th>
+                  <th scope="col">Ascent</th>
+                  <th scope="col">Descent</th>
+                  {stageEle && <th scope="col">Elevation</th>}
+                  {stageTime && <th scope="col">Time</th>}
+                </tr>
+              </thead>
+              {[stageView.filter((s) => s.kind === "main"), stageView.filter((s) => s.kind !== "main")].map((rows, part) =>
+                rows.length > 0 && (
+                  <tbody class={part ? "others" : undefined}>
+                    {part === 1 && (
+                      <tr class="extra group">
+                        <th scope="rowgroup" colspan={5 + (stageEle ? 1 : 0) + (stageTime ? 1 : 0)}>
+                          {rows.every((s) => s.kind === "variant") ? "Variants" : "Approaches and variants"}
+                        </th>
+                      </tr>
+                    )}
+                    {rows.map((s, i) => (
+                      <tr class:list={[s.kind, { extra: part === 1 || i >= STAGES_SHOWN }]}>
+                        <th scope="row" class="n">{s.number}</th>
+                        <td class="route">
+                          {s.from} <span class="arrow" aria-hidden="true">→</span> {s.to}
+                          {s.kind !== "main" && <span class="visually-hidden"> ({s.kind})</span>}
+                        </td>
+                        <td class="bar">
+                          <span class="fill" style={`--w: ${Math.min(s.km / maxStageKm, 1)}`} aria-hidden="true"></span>
+                          {s.km.toFixed(1)} km
+                        </td>
+                        <td class:list={["bar up", { est: s.climb?.est }]}>
+                          {s.climb && (
+                            <>
+                              <span class="fill" style={`--w: ${Math.min(s.climb.up / maxStageUp, 1)}`} aria-hidden="true"></span>
+                              {s.climb.est && <span class="visually-hidden">estimated </span>}
+                              {s.climb.est && <span aria-hidden="true">≈ </span>}{fmt(s.climb.up)} m ↑
+                            </>
+                          )}
+                        </td>
+                        <td class:list={[{ est: s.climb?.est }]}>
+                          {s.climb && (
+                            <>
+                              {s.climb.est && <span class="visually-hidden">estimated </span>}
+                              {s.climb.est && <span aria-hidden="true">≈ </span>}{fmt(s.climb.down)} m ↓
+                            </>
+                          )}
+                        </td>
+                        {stageEle && (
+                          <td class:list={[{ est: s.ele?.est }]}>
+                            {s.ele && (
+                              <>
+                                {s.ele.est && <span class="visually-hidden">estimated </span>}
+                                {s.ele.est && <span aria-hidden="true">≈ </span>}{fmt(s.ele.from)} → {fmt(s.ele.to)} m
+                              </>
+                            )}
+                          </td>
+                        )}
+                        {stageTime && (
+                          <td class:list={[{ est: s.time?.est }]}>
+                            {s.time && (
+                              <>
+                                {s.time.est && <span class="visually-hidden">estimated </span>}
+                                {s.time.est && <span aria-hidden="true">≈ </span>}{timeText(s.time.min, s.time.max)}
+                              </>
+                            )}
+                          </td>
+                        )}
+                      </tr>
+                    ))}
+                  </tbody>
+                ),
+              )}
+            </table>
           </div>
-        </li>
-        {stageView.map((s) => (
-          <li class={`stage ${s.kind}`}>
-            <span class="stage-no" aria-hidden="true">{s.number}</span>
+          <button type="button" class="show-all" aria-expanded="false" hidden>
+            Show all {mainView.length} stages{stageView.length > mainView.length && ` and ${stageView.length - mainView.length} ${stageView.every((s) => s.kind !== "approach") ? "variants" : "approaches and variants"}`}
+          </button>
+        </div>
+      ) : (
+        <ol class="timeline" style={`--stat-cols: ${3 + (stageEle ? 1 : 0) + (stageTime ? 1 : 0)}`}>
+          <li class="stage-head" aria-hidden="true">
+            <span></span>
             <div class="stage-body">
-              <p class="stage-route">
-                <span class="visually-hidden">Stage {s.number}{s.kind !== "main" && ` (${s.kind})`}: </span>
-                {s.from} <span class="arrow" aria-hidden="true">→</span> {s.to}
-                {s.kind !== "main" && <span class="stage-kind">{s.kind === "approach" ? "Approach" : "Variant"}</span>}
-              </p>
+              <span></span>
               <ul class="stage-stats">
-                <li title="Distance"><span class="visually-hidden">Distance </span>{s.km.toFixed(1)} km</li>
-                {s.climb ? (
-                  <>
-                    <li title={s.climb.est ? "Ascent, from the terrain model" : "Ascent"} class:list={[{ est: s.climb.est }]}>
-                      <span class="visually-hidden">{s.climb.est ? "Estimated ascent " : "Ascent "}</span>
-                      {s.climb.est && <span aria-hidden="true">≈ </span>}{fmt(s.climb.up)} m ↑
-                    </li>
-                    <li title={s.climb.est ? "Descent, from the terrain model" : "Descent"} class:list={[{ est: s.climb.est }]}>
-                      <span class="visually-hidden">{s.climb.est ? "Estimated descent " : "Descent "}</span>
-                      {s.climb.est && <span aria-hidden="true">≈ </span>}{fmt(s.climb.down)} m ↓
-                    </li>
-                  </>
-                ) : (
-                  <>
-                    <li aria-hidden="true"></li>
-                    <li aria-hidden="true"></li>
-                  </>
-                )}
-                {stageEle &&
-                  (s.ele ? (
-                    <li
-                      title={s.ele.est ? "Elevation at start and end, from the terrain model" : "Elevation at start and end"}
-                      class:list={["wide", { est: s.ele.est }]}
-                    >
-                      <span class="visually-hidden">{s.ele.est ? "Estimated elevation " : "Elevation "}</span>
-                      {s.ele.est && <span aria-hidden="true">≈ </span>}{fmt(s.ele.from)} → {fmt(s.ele.to)} m
-                    </li>
-                  ) : (
-                    <li class="wide" aria-hidden="true"></li>
-                  ))}
-                {stageTime &&
-                  (s.time ? (
-                    <li title={s.time.est ? "Estimated walking time (DIN 33466)" : "Walking time"} class:list={[{ est: s.time.est }]}>
-                      <span class="visually-hidden">{s.time.est ? "Estimated walking time " : "Walking time "}</span>
-                      {s.time.est && <span aria-hidden="true">≈ </span>}{timeText(s.time.min, s.time.max)}
-                    </li>
-                  ) : (
-                    <li aria-hidden="true"></li>
-                  ))}
+                <li>Distance</li>
+                <li>Ascent</li>
+                <li>Descent</li>
+                {stageEle && <li class="wide">Elevation</li>}
+                {stageTime && <li>Time</li>}
               </ul>
             </div>
           </li>
-        ))}
-      </ol>
+          {stageView.map((s) => (
+            <li class={`stage ${s.kind}`}>
+              <span class="stage-no" aria-hidden="true">{s.number}</span>
+              <div class="stage-body">
+                <p class="stage-route">
+                  <span class="visually-hidden">Stage {s.number}{s.kind !== "main" && ` (${s.kind})`}: </span>
+                  {s.from} <span class="arrow" aria-hidden="true">→</span> {s.to}
+                  {s.kind !== "main" && <span class="stage-kind">{s.kind === "approach" ? "Approach" : "Variant"}</span>}
+                </p>
+                <ul class="stage-stats">
+                  <li title="Distance"><span class="visually-hidden">Distance </span>{s.km.toFixed(1)} km</li>
+                  {s.climb ? (
+                    <>
+                      <li title={s.climb.est ? "Ascent, from the terrain model" : "Ascent"} class:list={[{ est: s.climb.est }]}>
+                        <span class="visually-hidden">{s.climb.est ? "Estimated ascent " : "Ascent "}</span>
+                        {s.climb.est && <span aria-hidden="true">≈ </span>}{fmt(s.climb.up)} m ↑
+                      </li>
+                      <li title={s.climb.est ? "Descent, from the terrain model" : "Descent"} class:list={[{ est: s.climb.est }]}>
+                        <span class="visually-hidden">{s.climb.est ? "Estimated descent " : "Descent "}</span>
+                        {s.climb.est && <span aria-hidden="true">≈ </span>}{fmt(s.climb.down)} m ↓
+                      </li>
+                    </>
+                  ) : (
+                    <>
+                      <li aria-hidden="true"></li>
+                      <li aria-hidden="true"></li>
+                    </>
+                  )}
+                  {stageEle &&
+                    (s.ele ? (
+                      <li
+                        title={s.ele.est ? "Elevation at start and end, from the terrain model" : "Elevation at start and end"}
+                        class:list={["wide", { est: s.ele.est }]}
+                      >
+                        <span class="visually-hidden">{s.ele.est ? "Estimated elevation " : "Elevation "}</span>
+                        {s.ele.est && <span aria-hidden="true">≈ </span>}{fmt(s.ele.from)} → {fmt(s.ele.to)} m
+                      </li>
+                    ) : (
+                      <li class="wide" aria-hidden="true"></li>
+                    ))}
+                  {stageTime &&
+                    (s.time ? (
+                      <li title={s.time.est ? "Estimated walking time (DIN 33466)" : "Walking time"} class:list={[{ est: s.time.est }]}>
+                        <span class="visually-hidden">{s.time.est ? "Estimated walking time " : "Walking time "}</span>
+                        {s.time.est && <span aria-hidden="true">≈ </span>}{timeText(s.time.min, s.time.max)}
+                      </li>
+                    ) : (
+                      <li aria-hidden="true"></li>
+                    ))}
+                </ul>
+              </div>
+            </li>
+          ))}
+        </ol>
+      )}
       <p class="note muted">
         Totals and averages count the main stages only.
         {t.stages.timesSource && ` Walking times from ${sourceShort(t.stages.timesSource)}.`}
@@ -948,14 +1061,17 @@ const nav = [
             role="img"
             aria-label={`Elevation along the main route, ${elevation.routeKm} km: highest ${fmt(elevation.highest.m)} m at km ${elevation.highest.km.toFixed(1)}, lowest ${fmt(elevation.lowest.m)} m. Steepest climb ${grad.climb.grade} % on stage ${grad.climb.stage}, steepest descent ${grad.descent.grade} % on stage ${grad.descent.stage}; ${grad.steepUpKm} km climb and ${grad.steepDownKm} km descend at ${STEEP_PERCENT} % or more.${treeLineText ? ` The route climbs above the tree line, ${treeLineText.replace("≈ ", "about ")}.` : ""}${surface ? ` Ground: ${surfaceRows.map((c) => `${c.label.toLowerCase()} ${pct(surface.totals[c.id].share)}`).join(", ")}.` : ""}`}
           >
-            {eleGrid.map((m) => (
-              <g>
-                <line class="grid" x1={CHART.x0} x2={CHART.x1} y1={yAt(m)} y2={yAt(m)} />
-                <text class="grid-label" x={CHART.x0 + 2} y={yAt(m) - 4}>{fmt(m)} m</text>
-              </g>
-            ))}
+            {stageTicks(elevation.stageStarts, elevation.routeKm).map(
+              (tk) => tk.band && <rect class="stage-band" x={tk.x} y={TERRAIN.top - 8} width={tk.end - tk.x} height={TERRAIN.bottom - TERRAIN.top + 8} />,
+            )}
+            {eleGrid.map((m) => <line class="grid" x1={CHART.x0} x2={CHART.x1} y1={yAt(m)} y2={yAt(m)} />)}
             {terrainSlices.map((sl) => <polygon class="slice" points={sl.points} style={sl.style} />)}
             <path class="line" d={profileLine} />
+            <!-- height labels over the profile (with a halo), so a steep start doesn't hide them; one
+                 that would meet the peak label at the left edge gives way -->
+            {eleGrid
+              .filter((m) => !(peak.left && Math.abs(yAt(m) - 4 - (yAt(elevation.highest.m) - 9)) < 14))
+              .map((m) => <text class="grid-label halo" x={CHART.x0 + 2} y={yAt(m) - 4}>{fmt(m)} m</text>)}
             {treeLine && (
               <g class="tree-line">
                 {treeLine.fromM && (
@@ -977,11 +1093,11 @@ const nav = [
               />
             ))}
             <circle class="peak" cx={xAt(elevation.highest.km, elevation.routeKm)} cy={yAt(elevation.highest.m)} r="4" />
-            <text class="peak-label" x={xAt(elevation.highest.km, elevation.routeKm)} y={yAt(elevation.highest.m) - 9} text-anchor="middle">{fmt(elevation.highest.m)} m</text>
+            <text class="peak-label" x={peak.x} y={yAt(elevation.highest.m) - 9} text-anchor={peak.anchor}>{fmt(elevation.highest.m)} m</text>
             {stageTicks(elevation.stageStarts, elevation.routeKm).map((tk) => (
               <g>
-                <line class="tick" x1={tk.x} x2={tk.x} y1={TERRAIN.bottom + groundOff} y2={TERRAIN.bottom + groundOff + 8} />
-                <text class="tick-label" x={tk.mid} y={TERRAIN.bottom + groundOff + 22} text-anchor="middle">{tk.label}</text>
+                <line class="tick" x1={tk.x} x2={tk.x} y1={TERRAIN.bottom + groundOff} y2={TERRAIN.bottom + groundOff + (tk.label ? 8 : 4)} />
+                {tk.label && <text class="tick-label" x={tk.mid} y={TERRAIN.bottom + groundOff + 22} text-anchor="middle">{tk.label}</text>}
               </g>
             ))}
             <line class="tick" x1={CHART.x1} x2={CHART.x1} y1={TERRAIN.bottom + groundOff} y2={TERRAIN.bottom + groundOff + 8} />
@@ -1047,6 +1163,9 @@ const nav = [
             role="img"
             aria-label={`Landscape along the main route, ${landcover.routeKm} km: ${landSummary}`}
           >
+            {stageTicks(landcover.stageStarts, landcover.routeKm, laneX).map(
+              (tk) => tk.band && <rect class="stage-band" x={tk.x} y="0" width={tk.end - tk.x} height={landRows.length * 26 + 4} />,
+            )}
             {landRows.map((g, i) => (
               <g>
                 <text class="lane-label" x={CHART.x0} y={i * 26 + 18}>{g.label}</text>
@@ -1066,13 +1185,12 @@ const nav = [
                 <text class="lane-share" x={CHART.x1} y={i * 26 + 18} text-anchor="end">{pct(landcover.shares[g.id])}</text>
               </g>
             ))}
-            {landcover.stageStarts.map((st, i) => {
-              const end = landcover.stageStarts[i + 1]?.km ?? landcover.routeKm;
+            {stageTicks(landcover.stageStarts, landcover.routeKm, laneX).map((tk) => {
               const y = landRows.length * 26 + 4;
               return (
                 <g>
-                  <line class="tick" x1={laneX(st.km)} x2={laneX(st.km)} y1={y} y2={y + 8} />
-                  <text class="tick-label" x={(laneX(st.km) + laneX(end)) / 2} y={y + 20} text-anchor="middle">Stage {st.number}</text>
+                  <line class="tick" x1={tk.x} x2={tk.x} y1={y} y2={y + (tk.label ? 8 : 4)} />
+                  {tk.label && <text class="tick-label" x={tk.mid} y={y + 20} text-anchor="middle">{tk.label}</text>}
                 </g>
               );
             })}
@@ -1175,6 +1293,9 @@ const nav = [
           </ul>
           <div class="chart-scroll">
           <svg viewBox={`0 0 ${CHART.width} 132`} role="img" aria-label={chartSummary}>
+            {stageTicks(water.stageStarts, water.routeKm).map(
+              (tk) => tk.band && <rect class="stage-band" x={tk.x} y="28" width={tk.end - tk.x} height={CHART.axis - 28} />,
+            )}
             <rect
               class="gap"
               x={xAt(water.longestGapKm.drinking.fromKm)}
@@ -1191,8 +1312,8 @@ const nav = [
             <line class="route" x1={CHART.x0} x2={CHART.x1} y1={CHART.axis} y2={CHART.axis} />
             {stageTicks(water.stageStarts, water.routeKm).map((tk) => (
               <g>
-                <line class="tick" x1={tk.x} x2={tk.x} y1={CHART.axis - 5} y2={CHART.axis + 5} />
-                <text class="tick-label" x={tk.mid} y={CHART.axis + 18} text-anchor="middle">{tk.label}</text>
+                <line class="tick" x1={tk.x} x2={tk.x} y1={CHART.axis - (tk.label ? 5 : 3)} y2={CHART.axis + (tk.label ? 5 : 3)} />
+                {tk.label && <text class="tick-label" x={tk.mid} y={CHART.axis + 18} text-anchor="middle">{tk.label}</text>}
               </g>
             ))}
             <line class="tick" x1={CHART.x1} x2={CHART.x1} y1={CHART.axis - 5} y2={CHART.axis + 5} />
@@ -1311,6 +1432,23 @@ const nav = [
     }
     document.addEventListener("click", hide);
     document.addEventListener("keydown", (e) => e.key === "Escape" && hide());
+  }
+
+  // Long stage tables (issue #25): the rows after the first few fold behind "Show all"; without
+  // this script every row shows
+  for (const box of document.querySelectorAll<HTMLElement>(".stage-table")) {
+    const button = box.querySelector<HTMLButtonElement>(".show-all")!;
+    if (!box.querySelector(".extra")) continue;
+    const more = button.textContent!.trim();
+    box.classList.add("folded");
+    button.hidden = false;
+    button.addEventListener("click", () => {
+      const open = !box.classList.toggle("folded");
+      button.setAttribute("aria-expanded", String(open));
+      button.textContent = open ? "Show fewer" : more;
+      // folding up from far below: bring the table's top back into view
+      if (!open && box.getBoundingClientRect().top < 0) box.scrollIntoView({ block: "start" });
+    });
   }
 
   // Terrain: a crosshair with everything at the pointer's kilometre: height, the 200 m gradient,
@@ -1751,6 +1889,105 @@ const nav = [
     .stage-head .stage-body {
       padding-top: 0;
     }
+  }
+  /* many stages (issue #25): a compact table, one line per stage, with small bars under the
+     distance and the ascent so long and hard days stand out; rows after the first few fold away */
+  .stage-table table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.85rem;
+    font-variant-numeric: tabular-nums;
+  }
+  .stage-table thead th {
+    padding: 0 12px 6px 0;
+    color: var(--muted);
+    font-size: 0.75rem;
+    font-weight: 400;
+    text-align: left;
+  }
+  .stage-table td,
+  .stage-table tbody th {
+    height: 30px;
+    padding: 0 12px 0 0;
+    border-top: 1px solid var(--line);
+    font-weight: 400;
+    text-align: left;
+    white-space: nowrap;
+  }
+  .stage-table .n {
+    width: 2.2rem;
+    color: var(--accent);
+    font-weight: 600;
+  }
+  .stage-table .route {
+    width: 100%;
+    font-family: var(--serif);
+    font-size: 0.95rem;
+    font-weight: 600;
+    white-space: normal;
+  }
+  .stage-table .variant .n,
+  .stage-table .approach .n,
+  .stage-table .variant .route,
+  .stage-table .approach .route {
+    color: var(--muted);
+  }
+  .stage-table .group th {
+    padding-top: 16px;
+    border-top: 0;
+    color: var(--muted);
+    font-size: 0.75rem;
+    font-weight: 600;
+  }
+  .stage-table .bar {
+    position: relative;
+    min-width: 6.5rem;
+  }
+  .stage-table .fill {
+    position: absolute;
+    bottom: 4px;
+    left: 0;
+    width: calc(var(--w) * 5.5rem);
+    height: 3px;
+    border-radius: 2px;
+    background: var(--muted);
+    opacity: 0.45;
+  }
+  .stage-table .bar.up .fill {
+    background: var(--grade-up-steep);
+    opacity: 0.8;
+  }
+  .stage-table .est {
+    color: var(--muted);
+  }
+  .stage-table.folded .extra {
+    display: none;
+  }
+  /* relative: the hidden screen-reader words in the cells are placed absolutely and must not
+     escape the scroll box (they widened the page on phones) */
+  .table-scroll {
+    position: relative;
+    overflow-x: auto;
+  }
+  .show-all {
+    margin-top: 10px;
+    padding: 6px 0;
+    border: 0;
+    background: none;
+    color: var(--accent);
+    font: inherit;
+    font-size: 0.9rem;
+    font-weight: 600;
+    cursor: pointer;
+  }
+  .show-all:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+  }
+  /* many stages: every other stage shaded behind the strip charts */
+  .stage-band {
+    fill: var(--line);
+    opacity: 0.55;
   }
   /* location: one grid of label-over-value items, so rows align whatever the content */
   .loc {
@@ -2560,6 +2797,12 @@ const nav = [
   .terrain-chart .tree-line text {
     fill: var(--text);
     font: 600 11px var(--sans);
+    paint-order: stroke;
+    stroke: var(--bg);
+    stroke-width: 3px;
+    stroke-linejoin: round;
+  }
+  .terrain-chart .grid-label.halo {
     paint-order: stroke;
     stroke: var(--bg);
     stroke-width: 3px;
