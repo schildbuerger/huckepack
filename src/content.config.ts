@@ -100,6 +100,8 @@ const trail = z
       .array(z.object({ km: z.number().positive(), approx: z.boolean().default(false), source: sourceRef }))
       .default([]),
     ascent: z.array(z.object({ m: z.number().int().positive(), source: sourceRef })).default([]),
+    // the stated total descent; the page uses a stated ascent only together with a descent from the same source
+    descent: z.array(z.object({ m: z.number().int().positive(), source: sourceRef })).default([]),
     days: z
       .object({ min: z.number().int().positive(), max: z.number().int().positive(), source: sourceRef })
       .refine((d) => d.min <= d.max, "days.min must not exceed days.max")
@@ -213,6 +215,7 @@ const trail = z
       t.termini.source,
       ...t.length.map((l) => l.source),
       ...t.ascent.map((a) => a.source),
+      ...t.descent.map((a) => a.source),
       ...[
         t.established,
         t.waymarking,

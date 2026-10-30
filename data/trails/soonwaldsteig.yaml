@@ -33,6 +33,9 @@ length:
 ascent:
   - m: 2650
     source: sws-oa
+descent:
+  - m: 2770
+    source: sws-oa
 days:
   # the site's tour plans: 4 or 5 days with a tent, packages in 3 to 6 walking days, six stages
   min: 3

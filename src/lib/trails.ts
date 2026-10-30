@@ -41,6 +41,19 @@ export function trailLength(t: Trail) {
   return totals ? { ...totals.km, approx: false } : null;
 }
 
+// The trail's total ascent and descent, like its length: the stated pair where the record states both
+// from one source (ascent and descent never from different sources in one tile), else the sums of
+// the main stages; undefined when neither exists (the page then sums the terrain model's estimates).
+export function trailClimb(t: Trail) {
+  const up = t.ascent[0];
+  const down = t.descent.find((d) => d.source === up?.source);
+  if (up && down) return { up: up.m, down: down.m, source: up.source, how: "stated total" };
+  const totals = stageTotals(t);
+  return totals?.ascentM && totals.descentM
+    ? { up: totals.ascentM.value, down: totals.descentM.value, source: totals.ascentM.source, how: totals.ascentM.how }
+    : undefined;
+}
+
 // The length measured on our map line (the full OSM match, pipeline/routes.py): one method for every
 // trail, so it is what search sorting and comparisons use; only where every main stage is at least
 // MEASURED_MIN_COVER matched, since a stage whose match takes a shortcut would come out short.
@@ -113,7 +126,7 @@ export function summarize(id: string, t: Trail, d?: DerivedData) {
     regions: t.regions,
     lengthKm: trailLength(t)?.value ?? null,
     compareKm: compareLength(t, d), // for sorting and totals (compareLength())
-    ascentM: totals?.ascentM?.value ?? t.ascent[0]?.m ?? null,
+    ascentM: trailClimb(t)?.up ?? null,
     days: t.days ? ([t.days.min, t.days.max] as [number, number]) : null,
     sac: sacGrade(t)?.value ?? null,
     wildCamping: t.wildCamping?.status ?? null,

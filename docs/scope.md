@@ -23,6 +23,11 @@
   Moselsteig's 24 stages add up to 392.8 km against its 365 km). The stage
   sums stay in the stages table and feed the per-day averages and difficulty,
   which must share a source with the stages (decided 2026-10-30).
+- **Ascent and descent:** the same rule as the length: the stated total pair
+  (only when ascent and descent come from the same source, so one tile never
+  mixes sources), else the stage sums, else the terrain model's estimate (≈).
+  No measured ascent for comparing: the terrain model measures treetops and
+  reads 15–60 % high in forests (decided 2026-10-30).
 - **Measured length:** where every main stage's OSM match covers at least
   95 % of its official track, the length of our map line (the full match) is
   the comparable length: the search sorts by it and the home page sums it, so

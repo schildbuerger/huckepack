@@ -33,6 +33,9 @@ ascent:
   # the whole-route tour
   - m: 9140
     source: mlt
+descent:
+  - m: 9300
+    source: mlt
 days:
   # "24 Etappen", each "eine Tagestour"; "eine mehrwöchige Wanderreise"
   min: 24

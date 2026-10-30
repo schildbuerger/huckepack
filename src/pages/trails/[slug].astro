@@ -18,6 +18,7 @@ import {
   stageEstimates,
   stageTotals,
   trailLength,
+  trailClimb,
   measuredLength,
   SAC_NOTE,
   SAC_SCALE,
@@ -106,12 +107,12 @@ const stageView = (t.stages?.list ?? []).map((s) => {
         : null;
   return { ...s, ele, time, climb };
 });
-// total ascent and descent: the stated stage sums, else the sum of the terrain model's estimates
-// for every main stage (marked ≈)
+// total ascent and descent: the stated pair, else the stated stage sums (trailClimb()), else the sum
+// of the terrain model's estimates for every main stage (marked ≈)
 const mainView = stageView.filter((s) => s.kind === "main");
-const climbTotal =
-  totals?.ascentM && totals.descentM
-    ? { up: totals.ascentM.value, down: totals.descentM.value, est: false }
+const climb = trailClimb(t);
+const climbTotal = climb
+    ? { up: climb.up, down: climb.down, est: false }
     : mainView.length && mainView.every((s) => s.climb)
       ? { up: mainView.reduce((a, s) => a + s.climb!.up, 0), down: mainView.reduce((a, s) => a + s.climb!.down, 0), est: true }
       : null;
@@ -413,7 +414,29 @@ const nav = [
       )}
       {climbTotal && (
         <div>
-          <dt>Ascent · descent</dt>
+          <dt>
+            <Explain id="climb-info" term="Ascent · descent">
+              {climb ? (
+                <p>
+                  {fmt(climb.up)} m up and {fmt(climb.down)} m down: {climb.how === "stated total" ? "the stated totals" : `the ${climb.how}`}{" "}
+                  ({sources[climb.source].title.split(":")[0]}).
+                </p>
+              ) : (
+                <p>
+                  Estimated from the terrain model, as the sum of every main stage's climbs and drops between
+                  samples 100 m apart. No source states them. The model measures the treetops in forests, so
+                  it reads high there.
+                </p>
+              )}
+              {climb?.how === "stated total" && totals?.ascentM && totals.descentM &&
+                (totals.ascentM.value !== climb.up || totals.descentM.value !== climb.down) && (
+                <p>
+                  The {mainView.length} main stages in the stages table add up to {fmt(totals.ascentM.value)} m up
+                  and {fmt(totals.descentM.value)} m down.
+                </p>
+              )}
+            </Explain>
+          </dt>
           <!-- both climbs in one tile: two small lines, as tall as the big numbers beside them -->
           <dd class="climbs">
             {climbTotal.est && <span class="sr-only">estimated: </span>}

@@ -2,7 +2,7 @@
 import { getCollection, getEntry } from "astro:content";
 import Base from "../layouts/Base.astro";
 import Icon, { type IconName } from "../components/Icon.astro";
-import { mainStages, stageEstimates, stageTotals, walkingMinutes } from "../lib/trails";
+import { mainStages, stageEstimates, trailClimb, walkingMinutes } from "../lib/trails";
 import { LEVELS } from "../lib/difficulty";
 import { climateLevel } from "../lib/filters";
 import { searchSummary } from "../lib/search";
@@ -34,8 +34,8 @@ const perTrail = entries.map((e, i) => {
   const d = derivedAll[i];
   const est = stageEstimates(e.data, d);
   const main = mainStages(e.data);
-  // climbs as the key figures have them: the stated stage sums, else the terrain model's estimate
-  const stated = stageTotals(e.data)?.ascentM?.value;
+  // climbs as the key figures have them: the stated total or stage sums, else the terrain model's estimate
+  const stated = trailClimb(e.data)?.up;
   const climbed = stated ?? sum(main.map((s) => est.get(s.number)?.ascentM ?? 0));
   // walking time: each main stage's stated time, else DIN 33466 from its climbs (stated or estimated)
   const minutes = sum(

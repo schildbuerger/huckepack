@@ -44,6 +44,9 @@ ascent:
   # the western variant's route page: 7,889 m up, 7,854 m down
   - m: 7889
     source: stg
+descent:
+  - m: 7854
+    source: stg
 days:
   # the western variant in 12 stages, the eastern in 13
   min: 12
