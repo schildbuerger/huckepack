@@ -8,6 +8,8 @@ interface Props {
   personal?: boolean; // a page with the operator's personal details (legal notice, privacy policy)
 }
 const { title, description, personal = false } = Astro.props;
+// the address search engines and link previews should use (no query string, always with a slash)
+const canonical = new URL(Astro.url.pathname.replace(/\/?$/, "/"), Astro.site);
 ---
 
 <!doctype html>
@@ -17,6 +19,17 @@ const { title, description, personal = false } = Astro.props;
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{title}</title>
     {description && <meta name="description" content={description} />}
+    <link rel="canonical" href={canonical} />
+    <!-- link previews (Open Graph, also read by Mastodon, Signal, Slack and others) -->
+    <meta property="og:site_name" content="huckepack" />
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="en" />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:title" content={title} />
+    {description && <meta property="og:description" content={description} />}
+    <meta property="og:image" content={new URL("/icon-512.png", Astro.site)} />
+    <meta property="og:image:alt" content="The huckepack logo, a cairn of pixel stones" />
+    <meta name="twitter:card" content="summary" />
     {
       personal && (
         <>

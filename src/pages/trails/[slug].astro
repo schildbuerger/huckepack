@@ -14,6 +14,7 @@ import {
   monthName,
   perDay,
   sacGrade,
+  mainStages,
   stageEstimates,
   stageTotals,
   SAC_NOTE,
@@ -57,6 +58,31 @@ const sac = sacGrade(t);
 // difficulty in three dimensions (src/lib/difficulty.ts); the key figure names the hardest level
 const diff = difficulty(t, derived);
 const diffTop = Math.max(1, ...diff.dims.map((d) => d.level)) as Level;
+// title and description for tabs, search results and link previews: what and where, then the
+// figures a hiker decides on, as the key figures show them
+const listed = (xs: string[]) => (xs.length > 1 ? `${xs.slice(0, -1).join(", ")} and ${xs.at(-1)}` : xs[0]);
+// countries whose English name takes "the" ("in the United Kingdom")
+const WITH_THE = new Set(["GB", "US", "NL", "PH", "AE"]);
+const where = listed(t.countries.map((c) => (WITH_THE.has(c) ? `the ${countryName(c)}` : countryName(c))));
+const lengthText = length ? `${length.approx ? "about " : ""}${Math.round(length.value).toLocaleString("en")} km` : null;
+// the season as one run of months, also across the new year (December to March); none if it has gaps
+const months = t.season?.months ?? [];
+const runStart = months.filter((m) => !months.includes(m === 1 ? 12 : m - 1));
+const seasonRun =
+  runStart.length === 1 ? [runStart[0], months.find((m) => !months.includes(m === 12 ? 1 : m + 1))!] : null;
+const pageTitle = `${t.name}: ${lengthText ? `${lengthText} hike` : "hike"} in ${where} · huckepack`;
+const pageDescription = [
+  `${t.name}, ${where}:`,
+  [
+    lengthText && (t.stages ? `${lengthText} in ${mainStages(t).length} stages` : lengthText),
+    t.days && `${t.days.min === t.days.max ? t.days.min : `${t.days.min}–${t.days.max}`} days`,
+    diff.dims.length > 0 && `rated ${LEVELS[diffTop - 1].toLowerCase()}`,
+    seasonRun && `best ${monthName(seasonRun[0])} to ${monthName(seasonRun[1])}`,
+  ]
+    .filter(Boolean)
+    .join(", ") + ".",
+  "Stages, terrain, climate, water and beds from official and open data.",
+].join(" ");
 // stage heights and times: the published figure, else our estimate (marked ≈ on the page)
 const estimates = stageEstimates(t, derived);
 const stageView = (t.stages?.list ?? []).map((s) => {
@@ -306,8 +332,8 @@ const nav = [
 ---
 
 <Base
-  title={`${t.name} · huckepack`}
-  description={`${t.name}${t.localName ? ` (${t.localName})` : ""}: stages, length, ascent, difficulty, where to sleep, water and a map.`}
+  title={pageTitle}
+  description={pageDescription}
 >
   <Breadcrumbs trail={[{ label: "Trails", href: "/trails/" }]} current={t.name} />
   <h1>
