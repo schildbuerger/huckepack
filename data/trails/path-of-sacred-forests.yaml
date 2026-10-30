@@ -44,7 +44,7 @@ stages:
     - { number: "4", kind: main, from: Campigna, to: Camaldoli, km: 14.0, ascentM: 640, descentM: 890, minutes: 330, startEleM: 1464, endEleM: 849, track: "https://geohub.webmapp.it/api/ec/track/download/75487.gpx" }
     - { number: "5", kind: main, from: Camaldoli, to: Badia Prataglia, km: 13.4, ascentM: 920, descentM: 770, minutes: 300, startEleM: 847, endEleM: 1055, track: "https://geohub.webmapp.it/api/ec/track/download/75486.gpx" }
     - { number: "6", kind: main, from: Badia Prataglia, to: Rimbocchi, km: 18.5, ascentM: 650, descentM: 700, minutes: 300, startEleM: 1004, endEleM: 552, track: "https://geohub.webmapp.it/api/ec/track/download/75483.gpx" }
-    - { number: "6", kind: variant, from: Badia Prataglia, to: Rimbocchi, km: 10.5, ascentM: 489, descentM: 782, minutes: 195, startEleM: 842, endEleM: 549, track: "https://geohub.webmapp.it/api/ec/track/download/83878.gpx" }
+    - { number: "6", kind: variant, from: Badia Prataglia (shorter route), to: Rimbocchi, km: 10.5, ascentM: 489, descentM: 782, minutes: 195, startEleM: 842, endEleM: 549, track: "https://geohub.webmapp.it/api/ec/track/download/83878.gpx" }
     - { number: "7", kind: main, from: Rimbocchi, to: La Verna, km: 7.9, ascentM: 627, descentM: 341, minutes: 240, startEleM: 552, endEleM: 1138, track: "https://geohub.webmapp.it/api/ec/track/download/75485.gpx" }
 route:
   # built by `python -m pipeline.routes sacred-forests-trail`: OSM ways matched to the stage
