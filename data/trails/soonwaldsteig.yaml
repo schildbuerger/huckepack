@@ -1,0 +1,172 @@
+name: Soonwaldsteig
+website: https://www.soonwaldsteig.de/
+designation: Premiumweg (Deutsches Wanderinstitut)
+managedBy:
+  # "© Naturpark Soonwald-Nahe"; the tour portal names the Trägerverein Naturpark Soonwald-Nahe e.V.
+  - name: Naturpark Soonwald-Nahe
+    url: https://www.soonwaldsteig.de/
+trailType: point-to-point
+continents: [Europe]
+countries: [DE]
+regions: [Rheinland-Pfalz]
+protectedAreas:
+  - Naturpark Soonwald-Nahe
+termini:
+  # the first and last points of the official stage tracks: Kirn's market square, Bingen station
+  start:
+    name: Kirn (Marktplatz)
+    lat: 49.78622
+    lon: 7.45952
+  end:
+    name: Bingen am Rhein (Bahnhof)
+    lat: 49.96839
+    lon: 7.88474
+  source: sws
+waymarking:
+  # Wikipedia's infobox shows the trail's logo as its waymark; the official site names none
+  text: The Soonwaldsteig's own logo
+  source: wikipedia
+length:
+  # the whole-route tour (Outdooractive, by the Naturpark); the site's text says "85 km"
+  - km: 84.1
+    source: sws-oa
+ascent:
+  - m: 2650
+    source: sws-oa
+days:
+  # the site's tour plans: 4 or 5 days with a tent, packages in 3 to 6 walking days, six stages
+  min: 3
+  max: 6
+  source: sws
+stages:
+  # the Naturpark's six stage tours on Outdooractive (linked from the stage pages of
+  # soonwaldsteig.de); tracks from the site's GPX downloads (kept local, they only guide the OSM
+  # matcher)
+  source: sws-oa
+  list:
+    - { number: "1", kind: main, from: Kirn, to: Bundenbach, km: 14.7, ascentM: 630, descentM: 500, minutes: 300, track: "https://www.soonwaldsteig.de/media/d79bbc42-f21a-49fc-8e73-feaf0a414ae2/B0rHiQ/GPX%20Soonwaldsteig/Etappe%201_gpx" }
+    - { number: "2", kind: main, from: Bundenbach, to: Simmerbachtal, km: 13.2, ascentM: 335, descentM: 520, minutes: 250, track: "https://www.soonwaldsteig.de/media/aba9d7b1-f1a2-498f-8e8b-8e8be6a8c19f/x-ILgA/GPX%20Soonwaldsteig/Etappe%202_gpx" }
+    - { number: "3", kind: main, from: Simmerbachtal, to: Ellerspring, km: 14.7, ascentM: 595, descentM: 230, minutes: 240, track: "https://www.soonwaldsteig.de/media/82cbfcbf-5c6a-4496-87f5-b1025b78c881/l8WBmg/GPX%20Soonwaldsteig/Etappe%203_gpx" }
+    - { number: "4", kind: main, from: Ellerspring, to: Rheinböllen, km: 15.7, ascentM: 290, descentM: 540, minutes: 240, track: "https://www.soonwaldsteig.de/media/e30c6f2c-a13a-4994-9f02-0f210c165d05/F7ljkQ/GPX%20Soonwaldsteig/Etappe%204_gpx" }
+    - { number: "5", kind: main, from: Rheinböllen, to: Jägerhaus, km: 14, ascentM: 340, descentM: 430, minutes: 240, track: "https://www.soonwaldsteig.de/media/3de357d2-ab9b-4378-9459-8c01452a7840/J3uHqA/GPX%20Soonwaldsteig/Etappe%205_gpx" }
+    - { number: "6", kind: main, from: Jägerhaus, to: Bingen, km: 11.7, ascentM: 340, descentM: 550, minutes: 240, track: "https://www.soonwaldsteig.de/media/019333d3-3657-4ccc-ad19-90985f23f884/x4FHrg/GPX%20Soonwaldsteig/Etappe%206_gpx" }
+route:
+  # built by `python -m pipeline.all soonwaldsteig`: OSM ways matched to the stage GPX
+  source: osm
+  publishable: true
+difficulty:
+  # the whole-route tour: "Schwierigkeit T1 Schwer" (SAC scale; "schwer" for length and fitness)
+  sac:
+    grade: T1
+    source: sws-oa
+season:
+  # the whole-route tour marks every month as a good time; the trekking camps open 1 April to
+  # 31 October
+  months: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
+  text: All year (trekking camps April to October)
+  source: sws-oa
+sleeping:
+  # four bookable trekking camps and the tent site at the Lauschhütte; hotels, guesthouses and
+  # holiday flats off the trail (packages with transfers); the youth hostel in Bingen
+  types: [campsite, hotel, guesthouse, hostel]
+  source: sws
+wildCamping:
+  status: restricted
+  rule: >-
+    Wild camping is forbidden in the Naturpark Soonwald-Nahe. Tents only at the four trekking
+    camps (booked in advance at soonwaldsteig.de, 1 April to 31 October, one night each, at most
+    five tents; a compost toilet, no water) and the tent site at the Outdoor-Park Lauschhütte.
+  source: sws-camps
+access:
+  # Kirn station at the start; Frankfurt Airport. Coordinates from OSM; distances by
+  # pipeline/access.py
+  - kind: station
+    name: Kirn station
+    lat: 49.78564
+    lon: 7.46417
+    source: osm
+  - kind: airport
+    name: Frankfurt Airport (FRA)
+    lat: 50.03989
+    lon: 8.55985
+    source: osm
+tags: [hunsrueck, forests, quiet, trekking-camps, rhine]
+notes:
+  - >-
+    The site's text says "85 km und 6 Etappen"; the whole-route tour 84.1 km, 2,650 m up, 2,770 m
+    down, 25:10 h, highest point Ellerspring 655 m; the six stage tours add up to 84.0 km and
+    2,530 m up. The stage pages' track ends (Bundenbach, Simmerbachtal, Ellerspring, Rheinböllen,
+    Jägerhaus) are car parks or valleys, not villages: hosts are mostly a few km off the trail
+    (93 km of access paths), and the packages include transfers.
+  - >-
+    Water: the camp FAQ says drinking water and food can be bought only in Kirn, Rheinböllen and
+    Bingen; the Naturpark is building a "Netz offener Wasserhähne" (taps on private and inn
+    property), but its map loads by script only, so the taps aren't in the record.
+  - >-
+    Route (pipeline, 2026-10-30, Geofabrik extracts): the OSM match covers 98–100 % of every stage
+    GPX; the map line's main route is 83.2 km. Water: 7 drinking water points from OSM; the longest
+    stretch without one is 44.3 km (km 27.5–71.8, Simmerbachtal to Jägerhaus), which matches the
+    FAQ (water only in Kirn, Rheinböllen and Bingen).
+  - >-
+    Ascent: the stage tours add up to 2,530 m, the whole-route tour says 2,650 m; the terrain model
+    gives about 3,040 m (it measures the treetops, and 92 % of the route runs through forest).
+  - >-
+    Tree line: none in reach. The route tops out at the Ellerspring (655 m, 667 m on the terrain
+    model), forested to the top; the Hunsrück has no natural tree line.
+  - >-
+    Data check (2026-10-30). Second source: German Wikipedia (about 83 km; six stages of 15, 13, 14,
+    15, 14 and 12 km; Kirn to Bingen; open all year; the trail's own logo as waymark; Premiumweg).
+    Everything comparable agrees within 10 % (total 84.1 against 83 km; stages 14.7, 13.2, 14.7,
+    15.7, 14.0 and 11.7 km). Wikipedia gives no ascent, grade or camping rules. The site's text says
+    85 km, its camp FAQ 86 km between camps and ends (with the paths to the camps).
+dataCheck:
+  # working rule 2: German Wikipedia
+  date: 2026-10-30
+  against: [wikipedia]
+  deviations: []
+sources:
+  - id: sws
+    title: "Naturpark Soonwald-Nahe: soonwaldsteig.de (route, stage pages, GPX tracks, tour plans, packages, public transport)"
+    url: https://www.soonwaldsteig.de/
+    licence: All rights reserved (facts only)
+    retrieved: 2026-10-30
+  - id: sws-oa
+    title: "Naturpark Soonwald-Nahe on Outdooractive: Soonwaldsteig whole route and six stage tours (distances, times, climbs, grade, season)"
+    url: https://www.outdooractive.com/de/r/2809168
+    licence: All rights reserved (facts only)
+    retrieved: 2026-10-30
+  - id: sws-camps
+    title: "Naturpark Soonwald-Nahe: Trekkingcamps Soonwaldsteig, Benutzerordnung and FAQ (08/2025)"
+    url: https://www.soonwaldsteig.de/trekkingcamps/hinweise
+    licence: All rights reserved (facts only)
+    retrieved: 2026-10-30
+  - id: wikipedia
+    title: "Wikipedia (de): Soonwaldsteig (waymark; data check)"
+    url: https://de.wikipedia.org/wiki/Soonwaldsteig
+    licence: CC BY-SA 4.0
+    retrieved: 2026-10-30
+  - id: osm
+    title: "OpenStreetMap contributors: paths and water along the trail (Geofabrik extracts), travel hubs"
+    url: https://www.openstreetmap.org/
+    licence: ODbL 1.0
+    retrieved: 2026-10-30
+  - id: copdem
+    title: "Copernicus DEM GLO-30 (30 m terrain model), tiles from AWS Open Data"
+    url: https://registry.opendata.aws/copernicus-dem/
+    licence: "Copernicus WorldDEM-30 licence, free; produced using Copernicus WorldDEM-30 © DLR e.V. 2010-2014 and © Airbus Defence and Space GmbH 2014-2018 provided under COPERNICUS by the European Union and ESA; all rights reserved"
+    retrieved: 2026-10-30
+  - id: worldcover
+    title: "ESA WorldCover 2021: 10 m land cover (via AWS Open Data)"
+    url: https://esa-worldcover.org/
+    licence: "CC BY 4.0; © ESA WorldCover project 2021 / Contains modified Copernicus Sentinel data (2021) processed by ESA WorldCover consortium"
+    retrieved: 2026-10-30
+  - id: era5
+    title: "Open-Meteo Historical Weather API: ERA5 and ERA5-Land reanalysis, daily 1995–2024"
+    url: https://open-meteo.com/en/docs/historical-weather-api
+    licence: CC BY 4.0 (Open-Meteo); contains modified Copernicus Climate Change Service information
+    retrieved: 2026-10-30
+  - id: osrm
+    title: "OSRM: road routes on OpenStreetMap data (router.project-osrm.org)"
+    url: https://project-osrm.org/
+    licence: Route data © OpenStreetMap contributors (ODbL)
+    retrieved: 2026-10-30
