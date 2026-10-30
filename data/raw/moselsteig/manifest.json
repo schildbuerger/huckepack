@@ -1,0 +1,226 @@
+{
+  "climate-high.json": {
+    "retrieved": "2026-10-30T13:08:24+00:00",
+    "url": "https://archive-api.open-meteo.com/v1/archive?latitude=49.78262&longitude=6.85423&elevation=446&start_date=1995-01-01&end_date=2024-12-31&daily=temperature_2m_max,temperature_2m_min,precipitation_sum,snowfall_sum,wind_speed_10m_max,wind_gusts_10m_max&timezone=auto"
+  },
+  "climate-low.json": {
+    "retrieved": "2026-10-30T13:13:59+00:00",
+    "url": "https://archive-api.open-meteo.com/v1/archive?latitude=50.36372&longitude=7.58438&elevation=62&start_date=1995-01-01&end_date=2024-12-31&daily=temperature_2m_max,temperature_2m_min,precipitation_sum,snowfall_sum,wind_speed_10m_max,wind_gusts_10m_max&timezone=auto"
+  },
+  "elevation-glo30.json": {
+    "retrieved": "2026-10-30T13:12:44+00:00",
+    "url": "https://copernicus-dem-30m.s3.eu-central-1.amazonaws.com/Copernicus_DSM_COG_10_N49_00_E006_00_DEM/Copernicus_DSM_COG_10_N49_00_E006_00_DEM.tif https://copernicus-dem-30m.s3.eu-central-1.amazonaws.com/Copernicus_DSM_COG_10_N49_00_E007_00_DEM/Copernicus_DSM_COG_10_N49_00_E007_00_DEM.tif https://copernicus-dem-30m.s3.eu-central-1.amazonaws.com/Copernicus_DSM_COG_10_N50_00_E007_00_DEM/Copernicus_DSM_COG_10_N50_00_E007_00_DEM.tif"
+  },
+  "landcover.json": {
+    "retrieved": "2026-10-30T13:12:46+00:00",
+    "url": "https://esa-worldcover.s3.eu-central-1.amazonaws.com/v200/2021/map/ESA_WorldCover_10m_2021_v200_\u2026_Map.tif"
+  },
+  "osm-stage-1-main.json": {
+    "retrieved": "2026-10-28T21:21:02Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-10-main.json": {
+    "retrieved": "2026-10-28T21:21:02Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-11-main.json": {
+    "retrieved": "2026-10-28T21:21:02Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-12-main.json": {
+    "retrieved": "2026-10-28T21:21:02Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-13-main.json": {
+    "retrieved": "2026-10-28T21:21:02Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-14-main.json": {
+    "retrieved": "2026-10-28T21:21:02Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-15-main.json": {
+    "retrieved": "2026-10-28T21:21:02Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-16-main.json": {
+    "retrieved": "2026-10-28T21:21:02Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-17-main.json": {
+    "retrieved": "2026-10-28T21:21:02Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-18-main.json": {
+    "retrieved": "2026-10-28T21:21:02Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-19-main.json": {
+    "retrieved": "2026-10-28T21:21:02Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-2-main.json": {
+    "retrieved": "2026-10-28T21:21:02Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-20-main.json": {
+    "retrieved": "2026-10-28T21:21:02Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-21-main.json": {
+    "retrieved": "2026-10-28T21:21:02Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-22-main.json": {
+    "retrieved": "2026-10-28T21:21:02Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-23-main.json": {
+    "retrieved": "2026-10-28T21:21:02Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-24-main.json": {
+    "retrieved": "2026-10-28T21:21:02Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-3-main.json": {
+    "retrieved": "2026-10-28T21:21:02Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-4-main.json": {
+    "retrieved": "2026-10-28T21:21:02Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-5-main.json": {
+    "retrieved": "2026-10-28T21:21:02Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-6-main.json": {
+    "retrieved": "2026-10-28T21:21:02Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-7-main.json": {
+    "retrieved": "2026-10-28T21:21:02Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-8-main.json": {
+    "retrieved": "2026-10-28T21:21:02Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-9-main.json": {
+    "retrieved": "2026-10-28T21:21:02Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-water.json": {
+    "retrieved": "2026-10-28T21:21:02Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-way-tags.json": {
+    "retrieved": "2026-10-28T21:21:02Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osrm-access-luxembourg-airport-lux.json": {
+    "retrieved": "2026-10-30T13:08:24+00:00",
+    "url": "https://router.project-osrm.org/route/v1/driving/6.21085,49.62771;6.36964,49.47314?overview=false"
+  },
+  "osrm-access-perl-station.json": {
+    "retrieved": "2026-10-30T13:08:24+00:00",
+    "url": "https://router.project-osrm.org/route/v1/driving/6.36934,49.47294;6.36964,49.47314?overview=false"
+  },
+  "stage-1-main.gpx": {
+    "retrieved": "2026-10-30T12:58:45+00:00",
+    "url": "https://www.tourenplaner-rheinland-pfalz.de/de/tour/fernwanderweg/moselsteig-etappe-01-perl-palzem/9279023/"
+  },
+  "stage-10-main.gpx": {
+    "retrieved": "2026-10-30T12:59:51+00:00",
+    "url": "https://www.tourenplaner-rheinland-pfalz.de/de/tour/fernwanderweg/moselsteig-etappe-10-kesten-osann-monzel-bernkastel-kues/9277792/"
+  },
+  "stage-11-main.gpx": {
+    "retrieved": "2026-10-30T12:59:52+00:00",
+    "url": "https://www.tourenplaner-rheinland-pfalz.de/de/tour/fernwanderweg/moselsteig-etappe-11-bernkastel-kues-uerzig/9277852/"
+  },
+  "stage-12-main.gpx": {
+    "retrieved": "2026-10-30T12:59:52+00:00",
+    "url": "https://www.tourenplaner-rheinland-pfalz.de/de/tour/fernwanderweg/moselsteig-etappe-12-uerzig-traben-trarbach/9143344/"
+  },
+  "stage-13-main.gpx": {
+    "retrieved": "2026-10-30T12:59:53+00:00",
+    "url": "https://www.tourenplaner-rheinland-pfalz.de/de/tour/fernwanderweg/moselsteig-etappe-13-traben-trarbach-reil/9277879/"
+  },
+  "stage-14-main.gpx": {
+    "retrieved": "2026-10-30T12:59:53+00:00",
+    "url": "https://www.tourenplaner-rheinland-pfalz.de/de/tour/fernwanderweg/moselsteig-etappe-14-reil-zell-mosel-/9277937/"
+  },
+  "stage-15-main.gpx": {
+    "retrieved": "2026-10-30T13:01:04+00:00",
+    "url": "https://www.tourenplaner-rheinland-pfalz.de/de/tour/fernwanderweg/moselsteig-etappe-15-zell-mosel-neef/9277988/"
+  },
+  "stage-16-main.gpx": {
+    "retrieved": "2026-10-30T13:01:04+00:00",
+    "url": "https://www.tourenplaner-rheinland-pfalz.de/de/tour/fernwanderweg/moselsteig-etappe-16-neef-ediger-eller/9278035/"
+  },
+  "stage-17-main.gpx": {
+    "retrieved": "2026-10-30T13:01:04+00:00",
+    "url": "https://www.tourenplaner-rheinland-pfalz.de/de/tour/fernwanderweg/moselsteig-etappe-17-ediger-eller-beilstein/9278095/"
+  },
+  "stage-18-main.gpx": {
+    "retrieved": "2026-10-30T13:01:05+00:00",
+    "url": "https://www.tourenplaner-rheinland-pfalz.de/de/tour/fernwanderweg/moselsteig-etappe-18-beilstein-cochem/9278213/"
+  },
+  "stage-19-main.gpx": {
+    "retrieved": "2026-10-30T13:01:05+00:00",
+    "url": "https://www.tourenplaner-rheinland-pfalz.de/de/tour/fernwanderweg/moselsteig-etappe-19-cochem-treis-karden/9278250/"
+  },
+  "stage-2-main.gpx": {
+    "retrieved": "2026-10-30T12:58:56+00:00",
+    "url": "https://www.tourenplaner-rheinland-pfalz.de/de/tour/fernwanderweg/moselsteig-etappe-02-palzem-nittel/9276793/"
+  },
+  "stage-20-main.gpx": {
+    "retrieved": "2026-10-30T13:01:06+00:00",
+    "url": "https://www.tourenplaner-rheinland-pfalz.de/de/tour/fernwanderweg/moselsteig-etappe-20-treis-karden-moselkern/9278292/"
+  },
+  "stage-21-main.gpx": {
+    "retrieved": "2026-10-30T13:01:06+00:00",
+    "url": "https://www.tourenplaner-rheinland-pfalz.de/de/tour/fernwanderweg/moselsteig-etappe-21-moselkern-loef/9278333/"
+  },
+  "stage-22-main.gpx": {
+    "retrieved": "2026-10-30T13:01:06+00:00",
+    "url": "https://www.tourenplaner-rheinland-pfalz.de/de/tour/fernwanderweg/moselsteig-etappe-22-loef-kobern-gondorf/9278382/"
+  },
+  "stage-23-main.gpx": {
+    "retrieved": "2026-10-30T13:01:07+00:00",
+    "url": "https://www.tourenplaner-rheinland-pfalz.de/de/tour/fernwanderweg/moselsteig-etappe-23-kobern-gondorf-winningen/9625189/"
+  },
+  "stage-24-main.gpx": {
+    "retrieved": "2026-10-30T13:01:07+00:00",
+    "url": "https://www.tourenplaner-rheinland-pfalz.de/de/tour/fernwanderweg/moselsteig-etappe-24-winningen-koblenz/9278470/"
+  },
+  "stage-3-main.gpx": {
+    "retrieved": "2026-10-30T12:58:57+00:00",
+    "url": "https://www.tourenplaner-rheinland-pfalz.de/de/tour/fernwanderweg/moselsteig-etappe-03-nittel-konz/9277054/"
+  },
+  "stage-4-main.gpx": {
+    "retrieved": "2026-10-30T12:59:07+00:00",
+    "url": "https://www.tourenplaner-rheinland-pfalz.de/de/tour/fernwanderweg/moselsteig-etappe-04-konz-trier/9277150/"
+  },
+  "stage-5-main.gpx": {
+    "retrieved": "2026-10-30T12:59:08+00:00",
+    "url": "https://www.tourenplaner-rheinland-pfalz.de/de/tour/fernwanderweg/moselsteig-etappe-05-trier-schweich/9277240/"
+  },
+  "stage-6-main.gpx": {
+    "retrieved": "2026-10-30T12:59:19+00:00",
+    "url": "https://www.tourenplaner-rheinland-pfalz.de/de/tour/fernwanderweg/moselsteig-etappe-06-schweich-mehring/9277327/"
+  },
+  "stage-7-main.gpx": {
+    "retrieved": "2026-10-30T12:59:19+00:00",
+    "url": "https://www.tourenplaner-rheinland-pfalz.de/de/tour/fernwanderweg/moselsteig-etappe-07-mehring-leiwen/9277421/"
+  },
+  "stage-8-main.gpx": {
+    "retrieved": "2026-10-30T12:59:20+00:00",
+    "url": "https://www.tourenplaner-rheinland-pfalz.de/de/tour/fernwanderweg/moselsteig-etappe-08-leiwen-neumagen-dhron/9277524/"
+  },
+  "stage-9-main.gpx": {
+    "retrieved": "2026-10-30T12:59:20+00:00",
+    "url": "https://www.tourenplaner-rheinland-pfalz.de/de/tour/fernwanderweg/moselsteig-etappe-09-neumagen-dhron-kesten-osann-monzel/9277703/"
+  }
+}

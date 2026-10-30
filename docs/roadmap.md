@@ -24,6 +24,14 @@ Added on 2026-10-29: **Alpe-Adria-Trail** (Austria, Slovenia, Italy, 37 main sta
 **West Highland Way** (Scotland, 8 sections, 154 km; the OSM section relations) and the
 **Merano High Mountain Trail** (Meraner Höhenweg, South Tyrol, 9 stages, about 100 km; the official GPX).
 
+Added on 2026-10-30, a German batch (issues #26, #31, #32, #35, #36): the **Westweg** (Black Forest,
+12 stages and the eastern variant, 285 km; the OSM section relations), the **Baiersbronner
+Seensteig** (5 stages, 89 km; Baiersbronn Touristik's GPX), the **Harzer Hexen-Stieg** (5 stages
+and 3 variants, 96 km; the Harz tourism portal's tracks), the **Moselsteig** (24 stages, 365 km;
+Mosellandtouristik's stage tours) and the **Soonwaldsteig** (6 stages, 84 km; the Naturpark's
+GPX). Deferred: the **Sauerland-Höhenflug** (#27): its GPX download needs a licence key, and the
+OSM superroute lacks two sections.
+
 | # | Trail | Region | Length (approx.) | Why |
 |---|---|---|---|---|
 | 1 | Pacific Crest Trail | USA | 4,265 km | Most-hiked long trail; public US agency data; completion lists |

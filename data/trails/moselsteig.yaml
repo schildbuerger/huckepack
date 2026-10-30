@@ -1,0 +1,200 @@
+name: Moselsteig
+website: https://www.visitmosel.de/moselsteig
+designation: Qualitätsweg Wanderbares Deutschland, Leading Quality Trail – Best of Europe
+managedBy:
+  # "unser Wegemanager" checks and maintains the trail (Visit Mosel FAQ)
+  - name: Mosellandtouristik
+    url: https://www.visitmosel.de/
+trailType: point-to-point
+continents: [Europe]
+countries: [DE]
+regions: [Saarland, Rheinland-Pfalz]
+termini:
+  # the first and last points of the official stage tracks: the Dreiländerblick above Perl, the
+  # Deutsches Eck in Koblenz
+  start:
+    name: Perl (Dreiländerblick)
+    lat: 49.47314
+    lon: 6.36964
+  end:
+    name: Koblenz (Deutsches Eck)
+    lat: 50.36445
+    lon: 7.60601
+  source: mlt
+waymarking:
+  # Wikipedia; the official pages show the mark but don't describe it
+  text: Five yellow slate plates stacked, with MOSELSTEIG beneath
+  source: wikipedia
+length:
+  # "Mit seinen 365 Kilometern Gesamtlänge"; the whole-route tour's own figure is 347.9 km
+  - km: 365
+    source: mlt
+ascent:
+  # the whole-route tour
+  - m: 9140
+    source: mlt
+days:
+  # "24 Etappen", each "eine Tagestour"; "eine mehrwöchige Wanderreise"
+  min: 24
+  max: 24
+  source: mlt
+stages:
+  # Mosellandtouristik's 24 stage tours on the Tourenplaner Rheinland-Pfalz (Outdooractive), each
+  # page carrying its track (kept local, it only guides the OSM matcher); the stage figures include
+  # the paths into the stage towns, so they add up to 392.8 km
+  source: mlt
+  list:
+    - { number: "1", kind: main, from: Perl, to: Palzem, km: 23.7, ascentM: 412, descentM: 428, minutes: 420, track: "https://www.tourenplaner-rheinland-pfalz.de/de/tour/fernwanderweg/moselsteig-etappe-01-perl-palzem/9279023/" }
+    - { number: "2", kind: main, from: Palzem, to: Nittel, km: 16.4, ascentM: 330, descentM: 340, minutes: 270, track: "https://www.tourenplaner-rheinland-pfalz.de/de/tour/fernwanderweg/moselsteig-etappe-02-palzem-nittel/9276793/" }
+    - { number: "3", kind: main, from: Nittel, to: Konz, km: 22.5, ascentM: 570, descentM: 575, minutes: 390, track: "https://www.tourenplaner-rheinland-pfalz.de/de/tour/fernwanderweg/moselsteig-etappe-03-nittel-konz/9277054/" }
+    - { number: "4", kind: main, from: Konz, to: Trier, km: 21.1, ascentM: 538, descentM: 541, minutes: 360, track: "https://www.tourenplaner-rheinland-pfalz.de/de/tour/fernwanderweg/moselsteig-etappe-04-konz-trier/9277150/" }
+    - { number: "5", kind: main, from: Trier, to: Schweich, km: 19.9, ascentM: 650, descentM: 650, minutes: 300, track: "https://www.tourenplaner-rheinland-pfalz.de/de/tour/fernwanderweg/moselsteig-etappe-05-trier-schweich/9277240/" }
+    - { number: "6", kind: main, from: Schweich, to: Mehring, km: 12.4, ascentM: 400, descentM: 400, minutes: 240, track: "https://www.tourenplaner-rheinland-pfalz.de/de/tour/fernwanderweg/moselsteig-etappe-06-schweich-mehring/9277327/" }
+    - { number: "7", kind: main, from: Mehring, to: Leiwen, km: 14.5, ascentM: 570, descentM: 570, minutes: 250, track: "https://www.tourenplaner-rheinland-pfalz.de/de/tour/fernwanderweg/moselsteig-etappe-07-mehring-leiwen/9277421/" }
+    - { number: "8", kind: main, from: Leiwen, to: Neumagen-Dhron, km: 14.1, ascentM: 325, descentM: 332, minutes: 240, track: "https://www.tourenplaner-rheinland-pfalz.de/de/tour/fernwanderweg/moselsteig-etappe-08-leiwen-neumagen-dhron/9277524/" }
+    - { number: "9", kind: main, from: Neumagen-Dhron, to: Kesten/Osann-Monzel, km: 18, ascentM: 565, descentM: 575, minutes: 300, track: "https://www.tourenplaner-rheinland-pfalz.de/de/tour/fernwanderweg/moselsteig-etappe-09-neumagen-dhron-kesten-osann-monzel/9277703/" }
+    - { number: "10", kind: main, from: Kesten/Osann-Monzel, to: Bernkastel-Kues, km: 14.7, ascentM: 436, descentM: 435, minutes: 240, track: "https://www.tourenplaner-rheinland-pfalz.de/de/tour/fernwanderweg/moselsteig-etappe-10-kesten-osann-monzel-bernkastel-kues/9277792/" }
+    - { number: "11", kind: main, from: Bernkastel-Kues, to: Ürzig, km: 17, ascentM: 590, descentM: 500, minutes: 330, track: "https://www.tourenplaner-rheinland-pfalz.de/de/tour/fernwanderweg/moselsteig-etappe-11-bernkastel-kues-uerzig/9277852/" }
+    - { number: "12", kind: main, from: Ürzig, to: Traben-Trarbach, km: 15.1, ascentM: 295, descentM: 392, minutes: 300, track: "https://www.tourenplaner-rheinland-pfalz.de/de/tour/fernwanderweg/moselsteig-etappe-12-uerzig-traben-trarbach/9143344/" }
+    - { number: "13", kind: main, from: Traben-Trarbach, to: Reil, km: 15.2, ascentM: 435, descentM: 415, minutes: 300, track: "https://www.tourenplaner-rheinland-pfalz.de/de/tour/fernwanderweg/moselsteig-etappe-13-traben-trarbach-reil/9277879/" }
+    - { number: "14", kind: main, from: Reil, to: Zell (Mosel), km: 12.4, ascentM: 405, descentM: 425, minutes: 210, track: "https://www.tourenplaner-rheinland-pfalz.de/de/tour/fernwanderweg/moselsteig-etappe-14-reil-zell-mosel-/9277937/" }
+    - { number: "15", kind: main, from: Zell (Mosel), to: Neef, km: 19.9, ascentM: 648, descentM: 644, minutes: 360, track: "https://www.tourenplaner-rheinland-pfalz.de/de/tour/fernwanderweg/moselsteig-etappe-15-zell-mosel-neef/9277988/" }
+    - { number: "16", kind: main, from: Neef, to: Ediger-Eller, km: 11.4, ascentM: 425, descentM: 445, minutes: 240, track: "https://www.tourenplaner-rheinland-pfalz.de/de/tour/fernwanderweg/moselsteig-etappe-16-neef-ediger-eller/9278035/" }
+    - { number: "17", kind: main, from: Ediger-Eller, to: Beilstein, km: 16, ascentM: 525, descentM: 530, minutes: 300, track: "https://www.tourenplaner-rheinland-pfalz.de/de/tour/fernwanderweg/moselsteig-etappe-17-ediger-eller-beilstein/9278095/" }
+    - { number: "18", kind: main, from: Beilstein, to: Cochem, km: 14.3, ascentM: 450, descentM: 455, minutes: 285, track: "https://www.tourenplaner-rheinland-pfalz.de/de/tour/fernwanderweg/moselsteig-etappe-18-beilstein-cochem/9278213/" }
+    - { number: "19", kind: main, from: Cochem, to: Treis-Karden, km: 23.9, ascentM: 830, descentM: 830, minutes: 510, track: "https://www.tourenplaner-rheinland-pfalz.de/de/tour/fernwanderweg/moselsteig-etappe-19-cochem-treis-karden/9278250/" }
+    - { number: "20", kind: main, from: Treis-Karden, to: Moselkern, km: 13.6, ascentM: 527, descentM: 532, minutes: 270, track: "https://www.tourenplaner-rheinland-pfalz.de/de/tour/fernwanderweg/moselsteig-etappe-20-treis-karden-moselkern/9278292/" }
+    - { number: "21", kind: main, from: Moselkern, to: Löf, km: 13.8, ascentM: 625, descentM: 630, minutes: 240, track: "https://www.tourenplaner-rheinland-pfalz.de/de/tour/fernwanderweg/moselsteig-etappe-21-moselkern-loef/9278333/" }
+    - { number: "22", kind: main, from: Löf, to: Kobern-Gondorf, km: 13.7, ascentM: 537, descentM: 610, minutes: 270, track: "https://www.tourenplaner-rheinland-pfalz.de/de/tour/fernwanderweg/moselsteig-etappe-22-loef-kobern-gondorf/9278382/" }
+    - { number: "23", kind: main, from: Kobern-Gondorf, to: Winningen, km: 13.9, ascentM: 434, descentM: 435, minutes: 330, track: "https://www.tourenplaner-rheinland-pfalz.de/de/tour/fernwanderweg/moselsteig-etappe-23-kobern-gondorf-winningen/9625189/" }
+    - { number: "24", kind: main, from: Winningen, to: Koblenz, km: 15.3, ascentM: 285, descentM: 295, minutes: 240, track: "https://www.tourenplaner-rheinland-pfalz.de/de/tour/fernwanderweg/moselsteig-etappe-24-winningen-koblenz/9278470/" }
+route:
+  # built by `python -m pipeline.all moselsteig`: OSM ways matched to the stage tracks
+  source: osm
+  publishable: true
+difficulty:
+  # no SAC grade is published; our estimate from the official description
+  estimated:
+    sac: T2
+    basis: >-
+      Mosellandtouristik rates the whole route "Mittel" and its stages from moderate to "schwer":
+      vineyard and forest paths with steep climbs, and "auf einigen Moselsteig Etappen ist
+      Trittsicherheit und ein Mindestmaß an Schwindelfreiheit erforderlich" (stage 21 has a
+      ladder passage with a signed bypass). That is mountain hiking on good paths (T2).
+    source: mlt
+season:
+  # the whole-route tour marks every month; the FAQ: "über weite Teile des Jahres", winter included
+  months: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
+  text: All year
+  source: mlt
+sleeping:
+  # "Hotels, Pensionen, Ferienwohnungen und Winzerhöfen" in the stage towns; luggage transfer with
+  # the packages (downstream only)
+  types: [hotel, guesthouse, farm-stay]
+  source: mlt
+wildCamping:
+  status: restricted
+  rule: >-
+    In Rhineland-Palatinate, tents in the forest need the forest owner's consent (Landeswaldgesetz
+    § 22 (4) no. 3); the vineyards and fields are private land. There are no trekking sites on the
+    trail; campsites lie along the river.
+  source: lwaldg-rp
+access:
+  # Perl station near the start; Luxembourg airport. Coordinates from OSM; distances by
+  # pipeline/access.py
+  - kind: station
+    name: Perl station
+    lat: 49.47294
+    lon: 6.36934
+    source: osm
+  - kind: airport
+    name: Luxembourg Airport (LUX)
+    lat: 49.62771
+    lon: 6.21085
+    source: osm
+tags: [mosel, vineyards, river, castles, wine]
+notes:
+  - >-
+    Mosellandtouristik's figures differ: the trail is "365 Kilometer" on every page; the
+    whole-route tour gives 347.9 km, 9,140 m up, 9,300 m down, 140 h, highest point 425 m; the 24
+    stage tours add up to 392.8 km because each includes the path into its stage town. The record
+    keeps 365 km as the length, the tour's ascent, and the stage tours for the stages.
+  - >-
+    Visit Mosel notes that stage 16 on the Bremmer Calmont heats up fast in summer (slate), and
+    stage 21 (Moselkern – Löf) has a ladder passage with a signed bypass. Current closures are
+    listed in the Tourenplaner Rheinland-Pfalz ("Aktuelle Wegemeldungen am Moselsteig").
+  - >-
+    Route (pipeline, 2026-10-30, Geofabrik extracts): the OSM match covers 97–100 % of every stage
+    track (stage 3 walks a short loop near Nittel and back on a parallel path, which the matcher
+    now matches leg by leg). The map line's main route is 385.4 km, like the stage tours (392.8 km)
+    with the paths into the stage towns.
+  - >-
+    Water (pipeline, 2026-10-30): 41 drinking water points from OSM; the longest stretch without one
+    is 36.9 km (stages 19–20, Cochem to Moselkern), past wine villages whose taps and inns OSM
+    doesn't map.
+  - >-
+    Ascent: the whole-route tour says 9,140 m; the stage tours add up to 11,807 m (with the paths
+    into the towns, more than 10 % apart within the same source); the terrain model gives about
+    13,370 m (it measures the treetops; 72 % of the route runs through forest). Highest point: the
+    tour 425 m, Wikipedia 416 m (Mehringer Berg), the terrain model 447 m.
+  - >-
+    Tree line: none in reach. The route stays below 450 m.
+  - >-
+    Data check (2026-10-30). Second source: German Wikipedia (365 km, 24 stages from Perl to Koblenz
+    with lengths, the waymark, Qualitätsweg Wanderbares Deutschland and Leading Quality Trail,
+    opened 12 April 2014, year-round, highest point 416 m, Mosellandtouristik). Within 10 %: the
+    length, 20 of the 24 stage lengths, start and end, season, highest point. More than 10 % apart
+    (listed in `dataCheck`): stages 7 (14.5 against 16.5 km), 8 (14.1 against 12), 9 (18.0
+    against 14.5) and 17 (16.0 against 18.0); stages 7 to 9 add up to 46.6 against 43 km, so the
+    stage ends between Mehring and Kesten have probably moved since Wikipedia's table. Its stages
+    add up to 389.5 km, like ours, against its own 365 km.
+dataCheck:
+  # working rule 2: German Wikipedia
+  date: 2026-10-30
+  against: [wikipedia]
+  deviations:
+    - { figure: "Stage 7 length", ours: "14.5 km", theirs: "16.5 km", source: wikipedia }
+    - { figure: "Stage 8 length", ours: "14.1 km", theirs: "12 km", source: wikipedia }
+    - { figure: "Stage 9 length", ours: "18 km", theirs: "14.5 km", source: wikipedia }
+    - { figure: "Stage 17 length", ours: "16 km", theirs: "18 km", source: wikipedia }
+sources:
+  - id: mlt
+    title: "Mosellandtouristik: Moselsteig (visitmosel.de, FAQ; whole-route and 24 stage tours on the Tourenplaner Rheinland-Pfalz: distances, times, climbs, grades, season, tracks)"
+    url: https://www.tourenplaner-rheinland-pfalz.de/de/tour/fernwanderweg/moselsteig-gesamtstrecke-.-dein-weg-mehr-zu-erleben/10142775/
+    licence: All rights reserved (facts only)
+    retrieved: 2026-10-30
+  - id: lwaldg-rp
+    title: "Landeswaldgesetz Rheinland-Pfalz (LWaldG), § 22 (4): what needs the forest owner's consent"
+    url: https://umwelt-online.de/recht/natursch/laender/rp/wald2.htm
+    licence: Public domain (state law)
+    retrieved: 2026-10-30
+  - id: wikipedia
+    title: "Wikipedia (de): Moselsteig (waymark; data check)"
+    url: https://de.wikipedia.org/wiki/Moselsteig
+    licence: CC BY-SA 4.0
+    retrieved: 2026-10-30
+  - id: osm
+    title: "OpenStreetMap contributors: paths and water along the trail (Geofabrik extracts), travel hubs"
+    url: https://www.openstreetmap.org/
+    licence: ODbL 1.0
+    retrieved: 2026-10-30
+  - id: copdem
+    title: "Copernicus DEM GLO-30 (30 m terrain model), tiles from AWS Open Data"
+    url: https://registry.opendata.aws/copernicus-dem/
+    licence: "Copernicus WorldDEM-30 licence, free; produced using Copernicus WorldDEM-30 © DLR e.V. 2010-2014 and © Airbus Defence and Space GmbH 2014-2018 provided under COPERNICUS by the European Union and ESA; all rights reserved"
+    retrieved: 2026-10-30
+  - id: worldcover
+    title: "ESA WorldCover 2021: 10 m land cover (via AWS Open Data)"
+    url: https://esa-worldcover.org/
+    licence: "CC BY 4.0; © ESA WorldCover project 2021 / Contains modified Copernicus Sentinel data (2021) processed by ESA WorldCover consortium"
+    retrieved: 2026-10-30
+  - id: era5
+    title: "Open-Meteo Historical Weather API: ERA5 and ERA5-Land reanalysis, daily 1995–2024"
+    url: https://open-meteo.com/en/docs/historical-weather-api
+    licence: CC BY 4.0 (Open-Meteo); contains modified Copernicus Climate Change Service information
+    retrieved: 2026-10-30
+  - id: osrm
+    title: "OSRM: road routes on OpenStreetMap data (router.project-osrm.org)"
+    url: https://project-osrm.org/
+    licence: Route data © OpenStreetMap contributors (ODbL)
+    retrieved: 2026-10-30
