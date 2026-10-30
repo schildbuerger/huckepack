@@ -3,6 +3,7 @@ added: 2026-10-29
 localName: Slighe Taobh an Iar na Gàidhealtachd
 aliases: [WHW]
 website: https://www.westhighlandway.org/
+wikidata: Q965998
 managedBy:
   # the councils along the Way, the national park authority and NatureScot (Wikipedia)
   - name: West Highland Way Management Group
@@ -163,6 +164,12 @@ sources:
     url: https://en.wikipedia.org/wiki/West_Highland_Way
     licence: CC BY-SA 4.0
     retrieved: 2026-10-29
+  - id: wikimedia
+    title: "Wikimedia: page views of the trail's Wikipedia articles in every language, by people, over twelve months (Wikidata sitelinks, pageview API)"
+    url: https://wikimedia.org/api/rest_v1/
+    licence: CC0 1.0 (pageview data); Wikidata CC0
+    retrieved: 2026-10-30
+    checkOnly: true  # not on the trail page: the page views only rank the home page's popular trails
   - id: osm
     title: "OpenStreetMap contributors: the West Highland Way section relations (superroute 16287), paths and water along the Way (Geofabrik extract, 2026-10-28), travel hubs (via Overpass API)"
     url: https://www.openstreetmap.org/relation/16287

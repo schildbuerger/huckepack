@@ -5,7 +5,7 @@
     .venv/bin/python -m pipeline.all <slug> --from water     # resume at a step after a failure
     .venv/bin/python -m pipeline.all <slug> --check          # only the check
 
-Steps: routes, water, surface, elevation, landcover, climate, access (each also runs on its own,
+Steps: routes, water, surface, elevation, landcover, climate, access, popularity (each also runs on its own,
 pipeline/<step>.py). The caches in data/raw/<slug>/ make a second run fast. When the map line
 changes, the caches that depend on it (water, way tags, heights, land cover) are dropped, so no
 step keeps answering for the old route (the climate step checks its own cache against the grid
@@ -29,7 +29,7 @@ from pathlib import Path
 import yaml
 
 ROOT = Path(__file__).resolve().parent.parent
-STEPS = ["routes", "water", "surface", "elevation", "landcover", "climate", "access"]
+STEPS = ["routes", "water", "surface", "elevation", "landcover", "climate", "access", "popularity"]
 # caches that depend on the map line, dropped when it changes
 # (not the climate downloads: pipeline/climate.py keeps them while the places stay in their grid cells)
 ROUTE_CACHES = ["osm-water.json", "osm-way-tags.json", "elevation-glo30.json", "landcover.json"]

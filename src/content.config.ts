@@ -45,7 +45,8 @@ const source = z.object({
   // null until someone has checked the figures against the source
   retrieved: z.coerce.date().nullable(),
   note: z.string().optional(),
-  // used only for our data check (dataCheck), not for a figure on the page: not listed there
+  // not for a figure on the trail page, so not listed there: a source used only for our data check
+  // (dataCheck), or for a figure shown elsewhere (the page views ranking the home page's popular trails)
   checkOnly: z.boolean().default(false),
 });
 
@@ -82,6 +83,9 @@ const trail = z
     localName: z.string().optional(),
     aliases: z.array(z.string()).default([]),
     website: z.url(),
+    // the trail's Wikidata item (Q…): its Wikipedia articles, whose page views rank the home page's
+    // popular trails (pipeline/popularity.py); none where no article exists
+    wikidata: z.string().regex(/^Q\d+$/).optional(),
     designation: z.string().optional(),
     managedBy: z.array(z.object({ name: z.string(), url: z.url().optional() })).min(1),
     trailType: z.enum(["point-to-point", "loop", "network"]),
@@ -367,6 +371,18 @@ const derived = z.object({
           stage: z.string(),
         }),
       ),
+    })
+    .optional(),
+  // pipeline/popularity.py: views of the trail's Wikipedia articles by people over twelve months
+  popularity: z
+    .object({
+      source: sourceRef,
+      retrieved: z.coerce.date(),
+      wikidata: z.string(),
+      from: z.string(),
+      to: z.string(),
+      views: z.number().int().nonnegative(),
+      articles: z.array(z.object({ project: z.string(), title: z.string(), views: z.number().int().nonnegative() })),
     })
     .optional(),
   // pipeline/access.py: from each travel hub in the trail's `access` to the start

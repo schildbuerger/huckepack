@@ -13,7 +13,7 @@
   },
   "landcover.json": {
     "retrieved": "2026-10-30T13:18:49+00:00",
-    "url": "https://esa-worldcover.s3.eu-central-1.amazonaws.com/v200/2021/map/ESA_WorldCover_10m_2021_v200_…_Map.tif"
+    "url": "https://esa-worldcover.s3.eu-central-1.amazonaws.com/v200/2021/map/ESA_WorldCover_10m_2021_v200_\u2026_Map.tif"
   },
   "osm-stage-1-main.json": {
     "retrieved": "2026-10-28T21:21:02Z",
@@ -386,5 +386,9 @@
   "stage-R7-variant.gpx": {
     "retrieved": "2026-10-29T21:19:38+00:00",
     "url": "https://touren.kaernten.at/en/r/9891263/"
+  },
+  "wikimedia.json": {
+    "retrieved": "2026-10-30T16:07:35+00:00",
+    "url": "Q15782535 2025-10..2026-09"
   }
 }

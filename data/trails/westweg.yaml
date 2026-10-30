@@ -2,6 +2,7 @@ name: Westweg
 added: 2026-10-30
 aliases: [Westweg Pforzheim–Basel]
 website: https://www.schwarzwald-tourismus.info/erleben/wandern/fernwandern/westweg
+wikidata: Q2565728
 designation: Qualitätsweg Wanderbares Deutschland
 managedBy:
   # laid out in 1900 and maintained by the Schwarzwaldverein; promoted by Schwarzwald Tourismus
@@ -188,6 +189,12 @@ sources:
     licence: CC BY-SA 4.0
     retrieved: 2026-10-30
     checkOnly: true
+  - id: wikimedia
+    title: "Wikimedia: page views of the trail's Wikipedia articles in every language, by people, over twelve months (Wikidata sitelinks, pageview API)"
+    url: https://wikimedia.org/api/rest_v1/
+    licence: CC0 1.0 (pageview data); Wikidata CC0
+    retrieved: 2026-10-30
+    checkOnly: true  # not on the trail page: the page views only rank the home page's popular trails
   - id: osm
     title: "OpenStreetMap contributors: the Westweg relations (superroute 62900), paths and water along the trail (Geofabrik extracts), travel hubs"
     url: https://www.openstreetmap.org/relation/62900

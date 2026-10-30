@@ -2,6 +2,7 @@ name: Baiersbronner Seensteig
 added: 2026-10-30
 aliases: [Seensteig]
 website: https://www.baiersbronn.de/tour/baiersbronner-seensteig
+wikidata: Q803733
 designation: Qualitätsweg Wanderbares Deutschland
 managedBy:
   - name: Baiersbronn Touristik
@@ -160,6 +161,12 @@ sources:
     licence: CC BY-SA 4.0
     retrieved: 2026-10-30
     checkOnly: true
+  - id: wikimedia
+    title: "Wikimedia: page views of the trail's Wikipedia articles in every language, by people, over twelve months (Wikidata sitelinks, pageview API)"
+    url: https://wikimedia.org/api/rest_v1/
+    licence: CC0 1.0 (pageview data); Wikidata CC0
+    retrieved: 2026-10-30
+    checkOnly: true  # not on the trail page: the page views only rank the home page's popular trails
   - id: osm
     title: "OpenStreetMap contributors: paths and water along the trail (Geofabrik extracts), travel hubs"
     url: https://www.openstreetmap.org/

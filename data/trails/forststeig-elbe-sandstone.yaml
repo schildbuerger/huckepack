@@ -3,6 +3,7 @@ added: 2026-10-27
 localName: Forststeig Elbsandstein
 aliases: [Forststeig]
 website: https://www.forststeig.sachsen.de/
+wikidata: Q107466373
 managedBy:
   - name: Staatsbetrieb Sachsenforst (Nationalpark- und Forstverwaltung Sächsische Schweiz)
     url: https://www.sachsenforst.de/
@@ -189,6 +190,12 @@ sources:
     url: https://www.saechsische-schweiz.de/wanderungen/forststeig-elbsandstein-saechsische-boehmische-schweiz
     licence: All rights reserved (facts only)
     retrieved: 2026-10-29
+  - id: wikimedia
+    title: "Wikimedia: page views of the trail's Wikipedia articles in every language, by people, over twelve months (Wikidata sitelinks, pageview API)"
+    url: https://wikimedia.org/api/rest_v1/
+    licence: CC0 1.0 (pageview data); Wikidata CC0
+    retrieved: 2026-10-30
+    checkOnly: true  # not on the trail page: the page views only rank the home page's popular trails
   - id: osm
     title: "OpenStreetMap contributors: paths, tracks and water along the trail (Geofabrik extracts, 2026-10-28)"
     url: https://www.openstreetmap.org/copyright

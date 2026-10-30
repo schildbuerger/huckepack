@@ -25,6 +25,7 @@ added: {today}  # the day the trail goes on the site (the home page's "Recent tr
 localName: null  # the name in the local language, if it differs; else delete
 aliases: []  # other names people search for
 website: null  # the official website (managing body or trail portal)
+wikidata: null  # the trail's Wikidata item (Q…, linked from its Wikipedia article); delete if it has none. Then add the `wikimedia` source below
 managedBy:
   # who designates or maintains the trail (ground rule: official trails only)
   - name: null

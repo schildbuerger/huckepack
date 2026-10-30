@@ -1,6 +1,7 @@
 name: Soonwaldsteig
 added: 2026-10-30
 website: https://www.soonwaldsteig.de/
+wikidata: Q2302572
 designation: Premiumweg (Deutsches Wanderinstitut)
 managedBy:
   # "© Naturpark Soonwald-Nahe"; the tour portal names the Trägerverein Naturpark Soonwald-Nahe e.V.
@@ -149,6 +150,12 @@ sources:
     url: https://de.wikipedia.org/wiki/Soonwaldsteig
     licence: CC BY-SA 4.0
     retrieved: 2026-10-30
+  - id: wikimedia
+    title: "Wikimedia: page views of the trail's Wikipedia articles in every language, by people, over twelve months (Wikidata sitelinks, pageview API)"
+    url: https://wikimedia.org/api/rest_v1/
+    licence: CC0 1.0 (pageview data); Wikidata CC0
+    retrieved: 2026-10-30
+    checkOnly: true  # not on the trail page: the page views only rank the home page's popular trails
   - id: osm
     title: "OpenStreetMap contributors: paths and water along the trail (Geofabrik extracts), travel hubs"
     url: https://www.openstreetmap.org/

@@ -2,6 +2,7 @@ name: Alpe-Adria-Trail
 added: 2026-10-29
 aliases: [Alpe Adria Trail, AAT]
 website: https://www.alpe-adria-trail.com/en/
+wikidata: Q15782535
 managedBy:
   # a cross-border Interreg project of the three regions' tourism boards
   - name: Kärnten Werbung (Carinthia)
@@ -234,6 +235,12 @@ sources:
     licence: CC BY-SA 4.0
     retrieved: 2026-10-29
     checkOnly: true
+  - id: wikimedia
+    title: "Wikimedia: page views of the trail's Wikipedia articles in every language, by people, over twelve months (Wikidata sitelinks, pageview API)"
+    url: https://wikimedia.org/api/rest_v1/
+    licence: CC0 1.0 (pageview data); Wikidata CC0
+    retrieved: 2026-10-30
+    checkOnly: true  # not on the trail page: the page views only rank the home page's popular trails
   - id: osm
     title: "OpenStreetMap contributors: paths, tracks and water along the trail (Geofabrik extracts, 2026-10-28), travel hubs (via Overpass API)"
     url: https://www.openstreetmap.org/
