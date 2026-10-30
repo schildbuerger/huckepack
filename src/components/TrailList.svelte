@@ -53,7 +53,7 @@
     },
     flattest: {
       label: "Least climbing per km",
-      value: (t: SearchTrail) => (t.ascentM === null || !t.lengthKm ? null : t.ascentM / t.lengthKm),
+      value: (t: SearchTrail) => (t.climb === null || !t.lengthKm ? null : t.climb.m / t.lengthKm),
     },
     natural: { label: "Most natural ground", value: (t: SearchTrail) => (t.surface ? -t.surface.natural : null) },
   } as const;
@@ -199,6 +199,16 @@
       .join(" · ");
   const WILD = { allowed: "Wild camping allowed", restricted: "Wild camping restricted", prohibited: "No wild camping" };
   const WATER_WORD = Object.fromEntries(WATER_LEVELS.map((l) => [l.id, l.label]));
+  // the card's difficulty (issue #22): the hardest dimension as a word, as on the trail page
+  const topLevel = (t: SearchTrail) => (t.difficulty.length ? Math.max(...t.difficulty.map((d) => d.level)) : null);
+  const levelSay = (d: SearchTrail["difficulty"][number]) =>
+    d.low ? `${LEVEL_WORDS[d.low - 1]} to ${LEVEL_WORDS[d.level - 1]}` : LEVEL_WORDS[d.level - 1];
+  // the main landscape, as the trail page's key figure says it
+  const landText = (t: SearchTrail) => {
+    const top = Object.entries(t.landscape ?? {}).sort((a, b) => b[1] - a[1])[0];
+    const label = top && LANDSCAPES.find((l) => l.id === top[0])?.label;
+    return label ? `${top[1] >= 0.5 ? "Mostly" : "Mainly"} ${label}` : null;
+  };
   const SHAPE = { frequent: "full", regular: "half", scarce: "blocked", allowed: "full", restricted: "half", prohibited: "blocked" } as const;
   const TONE = { frequent: "good", regular: "fair", scarce: "poor", allowed: "good", restricted: "fair", prohibited: "poor" } as const;
 </script>
@@ -423,10 +433,35 @@
                 <dl class="figures">
                   {#if t.lengthKm !== null}<div><dt>Length</dt><dd>{fmt(t.lengthKm)}<span>km</span></dd></div>{/if}
                   {#if t.days}<div><dt>Days</dt><dd>{dayText(t.days)}</dd></div>{/if}
-                  {#if t.ascentM !== null}<div><dt>Ascent</dt><dd>{fmt(t.ascentM)}<span>m ↑</span></dd></div>{/if}
-                  <div><dt>Difficulty</dt>{#if t.sac}<dd>{t.sac}<span>SAC</span></dd>{:else}<dd class="none">Not graded</dd>{/if}</div>
+                  {#if t.climb}
+                    <div>
+                      <dt>{t.climb.est ? "Ascent, estimated" : "Ascent"}</dt>
+                      <dd>{#if t.climb.est}<span class="approx" aria-hidden="true">≈</span>{/if}{fmt(t.climb.m)}<span>m ↑</span></dd>
+                    </div>
+                  {/if}
+                  {#if topLevel(t)}
+                    <div>
+                      <dt>Difficulty</dt>
+                      <dd class="diff">
+                        <span class="sr-only">{t.difficulty.map((d) => `${d.label}: ${levelSay(d)}`).join("; ")}. Overall: </span>
+                        <!-- as the trail page's key figure: one bar per dimension (its initial beneath), as tall
+                             as its level; climate's season range lighter on top -->
+                        <span class="diff-bars" aria-hidden="true">
+                          {#each t.difficulty as d}
+                            <span class="diff-col" title={`${d.label}: ${levelSay(d)}`}>
+                              <span class="diff-bar range" style={`height: ${d.level * 25}%`}></span>
+                              <span class="diff-bar" style={`height: ${(d.low ?? d.level) * 25}%`}></span>
+                              <span class="diff-tag">{d.label[0]}</span>
+                            </span>
+                          {/each}
+                        </span>
+                        {LEVEL_WORDS[topLevel(t)! - 1]}
+                      </dd>
+                    </div>
+                  {/if}
                 </dl>
                 <ul class="facts">
+                  {#if landText(t)}<li>{landText(t)}</li>{/if}
                   {#if t.water}
                     <li><span class={`mark ${SHAPE[t.water.level]} tone-${TONE[t.water.level]}`} aria-hidden="true"></span>{WATER_WORD[t.water.level]} water</li>
                   {/if}
@@ -856,17 +891,23 @@
     color: var(--muted);
     font-size: 0.85rem;
   }
+  /* aligned at the bottom: the difficulty bars stand taller than the numbers, the labels stay in line */
   .figures {
     display: flex;
     flex-wrap: wrap;
+    align-items: flex-end;
     gap: 8px 24px;
     margin: 14px 0 0;
   }
-  /* phones: the four figures in one even row, the sort label left to screen readers */
+  /* phones: length, days and ascent in one even row, the difficulty on its own beneath; the sort
+     label left to screen readers */
   @media (max-width: 479px) {
+    .figures div:has(.diff) {
+      grid-column: 1 / -1;
+    }
     .figures {
       display: grid;
-      grid-template-columns: repeat(4, auto);
+      grid-template-columns: repeat(3, auto);
       justify-content: space-between;
       gap: 8px 12px;
     }
@@ -902,9 +943,49 @@
     color: var(--muted);
     font: 400 0.78rem var(--sans);
   }
-  .figures dd.none {
+  .figures dd .approx {
+    margin: 0 3px 0 0;
+  }
+  /* difficulty: the trail page's key figure (src/pages/trails/[slug].astro .diff-fig), same sizes:
+     one bar per dimension, as tall as its level, its initial beneath; the
+     hardest level as a word beside them */
+  .figures dd.diff {
+    display: flex;
+    align-items: flex-end;
+    gap: 8px;
+  }
+  .diff-bars {
+    display: flex;
+    gap: 3px;
+    height: 2rem;
+    margin: 0 !important;
+    padding-bottom: 0.15rem;
+  }
+  .diff-col {
+    position: relative;
+    width: 9px;
+    height: calc(100% - 11px);
+    margin: 0 !important;
+    background: var(--line);
+    border-radius: 2px 2px 0 0;
+  }
+  .diff-bar {
+    position: absolute;
+    inset: auto 0 0;
+    margin: 0 !important;
+    background: var(--text);
+    border-radius: 2px 2px 0 0;
+  }
+  .diff-bar.range {
+    opacity: 0.4;
+  }
+  .diff-tag {
+    position: absolute;
+    inset: auto 0 -12px;
+    margin: 0 !important;
     color: var(--muted);
-    font: 400 0.9rem/1.9 var(--sans);
+    font: 400 0.6rem/1 var(--sans) !important;
+    text-align: center;
   }
   .figures dt {
     order: 2;
@@ -953,10 +1034,11 @@
     --tone: var(--poor);
   }
 
+  /* the season on top, the profile filling the rest of the card's height, its caption at the bottom */
   .card-side {
-    display: grid;
+    display: flex;
+    flex-direction: column;
     gap: 14px;
-    align-content: start;
   }
   .season {
     display: grid;
@@ -977,12 +1059,23 @@
     color: var(--bg);
   }
   .profile {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
     margin: 0;
   }
   .profile svg {
     display: block;
     width: 100%;
     height: 56px;
+  }
+  /* beside the card's text: the profile fills the height the text leaves */
+  @media (min-width: 640px) {
+    .profile svg {
+      flex: 1;
+      height: auto;
+      min-height: 56px;
+    }
   }
   .profile .area {
     fill: var(--accent);
