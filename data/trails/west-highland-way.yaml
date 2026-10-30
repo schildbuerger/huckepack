@@ -68,6 +68,13 @@ difficulty:
       exposed across Rannoch Moor and before Kinlochleven (Devil's Staircase, about 550 m). That
       is mountain hiking (T2), with weather the main difficulty.
     source: whw
+treeLine:
+  # "The natural treeline is estimated to vary from about 650m in the central (continental) region
+  # of Scotland to around 250m in exposed places close to the west coast (oceanic)"; the Way's
+  # highest point (549 m, Devil's Staircase) stays below the upper end, so the page draws none
+  m: 650
+  fromM: 250
+  source: fcs-treeline
 season:
   # the Way can be walked all year; in winter (November to March) snow and ice on the high
   # northern ground make it a walk for the fit with winter navigation skills
@@ -122,10 +129,14 @@ notes:
     terrain-model estimate is ≈ 3,930 m up and ≈ 3,990 m down (the 30 m surface model adds the
     treetops and small noise to every 100 m step, so it likely runs high). Highest point 549 m
     from the terrain model against Wikipedia's 550 m (Devil's Staircase).
+  - >-
+    Tree line (2026-10-30): Forestry Commission Scotland gives 250–650 m; second source: Wikipedia's
+    tree line table, Scotland about 500 m (inside the range). The Way stays below 650 m, so the
+    terrain chart shows no tree line.
 dataCheck:
   # working rule 2: Wikipedia as the second source
-  date: 2026-10-29
-  against: [wikipedia]
+  date: 2026-10-30
+  against: [wikipedia, wikipedia-treeline]
   deviations:
     - { figure: "Stage 3 length", ours: "22.5 km", theirs: "19.5 km", source: wikipedia }
     - { figure: "Days", ours: "6–7 days", theirs: "7–8 days", source: wikipedia }
@@ -176,3 +187,14 @@ sources:
     url: https://project-osrm.org/
     licence: Route data © OpenStreetMap contributors (ODbL)
     retrieved: 2026-10-29
+  - id: fcs-treeline
+    title: "Forestry Commission Scotland: Treeline woodlands and Rural Development Contracts, guidance note 13, February 2012 (natural treeline)"
+    url: https://www.ruralpayments.org/media/resources/TreelineWoodlandsGuidance.pdf
+    licence: Open Government Licence (facts only)
+    retrieved: 2026-10-30
+  - id: wikipedia-treeline
+    title: "Wikipedia: Tree line (table of tree lines by region; data check)"
+    url: https://en.wikipedia.org/wiki/Tree_line
+    licence: CC BY-SA 4.0
+    retrieved: 2026-10-30
+    checkOnly: true

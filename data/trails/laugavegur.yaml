@@ -64,6 +64,12 @@ difficulty:
       patches early in the season and at least three unbridged rivers to wade. That is mountain
       hiking (T2); the river crossings and the weather make it harder than the grade suggests.
     source: fi
+treeLine:
+  # "Birki finnst nú í meira en 550 m.h.y.s. bæði á Goðalandi og Þórsmörk": birch now grows above
+  # 550 m in Goðaland and Þórsmörk, at the trail's southern end (the talk expects it to pass 600 m
+  # within decades as grazing falls and the climate warms)
+  m: 550
+  source: skograektin
 season:
   # huts open about 25 June to 15 September, depending on when the F-roads open
   months: [6, 7, 8, 9]
@@ -146,12 +152,18 @@ notes:
     apart: Wikipedia's "500 m" elevation gain and loss (apparently the net height difference, also
     FÍ's key figure) against our terrain-model estimate of ≈ 1,400 m up and ≈ 1,750 m down; guides
     quote around 1,700 m up, so our estimate is likely low (listed in `dataCheck`).
+  - >-
+    Tree line (2026-10-30): Skógræktin (2019) finds birch above 550 m in Goðaland and Þórsmörk; the
+    route climbs to about 1,050 m (Hrafntinnusker). No independent current figure was found:
+    Thoroddsen's Botany of Iceland (1914) put the birch zone "rarely higher than 300–400 metres",
+    before the birch spread with less grazing and a warmer climate, which the talk documents. So the
+    figure was checked on the page against the talk.
 dataCheck:
   # working rule 2: Wikipedia for the overview; the stages, which no independent source gives,
   # checked on the page against FÍ
-  date: 2026-10-29
+  date: 2026-10-30
   against: [wikipedia]
-  pageAgainst: [fi, fi-huts]
+  pageAgainst: [fi, fi-huts, skograektin]
   deviations:
     - { figure: "Ascent and descent", ours: "≈ 1,400 / ≈ 1,750 m (our estimate)", theirs: "500 m", source: wikipedia }
 sources:
@@ -195,3 +207,8 @@ sources:
     url: https://project-osrm.org/
     licence: Route data © OpenStreetMap contributors (ODbL)
     retrieved: 2026-10-27
+  - id: skograektin
+    title: "Skógræktin (Icelandic Forest Service), Hreinn Óskarsson and Björn Traustason: 100 ára friðun birkiskóga á Þórsmerkursvæðinu, forestry conference 2019 (birch altitude)"
+    url: https://web.archive.org/web/20220203201912/https://www.skogur.is/static/files/fagradstefna-2019/100-ara-fridun-thorsmerkur.pdf
+    licence: All rights reserved (facts only)
+    retrieved: 2026-10-30

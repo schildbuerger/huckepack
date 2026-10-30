@@ -76,6 +76,12 @@ difficulty:
       easy and safe - but we can't quite confirm this". Secured, exposed passages make it
       demanding mountain hiking (T3).
     source: brochure
+treeLine:
+  # "In Südtirol schwankt die natürliche Waldgrenze nämlich aktuell zwischen 1900 und 2200 Metern"
+  # (higher on sunny south slopes, lower on north slopes)
+  m: 2200
+  fromM: 1900
+  source: stol
 season:
   # the northern part with the Eisjöchl is a summer tour; the southern and eastern parts all year
   months: [6, 7, 8, 9, 10]
@@ -157,10 +163,15 @@ notes:
     More than 10 % apart: the time (5:50 h against 4:30 h), the ascent (740 m against 875 m) and
     the descent (533 m against 657 m). The association's brochure (not independent) gives 13.4 km,
     about 6 h, 850 m up and 550 m down for the same stage.
+  - >-
+    Tree line (2026-10-30): stol.it gives South Tyrol's natural tree line as 1,900–2,200 m. Second
+    source: BFW's forest growth region 1.1 (Ötztal, across the main ridge from the Texelgruppe)
+    puts the top of the high-subalpine zone at 2,000–2,300 m (within 10 %). The route climbs to
+    2,889 m (Eisjöchl).
 dataCheck:
   # working rule 2: Wikipedia for the overview; the stages checked on the page against the stage pages
   date: 2026-10-30
-  against: [wikipedia, bergwelten]
+  against: [wikipedia, bergwelten, bfw]
   pageAgainst: [meranerland]
   deviations:
     - { figure: "Days", ours: "5–8 days", theirs: "4–6 days", source: wikipedia }
@@ -230,3 +241,14 @@ sources:
     url: https://project-osrm.org/
     licence: Route data © OpenStreetMap contributors (ODbL)
     retrieved: 2026-10-29
+  - id: stol
+    title: "stol.it: Als der Schlern noch komplett bewaldet war, 12 October 2023 (natural tree line in South Tyrol)"
+    url: https://www.stol.it/artikel/chronik/als-der-schlern-noch-komplett-bewaldet-war
+    licence: All rights reserved (facts only)
+    retrieved: 2026-10-30
+  - id: bfw
+    title: "BFW (Kilian, Müller, Starlinger): Die forstlichen Wuchsgebiete Österreichs, 1994 (altitude zones per forest growth region; tree line)"
+    url: https://bfw.ac.at/300/pdf/1027.pdf
+    licence: All rights reserved (facts only)
+    retrieved: 2026-10-30
+    checkOnly: true

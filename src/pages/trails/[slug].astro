@@ -228,6 +228,10 @@ const eleGrid = eleRange
       (m) => m > eleRange.min && m < eleRange.max,
     )
   : [];
+// the height where trees stop growing in the trail's region (the record's treeLine), drawn across
+// the profile only where the route climbs above it (issue #20)
+const treeLine = t.treeLine && elevation && elevation.highest.m > t.treeLine.m ? t.treeLine : null;
+const treeLineText = treeLine && (treeLine.fromM ? `${fmt(treeLine.fromM)}–${fmt(treeLine.m)} m` : `≈ ${fmt(treeLine.m)} m`);
 const profileLine =
   elevation?.points.map(([km, m], i) => `${i ? "L" : "M"}${xAt(km, elevation.routeKm).toFixed(1)},${yAt(m).toFixed(1)}`).join("") ?? "";
 // the area under the profile in the gradient bars' 200 m slices, each with two fills: its gradient
@@ -945,7 +949,7 @@ const nav = [
           <svg
             viewBox={`0 0 ${CHART.width} 222`}
             role="img"
-            aria-label={`Elevation along the main route, ${elevation.routeKm} km: highest ${fmt(elevation.highest.m)} m at km ${elevation.highest.km.toFixed(1)}, lowest ${fmt(elevation.lowest.m)} m. Steepest climb ${grad.climb.grade} % on stage ${grad.climb.stage}, steepest descent ${grad.descent.grade} % on stage ${grad.descent.stage}; ${grad.steepUpKm} km climb and ${grad.steepDownKm} km descend at ${STEEP_PERCENT} % or more.${surface ? ` Ground: ${surfaceRows.map((c) => `${c.label.toLowerCase()} ${pct(surface.totals[c.id].share)}`).join(", ")}.` : ""}`}
+            aria-label={`Elevation along the main route, ${elevation.routeKm} km: highest ${fmt(elevation.highest.m)} m at km ${elevation.highest.km.toFixed(1)}, lowest ${fmt(elevation.lowest.m)} m. Steepest climb ${grad.climb.grade} % on stage ${grad.climb.stage}, steepest descent ${grad.descent.grade} % on stage ${grad.descent.stage}; ${grad.steepUpKm} km climb and ${grad.steepDownKm} km descend at ${STEEP_PERCENT} % or more.${treeLine ? ` The route climbs above the tree line, ${treeLineText.replace("≈ ", "about ")}.` : ""}${surface ? ` Ground: ${surfaceRows.map((c) => `${c.label.toLowerCase()} ${pct(surface.totals[c.id].share)}`).join(", ")}.` : ""}`}
           >
             {eleGrid.map((m) => (
               <g class="view-steep">
@@ -955,6 +959,15 @@ const nav = [
             ))}
             {terrainSlices.map((sl) => <polygon class="slice" points={sl.points} style={sl.style} />)}
             <path class="line" d={profileLine} />
+            {treeLine && (
+              <g class="tree-line">
+                {treeLine.fromM && (
+                  <rect x={CHART.x0} width={CHART.x1 - CHART.x0} y={yAt(treeLine.m)} height={yAt(treeLine.fromM) - yAt(treeLine.m)} />
+                )}
+                <line x1={CHART.x0} x2={CHART.x1} y1={yAt(treeLine.m)} y2={yAt(treeLine.m)} />
+                <text x={CHART.x1 - 2} y={yAt(treeLine.m) - 5} text-anchor="end">Tree line {treeLineText}</text>
+              </g>
+            )}
             <line class="base" x1={CHART.x0} x2={CHART.x1} y1={TERRAIN.bottom} y2={TERRAIN.bottom} />
             <circle class="peak" cx={xAt(elevation.highest.km, elevation.routeKm)} cy={yAt(elevation.highest.m)} r="4" />
             <text class="peak-label" x={xAt(elevation.highest.km, elevation.routeKm)} y={yAt(elevation.highest.m) - 9} text-anchor="middle">{fmt(elevation.highest.m)} m</text>
@@ -1000,6 +1013,14 @@ const nav = [
                 <p>
                   Surfaces come from OpenStreetMap; for the {pct(surface.inferredShare)} of the route without a surface tag,
                   the type of way decides (footpaths natural, tracks gravel).
+                </p>
+              )}
+              {treeLine && (
+                <p>
+                  The tree line marks the height where trees stop growing in this region
+                  {treeLine.fromM ? `, between ${fmt(treeLine.fromM)} and ${fmt(treeLine.m)} m depending on the slope` : `, about ${fmt(treeLine.m)} m`}{" "}
+                  ({sourceShort(treeLine.source)}). Above it the route crosses open ground without trees. Pasture and clearing can
+                  keep the forest lower than this in places.
                 </p>
               )}
             </Explain>
@@ -2499,6 +2520,25 @@ const nav = [
   .terrain-chart .base {
     stroke: var(--muted);
     stroke-width: 1.5;
+  }
+  /* the tree line: a dashed line in the forest colour of the landscape section (over a faint band where
+     the source gives a range), its label in text colour */
+  .terrain-chart .tree-line rect {
+    fill: var(--land-forest);
+    opacity: 0.12;
+  }
+  .terrain-chart .tree-line line {
+    stroke: var(--land-forest);
+    stroke-width: 1.5;
+    stroke-dasharray: 5 4;
+  }
+  .terrain-chart .tree-line text {
+    fill: var(--text);
+    font: 600 11px var(--sans);
+    paint-order: stroke;
+    stroke: var(--bg);
+    stroke-width: 3px;
+    stroke-linejoin: round;
   }
   .terrain-chart .peak {
     fill: var(--accent);

@@ -102,6 +102,12 @@ const trail = z
       .object({ min: z.number().int().positive(), max: z.number().int().positive(), source: sourceRef })
       .refine((d) => d.min <= d.max, "days.min must not exceed days.max")
       .optional(),
+    // the height where trees stop growing in the trail's region (issue #20), from a published
+    // source: `m` the upper limit, `fromM` the lower end where the source gives a range. The terrain
+    // chart draws it only where the route climbs above `m`
+    treeLine: z
+      .object({ m: z.number().int().positive(), fromM: z.number().int().positive().optional(), source: sourceRef })
+      .optional(),
     // `timesSource`: when the stage times come from another source than the rest of the stage
     // figures (e.g. the stage source publishes none); the page names it under the table
     stages: z
@@ -215,6 +221,7 @@ const trail = z
         t.difficulty?.sac,
         t.difficulty?.estimated,
         t.waterPoints,
+        t.treeLine,
         ...(t.stages?.timesSource ? [{ source: t.stages.timesSource }] : []),
         ...(t.stages?.list.flatMap((s) => (s.source ? [{ source: s.source }] : [])) ?? []),
         ...(t.dataCheck

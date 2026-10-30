@@ -106,6 +106,12 @@ difficulty:
       difficult (Outdooractive's scale), mostly for their length and climbing. The alpine stages
       reach about 2,370 m on mountain paths. That is mountain hiking (T2).
     source: aat
+treeLine:
+  # the top of the high-subalpine larch and stone pine zone, "(1650) 1950–2200 (2300)" m, in forest
+  # growth region 1.2 (Osttiroler Zentralalpen und oberes Mölltal), where the trail starts and is
+  # highest (stage 1, about 2,360 m); further south and east the tree line lies lower
+  m: 2200
+  source: bfw
 season:
   # Kärnten Werbung; the high stages near the Grossglockner set the limit, the lower ones in
   # Slovenia and Italy can be walked for longer
@@ -177,10 +183,15 @@ notes:
     against 20 km) and 34 (23.8 km against 30.5 km). Season: Wikivoyage gives mid-April to October,
     Kärnten Werbung mid-June to early October for the whole trail (the high stages near the
     Grossglockner set the limit); the record keeps Kärnten Werbung's.
+  - >-
+    Tree line (2026-10-30): BFW's growth region 1.2 (upper Mölltal) puts the top of the
+    high-subalpine zone at 2,200 m, locally 2,300 m; the route's highest point, 2,358 m on stage 1,
+    is above it. Second source: German Wikipedia, "in den Alpen liegt die Grenze zwischen 1800 und
+    2200 Metern" (the upper end agrees).
 dataCheck:
   # working rule 2: Wikivoyage (de) as the second source; the stages also checked on the page
-  date: 2026-10-29
-  against: [wikivoyage]
+  date: 2026-10-30
+  against: [wikivoyage, wikipedia-waldgrenze]
   pageAgainst: [aat-tours]
   deviations:
     - { figure: "Stage 13 length", ours: "24.0 km", theirs: "28 km (to the Alexanderhütte)", source: wikivoyage }
@@ -237,3 +248,14 @@ sources:
     url: https://project-osrm.org/
     licence: Route data © OpenStreetMap contributors (ODbL)
     retrieved: 2026-10-29
+  - id: bfw
+    title: "BFW (Kilian, Müller, Starlinger): Die forstlichen Wuchsgebiete Österreichs, 1994 (altitude zones per forest growth region; tree line)"
+    url: https://bfw.ac.at/300/pdf/1027.pdf
+    licence: All rights reserved (facts only)
+    retrieved: 2026-10-30
+  - id: wikipedia-waldgrenze
+    title: "Wikipedia (de): Waldgrenze (tree line in the Alps; data check)"
+    url: https://de.wikipedia.org/wiki/Waldgrenze
+    licence: CC BY-SA 4.0
+    retrieved: 2026-10-30
+    checkOnly: true
