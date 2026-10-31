@@ -32,6 +32,15 @@ Mosellandtouristik's stage tours) and the **Soonwaldsteig** (6 stages, 84 km; th
 GPX). Deferred: the **Sauerland-Höhenflug** (#27): its GPX download needs a licence key, and the
 OSM superroute lacks two sections.
 
+Added on 2026-10-31 (issues #60, #58, #57): the **Rothaarsteig** (8 stages, 158 km; the OSM
+section relations, as its GPX needs a licence key), the **Hermannshöhen** (Hermannsweg and
+Eggeweg, 13 stages, 225 km; the stage tours' tracks) and the **Goldsteig** (660 km: 7 stages in
+the Oberpfälzer Wald, the Nordroute N8–N23 as main route and the Südroute S8–S22 as variant; the
+OSM stage relations). Held back: the **Eifelsteig** (#56: stage 14's Kyll bridge has been gone
+since the 2021 flood, the stage ends 5 km short; how to show a closed section is open) and the
+**Sauerland-Waldroute** (#61: no official page for stage 2, a line with a loop, GPX behind a
+licence key).
+
 | # | Trail | Region | Length (approx.) | Why |
 |---|---|---|---|---|
 | 1 | Pacific Crest Trail | USA | 4,265 km | Most-hiked long trail; public US agency data; completion lists |

@@ -1,0 +1,228 @@
+name: Goldsteig
+added: 2026-10-31
+website: https://www.goldsteig-wandern.de/
+wikidata: Q1536127
+designation: Qualitätsweg Wanderbares Deutschland (Deutscher Wanderverband)
+managedBy:
+  # the site's operator and contact: Tourismusverband Ostbayern e.V., Regensburg, with its
+  # Goldsteig waymark sponsors and path management
+  - name: Tourismusverband Ostbayern e.V.
+    url: https://www.goldsteig-wandern.de/
+trailType: point-to-point
+continents: [Europe]
+countries: [DE]
+regions: [Bayern]
+protectedAreas:
+  - Nationalpark Bayerischer Wald
+  - Naturpark Steinwald
+  - Naturpark Nördlicher Oberpfälzer Wald
+  - Naturpark Oberpfälzer Wald
+  - Naturpark Oberer Bayerischer Wald
+  - Naturpark Bayerischer Wald
+termini:
+  # Marktredwitz and Passau (German Wikipedia's coordinates; the first and last points of the
+  # map line)
+  start:
+    name: Marktredwitz
+    lat: 50.0039
+    lon: 12.08291
+  end:
+    name: Passau
+    lat: 48.57769
+    lon: 13.4734
+  source: gs
+established:
+  # opened in September 2007
+  year: 2007
+  source: wikipedia
+waymarking:
+  # the FAQ: "Das gelbe S steht für die Hauptroute … Das blaue S findet ihr auf den Runden,
+  # Zubringern und alternativen Routen" (a logo: no symbol drawn)
+  text: A yellow S (main route); a blue S on loops, access paths and alternatives
+  source: gs
+length:
+  # "Gesamtlänge 660 km", both routes together
+  - km: 660
+    source: gs
+stages:
+  # the 38 stage pages of goldsteig-wandern.de (length and time, rounded; no climbs): 1–7 in the
+  # Oberpfälzer Wald, then the Nordroute (N8–N23, the "Gipfelroute", here the main route) and the
+  # Südroute (S8–S22, "eine gemäßigtere Strecke", here a variant), both ending in Passau. The
+  # stages' GPX is in the site's tour planner; the map line follows OSM's Goldsteig stage
+  # relations (superroute 61186). The Südroute is listed after stage 7, where it branches off.
+  # Stage 7's `end` (Oberviechtach, from OSM) makes the pipeline read the Oberpfalz extract too
+  source: gs
+  list:
+    - { number: "1", kind: main, from: Marktredwitz, to: Friedenfels, km: 20, minutes: 405, relation: 3250495 }
+    - { number: "2", kind: main, from: Friedenfels, to: Falkenberg, km: 16.2, minutes: 285, relation: 3318258 }
+    - { number: "3", kind: main, from: Falkenberg, to: Neuhaus, km: 14, minutes: 270, relation: 3762169 }
+    - { number: "4", kind: main, from: Neuhaus, to: Letzau/Oberhöll, km: 22, minutes: 420, relation: 3762491 }
+    - { number: "5", kind: main, from: Letzau/Oberhöll, to: Leuchtenberg, km: 14, minutes: 315, relation: 3875832 }
+    - { number: "6", kind: main, from: Leuchtenberg, to: Tännesberg, km: 22, minutes: 420, relation: 3894790 }
+    - { number: "7", kind: main, from: Tännesberg, to: Oberviechtach, km: 17, minutes: 315, relation: 3894810, end: { lat: 49.46027, lon: 12.41898 } }
+    - { number: "S8", kind: variant, from: Oberviechtach, to: Neunburg v.W., km: 8.3, minutes: 160, relation: 3894977 }
+    - { number: "S9", kind: variant, from: Neunburg v.W., to: Mappach, km: 20, minutes: 330, relation: 5421576 }
+    - { number: "S10", kind: variant, from: Mappach, to: Walderbach, km: 12, minutes: 240, relation: 5423428 }
+    - { number: "S11", kind: variant, from: Walderbach, to: Falkenstein, km: 22, minutes: 460, relation: 5423511 }
+    - { number: "S12", kind: variant, from: Falkenstein, to: Wiesenfelden, km: 30, minutes: 540, relation: 5424694 }
+    - { number: "S13", kind: variant, from: Wiesenfelden, to: Haunkenzell, km: 11, minutes: 210, relation: 5427701 }
+    - { number: "S14", kind: variant, from: Haunkenzell, to: Konzell, km: 12, minutes: 270, relation: 5427718 }
+    - { number: "S15", kind: variant, from: Konzell, to: Sankt Englmar, km: 16, minutes: 405, relation: 6435579 }
+    - { number: "S16", kind: variant, from: Sankt Englmar, to: Grandsberg, km: 10, minutes: 180, relation: 6435593 }
+    - { number: "S17", kind: variant, from: Grandsberg, to: Landshuter Haus, km: 22, minutes: 510, relation: 6435594 }
+    - { number: "S18", kind: variant, from: Landshuter Haus, to: Lalling, km: 15, minutes: 300, relation: 6435628 }
+    - { number: "S19", kind: variant, from: Lalling, to: Zenting, km: 18, minutes: 420, relation: 6437722 }
+    - { number: "S20", kind: variant, from: Zenting, to: Schrottenbaummühle, km: 22, minutes: 450, relation: 6437723 }
+    - { number: "S21", kind: variant, from: Schrottenbaummühle, to: Ruderting, km: 16, minutes: 330, relation: 6437728 }
+    - { number: "S22", kind: variant, from: Ruderting, to: Passau, km: 15, minutes: 315, relation: 6437730 }
+    - { number: "N8", kind: main, from: Oberviechtach, to: Rötz, km: 24, minutes: 480, relation: [3894976, 3895008] }
+    - { number: "N9", kind: main, from: Rötz, to: Herzogau, km: 31, minutes: 540, relation: 6482187 }
+    - { number: "N10", kind: main, from: Herzogau, to: Furth im Wald, km: 17, minutes: 360, relation: 6482216 }
+    - { number: "N11", kind: main, from: Furth im Wald, to: Schönbuchen, km: 20, minutes: 420, relation: 6481704 }
+    - { number: "N12", kind: main, from: Schönbuchen, to: Eck, km: 10, minutes: 285, relation: 6481936 }
+    - { number: "N13", kind: main, from: Eck, to: Großer Arber, km: 15, minutes: 405, relation: 6482721 }
+    - { number: "N14", kind: main, from: Großer Arber, to: Bayerisch Eisenstein, km: 12, minutes: 240, relation: 6482799 }
+    - { number: "N15", kind: main, from: Bayerisch Eisenstein, to: Großer Falkenstein, km: 13, minutes: 300, relation: 6482868 }
+    - { number: "N16", kind: main, from: Großer Falkenstein, to: Rachel, km: 26, minutes: 585, relation: 6482936 }
+    - { number: "N17", kind: main, from: Rachel, to: Lusen, km: 14, minutes: 330, relation: 6482969 }
+    - { number: "N18", kind: main, from: Lusen, to: Mauth, km: 11, minutes: 225, relation: 6482978 }
+    - { number: "N19", kind: main, from: Mauth, to: Philippsreut, km: 10, minutes: 210, relation: 6482982 }
+    - { number: "N20", kind: main, from: Philippsreut, to: Haidmühle, km: 22, minutes: 435, relation: 6482995 }
+    - { number: "N21", kind: main, from: Haidmühle, to: Breitenberg, km: 22, minutes: 450, relation: 6482996 }
+    - { number: "N22", kind: main, from: Breitenberg, to: Hauzenberg, km: 25, minutes: 540, relation: 6483024 }
+    - { number: "N23", kind: main, from: Hauzenberg, to: Passau, km: 20.5, minutes: 390, relation: 6483027 }
+route:
+  # built by `python -m pipeline.all goldsteig`: OSM ways matched to the Goldsteig stage relations
+  source: osm
+  publishable: true
+difficulty:
+  estimated:
+    sac: T2
+    basis: >-
+      Tourismusverband Ostbayern rates the stages "leicht" to "schwer", N16 (Großer Falkenstein –
+      Rachel, 26 km) "sehr schwer"; the Nordroute is the "Gipfelroute" over the Bavarian Forest's
+      summits (Großer Arber 1,456 m, Rachel, Lusen), the Südroute "gemäßigter", and snow can lie
+      on the heights until June. That is mountain hiking on good paths (T2), with length and
+      climbing the main difficulty.
+    source: gs
+season:
+  # the FAQ: "kein offizieller Winterwanderweg, sondern für die restliche Zeit des Jahres
+  # konzipiert", snow on the heights of the Bavarian Forest "bis zum Juni"; the trekking sites
+  # open April to October
+  months: [5, 6, 7, 8, 9, 10]
+  text: Spring to autumn, not a winter trail; snow can lie on the heights into June
+  source: gs
+sleeping:
+  # hosts by stage (hotels, guesthouses), mountain huts and inns, youth hostels, campsites and
+  # the bookable trekking sites
+  types: [hotel, guesthouse, hut, hostel, campsite]
+  source: gs
+wildCamping:
+  status: restricted
+  rule: >-
+    Wild camping only with the landowner's consent. Tents at the bookable Goldsteig trekking
+    sites near the trail (April to October, one night each, about €15 per tent, a dry toilet),
+    one of them in the Bavarian Forest National Park, and at campsites; hosts often allow a tent
+    by their house.
+  source: gs
+access:
+  # Marktredwitz station at the start, Passau Hauptbahnhof at the end; Nuremberg and Munich
+  # airports. Coordinates from OSM; distances by pipeline/access.py
+  - kind: station
+    name: Marktredwitz station
+    lat: 50.00446
+    lon: 12.0824
+    source: osm
+  - kind: airport
+    name: Nuremberg Airport (NUE)
+    lat: 49.49827
+    lon: 11.07811
+    source: osm
+  - kind: airport
+    name: Munich Airport (MUC)
+    lat: 48.35396
+    lon: 11.77859
+    source: osm
+tags: [bavarian-forest, national-park, summits, granite, cross-border]
+notes:
+  - >-
+    Lengths: "Gesamtlänge 660 km" for both routes; the stage pages give rounded lengths and times
+    only: stages 1–7 add up to 125.2 km, the Nordroute N8–N23 to 292.5 km, the Südroute S8–S22 to
+    249.3 km (with 1–7: 417.7 and 374.5 km). No climbs are published, so the page estimates them
+    from the terrain model. The site's GPX downloads (whole routes, stages in the tour planner)
+    aren't used: the map line follows OSM's stage relations, the same official stages.
+  - >-
+    Route (pipeline, 2026-10-31, Geofabrik extracts, with the Czech and Austrian ones where the
+    Nordroute runs along the border at the Dreisessel): every stage fully matched to its OSM
+    relation; the main route (1–7, N8–N23) is 412.5 km against the stages' 417.7 km. Four Südroute
+    stages come out more than 10 % shorter than the site's rounded figures: S16 8.3 against 10 km,
+    S17 17.8 against 22, S21 11.8 against 16 and S22 11.5 against 15 km. OSM's S21 relation ends at
+    Fischhaus and S22 begins at Ruderting, with the 4 km between them mapped as a Zuweg (Nr. 34),
+    so part of the gap is OSM's split; the rest isn't resolved. The Südroute is a variant, so its
+    lengths don't feed the page's main figures.
+  - >-
+    Water: 50 drinking water points from OSM; the longest stretch without one is 69.7 km (km
+    71.9–141.6, stages 4–7 in the Oberpfälzer Wald, villages with inns on the way but no mapped
+    taps): carry water or ask at the inns.
+  - >-
+    Data check (2026-10-31). Second source: German Wikipedia (660 km, opened September 2007,
+    managed by the Tourismusverband Ostbayern, Marktredwitz to Passau, the Nordroute 291 km and
+    the Südroute 253 km, highest point the Großer Arber 1,456 m, "leicht – mittel"). Everything
+    comparable agrees within 10 %: the Nordroute's stages add up to 292.5 km, the Südroute's to
+    249.3 km, stages 1–7 and both routes together 667 against 660 km; highest point on the terrain model
+    1,442 m. Wikipedia gives no stage list, days or climbs.
+  - >-
+    Sleeping: the Waldschmidthaus on the Rachel (stage N16/N17) is closed for renovation until
+    about the end of 2026 (the FAQ suggests national park tours instead).
+  - >-
+    Tree line: no published figure for the Bavarian Forest was found. The Großer Arber (1,456 m,
+    stage N13/N14) is called the only summit of the Bavarian-Bohemian massif reaching the forest
+    line, with dwarf pine and grassland on top, but other sources put the bare summit down to
+    clearing and grazing; so the record has no treeLine and the chart draws none.
+dataCheck:
+  # working rule 2: German Wikipedia
+  date: 2026-10-31
+  against: [wikipedia]
+  deviations: []
+sources:
+  - id: gs
+    title: "Tourismusverband Ostbayern e.V.: goldsteig-wandern.de (about the Goldsteig, FAQ, waymarks, 38 stage pages: lengths, times, grades; trekking sites, hosts)"
+    url: https://www.goldsteig-wandern.de/infos-erlebnisse/ueber-den-goldsteig
+    licence: All rights reserved (facts only)
+    retrieved: 2026-10-31
+  - id: wikipedia
+    title: "Wikipedia (de): Goldsteig (opening year; data check)"
+    url: https://de.wikipedia.org/wiki/Goldsteig
+    licence: CC BY-SA 4.0
+    retrieved: 2026-10-31
+  - id: wikimedia
+    title: "Wikimedia: page views of the trail's Wikipedia articles in every language, by people, over twelve months (Wikidata sitelinks, pageview API)"
+    url: https://wikimedia.org/api/rest_v1/
+    licence: CC0 1.0 (pageview data); Wikidata CC0
+    retrieved: 2026-10-31
+    checkOnly: true  # not on the trail page: the page views only rank the home page's popular trails
+  - id: osm
+    title: "OpenStreetMap contributors: the Goldsteig stage relations (superroute 61186), paths and water along the trail (Geofabrik extracts), travel hubs"
+    url: https://www.openstreetmap.org/relation/61186
+    licence: ODbL 1.0
+    retrieved: 2026-10-31
+  - id: copdem
+    title: "Copernicus DEM GLO-30 (30 m terrain model), tiles from AWS Open Data"
+    url: https://registry.opendata.aws/copernicus-dem/
+    licence: "Copernicus WorldDEM-30 licence, free; produced using Copernicus WorldDEM-30 © DLR e.V. 2010-2014 and © Airbus Defence and Space GmbH 2014-2018 provided under COPERNICUS by the European Union and ESA; all rights reserved"
+    retrieved: 2026-10-31
+  - id: worldcover
+    title: "ESA WorldCover 2021: 10 m land cover (via AWS Open Data)"
+    url: https://esa-worldcover.org/
+    licence: "CC BY 4.0; © ESA WorldCover project 2021 / Contains modified Copernicus Sentinel data (2021) processed by ESA WorldCover consortium"
+    retrieved: 2026-10-31
+  - id: era5
+    title: "Open-Meteo Historical Weather API: ERA5 and ERA5-Land reanalysis, daily 1995–2024"
+    url: https://open-meteo.com/en/docs/historical-weather-api
+    licence: CC BY 4.0 (Open-Meteo); contains modified Copernicus Climate Change Service information
+    retrieved: 2026-10-31
+  - id: osrm
+    title: "OSRM: road routes on OpenStreetMap data (router.project-osrm.org)"
+    url: https://project-osrm.org/
+    licence: Route data © OpenStreetMap contributors (ODbL)
+    retrieved: 2026-10-31
