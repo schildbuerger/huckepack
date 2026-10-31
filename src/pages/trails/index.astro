@@ -3,6 +3,7 @@ import { getCollection, getEntry } from "astro:content";
 import Base from "../../layouts/Base.astro";
 import Breadcrumbs from "../../components/Breadcrumbs.astro";
 import TrailList from "../../components/TrailList.svelte";
+import TrailCards from "../../components/TrailCards.astro";
 import { searchSummary } from "../../lib/search";
 
 const trails = (
@@ -29,7 +30,9 @@ const eleRange: [number, number] = lows.length
     Narrow the list down by when you can go, how long and how hard, and how you want to sleep. Every card shows the
     season, the elevation profile on one scale for all trails, and the ground underfoot.
   </p>
-  <TrailList client:load trails={trails} eleRange={eleRange} />
+  <TrailList client:load trails={trails}>
+    <TrailCards trails={trails} eleRange={eleRange} />
+  </TrailList>
 </Base>
 
 <style>

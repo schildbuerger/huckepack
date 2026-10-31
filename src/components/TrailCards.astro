@@ -1,0 +1,407 @@
+---
+// The search page's result cards, plain HTML (issue #86: rendering them in the Svelte island cost
+// 0.3–0.5 s of start-up on slow devices). TrailList.svelte gets them as its children and only hides
+// the cards the filters leave out and moves the rest into the sorted order (by `data-slug`).
+import type { SearchTrail } from "../lib/search";
+import { SLEEPING_CATEGORIES, WATER_LEVELS } from "../lib/trails";
+import { LANDSCAPES, LEVEL_WORDS, MONTHS } from "../lib/filters";
+
+interface Props {
+  trails: SearchTrail[];
+  eleRange: [number, number]; // one height scale for every card's profile
+}
+const { trails, eleRange } = Astro.props;
+
+const fmt = (n: number) => n.toLocaleString("en");
+const dayText = (d: [number, number]) => (d[0] === d[1] ? `${d[0]}` : `${d[0]}–${d[1]}`);
+const seasonText = (ms: number[]) => {
+  const s = [...ms].sort((a, b) => a - b);
+  return s.length === 12 ? "All year" : s.map((m) => MONTHS[m - 1]).join(", ");
+};
+const W = 240;
+const H = 56;
+const sparkPath = (profile: [number, number][], area: boolean) => {
+  const total = profile.at(-1)![0] || 1;
+  const [lo, hi] = eleRange;
+  const pts = profile.map(([km, m]) => `${((km / total) * W).toFixed(1)},${(H - ((m - lo) / (hi - lo)) * (H - 4)).toFixed(1)}`);
+  return area ? `M0,${H}L${pts.join("L")}L${W},${H}Z` : `M${pts.join("L")}`;
+};
+const sleepText = (t: SearchTrail) =>
+  SLEEPING_CATEGORIES.filter((c) => c.id !== "wild-camping" && t.sleeping.includes(c.id))
+    .map((c) => c.label)
+    .join(" · ");
+const WILD = { allowed: "Wild camping allowed", restricted: "Wild camping restricted", prohibited: "No wild camping" };
+const WATER_WORD = Object.fromEntries(WATER_LEVELS.map((l) => [l.id, l.label]));
+// the card's difficulty (issue #22): the hardest dimension as a word, as on the trail page
+const topLevel = (t: SearchTrail) => (t.difficulty.length ? Math.max(...t.difficulty.map((d) => d.level)) : null);
+const levelSay = (d: SearchTrail["difficulty"][number]) =>
+  d.low ? `${LEVEL_WORDS[d.low - 1]} to ${LEVEL_WORDS[d.level - 1]}` : LEVEL_WORDS[d.level - 1];
+// the main landscape, as the trail page's key figure says it
+const landText = (t: SearchTrail) => {
+  const top = Object.entries(t.landscape ?? {}).sort((a, b) => b[1] - a[1])[0];
+  const label = top && LANDSCAPES.find((l) => l.id === top[0])?.label;
+  return label ? `${top[1] >= 0.5 ? "Mostly" : "Mainly"} ${label}` : null;
+};
+const SHAPE = { frequent: "full", regular: "half", scarce: "blocked", allowed: "full", restricted: "half", prohibited: "blocked" } as const;
+const TONE = { frequent: "good", regular: "fair", scarce: "poor", allowed: "good", restricted: "fair", prohibited: "poor" } as const;
+---
+
+<div class="cards-wrap">
+  <!-- the cards' names are h3s; on phones the filters' h2 is in the closed panel, so the results
+       carry their own h2 for screen readers (headings in order, Lighthouse) -->
+  <h2 class="sr-only">Matching trails</h2>
+  <ol class="cards">
+    {trails.map((t) => (
+      <li data-slug={t.slug}>
+        <a class="card" href={`/trails/${t.slug}/`}>
+          <div class="card-main">
+            <p class="place">{t.countries.join(" · ")}</p>
+            <h3>{t.name}</h3>
+            {t.localName && <p class="local">{t.localName}</p>}
+            <p class="route-ends">{t.start} → {t.end}</p>
+            <dl class="figures">
+              {t.lengthKm !== null && <div><dt>Length</dt><dd>{fmt(t.lengthKm)}<span>km</span></dd></div>}
+              {t.days && <div><dt>Days</dt><dd>{dayText(t.days)}</dd></div>}
+              {t.climb && (
+                <div>
+                  <dt>{t.climb.est ? "Ascent, estimated" : "Ascent"}</dt>
+                  <dd>{t.climb.est && <span class="approx" aria-hidden="true">≈</span>}{fmt(t.climb.m)}<span>m ↑</span></dd>
+                </div>
+              )}
+              {topLevel(t) && (
+                <div>
+                  <dt>Difficulty</dt>
+                  <dd class="diff">
+                    <span class="sr-only">{t.difficulty.map((d) => `${d.label}: ${levelSay(d)}`).join("; ")}. Overall: </span>
+                    <!-- as the trail page's key figure: one bar per dimension (its initial beneath), as tall
+                         as its level; climate's season range lighter on top -->
+                    <span class="diff-bars" aria-hidden="true">
+                      {t.difficulty.map((d) => (
+                        <span class="diff-col" title={`${d.label}: ${levelSay(d)}`}>
+                          <span class="diff-bar range" style={`height: ${d.level * 25}%`}></span>
+                          <span class="diff-bar" style={`height: ${(d.low ?? d.level) * 25}%`}></span>
+                          <span class="diff-tag">{d.label[0]}</span>
+                        </span>
+                      ))}
+                    </span>
+                    {LEVEL_WORDS[topLevel(t)! - 1]}
+                  </dd>
+                </div>
+              )}
+            </dl>
+            <ul class="facts">
+              {landText(t) && <li>{landText(t)}</li>}
+              {t.water && (
+                <li><span class={`mark ${SHAPE[t.water.level]} tone-${TONE[t.water.level]}`} aria-hidden="true"></span>{WATER_WORD[t.water.level]} water</li>
+              )}
+              {t.wildCamping && (
+                <li><span class={`mark ${SHAPE[t.wildCamping]} tone-${TONE[t.wildCamping]}`} aria-hidden="true"></span>{WILD[t.wildCamping]}</li>
+              )}
+              {sleepText(t) && <li>{sleepText(t)}</li>}
+            </ul>
+          </div>
+
+          <div class="card-side">
+            {t.season && (
+              <div class="season" aria-label={`Season: ${seasonText(t.season)}`}>
+                {MONTHS.map((m, i) => (
+                  <span class:list={["month", { in: t.season!.includes(i + 1) }]} title={m}>{m[0]}</span>
+                ))}
+              </div>
+            )}
+            {t.profile && (
+              <figure class="profile">
+                <svg viewBox={`0 0 ${W} ${H}`} preserveAspectRatio="none" aria-hidden="true">
+                  <path class="area" d={sparkPath(t.profile, true)} />
+                  <path class="line" d={sparkPath(t.profile, false)} vector-effect="non-scaling-stroke" />
+                </svg>
+                {t.surface && (
+                  <div class="surface" aria-hidden="true">
+                    <span style={`flex: ${t.surface.natural}; background: var(--surface-natural)`}></span>
+                    <span style={`flex: ${t.surface.gravel}; background: var(--surface-gravel)`}></span>
+                    <span style={`flex: ${t.surface.paved}; background: var(--surface-paved)`}></span>
+                  </div>
+                )}
+                <figcaption>
+                  {fmt(t.lowestM!)}–{fmt(t.highestM!)} m{t.surface && ` · ${Math.round(t.surface.natural * 100)} % natural ground`}
+                </figcaption>
+              </figure>
+            )}
+          </div>
+        </a>
+      </li>
+    ))}
+  </ol>
+</div>
+
+<style>
+  /* cards the filters leave out (TrailList.svelte sets hidden) */
+  .cards li[hidden],
+  .cards-wrap[hidden] {
+    display: none;
+  }
+  .cards {
+    display: grid;
+    gap: 14px;
+    margin: 20px 0 0;
+    padding: 0;
+    list-style: none;
+  }
+  .card {
+    display: grid;
+    gap: 16px 28px;
+    padding: 20px;
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    color: var(--text);
+    text-decoration: none;
+    transition: border-color 0.15s ease;
+  }
+  .card:hover {
+    border-color: var(--accent);
+  }
+  .card:hover h3 {
+    color: var(--accent);
+  }
+  @media (min-width: 640px) {
+    .card {
+      grid-template-columns: minmax(0, 1fr) 240px;
+    }
+  }
+  .card p {
+    margin: 0;
+  }
+  .place {
+    color: var(--muted);
+    font-size: 0.8rem;
+  }
+  h3 {
+    margin: 2px 0 0;
+    font-size: 1.35rem;
+  }
+  .local {
+    color: var(--muted);
+    font-style: italic;
+  }
+  .route-ends {
+    margin-top: 4px !important;
+    color: var(--muted);
+    font-size: 0.85rem;
+  }
+  /* aligned at the bottom: the difficulty bars stand taller than the numbers, the labels stay in line */
+  .figures {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-end;
+    gap: 8px 24px;
+    margin: 14px 0 0;
+  }
+  /* phones: length, days and ascent in one even row, the difficulty on its own beneath; the sort
+     label left to screen readers */
+  @media (max-width: 479px) {
+    .figures div:has(.diff) {
+      grid-column: 1 / -1;
+    }
+    .figures {
+      display: grid;
+      grid-template-columns: repeat(3, auto);
+      justify-content: space-between;
+      gap: 8px 12px;
+    }
+    .figures dd {
+      font-size: 1.15rem;
+    }
+    .card {
+      padding: 16px;
+    }
+    .sort-word {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      overflow: hidden;
+      clip-path: inset(50%);
+      white-space: nowrap;
+    }
+  }
+  .figures div {
+    display: flex;
+    flex-direction: column;
+  }
+  .figures dd {
+    order: 1;
+    margin: 0;
+    font-family: var(--serif);
+    font-size: 1.3rem;
+    font-weight: 600;
+    line-height: 1.2;
+  }
+  .figures dd span {
+    margin-left: 3px;
+    color: var(--muted);
+    font: 400 0.78rem var(--sans);
+  }
+  .figures dd .approx {
+    margin: 0 3px 0 0;
+  }
+  /* difficulty: the trail page's key figure (src/pages/trails/[slug].astro .diff-fig), same sizes:
+     one bar per dimension, as tall as its level, its initial beneath; the
+     hardest level as a word beside them */
+  .figures dd.diff {
+    display: flex;
+    align-items: flex-end;
+    gap: 8px;
+  }
+  .diff-bars {
+    display: flex;
+    gap: 3px;
+    height: 2rem;
+    margin: 0 !important;
+    padding-bottom: 0.15rem;
+  }
+  .diff-col {
+    position: relative;
+    width: 9px;
+    height: calc(100% - 11px);
+    margin: 0 !important;
+    background: var(--line);
+    border-radius: 2px 2px 0 0;
+  }
+  .diff-bar {
+    position: absolute;
+    inset: auto 0 0;
+    margin: 0 !important;
+    background: var(--text);
+    border-radius: 2px 2px 0 0;
+  }
+  .diff-bar.range {
+    opacity: 0.4;
+  }
+  .diff-tag {
+    position: absolute;
+    inset: auto 0 -12px;
+    margin: 0 !important;
+    color: var(--muted);
+    font: 400 0.6rem/1 var(--sans) !important;
+    text-align: center;
+  }
+  .figures dt {
+    order: 2;
+    color: var(--muted);
+    font-size: 0.75rem;
+  }
+  .facts {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px 16px;
+    margin: 14px 0 0;
+    padding: 0;
+    list-style: none;
+    color: var(--muted);
+    font-size: 0.82rem;
+  }
+  .facts li {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+  }
+  /* status: a shape plus a word, as on the trail pages; colour only fills the shape */
+  .mark {
+    flex: none;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    border: 1.5px solid var(--tone);
+  }
+  .mark.full {
+    background: var(--tone);
+  }
+  .mark.half {
+    background: linear-gradient(90deg, var(--tone) 50%, transparent 50%);
+  }
+  .mark.blocked {
+    background: linear-gradient(135deg, transparent 43%, var(--tone) 43% 57%, transparent 57%);
+  }
+  .tone-good {
+    --tone: var(--good);
+  }
+  .tone-fair {
+    --tone: var(--fair);
+  }
+  .tone-poor {
+    --tone: var(--poor);
+  }
+
+  /* the season on top, the profile filling the rest of the card's height, its caption at the bottom */
+  .card-side {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+  .season {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    gap: 2px;
+  }
+  .month {
+    padding: 2px 0;
+    border-radius: 3px;
+    background: var(--surface);
+    color: var(--muted);
+    font-size: 0.65rem;
+    font-weight: 600;
+    text-align: center;
+  }
+  .month.in {
+    background: color-mix(in srgb, var(--text) 72%, var(--bg));
+    color: var(--bg);
+  }
+  .profile {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    margin: 0;
+  }
+  .profile svg {
+    display: block;
+    width: 100%;
+    height: 56px;
+  }
+  /* beside the card's text: the profile fills the height the text leaves */
+  @media (min-width: 640px) {
+    .profile svg {
+      flex: 1;
+      height: auto;
+      min-height: 56px;
+    }
+  }
+  .profile .area {
+    fill: var(--accent);
+    opacity: 0.14;
+  }
+  .profile .line {
+    fill: none;
+    stroke: var(--accent);
+    stroke-width: 1.5;
+    stroke-linejoin: round;
+  }
+  .surface {
+    display: flex;
+    gap: 2px;
+    height: 6px;
+    margin-top: 4px;
+  }
+  .surface span {
+    border-radius: 2px;
+  }
+  .profile figcaption {
+    margin-top: 6px;
+    color: var(--muted);
+    font-size: 0.75rem;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .card {
+      transition: none;
+    }
+  }
+</style>
