@@ -1,0 +1,170 @@
+{
+  "climate-high.json": {
+    "retrieved": "2026-10-31T07:45:58+00:00",
+    "url": "https://archive-api.open-meteo.com/v1/archive?latitude=50.6&longitude=6.2&elevation=660&start_date=1995-01-01&end_date=2024-12-31&daily=temperature_2m_max,temperature_2m_min,precipitation_sum,snowfall_sum,wind_speed_10m_max,wind_gusts_10m_max&timezone=auto"
+  },
+  "climate-low.json": {
+    "retrieved": "2026-10-31T07:44:47+00:00",
+    "url": "https://archive-api.open-meteo.com/v1/archive?latitude=49.8&longitude=6.7&elevation=140&start_date=1995-01-01&end_date=2024-12-31&daily=temperature_2m_max,temperature_2m_min,precipitation_sum,snowfall_sum,wind_speed_10m_max,wind_gusts_10m_max&timezone=auto"
+  },
+  "elevation-glo30.json": {
+    "retrieved": "2026-10-31T07:43:33+00:00",
+    "url": "https://copernicus-dem-30m.s3.eu-central-1.amazonaws.com/Copernicus_DSM_COG_10_N49_00_E006_00_DEM/Copernicus_DSM_COG_10_N49_00_E006_00_DEM.tif https://copernicus-dem-30m.s3.eu-central-1.amazonaws.com/Copernicus_DSM_COG_10_N50_00_E006_00_DEM/Copernicus_DSM_COG_10_N50_00_E006_00_DEM.tif"
+  },
+  "landcover.json": {
+    "retrieved": "2026-10-31T07:43:35+00:00",
+    "url": "https://esa-worldcover.s3.eu-central-1.amazonaws.com/v200/2021/map/ESA_WorldCover_10m_2021_v200_\u2026_Map.tif"
+  },
+  "osm-detour-14-main-1.json": {
+    "retrieved": "2026-10-28T21:21:02Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-relation-5375414.json": {
+    "retrieved": "2026-10-28T21:21:02Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-1-main.json": {
+    "retrieved": "2026-10-28T21:21:02Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-10-main.json": {
+    "retrieved": "2026-10-28T21:21:02Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-11-main.json": {
+    "retrieved": "2026-10-28T21:21:02Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-12-main.json": {
+    "retrieved": "2026-10-28T21:21:02Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-13-main.json": {
+    "retrieved": "2026-10-28T21:21:02Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-14-main.json": {
+    "retrieved": "2026-10-28T21:21:02Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-15-main.json": {
+    "retrieved": "2026-10-28T21:21:02Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-2-main.json": {
+    "retrieved": "2026-10-28T21:21:02Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-3-main.json": {
+    "retrieved": "2026-10-28T21:21:02Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-4-main.json": {
+    "retrieved": "2026-10-28T21:21:02Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-5-main.json": {
+    "retrieved": "2026-10-28T21:21:02Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-6-main.json": {
+    "retrieved": "2026-10-28T21:21:02Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-7-main.json": {
+    "retrieved": "2026-10-28T21:21:02Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-8-main.json": {
+    "retrieved": "2026-10-28T21:21:02Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-9-main.json": {
+    "retrieved": "2026-10-28T21:21:02Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-water.json": {
+    "retrieved": "2026-10-28T21:21:02Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-way-tags.json": {
+    "retrieved": "2026-10-28T21:21:02Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osrm-access-aachen-hauptbahnhof.json": {
+    "retrieved": "2026-10-31T07:45:58+00:00",
+    "url": "https://router.project-osrm.org/route/v1/driving/6.09138,50.76777;6.18256,50.72832?overview=false"
+  },
+  "osrm-access-cologne-bonn-airport-cgn.json": {
+    "retrieved": "2026-10-31T07:45:58+00:00",
+    "url": "https://router.project-osrm.org/route/v1/driving/7.13896,50.86778;6.18256,50.72832?overview=false"
+  },
+  "osrm-access-luxembourg-airport-lux.json": {
+    "retrieved": "2026-10-31T07:45:58+00:00",
+    "url": "https://router.project-osrm.org/route/v1/driving/6.21085,49.62771;6.18256,50.72832?overview=false"
+  },
+  "stage-1-main.gpx": {
+    "retrieved": "2026-10-31T03:36:54+00:00",
+    "url": "https://www.eifelsteig.de/touren/eifelsteig-etappe-1"
+  },
+  "stage-10-main.gpx": {
+    "retrieved": "2026-10-31T03:37:56+00:00",
+    "url": "https://www.eifelsteig.de/touren/eifelsteig-etappe-10"
+  },
+  "stage-11-main.gpx": {
+    "retrieved": "2026-10-31T03:37:56+00:00",
+    "url": "https://www.eifelsteig.de/touren/eifelsteig-etappe-11"
+  },
+  "stage-12-main.gpx": {
+    "retrieved": "2026-10-31T03:37:56+00:00",
+    "url": "https://www.eifelsteig.de/touren/eifelsteig-etappe-12"
+  },
+  "stage-13-main.gpx": {
+    "retrieved": "2026-10-31T03:38:08+00:00",
+    "url": "https://www.eifelsteig.de/touren/eifelsteig-etappe-13"
+  },
+  "stage-14-main.gpx": {
+    "retrieved": "2026-10-31T03:38:08+00:00",
+    "url": "https://www.eifelsteig.de/touren/eifelsteig-etappe-14"
+  },
+  "stage-15-main.gpx": {
+    "retrieved": "2026-10-31T03:38:19+00:00",
+    "url": "https://www.eifelsteig.de/touren/eifelsteig-etappe-15"
+  },
+  "stage-2-main.gpx": {
+    "retrieved": "2026-10-31T03:37:32+00:00",
+    "url": "https://www.eifelsteig.de/touren/eifelsteig-etappe-2"
+  },
+  "stage-3-main.gpx": {
+    "retrieved": "2026-10-31T03:37:52+00:00",
+    "url": "https://www.eifelsteig.de/touren/eifelsteig-etappe-3"
+  },
+  "stage-4-main.gpx": {
+    "retrieved": "2026-10-31T03:37:53+00:00",
+    "url": "https://www.eifelsteig.de/touren/eifelsteig-etappe-4"
+  },
+  "stage-5-main.gpx": {
+    "retrieved": "2026-10-31T03:37:53+00:00",
+    "url": "https://www.eifelsteig.de/touren/eifelsteig-etappe-5"
+  },
+  "stage-6-main.gpx": {
+    "retrieved": "2026-10-31T03:37:53+00:00",
+    "url": "https://www.eifelsteig.de/touren/eifelsteig-etappe-6"
+  },
+  "stage-7-main.gpx": {
+    "retrieved": "2026-10-31T03:37:54+00:00",
+    "url": "https://www.eifelsteig.de/touren/eifelsteig-etappe-7"
+  },
+  "stage-8-main.gpx": {
+    "retrieved": "2026-10-31T03:37:54+00:00",
+    "url": "https://www.eifelsteig.de/touren/eifelsteig-etappe-8"
+  },
+  "stage-9-main.gpx": {
+    "retrieved": "2026-10-31T03:37:55+00:00",
+    "url": "https://www.eifelsteig.de/touren/eifelsteig-etappe-9"
+  },
+  "wikimedia.json": {
+    "retrieved": "2026-10-31T07:46:00+00:00",
+    "url": "Q1302902 2025-10..2026-09"
+  }
+}

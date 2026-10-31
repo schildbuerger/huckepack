@@ -1,0 +1,246 @@
+name: Eifelsteig
+added: 2026-10-31
+website: https://www.eifelsteig.de/
+wikidata: Q1302902
+designation: Premiumweg (Deutsches Wanderinstitut)
+managedBy:
+  # the FAQ: "Die Eifel Tourismus GmbH mit Sitz in Prüm koordiniert das Wegemanagement und die
+  # Vermarktung"; the Eifelverein looks after the path for the municipalities
+  - name: Eifel Tourismus GmbH
+    url: https://www.eifelsteig.de/
+  - name: Eifelverein
+    url: https://www.eifelverein.de/
+trailType: point-to-point
+continents: [Europe]
+countries: [DE]
+regions: [Nordrhein-Westfalen, Rheinland-Pfalz]
+protectedAreas:
+  - Nationalpark Eifel
+  - Naturpark Hohes Venn-Eifel
+  - Natur- und Geopark Vulkaneifel
+termini:
+  # the first and last points of the official stage tracks
+  start:
+    name: Aachen-Kornelimünster
+    lat: 50.72832
+    lon: 6.18256
+  end:
+    name: Trier
+    lat: 49.77006
+    lon: 6.63354
+  source: es
+established:
+  # opened on 4 April 2009 with a walk from Mirbach to Alendorf
+  year: 2009
+  source: wikipedia
+waymarking:
+  text: The yellow-green Eifelsteig logo on white; signposts with a blue tip
+  source: es
+length:
+  # the site and FAQ: "313 km"; the whole-route tour says 312.8 km
+  - km: 313
+    source: es
+days:
+  # the whole-route page: "15 bis 16 Tage ist man unterwegs, wenn man den Eifelsteig am Stück erwandert"
+  min: 15
+  max: 16
+  source: es
+stages:
+  # the 15 stage tours of eifelsteig.de (Eifel Tourismus' Outdooractive pages, read with
+  # pipeline/readers/outdooractive.py); stage 13 gives no time. The pages carry their tracks,
+  # which only guide the OSM matcher (kept local)
+  source: es
+  list:
+    - { number: "1", kind: main, from: Kornelimünster, to: Roetgen, km: 14.1, ascentM: 327, descentM: 136, minutes: 196, track: "https://www.eifelsteig.de/touren/eifelsteig-etappe-1" }
+    - { number: "2", kind: main, from: Roetgen, to: Monschau, km: 17, ascentM: 334, descentM: 343, minutes: 270, track: "https://www.eifelsteig.de/touren/eifelsteig-etappe-2" }
+    - { number: "3", kind: main, from: Monschau, to: Einruhr, km: 24.3, ascentM: 786, descentM: 903, minutes: 390, track: "https://www.eifelsteig.de/touren/eifelsteig-etappe-3" }
+    - { number: "4", kind: main, from: Einruhr, to: Gemünd, km: 21.2, ascentM: 574, descentM: 509, minutes: 360, track: "https://www.eifelsteig.de/touren/eifelsteig-etappe-4" }
+    - { number: "5", kind: main, from: Gemünd, to: Kloster Steinfeld, km: 17.5, ascentM: 491, descentM: 313, minutes: 315, track: "https://www.eifelsteig.de/touren/eifelsteig-etappe-5" }
+    - { number: "6", kind: main, from: Kloster Steinfeld, to: Blankenheim, km: 23.4, ascentM: 490, descentM: 545, minutes: 390, track: "https://www.eifelsteig.de/touren/eifelsteig-etappe-6" }
+    - { number: "7", kind: main, from: Blankenheim, to: Mirbach, km: 17.7, ascentM: 362, descentM: 373, minutes: 300, track: "https://www.eifelsteig.de/touren/eifelsteig-etappe-7" }
+    - { number: "8", kind: main, from: Mirbach, to: Hillesheim, km: 26.1, ascentM: 405, descentM: 437, minutes: 510, track: "https://www.eifelsteig.de/touren/eifelsteig-etappe-8" }
+    - { number: "9", kind: main, from: Hillesheim, to: Gerolstein, km: 22.4, ascentM: 361, descentM: 420, minutes: 335, track: "https://www.eifelsteig.de/touren/eifelsteig-etappe-9" }
+    - { number: "10", kind: main, from: Gerolstein, to: Daun, km: 23.7, ascentM: 697, descentM: 575, minutes: 390, track: "https://www.eifelsteig.de/touren/eifelsteig-etappe-10" }
+    - { number: "11", kind: main, from: Daun, to: Manderscheid, km: 23.4, ascentM: 564, descentM: 652, minutes: 420, track: "https://www.eifelsteig.de/touren/eifelsteig-etappe-11" }
+    - { number: "12", kind: main, from: Manderscheid, to: Kloster Himmerod, km: 18.2, ascentM: 518, descentM: 592, minutes: 330, track: "https://www.eifelsteig.de/touren/eifelsteig-etappe-12" }
+    - { number: "13", kind: main, from: Kloster Himmerod, to: Bruch, km: 19.9, ascentM: 235, descentM: 347, track: "https://www.eifelsteig.de/touren/eifelsteig-etappe-13" }
+    - { number: "14", kind: main, from: Bruch, to: Kordel, km: 27.8, ascentM: 507, descentM: 533, minutes: 495, track: "https://www.eifelsteig.de/touren/eifelsteig-etappe-14",
+        # the stage page: "seit 2021 nur bis zur Deimlinger Mühle begehbar"; the notice (August
+        # 2021, still linked from the stage page): walk on the footpath along the L43 to
+        # Daufenbach (1.3 km), then the train to Kordel. Coordinates from OSM (the mill, the
+        # stations; a point on the footpath, way 242988616), the railway from OSM's line 2631
+        closed: {
+          at: { name: Deimlinger Mühle, lat: 49.86573, lon: 6.64441 }, since: 2021, source: es-closure,
+          reason: "a bridge over the Kyll was destroyed in the 2021 flood",
+          detour: [
+            { by: foot, to: { name: Daufenbach station, lat: 49.87602, lon: 6.63995 }, km: 1.3, via: [{ lat: 49.87008, lon: 6.64193 }] },
+            { by: train, to: { name: Kordel station, lat: 49.83617, lon: 6.63506 }, relation: 5375414 },
+          ],
+        } }
+    - { number: "15", kind: main, from: Kordel, to: Trier, km: 17, ascentM: 683, descentM: 616, minutes: 315, track: "https://www.eifelsteig.de/touren/eifelsteig-etappe-15" }
+route:
+  # built by `python -m pipeline.all eifelsteig`: OSM ways matched to the stage tracks
+  source: osm
+  publishable: true
+difficulty:
+  estimated:
+    sac: T2
+    basis: >-
+      Eifel Tourismus rates the whole route "schwer" (its FAQ "mittelschwer", needing good
+      fitness) and describes forest paths, meadow paths and "schmale, teils felsige oder
+      wurzelreiche Steige", slippery when wet, with steep passages; no exposed or secured
+      passages. That is mountain hiking on good paths (T2), with length and climbing the main
+      difficulty.
+    source: es
+season:
+  # the whole-route page describes the trail in every season, winter included ("Die kühle und
+  # klare Luft im Winter …"); German Wikipedia: "Ganzjährig"
+  months: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
+  text: All year
+  source: es
+sleeping:
+  # the FAQ: walker-friendly lodgings along the route, "von Hotels bis Ferienwohnungen"; the
+  # Naturpark Nordeifel's bookable trekking sites in the north
+  types: [hotel, guesthouse, campsite]
+  source: es
+wildCamping:
+  status: restricted
+  rule: >-
+    In North Rhine-Westphalia camping in the forest is forbidden (Landesforstgesetz § 3), and in
+    Rhineland-Palatinate tents in the forest need the owner's consent (Landeswaldgesetz § 22);
+    no camping in the Eifel National Park. Tents at the Naturpark Nordeifel's 22 bookable
+    trekking sites (trekking-eifel.de, up to two tents each).
+  source: lfog-nrw
+access:
+  # Aachen Hbf (buses to Kornelimünster), Cologne Bonn and Luxembourg airports (Luxembourg is
+  # nearest the end in Trier). Coordinates from OSM; distances by pipeline/access.py
+  - kind: station
+    name: Aachen Hauptbahnhof
+    lat: 50.76777
+    lon: 6.09138
+    source: osm
+  - kind: airport
+    name: Cologne Bonn Airport (CGN)
+    lat: 50.86778
+    lon: 7.13896
+    source: osm
+  - kind: airport
+    name: Luxembourg Airport (LUX)
+    lat: 49.62771
+    lon: 6.21085
+    source: osm
+tags: [eifel, volcanic, maars, national-park, forests]
+notes:
+  - >-
+    Ascent: the whole-route tour (312.8 km) states 3,662 m up and 3,712 m down, half of what its
+    15 stage tours add up to (7,334 m up, 7,294 m down) and of German Wikipedia's 7,746 m up; the
+    whole-route figure looks wrong, so the record keeps no stated total and the page sums the
+    stages. The stages add up to 313.7 km.
+  - >-
+    Wild camping: § 3 (1) e LFoG NRW forbids "das Zelten … im Wald, soweit hierfür nicht eine
+    besondere Befugnis vorliegt"; § 22 (4) LWaldG RP (as on the Moselsteig). Trekking sites: the
+    Naturpark Nordeifel's trekking-eifel.de lists 22 sites (a wooden platform for up to two tents,
+    a compost toilet; €18 per tent and night; coordinates on booking). Which of them lie near the
+    trail isn't stated; the season isn't given.
+  - >-
+    Stage 14 (Bruch – Kordel) can be walked only to the Deimlinger Mühle, 5 km before Kordel,
+    since a bridge over the Kyll was destroyed in the 2021 flood (the stage page: "seit 2021 nur
+    bis zur Deimlinger Mühle begehbar", with a train from Daufenbach station to Kordel; OSM: way
+    1166046561, demolished:bridge). The official notice (es-closure, "Stand: August 2021", still
+    linked from the stage page) recommends the footpath along the L43 to Daufenbach (1.3 km) and
+    from there "Schienen-Ersatzverkehr" (2021); the stage page now names the train. The record
+    keeps the stage's stated figures (27.8 km); the page says what is closed under the stage
+    table, and the map draws the stage to the mill, the walk dotted and the train as a railway.
+  - >-
+    Route (pipeline, 2026-10-31, Geofabrik extracts): stages 1–13 and 15 match the official
+    tracks 99–100 %. Stage 14's map line ends at the Deimlinger Mühle (22.7 km, 81 % of its
+    track: the rest can't be walked). The detour: on foot 1.4 km on OSM's footpath beside the
+    L43 (way 242988616) and Deimlinger Straße to Daufenbach station (stated 1.3 km); by train
+    5.3 km along OSM's railway line 2631 (relation 5375414) to Kordel station. The main route's
+    map line is 304.8 km against the stages' 313.7 km, the closed 5 km included.
+  - >-
+    Water: OSM has 26 drinking water points along the route; the longest stretch without one is
+    38.9 km, from stage 14 to the end in Trier (km 265.9–304.8). The site names no water points;
+    the stage towns (Kordel, Trier) have shops and inns.
+  - >-
+    Tree line: none in reach. The route tops out near the Steling (658 m, Wikipedia; 664 m on the
+    terrain model), forested; the Eifel has no natural tree line.
+  - >-
+    Data check (2026-10-31). Second source: German Wikipedia (313 km, Kornelimünster to Trier,
+    opened 4 April 2009, 15 stages, all year, the E logo, blue-tipped signposts; highest point the
+    Steling 658 m, lowest 132 m). Total length 313 against 313 km; stage lengths within 10 %
+    except stage 9 (22.4 against 20 km, 12 %); the other stages differ by 0–7 % (stage 14 27.8
+    against 29, stage 15 17 against 18 km). Ascent: our stage sum 7,334 m against Wikipedia's
+    7,746 m (5 %); per stage many climbs differ by more than 10 % (dataCheck), the page keeps the
+    official stage figures. Highest point 664 m (terrain model) against 658 m, lowest 136 against
+    132 m. Wikipedia says nothing about the closed section.
+dataCheck:
+  # working rule 2: German Wikipedia
+  date: 2026-10-31
+  against: [wikipedia]
+  deviations:
+    - { figure: "Stage 9 length", ours: "22.4 km", theirs: "20 km", source: wikipedia }
+    - { figure: "Stage 1 descent", ours: "136 m", theirs: "174 m", source: wikipedia }
+    - { figure: "Stage 3 ascent / descent", ours: "786 / 903 m", theirs: "684 / 809 m", source: wikipedia }
+    - { figure: "Stage 4 descent", ours: "509 m", theirs: "582 m", source: wikipedia }
+    - { figure: "Stage 5 descent", ours: "313 m", theirs: "351 m", source: wikipedia }
+    - { figure: "Stage 6 ascent / descent", ours: "490 / 545 m", theirs: "356 / 395 m", source: wikipedia }
+    - { figure: "Stage 7 ascent", ours: "362 m", theirs: "404 m", source: wikipedia }
+    - { figure: "Stage 8 ascent", ours: "405 m", theirs: "461 m", source: wikipedia }
+    - { figure: "Stage 9 ascent / descent", ours: "361 / 420 m", theirs: "491 / 563 m", source: wikipedia }
+    - { figure: "Stage 10 descent", ours: "575 m", theirs: "728 m", source: wikipedia }
+    - { figure: "Stage 13 ascent / descent", ours: "235 / 347 m", theirs: "368 / 471 m", source: wikipedia }
+    - { figure: "Stage 14 ascent / descent", ours: "507 / 533 m", theirs: "614 / 664 m", source: wikipedia }
+    - { figure: "Stage 15 descent", ours: "616 m", theirs: "689 m", source: wikipedia }
+sources:
+  - id: es
+    title: "Eifel Tourismus GmbH: eifelsteig.de (overview, FAQ, path management, whole-route and 15 stage tours: distances, times, climbs, tracks)"
+    url: https://www.eifelsteig.de/eifelsteig-etappen
+    licence: All rights reserved (facts only)
+    retrieved: 2026-10-31
+  - id: es-closure
+    title: "Eifel Tourismus GmbH: Verkürzung Eifelsteig Etappe 14 (notice, as of August 2021, linked from the stage 14 page: the closed section and the recommended detour)"
+    url: https://www.eifelsteig.de/touren/eifelsteig-etappe-14
+    licence: All rights reserved (facts only)
+    retrieved: 2026-10-31
+  - id: lfog-nrw
+    title: "Landesforstgesetz Nordrhein-Westfalen (LFoG), § 3 (1) e: no camping in the forest; Landeswaldgesetz Rheinland-Pfalz, § 22 (4); Naturpark Nordeifel: trekking-eifel.de (trekking sites)"
+    url: https://lexmea.de/de/gesetz/lfog-nrw/3
+    licence: Public domain (state law); trekking-eifel.de all rights reserved (facts only)
+    retrieved: 2026-10-31
+  - id: wikipedia
+    title: "Wikipedia (de): Eifelsteig (opening year; data check)"
+    url: https://de.wikipedia.org/wiki/Eifelsteig
+    licence: CC BY-SA 4.0
+    retrieved: 2026-10-31
+  - id: wikimedia
+    title: "Wikimedia: page views of the trail's Wikipedia articles in every language, by people, over twelve months (Wikidata sitelinks, pageview API)"
+    url: https://wikimedia.org/api/rest_v1/
+    licence: CC0 1.0 (pageview data); Wikidata CC0
+    retrieved: 2026-10-31
+    checkOnly: true  # not on the trail page: the page views only rank the home page's popular trails
+  - id: osm
+    title: "OpenStreetMap contributors: paths and water along the trail (Geofabrik extracts), travel hubs"
+    url: https://www.openstreetmap.org/
+    licence: ODbL 1.0
+    retrieved: 2026-10-31
+  - id: copdem
+    title: "Copernicus DEM GLO-30 (30 m terrain model), tiles from AWS Open Data"
+    url: https://registry.opendata.aws/copernicus-dem/
+    licence: "Copernicus WorldDEM-30 licence, free; produced using Copernicus WorldDEM-30 © DLR e.V. 2010-2014 and © Airbus Defence and Space GmbH 2014-2018 provided under COPERNICUS by the European Union and ESA; all rights reserved"
+    retrieved: 2026-10-31
+  - id: worldcover
+    title: "ESA WorldCover 2021: 10 m land cover (via AWS Open Data)"
+    url: https://esa-worldcover.org/
+    licence: "CC BY 4.0; © ESA WorldCover project 2021 / Contains modified Copernicus Sentinel data (2021) processed by ESA WorldCover consortium"
+    retrieved: 2026-10-31
+  - id: era5
+    title: "Open-Meteo Historical Weather API: ERA5 and ERA5-Land reanalysis, daily 1995–2024"
+    url: https://open-meteo.com/en/docs/historical-weather-api
+    licence: CC BY 4.0 (Open-Meteo); contains modified Copernicus Climate Change Service information
+    retrieved: 2026-10-31
+  - id: osrm
+    title: "OSRM: road routes on OpenStreetMap data (router.project-osrm.org)"
+    url: https://project-osrm.org/
+    licence: Route data © OpenStreetMap contributors (ODbL)
+    retrieved: 2026-10-31
