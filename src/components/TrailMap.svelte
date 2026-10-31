@@ -10,6 +10,7 @@
   // MapLibre looks for its worker next to its own script, which isn't there once Vite
   // bundles it; hand it the worker's URL instead (the worker file is self-contained).
   import workerUrl from "maplibre-gl/dist/maplibre-gl-worker.mjs?url";
+  import { STYLES, currentTheme, token, watchTheme } from "../lib/map-theme";
 
   interface Point {
     name: string;
@@ -33,10 +34,6 @@
     fill?: boolean; // fill the height its parent gives (a flex column) instead of a fixed aspect ratio
   } = $props();
 
-  const STYLES = {
-    light: "https://tiles.openfreemap.org/styles/liberty",
-    dark: "https://tiles.openfreemap.org/styles/dark",
-  };
   // terrain: Terrarium-encoded elevation tiles (open data on AWS, mostly SRTM at our latitudes);
   // z12 is about 30 m per pixel, enough for shading and contours, and overzoomed beyond
   const TERRAIN = "https://s3.amazonaws.com/elevation-tiles-prod/terrarium/{z}/{x}/{y}.png";
@@ -50,13 +47,6 @@
     dark: { shadow: "#000000", highlight: "rgba(255,255,255,0.1)", accent: "#000000", exaggeration: 0.4, contour: "#cbb69c", minor: 0.16, major: 0.32 },
   };
 
-  type Theme = keyof typeof STYLES;
-  const currentTheme = (): Theme => {
-    const chosen = document.documentElement.dataset.theme;
-    if (chosen === "light" || chosen === "dark") return chosen;
-    return matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
-  };
-  const token = (name: string) => getComputedStyle(document.documentElement).getPropertyValue(name).trim();
 
   let container: HTMLDivElement;
   let failed = $state(false);
@@ -241,21 +231,11 @@
         });
       });
 
-      // follow the site theme: the header switch sets <html data-theme>, auto follows the system
-      const onThemeChange = () => {
-        const next = currentTheme();
-        if (!map || next === theme) return;
+      // follow the site theme (src/lib/map-theme.ts)
+      stopWatchingTheme = watchTheme((next) => {
         theme = next;
-        map.setStyle(STYLES[theme], { diff: false });
-      };
-      const observer = new MutationObserver(onThemeChange);
-      observer.observe(document.documentElement, { attributes: true, attributeFilter: ["data-theme"] });
-      const system = matchMedia("(prefers-color-scheme: dark)");
-      system.addEventListener("change", onThemeChange);
-      stopWatchingTheme = () => {
-        observer.disconnect();
-        system.removeEventListener("change", onThemeChange);
-      };
+        map?.setStyle(STYLES[theme], { diff: false });
+      });
     })().catch((error) => {
       console.error("Trail map failed to load:", error);
       failed = true;

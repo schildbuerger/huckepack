@@ -34,6 +34,7 @@
   } from "../lib/filters";
   import "maplibre-gl/dist/maplibre-gl.css";
   import workerUrl from "maplibre-gl/dist/maplibre-gl-worker.mjs?url";
+  import { STYLES, currentTheme, token, watchTheme } from "../lib/map-theme";
   import zones from "../lib/timezones.json";
   import { kmBetween as km, roundDistance } from "../lib/geo";
   import type { SearchTrail } from "../lib/search";
@@ -48,14 +49,6 @@
     children,
   }: { trails: Trail[]; children?: import("svelte").Snippet } = $props();
 
-  const STYLES = { light: "https://tiles.openfreemap.org/styles/liberty", dark: "https://tiles.openfreemap.org/styles/dark" };
-  type Theme = keyof typeof STYLES;
-  const currentTheme = (): Theme => {
-    const chosen = document.documentElement.dataset.theme;
-    if (chosen === "light" || chosen === "dark") return chosen;
-    return matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
-  };
-  const token = (name: string) => getComputedStyle(document.documentElement).getPropertyValue(name).trim();
   const fmt = (n: number) => n.toLocaleString("en");
   const figures = (t: Trail) =>
     [t.lengthKm !== null && `${fmt(t.lengthKm)} km`, t.days && (t.days[0] === t.days[1] ? `${t.days[0]} days` : `${t.days[0]}–${t.days[1]} days`), t.level]
@@ -447,15 +440,11 @@
         map.on("mouseleave", layer, () => map && (map.getCanvas().style.cursor = ""));
       }
       map.on("moveend", updateCenter);
-      const onTheme = () => {
-        const next = currentTheme();
-        if (!map || next === theme) return;
+      // follow the site theme, auto mode's system setting included (src/lib/map-theme.ts)
+      stopTheme = watchTheme((next) => {
         theme = next;
-        map.setStyle(STYLES[theme], { diff: false });
-      };
-      const observer = new MutationObserver(onTheme);
-      observer.observe(document.documentElement, { attributes: true, attributeFilter: ["data-theme"] });
-      stopTheme = () => observer.disconnect();
+        map?.setStyle(STYLES[theme], { diff: false });
+      });
     })().catch((error) => {
       console.error("World map failed:", error);
       failed = true;
