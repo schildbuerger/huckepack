@@ -4054,5 +4054,388 @@
         "views": 45
       }
     ]
+  },
+  "along": {
+    "source": "osm",
+    "retrieved": "2026-10-30T21:24:51Z",
+    "withinM": 1000,
+    "stageEndM": 3000,
+    "routeKm": 52.2,
+    "resupply": {
+      "points": [
+        {
+          "lat": 63.989588,
+          "lon": -19.058985,
+          "group": "resupply",
+          "kind": "convenience",
+          "name": "Mountain Mall",
+          "stage": "1",
+          "stageKind": "main",
+          "km": 0.0,
+          "offM": 170
+        }
+      ],
+      "longestGapKm": {
+        "km": 52.2,
+        "fromKm": 0.0,
+        "toKm": 52.2
+      }
+    },
+    "beds": {
+      "points": [
+        {
+          "lat": 63.990553,
+          "lon": -19.059459,
+          "group": "beds",
+          "kind": "campsite",
+          "name": "Landmannalaugar",
+          "stage": "1",
+          "stageKind": "main",
+          "km": 0.0,
+          "offM": 104
+        },
+        {
+          "lat": 63.990575,
+          "lon": -19.061375,
+          "group": "beds",
+          "kind": "hut",
+          "name": "Landmannalaugar",
+          "stage": "1",
+          "stageKind": "main",
+          "km": 0.0,
+          "offM": 10
+        },
+        {
+          "lat": 63.933299,
+          "lon": -19.167999,
+          "group": "beds",
+          "kind": "hut",
+          "name": "Höskuldsskáli",
+          "stage": "1",
+          "stageKind": "main",
+          "km": 10.0,
+          "offM": 13
+        },
+        {
+          "lat": 63.932786,
+          "lon": -19.165715,
+          "group": "beds",
+          "kind": "campsite",
+          "name": "Höskuldsskáli",
+          "stage": "2",
+          "stageKind": "main",
+          "km": 10.2,
+          "offM": 40
+        },
+        {
+          "lat": 63.857774,
+          "lon": -19.227349,
+          "group": "beds",
+          "kind": "hut",
+          "name": "Álftavatn",
+          "stage": "2",
+          "stageKind": "main",
+          "km": 20.9,
+          "offM": 14
+        },
+        {
+          "lat": 63.832784,
+          "lon": -19.210299,
+          "group": "beds",
+          "kind": "campsite",
+          "name": null,
+          "stage": "3",
+          "stageKind": "main",
+          "km": 24.5,
+          "offM": 121
+        },
+        {
+          "lat": 63.831864,
+          "lon": -19.204741,
+          "group": "beds",
+          "kind": "hut",
+          "name": "Hvanngil",
+          "stage": "3",
+          "stageKind": "main",
+          "km": 24.7,
+          "offM": 48
+        },
+        {
+          "lat": 63.831622,
+          "lon": -19.205361,
+          "group": "beds",
+          "kind": "campsite",
+          "name": "Hvanngil",
+          "stage": "3",
+          "stageKind": "main",
+          "km": 24.7,
+          "offM": 13
+        },
+        {
+          "lat": 63.766508,
+          "lon": -19.373252,
+          "group": "beds",
+          "kind": "campsite",
+          "name": "Emstrur",
+          "stage": "3",
+          "stageKind": "main",
+          "km": 36.5,
+          "offM": 47
+        },
+        {
+          "lat": 63.765826,
+          "lon": -19.372789,
+          "group": "beds",
+          "kind": "campsite",
+          "name": null,
+          "stage": "4",
+          "stageKind": "main",
+          "km": 36.6,
+          "offM": 28
+        },
+        {
+          "lat": 63.766116,
+          "lon": -19.373675,
+          "group": "beds",
+          "kind": "hut",
+          "name": "Emstrur",
+          "stage": "4",
+          "stageKind": "main",
+          "km": 36.6,
+          "offM": 5
+        },
+        {
+          "lat": 63.691248,
+          "lon": -19.540079,
+          "group": "beds",
+          "kind": "campsite",
+          "name": "Camping Volcano Huts",
+          "stage": "4",
+          "stageKind": "main",
+          "km": 51.6,
+          "offM": 1156
+        },
+        {
+          "lat": 63.690419,
+          "lon": -19.541289,
+          "group": "beds",
+          "kind": "campsite",
+          "name": null,
+          "stage": "4",
+          "stageKind": "main",
+          "km": 51.6,
+          "offM": 1203
+        },
+        {
+          "lat": 63.685,
+          "lon": -19.512675,
+          "group": "beds",
+          "kind": "hut",
+          "name": "Skagfjörðsskáli",
+          "stage": "4",
+          "stageKind": "main",
+          "km": 52.1,
+          "offM": 7
+        },
+        {
+          "lat": 63.684975,
+          "lon": -19.51325,
+          "group": "beds",
+          "kind": "campsite",
+          "name": "Þórsmörk Langidalur",
+          "stage": "4",
+          "stageKind": "main",
+          "km": 52.1,
+          "offM": 21
+        },
+        {
+          "lat": 63.677637,
+          "lon": -19.481285,
+          "group": "beds",
+          "kind": "campsite",
+          "name": "Básar",
+          "stage": "4",
+          "stageKind": "main",
+          "km": 52.2,
+          "offM": 1695
+        },
+        {
+          "lat": 63.677198,
+          "lon": -19.481348,
+          "group": "beds",
+          "kind": "hut",
+          "name": "Básar á Goðalandi",
+          "stage": "4",
+          "stageKind": "main",
+          "km": 52.2,
+          "offM": 1714
+        },
+        {
+          "lat": 63.677557,
+          "lon": -19.468735,
+          "group": "beds",
+          "kind": "campsite",
+          "name": null,
+          "stage": "4",
+          "stageKind": "main",
+          "km": 52.2,
+          "offM": 2267
+        },
+        {
+          "lat": 63.676356,
+          "lon": -19.481486,
+          "group": "beds",
+          "kind": "campsite",
+          "name": null,
+          "stage": "4",
+          "stageKind": "main",
+          "km": 52.2,
+          "offM": 1753
+        },
+        {
+          "lat": 63.685172,
+          "lon": -19.505904,
+          "group": "beds",
+          "kind": "hut",
+          "name": "Slyppugil",
+          "stage": "4",
+          "stageKind": "main",
+          "km": 52.2,
+          "offM": 332
+        },
+        {
+          "lat": 63.677738,
+          "lon": -19.482894,
+          "group": "beds",
+          "kind": "campsite",
+          "name": "Brúðkaupflöt",
+          "stage": "4",
+          "stageKind": "main",
+          "km": 52.2,
+          "offM": 1619
+        },
+        {
+          "lat": 63.678435,
+          "lon": -19.480813,
+          "group": "beds",
+          "kind": "campsite",
+          "name": null,
+          "stage": "4",
+          "stageKind": "main",
+          "km": 52.2,
+          "offM": 1679
+        },
+        {
+          "lat": 63.685132,
+          "lon": -19.505662,
+          "group": "beds",
+          "kind": "campsite",
+          "name": null,
+          "stage": "4",
+          "stageKind": "main",
+          "km": 52.2,
+          "offM": 342
+        },
+        {
+          "lat": 63.675657,
+          "lon": -19.468765,
+          "group": "beds",
+          "kind": "campsite",
+          "name": "Strákagil",
+          "stage": "4",
+          "stageKind": "main",
+          "km": 52.2,
+          "offM": 2344
+        },
+        {
+          "lat": 63.678139,
+          "lon": -19.484148,
+          "group": "beds",
+          "kind": "campsite",
+          "name": null,
+          "stage": "4",
+          "stageKind": "main",
+          "km": 52.2,
+          "offM": 1544
+        },
+        {
+          "lat": 63.678421,
+          "lon": -19.486171,
+          "group": "beds",
+          "kind": "campsite",
+          "name": null,
+          "stage": "4",
+          "stageKind": "main",
+          "km": 52.2,
+          "offM": 1441
+        },
+        {
+          "lat": 63.67834,
+          "lon": -19.482808,
+          "group": "beds",
+          "kind": "campsite",
+          "name": null,
+          "stage": "4",
+          "stageKind": "main",
+          "km": 52.2,
+          "offM": 1594
+        },
+        {
+          "lat": 63.67933,
+          "lon": -19.4815,
+          "group": "beds",
+          "kind": "campsite",
+          "name": null,
+          "stage": "4",
+          "stageKind": "main",
+          "km": 52.2,
+          "offM": 1611
+        },
+        {
+          "lat": 63.678245,
+          "lon": -19.47857,
+          "group": "beds",
+          "kind": "campsite",
+          "name": null,
+          "stage": "4",
+          "stageKind": "main",
+          "km": 52.2,
+          "offM": 1789
+        },
+        {
+          "lat": 63.677926,
+          "lon": -19.476597,
+          "group": "beds",
+          "kind": "campsite",
+          "name": "Ármeningaflöt",
+          "stage": "4",
+          "stageKind": "main",
+          "km": 52.2,
+          "offM": 1892
+        },
+        {
+          "lat": 63.677747,
+          "lon": -19.479901,
+          "group": "beds",
+          "kind": "campsite",
+          "name": null,
+          "stage": "4",
+          "stageKind": "main",
+          "km": 52.2,
+          "offM": 1751
+        }
+      ],
+      "longestGapKm": {
+        "km": 15.0,
+        "fromKm": 36.6,
+        "toKm": 51.6
+      },
+      "byGroup": {
+        "huts": 8,
+        "camping": 23,
+        "hostels": 0,
+        "rooms": 0
+      }
+    }
   }
 }

@@ -129,6 +129,11 @@ def extract(region, url, refresh=False):
         with part.open("wb") as out:
             while chunk := response.read(1 << 20):
                 out.write(chunk)
+    got = part.stat().st_size
+    if size and got != size:
+        # a dropped connection ends the read early without an error (Hong Kong, Iceland, 2026-10-31)
+        part.unlink()
+        raise OSError(f"{region}: download stopped at {got} of {size} bytes; run again")
     part.rename(target)
     for old in have:
         old.unlink()

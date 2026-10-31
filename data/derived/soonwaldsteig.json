@@ -6799,5 +6799,663 @@
         "views": 1214
       }
     ]
+  },
+  "along": {
+    "source": "osm",
+    "retrieved": "2026-10-28T21:21:02Z",
+    "withinM": 1000,
+    "stageEndM": 3000,
+    "routeKm": 83.2,
+    "resupply": {
+      "points": [
+        {
+          "lat": 49.7858,
+          "lon": 7.458689,
+          "group": "resupply",
+          "kind": "supermarket",
+          "name": "Maino",
+          "stage": "1",
+          "stageKind": "main",
+          "km": 0.0,
+          "offM": 73
+        },
+        {
+          "lat": 49.781931,
+          "lon": 7.466115,
+          "group": "resupply",
+          "kind": "general",
+          "name": "Lohmarkt",
+          "stage": "1",
+          "stageKind": "main",
+          "km": 0.0,
+          "offM": 662
+        },
+        {
+          "lat": 49.787582,
+          "lon": 7.457935,
+          "group": "resupply",
+          "kind": "convenience",
+          "name": "Unverpackt Kirn",
+          "stage": "1",
+          "stageKind": "main",
+          "km": 0.1,
+          "offM": 67
+        },
+        {
+          "lat": 49.790278,
+          "lon": 7.457815,
+          "group": "resupply",
+          "kind": "supermarket",
+          "name": "Rewe",
+          "stage": "1",
+          "stageKind": "main",
+          "km": 0.6,
+          "offM": 51
+        },
+        {
+          "lat": 49.79168,
+          "lon": 7.45612,
+          "group": "resupply",
+          "kind": "supermarket",
+          "name": "Lidl",
+          "stage": "1",
+          "stageKind": "main",
+          "km": 0.8,
+          "offM": 66
+        },
+        {
+          "lat": 49.792321,
+          "lon": 7.454506,
+          "group": "resupply",
+          "kind": "supermarket",
+          "name": "Edeka",
+          "stage": "1",
+          "stageKind": "main",
+          "km": 0.9,
+          "offM": 77
+        },
+        {
+          "lat": 49.792631,
+          "lon": 7.453419,
+          "group": "resupply",
+          "kind": "supermarket",
+          "name": "ALDI Süd",
+          "stage": "1",
+          "stageKind": "main",
+          "km": 1.1,
+          "offM": 67
+        },
+        {
+          "lat": 50.008693,
+          "lon": 7.672785,
+          "group": "resupply",
+          "kind": "supermarket",
+          "name": "Norma",
+          "stage": "4",
+          "stageKind": "main",
+          "km": 57.9,
+          "offM": 1751
+        },
+        {
+          "lat": 49.997882,
+          "lon": 7.67583,
+          "group": "resupply",
+          "kind": "fuel",
+          "name": "Rheinböllen LKW",
+          "stage": "4",
+          "stageKind": "main",
+          "km": 57.9,
+          "offM": 714
+        },
+        {
+          "lat": 49.998015,
+          "lon": 7.677876,
+          "group": "resupply",
+          "kind": "fuel",
+          "name": "Raiffeisen",
+          "stage": "4",
+          "stageKind": "main",
+          "km": 57.9,
+          "offM": 596
+        },
+        {
+          "lat": 50.001,
+          "lon": 7.67584,
+          "group": "resupply",
+          "kind": "supermarket",
+          "name": "Netto Marken-Discount",
+          "stage": "4",
+          "stageKind": "main",
+          "km": 57.9,
+          "offM": 925
+        },
+        {
+          "lat": 50.000203,
+          "lon": 7.675696,
+          "group": "resupply",
+          "kind": "supermarket",
+          "name": "Wasgau",
+          "stage": "4",
+          "stageKind": "main",
+          "km": 57.9,
+          "offM": 870
+        },
+        {
+          "lat": 49.954753,
+          "lon": 7.861038,
+          "group": "resupply",
+          "kind": "supermarket",
+          "name": "Norma",
+          "stage": "6",
+          "stageKind": "main",
+          "km": 80.4,
+          "offM": 1743
+        },
+        {
+          "lat": 49.951411,
+          "lon": 7.900629,
+          "group": "resupply",
+          "kind": "supermarket",
+          "name": "Netto Marken-Discount",
+          "stage": "6",
+          "stageKind": "main",
+          "km": 83.1,
+          "offM": 2131
+        },
+        {
+          "lat": 49.94789,
+          "lon": 7.902993,
+          "group": "resupply",
+          "kind": "supermarket",
+          "name": "Lidl",
+          "stage": "6",
+          "stageKind": "main",
+          "km": 83.1,
+          "offM": 2552
+        },
+        {
+          "lat": 49.949102,
+          "lon": 7.90202,
+          "group": "resupply",
+          "kind": "supermarket",
+          "name": "Aldi Süd",
+          "stage": "6",
+          "stageKind": "main",
+          "km": 83.1,
+          "offM": 2401
+        },
+        {
+          "lat": 49.950087,
+          "lon": 7.901953,
+          "group": "resupply",
+          "kind": "supermarket",
+          "name": "REWE",
+          "stage": "6",
+          "stageKind": "main",
+          "km": 83.1,
+          "offM": 2306
+        },
+        {
+          "lat": 49.965798,
+          "lon": 7.893947,
+          "group": "resupply",
+          "kind": "supermarket",
+          "name": "Supermarkt Stern",
+          "stage": "6",
+          "stageKind": "main",
+          "km": 83.2,
+          "offM": 703
+        },
+        {
+          "lat": 49.968638,
+          "lon": 7.895068,
+          "group": "resupply",
+          "kind": "general",
+          "name": "Rosenhauer & Kunz",
+          "stage": "6",
+          "stageKind": "main",
+          "km": 83.2,
+          "offM": 722
+        },
+        {
+          "lat": 49.967234,
+          "lon": 7.894697,
+          "group": "resupply",
+          "kind": "general",
+          "name": "Weltladen Bingen",
+          "stage": "6",
+          "stageKind": "main",
+          "km": 83.2,
+          "offM": 706
+        },
+        {
+          "lat": 49.966644,
+          "lon": 7.893899,
+          "group": "resupply",
+          "kind": "supermarket",
+          "name": "Asian Bazaar Lebensmittel",
+          "stage": "6",
+          "stageKind": "main",
+          "km": 83.2,
+          "offM": 666
+        },
+        {
+          "lat": 49.96816,
+          "lon": 7.89685,
+          "group": "resupply",
+          "kind": "convenience",
+          "name": "REWE To Go",
+          "stage": "6",
+          "stageKind": "main",
+          "km": 83.2,
+          "offM": 849
+        },
+        {
+          "lat": 49.968904,
+          "lon": 7.896006,
+          "group": "resupply",
+          "kind": "convenience",
+          "name": "Binger Späti",
+          "stage": "6",
+          "stageKind": "main",
+          "km": 83.2,
+          "offM": 790
+        },
+        {
+          "lat": 49.969226,
+          "lon": 7.903982,
+          "group": "resupply",
+          "kind": "supermarket",
+          "name": "EDEKA",
+          "stage": "6",
+          "stageKind": "main",
+          "km": 83.2,
+          "offM": 1363
+        },
+        {
+          "lat": 49.967642,
+          "lon": 7.888647,
+          "group": "resupply",
+          "kind": "supermarket",
+          "name": "Netto Marken-Discount",
+          "stage": "6",
+          "stageKind": "main",
+          "km": 83.2,
+          "offM": 274
+        }
+      ],
+      "longestGapKm": {
+        "km": 56.8,
+        "fromKm": 1.1,
+        "toKm": 57.9
+      }
+    },
+    "beds": {
+      "points": [
+        {
+          "lat": 49.779793,
+          "lon": 7.454841,
+          "group": "beds",
+          "kind": "guesthouse",
+          "name": "Haus Kyrburgblick",
+          "stage": "1",
+          "stageKind": "main",
+          "km": 0.0,
+          "offM": 782
+        },
+        {
+          "lat": 49.78557,
+          "lon": 7.472546,
+          "group": "beds",
+          "kind": "guesthouse",
+          "name": "Haus Marincel",
+          "stage": "1",
+          "stageKind": "main",
+          "km": 0.0,
+          "offM": 931
+        },
+        {
+          "lat": 49.794024,
+          "lon": 7.454648,
+          "group": "beds",
+          "kind": "guesthouse",
+          "name": "Whisky Mansion Kirn",
+          "stage": "1",
+          "stageKind": "main",
+          "km": 1.0,
+          "offM": 72
+        },
+        {
+          "lat": 49.831059,
+          "lon": 7.406836,
+          "group": "beds",
+          "kind": "shelter",
+          "name": null,
+          "stage": "1",
+          "stageKind": "main",
+          "km": 11.9,
+          "offM": 819
+        },
+        {
+          "lat": 49.830532,
+          "lon": 7.407723,
+          "group": "beds",
+          "kind": "shelter",
+          "name": null,
+          "stage": "1",
+          "stageKind": "main",
+          "km": 11.9,
+          "offM": 877
+        },
+        {
+          "lat": 49.842289,
+          "lon": 7.397797,
+          "group": "beds",
+          "kind": "shelter",
+          "name": null,
+          "stage": "1",
+          "stageKind": "main",
+          "km": 13.6,
+          "offM": 368
+        },
+        {
+          "lat": 49.84179,
+          "lon": 7.378835,
+          "group": "beds",
+          "kind": "guesthouse",
+          "name": "Frühstückspension Klingels",
+          "stage": "1",
+          "stageKind": "main",
+          "km": 14.1,
+          "offM": 665
+        },
+        {
+          "lat": 49.84567,
+          "lon": 7.39119,
+          "group": "beds",
+          "kind": "campsite",
+          "name": "Trekkingcamp Schmidtburg",
+          "stage": "2",
+          "stageKind": "main",
+          "km": 16.8,
+          "offM": 126
+        },
+        {
+          "lat": 49.846679,
+          "lon": 7.395042,
+          "group": "beds",
+          "kind": "campsite",
+          "name": "Naturcamp Schmidtburg",
+          "stage": "2",
+          "stageKind": "main",
+          "km": 16.9,
+          "offM": 17
+        },
+        {
+          "lat": 49.841976,
+          "lon": 7.426725,
+          "group": "beds",
+          "kind": "shelter",
+          "name": "Teufelsfelshütte",
+          "stage": "2",
+          "stageKind": "main",
+          "km": 22.0,
+          "offM": 7
+        },
+        {
+          "lat": 49.850533,
+          "lon": 7.488472,
+          "group": "beds",
+          "kind": "shelter",
+          "name": "Grillhütte",
+          "stage": "3",
+          "stageKind": "main",
+          "km": 28.4,
+          "offM": 2259
+        },
+        {
+          "lat": 49.873912,
+          "lon": 7.54447,
+          "group": "beds",
+          "kind": "shelter",
+          "name": null,
+          "stage": "3",
+          "stageKind": "main",
+          "km": 36.1,
+          "offM": 333
+        },
+        {
+          "lat": 49.877468,
+          "lon": 7.540717,
+          "group": "beds",
+          "kind": "campsite",
+          "name": "Trekkingcamp Alteburg",
+          "stage": "3",
+          "stageKind": "main",
+          "km": 36.4,
+          "offM": 107
+        },
+        {
+          "lat": 49.908841,
+          "lon": 7.607807,
+          "group": "beds",
+          "kind": "campsite",
+          "name": "Trekkingcamp Ellerspring",
+          "stage": "4",
+          "stageKind": "main",
+          "km": 43.1,
+          "offM": 128
+        },
+        {
+          "lat": 49.954139,
+          "lon": 7.621571,
+          "group": "beds",
+          "kind": "campsite",
+          "name": "Trekkingcamp Ochsenbaumer Höhe",
+          "stage": "4",
+          "stageKind": "main",
+          "km": 49.6,
+          "offM": 317
+        },
+        {
+          "lat": 49.999377,
+          "lon": 7.649897,
+          "group": "beds",
+          "kind": "hostel",
+          "name": "Freizeithaus Engel",
+          "stage": "4",
+          "stageKind": "main",
+          "km": 57.0,
+          "offM": 2470
+        },
+        {
+          "lat": 50.00889,
+          "lon": 7.693232,
+          "group": "beds",
+          "kind": "guesthouse",
+          "name": "Zum Felsenkeller",
+          "stage": "5",
+          "stageKind": "main",
+          "km": 58.2,
+          "offM": 1491
+        },
+        {
+          "lat": 49.990533,
+          "lon": 7.707822,
+          "group": "beds",
+          "kind": "hostel",
+          "name": "Jugendfreizeitheim Emmerichshütte",
+          "stage": "5",
+          "stageKind": "main",
+          "km": 60.4,
+          "offM": 73
+        },
+        {
+          "lat": 49.990212,
+          "lon": 7.709267,
+          "group": "beds",
+          "kind": "hostel",
+          "name": "Jugendfreizeitheim Emmerichshütte",
+          "stage": "5",
+          "stageKind": "main",
+          "km": 60.4,
+          "offM": 29
+        },
+        {
+          "lat": 49.99492,
+          "lon": 7.769234,
+          "group": "beds",
+          "kind": "campsite",
+          "name": "Trekkingcamp Lauschhütte",
+          "stage": "5",
+          "stageKind": "main",
+          "km": 65.4,
+          "offM": 83
+        },
+        {
+          "lat": 50.010524,
+          "lon": 7.849344,
+          "group": "beds",
+          "kind": "guesthouse",
+          "name": "Ross und Rose",
+          "stage": "6",
+          "stageKind": "main",
+          "km": 75.3,
+          "offM": 793
+        },
+        {
+          "lat": 50.005417,
+          "lon": 7.856039,
+          "group": "beds",
+          "kind": "campsite",
+          "name": "Campingplatz Marienort",
+          "stage": "6",
+          "stageKind": "main",
+          "km": 75.3,
+          "offM": 405
+        },
+        {
+          "lat": 49.989849,
+          "lon": 7.865051,
+          "group": "beds",
+          "kind": "guesthouse",
+          "name": "Pension Johanna",
+          "stage": "6",
+          "stageKind": "main",
+          "km": 76.9,
+          "offM": 501
+        },
+        {
+          "lat": 49.990521,
+          "lon": 7.865163,
+          "group": "beds",
+          "kind": "guesthouse",
+          "name": "Pension Milberg",
+          "stage": "6",
+          "stageKind": "main",
+          "km": 76.9,
+          "offM": 482
+        },
+        {
+          "lat": 49.98856,
+          "lon": 7.866227,
+          "group": "beds",
+          "kind": "guesthouse",
+          "name": "Hotel Restaurant Monte Somma",
+          "stage": "6",
+          "stageKind": "main",
+          "km": 77.1,
+          "offM": 638
+        },
+        {
+          "lat": 49.987765,
+          "lon": 7.866828,
+          "group": "beds",
+          "kind": "guesthouse",
+          "name": "Gasthof Schuster",
+          "stage": "6",
+          "stageKind": "main",
+          "km": 77.1,
+          "offM": 715
+        },
+        {
+          "lat": 49.98801,
+          "lon": 7.865322,
+          "group": "beds",
+          "kind": "guesthouse",
+          "name": "Haus Schmelzeis",
+          "stage": "6",
+          "stageKind": "main",
+          "km": 77.4,
+          "offM": 607
+        },
+        {
+          "lat": 49.961435,
+          "lon": 7.838031,
+          "group": "beds",
+          "kind": "campsite",
+          "name": "DRK Begegnunsstätte Waldalgesheim",
+          "stage": "6",
+          "stageKind": "main",
+          "km": 80.3,
+          "offM": 1465
+        },
+        {
+          "lat": 49.968741,
+          "lon": 7.879022,
+          "group": "beds",
+          "kind": "hostel",
+          "name": "DJH Rhein-Nahe-Jugendherberge",
+          "stage": "6",
+          "stageKind": "main",
+          "km": 82.6,
+          "offM": 15
+        },
+        {
+          "lat": 49.943775,
+          "lon": 7.891063,
+          "group": "beds",
+          "kind": "guesthouse",
+          "name": "Apart HOTEL Bingen",
+          "stage": "6",
+          "stageKind": "main",
+          "km": 83.1,
+          "offM": 2678
+        },
+        {
+          "lat": 49.969236,
+          "lon": 7.895741,
+          "group": "beds",
+          "kind": "guesthouse",
+          "name": "Haus Clara",
+          "stage": "6",
+          "stageKind": "main",
+          "km": 83.2,
+          "offM": 775
+        },
+        {
+          "lat": 49.977792,
+          "lon": 7.921175,
+          "group": "beds",
+          "kind": "guesthouse",
+          "name": "Pension Post",
+          "stage": "6",
+          "stageKind": "main",
+          "km": 83.2,
+          "offM": 2794
+        }
+      ],
+      "longestGapKm": {
+        "km": 10.9,
+        "fromKm": 1.0,
+        "toKm": 11.9
+      },
+      "byGroup": {
+        "huts": 6,
+        "camping": 8,
+        "hostels": 4,
+        "rooms": 14
+      }
+    }
   }
 }

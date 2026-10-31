@@ -302,6 +302,26 @@ const climateMonth = z.object({
   gustDays: z.number(),
 });
 
+// pipeline/along.py: one kind of place along the route (shops or beds), with the longest stretch
+// of the main route without one
+const alongGroup = <K extends [string, ...string[]]>(kinds: K) =>
+  z.object({
+    points: z.array(
+      z.object({
+        lat: z.number(),
+        lon: z.number(),
+        group: z.enum(["resupply", "beds"]),
+        kind: z.enum(kinds),
+        name: z.string().nullable(),
+        stage: z.string(),
+        stageKind,
+        km: z.number().nullable(), // along the main route; null on approaches and variants
+        offM: z.number(),
+      }),
+    ),
+    longestGapKm: gap,
+  });
+
 const derived = z.object({
   // pipeline/routes.py: each stage's length on the full matched OSM line and the share of its track
   // the match covers; km is the main route's sum, minCovered the weakest main stage
@@ -434,6 +454,21 @@ const derived = z.object({
           straightKm: z.number(),
         }),
       ),
+    })
+    .optional(),
+  // pipeline/along.py (issues #96, #97): shops to restock and places to sleep within withinM of the
+  // route or stageEndM of a main stage's end, from OpenStreetMap
+  along: z
+    .object({
+      source: sourceRef,
+      retrieved: z.coerce.date(),
+      withinM: z.number(),
+      stageEndM: z.number(),
+      routeKm: z.number(),
+      resupply: alongGroup(["supermarket", "convenience", "general", "fuel"]),
+      beds: alongGroup(["hut", "shelter", "campsite", "hostel", "guesthouse"]).extend({
+        byGroup: z.object({ huts: z.number().int(), camping: z.number().int(), hostels: z.number().int(), rooms: z.number().int() }),
+      }),
     })
     .optional(),
 });

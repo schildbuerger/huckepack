@@ -5,17 +5,17 @@
     .venv/bin/python -m pipeline.all <slug> --from water     # resume at a step after a failure
     .venv/bin/python -m pipeline.all <slug> --check          # only the check
 
-Steps: routes, water, surface, elevation, landcover, climate, access, popularity (each also runs on its own,
+Steps: routes, water, along, surface, elevation, landcover, climate, access, popularity (each also runs on its own,
 pipeline/<step>.py). The caches in data/raw/<slug>/ make a second run fast. When the map line
-changes, the caches that depend on it (water, way tags, heights, land cover) are dropped, so no
+changes, the caches that depend on it (water, shops and beds, way tags, heights, land cover) are dropped, so no
 step keeps answering for the old route (the climate step checks its own cache against the grid
 cells of the route's highest and lowest points). A step that fails stops the run with the command
-to resume it; a climate step that hits the weather API's quota leaves the trail pending instead.
+to resume it; a climate step that fails leaves the trail pending instead.
 
 The check reads the record and the derived data and flags what a person should look at, mostly
 the mechanical half of working rule 2: stages the OSM match covers poorly, map-line lengths more
 than 10 % off the stated ones (whole route and per stage), stated against estimated ascent,
-long stretches without drinking water, unknown surfaces, far travel hubs, and a missing data
+long stretches without drinking water, shops or beds, unknown surfaces, far travel hubs, and a missing data
 check or tree line.
 """
 
@@ -29,12 +29,14 @@ from pathlib import Path
 import yaml
 
 ROOT = Path(__file__).resolve().parent.parent
-STEPS = ["routes", "water", "surface", "elevation", "landcover", "climate", "access", "popularity"]
+STEPS = ["routes", "water", "along", "surface", "elevation", "landcover", "climate", "access", "popularity"]
 # caches that depend on the map line, dropped when it changes
 # (not the climate downloads: pipeline/climate.py keeps them while the places stay in their grid cells)
-ROUTE_CACHES = ["osm-water.json", "osm-way-tags.json", "elevation-glo30.json", "landcover.json"]
+ROUTE_CACHES = ["osm-water.json", "osm-along.json", "osm-way-tags.json", "elevation-glo30.json", "landcover.json"]
 OFF = 0.10  # working rule 2: more than 10 % apart needs a look
 DRY_KM = 25  # a longer stretch without drinking water: check OSM, or add the record's waterPoints
+NO_SHOP_KM = 60  # a longer stretch without a shop: check OSM, and say so in the notes (carry food)
+NO_BED_KM = 30  # a longer stretch without a bed: check OSM (huts, campsites), and say so in the notes
 UNKNOWN_SHARE = 0.10
 HUB_KM = 300
 TREE_LINE_FROM_M = 1500  # a trail this high may cross a tree line: the record should say
@@ -118,7 +120,7 @@ def check(slug):
     from pipeline.climate import pending
 
     if pending(slug):
-        flags.append("climate: pending (the weather API's quota was used up); run `.venv/bin/python -m pipeline.climate --pending` later, and don't publish the trail before")
+        flags.append("climate: pending (built by an older method, or its places moved); run `.venv/bin/python -m pipeline.climate --pending`, and don't publish the trail before")
     elif derived.get("climate"):
         fine.append("climate: up to date")
 
@@ -127,6 +129,13 @@ def check(slug):
         gap = water["longestGapKm"]["drinking"]
         msg = f"water: {sum(p['kind'] == 'drinking' for p in water['points'])} drinking water points; longest dry stretch {gap['km']} km (km {gap['fromKm']}–{gap['toKm']})"
         (flags if gap["km"] > DRY_KM else fine).append(msg + (" (check OSM there, or add the record's waterPoints)" if gap["km"] > DRY_KM else ""))
+
+    along_ = derived.get("along")
+    if along_:
+        for key, limit, word in (("resupply", NO_SHOP_KM, "resupply"), ("beds", NO_BED_KM, "a bed")):
+            gap = along_[key]["longestGapKm"]
+            msg = f"{key}: {len(along_[key]['points'])} points; longest without {word} {gap['km']} km (km {gap['fromKm']}–{gap['toKm']})"
+            (flags if gap["km"] > limit else fine).append(msg + (" (check OSM there; note it)" if gap["km"] > limit else ""))
 
     surface = derived.get("surface")
     if surface:

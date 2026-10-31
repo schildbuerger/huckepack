@@ -8,7 +8,7 @@ about 71 m and 0.001° of latitude about 111 m.
 import math
 import unittest
 
-from pipeline import climate, osm, routes, surface, water
+from pipeline import along, climate, osm, routes, surface, water
 
 LAT = 50.0
 
@@ -166,6 +166,22 @@ class Water(unittest.TestCase):
         self.assertEqual(water.kind({"natural": "spring", "drinking_water": "yes"}), "drinking")
         self.assertEqual(water.kind({"natural": "spring"}), "spring")
         self.assertIsNone(water.kind({"amenity": "bench"}))
+
+
+class Along(unittest.TestCase):
+    def test_resupply(self):
+        self.assertEqual(along.classify({"shop": "supermarket"}), ("resupply", "supermarket"))
+        self.assertEqual(along.classify({"amenity": "fuel", "shop": "convenience"}), ("resupply", "convenience"))
+        self.assertEqual(along.classify({"amenity": "fuel", "shop": "yes"}), ("resupply", "fuel"))
+        self.assertIsNone(along.classify({"amenity": "fuel"}))  # no shop
+        self.assertIsNone(along.classify({"shop": "bakery"}))
+
+    def test_beds(self):
+        self.assertEqual(along.classify({"tourism": "alpine_hut"}), ("beds", "hut"))
+        self.assertEqual(along.classify({"tourism": "camp_site"}), ("beds", "campsite"))
+        self.assertEqual(along.classify({"amenity": "shelter", "shelter_type": "basic_hut"}), ("beds", "shelter"))
+        self.assertIsNone(along.classify({"amenity": "shelter", "shelter_type": "picnic_shelter"}))
+        self.assertIsNone(along.classify({"tourism": "hotel"}))
 
 
 class Climate(unittest.TestCase):
