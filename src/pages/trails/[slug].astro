@@ -414,6 +414,25 @@ const nav = [
   { id: "sleeping", label: "Sleeping", show: Boolean(t.sleeping || t.wildCamping) },
   { id: "water", label: "Water", show: Boolean(water) },
 ].filter((n) => n.show);
+
+// structured data (review #17, the light option): the page is about the trail as a place, with its
+// start, its countries and links to the official website and Wikidata; nothing that claims a rich
+// result. Every value is on the page or in the record; "<" escaped so no name can close the script
+const trailLd = JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  url: new URL(`/trails/${trail.id}/`, Astro.site).href,
+  name: pageTitle,
+  about: {
+    "@type": "TouristAttraction",
+    name: t.name,
+    ...(t.localName ? { alternateName: t.localName } : {}),
+    description: pageDescription,
+    geo: { "@type": "GeoCoordinates", latitude: t.termini.start.lat, longitude: t.termini.start.lon },
+    containedInPlace: t.countries.map((c) => ({ "@type": "Country", name: countryName(c) })),
+    sameAs: [t.website, ...(t.wikidata ? [`https://www.wikidata.org/wiki/${t.wikidata}`] : [])],
+  },
+}).replace(/</g, "\\u003c");
 ---
 
 <Base
@@ -421,6 +440,7 @@ const nav = [
   description={pageDescription}
 >
   <Breadcrumbs trail={[{ label: "Trails", href: "/trails/" }]} current={t.name} />
+  <script type="application/ld+json" set:html={trailLd} />
   <h1>
     {t.name}
   </h1>
