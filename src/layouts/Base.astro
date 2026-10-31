@@ -12,10 +12,12 @@ interface Props {
   image?: { path: string; alt: string };
 }
 const { title, description, personal = false, full = false, image } = Astro.props;
-// apply a saved light/dark choice before the first paint; no choice means auto (system setting)
+// apply a saved light/dark choice before the first paint; no choice means auto (system setting);
+// and mark the page as having JavaScript (html.js), for content that waits for a script to settle
 const themeScript = inlineScript(
   Astro,
-  `try {
+  `document.documentElement.classList.add("js");
+try {
   const theme = localStorage.getItem("theme");
   if (theme === "light" || theme === "dark") document.documentElement.dataset.theme = theme;
 } catch {}`,
@@ -281,6 +283,11 @@ const siteLd =
     text-underline-offset: 3px;
   }
   /* read by screen readers, not shown */
+  /* the maps' credits (MapLibre's attribution): links underlined, not told apart by colour alone;
+     one class more than MapLibre's own rule, whose stylesheet loads later */
+  .maplibregl-ctrl.maplibregl-ctrl-attrib a {
+    text-decoration: underline;
+  }
   .sr-only {
     position: absolute;
     width: 1px;

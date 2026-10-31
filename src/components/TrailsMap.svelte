@@ -545,7 +545,7 @@
         <li><button type="button" class="wm-link" onclick={() => (filters = noFilters())}>Clear all</button></li>
       </ul>
     {/if}
-    <ol class="wm-list" aria-label={here ? "Trails, nearest to you first" : "Trails, nearest to the map's centre first"}>
+    <ol class="wm-list" class:pending={!filtersReady} aria-label={here ? "Trails, nearest to you first" : "Trails, nearest to the map's centre first"}>
       {#each sorted as { t, d } (t.slug)}
         <li id={`wm-${t.slug}`} class:on={hovered === t.slug} class:picked={selected === t.slug} onmouseenter={() => (hovered = t.slug)} onmouseleave={() => (hovered = null)}>
           <!-- two actions: the entry zooms the map to the route, the arrow opens the trail page -->
@@ -689,6 +689,12 @@
   }
 
   /* the list: every trail, nearest to the map's centre first */
+  /* until the list is sorted from your place and the URL's filters (onMount), its entries keep their
+     space but stay invisible, so they don't jump into order after load (layout shift, issue #86);
+     without JavaScript (no html.js) the list shows at once */
+  :global(html.js) .wm-list.pending {
+    visibility: hidden;
+  }
   .wm-list {
     flex: 1;
     min-height: 0;

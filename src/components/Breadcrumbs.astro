@@ -1,12 +1,13 @@
 ---
 // Breadcrumb for every page except the home page: Start › … › the current page. Pass the
-// pages above the current one as `trail` ({ label, href }); "Start" is always first.
+// pages above the current one as `trail` ({ label, href }); "Home" is always first ("Start" was
+// flagged as link text that doesn't say where it goes, PageSpeed, issue #86).
 interface Props {
   trail?: { label: string; href: string }[];
   current: string;
 }
 const { trail = [], current } = Astro.props;
-const links = [{ label: "Start", href: "/" }, ...trail];
+const links = [{ label: "Home", href: "/" }, ...trail];
 // the same path for search engines (schema.org BreadcrumbList, shown in results as the page's
 // path); "<" escaped so no name can close the script
 const ld = JSON.stringify({

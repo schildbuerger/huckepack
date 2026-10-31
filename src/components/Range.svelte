@@ -99,8 +99,9 @@
 </div>
 
 <style>
+  /* 24 px, the smallest target WCAG 2.2 accepts (PageSpeed, issue #86; it was 18 px) */
   .range {
-    --thumb: 18px;
+    --thumb: 24px;
     padding: 0 calc(var(--thumb) / 2);
   }
   /* touch screens: a thumb a finger can find */
