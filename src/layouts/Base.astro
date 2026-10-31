@@ -1,6 +1,7 @@
 ---
 import ThemeToggle from "../components/ThemeToggle.astro";
 import logo from "../assets/logo.svg?raw"; // written by design/logos/make.py
+import { inlineScript } from "../lib/inline-script";
 
 interface Props {
   title: string;
@@ -11,6 +12,14 @@ interface Props {
   image?: { path: string; alt: string };
 }
 const { title, description, personal = false, full = false, image } = Astro.props;
+// apply a saved light/dark choice before the first paint; no choice means auto (system setting)
+const themeScript = inlineScript(
+  Astro,
+  `try {
+  const theme = localStorage.getItem("theme");
+  if (theme === "light" || theme === "dark") document.documentElement.dataset.theme = theme;
+} catch {}`,
+);
 // the address search engines and link previews should use (no query string, always with a slash)
 const canonical = new URL(Astro.url.pathname.replace(/\/?$/, "/"), Astro.site);
 // the site's name for search results (schema.org WebSite), on the home page
@@ -65,13 +74,7 @@ const siteLd =
     <link rel="icon" href="/favicon-32.png" sizes="32x32" type="image/png" />
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
-    <script is:inline>
-      // apply a saved light/dark choice before the first paint; no choice means auto (system setting)
-      try {
-        const theme = localStorage.getItem("theme");
-        if (theme === "light" || theme === "dark") document.documentElement.dataset.theme = theme;
-      } catch {}
-    </script>
+    <script is:inline set:html={themeScript} />
   </head>
   <body class:list={{ full }}>
     <header class="site-header">

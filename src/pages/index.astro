@@ -10,6 +10,7 @@ import { LEVELS } from "../lib/difficulty";
 import { climateLevel } from "../lib/filters";
 import { searchSummary } from "../lib/search";
 import zones from "../lib/timezones.json";
+import { inlineScript } from "../lib/inline-script";
 import { readFileSync } from "node:fs";
 
 const entries = (await getCollection("trails")).sort((a, b) => a.data.name.localeCompare(b.data.name));
@@ -162,6 +163,43 @@ const sources = [
   { name: "Wikimedia", what: "Wikipedia page views, which rank the popular trails" },
   { name: "tz database (IANA)", what: "Each time zone's main city, to find the trails near you in your browser" },
 ];
+// inline scripts that must run before the first paint, hashed for the Content Security Policy
+const countScript = inlineScript(Astro, `// The totals count up from 0 the first time the strip is on screen (1.2 s, ease-out, all
+// together). Runs right after the strip, before the first paint, so the final numbers never
+// flash first; without JavaScript or with reduced motion they simply stand.
+(() => {
+  if (matchMedia("(prefers-reduced-motion: reduce)").matches || !("IntersectionObserver" in window)) return;
+  const strip = document.currentScript.previousElementSibling;
+  const counts = [...strip.querySelectorAll("[data-count]")];
+  // keep each number's final width, so nothing shifts while it counts
+  for (const el of counts) {
+    el.style.minWidth = \`\${el.getBoundingClientRect().width}px\`;
+    el.textContent = "0";
+  }
+  const run = () => {
+    const start = performance.now();
+    const frame = (now) => {
+      const t = Math.min((now - start) / 1200, 1);
+      const eased = 1 - Math.pow(1 - t, 3);
+      for (const el of counts) el.textContent = Math.round(Number(el.dataset.count) * eased).toLocaleString("en");
+      if (t < 1) requestAnimationFrame(frame);
+    };
+    requestAnimationFrame(frame);
+  };
+  const io = new IntersectionObserver((entries) => {
+    if (!entries.some((e) => e.isIntersecting)) return;
+    io.disconnect();
+    run();
+  }, { threshold: 0.5 });
+  io.observe(strip);
+})();`);
+const featuredScript = inlineScript(Astro, `// A random featured trail on each page load. Runs right after the cards, before the first
+// paint, so the first trail never flashes; without JavaScript the first one stays.
+(() => {
+  const cards = [...document.currentScript.parentElement.querySelectorAll(".featured")];
+  const pick = Math.floor(Math.random() * cards.length);
+  cards.forEach((c, i) => (c.hidden = i !== pick));
+})();`);
 ---
 
 <Base
@@ -207,37 +245,7 @@ const sources = [
       </div>
     ))}
   </dl>
-  <script is:inline>
-    // The totals count up from 0 the first time the strip is on screen (1.2 s, ease-out, all
-    // together). Runs right after the strip, before the first paint, so the final numbers never
-    // flash first; without JavaScript or with reduced motion they simply stand.
-    (() => {
-      if (matchMedia("(prefers-reduced-motion: reduce)").matches || !("IntersectionObserver" in window)) return;
-      const strip = document.currentScript.previousElementSibling;
-      const counts = [...strip.querySelectorAll("[data-count]")];
-      // keep each number's final width, so nothing shifts while it counts
-      for (const el of counts) {
-        el.style.minWidth = `${el.getBoundingClientRect().width}px`;
-        el.textContent = "0";
-      }
-      const run = () => {
-        const start = performance.now();
-        const frame = (now) => {
-          const t = Math.min((now - start) / 1200, 1);
-          const eased = 1 - Math.pow(1 - t, 3);
-          for (const el of counts) el.textContent = Math.round(Number(el.dataset.count) * eased).toLocaleString("en");
-          if (t < 1) requestAnimationFrame(frame);
-        };
-        requestAnimationFrame(frame);
-      };
-      const io = new IntersectionObserver((entries) => {
-        if (!entries.some((e) => e.isIntersecting)) return;
-        io.disconnect();
-        run();
-      }, { threshold: 0.5 });
-      io.observe(strip);
-    })();
-  </script>
+  <script is:inline set:html={countScript} />
 
   {featuredAll.length > 0 && (
     <section class="block">
@@ -265,15 +273,7 @@ const sources = [
           <span class="open">Open the trail →</span>
         </a>
       ))}
-      <script is:inline>
-        // A random featured trail on each page load. Runs right after the cards, before the first
-        // paint, so the first trail never flashes; without JavaScript the first one stays.
-        (() => {
-          const cards = [...document.currentScript.parentElement.querySelectorAll(".featured")];
-          const pick = Math.floor(Math.random() * cards.length);
-          cards.forEach((c, i) => (c.hidden = i !== pick));
-        })();
-      </script>
+      <script is:inline set:html={featuredScript} />
     </section>
   )}
 
