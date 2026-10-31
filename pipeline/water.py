@@ -76,7 +76,7 @@ def build(slug, refresh=False):
     # the main route, stage after stage; where each main stage starts along it
     main = sorted(
         (i for i, f in enumerate(stages) if f["properties"]["kind"] == "main"),
-        key=lambda i: float(stages[i]["properties"]["number"]),
+        key=lambda i: osm.stage_order(stages[i]["properties"]["number"]),
     )
     offset, walked = {}, 0.0
     for i in main:

@@ -74,7 +74,7 @@ def build(slug, refresh=False):
         return sum(math.dist(a, b) for a, b in zip(xy, xy[1:])) / 1000
 
     map_km = {(f["properties"]["number"], f["properties"]["kind"]): line_km(f) for f in route["features"]}
-    main = sorted((s for s in stage_ways if s["kind"] == "main"), key=lambda s: float(s["number"]))
+    main = sorted((s for s in stage_ways if s["kind"] == "main"), key=lambda s: osm.stage_order(s["number"]))
 
     runs, km, totals, inferred = [], 0.0, {c: 0.0 for c in [*CATEGORIES, "unknown"]}, 0.0
     for stage in main:

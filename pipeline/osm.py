@@ -11,6 +11,7 @@ import http.client
 import json
 import math
 import os
+import re
 import time
 import urllib.parse
 import urllib.request
@@ -155,6 +156,11 @@ class Overpass:
 
     def way_tags(self, ids):
         return fetch(f"[out:json][timeout:120];way(id:{','.join(map(str, ids))});out tags;")
+
+
+def stage_order(number):
+    """Sort key for a stage number: its digits, so "N8" (the Goldsteig's Nordroute) sorts as 8."""
+    return float(re.sub(r"[^\d.]", "", number) or 0)
 
 
 def source_label():

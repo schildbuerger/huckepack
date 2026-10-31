@@ -91,15 +91,20 @@ def track_points(gpx):
     """(lon, lat) of every track point, whichever order the attributes come in. A `track` can also
     be a tour page that carries its track as schema.org data instead of a GPX file ("geo":
     GeoShape "line": "lat lon lat lon …", as Outdooractive's pages do, whose GPX download needs a
-    login); it is cached under the same .gpx name, so it stays local like the GPX files."""
+    login); it is cached under the same .gpx name, so it stays local like the GPX files. Some
+    portals (eifelsteig.de) write the line as "lon,lat,height lon,lat,height …" instead."""
     points = []
     for attrs in re.findall(r"<trkpt\b([^>]*)>", gpx):
         lat = re.search(r'\blat="([-\d.]+)"', attrs)
         lon = re.search(r'\blon="([-\d.]+)"', attrs)
         points.append((float(lon.group(1)), float(lat.group(1))))
     if not points:
-        shape = re.search(r'"@type"\s*:\s*"GeoShape"\s*,\s*"line"\s*:\s*"([-\d.\s]+)"', gpx)
-        if shape:
+        # "@type" can also be a list (["GeoCoordinates", "GeoShape"], with the start's coordinates
+        # before the line: hermannshoehen.teutoburgerwald.de)
+        shape = re.search(r'"GeoShape"\]?\s*,(?:\s*"(?:latitude|longitude)"\s*:\s*[-\d.]+\s*,)*\s*"line"\s*:\s*"([-\d.,\s]+)"', gpx)
+        if shape and "," in shape.group(1):
+            points = [(float(p[0]), float(p[1])) for p in (v.split(",") for v in shape.group(1).split())]
+        elif shape:
             values = [float(v) for v in shape.group(1).split()]
             points = [(lon, lat) for lat, lon in zip(values[::2], values[1::2])]
     if len(points) < 2:
@@ -127,9 +132,11 @@ def simplify(points, tolerance_m):
     return [p for p, k in zip(points, keep) if k]
 
 
-def relation_line(relation, alternatives, start):
+def relation_line(relation, alternatives, start, from_open_end=False):
     """The relation's main ways (and the chosen alternatives) chained into one (lon, lat) line
-    from the end nearest `start`; each next way is the one whose end is nearest, flipped to fit."""
+    from the end nearest `start`; each next way is the one whose end is nearest, flipped to fit.
+    With from_open_end, the chain starts at the way end nearest `start` that no other way
+    continues from."""
     elements = relation["elements"]
     ways = {e["id"]: e for e in elements if e["type"] == "way"}
     # the relation's own ways, and those of its child relations where it is made of sections
@@ -142,7 +149,14 @@ def relation_line(relation, alternatives, start):
     proj = osm.Projection(start[1])
     xy = lambda p: proj.xy(p["lon"], p["lat"])
     s = proj.xy(*start)
-    first = min(wanted, key=lambda g: min(math.dist(xy(g[0]), s), math.dist(xy(g[-1]), s)))
+    if from_open_end:
+        # start from an end of the line, a way end no other way continues from: a way in the
+        # middle can lie nearer `start` where the route bends (the Rothaarsteig's stages 6–8)
+        tips = [xy(g[0]) for g in wanted] + [xy(g[-1]) for g in wanted]
+        loose = [(g, p) for g in wanted for p in (xy(g[0]), xy(g[-1])) if sum(math.dist(p, q) <= 30 for q in tips) == 1]
+        first, s = min(loose, key=lambda t: math.dist(t[1], s))
+    else:
+        first = min(wanted, key=lambda g: min(math.dist(xy(g[0]), s), math.dist(xy(g[-1]), s)))
     wanted.remove(first)
     line = first if math.dist(xy(first[0]), s) <= math.dist(xy(first[-1]), s) else first[::-1]
     jumps = []
@@ -161,6 +175,11 @@ def relation_line(relation, alternatives, start):
         km = sum(math.dist(xy(a), xy(b)) for g in wanted for a, b in zip(g, g[1:])) / 1000
         print(f"  relation: {len(wanted)} ways ({km:.1f} km) left out, they don't continue the line")
     return [(p["lon"], p["lat"]) for p in line]
+
+
+def line_km(line):
+    proj = osm.Projection(line[0][1])
+    return sum(math.dist(proj.xy(*a), proj.xy(*b)) for a, b in zip(line, line[1:])) / 1000
 
 
 def stage_relations(stage):
@@ -257,6 +276,11 @@ def build(slug, refresh=False):
                 # trail's start (chaining from a point in the middle could head the wrong way), then
                 # keep the piece from where the stage begins to its `end`
                 full = relation_line({"elements": elements}, stage.get("alternatives", []), (start["lon"], start["lat"]))
+                # where the chain began at a way in the middle of the relation (it stops early),
+                # begin at the relation's open end instead
+                tip = relation_line({"elements": elements}, stage.get("alternatives", []), (start["lon"], start["lat"]), True)
+                if line_km(tip) > line_km(full) + 1:
+                    full = tip
                 track = piece(full, begin, (stage["end"]["lon"], stage["end"]["lat"]))
             else:
                 track = relation_line({"elements": elements}, stage.get("alternatives", []), begin)

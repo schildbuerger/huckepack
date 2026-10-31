@@ -296,6 +296,18 @@ def build_corridor(slug, guides, relation_ids=(), coarse=(), refresh=False):
     if not guides:
         for w, locs in ways_pass(lambda w, locs: w.id in member_ways):
             add(w, locs)
+        if member_ways - set(ways):
+            # a relation leaves the extracts (the Goldsteig's N21 over the Czech border): the
+            # regions around its ways' ends hold the rest
+            ends = [nodes[n] for w in ways.values() for n in (w["nodes"][0], w["nodes"][-1])]
+            extra = [r for r in regions_for(ends) if r[0] not in {region for region, _ in paths}]
+            if extra:
+                new = [(region, extract(region, url, refresh)) for region, url in extra]
+                print(f"  relation ways outside the extracts; also: {', '.join(p.name for _, p in new)}")
+                paths += new
+                missing = member_ways - set(ways)
+                for w, locs in ways_pass(lambda w, locs: w.id in missing):
+                    add(w, locs)
         guides = [nodes[n] for w in ways.values() for n in w["nodes"]] + list(coarse)
 
     # 3. the paths and roads near the guides

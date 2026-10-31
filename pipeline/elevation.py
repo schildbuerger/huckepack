@@ -96,7 +96,7 @@ def route_samples(slug):
     route = json.loads((ROOT / "public" / "routes" / f"{slug}.geojson").read_text())
     stages = sorted(
         (f for f in route["features"] if f["properties"]["kind"] == "main"),
-        key=lambda f: float(f["properties"]["number"]),
+        key=lambda f: osm.stage_order(f["properties"]["number"]),
     )
     every = [c for f in stages for c in f["geometry"]["coordinates"]]
     proj = osm.Projection(sum(lat for _, lat in every) / len(every))
