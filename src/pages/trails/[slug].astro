@@ -30,6 +30,7 @@ import {
   SLEEPING_LABELS,
   STEEP_PERCENT,
   gradients,
+  barMetres,
   WILD_CAMPING_LABELS,
   waterLevel,
 } from "../../lib/trails";
@@ -246,7 +247,10 @@ const landSummary = (() => {
 // the other charts, coloured by its gradient (gradients() in src/lib/trails.ts), over a strip of the
 // ground under it (pipeline/surface.py)
 const elevation = derived?.elevation;
-const grad = elevation && gradients(elevation.points, elevation.stageStarts);
+const grad = elevation && gradients(elevation.points, elevation.stageStarts, elevation.spacingM);
+// the profile's sampling (100 m; 500 m on trails over 1,000 km) and the gradient bars' length, for the texts
+const sampleM = elevation?.spacingM ?? 100;
+const barM = barMetres(sampleM);
 const TERRAIN = { top: 26, bottom: 170 };
 // the ground strip under the baseline: its height, and how far it pushes the stage ticks down
 const GROUND_H = 10;
@@ -503,7 +507,7 @@ const trailLd = JSON.stringify({
               ) : (
                 <p>
                   Estimated from the terrain model, as the sum of every main stage's climbs and drops between
-                  samples 100 m apart. No source states them. The model measures the treetops in forests, so
+                  samples {sampleM} m apart. No source states them. The model measures the treetops in forests, so
                   it reads high there.
                 </p>
               )}
@@ -1014,7 +1018,7 @@ const trailLd = JSON.stringify({
           .map((s) => ` Stage ${s.number}${s.kind !== "main" ? ` (${s.kind})` : ""} from ${sourceShort(s.source!)}.`)}
         {(estEle || estClimb || estTime) && " ≈ marks our estimates where the source gives no figure: "}
         {(estEle || estClimb) &&
-          `${[estClimb && "ascent and descent", estEle && "heights"].filter(Boolean).join(" and ")} from the terrain model (Copernicus DEM, 30 m grid, sampled every 100 m), to the nearest 10 m`}
+          `${[estClimb && "ascent and descent", estEle && "heights"].filter(Boolean).join(" and ")} from the terrain model (Copernicus DEM, 30 m grid, sampled every ${sampleM} m), to the nearest 10 m`}
         {(estEle || estClimb) && estTime && "; "}
         {estTime && "walking times from each stage's distance, ascent and descent by the German hiking standard DIN 33466 (4 km/h, 300 m/h up, 500 m/h down), without breaks"}
         {(estEle || estClimb || estTime) && "."}
@@ -1072,7 +1076,7 @@ const trailLd = JSON.stringify({
               <Explain id="steep-info" term={`Steep ≥ ${STEEP_PERCENT} %`} title="Steep stretches">
                 <p>
                   How many kilometres of the main route climb or descend at {STEEP_PERCENT} % or more ({degrees(STEEP_PERCENT)}°,
-                  15 m of height per 100 m), measured in 200 m stretches: on this trail {grad.steepUpKm} km up and{" "}
+                  15 m of height per 100 m), measured in {barM} m stretches: on this trail {grad.steepUpKm} km up and{" "}
                   {grad.steepDownKm} km down, the darkest parts of the profile. Such stretches are slow going uphill and hard
                   on the knees downhill.
                 </p>
@@ -1175,11 +1179,11 @@ const trailLd = JSON.stringify({
           <figcaption class="chart-info">
             <Explain id="about-terrain-chart" term="About this chart" title="Terrain along the route" icon>
               <p>
-                Heights from the Copernicus terrain model (30 m grid, every 100 m along the main route); it measures the
+                Heights from the Copernicus terrain model (30 m grid, every {sampleM} m along the main route); it measures the
                 treetops in forests, so heights may differ from signposts by some metres.
               </p>
               <p>
-                The profile colours each 200 m by its gradient in walking direction: the steeper, the darker, climbs warm
+                The profile colours each {barM} m by its gradient in walking direction: the steeper, the darker, climbs warm
                 and descents violet, from level ground to ±{RAMP_MAX} % and beyond.
               </p>
               {surface && (
@@ -1264,7 +1268,7 @@ const trailLd = JSON.stringify({
         <figcaption class="chart-info">
           <Explain id="about-landscape-chart" term="About this chart" title="Landscape along the route" icon>
             <p>
-              Land cover from ESA WorldCover 2021 (10 m satellite map), every 100 m along the main route; each point takes
+              Land cover from ESA WorldCover 2021 (10 m satellite map), every {sampleM} m along the main route; each point takes
               the most common class within 30 m, so the path itself doesn't count as bare ground. Its eleven classes are
               folded into the six groups shown. It says what the landscape looks like, not which plants grow there.
             </p>

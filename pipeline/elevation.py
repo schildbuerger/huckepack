@@ -31,6 +31,14 @@ from pipeline.routes import USER_AGENT, Cache
 
 ROOT = Path(__file__).resolve().parent.parent
 SPACING_M = 100
+# very long trails (the Pacific Crest Trail's 4,265 km) are sampled every 500 m, so their pages stay
+# under about 1 MB; the gradients then use 500 m bars (decided on 2026-10-31)
+LONG_TRAIL_M = 1_000_000
+LONG_SPACING_M = 500
+
+
+def spacing_for(total_m):
+    return LONG_SPACING_M if total_m > LONG_TRAIL_M else SPACING_M
 DEM_DIR = ROOT / "data" / "dem"
 TILE_URL = "https://copernicus-dem-30m.s3.eu-central-1.amazonaws.com/{name}/{name}.tif"
 
@@ -100,20 +108,22 @@ def route_samples(slug):
     )
     every = [c for f in stages for c in f["geometry"]["coordinates"]]
     proj = osm.Projection(sum(lat for _, lat in every) / len(every))
+    total = sum(math.dist(proj.xy(*a), proj.xy(*b)) for f in stages for a, b in zip(f["geometry"]["coordinates"], f["geometry"]["coordinates"][1:]))
+    spacing = spacing_for(total)
 
-    # samples every SPACING_M along the main stages, with their km and stage
+    # samples every `spacing` along the main stages, with their km and stage
     samples, starts, walked = [], [], 0.0
     for f in stages:
         line = f["geometry"]["coordinates"]
         xy = [proj.xy(*c) for c in line]
         starts.append({"number": f["properties"]["number"], "km": round(walked / 1000, 2)})
-        next_at = math.ceil(walked / SPACING_M) * SPACING_M
+        next_at = math.ceil(walked / spacing) * spacing
         for (a, b), (la, lb) in zip(zip(xy, xy[1:]), zip(line, line[1:])):
             seg = math.dist(a, b)
             while seg > 0 and next_at <= walked + seg:
                 t = (next_at - walked) / seg
                 samples.append((next_at / 1000, la[0] + t * (lb[0] - la[0]), la[1] + t * (lb[1] - la[1])))
-                next_at += SPACING_M
+                next_at += spacing
             walked += seg
     end = stages[-1]["geometry"]["coordinates"][-1]
     samples.append((walked / 1000, end[0], end[1]))
@@ -125,7 +135,7 @@ def build(slug, refresh=False):
 
     def download():
         hs = heights([(lon, lat) for _, lon, lat in samples])
-        return json.dumps({"spacingM": SPACING_M, "samples": len(samples), "elevation": [round(h, 1) for h in hs]}).encode()
+        return json.dumps({"spacingM": spacing_for(walked), "samples": len(samples), "elevation": [round(h, 1) for h in hs]}).encode()
 
     cache = Cache(slug, refresh)
     names = sorted({tile_name(lon, lat) for _, lon, lat in samples})
@@ -144,7 +154,7 @@ def build(slug, refresh=False):
     elevation = {
         "source": "copdem",
         "retrieved": cache.manifest["elevation-glo30.json"]["retrieved"],
-        "spacingM": SPACING_M,
+        "spacingM": spacing_for(walked),
         "routeKm": round(walked / 1000, 1),
         "stageStarts": starts,
         "highest": {"km": high[0], "m": high[1], **at(hi)},

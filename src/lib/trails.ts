@@ -254,13 +254,18 @@ export const WILD_CAMPING_LABELS: Record<string, string> = {
 // climb and descent are the steepest 500 m. A terrain model with a 90 m grid flattens and blurs
 // short pitches, so real gradients differ in places.
 export const STEEP_PERCENT = 15;
-const BAR_SAMPLES = 2;
-const STEEPEST_SAMPLES = 5;
+// samples per bar and per steepest stretch: 200 m and 500 m at the usual 100 m spacing; trails over
+// 1,000 km are sampled every 500 m (pipeline/elevation.py), so their bars are 500 m
+const barSamples = (spacingM: number) => Math.max(1, Math.round(200 / spacingM));
+const steepestSamples = (spacingM: number) => Math.max(1, Math.round(500 / spacingM));
+export const barMetres = (spacingM = 100) => barSamples(spacingM) * spacingM;
 
 type Point = [number, number];
 type Stretch = { fromKm: number; toKm: number; grade: number; stage: string };
 
-export function gradients(points: Point[], stageStarts: { number: string; km: number }[]) {
+export function gradients(points: Point[], stageStarts: { number: string; km: number }[], spacingM = 100) {
+  const BAR_SAMPLES = barSamples(spacingM);
+  const STEEPEST_SAMPLES = steepestSamples(spacingM);
   const grade = (a: Point, b: Point) => ((b[1] - a[1]) / ((b[0] - a[0]) * 1000)) * 100;
   const stageOf = (km: number) => [...stageStarts].reverse().find((s) => km >= s.km)?.number ?? "";
   const byStage = new Map<string, Point[]>();

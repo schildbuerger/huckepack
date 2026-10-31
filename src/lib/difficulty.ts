@@ -119,7 +119,7 @@ export function difficulty(t: Trail, d?: DerivedData) {
     const up = totals?.ascentM?.value ?? (est ? main.reduce((a, s) => a + estimates.get(s.number)!.ascentM!, 0) : undefined);
     if (up !== undefined)
       terrain.push(measure("climb", up / km, `${round(up / km)} m per km`, totals?.ascentM?.source ?? e.source, { estimate: !totals?.ascentM }));
-    const g = gradients(e.points, e.stageStarts);
+    const g = gradients(e.points, e.stageStarts, e.spacingM);
     const steep = ((g.steepUpKm + g.steepDownKm) / e.routeKm) * 100;
     terrain.push(measure("steep", steep, `${round(steep)} % of the way`, e.source));
   }

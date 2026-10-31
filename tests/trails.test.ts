@@ -3,7 +3,7 @@
 // `npm test` (Node's test runner; Node strips the types itself).
 import { test } from "node:test";
 import assert from "node:assert/strict";
-import { gradients, trailClimb, trailLength, walkingMinutes, stageTotals, STEEP_PERCENT } from "../src/lib/trails.ts";
+import { barMetres, gradients, trailClimb, trailLength, walkingMinutes, stageTotals, STEEP_PERCENT } from "../src/lib/trails.ts";
 import { mergeRuns, stripPaths, n1 } from "../src/lib/svg.ts";
 import { kmBetween, roundDistance } from "../src/lib/geo.ts";
 
@@ -68,6 +68,18 @@ test("gradients stay within each stage and find the steepest 500 m", () => {
   assert.equal(g.climb.stage, "2");
   assert.ok(g.steepUpKm > 0.5 && 20 >= STEEP_PERCENT);
   assert.equal(g.steepDownKm, 0);
+});
+
+test("long trails sampled every 500 m get 500 m bars", () => {
+  // 5 km climbing 10 %, samples every 500 m
+  const points: [number, number][] = [];
+  for (let i = 0; i <= 10; i++) points.push([i / 2, 500 + i * 50]);
+  const g = gradients(points, [{ number: "1", km: 0 }], 500);
+  assert.equal(barMetres(500), 500);
+  assert.equal(barMetres(), 200);
+  assert.equal(g.bars.length, 10);
+  assert.ok(g.bars.every((b) => b.grade === 10));
+  assert.equal(g.climb.grade, 10);
 });
 
 test("strip paths: one path per category, neighbouring runs joined", () => {
