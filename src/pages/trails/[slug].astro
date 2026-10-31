@@ -319,6 +319,18 @@ const degrees = (g: number) => Math.round((Math.atan(Math.abs(g) / 100) * 180) /
 
 // climate (pipeline/climate.py): twelve month columns; the season from the record is shaded
 const climate = derived?.climate;
+// chart data for the hover scripts: one JSON block per chart (issue #12 of the 2026-10-30 review),
+// compact tuples instead of HTML-escaped attributes; "<" escaped so the data can't close the script
+const jsonBlock = (data: unknown) => JSON.stringify(data).replace(/</g, "\\u003c");
+const terrainData =
+  elevation && grad
+    ? jsonBlock({
+        total: elevation.routeKm,
+        points: elevation.points,
+        bars: grad.bars.map((b) => [b.fromKm, b.toKm, b.grade, b.stage]),
+        runs: (surface?.runs ?? []).map((r) => [r.fromKm, r.toKm, r.category]),
+      })
+    : null;
 const MONTHS = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
 const MONTH_NAMES = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 const CLIM = { x0: 52, x1: 992, tTop: 30, tBottom: 210, wTop: 252, wBottom: 312, dTop: 348, months: 398, height: 406 };
@@ -763,7 +775,8 @@ const nav = [
         </div>
       </dl>
 
-      <figure class="chart climate" data-months={JSON.stringify(climate.months)}>
+      <figure class="chart climate">
+        <script is:inline type="application/json" class="chart-data" set:html={jsonBlock(climate.months)} />
         <ul class="legend" aria-hidden="true">
           <li><span class="swatch-key" style="--c: var(--clim-low)"></span>Lowest point</li>
           <li><span class="swatch-key" style="--c: var(--clim-high)"></span>Highest point</li>
@@ -1071,11 +1084,8 @@ const nav = [
       <div class="terrain-body">
         <figure
           class="chart terrain-chart"
-          data-points={JSON.stringify(elevation.points)}
-          data-bars={JSON.stringify(grad.bars)}
-          data-runs={JSON.stringify(surface?.runs ?? [])}
-          data-total={elevation.routeKm}
         >
+          <script is:inline type="application/json" class="chart-data" set:html={terrainData} />
           <div class="chart-scroll">
           <svg
             viewBox={`0 0 ${CHART.width} ${surface ? 236 : 222}`}
@@ -1185,17 +1195,14 @@ const nav = [
               <g>
                 <text class="lane-label" x={CHART.x0} y={i * 26 + 18}>{g.label}</text>
                 <line class="lane-track" x1={LANE_X0} x2={LANE_X1} y1={i * 26 + 13} y2={i * 26 + 13} />
-                {landcover.runs.filter((r) => r.group === g.id).map((r) => (
-                  <rect
-                    x={laneX(r.fromKm)}
-                    y={i * 26 + 5}
-                    width={n1(Math.max(laneX(r.toKm) - laneX(r.fromKm), 0.8))}
-                    height="16"
-                    rx="2"
-                    style={`fill: var(--land-${g.id})`}
-                  >
-                    <title>{g.label}, km {r.fromKm.toFixed(1)}–{r.toKm.toFixed(1)}</title>
-                  </rect>
+                {stripPaths(
+                  landcover.runs.filter((r) => r.group === g.id).map((r) => ({ ...r, category: g.id })),
+                  laneX,
+                  i * 26 + 5,
+                  16,
+                  0.8,
+                ).map((strip) => (
+                  <path d={strip.d} style={`fill: var(--land-${g.id})`} />
                 ))}
                 <text class="lane-share" x={CHART.x1} y={i * 26 + 18} text-anchor="end">{pct(landcover.shares[g.id])}</text>
               </g>
@@ -1211,8 +1218,23 @@ const nav = [
             })}
             <text class="tick-label end" x={LANE_X0} y={landRows.length * 26 + 38}>0 km</text>
             <text class="tick-label end" x={LANE_X1} y={landRows.length * 26 + 38} text-anchor="end">{landcover.routeKm} km</text>
+            <line class="cursor" x1="0" x2="0" y1="0" y2={landRows.length * 26 + 4} visibility="hidden" />
           </svg>
         </div>
+        <div class="tip" role="status" hidden><strong></strong><span></span></div>
+        <script
+          is:inline
+          type="application/json"
+          class="chart-data"
+          set:html={jsonBlock({
+            total: landcover.routeKm,
+            x0: LANE_X0,
+            x1: LANE_X1,
+            lanes: landRows.map((g) => g.label),
+            runs: landcover.runs.map((r) => [r.fromKm, r.toKm, landRows.findIndex((g) => g.id === r.group)]),
+            stages: landcover.stageStarts.map((st) => [st.number, st.km]),
+          })}
+        />
         <figcaption class="chart-info">
           <Explain id="about-landscape-chart" term="About this chart" title="Landscape along the route" icon>
             <p>
@@ -1475,10 +1497,15 @@ const nav = [
     const cursor = figure.querySelector<SVGLineElement>(".cursor")!;
     const dot = figure.querySelector<SVGCircleElement>(".cursor-dot")!;
     const line = figure.querySelector<SVGPathElement>(".line")!;
-    const points: [number, number][] = JSON.parse(figure.dataset.points!);
-    const bars: { fromKm: number; toKm: number; grade: number; stage: string }[] = JSON.parse(figure.dataset.bars!);
-    const runs: { category: string; fromKm: number; toKm: number }[] = JSON.parse(figure.dataset.runs!);
-    const total = Number(figure.dataset.total);
+    const data: {
+      total: number;
+      points: [number, number][];
+      bars: [number, number, number, string][]; // fromKm, toKm, grade, stage
+      runs: [number, number, string][]; // fromKm, toKm, category
+    } = JSON.parse(figure.querySelector(".chart-data")!.textContent!);
+    const { points, total } = data;
+    const bars = data.bars.map(([fromKm, toKm, grade, stage]) => ({ fromKm, toKm, grade, stage }));
+    const runs = data.runs.map(([fromKm, toKm, category]) => ({ fromKm, toKm, category }));
     const GROUND: Record<string, string> = { natural: "natural ground", gravel: "gravel", paved: "paved", unknown: "unknown surface" };
     const X0 = 8;
     const X1 = 992;
@@ -1522,13 +1549,63 @@ const nav = [
     document.addEventListener("keydown", (e) => e.key === "Escape" && hide());
   }
 
+  // Landscape: one tooltip at the pointer (the lane's landscape, km and stage there), from the
+  // chart's data, instead of a title on every run.
+  for (const figure of document.querySelectorAll<HTMLElement>(".lanes")) {
+    const svg = figure.querySelector("svg")!;
+    const tip = figure.querySelector<HTMLElement>(".tip")!;
+    const cursor = figure.querySelector<SVGLineElement>(".cursor")!;
+    const data: {
+      total: number;
+      x0: number;
+      x1: number;
+      lanes: string[];
+      runs: [number, number, number][]; // fromKm, toKm, lane
+      stages: [string, number][]; // number, start km
+    } = JSON.parse(figure.querySelector(".chart-data")!.textContent!);
+    const height = svg.viewBox.baseVal.height;
+    const show = (clientX: number) => {
+      const box = svg.getBoundingClientRect();
+      const vx = Math.min(Math.max(((clientX - box.left) / box.width) * 1000, data.x0), data.x1);
+      const km = ((vx - data.x0) / (data.x1 - data.x0)) * data.total;
+      const run = data.runs.find(([from, to]) => km >= from && km <= to);
+      if (!run) return;
+      const stage = data.stages.filter(([, start]) => start <= km).at(-1)?.[0];
+      cursor.setAttribute("x1", String(vx));
+      cursor.setAttribute("x2", String(vx));
+      cursor.setAttribute("visibility", "visible");
+      tip.querySelector("strong")!.textContent = data.lanes[run[2]];
+      tip.querySelector("span")!.textContent = `km ${km.toFixed(1)}${stage ? ` · stage ${stage}` : ""}`;
+      tip.hidden = false;
+      const fbox = figure.getBoundingClientRect();
+      const half = tip.offsetWidth / 2;
+      const px = box.left - fbox.left + (vx / 1000) * box.width;
+      tip.style.left = `${Math.min(Math.max(px, half), fbox.width - half)}px`;
+      tip.style.top = `${box.top - fbox.top + ((run[2] * 26 + 3) / height) * box.height}px`;
+    };
+    const hide = () => {
+      tip.hidden = true;
+      cursor.setAttribute("visibility", "hidden");
+    };
+    svg.addEventListener("pointermove", (e) => show(e.clientX));
+    svg.addEventListener("pointerleave", (e) => e.pointerType === "mouse" && hide());
+    svg.addEventListener("click", (e) => {
+      e.stopPropagation();
+      show(e.clientX);
+    });
+    document.addEventListener("click", hide);
+    document.addEventListener("keydown", (e) => e.key === "Escape" && hide());
+  }
+
   // Climate tooltip: everything about the month under the pointer.
   const MONTH_NAMES = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
   type Place = { tmax: number; tmin: number; wetDays: number; snowDays: number; frostNights: number };
   for (const figure of document.querySelectorAll<HTMLElement>(".climate")) {
     const svg = figure.querySelector("svg")!;
     const tip = figure.querySelector<HTMLElement>(".tip")!;
-    const months: { month: number; low: Place; high: Place; daylightH: number }[] = JSON.parse(figure.dataset.months!);
+    const months: { month: number; low: Place; high: Place; daylightH: number }[] = JSON.parse(
+      figure.querySelector(".chart-data")!.textContent!,
+    );
     // round first, so −0.3 °C reads 0, not −0
     const c = (v: number) => {
       const r = Math.round(v);
@@ -2483,6 +2560,7 @@ const nav = [
   /* landscape: one lane per group along the route; the chart opens the section, so it carries the
      strips' rule in text colour on top, like every other section */
   .lanes {
+    position: relative;
     margin: 0;
     padding-top: 38px;
     border-top: 1px solid var(--text);
@@ -2502,6 +2580,9 @@ const nav = [
   .lanes .lane-track {
     stroke: var(--line);
     stroke-width: 1;
+  }
+  .lanes svg {
+    cursor: crosshair;
   }
   /* colour key in the surface figures (not .key: that is the key figures section) */
   .swatch-key {
