@@ -130,8 +130,8 @@ sources:
     licence: "CC BY 4.0; © ESA WorldCover project 2021 / Contains modified Copernicus Sentinel data (2021) processed by ESA WorldCover consortium"
     retrieved: {today}
   - id: era5
-    title: "Open-Meteo Historical Weather API: ERA5 and ERA5-Land reanalysis, daily 1995–2024"
-    url: https://open-meteo.com/en/docs/historical-weather-api
+    title: "Open-Meteo open data on AWS: ERA5-Land temperature and ERA5 precipitation, snow and wind, daily 1995–2024 (reanalysis)"
+    url: https://github.com/open-meteo/open-data
     licence: CC BY 4.0 (Open-Meteo); contains modified Copernicus Climate Change Service information
     retrieved: {today}
   - id: osrm

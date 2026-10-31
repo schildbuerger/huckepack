@@ -1,11 +1,11 @@
 {
   "climate-high.json": {
-    "retrieved": "2026-10-31T04:24:16+00:00",
-    "url": "https://archive-api.open-meteo.com/v1/archive?latitude=49.0&longitude=13.4&elevation=1440&start_date=1995-01-01&end_date=2024-12-31&daily=temperature_2m_max,temperature_2m_min,precipitation_sum,snowfall_sum,wind_speed_10m_max,wind_gusts_10m_max&timezone=auto"
+    "retrieved": "2026-10-31T16:09:03+00:00",
+    "url": "https://openmeteo.s3.us-west-2.amazonaws.com/data/copernicus_era5_land+copernicus_era5?latitude=49.0&longitude=13.4&elevation=1440"
   },
   "climate-low.json": {
-    "retrieved": "2026-10-31T04:23:05+00:00",
-    "url": "https://archive-api.open-meteo.com/v1/archive?latitude=48.6&longitude=13.5&elevation=290&start_date=1995-01-01&end_date=2024-12-31&daily=temperature_2m_max,temperature_2m_min,precipitation_sum,snowfall_sum,wind_speed_10m_max,wind_gusts_10m_max&timezone=auto"
+    "retrieved": "2026-10-31T16:05:48+00:00",
+    "url": "https://openmeteo.s3.us-west-2.amazonaws.com/data/copernicus_era5_land+copernicus_era5?latitude=48.6&longitude=13.5&elevation=290"
   },
   "elevation-glo30.json": {
     "retrieved": "2026-10-31T04:21:51+00:00",

@@ -6,14 +6,16 @@
 
 Needs the elevation step (pipeline.elevation), whose highest and lowest points of the main
 route are the two places looked up: the trail's high and low ground. For each, 30 years of
-daily weather (YEARS) from the Open-Meteo historical weather API (ERA5 and ERA5-Land reanalysis,
-CC BY 4.0; adjusted to the place's real elevation; cached in data/raw/<slug>/climate-*.json),
-averaged per month. Each place is looked up at its ERA5-Land grid cell (0.1°, the data's own
-resolution) and its height to 10 m (`cell()`), so a cached place stays valid while the route's
-highest or lowest point stays in that cell: rebuilding a route rarely costs a download. The free
-API allows about 10,000 calls a day and counts one place (30 years) as about 780, so about six
-trails a day: when the daily quota is reached the step leaves the trail pending (`pending()`,
-reported by pipeline.all's check) instead of failing, and `--pending` catches up later. Monthly
+daily weather (YEARS) from Open-Meteo's open data on AWS (pipeline/era5_open_data.py: ERA5-Land
+temperature at 0.1°, moved to the place's height; ERA5 precipitation, wind and gusts at 0.25°;
+snow from precipitation by the place's temperature; CC BY 4.0; no account and no quota, about
+three minutes a place; cached in data/raw/<slug>/climate-*.json), averaged per month. Until
+2026-10-31 the step asked Open-Meteo's historical API, whose free quota allowed about six trails a
+day (issue #89); against it, temperatures agree within 0.7 °C, snow and stormy days and
+precipitation differ more in the mountains and Iceland (the coarser ERA5 cells). Each place is
+looked up at its ERA5-Land grid cell (0.1°) and its height to 10 m (`cell()`), so a cached place
+stays valid while the route's highest or lowest point stays in that cell: rebuilding a route
+rarely costs a download. Monthly
 figures: day highs, night lows, wet days (at least 1 mm), snow days (at least 1 cm),
 frost nights (below 0 °C), precipitation, the mean daily top wind (the highest hourly mean at
 10 m) and stormy days (gusts of GUSTY_KMH or more). Daylight is computed, not downloaded: sunrise to sunset on the 15th of each month at the trail's latitude. Writes
@@ -30,10 +32,15 @@ import urllib.request
 from collections import defaultdict
 from pathlib import Path
 
+from pipeline import era5_open_data
 from pipeline.routes import USER_AGENT, Cache
 
 ROOT = Path(__file__).resolve().parent.parent
 API = "https://archive-api.open-meteo.com/v1/archive"
+# where the daily weather comes from now (pipeline/era5_open_data.py); a climate built another way
+# (the API, before 2026-10-31) is due again, so every trail shares one method
+OPEN_DATA = "https://openmeteo.s3.us-west-2.amazonaws.com/data/copernicus_era5_land+copernicus_era5"
+METHOD = "open-data-2026-10"
 YEARS = (1995, 2024)  # 30 full years, the usual length for a climate average
 DAILY = "temperature_2m_max,temperature_2m_min,precipitation_sum,snowfall_sum,wind_speed_10m_max,wind_gusts_10m_max"
 GUSTY_KMH = 70  # daily top gust from which a hiker can be blown off balance on exposed ground
@@ -67,6 +74,14 @@ def daylight_hours(lat, month):
 
 
 def fetch(place):
+    """The place's 30 years of daily weather from the open data: (url, download())."""
+    c = cell(place)
+    url = f"{OPEN_DATA}?latitude={c['lat']}&longitude={c['lon']}&elevation={c['m']}"
+    return url, lambda: json.dumps({"daily": era5_open_data.daily(c["lat"], c["lon"], c["m"], YEARS)}).encode()
+
+
+def fetch_api(place):
+    """The same from Open-Meteo's historical API (before 2026-10-31; about six trails a day)."""
     c = cell(place)
     url = (
         f"{API}?latitude={c['lat']}&longitude={c['lon']}&elevation={c['m']}"
@@ -136,8 +151,8 @@ def build(slug, refresh=False):
         url, download = fetch(place)
         name = f"climate-{pid}.json"
         cached = cache.manifest.get(name)
-        if cached and cell_of_url(cached["url"]) != cell(place):
-            (cache.dir / name).unlink(missing_ok=True)  # the point moved to another cell
+        if cached and (cell_of_url(cached["url"]) != cell(place) or not cached["url"].startswith(OPEN_DATA)):
+            (cache.dir / name).unlink(missing_ok=True)  # the point moved to another cell, or came from the API
         try:
             data, fresh = cache.get(name, url, download)
         except QuotaReached as error:
@@ -155,6 +170,7 @@ def build(slug, refresh=False):
     ]
     climate = {
         "source": "era5",
+        "method": METHOD,
         "retrieved": min(cache.manifest[f"climate-{pid}.json"]["retrieved"] for pid in per_place),
         "years": list(YEARS),
         "places": places,
@@ -177,7 +193,7 @@ def pending(slug):
     elevation, climate = derived.get("elevation"), derived.get("climate")
     if not elevation or "lat" not in elevation["highest"]:
         return False  # not ready for this step yet
-    if not climate:
+    if not climate or climate.get("method") != METHOD:
         return True
     have = {p["id"]: cell(p) for p in climate["places"]}
     return any(have.get(pid) != cell(elevation[key]) for pid, key, _ in PLACES)
