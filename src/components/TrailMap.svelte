@@ -24,6 +24,7 @@
     end,
     routeAttribution,
     detours = [],
+    children,
     fill = false,
   }: {
     routeUrl: string | null;
@@ -31,6 +32,9 @@
     end: Point;
     routeAttribution: string | null;
     detours?: ("foot" | "train" | "bus")[]; // how the route's detours go, for the legend
+    // the route drawn at build time (src/lib/route-preview.ts), passed in as static markup (not a prop,
+    // which the page would carry a second time as data), shown until the map has drawn
+    children?: import("svelte").Snippet;
     fill?: boolean; // fill the height its parent gives (a flex column) instead of a fixed aspect ratio
   } = $props();
 
@@ -50,13 +54,27 @@
 
   let container: HTMLDivElement;
   let failed = $state(false);
+  let showPreview = $state(true);
 
   onMount(() => {
     let map: import("maplibre-gl").Map | undefined;
     let cancelled = false;
     let stopWatchingTheme = () => {};
 
-    (async () => {
+    // the map (MapLibre, its stylesheet, the terrain worker: the costliest part of the page) starts on
+    // the visitor's first scroll, pointer move, tap or key press anywhere on the page, not on load;
+    // the route preview holds its place until then (PageSpeed, issue #86)
+    const STARTERS = ["scroll", "wheel", "pointermove", "pointerdown", "touchstart", "keydown"] as const;
+    const stopListening = () => {
+      for (const type of STARTERS) window.removeEventListener(type, go);
+    };
+    const go = () => {
+      stopListening();
+      startMap();
+    };
+    for (const type of STARTERS) window.addEventListener(type, go, { passive: true });
+
+    const startMap = () => (async () => {
       // MapLibre's stylesheet comes with its script, not in the page's head (src/lib/map-theme.ts)
       const [maplibre, { default: contour }] = await Promise.all([import("maplibre-gl"), import("maplibre-contour"), loadMaplibreCss(maplibreCssUrl)]);
       maplibre.setWorkerUrl(workerUrl);
@@ -94,6 +112,8 @@
       });
       map.addControl(new maplibre.NavigationControl({ showCompass: false }), "top-right");
       map.addControl(new maplibre.ScaleControl({ unit: "metric" }), "bottom-left");
+      // the preview gives way once the map has drawn, framed the same, so the route stays put
+      map.once("load", () => (showPreview = false));
 
       // runs on the first style and again after every theme switch, since a new style drops our layers
       map.on("style.load", () => {
@@ -244,6 +264,7 @@
 
     return () => {
       cancelled = true;
+      stopListening();
       stopWatchingTheme();
       map?.remove();
     };
@@ -251,6 +272,7 @@
 </script>
 
 <div class="map" class:fill bind:this={container} role="region" aria-label="Map of the trail">
+  {#if showPreview}{@render children?.()}{/if}
   {#if failed}<p class="failed">The map couldn't be loaded.</p>{/if}
 </div>
 <ul class="legend">
@@ -265,6 +287,7 @@
 
 <style>
   .map {
+    position: relative;
     width: 100%;
     aspect-ratio: 16 / 10;
     min-height: 300px;
@@ -273,7 +296,55 @@
     overflow: hidden;
     background: var(--line);
   }
+  /* the route preview (src/lib/route-preview.ts) until the map starts: over the map's box, which
+     clips what it draws past the route's frame */
+  .map :global(.route-preview) {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    width: 100%;
+    height: 100%;
+    background: var(--surface);
+  }
+  .map :global(.route-preview .rp-casing) {
+    fill: none;
+    stroke: var(--bg);
+    stroke-width: 7;
+    stroke-linejoin: round;
+    stroke-linecap: round;
+    vector-effect: non-scaling-stroke;
+  }
+  .map :global(.route-preview .rp-main) {
+    fill: none;
+    stroke: var(--accent);
+    stroke-width: 4;
+    stroke-linejoin: round;
+    stroke-linecap: round;
+    vector-effect: non-scaling-stroke;
+  }
+  .map :global(.route-preview .rp-other) {
+    fill: none;
+    stroke: var(--accent);
+    stroke-width: 3;
+    stroke-dasharray: 6 6;
+    opacity: 0.7;
+    vector-effect: non-scaling-stroke;
+  }
+  .map :global(.route-preview .rp-start),
+  .map :global(.route-preview .rp-end) {
+    stroke: var(--text);
+    stroke-width: 2.5;
+    vector-effect: non-scaling-stroke;
+  }
+  .map :global(.route-preview .rp-start) {
+    fill: var(--bg);
+  }
+  .map :global(.route-preview .rp-end) {
+    fill: var(--text);
+  }
   .failed {
+    position: relative;
+    z-index: 2;
     margin: 0;
     padding: 16px;
     color: var(--muted);
