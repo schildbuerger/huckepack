@@ -1,0 +1,235 @@
+name: Sauerland-Waldroute
+added: 2026-10-31
+website: https://www.sauerland-waldroute.de/
+wikidata: Q2227184
+designation: Qualitätsweg Wanderbares Deutschland (Deutscher Wanderverband)
+managedBy:
+  # the site's footer: "Naturpark Arnsberger Wald - Projektbüro Sauerland-Waldroute", Soest; the
+  # rangers of Wald und Holz NRW look after the path with the SGV (the flyer)
+  - name: Naturpark Arnsberger Wald – Projektbüro Sauerland-Waldroute
+    url: https://www.sauerland-waldroute.de/
+trailType: point-to-point
+continents: [Europe]
+countries: [DE]
+regions: [Nordrhein-Westfalen]
+protectedAreas:
+  - Naturpark Arnsberger Wald
+  - Naturpark Sauerland-Rothaargebirge
+  - Naturpark Diemelsee
+termini:
+  # the first point of stage 1's line (the Tor zur Waldroute at the Alexanderhöhe, Iserlohn; German
+  # Wikipedia's start near the Parktheater is the same place) and the last of stage 13 (Marsberg)
+  start:
+    name: Iserlohn (Alexanderhöhe)
+    lat: 51.3706
+    lon: 7.68765
+  end:
+    name: Marsberg
+    lat: 51.45575
+    lon: 8.83216
+  source: swr
+established:
+  # opened on 17 May 2008 in Hirschberg
+  year: 2008
+  source: wikipedia
+waymarking:
+  # "Ein weißes W auf grünem Grund kennzeichnet den Hauptweg …"; "Die Zu- und Rundwege sind genau
+  # umgekehrt mit einem grünen W auf weißem Grund gekennzeichnet"
+  text: A white W on a green square; access and loop paths a green W on white
+  symbol: white-w-on-green
+  source: swr
+length:
+  # "Auf über 240 km verbindet die Sauerland-Waldroute …"; the flyer: "240 km". The whole route,
+  # both halves of the loop included (see notes)
+  - km: 240
+    source: swr
+days:
+  # the flyer: "Von Iserlohn nach Marsberg in 13 Etappen"
+  min: 13
+  max: 13
+  source: swr-flyer
+stages:
+  # the stage tours of sauerland-waldroute.de ("Die Waldroute in 19 Etappen"): stages 1–7 from
+  # Iserlohn to Hirschberg, then a loop from the Bilsteintal near Warstein: the Nordroute (8–13) to
+  # Marsberg is the main route (the flyer's "Von Iserlohn nach Marsberg in 13 Etappen"), the
+  # Südroute (14–19, the flyer's "Alternative Route von Marsberg zum Bilsteintal") a variant, as
+  # walked from Marsberg. The site has no page for stage 2; its figures come from the flyer, and
+  # OSM's relation guides its map line. The stage pages carry their map's line, which only guides
+  # the OSM matcher (kept local); their GPX download needs a licence key and isn't used
+  source: swr
+  list:
+    - { number: "1", kind: main, from: Iserlohn, to: Stephanopeler Tal, km: 13, ascentM: 468, descentM: 424, minutes: 234, track: "https://www.sauerland-waldroute.de/de/neusta-touren/sauerland-waldroute-etappe-1-iserlohn-stephanopeler-tal" }
+    - { number: "2", kind: main, from: Stephanopeler Tal, to: Volkringhausen, km: 12.4, ascentM: 269, descentM: 367, source: swr-flyer, relation: 18268527, end: { lat: 51.36152, lon: 7.87144 } }
+    - { number: "3", kind: main, from: Volkringhausen, to: Sundern-Amecke, km: 13, ascentM: 351, descentM: 264, minutes: 223, track: "https://www.sauerland-waldroute.de/de/neusta-touren/sauerland-waldroute-etappe-3-volkringhausen-sundern-amecke" }
+    - { number: "4", kind: main, from: Sundern-Amecke, to: Arnsberg (Schlossberg), km: 20.1, ascentM: 457, descentM: 508, minutes: 335, track: "https://www.sauerland-waldroute.de/de/neusta-touren/sauerland-waldroute-etappe-4-sundern-amecke-arnsberg-schlossberg" }
+    - { number: "5", kind: main, from: Arnsberg (Schlossberg), to: Torhaus Möhnesee, km: 11.5, ascentM: 171, descentM: 166, minutes: 185, track: "https://www.sauerland-waldroute.de/de/neusta-touren/sauerland-waldroute-etappe-5-arnsberg-schlossberg-torhaus-moehnesee" }
+    - { number: "6", kind: main, from: Torhaus Möhnesee, to: Neuhaus, km: 6.3, ascentM: 74, descentM: 74, minutes: 100, track: "https://www.sauerland-waldroute.de/de/neusta-touren/sauerland-waldroute-etappe-6-torhaus-moehnesee-neuhaus" }
+    - { number: "7", kind: main, from: Neuhaus, to: Hirschberg, km: 20.4, ascentM: 560, descentM: 386, minutes: 348, track: "https://www.sauerland-waldroute.de/de/neusta-touren/sauerland-waldroute-etappe-7-neuhaus-hirschberg-fuerstenkamp" }
+    - { number: "8", kind: main, from: Hirschberg, to: Bilsteintal, km: 2.8, ascentM: 22, descentM: 77, minutes: 45, track: "https://www.sauerland-waldroute.de/de/neusta-touren/sauerland-waldroute-etappe-8-nordroute-hirschberg-fuerstenberg-bilsteintal" }
+    - { number: "9", kind: main, from: Bilsteintal, to: Kallenhardt, km: 13.8, ascentM: 304, descentM: 241, minutes: 226, track: "https://www.sauerland-waldroute.de/de/neusta-touren/sauerland-waldroute-etappe-9-nordroute-bilsteintal-kallenhardt" }
+    - { number: "10", kind: main, from: Kallenhardt, to: Bibertal, km: 5.3, ascentM: 112, descentM: 224, minutes: 96, track: "https://www.sauerland-waldroute.de/de/neusta-touren/sauerland-waldroute-etappe-10-nordroute-kallenhardt-bibertal" }
+    - { number: "11", kind: main, from: Bibertal, to: Ringelstein, km: 11.5, ascentM: 168, descentM: 222, minutes: 184, track: "https://www.sauerland-waldroute.de/de/neusta-touren/sauerland-waldroute-etappe-11-nordroute-bibertal-ringelstein" }
+    - { number: "12", kind: main, from: Ringelstein, to: Brilon-Alme, km: 12.1, ascentM: 282, descentM: 237, minutes: 200, track: "https://www.sauerland-waldroute.de/de/neusta-touren/sauerland-waldroute-etappe-12-nordroute-bueren-ringelstein-brilon-alme" }
+    - { number: "13", kind: main, from: Brilon-Alme, to: Marsberg, km: 26.1, ascentM: 433, descentM: 467, minutes: 425, track: "https://www.sauerland-waldroute.de/de/neusta-touren/sauerland-waldroute-etappe-13-nordroute-brilon-alme-marsberg" }
+    - { number: "14", kind: variant, from: Marsberg, to: Diemeltalsperre, km: 22.3, ascentM: 508, descentM: 429, minutes: 400, track: "https://www.sauerland-waldroute.de/de/neusta-touren/sauerland-waldroute-etappe-14-suedroute-marsberg-diemeltalsperre" }
+    - { number: "15", kind: variant, from: Diemeltalsperre, to: Petersborn, km: 16.7, ascentM: 552, descentM: 400, minutes: 292, track: "https://www.sauerland-waldroute.de/de/neusta-touren/sauerland-waldroute-etappe-15-suedroute-diemeltalsperre-petersborn" }
+    - { number: "16", kind: variant, from: Petersborn, to: Langer Berg, km: 6.1, ascentM: 163, descentM: 174, minutes: 106, track: "https://www.sauerland-waldroute.de/de/neusta-touren/sauerland-waldroute-etappe-16-suedroute-brilon-petersborn-langer-berg-olsberg" }
+    - { number: "17", kind: variant, from: Langer Berg, to: Föckinghausen, km: 17.7, ascentM: 510, descentM: 562, minutes: 311, track: "https://www.sauerland-waldroute.de/de/neusta-touren/sauerland-waldroute-etappe-17-suedroute-langer-berg-foeckinghausen" }
+    - { number: "18", kind: variant, from: Föckinghausen, to: Eversberg, km: 6.1, ascentM: 124, descentM: 170, minutes: 105, track: "https://www.sauerland-waldroute.de/de/neusta-touren/sauerland-waldroute-etappe-18-suedroute-foeckinghausen-buchplette-eversberg" }
+    - { number: "19", kind: variant, from: Eversberg, to: Bilsteintal, km: 9.9, ascentM: 233, descentM: 307, minutes: 164, track: "https://www.sauerland-waldroute.de/de/neusta-touren/sauerland-waldroute-etappe-19-suedroute-eversberg-buchplette-bilsteintal" }
+route:
+  # built by `python -m pipeline.all sauerland-waldroute`: OSM ways matched to the stage lines
+  source: osm
+  publishable: true
+difficulty:
+  estimated:
+    sac: T1
+    basis: >-
+      The site rates every stage "Mittel" and recommends "Festes Schuhwerk und wetterfeste
+      Kleidung"; forest paths and tracks through low wooded hills, waymarked throughout, no steep
+      or exposed passages described (German Wikipedia: "leicht"). That is hiking on good paths (T1).
+    source: swr
+season:
+  # the stage pages' "Empfohlene Jahreszeiten": every main stage recommends March to October; most
+  # also the winter months, stage 5 (Arnsberg – Möhnesee) only March to October
+  months: [3, 4, 5, 6, 7, 8, 9, 10]
+  text: March to October
+  source: swr
+sleeping:
+  # hosts along the route ("Unterkünfte buchen", the SGV-Jugendhof and the Waldhaus
+  # Föckinghausen), and four bookable trekking sites on the trail
+  types: [hotel, guesthouse, campsite]
+  source: swr
+wildCamping:
+  status: restricted
+  rule: >-
+    In North Rhine-Westphalia camping in the forest is forbidden (Landesforstgesetz § 3). Tents at
+    the trail's four bookable trekking sites: am SGV-Jugendhof and am Lattenberg (Arnsberg),
+    Himmelsnah (Brilon-Petersborn) and Buttenberg (Südroute).
+  source: lfog-nrw
+access:
+  # Iserlohn station near the start (the site's "Iserlohner Wanderbahnhof"), Dortmund Airport near
+  # the start, Paderborn/Lippstadt Airport nearest the end in Marsberg. Coordinates from OSM;
+  # distances by pipeline/access.py
+  - kind: station
+    name: Iserlohn station
+    lat: 51.37329
+    lon: 7.69136
+    source: osm
+  - kind: airport
+    name: Dortmund Airport (DTM)
+    lat: 51.5164
+    lon: 7.61277
+    source: osm
+  - kind: airport
+    name: Paderborn/Lippstadt Airport (PAD)
+    lat: 51.6146
+    lon: 8.61906
+    source: osm
+tags: [sauerland, forests, lakes, caves, legends]
+notes:
+  - >-
+    Layout: from Iserlohn to the Bilsteintal near Warstein (stages 1–8), then a loop: the
+    Nordroute to Marsberg (9–13) and the Südroute back from Marsberg to the Bilsteintal (14–19).
+    The site lists 19 stages over "über 240 km" (the whole loop; the stages add up to 247.1 km);
+    the flyer counts 13 from Iserlohn to Marsberg, the Südroute an "Alternative Route". The record
+    follows the flyer: main route 1–13 via the Nordroute (168.3 km), the Südroute (78.8 km) a
+    variant. The length shown is the stated 240 km, as on the Goldsteig.
+  - >-
+    Stage 2 (Stephanopeler Tal – Volkringhausen) has no page on the site (its link leads to the
+    home page); the flyer gives 12.4 km, 269 m up, 367 m down, and no time, so the page estimates
+    it (DIN 33466). The flyer (2016) also lists the other stages; most agree with the site within
+    10 %, except climbs on stages 4–6 and 13 (e.g. stage 5 246 / 245 m against 171 / 166 m) and on
+    the Südroute's stage 14 (24.8 km, 770 / 658 m against 22.3 km, 508 / 429 m) and 17 (15.8
+    against 17.7 km): the site's figures are newer and kept.
+  - >-
+    Route (pipeline, 2026-10-31, Geofabrik extracts): the stage pages' map lines guide the matcher;
+    stage 2 follows OSM's relation 18268527 (Iserlohn – Warstein), cut at stage 3's start. All
+    stages match at least 96 %, except stage 11 (Bibertal – Ringelstein, 93 %: OSM lacks a short
+    path there); the main route is 168.7 km against the stated 168.3 km. Stage 5 comes out at
+    13.3 km against the stated 11.5 km: the stage page's own line is 13.6 km. On the Südroute's
+    stage 17 the line crosses the Ruhr at Bestwig where OSM has no way (it maps the driveway
+    there as removed, way 39441577); the matcher bridges two gaps of 24 and 56 m there. The
+    site's current notices name forest work between Bestwig and Föckinghausen, no closure.
+  - >-
+    Ascent: no stated total; the main stages add up to 3,671 m up. The terrain model gives about
+    5,340 m (it measures the treetops; 83 % of the route is forest).
+  - >-
+    Water: OSM has 10 drinking water points along the main route; the longest stretch without one
+    is 49.9 km, the end of the Nordroute (km 118.8–168.7, Kallenhardt to Marsberg). The site names
+    inns and stage towns, no water points.
+  - >-
+    Tree line: none in reach. The main route tops out at about 544 m (terrain model, in the Balver
+    Wald), the Südroute at the Lörmecke-Turm (580.9 m); the Sauerland's hills are forested to the
+    top and have no natural tree line.
+  - >-
+    Data check (2026-10-31). Second source: German Wikipedia (240 km, Iserlohn near the
+    Parktheater, opened 17 May 2008, the white W on green, highest point the Lörmecke-Turm 580.9 m,
+    lowest Arnsberg-Gierskämpen about 182 m, "leicht", "ganzjährig", 16 stages of 5.4–21.7 km, no
+    stage list). Agree: length 240 km, start, opening year, waymark, lowest point (182 m on the
+    terrain model too). Wikipedia's end is Warstein, where the loop begins; the site and flyer end
+    in Marsberg. The highest point lies on the Südroute (stage 19 page: 573 m). Over 10 % apart:
+    the stage count (13 against 16) and the season (Wikipedia all year; the stage pages recommend
+    March to October on every main stage, most stages all year), see dataCheck. No independent
+    source gives stage figures; the built page's stage table was checked against the site and the
+    flyer.
+dataCheck:
+  # working rule 2: German Wikipedia; stage figures against the built page (no second source)
+  date: 2026-10-31
+  against: [wikipedia]
+  pageAgainst: [swr, swr-flyer]
+  deviations:
+    - { figure: "Stages (days)", ours: "13", theirs: "16", source: wikipedia }
+    - { figure: "Season", ours: "March to October", theirs: "all year", source: wikipedia }
+sources:
+  - id: swr
+    title: "Naturpark Arnsberger Wald – Projektbüro Sauerland-Waldroute: sauerland-waldroute.de (the route, stages, waymarks, trekking sites, current notices; stage tours: distances, times, climbs, recommended months)"
+    url: https://www.sauerland-waldroute.de/de/tourenplanung/wandern-in-etappen
+    licence: All rights reserved (facts only)
+    retrieved: 2026-10-31
+  - id: swr-flyer
+    title: "Sauerland-Waldroute: Übersichtskarte und Informationen (flyer, as of 08/2016; stage list with distances and climbs; on iserlohn.de)"
+    url: https://www.iserlohn.de/fileadmin/user_upload/Dokumente/Tourismus/Broschueren___Flyer/5725553_H16-2418_H16-2418_Faltplan_Waldroute_kl_1_.pdf
+    licence: All rights reserved (facts only)
+    retrieved: 2026-10-31
+  - id: lfog-nrw
+    title: "Landesforstgesetz Nordrhein-Westfalen (LFoG), § 3 (1) e: no camping in the forest; sauerland-waldroute.de: Trekkingplätze am Weg"
+    url: https://lexmea.de/de/gesetz/lfog-nrw/3
+    licence: Public domain (state law); sauerland-waldroute.de all rights reserved (facts only)
+    retrieved: 2026-10-31
+  - id: wikipedia
+    title: "Wikipedia (de): Sauerland-Waldroute (opening year; data check)"
+    url: https://de.wikipedia.org/wiki/Sauerland-Waldroute
+    licence: CC BY-SA 4.0
+    retrieved: 2026-10-31
+  - id: wikimedia
+    title: "Wikimedia: page views of the trail's Wikipedia articles in every language, by people, over twelve months (Wikidata sitelinks, pageview API)"
+    url: https://wikimedia.org/api/rest_v1/
+    licence: CC0 1.0 (pageview data); Wikidata CC0
+    retrieved: 2026-10-31
+    checkOnly: true  # not on the trail page: the page views only rank the home page's popular trails
+  - id: osm
+    title: "OpenStreetMap contributors: paths and water along the trail, the Sauerland-Waldroute relations (superroute 89751; Geofabrik extracts), travel hubs"
+    url: https://www.openstreetmap.org/relation/89751
+    licence: ODbL 1.0
+    retrieved: 2026-10-31
+  - id: copdem
+    title: "Copernicus DEM GLO-30 (30 m terrain model), tiles from AWS Open Data"
+    url: https://registry.opendata.aws/copernicus-dem/
+    licence: "Copernicus WorldDEM-30 licence, free; produced using Copernicus WorldDEM-30 © DLR e.V. 2010-2014 and © Airbus Defence and Space GmbH 2014-2018 provided under COPERNICUS by the European Union and ESA; all rights reserved"
+    retrieved: 2026-10-31
+  - id: worldcover
+    title: "ESA WorldCover 2021: 10 m land cover (via AWS Open Data)"
+    url: https://esa-worldcover.org/
+    licence: "CC BY 4.0; © ESA WorldCover project 2021 / Contains modified Copernicus Sentinel data (2021) processed by ESA WorldCover consortium"
+    retrieved: 2026-10-31
+  - id: era5
+    title: "Open-Meteo Historical Weather API: ERA5 and ERA5-Land reanalysis, daily 1995–2024"
+    url: https://open-meteo.com/en/docs/historical-weather-api
+    licence: CC BY 4.0 (Open-Meteo); contains modified Copernicus Climate Change Service information
+    retrieved: 2026-10-31
+  - id: osrm
+    title: "OSRM: road routes on OpenStreetMap data (router.project-osrm.org)"
+    url: https://project-osrm.org/
+    licence: Route data © OpenStreetMap contributors (ODbL)
+    retrieved: 2026-10-31

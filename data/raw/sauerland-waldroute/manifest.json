@@ -1,0 +1,194 @@
+{
+  "climate-high.json": {
+    "retrieved": "2026-10-31T08:20:52+00:00",
+    "url": "https://archive-api.open-meteo.com/v1/archive?latitude=51.4&longitude=7.8&elevation=540&start_date=1995-01-01&end_date=2024-12-31&daily=temperature_2m_max,temperature_2m_min,precipitation_sum,snowfall_sum,wind_speed_10m_max,wind_gusts_10m_max&timezone=auto"
+  },
+  "climate-low.json": {
+    "retrieved": "2026-10-31T08:19:40+00:00",
+    "url": "https://archive-api.open-meteo.com/v1/archive?latitude=51.4&longitude=8.1&elevation=180&start_date=1995-01-01&end_date=2024-12-31&daily=temperature_2m_max,temperature_2m_min,precipitation_sum,snowfall_sum,wind_speed_10m_max,wind_gusts_10m_max&timezone=auto"
+  },
+  "elevation-glo30.json": {
+    "retrieved": "2026-10-31T08:18:28+00:00",
+    "url": "https://copernicus-dem-30m.s3.eu-central-1.amazonaws.com/Copernicus_DSM_COG_10_N51_00_E007_00_DEM/Copernicus_DSM_COG_10_N51_00_E007_00_DEM.tif https://copernicus-dem-30m.s3.eu-central-1.amazonaws.com/Copernicus_DSM_COG_10_N51_00_E008_00_DEM/Copernicus_DSM_COG_10_N51_00_E008_00_DEM.tif"
+  },
+  "landcover.json": {
+    "retrieved": "2026-10-31T08:18:29+00:00",
+    "url": "https://esa-worldcover.s3.eu-central-1.amazonaws.com/v200/2021/map/ESA_WorldCover_10m_2021_v200_\u2026_Map.tif"
+  },
+  "osm-relation-18268527.json": {
+    "retrieved": "2026-10-28T21:21:02Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-1-main.json": {
+    "retrieved": "2026-10-28T21:21:02Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-10-main.json": {
+    "retrieved": "2026-10-28T21:21:02Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-11-main.json": {
+    "retrieved": "2026-10-28T21:21:02Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-12-main.json": {
+    "retrieved": "2026-10-28T21:21:02Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-13-main.json": {
+    "retrieved": "2026-10-28T21:21:02Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-14-variant.json": {
+    "retrieved": "2026-10-28T21:21:02Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-15-variant.json": {
+    "retrieved": "2026-10-28T21:21:02Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-16-variant.json": {
+    "retrieved": "2026-10-28T21:21:02Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-17-variant.json": {
+    "retrieved": "2026-10-28T21:21:02Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-18-variant.json": {
+    "retrieved": "2026-10-28T21:21:02Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-19-variant.json": {
+    "retrieved": "2026-10-28T21:21:02Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-2-main.json": {
+    "retrieved": "2026-10-28T21:21:02Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-3-main.json": {
+    "retrieved": "2026-10-28T21:21:02Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-4-main.json": {
+    "retrieved": "2026-10-28T21:21:02Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-5-main.json": {
+    "retrieved": "2026-10-28T21:21:02Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-6-main.json": {
+    "retrieved": "2026-10-28T21:21:02Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-7-main.json": {
+    "retrieved": "2026-10-28T21:21:02Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-8-main.json": {
+    "retrieved": "2026-10-28T21:21:02Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-9-main.json": {
+    "retrieved": "2026-10-28T21:21:02Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-water.json": {
+    "retrieved": "2026-10-28T21:21:02Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-way-tags.json": {
+    "retrieved": "2026-10-28T21:21:02Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osrm-access-dortmund-airport-dtm.json": {
+    "retrieved": "2026-10-31T08:20:52+00:00",
+    "url": "https://router.project-osrm.org/route/v1/driving/7.61277,51.5164;7.68765,51.3706?overview=false"
+  },
+  "osrm-access-iserlohn-station.json": {
+    "retrieved": "2026-10-31T08:20:52+00:00",
+    "url": "https://router.project-osrm.org/route/v1/driving/7.69136,51.37329;7.68765,51.3706?overview=false"
+  },
+  "osrm-access-paderborn-lippstadt-airport-pad.json": {
+    "retrieved": "2026-10-31T08:20:52+00:00",
+    "url": "https://router.project-osrm.org/route/v1/driving/8.61906,51.6146;7.68765,51.3706?overview=false"
+  },
+  "stage-1-main.gpx": {
+    "retrieved": "2026-10-31T07:57:37+00:00",
+    "url": "https://www.sauerland-waldroute.de/de/neusta-touren/sauerland-waldroute-etappe-1-iserlohn-stephanopeler-tal"
+  },
+  "stage-10-main.gpx": {
+    "retrieved": "2026-10-31T07:58:14+00:00",
+    "url": "https://www.sauerland-waldroute.de/de/neusta-touren/sauerland-waldroute-etappe-10-nordroute-kallenhardt-bibertal"
+  },
+  "stage-11-main.gpx": {
+    "retrieved": "2026-10-31T07:58:15+00:00",
+    "url": "https://www.sauerland-waldroute.de/de/neusta-touren/sauerland-waldroute-etappe-11-nordroute-bibertal-ringelstein"
+  },
+  "stage-12-main.gpx": {
+    "retrieved": "2026-10-31T07:58:16+00:00",
+    "url": "https://www.sauerland-waldroute.de/de/neusta-touren/sauerland-waldroute-etappe-12-nordroute-bueren-ringelstein-brilon-alme"
+  },
+  "stage-13-main.gpx": {
+    "retrieved": "2026-10-31T07:58:19+00:00",
+    "url": "https://www.sauerland-waldroute.de/de/neusta-touren/sauerland-waldroute-etappe-13-nordroute-brilon-alme-marsberg"
+  },
+  "stage-14-variant.gpx": {
+    "retrieved": "2026-10-31T07:58:22+00:00",
+    "url": "https://www.sauerland-waldroute.de/de/neusta-touren/sauerland-waldroute-etappe-14-suedroute-marsberg-diemeltalsperre"
+  },
+  "stage-15-variant.gpx": {
+    "retrieved": "2026-10-31T07:58:25+00:00",
+    "url": "https://www.sauerland-waldroute.de/de/neusta-touren/sauerland-waldroute-etappe-15-suedroute-diemeltalsperre-petersborn"
+  },
+  "stage-16-variant.gpx": {
+    "retrieved": "2026-10-31T07:58:26+00:00",
+    "url": "https://www.sauerland-waldroute.de/de/neusta-touren/sauerland-waldroute-etappe-16-suedroute-brilon-petersborn-langer-berg-olsberg"
+  },
+  "stage-17-variant.gpx": {
+    "retrieved": "2026-10-31T07:58:27+00:00",
+    "url": "https://www.sauerland-waldroute.de/de/neusta-touren/sauerland-waldroute-etappe-17-suedroute-langer-berg-foeckinghausen"
+  },
+  "stage-18-variant.gpx": {
+    "retrieved": "2026-10-31T07:58:29+00:00",
+    "url": "https://www.sauerland-waldroute.de/de/neusta-touren/sauerland-waldroute-etappe-18-suedroute-foeckinghausen-buchplette-eversberg"
+  },
+  "stage-19-variant.gpx": {
+    "retrieved": "2026-10-31T07:58:43+00:00",
+    "url": "https://www.sauerland-waldroute.de/de/neusta-touren/sauerland-waldroute-etappe-19-suedroute-eversberg-buchplette-bilsteintal"
+  },
+  "stage-3-main.gpx": {
+    "retrieved": "2026-10-31T07:57:38+00:00",
+    "url": "https://www.sauerland-waldroute.de/de/neusta-touren/sauerland-waldroute-etappe-3-volkringhausen-sundern-amecke"
+  },
+  "stage-4-main.gpx": {
+    "retrieved": "2026-10-31T07:57:39+00:00",
+    "url": "https://www.sauerland-waldroute.de/de/neusta-touren/sauerland-waldroute-etappe-4-sundern-amecke-arnsberg-schlossberg"
+  },
+  "stage-5-main.gpx": {
+    "retrieved": "2026-10-31T07:57:42+00:00",
+    "url": "https://www.sauerland-waldroute.de/de/neusta-touren/sauerland-waldroute-etappe-5-arnsberg-schlossberg-torhaus-moehnesee"
+  },
+  "stage-6-main.gpx": {
+    "retrieved": "2026-10-31T07:57:45+00:00",
+    "url": "https://www.sauerland-waldroute.de/de/neusta-touren/sauerland-waldroute-etappe-6-torhaus-moehnesee-neuhaus"
+  },
+  "stage-7-main.gpx": {
+    "retrieved": "2026-10-31T07:57:46+00:00",
+    "url": "https://www.sauerland-waldroute.de/de/neusta-touren/sauerland-waldroute-etappe-7-neuhaus-hirschberg-fuerstenkamp"
+  },
+  "stage-8-main.gpx": {
+    "retrieved": "2026-10-31T07:57:58+00:00",
+    "url": "https://www.sauerland-waldroute.de/de/neusta-touren/sauerland-waldroute-etappe-8-nordroute-hirschberg-fuerstenberg-bilsteintal"
+  },
+  "stage-9-main.gpx": {
+    "retrieved": "2026-10-31T07:58:00+00:00",
+    "url": "https://www.sauerland-waldroute.de/de/neusta-touren/sauerland-waldroute-etappe-9-nordroute-bilsteintal-kallenhardt"
+  },
+  "wikimedia.json": {
+    "retrieved": "2026-10-31T08:20:52+00:00",
+    "url": "Q2227184 2025-10..2026-09"
+  }
+}

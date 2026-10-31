@@ -39,8 +39,9 @@ the Oberpfälzer Wald, the Nordroute N8–N23 as main route and the Südroute S8
 OSM stage relations). Then the **Eifelsteig** (#56, 313 km, 15 stages; stage 14's Kyll bridge
 has been gone since the 2021 flood, so the stage ends at the Deimlinger Mühle and the map shows
 the operator's detour, on foot to Daufenbach and by train to Kordel: closed stages, see CLAUDE.md).
-Held back: the **Sauerland-Waldroute** (#61: no official page for stage 2, a line with a loop, GPX behind a
-licence key).
+And the **Sauerland-Waldroute** (#61, 240 km: Iserlohn to Marsberg in 13 stages via the
+Nordroute, the Südroute a variant; stage 2's figures from the operator's flyer, its map line from
+the OSM relation; the stage pages' map lines guide the rest, their GPX needs a licence key).
 
 | # | Trail | Region | Length (approx.) | Why |
 |---|---|---|---|---|
