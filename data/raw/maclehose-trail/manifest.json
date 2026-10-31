@@ -1,0 +1,118 @@
+{
+  "climate-high.json": {
+    "retrieved": "2026-10-31T16:50:44+00:00",
+    "url": "https://openmeteo.s3.us-west-2.amazonaws.com/data/copernicus_era5_land+copernicus_era5?latitude=22.4&longitude=114.1&elevation=930"
+  },
+  "climate-low.json": {
+    "retrieved": "2026-10-31T16:47:26+00:00",
+    "url": "https://openmeteo.s3.us-west-2.amazonaws.com/data/copernicus_era5_land+copernicus_era5?latitude=22.4&longitude=114.4&elevation=0"
+  },
+  "elevation-glo30.json": {
+    "retrieved": "2026-10-31T16:12:11+00:00",
+    "url": "https://copernicus-dem-30m.s3.eu-central-1.amazonaws.com/Copernicus_DSM_COG_10_N22_00_E113_00_DEM/Copernicus_DSM_COG_10_N22_00_E113_00_DEM.tif https://copernicus-dem-30m.s3.eu-central-1.amazonaws.com/Copernicus_DSM_COG_10_N22_00_E114_00_DEM/Copernicus_DSM_COG_10_N22_00_E114_00_DEM.tif"
+  },
+  "landcover.json": {
+    "retrieved": "2026-10-31T16:12:11+00:00",
+    "url": "https://esa-worldcover.s3.eu-central-1.amazonaws.com/v200/2021/map/ESA_WorldCover_10m_2021_v200_\u2026_Map.tif"
+  },
+  "osm-stage-1-main.json": {
+    "retrieved": "2026-10-30T21:24:51Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-10-main.json": {
+    "retrieved": "2026-10-30T21:24:51Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-2-main.json": {
+    "retrieved": "2026-10-30T21:24:51Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-3-main.json": {
+    "retrieved": "2026-10-30T21:24:51Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-4-main.json": {
+    "retrieved": "2026-10-30T21:24:51Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-5-main.json": {
+    "retrieved": "2026-10-30T21:24:51Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-6-main.json": {
+    "retrieved": "2026-10-30T21:24:51Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-7-main.json": {
+    "retrieved": "2026-10-30T21:24:51Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-8-main.json": {
+    "retrieved": "2026-10-30T21:24:51Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-9-main.json": {
+    "retrieved": "2026-10-30T21:24:51Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-water.json": {
+    "retrieved": "2026-10-30T21:24:51Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-way-tags.json": {
+    "retrieved": "2026-10-30T21:24:51Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osrm-access-hong-kong-international-airport-hkg.json": {
+    "retrieved": "2026-10-31T16:18:48+00:00",
+    "url": "https://router.project-osrm.org/route/v1/driving/113.91134,22.31255;114.3239,22.40002?overview=false"
+  },
+  "osrm-access-sai-kung-bus-terminus.json": {
+    "retrieved": "2026-10-31T16:18:48+00:00",
+    "url": "https://router.project-osrm.org/route/v1/driving/114.27386,22.38221;114.3239,22.40002?overview=false"
+  },
+  "stage-1-main.gpx": {
+    "retrieved": "2026-10-31T16:09:57+00:00",
+    "url": "https://www.hiking.gov.hk/console/public/uploads/others/file/gpx/MacLehoseTrail(Section1)PakTamChungtoLongKe.gpx"
+  },
+  "stage-10-main.gpx": {
+    "retrieved": "2026-10-31T16:10:34+00:00",
+    "url": "https://www.hiking.gov.hk/console/public/uploads/others/file/gpx/MacLehoseTrail(Section10)TinFuTsaitoTuenMun.gpx"
+  },
+  "stage-2-main.gpx": {
+    "retrieved": "2026-10-31T16:09:59+00:00",
+    "url": "https://www.hiking.gov.hk/console/public/uploads/others/file/gpx/MacLehoseTrail(Section2)LongKetoPakTamAu.gpx"
+  },
+  "stage-3-main.gpx": {
+    "retrieved": "2026-10-31T16:10:31+00:00",
+    "url": "https://www.hiking.gov.hk/console/public/uploads/others/file/gpx/MacLehoseTrail(Section3)PakTamAutoKeiLingHa.gpx"
+  },
+  "stage-4-main.gpx": {
+    "retrieved": "2026-10-31T16:10:31+00:00",
+    "url": "https://www.hiking.gov.hk/console/public/uploads/others/file/gpx/MacLehoseTrail(Section4)KeiLingHatoTatesCairn.gpx"
+  },
+  "stage-5-main.gpx": {
+    "retrieved": "2026-10-31T16:10:32+00:00",
+    "url": "https://www.hiking.gov.hk/console/public/uploads/others/file/gpx/MacLehoseTrail(Section5)TatesCairntoTaiPoRoad.gpx"
+  },
+  "stage-6-main.gpx": {
+    "retrieved": "2026-10-31T16:10:32+00:00",
+    "url": "https://www.hiking.gov.hk/console/public/uploads/others/file/gpx/MacLehoseTrail(Section6)TaiPoRoadtoShingMun.gpx"
+  },
+  "stage-7-main.gpx": {
+    "retrieved": "2026-10-31T16:10:33+00:00",
+    "url": "https://www.hiking.gov.hk/console/public/uploads/others/file/gpx/MacLehoseTrail(Section7)ShingMuntoLeadMinePass.gpx"
+  },
+  "stage-8-main.gpx": {
+    "retrieved": "2026-10-31T16:10:33+00:00",
+    "url": "https://www.hiking.gov.hk/console/public/uploads/others/file/gpx/MacLehoseTrail(Section8)LeadMinePasstoRouteTwisk.gpx"
+  },
+  "stage-9-main.gpx": {
+    "retrieved": "2026-10-31T16:10:33+00:00",
+    "url": "https://www.hiking.gov.hk/console/public/uploads/others/file/gpx/MacLehoseTrail(Section9)RouteTwisktoTinFuTsai.gpx"
+  },
+  "wikimedia.json": {
+    "retrieved": "2026-10-31T16:18:49+00:00",
+    "url": "Q8421867 2025-10..2026-09"
+  }
+}

@@ -42,6 +42,8 @@ the operator's detour, on foot to Daufenbach and by train to Kordel: closed stag
 And the **Sauerland-Waldroute** (#61, 240 km: Iserlohn to Marsberg in 13 stages via the
 Nordroute, the Südroute a variant; stage 2's figures from the operator's flyer, its map line from
 the OSM relation; the stage pages' map lines guide the rest, their GPX needs a licence key).
+Added 2026-10-31: the **MacLehose Trail** (#39, 100 km across Hong Kong's New Territories in the
+ten AFCD sections, each with its official GPX as the matcher's guide).
 
 | # | Trail | Region | Length (approx.) | Why |
 |---|---|---|---|---|

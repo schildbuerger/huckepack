@@ -1,0 +1,189 @@
+name: MacLehose Trail
+added: 2026-10-31
+localName: 麥理浩徑
+website: https://www.hiking.gov.hk/
+wikidata: Q8421867
+managedBy:
+  # the trail's section pages are published by the Agriculture, Fisheries and Conservation
+  # Department's hiking site (country parks, distance posts, campsites)
+  - name: Agriculture, Fisheries and Conservation Department (AFCD), Hong Kong
+    url: https://www.afcd.gov.hk/english/country/cou_vis/cou_vis.html
+trailType: point-to-point
+continents: [Asia]
+countries: [HK]
+regions: [New Territories]
+protectedAreas:
+  - Sai Kung East and West Country Parks
+  - Ma On Shan Country Park
+  - Lion Rock Country Park
+  - Kam Shan Country Park
+  - Shing Mun Country Park
+  - Tai Mo Shan Country Park
+  - Tai Lam Country Park
+termini:
+  # the first point of section 1's and the last of section 10's official GPX
+  start:
+    name: Pak Tam Chung
+    lat: 22.40002
+    lon: 114.3239
+  end:
+    name: Tuen Mun
+    lat: 22.3953
+    lon: 113.97787
+  source: afcd
+established:
+  # opened on 26 October 1979
+  year: 1979
+  source: wikipedia
+waymarking:
+  # "two hundred numbered distance posts at 500-metre intervals, ranging from M001 to M200"
+  text: Numbered distance posts every 500 m, M001 to M200
+  source: wikipedia
+length:
+  # the ten official sections add up to 100.0 km
+  - km: 100
+    source: afcd
+stages:
+  # the ten sections on hiking.gov.hk (AFCD): length and walking time per section, each page with an
+  # official GPX, which only guides the OSM matcher (kept local)
+  source: afcd
+  list:
+    - { number: "1", kind: main, from: Pak Tam Chung, to: Long Ke, km: 10.6, minutes: 195, track: "https://www.hiking.gov.hk/console/public/uploads/others/file/gpx/MacLehoseTrail(Section1)PakTamChungtoLongKe.gpx" }
+    - { number: "2", kind: main, from: Long Ke, to: Pak Tam Au, km: 13.5, minutes: 315, track: "https://www.hiking.gov.hk/console/public/uploads/others/file/gpx/MacLehoseTrail(Section2)LongKetoPakTamAu.gpx" }
+    - { number: "3", kind: main, from: Pak Tam Au, to: Kei Ling Ha, km: 10.2, minutes: 240, track: "https://www.hiking.gov.hk/console/public/uploads/others/file/gpx/MacLehoseTrail(Section3)PakTamAutoKeiLingHa.gpx" }
+    - { number: "4", kind: main, from: Kei Ling Ha, to: Tate's Cairn, km: 12.7, minutes: 315, track: "https://www.hiking.gov.hk/console/public/uploads/others/file/gpx/MacLehoseTrail(Section4)KeiLingHatoTatesCairn.gpx" }
+    - { number: "5", kind: main, from: Tate's Cairn, to: Tai Po Road, km: 10.6, minutes: 225, track: "https://www.hiking.gov.hk/console/public/uploads/others/file/gpx/MacLehoseTrail(Section5)TatesCairntoTaiPoRoad.gpx" }
+    - { number: "6", kind: main, from: Tai Po Road, to: Shing Mun, km: 4.6, minutes: 105, track: "https://www.hiking.gov.hk/console/public/uploads/others/file/gpx/MacLehoseTrail(Section6)TaiPoRoadtoShingMun.gpx" }
+    - { number: "7", kind: main, from: Shing Mun, to: Lead Mine Pass, km: 6.2, minutes: 180, track: "https://www.hiking.gov.hk/console/public/uploads/others/file/gpx/MacLehoseTrail(Section7)ShingMuntoLeadMinePass.gpx" }
+    - { number: "8", kind: main, from: Lead Mine Pass, to: Route Twisk, km: 9.7, minutes: 240, track: "https://www.hiking.gov.hk/console/public/uploads/others/file/gpx/MacLehoseTrail(Section8)LeadMinePasstoRouteTwisk.gpx" }
+    - { number: "9", kind: main, from: Route Twisk, to: Tin Fu Tsai, km: 6.3, minutes: 120, track: "https://www.hiking.gov.hk/console/public/uploads/others/file/gpx/MacLehoseTrail(Section9)RouteTwisktoTinFuTsai.gpx" }
+    - { number: "10", kind: main, from: Tin Fu Tsai, to: Tuen Mun, km: 15.6, minutes: 285, track: "https://www.hiking.gov.hk/console/public/uploads/others/file/gpx/MacLehoseTrail(Section10)TinFuTsaitoTuenMun.gpx" }
+route:
+  # built by `python -m pipeline.all maclehose-trail`: OSM ways matched to the sections' GPX
+  source: osm
+  publishable: true
+difficulty:
+  estimated:
+    sac: T2
+    basis: >-
+      AFCD rates the sections from 2 to 4 stars of 5 (overall difficulty, length, time, total climb,
+      path surface): long stepped climbs over Ma On Shan, Needle Hill and Tai Mo Shan on paved and
+      earth paths, without exposed or secured passages. Mountain hiking on good paths (T2).
+    source: afcd
+season:
+  # German and English Wikipedia: "all year"; AFCD publishes no season (summer brings heat and
+  # typhoons, see notes)
+  months: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
+  text: All year
+  source: wikipedia
+sleeping:
+  # the country parks' designated campsites along the trail (AFCD: Long Ke, Pak Tam Au, Ngong Ping,
+  # Lead Mine Pass, Tin Fu Tsai, Rotary Park among them); OSM (pipeline/along.py) adds 9 hostels
+  # within reach (Bradbury Hall Youth Hostel and Sze Lok Yuen among them) and 2 guest houses
+  types: [campsite, hostel]
+  source: osm
+wildCamping:
+  status: restricted
+  rule: >-
+    In the country parks tents only at the AFCD's designated campsites (Country Parks and Special
+    Areas Regulations, Cap. 208A, reg. 11(3)); fires only at designated barbecue sites or
+    campsites.
+  source: afcd-camping
+access:
+  # the bus to Pak Tam Chung leaves from Sai Kung; Hong Kong International Airport. Coordinates
+  # from OSM; distances by pipeline/access.py
+  - kind: bus
+    name: Sai Kung Bus Terminus
+    lat: 22.38221
+    lon: 114.27386
+    source: osm
+  - kind: airport
+    name: Hong Kong International Airport (HKG)
+    lat: 22.31255
+    lon: 113.91134
+    source: osm
+tags: [hong-kong, country-parks, coast, ridges, reservoirs]
+notes:
+  - >-
+    Sections: the ten AFCD sections add up to 100.0 km (the trail's 200 distance posts every 500 m)
+    and 29.5 hours of walking; AFCD gives no climbs, so the page estimates them from the terrain
+    model. No official number of days; the AFCD's walking times suggest 4–5 days.
+  - >-
+    Route (pipeline, 2026-10-31, Geofabrik extract): the sections' official GPX guide the matcher;
+    every section matches at least 95 % except section 8 (92 %: OSM lacks a short stretch of path
+    over Needle Hill and Grassy Hill). The matched OSM line is 97.6 km against the stated 100 km:
+    sections 3 (9.1 against 10.2 km) and 8 (8.5 against 9.7) come out over 10 % shorter; the
+    stated lengths likely run from post to post including the roads into the section ends.
+    English Wikipedia gives section 3 as 9 km, close to the map line.
+  - >-
+    Water: OSM has 7 drinking water points along the route; the longest stretch without one is
+    29 km, the whole of section 10 (km 65.7–94.7, Tin Fu Tsai to Tuen Mun); in Hong Kong's
+    summer heat that is a long way.
+  - >-
+    Season: no official season. Wikipedia says all year; summer (June to September) is hot and
+    humid with typhoons and thunderstorms, which the climate section shows; the Oxfam Trailwalker
+    is held in November.
+  - >-
+    Tree line: none in reach. The highest point is Tai Mo Shan (957 m), below any tree line;
+    its grassy summit is kept open by wind and fire, not by altitude.
+  - >-
+    Data check (2026-10-31). Second source: English Wikipedia (100 km, opened 26 October 1979,
+    ten sections, distance posts M001–M200 every 500 m, highest point Tai Mo Shan 957 m, all
+    year). Section lengths agree for nine of ten sections; section 3 is 9 km in Wikipedia against
+    AFCD's 10.2 km (13 %). Wikipedia's walking times are shorter than AFCD's on most sections (e.g.
+    section 1 2.5 h against 3.25 h, section 2 4 h against 5.25 h, section 6 1 h against 1.75 h);
+    the page uses AFCD's. Highest point 926 m on the terrain model against 957 m (3 %).
+dataCheck:
+  # working rule 2: English Wikipedia
+  date: 2026-10-31
+  against: [wikipedia]
+  deviations:
+    - { figure: "Section 3 length", ours: "10.2 km", theirs: "9 km", source: wikipedia }
+    - { figure: "Section times (1, 2, 3, 5, 6, 7, 10)", ours: "3.25, 5.25, 4, 3.75, 1.75, 3, 4.75 h", theirs: "2.5, 4, 2.5, 2.5, 1, 2.5, 4 h", source: wikipedia }
+sources:
+  - id: afcd
+    title: "AFCD: Enjoy Hiking, hiking.gov.hk (MacLehose Trail sections 1–10: length, walking time, star ratings, GPX)"
+    url: https://www.hiking.gov.hk/trail/info/id/bStIb016ZGszVk5WWElJN2FzdTdRdz09
+    licence: © Government of the Hong Kong SAR (facts only)
+    retrieved: 2026-10-31
+  - id: afcd-camping
+    title: "AFCD: country park campsites; Country Parks and Special Areas Regulations (Cap. 208A), reg. 11(3)"
+    url: https://www.afcd.gov.hk/english/country/cou_vis/cou_vis_cam/cou_vis_cam_cam/cou_vis_cam_cam.html
+    licence: © Government of the Hong Kong SAR (facts only); Cap. 208A is public law
+    retrieved: 2026-10-31
+  - id: wikipedia
+    title: "Wikipedia (en): MacLehose Trail (opening year, distance posts, season; data check)"
+    url: https://en.wikipedia.org/wiki/MacLehose_Trail
+    licence: CC BY-SA 4.0
+    retrieved: 2026-10-31
+  - id: wikimedia
+    title: "Wikimedia: page views of the trail's Wikipedia articles in every language, by people, over twelve months (Wikidata sitelinks, pageview API)"
+    url: https://wikimedia.org/api/rest_v1/
+    licence: CC0 1.0 (pageview data); Wikidata CC0
+    retrieved: 2026-10-31
+    checkOnly: true  # not on the trail page: the page views only rank the home page's popular trails
+  - id: osm
+    title: "OpenStreetMap contributors: paths, water, shops and places to sleep along the trail (Geofabrik extracts), travel hubs"
+    url: https://www.openstreetmap.org/
+    licence: ODbL 1.0
+    retrieved: 2026-10-31
+  - id: copdem
+    title: "Copernicus DEM GLO-30 (30 m terrain model), tiles from AWS Open Data"
+    url: https://registry.opendata.aws/copernicus-dem/
+    licence: "Copernicus WorldDEM-30 licence, free; produced using Copernicus WorldDEM-30 © DLR e.V. 2010-2014 and © Airbus Defence and Space GmbH 2014-2018 provided under COPERNICUS by the European Union and ESA; all rights reserved"
+    retrieved: 2026-10-31
+  - id: worldcover
+    title: "ESA WorldCover 2021: 10 m land cover (via AWS Open Data)"
+    url: https://esa-worldcover.org/
+    licence: "CC BY 4.0; © ESA WorldCover project 2021 / Contains modified Copernicus Sentinel data (2021) processed by ESA WorldCover consortium"
+    retrieved: 2026-10-31
+  - id: era5
+    title: "Open-Meteo open data on AWS: ERA5-Land temperature and ERA5 precipitation, snow and wind, daily 1995–2024 (reanalysis)"
+    url: https://github.com/open-meteo/open-data
+    licence: CC BY 4.0 (Open-Meteo); contains modified Copernicus Climate Change Service information
+    retrieved: 2026-10-31
+  - id: osrm
+    title: "OSRM: road routes on OpenStreetMap data (router.project-osrm.org)"
+    url: https://project-osrm.org/
+    licence: Route data © OpenStreetMap contributors (ODbL)
+    retrieved: 2026-10-31
