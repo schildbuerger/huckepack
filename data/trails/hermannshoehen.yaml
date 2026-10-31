@@ -1,0 +1,210 @@
+name: Hermannshöhen
+added: 2026-10-31
+aliases: [Hermannsweg, Eggeweg]
+website: https://hermannshoehen.teutoburgerwald.de/
+wikidata: Q1576622
+designation: Qualitätsweg Wanderbares Deutschland (Deutscher Wanderverband)
+managedBy:
+  # the project office of the Hermannshöhen at Teutoburger Wald Tourismus (OWL GmbH, Bielefeld);
+  # the waymarks by the Teutoburger-Wald-Verein (Hermannsweg) and the Eggegebirgsverein (Eggeweg)
+  - name: Teutoburger Wald Tourismus (Projektbüro Hermannshöhen)
+    url: https://hermannshoehen.teutoburgerwald.de/
+  - name: Teutoburger-Wald-Verein
+    url: https://www.teutoburgerwaldverein.de/
+  - name: Eggegebirgsverein
+    url: https://www.eggegebirgsverein.de/
+trailType: point-to-point
+continents: [Europe]
+countries: [DE]
+regions: [Nordrhein-Westfalen, Niedersachsen]
+protectedAreas:
+  - Naturpark TERRA.vita
+  - Naturpark Teutoburger Wald / Eggegebirge
+termini:
+  # the first and last points of the official stage tracks: Rheine station, Marsberg station
+  start:
+    name: Rheine (Bahnhof)
+    lat: 52.27683
+    lon: 7.43432
+  end:
+    name: Marsberg (Bahnhof)
+    lat: 51.46256
+    lon: 8.8552
+  source: hhs
+established:
+  # the project joining the Hermannsweg (1902) and the Eggeweg, since 2004
+  year: 2004
+  source: wikipedia
+waymarking:
+  text: A white H on black (Hermannsweg); a white lying cross, X, on black (Eggeweg)
+  source: hhs
+length:
+  # the whole-trail tour: 225.46 km; the site's text: "226 km"
+  - km: 225.46
+    source: hhs
+ascent:
+  - m: 4096
+    source: hhs
+descent:
+  - m: 3666
+    source: hhs
+days:
+  # "In dreizehn Tagesetappen … Für Sportwanderer ist die Strecke in 10 Etappen erwanderbar"
+  min: 10
+  max: 13
+  source: hhs
+stages:
+  # the 13 stage tours on hermannshoehen.teutoburgerwald.de (read with
+  # pipeline/readers/outdooractive.py): 1–9 the Hermannsweg, 10–13 the Eggeweg. The pages carry
+  # their tracks, which only guide the OSM matcher (kept local)
+  source: hhs
+  list:
+    - { number: "1", kind: main, from: Rheine, to: Hörstel, km: 19.24, ascentM: 28, descentM: 17, minutes: 315, track: "https://hermannshoehen.teutoburgerwald.de/tourenplanung/touren/hermannshoehen-etappe-01-von-rheine-nach-hoerstel" }
+    - { number: "2", kind: main, from: Hörstel, to: Tecklenburg, km: 20.35, ascentM: 359, descentM: 235, minutes: 360, track: "https://hermannshoehen.teutoburgerwald.de/tourenplanung/touren/hermannshoehen-etappe-02-von-hoerstel-nach-tecklenburg" }
+    - { number: "3", kind: main, from: Tecklenburg, to: Bad Iburg, km: 21.05, ascentM: 356, descentM: 414, minutes: 345, track: "https://hermannshoehen.teutoburgerwald.de/tourenplanung/touren/hermannshoehen-etappe-03-von-tecklenburg-nach-bad-iburg" }
+    - { number: "4", kind: main, from: Bad Iburg, to: Dissen, km: 16.34, ascentM: 439, descentM: 300, minutes: 330, track: "https://hermannshoehen.teutoburgerwald.de/tourenplanung/touren/hermannshoehen-etappe-04-von-bad-iburg-nach-dissen" }
+    - { number: "5", kind: main, from: Dissen, to: Halle (Westf.), km: 18.98, ascentM: 454, descentM: 525, minutes: 375, track: "https://hermannshoehen.teutoburgerwald.de/tourenplanung/touren/hermannshoehen-etappe-05-von-dissen-nach-hallewestfalen" }
+    - { number: "6", kind: main, from: Halle (Westf.), to: Bielefeld, km: 16.48, ascentM: 375, descentM: 399, minutes: 285, track: "https://hermannshoehen.teutoburgerwald.de/tourenplanung/touren/hermannshoehen-etappe-06-von-halle-westf-bis-bielefeld" }
+    - { number: "7", kind: main, from: Bielefeld, to: Oerlinghausen, km: 14.78, ascentM: 294, descentM: 213, minutes: 195, track: "https://hermannshoehen.teutoburgerwald.de/tourenplanung/touren/hermannshoehen-etappe-07-von-bielefeld-nach-oerlinghausen" }
+    - { number: "8", kind: main, from: Oerlinghausen, to: Hermannsdenkmal, km: 17.94, ascentM: 383, descentM: 249, minutes: 300, track: "https://hermannshoehen.teutoburgerwald.de/tourenplanung/touren/hermannshoehen-etappe-08-von-oerlinghausen-zum-hermannsdenkmal" }
+    - { number: "9", kind: main, from: Hermannsdenkmal, to: Leopoldstal, km: 19.1, ascentM: 554, descentM: 501, minutes: 360, track: "https://hermannshoehen.teutoburgerwald.de/tourenplanung/touren/hermannshoehen-etappe-09-vom-hermannsdenkmal-ueber-die-externsteine-nach-leopoldstal" }
+    - { number: "10", kind: main, from: Leopoldstal, to: Bad Driburg, km: 14.42, ascentM: 150, descentM: 167, minutes: 300, track: "https://hermannshoehen.teutoburgerwald.de/tourenplanung/touren/hermannshoehen-etappe-10-von-leopoldstal-bis-bad-driburg" }
+    - { number: "11", kind: main, from: Bad Driburg, to: Willebadessen, km: 16.08, ascentM: 229, descentM: 210, minutes: 360, track: "https://hermannshoehen.teutoburgerwald.de/tourenplanung/touren/hermannshoehen-etappe-11-von-bad-driburg-nach-willebadessen" }
+    - { number: "12", kind: main, from: Willebadessen, to: Blankenrode, km: 19.46, ascentM: 276, descentM: 326, minutes: 390, track: "https://hermannshoehen.teutoburgerwald.de/tourenplanung/touren/hermannshoehen-etappe-12-von-willebadessen-nach-blankenrode" }
+    - { number: "13", kind: main, from: Blankenrode, to: Marsberg, km: 14.1, ascentM: 219, descentM: 332, minutes: 255, track: "https://hermannshoehen.teutoburgerwald.de/tourenplanung/touren/hermannshoehen-etappe-13-von-blankenrode-bis-obermarsberg" }
+route:
+  # built by `python -m pipeline.all hermannshoehen`: OSM ways matched to the stage tracks
+  source: osm
+  publishable: true
+difficulty:
+  estimated:
+    sac: T1
+    basis: >-
+      Teutoburger Wald Tourismus rates the whole trail "mittel" (fitness "mittel") and its stages
+      "leicht" to "mittel": ridge paths over the Teutoburger Wald and the Eggegebirge, with good
+      walking shoes advised; no steep or exposed passages are described. That is hiking on good
+      paths (T1).
+    source: hhs
+season:
+  # the whole-trail tour: April to October "geeignet", November to March "wetterabhängig"
+  months: [4, 5, 6, 7, 8, 9, 10]
+  text: April to October; November to March depending on the weather
+  source: hhs
+sleeping:
+  # hotels and guesthouses ("Qualitätsbetrieb Hermannshöhen"), the campsite at the Hertha-See
+  # in Hörstel among the trail's hosts
+  types: [hotel, guesthouse, campsite]
+  source: hhs
+wildCamping:
+  status: restricted
+  rule: >-
+    In North Rhine-Westphalia camping in the forest is forbidden (Landesforstgesetz § 3); in
+    Lower Saxony (around Bad Iburg and Dissen) tents in the countryside need the owner's
+    permission outside campsites (NWaldLG § 27). The trail names no trekking sites.
+  source: lfog-nrw
+access:
+  # Rheine station at the start, Marsberg station at the end; Münster Osnabrück and
+  # Paderborn/Lippstadt airports. Coordinates from OSM; distances by pipeline/access.py
+  - kind: station
+    name: Rheine station
+    lat: 52.27617
+    lon: 7.43402
+    source: osm
+  - kind: airport
+    name: Münster Osnabrück Airport (FMO)
+    lat: 52.13422
+    lon: 7.68292
+    source: osm
+  - kind: airport
+    name: Paderborn/Lippstadt Airport (PAD)
+    lat: 51.6146
+    lon: 8.61906
+    source: osm
+tags: [teutoburger-wald, ridges, forests, hermannsdenkmal, externsteine]
+notes:
+  - >-
+    The whole-trail tour: 225.46 km, 4,096 m up, 3,666 m down, 62 h, lowest 30 m, highest 462 m;
+    the site's text "226 km" in "dreizehn Tagesetappen mit 15-20 km Länge" (the stage page says
+    16–22 km). The 13 stage tours add up to 228.3 km, 4,116 m up and 3,888 m down. The site's
+    Hermannsweg tour is 163.10 km, its Eggeweg tour 70.56 km.
+  - >-
+    Water and food: the whole-trail tour warns of few places to eat ("Streckenweise nur wenig
+    Einkehrmöglichkeiten"), and on the Eggeweg of little shade after clearings and no places to
+    eat except in Willebadessen and Bad Driburg: carry drinks.
+  - >-
+    Route (pipeline, 2026-10-31, Geofabrik extracts): the OSM match covers 99–100 % of every stage
+    track; the map line's main route is 224.8 km. Water: 9 drinking water points and 108 springs
+    from OSM; the longest stretch without drinking water is the whole Eggeweg, 67.8 km (km
+    157.0–224.8, Leopoldstal to Marsberg), which matches the site's warning (places to eat only in
+    Bad Driburg and Willebadessen; carry drinks).
+  - >-
+    Ascent: the whole-trail pair (4,096 m up, 3,666 m down) is shown; the stages add up to 4,116 m
+    up, and the terrain model gives about 6,700 m (it measures the treetops, and 88 % of the route
+    runs through forest).
+  - >-
+    Tree line: none in reach. The route tops out at 462 m (the Eggegebirge, 464 m on the terrain
+    model), forested; the Teutoburger Wald and the Eggegebirge have no natural tree line.
+  - >-
+    Data check (2026-10-31). Second source: German Wikipedia (Hermannshöhen: 226 km over the
+    Teutoburger Wald and the Eggegebirge, the project since 2004, NRW and Lower Saxony, Naturpark
+    TERRA.vita and Teutoburger Wald / Eggegebirge, H and X waymarks; Hermannsweg: Rheine to the
+    Lippischer Velmerstot (441 m) and Leopoldstal; Eggeweg: about 70 km in three stages,
+    Externsteine – Iburg 23 km, Iburg – Borlinghausen 22 km, Borlinghausen – Diemeltal 26 km).
+    Everything comparable agrees within 10 %: total 225.46 against 226 km, the Eggeweg 70.56 against
+    70 km, its stretch Bad Driburg – Marsberg (stages 11–13, 49.6 km) against Wikipedia's
+    Iburg – Diemeltal (48 km). Wikipedia gives no stage list for the Hermannsweg and no climbs.
+  - >-
+    Waymarks: the Hermannsweg's white H on black and the Eggeweg's white X on black are simple
+    painted marks; not drawn yet (no Waymark symbol for a letter or a cross on black).
+dataCheck:
+  # working rule 2: German Wikipedia (Hermannshöhen, Hermannsweg, Eggeweg)
+  date: 2026-10-31
+  against: [wikipedia]
+  deviations: []
+sources:
+  - id: hhs
+    title: "Teutoburger Wald Tourismus: hermannshoehen.teutoburgerwald.de (the trail, 13 stages; whole-trail, Hermannsweg, Eggeweg and stage tours: distances, times, climbs, grades, season, waymarks, hosts)"
+    url: https://hermannshoehen.teutoburgerwald.de/die-hermannshoehen/der-trail
+    licence: All rights reserved (facts only)
+    retrieved: 2026-10-31
+  - id: lfog-nrw
+    title: "Landesforstgesetz Nordrhein-Westfalen (LFoG), § 3 (1) e: no camping in the forest; Niedersächsisches Gesetz über den Wald und die Landschaftsordnung (NWaldLG), § 27: tents and caravans"
+    url: https://lexmea.de/de/gesetz/lfog-nrw/3
+    licence: Public domain (state law)
+    retrieved: 2026-10-31
+  - id: wikipedia
+    title: "Wikipedia (de): Hermannshöhen, Hermannsweg, Eggeweg (project year; data check)"
+    url: https://de.wikipedia.org/wiki/Hermannsh%C3%B6hen
+    licence: CC BY-SA 4.0
+    retrieved: 2026-10-31
+  - id: wikimedia
+    title: "Wikimedia: page views of the trail's Wikipedia articles in every language, by people, over twelve months (Wikidata sitelinks, pageview API)"
+    url: https://wikimedia.org/api/rest_v1/
+    licence: CC0 1.0 (pageview data); Wikidata CC0
+    retrieved: 2026-10-31
+    checkOnly: true  # not on the trail page: the page views only rank the home page's popular trails
+  - id: osm
+    title: "OpenStreetMap contributors: paths and water along the trail (Geofabrik extracts), travel hubs"
+    url: https://www.openstreetmap.org/
+    licence: ODbL 1.0
+    retrieved: 2026-10-31
+  - id: copdem
+    title: "Copernicus DEM GLO-30 (30 m terrain model), tiles from AWS Open Data"
+    url: https://registry.opendata.aws/copernicus-dem/
+    licence: "Copernicus WorldDEM-30 licence, free; produced using Copernicus WorldDEM-30 © DLR e.V. 2010-2014 and © Airbus Defence and Space GmbH 2014-2018 provided under COPERNICUS by the European Union and ESA; all rights reserved"
+    retrieved: 2026-10-31
+  - id: worldcover
+    title: "ESA WorldCover 2021: 10 m land cover (via AWS Open Data)"
+    url: https://esa-worldcover.org/
+    licence: "CC BY 4.0; © ESA WorldCover project 2021 / Contains modified Copernicus Sentinel data (2021) processed by ESA WorldCover consortium"
+    retrieved: 2026-10-31
+  - id: era5
+    title: "Open-Meteo Historical Weather API: ERA5 and ERA5-Land reanalysis, daily 1995–2024"
+    url: https://open-meteo.com/en/docs/historical-weather-api
+    licence: CC BY 4.0 (Open-Meteo); contains modified Copernicus Climate Change Service information
+    retrieved: 2026-10-31
+  - id: osrm
+    title: "OSRM: road routes on OpenStreetMap data (router.project-osrm.org)"
+    url: https://project-osrm.org/
+    licence: Route data © OpenStreetMap contributors (ODbL)
+    retrieved: 2026-10-31

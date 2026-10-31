@@ -1,0 +1,146 @@
+{
+  "climate-high.json": {
+    "retrieved": "2026-10-31T04:06:44+00:00",
+    "url": "https://archive-api.open-meteo.com/v1/archive?latitude=51.8&longitude=9.0&elevation=460&start_date=1995-01-01&end_date=2024-12-31&daily=temperature_2m_max,temperature_2m_min,precipitation_sum,snowfall_sum,wind_speed_10m_max,wind_gusts_10m_max&timezone=auto"
+  },
+  "climate-low.json": {
+    "retrieved": "2026-10-31T04:05:32+00:00",
+    "url": "https://archive-api.open-meteo.com/v1/archive?latitude=52.3&longitude=7.5&elevation=30&start_date=1995-01-01&end_date=2024-12-31&daily=temperature_2m_max,temperature_2m_min,precipitation_sum,snowfall_sum,wind_speed_10m_max,wind_gusts_10m_max&timezone=auto"
+  },
+  "elevation-glo30.json": {
+    "retrieved": "2026-10-31T04:03:07+00:00",
+    "url": "https://copernicus-dem-30m.s3.eu-central-1.amazonaws.com/Copernicus_DSM_COG_10_N51_00_E008_00_DEM/Copernicus_DSM_COG_10_N51_00_E008_00_DEM.tif https://copernicus-dem-30m.s3.eu-central-1.amazonaws.com/Copernicus_DSM_COG_10_N51_00_E009_00_DEM/Copernicus_DSM_COG_10_N51_00_E009_00_DEM.tif https://copernicus-dem-30m.s3.eu-central-1.amazonaws.com/Copernicus_DSM_COG_10_N52_00_E007_00_DEM/Copernicus_DSM_COG_10_N52_00_E007_00_DEM.tif https://copernicus-dem-30m.s3.eu-central-1.amazonaws.com/Copernicus_DSM_COG_10_N52_00_E008_00_DEM/Copernicus_DSM_COG_10_N52_00_E008_00_DEM.tif"
+  },
+  "landcover.json": {
+    "retrieved": "2026-10-31T04:03:09+00:00",
+    "url": "https://esa-worldcover.s3.eu-central-1.amazonaws.com/v200/2021/map/ESA_WorldCover_10m_2021_v200_\u2026_Map.tif"
+  },
+  "osm-stage-1-main.json": {
+    "retrieved": "2026-10-28T21:21:02Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-10-main.json": {
+    "retrieved": "2026-10-28T21:21:02Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-11-main.json": {
+    "retrieved": "2026-10-28T21:21:02Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-12-main.json": {
+    "retrieved": "2026-10-28T21:21:02Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-13-main.json": {
+    "retrieved": "2026-10-28T21:21:02Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-2-main.json": {
+    "retrieved": "2026-10-28T21:21:02Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-3-main.json": {
+    "retrieved": "2026-10-28T21:21:02Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-4-main.json": {
+    "retrieved": "2026-10-28T21:21:02Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-5-main.json": {
+    "retrieved": "2026-10-28T21:21:02Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-6-main.json": {
+    "retrieved": "2026-10-28T21:21:02Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-7-main.json": {
+    "retrieved": "2026-10-28T21:21:02Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-8-main.json": {
+    "retrieved": "2026-10-28T21:21:02Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-9-main.json": {
+    "retrieved": "2026-10-28T21:21:02Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-water.json": {
+    "retrieved": "2026-10-28T21:21:02Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-way-tags.json": {
+    "retrieved": "2026-10-28T21:21:02Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osrm-access-m-nster-osnabr-ck-airport-fmo.json": {
+    "retrieved": "2026-10-31T04:06:44+00:00",
+    "url": "https://router.project-osrm.org/route/v1/driving/7.68292,52.13422;7.43432,52.27683?overview=false"
+  },
+  "osrm-access-paderborn-lippstadt-airport-pad.json": {
+    "retrieved": "2026-10-31T04:06:45+00:00",
+    "url": "https://router.project-osrm.org/route/v1/driving/8.61906,51.6146;7.43432,52.27683?overview=false"
+  },
+  "osrm-access-rheine-station.json": {
+    "retrieved": "2026-10-31T04:06:44+00:00",
+    "url": "https://router.project-osrm.org/route/v1/driving/7.43402,52.27617;7.43432,52.27683?overview=false"
+  },
+  "stage-1-main.gpx": {
+    "retrieved": "2026-10-31T03:57:24+00:00",
+    "url": "https://hermannshoehen.teutoburgerwald.de/tourenplanung/touren/hermannshoehen-etappe-01-von-rheine-nach-hoerstel"
+  },
+  "stage-10-main.gpx": {
+    "retrieved": "2026-10-31T03:58:07+00:00",
+    "url": "https://hermannshoehen.teutoburgerwald.de/tourenplanung/touren/hermannshoehen-etappe-10-von-leopoldstal-bis-bad-driburg"
+  },
+  "stage-11-main.gpx": {
+    "retrieved": "2026-10-31T03:58:18+00:00",
+    "url": "https://hermannshoehen.teutoburgerwald.de/tourenplanung/touren/hermannshoehen-etappe-11-von-bad-driburg-nach-willebadessen"
+  },
+  "stage-12-main.gpx": {
+    "retrieved": "2026-10-31T03:58:29+00:00",
+    "url": "https://hermannshoehen.teutoburgerwald.de/tourenplanung/touren/hermannshoehen-etappe-12-von-willebadessen-nach-blankenrode"
+  },
+  "stage-13-main.gpx": {
+    "retrieved": "2026-10-31T03:58:29+00:00",
+    "url": "https://hermannshoehen.teutoburgerwald.de/tourenplanung/touren/hermannshoehen-etappe-13-von-blankenrode-bis-obermarsberg"
+  },
+  "stage-2-main.gpx": {
+    "retrieved": "2026-10-31T03:57:55+00:00",
+    "url": "https://hermannshoehen.teutoburgerwald.de/tourenplanung/touren/hermannshoehen-etappe-02-von-hoerstel-nach-tecklenburg"
+  },
+  "stage-3-main.gpx": {
+    "retrieved": "2026-10-31T03:57:55+00:00",
+    "url": "https://hermannshoehen.teutoburgerwald.de/tourenplanung/touren/hermannshoehen-etappe-03-von-tecklenburg-nach-bad-iburg"
+  },
+  "stage-4-main.gpx": {
+    "retrieved": "2026-10-31T03:57:55+00:00",
+    "url": "https://hermannshoehen.teutoburgerwald.de/tourenplanung/touren/hermannshoehen-etappe-04-von-bad-iburg-nach-dissen"
+  },
+  "stage-5-main.gpx": {
+    "retrieved": "2026-10-31T03:58:06+00:00",
+    "url": "https://hermannshoehen.teutoburgerwald.de/tourenplanung/touren/hermannshoehen-etappe-05-von-dissen-nach-hallewestfalen"
+  },
+  "stage-6-main.gpx": {
+    "retrieved": "2026-10-31T03:58:06+00:00",
+    "url": "https://hermannshoehen.teutoburgerwald.de/tourenplanung/touren/hermannshoehen-etappe-06-von-halle-westf-bis-bielefeld"
+  },
+  "stage-7-main.gpx": {
+    "retrieved": "2026-10-31T03:58:07+00:00",
+    "url": "https://hermannshoehen.teutoburgerwald.de/tourenplanung/touren/hermannshoehen-etappe-07-von-bielefeld-nach-oerlinghausen"
+  },
+  "stage-8-main.gpx": {
+    "retrieved": "2026-10-31T03:58:07+00:00",
+    "url": "https://hermannshoehen.teutoburgerwald.de/tourenplanung/touren/hermannshoehen-etappe-08-von-oerlinghausen-zum-hermannsdenkmal"
+  },
+  "stage-9-main.gpx": {
+    "retrieved": "2026-10-31T03:58:07+00:00",
+    "url": "https://hermannshoehen.teutoburgerwald.de/tourenplanung/touren/hermannshoehen-etappe-09-vom-hermannsdenkmal-ueber-die-externsteine-nach-leopoldstal"
+  },
+  "wikimedia.json": {
+    "retrieved": "2026-10-31T04:06:45+00:00",
+    "url": "Q1576622 2025-10..2026-09"
+  }
+}
