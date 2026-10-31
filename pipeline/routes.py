@@ -93,7 +93,9 @@ def track_points(gpx):
     be a tour page that carries its track as schema.org data instead of a GPX file ("geo":
     GeoShape "line": "lat lon lat lon …", as Outdooractive's pages do, whose GPX download needs a
     login); it is cached under the same .gpx name, so it stays local like the GPX files. Some
-    portals (eifelsteig.de) write the line as "lon,lat,height lon,lat,height …" instead."""
+    portals (eifelsteig.de) write the line as "lon,lat,height lon,lat,height …" instead. The
+    neusta tour pages (sauerland-waldroute.de) carry the map's line as an HTML-escaped
+    "polyline": "lon,lat lon,lat …"."""
     points = []
     for attrs in re.findall(r"<trkpt\b([^>]*)>", gpx):
         lat = re.search(r'\blat="([-\d.]+)"', attrs)
@@ -108,6 +110,10 @@ def track_points(gpx):
         elif shape:
             values = [float(v) for v in shape.group(1).split()]
             points = [(lon, lat) for lat, lon in zip(values[::2], values[1::2])]
+    if not points:
+        line = re.search(r'polyline(?:&quot;|")\s*:\s*(?:&quot;|")([-\d.,\s]+)', gpx)
+        if line:
+            points = [(float(p[0]), float(p[1])) for p in (v.split(",") for v in line.group(1).split())]
     if len(points) < 2:
         raise ValueError("track has fewer than two points")
     return points

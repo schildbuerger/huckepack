@@ -60,7 +60,8 @@ def build(slug, refresh=False):
     route = json.loads((ROOT / "public" / "routes" / f"{slug}.geojson").read_text())
     stage_ways = derived["routeWays"]
 
-    ids = sorted({w for s in stage_ways for w, _ in s["ways"]})
+    # way 0: a gap the matcher bridged where OSM has no way (pipeline/osm.py); its surface is unknown
+    ids = sorted({w for s in stage_ways for w, _ in s["ways"] if w})
     cache = Cache(slug, refresh)
     # the tags from the trail's local OSM corridor (built by pipeline.routes), or Overpass
     data, _ = cache.get("osm-way-tags.json", osm.source_label(), lambda: json.dumps(osm.source(slug).way_tags(ids)).encode())

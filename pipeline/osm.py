@@ -28,6 +28,7 @@ FAR_M = 300  # distances beyond this are treated as this
 NEAR_M = 30  # a track point counts as covered if the matched line is this close
 TURN_ARM_M = 150  # a turnaround: the track 150 m before and after it lies together
 LOOP_GAP_M = 100  # a short loop: the track comes back within this of where it left
+MAX_BRIDGE_M = 100  # where OSM's ways don't connect, a gap up to this long near the track is bridged
 
 
 class Projection:
@@ -305,18 +306,42 @@ def _cheapest_path(track, ways, xy):
         return min(graph, key=lambda n: math.dist(xy[n], p))
 
     source, target = nearest(track[0]), nearest(track[-1])
-    dist, prev, via, heap = {source: 0.0}, {}, {}, [(0.0, source)]
-    while heap:
-        d, n = heapq.heappop(heap)
-        if n == target:
+
+    def search():
+        dist, prev, via, heap = {source: 0.0}, {}, {}, [(0.0, source)]
+        while heap:
+            d, n = heapq.heappop(heap)
+            if n == target:
+                break
+            if d > dist[n]:
+                continue
+            for m, cost, way_id in graph[n]:
+                nd = d + cost
+                if nd < dist.get(m, math.inf):
+                    dist[m], prev[m], via[m] = nd, n, way_id
+                    heapq.heappush(heap, (nd, m))
+        return dist, prev, via
+
+    dist, prev, via = search()
+    # where OSM has no way across (a crossing mapped as removed, the Sauerland-Waldroute's Ruhr at
+    # Bestwig), bridge the shortest gap near the track between what is reached and the rest, up to
+    # MAX_BRIDGE_M; only then, so trails whose ways connect are untouched. Way id 0 marks the bridge
+    for _ in range(3):
+        if target in dist:
             break
-        if d > dist[n]:
-            continue
-        for m, cost, way_id in graph[n]:
-            nd = d + cost
-            if nd < dist.get(m, math.inf):
-                dist[m], prev[m], via[m] = nd, n, way_id
-                heapq.heappush(heap, (nd, m))
+        near = [n for n in graph if off[n] <= MAX_BRIDGE_M]
+        reached = [n for n in near if n in dist]
+        rest = [n for n in near if n not in dist]
+        # the shortest gap, counting how far its ends lie off the track
+        pairs = ((math.dist(xy[a], xy[b]), a, b) for a in reached for b in rest)
+        gap = min(((length + off[a] + off[b], length, a, b) for length, a, b in pairs if length <= MAX_BRIDGE_M), default=None)
+        if not gap:
+            break
+        _, length, a, b = gap
+        graph[a].append((b, length * 10, 0))
+        graph[b].append((a, length * 10, 0))
+        print(f"  bridged a {length:.0f} m gap between OSM ways (no way there in OSM)")
+        dist, prev, via = search()
     if target not in dist:
         raise ValueError("the OSM ways near the track don't connect start and end")
 
