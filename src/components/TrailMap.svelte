@@ -1,7 +1,8 @@
 <script lang="ts">
   // Trail map: OpenStreetMap basemap (OpenFreeMap, no key) with hill shading and contour lines
   // (AWS Terrain Tiles, no key) and the trail's line from public/routes/<slug>.geojson. Main
-  // stages are solid; approaches and variants dashed. The basemap follows the site theme
+  // stages are solid; approaches and variants dashed; a closed stage's detour (kind "detour") dotted
+  // on foot and as a railway line (ink with ties) by train or bus. The basemap follows the site theme
   // (Liberty light, Dark dark), also when the header switch changes it; route and termini take
   // their colours from the theme tokens.
   import { onMount } from "svelte";
@@ -21,12 +22,14 @@
     start,
     end,
     routeAttribution,
+    detours = [],
     fill = false,
   }: {
     routeUrl: string | null;
     start: Point;
     end: Point;
     routeAttribution: string | null;
+    detours?: ("foot" | "train" | "bus")[]; // how the route's detours go, for the legend
     fill?: boolean; // fill the height its parent gives (a flex column) instead of a fixed aspect ratio
   } = $props();
 
@@ -176,7 +179,7 @@
             id: "route-other",
             type: "line",
             source: "route",
-            filter: ["!=", ["get", "kind"], "main"],
+            filter: ["in", ["get", "kind"], ["literal", ["approach", "variant"]]],
             layout: { "line-join": "round" },
             paint: { "line-color": accent, "line-width": 3, "line-dasharray": [2, 2], "line-opacity": 0.7 },
           });
@@ -187,6 +190,31 @@
             filter: ["==", ["get", "kind"], "main"],
             layout: { "line-join": "round", "line-cap": "round" },
             paint: { "line-color": accent, "line-width": 4 },
+          });
+          // a closed stage's detour: on foot a dotted line in the trail's colour, by train or bus
+          // a thin ink line with ties across, like a railway on a printed map
+          map.addLayer({
+            id: "detour-foot",
+            type: "line",
+            source: "route",
+            filter: ["all", ["==", ["get", "kind"], "detour"], ["==", ["get", "by"], "foot"]],
+            layout: { "line-join": "round", "line-cap": "round" },
+            paint: { "line-color": accent, "line-width": 4, "line-dasharray": [0, 2] },
+          });
+          map.addLayer({
+            id: "detour-ride",
+            type: "line",
+            source: "route",
+            filter: ["all", ["==", ["get", "kind"], "detour"], ["!=", ["get", "by"], "foot"]],
+            layout: { "line-join": "round" },
+            paint: { "line-color": ink, "line-width": 2 },
+          });
+          map.addLayer({
+            id: "detour-ride-ties",
+            type: "line",
+            source: "route",
+            filter: ["all", ["==", ["get", "kind"], "detour"], ["!=", ["get", "by"], "foot"]],
+            paint: { "line-color": ink, "line-width": 7, "line-dasharray": [0.3, 2.2] },
           });
         }
         map.addSource("termini", {
@@ -247,6 +275,8 @@
 <ul class="legend">
   <li><span class="key main"></span> Trail</li>
   <li><span class="key other"></span> Approach or variant</li>
+  {#if detours.includes("foot")}<li><span class="key foot"></span> Detour on foot</li>{/if}
+  {#if detours.some((d) => d !== "foot")}<li><span class="key ride"></span> Detour by {detours.includes("bus") ? (detours.includes("train") ? "train or bus" : "bus") : "train"}</li>{/if}
   <li><span class="key dot start"></span> {start.name}</li>
   <li><span class="key dot end"></span> {end.name}</li>
   <li><span class="key contour"></span> Contour lines</li>
@@ -300,6 +330,16 @@
   .key.other {
     border-top: 3px dashed var(--accent);
     opacity: 0.7;
+  }
+  .key.foot {
+    border-top: 4px dotted var(--accent);
+  }
+  .key.ride {
+    height: 8px;
+    border-top: 0;
+    background:
+      linear-gradient(var(--text), var(--text)) center / 100% 2px no-repeat,
+      repeating-linear-gradient(90deg, var(--text) 0 1.5px, transparent 1.5px 7px) center / 100% 8px no-repeat;
   }
   .key.contour {
     border-top: 1px solid var(--muted);

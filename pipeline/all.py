@@ -81,7 +81,7 @@ def check(slug):
         return abs(a - b) / b > OFF if b else False
 
     # the OSM match, per stage
-    poor = [f"{f['properties']['number']} ({f['properties']['covered']:.0%})" for f in route["features"] if f["properties"]["covered"] < 0.95]
+    poor = [f"{f['properties']['number']} ({f['properties']['covered']:.0%})" for f in route["features"] if f["properties"].get("covered", 1) < 0.95]
     (flags if poor else fine).append(f"route: stages under 95 % matched: {', '.join(poor)} (OSM may lack a path; note it)" if poor else "route: every stage at least 95 % matched")
 
     # lengths: per stage (map line against stated) and the whole main route

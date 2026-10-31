@@ -20,6 +20,7 @@ match covers the track. Prints a report; stages that cover less than 95% of thei
 a look (OSM may be missing a path there).
 """
 
+import heapq
 import http.client
 import json
 import math
@@ -199,6 +200,50 @@ def piece(line, a, b):
     return line[i : j + 1]
 
 
+def relation_piece(elements, alternatives, start, a, b):
+    """The relations' ways chained from the end nearest the trail's `start` (chaining from a point
+    in the middle could head the wrong way), cut from the point nearest a to the one nearest b.
+    Where the chain began at a way in the middle of the relation (it stops early), it begins at
+    the relation's open end instead."""
+    full = relation_line({"elements": elements}, alternatives, start)
+    tip = relation_line({"elements": elements}, alternatives, start, True)
+    if line_km(tip) > line_km(full) + 1:
+        full = tip
+    return piece(full, a, b)
+
+
+def relation_path(elements, a, b):
+    """The shortest way from the point nearest a to the one nearest b over the relation's ways
+    (lon, lat). For a railway line, whose double tracks and junctions a chain can't follow."""
+    ways = [[(p["lon"], p["lat"]) for p in e["geometry"]] for e in elements if e["type"] == "way"]
+    proj = osm.Projection(a[1])
+    graph = {}
+    for g in ways:
+        for p, q in zip(g, g[1:]):
+            d = math.dist(proj.xy(*p), proj.xy(*q))
+            graph.setdefault(p, []).append((q, d))
+            graph.setdefault(q, []).append((p, d))
+    near = lambda t: min(graph, key=lambda p: math.dist(proj.xy(*p), proj.xy(*t)))
+    source, target = near(a), near(b)
+    dist, prev, todo = {source: 0.0}, {}, [(0.0, source)]
+    while todo:
+        d, p = heapq.heappop(todo)
+        if p == target:
+            break
+        if d > dist[p]:
+            continue
+        for q, w in graph[p]:
+            if d + w < dist.get(q, math.inf):
+                dist[q], prev[q] = d + w, p
+                heapq.heappush(todo, (d + w, q))
+    if target not in dist:
+        raise ValueError(f"no way along the relation from {a} to {b}")
+    line = [target]
+    while line[-1] != source:
+        line.append(prev[line[-1]])
+    return line[::-1]
+
+
 def split_at(line, stages):
     """One piece of the line per stage, cut at the point nearest each stage's end."""
     proj = osm.Projection(line[0][1])
@@ -236,9 +281,53 @@ def build(slug, refresh=False):
             tracks = [p for s in all_stages if s.get("track") for p in track_of(s)]
             coarse = [(start["lon"], start["lat"]), (end["lon"], end["lat"])]
             coarse += [(s["end"]["lon"], s["end"]["lat"]) for s in all_stages if s.get("end")]
+            # a closed stage's detour: where it leaves the stage, its legs' ends and via points
+            detours = [s["closed"] for s in all_stages if s.get("closed")]
+            detour_points = [(c["at"]["lon"], c["at"]["lat"]) for c in detours]
+            detour_points += [(p["lon"], p["lat"]) for c in detours for leg in c.get("detour", []) for p in [leg["to"], *leg.get("via", [])]]
             relation_ids = ([relation] if relation else []) + [r for s in all_stages for r in stage_relations(s)]
-            src = osm.source(slug, tracks + (coarse if tracks else []), relation_ids, coarse, refresh)
+            relation_ids += [leg["relation"] for c in detours for leg in c.get("detour", []) if leg.get("relation")]
+            src = osm.source(slug, tracks + detour_points + (coarse if tracks else []), relation_ids, coarse, refresh)
         return src
+
+    def relation_elements(ids):
+        elements = []
+        for rid in ids:
+            data, fetched = cache.get(
+                f"osm-relation-{rid}.json", osm.source_label(), lambda rid=rid: json.dumps(osm_src().relation(rid), separators=(",", ":")).encode()
+            )
+            if fetched and osm.SOURCE == "overpass":
+                time.sleep(5)
+            elements += json.loads(data)["elements"]
+        return elements
+
+    def detour_features(stage, label):
+        """The closed stage's detour legs as features of their own (kind "detour", `by`): on foot
+        matched to OSM paths along a guide from the leg's start over its via points, by train or bus
+        the shortest way along the OSM line's relation between the leg's ends. Not in the measured length, water or
+        surfaces: they aren't the trail."""
+        closed, out = stage["closed"], []
+        begin = (closed["at"]["lon"], closed["at"]["lat"])
+        for i, leg in enumerate(closed.get("detour", [])):
+            to = (leg["to"]["lon"], leg["to"]["lat"])
+            if leg.get("relation"):
+                line = relation_path(relation_elements([leg["relation"]]), begin, to)
+            else:
+                guide = [begin, *[(p["lon"], p["lat"]) for p in leg.get("via", [])], to]
+                ways, _ = cache.get(
+                    f"osm-detour-{label}-{i + 1}.json", osm.source_label(), lambda: json.dumps(osm.fetch_ways(guide, osm_src()), separators=(",", ":")).encode()
+                )
+                line, _ = osm.match(guide, json.loads(ways))
+            print(f"{'  detour':<12} {leg['by']:>7} to {leg['to']['name']}: {line_km(line):.1f} km" + (f" (stated {leg['km']} km)" if leg.get("km") else ""))
+            out.append(
+                {
+                    "type": "Feature",
+                    "properties": {"number": stage["number"], "kind": "detour", "by": leg["by"], "to": leg["to"]["name"]},
+                    "geometry": {"type": "LineString", "coordinates": [[round(x, 5), round(y, 5)] for x, y in simplify(line, TOLERANCE_M)]},
+                }
+            )
+            begin = to
+        return out
 
     if not stages and relation:
         # no GPX: the OSM relation, split at the stage ends, guides the matcher
@@ -262,30 +351,23 @@ def build(slug, refresh=False):
             # one relation, or several in a row (an OSM section and the start of the next);
             # chained from where the previous main stage ended, or, for a variant after a
             # variant, from where that one ended; cut at the stage's `end` when it has one
-            elements = []
-            for rid in stage_relations(stage):
-                data, fetched = cache.get(
-                    f"osm-relation-{rid}.json", osm.source_label(), lambda rid=rid: json.dumps(osm_src().relation(rid), separators=(",", ":")).encode()
-                )
-                if fetched and osm.SOURCE == "overpass":
-                    time.sleep(5)
-                elements += json.loads(data)["elements"]
+            elements = relation_elements(stage_relations(stage))
             begin = last[1] if stage["kind"] != "main" and last and last[0] != "main" else previous_end
             if stage.get("end"):
-                # a stage that is only part of its relations: chain them from the end nearest the
-                # trail's start (chaining from a point in the middle could head the wrong way), then
-                # keep the piece from where the stage begins to its `end`
-                full = relation_line({"elements": elements}, stage.get("alternatives", []), (start["lon"], start["lat"]))
-                # where the chain began at a way in the middle of the relation (it stops early),
-                # begin at the relation's open end instead
-                tip = relation_line({"elements": elements}, stage.get("alternatives", []), (start["lon"], start["lat"]), True)
-                if line_km(tip) > line_km(full) + 1:
-                    full = tip
-                track = piece(full, begin, (stage["end"]["lon"], stage["end"]["lat"]))
+                # a stage that is only part of its relations: the piece from where it begins to its `end`
+                track = relation_piece(elements, stage.get("alternatives", []), (start["lon"], start["lat"]), begin, (stage["end"]["lon"], stage["end"]["lat"]))
             else:
                 track = relation_line({"elements": elements}, stage.get("alternatives", []), begin)
         else:
             track = track_of(stage)
+        # a closed stage: only the part up to where it can be walked is the trail on the map; its
+        # match counts against the whole guide line, so the check flags the missing part
+        walkable = 1.0
+        if stage.get("closed"):
+            at = stage["closed"]["at"]
+            whole = line_km(track)
+            track = piece(track, track[0], (at["lon"], at["lat"]))
+            walkable = line_km(track) / whole
 
         def download_ways():
             return json.dumps(osm.fetch_ways(track, osm_src()), separators=(",", ":")).encode()
@@ -294,6 +376,7 @@ def build(slug, refresh=False):
         if fetched and osm.SOURCE == "overpass":
             time.sleep(5)  # be polite to the public Overpass server
         line, report = osm.match(track, json.loads(ways))
+        report["covered"] *= walkable
         if stage["kind"] == "main":
             previous_end = track[-1]
         last = (stage["kind"], track[-1])
@@ -317,6 +400,8 @@ def build(slug, refresh=False):
                 },
             }
         )
+        if stage.get("closed"):
+            features += detour_features(stage, label)
     out = ROOT / "public" / "routes" / f"{slug}.geojson"
     out.parent.mkdir(parents=True, exist_ok=True)
     out.write_text(json.dumps({"type": "FeatureCollection", "features": features}, separators=(",", ":")) + "\n")

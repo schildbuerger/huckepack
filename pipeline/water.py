@@ -68,7 +68,8 @@ def longest_gap(kms, total):
 
 def build(slug, refresh=False):
     route = json.loads((ROOT / "public" / "routes" / f"{slug}.geojson").read_text())
-    stages = route["features"]
+    # the trail's stages; a closed stage's detour (kind "detour", by train or along a road) isn't the trail
+    stages = [f for f in route["features"] if f["properties"]["kind"] != "detour"]
     every = [tuple(c) for f in stages for c in f["geometry"]["coordinates"]]
     proj = osm.Projection(sum(lat for _, lat in every) / len(every))
     lines = [[proj.xy(*c) for c in f["geometry"]["coordinates"]] for f in stages]

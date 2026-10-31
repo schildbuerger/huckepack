@@ -146,6 +146,23 @@ const routeFile = `routes/${trail.id}.geojson`;
 const routeUrl = t.route && existsSync(`public/${routeFile}`) ? `/${routeFile}` : null;
 // attribution names the route's source: its title up to the first colon
 const routeAttribution = routeUrl && t.route ? sources[t.route.source].title.split(":")[0] : null;
+// closed stages (a bridge lost) and the operator's recommended way on: a sentence under the stage
+// table, and the detour's legs on the map in their own styles
+const closedStages = t.stages?.list.filter((s) => s.closed) ?? [];
+const detourModes = [...new Set(closedStages.flatMap((s) => s.closed!.detour.map((leg) => leg.by)))];
+const LEG_TEXT = {
+  foot: (to: string, km?: number) => `walking to ${to}${km ? ` (${km} km)` : ""}`,
+  train: (to: string) => `the train to ${to}`,
+  bus: (to: string) => `the bus to ${to}`,
+};
+const closedText = (s: (typeof closedStages)[number]) => {
+  const c = s.closed!;
+  const legs = c.detour.map((leg) => LEG_TEXT[leg.by](leg.to.name, leg.km));
+  return (
+    ` Stage ${s.number} can be walked only to ${c.at.name} since ${c.since}: ${c.reason}.` +
+    (legs.length ? ` ${sourceShort(c.source)} recommends ${legs.join(", then ")}${routeUrl ? "; the map shows the detour" : ""}.` : "")
+  );
+};
 
 const level = water && waterLevel(water.longestGapKm.drinking.km);
 // status as a shape plus a word; colour (--good/--fair/--poor) only fills the shape
@@ -619,7 +636,9 @@ const nav = [
         <div>
           <dt>Waymarking</dt>
           <dd class:list={{ marked: t.waymarking.symbol }}>
-            {t.waymarking.symbol && <Waymark symbol={t.waymarking.symbol} number={t.waymarking.number} />}
+            {t.waymarking.symbol && (
+              <span class="marks">{[t.waymarking.symbol].flat().map((s) => <Waymark symbol={s} number={t.waymarking!.number} />)}</span>
+            )}
             <span>{t.waymarking.text}</span>
           </dd>
         </div>
@@ -643,6 +662,7 @@ const nav = [
         start={t.termini.start}
         end={t.termini.end}
         routeAttribution={routeAttribution}
+        detours={detourModes}
         fill
       />
     </div>
@@ -948,6 +968,7 @@ const nav = [
       </div>
       <p class="note muted">
         Totals and averages count the main stages only.
+        {closedStages.map(closedText)}
         {t.stages.timesSource && ` Walking times from ${sourceShort(t.stages.timesSource)}.`}
         {t.stages.list
           .filter((s) => s.source)
@@ -1895,7 +1916,10 @@ const nav = [
     align-items: flex-start;
     gap: 10px;
   }
-  .loc dd.marked :global(.waymark) {
+  .loc dd.marked .marks {
+    display: flex;
+    flex: none;
+    gap: 4px;
     margin-top: 3px;
   }
   /* difficulty key figure: one bar per dimension (initial beneath), as tall as its level; the

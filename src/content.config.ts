@@ -31,6 +31,9 @@ export const SLEEPING_TYPES = [
   "farm-stay", // agriturismo and similar
 ] as const;
 
+// the simple painted marks src/components/Waymark.astro draws (WAYMARKS there)
+const waymark = z.enum(["cai", "yellow-vertical-stripe", "red-diamond", "white-h-on-black", "white-x-on-black"]);
+
 const point = z.object({
   name: z.string(),
   lat: z.number().min(-90).max(90),
@@ -73,6 +76,30 @@ const stage = z.object({
   relation: z.union([z.number().int().positive(), z.array(z.number().int().positive()).min(1)]).optional(),
   // when this stage's figures come from another source than the list's (the page names it)
   source: sourceRef.optional(),
+  // a stage that can't be walked in full (the Eifelsteig's stage 14, a bridge lost in a flood):
+  // walkable to `at`, then the operator's recommended way on, leg by leg (`detour`, on foot or by
+  // train or bus), drawn on the map in their own styles; the stage keeps its stated figures
+  closed: z
+    .object({
+      at: point,
+      since: z.number().int(),
+      reason: z.string(), // a short clause: "a bridge over the Kyll was destroyed in the 2021 flood"
+      source: sourceRef,
+      detour: z
+        .array(
+          z.object({
+            by: z.enum(["foot", "train", "bus"]),
+            to: point,
+            km: z.number().positive().optional(),
+            // on foot: points that keep the guide line on the recommended path
+            via: z.array(z.object({ lat: z.number(), lon: z.number() })).default([]),
+            // by train or bus: the OSM relation of the line it follows (cut from leg start to `to`)
+            relation: z.number().int().positive().optional(),
+          }),
+        )
+        .default([]),
+    })
+    .optional(),
 });
 
 const trail = z
@@ -97,11 +124,12 @@ const trail = z
     established: z.object({ year: z.number().int(), source: sourceRef }).optional(),
     // `symbol`: the waymark redrawn small on the page (src/components/Waymark.astro): every simple
     // painted mark a source describes (stripes, flags, diamonds), never a trail's logo; `number`: a
-    // path number painted on it (the Merano High Mountain Trail's 24)
+    // path number painted on it (the Merano High Mountain Trail's 24); several marks where the
+    // trail joins paths with their own (the Hermannshöhen: the Hermannsweg's H, the Eggeweg's X)
     waymarking: z
       .object({
         text: z.string(),
-        symbol: z.enum(["cai", "yellow-vertical-stripe", "red-diamond"]).optional(),
+        symbol: z.union([waymark, z.array(waymark).min(1)]).optional(),
         // drawn into the waymark's SVG as text, so letters, digits and dashes only
         number: z.string().regex(/^[A-Za-z0-9-]{1,5}$/).optional(),
         source: sourceRef,
@@ -242,6 +270,7 @@ const trail = z
         t.treeLine,
         ...(t.stages?.timesSource ? [{ source: t.stages.timesSource }] : []),
         ...(t.stages?.list.flatMap((s) => (s.source ? [{ source: s.source }] : [])) ?? []),
+        ...(t.stages?.list.flatMap((s) => (s.closed ? [s.closed] : [])) ?? []),
         ...(t.dataCheck
           ? [...[...t.dataCheck.against, ...t.dataCheck.pageAgainst].map((source) => ({ source })), ...t.dataCheck.deviations]
           : []),

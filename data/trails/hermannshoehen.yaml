@@ -37,6 +37,7 @@ established:
   source: wikipedia
 waymarking:
   text: A white H on black (Hermannsweg); a white lying cross, X, on black (Eggeweg)
+  symbol: [white-h-on-black, white-x-on-black]
   source: hhs
 length:
   # the whole-trail tour: 225.46 km; the site's text: "226 km"
@@ -155,7 +156,8 @@ notes:
     Iburg – Diemeltal (48 km). Wikipedia gives no stage list for the Hermannsweg and no climbs.
   - >-
     Waymarks: the Hermannsweg's white H on black and the Eggeweg's white X on black are simple
-    painted marks; not drawn yet (no Waymark symbol for a letter or a cross on black).
+    painted marks, drawn on the page (Waymark white-h-on-black, white-x-on-black); the
+    Hermannshöhen's own logo is not.
 dataCheck:
   # working rule 2: German Wikipedia (Hermannshöhen, Hermannsweg, Eggeweg)
   date: 2026-10-31
