@@ -7,6 +7,8 @@ import Explain from "../../components/Explain.astro";
 import Breadcrumbs from "../../components/Breadcrumbs.astro";
 import Meter from "../../components/Meter.astro";
 import Waymark from "../../components/Waymark.astro";
+import { ogAlt } from "../../lib/og-image";
+import { ogTrail } from "../../lib/og-trail";
 import { n1, stripPaths } from "../../lib/svg";
 import { difficulty, levelText, DIFFICULTY_NOTE, DIMENSION_TEXT, LEVELS, SCALES, type Level } from "../../lib/difficulty";
 import { existsSync } from "node:fs";
@@ -438,6 +440,7 @@ const trailLd = JSON.stringify({
 <Base
   title={pageTitle}
   description={pageDescription}
+  image={{ path: `/og/${trail.id}.png`, alt: ogAlt(ogTrail(trail.id, t, derived)) }}
 >
   <Breadcrumbs trail={[{ label: "Trails", href: "/trails/" }]} current={t.name} />
   <script type="application/ld+json" set:html={trailLd} />

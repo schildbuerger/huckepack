@@ -7,8 +7,10 @@ interface Props {
   description?: string;
   personal?: boolean; // a page with the operator's personal details (legal notice, privacy policy)
   full?: boolean; // the page fills the window between header and footer, without the width cap (the trail map)
+  // the link-preview image (a trail's /og/<slug>.png, 1200 × 630) with its words; else the logo
+  image?: { path: string; alt: string };
 }
-const { title, description, personal = false, full = false } = Astro.props;
+const { title, description, personal = false, full = false, image } = Astro.props;
 // the address search engines and link previews should use (no query string, always with a slash)
 const canonical = new URL(Astro.url.pathname.replace(/\/?$/, "/"), Astro.site);
 // the site's name for search results (schema.org WebSite), on the home page
@@ -32,9 +34,23 @@ const siteLd =
     <meta property="og:url" content={canonical} />
     <meta property="og:title" content={title} />
     {description && <meta property="og:description" content={description} />}
-    <meta property="og:image" content={new URL("/icon-512.png", Astro.site)} />
-    <meta property="og:image:alt" content="The huckepack logo, a cairn of pixel stones" />
-    <meta name="twitter:card" content="summary" />
+    {
+      image ? (
+        <>
+          <meta property="og:image" content={new URL(image.path, Astro.site)} />
+          <meta property="og:image:width" content="1200" />
+          <meta property="og:image:height" content="630" />
+          <meta property="og:image:alt" content={image.alt} />
+          <meta name="twitter:card" content="summary_large_image" />
+        </>
+      ) : (
+        <>
+          <meta property="og:image" content={new URL("/icon-512.png", Astro.site)} />
+          <meta property="og:image:alt" content="The huckepack logo, a cairn of pixel stones" />
+          <meta name="twitter:card" content="summary" />
+        </>
+      )
+    }
     {siteLd && <script type="application/ld+json" set:html={siteLd} />}
     {
       personal && (
