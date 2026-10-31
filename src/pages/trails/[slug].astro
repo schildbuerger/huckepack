@@ -192,7 +192,7 @@ const WATER_STATUS = { frequent: "available", regular: "restricted", scarce: "pr
 const waterStatus = level && { ...STATUS[WATER_STATUS[level.id]], word: level.label };
 
 // strip charts (water, surfaces, elevation) share one geometry: a 1000-unit wide viewBox, km across
-const CHART = { width: 1000, x0: 8, x1: 992, axis: 92, lanes: { drinking: 46, spring: 70 } };
+const CHART = { width: 1000, x0: 8, x1: 992 };
 // landscape lanes: labels on the left, the route's km across the rest
 const LANE_X0 = 220;
 const LANE_X1 = 940;
@@ -410,6 +410,57 @@ const gapStages = (() => {
   return a && b ? (a === b ? `, stage ${a}` : `, stages ${a}–${b}`) : "";
 })();
 
+// water, shops and beds along the main route (issues #96 and #97; of three previews, approach B):
+// one chart, a lane each on the same kilometres, so the stretches where all three thin out line up
+const along = derived?.along;
+const SHOP_LABEL: Record<string, string> = { supermarket: "Supermarket", convenience: "Convenience store", general: "General store", fuel: "Petrol station shop" };
+const BED_LABEL: Record<string, string> = { hut: "Hut", shelter: "Shelter", campsite: "Campsite", hostel: "Hostel", guesthouse: "Guest house" };
+type LanePoint = { km: number; what: string; name: string | null; stage: string; minor: boolean };
+const onMain = <P extends { km: number | null }>(ps: P[]) => ps.filter((p): p is P & { km: number } => p.km !== null);
+const supplyLanes = water
+  ? [
+      {
+        id: "water",
+        label: "Drinking water",
+        gap: water.longestGapKm.drinking,
+        points: onRoute.map((p): LanePoint => ({ km: p.km!, what: p.kind === "drinking" ? "Drinking water" : "Spring", name: p.name, stage: p.stage, minor: p.kind === "spring" })),
+      },
+      ...(along
+        ? [
+            {
+              id: "shops",
+              label: "Shops",
+              gap: along.resupply.longestGapKm,
+              points: onMain(along.resupply.points).map((p): LanePoint => ({ km: p.km, what: SHOP_LABEL[p.kind], name: p.name, stage: p.stage, minor: false })),
+            },
+            {
+              id: "beds",
+              label: "Beds",
+              gap: along.beds.longestGapKm,
+              points: onMain(along.beds.points).map((p): LanePoint => ({ km: p.km, what: BED_LABEL[p.kind], name: p.name, stage: p.stage, minor: false })),
+            },
+          ]
+        : []),
+    ]
+  : [];
+// lane geometry in the 1000-unit strip: a label row and a 26-unit band per lane, then the axis
+const LANE = { top: 30, step: 46, band: 26 };
+const laneY = (i: number) => LANE.top + i * LANE.step;
+const supplyAxis = laneY(supplyLanes.length) - 8;
+const tickPath = (pts: LanePoint[], y: number) =>
+  pts.map((p) => `M${xAt(Math.min(p.km, water?.routeKm ?? p.km))} ${p.minor ? y + 13 : y + 4}V${y + 22}`).join("");
+const supplySummary =
+  water &&
+  (along
+    ? `Water, shops and beds along the main route, ${water.routeKm} km. Longest without drinking water ${water.longestGapKm.drinking.km} km, without a shop ${along.resupply.longestGapKm.km} km, without a bed ${along.beds.longestGapKm.km} km.`
+    : chartSummary);
+const BED_GROUPS = [
+  ["huts", "huts and shelters"],
+  ["camping", "campsites"],
+  ["hostels", "hostels"],
+  ["rooms", "guest houses"],
+] as const;
+
 // on-page navigation: only sections this trail has
 const nav = [
   { id: "location", label: "Location", show: true },
@@ -419,7 +470,7 @@ const nav = [
   { id: "terrain", label: "Terrain", show: Boolean(elevation && grad) },
   { id: "landscape", label: "Landscape", show: Boolean(landcover) },
   { id: "sleeping", label: "Sleeping", show: Boolean(t.sleeping || t.wildCamping) },
-  { id: "water", label: "Water", show: Boolean(water) },
+  { id: "water", label: along ? "Water, food and beds" : "Water", show: Boolean(water) },
 ].filter((n) => n.show);
 
 // structured data (review #17, the light option): the page is about the trail as a place, with its
@@ -1306,35 +1357,17 @@ const trailLd = JSON.stringify({
 
   {water && waterTotals && waterStatus && (
     <section id="water">
-      <h2>Water</h2>
+      <h2>{along ? "Water, food and beds" : "Water"}</h2>
       <dl class="strip spec three">
         <div>
           <dt>
-            <Explain id="about-drinking-water" term="Drinking water">
+            <Explain id="about-dry-stretch" term="Longest without drinking water" title="Drinking water">
               <p>
-                Fountains, taps and springs marked as drinkable in OpenStreetMap, within {water.withinM} m of the trail{
-                  waterExtra.length > 0 && `, and the taps the trail's managers list (${waterExtra.join(", ")})`
-                }.
+                {waterTotals.drinking} fountains, taps and springs marked as drinkable in OpenStreetMap within {water.withinM} m of the
+                trail{waterExtra.length > 0 && `, with the taps the trail's managers list (${waterExtra.join(", ")})`}, and{" "}
+                {waterTotals.springs} other springs whose water is of unknown quality (treat it; some run dry in late summer).
+                The counts include the approach and variant; the chart shows the main route.
               </p>
-              <p>The counts include the approach and variant; the chart shows the main route.</p>
-            </Explain>
-          </dt>
-          <dd><span class="big">{waterTotals.drinking}</span><span class="unit">points</span></dd>
-        </div>
-        <div>
-          <dt>
-            <Explain id="about-springs" term="Drinkability unknown" title="Springs">
-              <p>
-                Other springs within {water.withinM} m of the trail. Whether they are drinkable is unknown: treat the water,
-                and expect some to run dry in late summer.
-              </p>
-            </Explain>
-          </dt>
-          <dd><span class="big">{waterTotals.springs}</span><span class="unit">springs</span></dd>
-        </div>
-        <div>
-          <dt>
-            <Explain id="about-dry-stretch" term="Longest dry stretch" title="Water availability">
               <p>
                 Rated by the longest stretch of the main route without drinking water: frequent up to 10 km, regular up to 20
                 km, scarce beyond. Here: from km {water.longestGapKm.drinking.fromKm} to {water.longestGapKm.drinking.toKm}{gapStages}.
@@ -1349,61 +1382,107 @@ const trailLd = JSON.stringify({
             </span>
           </dd>
         </div>
+        {along ? (
+          <>
+            <div>
+              <dt>
+                <Explain id="about-shops" term="Longest without a shop" title="Shops">
+                  <p>
+                    {along.resupply.points.length} supermarkets, convenience and general stores and petrol stations with a shop in
+                    OpenStreetMap, within {along.withinM / 1000} km of the trail or {along.stageEndM / 1000} km of a stage's end
+                    (stage towns often lie off the trail). Small village shops are often missing, and opening hours vary: check
+                    before relying on one. Here the longest stretch without runs from km {along.resupply.longestGapKm.fromKm} to{" "}
+                    {along.resupply.longestGapKm.toKm}.
+                  </p>
+                </Explain>
+              </dt>
+              <dd><span class="big">{along.resupply.longestGapKm.km}</span><span class="unit">km</span></dd>
+            </div>
+            <div>
+              <dt>
+                <Explain id="about-beds" term="Longest without a bed" title="Beds">
+                  <p>
+                    {along.beds.points.length} places to sleep in OpenStreetMap within the same reach:{" "}
+                    {BED_GROUPS.filter(([g]) => along.beds.byGroup[g] > 0)
+                      .map(([g, words]) => `${along.beds.byGroup[g]} ${words}`)
+                      .join(", ")}
+                    . Hotels are left out. Here the longest stretch without runs from km {along.beds.longestGapKm.fromKm} to{" "}
+                    {along.beds.longestGapKm.toKm}.
+                  </p>
+                </Explain>
+              </dt>
+              <dd><span class="big">{along.beds.longestGapKm.km}</span><span class="unit">km</span></dd>
+            </div>
+          </>
+        ) : (
+          <div>
+            <dt>
+              <Explain id="about-springs" term="Drinkability unknown" title="Springs">
+                <p>
+                  Other springs within {water.withinM} m of the trail. Whether they are drinkable is unknown: treat the water,
+                  and expect some to run dry in late summer.
+                </p>
+              </Explain>
+            </dt>
+            <dd><span class="big">{waterTotals.springs}</span><span class="unit">springs</span></dd>
+          </div>
+        )}
       </dl>
 
       {water.stageStarts.length > 0 && (
         <figure class="waterline">
           <ul class="legend" aria-hidden="true">
-            <li><svg width="12" height="12"><circle cx="6" cy="6" r="4.5" class="dot drinking" /></svg>Drinking water</li>
-            <li><svg width="12" height="12"><circle cx="6" cy="6" r="4" class="dot spring" /></svg>Spring</li>
-            <li><span class="swatch"></span>Longest dry stretch</li>
+            <li><svg width="10" height="14"><path d="M5 1V13" class="mark-tick water" /></svg>Drinking water</li>
+            <li><svg width="10" height="14"><path d="M5 7V13" class="mark-tick water" /></svg>Spring</li>
+            {along && <li><svg width="10" height="14"><path d="M5 1V13" class="mark-tick shops" /></svg>Shop</li>}
+            {along && <li><svg width="10" height="14"><path d="M5 1V13" class="mark-tick beds" /></svg>Bed</li>}
+            <li><span class="swatch"></span>Longest stretch without</li>
           </ul>
           <div class="chart-scroll">
-          <svg viewBox={`0 0 ${CHART.width} 132`} role="img" aria-label={chartSummary}>
+          <svg viewBox={`0 0 ${CHART.width} ${supplyAxis + 40}`} role="img" aria-label={supplySummary}>
             {stageTicks(water.stageStarts, water.routeKm).map(
-              (tk) => tk.band && <rect class="stage-band" x={tk.x} y="28" width={n1(tk.end - tk.x)} height={CHART.axis - 28} />,
+              (tk) => tk.band && <rect class="stage-band" x={tk.x} y={LANE.top - 18} width={n1(tk.end - tk.x)} height={supplyAxis - LANE.top + 18} />,
             )}
-            <rect
-              class="gap"
-              x={xAt(water.longestGapKm.drinking.fromKm)}
-              y="28"
-              width={n1(xAt(water.longestGapKm.drinking.toKm) - xAt(water.longestGapKm.drinking.fromKm))}
-              height={CHART.axis - 28}
-              rx="4"
-            />
-            <text
-              class="gap-label"
-              x={(xAt(water.longestGapKm.drinking.fromKm) + xAt(water.longestGapKm.drinking.toKm)) / 2}
-              y="20"
-              text-anchor="middle">{water.longestGapKm.drinking.km} km without</text>
-            <line class="route" x1={CHART.x0} x2={CHART.x1} y1={CHART.axis} y2={CHART.axis} />
+            {supplyLanes.map((lane, i) => (
+              <g>
+                <rect class="gap" x={xAt(lane.gap.fromKm)} y={laneY(i)} width={n1(xAt(lane.gap.toKm) - xAt(lane.gap.fromKm))} height={LANE.band} rx="4" />
+                <text class="lane-name" x={CHART.x0} y={laneY(i) - 6}>{lane.label} <tspan class="lane-gap">· {lane.gap.km} km without</tspan></text>
+                <path class={`mark-tick ${lane.id}`} d={tickPath(lane.points, laneY(i))} />
+              </g>
+            ))}
+            <line class="route" x1={CHART.x0} x2={CHART.x1} y1={supplyAxis} y2={supplyAxis} />
             {stageTicks(water.stageStarts, water.routeKm).map((tk) => (
               <g>
-                <line class="tick" x1={tk.x} x2={tk.x} y1={CHART.axis - (tk.label ? 5 : 3)} y2={CHART.axis + (tk.label ? 5 : 3)} />
-                {tk.label && <text class="tick-label" x={tk.mid} y={CHART.axis + 18} text-anchor="middle">{tk.label}</text>}
+                <line class="tick" x1={tk.x} x2={tk.x} y1={supplyAxis - (tk.label ? 5 : 3)} y2={supplyAxis + (tk.label ? 5 : 3)} />
+                {tk.label && <text class="tick-label" x={tk.mid} y={supplyAxis + 18} text-anchor="middle">{tk.label}</text>}
               </g>
             ))}
-            <line class="tick" x1={CHART.x1} x2={CHART.x1} y1={CHART.axis - 5} y2={CHART.axis + 5} />
-            <text class="tick-label end" x={CHART.x0} y={CHART.axis + 36}>0 km</text>
-            <text class="tick-label end" x={CHART.x1} y={CHART.axis + 36} text-anchor="end">{water.routeKm} km</text>
-            {onRoute.map((pt) => (
-              <g
-                class="pt"
-                data-tip-title={pt.kind === "drinking" ? "Drinking water" : "Spring"}
-                data-tip-text={`${pt.name ? `${pt.name} · ` : ""}km ${pt.km} · stage ${pt.stage}`}
-              >
-                <circle cx={xAt(pt.km!)} cy={CHART.lanes[pt.kind]} r="10" class="hit" />
-                <circle cx={xAt(pt.km!)} cy={CHART.lanes[pt.kind]} r={pt.kind === "drinking" ? 4.5 : 4} class={`dot ${pt.kind}`} />
-              </g>
-            ))}
+            <line class="tick" x1={CHART.x1} x2={CHART.x1} y1={supplyAxis - 5} y2={supplyAxis + 5} />
+            <text class="tick-label end" x={CHART.x0} y={supplyAxis + 36}>0 km</text>
+            <text class="tick-label end" x={CHART.x1} y={supplyAxis + 36} text-anchor="end">{water.routeKm} km</text>
+            <line class="cursor" x1="0" x2="0" y1={LANE.top - 4} y2={supplyAxis} visibility="hidden" />
           </svg>
           </div>
+          <script
+            is:inline
+            type="application/json"
+            class="chart-data"
+            set:html={jsonBlock({
+              total: water.routeKm,
+              top: LANE.top,
+              step: LANE.step,
+              height: supplyAxis + 40,
+              lanes: supplyLanes.map((l) => l.points.map((p) => [p.km, p.what, p.name ?? "", p.stage])),
+            })}
+          />
           <div class="tip" role="status" hidden><strong></strong><span></span></div>
           <figcaption class="chart-info">
-            <Explain id="about-water-chart" term="About this chart" title="Water along the route" icon>
+            <Explain id="about-water-chart" term="About this chart" title={along ? "Water, food and beds along the route" : "Water along the route"} icon>
               <p>
-                Drinking water and springs from OpenStreetMap{waterExtra.length > 0 && ` and ${waterExtra.join(", ")}`}, within{" "}
-                {water.withinM} m of the main route. The map may miss taps or list ones that have run dry, so check locally.
+                One tick per place along the main route, from OpenStreetMap{waterExtra.length > 0 && ` (water also from ${waterExtra.join(", ")})`}:
+                drinking water and springs within {water.withinM} m{along && `, shops and beds within ${along.withinM / 1000} km or ${along.stageEndM / 1000} km of a stage's end`}.
+                The shaded band in each lane is its longest stretch without. The map may miss places or list ones that have
+                closed or run dry, so check locally.
               </p>
             </Explain>
           </figcaption>
@@ -1466,37 +1545,56 @@ const trailLd = JSON.stringify({
     update();
   }
 
-  // Water chart tooltip: one element per chart, filled from the hovered (or tapped) dot.
+  // Water, food and beds: one tooltip at the pointer, the nearest place in the lane under it (from
+  // the chart's data, not an element per place: long trails have hundreds of beds).
   for (const figure of document.querySelectorAll<HTMLElement>(".waterline")) {
+    const svg = figure.querySelector<SVGSVGElement>("svg[role=img]")!; // not the legend's marks
     const tip = figure.querySelector<HTMLElement>(".tip")!;
-    let active: SVGGElement | null = null;
-    const show = (pt: SVGGElement) => {
-      active?.classList.remove("active");
-      active = pt;
-      pt.classList.add("active");
-      tip.querySelector("strong")!.textContent = pt.dataset.tipTitle ?? "";
-      tip.querySelector("span")!.textContent = pt.dataset.tipText ?? "";
+    const cursor = figure.querySelector<SVGLineElement>(".cursor")!;
+    const data: {
+      total: number;
+      top: number;
+      step: number;
+      height: number;
+      lanes: [number, string, string, string][][]; // km, what, name, stage
+    } = JSON.parse(figure.querySelector(".chart-data")!.textContent!);
+    const X0 = 8;
+    const X1 = 992;
+    const show = (clientX: number, clientY: number) => {
+      const box = svg.getBoundingClientRect();
+      const vx = ((clientX - box.left) / box.width) * 1000;
+      const vy = ((clientY - box.top) / box.height) * data.height;
+      const lane = Math.min(Math.max(Math.floor((vy - data.top + data.step / 2 - 13) / data.step), 0), data.lanes.length - 1);
+      const km = ((vx - X0) / (X1 - X0)) * data.total;
+      // the nearest place within about 12 units (1.2 % of the route)
+      const near = data.lanes[lane].reduce<[number, string, string, string] | null>(
+        (best, p) => (Math.abs(p[0] - km) < (best ? Math.abs(best[0] - km) : (12 / (X1 - X0)) * data.total) ? p : best),
+        null,
+      );
+      if (!near) return hide();
+      const x = X0 + (near[0] / data.total) * (X1 - X0);
+      cursor.setAttribute("x1", String(x));
+      cursor.setAttribute("x2", String(x));
+      cursor.setAttribute("visibility", "visible");
+      tip.querySelector("strong")!.textContent = near[1];
+      tip.querySelector("span")!.textContent = `${near[2] ? `${near[2]} · ` : ""}km ${near[0]} · stage ${near[3]}`;
       tip.hidden = false;
-      const dot = pt.querySelector(".dot")!.getBoundingClientRect();
-      const box = figure.getBoundingClientRect();
-      const x = dot.left + dot.width / 2 - box.left;
+      const fbox = figure.getBoundingClientRect();
       const half = tip.offsetWidth / 2;
-      tip.style.left = `${Math.min(Math.max(x, half), box.width - half)}px`;
-      tip.style.top = `${dot.top - box.top - 8}px`;
+      const px = box.left - fbox.left + (x / 1000) * box.width;
+      tip.style.left = `${Math.min(Math.max(px, half), fbox.width - half)}px`;
+      tip.style.top = `${box.top - fbox.top + ((data.top + lane * data.step) / data.height) * box.height - 8}px`;
     };
     const hide = () => {
-      active?.classList.remove("active");
-      active = null;
       tip.hidden = true;
+      cursor.setAttribute("visibility", "hidden");
     };
-    for (const pt of figure.querySelectorAll<SVGGElement>(".pt")) {
-      pt.addEventListener("pointerenter", () => show(pt));
-      pt.addEventListener("pointerleave", (e) => e.pointerType === "mouse" && hide());
-      pt.addEventListener("click", (e) => {
-        e.stopPropagation();
-        show(pt);
-      });
-    }
+    svg.addEventListener("pointermove", (e) => show(e.clientX, e.clientY));
+    svg.addEventListener("pointerleave", (e) => e.pointerType === "mouse" && hide());
+    svg.addEventListener("click", (e) => {
+      e.stopPropagation();
+      show(e.clientX, e.clientY);
+    });
     document.addEventListener("click", hide);
     document.addEventListener("keydown", (e) => e.key === "Escape" && hide());
   }
@@ -2651,29 +2749,30 @@ const trailLd = JSON.stringify({
     background: var(--fair-soft);
     outline: 1px solid var(--fair);
   }
-  .dot {
-    stroke: var(--bg);
+  /* water, food and beds: a tick per place, one path per lane */
+  .mark-tick {
+    fill: none;
     stroke-width: 2;
   }
-  .dot.drinking {
-    fill: var(--water);
-  }
-  .dot.spring {
-    fill: var(--bg);
+  .mark-tick.water {
     stroke: var(--water);
   }
-  .hit {
-    fill: transparent;
-    cursor: help;
+  .mark-tick.shops {
+    stroke: var(--accent);
   }
-  .dot {
-    transform-box: fill-box;
-    transform-origin: center;
-    transition: transform 0.12s ease;
+  .mark-tick.beds {
+    stroke: var(--clim-high);
   }
-  .pt:hover .dot,
-  .pt.active .dot {
-    transform: scale(1.5);
+  .waterline .lane-name {
+    fill: var(--text);
+    font: 600 13px var(--sans);
+  }
+  .waterline .lane-gap {
+    fill: var(--muted);
+    font-weight: 400;
+  }
+  .waterline svg {
+    cursor: crosshair;
   }
   /* terrain: the profile's tint, the colour of level ground */
   .terrain {
@@ -2902,10 +3001,6 @@ const trailLd = JSON.stringify({
   }
   .gap {
     fill: var(--fair-soft);
-  }
-  .gap-label {
-    fill: var(--text);
-    font: 600 13px var(--sans);
   }
   .route {
     stroke: var(--muted);
