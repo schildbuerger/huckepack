@@ -1,0 +1,219 @@
+name: Kungsleden
+added: 2026-10-31
+aliases: [King's Trail, Kings Trail]
+website: https://www.swedishtouristassociation.com/areas/kungsleden/
+wikidata: Q59780
+managedBy:
+  # STF runs the huts and mountain stations; the county administrative boards keep the trail
+  # (bridges, plank walkways, rowing boats; Wikipedia)
+  - name: Svenska Turistföreningen (STF, Swedish Tourist Association)
+    url: https://www.swedishtouristassociation.com/
+  - name: County Administrative Boards of Norrbotten and Västerbotten (Länsstyrelsen)
+    url: https://www.lansstyrelsen.se/norrbotten/
+trailType: point-to-point
+continents: [Europe]
+countries: [SE]
+regions: [Norrbotten, Västerbotten]
+protectedAreas:
+  - Abisko National Park
+  - Vindelfjällen Nature Reserve
+termini:
+  # Abisko Turiststation (the railway halt by STF's mountain station) and STF's Hemavan
+  # mountain centre (OSM)
+  start:
+    name: Abisko
+    lat: 68.35738
+    lon: 18.78247
+  end:
+    name: Hemavan
+    lat: 65.812
+    lon: 15.08712
+  source: osm
+established:
+  # marked between Abisko and Vakkotavare in 1926–27; the name Kungsleden appears in 1928
+  year: 1928
+  source: wikipedia
+waymarking:
+  text: Well marked, with bridges over difficult water crossings
+  source: stf
+length:
+  # "just over 450 kilometers" between Abisko and Hemavan
+  - km: 450
+    source: stf
+stages:
+  # STF's five section pages: every leg hut to hut with distance and walking time (a range, in
+  # hours). Each matches one OSM stage relation of the Kungsleden superroute (1657661), except
+  # Sjnulttjie – Ammarnäs, one relation cut at Rävfallsstugan. STF's Abisko – Nikkaluokta and
+  # Nikkaluokta – Saltoluokta sections run via Kebnekaise and Nikkaluokta, the trail's usual way
+  # in from Kiruna; the Kungsleden itself goes Singi – Kaitumjaure, so the two legs to
+  # Nikkaluokta are an approach here. The boat crossings (Teusajaure, Sitojaure, Laitaure,
+  # Sakkat, Riebnes) and the bus from Vakkotavare are in the stages as STF describes them.
+  source: stf
+  list:
+    - { number: "1", kind: main, from: Abisko, to: Abiskojaure, km: 15, minutes: 240, maxMinutes: 360, relation: 6289365 }
+    - { number: "2", kind: main, from: Abiskojaure, to: Alesjaure, km: 21, minutes: 360, maxMinutes: 480, relation: 8928539 }
+    - { number: "3", kind: main, from: Alesjaure, to: Tjäktja, km: 13, minutes: 240, maxMinutes: 300, relation: 10861495 }
+    - { number: "4", kind: main, from: Tjäktja, to: Sälka, km: 12, minutes: 180, maxMinutes: 300, relation: 10861494 }
+    - { number: "5", kind: main, from: Sälka, to: Singi, km: 12, minutes: 180, maxMinutes: 240, relation: 17080095 }
+    - { number: "6", kind: main, from: Singi, to: Kaitumjaure, km: 13, minutes: 240, maxMinutes: 300, relation: 17080115 }
+    - { number: "7", kind: main, from: Kaitumjaure, to: Teusajaure, km: 9, minutes: 240, maxMinutes: 300, relation: 17085864 }
+    - { number: "8", kind: main, from: Teusajaure, to: Vakkotavare, km: 15, minutes: 240, maxMinutes: 360, relation: 17085863 }
+    - { number: "9", kind: main, from: Vakkotavare, to: Saltoluokta, km: 30, minutes: 540, maxMinutes: 660, relation: 18864010 }
+    - { number: "10", kind: main, from: Saltoluokta, to: Sitojaure, km: 19, minutes: 360, maxMinutes: 480, relation: 18864487 }
+    - { number: "11", kind: main, from: Sitojaure, to: Aktse, km: 10, minutes: 180, maxMinutes: 240, relation: 18864488 }
+    - { number: "12", kind: main, from: Aktse, to: Pårte, km: 22, minutes: 420, maxMinutes: 540, relation: 18864489 }
+    - { number: "13", kind: main, from: Pårte, to: Kvikkjokk, km: 17, minutes: 360, maxMinutes: 480, relation: 18864490 }
+    - { number: "14", kind: main, from: Kvikkjokk, to: Tsielekjåkkstugan, km: 15, minutes: 300, maxMinutes: 420, relation: 18864491 }
+    - { number: "15", kind: main, from: Tsielekjåkkstugan, to: Piteälven, km: 19, minutes: 420, maxMinutes: 540, relation: 18864492 }
+    - { number: "16", kind: main, from: Piteälven, to: Gásakláhko, km: 19, minutes: 420, maxMinutes: 540, relation: 18864493 }
+    - { number: "17", kind: main, from: Gásakláhko, to: Vuonatjviken, km: 13, minutes: 240, maxMinutes: 360, relation: 18864494 }
+    - { number: "18", kind: main, from: Vuonatjviken, to: Jäckvik, km: 18, minutes: 240, maxMinutes: 360, relation: 18864495 }
+    - { number: "19", kind: main, from: Jäckvik, to: Adolfström, km: 22, minutes: 540, maxMinutes: 600, relation: 18864496 }
+    - { number: "20", kind: main, from: Adolfström, to: Sjnulttjie, km: 23, minutes: 420, maxMinutes: 480, relation: 18864497 }
+    - { number: "21", kind: main, from: Sjnulttjie, to: Rävfallsstugan, km: 27, minutes: 600, maxMinutes: 720, relation: 18864498, end: { name: Rävfallsstugan, lat: 66.09543, lon: 16.11901 } }
+    - { number: "22", kind: main, from: Rävfallsstugan, to: Ammarnäs, km: 23, minutes: 480, maxMinutes: 600, relation: 18864498, end: { name: Ammarnäs, lat: 65.96057, lon: 16.20574 } }
+    - { number: "23", kind: main, from: Ammarnäs, to: Aigert, km: 8, minutes: 120, maxMinutes: 180, relation: 18709391 }
+    - { number: "24", kind: main, from: Aigert, to: Serve, km: 19, minutes: 300, maxMinutes: 420, relation: 18709392 }
+    - { number: "25", kind: main, from: Serve, to: Tärnasjö, km: 14, minutes: 240, maxMinutes: 300, relation: 18709393 }
+    - { number: "26", kind: main, from: Tärnasjö, to: Syter, km: 14, minutes: 240, maxMinutes: 300, relation: 18709394 }
+    - { number: "27", kind: main, from: Syter, to: Viterskalet, km: 12, minutes: 180, maxMinutes: 240, relation: 18707918 }
+    - { number: "28", kind: main, from: Viterskalet, to: Hemavan, km: 10, minutes: 180, maxMinutes: 240, relation: 18707919 }
+    - { number: "N1", kind: approach, from: Nikkaluokta, to: Kebnekaise, km: 19, minutes: 300, maxMinutes: 420, relation: 17085817 }
+    - { number: "N2", kind: approach, from: Kebnekaise, to: Singi, km: 15, minutes: 240, maxMinutes: 360, relation: 17085816 }
+route:
+  # built by `python -m pipeline.all kungsleden`: OSM ways matched to the stage relations
+  source: osm
+  publishable: true
+difficulty:
+  estimated:
+    sac: T2
+    basis: >-
+      STF describes a well-marked trail with bridges over the difficult water crossings, easy
+      walking in places and steeper, rocky stretches (towards Tjäktja); Wikipedia adds plank
+      walkways over swampy and rocky ground near the trailheads and eroded, rocky sections farther
+      out, rowing boats over the lakes, and treacherous weather with late or early snow. No
+      secured passages; the highest point is Tjäktjapasset (1,150 m). Mountain hiking (T2).
+    source: stf
+season:
+  # STF's visitor calendar for the huts: open from week 25 to week 37 (Abisko–Nikkaluokta page);
+  # Wikipedia: "usually runs between mid-June and the end of September"
+  months: [6, 7, 8, 9]
+  text: Mid-June to mid-September, while STF's huts are open
+  source: stf
+sleeping:
+  # STF's mountain cabins and stations, 10–20 km apart; none between Kvikkjokk and Ammarnäs
+  types: [hut]
+  source: stf
+wildCamping:
+  status: restricted
+  rule: >-
+    The right of public access (allemansrätten) allows a tent for a night or so away from houses.
+    In Abisko National Park, tents only at the designated sites (the mountain station, Nissonjohka
+    and Abiskojaure), and fires only at their fire places; other protected areas along the way
+    have their own rules.
+  source: abisko-np
+access:
+  # trains stop at Abisko Turiststation (the line Stockholm/Luleå – Kiruna – Narvik); Kiruna
+  # Airport is the nearest with scheduled flights. Coordinates from OSM; distances by
+  # pipeline/access.py
+  - kind: station
+    name: Abisko Turiststation
+    lat: 68.35738
+    lon: 18.78247
+    source: osm
+  - kind: airport
+    name: Kiruna Airport (KRN)
+    lat: 67.82006
+    lon: 20.33308
+    source: osm
+tags: [lapland, arctic, huts, fjell, lakes]
+notes:
+  - >-
+    Stages: STF's 28 legs add up to 464 km against its "just over 450 kilometers"; Wikipedia gives
+    about 467 km (419.3 km on foot, 18.2 km of lake crossings, 29.5 km of road, mostly by bus).
+    STF's section totals differ slightly from their legs (Nikkaluokta – Saltoluokta 102 against
+    101 km, Saltoluokta – Kvikkjokk 73 against 68 km plus boats, Ammarnäs – Hemavan 78 against
+    77 km). No official number of days for the whole trail.
+  - >-
+    Route (pipeline, 2026-10-31, Geofabrik extract): each stage follows its OSM stage relation;
+    OSM maps the lake crossings as rowing-boat ferries (route=ferry, the boats STF names), which the
+    matcher may take as part of the trail. Every stage matches 100 %. The matched line is 473 km
+    against the legs' 464 km and STF's "just over 450". Legs more than 10 % off the map line, where
+    OSM's stage relations end at other points than STF's huts or include the boat: 11 (12.8 against
+    10 km), 13 (15.4 against 17), 16 (14.5 against 19), 17 (16.1 against 13), 18 (24.2 against 18
+    plus a 5.4 km boat), 28 (11.6 against 10).
+  - >-
+    Water: OSM maps only 4 drinking water points, so the page rates water "scarce" (294 km without);
+    in fact the trail crosses streams and lakes all along, which OSM doesn't count as drinking
+    water, and STF's huts fetch theirs from them. No source lists water points to add.
+  - >-
+    Resupply: 129 km without a shop in OSM (km 172–301, around Kvikkjokk to Jäckvik); STF's staffed
+    huts and mountain stations sell provisions, which OSM doesn't tag as shops.
+  - >-
+    Beds: 34 km without a bed of the kinds counted (km 262–296, Adolfström to Rävfallsstugan,
+    where STF has no huts).
+  - >-
+    Tree line: not recorded. The route climbs to 1,135 m on the terrain model (Tjäktjapasset, STF
+    1,150 m), well above the mountain birch; no published regional tree line is in
+    data/reference/tree-lines.yaml yet.
+  - >-
+    Data check (2026-10-31). Second source: English Wikipedia (about 467 km, 419.3 km on foot plus
+    lake crossings and road; highest point Tjäktjapasset 1,150 m; huts 9–22 km apart; hut season
+    mid-June to the end of September; marked; plank walkways and rowing boats kept by the county
+    boards) agrees with STF within 10 %: length 450–464 against 467 km, highest point 1,150 m (the
+    terrain model 1,135 m), the season's months the same. The opening year (1928) is Wikipedia's
+    alone.
+dataCheck:
+  # working rule 2: English Wikipedia
+  date: 2026-10-31
+  against: [wikipedia]
+  deviations:
+    - { figure: "Stage 16 length", ours: "19 km (STF)", theirs: "14.5 km (map line)", source: osm }
+    - { figure: "Stage 18 length", ours: "18 km (STF)", theirs: "24.2 km (map line, with the boat)", source: osm }
+sources:
+  - id: stf
+    title: "STF: Kungsleden and its five section pages (legs with distances and walking times, huts, hut calendar)"
+    url: https://www.swedishtouristassociation.com/areas/kungsleden/
+    licence: © Svenska Turistföreningen (facts only)
+    retrieved: 2026-10-31
+  - id: abisko-np
+    title: "Naturvårdsverket: Abisko National Park regulations (SNFS 1987:7 as amended by NFS 2014:12)"
+    url: https://www.sverigesnationalparker.se/globalassets/abisko/filer/abisko-nationalpark-foreskrifter-eng.pdf
+    licence: Public regulations
+    retrieved: 2026-10-31
+  - id: wikipedia
+    title: "Wikipedia (en): Kungsleden (history, length, trail condition, season; data check)"
+    url: https://en.wikipedia.org/wiki/Kungsleden
+    licence: CC BY-SA 4.0
+    retrieved: 2026-10-31
+  - id: wikimedia
+    title: "Wikimedia: page views of the trail's Wikipedia articles in every language, by people, over twelve months (Wikidata sitelinks, pageview API)"
+    url: https://wikimedia.org/api/rest_v1/
+    licence: CC0 1.0 (pageview data); Wikidata CC0
+    retrieved: 2026-10-31
+    checkOnly: true  # not on the trail page: the page views only rank the home page's popular trails
+  - id: osm
+    title: "OpenStreetMap contributors: the Kungsleden stage relations (superroute 1657661), paths, water, shops and places to sleep along the trail (Geofabrik extracts), travel hubs"
+    url: https://www.openstreetmap.org/relation/1657661
+    licence: ODbL 1.0
+    retrieved: 2026-10-31
+  - id: copdem
+    title: "Copernicus DEM GLO-30 (30 m terrain model), tiles from AWS Open Data"
+    url: https://registry.opendata.aws/copernicus-dem/
+    licence: "Copernicus WorldDEM-30 licence, free; produced using Copernicus WorldDEM-30 © DLR e.V. 2010-2014 and © Airbus Defence and Space GmbH 2014-2018 provided under COPERNICUS by the European Union and ESA; all rights reserved"
+    retrieved: 2026-10-31
+  - id: worldcover
+    title: "ESA WorldCover 2021: 10 m land cover (via AWS Open Data)"
+    url: https://esa-worldcover.org/
+    licence: "CC BY 4.0; © ESA WorldCover project 2021 / Contains modified Copernicus Sentinel data (2021) processed by ESA WorldCover consortium"
+    retrieved: 2026-10-31
+  - id: era5
+    title: "Open-Meteo open data on AWS: ERA5-Land temperature and ERA5 precipitation, snow and wind, daily 1995–2024 (reanalysis)"
+    url: https://github.com/open-meteo/open-data
+    licence: CC BY 4.0 (Open-Meteo); contains modified Copernicus Climate Change Service information
+    retrieved: 2026-10-31
+  - id: osrm
+    title: "OSRM: road routes on OpenStreetMap data (router.project-osrm.org)"
+    url: https://project-osrm.org/
+    licence: Route data © OpenStreetMap contributors (ODbL)
+    retrieved: 2026-10-31

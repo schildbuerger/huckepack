@@ -49,6 +49,8 @@ since 26 March 2026: German Wikipedia's twelve stages along the National Trail r
 GPX for the whole trail cut at each stage's end).
 And the **Tour du Mont Blanc** (#55, about 170 km around the Mont Blanc massif from Les Houches:
 English Wikipedia's eleven legs, the OSM relation's main itinerary cut at their ends).
+And the **Kungsleden** (#30, 464 km from Abisko to Hemavan in STF's 28 hut-to-hut legs, each on
+its OSM stage relation, the rowing boats over the lakes included).
 
 | # | Trail | Region | Length (approx.) | Why |
 |---|---|---|---|---|
@@ -58,7 +60,7 @@ English Wikipedia's eleven legs, the OSM relation's main itinerary cut at their 
 | 4 | Camino de Santiago (Camino Francés) | Spain | 780 km | Most-walked long route; pilgrim office statistics |
 | 5 | GR 20 | Corsica, France | 180 km | Best-known European thru-hike |
 | 6 | Continental Divide Trail | USA | 5,000 km | Completes the Triple Crown |
-| 7 | Kungsleden | Sweden | 440 km | Well-known Nordic trail |
+| 7 | ~~Kungsleden~~ (added) | Sweden | 440 km | Well-known Nordic trail |
 | 8 | ~~West Highland Way~~ (added) | Scotland | 154 km | Popular, well documented |
 | 9 | Lycian Way | Turkey | 540 km | Well-known Mediterranean route |
 | 10 | Israel National Trail | Israel | 1,000 km | Popular desert-to-sea route |

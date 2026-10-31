@@ -15,6 +15,7 @@ geometry then defines the corridor.
 """
 
 import gzip
+import http.client
 import json
 import math
 import os
@@ -120,8 +121,8 @@ def extract(region, url, refresh=False):
     if have and not (refresh and time.time() - have[-1].stat().st_mtime > MAX_AGE_DAYS * 86400):
         return have[-1]
     with _get(url) as response:
-        dated = response.geturl().rsplit("/", 1)[-1]  # e.g. iceland-261028.osm.pbf
-        date = dated.rsplit("-", 1)[-1].split(".")[0]
+        dated_url = response.geturl()  # e.g. …/iceland-261028.osm.pbf
+        date = dated_url.rsplit("/", 1)[-1].rsplit("-", 1)[-1].split(".")[0]
         target = folder / f"{stem}-{date}.osm.pbf"
         part = target.with_suffix(".part")
         size = int(response.headers.get("Content-Length") or 0)
@@ -129,9 +130,24 @@ def extract(region, url, refresh=False):
         with part.open("wb") as out:
             while chunk := response.read(1 << 20):
                 out.write(chunk)
+    # a dropped connection ends the read early without an error (Hong Kong, Iceland, Sweden at
+    # 99.99 %, 2026-10-31): go on from where it stopped, from the dated file
+    for _ in range(5):
+        got = part.stat().st_size
+        if not size or got >= size:
+            break
+        print(f"  {region}: stopped at {got / 1e6:.0f} MB, resuming")
+        request = urllib.request.Request(dated_url, headers={"User-Agent": USER_AGENT, "Range": f"bytes={got}-"})
+        try:
+            with urllib.request.urlopen(request, timeout=600) as response, part.open("ab") as out:
+                if response.status != 206:
+                    raise OSError(f"{region}: the server doesn't resume downloads")
+                while chunk := response.read(1 << 20):
+                    out.write(chunk)
+        except (urllib.error.URLError, TimeoutError, ConnectionError, http.client.IncompleteRead):
+            time.sleep(10)
     got = part.stat().st_size
     if size and got != size:
-        # a dropped connection ends the read early without an error (Hong Kong, Iceland, 2026-10-31)
         part.unlink()
         raise OSError(f"{region}: download stopped at {got} of {size} bytes; run again")
     part.rename(target)
@@ -183,7 +199,9 @@ class Corridor:
             self.by_cell.setdefault(_cell(lon, lat), []).append(nid)
         self.ways_of = {}
         for wid, w in self.ways.items():
-            if w.get("highway"):
+            # a trail relation's ferry (the Kungsleden's rowing boats over its lakes) is part of the
+            # way, so the matcher may take it; other ferries never get into the corridor
+            if w.get("highway") or w["tags"].get("route") == "ferry":
                 for n in w["nodes"]:
                     self.ways_of.setdefault(n, []).append(wid)
 
