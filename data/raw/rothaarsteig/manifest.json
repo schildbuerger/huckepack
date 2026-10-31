@@ -1,0 +1,86 @@
+{
+  "climate-high.json": {
+    "retrieved": "2026-10-31T03:57:59+00:00",
+    "url": "https://archive-api.open-meteo.com/v1/archive?latitude=51.3&longitude=8.6&elevation=840&start_date=1995-01-01&end_date=2024-12-31&daily=temperature_2m_max,temperature_2m_min,precipitation_sum,snowfall_sum,wind_speed_10m_max,wind_gusts_10m_max&timezone=auto"
+  },
+  "climate-low.json": {
+    "retrieved": "2026-10-31T03:54:44+00:00",
+    "url": "https://archive-api.open-meteo.com/v1/archive?latitude=50.7&longitude=8.3&elevation=230&start_date=1995-01-01&end_date=2024-12-31&daily=temperature_2m_max,temperature_2m_min,precipitation_sum,snowfall_sum,wind_speed_10m_max,wind_gusts_10m_max&timezone=auto"
+  },
+  "elevation-glo30.json": {
+    "retrieved": "2026-10-31T03:56:46+00:00",
+    "url": "https://copernicus-dem-30m.s3.eu-central-1.amazonaws.com/Copernicus_DSM_COG_10_N50_00_E008_00_DEM/Copernicus_DSM_COG_10_N50_00_E008_00_DEM.tif https://copernicus-dem-30m.s3.eu-central-1.amazonaws.com/Copernicus_DSM_COG_10_N51_00_E008_00_DEM/Copernicus_DSM_COG_10_N51_00_E008_00_DEM.tif"
+  },
+  "landcover.json": {
+    "retrieved": "2026-10-31T03:56:48+00:00",
+    "url": "https://esa-worldcover.s3.eu-central-1.amazonaws.com/v200/2021/map/ESA_WorldCover_10m_2021_v200_\u2026_Map.tif"
+  },
+  "osm-relation-18397580.json": {
+    "retrieved": "2026-10-28T21:21:02Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-relation-18397581.json": {
+    "retrieved": "2026-10-28T21:21:02Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-relation-18397582.json": {
+    "retrieved": "2026-10-28T21:21:02Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-1-main.json": {
+    "retrieved": "2026-10-28T21:21:02Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-2-main.json": {
+    "retrieved": "2026-10-28T21:21:02Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-3-main.json": {
+    "retrieved": "2026-10-28T21:21:02Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-4-main.json": {
+    "retrieved": "2026-10-28T21:21:02Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-5-main.json": {
+    "retrieved": "2026-10-28T21:21:02Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-6-main.json": {
+    "retrieved": "2026-10-28T21:21:02Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-7-main.json": {
+    "retrieved": "2026-10-28T21:21:02Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-8-main.json": {
+    "retrieved": "2026-10-28T21:21:02Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-water.json": {
+    "retrieved": "2026-10-28T21:21:02Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-way-tags.json": {
+    "retrieved": "2026-10-28T21:21:02Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osrm-access-brilon-stadt-station.json": {
+    "retrieved": "2026-10-31T03:55:56+00:00",
+    "url": "https://router.project-osrm.org/route/v1/driving/8.57538,51.39892;8.56786,51.39572?overview=false"
+  },
+  "osrm-access-frankfurt-airport-fra.json": {
+    "retrieved": "2026-10-31T03:55:56+00:00",
+    "url": "https://router.project-osrm.org/route/v1/driving/8.55985,50.03989;8.56786,51.39572?overview=false"
+  },
+  "osrm-access-paderborn-lippstadt-airport-pad.json": {
+    "retrieved": "2026-10-31T03:55:56+00:00",
+    "url": "https://router.project-osrm.org/route/v1/driving/8.61906,51.6146;8.56786,51.39572?overview=false"
+  },
+  "wikimedia.json": {
+    "retrieved": "2026-10-31T03:55:57+00:00",
+    "url": "Q2168583 2025-10..2026-09"
+  }
+}

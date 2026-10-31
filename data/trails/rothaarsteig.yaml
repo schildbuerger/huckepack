@@ -1,0 +1,207 @@
+name: Rothaarsteig
+added: 2026-10-31
+website: https://www.rothaarsteig.de/
+wikidata: Q2168583
+designation: Qualitätsweg Wanderbares Deutschland (Deutscher Wanderverband)
+managedBy:
+  # "© 2026 Rothaarsteigverein e. V.", Schmallenberg; the waymarks are checked by the Rothaarsteig
+  # waymarkers and the rangers of Wald und Holz NRW
+  - name: Rothaarsteigverein e. V.
+    url: https://www.rothaarsteig.de/
+trailType: point-to-point
+continents: [Europe]
+countries: [DE]
+regions: [Nordrhein-Westfalen, Hessen]
+protectedAreas:
+  - Naturpark Sauerland-Rothaargebirge
+  - Naturpark Lahn-Dill-Bergland
+termini:
+  # the stage pages: the historic town hall on Brilon's market square; Dillenburg station
+  # (Wikipedia's coordinates; the stage ends at the station)
+  start:
+    name: Brilon (Marktplatz)
+    lat: 51.39572
+    lon: 8.56786
+  end:
+    name: Dillenburg (Bahnhof)
+    lat: 50.73486
+    lon: 8.294
+  source: rs
+established:
+  # opened on 6 May 2001 at the Ginsburg
+  year: 2001
+  source: wikipedia
+waymarking:
+  # "Der Rothaarsteig Hauptweg von Brilon nach Dillenburg ist mit einem weißen liegenden R auf
+  # rotem Grund gezeichnet" (a logo: no symbol drawn)
+  text: A white R lying on its back on red; access paths black on yellow
+  source: rs
+length:
+  # the whole-route tour; Wikipedia 156.8 km
+  - km: 157.7
+    source: rs
+ascent:
+  - m: 2894
+    source: rs
+descent:
+  - m: 3123
+    source: rs
+days:
+  # the site's stage plans: "Rothaarsteig in 6, 8 oder 12 Etappen"
+  min: 6
+  max: 12
+  source: rs
+stages:
+  # the "Rothaarsteig in 8 Etappen" tours on rothaarsteig.de (with stage 4 on the ridge, the
+  # Kammvariante). Their GPX comes from meta.et4.de with a licence key, so it isn't used: the map
+  # line follows OSM's Rothaarsteig relations (superroute 2018275: stages 1+2, 3–5, 6–8), each
+  # stage cut at the point nearest its end (coordinates from OSM)
+  source: rs
+  list:
+    - { number: "1", kind: main, from: Brilon, to: Willingen, km: 25.9, ascentM: 801, descentM: 672, minutes: 475, relation: 18397582, end: { lat: 51.29536, lon: 8.60974 } }
+    - { number: "2", kind: main, from: Willingen, to: Winterberg, km: 25.3, ascentM: 589, descentM: 501, minutes: 439, relation: 18397582, end: { lat: 51.19416, lon: 8.5333 } }
+    - { number: "3", kind: main, from: Winterberg, to: Schanze, km: 18.8, ascentM: 387, descentM: 356, minutes: 310, relation: 18397581, end: { lat: 51.13043, lon: 8.37432 } }
+    - { number: "4", kind: main, from: Schanze, to: Rhein-Weser-Turm, km: 24.2, ascentM: 341, descentM: 383, minutes: 395, relation: 18397581, end: { lat: 51.07117, lon: 8.19756 } }
+    - { number: "5", kind: main, from: Rhein-Weser-Turm, to: Ginsberger Heide, km: 14.4, ascentM: 244, descentM: 290, minutes: 220, relation: 18397581, end: { lat: 50.97391, lon: 8.15279 } }
+    - { number: "6", kind: main, from: Ginsberger Heide, to: Lahnquelle, km: 19.2, ascentM: 342, descentM: 330, minutes: 305, relation: 18397580, end: { lat: 50.89235, lon: 8.24194 } }
+    - { number: "7", kind: main, from: Lahnquelle, to: Wilgersdorf, km: 18.9, ascentM: 217, descentM: 439, minutes: 285, relation: 18397580, end: { lat: 50.8147, lon: 8.14812 } }
+    - { number: "8", kind: main, from: Wilgersdorf, to: Dillenburg, km: 22.4, ascentM: 475, descentM: 645, minutes: 370, relation: 18397580, end: { lat: 50.73486, lon: 8.294 } }
+route:
+  # built by `python -m pipeline.all rothaarsteig`: OSM ways matched to the Rothaarsteig relations
+  source: osm
+  publishable: true
+difficulty:
+  estimated:
+    sac: T1
+    basis: >-
+      The Rothaarsteigverein rates the whole route "Mittel" and its stages "Mittel" to "Schwer"
+      (for length), on "zahlreiche naturnahe Pfade abseits land- und forstwirtschaftlicher Wege"
+      that need sturdy shoes; "alle Passagen auch im Winter begehbar", no steep or exposed
+      passages. That is hiking on good paths (T1).
+    source: rs
+season:
+  # every month marked on the whole-route tour; the FAQ: "zu jeder Jahreszeit"
+  months: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
+  text: All year
+  source: rs
+sleeping:
+  # hosts listed by stage (hotels, guesthouses, holiday flats; Rothaarsteig-Qualitätsbetriebe),
+  # and the tent and trekking sites along the trail
+  types: [hotel, guesthouse, campsite]
+  source: rs
+wildCamping:
+  status: restricted
+  rule: >-
+    Tents only at the official tent and trekking sites along the trail. Outside them only
+    bivouacking, sleeping in the open or in a shelter, is tolerated. No fire in the forest, gas
+    stoves included, from March to October.
+  source: rs-camping
+access:
+  # Brilon Stadt station at the start, Dillenburg station at the end; Paderborn/Lippstadt and
+  # Frankfurt airports. Coordinates from OSM; distances by pipeline/access.py
+  - kind: station
+    name: Brilon Stadt station
+    lat: 51.39892
+    lon: 8.57538
+    source: osm
+  - kind: airport
+    name: Paderborn/Lippstadt Airport (PAD)
+    lat: 51.6146
+    lon: 8.61906
+    source: osm
+  - kind: airport
+    name: Frankfurt Airport (FRA)
+    lat: 50.03989
+    lon: 8.55985
+    source: osm
+tags: [sauerland, ridges, forests, watershed, suspension-bridge]
+notes:
+  - >-
+    Stages: the whole-route tour says 157.7 km, 2,894 m up, 3,123 m down, highest point 838 m; its
+    eight stage tours add up to 169.1 km, 3,396 m up and 3,616 m down (with the paths into the
+    stage towns, e.g. Willingen, which lies off the ridge on a Zuweg). Stage 4's valley variant
+    (Talvariante, 23.3 km, 396 m up, 441 m down) and the 52.5 km Westerwaldvariante to Dillenburg
+    are marked variants, not in the record. The FAQ: Schanze, Rhein-Weser-Turm and Lahnquelle
+    have little or no public transport.
+  - >-
+    Water: the FAQ warns that there are not everywhere places to eat and drink, "insbesondere auf
+    den letzten beiden Etappen", so carry enough to drink. OSM has 14 drinking water points along
+    the route; the longest stretch without one is 38.5 km (km 0.1–38.6, Brilon to beyond
+    Willingen; the trail passes no village there, as the stage towns lie off the ridge).
+  - >-
+    Route (pipeline, 2026-10-31, Geofabrik extracts): no GPX (see stages), so the map line chains
+    OSM's three section relations, each stage cut at the point nearest its end; every stage is
+    fully matched, the main route 147.0 km against the stated 157.7 km. Stages 1–4 come out
+    12–18 % shorter than stated (22.0, 20.7, 16.2 and 21.1 km against 25.9, 25.3, 18.8 and 24.2
+    km): the stated stages include the access paths to Willingen and Schanze, which lie off the
+    main trail, and the map line keeps to the main trail. Stage 6 comes out at 14.2 km against
+    the stated 19.2 km; German Wikipedia's older stage over the same stretch (Lützel – Lahnhof)
+    is 14.2 km too, so the stated figure likely includes paths off the trail.
+  - >-
+    Ascent: the stated whole-route pair (2,894 m up, 3,123 m down) is shown; the stage tours add
+    up to 3,396 m up, and the terrain model gives about 4,380 m (it measures the treetops, and 81 %
+    of the route runs through forest).
+  - >-
+    Tree line: none in reach. The route tops out at the Langenberg (843 m), the highest point of
+    North Rhine-Westphalia, forested to the top; the Rothaargebirge has no natural tree line.
+  - >-
+    Data check (2026-10-31). Second source: German Wikipedia (156.8 km, opened 2001, Brilon
+    Marktplatz to Dillenburg station, highest point the Langenberg 843.2 m, a white R lying on red,
+    all year, "Qualitätsweg Wanderbares Deutschland", 8 stages normally, or 6 or 12). Its stage
+    list follows an older split (Bruchhausen and Lützel as stage towns); where its stages run
+    between the same places as the official ones they agree within 10 %: stages 3 (18.7 km), 4
+    (23.5), 7 (18.4) and 8 (20.4 against 22.4, 9 %), stages 1+2 together (50.5 against 51.2 km)
+    and 5+6 (32.6 against 33.6 km). Total 157.7 against 156.8 km, highest point 838 against
+    843.2 m. Wikipedia gives no ascent per stage.
+dataCheck:
+  # working rule 2: German Wikipedia
+  date: 2026-10-31
+  against: [wikipedia]
+  deviations: []
+sources:
+  - id: rs
+    title: "Rothaarsteigverein e. V.: rothaarsteig.de (the route, waymarks, stage plans, FAQ; whole-route and stage tours: distances, times, climbs, highest points, season)"
+    url: https://www.rothaarsteig.de/de/der-rothaarsteig/die-etappen/rothaarsteig-in-8-etappen
+    licence: All rights reserved (facts only)
+    retrieved: 2026-10-31
+  - id: rs-camping
+    title: "Rothaarsteigverein e. V.: Camping am Rothaarsteig (tent and trekking sites, bivouacking, fire)"
+    url: https://www.rothaarsteig.de/de/der-rothaarsteig/camping-am-rothaarsteig
+    licence: All rights reserved (facts only)
+    retrieved: 2026-10-31
+  - id: wikipedia
+    title: "Wikipedia (de): Rothaarsteig (opening year; data check)"
+    url: https://de.wikipedia.org/wiki/Rothaarsteig
+    licence: CC BY-SA 4.0
+    retrieved: 2026-10-31
+  - id: wikimedia
+    title: "Wikimedia: page views of the trail's Wikipedia articles in every language, by people, over twelve months (Wikidata sitelinks, pageview API)"
+    url: https://wikimedia.org/api/rest_v1/
+    licence: CC0 1.0 (pageview data); Wikidata CC0
+    retrieved: 2026-10-31
+    checkOnly: true  # not on the trail page: the page views only rank the home page's popular trails
+  - id: osm
+    title: "OpenStreetMap contributors: the Rothaarsteig relations (superroute 2018275), paths and water along the trail (Geofabrik extracts), travel hubs"
+    url: https://www.openstreetmap.org/relation/2018275
+    licence: ODbL 1.0
+    retrieved: 2026-10-31
+  - id: copdem
+    title: "Copernicus DEM GLO-30 (30 m terrain model), tiles from AWS Open Data"
+    url: https://registry.opendata.aws/copernicus-dem/
+    licence: "Copernicus WorldDEM-30 licence, free; produced using Copernicus WorldDEM-30 © DLR e.V. 2010-2014 and © Airbus Defence and Space GmbH 2014-2018 provided under COPERNICUS by the European Union and ESA; all rights reserved"
+    retrieved: 2026-10-31
+  - id: worldcover
+    title: "ESA WorldCover 2021: 10 m land cover (via AWS Open Data)"
+    url: https://esa-worldcover.org/
+    licence: "CC BY 4.0; © ESA WorldCover project 2021 / Contains modified Copernicus Sentinel data (2021) processed by ESA WorldCover consortium"
+    retrieved: 2026-10-31
+  - id: era5
+    title: "Open-Meteo Historical Weather API: ERA5 and ERA5-Land reanalysis, daily 1995–2024"
+    url: https://open-meteo.com/en/docs/historical-weather-api
+    licence: CC BY 4.0 (Open-Meteo); contains modified Copernicus Climate Change Service information
+    retrieved: 2026-10-31
+  - id: osrm
+    title: "OSRM: road routes on OpenStreetMap data (router.project-osrm.org)"
+    url: https://project-osrm.org/
+    licence: Route data © OpenStreetMap contributors (ODbL)
+    retrieved: 2026-10-31
