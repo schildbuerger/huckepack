@@ -776,7 +776,7 @@
     padding-left: 14px;
   }
   .wm-list li.picked .wm-name {
-    color: var(--accent);
+    color: var(--accent-text);
   }
   /* the entry itself zooms the map to the trail */
   .wm-entry {
@@ -793,7 +793,7 @@
   }
   .wm-entry:hover .wm-name,
   .wm-entry:focus-visible .wm-name {
-    color: var(--accent);
+    color: var(--accent-text);
   }
   .wm-entry:focus-visible {
     outline: 2px solid var(--accent);
@@ -808,7 +808,7 @@
     font-size: 1.1rem;
   }
   .wm-fig {
-    color: var(--accent);
+    color: var(--accent-text);
     font-size: 0.85rem;
     font-weight: 600;
   }
@@ -829,7 +829,7 @@
   .wm-open:hover,
   .wm-open:focus-visible {
     border-color: var(--accent);
-    color: var(--accent);
+    color: var(--accent-text);
   }
   .wm-open :global(svg) {
     width: 18px;
@@ -843,7 +843,7 @@
     padding: 0;
     border: 0;
     background: none;
-    color: var(--accent);
+    color: var(--accent-text);
     font: inherit;
     text-decoration: underline;
     cursor: pointer;
@@ -876,7 +876,7 @@
   }
   .wm-status a {
     margin-left: 10px;
-    color: var(--accent);
+    color: var(--accent-text);
   }
   /* the active filters as removable chips, as on the search page */
   .wm-chips {

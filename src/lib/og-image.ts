@@ -15,7 +15,7 @@ const C = {
   bg: "#fbf7f1",
   surface: "#f4ece1",
   text: "#2a221d",
-  muted: "#75685d",
+  muted: "#706359",
   line: "#e6dccf",
   accent: "#b0502a",
   natural: "#b26232",

@@ -59,7 +59,7 @@
   }
   .term:hover,
   .term:focus-visible {
-    color: var(--accent);
+    color: var(--accent-text);
     text-decoration-color: var(--accent);
   }
   .term:focus-visible {

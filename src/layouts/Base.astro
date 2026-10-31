@@ -121,9 +121,12 @@ const siteLd =
     --bg: #fbf7f1;
     --surface: #f4ece1;
     --text: #2a221d;
-    --muted: #75685d;
+    --muted: #706359; /* 4.6:1 on the guide's tinted answers (it was #75685d, 4.28:1; issue #86) */
     --line: #e6dccf;
     --accent: #b0502a;
+    /* the accent as text colour: a little darker in light mode, so it keeps 4.5:1 on the cream
+       surfaces (#f4ece1, the guide's tint), which the accent itself misses (4.45:1, issue #86) */
+    --accent-text: #a34a27;
     --accent-soft: #f3e2d5;
     /* status: good / caution / restrictive, each a strong colour and a card tint */
     --good: #4a6534;
@@ -174,6 +177,7 @@ const siteLd =
     --muted: #a99b8d;
     --line: #3a322b;
     --accent: #e3916a;
+    --accent-text: var(--accent);
     --accent-soft: #3b2a20;
     --good: #a9c48a;
     --good-soft: #283020;
@@ -211,6 +215,8 @@ const siteLd =
       --muted: #a99b8d;
       --line: #3a322b;
       --accent: #e3916a;
+      --accent-text: var(--accent);
+    --accent-text: var(--accent);
       --accent-soft: #3b2a20;
       --good: #a9c48a;
       --good-soft: #283020;
@@ -279,7 +285,7 @@ const siteLd =
     margin: 0 0 12px;
   }
   a {
-    color: var(--accent);
+    color: var(--accent-text);
     text-underline-offset: 3px;
   }
   /* read by screen readers, not shown */
