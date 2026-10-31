@@ -1,13 +1,14 @@
-# Runs the pipeline's tests (tests/test_pipeline.py) when the pipeline or its tests change. The
+# Runs the pipeline's tests (tests/test_pipeline.py, and tests/test_route_regression.py: every trail's
+# map line against tests/route_expectations.json) when the pipeline, its tests or derived data change. The
 # pipeline runs locally; this only guards its pure parts (track formats, matching, surfaces, water,
 # climate averages), with no downloads.
 name: Pipeline tests
 
 on:
   push:
-    paths: ["pipeline/**", "tests/**", "requirements.txt", ".github/workflows/pipeline-tests.yml"]
+    paths: ["pipeline/**", "tests/**", "data/derived/**", "requirements.txt", ".github/workflows/pipeline-tests.yml"]
   pull_request:
-    paths: ["pipeline/**", "tests/**", "requirements.txt"]
+    paths: ["pipeline/**", "tests/**", "data/derived/**", "requirements.txt"]
   workflow_dispatch:
 
 permissions:

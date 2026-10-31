@@ -1,0 +1,30 @@
+# Lighthouse on five page types in light and dark mode (issue #91): accessibility, best practices
+# and SEO must stay at 100 (scripts/lighthouse-check.mjs); performance is reported, not enforced.
+name: Quality
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  lighthouse:
+    runs-on: ubuntu-latest
+    steps:
+      # actions pinned to the commit of their release tag (a moved tag can't change what runs here)
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - run: npm run build
+      - name: Serve the build and check it
+        run: |
+          python3 -m http.server 4321 --directory dist >/dev/null 2>&1 &
+          sleep 2
+          CHROME_PATH="$(command -v google-chrome || command -v chromium)" node scripts/lighthouse-check.mjs http://localhost:4321
