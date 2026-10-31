@@ -22,6 +22,9 @@ jobs:
     steps:
       # actions pinned to the commit of their release tag (a moved tag can't change what runs here)
       - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with:
+          # the full history: the sitemap dates each page by its last commit (src/pages/sitemap.xml.ts)
+          fetch-depth: 0
       - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
         with:
           node-version: 22
@@ -29,6 +32,8 @@ jobs:
       - run: npm ci
       # types and templates checked before anything is built (astro check)
       - run: npm run check
+      # the figures the site derives (tests/trails.test.ts)
+      - run: npm test
       # the operator's personal details for the legal pages, from the repository's Actions secrets,
       # so they never appear in the (public) repository; see src/lib/operator.ts
       - run: npm run build

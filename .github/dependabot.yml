@@ -1,0 +1,24 @@
+# Dependency updates (review of 2026-10-30, #20): one grouped pull request a month for the npm
+# packages and one for the GitHub Actions; security updates come as they're published. Versions stay
+# pinned exactly (package.json) and the actions pinned to a commit with the tag in a comment, which
+# Dependabot keeps up to date.
+version: 2
+updates:
+  - package-ecosystem: npm
+    directory: /
+    schedule:
+      interval: monthly
+    groups:
+      npm:
+        patterns: ["*"]
+    ignore:
+      # TypeScript stays on 6.x until @astrojs/svelte and @astrojs/check support 7 (CLAUDE.md)
+      - dependency-name: typescript
+        update-types: ["version-update:semver-major"]
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: monthly
+    groups:
+      actions:
+        patterns: ["*"]
