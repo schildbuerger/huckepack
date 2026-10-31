@@ -18,6 +18,20 @@ export const currentTheme = (): Theme => {
 // a colour token from Base.astro, as the theme in effect sets it
 export const token = (name: string) => getComputedStyle(document.documentElement).getPropertyValue(name).trim();
 
+// MapLibre's stylesheet, added to the page when a map starts rather than linked in its head, where
+// it held back the first paint of every page with a map (71 KB; PageSpeed, issue #86). Imported as a
+// URL so Astro doesn't hoist it into the head; resolves once loaded, so the map is made styled
+let maplibreCss: Promise<void> | undefined;
+export function loadMaplibreCss(href: string): Promise<void> {
+  maplibreCss ??= new Promise((resolve, reject) => {
+    const link = Object.assign(document.createElement("link"), { rel: "stylesheet", href });
+    link.onload = () => resolve();
+    link.onerror = () => reject(new Error(`stylesheet ${href} failed to load`));
+    document.head.append(link);
+  });
+  return maplibreCss;
+}
+
 // calls onChange(theme) whenever the theme in effect changes; returns a function that stops watching
 export function watchTheme(onChange: (theme: Theme) => void): () => void {
   let theme = currentTheme();

@@ -167,6 +167,9 @@
     {/if}
 
     {#if shown.length}
+      <!-- the cards' names are h3s; on phones the filters' h2 is in the closed panel, so the results
+           carry their own h2 for screen readers (headings in order, Lighthouse) -->
+      <h2 class="sr-only">Matching trails</h2>
       <ol class="cards">
         {#each shown as t (t.slug)}
           <li>

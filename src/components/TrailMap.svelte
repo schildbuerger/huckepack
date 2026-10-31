@@ -6,11 +6,11 @@
   // (Liberty light, Dark dark), also when the header switch changes it; route and termini take
   // their colours from the theme tokens.
   import { onMount } from "svelte";
-  import "maplibre-gl/dist/maplibre-gl.css";
   // MapLibre looks for its worker next to its own script, which isn't there once Vite
   // bundles it; hand it the worker's URL instead (the worker file is self-contained).
   import workerUrl from "maplibre-gl/dist/maplibre-gl-worker.mjs?url";
-  import { STYLES, currentTheme, token, watchTheme } from "../lib/map-theme";
+  import maplibreCssUrl from "maplibre-gl/dist/maplibre-gl.css?url";
+  import { STYLES, currentTheme, token, watchTheme, loadMaplibreCss } from "../lib/map-theme";
 
   interface Point {
     name: string;
@@ -57,7 +57,8 @@
     let stopWatchingTheme = () => {};
 
     (async () => {
-      const [maplibre, { default: contour }] = await Promise.all([import("maplibre-gl"), import("maplibre-contour")]);
+      // MapLibre's stylesheet comes with its script, not in the page's head (src/lib/map-theme.ts)
+      const [maplibre, { default: contour }] = await Promise.all([import("maplibre-gl"), import("maplibre-contour"), loadMaplibreCss(maplibreCssUrl)]);
       maplibre.setWorkerUrl(workerUrl);
       // one DEM source feeds both the hill shading and the contour lines (decoded in its own worker)
       const dem = new contour.DemSource({ url: TERRAIN, encoding: "terrarium", maxzoom: 12, worker: true });

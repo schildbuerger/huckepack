@@ -32,9 +32,9 @@
     naturalText,
     type Filters,
   } from "../lib/filters";
-  import "maplibre-gl/dist/maplibre-gl.css";
   import workerUrl from "maplibre-gl/dist/maplibre-gl-worker.mjs?url";
-  import { STYLES, currentTheme, token, watchTheme } from "../lib/map-theme";
+  import maplibreCssUrl from "maplibre-gl/dist/maplibre-gl.css?url";
+  import { STYLES, currentTheme, token, watchTheme, loadMaplibreCss } from "../lib/map-theme";
   import zones from "../lib/timezones.json";
   import { kmBetween as km, roundDistance } from "../lib/geo";
   import type { SearchTrail } from "../lib/search";
@@ -345,7 +345,8 @@
     let cancelled = false;
     let stopTheme = () => {};
     (async () => {
-      const maplibre = await import("maplibre-gl");
+      // MapLibre's stylesheet comes with its script, not in the page's head (src/lib/map-theme.ts)
+      const [maplibre] = await Promise.all([import("maplibre-gl"), loadMaplibreCss(maplibreCssUrl)]);
       maplibre.setWorkerUrl(workerUrl);
       maplibreRef = maplibre;
       const routes = await fetch("/trails/routes.json").then((r) => {
