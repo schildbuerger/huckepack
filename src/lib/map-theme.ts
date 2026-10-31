@@ -15,6 +15,19 @@ export const currentTheme = (): Theme => {
   return matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
 };
 
+// the basemap for an overview of trails (the trail map): the theme's style without the layers such a
+// map doesn't need (points of interest, buildings, house numbers, airports), which halved its
+// main-thread work in light mode (issue #86); the trail pages keep the full style
+const OVERVIEW_DROP = new Set(["poi", "building", "housenumber", "aeroway", "aerodrome_label"]);
+export async function overviewStyle(theme: Theme) {
+  const style = await fetch(STYLES[theme]).then((r) => {
+    if (!r.ok) throw new Error(`basemap style: HTTP ${r.status}`);
+    return r.json();
+  });
+  style.layers = style.layers.filter((l: { "source-layer"?: string }) => !OVERVIEW_DROP.has(l["source-layer"] ?? ""));
+  return style;
+}
+
 // a colour token from Base.astro, as the theme in effect sets it
 export const token = (name: string) => getComputedStyle(document.documentElement).getPropertyValue(name).trim();
 

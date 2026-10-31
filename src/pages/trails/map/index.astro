@@ -9,6 +9,7 @@ import TrailsMap from "../../../components/TrailsMap.svelte";
 import { searchSummary } from "../../../lib/search";
 import { climateLevel } from "../../../lib/filters";
 import { LEVELS } from "../../../lib/difficulty";
+import { worldOutline } from "../../../lib/world-outline";
 
 const trails = (
   await Promise.all(
@@ -20,6 +21,8 @@ const trails = (
   )
 ).sort((a, b) => a.name.localeCompare(b.name));
 const countries = new Set(trails.flatMap((t) => t.countries)).size;
+// the map's first look before MapLibre starts: framed like its view of all trails (start ± 8° ± 4°)
+const outline = worldOutline(trails.map((t) => t.startLonLat), { width: 1000, padLon: 8, padSouth: 4, padNorth: 4 });
 ---
 
 <Base
@@ -31,6 +34,12 @@ const countries = new Set(trails.flatMap((t) => t.countries)).size;
   <TrailsMap client:load trails={trails}>
     <Breadcrumbs trail={[{ label: "Trails", href: "/trails/" }]} current="Map" />
     <h1>Trail map</h1>
+    <!-- until the interactive map starts on the first interaction: the trails' starts on the land's
+         outline, drawn here (issue #86) -->
+    <svg slot="preview" viewBox={`0 0 ${outline.width} ${outline.height}`} preserveAspectRatio="xMidYMid meet">
+      <path class="wm-land" d={outline.landPath} />
+      {outline.dots.map(([x, y]) => <circle cx={x} cy={y} r="7" />)}
+    </svg>
   </TrailsMap>
   <!-- without JavaScript the map can't show; the list of all trails stays one link away -->
   <noscript><p class="muted nojs">The map needs JavaScript. <a href="/trails/">See all trails as a list.</a></p></noscript>

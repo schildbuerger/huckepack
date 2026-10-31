@@ -34,7 +34,7 @@
   } from "../lib/filters";
   import workerUrl from "maplibre-gl/dist/maplibre-gl-worker.mjs?url";
   import maplibreCssUrl from "maplibre-gl/dist/maplibre-gl.css?url";
-  import { STYLES, currentTheme, token, watchTheme, loadMaplibreCss } from "../lib/map-theme";
+  import { currentTheme, token, watchTheme, loadMaplibreCss, overviewStyle } from "../lib/map-theme";
   import zones from "../lib/timezones.json";
   import { kmBetween as km, roundDistance } from "../lib/geo";
   import type { SearchTrail } from "../lib/search";
@@ -44,10 +44,12 @@
 
   type Trail = SearchTrail & { startLonLat: [number, number]; level: string | null };
   // `children`: the page's breadcrumb and title, shown at the top of the list column
+  // `preview`: the static world outline (src/lib/world-outline.ts) shown until the map starts
   let {
     trails,
     children,
-  }: { trails: Trail[]; children?: import("svelte").Snippet } = $props();
+    preview,
+  }: { trails: Trail[]; children?: import("svelte").Snippet; preview?: import("svelte").Snippet } = $props();
 
   const fmt = (n: number) => n.toLocaleString("en");
   const figures = (t: Trail) =>
@@ -69,6 +71,7 @@
   // here, nothing is sent or stored
   let here = $state<[number, number] | null>(null);
   let failed = $state(false);
+  let showStatic = $state(true); // the static outline, until the map has drawn
   let hovered = $state<string | null>(null);
   let selected = $state<string | null>(null);
   let query = $state("");
@@ -263,9 +266,16 @@
   }
 
   // zoom to one trail's route (or its start where no route is drawn), once its preview is shown
+  // a trail picked before the map has started: its card shows at once, the map zooms once it's there
+  let pendingZoom: string | null = null;
   async function zoomTo(slug: string) {
     const t = trails.find((x) => x.slug === slug);
-    if (!map || !t) return;
+    if (!t) return;
+    if (!map) {
+      selected = slug;
+      pendingZoom = slug;
+      return;
+    }
     selected = slug;
     listKept = true;
     await tick();
@@ -344,7 +354,19 @@
     document.addEventListener("keydown", closeBar);
     let cancelled = false;
     let stopTheme = () => {};
-    (async () => {
+    // the map (MapLibre: the costliest part of the page) starts on the visitor's first scroll, wheel,
+    // pointer move, tap or key press, not on load; the static outline holds its place until it has
+    // drawn (issue #86, as on the trail pages)
+    const STARTERS = ["scroll", "wheel", "pointermove", "pointerdown", "touchstart", "keydown"] as const;
+    const stopListening = () => {
+      for (const type of STARTERS) window.removeEventListener(type, go, true);
+    };
+    const go = () => {
+      stopListening();
+      startMap();
+    };
+    for (const type of STARTERS) window.addEventListener(type, go, { passive: true, capture: true });
+    const startMap = () => (async () => {
       // MapLibre's stylesheet comes with its script, not in the page's head (src/lib/map-theme.ts)
       const [maplibre] = await Promise.all([import("maplibre-gl"), loadMaplibreCss(maplibreCssUrl)]);
       maplibre.setWorkerUrl(workerUrl);
@@ -372,7 +394,7 @@
       ];
       map = new maplibre.Map({
         container,
-        style: STYLES[theme],
+        style: await overviewStyle(theme),
         bounds: aroundHere(matching) ?? allBounds,
         cooperativeGestures: true,
         attributionControl: { customAttribution: "Routes: OpenStreetMap contributors" },
@@ -420,7 +442,10 @@
           else if (matching.length < trails.length) frame(matching, { resetList: true });
         }
         framedOnce = true;
+        if (pendingZoom) zoomTo(pendingZoom);
+        pendingZoom = null;
       });
+      map.once("load", () => (showStatic = false));
       // a cluster zooms in; a trail is found in the list
       map.on("click", "clusters", async (e) => {
         const f = e.features?.[0];
@@ -444,7 +469,7 @@
       // follow the site theme, auto mode's system setting included (src/lib/map-theme.ts)
       stopTheme = watchTheme((next) => {
         theme = next;
-        map?.setStyle(STYLES[theme], { diff: false });
+        overviewStyle(theme).then((style) => map?.setStyle(style, { diff: false }));
       });
     })().catch((error) => {
       console.error("World map failed:", error);
@@ -453,6 +478,7 @@
     return () => {
       document.removeEventListener("pointerdown", closeBar);
       document.removeEventListener("keydown", closeBar);
+      stopListening();
       cancelled = true;
       stopTheme();
       map?.remove();
@@ -463,6 +489,7 @@
 <div class="wm">
   <div class="wm-mapwrap" style={`--bar-h: ${barH}px`} bind:this={mapWrap}>
     <div class="wm-map" bind:this={container} role="region" aria-label="World map of the trails"></div>
+    {#if showStatic && preview}<div class="wm-static" aria-hidden="true">{@render preview()}</div>{/if}
     {#if failed}<p class="wm-failed">The map couldn't be loaded. The list beside it still works.</p>{/if}
     <!-- one button per planning question along the map's top; each opens its filters -->
       <div class="wm-bar wm-over" role="toolbar" aria-label="Filters" bind:clientHeight={barH}>
@@ -592,6 +619,29 @@
     height: 100%;
     min-height: 0;
     background: var(--surface);
+  }
+  /* the static outline over the map's box until the map has drawn (the home page teaser's look);
+     land drawn past its frame fills a box of another shape, the wrapper clips it */
+  .wm-static {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    overflow: hidden;
+    background: var(--surface);
+  }
+  .wm-static :global(svg) {
+    display: block;
+    width: 100%;
+    height: 100%;
+    overflow: visible;
+  }
+  .wm-static :global(.wm-land) {
+    fill: color-mix(in srgb, var(--text) 12%, var(--surface));
+  }
+  .wm-static :global(circle) {
+    fill: var(--accent);
+    stroke: var(--surface);
+    stroke-width: 2.5;
   }
   .wm-side {
     display: flex;
