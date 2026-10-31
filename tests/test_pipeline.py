@@ -56,6 +56,11 @@ class TrackPoints(unittest.TestCase):
         page = '<div data-map="{&quot;polyline&quot;:&quot;8.1,50.1 8.2,50.2&quot;}">'
         self.assertEqual(routes.track_points(page), self.expected)
 
+    def test_gpx_with_several_tracks_reads_the_first(self):
+        gpx = ('<gpx><trk><name>Main</name><trkseg><trkpt lat="50.1" lon="8.1"/><trkpt lat="50.2" lon="8.2"/></trkseg></trk>'
+               '<trk><name>Alternative</name><trkseg><trkpt lat="51" lon="9"/></trkseg></trk></gpx>')
+        self.assertEqual(routes.track_points(gpx), self.expected)
+
     def test_no_track_is_an_error(self):
         with self.assertRaises(ValueError):
             routes.track_points("<html>no line here</html>")

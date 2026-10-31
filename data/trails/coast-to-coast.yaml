@@ -1,0 +1,196 @@
+name: Coast to Coast Path
+added: 2026-10-31
+aliases: [Coast to Coast Walk, Coast to Coast, C2C, Wainwright's Coast to Coast]
+website: https://www.nationaltrail.co.uk/en_GB/trails/coast-to-coast/
+wikidata: Q1104394
+managedBy:
+  # a National Trail since 26 March 2026: a trail partnership looks after it, with an annual grant
+  # from Natural England
+  - name: Natural England and the Coast to Coast trail partnership (National Trails)
+    url: https://www.nationaltrail.co.uk/en_GB/trails/coast-to-coast/
+trailType: point-to-point
+continents: [Europe]
+countries: [GB]
+regions: [Cumberland, Westmorland and Furness, North Yorkshire]
+protectedAreas:
+  - Lake District National Park
+  - Yorkshire Dales National Park
+  - North York Moors National Park
+termini:
+  # St Bees on the Irish Sea, Robin Hood's Bay on the North Sea (OSM)
+  start:
+    name: St Bees
+    lat: 54.49271
+    lon: -3.59084
+  end:
+    name: Robin Hood's Bay
+    lat: 54.43322
+    lon: -0.53447
+  source: osm
+established:
+  # Wainwright's walk (1973) opened as a National Trail on 26 March 2026
+  year: 2026
+  source: nt
+waymarking:
+  text: The National Trail acorn
+  source: nt
+length:
+  # "190 mile (306 km)"
+  - km: 306
+    source: nt
+days:
+  min: 12
+  max: 15
+  source: nt
+stages:
+  # the National Trail publishes no stage list; German Wikipedia's twelve stages along the National
+  # Trail route (working decision 2026-10-31: where no official stage figures exist, Wikipedia's
+  # stage list, named as the source). One official GPX for the whole trail (National Trails; its
+  # first track is the main route, then the Ennerdale north shore and Swaledale low-level
+  # alternatives), cut at each stage's `end` from OSM; it only guides the OSM matcher (kept local)
+  source: wikipedia-de
+  list:
+    - { number: "1", kind: main, from: St Bees, to: Ennerdale Bridge, km: 24, track: "https://nationaltrails.s3.eu-west-2.amazonaws.com/uploads/2026/03/Coast_to_Coast_Elev.gpx", end: { name: Ennerdale Bridge, lat: 54.5292, lon: -3.43914 } }
+    - { number: "2", kind: main, from: Ennerdale Bridge, to: Rosthwaite, km: 24, track: "https://nationaltrails.s3.eu-west-2.amazonaws.com/uploads/2026/03/Coast_to_Coast_Elev.gpx", end: { name: Rosthwaite, lat: 54.52297, lon: -3.14922 } }
+    - { number: "3", kind: main, from: Rosthwaite, to: Patterdale, km: 24, track: "https://nationaltrails.s3.eu-west-2.amazonaws.com/uploads/2026/03/Coast_to_Coast_Elev.gpx", end: { name: Patterdale, lat: 54.53579, lon: -2.93693 } }
+    - { number: "4", kind: main, from: Patterdale, to: Shap, km: 24, track: "https://nationaltrails.s3.eu-west-2.amazonaws.com/uploads/2026/03/Coast_to_Coast_Elev.gpx", end: { name: Shap, lat: 54.53002, lon: -2.67708 } }
+    - { number: "5", kind: main, from: Shap, to: Kirkby Stephen, km: 32, track: "https://nationaltrails.s3.eu-west-2.amazonaws.com/uploads/2026/03/Coast_to_Coast_Elev.gpx", end: { name: Kirkby Stephen, lat: 54.47345, lon: -2.34859 } }
+    - { number: "6", kind: main, from: Kirkby Stephen, to: Keld, km: 18, track: "https://nationaltrails.s3.eu-west-2.amazonaws.com/uploads/2026/03/Coast_to_Coast_Elev.gpx", end: { name: Keld, lat: 54.40586, lon: -2.16643 } }
+    - { number: "7", kind: main, from: Keld, to: Reeth, km: 18, track: "https://nationaltrails.s3.eu-west-2.amazonaws.com/uploads/2026/03/Coast_to_Coast_Elev.gpx", end: { name: Reeth, lat: 54.38927, lon: -1.94214 } }
+    - { number: "8", kind: main, from: Reeth, to: Richmond, km: 16, track: "https://nationaltrails.s3.eu-west-2.amazonaws.com/uploads/2026/03/Coast_to_Coast_Elev.gpx", end: { name: Richmond, lat: 54.40307, lon: -1.73745 } }
+    - { number: "9", kind: main, from: Richmond, to: Ingleby Cross, km: 46, track: "https://nationaltrails.s3.eu-west-2.amazonaws.com/uploads/2026/03/Coast_to_Coast_Elev.gpx", end: { name: Ingleby Cross, lat: 54.39934, lon: -1.30899 } }
+    - { number: "10", kind: main, from: Ingleby Cross, to: Clay Bank Top, km: 18, track: "https://nationaltrails.s3.eu-west-2.amazonaws.com/uploads/2026/03/Coast_to_Coast_Elev.gpx", end: { name: Clay Bank Top, lat: 54.42223, lon: -1.11862 } }
+    - { number: "11", kind: main, from: Clay Bank Top, to: Glaisdale, km: 28, track: "https://nationaltrails.s3.eu-west-2.amazonaws.com/uploads/2026/03/Coast_to_Coast_Elev.gpx", end: { name: Glaisdale, lat: 54.44081, lon: -0.8078 } }
+    - { number: "12", kind: main, from: Glaisdale, to: Robin Hood's Bay, km: 31, track: "https://nationaltrails.s3.eu-west-2.amazonaws.com/uploads/2026/03/Coast_to_Coast_Elev.gpx", end: { name: Robin Hood's Bay, lat: 54.43322, lon: -0.53447 } }
+route:
+  # built by `python -m pipeline.all coast-to-coast`: OSM ways matched to the official GPX's pieces
+  source: osm
+  publishable: true
+difficulty:
+  estimated:
+    sac: T2
+    basis: >-
+      German Wikipedia describes the route over the Lake District's fells (Kidsty Pike, 780 m, the
+      highest point), through the Yorkshire Dales on small footpaths, across the flat Vale of
+      Mowbray and over the North York Moors, whose rough upland bog sections the National Trail
+      has improved; no secured or exposed passages, but long days and navigation in poor weather
+      on the fells. Mountain hiking on mostly good paths (T2).
+    source: wikipedia-de
+season:
+  # "can be walked right through the year, though it is best enjoyed from Spring though to Autumn"
+  months: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
+  text: All year; best from spring to autumn
+  source: nt
+sleeping:
+  # OSM along the route (pipeline/along.py): campsites, hostels and bunkhouses, B&Bs and guest
+  # houses in the villages; hotels in the towns
+  types: [campsite, hostel, guesthouse, hotel]
+  source: osm
+wildCamping:
+  status: prohibited
+  rule: >-
+    England gives no right to wild camp: tents only on campsites or with the landowner's
+    permission.
+  source: nt
+access:
+  # St Bees has its own station on the Cumbrian Coast Line; the nearest international airports are
+  # Newcastle and Manchester. Coordinates from OSM; distances by pipeline/access.py
+  - kind: station
+    name: St Bees
+    lat: 54.49235
+    lon: -3.59124
+    source: osm
+  - kind: airport
+    name: Newcastle International Airport (NCL)
+    lat: 55.03842
+    lon: -1.6964
+    source: osm
+  - kind: airport
+    name: Manchester Airport (MAN)
+    lat: 53.35034
+    lon: -2.28037
+    source: osm
+tags: [national-trail, lake-district, dales, moorland, coast]
+notes:
+  - >-
+    Stages: the National Trail gives 190 miles (306 km) and 12–15 days but no stages; German
+    Wikipedia's twelve stages along the National Trail route add up to 303 km.
+  - >-
+    Route (pipeline, 2026-10-31, Geofabrik extracts): the National Trail's GPX holds three tracks,
+    the main route first, then the Ennerdale north shore and Swaledale low-level alternatives; the
+    pipeline reads the first. Cut at the OSM stage ends, every stage matches at least 97 %; the map
+    line is 299.7 km against the stages' 303 km and the stated 306 km.
+  - >-
+    Water: OSM has only 7 drinking water points near the route; the longest stretch without one is
+    140 km (km 50–190, Shap to Ingleby Cross). England maps few public taps; walkers refill in the
+    villages' pubs, cafés and shops, which OSM doesn't record as water. Not added as waterPoints:
+    no source lists them.
+  - >-
+    Beds: 30.8 km without a bed of the kinds counted (km 236–267, over the North York Moors between
+    Clay Bank Top and Glaisdale); the Lion Inn at Blakey is a pub with rooms (a hotel, not counted).
+  - >-
+    Tree line: not recorded. The highest point is Kidsty Pike (780 m); no published regional tree
+    line for the Lake District is in data/reference/tree-lines.yaml yet, so the terrain chart draws
+    none.
+  - >-
+    Data check (2026-10-31). Second source: English Wikipedia (190 miles, 306 km; 12 stages, about
+    two weeks; Kidsty Pike 780 m the highest point) agrees with the National Trail's length and days.
+    German Wikipedia (the stage source) gives the waymarked National Trail as 303 km (2026) and the
+    route as passable all year. The highest point on the terrain model is 783 m (Kidsty Pike 780 m).
+    Apart: the year. National Trails says it opened on 26 March 2026; English Wikipedia says it was
+    designated in 2022, German Wikipedia "since 2023"; the record keeps the official opening.
+    Wikipedia gives no ascent; the page's terrain-model estimate is ≈ 8,260 m.
+dataCheck:
+  # working rule 2: English and German Wikipedia
+  date: 2026-10-31
+  against: [wikipedia-en, wikipedia-de]
+  deviations:
+    - { figure: "National Trail since", ours: "2026 (opened 26 March)", theirs: "2022 (designated) / 2023", source: wikipedia-en }
+sources:
+  - id: nt
+    title: "National Trails: Coast to Coast Path (length, days, season, opening, waymarking, camping, official GPX)"
+    url: https://www.nationaltrail.co.uk/en_GB/trails/coast-to-coast/
+    licence: © National Trails (facts only)
+    retrieved: 2026-10-31
+  - id: wikipedia-de
+    title: "Wikipedia (de): Coast to Coast Walk (stages along the National Trail route, highest point, terrain)"
+    url: https://de.wikipedia.org/wiki/Coast_to_Coast_Walk
+    licence: CC BY-SA 4.0
+    retrieved: 2026-10-31
+  - id: wikipedia-en
+    title: "Wikipedia (en): Coast to Coast Walk (length, stages, highest point; data check)"
+    url: https://en.wikipedia.org/wiki/Coast_to_Coast_Walk
+    licence: CC BY-SA 4.0
+    retrieved: 2026-10-31
+    checkOnly: true  # only for the data check
+  - id: wikimedia
+    title: "Wikimedia: page views of the trail's Wikipedia articles in every language, by people, over twelve months (Wikidata sitelinks, pageview API)"
+    url: https://wikimedia.org/api/rest_v1/
+    licence: CC0 1.0 (pageview data); Wikidata CC0
+    retrieved: 2026-10-31
+    checkOnly: true  # not on the trail page: the page views only rank the home page's popular trails
+  - id: osm
+    title: "OpenStreetMap contributors: paths, water, shops and places to sleep along the trail (Geofabrik extracts), stage ends, travel hubs"
+    url: https://www.openstreetmap.org/
+    licence: ODbL 1.0
+    retrieved: 2026-10-31
+  - id: copdem
+    title: "Copernicus DEM GLO-30 (30 m terrain model), tiles from AWS Open Data"
+    url: https://registry.opendata.aws/copernicus-dem/
+    licence: "Copernicus WorldDEM-30 licence, free; produced using Copernicus WorldDEM-30 © DLR e.V. 2010-2014 and © Airbus Defence and Space GmbH 2014-2018 provided under COPERNICUS by the European Union and ESA; all rights reserved"
+    retrieved: 2026-10-31
+  - id: worldcover
+    title: "ESA WorldCover 2021: 10 m land cover (via AWS Open Data)"
+    url: https://esa-worldcover.org/
+    licence: "CC BY 4.0; © ESA WorldCover project 2021 / Contains modified Copernicus Sentinel data (2021) processed by ESA WorldCover consortium"
+    retrieved: 2026-10-31
+  - id: era5
+    title: "Open-Meteo open data on AWS: ERA5-Land temperature and ERA5 precipitation, snow and wind, daily 1995–2024 (reanalysis)"
+    url: https://github.com/open-meteo/open-data
+    licence: CC BY 4.0 (Open-Meteo); contains modified Copernicus Climate Change Service information
+    retrieved: 2026-10-31
+  - id: osrm
+    title: "OSRM: road routes on OpenStreetMap data (router.project-osrm.org)"
+    url: https://project-osrm.org/
+    licence: Route data © OpenStreetMap contributors (ODbL)
+    retrieved: 2026-10-31

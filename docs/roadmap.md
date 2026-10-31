@@ -44,6 +44,9 @@ Nordroute, the Südroute a variant; stage 2's figures from the operator's flyer,
 the OSM relation; the stage pages' map lines guide the rest, their GPX needs a licence key).
 Added 2026-10-31: the **MacLehose Trail** (#39, 100 km across Hong Kong's New Territories in the
 ten AFCD sections, each with its official GPX as the matcher's guide).
+And the **Coast to Coast Path** (#50, 306 km from St Bees to Robin Hood's Bay, a National Trail
+since 26 March 2026: German Wikipedia's twelve stages along the National Trail route, its one
+GPX for the whole trail cut at each stage's end).
 
 | # | Trail | Region | Length (approx.) | Why |
 |---|---|---|---|---|

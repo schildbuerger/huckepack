@@ -20,6 +20,7 @@ match covers the track. Prints a report; stages that cover less than 95% of thei
 a look (OSM may be missing a path there).
 """
 
+import functools
 import heapq
 import http.client
 import json
@@ -97,7 +98,10 @@ def track_points(gpx):
     neusta tour pages (sauerland-waldroute.de) carry the map's line as an HTML-escaped
     "polyline": "lon,lat lon,lat …"."""
     points = []
-    for attrs in re.findall(r"<trkpt\b([^>]*)>", gpx):
+    # a GPX with several tracks (the Coast to Coast's: the main route, then two alternatives) is
+    # read as its first track, the main route
+    first = re.search(r"<trk>.*?</trk>", gpx, re.S) if gpx.count("<trk>") > 1 else None
+    for attrs in re.findall(r"<trkpt\b([^>]*)>", first.group(0) if first else gpx):
         lat = re.search(r'\blat="([-\d.]+)"', attrs)
         lon = re.search(r'\blon="([-\d.]+)"', attrs)
         points.append((float(lon.group(1)), float(lat.group(1))))
@@ -272,10 +276,15 @@ def build(slug, refresh=False):
     relation = trail.get("route", {}).get("relation")
     start, end = trail["termini"]["start"], trail["termini"]["end"]
 
+    @functools.cache
+    def track_of_url(url):
+        # cached under the first stage that names the url: a whole-trail track is downloaded once
+        first = next(s for s in all_stages if s.get("track") == url)
+        gpx, _ = cache.get(f"stage-{first['number']}-{first['kind']}.gpx", url, lambda: http_get(url))
+        return tuple(track_points(gpx))
+
     def track_of(stage):
-        label = f"{stage['number']}-{stage['kind']}"
-        gpx, _ = cache.get(f"stage-{label}.gpx", stage["track"], lambda: http_get(stage["track"]))
-        return track_points(gpx)
+        return list(track_of_url(stage["track"]))
 
     # the OSM data, opened only when a download is due (pipeline/osm.py source): a local corridor
     # around every stage's GPX track, or for relation-only trails around the relations' ways
@@ -284,7 +293,8 @@ def build(slug, refresh=False):
     def osm_src():
         nonlocal src
         if src is None:
-            tracks = [p for s in all_stages if s.get("track") for p in track_of(s)]
+            once = {s["track"]: s for s in all_stages if s.get("track")}.values()  # a whole-trail track once
+            tracks = [p for s in once for p in track_of(s)]
             coarse = [(start["lon"], start["lat"]), (end["lon"], end["lat"])]
             coarse += [(s["end"]["lon"], s["end"]["lat"]) for s in all_stages if s.get("end")]
             # a closed stage's detour: where it leaves the stage, its legs' ends and via points
@@ -366,6 +376,11 @@ def build(slug, refresh=False):
                 track = relation_line({"elements": elements}, stage.get("alternatives", []), begin)
         else:
             track = track_of(stage)
+            if stage.get("end"):
+                # a track for the whole trail (one GPX, the Coast to Coast's): the stage is its piece
+                # from where the previous main stage ended to the point nearest the stage's `end`
+                begin = last[1] if stage["kind"] != "main" and last and last[0] != "main" else previous_end
+                track = piece(track, begin, (stage["end"]["lon"], stage["end"]["lat"]))
         # a closed stage: only the part up to where it can be walked is the trail on the map; its
         # match counts against the whole guide line, so the check flags the missing part
         walkable = 1.0
