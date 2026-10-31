@@ -81,6 +81,14 @@ class Lines(unittest.TestCase):
         with self.assertRaises(ValueError):
             routes.piece(self.line, (8.008, LAT), (8.002, LAT))
 
+    def test_nearest_index(self):
+        self.assertEqual(routes.nearest_index(self.line, {"lon": 8.0041, "lat": LAT}), 4)
+
+    def test_split_at_stage_ends(self):
+        stages = [{"end": {"lon": 8.003, "lat": LAT}}, {"end": {"lon": 8.01, "lat": LAT}}]
+        first, second = routes.split_at(self.line, stages)
+        self.assertEqual((first[0], first[-1], second[-1]), (self.line[0], self.line[3], self.line[10]))
+
     def test_simplify_keeps_ends_and_drops_straight_points(self):
         out = routes.simplify(self.line, 10)
         self.assertEqual((out[0], out[-1]), (self.line[0], self.line[-1]))

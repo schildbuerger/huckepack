@@ -1,0 +1,192 @@
+name: Tour du Mont Blanc
+added: 2026-10-31
+aliases: [TMB, Tour du Mont-Blanc, GR Tour du Mont-Blanc]
+website: https://www.montourdumontblanc.com/en/
+wikidata: Q24777
+managedBy:
+  # the official site names no operating body
+  - name: Tour du Mont-Blanc (official website)
+    url: https://www.montourdumontblanc.com/en/
+trailType: loop
+continents: [Europe]
+countries: [FR, IT, CH]
+regions: [Haute-Savoie, Savoie, Aosta Valley, Valais]
+termini:
+  # a loop from and back to Les Houches, the usual start in the Chamonix valley (OSM)
+  start:
+    name: Les Houches
+    lat: 45.89151
+    lon: 6.79914
+  end:
+    name: Les Houches
+    lat: 45.89151
+    lon: 6.79914
+  source: osm
+established:
+  # the GR Tour du Mont-Blanc was laid out in 1951
+  year: 1951
+  source: wikipedia-fr
+waymarking:
+  text: Marked trails
+  source: tmb
+length:
+  # "The full circuit covers approximately 170 km and 10,000 m of elevation gain"
+  - km: 170
+    source: tmb
+ascent:
+  - m: 10000
+    source: tmb
+descent:
+  # a loop: it descends what it climbs
+  - m: 10000
+    source: tmb
+days:
+  # "usually walked in 7 to 12 days"
+  min: 7
+  max: 12
+  source: tmb
+stages:
+  # the official site gives no stages; English Wikipedia's eleven legs from Les Houches,
+  # anticlockwise (working decision 2026-10-31: Wikipedia's stage list, named as the source).
+  # Each stage cuts the OSM relation "Tour du Mont Blanc - Itinéraire principal" (9678362) at its
+  # end (OSM)
+  source: wikipedia
+  list:
+    - { number: "1", kind: main, from: Les Houches, to: Les Contamines, km: 16, minutes: 300, ascentM: 646, descentM: 633, end: { name: Les Contamines, lat: 45.82109, lon: 6.72751 } }
+    - { number: "2", kind: main, from: Les Contamines, to: Les Chapieux, km: 18, minutes: 450, ascentM: 1316, descentM: 929, end: { name: Les Chapieux, lat: 45.69668, lon: 6.73358 } }
+    - { number: "3", kind: main, from: Les Chapieux, to: Rifugio Elisabetta, km: 15, minutes: 270, ascentM: 1004, descentM: 258, end: { name: Rifugio Elisabetta, lat: 45.767, lon: 6.83744 } }
+    - { number: "4", kind: main, from: Rifugio Elisabetta, to: Courmayeur, km: 18, minutes: 300, ascentM: 460, descentM: 1560, end: { name: Courmayeur, lat: 45.78742, lon: 6.97306 } }
+    - { number: "5", kind: main, from: Courmayeur, to: Rifugio Bonatti, km: 12, minutes: 270, ascentM: 860, descentM: 101, end: { name: Rifugio Bonatti, lat: 45.84691, lon: 7.03364 } }
+    - { number: "6", kind: main, from: Rifugio Bonatti, to: La Fouly, km: 20, minutes: 390, ascentM: 895, descentM: 1410, end: { name: La Fouly, lat: 45.93312, lon: 7.09897 } }
+    - { number: "7", kind: main, from: La Fouly, to: Champex, km: 15, minutes: 240, ascentM: 420, descentM: 565, end: { name: Champex, lat: 46.03058, lon: 7.11682 } }
+    - { number: "8", kind: main, from: Champex, to: Col de la Forclaz, km: 16, minutes: 270, ascentM: 742, descentM: 682, end: { name: Col de la Forclaz, lat: 46.05773, lon: 7.00135 } }
+    - { number: "9", kind: main, from: Col de la Forclaz, to: Tré-le-Champ, km: 13, minutes: 330, ascentM: 1069, descentM: 1178, end: { name: Tré-le-Champ, lat: 45.99563, lon: 6.92917 } }
+    - { number: "10", kind: main, from: Tré-le-Champ, to: La Flégère, km: 8, minutes: 210, ascentM: 733, descentM: 257, end: { name: La Flégère, lat: 45.96034, lon: 6.88704 } }
+    - { number: "11", kind: main, from: La Flégère, to: Les Houches, km: 17, minutes: 390, ascentM: 772, descentM: 1546, end: { name: Les Houches, lat: 45.89151, lon: 6.79914 } }
+route:
+  # built by `python -m pipeline.all tour-du-mont-blanc`: OSM ways matched to the relation's
+  # pieces between the stage ends
+  source: osm
+  publishable: true
+  relation: 9678362
+difficulty:
+  estimated:
+    sac: T2
+    basis: >-
+      The official site asks for mountain experience, an IGN map or GPS and gear for weather that
+      changes fast; English Wikipedia calls it a physical challenge whose main route crosses passes
+      up to about 2,500 m, with harder variants (Fenêtre d'Arpette, Col des Fours, 2,665 m). Good
+      mountain paths without secured passages on the main route: mountain hiking (T2).
+    source: wikipedia
+season:
+  # "The ideal season runs from mid-June to mid-September"
+  months: [6, 7, 8, 9]
+  text: Mid-June to mid-September
+  source: tmb
+sleeping:
+  # the official site's refuges and guesthouses
+  types: [hut, guesthouse]
+  source: tmb
+wildCamping:
+  status: restricted
+  rule: >-
+    Bivouacking "is regulated according to the areas crossed": sometimes allowed near refuges and
+    during limited hours, prohibited in nature reserves except in the areas set aside for it, and
+    on private land.
+  source: tmb
+access:
+  # trains from Paris and Geneva to Saint-Gervais-les-Bains-Le Fayet, the Mont-Blanc Express on to
+  # Les Houches; Geneva Airport. Coordinates from OSM; distances by pipeline/access.py
+  - kind: station
+    name: Saint-Gervais-les-Bains-Le Fayet
+    lat: 45.90657
+    lon: 6.70146
+    source: osm
+  - kind: airport
+    name: Geneva Airport (GVA)
+    lat: 46.23771
+    lon: 6.10798
+    source: osm
+tags: [alps, mont-blanc, huts, passes, glaciers]
+notes:
+  - >-
+    Stages: English Wikipedia's eleven legs add up to 168 km, 8,917 m up and 9,119 m down (a loop
+    should come back even; the article's table is flagged "failed verification": the Cicerone
+    guide it cites gives 170 km, 60 hours and 10,080 m). The official site gives about 170 km and
+    10,000 m of climbing.
+  - >-
+    Route (pipeline, 2026-10-31, Geofabrik extracts): the OSM relation's main itinerary, oriented
+    anticlockwise from Les Houches and cut at the stage ends, matches every stage at least 97 %.
+    The matched line is 164.8 km against the official 170 km (3 %). Five legs differ from
+    Wikipedia's figures by more than 10 %, likely where the article's legs follow other variants
+    or end elsewhere: 4 (15.7 against 18 km), 8 (14.0 against 16), 9 (15.7 against 13; Col de
+    Balme or Bovine), 10 (6.6 against 8) and 3 (13.7 against 15, 9 %).
+  - >-
+    Tree line: not recorded. The route climbs to about 2,500 m, above the trees; WSL gives the tree
+    line as high as 2,500 m in Valais' inner valleys and from 1,800 m on exposed Prealps summits,
+    but no figure for the Mont Blanc massif itself. To add once a regional source is found.
+  - >-
+    Data check (2026-10-31). The stage source is English Wikipedia, so the official site is the
+    check: length 168 km (legs) against about 170 km (1 %); climb 8,917 m (legs) against 10,000 m
+    (11 %; the terrain model gives ≈ 10,270 m); days 7–12 officially, 9–14 in Wikipedia (the
+    record keeps the official); season mid-June to mid-September (official; Wikipedia none).
+    Highest point on the terrain model 2,534 m; Wikipedia gives 2,665 m for the highest variants
+    (Col des Fours, Fenêtre d'Arpette), which the main route avoids.
+dataCheck:
+  # working rule 2: the official site against Wikipedia's legs
+  date: 2026-10-31
+  against: [tmb, wikipedia]
+  deviations:
+    - { figure: "Ascent", ours: "10,000 m (official)", theirs: "8,917 m (sum of the legs)", source: wikipedia }
+    - { figure: "Days", ours: "7–12", theirs: "9–14", source: wikipedia }
+    - { figure: "Stage 4 length", ours: "18 km (Wikipedia)", theirs: "15.7 km (map line)", source: osm }
+    - { figure: "Stage 8 length", ours: "16 km (Wikipedia)", theirs: "14.0 km (map line)", source: osm }
+    - { figure: "Stage 9 length", ours: "13 km (Wikipedia)", theirs: "15.7 km (map line)", source: osm }
+    - { figure: "Stage 10 length", ours: "8 km (Wikipedia)", theirs: "6.6 km (map line)", source: osm }
+sources:
+  - id: tmb
+    title: "Tour du Mont-Blanc, official website (length, climb, days, season, refuges, bivouac rules)"
+    url: https://www.montourdumontblanc.com/en/
+    licence: © Tour du Mont-Blanc (facts only)
+    retrieved: 2026-10-31
+  - id: wikipedia
+    title: "Wikipedia (en): Tour du Mont Blanc (legs with distance, time, ascent and descent; variants)"
+    url: https://en.wikipedia.org/wiki/Tour_du_Mont_Blanc
+    licence: CC BY-SA 4.0
+    retrieved: 2026-10-31
+  - id: wikipedia-fr
+    title: "Wikipédia (fr): Sentier de grande randonnée Tour du Mont-Blanc (history)"
+    url: https://fr.wikipedia.org/wiki/Sentier_de_grande_randonn%C3%A9e_Tour_du_Mont-Blanc
+    licence: CC BY-SA 4.0
+    retrieved: 2026-10-31
+  - id: wikimedia
+    title: "Wikimedia: page views of the trail's Wikipedia articles in every language, by people, over twelve months (Wikidata sitelinks, pageview API)"
+    url: https://wikimedia.org/api/rest_v1/
+    licence: CC0 1.0 (pageview data); Wikidata CC0
+    retrieved: 2026-10-31
+    checkOnly: true  # not on the trail page: the page views only rank the home page's popular trails
+  - id: osm
+    title: "OpenStreetMap contributors: the relation Tour du Mont Blanc - Itinéraire principal (9678362), paths, water, shops and places to sleep along the trail (Geofabrik extracts), stage ends, travel hubs"
+    url: https://www.openstreetmap.org/relation/9678362
+    licence: ODbL 1.0
+    retrieved: 2026-10-31
+  - id: copdem
+    title: "Copernicus DEM GLO-30 (30 m terrain model), tiles from AWS Open Data"
+    url: https://registry.opendata.aws/copernicus-dem/
+    licence: "Copernicus WorldDEM-30 licence, free; produced using Copernicus WorldDEM-30 © DLR e.V. 2010-2014 and © Airbus Defence and Space GmbH 2014-2018 provided under COPERNICUS by the European Union and ESA; all rights reserved"
+    retrieved: 2026-10-31
+  - id: worldcover
+    title: "ESA WorldCover 2021: 10 m land cover (via AWS Open Data)"
+    url: https://esa-worldcover.org/
+    licence: "CC BY 4.0; © ESA WorldCover project 2021 / Contains modified Copernicus Sentinel data (2021) processed by ESA WorldCover consortium"
+    retrieved: 2026-10-31
+  - id: era5
+    title: "Open-Meteo open data on AWS: ERA5-Land temperature and ERA5 precipitation, snow and wind, daily 1995–2024 (reanalysis)"
+    url: https://github.com/open-meteo/open-data
+    licence: CC BY 4.0 (Open-Meteo); contains modified Copernicus Climate Change Service information
+    retrieved: 2026-10-31
+  - id: osrm
+    title: "OSRM: road routes on OpenStreetMap data (router.project-osrm.org)"
+    url: https://project-osrm.org/
+    licence: Route data © OpenStreetMap contributors (ODbL)
+    retrieved: 2026-10-31

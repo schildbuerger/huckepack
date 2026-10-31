@@ -254,6 +254,13 @@ def relation_path(elements, a, b):
     return line[::-1]
 
 
+def nearest_index(line, point):
+    """The index of the line's point nearest a {lat, lon} point."""
+    proj = osm.Projection(line[0][1])
+    target = proj.xy(point["lon"], point["lat"])
+    return min(range(len(line)), key=lambda k: math.dist(proj.xy(*line[k]), target))
+
+
 def split_at(line, stages):
     """One piece of the line per stage, cut at the point nearest each stage's end."""
     proj = osm.Projection(line[0][1])
@@ -352,6 +359,10 @@ def build(slug, refresh=False):
             "osm-relation.json", osm.source_label(), lambda: json.dumps(osm_src().relation(relation, children=False), separators=(",", ":")).encode()
         )
         line = relation_line(json.loads(data), trail["route"].get("alternatives", []), (start["lon"], start["lat"]))
+        if len(stages) > 2 and nearest_index(line, stages[0]["end"]) > nearest_index(line, stages[-2]["end"]):
+            # a round trip (the Tour du Mont Blanc) can chain either way round from its start:
+            # the walking direction is the one that reaches the first stage's end first
+            line = line[::-1]
         guides = {s["number"]: piece for s, piece in zip(stages, split_at(line, stages))}
     if not stages:
         raise SystemExit(f"{slug}: no stage has a track (or an end point and a route.relation)")

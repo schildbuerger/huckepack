@@ -47,6 +47,8 @@ ten AFCD sections, each with its official GPX as the matcher's guide).
 And the **Coast to Coast Path** (#50, 306 km from St Bees to Robin Hood's Bay, a National Trail
 since 26 March 2026: German Wikipedia's twelve stages along the National Trail route, its one
 GPX for the whole trail cut at each stage's end).
+And the **Tour du Mont Blanc** (#55, about 170 km around the Mont Blanc massif from Les Houches:
+English Wikipedia's eleven legs, the OSM relation's main itinerary cut at their ends).
 
 | # | Trail | Region | Length (approx.) | Why |
 |---|---|---|---|---|
