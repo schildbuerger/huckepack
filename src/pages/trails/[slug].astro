@@ -7,6 +7,10 @@ import Explain from "../../components/Explain.astro";
 import Breadcrumbs from "../../components/Breadcrumbs.astro";
 import Meter from "../../components/Meter.astro";
 import Waymark from "../../components/Waymark.astro";
+import TrailSkyline from "../../components/TrailSkyline.astro";
+import { SKYLINES } from "../../lib/skylines";
+import { SKY_SCRIPT } from "../../lib/sky";
+import { inlineScript } from "../../lib/inline-script";
 import { ogAlt } from "../../lib/og-image";
 import { ogTrail } from "../../lib/og-trail";
 import { routePreviewSvg } from "../../lib/route-preview";
@@ -45,6 +49,10 @@ export async function getStaticPaths() {
 const { trail } = Astro.props as { trail: CollectionEntry<"trails"> };
 const t = trail.data;
 const derived = (await getEntry("derived", trail.id))?.data;
+// the page's head on a handcrafted skyline in miniature (issue #142), where the trail has one and an
+// elevation profile; its sky follows the visitor's clock, set before the first paint (src/lib/sky.ts)
+const skyline = Boolean(SKYLINES[trail.id] && derived?.elevation);
+const skyScript = inlineScript(Astro, SKY_SCRIPT);
 const water = derived?.water;
 // sources of water points besides OSM (the record's waterPoints), by their titles' first part
 const waterExtra = (water?.extraSources ?? []).map((id) => t.sources.find((x) => x.id === id)?.title.split(":")[0] ?? id);
@@ -575,12 +583,23 @@ const trailLd = JSON.stringify({
   description={pageDescription}
   image={{ path: `/og/${trail.id}.png`, alt: ogAlt(ogTrail(trail.id, t, derived)) }}
 >
-  <Breadcrumbs trail={[{ label: "Trails", href: "/trails/" }]} current={t.name} />
   <script type="application/ld+json" set:html={trailLd} />
-  <h1>
-    {t.name}
-  </h1>
-  {t.localName && <p class="subtitle muted">{t.localName}</p>}
+  {
+    skyline ? (
+      <>
+        <script is:inline set:html={skyScript} />
+        <TrailSkyline slug={trail.id} name={t.name} localName={t.localName} points={derived!.elevation!.points} routeKm={derived!.elevation!.routeKm}>
+          <Breadcrumbs slot="crumbs" trail={[{ label: "Trails", href: "/trails/" }]} current={t.name} />
+        </TrailSkyline>
+      </>
+    ) : (
+      <>
+        <Breadcrumbs trail={[{ label: "Trails", href: "/trails/" }]} current={t.name} />
+        <h1>{t.name}</h1>
+        {t.localName && <p class="subtitle muted">{t.localName}</p>}
+      </>
+    )
+  }
 
   <nav class="onpage" aria-label="On this page">
     <ul>

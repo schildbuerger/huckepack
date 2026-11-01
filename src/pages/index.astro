@@ -14,6 +14,7 @@ import { searchSummary } from "../lib/search";
 import zones from "../lib/timezones.json";
 import { worldOutline } from "../lib/world-outline";
 import { inlineScript } from "../lib/inline-script";
+import { SKY_SCRIPT } from "../lib/sky";
 
 const entries = (await getCollection("trails")).sort((a, b) => a.data.name.localeCompare(b.data.name));
 const derivedAll = await Promise.all(entries.map(async (e) => (await getEntry("derived", e.id))?.data));
@@ -191,15 +192,7 @@ const countScript = inlineScript(Astro, `// The totals count up from 0 the first
 })();`);
 // the hero's sky follows the visitor's clock: dawn, day, dusk or night, and the sun (or the moon) on
 // its arc across the band; before the first paint, so the sky never changes in front of the visitor
-const skyScript = inlineScript(Astro, `(() => {
-  const root = document.documentElement;
-  const hour = new Date().getHours();
-  root.dataset.sky = hour >= 21 || hour < 5 ? "night" : hour < 8 ? "dawn" : hour < 17 ? "day" : "dusk";
-  // 0 at sunrise on the left, 1 at sunset on the right (the moon the same through the night)
-  const f = hour >= 5 && hour < 21 ? (hour - 5) / 16 : ((hour + 3) % 24) / 8;
-  root.style.setProperty("--sun-x", (8 + f * 84).toFixed(1) + "%");
-  root.style.setProperty("--sun-y", (14 + Math.pow(2 * f - 1, 2) * 46).toFixed(1) + "%");
-})();`);
+const skyScript = inlineScript(Astro, SKY_SCRIPT);
 const featuredScript = inlineScript(Astro, `// A random featured trail on each page load. Runs right after the cards, before the first
 // paint, so the first trail never flashes; without JavaScript the first one stays.
 (() => {

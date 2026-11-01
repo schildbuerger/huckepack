@@ -1,0 +1,219 @@
+---
+// A trail page's head on its own skyline in miniature (issue #142; of three previews, approach B, the
+// postcard): a band wall to wall from the header down, its sky following the visitor's clock like the
+// home page's hero (src/lib/sky.ts), the breadcrumb and the name on the left in clear sky, and at the
+// lower right the mountains the trail is known for, drawn by hand (src/lib/skylines.ts) and seen from far
+// away, with the trail's own elevation profile as the nearest ridge. The drawing has no cut edges: the
+// massif slopes down and the ridge tapers into the ground, which runs across the band's foot. Flat colours
+// and shapes only; the drawing is decorative (aria-hidden), the name is the page's h1.
+import { SKYLINES } from "../lib/skylines";
+
+interface Props {
+  slug: string;
+  name: string;
+  localName?: string;
+  points: [number, number][]; // the elevation profile, [km, metres]
+  routeKm: number;
+}
+const { slug, name, localName, points, routeKm } = Astro.props;
+const sky = SKYLINES[slug];
+
+// the drawing's box: the skyline's full width, from just above the highest summit to the ground
+const W = 1600;
+const H = 320;
+const TOP = 56;
+// the trail's profile as the nearest ridge, between 210 and 300 units down, on its own height range; near
+// both ends it sinks smoothly to the ground, so it flows into the band's foot
+const lo = Math.min(...points.map((p) => p[1]));
+const hi = Math.max(...points.map((p) => p[1]));
+const step = Math.max(1, Math.floor(points.length / 160));
+const thin = points.filter((_, i) => i % step === 0 || i === points.length - 1);
+const EDGE = 0.16 * W;
+const ease = (x: number) => {
+  const f = Math.min(1, Math.min(x, W - x) / EDGE);
+  return f * f * (3 - 2 * f);
+};
+const rx = (km: number) => (km / routeKm) * W;
+const ry = (x: number, m: number) => H - (H - (296 - ((m - lo) / (hi - lo || 1)) * 86)) * ease(x);
+const ridge = `M0,${H}L${thin.map(([km, m]) => `${rx(km).toFixed(0)},${ry(rx(km), m).toFixed(0)}`).join("L")}L${W},${H}Z`;
+---
+
+{
+  sky && (
+    <div class="skyline">
+      <div class="sk-crumbs">
+        <slot name="crumbs" />
+      </div>
+      <div class="sk-title">
+        <h1>{name}</h1>
+        {localName && <p class="sk-local">{localName}</p>}
+      </div>
+      <div class="sk-scene" aria-hidden="true">
+        <span class="sk-sun" />
+        <svg class="sk-svg" viewBox={`0 ${TOP} ${W} ${H - TOP}`} preserveAspectRatio="xMidYMax meet">
+          <polygon class="sk-rock" points={sky.massif} />
+          {sky.snow.map((p) => (
+            <polygon class="sk-snow" points={p} />
+          ))}
+          <path class="sk-ridge" d={ridge} />
+        </svg>
+      </div>
+    </div>
+  )
+}
+
+<style>
+  /* the band: wall to wall from the header down; the breadcrumb and the name in the page's column on the
+     left, the miniature at the lower right standing on the ground that runs across the band's foot */
+  .skyline {
+    --ground: 14px;
+    position: relative;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    grid-template-rows: auto 1fr;
+    column-gap: 32px;
+    margin: 0 calc(50% - 50vw) 28px;
+    padding: 0 max(16px, calc(50vw - 600px)) var(--ground);
+    overflow-x: clip;
+    background: #d9e8e1;
+  }
+  :global(html[data-sky="dawn"]) .skyline {
+    background: #f2d8c2;
+  }
+  :global(html[data-sky="dusk"]) .skyline {
+    background: #e7c0a2;
+  }
+  :global(html[data-sky="night"]) .skyline {
+    background: #1d2733;
+  }
+  :global(body) {
+    overflow-x: clip;
+  }
+  /* the ground: a strip of meadow along the band's foot, wall to wall */
+  .skyline::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: var(--ground);
+    background: #8fb05a;
+  }
+  :global(html[data-sky="night"]) .skyline::after {
+    background: #2b3a26;
+  }
+
+  /* the breadcrumb and the name, in the sky's colours: dark by day, light at night, whatever the theme */
+  .sk-crumbs {
+    grid-column: 1;
+    grid-row: 1;
+  }
+  .sk-crumbs :global(.crumbs) {
+    margin-top: 16px;
+  }
+  .sk-crumbs :global(.crumbs :is(a, li, [aria-current="page"])),
+  .sk-crumbs :global(.crumbs li + li::before) {
+    color: #3c3d30;
+  }
+  :global(html[data-sky="night"]) .sk-crumbs :global(.crumbs :is(a, li, [aria-current="page"])),
+  :global(html[data-sky="night"]) .sk-crumbs :global(.crumbs li + li::before) {
+    color: #c3c2b0;
+  }
+  .sk-title {
+    position: relative;
+    z-index: 2;
+    grid-column: 1;
+    grid-row: 2;
+    align-self: center;
+    padding: 18px 0 26px;
+  }
+  .sk-title h1 {
+    margin: 0;
+    color: #25261c;
+  }
+  .sk-local {
+    margin: 4px 0 0;
+    color: #4a4b3b;
+    font-style: italic;
+  }
+  :global(html[data-sky="night"]) .sk-title h1 {
+    color: #ecebdb;
+  }
+  :global(html[data-sky="night"]) .sk-local {
+    color: #c3c2b0;
+  }
+
+  /* the miniature: over both rows at the lower right, the sun (or the moon) just above it, behind its
+     mountains */
+  .sk-scene {
+    position: relative;
+    grid-column: 2;
+    grid-row: 1 / span 2;
+    align-self: end;
+    width: min(46vw, 640px);
+    margin-top: 12px;
+  }
+  .sk-svg {
+    position: relative;
+    z-index: 1;
+    display: block;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 1600 / 264;
+  }
+  .sk-sun {
+    position: absolute;
+    z-index: 0;
+    left: var(--sun-x, 70%);
+    top: calc(var(--sun-y, 20%) * 0.6);
+    width: 28px;
+    height: 28px;
+    margin: -14px 0 0 -14px;
+    border-radius: 50%;
+    background: #f6c453;
+  }
+  :global(html[data-sky="night"]) .sk-sun {
+    width: 20px;
+    height: 20px;
+    margin: -10px 0 0 -10px;
+    background: #ecebdb;
+    box-shadow: inset -6px -2px 0 0 #1d2733;
+  }
+  /* phones: the name over the miniature, which keeps to the right */
+  @media (max-width: 719px) {
+    .skyline {
+      grid-template-columns: 1fr;
+      grid-template-rows: auto auto auto;
+    }
+    .sk-title {
+      padding-bottom: 8px;
+    }
+    .sk-scene {
+      grid-column: 1;
+      grid-row: 3;
+      justify-self: end;
+      width: min(100%, 420px);
+      margin-top: 0;
+    }
+  }
+
+  /* the colours: rock, snow and the trail's forest ridge; by day and by night */
+  .sk-rock {
+    fill: #8e9aa6;
+  }
+  .sk-snow {
+    fill: #f7f8f4;
+  }
+  .sk-ridge {
+    fill: #45663a;
+  }
+  :global(html[data-sky="night"]) .sk-rock {
+    fill: #3a4554;
+  }
+  :global(html[data-sky="night"]) .sk-snow {
+    fill: #b9c0cb;
+  }
+  :global(html[data-sky="night"]) .sk-ridge {
+    fill: #1f2c20;
+  }
+</style>
