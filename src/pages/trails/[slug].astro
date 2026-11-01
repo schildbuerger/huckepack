@@ -487,9 +487,12 @@ const supplyLanes: Row[] = water
     ]
   : [];
 // lane geometry in the 1000-unit strip: a label row and a 26-unit band per lane, then the axis
-const LANE = { top: 30, step: 46, band: 26 };
-const laneY = (i: number) => LANE.top + i * LANE.step;
-const supplyAxis = laneY(supplyLanes.length) - 8;
+// (issue #119: room above the first row for the groups' buttons, and GROUP_GAP more before each
+// top-level row, so a group and its kinds read as a block apart from the next)
+const LANE = { top: 42, step: 46, band: 26 };
+const GROUP_GAP = 20;
+const laneY = (i: number) => LANE.top + i * LANE.step + GROUP_GAP * supplyLanes.slice(1, i + 1).filter((r) => r.parent === undefined).length;
+const supplyAxis = laneY(supplyLanes.length - 1) + LANE.step - 8;
 // one kind of tick for every place: a lane's sub rows are slimmer (from `top` to `bottom` in its band)
 const subRows = supplyLanes.filter((r) => r.sub).length;
 // group rows that open into their kinds (Water, Shops), and how many rows each holds
@@ -1675,6 +1678,7 @@ const trailLd = JSON.stringify({
               top: LANE.top,
               step: LANE.step,
               height: supplyAxis + 40,
+              gap: GROUP_GAP,
               lanes: supplyLanes.map((l) => l.points.map((p) => [p.km, p.what, p.name ?? "", p.stage])),
               parent: supplyLanes.map((l) => l.parent ?? -1), // the group a row folds into (issue #119), -1: none
             })}
@@ -1816,6 +1820,7 @@ const trailLd = JSON.stringify({
       x1?: number;
       lanes: [number, string, string, string][][]; // km, what, name, stage
       parent?: number[]; // the group row each row folds into, -1 for none (issue #119)
+      gap?: number; // more room before each top-level row (issue #119)
     } = JSON.parse(figure.querySelector(".chart-data")!.textContent!);
     const X0 = data.x0 ?? 8;
     const X1 = data.x1 ?? 992;
@@ -1827,16 +1832,19 @@ const trailLd = JSON.stringify({
     const open = new Set<number>();
     let height = data.height;
     let visible = data.lanes.map((_, i) => i);
+    // a visible row's top: one step per row above it, plus the group gap before each top-level row
+    const rowTop = (rows: number[], k: number) => data.top + k * data.step + (data.gap ?? 0) * rows.slice(1, k + 1).filter((i) => parents[i] < 0).length;
+    const all = data.lanes.map((_, i) => i);
     const layout = () => {
-      visible = data.lanes.map((_, i) => i).filter((i) => parents[i] < 0 || open.has(parents[i]));
+      visible = all.filter((i) => parents[i] < 0 || open.has(parents[i]));
       for (const g of svg.querySelectorAll<SVGGElement>("g.row")) {
         const i = Number(g.dataset.row);
         const k = visible.indexOf(i);
         g.style.display = k < 0 ? "none" : "";
-        g.style.transform = k < 0 ? "" : `translateY(${(k - i) * data.step}px)`;
+        g.style.transform = k < 0 ? "" : `translateY(${rowTop(visible, k) - rowTop(all, i)}px)`;
         g.classList.toggle("open", open.has(i));
       }
-      const shift = (visible.length - data.lanes.length) * data.step;
+      const shift = rowTop(visible, visible.length - 1) - rowTop(all, all.length - 1);
       svg.querySelector<SVGGElement>("g.axis")!.style.transform = `translateY(${shift}px)`;
       height = data.height + shift;
       svg.setAttribute("viewBox", `0 0 1000 ${height}`);
@@ -1844,7 +1852,7 @@ const trailLd = JSON.stringify({
       cursor.setAttribute("y2", String(height - 40));
       for (const t of toggles) {
         const g = Number(t.dataset.group);
-        t.style.top = `${((data.top + visible.indexOf(g) * data.step - 24) / height) * 100}%`;
+        t.style.top = `${((rowTop(visible, visible.indexOf(g)) - 34) / height) * 100}%`;
         t.setAttribute("aria-expanded", String(open.has(g)));
       }
     };
@@ -1868,7 +1876,8 @@ const trailLd = JSON.stringify({
       const vx = ((clientX - box.left) / box.width) * 1000;
       const vy = ((clientY - box.top) / box.height) * height;
       const rows = shown();
-      const row = Math.min(Math.max(Math.floor((vy - data.top + data.step / 2 - mid) / data.step), 0), rows.length - 1);
+      const top = (k: number) => (data.parent ? rowTop(rows, k) : data.top + k * data.step);
+      const row = rows.reduce((best, _, k) => (Math.abs(top(k) + mid - vy) < Math.abs(top(best) + mid - vy) ? k : best), 0);
       const lane = rows[row];
       const km = ((vx - X0) / (X1 - X0)) * data.total;
       // the nearest place within about 12 units (1.2 % of the route)
@@ -1888,7 +1897,7 @@ const trailLd = JSON.stringify({
       const half = tip.offsetWidth / 2;
       const px = box.left - fbox.left + (x / 1000) * box.width;
       tip.style.left = `${Math.min(Math.max(px, half), fbox.width - half)}px`;
-      tip.style.top = `${box.top - fbox.top + ((data.top + row * data.step) / height) * box.height - 8}px`;
+      tip.style.top = `${box.top - fbox.top + (top(row) / height) * box.height - 8}px`;
     };
     const hide = () => {
       tip.hidden = true;
@@ -3074,26 +3083,28 @@ const trailLd = JSON.stringify({
   .tier-toggle {
     position: absolute;
     top: -3px; /* the script places each group's button in its row's label space */
-    left: 0;
+    left: -6px;
     display: inline-flex;
-    align-items: baseline;
-    gap: 5px;
-    padding: 0 4px 0 0;
+    align-items: center;
+    gap: 6px;
+    min-height: 30px;
+    padding: 2px 10px 2px 6px;
     border: 0;
+    border-radius: 6px;
     background: none;
     color: var(--text);
-    font: 600 0.85rem var(--sans);
+    font: 600 0.92rem var(--sans);
     cursor: pointer;
   }
-  .tier-toggle:hover .tier-name {
-    text-decoration: underline;
-    text-underline-offset: 3px;
+  .tier-toggle:hover {
+    background: var(--surface);
   }
   .tier-toggle .chev {
-    display: inline-block;
-    width: 0.7em;
+    display: inline-grid;
+    place-items: center;
+    width: 16px;
     color: var(--muted);
-    font-size: 1rem;
+    font-size: 1.25rem;
     line-height: 1;
     transition: transform 0.15s;
   }
