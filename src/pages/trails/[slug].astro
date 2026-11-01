@@ -181,9 +181,10 @@ const closedText = (s: (typeof closedStages)[number]) => {
 // water in tiers (issue #119, pipeline/along.py water_tiers()): drinking water rates; springs give
 // a second rating "with treatment"; places to sleep within the water reach show as refills, unrated
 const tiers = derived?.along?.water;
-const drinkGap = tiers?.longestGapKm.drinking ?? water?.longestGapKm.drinking;
+// the trail is rated by clean water: drinking water or a refill at a place to sleep (decided
+// 2026-11-01); without tiers (no places to sleep found), by drinking water
+const drinkGap = tiers?.longestGapKm.clean ?? water?.longestGapKm.drinking;
 const level = drinkGap && waterLevel(drinkGap.km);
-const treatLevel = tiers && waterLevel(tiers.longestGapKm.treatment.km);
 // status as a shape plus a word; colour (--good/--fair/--poor) only fills the shape
 type Status = { shape: "full" | "half" | "blocked" | "empty"; tone: string; word: string };
 const STATUS: Record<string, Status> = {
@@ -210,7 +211,6 @@ const sleepingRows = sleeping.map((c) =>
 );
 const WATER_STATUS = { frequent: "available", regular: "restricted", scarce: "prohibited" } as const;
 const waterStatus = level && { ...STATUS[WATER_STATUS[level.id]], word: level.label };
-const treatStatus = treatLevel && { ...STATUS[WATER_STATUS[treatLevel.id]], word: treatLevel.label };
 
 // strip charts (water, surfaces, elevation) share one geometry: a 1000-unit wide viewBox, km across
 const CHART = { width: 1000, x0: 8, x1: 992 };
@@ -426,8 +426,8 @@ const waterTotals = water && {
 const gapStages = (() => {
   if (!water) return "";
   const g = drinkGap!;
-  const at = (km: number) => water.points.find((p) => p.km !== null && Math.abs(p.km - km) < 0.05)?.stage;
-  const [a, b] = [at(g.fromKm), at(g.toKm)];
+  const at = (km: number) => [...water.stageStarts].reverse().find((st) => st.km <= km + 0.05)?.number;
+  const [a, b] = [at(g.fromKm), at(Math.max(g.fromKm, g.toKm - 0.1))];
   return a && b ? (a === b ? `, stage ${a}` : `, stages ${a}–${b}`) : "";
 })();
 
@@ -505,7 +505,7 @@ const tickPath = (pts: LanePoint[], y: number, top = 4, bottom = 22) => pts.map(
 const supplySummary =
   water &&
   (along
-    ? `Water and shops along the main route, ${water.routeKm} km. Longest without drinking water ${drinkGap!.km} km${tiers ? `, with springs counted ${tiers.longestGapKm.treatment.km} km, without water or a refill at a place to sleep ${tiers.longestGapKm.refill.km} km` : ""}, without a shop ${along.resupply.longestGapKm.km} km.`
+    ? `Water and shops along the main route, ${water.routeKm} km. Longest without ${tiers ? "clean water (drinking water or a refill at a place to sleep)" : "drinking water"} ${drinkGap!.km} km${tiers ? `, without any water ${tiers.longestGapKm.refill.km} km` : ""}, without a shop ${along.resupply.longestGapKm.km} km.`
     : chartSummary);
 // beds along the main route (issue #113; of three previews, approach B): one slim lane per sleeping
 // category under the Sleeping strip, labels and counts on the left like the Landscape lanes, the
@@ -1511,20 +1511,20 @@ const trailLd = JSON.stringify({
   {water && waterTotals && waterStatus && (
     <section id="water">
       <h2>{along ? "Water & Supply" : "Water"}</h2>
-      <dl class:list={["strip spec", tiers ? "cols" : "three"]} style={tiers ? "--cols: 4" : undefined}>
+      <dl class="strip spec three">
         <div>
           <dt>
-            <Explain id="about-dry-stretch" term="Longest without drinking water" title="Drinking water">
+            <Explain id="about-dry-stretch" term={tiers ? "Longest without clean water" : "Longest without drinking water"} title={tiers ? "Clean water" : "Drinking water"}>
               <p>
                 {waterTotals.drinking} fountains, taps and springs marked as drinkable in OpenStreetMap within {water.withinM} m of the
-                trail{waterExtra.length > 0 && `, with the taps the trail's managers list (${waterExtra.join(", ")})`}, and{" "}
-                {waterTotals.springs} other springs whose water is of unknown quality (treat it; some run dry in late summer).
-                {tiers && tiers.promoted.length > 0 && ` ${tiers.promoted.length} places to sleep that OpenStreetMap marks as having drinking water count too.`}
-                The counts include the approach and variant; the chart shows the main route.
+                trail{waterExtra.length > 0 && `, with the taps the trail's managers list (${waterExtra.join(", ")})`}
+                {tiers && tiers.promoted.length > 0 && `, and ${tiers.promoted.length} places to sleep OpenStreetMap marks as having drinking water`}.
+                {tiers && ` Clean water also counts the ${tiers.refills.length} huts, hostels, guest houses and campsites within ${tiers.withinM} m where hikers usually fill a bottle: guests come first, and many close out of season, so ask, and carry a little more than the gaps need. Places OpenStreetMap marks as without drinking water are left out.`}
+                {" "}The counts include the approach and variant; the chart shows the main route.
               </p>
               <p>
-                Rated by the longest stretch of the main route without drinking water: frequent up to 10 km, regular up to 20
-                km, scarce beyond. Here: from km {drinkGap!.fromKm} to {drinkGap!.toKm}{gapStages}.
+                Rated by the longest stretch of the main route without {tiers ? "clean" : "drinking"} water: frequent up to 10 km,
+                regular up to 20 km, scarce beyond. Here: from km {drinkGap!.fromKm} to {drinkGap!.toKm}{gapStages}.
               </p>
             </Explain>
           </dt>
@@ -1536,41 +1536,19 @@ const trailLd = JSON.stringify({
             </span>
           </dd>
         </div>
-        {tiers && treatStatus && (
-          <>
-            <div>
-              <dt>
-                <Explain id="about-treated" term="With treatment" title="Water you treat">
-                  <p>
-                    Springs within {water.withinM} m of the trail count too: their water is of unknown quality, so filter, boil
-                    or treat it, and expect some springs to run dry in late summer. Rated like drinking water (frequent up to 10
-                    km, regular up to 20 km, scarce beyond). Here the longest stretch without runs from km{" "}
-                    {tiers.longestGapKm.treatment.fromKm} to {tiers.longestGapKm.treatment.toKm}.
-                  </p>
-                </Explain>
-              </dt>
-              <dd>
-                <span class="big">{tiers.longestGapKm.treatment.km}</span><span class="unit">km</span>
-                <span class="status inline">
-                  <span class={`mark ${treatStatus.shape} tone-${treatStatus.tone}`} aria-hidden="true"></span>
-                  {treatStatus.word}
-                </span>
-              </dd>
-            </div>
-            <div>
-              <dt>
-                <Explain id="about-refills" term="Without water or a refill" title="Refills at places to sleep">
-                  <p>
-                    {tiers.refills.length} huts, hostels, guest houses and campsites within {tiers.withinM} m of the trail, where hikers
-                    usually fill a bottle: guests come first, and many close out of season, so ask, and don't plan on one. Places
-                    OpenStreetMap marks as without drinking water are left out. Not rated. Here the longest stretch without water
-                    or a refill runs from km {tiers.longestGapKm.refill.fromKm} to {tiers.longestGapKm.refill.toKm}.
-                  </p>
-                </Explain>
-              </dt>
-              <dd><span class="big">{tiers.longestGapKm.refill.km}</span><span class="unit">km</span></dd>
-            </div>
-          </>
+        {tiers && (
+          <div>
+            <dt>
+              <Explain id="about-any-water" term="Longest without any water" title="Any water">
+                <p>
+                  Clean water, and the {waterTotals.springs} springs within {water.withinM} m of the trail whose water is of unknown
+                  quality: filter, boil or treat it, and expect some springs to run dry in late summer. Here the longest stretch
+                  without any water runs from km {tiers.longestGapKm.refill.fromKm} to {tiers.longestGapKm.refill.toKm}.
+                </p>
+              </Explain>
+            </dt>
+            <dd><span class="big">{tiers.longestGapKm.refill.km}</span><span class="unit">km</span></dd>
+          </div>
         )}
         {along ? (
           <>

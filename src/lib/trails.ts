@@ -134,13 +134,13 @@ export function summarize(id: string, t: Trail, d?: DerivedData) {
     season: t.season?.months ?? null,
     start: t.termini.start.name,
     end: t.termini.end.name,
-    // drinking water as the trail page rates it (with places to sleep tagged drinking_water=yes,
-    // issue #119), and with treatment (springs counted) for the water filter's "with treatment"
+    // clean water as the trail page rates it (drinking water or a refill at a place to sleep,
+    // issue #119), and any water (springs too) for the water filter's "any water"
     water: d?.water
       ? (() => {
           const gaps = d.along?.water?.longestGapKm;
-          const gapKm = (gaps?.drinking ?? d.water.longestGapKm.drinking).km;
-          return { level: waterLevel(gapKm).id, gapKm, treatGapKm: (gaps?.treatment ?? d.water.longestGapKm.any).km };
+          const gapKm = (gaps?.clean ?? d.water.longestGapKm.drinking).km;
+          return { level: waterLevel(gapKm).id, gapKm, treatGapKm: (gaps?.refill ?? d.water.longestGapKm.any).km };
         })()
       : null,
     surface: d?.surface
@@ -222,10 +222,11 @@ export const sleepingCategories = (types: readonly string[], mapped: Partial<Rec
     (c) => c.id,
   );
 
-// Water along the trail, rated by the longest stretch of the main route without drinking water.
+// Water along the trail, rated by the longest stretch of the main route without clean water:
+// drinking water or a refill at a place to sleep (issue #119, decided 2026-11-01).
 export const WATER_LEVELS = [
-  { id: "frequent", label: "Frequent", maxGapKm: 10, hint: "Drinking water at least every 10 km" },
-  { id: "regular", label: "Regular", maxGapKm: 20, hint: "Drinking water at least every 20 km" },
+  { id: "frequent", label: "Frequent", maxGapKm: 10, hint: "Clean water (a tap, or a refill at a place to sleep) at least every 10 km" },
+  { id: "regular", label: "Regular", maxGapKm: 20, hint: "Clean water at least every 20 km" },
   { id: "scarce", label: "Scarce", maxGapKm: Infinity, hint: "Stretches of more than 20 km without" },
 ] as const;
 

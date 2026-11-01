@@ -126,8 +126,9 @@ def check(slug):
 
     water = derived.get("water")
     if water:
-        # as the page rates it: with places to sleep tagged drinking_water=yes (issue #119)
-        gap = (derived.get("along", {}).get("water") or water)["longestGapKm"]["drinking"]
+        # as the page rates it: clean water, drinking water or a refill at a place to sleep (issue #119)
+        tiers = derived.get("along", {}).get("water")
+        gap = tiers["longestGapKm"]["clean"] if tiers else water["longestGapKm"]["drinking"]
         msg = f"water: {sum(p['kind'] == 'drinking' for p in water['points'])} drinking water points; longest dry stretch {gap['km']} km (km {gap['fromKm']}–{gap['toKm']})"
         (flags if gap["km"] > DRY_KM else fine).append(msg + (" (check OSM there, or add the record's waterPoints)" if gap["km"] > DRY_KM else ""))
 

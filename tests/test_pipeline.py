@@ -264,6 +264,7 @@ class WaterTiers(unittest.TestCase):
         self.assertEqual(t["longestGapKm"]["drinking"], {"km": 60.0, "fromKm": 10.0, "toKm": 70.0})
         self.assertEqual(t["longestGapKm"]["treatment"]["km"], 40.0)
         self.assertEqual(t["longestGapKm"]["refill"]["km"], 30.0)
+        self.assertEqual(t["longestGapKm"]["clean"]["km"], 40.0)  # drinking water or a refill, no springs
 
 if __name__ == "__main__":
     unittest.main()

@@ -483,7 +483,8 @@ const derived = z.object({
           withinM: z.number(),
           promoted: z.array(tierPoint),
           refills: z.array(tierPoint),
-          longestGapKm: z.object({ drinking: gap, treatment: gap, refill: gap }),
+          // clean: drinking water or a refill (the rating); refill: without any water at all
+          longestGapKm: z.object({ drinking: gap, treatment: gap, clean: gap, refill: gap }),
         })
         .optional(),
     })

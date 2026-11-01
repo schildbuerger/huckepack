@@ -38,7 +38,7 @@ export interface Filters {
   sleep: string[]; // sleeping category ids, all required
   wild: "" | "some" | "allowed";
   waterMax: number; // WATER_KM.length: any
-  waterTreat: boolean; // the water filter counts springs too (issue #119: "with treatment")
+  waterTreat: boolean; // the water filter counts any water, springs too (issue #119)
   naturalMin: number; // 0: any
   // difficulty ranges as level indexes, 0 (Easy) to LEVEL_TOP (Hard); 0 to LEVEL_TOP: any
   terrainMin: number;

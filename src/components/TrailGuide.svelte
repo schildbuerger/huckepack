@@ -89,7 +89,7 @@
     { id: "ground", question: "What would you like underfoot?" },
     { id: "sleep", question: "Where would you like to sleep?", help: "Pick everything you'll need. A trail stays if it offers all of them." },
     { id: "wild", question: "Would you like to camp in the wild?" },
-    { id: "water", question: "How far can you go between drinking water?", help: "The longest stretch of the trail without a tap, fountain or drinking spring; with treatment, other springs count too." },
+    { id: "water", question: "How far can you go between clean water?", help: "The longest stretch of the trail without a tap, fountain, drinking spring or a refill at a place to sleep; if you treat water, other springs count too." },
   ];
 
   let f = $state<Filters>(noFilters());

@@ -96,10 +96,11 @@ def candidates(slug, box):
 
 
 def water_tiers(water, beds, total_km):
-    """Water in three tiers (issue #119), on the main route: drinking water (OSM's, plus places to
-    sleep tagged drinking_water=yes), with treatment (springs too) and with refills (places to sleep
-    within the water step's reach, except those tagged drinking_water=no: guests first, closed out
-    of season, so shown but never rated). Each with its longest stretch without."""
+    """Water in tiers (issue #119), on the main route: drinking water (OSM's, plus places to sleep
+    tagged drinking_water=yes), refills (places to sleep within the water step's reach, except those
+    tagged drinking_water=no), with treatment (springs too), and their combinations. Each with its
+    longest stretch without: `clean` (drinking water or a refill) is the one the trail is rated by
+    (decided 2026-11-01), `refill` the stretch without any water at all."""
     near = [p for p in beds if p["km"] is not None and p["offM"] <= water["withinM"]]
     promoted = [p for p in near if p.get("drinkingWater") == "yes"]
     refills = [p for p in near if p.get("drinkingWater") not in ("yes", "no")]
@@ -113,6 +114,7 @@ def water_tiers(water, beds, total_km):
         "longestGapKm": {
             "drinking": longest_gap(drinking, total_km),
             "treatment": longest_gap(treatment, total_km),
+            "clean": longest_gap(drinking + [p["km"] for p in refills], total_km),
             "refill": longest_gap(treatment + [p["km"] for p in refills], total_km),
         },
     }

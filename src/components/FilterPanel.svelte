@@ -230,9 +230,9 @@
     {#if show("water")}
     <div class="group" role="group" aria-labelledby={`${idPrefix}g-water`}>
       <div class="legend" id={`${idPrefix}g-water`}>
-        <Explain id={`${idPrefix}x-water`} term="Drinking water" title="Drinking water">
-          <p>The longest stretch of the main route without drinking water (taps, fountains and drinking springs mapped in OpenStreetMap) must be at most this long.</p>
-          <p>With treatment, springs count too: water of unknown quality you filter, boil or treat. Refills at huts and other places to sleep never count.</p>
+        <Explain id={`${idPrefix}x-water`} term="Water" title="Water">
+          <p>The longest stretch of the main route without clean water (taps, fountains and drinking springs mapped in OpenStreetMap, or a refill at a hut, hostel, guest house or campsite) must be at most this long.</p>
+          <p>Any water counts springs too: water of unknown quality you filter, boil or treat.</p>
           <p>Trail pages rate it in three steps:</p>
           <dl>
             {#each WATER_LEVELS as l}<dt>{l.label}</dt><dd>{l.hint}.</dd>{/each}
@@ -240,11 +240,11 @@
         </Explain>
         <span class="value">{waterText(filters)}</span>
       </div>
-      <Range stops={WATER_STOPS} bind:hi={filters.waterMax} live={waterLive} off={WATER_KM.length} label="Longest stretch without drinking water, at most" ticks={[0, 3, WATER_KM.length]} />
+      <Range stops={WATER_STOPS} bind:hi={filters.waterMax} live={waterLive} off={WATER_KM.length} label="Longest stretch without water, at most" ticks={[0, 3, WATER_KM.length]} />
       <!-- issue #119: springs count too for hikers who filter or treat their water -->
       <div class="segmented" role="radiogroup" aria-label="Which water counts">
-        <button type="button" role="radio" aria-checked={!filters.waterTreat} onclick={() => (filters.waterTreat = false)}>Drinking water</button>
-        <button type="button" role="radio" aria-checked={filters.waterTreat} onclick={() => (filters.waterTreat = true)}>With treatment</button>
+        <button type="button" role="radio" aria-checked={!filters.waterTreat} onclick={() => (filters.waterTreat = false)}>Clean water</button>
+        <button type="button" role="radio" aria-checked={filters.waterTreat} onclick={() => (filters.waterTreat = true)}>Any water</button>
       </div>
     </div>
     {/if}
