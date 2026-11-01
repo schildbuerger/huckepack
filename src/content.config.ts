@@ -312,6 +312,8 @@ const climateMonth = z.object({
 
 // pipeline/along.py: one kind of place along the route (shops or beds), with the longest stretch
 // of the main route without one
+// an OSM object as "node/123", "way/456" or "relation/7" (issue #118: the page links to it)
+const osmRef = z.string().regex(/^(node|way|relation)\/\d+$/);
 const alongGroup = <K extends [string, ...string[]]>(kinds: K) =>
   z.object({
     points: z.array(
@@ -326,12 +328,13 @@ const alongGroup = <K extends [string, ...string[]]>(kinds: K) =>
         km: z.number().nullable(), // along the main route; null on approaches and variants
         offM: z.number(),
         drinkingWater: z.string().optional(), // a place's OSM drinking_water tag (issue #119)
+        osm: osmRef.optional(), // the OSM object, "node/123" or "way/456", linked on the page (issue #118)
       }),
     ),
     longestGapKm: gap,
   });
 // a place to sleep in the water tiers (issue #119)
-const tierPoint = z.object({ kind: z.string(), name: z.string().nullable(), stage: z.string(), km: z.number() });
+const tierPoint = z.object({ kind: z.string(), name: z.string().nullable(), stage: z.string(), km: z.number(), osm: osmRef.optional() });
 
 const derived = z.object({
   // pipeline/routes.py: each stage's length on the full matched OSM line and the share of its track
@@ -369,6 +372,7 @@ const derived = z.object({
           km: z.number().nullable(), // along the main route; null on approaches and variants
           offM: z.number(),
           source: z.string().default("osm"),
+          osm: osmRef.optional(), // the OSM object (issue #118); none for the record's own waterPoints
         }),
       ),
     })

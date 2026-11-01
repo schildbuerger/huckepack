@@ -1705,7 +1705,8 @@
         "stageKind": "main",
         "km": 5.1,
         "offM": 11,
-        "source": "osm"
+        "source": "osm",
+        "osm": "node/7615427509"
       },
       {
         "lat": 49.83134,
@@ -1716,7 +1717,8 @@
         "stageKind": "main",
         "km": 12.2,
         "offM": 5,
-        "source": "osm"
+        "source": "osm",
+        "osm": "node/7615427510"
       },
       {
         "lat": 49.84909,
@@ -1727,7 +1729,8 @@
         "stageKind": "main",
         "km": 15.3,
         "offM": 17,
-        "source": "osm"
+        "source": "osm",
+        "osm": "node/7615427511"
       },
       {
         "lat": 49.84593,
@@ -1738,7 +1741,8 @@
         "stageKind": "main",
         "km": 16.7,
         "offM": 136,
-        "source": "osm"
+        "source": "osm",
+        "osm": "node/8825267257"
       },
       {
         "lat": 49.84575,
@@ -1749,7 +1753,8 @@
         "stageKind": "main",
         "km": 16.8,
         "offM": 119,
-        "source": "osm"
+        "source": "osm",
+        "osm": "node/8825267256"
       },
       {
         "lat": 49.87265,
@@ -1760,7 +1765,8 @@
         "stageKind": "main",
         "km": 27.5,
         "offM": 222,
-        "source": "osm"
+        "source": "osm",
+        "osm": "node/7615427512"
       },
       {
         "lat": 49.87439,
@@ -1771,7 +1777,8 @@
         "stageKind": "main",
         "km": 36.1,
         "offM": 16,
-        "source": "osm"
+        "source": "osm",
+        "osm": "node/3999372477"
       },
       {
         "lat": 49.89425,
@@ -1782,7 +1789,8 @@
         "stageKind": "main",
         "km": 39.4,
         "offM": 411,
-        "source": "osm"
+        "source": "osm",
+        "osm": "node/4341772865"
       },
       {
         "lat": 49.9392,
@@ -1793,7 +1801,8 @@
         "stageKind": "main",
         "km": 47.5,
         "offM": 81,
-        "source": "osm"
+        "source": "osm",
+        "osm": "node/11556490916"
       },
       {
         "lat": 49.99147,
@@ -1804,7 +1813,8 @@
         "stageKind": "main",
         "km": 68.9,
         "offM": 54,
-        "source": "osm"
+        "source": "osm",
+        "osm": "node/2071510185"
       },
       {
         "lat": 49.98542,
@@ -1815,7 +1825,8 @@
         "stageKind": "main",
         "km": 69.7,
         "offM": 164,
-        "source": "osm"
+        "source": "osm",
+        "osm": "node/2071510124"
       },
       {
         "lat": 49.98399,
@@ -1826,7 +1837,8 @@
         "stageKind": "main",
         "km": 71.8,
         "offM": 148,
-        "source": "osm"
+        "source": "osm",
+        "osm": "node/7615427515"
       },
       {
         "lat": 49.98277,
@@ -1837,7 +1849,8 @@
         "stageKind": "main",
         "km": 71.8,
         "offM": 25,
-        "source": "osm"
+        "source": "osm",
+        "osm": "node/11260966960"
       },
       {
         "lat": 50.00321,
@@ -1848,7 +1861,8 @@
         "stageKind": "main",
         "km": 75.4,
         "offM": 250,
-        "source": "osm"
+        "source": "osm",
+        "osm": "node/9937438303"
       }
     ]
   },
@@ -7496,7 +7510,8 @@
           "fromKm": 47.5,
           "toKm": 60.4
         }
-      }
+      },
+      "refillsUntreated": false
     }
   }
 }

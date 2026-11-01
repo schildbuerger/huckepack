@@ -37,6 +37,11 @@ CHUNK = 150  # map-line points per Overpass query (about 10 km), so each boundin
 SAME_M = 100  # an OSM tap this close to a record's water point is the same one
 
 
+def osm_ref(element):
+    """An OSM element as "node/123" or "way/456" (issue #118: the page links to it), or None without an id."""
+    return f"{element['type']}/{element['id']}" if element.get("type") in ("node", "way", "relation") and element.get("id") else None
+
+
 def kind(tags):
     if tags.get("drinking_water") == "no":
         return None
@@ -124,7 +129,9 @@ def build(slug, refresh=False):
         p = proj.xy(node["lon"], node["lat"])
         if k == "drinking" and any(math.dist(p, proj.xy(c["lon"], c["lat"])) < SAME_M for c in candidates if c["source"] != "osm"):
             continue
-        candidates.append({"lat": node["lat"], "lon": node["lon"], "kind": k, "name": node.get("tags", {}).get("name"), "source": "osm"})
+        candidates.append(
+            {"lat": node["lat"], "lon": node["lon"], "kind": k, "name": node.get("tags", {}).get("name"), "source": "osm", "osm": osm_ref(node)}
+        )
 
     points = []
     for node in candidates:
@@ -147,6 +154,8 @@ def build(slug, refresh=False):
                 "km": round((offset[nearest] + a) / 1000, 1) if nearest in offset else None,
                 "offM": round(d),
                 "source": node["source"],
+                # the OSM object, for a link to it on the page (issue #118); points from the record's own source have none
+                **({"osm": node["osm"]} if node.get("osm") else {}),
             }
         )
     points.sort(key=lambda w: (w["km"] is None, w["km"] or 0))

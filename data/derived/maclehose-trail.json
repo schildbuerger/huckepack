@@ -1264,7 +1264,8 @@
         "stageKind": "main",
         "km": 0.0,
         "offM": 469,
-        "source": "osm"
+        "source": "osm",
+        "osm": "node/7568232540"
       },
       {
         "lat": 22.42167,
@@ -1275,7 +1276,8 @@
         "stageKind": "main",
         "km": 23.6,
         "offM": 2,
-        "source": "osm"
+        "source": "osm",
+        "osm": "node/7568335697"
       },
       {
         "lat": 22.40507,
@@ -1286,7 +1288,8 @@
         "stageKind": "main",
         "km": 32.5,
         "offM": 7,
-        "source": "osm"
+        "source": "osm",
+        "osm": "node/9889649379"
       },
       {
         "lat": 22.34802,
@@ -1297,7 +1300,8 @@
         "stageKind": "main",
         "km": 54.9,
         "offM": 116,
-        "source": "osm"
+        "source": "osm",
+        "osm": "node/9419759739"
       },
       {
         "lat": 22.34889,
@@ -1308,7 +1312,8 @@
         "stageKind": "main",
         "km": 54.9,
         "offM": 115,
-        "source": "osm"
+        "source": "osm",
+        "osm": "node/9889610669"
       },
       {
         "lat": 22.37773,
@@ -1319,7 +1324,8 @@
         "stageKind": "main",
         "km": 58.9,
         "offM": 12,
-        "source": "osm"
+        "source": "osm",
+        "osm": "node/6564166185"
       },
       {
         "lat": 22.37786,
@@ -1330,7 +1336,8 @@
         "stageKind": "main",
         "km": 58.9,
         "offM": 6,
-        "source": "osm"
+        "source": "osm",
+        "osm": "node/7568335731"
       },
       {
         "lat": 22.41117,
@@ -1341,7 +1348,8 @@
         "stageKind": "main",
         "km": 65.7,
         "offM": 78,
-        "source": "osm"
+        "source": "osm",
+        "osm": "node/5247136609"
       },
       {
         "lat": 22.40841,
@@ -1352,7 +1360,8 @@
         "stageKind": "main",
         "km": 71.5,
         "offM": 2,
-        "source": "osm"
+        "source": "osm",
+        "osm": "node/7690646034"
       }
     ]
   },
@@ -4654,7 +4663,8 @@
           "fromKm": 10.3,
           "toKm": 20.9
         }
-      }
+      },
+      "refillsUntreated": false
     }
   },
   "surface": {

@@ -89,7 +89,8 @@ def candidates(slug, box):
             if not what or key in seen:
                 continue
             seen.add(key)
-            point = {"lon": round(lon, 6), "lat": round(lat, 6), "group": what[0], "kind": what[1], "name": tags.get("name")}
+            point = {"lon": round(lon, 6), "lat": round(lat, 6), "group": what[0], "kind": what[1], "name": tags.get("name"),
+                     "osm": f"{'node' if o.is_node() else 'way'}/{o.id}"}  # issue #118: the page links to the OSM object
             if what[0] == "beds" and tags.get("drinking_water"):
                 point["drinkingWater"] = tags["drinking_water"]  # issue #119: yes makes a place drinking water
             out.append(point)
@@ -112,8 +113,8 @@ def water_tiers(water, beds, total_km, untreated=False):
     treatment = drinking + kms("spring")
     return {
         "withinM": water["withinM"],
-        "promoted": [{k: p[k] for k in ("kind", "name", "stage", "km")} for p in promoted],
-        "refills": [{k: p[k] for k in ("kind", "name", "stage", "km")} for p in refills],
+        "promoted": [{k: p[k] for k in ("kind", "name", "stage", "km", "osm") if k in p} for p in promoted],
+        "refills": [{k: p[k] for k in ("kind", "name", "stage", "km", "osm") if k in p} for p in refills],
         "longestGapKm": {
             "drinking": longest_gap(drinking, total_km),
             "treatment": longest_gap(treatment, total_km),
@@ -160,6 +161,7 @@ def build(slug, refresh=False):
         points.append({
             **{k: c[k] for k in ("lat", "lon", "group", "kind", "name")},
             **({"drinkingWater": c["drinkingWater"]} if c.get("drinkingWater") else {}),
+            **({"osm": c["osm"]} if c.get("osm") else {}),
             "stage": props["number"],
             "stageKind": props["kind"],
             "km": round((offset[nearest] + a) / 1000, 1) if nearest in offset else None,

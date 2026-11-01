@@ -455,7 +455,8 @@
         "stageKind": "main",
         "km": 0.0,
         "offM": 132,
-        "source": "osm"
+        "source": "osm",
+        "osm": "node/5750072621"
       },
       {
         "lat": 63.99333,
@@ -477,7 +478,8 @@
         "stageKind": "main",
         "km": 7.0,
         "offM": 6,
-        "source": "osm"
+        "source": "osm",
+        "osm": "node/817319572"
       },
       {
         "lat": 63.93357,
@@ -510,7 +512,8 @@
         "stageKind": "main",
         "km": 21.0,
         "offM": 136,
-        "source": "osm"
+        "source": "osm",
+        "osm": "node/9055437200"
       },
       {
         "lat": 63.83377,
@@ -4068,7 +4071,7 @@
   },
   "along": {
     "source": "osm",
-    "retrieved": "2026-10-30T21:24:51Z",
+    "retrieved": "2026-10-28T21:21:02Z",
     "withinM": 1000,
     "stageEndM": 3000,
     "routeKm": 52.2,
@@ -4080,6 +4083,7 @@
           "group": "resupply",
           "kind": "convenience",
           "name": "Mountain Mall",
+          "osm": "node/1412604559",
           "stage": "1",
           "stageKind": "main",
           "km": 0.0,
@@ -4100,6 +4104,7 @@
           "group": "beds",
           "kind": "campsite",
           "name": "Landmannalaugar",
+          "osm": "way/25469557",
           "stage": "1",
           "stageKind": "main",
           "km": 0.0,
@@ -4111,6 +4116,7 @@
           "group": "beds",
           "kind": "hut",
           "name": "Landmannalaugar",
+          "osm": "way/380414047",
           "stage": "1",
           "stageKind": "main",
           "km": 0.0,
@@ -4123,6 +4129,7 @@
           "kind": "hut",
           "name": "Höskuldsskáli",
           "drinkingWater": "yes",
+          "osm": "way/68194955",
           "stage": "1",
           "stageKind": "main",
           "km": 10.0,
@@ -4134,6 +4141,7 @@
           "group": "beds",
           "kind": "campsite",
           "name": "Höskuldsskáli",
+          "osm": "way/839657803",
           "stage": "2",
           "stageKind": "main",
           "km": 10.2,
@@ -4145,6 +4153,7 @@
           "group": "beds",
           "kind": "hut",
           "name": "Álftavatn",
+          "osm": "node/2260042985",
           "stage": "2",
           "stageKind": "main",
           "km": 20.9,
@@ -4156,6 +4165,7 @@
           "group": "beds",
           "kind": "campsite",
           "name": null,
+          "osm": "node/5046860736",
           "stage": "3",
           "stageKind": "main",
           "km": 24.5,
@@ -4167,6 +4177,7 @@
           "group": "beds",
           "kind": "hut",
           "name": "Hvanngil",
+          "osm": "node/2260042952",
           "stage": "3",
           "stageKind": "main",
           "km": 24.7,
@@ -4178,6 +4189,7 @@
           "group": "beds",
           "kind": "campsite",
           "name": "Hvanngil",
+          "osm": "way/839648786",
           "stage": "3",
           "stageKind": "main",
           "km": 24.7,
@@ -4189,6 +4201,7 @@
           "group": "beds",
           "kind": "campsite",
           "name": "Emstrur",
+          "osm": "way/333123344",
           "stage": "3",
           "stageKind": "main",
           "km": 36.5,
@@ -4200,6 +4213,7 @@
           "group": "beds",
           "kind": "campsite",
           "name": null,
+          "osm": "way/333123346",
           "stage": "4",
           "stageKind": "main",
           "km": 36.6,
@@ -4211,6 +4225,7 @@
           "group": "beds",
           "kind": "hut",
           "name": "Emstrur",
+          "osm": "way/333123355",
           "stage": "4",
           "stageKind": "main",
           "km": 36.6,
@@ -4222,6 +4237,7 @@
           "group": "beds",
           "kind": "campsite",
           "name": "Camping Volcano Huts",
+          "osm": "node/477368841",
           "stage": "4",
           "stageKind": "main",
           "km": 51.6,
@@ -4233,6 +4249,7 @@
           "group": "beds",
           "kind": "campsite",
           "name": null,
+          "osm": "way/175408869",
           "stage": "4",
           "stageKind": "main",
           "km": 51.6,
@@ -4244,6 +4261,7 @@
           "group": "beds",
           "kind": "hut",
           "name": "Skagfjörðsskáli",
+          "osm": "way/27099829",
           "stage": "4",
           "stageKind": "main",
           "km": 52.1,
@@ -4255,6 +4273,7 @@
           "group": "beds",
           "kind": "campsite",
           "name": "Þórsmörk Langidalur",
+          "osm": "way/839648785",
           "stage": "4",
           "stageKind": "main",
           "km": 52.1,
@@ -4266,6 +4285,7 @@
           "group": "beds",
           "kind": "campsite",
           "name": "Básar",
+          "osm": "node/685898655",
           "stage": "4",
           "stageKind": "main",
           "km": 52.2,
@@ -4277,6 +4297,7 @@
           "group": "beds",
           "kind": "hut",
           "name": "Básar á Goðalandi",
+          "osm": "node/1721107114",
           "stage": "4",
           "stageKind": "main",
           "km": 52.2,
@@ -4288,6 +4309,7 @@
           "group": "beds",
           "kind": "campsite",
           "name": null,
+          "osm": "node/1721145993",
           "stage": "4",
           "stageKind": "main",
           "km": 52.2,
@@ -4299,6 +4321,7 @@
           "group": "beds",
           "kind": "campsite",
           "name": null,
+          "osm": "node/8460237956",
           "stage": "4",
           "stageKind": "main",
           "km": 52.2,
@@ -4310,6 +4333,7 @@
           "group": "beds",
           "kind": "hut",
           "name": "Slyppugil",
+          "osm": "way/510875834",
           "stage": "4",
           "stageKind": "main",
           "km": 52.2,
@@ -4321,6 +4345,7 @@
           "group": "beds",
           "kind": "campsite",
           "name": "Brúðkaupflöt",
+          "osm": "way/911130491",
           "stage": "4",
           "stageKind": "main",
           "km": 52.2,
@@ -4332,6 +4357,7 @@
           "group": "beds",
           "kind": "campsite",
           "name": null,
+          "osm": "way/911130493",
           "stage": "4",
           "stageKind": "main",
           "km": 52.2,
@@ -4343,6 +4369,7 @@
           "group": "beds",
           "kind": "campsite",
           "name": null,
+          "osm": "way/1080730985",
           "stage": "4",
           "stageKind": "main",
           "km": 52.2,
@@ -4354,6 +4381,7 @@
           "group": "beds",
           "kind": "campsite",
           "name": "Strákagil",
+          "osm": "way/1303068068",
           "stage": "4",
           "stageKind": "main",
           "km": 52.2,
@@ -4365,6 +4393,7 @@
           "group": "beds",
           "kind": "campsite",
           "name": null,
+          "osm": "way/1303068074",
           "stage": "4",
           "stageKind": "main",
           "km": 52.2,
@@ -4376,6 +4405,7 @@
           "group": "beds",
           "kind": "campsite",
           "name": null,
+          "osm": "way/1303068077",
           "stage": "4",
           "stageKind": "main",
           "km": 52.2,
@@ -4387,6 +4417,7 @@
           "group": "beds",
           "kind": "campsite",
           "name": null,
+          "osm": "way/1303068082",
           "stage": "4",
           "stageKind": "main",
           "km": 52.2,
@@ -4398,6 +4429,7 @@
           "group": "beds",
           "kind": "campsite",
           "name": null,
+          "osm": "way/1303098457",
           "stage": "4",
           "stageKind": "main",
           "km": 52.2,
@@ -4409,6 +4441,7 @@
           "group": "beds",
           "kind": "campsite",
           "name": null,
+          "osm": "way/1303098458",
           "stage": "4",
           "stageKind": "main",
           "km": 52.2,
@@ -4420,6 +4453,7 @@
           "group": "beds",
           "kind": "campsite",
           "name": "Ármeningaflöt",
+          "osm": "way/1303098459",
           "stage": "4",
           "stageKind": "main",
           "km": 52.2,
@@ -4431,6 +4465,7 @@
           "group": "beds",
           "kind": "campsite",
           "name": null,
+          "osm": "way/1303098461",
           "stage": "4",
           "stageKind": "main",
           "km": 52.2,
@@ -4456,7 +4491,8 @@
           "kind": "hut",
           "name": "Höskuldsskáli",
           "stage": "1",
-          "km": 10.0
+          "km": 10.0,
+          "osm": "way/68194955"
         }
       ],
       "refills": [
@@ -4464,85 +4500,99 @@
           "kind": "campsite",
           "name": "Landmannalaugar",
           "stage": "1",
-          "km": 0.0
+          "km": 0.0,
+          "osm": "way/25469557"
         },
         {
           "kind": "hut",
           "name": "Landmannalaugar",
           "stage": "1",
-          "km": 0.0
+          "km": 0.0,
+          "osm": "way/380414047"
         },
         {
           "kind": "campsite",
           "name": "Höskuldsskáli",
           "stage": "2",
-          "km": 10.2
+          "km": 10.2,
+          "osm": "way/839657803"
         },
         {
           "kind": "hut",
           "name": "Álftavatn",
           "stage": "2",
-          "km": 20.9
+          "km": 20.9,
+          "osm": "node/2260042985"
         },
         {
           "kind": "campsite",
           "name": null,
           "stage": "3",
-          "km": 24.5
+          "km": 24.5,
+          "osm": "node/5046860736"
         },
         {
           "kind": "hut",
           "name": "Hvanngil",
           "stage": "3",
-          "km": 24.7
+          "km": 24.7,
+          "osm": "node/2260042952"
         },
         {
           "kind": "campsite",
           "name": "Hvanngil",
           "stage": "3",
-          "km": 24.7
+          "km": 24.7,
+          "osm": "way/839648786"
         },
         {
           "kind": "campsite",
           "name": "Emstrur",
           "stage": "3",
-          "km": 36.5
+          "km": 36.5,
+          "osm": "way/333123344"
         },
         {
           "kind": "campsite",
           "name": null,
           "stage": "4",
-          "km": 36.6
+          "km": 36.6,
+          "osm": "way/333123346"
         },
         {
           "kind": "hut",
           "name": "Emstrur",
           "stage": "4",
-          "km": 36.6
+          "km": 36.6,
+          "osm": "way/333123355"
         },
         {
           "kind": "hut",
           "name": "Skagfjörðsskáli",
           "stage": "4",
-          "km": 52.1
+          "km": 52.1,
+          "osm": "way/27099829"
         },
         {
           "kind": "campsite",
           "name": "Þórsmörk Langidalur",
           "stage": "4",
-          "km": 52.1
+          "km": 52.1,
+          "osm": "way/839648785"
         },
         {
           "kind": "hut",
           "name": "Slyppugil",
           "stage": "4",
-          "km": 52.2
+          "km": 52.2,
+          "osm": "way/510875834"
         },
         {
           "kind": "campsite",
           "name": null,
           "stage": "4",
-          "km": 52.2
+          "km": 52.2,
+          "osm": "way/1080730985"
         }
       ],
       "longestGapKm": {
@@ -4566,7 +4616,8 @@
           "fromKm": 36.6,
           "toKm": 52.1
         }
-      }
+      },
+      "refillsUntreated": false
     }
   }
 }

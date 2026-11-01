@@ -191,6 +191,12 @@ class Water(unittest.TestCase):
         self.assertEqual(water.kind({"natural": "spring"}), "spring")
         self.assertIsNone(water.kind({"amenity": "bench"}))
 
+    def test_osm_ref(self):
+        # issue #118: the page links each water point to its OSM object
+        self.assertEqual(water.osm_ref({"type": "node", "id": 282521395}), "node/282521395")
+        self.assertEqual(water.osm_ref({"type": "way", "id": 7}), "way/7")
+        self.assertIsNone(water.osm_ref({"lat": 1, "lon": 2}))  # a record's own point, no OSM object
+
 
 class Along(unittest.TestCase):
     def test_resupply(self):
@@ -269,6 +275,18 @@ class WaterTiers(unittest.TestCase):
         u = along.water_tiers(water, beds, 100.0, untreated=True)
         self.assertEqual(u["longestGapKm"]["clean"]["km"], 60.0)
         self.assertEqual(u["longestGapKm"]["refill"]["km"], 30.0)
+
+    def test_places_keep_their_osm_object(self):
+        # issue #118: promoted water and refills carry the place's OSM object where it has one
+        water = {"withinM": 500, "points": []}
+        beds = [
+            {"kind": "hut", "name": "A", "stage": "1", "km": 5.0, "offM": 50, "osm": "way/12"},
+            {"kind": "hut", "name": "B", "stage": "1", "km": 9.0, "offM": 50, "drinkingWater": "yes", "osm": "node/34"},
+            {"kind": "hut", "name": "C", "stage": "1", "km": 12.0, "offM": 50},
+        ]
+        t = along.water_tiers(water, beds, 20.0)
+        self.assertEqual([p.get("osm") for p in t["refills"]], ["way/12", None])
+        self.assertEqual(t["promoted"][0]["osm"], "node/34")
 
 if __name__ == "__main__":
     unittest.main()

@@ -448,12 +448,22 @@ const gapStages = (() => {
 const along = derived?.along;
 const SHOP_LABEL: Record<string, string> = { supermarket: "Supermarket", convenience: "Convenience store", general: "General store", fuel: "Petrol station shop" };
 const BED_LABEL: Record<string, string> = { hut: "Hut", campsite: "Campsite", hostel: "Hostel", guesthouse: "Guest house" };
-// a tick: full height (drinking water, shops), short (springs) or dashed (refills at places to sleep)
-type LanePoint = { km: number; what: string; name: string | null; stage: string; minor: boolean; dashed?: boolean };
+// a tick: full height (drinking water, shops), short (springs) or dashed (refills at places to sleep);
+// `link` where it points (issue #118): its OSM object, short ("n123" a node, "w456" a way), or the page
+// of the record's own source for the record's water points
+type LanePoint = { km: number; what: string; name: string | null; stage: string; minor: boolean; dashed?: boolean; link?: string };
+const osmLink = (ref?: string) => (ref ? `${ref[0]}${ref.split("/")[1]}` : undefined);
 const onMain = <P extends { km: number | null }>(ps: P[]) => ps.filter((p): p is P & { km: number } => p.km !== null);
-const waterTicks = onRoute.map((p): LanePoint => ({ km: p.km!, what: p.kind === "drinking" ? "Drinking water" : "Spring (treat it)", name: p.name, stage: p.stage, minor: p.kind === "spring" }));
-const promotedTicks = (tiers?.promoted ?? []).map((p): LanePoint => ({ km: p.km, what: `${BED_LABEL[p.kind] ?? "Place to sleep"}, drinking water`, name: p.name, stage: p.stage, minor: false }));
-const refillTicks = (tiers?.refills ?? []).map((p): LanePoint => ({ km: p.km, what: `${BED_LABEL[p.kind] ?? "Place to sleep"}, refill`, name: p.name, stage: p.stage, minor: false, dashed: true }));
+const waterTicks = onRoute.map((p): LanePoint => ({
+  km: p.km!,
+  what: p.kind === "drinking" ? "Drinking water" : "Spring (treat it)",
+  name: p.name,
+  stage: p.stage,
+  minor: p.kind === "spring",
+  link: osmLink(p.osm) ?? (p.source !== "osm" ? sources[p.source]?.url : undefined),
+}));
+const promotedTicks = (tiers?.promoted ?? []).map((p): LanePoint => ({ km: p.km, what: `${BED_LABEL[p.kind] ?? "Place to sleep"}, drinking water`, name: p.name, stage: p.stage, minor: false, link: osmLink(p.osm) }));
+const refillTicks = (tiers?.refills ?? []).map((p): LanePoint => ({ km: p.km, what: `${BED_LABEL[p.kind] ?? "Place to sleep"}, refill`, name: p.name, stage: p.stage, minor: false, dashed: true, link: osmLink(p.osm) }));
 // the chart's rows (issue #119; of three previews, approach B, collapsible): with tiers, "Water and
 // refills" (every kind, its gap the stretch without any) opens into public drinking water, springs
 // and refills, each shaded with its own longest stretch without that kind; then shops. `sub` rows
@@ -468,7 +478,7 @@ const ownGap = (pts: LanePoint[]) => {
 };
 type Row = { id: string; label: string; gap: { km: number; fromKm: number; toKm: number }; gapText?: string; points: LanePoint[]; sub?: boolean; group?: boolean; parent?: number };
 // shops by kind, under "Shops" the same way (each with its own longest stretch without)
-const shopTicks = along ? onMain(along.resupply.points).map((p): LanePoint & { kind: string } => ({ km: p.km, what: SHOP_LABEL[p.kind], name: p.name, stage: p.stage, minor: false, kind: p.kind })) : [];
+const shopTicks = along ? onMain(along.resupply.points).map((p): LanePoint & { kind: string } => ({ km: p.km, what: SHOP_LABEL[p.kind], name: p.name, stage: p.stage, minor: false, kind: p.kind, link: osmLink(p.osm) })) : [];
 const SHOP_KINDS = [
   { label: "Supermarkets", kinds: ["supermarket"] },
   { label: "Convenience and general stores", kinds: ["convenience", "general"] },
@@ -534,7 +544,7 @@ const bedRows = along
       count: along.beds.byGroup[c.id as keyof typeof along.beds.byGroup] ?? 0,
       points: onMain(along.beds.points)
         .filter((p) => BED_GROUP[p.kind] === c.id)
-        .map((p): LanePoint => ({ km: p.km, what: BED_LABEL[p.kind], name: p.name, stage: p.stage, minor: false })),
+        .map((p): LanePoint => ({ km: p.km, what: BED_LABEL[p.kind], name: p.name, stage: p.stage, minor: false, link: osmLink(p.osm) })),
     }))
   : [];
 const BEDS = { top: 28, step: 24 };
@@ -1514,7 +1524,8 @@ const trailLd = JSON.stringify({
               x0: LANE_X0,
               x1: LANE_X1,
               height: bedsAxis + 40,
-              lanes: bedRows.map((r) => r.points.map((p) => [p.km, p.what, p.name ?? "", p.stage])),
+              lanes: bedRows.map((r) => r.points.map((p) => [p.km, p.what, p.name ?? "", p.stage, p.link ?? ""])),
+              labels: bedRows.map((r) => r.label),
             })}
           />
           <div class="tip" role="status" hidden><strong></strong><span></span></div>
@@ -1695,7 +1706,8 @@ const trailLd = JSON.stringify({
               step: LANE.step,
               height: supplyAxis + 40,
               gap: GROUP_GAP,
-              lanes: supplyLanes.map((l) => l.points.map((p) => [p.km, p.what, p.name ?? "", p.stage])),
+              lanes: supplyLanes.map((l) => l.points.map((p) => [p.km, p.what, p.name ?? "", p.stage, p.link ?? ""])),
+              labels: supplyLanes.map((l) => l.label),
               parent: supplyLanes.map((l) => l.parent ?? -1), // the group a row folds into (issue #119), -1: none
             })}
           />
@@ -1834,13 +1846,28 @@ const trailLd = JSON.stringify({
       mid?: number; // a lane's middle below its top (13, the supply bands; 8, the slim beds lanes)
       x0?: number;
       x1?: number;
-      lanes: [number, string, string, string][][]; // km, what, name, stage
+      lanes: [number, string, string, string, string][][]; // km, what, name, stage, link (issue #118)
+      labels?: string[]; // each row's label
       parent?: number[]; // the group row each row folds into, -1 for none (issue #119)
       gap?: number; // more room before each top-level row (issue #119)
     } = JSON.parse(figure.querySelector(".chart-data")!.textContent!);
     const X0 = data.x0 ?? 8;
     const X1 = data.x1 ?? 992;
     const mid = data.mid ?? 13;
+    // issue #118 (of three previews, approach A): every place links to its OSM object, or to its own
+    // source's page: in the tooltip, which stays open while the pointer moves into it and is pinned by
+    // a click or tap; for the keyboard and screen readers, a list of every place under the chart
+    type Place = [number, string, string, string, string];
+    const KINDS: Record<string, string> = { n: "node", w: "way", r: "relation" };
+    const href = (v: string) => (v.startsWith("http") ? v : `https://www.openstreetmap.org/${KINDS[v[0]]}/${v.slice(1)}`);
+    const linkText = (v: string) => (v.startsWith("http") ? "View its source ↗" : "View on OpenStreetMap ↗");
+    // a link to another website, opening in a new tab (Base's script only sees links there on load)
+    const outLink = (p: Place, text = linkText(p[4])) => {
+      const a = Object.assign(document.createElement("a"), { href: href(p[4]), textContent: text, className: "osm-link", target: "_blank", rel: "noopener noreferrer" });
+      a.insertAdjacentHTML("beforeend", '<span class="sr-only"> (opens in a new tab)</span>');
+      return a;
+    };
+    let current: { p: Place; x: number } | null = null;
     // groups (Water, Shops) fold their kinds away (shut on load; without this script every row
     // shows): the visible rows move up, the axis follows and the drawing gets shorter
     const parents = data.parent ?? data.lanes.map(() => -1);
@@ -1904,7 +1931,7 @@ const trailLd = JSON.stringify({
       }
       const km = ((vx - X0) / (X1 - X0)) * data.total;
       // the nearest place within about 12 units (1.2 % of the route)
-      const near = data.lanes[lane].reduce<[number, string, string, string] | null>(
+      const near = data.lanes[lane].reduce<Place | null>(
         (best, p) => (Math.abs(p[0] - km) < (best ? Math.abs(best[0] - km) : (12 / (X1 - X0)) * data.total) ? p : best),
         null,
       );
@@ -1915,6 +1942,9 @@ const trailLd = JSON.stringify({
       cursor.setAttribute("visibility", "visible");
       tip.querySelector("strong")!.textContent = near[1];
       tip.querySelector("span")!.textContent = `${near[2] ? `${near[2]} · ` : ""}km ${near[0]} · stage ${near[3]}`;
+      current = { p: near, x };
+      tip.querySelector(".osm-link")?.remove();
+      if (near[4]) tip.append(outLink(near));
       tip.hidden = false;
       const fbox = figure.getBoundingClientRect();
       const half = tip.offsetWidth / 2;
@@ -1922,18 +1952,78 @@ const trailLd = JSON.stringify({
       tip.style.left = `${Math.min(Math.max(px, half), fbox.width - half)}px`;
       tip.style.top = `${box.top - fbox.top + (top(row) / height) * box.height - 8}px`;
     };
-    const hide = () => {
+    // the tooltip stays while the pointer moves into it (to reach its link), and a click or tap pins it
+    let pinned = false;
+    let leaving: ReturnType<typeof setTimeout> | undefined;
+    function hide() {
+      if (pinned) return;
       tip.hidden = true;
       cursor.setAttribute("visibility", "hidden");
-    };
-    svg.addEventListener("pointermove", (e) => show(e.clientX, e.clientY));
-    svg.addEventListener("pointerleave", (e) => e.pointerType === "mouse" && hide());
+    }
+    svg.addEventListener("pointermove", (e) => !pinned && show(e.clientX, e.clientY));
+    svg.addEventListener("pointerleave", (e) => {
+      if (e.pointerType !== "mouse" || pinned) return;
+      leaving = setTimeout(hide, 350);
+    });
+    tip.addEventListener("pointerenter", () => clearTimeout(leaving));
+    tip.addEventListener("pointerleave", () => !pinned && hide());
     svg.addEventListener("click", (e) => {
       e.stopPropagation();
+      pinned = false;
       show(e.clientX, e.clientY);
+      if (current && !tip.hidden) pinned = true;
     });
-    document.addEventListener("click", hide);
-    document.addEventListener("keydown", (e) => e.key === "Escape" && hide());
+    document.addEventListener("click", (e) => {
+      if (tip.contains(e.target as Node) || list.contains(e.target as Node)) return;
+      pinned = false;
+      hide();
+    });
+    document.addEventListener("keydown", (e) => {
+      if (e.key !== "Escape") return;
+      pinned = false;
+      hide();
+    });
+
+    // the keyboard's and screen readers' way to the links: every place in a list under the chart, by
+    // row (the rows that hold places themselves, not the groups), each with its km, stage and link; its
+    // button shows when focused, and the list is built when first opened (some trails have hundreds of
+    // places); pointing at a row marks its place on the chart
+    const leaves = data.lanes.map((_, i) => i).filter((i) => !parents.includes(i) && data.lanes[i].length);
+    const count = leaves.reduce((n, i) => n + data.lanes[i].length, 0);
+    const list = Object.assign(document.createElement("div"), { className: "place-list" });
+    const listToggle = Object.assign(document.createElement("button"), { type: "button", className: "pl-toggle", textContent: `List all ${count} places` });
+    listToggle.setAttribute("aria-expanded", "false");
+    const listBody = Object.assign(document.createElement("div"), { className: "pl-body", hidden: true });
+    listToggle.addEventListener("click", () => {
+      if (!listBody.childElementCount) fill();
+      listBody.hidden = !listBody.hidden;
+      listToggle.setAttribute("aria-expanded", String(!listBody.hidden));
+    });
+    const fill = () => {
+      for (const i of leaves) {
+        const h = Object.assign(document.createElement("p"), { className: "pl-lane", textContent: `${data.labels?.[i] ?? ""} · ${data.lanes[i].length}` });
+        const ol = Object.assign(document.createElement("ol"), { className: "pl-rows" });
+        for (const p of data.lanes[i]) {
+          const li = document.createElement("li");
+          const cell = (cls: string, text: string) => Object.assign(document.createElement("span"), { className: cls, textContent: text });
+          li.append(cell("pl-km", `km ${p[0]}`), cell("pl-what", p[2] ? `${p[1]}: ${p[2]}` : p[1]), cell("pl-stage", `stage ${p[3]}`));
+          if (p[4]) li.append(outLink(p, p[4].startsWith("http") ? "Source ↗" : "OpenStreetMap ↗"));
+          li.addEventListener("pointerenter", () => {
+            const x = X0 + (p[0] / data.total) * (X1 - X0);
+            cursor.setAttribute("x1", String(x));
+            cursor.setAttribute("x2", String(x));
+            cursor.setAttribute("y1", String(data.top - 6));
+            cursor.setAttribute("y2", String(height - 40));
+            cursor.setAttribute("visibility", "visible");
+          });
+          li.addEventListener("pointerleave", () => cursor.setAttribute("visibility", "hidden"));
+          ol.append(li);
+        }
+        listBody.append(h, ol);
+      }
+    };
+    list.append(listToggle, listBody);
+    figure.append(list);
   }
 
   // Long stage tables (issue #25): the rows after the first few fold behind "Show all"; without
@@ -3420,6 +3510,92 @@ const trailLd = JSON.stringify({
   }
   .tip strong {
     display: block;
+  }
+  /* issue #118: the links to OpenStreetMap; the water and beds tooltips take the pointer, so their
+     link can be reached */
+  .waterline :global(.osm-link) {
+    color: var(--accent-text);
+    font-weight: 600;
+  }
+  .waterline .tip {
+    pointer-events: auto;
+  }
+  .waterline .tip :global(.osm-link) {
+    display: block;
+    margin-top: 2px;
+  }
+  /* the list of every place, for the keyboard and screen readers: its button shows only when focused
+     (or while the list is open), like a skip link */
+  .waterline :global(.place-list) {
+    margin-top: 4px;
+  }
+  .waterline :global(.pl-toggle:not(:focus-visible):not([aria-expanded="true"])) {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+  }
+  .waterline :global(.pl-toggle) {
+    padding: 6px 0;
+    border: 0;
+    background: none;
+    color: var(--accent-text);
+    font: inherit;
+    font-weight: 600;
+    cursor: pointer;
+  }
+  .waterline :global(.pl-toggle)::after {
+    content: " ▾";
+  }
+  .waterline :global(.pl-toggle[aria-expanded="true"])::after {
+    content: " ▴";
+  }
+  .waterline :global(.pl-body) {
+    max-height: 360px;
+    overflow-y: auto;
+    padding-right: 8px;
+  }
+  .waterline :global(.pl-lane) {
+    margin: 12px 0 4px;
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+  .waterline :global(.pl-rows) {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+  .waterline :global(.pl-rows li) {
+    display: grid;
+    grid-template-columns: 5.5em minmax(0, 1fr) 5em auto;
+    gap: 12px;
+    padding: 4px 6px;
+    border-radius: 6px;
+    font-size: 0.85rem;
+  }
+  .waterline :global(.pl-rows li:hover) {
+    background: var(--surface);
+  }
+  .waterline :global(.pl-km),
+  .waterline :global(.pl-stage) {
+    color: var(--muted);
+    font-variant-numeric: tabular-nums;
+  }
+  @media (max-width: 559px) {
+    .waterline :global(.pl-rows li) {
+      grid-template-columns: 4.5em minmax(0, 1fr);
+    }
+    .waterline :global(.pl-stage) {
+      display: none;
+    }
+    .waterline :global(.pl-rows .osm-link) {
+      grid-column: 2;
+    }
   }
   .tip span {
     color: var(--muted);
