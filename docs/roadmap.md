@@ -55,6 +55,8 @@ Added 2026-11-01: the **Camí de Cavalls** (#72, GR 223, 185 km round Menorca in
 council's 20 sections, each with its own GPX as the matcher's guide; section 11 on the OSM relation).
 And the **Milford Track** (#43, 53.5 km in DOC's four hut-to-hut days, Glade Wharf to Sandfly
 Point, the OSM relation cut at the huts).
+And the **Offa's Dyke Path** (#49, 285 km from Sedbury Cliffs to Prestatyn along the Welsh border
+in the National Trail's 12 sections, its one GPX cut at each section's end).
 
 | # | Trail | Region | Length (approx.) | Why |
 |---|---|---|---|---|

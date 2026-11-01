@@ -228,5 +228,16 @@ class Climate(unittest.TestCase):
         self.assertEqual(jan["frostNights"], 31)
 
 
+class Walkable(unittest.TestCase):
+    def test_trunk_roads_only_where_tagged_for_walkers(self):
+        from pipeline import osmlocal
+        self.assertTrue(osmlocal.walkable({"highway": "footway"}))
+        self.assertFalse(osmlocal.walkable({"highway": "trunk"}))
+        self.assertTrue(osmlocal.walkable({"highway": "trunk", "foot": "yes"}))
+        self.assertFalse(osmlocal.walkable({"highway": "motorway", "foot": "yes"}))
+        self.assertFalse(osmlocal.walkable({"highway": "construction"}))
+        self.assertFalse(osmlocal.walkable({}))
+
+
 if __name__ == "__main__":
     unittest.main()

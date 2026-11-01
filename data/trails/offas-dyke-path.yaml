@@ -1,0 +1,201 @@
+name: Offa's Dyke Path
+added: 2026-11-01
+localName: Llwybr Clawdd Offa
+aliases: [Offa's Dyke, Offas Dyke Path, Offa's Dyke National Trail]
+website: https://www.nationaltrail.co.uk/en_GB/trails/offas-dyke-path/
+wikidata: Q745914
+managedBy:
+  # a National Trail on both sides of the border: Natural Resources Wales and Natural England fund it,
+  # a trail partnership looks after it
+  - name: Natural Resources Wales, Natural England and the Offa's Dyke Path trail partnership (National Trails)
+    url: https://www.nationaltrail.co.uk/en_GB/trails/offas-dyke-path/
+trailType: point-to-point
+continents: [Europe]
+countries: [GB]
+regions: [Monmouthshire, Gloucestershire, Herefordshire, Powys, Shropshire, Wrexham, Denbighshire, Flintshire]
+protectedAreas:
+  - Wye Valley National Landscape
+  - Bannau Brycheiniog National Park
+  - Shropshire Hills National Landscape
+  - Clwydian Range and Dee Valley National Landscape
+termini:
+  # Sedbury Cliffs on the Severn estuary; the Dyke's end sculpture on Prestatyn's beach (OSM)
+  start:
+    name: Sedbury Cliffs
+    lat: 51.63473
+    lon: -2.64342
+  end:
+    name: Prestatyn
+    lat: 53.3421
+    lon: -3.41221
+  source: osm
+established:
+  # "opened in the summer of 1971"
+  year: 1971
+  source: nt
+waymarking:
+  text: The National Trail acorn
+  source: nt
+length:
+  # "a 177 mile (285 Km) long walking trail"
+  - km: 285
+    source: nt
+ascent:
+  # "about 28,000ft of accent [sic]" walking south to north; no descent stated
+  - m: 8534
+    source: nt
+days:
+  # "It takes about two weeks to complete the whole Trail"
+  min: 14
+  max: 14
+  source: nt
+stages:
+  # the National Trail's 12 sections (Route Description, "a day by day breakdown"). One official GPX
+  # (its first track the main route, then the Pontcysyllte Aqueduct and River Wye alternatives),
+  # cut at each section's `end` from OSM; it only guides the OSM matcher (kept local)
+  source: nt
+  list:
+    - { number: "1", kind: main, from: Sedbury Cliffs, to: Monmouth, km: 28, track: "https://nationaltrails.s3.eu-west-2.amazonaws.com/uploads/ODP_loops_elev.gpx", end: { name: Monmouth, lat: 51.80989, lon: -2.71604 } }
+    - { number: "2", kind: main, from: Monmouth, to: Pandy, km: 27, track: "https://nationaltrails.s3.eu-west-2.amazonaws.com/uploads/ODP_loops_elev.gpx", end: { name: Pandy, lat: 51.89405, lon: -2.96689 } }
+    - { number: "3", kind: main, from: Pandy, to: Hay-on-Wye, km: 28.2, track: "https://nationaltrails.s3.eu-west-2.amazonaws.com/uploads/ODP_loops_elev.gpx", end: { name: Hay-on-Wye, lat: 52.07446, lon: -3.12431 } }
+    - { number: "4", kind: main, from: Hay-on-Wye, to: Kington, km: 23.3, track: "https://nationaltrails.s3.eu-west-2.amazonaws.com/uploads/ODP_loops_elev.gpx", end: { name: Kington, lat: 52.20292, lon: -3.02888 } }
+    - { number: "5", kind: main, from: Kington, to: Knighton, km: 21.7, track: "https://nationaltrails.s3.eu-west-2.amazonaws.com/uploads/ODP_loops_elev.gpx", end: { name: Knighton, lat: 52.34435, lon: -3.04956 } }
+    - { number: "6", kind: main, from: Knighton, to: Brompton Crossroads, km: 24, track: "https://nationaltrails.s3.eu-west-2.amazonaws.com/uploads/ODP_loops_elev.gpx", end: { name: Brompton Crossroads, lat: 52.53337, lon: -3.10846 } }
+    - { number: "7", kind: main, from: Brompton Crossroads, to: Buttington Bridge, km: 20, track: "https://nationaltrails.s3.eu-west-2.amazonaws.com/uploads/ODP_loops_elev.gpx", end: { name: Buttington Bridge, lat: 52.67265, lon: -3.11569 } }
+    - { number: "8", kind: main, from: Buttington Bridge, to: Llanymynech, km: 17, track: "https://nationaltrails.s3.eu-west-2.amazonaws.com/uploads/ODP_loops_elev.gpx", end: { name: Llanymynech, lat: 52.78061, lon: -3.08833 } }
+    - { number: "9", kind: main, from: Llanymynech, to: Chirk Mill, km: 22.5, track: "https://nationaltrails.s3.eu-west-2.amazonaws.com/uploads/ODP_loops_elev.gpx", end: { name: Chirk Mill, lat: 52.93426, lon: -3.10674 } }
+    - { number: "10", kind: main, from: Chirk Mill, to: Llandegla, km: 25.7, track: "https://nationaltrails.s3.eu-west-2.amazonaws.com/uploads/ODP_loops_elev.gpx", end: { name: Llandegla, lat: 53.06345, lon: -3.20132 } }
+    - { number: "11", kind: main, from: Llandegla, to: Bodfari, km: 28, track: "https://nationaltrails.s3.eu-west-2.amazonaws.com/uploads/ODP_loops_elev.gpx", end: { name: Bodfari, lat: 53.22014, lon: -3.36095 } }
+    - { number: "12", kind: main, from: Bodfari, to: Prestatyn, km: 19, track: "https://nationaltrails.s3.eu-west-2.amazonaws.com/uploads/ODP_loops_elev.gpx", end: { name: Prestatyn, lat: 53.3421, lon: -3.41221 } }
+route:
+  # built by `python -m pipeline.all offas-dyke-path`: OSM ways matched to the official GPX's pieces
+  source: osm
+  publishable: true
+difficulty:
+  estimated:
+    sac: T2
+    basis: >-
+      The National Trail calls the switchback section of the Shropshire Hills between Knighton and
+      Brompton Crossroads the toughest, with hard going on the upland stretches of the Black
+      Mountains (Hatterrall Ridge, 700 m, the highest point) and the Clwydian Range in poor weather
+      or visibility; elsewhere gentle ups and downs on field paths, with many stiles. Mountain
+      hiking on mostly good paths (T2).
+    source: nt
+season:
+  # "can be walked right through the year ... Most people walk between April and October"
+  months: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
+  text: All year; most people walk between April and October
+  source: nt
+sleeping:
+  # OSM along the route (pipeline/along.py): campsites, hostels and bunkhouses, B&Bs and inns;
+  # hotels in the towns
+  types: [campsite, hostel, guesthouse, hotel]
+  source: osm
+wildCamping:
+  status: prohibited
+  rule: >-
+    England and Wales give no right to wild camp along the Trail: tents only on campsites or with
+    the landowner's permission.
+  source: nt
+access:
+  # Chepstow station near the start, Prestatyn station at the finish; Cardiff and Liverpool John
+  # Lennon the airports the National Trail names for each end. Coordinates from OSM; distances by
+  # pipeline/access.py
+  - kind: station
+    name: Chepstow
+    lat: 51.63997
+    lon: -2.67108
+    source: osm
+  - kind: station
+    name: Prestatyn
+    lat: 53.33617
+    lon: -3.40735
+    source: osm
+  - kind: airport
+    name: Cardiff Airport (CWL)
+    lat: 51.39785
+    lon: -3.34458
+    source: osm
+  - kind: airport
+    name: Liverpool John Lennon Airport (LPL)
+    lat: 53.3358
+    lon: -2.84854
+    source: osm
+tags: [national-trail, border, earthwork, black-mountains, clwydian-range]
+notes:
+  - >-
+    Stages: the National Trail's 12 sections add up to 284.4 km (stated 285 km). They give no
+    ascent per section; the stated 28,000 ft (8,534 m) is for the whole trail walked south to north,
+    with no descent, so the page's climb is the terrain model's estimate. Days: "about two weeks"
+    (14) on the National Trail, 12 on English Wikipedia.
+  - >-
+    Route (pipeline, 2026-11-01, Geofabrik extracts): the National Trail's GPX holds three tracks,
+    the main route first; cut at the OSM section ends, every section matches at least 95 % (section
+    11, Llandegla to Bodfari, 95 %, up to 470 m from the GPX where OSM's paths over the Clwydian
+    Range differ from it). The path follows the A438 near Hay-on-Wye, a trunk road tagged for
+    walkers: the matcher now takes trunk roads where OSM tags them foot=yes. Four gaps of 20–44 m
+    between OSM ways bridged in sections 6 and 7. The map line is 284.5 km against the sections'
+    284.4 km and the stated 285 km.
+  - >-
+    Water: OSM has 10 drinking water points near the route; the longest stretch without one is
+    125 km (km 91–216, Hay-on-Wye's north to Chirk). As on the other English and Welsh trails,
+    walkers refill in villages, pubs and cafés, which OSM doesn't record as water; the National
+    Trail's interactive map has water points, but not as a list to add as waterPoints.
+  - >-
+    Beds: 32 km without a bed of the kinds counted (km 182–214, Llanymynech to Chirk Mill); inns
+    and hotels in the villages are not all mapped as guest houses.
+  - >-
+    Data check (2026-11-01). Second source: English Wikipedia (177 miles, 285 km; opened 10 July
+    1971; Hatterrall Ridge the highest point at 703 m; roughly 12 days). Length, opening year and
+    highest point agree (the National Trail 700 m, the terrain model 702 m). The stated ascent,
+    28,000 ft (8,534 m), is 8 % under the terrain model's estimate (≈ 9,240 m). Apart: the days,
+    the National Trail's "about two weeks" against Wikipedia's 12 (14 %).
+dataCheck:
+  # working rule 2: English Wikipedia
+  date: 2026-11-01
+  against: [wikipedia-en]
+  deviations:
+    - { figure: "Days", ours: "14 (about two weeks)", theirs: "roughly 12", source: wikipedia-en }
+sources:
+  - id: nt
+    title: "National Trails: Offa's Dyke Path (length, ascent, sections, days, season, opening, waymarking, camping, official GPX)"
+    url: https://www.nationaltrail.co.uk/en_GB/trails/offas-dyke-path/route/
+    licence: © National Trails (facts only)
+    retrieved: 2026-11-01
+  - id: wikipedia-en
+    title: "Wikipedia (en): Offa's Dyke Path (length, days, highest point, opening; data check)"
+    url: https://en.wikipedia.org/wiki/Offa%27s_Dyke_Path
+    licence: CC BY-SA 4.0
+    retrieved: 2026-11-01
+    checkOnly: true  # only for the data check
+  - id: wikimedia
+    title: "Wikimedia: page views of the trail's Wikipedia articles in every language, by people, over twelve months (Wikidata sitelinks, pageview API)"
+    url: https://wikimedia.org/api/rest_v1/
+    licence: CC0 1.0 (pageview data); Wikidata CC0
+    retrieved: 2026-11-01
+    checkOnly: true  # not on the trail page: the page views only rank the home page's popular trails
+  - id: osm
+    title: "OpenStreetMap contributors: paths, water, shops and places to sleep along the trail (Geofabrik extracts), stage ends, travel hubs"
+    url: https://www.openstreetmap.org/
+    licence: ODbL 1.0
+    retrieved: 2026-11-01
+  - id: copdem
+    title: "Copernicus DEM GLO-30 (30 m terrain model), tiles from AWS Open Data"
+    url: https://registry.opendata.aws/copernicus-dem/
+    licence: "Copernicus WorldDEM-30 licence, free; produced using Copernicus WorldDEM-30 © DLR e.V. 2010-2014 and © Airbus Defence and Space GmbH 2014-2018 provided under COPERNICUS by the European Union and ESA; all rights reserved"
+    retrieved: 2026-11-01
+  - id: worldcover
+    title: "ESA WorldCover 2021: 10 m land cover (via AWS Open Data)"
+    url: https://esa-worldcover.org/
+    licence: "CC BY 4.0; © ESA WorldCover project 2021 / Contains modified Copernicus Sentinel data (2021) processed by ESA WorldCover consortium"
+    retrieved: 2026-11-01
+  - id: era5
+    title: "Open-Meteo open data on AWS: ERA5-Land temperature and ERA5 precipitation, snow and wind, daily 1995–2024 (reanalysis)"
+    url: https://github.com/open-meteo/open-data
+    licence: CC BY 4.0 (Open-Meteo); contains modified Copernicus Climate Change Service information
+    retrieved: 2026-11-01
+  - id: osrm
+    title: "OSRM: road routes on OpenStreetMap data (router.project-osrm.org)"
+    url: https://project-osrm.org/
+    licence: Route data © OpenStreetMap contributors (ODbL)
+    retrieved: 2026-11-01

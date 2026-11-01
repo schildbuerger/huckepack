@@ -1,0 +1,98 @@
+{
+  "climate-high.json": {
+    "retrieved": "2026-11-01T05:24:25+00:00",
+    "url": "https://openmeteo.s3.us-west-2.amazonaws.com/data/copernicus_era5_land+copernicus_era5?latitude=52.0&longitude=-3.1&elevation=700"
+  },
+  "climate-low.json": {
+    "retrieved": "2026-11-01T05:21:09+00:00",
+    "url": "https://openmeteo.s3.us-west-2.amazonaws.com/data/copernicus_era5_land+copernicus_era5?latitude=51.6&longitude=-2.7&elevation=0"
+  },
+  "elevation-glo30.json": {
+    "retrieved": "2026-11-01T05:15:36+00:00",
+    "url": "https://copernicus-dem-30m.s3.eu-central-1.amazonaws.com/Copernicus_DSM_COG_10_N51_00_W003_00_DEM/Copernicus_DSM_COG_10_N51_00_W003_00_DEM.tif https://copernicus-dem-30m.s3.eu-central-1.amazonaws.com/Copernicus_DSM_COG_10_N51_00_W004_00_DEM/Copernicus_DSM_COG_10_N51_00_W004_00_DEM.tif https://copernicus-dem-30m.s3.eu-central-1.amazonaws.com/Copernicus_DSM_COG_10_N52_00_W004_00_DEM/Copernicus_DSM_COG_10_N52_00_W004_00_DEM.tif https://copernicus-dem-30m.s3.eu-central-1.amazonaws.com/Copernicus_DSM_COG_10_N53_00_W004_00_DEM/Copernicus_DSM_COG_10_N53_00_W004_00_DEM.tif"
+  },
+  "landcover.json": {
+    "retrieved": "2026-11-01T05:15:39+00:00",
+    "url": "https://esa-worldcover.s3.eu-central-1.amazonaws.com/v200/2021/map/ESA_WorldCover_10m_2021_v200_\u2026_Map.tif"
+  },
+  "osm-stage-1-main.json": {
+    "retrieved": "2026-10-31T21:23:06Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-10-main.json": {
+    "retrieved": "2026-10-31T21:23:06Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-11-main.json": {
+    "retrieved": "2026-10-31T21:23:06Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-12-main.json": {
+    "retrieved": "2026-10-31T21:23:06Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-2-main.json": {
+    "retrieved": "2026-10-31T21:23:06Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-3-main.json": {
+    "retrieved": "2026-10-31T21:23:06Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-4-main.json": {
+    "retrieved": "2026-10-31T21:23:06Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-5-main.json": {
+    "retrieved": "2026-10-31T21:23:06Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-6-main.json": {
+    "retrieved": "2026-10-31T21:23:06Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-7-main.json": {
+    "retrieved": "2026-10-31T21:23:06Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-8-main.json": {
+    "retrieved": "2026-10-31T21:23:06Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-9-main.json": {
+    "retrieved": "2026-10-31T21:23:06Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-water.json": {
+    "retrieved": "2026-10-31T21:23:06Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-way-tags.json": {
+    "retrieved": "2026-10-31T21:23:06Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osrm-access-cardiff-airport-cwl.json": {
+    "retrieved": "2026-11-01T05:24:25+00:00",
+    "url": "https://router.project-osrm.org/route/v1/driving/-3.34458,51.39785;-2.64342,51.63473?overview=false"
+  },
+  "osrm-access-chepstow.json": {
+    "retrieved": "2026-11-01T05:24:25+00:00",
+    "url": "https://router.project-osrm.org/route/v1/driving/-2.67108,51.63997;-2.64342,51.63473?overview=false"
+  },
+  "osrm-access-liverpool-john-lennon-airport-lpl.json": {
+    "retrieved": "2026-11-01T05:24:26+00:00",
+    "url": "https://router.project-osrm.org/route/v1/driving/-2.84854,53.3358;-2.64342,51.63473?overview=false"
+  },
+  "osrm-access-prestatyn.json": {
+    "retrieved": "2026-11-01T05:24:25+00:00",
+    "url": "https://router.project-osrm.org/route/v1/driving/-3.40735,53.33617;-2.64342,51.63473?overview=false"
+  },
+  "stage-1-main.gpx": {
+    "retrieved": "2026-11-01T03:53:54+00:00",
+    "url": "https://nationaltrails.s3.eu-west-2.amazonaws.com/uploads/ODP_loops_elev.gpx"
+  },
+  "wikimedia.json": {
+    "retrieved": "2026-11-01T05:24:27+00:00",
+    "url": "Q745914 2025-11..2026-10"
+  }
+}

@@ -42,6 +42,21 @@ CELL_DEG = 0.004  # corridor grid, about 450 m north-south
 WATER_TAGS = (("amenity", "drinking_water"), ("amenity", "water_point"), ("man_made", "water_tap"), ("natural", "spring"))
 MEMBER_TYPES = {"n": "node", "w": "way", "r": "relation"}
 EXCLUDED_HIGHWAYS = {"motorway", "motorway_link", "trunk", "trunk_link", "construction", "proposed", "platform"}
+# a trunk road's footway or verge mapped onto the road itself (the Offa's Dyke Path along the A438
+# near Hay-on-Wye): walkable where OSM says so
+FOOT_TRUNKS = {"trunk", "trunk_link"}
+FOOT_YES = {"yes", "designated", "permissive"}
+
+
+def walkable(tags):
+    """A highway the matcher may use: no motorways, construction or platforms; trunk roads only
+    where they are tagged for walkers."""
+    highway = tags.get("highway")
+    if not highway:
+        return False
+    if highway in FOOT_TRUNKS:
+        return tags.get("foot") in FOOT_YES
+    return highway not in EXCLUDED_HIGHWAYS
 
 
 def _get(url):
@@ -337,10 +352,9 @@ def build_corridor(slug, guides, relation_ids=(), coarse=(), refresh=False):
     cells = _cells(guides)
 
     def near(w, locs):
-        highway = w.tags.get("highway")
         if w.id in member_ways:
             return True
-        return bool(highway) and highway not in EXCLUDED_HIGHWAYS and any(_cell(lon, lat) in cells for _, lon, lat in locs)
+        return walkable(w.tags) and any(_cell(lon, lat) in cells for _, lon, lat in locs)
 
     for w, locs in ways_pass(near):
         add(w, locs)

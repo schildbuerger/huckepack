@@ -141,8 +141,10 @@ class Overpass:
     label = OVERPASS
 
     def ways_around(self, boxes_):
+        # trunk roads only where tagged for walkers, as in pipeline/osmlocal.py's walkable()
         way = 'way["highway"]["highway"!~"^(motorway|motorway_link|trunk|trunk_link|construction|proposed|platform)$"]'
-        union = "".join(f"{way}({s:.5f},{w:.5f},{n:.5f},{e:.5f});" for s, w, n, e in boxes_)
+        trunk = 'way["highway"~"^(trunk|trunk_link)$"]["foot"~"^(yes|designated|permissive)$"]'
+        union = "".join(f"{q}({s:.5f},{w:.5f},{n:.5f},{e:.5f});" for s, w, n, e in boxes_ for q in (way, trunk))
         return fetch(f"[out:json][timeout:120];({union});out skel;>;out skel qt;")
 
     def relation(self, rid, children=True):
