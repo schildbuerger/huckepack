@@ -185,6 +185,8 @@ const tiers = derived?.along?.water;
 // 2026-11-01); without tiers (no places to sleep found), by drinking water
 const drinkGap = tiers?.longestGapKm.clean ?? water?.longestGapKm.drinking;
 const level = drinkGap && waterLevel(drinkGap.km);
+// any water (springs too) rated the same way (frequent, regular, scarce)
+const anyLevel = tiers && waterLevel(tiers.longestGapKm.refill.km);
 // status as a shape plus a word; colour (--good/--fair/--poor) only fills the shape
 type Status = { shape: "full" | "half" | "blocked" | "empty"; tone: string; word: string };
 const STATUS: Record<string, Status> = {
@@ -211,6 +213,7 @@ const sleepingRows = sleeping.map((c) =>
 );
 const WATER_STATUS = { frequent: "available", regular: "restricted", scarce: "prohibited" } as const;
 const waterStatus = level && { ...STATUS[WATER_STATUS[level.id]], word: level.label };
+const anyStatus = anyLevel && { ...STATUS[WATER_STATUS[anyLevel.id]], word: anyLevel.label };
 
 // strip charts (water, surfaces, elevation) share one geometry: a 1000-unit wide viewBox, km across
 const CHART = { width: 1000, x0: 8, x1: 992 };
@@ -1545,11 +1548,20 @@ const trailLd = JSON.stringify({
                   Clean water, and the {waterTotals.springs} springs within {water.withinM} m of the trail whose water is of unknown
                   quality{t.refillsUntreated && ", and the places to sleep whose water isn't treated"}: filter, boil or treat it, and
                   expect some springs to run dry in late summer. Here the longest stretch
-                  without any water runs from km {tiers.longestGapKm.refill.fromKm} to {tiers.longestGapKm.refill.toKm}.
+                  without any water runs from km {tiers.longestGapKm.refill.fromKm} to {tiers.longestGapKm.refill.toKm}. Rated
+                  like clean water: frequent up to 10 km, regular up to 20 km, scarce beyond.
                 </p>
               </Explain>
             </dt>
-            <dd><span class="big">{tiers.longestGapKm.refill.km}</span><span class="unit">km</span></dd>
+            <dd>
+              <span class="big">{tiers.longestGapKm.refill.km}</span><span class="unit">km</span>
+              {anyStatus && (
+                <span class="status inline">
+                  <span class={`mark ${anyStatus.shape} tone-${anyStatus.tone}`} aria-hidden="true"></span>
+                  {anyStatus.word}
+                </span>
+              )}
+            </dd>
           </div>
         )}
         {along ? (
@@ -1603,12 +1615,12 @@ const trailLd = JSON.stringify({
               <g class="row" data-row={i}>
                 {lane.sub ? (
                   <>
-                    <rect class="track" x={WX0} y={laneY(i) + 5} width={CHART.x1 - WX0} height={16} rx="3" />
-                    <rect class="gap" x={wx(lane.gap.fromKm)} y={laneY(i) + 5} width={n1(wx(lane.gap.toKm) - wx(lane.gap.fromKm))} height={16} rx="3" />
+                    <rect class="track" x={WX0} y={laneY(i)} width={CHART.x1 - WX0} height={LANE.band} rx="4" />
+                    <rect class="gap" x={wx(lane.gap.fromKm)} y={laneY(i)} width={n1(wx(lane.gap.toKm) - wx(lane.gap.fromKm))} height={LANE.band} rx="4" />
                     <text class="lane-name sub-name" x={CHART.x0 + 22} y={laneY(i) - 1}>
                       {lane.label} <tspan class="lane-gap">· {lane.gap.km} km without</tspan>
                     </text>
-                    <path class={`mark-tick ${lane.id}`} d={tickPath(lane.points, laneY(i), 7, 19)} />
+                    <path class={`mark-tick ${lane.id}`} d={tickPath(lane.points, laneY(i))} />
                   </>
                 ) : (
                   <>
@@ -1866,7 +1878,7 @@ const trailLd = JSON.stringify({
         const g = parents[lane] >= 0 ? parents[lane] : lane;
         const ks = rows.map((r, k) => (r === g || parents[r] === g ? k : -1)).filter((k) => k >= 0);
         cursor.setAttribute("y1", String(top(ks[0]) - 4));
-        cursor.setAttribute("y2", String(top(ks[ks.length - 1]) + (parents[rows[ks[ks.length - 1]]] >= 0 ? 21 : 26) + 4));
+        cursor.setAttribute("y2", String(top(ks[ks.length - 1]) + 26 + 4));
       }
       const km = ((vx - X0) / (X1 - X0)) * data.total;
       // the nearest place within about 12 units (1.2 % of the route)
