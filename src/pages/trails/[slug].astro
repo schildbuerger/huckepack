@@ -506,6 +506,8 @@ const WX0 = subRows > 0 ? CHART.x0 + 26 : CHART.x0;
 // a lane's track reaches a little past both ends of the axis, so a tick at 0 km or at the end sits inside it
 const TRACK_PAD = 6;
 const wx = (km: number) => n1(WX0 + (Math.min(km, water?.routeKm ?? km) / (water?.routeKm || 1)) * (CHART.x1 - WX0));
+// with many stages, every other stage is shaded inside each lane's track only (not across the chart)
+const waterTicksAxis = water ? stageTicks(water.stageStarts, water.routeKm, wx) : [];
 const tickPath = (pts: LanePoint[], y: number, top = 4, bottom = 22) => pts.map((p) => `M${wx(p.km)} ${y + top}V${y + bottom}`).join("");
 const supplySummary =
   water &&
@@ -1610,14 +1612,12 @@ const trailLd = JSON.stringify({
             </button>
           ))}
           <svg viewBox={`0 0 ${CHART.width} ${supplyAxis + 40}`} role="img" aria-label={supplySummary}>
-            {stageTicks(water.stageStarts, water.routeKm, wx).map(
-              (tk) => tk.band && <rect class="stage-band" x={tk.x} y={LANE.top - 18} width={n1(tk.end - tk.x)} height={supplyAxis - LANE.top + 18} />,
-            )}
             {supplyLanes.map((lane, i) => (
               <g class="row" data-row={i}>
                 {lane.sub ? (
                   <>
                     <rect class="track" x={WX0 - TRACK_PAD} y={laneY(i) + 5} width={CHART.x1 - WX0 + 2 * TRACK_PAD} height={16} rx="3" />
+                    {waterTicksAxis.map((tk) => tk.band && <rect class="lane-stage" x={tk.x} y={laneY(i) + 5} width={n1(tk.end - tk.x)} height={16} />)}
                     <rect class="gap" x={wx(lane.gap.fromKm)} y={laneY(i) + 5} width={n1(wx(lane.gap.toKm) - wx(lane.gap.fromKm))} height={16} rx="3" />
                     <text class="lane-name sub-name" x={CHART.x0 + 22} y={laneY(i) - 1}>
                       {lane.label} <tspan class="lane-gap">· {lane.gap.km} km without</tspan>
@@ -1633,6 +1633,7 @@ const trailLd = JSON.stringify({
                       />
                     )}
                     <rect class="track" x={WX0 - TRACK_PAD} y={laneY(i)} width={CHART.x1 - WX0 + 2 * TRACK_PAD} height={LANE.band} rx="4" />
+                    {waterTicksAxis.map((tk) => tk.band && <rect class="lane-stage" x={tk.x} y={laneY(i)} width={n1(tk.end - tk.x)} height={LANE.band} />)}
                     <rect class="gap" x={wx(lane.gap.fromKm)} y={laneY(i)} width={n1(wx(lane.gap.toKm) - wx(lane.gap.fromKm))} height={LANE.band} rx="4" />
                     <text class:list={["lane-name", { "group-label": lane.group }]} x={CHART.x0} y={laneY(i) - 6}>
                       {lane.label} <tspan class="lane-gap">· {lane.gap.km} {lane.gapText ?? "km without"}</tspan>
@@ -3136,6 +3137,9 @@ const trailLd = JSON.stringify({
   /* each lane's soft track, so the rows stand apart */
   .waterline .track {
     fill: color-mix(in srgb, var(--text) 4%, transparent);
+  }
+  .waterline .lane-stage {
+    fill: color-mix(in srgb, var(--text) 5%, transparent);
   }
   .tiered .group-label,
   .tiered .row:not(.open) .tree {
