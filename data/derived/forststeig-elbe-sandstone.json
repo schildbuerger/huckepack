@@ -8889,17 +8889,6 @@
           "offM": 300
         },
         {
-          "lat": 50.854924,
-          "lon": 14.176773,
-          "group": "beds",
-          "kind": "shelter",
-          "name": null,
-          "stage": "1",
-          "stageKind": "main",
-          "km": 8.7,
-          "offM": 5
-        },
-        {
           "lat": 50.850969,
           "lon": 14.177605,
           "group": "beds",
@@ -8909,28 +8898,6 @@
           "stageKind": "main",
           "km": 9.7,
           "offM": 44
-        },
-        {
-          "lat": 50.850972,
-          "lon": 14.177599,
-          "group": "beds",
-          "kind": "shelter",
-          "name": "Zschirnstein-Biwak",
-          "stage": "1",
-          "stageKind": "main",
-          "km": 9.7,
-          "offM": 45
-        },
-        {
-          "lat": 50.836286,
-          "lon": 14.15153,
-          "group": "beds",
-          "kind": "shelter",
-          "name": null,
-          "stage": "1",
-          "stageKind": "main",
-          "km": 12.6,
-          "offM": 672
         },
         {
           "lat": 50.857699,
@@ -8953,17 +8920,6 @@
           "stageKind": "main",
           "km": 13.6,
           "offM": 11
-        },
-        {
-          "lat": 50.83565,
-          "lon": 14.127856,
-          "group": "beds",
-          "kind": "shelter",
-          "name": "Taubenteich-Biwak",
-          "stage": "2",
-          "stageKind": "main",
-          "km": 15.5,
-          "offM": 153
         },
         {
           "lat": 50.835764,
@@ -9019,17 +8975,6 @@
           "stageKind": "main",
           "km": 26.0,
           "offM": 541
-        },
-        {
-          "lat": 50.795776,
-          "lon": 14.082266,
-          "group": "beds",
-          "kind": "shelter",
-          "name": null,
-          "stage": "2",
-          "stageKind": "main",
-          "km": 26.0,
-          "offM": 365
         },
         {
           "lat": 50.796804,
@@ -9261,17 +9206,6 @@
           "stageKind": "main",
           "km": 51.4,
           "offM": 11
-        },
-        {
-          "lat": 50.837986,
-          "lon": 14.065646,
-          "group": "beds",
-          "kind": "shelter",
-          "name": null,
-          "stage": "4",
-          "stageKind": "main",
-          "km": 57.1,
-          "offM": 745
         },
         {
           "lat": 50.840972,
@@ -9857,17 +9791,6 @@
           "offM": 1618
         },
         {
-          "lat": 50.91252,
-          "lon": 14.167103,
-          "group": "beds",
-          "kind": "shelter",
-          "name": null,
-          "stage": "7",
-          "stageKind": "main",
-          "km": 102.9,
-          "offM": 1191
-        },
-        {
           "lat": 50.921393,
           "lon": 14.157652,
           "group": "beds",
@@ -10012,12 +9935,12 @@
         }
       ],
       "longestGapKm": {
-        "km": 6.9,
-        "fromKm": 71.9,
-        "toKm": 78.8
+        "km": 8.2,
+        "fromKm": 51.4,
+        "toKm": 59.6
       },
       "byGroup": {
-        "huts": 19,
+        "huts": 12,
         "camping": 16,
         "hostels": 8,
         "rooms": 65

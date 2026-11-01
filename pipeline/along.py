@@ -9,8 +9,10 @@ Geofabrik extracts it reads once more for the tags it needs (the corridor itself
 600 m from the route). A point counts within WITHIN_M of the route, or within STAGE_END_M of a
 main stage's end (stage towns often lie off the trail). Decided on the issues:
 resupply = supermarkets, convenience and general stores, petrol stations with a shop; beds =
-huts (alpine and wilderness huts, shelters for sleeping), campsites, hostels and guesthouses;
-no hotels. Writes data/derived/<slug>.json under `along`; cached as data/raw/<slug>/osm-along.json.
+huts (alpine and wilderness huts), campsites, hostels and guesthouses; no hotels, and no shelters
+(2026-11-01: OSM's shelters along the trails are day shelters, Germany's Schutzhütten and
+Grillhütten tagged basic_hut or lean_to alike, 51 of the Moselsteig's 53 "huts", or Sweden's
+rastskydd). Writes data/derived/<slug>.json under `along`; cached as data/raw/<slug>/osm-along.json.
 """
 
 import gzip
@@ -32,9 +34,8 @@ SAME_M = 60  # a shop or hut mapped twice (as a point and as a building) counts 
 
 RESUPPLY = {"supermarket": "supermarket", "convenience": "convenience", "general": "general"}
 BED_KIND = {"alpine_hut": "hut", "wilderness_hut": "hut", "camp_site": "campsite", "hostel": "hostel", "guest_house": "guesthouse"}
-SLEEP_SHELTERS = {"basic_hut", "lean_to"}
 # the bed kinds in the sleeping section's categories (src/lib/trails.ts SLEEPING_CATEGORIES)
-BED_GROUP = {"hut": "huts", "shelter": "huts", "campsite": "camping", "hostel": "hostels", "guesthouse": "rooms"}
+BED_GROUP = {"hut": "huts", "campsite": "camping", "hostel": "hostels", "guesthouse": "rooms"}
 
 
 def classify(tags):
@@ -47,8 +48,6 @@ def classify(tags):
     tourism = tags.get("tourism")
     if tourism in BED_KIND:
         return "beds", BED_KIND[tourism]
-    if tags.get("amenity") == "shelter" and tags.get("shelter_type") in SLEEP_SHELTERS:
-        return "beds", "shelter"
     return None
 
 
@@ -59,7 +58,7 @@ def candidates(slug, box):
     tag_filter = osmium.filter.TagFilter(
         ("shop", "supermarket"), ("shop", "convenience"), ("shop", "general"), ("amenity", "fuel"),
         ("tourism", "alpine_hut"), ("tourism", "wilderness_hut"), ("tourism", "camp_site"),
-        ("tourism", "hostel"), ("tourism", "guest_house"), ("amenity", "shelter"),
+        ("tourism", "hostel"), ("tourism", "guest_house"),
     )
     out, seen, stamps = [], set(), []
     urls = dict((f["properties"]["id"], f["properties"]["urls"].get("pbf")) for f in osmlocal._index() if f["properties"].get("urls"))

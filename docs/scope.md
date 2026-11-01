@@ -148,6 +148,13 @@
   recommended day stages: figures summed from the official table between
   stamping points where a day ends at one, else estimated (≈) like any
   missing stage figure (2026-11-01).
+- **Sleeping (issue #113, 2026-11-01):** beds have their own lanes in the
+  Sleeping section (one per category, approach B of three previews); the
+  rest is "Water & Supply". A category counts as available where the
+  trail's source lists it or OpenStreetMap maps at least 3 places of it
+  along the route, on the page, in the search filter and on the cards
+  alike; OSM's shelters (day shelters, whatever their tagged type) don't count
+  as beds.
 - **A crossing OSM maps as under construction (2026-11-01):** a stage may
   allow the matcher a longer bridge (`maxBridgeM`), noted in the record (the
   Cotswold Way's A417 at the Air Balloon, 133 m), instead of holding the

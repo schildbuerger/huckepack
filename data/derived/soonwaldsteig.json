@@ -7126,39 +7126,6 @@
           "offM": 72
         },
         {
-          "lat": 49.831059,
-          "lon": 7.406836,
-          "group": "beds",
-          "kind": "shelter",
-          "name": null,
-          "stage": "1",
-          "stageKind": "main",
-          "km": 11.9,
-          "offM": 819
-        },
-        {
-          "lat": 49.830532,
-          "lon": 7.407723,
-          "group": "beds",
-          "kind": "shelter",
-          "name": null,
-          "stage": "1",
-          "stageKind": "main",
-          "km": 11.9,
-          "offM": 877
-        },
-        {
-          "lat": 49.842289,
-          "lon": 7.397797,
-          "group": "beds",
-          "kind": "shelter",
-          "name": null,
-          "stage": "1",
-          "stageKind": "main",
-          "km": 13.6,
-          "offM": 368
-        },
-        {
           "lat": 49.84179,
           "lon": 7.378835,
           "group": "beds",
@@ -7190,39 +7157,6 @@
           "stageKind": "main",
           "km": 16.9,
           "offM": 17
-        },
-        {
-          "lat": 49.841976,
-          "lon": 7.426725,
-          "group": "beds",
-          "kind": "shelter",
-          "name": "Teufelsfelshütte",
-          "stage": "2",
-          "stageKind": "main",
-          "km": 22.0,
-          "offM": 7
-        },
-        {
-          "lat": 49.850533,
-          "lon": 7.488472,
-          "group": "beds",
-          "kind": "shelter",
-          "name": "Grillhütte",
-          "stage": "3",
-          "stageKind": "main",
-          "km": 28.4,
-          "offM": 2259
-        },
-        {
-          "lat": 49.873912,
-          "lon": 7.54447,
-          "group": "beds",
-          "kind": "shelter",
-          "name": null,
-          "stage": "3",
-          "stageKind": "main",
-          "km": 36.1,
-          "offM": 333
         },
         {
           "lat": 49.877468,
@@ -7446,12 +7380,12 @@
         }
       ],
       "longestGapKm": {
-        "km": 10.9,
-        "fromKm": 1.0,
-        "toKm": 11.9
+        "km": 19.5,
+        "fromKm": 16.9,
+        "toKm": 36.4
       },
       "byGroup": {
-        "huts": 6,
+        "huts": 0,
         "camping": 8,
         "hostels": 4,
         "rooms": 14

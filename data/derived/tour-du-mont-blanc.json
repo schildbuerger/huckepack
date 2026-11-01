@@ -4266,17 +4266,6 @@
           "offM": 33
         },
         {
-          "lat": 45.875306,
-          "lon": 6.801251,
-          "group": "beds",
-          "kind": "shelter",
-          "name": null,
-          "stage": "1",
-          "stageKind": "main",
-          "km": 0.3,
-          "offM": 1606
-        },
-        {
           "lat": 45.891599,
           "lon": 6.788418,
           "group": "beds",
@@ -4508,17 +4497,6 @@
           "offM": 11
         },
         {
-          "lat": 45.774256,
-          "lon": 6.820172,
-          "group": "beds",
-          "kind": "shelter",
-          "name": "Bivacco Adolfo Hess",
-          "stage": "3",
-          "stageKind": "main",
-          "km": 47.7,
-          "offM": 1686
-        },
-        {
           "lat": 45.767011,
           "lon": 6.837433,
           "group": "beds",
@@ -4550,17 +4528,6 @@
           "stageKind": "main",
           "km": 50.7,
           "offM": 172
-        },
-        {
-          "lat": 45.773364,
-          "lon": 6.901586,
-          "group": "beds",
-          "kind": "shelter",
-          "name": "Cabane du lac des Vesses",
-          "stage": "4",
-          "stageKind": "main",
-          "km": 54.5,
-          "offM": 74
         },
         {
           "lat": 45.790803,
@@ -4649,17 +4616,6 @@
           "stageKind": "main",
           "km": 71.3,
           "offM": 867
-        },
-        {
-          "lat": 45.862485,
-          "lon": 7.002607,
-          "group": "beds",
-          "kind": "shelter",
-          "name": "Bivacco Mario Jachia",
-          "stage": "5",
-          "stageKind": "main",
-          "km": 74.1,
-          "offM": 2694
         },
         {
           "lat": 45.846899,
@@ -5075,7 +5031,7 @@
         "toKm": 91.9
       },
       "byGroup": {
-        "huts": 34,
+        "huts": 30,
         "camping": 21,
         "hostels": 7,
         "rooms": 12

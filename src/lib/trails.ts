@@ -129,7 +129,7 @@ export function summarize(id: string, t: Trail, d?: DerivedData) {
     days: t.days ? ([t.days.min, t.days.max] as [number, number]) : null,
     sac: sacGrade(t)?.value ?? null,
     wildCamping: t.wildCamping?.status ?? null,
-    sleeping: sleepingCategories(t.sleeping?.types ?? []) as string[],
+    sleeping: sleepingCategories(t.sleeping?.types ?? [], d?.along?.beds.byGroup) as string[],
     tags: t.tags,
     season: t.season?.months ?? null,
     start: t.termini.start.name,
@@ -204,8 +204,15 @@ export const SLEEPING_CATEGORIES = [
   },
 ] as const;
 
-export const sleepingCategories = (types: readonly string[]) =>
-  SLEEPING_CATEGORIES.filter((c) => c.types.some((x) => types.includes(x))).map((c) => c.id);
+// A category is available where the trail's source lists one of its types, or where OpenStreetMap
+// maps at least OSM_SLEEP_MIN places of it along the route (the derived `along.beds.byGroup`,
+// pipeline/along.py; 2026-11-01): official lists often name only rooms. A stray one or two places
+// (a lodge at a trailhead) don't count. The trail page, the search filter and the cards share it.
+export const OSM_SLEEP_MIN = 3;
+export const sleepingCategories = (types: readonly string[], mapped: Partial<Record<string, number>> = {}) =>
+  SLEEPING_CATEGORIES.filter((c) => c.types.some((x) => types.includes(x)) || (mapped[c.id] ?? 0) >= OSM_SLEEP_MIN).map(
+    (c) => c.id,
+  );
 
 // Water along the trail, rated by the longest stretch of the main route without drinking water.
 export const WATER_LEVELS = [

@@ -10083,17 +10083,6 @@
           "offM": 1845
         },
         {
-          "lat": 51.766719,
-          "lon": 10.355275,
-          "group": "beds",
-          "kind": "shelter",
-          "name": "Schutzhütte am Bahnhof",
-          "stage": "1",
-          "stageKind": "main",
-          "km": 10.1,
-          "offM": 476
-        },
-        {
           "lat": 51.784078,
           "lon": 10.315173,
           "group": "beds",
@@ -10125,17 +10114,6 @@
           "stageKind": "main",
           "km": 11.8,
           "offM": 394
-        },
-        {
-          "lat": 51.780809,
-          "lon": 10.444403,
-          "group": "beds",
-          "kind": "shelter",
-          "name": "Eisenquelle",
-          "stage": "2",
-          "stageKind": "main",
-          "km": 21.5,
-          "offM": 10
         },
         {
           "lat": 51.795866,
@@ -10180,17 +10158,6 @@
           "stageKind": "main",
           "km": 23.6,
           "offM": 846
-        },
-        {
-          "lat": 51.797224,
-          "lon": 10.44299,
-          "group": "beds",
-          "kind": "shelter",
-          "name": null,
-          "stage": "2",
-          "stageKind": "main",
-          "km": 23.6,
-          "offM": 905
         },
         {
           "lat": 51.798809,
@@ -10270,17 +10237,6 @@
           "offM": 113
         },
         {
-          "lat": 51.80004,
-          "lon": 10.615697,
-          "group": "beds",
-          "kind": "shelter",
-          "name": "Wolkenhäuschen",
-          "stage": "3",
-          "stageKind": "main",
-          "km": 41.1,
-          "offM": 23
-        },
-        {
           "lat": 51.744343,
           "lon": 10.766047,
           "group": "beds",
@@ -10301,17 +10257,6 @@
           "stageKind": "main",
           "km": 66.6,
           "offM": 131
-        },
-        {
-          "lat": 51.749147,
-          "lon": 10.851821,
-          "group": "beds",
-          "kind": "shelter",
-          "name": null,
-          "stage": "4",
-          "stageKind": "main",
-          "km": 67.0,
-          "offM": 593
         },
         {
           "lat": 51.755381,
@@ -10842,28 +10787,6 @@
           "offM": 38
         },
         {
-          "lat": 51.747826,
-          "lon": 10.693549,
-          "group": "beds",
-          "kind": "shelter",
-          "name": null,
-          "stage": "3",
-          "stageKind": "variant",
-          "km": null,
-          "offM": 570
-        },
-        {
-          "lat": 51.750009,
-          "lon": 10.704756,
-          "group": "beds",
-          "kind": "shelter",
-          "name": null,
-          "stage": "3",
-          "stageKind": "variant",
-          "km": null,
-          "offM": 841
-        },
-        {
           "lat": 51.716151,
           "lon": 10.997425,
           "group": "beds",
@@ -10909,12 +10832,12 @@
         }
       ],
       "longestGapKm": {
-        "km": 17.2,
-        "fromKm": 41.1,
+        "km": 25.8,
+        "fromKm": 32.5,
         "toKm": 58.3
       },
       "byGroup": {
-        "huts": 7,
+        "huts": 0,
         "camping": 6,
         "hostels": 15,
         "rooms": 52

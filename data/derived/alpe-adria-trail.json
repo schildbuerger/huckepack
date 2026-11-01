@@ -62548,17 +62548,6 @@
           "offM": 533
         },
         {
-          "lat": 47.044988,
-          "lon": 12.814522,
-          "group": "beds",
-          "kind": "shelter",
-          "name": null,
-          "stage": "1",
-          "stageKind": "main",
-          "km": 10.4,
-          "offM": 629
-        },
-        {
           "lat": 47.041509,
           "lon": 12.832895,
           "group": "beds",
@@ -64176,17 +64165,6 @@
           "offM": 1028
         },
         {
-          "lat": 46.872877,
-          "lon": 13.764866,
-          "group": "beds",
-          "kind": "shelter",
-          "name": null,
-          "stage": "15",
-          "stageKind": "main",
-          "km": 247.9,
-          "offM": 29
-        },
-        {
           "lat": 46.841919,
           "lon": 13.767227,
           "group": "beds",
@@ -64361,17 +64339,6 @@
           "stageKind": "main",
           "km": 269.8,
           "offM": 35
-        },
-        {
-          "lat": 46.831106,
-          "lon": 13.787143,
-          "group": "beds",
-          "kind": "shelter",
-          "name": null,
-          "stage": "16",
-          "stageKind": "main",
-          "km": 269.8,
-          "offM": 1672
         },
         {
           "lat": 46.818878,
@@ -65232,17 +65199,6 @@
           "offM": 1387
         },
         {
-          "lat": 46.512401,
-          "lon": 13.935922,
-          "group": "beds",
-          "kind": "shelter",
-          "name": "Biwakschachtel Annahütte",
-          "stage": "22",
-          "stageKind": "main",
-          "km": 364.9,
-          "offM": 766
-        },
-        {
           "lat": 46.522988,
           "lon": 13.887756,
           "group": "beds",
@@ -65837,17 +65793,6 @@
           "offM": 207
         },
         {
-          "lat": 46.319424,
-          "lon": 13.530732,
-          "group": "beds",
-          "kind": "shelter",
-          "name": null,
-          "stage": "25",
-          "stageKind": "main",
-          "km": 429.4,
-          "offM": 1325
-        },
-        {
           "lat": 46.322414,
           "lon": 13.502889,
           "group": "beds",
@@ -66022,28 +65967,6 @@
           "stageKind": "main",
           "km": 455.6,
           "offM": 51
-        },
-        {
-          "lat": 46.228153,
-          "lon": 13.673472,
-          "group": "beds",
-          "kind": "shelter",
-          "name": null,
-          "stage": "26",
-          "stageKind": "main",
-          "km": 458.7,
-          "offM": 10
-        },
-        {
-          "lat": 46.223005,
-          "lon": 13.672191,
-          "group": "beds",
-          "kind": "shelter",
-          "name": null,
-          "stage": "26",
-          "stageKind": "main",
-          "km": 459.3,
-          "offM": 13
         },
         {
           "lat": 46.208579,
@@ -66242,17 +66165,6 @@
           "stageKind": "main",
           "km": 487.1,
           "offM": 43
-        },
-        {
-          "lat": 46.126444,
-          "lon": 13.594449,
-          "group": "beds",
-          "kind": "shelter",
-          "name": null,
-          "stage": "28",
-          "stageKind": "main",
-          "km": 490.9,
-          "offM": 719
         },
         {
           "lat": 46.110233,
@@ -66552,17 +66464,6 @@
           "offM": 744
         },
         {
-          "lat": 45.965583,
-          "lon": 13.461792,
-          "group": "beds",
-          "kind": "shelter",
-          "name": null,
-          "stage": "31",
-          "stageKind": "main",
-          "km": 559.0,
-          "offM": 544
-        },
-        {
           "lat": 45.890767,
           "lon": 13.503268,
           "group": "beds",
@@ -66827,17 +66728,6 @@
           "offM": 185
         },
         {
-          "lat": 45.666986,
-          "lon": 13.802274,
-          "group": "beds",
-          "kind": "shelter",
-          "name": null,
-          "stage": "35",
-          "stageKind": "main",
-          "km": 637.9,
-          "offM": 242
-        },
-        {
           "lat": 45.644677,
           "lon": 13.899804,
           "group": "beds",
@@ -66891,17 +66781,6 @@
           "stageKind": "main",
           "km": 674.1,
           "offM": 623
-        },
-        {
-          "lat": 45.586577,
-          "lon": 13.780585,
-          "group": "beds",
-          "kind": "shelter",
-          "name": null,
-          "stage": "37",
-          "stageKind": "main",
-          "km": 687.1,
-          "offM": 86
         },
         {
           "lat": 45.589564,
@@ -67177,26 +67056,15 @@
           "stageKind": "variant",
           "km": null,
           "offM": 16
-        },
-        {
-          "lat": 46.466113,
-          "lon": 13.686499,
-          "group": "beds",
-          "kind": "shelter",
-          "name": "Capanna Ponza",
-          "stage": "R6",
-          "stageKind": "variant",
-          "km": null,
-          "offM": 44
         }
       ],
       "longestGapKm": {
-        "km": 20.2,
-        "fromKm": 559.0,
+        "km": 20.8,
+        "fromKm": 558.4,
         "toKm": 579.2
       },
       "byGroup": {
-        "huts": 78,
+        "huts": 66,
         "camping": 61,
         "hostels": 18,
         "rooms": 267

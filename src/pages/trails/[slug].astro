@@ -28,6 +28,7 @@ import {
   SAC_SCALE,
   SLEEPING_CATEGORIES,
   SLEEPING_LABELS,
+  OSM_SLEEP_MIN,
   STEEP_PERCENT,
   gradients,
   barMetres,
@@ -48,10 +49,13 @@ const water = derived?.water;
 const waterExtra = (water?.extraSources ?? []).map((id) => t.sources.find((x) => x.id === id)?.title.split(":")[0] ?? id);
 // travel hubs with their distance to the start (pipeline/access.py), stations first
 const hubs = t.access.map((h) => ({ ...h, ...derived?.access?.hubs.find((d) => d.name === h.name) }));
-// sleeping: each category with the types this trail has in it; camping also carries wild camping
+// sleeping: each category with the types this trail's source lists, and how many places OSM maps
+// along the route (pipeline/along.py); available when either has it (sleepingCategories())
+const bedsByGroup: Partial<Record<string, number>> = derived?.along?.beds.byGroup ?? {};
 const sleeping = SLEEPING_CATEGORIES.map((c) => ({
   ...c,
   present: c.types.filter((x) => t.sleeping?.types.includes(x)),
+  mapped: bedsByGroup[c.id] ?? 0,
 }));
 const sources = Object.fromEntries(t.sources.map((s, i) => [s.id, { ...s, n: i + 1 }]));
 const totals = stageTotals(t);
@@ -184,8 +188,13 @@ const sleepingRows = sleeping.map((c) =>
     ? { ...c, status: STATUS[t.wildCamping?.status ?? "unknown"], detail: "" }
     : {
         ...c,
-        status: STATUS[c.present.length > 0 ? "available" : "none"],
-        detail: c.present.map((x) => SLEEPING_LABELS[x]).join(", "),
+        status: STATUS[c.present.length > 0 || c.mapped >= OSM_SLEEP_MIN ? "available" : "none"],
+        detail: [
+          c.present.map((x) => SLEEPING_LABELS[x]).join(", "),
+          (c.present.length > 0 || c.mapped >= OSM_SLEEP_MIN) && c.mapped > 0 ? `${c.mapped} in OpenStreetMap` : "",
+        ]
+          .filter(Boolean)
+          .join(" · "),
       },
 );
 const WATER_STATUS = { frequent: "available", regular: "restricted", scarce: "prohibited" } as const;
@@ -410,11 +419,12 @@ const gapStages = (() => {
   return a && b ? (a === b ? `, stage ${a}` : `, stages ${a}–${b}`) : "";
 })();
 
-// water, shops and beds along the main route (issues #96 and #97; of three previews, approach B):
-// one chart, a lane each on the same kilometres, so the stretches where all three thin out line up
+// water and shops along the main route (issues #96 and #97; of three previews, approach B): one
+// chart, a lane each on the same kilometres, so the stretches where both thin out line up. Beds
+// have their own lanes in Sleeping (issue #113)
 const along = derived?.along;
 const SHOP_LABEL: Record<string, string> = { supermarket: "Supermarket", convenience: "Convenience store", general: "General store", fuel: "Petrol station shop" };
-const BED_LABEL: Record<string, string> = { hut: "Hut", shelter: "Shelter", campsite: "Campsite", hostel: "Hostel", guesthouse: "Guest house" };
+const BED_LABEL: Record<string, string> = { hut: "Hut", campsite: "Campsite", hostel: "Hostel", guesthouse: "Guest house" };
 type LanePoint = { km: number; what: string; name: string | null; stage: string; minor: boolean };
 const onMain = <P extends { km: number | null }>(ps: P[]) => ps.filter((p): p is P & { km: number } => p.km !== null);
 const supplyLanes = water
@@ -433,12 +443,6 @@ const supplyLanes = water
               gap: along.resupply.longestGapKm,
               points: onMain(along.resupply.points).map((p): LanePoint => ({ km: p.km, what: SHOP_LABEL[p.kind], name: p.name, stage: p.stage, minor: false })),
             },
-            {
-              id: "beds",
-              label: "Beds",
-              gap: along.beds.longestGapKm,
-              points: onMain(along.beds.points).map((p): LanePoint => ({ km: p.km, what: BED_LABEL[p.kind], name: p.name, stage: p.stage, minor: false })),
-            },
           ]
         : []),
     ]
@@ -452,14 +456,31 @@ const tickPath = (pts: LanePoint[], y: number) =>
 const supplySummary =
   water &&
   (along
-    ? `Water, shops and beds along the main route, ${water.routeKm} km. Longest without drinking water ${water.longestGapKm.drinking.km} km, without a shop ${along.resupply.longestGapKm.km} km, without a bed ${along.beds.longestGapKm.km} km.`
+    ? `Water and shops along the main route, ${water.routeKm} km. Longest without drinking water ${water.longestGapKm.drinking.km} km, without a shop ${along.resupply.longestGapKm.km} km.`
     : chartSummary);
-const BED_GROUPS = [
-  ["huts", "huts and shelters"],
-  ["camping", "campsites"],
-  ["hostels", "hostels"],
-  ["rooms", "guest houses"],
-] as const;
+// beds along the main route (issue #113; of three previews, approach B): one slim lane per sleeping
+// category under the Sleeping strip, labels and counts on the left like the Landscape lanes, the
+// longest stretch without any bed one shaded column
+const BED_GROUP: Record<string, string> = { hut: "huts", campsite: "camping", hostel: "hostels", guesthouse: "rooms" };
+const BED_WORDS: Record<string, string> = { camping: "campsites", huts: "huts", hostels: "hostels", rooms: "guest houses" };
+const bedRows = along
+  ? SLEEPING_CATEGORIES.filter((c) => c.id !== "wild-camping").map((c) => ({
+      id: c.id,
+      label: c.label,
+      count: along.beds.byGroup[c.id as keyof typeof along.beds.byGroup] ?? 0,
+      points: onMain(along.beds.points)
+        .filter((p) => BED_GROUP[p.kind] === c.id)
+        .map((p): LanePoint => ({ km: p.km, what: BED_LABEL[p.kind], name: p.name, stage: p.stage, minor: false })),
+    }))
+  : [];
+const BEDS = { top: 28, step: 24 };
+const bedsAxis = BEDS.top + bedRows.length * BEDS.step;
+const bedX = (km: number) => n1(LANE_X0 + (Math.min(km, along?.routeKm ?? km) / (along?.routeKm || 1)) * (LANE_X1 - LANE_X0));
+const bedGap = along?.beds.longestGapKm;
+const bedSummary =
+  along &&
+  bedGap &&
+  `Places to sleep along the main route, ${along.routeKm} km: ${bedRows.map((r) => `${r.count} ${BED_WORDS[r.id]}`).join(", ")}. The longest stretch without any is ${bedGap.km} km, from km ${bedGap.fromKm} to ${bedGap.toKm}.`;
 
 // on-page navigation: only sections this trail has
 const nav = [
@@ -470,7 +491,7 @@ const nav = [
   { id: "terrain", label: "Terrain", show: Boolean(elevation && grad) },
   { id: "landscape", label: "Landscape", show: Boolean(landcover) },
   { id: "sleeping", label: "Sleeping", show: Boolean(t.sleeping || t.wildCamping) },
-  { id: "water", label: along ? "Water, food and beds" : "Water", show: Boolean(water) },
+  { id: "water", label: along ? "Water & Supply" : "Water", show: Boolean(water) },
 ].filter((n) => n.show);
 
 // structured data (review #17, the light option): the page is about the trail as a place, with its
@@ -1336,7 +1357,14 @@ const trailLd = JSON.stringify({
         {sleepingRows.map((c) => (
           <li class:list={[{ off: c.status.tone === "none" }]}>
             <p class="avail-name">
-              <Explain id={`about-${c.id}`} term={c.label}><p>{c.hint}</p></Explain>
+              <Explain id={`about-${c.id}`} term={c.label}>
+                <p>{c.hint}</p>
+                {c.id !== "wild-camping" && (
+                  <p>
+                    Available where the trail's own source lists it{along && `, or where OpenStreetMap maps at least ${OSM_SLEEP_MIN} within ${along.withinM / 1000} km of the trail or ${along.stageEndM / 1000} km of a stage's end`}.
+                  </p>
+                )}
+              </Explain>
             </p>
             <p class="status">
               <span class={`mark ${c.status.shape} tone-${c.status.tone}`} aria-hidden="true"></span>
@@ -1352,12 +1380,79 @@ const trailLd = JSON.stringify({
           <span><strong>Wild camping is {WILD_CAMPING_LABELS[t.wildCamping.status].toLowerCase()}.</strong> {t.wildCamping.rule}</span>
         </p>
       )}
+      {along && bedGap && water && water.stageStarts.length > 0 && (
+        <figure class="waterline beds">
+          <div class="chart-scroll">
+          <svg viewBox={`0 0 ${CHART.width} ${bedsAxis + 40}`} role="img" aria-label={bedSummary}>
+            {stageTicks(water.stageStarts, along.routeKm, bedX).map(
+              (tk) => tk.band && <rect class="stage-band" x={tk.x} y={BEDS.top - 6} width={n1(tk.end - tk.x)} height={bedsAxis - BEDS.top + 6} />,
+            )}
+            <rect class="gap" x={bedX(bedGap.fromKm)} y={BEDS.top - 4} width={n1(bedX(bedGap.toKm) - bedX(bedGap.fromKm))} height={bedRows.length * BEDS.step} rx="3" />
+            <text
+              class="gap-label"
+              x={Math.min(Math.max(bedX((bedGap.fromKm + bedGap.toKm) / 2), LANE_X0 + 90), LANE_X1 - 90)}
+              y={BEDS.top - 10}
+              text-anchor="middle"
+            >
+              {bedGap.km} km without a bed
+            </text>
+            {bedRows.map((r, i) => {
+              const y = BEDS.top + i * BEDS.step;
+              return (
+                <g class:list={[{ none: r.count === 0 }]}>
+                  <text class="lane-label" x={CHART.x0} y={y + 11}>{r.label}</text>
+                  <text class="lane-share" x={LANE_X0 - 14} y={y + 11} text-anchor="end">{r.count.toLocaleString("en-GB")}</text>
+                  <line class="lane-track" x1={LANE_X0} x2={LANE_X1} y1={y + 8} y2={y + 8} />
+                  <path class="mark-tick beds" d={r.points.map((p) => `M${bedX(p.km)} ${y + 1}v14`).join("")} />
+                </g>
+              );
+            })}
+            {stageTicks(water.stageStarts, along.routeKm, bedX).map((tk) => (
+              <g>
+                <line class="tick" x1={tk.x} x2={tk.x} y1={bedsAxis} y2={bedsAxis + (tk.label ? 8 : 4)} />
+                {tk.label && <text class="tick-label" x={tk.mid} y={bedsAxis + 20} text-anchor="middle">{tk.label}</text>}
+              </g>
+            ))}
+            <text class="tick-label end" x={LANE_X0} y={bedsAxis + 36}>0 km</text>
+            <text class="tick-label end" x={LANE_X1} y={bedsAxis + 36} text-anchor="end">{along.routeKm} km</text>
+            <line class="cursor" x1="0" x2="0" y1={BEDS.top - 4} y2={bedsAxis} visibility="hidden" />
+          </svg>
+          </div>
+          <script
+            is:inline
+            type="application/json"
+            class="chart-data"
+            set:html={jsonBlock({
+              total: along.routeKm,
+              top: BEDS.top,
+              step: BEDS.step,
+              mid: 8,
+              x0: LANE_X0,
+              x1: LANE_X1,
+              height: bedsAxis + 40,
+              lanes: bedRows.map((r) => r.points.map((p) => [p.km, p.what, p.name ?? "", p.stage])),
+            })}
+          />
+          <div class="tip" role="status" hidden><strong></strong><span></span></div>
+          <figcaption class="chart-info">
+            <Explain id="about-beds-chart" term="About this chart" title="Places to sleep along the route" icon>
+              <p>
+                One tick per place to sleep along the main route, from OpenStreetMap: {bedRows.map((r) => `${r.count} ${BED_WORDS[r.id]}`).join(", ")}{" "}
+                within {along.withinM / 1000} km of the trail or {along.stageEndM / 1000} km of a stage's end (stage towns often
+                lie off the trail). Hotels and day shelters are left out. The shaded column is the longest stretch without any,
+                from km {bedGap.fromKm} to {bedGap.toKm}. The map may miss places or list ones that have closed, so book or check
+                locally.
+              </p>
+            </Explain>
+          </figcaption>
+        </figure>
+      )}
     </section>
   )}
 
   {water && waterTotals && waterStatus && (
     <section id="water">
-      <h2>{along ? "Water, food and beds" : "Water"}</h2>
+      <h2>{along ? "Water & Supply" : "Water"}</h2>
       <dl class="strip spec three">
         <div>
           <dt>
@@ -1398,21 +1493,6 @@ const trailLd = JSON.stringify({
               </dt>
               <dd><span class="big">{along.resupply.longestGapKm.km}</span><span class="unit">km</span></dd>
             </div>
-            <div>
-              <dt>
-                <Explain id="about-beds" term="Longest without a bed" title="Beds">
-                  <p>
-                    {along.beds.points.length} places to sleep in OpenStreetMap within the same reach:{" "}
-                    {BED_GROUPS.filter(([g]) => along.beds.byGroup[g] > 0)
-                      .map(([g, words]) => `${along.beds.byGroup[g]} ${words}`)
-                      .join(", ")}
-                    . Hotels are left out. Here the longest stretch without runs from km {along.beds.longestGapKm.fromKm} to{" "}
-                    {along.beds.longestGapKm.toKm}.
-                  </p>
-                </Explain>
-              </dt>
-              <dd><span class="big">{along.beds.longestGapKm.km}</span><span class="unit">km</span></dd>
-            </div>
           </>
         ) : (
           <div>
@@ -1435,7 +1515,6 @@ const trailLd = JSON.stringify({
             <li><svg width="10" height="14"><path d="M5 1V13" class="mark-tick water" /></svg>Drinking water</li>
             <li><svg width="10" height="14"><path d="M5 7V13" class="mark-tick water" /></svg>Spring</li>
             {along && <li><svg width="10" height="14"><path d="M5 1V13" class="mark-tick shops" /></svg>Shop</li>}
-            {along && <li><svg width="10" height="14"><path d="M5 1V13" class="mark-tick beds" /></svg>Bed</li>}
             <li><span class="swatch"></span>Longest stretch without</li>
           </ul>
           <div class="chart-scroll">
@@ -1477,10 +1556,10 @@ const trailLd = JSON.stringify({
           />
           <div class="tip" role="status" hidden><strong></strong><span></span></div>
           <figcaption class="chart-info">
-            <Explain id="about-water-chart" term="About this chart" title={along ? "Water, food and beds along the route" : "Water along the route"} icon>
+            <Explain id="about-water-chart" term="About this chart" title={along ? "Water and shops along the route" : "Water along the route"} icon>
               <p>
                 One tick per place along the main route, from OpenStreetMap{waterExtra.length > 0 && ` (water also from ${waterExtra.join(", ")})`}:
-                drinking water and springs within {water.withinM} m{along && `, shops and beds within ${along.withinM / 1000} km or ${along.stageEndM / 1000} km of a stage's end`}.
+                drinking water and springs within {water.withinM} m{along && `, shops within ${along.withinM / 1000} km or ${along.stageEndM / 1000} km of a stage's end`}.
                 The shaded band in each lane is its longest stretch without. The map may miss places or list ones that have
                 closed or run dry, so check locally.
               </p>
@@ -1556,15 +1635,19 @@ const trailLd = JSON.stringify({
       top: number;
       step: number;
       height: number;
+      mid?: number; // a lane's middle below its top (13, the supply bands; 8, the slim beds lanes)
+      x0?: number;
+      x1?: number;
       lanes: [number, string, string, string][][]; // km, what, name, stage
     } = JSON.parse(figure.querySelector(".chart-data")!.textContent!);
-    const X0 = 8;
-    const X1 = 992;
+    const X0 = data.x0 ?? 8;
+    const X1 = data.x1 ?? 992;
+    const mid = data.mid ?? 13;
     const show = (clientX: number, clientY: number) => {
       const box = svg.getBoundingClientRect();
       const vx = ((clientX - box.left) / box.width) * 1000;
       const vy = ((clientY - box.top) / box.height) * data.height;
-      const lane = Math.min(Math.max(Math.floor((vy - data.top + data.step / 2 - 13) / data.step), 0), data.lanes.length - 1);
+      const lane = Math.min(Math.max(Math.floor((vy - data.top + data.step / 2 - mid) / data.step), 0), data.lanes.length - 1);
       const km = ((vx - X0) / (X1 - X0)) * data.total;
       // the nearest place within about 12 units (1.2 % of the route)
       const near = data.lanes[lane].reduce<[number, string, string, string] | null>(
@@ -2773,6 +2856,29 @@ const trailLd = JSON.stringify({
   }
   .waterline svg {
     cursor: crosshair;
+  }
+  /* beds in Sleeping (issue #113): slim lanes, labels and counts on the left like the Landscape lanes */
+  .beds {
+    margin-top: 18px;
+  }
+  .beds .lane-label,
+  .beds .lane-share {
+    font: 15px var(--sans);
+  }
+  .beds .lane-label {
+    fill: var(--text);
+  }
+  .beds .lane-share,
+  .beds .none .lane-label {
+    fill: var(--muted);
+  }
+  .beds .lane-track {
+    stroke: var(--line);
+    stroke-width: 1;
+  }
+  .beds .gap-label {
+    fill: var(--text);
+    font: 600 13px var(--sans);
   }
   /* terrain: the profile's tint, the colour of level ground */
   .terrain {

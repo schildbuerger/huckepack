@@ -3,7 +3,7 @@
 // `npm test` (Node's test runner; Node strips the types itself).
 import { test } from "node:test";
 import assert from "node:assert/strict";
-import { barMetres, gradients, trailClimb, trailLength, walkingMinutes, stageTotals, STEEP_PERCENT } from "../src/lib/trails.ts";
+import { barMetres, gradients, sleepingCategories, trailClimb, trailLength, walkingMinutes, stageTotals, STEEP_PERCENT } from "../src/lib/trails.ts";
 import { mergeRuns, stripPaths, n1 } from "../src/lib/svg.ts";
 import { kmBetween, roundDistance } from "../src/lib/geo.ts";
 
@@ -80,6 +80,11 @@ test("long trails sampled every 500 m get 500 m bars", () => {
   assert.equal(g.bars.length, 10);
   assert.ok(g.bars.every((b) => b.grade === 10));
   assert.equal(g.climb.grade, 10);
+});
+
+test("sleeping: the source's types, or at least three places in OpenStreetMap", () => {
+  assert.deepEqual(sleepingCategories(["guesthouse"]), ["rooms"]);
+  assert.deepEqual(sleepingCategories(["guesthouse"], { camping: 48, huts: 2, hostels: 10, rooms: 476 }), ["camping", "hostels", "rooms"]);
 });
 
 test("strip paths: one path per category, neighbouring runs joined", () => {

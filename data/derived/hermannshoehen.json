@@ -21623,17 +21623,6 @@
           "offM": 262
         },
         {
-          "lat": 52.278041,
-          "lon": 7.606663,
-          "group": "beds",
-          "kind": "shelter",
-          "name": null,
-          "stage": "2",
-          "stageKind": "main",
-          "km": 20.8,
-          "offM": 93
-        },
-        {
           "lat": 52.264183,
           "lon": 7.622427,
           "group": "beds",
@@ -21643,28 +21632,6 @@
           "stageKind": "main",
           "km": 22.9,
           "offM": 841
-        },
-        {
-          "lat": 52.272319,
-          "lon": 7.650364,
-          "group": "beds",
-          "kind": "shelter",
-          "name": null,
-          "stage": "2",
-          "stageKind": "main",
-          "km": 24.0,
-          "offM": 614
-        },
-        {
-          "lat": 52.255165,
-          "lon": 7.677877,
-          "group": "beds",
-          "kind": "shelter",
-          "name": null,
-          "stage": "2",
-          "stageKind": "main",
-          "km": 26.7,
-          "offM": 140
         },
         {
           "lat": 52.245769,
@@ -21832,17 +21799,6 @@
           "offM": 722
         },
         {
-          "lat": 52.107326,
-          "lon": 8.284349,
-          "group": "beds",
-          "kind": "shelter",
-          "name": null,
-          "stage": "5",
-          "stageKind": "main",
-          "km": 81.5,
-          "offM": 9
-        },
-        {
           "lat": 52.099529,
           "lon": 8.296156,
           "group": "beds",
@@ -21997,17 +21953,6 @@
           "offM": 447
         },
         {
-          "lat": 51.951739,
-          "lon": 8.679953,
-          "group": "beds",
-          "kind": "shelter",
-          "name": null,
-          "stage": "8",
-          "stageKind": "main",
-          "km": 126.6,
-          "offM": 8
-        },
-        {
           "lat": 51.947989,
           "lon": 8.683964,
           "group": "beds",
@@ -22050,17 +21995,6 @@
           "stageKind": "main",
           "km": 140.8,
           "offM": 1724
-        },
-        {
-          "lat": 51.905622,
-          "lon": 8.850641,
-          "group": "beds",
-          "kind": "shelter",
-          "name": null,
-          "stage": "9",
-          "stageKind": "main",
-          "km": 143.3,
-          "offM": 556
         },
         {
           "lat": 51.890915,
@@ -22151,17 +22085,6 @@
           "offM": 749
         },
         {
-          "lat": 51.747203,
-          "lon": 8.991534,
-          "group": "beds",
-          "kind": "shelter",
-          "name": null,
-          "stage": "10",
-          "stageKind": "main",
-          "km": 173.2,
-          "offM": 8
-        },
-        {
           "lat": 51.739655,
           "lon": 9.01763,
           "group": "beds",
@@ -22195,39 +22118,6 @@
           "offM": 2502
         },
         {
-          "lat": 51.612522,
-          "lon": 9.015875,
-          "group": "beds",
-          "kind": "shelter",
-          "name": null,
-          "stage": "12",
-          "stageKind": "main",
-          "km": 192.1,
-          "offM": 1391
-        },
-        {
-          "lat": 51.538206,
-          "lon": 8.916456,
-          "group": "beds",
-          "kind": "shelter",
-          "name": "Blankenroder Hütte",
-          "stage": "12",
-          "stageKind": "main",
-          "km": 210.3,
-          "offM": 3
-        },
-        {
-          "lat": 51.546023,
-          "lon": 8.877744,
-          "group": "beds",
-          "kind": "shelter",
-          "name": "Dankelmann-Hütte",
-          "stage": "13",
-          "stageKind": "main",
-          "km": 211.2,
-          "offM": 2104
-        },
-        {
           "lat": 51.537115,
           "lon": 8.903422,
           "group": "beds",
@@ -22237,17 +22127,6 @@
           "stageKind": "main",
           "km": 211.2,
           "offM": 99
-        },
-        {
-          "lat": 51.489296,
-          "lon": 8.856138,
-          "group": "beds",
-          "kind": "shelter",
-          "name": "Essentho Eggehütte",
-          "stage": "13",
-          "stageKind": "main",
-          "km": 218.9,
-          "offM": 12
         },
         {
           "lat": 51.457576,
@@ -22273,12 +22152,12 @@
         }
       ],
       "longestGapKm": {
-        "km": 18.2,
-        "fromKm": 192.1,
-        "toKm": 210.3
+        "km": 19.7,
+        "fromKm": 191.5,
+        "toKm": 211.2
       },
       "byGroup": {
-        "huts": 11,
+        "huts": 0,
         "camping": 9,
         "hostels": 11,
         "rooms": 30

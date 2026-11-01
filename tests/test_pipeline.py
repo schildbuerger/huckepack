@@ -203,7 +203,9 @@ class Along(unittest.TestCase):
     def test_beds(self):
         self.assertEqual(along.classify({"tourism": "alpine_hut"}), ("beds", "hut"))
         self.assertEqual(along.classify({"tourism": "camp_site"}), ("beds", "campsite"))
-        self.assertEqual(along.classify({"amenity": "shelter", "shelter_type": "basic_hut"}), ("beds", "shelter"))
+        # shelters are day shelters along these trails, whatever their type
+        self.assertIsNone(along.classify({"amenity": "shelter", "shelter_type": "basic_hut"}))
+        self.assertIsNone(along.classify({"amenity": "shelter", "shelter_type": "lean_to"}))
         self.assertIsNone(along.classify({"amenity": "shelter", "shelter_type": "picnic_shelter"}))
         self.assertIsNone(along.classify({"tourism": "hotel"}))
 
