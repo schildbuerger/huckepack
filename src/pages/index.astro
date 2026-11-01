@@ -5,6 +5,7 @@ import Icon, { type IconName } from "../components/Icon.astro";
 import TrailSpark from "../components/TrailSpark.astro";
 import Explain from "../components/Explain.astro";
 import TrailSearch from "../components/TrailSearch.astro";
+import TripSearch from "../components/TripSearch.astro";
 import { mainStages, stageEstimates, trailClimb, walkingMinutes } from "../lib/trails";
 import { LEVELS } from "../lib/difficulty";
 import { climateLevel } from "../lib/filters";
@@ -26,7 +27,7 @@ const recent = [...trails]
 const addedText = (slug: string) =>
   addedOf.get(slug)!.toLocaleDateString("en-GB", { day: "numeric", month: "long", year: "numeric", timeZone: "UTC" });
 // a trail's difficulty in one word: the hardest of its three ratings, climate for its best run of
-// season months, as the trail page's key figure shows it; the header's month pick re-rates it in
+// season months, as the trail page's key figure shows it; months picked in the search re-rate it in
 // the browser (data-rate, src/lib/months.ts rerate())
 const difficultyWord = (t: (typeof trails)[number]) => {
   const xs = [t.terrainLevel, t.effortLevel, climateLevel(t, [])].filter((x) => x !== null) as number[];
@@ -193,7 +194,7 @@ const featuredScript = inlineScript(Astro, `// A random featured trail on each p
   description="Find the long-distance hiking trail that suits you and go prepared: stages, terrain, climate, water and beds for every trail, from official and open sources, checked against a second source."
 >
   <!-- issue #83 (of three previews, approach B): search with suggestions, in the header -->
-  <div slot="header" class="header-search"><TrailSearch id="search-header" size="compact" placeholder="Search trails" /></div>
+  <div slot="header" class="header-search"><TrailSearch id="search-header" size="compact" placeholder="Search" /></div>
 
   <section class="hero">
     <p class="eyebrow">Long-distance trails, in data</p>
@@ -208,10 +209,9 @@ const featuredScript = inlineScript(Astro, `// A random featured trail on each p
         </li>
       ))}
     </ul>
-    <div class="ctas">
-      <a class="button cta" href="/trails/">Explore the trails <span aria-hidden="true">→</span></a>
-      <a class="cta-secondary" href="/trails/guide/">Help me choose</a>
-    </div>
+    <!-- issue #128 (of three previews, approach A): a trip search, when first, into the results -->
+    <TripSearch trails={trails} />
+    <p class="guide">Not sure yet? <a href="/trails/guide/">Help me choose <span aria-hidden="true">→</span></a></p>
   </section>
 
   <!-- each figure twice: the final value for screen readers, and a copy the script below counts up -->
@@ -411,7 +411,7 @@ const featuredScript = inlineScript(Astro, `// A random featured trail on each p
     </dl>
   </section>
   <!-- issue #81 (of three previews, approach A): the two calls to action again, in a slim bar along the
-       bottom, once the hero's buttons have scrolled away and until the footer comes into view; hidden
+       bottom, once the hero's trip search has scrolled away and until the footer comes into view; hidden
        from screen readers and keyboard while it is away -->
   <div class="cta-bar" aria-hidden="true" inert>
     <span class="cta-bar-text">Find your long-distance trail</span>
@@ -422,7 +422,7 @@ const featuredScript = inlineScript(Astro, `// A random featured trail on each p
   </div>
   <script>
     const bar = document.querySelector<HTMLElement>(".cta-bar")!;
-    const hero = document.querySelector<HTMLElement>(".hero .ctas");
+    const hero = document.querySelector<HTMLElement>(".hero .trip");
     const footer = document.querySelector<HTMLElement>(".site-footer");
     if (hero && "IntersectionObserver" in window) {
       let heroGone = false;
@@ -451,7 +451,7 @@ const featuredScript = inlineScript(Astro, `// A random featured trail on each p
   .hero {
     max-width: 720px;
     margin: 0 auto;
-    padding: 56px 0 48px;
+    padding: 88px 0 72px;
     text-align: center;
   }
   .eyebrow {
@@ -462,8 +462,13 @@ const featuredScript = inlineScript(Astro, `// A random featured trail on each p
     letter-spacing: 0.08em;
     text-transform: uppercase;
   }
+  @media (max-width: 719px) {
+    .hero {
+      padding: 56px 0 48px;
+    }
+  }
   .hero h1 {
-    margin: 12px 0 0;
+    margin: 16px 0 0;
     font-size: clamp(2.3rem, 6.5vw, 3.6rem);
   }
   /* the list is centred as a block, its items left-aligned so the check marks line up */
@@ -477,7 +482,7 @@ const featuredScript = inlineScript(Astro, `// A random featured trail on each p
     grid-template-columns: repeat(3, minmax(0, 1fr));
     gap: 24px;
     max-width: 840px;
-    margin: 32px auto 0;
+    margin: clamp(32px, 6vw, 56px) auto 0;
     padding: 0;
     list-style: none;
   }
@@ -523,51 +528,14 @@ const featuredScript = inlineScript(Astro, `// A random featured trail on each p
       margin: 0;
     }
   }
-  /* the main call to action, and beside it the guided questions as a quieter outlined button */
-  .ctas {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-items: center;
-    gap: 12px 16px;
-    margin-top: 32px;
+  /* the guided questions, a quiet link under the trip search */
+  .guide {
+    margin: 20px 0 0;
+    color: var(--muted);
   }
-  .cta-secondary {
-    padding: 15px 30px;
-    border: 1px solid var(--accent);
-    border-radius: 999px;
+  .guide a {
     color: var(--accent-text);
-    font-size: 1.15rem;
     font-weight: 600;
-    text-decoration: none;
-    transition: background 0.15s ease;
-  }
-  .cta-secondary:hover {
-    background: var(--accent-soft);
-  }
-  .cta-secondary:focus-visible {
-    outline: 2px solid var(--accent);
-    outline-offset: 3px;
-  }
-  .cta {
-    padding: 16px 36px;
-    font-size: 1.15rem;
-    box-shadow: 0 6px 20px -8px var(--accent);
-    transition: transform 0.15s ease, box-shadow 0.15s ease;
-  }
-  .cta:hover {
-    transform: translateY(-1px);
-    box-shadow: 0 10px 24px -8px var(--accent);
-  }
-  .cta:focus-visible {
-    outline: 2px solid var(--accent);
-    outline-offset: 3px;
-  }
-  @media (prefers-reduced-motion: reduce) {
-    .cta,
-    .cta-secondary {
-      transition: none;
-    }
   }
 
   /* the header's search (issue #83) */
@@ -576,7 +544,9 @@ const featuredScript = inlineScript(Astro, `// A random featured trail on each p
   }
   @media (max-width: 559px) {
     .header-search {
-      width: 150px;
+      flex: 0 1 150px;
+      width: auto;
+      min-width: 0;
     }
   }
 

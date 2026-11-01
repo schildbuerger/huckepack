@@ -1,7 +1,7 @@
 // The months a climate rating is read for (issue #114): without a pick, a trail's best run of at
 // least two consecutive season months; with a pick (the URL's `months`, the same parameter as the
 // search's When filter), the months picked. Pure functions, used at build time and in the browser
-// (the header's month pick re-rates every difficulty on the page; nothing is stored).
+// (months in the URL re-rate every difficulty on the page, Base.astro; nothing is stored).
 
 export const MONTH_ABBR = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
 const ALL = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];

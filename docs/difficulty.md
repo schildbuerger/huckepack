@@ -35,8 +35,8 @@ picked, a trail's climate rating is its **best run of at least two consecutive s
 (the record's `season.months`, all months if none; across the new year too): of every such run,
 the one whose hardest month is easiest, on a tie the longest; the run's hardest month sets the
 level, "Moderate in Sep–Oct". A one-month season is rated by its month. The season's hardest
-month still shows, lighter, above the climate bar. With the header's month pick (the URL's
-`months`, the same setting as the search's When filter; nothing is stored), the rating is the
+month still shows, lighter, above the climate bar. With months picked in the search (the
+URL's `months`: the search's When filter or the home page's trip search; nothing is stored), the rating is the
 hardest of the picked months, outside the season too, with a note there ("Outside the season").
 Each measure shows its own hardest month of the months rated. Before 2026-11-01 the season's
 hardest month set the rating, which made 17 of 25 trails read "Hard" overall; a hiker plans for

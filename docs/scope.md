@@ -165,9 +165,10 @@
   kinds (approach B of three).
 - **Difficulty by month (issue #114, 2026-11-01):** without a pick, climate
   is rated for a trail's best run of at least two consecutive season months;
-  a month pick in every page's header (approach A of three previews, with an
-  (i) on why the months matter) re-rates every page. The pick lives only in
-  the URL and is the same setting as the search's When filter.
+  months picked in the search (its When filter, the URL's `months`) re-rate
+  the difficulty. A month pick in every page's header (approach A of three
+  previews) did this until 2026-11-01; it was removed when the home page's
+  trip search (issue #128) started asking for the months first.
 - **A crossing OSM maps as under construction (2026-11-01):** a stage may
   allow the matcher a longer bridge (`maxBridgeM`), noted in the record (the
   Cotswold Way's A417 at the Air Balloon, 133 m), instead of holding the

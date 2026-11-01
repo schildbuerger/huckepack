@@ -71,7 +71,7 @@ const diff = difficulty(t, derived);
 const diffTop = Math.max(1, ...diff.dims.map((d) => d.level)) as Level;
 const climateDim = diff.dims.find((d) => d.id === "climate");
 const dimLevel = (id: string) => diff.dims.find((d) => d.id === id)?.level ?? null;
-// each month's climate measures, for the header's month pick (re-rated in the browser): [level,
+// each month's climate measures, for months picked in the search (re-rated in the browser): [level,
 // text] per measure, in the climate card's order
 const climateMonths = climateDim ? diff.months.map((m) => climateDim.measures.map((x) => { const y = m.measures.find((z) => z.id === x.id)!; return [y.level, y.text]; })) : [];
 // title and description for tabs, search results and link previews: what and where, then the
@@ -678,7 +678,7 @@ const trailLd = JSON.stringify({
           <dd class="diff-fig" data-rate={climateDim ? rateData(dimLevel("terrain"), dimLevel("effort"), diff.months.map((m) => m.level), diff.season) : undefined}>
             <span class="sr-only rate-sr">{diff.dims.map((d) => `${d.label}: ${levelText(d)}`).join("; ")}</span>
             <!-- one bar per dimension, as tall as its level; climate's harder season months lighter
-                 above (the header's month pick re-rates it, src/lib/months.ts) -->
+                 above (months picked in the search re-rate it, src/lib/months.ts) -->
             <span class="diff-bars" aria-hidden="true">
               {diff.dims.map((d) => (
                 <span class="diff-col" data-dim={d.id} title={`${d.label}: ${levelText(d)}`}>
@@ -1712,10 +1712,10 @@ const trailLd = JSON.stringify({
 </Base>
 
 <script>
-  // The header's month pick (issue #114, src/components/MonthPick.astro) re-rates the Difficulty
+  // Months picked in the search (the URL's `months`, issues #114 and #128) re-rate the Difficulty
   // section's climate card in place: its level, each measure's hardest month among the months
   // picked, and a note for months outside the season. Without a pick the page stays as built
-  // (the best run of season months); the key figure is re-rated by MonthPick itself (data-rate).
+  // (the best run of season months); the key figure is re-rated by Base.astro (data-rate).
   import { climateFor, monthsText, readPick } from "../../lib/months";
 
   const block = document.getElementById("climate-months");

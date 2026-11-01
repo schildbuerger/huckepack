@@ -8,7 +8,7 @@
   import { WATER_LEVELS } from "../lib/trails";
   import { LANDSCAPES, LEVEL_WORDS, MONTHS, dimSay, ratedDims } from "../lib/filters";
 
-  // months: the month pick (the map's When filter, the header's pick), climate re-rated for it
+  // months: the months picked (the map's When filter), climate re-rated for it
   let { trail: t, months = [], onclose }: { trail: SearchTrail; months?: number[]; onclose: () => void } = $props();
 
   const fmt = (n: number) => n.toLocaleString("en");

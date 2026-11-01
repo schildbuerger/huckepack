@@ -1,0 +1,691 @@
+---
+// The home page's trip search (issue #128; of three previews, approach A: a booking bar): When,
+// Where and How long (one or more lengths, which make one range: the search's `days` is a range),
+// each a field that opens a panel beneath it, and a search button with the
+// number of trails the picks leave. Nothing is required; the button opens the search page with the
+// picks as its own URL parameters (`months`, `where`, `days`), so the results are rated for the
+// months picked. The count, the choices that would leave no trail
+// (disabled) and the URL come from the search page's filters (src/lib/filters.ts), so they agree.
+// Without JavaScript the panels don't open and the button opens the search page.
+import type { SearchTrail } from "../lib/search";
+import { places, TRIP_LENGTHS } from "../lib/filters";
+import { MONTH_ABBR } from "../lib/months";
+
+interface Props {
+  trails: SearchTrail[];
+}
+const { trails } = Astro.props;
+const where = places(trails);
+// the Where list: continents, then countries (with their continent), each matched by the words of
+// its name; before anything is typed it suggests the continents and the countries with most trails
+const TOP_COUNTRIES = 6;
+const trailsIn = (c: string) => trails.filter((t) => t.countries.includes(c)).length;
+// countries with most trails first (they are the suggestions), then the rest by name
+const byTrails = where.flatMap((p) => p.countries).sort((a, b) => trailsIn(b) - trailsIn(a) || a.localeCompare(b));
+const top = new Set(byTrails.slice(0, TOP_COUNTRIES));
+const rank = (c: string) => (top.has(c) ? byTrails.indexOf(c) : TOP_COUNTRIES);
+const countries = where
+  .flatMap((p) => p.countries.map((c) => ({ name: c, continent: p.continent })))
+  .sort((a, b) => rank(a.name) - rank(b.name) || a.name.localeCompare(b.name));
+// only what the three questions ask of a trail
+const json = JSON.stringify({
+  trails: trails.map((t) => ({ season: t.season, days: t.days, continents: t.continents, countries: t.countries })),
+  places: where,
+}).replaceAll("<", "\\u003c");
+---
+
+<form class="trip" action="/trails/" data-trip>
+  <div class="seg">
+    <button type="button" class="field" aria-expanded="false" aria-controls="trip-when" data-open>
+      <span class="flabel">When</span><span class="fval" data-val="when">Any month</span>
+    </button>
+    <div class="panel" id="trip-when" hidden>
+      <p class="phint">Pick a month, or a second one for a run.</p>
+      <div class="months" role="group" aria-label="Months">
+        {MONTH_ABBR.map((m, i) => <button type="button" data-m={i + 1} aria-pressed="false">{m}</button>)}
+      </div>
+    </div>
+  </div>
+  <div class="seg">
+    <button type="button" class="field" aria-expanded="false" aria-controls="trip-where" data-open>
+      <span class="flabel">Where</span><span class="fval where-val"><span class="fname" data-val="where">Anywhere</span><span class="fmore" data-more></span></span>
+    </button>
+    <div class="panel wide" id="trip-where" hidden>
+      {/* a destination search, as travel sites have it: type a country or continent; before typing,
+           suggestions; several places at once, shown as removable chips under the list (above it,
+           each pick would push the input and the list down) */}
+      <label for="trip-where-input" class="sr-only">Country or continent</label>
+      <div class="where-input">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"></circle><path d="m20 20-3.5-3.5"></path></svg>
+        <input
+          id="trip-where-input"
+          type="search"
+          role="combobox"
+          autocomplete="off"
+          spellcheck="false"
+          aria-autocomplete="list"
+          aria-expanded="true"
+          aria-controls="trip-where-list"
+          placeholder="Country or continent"
+        />
+      </div>
+      <div class="where-list" id="trip-where-list" role="listbox" aria-multiselectable="true" aria-label="Places">
+        <p class="group" role="presentation" data-group="continent">Continents</p>
+        {where.map((p) => (
+          <div role="option" id={`trip-w-${p.continent.replace(/\W+/g, "-")}`} class="opt" data-where={p.continent} data-kind="continent" data-terms={p.continent.toLowerCase()} data-top aria-selected="false">
+            <span class="check" aria-hidden="true"></span><span class="name">{p.continent}</span><span class="n" data-n></span>
+          </div>
+        ))}
+        <p class="group" role="presentation" data-group="country">Countries</p>
+        {countries.map((c) => (
+          <div role="option" id={`trip-w-${c.name.replace(/\W+/g, "-")}`} class="opt" data-where={c.name} data-in={c.continent} data-kind="country" data-terms={c.name.toLowerCase()} data-top={top.has(c.name) ? "" : undefined} aria-selected="false">
+            <span class="check" aria-hidden="true"></span><span class="name">{c.name} <span class="in">{c.continent}</span></span><span class="n" data-n></span>
+          </div>
+        ))}
+        <p class="none" role="presentation" hidden>No country or continent matches.</p>
+      </div>
+      <div class="picked" data-picked></div>
+    </div>
+  </div>
+  <div class="seg">
+    <button type="button" class="field" aria-expanded="false" aria-controls="trip-days" data-open>
+      <span class="flabel">How long</span><span class="fval" data-val="days">Any length</span>
+    </button>
+    <div class="panel end" id="trip-days" hidden>
+      <p class="phint">Pick one or more; they make one range.</p>
+      <div class="days" role="group" aria-label="Walking days">
+        {TRIP_LENGTHS.map((d, i) => (
+          <button type="button" data-day={i} aria-pressed="false"><strong>{d.label}</strong><span>{d.hint}</span></button>
+        ))}
+      </div>
+    </div>
+  </div>
+  <button type="submit" class="go">
+    <span class="go-label"
+      ><span data-count>Explore trails</span><span class="sizer" aria-hidden="true">Show {trails.length} trails</span><span class="sizer" aria-hidden="true">Explore trails</span></span
+    >
+    <span aria-hidden="true">→</span>
+  </button>
+  <script type="application/json" class="trip-data" set:html={json} />
+</form>
+
+<script>
+  import { DAYS, DAYS_ALL, matches, noFilters, toParams, toggleWhere, TRIP_LENGTHS, type Filters } from "../lib/filters";
+  import { monthsText, runBetween } from "../lib/months";
+  import type { SearchTrail } from "../lib/search";
+
+  const root = document.querySelector<HTMLFormElement>("[data-trip]");
+  if (root) {
+    const { trails, places } = JSON.parse(root.querySelector(".trip-data")!.textContent!) as {
+      trails: SearchTrail[];
+      places: { continent: string; countries: string[] }[];
+    };
+    const $ = <T extends HTMLElement>(s: string) => [...root.querySelectorAll<T>(s)];
+    let months: number[] = [];
+    let anchor: number | null = null;
+    let where: string[] = [];
+    // trip lengths as a range of TRIP_LENGTHS indexes, or none
+    let days: [number, number] | null = null;
+    const filters = (m = months, w = where, d = days): Filters => ({
+      ...noFilters(),
+      months: m,
+      where: w,
+      ...(d && { dayLo: TRIP_LENGTHS[d[0]].dayLo, dayHi: TRIP_LENGTHS[d[1]].dayHi }),
+    });
+    const count = (f: Filters) => trails.filter((t) => matches(t, f)).length;
+    // a month: the first click picks it, a second makes the run to it, a click on the only one clears
+    const monthsAfter = (m: number) => (anchor === null || months.length > 1 ? [m] : m === anchor ? [] : runBetween(anchor, m));
+    // a length: one outside the range extends it, an end of it shrinks it, one inside picks only it
+    const daysAfter = (i: number): [number, number] | null => {
+      if (!days) return [i, i];
+      const [lo, hi] = days;
+      if (i < lo || i > hi) return [Math.min(lo, i), Math.max(hi, i)];
+      if (lo === hi) return null;
+      return i === lo ? [lo + 1, hi] : i === hi ? [lo, hi - 1] : [i, i];
+    };
+    // "4–14 days", "8+ days"
+    const daysText = ([lo, hi]: [number, number]) =>
+      `${DAYS[TRIP_LENGTHS[lo].dayLo]}${TRIP_LENGTHS[hi].dayHi === DAYS_ALL ? "+" : `–${DAYS[TRIP_LENGTHS[hi].dayHi]}`} days`;
+
+    function draw() {
+      // a choice that would leave no trail is disabled, unless it is on (so it can be undone)
+      for (const b of $<HTMLButtonElement>("[data-m]")) {
+        const on = months.includes(Number(b.dataset.m));
+        b.setAttribute("aria-pressed", String(on));
+        b.disabled = !on && count(filters(monthsAfter(Number(b.dataset.m)))) === 0;
+      }
+      // places and lengths combine (any of the places, one range of days), so each is judged on its
+      // own: a place with no trail for the other picks stays disabled whatever else is picked
+      for (const o of options) {
+        const on = where.includes(o.dataset.where!);
+        const n = count(filters(months, [o.dataset.where!]));
+        o.setAttribute("aria-selected", String(on));
+        // a country whose continent is picked is in the choice already
+        o.classList.toggle("included", !on && where.includes(o.dataset.in ?? ""));
+        o.querySelector("[data-n]")!.textContent = `${n} ${n === 1 ? "trail" : "trails"}`;
+        o.setAttribute("aria-disabled", String(!on && n === 0));
+      }
+      picked.replaceChildren(
+        ...where.map((w) => {
+          const b = document.createElement("button");
+          b.type = "button";
+          b.className = "chip";
+          b.setAttribute("aria-label", `Remove ${w}`);
+          b.innerHTML = '<span></span><span aria-hidden="true">×</span>';
+          b.firstElementChild!.textContent = w;
+          b.addEventListener("click", () => {
+            where = where.filter((x) => x !== w);
+            draw();
+            input.focus();
+          });
+          return b;
+        }),
+      );
+      for (const b of $<HTMLButtonElement>("[data-day]")) {
+        const i = Number(b.dataset.day);
+        const on = days !== null && i >= days[0] && i <= days[1];
+        b.setAttribute("aria-pressed", String(on));
+        b.disabled = !on && count(filters(months, where, [i, i])) === 0;
+      }
+      const values = {
+        when: months.length ? monthsText(months) : "",
+        where: where[0] ?? "",
+        days: days ? daysText(days) : "",
+      };
+      const blank = { when: "Any month", where: "Anywhere", days: "Any length" };
+      for (const el of $("[data-val]")) {
+        const k = el.dataset.val as keyof typeof values;
+        el.textContent = values[k] || blank[k];
+        el.closest(".field")!.classList.toggle("set", Boolean(values[k]));
+      }
+      // "United Kingdom +1": the name may be cut short, never the number of further places
+      root!.querySelector("[data-more]")!.textContent = where.length > 1 ? `+${where.length - 1}` : "";
+      const n = count(filters());
+      root!.querySelector("[data-count]")!.textContent =
+        months.length || where.length || days ? `Show ${n} ${n === 1 ? "trail" : "trails"}` : "Explore trails";
+    }
+
+    for (const b of $<HTMLButtonElement>("[data-m]"))
+      b.addEventListener("click", () => {
+        const m = Number(b.dataset.m);
+        months = monthsAfter(m);
+        anchor = months.length === 1 ? m : months.length ? anchor : null;
+        draw();
+      });
+    // Where: a combobox over the places; words match at a word's start, in any order ("united k");
+    // a pick clears the text, so the suggestions come back for the next one
+    const input = root.querySelector<HTMLInputElement>("#trip-where-input")!;
+    const options = $<HTMLElement>("[role=option]");
+    const picked = root.querySelector<HTMLElement>("[data-picked]")!;
+    const groups = $("[data-group]");
+    const none = root.querySelector<HTMLElement>(".where-list .none")!;
+    let active = -1;
+    const shown = () => options.filter((o) => !o.hidden);
+    function setActive(i: number) {
+      active = i;
+      shown().forEach((o, j) => o.classList.toggle("active", j === i));
+      if (i >= 0) {
+        input.setAttribute("aria-activedescendant", shown()[i].id);
+        shown()[i].scrollIntoView({ block: "nearest" });
+      } else input.removeAttribute("aria-activedescendant");
+    }
+    function list() {
+      const words = input.value.trim().toLowerCase().split(/\s+/).filter(Boolean);
+      for (const o of options) {
+        const terms = o.dataset.terms!.split(/[\s,()-]+/);
+        o.hidden = words.length ? !words.every((w) => terms.some((t) => t.startsWith(w))) : !o.hasAttribute("data-top");
+      }
+      for (const g of groups) g.hidden = !options.some((o) => !o.hidden && o.dataset.kind === g.dataset.group);
+      groups.find((g) => g.dataset.group === "country")!.textContent = words.length ? "Countries" : "Most trails";
+      none.hidden = shown().length > 0;
+      setActive(words.length && shown().length ? 0 : -1);
+    }
+    function pick(o: HTMLElement) {
+      if (o.getAttribute("aria-disabled") === "true") return;
+      where = toggleWhere(where, o.dataset.where!, places);
+      input.value = "";
+      list();
+      draw();
+      input.focus();
+    }
+    for (const o of options) o.addEventListener("click", () => pick(o));
+    input.addEventListener("input", list);
+    input.addEventListener("keydown", (e) => {
+      const vis = shown();
+      if (e.key === "ArrowDown" && vis.length) {
+        e.preventDefault();
+        setActive(Math.min(active + 1, vis.length - 1));
+      } else if (e.key === "ArrowUp" && vis.length) {
+        e.preventDefault();
+        setActive(Math.max(active - 1, 0));
+      } else if (e.key === "Enter") {
+        // Enter picks the active place, never submits the form from here
+        e.preventDefault();
+        if (active >= 0) pick(vis[active]);
+      } else if (e.key === "Backspace" && !input.value && where.length) {
+        where = where.slice(0, -1);
+        draw();
+      }
+    });
+    list();
+    for (const b of $<HTMLButtonElement>("[data-day]"))
+      b.addEventListener("click", () => {
+        days = daysAfter(Number(b.dataset.day));
+        draw();
+      });
+
+    // one panel open at a time; Esc (back to its field) or a click elsewhere closes it
+    const fields = $<HTMLButtonElement>("[data-open]");
+    const panel = (f: HTMLElement) => document.getElementById(f.getAttribute("aria-controls")!)!;
+    const shut = () => {
+      for (const f of fields) {
+        f.setAttribute("aria-expanded", "false");
+        panel(f).hidden = true;
+      }
+    };
+    for (const f of fields)
+      f.addEventListener("click", () => {
+        const open = f.getAttribute("aria-expanded") === "true";
+        shut();
+        if (!open) {
+          f.setAttribute("aria-expanded", "true");
+          panel(f).hidden = false;
+          panel(f).querySelector("input")?.focus();
+        }
+      });
+    // by the click's path, not its target: a removed chip is no longer in the form once it's handled
+    document.addEventListener("click", (e) => !e.composedPath().includes(root) && shut());
+    root.addEventListener("keydown", (e) => {
+      if (e.key !== "Escape") return;
+      const open = fields.find((f) => f.getAttribute("aria-expanded") === "true");
+      shut();
+      open?.focus();
+    });
+
+    // the search page's own parameters (commas kept plain, as its links write them)
+    root.addEventListener("submit", (e) => {
+      e.preventDefault();
+      const p = toParams(filters()).toString().replaceAll("%2C", ",");
+      location.href = `/trails/${p ? `?${p}` : ""}`;
+    });
+    draw();
+  }
+</script>
+
+<style>
+  .trip {
+    position: relative;
+    display: flex;
+    width: 100%;
+    margin: clamp(40px, 6vw, 56px) auto 0;
+    align-items: stretch;
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    background: var(--bg);
+    box-shadow: 0 8px 28px -12px rgb(0 0 0 / 0.25);
+    text-align: left;
+  }
+  .trip button {
+    font: inherit;
+    color: var(--text);
+    cursor: pointer;
+  }
+  .trip button:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+  }
+  .trip button:disabled {
+    opacity: 0.35;
+    cursor: default;
+  }
+  .seg {
+    position: relative;
+    flex: 1 1 0;
+    min-width: 0;
+  }
+  .seg + .seg {
+    border-left: 1px solid var(--line);
+  }
+  .field {
+    display: block;
+    width: 100%;
+    height: 100%;
+    padding: 14px 28px;
+    border: 0;
+    border-radius: 0;
+    background: none;
+    text-align: left;
+  }
+  .seg:first-child .field {
+    border-radius: 999px 0 0 999px;
+  }
+  .trip .field:focus-visible {
+    outline-offset: -2px;
+  }
+  .field:hover,
+  .field[aria-expanded="true"] {
+    background: var(--surface);
+  }
+  .flabel {
+    display: block;
+    color: var(--muted);
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+  .fval {
+    display: block;
+    overflow: hidden;
+    color: var(--muted);
+    font-size: 1rem;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+  .where-val {
+    display: flex;
+    gap: 4px;
+  }
+  .fname {
+    min-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .fmore {
+    flex: none;
+  }
+  .field.set .fval {
+    color: var(--text);
+    font-weight: 600;
+  }
+  .go {
+    display: inline-flex;
+    flex: none;
+    align-items: center;
+    gap: 8px;
+    margin: -1px -1px -1px 0;
+    padding: 0 30px 0 26px;
+    border: 0;
+    border-radius: 0 999px 999px 0;
+    background: var(--accent);
+    color: var(--bg) !important;
+    font-size: 1.2rem !important;
+    font-weight: 700 !important;
+    white-space: nowrap;
+  }
+  .trip .go:focus-visible {
+    outline-offset: 3px;
+  }
+  .go:hover {
+    filter: brightness(1.08);
+  }
+  /* the label and an invisible copy of its longest form share one cell, so picking never resizes it */
+  .go-label {
+    display: grid;
+    justify-items: center;
+  }
+  .go-label > span {
+    grid-area: 1 / 1;
+  }
+  .sizer {
+    visibility: hidden;
+  }
+  .panel {
+    position: absolute;
+    z-index: 30;
+    top: calc(100% + 10px);
+    left: 0;
+    width: 320px;
+    padding: 16px;
+    border: 1px solid var(--line);
+    border-radius: 16px;
+    background: var(--bg);
+    box-shadow: 0 12px 32px rgb(0 0 0 / 0.16);
+  }
+  .panel.wide {
+    width: 380px;
+    padding: 12px;
+  }
+  .panel.end {
+    left: auto;
+    right: 0;
+  }
+  .trip .panel[hidden] {
+    display: none;
+  }
+  .phint {
+    margin: 0 0 10px;
+    color: var(--muted);
+    font-size: 0.85rem;
+  }
+  .months {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 6px;
+  }
+  .months button,
+  .days button {
+    padding: 9px 12px;
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    background: var(--bg);
+    font-size: 0.92rem;
+  }
+  .months button {
+    padding: 9px 0;
+  }
+  .trip [aria-pressed="true"] {
+    border-color: var(--accent);
+    background: var(--accent-soft);
+    font-weight: 600;
+  }
+  /* Where: picked places as chips, the input, the list of places */
+  .picked {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+  .picked:not(:empty) {
+    margin-top: 8px;
+    padding-top: 10px;
+    border-top: 1px solid var(--line);
+  }
+  .picked :global(.chip) {
+    display: inline-flex;
+    gap: 6px;
+    padding: 4px 8px 4px 12px;
+    border: 1px solid var(--accent);
+    border-radius: 999px;
+    background: var(--accent-soft);
+    font-size: 0.85rem;
+    font-weight: 600;
+    transition: background 0.15s ease;
+  }
+  /* a slightly stronger tint on hover: removing it is a click away */
+  .picked :global(.chip:hover) {
+    background: color-mix(in srgb, var(--accent) 22%, var(--bg));
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .picked :global(.chip) {
+      transition: none;
+    }
+  }
+  .where-input {
+    position: relative;
+  }
+  .where-input svg {
+    position: absolute;
+    left: 12px;
+    top: 50%;
+    width: 18px;
+    height: 18px;
+    transform: translateY(-50%);
+    fill: none;
+    stroke: var(--muted);
+    stroke-width: 2;
+    stroke-linecap: round;
+    pointer-events: none;
+  }
+  .where-input input {
+    width: 100%;
+    padding: 10px 12px 10px 38px;
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    background: var(--bg);
+    font-size: 1rem;
+  }
+  .where-input input::-webkit-search-cancel-button {
+    appearance: none;
+  }
+  .where-input input:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 1px;
+  }
+  .where-list {
+    max-height: 320px;
+    margin-top: 6px;
+    overflow-y: auto;
+  }
+  .group {
+    margin: 10px 10px 4px;
+    color: var(--muted);
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+  .where-list [hidden] {
+    display: none;
+  }
+  .opt {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 8px 10px;
+    border-radius: 8px;
+    font-size: 0.95rem;
+    cursor: pointer;
+  }
+  .opt:hover,
+  .opt.active {
+    background: var(--surface);
+  }
+  .opt[aria-selected="true"] {
+    font-weight: 600;
+  }
+  .opt[aria-disabled="true"] {
+    opacity: 0.35;
+    cursor: default;
+  }
+  .name {
+    flex: 1;
+    min-width: 0;
+  }
+  .in,
+  .n {
+    color: var(--muted);
+    font-size: 0.8rem;
+    font-weight: 400;
+  }
+  .in {
+    margin-left: 4px;
+  }
+  .none {
+    margin: 10px;
+    color: var(--muted);
+    font-size: 0.9rem;
+  }
+  /* a check box drawn in CSS: empty, checked (accent) or included through its continent (soft) */
+  .check {
+    position: relative;
+    flex: none;
+    width: 16px;
+    height: 16px;
+    border: 1.5px solid var(--muted);
+    border-radius: 4px;
+  }
+  [aria-selected="true"] > .check,
+  .included > .check {
+    border-color: var(--accent);
+    background: var(--accent);
+  }
+  .included > .check {
+    background: var(--accent-soft);
+  }
+  [aria-selected="true"] > .check::after,
+  .included > .check::after {
+    content: "";
+    position: absolute;
+    left: 4px;
+    top: 1px;
+    width: 4px;
+    height: 8px;
+    border: solid var(--bg);
+    border-width: 0 2px 2px 0;
+    transform: rotate(45deg);
+  }
+  .included > .check::after {
+    border-color: var(--accent-text);
+  }
+  .days {
+    display: grid;
+    gap: 6px;
+  }
+  .days button {
+    display: flex;
+    justify-content: space-between;
+    gap: 16px;
+    text-align: left;
+  }
+  .days span {
+    color: var(--muted);
+  }
+  /* narrower: the Where panel spans the bar under its fields */
+  @media (max-width: 899px) {
+    .seg:has(.wide) {
+      position: static;
+    }
+    .panel.wide {
+      width: auto;
+      right: 0;
+    }
+  }
+  /* phones: the fields stack into a card, each panel opens in place under its field */
+  @media (max-width: 719px) {
+    .trip {
+      flex-direction: column;
+      align-items: stretch;
+      width: 100%;
+      border-radius: 20px;
+    }
+    .seg + .seg {
+      border-left: 0;
+      border-top: 1px solid var(--line);
+    }
+    .field {
+      height: auto;
+      padding: 12px 20px;
+    }
+    .seg:first-child .field {
+      border-radius: 19px 19px 0 0;
+    }
+    .go {
+      justify-content: center;
+      margin: 0 -1px -1px;
+      padding: 16px;
+      border-radius: 0 0 20px 20px;
+    }
+    .panel,
+    .panel.wide {
+      position: static;
+      width: auto;
+      margin: 0 8px 8px;
+      box-shadow: none;
+    }
+  }
+  @media (pointer: coarse) {
+    .months button {
+      padding: 12px 0;
+    }
+  }
+</style>

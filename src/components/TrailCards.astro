@@ -34,7 +34,7 @@ const sleepText = (t: SearchTrail) =>
 const WILD = { allowed: "Wild camping allowed", restricted: "Wild camping restricted", prohibited: "No wild camping" };
 const WATER_WORD = Object.fromEntries(WATER_LEVELS.map((l) => [l.id, l.label]));
 // the card's difficulty (issue #22): the hardest dimension as a word, as on the trail page
-// (climate for its best run of season months; the header's month pick re-rates it, Base.astro)
+// (climate for its best run of season months; months picked in the search re-rate it, Base.astro)
 const topLevel = (t: SearchTrail) => ratedDims(t).overall;
 // the main landscape, as the trail page's key figure says it
 const landText = (t: SearchTrail) => {

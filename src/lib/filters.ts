@@ -11,6 +11,13 @@ export const MONTHS = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "
 // 8 and 15 are stops so the guide's day ranges (1–3, 4–7, 8–14, 15+) fall on them
 export const DAYS = [1, 2, 3, 4, 5, 6, 7, 8, 10, 14, 15, 21, 30, 45, 60];
 export const DAYS_ALL = DAYS.length - 1;
+// the home page's trip search (issue #128): trip lengths as day ranges on those stops
+export const TRIP_LENGTHS = [
+  { label: "1–3 days", hint: "A long weekend", dayLo: 0, dayHi: DAYS.indexOf(3) },
+  { label: "4–7 days", hint: "About a week", dayLo: DAYS.indexOf(4), dayHi: DAYS.indexOf(7) },
+  { label: "8–14 days", hint: "Up to two weeks", dayLo: DAYS.indexOf(8), dayHi: DAYS.indexOf(14) },
+  { label: "15+ days", hint: "A long journey", dayLo: DAYS.indexOf(15), dayHi: DAYS_ALL },
+];
 export const WATER_KM = [5, 10, 15, 20, 25, 30, 40];
 // the longest stretch without a shop or a bed (issues #96 and #97); the last stop: any
 export const SHOP_KM = [20, 40, 60, 80];
@@ -96,7 +103,7 @@ export function climateLevel(t: SearchTrail, months: number[]) {
 // a trail's difficulty dimensions for the months picked (none: the default run): each with its
 // level, `top` the height of the lighter bar above it (the season's hardest month without a pick)
 // and, for climate, the months it's read for; `overall` the hardest. Cards, the trail map's
-// preview and the sort share it; the header's month pick re-rates static cards the same way
+// preview and the sort share it; months in the URL re-rate static cards the same way
 // (Base.astro)
 export function ratedDims(t: SearchTrail, months: number[] = []) {
   const dims = t.difficulty.map((d) => {

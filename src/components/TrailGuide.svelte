@@ -136,7 +136,7 @@
   // bottom edge on every question (CSS has an estimate for before this runs)
   const fit = () => guide?.style.setProperty("--top", `${guide.getBoundingClientRect().top + scrollY}px`);
   onMount(() => {
-    // the header's month pick (issue #114) answers the first question; the URL keeps it
+    // months in the URL (the search's When filter, issue #114) answer the first question
     f.months = readPick(location.search);
     history.replaceState({ step: 0 }, "", location.pathname + location.search);
     const back = (e: PopStateEvent) => (step = e.state?.step ?? 0);
@@ -214,7 +214,7 @@
           type="button"
           class="option"
           aria-pressed={f.land.includes(l.id)}
-          disabled={!f.land.includes(l.id) && countWith({ land: [...f.land, l.id] }) === 0}
+          disabled={!f.land.includes(l.id) && countWith({ land: [l.id] }) === 0}
           onclick={() => (f.land = toggle(f.land, l.id))}
         >
           <span class="label">{l.label}<span class="sub">At least {Math.round(LANDSCAPE_SHARE * 100)} % of the route</span></span>
@@ -295,7 +295,7 @@
     class:small
     class:included
     aria-pressed={on}
-    disabled={!on && n === 0}
+    disabled={!on && countWith({ where: [value] }) === 0}
     onclick={() => (f.where = toggleWhere(f.where, value, places))}
   >
     <span class="label">{label}</span>

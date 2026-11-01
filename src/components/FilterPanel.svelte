@@ -54,6 +54,8 @@
 
   const NONE = "No trail matches this with your other filters";
   const countWith = (set: Partial<Filters>) => trails.filter((t) => matches(t, { ...filters, ...set })).length;
+  // months, places and landscapes combine (any of them), so pass each one alone: adding one to a
+  // choice can't leave fewer trails, and one with no trail of its own would look live
   const dead = (on: boolean, set: Partial<Filters>) => !on && countWith(set) === 0;
   const liveStops = (n: number, set: (i: number) => Partial<Filters>) => Array.from({ length: n }, (_, i) => countWith(set(i)) > 0);
   // a day thumb can't pass the other one, so stops beyond it count as live (nothing to mark there)
@@ -84,7 +86,7 @@
       </div>
       <div class="months">
         {#each MONTHS as m, i}
-          {@const off = dead(filters.months.includes(i + 1), { months: toggle(filters.months, i + 1) })}
+          {@const off = dead(filters.months.includes(i + 1), { months: [i + 1] })}
           <button type="button" class="chip" aria-pressed={filters.months.includes(i + 1)} disabled={off} title={off ? NONE : undefined} onclick={() => (filters.months = toggle(filters.months, i + 1))}>{m}</button>
         {/each}
       </div>
@@ -101,14 +103,14 @@
       </div>
       <!-- a continent, its countries beneath; countries a chosen continent covers show as included -->
       {#each places as p}
-        {@const off = dead(filters.where.includes(p.continent), { where: toggleWhere(filters.where, p.continent, places) })}
+        {@const off = dead(filters.where.includes(p.continent), { where: [p.continent] })}
         <div class="place">
           <button type="button" class="chip" aria-pressed={filters.where.includes(p.continent)} disabled={off} title={off ? NONE : undefined} onclick={() => (filters.where = toggleWhere(filters.where, p.continent, places))}>
             {p.continent}
           </button>
           <div class="chips countries">
             {#each p.countries as c}
-              {@const off = dead(filters.where.includes(c), { where: toggleWhere(filters.where, c, places) })}
+              {@const off = dead(filters.where.includes(c), { where: [c] })}
               <button
                 type="button"
                 class="chip"
@@ -174,7 +176,7 @@
       </div>
       <div class="chips">
         {#each LANDSCAPES as l}
-          {@const off = dead(filters.land.includes(l.id), { land: toggle(filters.land, l.id) })}
+          {@const off = dead(filters.land.includes(l.id), { land: [l.id] })}
           <button type="button" class="chip" aria-pressed={filters.land.includes(l.id)} disabled={off} title={off ? NONE : undefined} onclick={() => (filters.land = toggle(filters.land, l.id))}>{l.label}</button>
         {/each}
       </div>

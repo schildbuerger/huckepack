@@ -1,6 +1,5 @@
 ---
 import ThemeToggle from "../components/ThemeToggle.astro";
-import MonthPick from "../components/MonthPick.astro";
 import logo from "../assets/logo.svg?raw"; // written by design/logos/make.py
 import { inlineScript } from "../lib/inline-script";
 
@@ -88,7 +87,6 @@ const siteLd =
         </a>
         <div class="header-end">
           <slot name="header" />
-          <MonthPick />
           <ThemeToggle />
         </div>
       </div>
@@ -114,6 +112,25 @@ const siteLd =
         a.rel = "noopener noreferrer";
         a.insertAdjacentHTML("beforeend", '<span class="sr-only"> (opens in a new tab)</span>');
       }
+    </script>
+    <script>
+      // months picked in the search (the URL's `months`: its When filter, the home page's trip
+      // search, issues #114 and #128) re-rate every difficulty on the page (src/lib/months.ts
+      // rerate(), elements with data-rate; the trail page's climate card listens for "monthpick");
+      // the search, the trail map and the guide write their filters with replaceState: follow them
+      import { readPick, rerate } from "../lib/months";
+
+      const show = () => {
+        const pick = readPick(location.search);
+        rerate(document, pick);
+        document.dispatchEvent(new CustomEvent("monthpick", { detail: pick }));
+      };
+      const replace = history.replaceState.bind(history);
+      history.replaceState = (...args: Parameters<History["replaceState"]>) => {
+        replace(...args);
+        show();
+      };
+      show();
     </script>
   </body>
 </html>
@@ -350,28 +367,15 @@ const siteLd =
     align-items: center;
     gap: 14px;
   }
-  /* phones: the month pick (MonthPick.astro) gets a row of its own under the logo, the page's own
-     items and the theme switch */
-  @media (max-width: 639px) {
-    .site-header .wrap {
-      flex-wrap: wrap;
-      height: auto;
-      min-height: 60px;
-    }
+  /* phones: the page's own items (the home page's search) shrink to the room the logo and the
+     theme switch leave */
+  @media (max-width: 559px) {
     .header-end {
-      display: contents;
-    }
-    .header-end > :global(.month-pick) {
-      order: 3;
-      flex-basis: 100%;
-      padding-bottom: 10px;
-    }
-    .header-end > :global(.theme-toggle),
-    .header-end > :global(*:not(.month-pick)) {
-      margin-left: 8px;
-    }
-    .brand {
-      margin-right: auto;
+      flex: 1 1 auto;
+      justify-content: flex-end;
+      min-width: 0;
+      margin-left: 12px;
+      gap: 8px;
     }
   }
   .brand {

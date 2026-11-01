@@ -152,7 +152,7 @@ export function difficulty(t: Trail, d?: DerivedData) {
   if (months.some((m) => m.inSeason)) {
     // rated for the trail's best run of at least two consecutive season months (issue #114: a
     // trail walked in its best months shouldn't read as hard as its worst); each measure shows
-    // its hardest month of that run. The header's month pick re-rates it in the browser.
+    // its hardest month of that run. Months picked in the search re-rate it in the browser.
     const c = climateFor(months.map((m) => m.level), season);
     const run = months.filter((m) => c.months.includes(m.month));
     const xs = run[0].measures.map((x) => worstOf(run.map((m) => m.measures.find((y) => y.id === x.id)!)));
@@ -199,7 +199,7 @@ export const DIMENSION_TEXT: Record<Dimension["id"], { question: string; how: st
   },
   climate: {
     question: "How hot, cold, wet and windy does it get?",
-    how: "Rated for each month from 30 years of weather (ERA5). Without a month picked (the month pick at the top of the page), the rating is for the trail's best run of at least two months in its season, and each measure shows its hardest month of that run; a pick re-rates it for your months.",
+    how: "Rated for each month from 30 years of weather (ERA5). Without months picked (the search's When filter), the rating is for the trail's best run of at least two months in its season, and each measure shows its hardest month of that run; a pick re-rates it for your months.",
   },
   effort: {
     question: "How long are the days?",
