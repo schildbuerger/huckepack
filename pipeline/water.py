@@ -29,8 +29,10 @@ from pipeline import osm
 from pipeline.routes import Cache
 
 ROOT = Path(__file__).resolve().parent.parent
-WITHIN_M = 250
-QUERY_M = 400  # wider than WITHIN_M: the query line is thinned (see osm.around)
+# 500 m since 2026-11-01 (issue #115, before 250 m): a detour of about 1 km there and back is still
+# worth it for water, and 250 m missed taps in villages just off the trail
+WITHIN_M = 500
+QUERY_M = 650  # wider than WITHIN_M: the query line is thinned (see osm.around); the corridor reaches 600 m
 CHUNK = 150  # map-line points per Overpass query (about 10 km), so each bounding box stays small
 SAME_M = 100  # an OSM tap this close to a record's water point is the same one
 

@@ -4920,7 +4920,7 @@
     "source": "osm",
     "extraSources": [],
     "retrieved": "2026-10-28T21:21:02Z",
-    "withinM": 250,
+    "withinM": 500,
     "routeKm": 168.7,
     "stageStarts": [
       {
@@ -4978,14 +4978,14 @@
     ],
     "longestGapKm": {
       "drinking": {
-        "km": 49.9,
-        "fromKm": 118.8,
-        "toKm": 168.7
+        "km": 46.5,
+        "fromKm": 58.1,
+        "toKm": 104.6
       },
       "any": {
-        "km": 23.1,
+        "km": 17.7,
         "fromKm": 145.6,
-        "toKm": 168.7
+        "toKm": 163.3
       }
     },
     "stages": [
@@ -4993,31 +4993,31 @@
         "number": "1",
         "kind": "main",
         "drinking": 0,
-        "springs": 2
+        "springs": 5
       },
       {
         "number": "2",
         "kind": "main",
         "drinking": 0,
-        "springs": 2
+        "springs": 4
       },
       {
         "number": "3",
         "kind": "main",
-        "drinking": 2,
+        "drinking": 6,
         "springs": 1
       },
       {
         "number": "4",
         "kind": "main",
         "drinking": 2,
-        "springs": 2
+        "springs": 3
       },
       {
         "number": "5",
         "kind": "main",
         "drinking": 0,
-        "springs": 2
+        "springs": 8
       },
       {
         "number": "6",
@@ -5029,7 +5029,7 @@
         "number": "7",
         "kind": "main",
         "drinking": 0,
-        "springs": 5
+        "springs": 9
       },
       {
         "number": "8",
@@ -5047,37 +5047,37 @@
         "number": "10",
         "kind": "main",
         "drinking": 1,
-        "springs": 1
+        "springs": 2
       },
       {
         "number": "11",
         "kind": "main",
         "drinking": 0,
-        "springs": 1
+        "springs": 2
       },
       {
         "number": "12",
         "kind": "main",
-        "drinking": 0,
-        "springs": 0
+        "drinking": 1,
+        "springs": 2
       },
       {
         "number": "13",
         "kind": "main",
         "drinking": 0,
-        "springs": 4
+        "springs": 5
       },
       {
         "number": "14",
         "kind": "variant",
-        "drinking": 1,
+        "drinking": 3,
         "springs": 0
       },
       {
         "number": "15",
         "kind": "variant",
         "drinking": 0,
-        "springs": 6
+        "springs": 11
       },
       {
         "number": "16",
@@ -5117,6 +5117,39 @@
         "source": "osm"
       },
       {
+        "lat": 51.3673,
+        "lon": 7.67919,
+        "kind": "spring",
+        "name": null,
+        "stage": "1",
+        "stageKind": "main",
+        "km": 0.8,
+        "offM": 490,
+        "source": "osm"
+      },
+      {
+        "lat": 51.36604,
+        "lon": 7.67894,
+        "kind": "spring",
+        "name": null,
+        "stage": "1",
+        "stageKind": "main",
+        "km": 0.8,
+        "offM": 482,
+        "source": "osm"
+      },
+      {
+        "lat": 51.36724,
+        "lon": 7.67919,
+        "kind": "spring",
+        "name": null,
+        "stage": "1",
+        "stageKind": "main",
+        "km": 0.8,
+        "offM": 488,
+        "source": "osm"
+      },
+      {
         "lat": 51.36171,
         "lon": 7.6889,
         "kind": "spring",
@@ -5150,6 +5183,28 @@
         "source": "osm"
       },
       {
+        "lat": 51.35318,
+        "lon": 7.83245,
+        "kind": "spring",
+        "name": null,
+        "stage": "2",
+        "stageKind": "main",
+        "km": 17.3,
+        "offM": 263,
+        "source": "osm"
+      },
+      {
+        "lat": 51.35785,
+        "lon": 7.83714,
+        "kind": "spring",
+        "name": null,
+        "stage": "2",
+        "stageKind": "main",
+        "km": 17.7,
+        "offM": 408,
+        "source": "osm"
+      },
+      {
         "lat": 51.33938,
         "lon": 7.92045,
         "kind": "drinking",
@@ -5172,6 +5227,17 @@
         "source": "osm"
       },
       {
+        "lat": 51.30588,
+        "lon": 7.9396,
+        "kind": "drinking",
+        "name": null,
+        "stage": "3",
+        "stageKind": "main",
+        "km": 37.8,
+        "offM": 371,
+        "source": "osm"
+      },
+      {
         "lat": 51.30725,
         "lon": 7.94163,
         "kind": "drinking",
@@ -5180,6 +5246,50 @@
         "stageKind": "main",
         "km": 37.8,
         "offM": 200,
+        "source": "osm"
+      },
+      {
+        "lat": 51.30675,
+        "lon": 7.94047,
+        "kind": "drinking",
+        "name": null,
+        "stage": "3",
+        "stageKind": "main",
+        "km": 37.8,
+        "offM": 261,
+        "source": "osm"
+      },
+      {
+        "lat": 51.30629,
+        "lon": 7.94055,
+        "kind": "drinking",
+        "name": null,
+        "stage": "3",
+        "stageKind": "main",
+        "km": 37.8,
+        "offM": 311,
+        "source": "osm"
+      },
+      {
+        "lat": 51.30538,
+        "lon": 7.93851,
+        "kind": "drinking",
+        "name": null,
+        "stage": "3",
+        "stageKind": "main",
+        "km": 37.8,
+        "offM": 452,
+        "source": "osm"
+      },
+      {
+        "lat": 51.3341,
+        "lon": 7.98752,
+        "kind": "spring",
+        "name": null,
+        "stage": "4",
+        "stageKind": "main",
+        "km": 44.2,
+        "offM": 420,
         "source": "osm"
       },
       {
@@ -5227,6 +5337,17 @@
         "source": "osm"
       },
       {
+        "lat": 51.42401,
+        "lon": 8.0673,
+        "kind": "spring",
+        "name": null,
+        "stage": "5",
+        "stageKind": "main",
+        "km": 62.4,
+        "offM": 412,
+        "source": "osm"
+      },
+      {
         "lat": 51.42419,
         "lon": 8.08572,
         "kind": "spring",
@@ -5238,6 +5359,17 @@
         "source": "osm"
       },
       {
+        "lat": 51.44021,
+        "lon": 8.11657,
+        "kind": "spring",
+        "name": null,
+        "stage": "5",
+        "stageKind": "main",
+        "km": 66.8,
+        "offM": 337,
+        "source": "osm"
+      },
+      {
         "lat": 51.45001,
         "lon": 8.11248,
         "kind": "spring",
@@ -5246,6 +5378,72 @@
         "stageKind": "main",
         "km": 69.2,
         "offM": 191,
+        "source": "osm"
+      },
+      {
+        "lat": 51.45315,
+        "lon": 8.11448,
+        "kind": "spring",
+        "name": null,
+        "stage": "5",
+        "stageKind": "main",
+        "km": 69.6,
+        "offM": 472,
+        "source": "osm"
+      },
+      {
+        "lat": 51.45479,
+        "lon": 8.11408,
+        "kind": "spring",
+        "name": null,
+        "stage": "5",
+        "stageKind": "main",
+        "km": 69.8,
+        "offM": 459,
+        "source": "osm"
+      },
+      {
+        "lat": 51.45512,
+        "lon": 8.1139,
+        "kind": "spring",
+        "name": null,
+        "stage": "5",
+        "stageKind": "main",
+        "km": 69.8,
+        "offM": 454,
+        "source": "osm"
+      },
+      {
+        "lat": 51.45522,
+        "lon": 8.09893,
+        "kind": "spring",
+        "name": null,
+        "stage": "5",
+        "stageKind": "main",
+        "km": 70.3,
+        "offM": 469,
+        "source": "osm"
+      },
+      {
+        "lat": 51.43866,
+        "lon": 8.16921,
+        "kind": "spring",
+        "name": null,
+        "stage": "7",
+        "stageKind": "main",
+        "km": 81.1,
+        "offM": 295,
+        "source": "osm"
+      },
+      {
+        "lat": 51.43905,
+        "lon": 8.17054,
+        "kind": "spring",
+        "name": null,
+        "stage": "7",
+        "stageKind": "main",
+        "km": 81.1,
+        "offM": 397,
         "source": "osm"
       },
       {
@@ -5304,6 +5502,28 @@
         "source": "osm"
       },
       {
+        "lat": 51.3996,
+        "lon": 8.20876,
+        "kind": "spring",
+        "name": null,
+        "stage": "7",
+        "stageKind": "main",
+        "km": 87.8,
+        "offM": 342,
+        "source": "osm"
+      },
+      {
+        "lat": 51.40378,
+        "lon": 8.23457,
+        "kind": "spring",
+        "name": null,
+        "stage": "7",
+        "stageKind": "main",
+        "km": 90.1,
+        "offM": 455,
+        "source": "osm"
+      },
+      {
         "lat": 51.42626,
         "lon": 8.35823,
         "kind": "drinking",
@@ -5326,17 +5546,6 @@
         "source": "osm"
       },
       {
-        "lat": 51.4434,
-        "lon": 8.39528,
-        "kind": "spring",
-        "name": null,
-        "stage": "9",
-        "stageKind": "main",
-        "km": 111.2,
-        "offM": 116,
-        "source": "osm"
-      },
-      {
         "lat": 51.4431,
         "lon": 8.39544,
         "kind": "spring",
@@ -5345,6 +5554,17 @@
         "stageKind": "main",
         "km": 111.2,
         "offM": 99,
+        "source": "osm"
+      },
+      {
+        "lat": 51.4434,
+        "lon": 8.39528,
+        "kind": "spring",
+        "name": null,
+        "stage": "9",
+        "stageKind": "main",
+        "km": 111.2,
+        "offM": 116,
         "source": "osm"
       },
       {
@@ -5359,6 +5579,17 @@
         "source": "osm"
       },
       {
+        "lat": 51.45268,
+        "lon": 8.43742,
+        "kind": "spring",
+        "name": null,
+        "stage": "10",
+        "stageKind": "main",
+        "km": 115.4,
+        "offM": 496,
+        "source": "osm"
+      },
+      {
         "lat": 51.47198,
         "lon": 8.45976,
         "kind": "drinking",
@@ -5370,6 +5601,17 @@
         "source": "osm"
       },
       {
+        "lat": 51.49167,
+        "lon": 8.52324,
+        "kind": "spring",
+        "name": null,
+        "stage": "11",
+        "stageKind": "main",
+        "km": 126.5,
+        "offM": 336,
+        "source": "osm"
+      },
+      {
         "lat": 51.48989,
         "lon": 8.52968,
         "kind": "spring",
@@ -5378,6 +5620,39 @@
         "stageKind": "main",
         "km": 126.9,
         "offM": 192,
+        "source": "osm"
+      },
+      {
+        "lat": 51.48785,
+        "lon": 8.57977,
+        "kind": "drinking",
+        "name": "Quelle 2000",
+        "stage": "12",
+        "stageKind": "main",
+        "km": 132.6,
+        "offM": 329,
+        "source": "osm"
+      },
+      {
+        "lat": 51.46919,
+        "lon": 8.57999,
+        "kind": "spring",
+        "name": null,
+        "stage": "12",
+        "stageKind": "main",
+        "km": 134.6,
+        "offM": 452,
+        "source": "osm"
+      },
+      {
+        "lat": 51.46852,
+        "lon": 8.57916,
+        "kind": "spring",
+        "name": null,
+        "stage": "12",
+        "stageKind": "main",
+        "km": 134.7,
+        "offM": 420,
         "source": "osm"
       },
       {
@@ -5425,6 +5700,17 @@
         "source": "osm"
       },
       {
+        "lat": 51.45375,
+        "lon": 8.77968,
+        "kind": "spring",
+        "name": null,
+        "stage": "13",
+        "stageKind": "main",
+        "km": 163.3,
+        "offM": 341,
+        "source": "osm"
+      },
+      {
         "lat": 51.39978,
         "lon": 8.34732,
         "kind": "drinking",
@@ -5436,6 +5722,28 @@
         "source": "osm"
       },
       {
+        "lat": 51.40995,
+        "lon": 8.76311,
+        "kind": "drinking",
+        "name": null,
+        "stage": "14",
+        "stageKind": "variant",
+        "km": null,
+        "offM": 489,
+        "source": "osm"
+      },
+      {
+        "lat": 51.3846,
+        "lon": 8.73641,
+        "kind": "drinking",
+        "name": null,
+        "stage": "14",
+        "stageKind": "variant",
+        "km": null,
+        "offM": 318,
+        "source": "osm"
+      },
+      {
         "lat": 51.41648,
         "lon": 8.81292,
         "kind": "drinking",
@@ -5444,6 +5752,39 @@
         "stageKind": "variant",
         "km": null,
         "offM": 33,
+        "source": "osm"
+      },
+      {
+        "lat": 51.3524,
+        "lon": 8.62894,
+        "kind": "spring",
+        "name": null,
+        "stage": "15",
+        "stageKind": "variant",
+        "km": null,
+        "offM": 297,
+        "source": "osm"
+      },
+      {
+        "lat": 51.35242,
+        "lon": 8.62891,
+        "kind": "spring",
+        "name": null,
+        "stage": "15",
+        "stageKind": "variant",
+        "km": null,
+        "offM": 294,
+        "source": "osm"
+      },
+      {
+        "lat": 51.35255,
+        "lon": 8.6286,
+        "kind": "spring",
+        "name": null,
+        "stage": "15",
+        "stageKind": "variant",
+        "km": null,
+        "offM": 273,
         "source": "osm"
       },
       {
@@ -5477,6 +5818,17 @@
         "stageKind": "variant",
         "km": null,
         "offM": 27,
+        "source": "osm"
+      },
+      {
+        "lat": 51.36333,
+        "lon": 8.63695,
+        "kind": "spring",
+        "name": null,
+        "stage": "15",
+        "stageKind": "variant",
+        "km": null,
+        "offM": 390,
         "source": "osm"
       },
       {
@@ -5598,6 +5950,17 @@
         "stageKind": "variant",
         "km": null,
         "offM": 85,
+        "source": "osm"
+      },
+      {
+        "lat": 51.34394,
+        "lon": 8.60225,
+        "kind": "spring",
+        "name": null,
+        "stage": "15",
+        "stageKind": "variant",
+        "km": null,
+        "offM": 444,
         "source": "osm"
       },
       {

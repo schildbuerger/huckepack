@@ -387,7 +387,7 @@
       "fi-huts"
     ],
     "retrieved": "2026-10-28T21:21:02Z",
-    "withinM": 250,
+    "withinM": 500,
     "routeKm": 52.2,
     "stageStarts": [
       {
@@ -423,7 +423,7 @@
       {
         "number": "1",
         "kind": "main",
-        "drinking": 2,
+        "drinking": 3,
         "springs": 1
       },
       {
@@ -456,6 +456,17 @@
         "km": 0.0,
         "offM": 132,
         "source": "osm"
+      },
+      {
+        "lat": 63.99333,
+        "lon": -19.061,
+        "kind": "drinking",
+        "name": "Landmannalaugar hut",
+        "stage": "1",
+        "stageKind": "main",
+        "km": 0.1,
+        "offM": 298,
+        "source": "fi-huts"
       },
       {
         "lat": 63.95632,

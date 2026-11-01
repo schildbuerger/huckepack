@@ -4988,7 +4988,7 @@
     "source": "osm",
     "extraSources": [],
     "retrieved": "2026-10-30T21:24:51Z",
-    "withinM": 250,
+    "withinM": 500,
     "routeKm": 299.7,
     "stageStarts": [
       {
@@ -5042,14 +5042,14 @@
     ],
     "longestGapKm": {
       "drinking": {
-        "km": 139.9,
+        "km": 75.1,
         "fromKm": 50.3,
-        "toKm": 190.2
+        "toKm": 125.4
       },
       "any": {
-        "km": 78.7,
-        "fromKm": 111.5,
-        "toKm": 190.2
+        "km": 46.2,
+        "fromKm": 0.0,
+        "toKm": 46.2
       }
     },
     "stages": [
@@ -5062,7 +5062,7 @@
       {
         "number": "2",
         "kind": "main",
-        "drinking": 2,
+        "drinking": 3,
         "springs": 0
       },
       {
@@ -5075,31 +5075,31 @@
         "number": "4",
         "kind": "main",
         "drinking": 0,
-        "springs": 2
+        "springs": 3
       },
       {
         "number": "5",
         "kind": "main",
-        "drinking": 0,
-        "springs": 3
+        "drinking": 3,
+        "springs": 4
       },
       {
         "number": "6",
         "kind": "main",
         "drinking": 0,
-        "springs": 0
+        "springs": 1
       },
       {
         "number": "7",
         "kind": "main",
         "drinking": 0,
-        "springs": 0
+        "springs": 1
       },
       {
         "number": "8",
         "kind": "main",
-        "drinking": 0,
-        "springs": 0
+        "drinking": 1,
+        "springs": 1
       },
       {
         "number": "9",
@@ -5111,22 +5111,33 @@
         "number": "10",
         "kind": "main",
         "drinking": 1,
-        "springs": 0
+        "springs": 1
       },
       {
         "number": "11",
         "kind": "main",
         "drinking": 0,
-        "springs": 2
+        "springs": 4
       },
       {
         "number": "12",
         "kind": "main",
         "drinking": 1,
-        "springs": 4
+        "springs": 5
       }
     ],
     "points": [
+      {
+        "lat": 54.51114,
+        "lon": -3.16836,
+        "kind": "drinking",
+        "name": null,
+        "stage": "2",
+        "stageKind": "main",
+        "km": 46.2,
+        "offM": 273,
+        "source": "osm"
+      },
       {
         "lat": 54.51646,
         "lon": -3.15008,
@@ -5194,6 +5205,28 @@
         "source": "osm"
       },
       {
+        "lat": 54.51558,
+        "lon": -2.82244,
+        "kind": "spring",
+        "name": null,
+        "stage": "4",
+        "stageKind": "main",
+        "km": 83.4,
+        "offM": 424,
+        "source": "osm"
+      },
+      {
+        "lat": 54.49091,
+        "lon": -2.61343,
+        "kind": "spring",
+        "name": "Black Dub",
+        "stage": "5",
+        "stageKind": "main",
+        "km": 102.5,
+        "offM": 442,
+        "source": "osm"
+      },
+      {
         "lat": 54.49041,
         "lon": -2.60073,
         "kind": "spring",
@@ -5227,6 +5260,83 @@
         "source": "osm"
       },
       {
+        "lat": 54.46243,
+        "lon": -2.35401,
+        "kind": "drinking",
+        "name": null,
+        "stage": "5",
+        "stageKind": "main",
+        "km": 125.4,
+        "offM": 449,
+        "source": "osm"
+      },
+      {
+        "lat": 54.46249,
+        "lon": -2.35321,
+        "kind": "drinking",
+        "name": null,
+        "stage": "5",
+        "stageKind": "main",
+        "km": 125.5,
+        "offM": 461,
+        "source": "osm"
+      },
+      {
+        "lat": 54.4625,
+        "lon": -2.35335,
+        "kind": "drinking",
+        "name": null,
+        "stage": "5",
+        "stageKind": "main",
+        "km": 125.5,
+        "offM": 456,
+        "source": "osm"
+      },
+      {
+        "lat": 54.45303,
+        "lon": -2.26493,
+        "kind": "spring",
+        "name": "Millstone Spring",
+        "stage": "6",
+        "stageKind": "main",
+        "km": 133.2,
+        "offM": 445,
+        "source": "osm"
+      },
+      {
+        "lat": 54.40122,
+        "lon": -2.15466,
+        "kind": "spring",
+        "name": null,
+        "stage": "7",
+        "stageKind": "main",
+        "km": 146.0,
+        "offM": 292,
+        "source": "osm"
+      },
+      {
+        "lat": 54.38498,
+        "lon": -1.94208,
+        "kind": "drinking",
+        "name": null,
+        "stage": "8",
+        "stageKind": "main",
+        "km": 162.5,
+        "offM": 331,
+        "source": "osm"
+      },
+      {
+        "lat": 54.3793,
+        "lon": -1.93261,
+        "kind": "spring",
+        "name": "Nanny Ward's Well",
+        "stage": "8",
+        "stageKind": "main",
+        "km": 163.4,
+        "offM": 385,
+        "source": "osm"
+      },
+      {
         "lat": 54.38733,
         "lon": -1.61297,
         "kind": "drinking",
@@ -5238,6 +5348,17 @@
         "source": "osm"
       },
       {
+        "lat": 54.38017,
+        "lon": -1.30868,
+        "kind": "spring",
+        "name": null,
+        "stage": "10",
+        "stageKind": "main",
+        "km": 225.9,
+        "offM": 411,
+        "source": "osm"
+      },
+      {
         "lat": 54.42007,
         "lon": -1.19454,
         "kind": "drinking",
@@ -5246,6 +5367,17 @@
         "stageKind": "main",
         "km": 236.2,
         "offM": 32,
+        "source": "osm"
+      },
+      {
+        "lat": 54.41263,
+        "lon": -1.10728,
+        "kind": "spring",
+        "name": "Cowkill Well",
+        "stage": "11",
+        "stageKind": "main",
+        "km": 243.0,
+        "offM": 412,
         "source": "osm"
       },
       {
@@ -5268,6 +5400,17 @@
         "stageKind": "main",
         "km": 261.9,
         "offM": 17,
+        "source": "osm"
+      },
+      {
+        "lat": 54.43763,
+        "lon": -0.83474,
+        "kind": "spring",
+        "name": "Jenny Brewster's Spring",
+        "stage": "11",
+        "stageKind": "main",
+        "km": 267.4,
+        "offM": 463,
         "source": "osm"
       },
       {
@@ -5312,6 +5455,17 @@
         "stageKind": "main",
         "km": 296.8,
         "offM": 239,
+        "source": "osm"
+      },
+      {
+        "lat": 54.44614,
+        "lon": -0.53123,
+        "kind": "spring",
+        "name": null,
+        "stage": "12",
+        "stageKind": "main",
+        "km": 297.0,
+        "offM": 386,
         "source": "osm"
       },
       {

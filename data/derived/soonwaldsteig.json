@@ -1617,7 +1617,7 @@
     "source": "osm",
     "extraSources": [],
     "retrieved": "2026-10-28T21:21:02Z",
-    "withinM": 250,
+    "withinM": 500,
     "routeKm": 83.2,
     "stageStarts": [
       {
@@ -1674,7 +1674,7 @@
         "number": "3",
         "kind": "main",
         "drinking": 0,
-        "springs": 1
+        "springs": 2
       },
       {
         "number": "4",
@@ -1691,7 +1691,7 @@
       {
         "number": "6",
         "kind": "main",
-        "drinking": 1,
+        "drinking": 2,
         "springs": 1
       }
     ],
@@ -1774,6 +1774,17 @@
         "source": "osm"
       },
       {
+        "lat": 49.89425,
+        "lon": 7.57001,
+        "kind": "spring",
+        "name": "Hubertusborn",
+        "stage": "3",
+        "stageKind": "main",
+        "km": 39.4,
+        "offM": 411,
+        "source": "osm"
+      },
+      {
         "lat": 49.9392,
         "lon": 7.61966,
         "kind": "spring",
@@ -1826,6 +1837,17 @@
         "stageKind": "main",
         "km": 71.8,
         "offM": 25,
+        "source": "osm"
+      },
+      {
+        "lat": 50.00321,
+        "lon": 7.85545,
+        "kind": "drinking",
+        "name": null,
+        "stage": "6",
+        "stageKind": "main",
+        "km": 75.4,
+        "offM": 250,
         "source": "osm"
       }
     ]

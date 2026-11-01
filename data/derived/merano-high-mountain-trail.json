@@ -1843,7 +1843,7 @@
     "source": "osm",
     "extraSources": [],
     "retrieved": "2026-10-28T21:21:02Z",
-    "withinM": 250,
+    "withinM": 500,
     "routeKm": 91.5,
     "stageStarts": [
       {
@@ -1890,8 +1890,8 @@
         "toKm": 70.5
       },
       "any": {
-        "km": 18.0,
-        "fromKm": 9.4,
+        "km": 14.8,
+        "fromKm": 12.6,
         "toKm": 27.4
       }
     },
@@ -1905,7 +1905,7 @@
       {
         "number": "2",
         "kind": "main",
-        "drinking": 0,
+        "drinking": 1,
         "springs": 0
       },
       {
@@ -1917,13 +1917,13 @@
       {
         "number": "4",
         "kind": "main",
-        "drinking": 5,
+        "drinking": 7,
         "springs": 0
       },
       {
         "number": "5",
         "kind": "main",
-        "drinking": 1,
+        "drinking": 2,
         "springs": 0
       },
       {
@@ -1948,7 +1948,7 @@
         "number": "9",
         "kind": "main",
         "drinking": 2,
-        "springs": 1
+        "springs": 2
       }
     ],
     "points": [
@@ -1994,6 +1994,17 @@
         "stageKind": "main",
         "km": 9.4,
         "offM": 7,
+        "source": "osm"
+      },
+      {
+        "lat": 46.78387,
+        "lon": 11.22048,
+        "kind": "drinking",
+        "name": null,
+        "stage": "2",
+        "stageKind": "main",
+        "km": 12.6,
+        "offM": 474,
         "source": "osm"
       },
       {
@@ -2052,6 +2063,17 @@
         "source": "osm"
       },
       {
+        "lat": 46.70247,
+        "lon": 11.03365,
+        "kind": "drinking",
+        "name": null,
+        "stage": "4",
+        "stageKind": "main",
+        "km": 41.3,
+        "offM": 335,
+        "source": "osm"
+      },
+      {
         "lat": 46.69994,
         "lon": 11.03963,
         "kind": "drinking",
@@ -2063,6 +2085,17 @@
         "source": "osm"
       },
       {
+        "lat": 46.68999,
+        "lon": 11.04717,
+        "kind": "drinking",
+        "name": null,
+        "stage": "4",
+        "stageKind": "main",
+        "km": 43.0,
+        "offM": 367,
+        "source": "osm"
+      },
+      {
         "lat": 46.68483,
         "lon": 11.04953,
         "kind": "drinking",
@@ -2071,6 +2104,17 @@
         "stageKind": "main",
         "km": 43.6,
         "offM": 150,
+        "source": "osm"
+      },
+      {
+        "lat": 46.68522,
+        "lon": 11.03639,
+        "kind": "drinking",
+        "name": null,
+        "stage": "5",
+        "stageKind": "main",
+        "km": 44.4,
+        "offM": 371,
         "source": "osm"
       },
       {
@@ -2159,6 +2203,17 @@
         "stageKind": "main",
         "km": 86.7,
         "offM": 55,
+        "source": "osm"
+      },
+      {
+        "lat": 46.80965,
+        "lon": 11.13727,
+        "kind": "spring",
+        "name": "Muaterle Quelle",
+        "stage": "9",
+        "stageKind": "main",
+        "km": 91.4,
+        "offM": 270,
         "source": "osm"
       }
     ]

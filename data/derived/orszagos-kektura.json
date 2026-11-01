@@ -16160,7 +16160,7 @@
     "source": "osm",
     "extraSources": [],
     "retrieved": "2026-10-28T21:21:02Z",
-    "withinM": 250,
+    "withinM": 500,
     "routeKm": 1166.2,
     "stageStarts": [
       {
@@ -16407,17 +16407,17 @@
         "toKm": 508.5
       },
       "any": {
-        "km": 26.3,
-        "fromKm": 477.6,
-        "toKm": 503.9
+        "km": 23.1,
+        "fromKm": 110.8,
+        "toKm": 133.9
       }
     },
     "stages": [
       {
         "number": "1",
         "kind": "main",
-        "drinking": 8,
-        "springs": 2
+        "drinking": 9,
+        "springs": 5
       },
       {
         "number": "2",
@@ -16434,19 +16434,19 @@
       {
         "number": "4",
         "kind": "main",
-        "drinking": 11,
+        "drinking": 14,
         "springs": 0
       },
       {
         "number": "5",
         "kind": "main",
-        "drinking": 3,
+        "drinking": 4,
         "springs": 0
       },
       {
         "number": "6",
         "kind": "main",
-        "drinking": 1,
+        "drinking": 2,
         "springs": 0
       },
       {
@@ -16458,25 +16458,25 @@
       {
         "number": "8",
         "kind": "main",
-        "drinking": 2,
+        "drinking": 3,
         "springs": 0
       },
       {
         "number": "9",
         "kind": "main",
-        "drinking": 2,
-        "springs": 0
+        "drinking": 3,
+        "springs": 1
       },
       {
         "number": "10",
         "kind": "main",
-        "drinking": 13,
+        "drinking": 14,
         "springs": 2
       },
       {
         "number": "11",
         "kind": "main",
-        "drinking": 2,
+        "drinking": 3,
         "springs": 0
       },
       {
@@ -16494,20 +16494,20 @@
       {
         "number": "14",
         "kind": "main",
-        "drinking": 6,
-        "springs": 2
+        "drinking": 10,
+        "springs": 4
       },
       {
         "number": "15",
         "kind": "main",
-        "drinking": 1,
+        "drinking": 3,
         "springs": 1
       },
       {
         "number": "16",
         "kind": "main",
         "drinking": 9,
-        "springs": 6
+        "springs": 9
       },
       {
         "number": "17",
@@ -16518,20 +16518,20 @@
       {
         "number": "18",
         "kind": "main",
-        "drinking": 0,
-        "springs": 1
+        "drinking": 1,
+        "springs": 3
       },
       {
         "number": "19",
         "kind": "main",
-        "drinking": 6,
+        "drinking": 9,
         "springs": 3
       },
       {
         "number": "20",
         "kind": "main",
         "drinking": 4,
-        "springs": 0
+        "springs": 2
       },
       {
         "number": "21",
@@ -16548,20 +16548,20 @@
       {
         "number": "23",
         "kind": "main",
-        "drinking": 10,
+        "drinking": 14,
         "springs": 0
       },
       {
         "number": "24",
         "kind": "main",
         "drinking": 2,
-        "springs": 0
+        "springs": 1
       },
       {
         "number": "25",
         "kind": "main",
         "drinking": 2,
-        "springs": 0
+        "springs": 3
       },
       {
         "number": "26",
@@ -16579,7 +16579,7 @@
         "number": "28",
         "kind": "main",
         "drinking": 1,
-        "springs": 2
+        "springs": 5
       },
       {
         "number": "29",
@@ -16590,98 +16590,98 @@
       {
         "number": "30",
         "kind": "main",
-        "drinking": 2,
-        "springs": 0
+        "drinking": 3,
+        "springs": 1
       },
       {
         "number": "31",
         "kind": "main",
-        "drinking": 9,
+        "drinking": 14,
         "springs": 0
       },
       {
         "number": "32",
         "kind": "main",
-        "drinking": 9,
+        "drinking": 13,
         "springs": 0
       },
       {
         "number": "33",
         "kind": "main",
-        "drinking": 9,
-        "springs": 2
+        "drinking": 21,
+        "springs": 5
       },
       {
         "number": "34",
         "kind": "main",
-        "drinking": 2,
-        "springs": 1
+        "drinking": 3,
+        "springs": 2
       },
       {
         "number": "35",
         "kind": "main",
-        "drinking": 8,
-        "springs": 0
+        "drinking": 13,
+        "springs": 3
       },
       {
         "number": "36",
         "kind": "main",
-        "drinking": 17,
-        "springs": 0
+        "drinking": 20,
+        "springs": 1
       },
       {
         "number": "37",
         "kind": "main",
-        "drinking": 2,
-        "springs": 2
+        "drinking": 5,
+        "springs": 7
       },
       {
         "number": "38",
         "kind": "main",
-        "drinking": 6,
-        "springs": 0
+        "drinking": 7,
+        "springs": 2
       },
       {
         "number": "39",
         "kind": "main",
-        "drinking": 3,
+        "drinking": 4,
         "springs": 0
       },
       {
         "number": "40",
         "kind": "main",
-        "drinking": 6,
+        "drinking": 7,
         "springs": 1
       },
       {
         "number": "41",
         "kind": "main",
-        "drinking": 10,
-        "springs": 1
+        "drinking": 11,
+        "springs": 2
       },
       {
         "number": "42",
         "kind": "main",
-        "drinking": 13,
+        "drinking": 24,
         "springs": 0
       },
       {
         "number": "43",
         "kind": "main",
-        "drinking": 12,
+        "drinking": 18,
         "springs": 2
       },
       {
         "number": "44",
         "kind": "main",
-        "drinking": 7,
-        "springs": 13
+        "drinking": 8,
+        "springs": 23
       },
       {
         "number": "45",
         "kind": "main",
-        "drinking": 2,
-        "springs": 4
+        "drinking": 4,
+        "springs": 13
       },
       {
         "number": "46",
@@ -16692,38 +16692,38 @@
       {
         "number": "47",
         "kind": "main",
-        "drinking": 5,
-        "springs": 4
+        "drinking": 7,
+        "springs": 8
       },
       {
         "number": "48",
         "kind": "main",
-        "drinking": 3,
-        "springs": 0
+        "drinking": 4,
+        "springs": 4
       },
       {
         "number": "49",
         "kind": "main",
-        "drinking": 23,
-        "springs": 1
+        "drinking": 30,
+        "springs": 3
       },
       {
         "number": "50",
         "kind": "main",
-        "drinking": 23,
-        "springs": 0
+        "drinking": 27,
+        "springs": 1
       },
       {
         "number": "51",
         "kind": "main",
-        "drinking": 14,
-        "springs": 2
+        "drinking": 22,
+        "springs": 6
       },
       {
         "number": "52",
         "kind": "main",
-        "drinking": 8,
-        "springs": 3
+        "drinking": 15,
+        "springs": 6
       },
       {
         "number": "53",
@@ -16734,38 +16734,38 @@
       {
         "number": "54",
         "kind": "main",
-        "drinking": 26,
+        "drinking": 35,
         "springs": 0
       },
       {
         "number": "55",
         "kind": "main",
-        "drinking": 22,
+        "drinking": 26,
         "springs": 0
       },
       {
         "number": "56",
         "kind": "main",
-        "drinking": 28,
-        "springs": 7
+        "drinking": 29,
+        "springs": 13
       },
       {
         "number": "57",
         "kind": "main",
-        "drinking": 4,
-        "springs": 12
+        "drinking": 5,
+        "springs": 33
       },
       {
         "number": "58",
         "kind": "main",
-        "drinking": 21,
-        "springs": 20
+        "drinking": 29,
+        "springs": 32
       },
       {
         "number": "59",
         "kind": "main",
-        "drinking": 23,
-        "springs": 18
+        "drinking": 38,
+        "springs": 27
       }
     ],
     "points": [
@@ -16789,6 +16789,39 @@
         "stageKind": "main",
         "km": 2.2,
         "offM": 66,
+        "source": "osm"
+      },
+      {
+        "lat": 47.36654,
+        "lon": 16.47542,
+        "kind": "spring",
+        "name": "Sáros-forrás",
+        "stage": "1",
+        "stageKind": "main",
+        "km": 3.5,
+        "offM": 404,
+        "source": "osm"
+      },
+      {
+        "lat": 47.35878,
+        "lon": 16.47557,
+        "kind": "spring",
+        "name": null,
+        "stage": "1",
+        "stageKind": "main",
+        "km": 3.8,
+        "offM": 440,
+        "source": "osm"
+      },
+      {
+        "lat": 47.37163,
+        "lon": 16.48301,
+        "kind": "spring",
+        "name": "Árpád-forrás",
+        "stage": "1",
+        "stageKind": "main",
+        "km": 5.2,
+        "offM": 382,
         "source": "osm"
       },
       {
@@ -16822,6 +16855,17 @@
         "stageKind": "main",
         "km": 12.2,
         "offM": 126,
+        "source": "osm"
+      },
+      {
+        "lat": 47.38707,
+        "lon": 16.53571,
+        "kind": "drinking",
+        "name": null,
+        "stage": "1",
+        "stageKind": "main",
+        "km": 12.5,
+        "offM": 419,
         "source": "osm"
       },
       {
@@ -16968,6 +17012,17 @@
         "source": "osm"
       },
       {
+        "lat": 47.25242,
+        "lon": 16.92569,
+        "kind": "drinking",
+        "name": null,
+        "stage": "4",
+        "stageKind": "main",
+        "km": 68.7,
+        "offM": 342,
+        "source": "osm"
+      },
+      {
         "lat": 47.24964,
         "lon": 16.93255,
         "kind": "drinking",
@@ -17045,6 +17100,28 @@
         "source": "osm"
       },
       {
+        "lat": 47.25446,
+        "lon": 16.94376,
+        "kind": "drinking",
+        "name": null,
+        "stage": "4",
+        "stageKind": "main",
+        "km": 69.8,
+        "offM": 464,
+        "source": "osm"
+      },
+      {
+        "lat": 47.25041,
+        "lon": 16.94309,
+        "kind": "drinking",
+        "name": null,
+        "stage": "4",
+        "stageKind": "main",
+        "km": 69.9,
+        "offM": 251,
+        "source": "osm"
+      },
+      {
         "lat": 47.24729,
         "lon": 16.94001,
         "kind": "drinking",
@@ -17078,6 +17155,17 @@
         "source": "osm"
       },
       {
+        "lat": 47.20866,
+        "lon": 17.02264,
+        "kind": "drinking",
+        "name": null,
+        "stage": "5",
+        "stageKind": "main",
+        "km": 81.2,
+        "offM": 458,
+        "source": "osm"
+      },
+      {
         "lat": 47.21207,
         "lon": 17.01548,
         "kind": "drinking",
@@ -17097,6 +17185,17 @@
         "stageKind": "main",
         "km": 93.9,
         "offM": 19,
+        "source": "osm"
+      },
+      {
+        "lat": 47.09977,
+        "lon": 17.01747,
+        "kind": "drinking",
+        "name": null,
+        "stage": "6",
+        "stageKind": "main",
+        "km": 104.4,
+        "offM": 377,
         "source": "osm"
       },
       {
@@ -17144,6 +17243,17 @@
         "source": "osm"
       },
       {
+        "lat": 46.99199,
+        "lon": 17.19927,
+        "kind": "drinking",
+        "name": null,
+        "stage": "8",
+        "stageKind": "main",
+        "km": 133.9,
+        "offM": 324,
+        "source": "osm"
+      },
+      {
         "lat": 46.99516,
         "lon": 17.19921,
         "kind": "drinking",
@@ -17177,6 +17287,17 @@
         "source": "osm"
       },
       {
+        "lat": 46.9762,
+        "lon": 17.27837,
+        "kind": "drinking",
+        "name": null,
+        "stage": "9",
+        "stageKind": "main",
+        "km": 143.6,
+        "offM": 298,
+        "source": "osm"
+      },
+      {
         "lat": 46.935,
         "lon": 17.29254,
         "kind": "drinking",
@@ -17185,6 +17306,17 @@
         "stageKind": "main",
         "km": 148.9,
         "offM": 18,
+        "source": "osm"
+      },
+      {
+        "lat": 46.91543,
+        "lon": 17.27654,
+        "kind": "spring",
+        "name": "Kis-kút",
+        "stage": "9",
+        "stageKind": "main",
+        "km": 152.1,
+        "offM": 324,
         "source": "osm"
       },
       {
@@ -17350,6 +17482,28 @@
         "stageKind": "main",
         "km": 186.5,
         "offM": 82,
+        "source": "osm"
+      },
+      {
+        "lat": 46.75889,
+        "lon": 17.25287,
+        "kind": "drinking",
+        "name": null,
+        "stage": "11",
+        "stageKind": "main",
+        "km": 186.5,
+        "offM": 257,
+        "source": "osm"
+      },
+      {
+        "lat": 46.75785,
+        "lon": 17.25291,
+        "kind": "drinking",
+        "name": null,
+        "stage": "10",
+        "stageKind": "main",
+        "km": 186.5,
+        "offM": 339,
         "source": "osm"
       },
       {
@@ -17628,6 +17782,50 @@
         "source": "osm"
       },
       {
+        "lat": 46.79415,
+        "lon": 17.49578,
+        "kind": "drinking",
+        "name": "Kisfaludy-forrás",
+        "stage": "14",
+        "stageKind": "main",
+        "km": 235.1,
+        "offM": 355,
+        "source": "osm"
+      },
+      {
+        "lat": 46.80053,
+        "lon": 17.50433,
+        "kind": "spring",
+        "name": "Kanonok forrás",
+        "stage": "14",
+        "stageKind": "main",
+        "km": 235.6,
+        "offM": 458,
+        "source": "osm"
+      },
+      {
+        "lat": 46.7949,
+        "lon": 17.50083,
+        "kind": "drinking",
+        "name": null,
+        "stage": "14",
+        "stageKind": "main",
+        "km": 235.6,
+        "offM": 448,
+        "source": "osm"
+      },
+      {
+        "lat": 46.80539,
+        "lon": 17.50064,
+        "kind": "spring",
+        "name": "Klastrom-kút",
+        "stage": "14",
+        "stageKind": "main",
+        "km": 236.9,
+        "offM": 379,
+        "source": "osm"
+      },
+      {
         "lat": 46.83349,
         "lon": 17.49635,
         "kind": "spring",
@@ -17647,6 +17845,28 @@
         "stageKind": "main",
         "km": 242.2,
         "offM": 242,
+        "source": "osm"
+      },
+      {
+        "lat": 46.83555,
+        "lon": 17.48359,
+        "kind": "drinking",
+        "name": null,
+        "stage": "14",
+        "stageKind": "main",
+        "km": 242.2,
+        "offM": 470,
+        "source": "osm"
+      },
+      {
+        "lat": 46.8334,
+        "lon": 17.48466,
+        "kind": "drinking",
+        "name": null,
+        "stage": "14",
+        "stageKind": "main",
+        "km": 242.2,
+        "offM": 307,
         "source": "osm"
       },
       {
@@ -17683,6 +17903,17 @@
         "source": "osm"
       },
       {
+        "lat": 46.85264,
+        "lon": 17.51818,
+        "kind": "drinking",
+        "name": null,
+        "stage": "15",
+        "stageKind": "main",
+        "km": 245.3,
+        "offM": 434,
+        "source": "osm"
+      },
+      {
         "lat": 46.89042,
         "lon": 17.52764,
         "kind": "spring",
@@ -17691,6 +17922,17 @@
         "stageKind": "main",
         "km": 253.1,
         "offM": 144,
+        "source": "osm"
+      },
+      {
+        "lat": 46.89028,
+        "lon": 17.56585,
+        "kind": "drinking",
+        "name": null,
+        "stage": "15",
+        "stageKind": "main",
+        "km": 257.7,
+        "offM": 292,
         "source": "osm"
       },
       {
@@ -17727,6 +17969,17 @@
         "source": "osm"
       },
       {
+        "lat": 46.89902,
+        "lon": 17.57397,
+        "kind": "spring",
+        "name": "Marton-kút",
+        "stage": "16",
+        "stageKind": "main",
+        "km": 259.9,
+        "offM": 413,
+        "source": "osm"
+      },
+      {
         "lat": 46.9025,
         "lon": 17.59585,
         "kind": "spring",
@@ -17757,6 +18010,17 @@
         "stageKind": "main",
         "km": 262.8,
         "offM": 198,
+        "source": "osm"
+      },
+      {
+        "lat": 46.92293,
+        "lon": 17.61031,
+        "kind": "spring",
+        "name": null,
+        "stage": "16",
+        "stageKind": "main",
+        "km": 265.3,
+        "offM": 403,
         "source": "osm"
       },
       {
@@ -17812,6 +18076,17 @@
         "stageKind": "main",
         "km": 276.7,
         "offM": 64,
+        "source": "osm"
+      },
+      {
+        "lat": 46.98498,
+        "lon": 17.65735,
+        "kind": "spring",
+        "name": "Köböl-kút",
+        "stage": "16",
+        "stageKind": "main",
+        "km": 277.2,
+        "offM": 420,
         "source": "osm"
       },
       {
@@ -17925,6 +18200,17 @@
         "source": "osm"
       },
       {
+        "lat": 47.173,
+        "lon": 17.68031,
+        "kind": "drinking",
+        "name": null,
+        "stage": "18",
+        "stageKind": "main",
+        "km": 308.3,
+        "offM": 255,
+        "source": "osm"
+      },
+      {
         "lat": 47.17423,
         "lon": 17.67277,
         "kind": "spring",
@@ -17933,6 +18219,28 @@
         "stageKind": "main",
         "km": 308.8,
         "offM": 48,
+        "source": "osm"
+      },
+      {
+        "lat": 47.19218,
+        "lon": 17.67347,
+        "kind": "spring",
+        "name": "Vámos-kút",
+        "stage": "18",
+        "stageKind": "main",
+        "km": 311.3,
+        "offM": 317,
+        "source": "osm"
+      },
+      {
+        "lat": 47.22352,
+        "lon": 17.67981,
+        "kind": "spring",
+        "name": null,
+        "stage": "18",
+        "stageKind": "main",
+        "km": 316.8,
+        "offM": 288,
         "source": "osm"
       },
       {
@@ -17958,6 +18266,17 @@
         "source": "osm"
       },
       {
+        "lat": 47.2538,
+        "lon": 17.73832,
+        "kind": "drinking",
+        "name": null,
+        "stage": "19",
+        "stageKind": "main",
+        "km": 325.4,
+        "offM": 389,
+        "source": "osm"
+      },
+      {
         "lat": 47.28937,
         "lon": 17.77287,
         "kind": "spring",
@@ -17966,6 +18285,17 @@
         "stageKind": "main",
         "km": 332.3,
         "offM": 102,
+        "source": "osm"
+      },
+      {
+        "lat": 47.29296,
+        "lon": 17.82746,
+        "kind": "drinking",
+        "name": null,
+        "stage": "19",
+        "stageKind": "main",
+        "km": 338.9,
+        "offM": 473,
         "source": "osm"
       },
       {
@@ -18024,6 +18354,17 @@
         "source": "osm"
       },
       {
+        "lat": 47.26054,
+        "lon": 17.86735,
+        "kind": "drinking",
+        "name": null,
+        "stage": "19",
+        "stageKind": "main",
+        "km": 343.4,
+        "offM": 437,
+        "source": "osm"
+      },
+      {
         "lat": 47.26324,
         "lon": 17.87265,
         "kind": "drinking",
@@ -18043,6 +18384,28 @@
         "stageKind": "main",
         "km": 344.5,
         "offM": 179,
+        "source": "osm"
+      },
+      {
+        "lat": 47.27929,
+        "lon": 17.90611,
+        "kind": "spring",
+        "name": "Gaja-forrás",
+        "stage": "20",
+        "stageKind": "main",
+        "km": 346.9,
+        "offM": 483,
+        "source": "osm"
+      },
+      {
+        "lat": 47.27134,
+        "lon": 17.95056,
+        "kind": "spring",
+        "name": "Szapi kútja",
+        "stage": "20",
+        "stageKind": "main",
+        "km": 352.2,
+        "offM": 300,
         "source": "osm"
       },
       {
@@ -18222,6 +18585,28 @@
         "source": "osm"
       },
       {
+        "lat": 47.31691,
+        "lon": 18.23872,
+        "kind": "drinking",
+        "name": null,
+        "stage": "23",
+        "stageKind": "main",
+        "km": 402.1,
+        "offM": 346,
+        "source": "osm"
+      },
+      {
+        "lat": 47.32198,
+        "lon": 18.28011,
+        "kind": "drinking",
+        "name": null,
+        "stage": "23",
+        "stageKind": "main",
+        "km": 405.3,
+        "offM": 464,
+        "source": "osm"
+      },
+      {
         "lat": 47.34725,
         "lon": 18.27276,
         "kind": "drinking",
@@ -18230,6 +18615,28 @@
         "stageKind": "main",
         "km": 408.2,
         "offM": 40,
+        "source": "osm"
+      },
+      {
+        "lat": 47.34965,
+        "lon": 18.26834,
+        "kind": "drinking",
+        "name": null,
+        "stage": "23",
+        "stageKind": "main",
+        "km": 408.4,
+        "offM": 317,
+        "source": "osm"
+      },
+      {
+        "lat": 47.3538,
+        "lon": 18.27248,
+        "kind": "drinking",
+        "name": null,
+        "stage": "23",
+        "stageKind": "main",
+        "km": 408.8,
+        "offM": 259,
         "source": "osm"
       },
       {
@@ -18310,6 +18717,17 @@
         "source": "osm"
       },
       {
+        "lat": 47.39242,
+        "lon": 18.39019,
+        "kind": "spring",
+        "name": null,
+        "stage": "24",
+        "stageKind": "main",
+        "km": 423.8,
+        "offM": 364,
+        "source": "osm"
+      },
+      {
         "lat": 47.47484,
         "lon": 18.39742,
         "kind": "drinking",
@@ -18318,6 +18736,39 @@
         "stageKind": "main",
         "km": 441.2,
         "offM": 15,
+        "source": "osm"
+      },
+      {
+        "lat": 47.50085,
+        "lon": 18.41757,
+        "kind": "spring",
+        "name": "Szép Ilonka-kút",
+        "stage": "25",
+        "stageKind": "main",
+        "km": 445.4,
+        "offM": 356,
+        "source": "osm"
+      },
+      {
+        "lat": 47.50007,
+        "lon": 18.41941,
+        "kind": "spring",
+        "name": "Matild-forrás",
+        "stage": "25",
+        "stageKind": "main",
+        "km": 445.4,
+        "offM": 483,
+        "source": "osm"
+      },
+      {
+        "lat": 47.50544,
+        "lon": 18.4178,
+        "kind": "spring",
+        "name": null,
+        "stage": "25",
+        "stageKind": "main",
+        "km": 445.9,
+        "offM": 489,
         "source": "osm"
       },
       {
@@ -18362,6 +18813,39 @@
         "stageKind": "main",
         "km": 477.6,
         "offM": 8,
+        "source": "osm"
+      },
+      {
+        "lat": 47.69163,
+        "lon": 18.51192,
+        "kind": "spring",
+        "name": "Dám-forrás",
+        "stage": "28",
+        "stageKind": "main",
+        "km": 494.7,
+        "offM": 371,
+        "source": "osm"
+      },
+      {
+        "lat": 47.70975,
+        "lon": 18.56314,
+        "kind": "spring",
+        "name": null,
+        "stage": "28",
+        "stageKind": "main",
+        "km": 500.1,
+        "offM": 464,
+        "source": "osm"
+      },
+      {
+        "lat": 47.70913,
+        "lon": 18.56413,
+        "kind": "spring",
+        "name": null,
+        "stage": "28",
+        "stageKind": "main",
+        "km": 500.4,
+        "offM": 441,
         "source": "osm"
       },
       {
@@ -18464,6 +18948,17 @@
         "source": "osm"
       },
       {
+        "lat": 47.71666,
+        "lon": 18.79355,
+        "kind": "spring",
+        "name": null,
+        "stage": "30",
+        "stageKind": "main",
+        "km": 530.5,
+        "offM": 362,
+        "source": "osm"
+      },
+      {
         "lat": 47.70209,
         "lon": 18.83256,
         "kind": "drinking",
@@ -18486,6 +18981,17 @@
         "source": "osm"
       },
       {
+        "lat": 47.6459,
+        "lon": 18.82158,
+        "kind": "drinking",
+        "name": null,
+        "stage": "30",
+        "stageKind": "main",
+        "km": 542.6,
+        "offM": 376,
+        "source": "osm"
+      },
+      {
         "lat": 47.63831,
         "lon": 18.82927,
         "kind": "drinking",
@@ -18497,6 +19003,28 @@
         "source": "osm"
       },
       {
+        "lat": 47.6366,
+        "lon": 18.83858,
+        "kind": "drinking",
+        "name": null,
+        "stage": "31",
+        "stageKind": "main",
+        "km": 543.6,
+        "offM": 437,
+        "source": "osm"
+      },
+      {
+        "lat": 47.63889,
+        "lon": 18.83447,
+        "kind": "drinking",
+        "name": null,
+        "stage": "31",
+        "stageKind": "main",
+        "km": 543.6,
+        "offM": 261,
+        "source": "osm"
+      },
+      {
         "lat": 47.63387,
         "lon": 18.831,
         "kind": "drinking",
@@ -18505,6 +19033,17 @@
         "stageKind": "main",
         "km": 544.1,
         "offM": 37,
+        "source": "osm"
+      },
+      {
+        "lat": 47.63428,
+        "lon": 18.82108,
+        "kind": "drinking",
+        "name": null,
+        "stage": "31",
+        "stageKind": "main",
+        "km": 544.5,
+        "offM": 424,
         "source": "osm"
       },
       {
@@ -18549,6 +19088,28 @@
         "stageKind": "main",
         "km": 545.3,
         "offM": 117,
+        "source": "osm"
+      },
+      {
+        "lat": 47.58613,
+        "lon": 18.88154,
+        "kind": "drinking",
+        "name": null,
+        "stage": "31",
+        "stageKind": "main",
+        "km": 554.9,
+        "offM": 261,
+        "source": "osm"
+      },
+      {
+        "lat": 47.58413,
+        "lon": 18.88984,
+        "kind": "drinking",
+        "name": null,
+        "stage": "31",
+        "stageKind": "main",
+        "km": 555.7,
+        "offM": 398,
         "source": "osm"
       },
       {
@@ -18618,6 +19179,39 @@
         "source": "osm"
       },
       {
+        "lat": 47.5484,
+        "lon": 18.98937,
+        "kind": "drinking",
+        "name": null,
+        "stage": "32",
+        "stageKind": "main",
+        "km": 568.6,
+        "offM": 348,
+        "source": "osm"
+      },
+      {
+        "lat": 47.54555,
+        "lon": 18.99246,
+        "kind": "drinking",
+        "name": null,
+        "stage": "32",
+        "stageKind": "main",
+        "km": 568.9,
+        "offM": 348,
+        "source": "osm"
+      },
+      {
+        "lat": 47.54413,
+        "lon": 18.99247,
+        "kind": "drinking",
+        "name": null,
+        "stage": "32",
+        "stageKind": "main",
+        "km": 569.0,
+        "offM": 285,
+        "source": "osm"
+      },
+      {
         "lat": 47.53992,
         "lon": 18.98861,
         "kind": "drinking",
@@ -18684,6 +19278,17 @@
         "source": "osm"
       },
       {
+        "lat": 47.5634,
+        "lon": 18.99918,
+        "kind": "drinking",
+        "name": null,
+        "stage": "32",
+        "stageKind": "main",
+        "km": 575.0,
+        "offM": 449,
+        "source": "osm"
+      },
+      {
         "lat": 47.59318,
         "lon": 18.98638,
         "kind": "drinking",
@@ -18692,6 +19297,39 @@
         "stageKind": "main",
         "km": 581.5,
         "offM": 89,
+        "source": "osm"
+      },
+      {
+        "lat": 47.60917,
+        "lon": 18.99208,
+        "kind": "drinking",
+        "name": null,
+        "stage": "33",
+        "stageKind": "main",
+        "km": 583.8,
+        "offM": 486,
+        "source": "osm"
+      },
+      {
+        "lat": 47.61017,
+        "lon": 18.98898,
+        "kind": "drinking",
+        "name": null,
+        "stage": "33",
+        "stageKind": "main",
+        "km": 584.0,
+        "offM": 397,
+        "source": "osm"
+      },
+      {
+        "lat": 47.63733,
+        "lon": 18.96957,
+        "kind": "drinking",
+        "name": null,
+        "stage": "33",
+        "stageKind": "main",
+        "km": 587.8,
+        "offM": 281,
         "source": "osm"
       },
       {
@@ -18714,6 +19352,28 @@
         "stageKind": "main",
         "km": 597.7,
         "offM": 68,
+        "source": "osm"
+      },
+      {
+        "lat": 47.69037,
+        "lon": 18.89842,
+        "kind": "drinking",
+        "name": null,
+        "stage": "33",
+        "stageKind": "main",
+        "km": 597.9,
+        "offM": 336,
+        "source": "osm"
+      },
+      {
+        "lat": 47.68751,
+        "lon": 18.8994,
+        "kind": "drinking",
+        "name": null,
+        "stage": "33",
+        "stageKind": "main",
+        "km": 597.9,
+        "offM": 431,
         "source": "osm"
       },
       {
@@ -18761,6 +19421,83 @@
         "source": "osm"
       },
       {
+        "lat": 47.69651,
+        "lon": 18.90317,
+        "kind": "drinking",
+        "name": null,
+        "stage": "33",
+        "stageKind": "main",
+        "km": 598.5,
+        "offM": 329,
+        "source": "osm"
+      },
+      {
+        "lat": 47.69907,
+        "lon": 18.90342,
+        "kind": "spring",
+        "name": "Cser-forrás",
+        "stage": "33",
+        "stageKind": "main",
+        "km": 598.7,
+        "offM": 496,
+        "source": "osm"
+      },
+      {
+        "lat": 47.6954,
+        "lon": 18.89368,
+        "kind": "drinking",
+        "name": null,
+        "stage": "33",
+        "stageKind": "main",
+        "km": 598.9,
+        "offM": 291,
+        "source": "osm"
+      },
+      {
+        "lat": 47.70152,
+        "lon": 18.89973,
+        "kind": "spring",
+        "name": "Kanyargós-forrás",
+        "stage": "33",
+        "stageKind": "main",
+        "km": 599.1,
+        "offM": 430,
+        "source": "osm"
+      },
+      {
+        "lat": 47.7,
+        "lon": 18.89833,
+        "kind": "spring",
+        "name": "Vízművek/1-forrás",
+        "stage": "33",
+        "stageKind": "main",
+        "km": 599.1,
+        "offM": 265,
+        "source": "osm"
+      },
+      {
+        "lat": 47.70058,
+        "lon": 18.89838,
+        "kind": "drinking",
+        "name": "Kovács -forrás",
+        "stage": "33",
+        "stageKind": "main",
+        "km": 599.1,
+        "offM": 291,
+        "source": "osm"
+      },
+      {
+        "lat": 47.70003,
+        "lon": 18.89822,
+        "kind": "drinking",
+        "name": null,
+        "stage": "33",
+        "stageKind": "main",
+        "km": 599.1,
+        "offM": 258,
+        "source": "osm"
+      },
+      {
         "lat": 47.70147,
         "lon": 18.89533,
         "kind": "spring",
@@ -18780,6 +19517,39 @@
         "stageKind": "main",
         "km": 599.8,
         "offM": 123,
+        "source": "osm"
+      },
+      {
+        "lat": 47.70632,
+        "lon": 18.88429,
+        "kind": "drinking",
+        "name": "Kinizsi-forrás",
+        "stage": "33",
+        "stageKind": "main",
+        "km": 600.1,
+        "offM": 418,
+        "source": "osm"
+      },
+      {
+        "lat": 47.71624,
+        "lon": 18.88555,
+        "kind": "drinking",
+        "name": null,
+        "stage": "33",
+        "stageKind": "main",
+        "km": 601.1,
+        "offM": 353,
+        "source": "osm"
+      },
+      {
+        "lat": 47.71814,
+        "lon": 18.88857,
+        "kind": "drinking",
+        "name": null,
+        "stage": "33",
+        "stageKind": "main",
+        "km": 601.2,
+        "offM": 330,
         "source": "osm"
       },
       {
@@ -18805,6 +19575,17 @@
         "source": "osm"
       },
       {
+        "lat": 47.72267,
+        "lon": 18.90006,
+        "kind": "spring",
+        "name": "Nagyboldogasszony-forrás",
+        "stage": "34",
+        "stageKind": "main",
+        "km": 602.6,
+        "offM": 323,
+        "source": "osm"
+      },
+      {
         "lat": 47.70273,
         "lon": 18.95583,
         "kind": "spring",
@@ -18827,6 +19608,17 @@
         "source": "osm"
       },
       {
+        "lat": 47.72634,
+        "lon": 18.98444,
+        "kind": "drinking",
+        "name": null,
+        "stage": "34",
+        "stageKind": "main",
+        "km": 612.3,
+        "offM": 471,
+        "source": "osm"
+      },
+      {
         "lat": 47.72328,
         "lon": 18.98845,
         "kind": "drinking",
@@ -18838,6 +19630,39 @@
         "source": "osm"
       },
       {
+        "lat": 47.72108,
+        "lon": 18.99385,
+        "kind": "drinking",
+        "name": null,
+        "stage": "35",
+        "stageKind": "main",
+        "km": 612.7,
+        "offM": 393,
+        "source": "osm"
+      },
+      {
+        "lat": 47.74861,
+        "lon": 19.02307,
+        "kind": "spring",
+        "name": null,
+        "stage": "35",
+        "stageKind": "main",
+        "km": 617.5,
+        "offM": 385,
+        "source": "osm"
+      },
+      {
+        "lat": 47.78604,
+        "lon": 19.00363,
+        "kind": "spring",
+        "name": null,
+        "stage": "35",
+        "stageKind": "main",
+        "km": 622.7,
+        "offM": 486,
+        "source": "osm"
+      },
+      {
         "lat": 47.7953,
         "lon": 18.9907,
         "kind": "drinking",
@@ -18846,6 +19671,28 @@
         "stageKind": "main",
         "km": 624.0,
         "offM": 190,
+        "source": "osm"
+      },
+      {
+        "lat": 47.79807,
+        "lon": 18.98548,
+        "kind": "spring",
+        "name": "Mátyás-forrás",
+        "stage": "35",
+        "stageKind": "main",
+        "km": 624.5,
+        "offM": 379,
+        "source": "osm"
+      },
+      {
+        "lat": 47.79658,
+        "lon": 18.97758,
+        "kind": "drinking",
+        "name": null,
+        "stage": "35",
+        "stageKind": "main",
+        "km": 624.6,
+        "offM": 465,
         "source": "osm"
       },
       {
@@ -18871,6 +19718,17 @@
         "source": "osm"
       },
       {
+        "lat": 47.79103,
+        "lon": 18.97126,
+        "kind": "drinking",
+        "name": null,
+        "stage": "35",
+        "stageKind": "main",
+        "km": 625.4,
+        "offM": 342,
+        "source": "osm"
+      },
+      {
         "lat": 47.78781,
         "lon": 18.9707,
         "kind": "drinking",
@@ -18893,6 +19751,17 @@
         "source": "osm"
       },
       {
+        "lat": 47.78478,
+        "lon": 18.97617,
+        "kind": "drinking",
+        "name": null,
+        "stage": "35",
+        "stageKind": "main",
+        "km": 625.9,
+        "offM": 285,
+        "source": "osm"
+      },
+      {
         "lat": 47.78507,
         "lon": 18.97158,
         "kind": "drinking",
@@ -18901,6 +19770,17 @@
         "stageKind": "main",
         "km": 626.0,
         "offM": 19,
+        "source": "osm"
+      },
+      {
+        "lat": 47.78302,
+        "lon": 18.97001,
+        "kind": "drinking",
+        "name": null,
+        "stage": "35",
+        "stageKind": "main",
+        "km": 626.0,
+        "offM": 276,
         "source": "osm"
       },
       {
@@ -18959,6 +19839,17 @@
         "source": "osm"
       },
       {
+        "lat": 47.79199,
+        "lon": 18.96257,
+        "kind": "drinking",
+        "name": null,
+        "stage": "36",
+        "stageKind": "main",
+        "km": 626.5,
+        "offM": 259,
+        "source": "osm"
+      },
+      {
         "lat": 47.79053,
         "lon": 18.95889,
         "kind": "drinking",
@@ -18989,6 +19880,28 @@
         "stageKind": "main",
         "km": 626.8,
         "offM": 140,
+        "source": "osm"
+      },
+      {
+        "lat": 47.79303,
+        "lon": 18.95327,
+        "kind": "drinking",
+        "name": null,
+        "stage": "36",
+        "stageKind": "main",
+        "km": 626.8,
+        "offM": 420,
+        "source": "osm"
+      },
+      {
+        "lat": 47.79379,
+        "lon": 18.95353,
+        "kind": "drinking",
+        "name": null,
+        "stage": "36",
+        "stageKind": "main",
+        "km": 626.8,
+        "offM": 462,
         "source": "osm"
       },
       {
@@ -19044,6 +19957,17 @@
         "stageKind": "main",
         "km": 627.9,
         "offM": 4,
+        "source": "osm"
+      },
+      {
+        "lat": 47.87353,
+        "lon": 18.91877,
+        "kind": "spring",
+        "name": "Vasutas-forrás",
+        "stage": "36",
+        "stageKind": "main",
+        "km": 642.7,
+        "offM": 445,
         "source": "osm"
       },
       {
@@ -19113,6 +20037,61 @@
         "source": "osm"
       },
       {
+        "lat": 47.90067,
+        "lon": 18.92147,
+        "kind": "spring",
+        "name": null,
+        "stage": "37",
+        "stageKind": "main",
+        "km": 647.6,
+        "offM": 301,
+        "source": "osm"
+      },
+      {
+        "lat": 47.90108,
+        "lon": 18.92101,
+        "kind": "spring",
+        "name": "Pokol-völgy forrása",
+        "stage": "37",
+        "stageKind": "main",
+        "km": 647.7,
+        "offM": 324,
+        "source": "osm"
+      },
+      {
+        "lat": 47.90627,
+        "lon": 18.91906,
+        "kind": "spring",
+        "name": null,
+        "stage": "37",
+        "stageKind": "main",
+        "km": 648.2,
+        "offM": 403,
+        "source": "osm"
+      },
+      {
+        "lat": 47.92933,
+        "lon": 18.92193,
+        "kind": "drinking",
+        "name": "Hármas-forrás",
+        "stage": "37",
+        "stageKind": "main",
+        "km": 650.8,
+        "offM": 361,
+        "source": "osm"
+      },
+      {
+        "lat": 47.9317,
+        "lon": 18.91024,
+        "kind": "spring",
+        "name": "Hajabács-kút",
+        "stage": "37",
+        "stageKind": "main",
+        "km": 651.1,
+        "offM": 422,
+        "source": "osm"
+      },
+      {
         "lat": 47.9347,
         "lon": 18.93365,
         "kind": "spring",
@@ -19121,6 +20100,39 @@
         "stageKind": "main",
         "km": 652.9,
         "offM": 204,
+        "source": "osm"
+      },
+      {
+        "lat": 47.93942,
+        "lon": 18.93213,
+        "kind": "drinking",
+        "name": "Kettős-kút",
+        "stage": "37",
+        "stageKind": "main",
+        "km": 653.1,
+        "offM": 304,
+        "source": "osm"
+      },
+      {
+        "lat": 47.93943,
+        "lon": 18.93223,
+        "kind": "drinking",
+        "name": "Természetbarát-forrás",
+        "stage": "37",
+        "stageKind": "main",
+        "km": 653.1,
+        "offM": 301,
+        "source": "osm"
+      },
+      {
+        "lat": 47.95308,
+        "lon": 18.94627,
+        "kind": "spring",
+        "name": "Marcika-kút",
+        "stage": "37",
+        "stageKind": "main",
+        "km": 654.9,
+        "offM": 474,
         "source": "osm"
       },
       {
@@ -19154,6 +20166,28 @@
         "stageKind": "main",
         "km": 666.7,
         "offM": 107,
+        "source": "osm"
+      },
+      {
+        "lat": 47.88048,
+        "lon": 19.05528,
+        "kind": "spring",
+        "name": "Téglás-forrás",
+        "stage": "38",
+        "stageKind": "main",
+        "km": 669.7,
+        "offM": 435,
+        "source": "osm"
+      },
+      {
+        "lat": 47.87007,
+        "lon": 19.04614,
+        "kind": "spring",
+        "name": "Földhíd-árok-forrás",
+        "stage": "38",
+        "stageKind": "main",
+        "km": 672.2,
+        "offM": 355,
         "source": "osm"
       },
       {
@@ -19223,6 +20257,17 @@
         "source": "osm"
       },
       {
+        "lat": 47.84915,
+        "lon": 19.102,
+        "kind": "drinking",
+        "name": null,
+        "stage": "38",
+        "stageKind": "main",
+        "km": 681.4,
+        "offM": 292,
+        "source": "osm"
+      },
+      {
         "lat": 47.85919,
         "lon": 19.19159,
         "kind": "drinking",
@@ -19231,6 +20276,17 @@
         "stageKind": "main",
         "km": 694.6,
         "offM": 6,
+        "source": "osm"
+      },
+      {
+        "lat": 47.85513,
+        "lon": 19.1998,
+        "kind": "drinking",
+        "name": null,
+        "stage": "39",
+        "stageKind": "main",
+        "km": 695.2,
+        "offM": 348,
         "source": "osm"
       },
       {
@@ -19311,6 +20367,17 @@
         "source": "osm"
       },
       {
+        "lat": 47.93948,
+        "lon": 19.28622,
+        "kind": "drinking",
+        "name": null,
+        "stage": "40",
+        "stageKind": "main",
+        "km": 715.6,
+        "offM": 472,
+        "source": "osm"
+      },
+      {
         "lat": 47.93608,
         "lon": 19.28342,
         "kind": "drinking",
@@ -19377,6 +20444,17 @@
         "source": "osm"
       },
       {
+        "lat": 47.92536,
+        "lon": 19.41735,
+        "kind": "drinking",
+        "name": null,
+        "stage": "41",
+        "stageKind": "main",
+        "km": 731.5,
+        "offM": 346,
+        "source": "osm"
+      },
+      {
         "lat": 47.9282,
         "lon": 19.41087,
         "kind": "drinking",
@@ -19385,6 +20463,17 @@
         "stageKind": "main",
         "km": 731.8,
         "offM": 15,
+        "source": "osm"
+      },
+      {
+        "lat": 47.93263,
+        "lon": 19.42244,
+        "kind": "spring",
+        "name": null,
+        "stage": "41",
+        "stageKind": "main",
+        "km": 733.2,
+        "offM": 284,
         "source": "osm"
       },
       {
@@ -19531,6 +20620,72 @@
         "source": "osm"
       },
       {
+        "lat": 47.99454,
+        "lon": 19.58246,
+        "kind": "drinking",
+        "name": "Várkút-forrás",
+        "stage": "42",
+        "stageKind": "main",
+        "km": 764.2,
+        "offM": 295,
+        "source": "osm"
+      },
+      {
+        "lat": 47.96688,
+        "lon": 19.61118,
+        "kind": "drinking",
+        "name": null,
+        "stage": "42",
+        "stageKind": "main",
+        "km": 767.8,
+        "offM": 429,
+        "source": "osm"
+      },
+      {
+        "lat": 47.96691,
+        "lon": 19.61119,
+        "kind": "drinking",
+        "name": "Közkút",
+        "stage": "42",
+        "stageKind": "main",
+        "km": 767.8,
+        "offM": 427,
+        "source": "osm"
+      },
+      {
+        "lat": 47.96568,
+        "lon": 19.60921,
+        "kind": "drinking",
+        "name": null,
+        "stage": "42",
+        "stageKind": "main",
+        "km": 768.2,
+        "offM": 440,
+        "source": "osm"
+      },
+      {
+        "lat": 47.9658,
+        "lon": 19.6071,
+        "kind": "drinking",
+        "name": "Közkút",
+        "stage": "42",
+        "stageKind": "main",
+        "km": 768.2,
+        "offM": 312,
+        "source": "osm"
+      },
+      {
+        "lat": 47.96295,
+        "lon": 19.58894,
+        "kind": "drinking",
+        "name": "Mogyorós-forrás",
+        "stage": "42",
+        "stageKind": "main",
+        "km": 769.1,
+        "offM": 446,
+        "source": "osm"
+      },
+      {
         "lat": 47.95377,
         "lon": 19.59509,
         "kind": "drinking",
@@ -19550,6 +20705,17 @@
         "stageKind": "main",
         "km": 770.4,
         "offM": 193,
+        "source": "osm"
+      },
+      {
+        "lat": 47.95065,
+        "lon": 19.60135,
+        "kind": "drinking",
+        "name": null,
+        "stage": "42",
+        "stageKind": "main",
+        "km": 770.5,
+        "offM": 443,
         "source": "osm"
       },
       {
@@ -19575,6 +20741,17 @@
         "source": "osm"
       },
       {
+        "lat": 47.95162,
+        "lon": 19.59967,
+        "kind": "drinking",
+        "name": null,
+        "stage": "42",
+        "stageKind": "main",
+        "km": 770.5,
+        "offM": 289,
+        "source": "osm"
+      },
+      {
         "lat": 47.95168,
         "lon": 19.59484,
         "kind": "drinking",
@@ -19594,6 +20771,39 @@
         "stageKind": "main",
         "km": 770.6,
         "offM": 81,
+        "source": "osm"
+      },
+      {
+        "lat": 47.94932,
+        "lon": 19.5984,
+        "kind": "drinking",
+        "name": null,
+        "stage": "42",
+        "stageKind": "main",
+        "km": 770.7,
+        "offM": 339,
+        "source": "osm"
+      },
+      {
+        "lat": 47.93913,
+        "lon": 19.58374,
+        "kind": "drinking",
+        "name": null,
+        "stage": "42",
+        "stageKind": "main",
+        "km": 771.9,
+        "offM": 473,
+        "source": "osm"
+      },
+      {
+        "lat": 47.93783,
+        "lon": 19.58467,
+        "kind": "drinking",
+        "name": null,
+        "stage": "42",
+        "stageKind": "main",
+        "km": 772.1,
+        "offM": 500,
         "source": "osm"
       },
       {
@@ -19630,6 +20840,28 @@
         "source": "osm"
       },
       {
+        "lat": 47.98634,
+        "lon": 19.71986,
+        "kind": "drinking",
+        "name": null,
+        "stage": "43",
+        "stageKind": "main",
+        "km": 789.4,
+        "offM": 268,
+        "source": "osm"
+      },
+      {
+        "lat": 47.98581,
+        "lon": 19.71946,
+        "kind": "drinking",
+        "name": null,
+        "stage": "43",
+        "stageKind": "main",
+        "km": 789.4,
+        "offM": 327,
+        "source": "osm"
+      },
+      {
         "lat": 47.99366,
         "lon": 19.73852,
         "kind": "drinking",
@@ -19638,6 +20870,17 @@
         "stageKind": "main",
         "km": 790.9,
         "offM": 4,
+        "source": "osm"
+      },
+      {
+        "lat": 47.99858,
+        "lon": 19.75202,
+        "kind": "drinking",
+        "name": "Forró-kút",
+        "stage": "43",
+        "stageKind": "main",
+        "km": 792.0,
+        "offM": 263,
         "source": "osm"
       },
       {
@@ -19729,6 +20972,17 @@
         "source": "osm"
       },
       {
+        "lat": 47.97556,
+        "lon": 19.7715,
+        "kind": "drinking",
+        "name": "Közkút",
+        "stage": "43",
+        "stageKind": "main",
+        "km": 798.1,
+        "offM": 343,
+        "source": "osm"
+      },
+      {
         "lat": 47.97295,
         "lon": 19.76683,
         "kind": "drinking",
@@ -19751,6 +21005,28 @@
         "source": "osm"
       },
       {
+        "lat": 47.97742,
+        "lon": 19.77529,
+        "kind": "drinking",
+        "name": null,
+        "stage": "43",
+        "stageKind": "main",
+        "km": 799.2,
+        "offM": 497,
+        "source": "osm"
+      },
+      {
+        "lat": 47.97597,
+        "lon": 19.77621,
+        "kind": "drinking",
+        "name": null,
+        "stage": "43",
+        "stageKind": "main",
+        "km": 799.2,
+        "offM": 322,
+        "source": "osm"
+      },
+      {
         "lat": 47.97114,
         "lon": 19.78066,
         "kind": "drinking",
@@ -19759,6 +21035,17 @@
         "stageKind": "main",
         "km": 799.6,
         "offM": 45,
+        "source": "osm"
+      },
+      {
+        "lat": 47.92618,
+        "lon": 19.81148,
+        "kind": "spring",
+        "name": "Patai-kút",
+        "stage": "44",
+        "stageKind": "main",
+        "km": 806.3,
+        "offM": 289,
         "source": "osm"
       },
       {
@@ -19784,6 +21071,17 @@
         "source": "osm"
       },
       {
+        "lat": 47.91971,
+        "lon": 19.83073,
+        "kind": "drinking",
+        "name": "Vándor-forrás",
+        "stage": "44",
+        "stageKind": "main",
+        "km": 807.7,
+        "offM": 459,
+        "source": "osm"
+      },
+      {
         "lat": 47.9217,
         "lon": 19.8294,
         "kind": "spring",
@@ -19792,6 +21090,17 @@
         "stageKind": "main",
         "km": 807.7,
         "offM": 221,
+        "source": "osm"
+      },
+      {
+        "lat": 47.93281,
+        "lon": 19.84164,
+        "kind": "spring",
+        "name": "Forrás",
+        "stage": "44",
+        "stageKind": "main",
+        "km": 808.9,
+        "offM": 415,
         "source": "osm"
       },
       {
@@ -19861,6 +21170,17 @@
         "source": "osm"
       },
       {
+        "lat": 47.91367,
+        "lon": 19.8881,
+        "kind": "spring",
+        "name": "Gyuri-forrás",
+        "stage": "44",
+        "stageKind": "main",
+        "km": 813.8,
+        "offM": 474,
+        "source": "osm"
+      },
+      {
         "lat": 47.92043,
         "lon": 19.91049,
         "kind": "spring",
@@ -19905,6 +21225,50 @@
         "source": "osm"
       },
       {
+        "lat": 47.91322,
+        "lon": 19.91689,
+        "kind": "spring",
+        "name": "Sas kút",
+        "stage": "44",
+        "stageKind": "main",
+        "km": 815.6,
+        "offM": 388,
+        "source": "osm"
+      },
+      {
+        "lat": 47.91333,
+        "lon": 19.915,
+        "kind": "spring",
+        "name": "Sas-kút",
+        "stage": "44",
+        "stageKind": "main",
+        "km": 815.6,
+        "offM": 341,
+        "source": "osm"
+      },
+      {
+        "lat": 47.9207,
+        "lon": 19.91669,
+        "kind": "spring",
+        "name": "Werbőczy-forrás",
+        "stage": "44",
+        "stageKind": "main",
+        "km": 815.8,
+        "offM": 401,
+        "source": "osm"
+      },
+      {
+        "lat": 47.9194,
+        "lon": 19.91724,
+        "kind": "spring",
+        "name": null,
+        "stage": "44",
+        "stageKind": "main",
+        "km": 815.8,
+        "offM": 265,
+        "source": "osm"
+      },
+      {
         "lat": 47.91665,
         "lon": 19.92364,
         "kind": "drinking",
@@ -19913,6 +21277,17 @@
         "stageKind": "main",
         "km": 816.4,
         "offM": 6,
+        "source": "osm"
+      },
+      {
+        "lat": 47.9119,
+        "lon": 19.9242,
+        "kind": "spring",
+        "name": null,
+        "stage": "44",
+        "stageKind": "main",
+        "km": 816.5,
+        "offM": 491,
         "source": "osm"
       },
       {
@@ -19935,6 +21310,28 @@
         "stageKind": "main",
         "km": 817.1,
         "offM": 4,
+        "source": "osm"
+      },
+      {
+        "lat": 47.89735,
+        "lon": 19.97238,
+        "kind": "spring",
+        "name": "Imre-forrás",
+        "stage": "44",
+        "stageKind": "main",
+        "km": 821.5,
+        "offM": 427,
+        "source": "osm"
+      },
+      {
+        "lat": 47.87209,
+        "lon": 19.9725,
+        "kind": "spring",
+        "name": null,
+        "stage": "44",
+        "stageKind": "main",
+        "km": 824.7,
+        "offM": 440,
         "source": "osm"
       },
       {
@@ -19982,6 +21379,17 @@
         "source": "osm"
       },
       {
+        "lat": 47.864,
+        "lon": 19.97598,
+        "kind": "spring",
+        "name": "Díszkút",
+        "stage": "45",
+        "stageKind": "main",
+        "km": 825.6,
+        "offM": 401,
+        "source": "osm"
+      },
+      {
         "lat": 47.8642,
         "lon": 19.98087,
         "kind": "spring",
@@ -19990,6 +21398,72 @@
         "stageKind": "main",
         "km": 825.6,
         "offM": 93,
+        "source": "osm"
+      },
+      {
+        "lat": 47.86776,
+        "lon": 20.016,
+        "kind": "spring",
+        "name": "Disznó-kút",
+        "stage": "45",
+        "stageKind": "main",
+        "km": 829.2,
+        "offM": 450,
+        "source": "osm"
+      },
+      {
+        "lat": 47.86896,
+        "lon": 20.01937,
+        "kind": "spring",
+        "name": null,
+        "stage": "45",
+        "stageKind": "main",
+        "km": 829.3,
+        "offM": 379,
+        "source": "osm"
+      },
+      {
+        "lat": 47.86895,
+        "lon": 20.01937,
+        "kind": "spring",
+        "name": "Vályús-kút",
+        "stage": "45",
+        "stageKind": "main",
+        "km": 829.3,
+        "offM": 380,
+        "source": "osm"
+      },
+      {
+        "lat": 47.88012,
+        "lon": 20.04427,
+        "kind": "spring",
+        "name": null,
+        "stage": "45",
+        "stageKind": "main",
+        "km": 831.5,
+        "offM": 350,
+        "source": "osm"
+      },
+      {
+        "lat": 47.88087,
+        "lon": 20.04328,
+        "kind": "spring",
+        "name": null,
+        "stage": "45",
+        "stageKind": "main",
+        "km": 831.5,
+        "offM": 350,
+        "source": "osm"
+      },
+      {
+        "lat": 47.87743,
+        "lon": 20.04719,
+        "kind": "drinking",
+        "name": "Disznókői-forrás",
+        "stage": "45",
+        "stageKind": "main",
+        "km": 831.8,
+        "offM": 311,
         "source": "osm"
       },
       {
@@ -20012,6 +21486,50 @@
         "stageKind": "main",
         "km": 836.6,
         "offM": 196,
+        "source": "osm"
+      },
+      {
+        "lat": 47.88748,
+        "lon": 20.08605,
+        "kind": "spring",
+        "name": null,
+        "stage": "45",
+        "stageKind": "main",
+        "km": 837.0,
+        "offM": 324,
+        "source": "osm"
+      },
+      {
+        "lat": 47.88835,
+        "lon": 20.09722,
+        "kind": "drinking",
+        "name": "Szegediek kútja",
+        "stage": "45",
+        "stageKind": "main",
+        "km": 838.4,
+        "offM": 371,
+        "source": "osm"
+      },
+      {
+        "lat": 47.90167,
+        "lon": 20.1325,
+        "kind": "spring",
+        "name": "Cseresznyés-forrás",
+        "stage": "45",
+        "stageKind": "main",
+        "km": 842.3,
+        "offM": 405,
+        "source": "osm"
+      },
+      {
+        "lat": 47.9053,
+        "lon": 20.14503,
+        "kind": "spring",
+        "name": "Szajla-kút",
+        "stage": "45",
+        "stageKind": "main",
+        "km": 843.8,
+        "offM": 498,
         "source": "osm"
       },
       {
@@ -20180,6 +21698,28 @@
         "source": "osm"
       },
       {
+        "lat": 48.00615,
+        "lon": 20.33022,
+        "kind": "spring",
+        "name": null,
+        "stage": "47",
+        "stageKind": "main",
+        "km": 870.6,
+        "offM": 474,
+        "source": "osm"
+      },
+      {
+        "lat": 48.02098,
+        "lon": 20.36104,
+        "kind": "spring",
+        "name": "Antónia-forrás",
+        "stage": "47",
+        "stageKind": "main",
+        "km": 873.4,
+        "offM": 354,
+        "source": "osm"
+      },
+      {
         "lat": 48.02125,
         "lon": 20.35674,
         "kind": "spring",
@@ -20188,6 +21728,17 @@
         "stageKind": "main",
         "km": 873.4,
         "offM": 51,
+        "source": "osm"
+      },
+      {
+        "lat": 48.02384,
+        "lon": 20.35112,
+        "kind": "spring",
+        "name": "Fehér-kút",
+        "stage": "47",
+        "stageKind": "main",
+        "km": 873.5,
+        "offM": 422,
         "source": "osm"
       },
       {
@@ -20224,6 +21775,28 @@
         "source": "osm"
       },
       {
+        "lat": 48.05034,
+        "lon": 20.34635,
+        "kind": "drinking",
+        "name": null,
+        "stage": "47",
+        "stageKind": "main",
+        "km": 878.6,
+        "offM": 434,
+        "source": "osm"
+      },
+      {
+        "lat": 48.05111,
+        "lon": 20.35018,
+        "kind": "drinking",
+        "name": null,
+        "stage": "47",
+        "stageKind": "main",
+        "km": 878.6,
+        "offM": 253,
+        "source": "osm"
+      },
+      {
         "lat": 48.05522,
         "lon": 20.35058,
         "kind": "drinking",
@@ -20257,6 +21830,17 @@
         "source": "osm"
       },
       {
+        "lat": 48.05498,
+        "lon": 20.38134,
+        "kind": "spring",
+        "name": "Szilvás-völgyi-forrás",
+        "stage": "47",
+        "stageKind": "main",
+        "km": 881.7,
+        "offM": 494,
+        "source": "osm"
+      },
+      {
         "lat": 48.05747,
         "lon": 20.39177,
         "kind": "spring",
@@ -20268,6 +21852,50 @@
         "source": "osm"
       },
       {
+        "lat": 48.11871,
+        "lon": 20.47427,
+        "kind": "spring",
+        "name": null,
+        "stage": "48",
+        "stageKind": "main",
+        "km": 902.5,
+        "offM": 270,
+        "source": "osm"
+      },
+      {
+        "lat": 48.12424,
+        "lon": 20.48164,
+        "kind": "spring",
+        "name": null,
+        "stage": "48",
+        "stageKind": "main",
+        "km": 903.3,
+        "offM": 318,
+        "source": "osm"
+      },
+      {
+        "lat": 48.12983,
+        "lon": 20.47138,
+        "kind": "spring",
+        "name": null,
+        "stage": "48",
+        "stageKind": "main",
+        "km": 903.8,
+        "offM": 295,
+        "source": "osm"
+      },
+      {
+        "lat": 48.13106,
+        "lon": 20.47006,
+        "kind": "spring",
+        "name": null,
+        "stage": "48",
+        "stageKind": "main",
+        "km": 903.9,
+        "offM": 449,
+        "source": "osm"
+      },
+      {
         "lat": 48.12992,
         "lon": 20.48252,
         "kind": "drinking",
@@ -20276,6 +21904,17 @@
         "stageKind": "main",
         "km": 904.7,
         "offM": 27,
+        "source": "osm"
+      },
+      {
+        "lat": 48.15242,
+        "lon": 20.49883,
+        "kind": "drinking",
+        "name": null,
+        "stage": "48",
+        "stageKind": "main",
+        "km": 907.6,
+        "offM": 311,
         "source": "osm"
       },
       {
@@ -20389,6 +22028,17 @@
         "source": "osm"
       },
       {
+        "lat": 48.18898,
+        "lon": 20.48219,
+        "kind": "drinking",
+        "name": null,
+        "stage": "49",
+        "stageKind": "main",
+        "km": 912.0,
+        "offM": 264,
+        "source": "osm"
+      },
+      {
         "lat": 48.19209,
         "lon": 20.47496,
         "kind": "drinking",
@@ -20477,6 +22127,17 @@
         "source": "osm"
       },
       {
+        "lat": 48.21122,
+        "lon": 20.4352,
+        "kind": "drinking",
+        "name": null,
+        "stage": "49",
+        "stageKind": "main",
+        "km": 917.2,
+        "offM": 402,
+        "source": "osm"
+      },
+      {
         "lat": 48.21276,
         "lon": 20.4363,
         "kind": "drinking",
@@ -20488,6 +22149,28 @@
         "source": "osm"
       },
       {
+        "lat": 48.21441,
+        "lon": 20.43471,
+        "kind": "drinking",
+        "name": null,
+        "stage": "49",
+        "stageKind": "main",
+        "km": 917.4,
+        "offM": 319,
+        "source": "osm"
+      },
+      {
+        "lat": 48.21488,
+        "lon": 20.43293,
+        "kind": "drinking",
+        "name": null,
+        "stage": "49",
+        "stageKind": "main",
+        "km": 917.4,
+        "offM": 441,
+        "source": "osm"
+      },
+      {
         "lat": 48.21525,
         "lon": 20.43605,
         "kind": "drinking",
@@ -20496,6 +22179,17 @@
         "stageKind": "main",
         "km": 917.4,
         "offM": 204,
+        "source": "osm"
+      },
+      {
+        "lat": 48.21525,
+        "lon": 20.43219,
+        "kind": "drinking",
+        "name": null,
+        "stage": "49",
+        "stageKind": "main",
+        "km": 917.5,
+        "offM": 488,
         "source": "osm"
       },
       {
@@ -20518,6 +22212,17 @@
         "stageKind": "main",
         "km": 917.5,
         "offM": 96,
+        "source": "osm"
+      },
+      {
+        "lat": 48.21519,
+        "lon": 20.43354,
+        "kind": "drinking",
+        "name": null,
+        "stage": "49",
+        "stageKind": "main",
+        "km": 917.5,
+        "offM": 390,
         "source": "osm"
       },
       {
@@ -20554,6 +22259,17 @@
         "source": "osm"
       },
       {
+        "lat": 48.21754,
+        "lon": 20.43178,
+        "kind": "drinking",
+        "name": null,
+        "stage": "49",
+        "stageKind": "main",
+        "km": 917.7,
+        "offM": 494,
+        "source": "osm"
+      },
+      {
         "lat": 48.2177,
         "lon": 20.44007,
         "kind": "drinking",
@@ -20562,6 +22278,28 @@
         "stageKind": "main",
         "km": 917.8,
         "offM": 88,
+        "source": "osm"
+      },
+      {
+        "lat": 48.27323,
+        "lon": 20.43405,
+        "kind": "spring",
+        "name": "Ilona-forrás",
+        "stage": "49",
+        "stageKind": "main",
+        "km": 928.2,
+        "offM": 456,
+        "source": "osm"
+      },
+      {
+        "lat": 48.27301,
+        "lon": 20.43412,
+        "kind": "spring",
+        "name": "Ilona-forrás",
+        "stage": "49",
+        "stageKind": "main",
+        "km": 928.2,
+        "offM": 454,
         "source": "osm"
       },
       {
@@ -20609,6 +22347,28 @@
         "source": "osm"
       },
       {
+        "lat": 48.29798,
+        "lon": 20.43595,
+        "kind": "drinking",
+        "name": null,
+        "stage": "50",
+        "stageKind": "main",
+        "km": 931.3,
+        "offM": 415,
+        "source": "osm"
+      },
+      {
+        "lat": 48.35529,
+        "lon": 20.44647,
+        "kind": "spring",
+        "name": "Szivárgó-forrás",
+        "stage": "50",
+        "stageKind": "main",
+        "km": 940.7,
+        "offM": 493,
+        "source": "osm"
+      },
+      {
         "lat": 48.35596,
         "lon": 20.43884,
         "kind": "drinking",
@@ -20642,6 +22402,17 @@
         "source": "osm"
       },
       {
+        "lat": 48.35243,
+        "lon": 20.43182,
+        "kind": "drinking",
+        "name": null,
+        "stage": "50",
+        "stageKind": "main",
+        "km": 941.3,
+        "offM": 428,
+        "source": "osm"
+      },
+      {
         "lat": 48.35612,
         "lon": 20.43337,
         "kind": "drinking",
@@ -20650,6 +22421,28 @@
         "stageKind": "main",
         "km": 941.3,
         "offM": 4,
+        "source": "osm"
+      },
+      {
+        "lat": 48.35308,
+        "lon": 20.43068,
+        "kind": "drinking",
+        "name": null,
+        "stage": "50",
+        "stageKind": "main",
+        "km": 941.4,
+        "offM": 383,
+        "source": "osm"
+      },
+      {
+        "lat": 48.35405,
+        "lon": 20.42932,
+        "kind": "drinking",
+        "name": null,
+        "stage": "50",
+        "stageKind": "main",
+        "km": 941.4,
+        "offM": 313,
         "source": "osm"
       },
       {
@@ -20928,6 +22721,105 @@
         "source": "osm"
       },
       {
+        "lat": 48.46956,
+        "lon": 20.50741,
+        "kind": "drinking",
+        "name": null,
+        "stage": "51",
+        "stageKind": "main",
+        "km": 963.5,
+        "offM": 416,
+        "source": "osm"
+      },
+      {
+        "lat": 48.46905,
+        "lon": 20.50892,
+        "kind": "drinking",
+        "name": null,
+        "stage": "51",
+        "stageKind": "main",
+        "km": 963.5,
+        "offM": 489,
+        "source": "osm"
+      },
+      {
+        "lat": 48.47091,
+        "lon": 20.50912,
+        "kind": "drinking",
+        "name": null,
+        "stage": "51",
+        "stageKind": "main",
+        "km": 963.5,
+        "offM": 301,
+        "source": "osm"
+      },
+      {
+        "lat": 48.47036,
+        "lon": 20.5081,
+        "kind": "drinking",
+        "name": null,
+        "stage": "51",
+        "stageKind": "main",
+        "km": 963.5,
+        "offM": 333,
+        "source": "osm"
+      },
+      {
+        "lat": 48.46903,
+        "lon": 20.50741,
+        "kind": "drinking",
+        "name": null,
+        "stage": "51",
+        "stageKind": "main",
+        "km": 963.5,
+        "offM": 474,
+        "source": "osm"
+      },
+      {
+        "lat": 48.48887,
+        "lon": 20.53335,
+        "kind": "drinking",
+        "name": "Vízmű kifolyó",
+        "stage": "51",
+        "stageKind": "main",
+        "km": 966.9,
+        "offM": 313,
+        "source": "osm"
+      },
+      {
+        "lat": 48.48874,
+        "lon": 20.53463,
+        "kind": "spring",
+        "name": null,
+        "stage": "51",
+        "stageKind": "main",
+        "km": 967.0,
+        "offM": 293,
+        "source": "osm"
+      },
+      {
+        "lat": 48.48874,
+        "lon": 20.53456,
+        "kind": "spring",
+        "name": null,
+        "stage": "51",
+        "stageKind": "main",
+        "km": 967.0,
+        "offM": 293,
+        "source": "osm"
+      },
+      {
+        "lat": 48.48874,
+        "lon": 20.5345,
+        "kind": "spring",
+        "name": "Kis Bálint bácsi-kútja",
+        "stage": "51",
+        "stageKind": "main",
+        "km": 967.0,
+        "offM": 292,
+        "source": "osm"
+      },
+      {
         "lat": 48.4842,
         "lon": 20.53994,
         "kind": "drinking",
@@ -20961,6 +22853,17 @@
         "source": "osm"
       },
       {
+        "lat": 48.48118,
+        "lon": 20.54532,
+        "kind": "spring",
+        "name": "Komlós-forrás",
+        "stage": "51",
+        "stageKind": "main",
+        "km": 967.9,
+        "offM": 327,
+        "source": "osm"
+      },
+      {
         "lat": 48.48335,
         "lon": 20.55027,
         "kind": "drinking",
@@ -20980,6 +22883,28 @@
         "stageKind": "main",
         "km": 968.2,
         "offM": 42,
+        "source": "osm"
+      },
+      {
+        "lat": 48.48175,
+        "lon": 20.55033,
+        "kind": "drinking",
+        "name": null,
+        "stage": "51",
+        "stageKind": "main",
+        "km": 968.2,
+        "offM": 267,
+        "source": "osm"
+      },
+      {
+        "lat": 48.48189,
+        "lon": 20.55207,
+        "kind": "drinking",
+        "name": null,
+        "stage": "51",
+        "stageKind": "main",
+        "km": 968.3,
+        "offM": 313,
         "source": "osm"
       },
       {
@@ -21049,6 +22974,17 @@
         "source": "osm"
       },
       {
+        "lat": 48.53494,
+        "lon": 20.63758,
+        "kind": "spring",
+        "name": "Káposztás-kerti-forrás",
+        "stage": "52",
+        "stageKind": "main",
+        "km": 980.2,
+        "offM": 314,
+        "source": "osm"
+      },
+      {
         "lat": 48.54195,
         "lon": 20.64134,
         "kind": "spring",
@@ -21068,6 +23004,61 @@
         "stageKind": "main",
         "km": 983.4,
         "offM": 51,
+        "source": "osm"
+      },
+      {
+        "lat": 48.54767,
+        "lon": 20.71065,
+        "kind": "drinking",
+        "name": "Barlangkutató-forrás",
+        "stage": "52",
+        "stageKind": "main",
+        "km": 989.6,
+        "offM": 397,
+        "source": "osm"
+      },
+      {
+        "lat": 48.54243,
+        "lon": 20.71998,
+        "kind": "spring",
+        "name": "Itató-forrás",
+        "stage": "52",
+        "stageKind": "main",
+        "km": 991.1,
+        "offM": 353,
+        "source": "osm"
+      },
+      {
+        "lat": 48.54167,
+        "lon": 20.7202,
+        "kind": "spring",
+        "name": "Kis-forrás (Cigánysori-forrás)",
+        "stage": "52",
+        "stageKind": "main",
+        "km": 991.1,
+        "offM": 381,
+        "source": "osm"
+      },
+      {
+        "lat": 48.54098,
+        "lon": 20.72084,
+        "kind": "drinking",
+        "name": null,
+        "stage": "52",
+        "stageKind": "main",
+        "km": 991.3,
+        "offM": 384,
+        "source": "osm"
+      },
+      {
+        "lat": 48.53864,
+        "lon": 20.72387,
+        "kind": "drinking",
+        "name": null,
+        "stage": "52",
+        "stageKind": "main",
+        "km": 991.6,
+        "offM": 276,
         "source": "osm"
       },
       {
@@ -21093,6 +23084,39 @@
         "source": "osm"
       },
       {
+        "lat": 48.53689,
+        "lon": 20.72452,
+        "kind": "drinking",
+        "name": null,
+        "stage": "52",
+        "stageKind": "main",
+        "km": 991.8,
+        "offM": 353,
+        "source": "osm"
+      },
+      {
+        "lat": 48.53721,
+        "lon": 20.72462,
+        "kind": "drinking",
+        "name": null,
+        "stage": "52",
+        "stageKind": "main",
+        "km": 991.8,
+        "offM": 326,
+        "source": "osm"
+      },
+      {
+        "lat": 48.53728,
+        "lon": 20.72501,
+        "kind": "drinking",
+        "name": null,
+        "stage": "52",
+        "stageKind": "main",
+        "km": 991.8,
+        "offM": 298,
+        "source": "osm"
+      },
+      {
         "lat": 48.53824,
         "lon": 20.72949,
         "kind": "drinking",
@@ -21101,6 +23125,17 @@
         "stageKind": "main",
         "km": 991.9,
         "offM": 6,
+        "source": "osm"
+      },
+      {
+        "lat": 48.53539,
+        "lon": 20.72828,
+        "kind": "drinking",
+        "name": null,
+        "stage": "52",
+        "stageKind": "main",
+        "km": 992.0,
+        "offM": 306,
         "source": "osm"
       },
       {
@@ -21368,6 +23403,28 @@
         "source": "osm"
       },
       {
+        "lat": 48.39469,
+        "lon": 20.87421,
+        "kind": "drinking",
+        "name": null,
+        "stage": "54",
+        "stageKind": "main",
+        "km": 1023.4,
+        "offM": 416,
+        "source": "osm"
+      },
+      {
+        "lat": 48.39517,
+        "lon": 20.87572,
+        "kind": "drinking",
+        "name": null,
+        "stage": "54",
+        "stageKind": "main",
+        "km": 1023.4,
+        "offM": 345,
+        "source": "osm"
+      },
+      {
         "lat": 48.39649,
         "lon": 20.87561,
         "kind": "drinking",
@@ -21398,6 +23455,28 @@
         "stageKind": "main",
         "km": 1023.4,
         "offM": 129,
+        "source": "osm"
+      },
+      {
+        "lat": 48.3947,
+        "lon": 20.87278,
+        "kind": "drinking",
+        "name": null,
+        "stage": "54",
+        "stageKind": "main",
+        "km": 1023.4,
+        "offM": 457,
+        "source": "osm"
+      },
+      {
+        "lat": 48.39586,
+        "lon": 20.87449,
+        "kind": "drinking",
+        "name": null,
+        "stage": "54",
+        "stageKind": "main",
+        "km": 1023.4,
+        "offM": 286,
         "source": "osm"
       },
       {
@@ -21500,6 +23579,28 @@
         "source": "osm"
       },
       {
+        "lat": 48.36829,
+        "lon": 20.91561,
+        "kind": "drinking",
+        "name": null,
+        "stage": "54",
+        "stageKind": "main",
+        "km": 1030.1,
+        "offM": 255,
+        "source": "osm"
+      },
+      {
+        "lat": 48.3672,
+        "lon": 20.91565,
+        "kind": "drinking",
+        "name": null,
+        "stage": "54",
+        "stageKind": "main",
+        "km": 1030.1,
+        "offM": 375,
+        "source": "osm"
+      },
+      {
         "lat": 48.36966,
         "lon": 20.91549,
         "kind": "drinking",
@@ -21541,6 +23642,17 @@
         "stageKind": "main",
         "km": 1030.4,
         "offM": 172,
+        "source": "osm"
+      },
+      {
+        "lat": 48.37376,
+        "lon": 20.9224,
+        "kind": "drinking",
+        "name": null,
+        "stage": "54",
+        "stageKind": "main",
+        "km": 1030.4,
+        "offM": 333,
         "source": "osm"
       },
       {
@@ -21588,6 +23700,17 @@
         "source": "osm"
       },
       {
+        "lat": 48.37366,
+        "lon": 20.97456,
+        "kind": "drinking",
+        "name": null,
+        "stage": "54",
+        "stageKind": "main",
+        "km": 1035.8,
+        "offM": 378,
+        "source": "osm"
+      },
+      {
         "lat": 48.36972,
         "lon": 20.97575,
         "kind": "drinking",
@@ -21618,6 +23741,17 @@
         "stageKind": "main",
         "km": 1040.5,
         "offM": 9,
+        "source": "osm"
+      },
+      {
+        "lat": 48.36839,
+        "lon": 21.02745,
+        "kind": "drinking",
+        "name": null,
+        "stage": "54",
+        "stageKind": "main",
+        "km": 1040.7,
+        "offM": 474,
         "source": "osm"
       },
       {
@@ -21709,6 +23843,17 @@
         "source": "osm"
       },
       {
+        "lat": 48.32758,
+        "lon": 21.11822,
+        "kind": "drinking",
+        "name": null,
+        "stage": "55",
+        "stageKind": "main",
+        "km": 1050.4,
+        "offM": 434,
+        "source": "osm"
+      },
+      {
         "lat": 48.33045,
         "lon": 21.12815,
         "kind": "drinking",
@@ -21786,6 +23931,17 @@
         "source": "osm"
       },
       {
+        "lat": 48.31158,
+        "lon": 21.1584,
+        "kind": "drinking",
+        "name": null,
+        "stage": "55",
+        "stageKind": "main",
+        "km": 1054.2,
+        "offM": 419,
+        "source": "osm"
+      },
+      {
         "lat": 48.31295,
         "lon": 21.15955,
         "kind": "drinking",
@@ -21838,6 +23994,28 @@
         "stageKind": "main",
         "km": 1059.0,
         "offM": 115,
+        "source": "osm"
+      },
+      {
+        "lat": 48.35139,
+        "lon": 21.18731,
+        "kind": "drinking",
+        "name": null,
+        "stage": "55",
+        "stageKind": "main",
+        "km": 1059.0,
+        "offM": 416,
+        "source": "osm"
+      },
+      {
+        "lat": 48.35058,
+        "lon": 21.18843,
+        "kind": "drinking",
+        "name": null,
+        "stage": "55",
+        "stageKind": "main",
+        "km": 1059.0,
+        "offM": 293,
         "source": "osm"
       },
       {
@@ -22116,6 +24294,17 @@
         "source": "osm"
       },
       {
+        "lat": 48.3745,
+        "lon": 21.32916,
+        "kind": "drinking",
+        "name": null,
+        "stage": "56",
+        "stageKind": "main",
+        "km": 1073.9,
+        "offM": 275,
+        "source": "osm"
+      },
+      {
         "lat": 48.37713,
         "lon": 21.32892,
         "kind": "drinking",
@@ -22237,6 +24426,50 @@
         "source": "osm"
       },
       {
+        "lat": 48.39742,
+        "lon": 21.34302,
+        "kind": "spring",
+        "name": "Parlag-kút",
+        "stage": "56",
+        "stageKind": "main",
+        "km": 1078.2,
+        "offM": 344,
+        "source": "osm"
+      },
+      {
+        "lat": 48.40337,
+        "lon": 21.35594,
+        "kind": "spring",
+        "name": "Nagybekecsi-forrás",
+        "stage": "56",
+        "stageKind": "main",
+        "km": 1079.1,
+        "offM": 489,
+        "source": "osm"
+      },
+      {
+        "lat": 48.4114,
+        "lon": 21.34522,
+        "kind": "spring",
+        "name": "Szárkő-hegyi-forrás",
+        "stage": "56",
+        "stageKind": "main",
+        "km": 1080.0,
+        "offM": 409,
+        "source": "osm"
+      },
+      {
+        "lat": 48.41653,
+        "lon": 21.34678,
+        "kind": "spring",
+        "name": null,
+        "stage": "56",
+        "stageKind": "main",
+        "km": 1080.4,
+        "offM": 429,
+        "source": "osm"
+      },
+      {
         "lat": 48.41687,
         "lon": 21.35523,
         "kind": "spring",
@@ -22245,6 +24478,28 @@
         "stageKind": "main",
         "km": 1080.8,
         "offM": 76,
+        "source": "osm"
+      },
+      {
+        "lat": 48.41867,
+        "lon": 21.35363,
+        "kind": "spring",
+        "name": null,
+        "stage": "56",
+        "stageKind": "main",
+        "km": 1081.0,
+        "offM": 288,
+        "source": "osm"
+      },
+      {
+        "lat": 48.4192,
+        "lon": 21.3524,
+        "kind": "spring",
+        "name": null,
+        "stage": "56",
+        "stageKind": "main",
+        "km": 1081.0,
+        "offM": 394,
         "source": "osm"
       },
       {
@@ -22278,6 +24533,39 @@
         "stageKind": "main",
         "km": 1086.5,
         "offM": 144,
+        "source": "osm"
+      },
+      {
+        "lat": 48.39906,
+        "lon": 21.40818,
+        "kind": "spring",
+        "name": null,
+        "stage": "57",
+        "stageKind": "main",
+        "km": 1087.1,
+        "offM": 288,
+        "source": "osm"
+      },
+      {
+        "lat": 48.40494,
+        "lon": 21.41285,
+        "kind": "spring",
+        "name": null,
+        "stage": "57",
+        "stageKind": "main",
+        "km": 1087.2,
+        "offM": 412,
+        "source": "osm"
+      },
+      {
+        "lat": 48.40499,
+        "lon": 21.4163,
+        "kind": "spring",
+        "name": null,
+        "stage": "57",
+        "stageKind": "main",
+        "km": 1088.0,
+        "offM": 349,
         "source": "osm"
       },
       {
@@ -22325,6 +24613,39 @@
         "source": "osm"
       },
       {
+        "lat": 48.41035,
+        "lon": 21.43327,
+        "kind": "spring",
+        "name": null,
+        "stage": "57",
+        "stageKind": "main",
+        "km": 1090.2,
+        "offM": 457,
+        "source": "osm"
+      },
+      {
+        "lat": 48.39676,
+        "lon": 21.45495,
+        "kind": "spring",
+        "name": "Maklányközi-forrás",
+        "stage": "57",
+        "stageKind": "main",
+        "km": 1092.1,
+        "offM": 450,
+        "source": "osm"
+      },
+      {
+        "lat": 48.39651,
+        "lon": 21.45403,
+        "kind": "spring",
+        "name": "Moszcik-réti-forrás",
+        "stage": "57",
+        "stageKind": "main",
+        "km": 1092.1,
+        "offM": 442,
+        "source": "osm"
+      },
+      {
         "lat": 48.39925,
         "lon": 21.45433,
         "kind": "spring",
@@ -22333,6 +24654,28 @@
         "stageKind": "main",
         "km": 1092.2,
         "offM": 216,
+        "source": "osm"
+      },
+      {
+        "lat": 48.39664,
+        "lon": 21.45667,
+        "kind": "spring",
+        "name": null,
+        "stage": "57",
+        "stageKind": "main",
+        "km": 1092.7,
+        "offM": 443,
+        "source": "osm"
+      },
+      {
+        "lat": 48.39708,
+        "lon": 21.45696,
+        "kind": "spring",
+        "name": null,
+        "stage": "57",
+        "stageKind": "main",
+        "km": 1092.7,
+        "offM": 390,
         "source": "osm"
       },
       {
@@ -22358,6 +24701,28 @@
         "source": "osm"
       },
       {
+        "lat": 48.38203,
+        "lon": 21.48003,
+        "kind": "spring",
+        "name": "Babalyuki-forrás",
+        "stage": "57",
+        "stageKind": "main",
+        "km": 1096.5,
+        "offM": 465,
+        "source": "osm"
+      },
+      {
+        "lat": 48.37933,
+        "lon": 21.46701,
+        "kind": "spring",
+        "name": "Eljegyzés-forrás",
+        "stage": "57",
+        "stageKind": "main",
+        "km": 1097.0,
+        "offM": 400,
+        "source": "osm"
+      },
+      {
         "lat": 48.3674,
         "lon": 21.47211,
         "kind": "spring",
@@ -22366,6 +24731,28 @@
         "stageKind": "main",
         "km": 1098.1,
         "offM": 143,
+        "source": "osm"
+      },
+      {
+        "lat": 48.36064,
+        "lon": 21.47472,
+        "kind": "spring",
+        "name": "Borz-kút (forráscsoport)",
+        "stage": "57",
+        "stageKind": "main",
+        "km": 1098.7,
+        "offM": 496,
+        "source": "osm"
+      },
+      {
+        "lat": 48.36807,
+        "lon": 21.48118,
+        "kind": "spring",
+        "name": "Potács-völgyi források(6)",
+        "stage": "57",
+        "stageKind": "main",
+        "km": 1098.8,
+        "offM": 450,
         "source": "osm"
       },
       {
@@ -22380,6 +24767,50 @@
         "source": "osm"
       },
       {
+        "lat": 48.35294,
+        "lon": 21.49451,
+        "kind": "spring",
+        "name": "Miklós-forrás (Komáromi-kút)",
+        "stage": "57",
+        "stageKind": "main",
+        "km": 1100.6,
+        "offM": 254,
+        "source": "osm"
+      },
+      {
+        "lat": 48.35806,
+        "lon": 21.49287,
+        "kind": "spring",
+        "name": "Molnár-forrás I.",
+        "stage": "57",
+        "stageKind": "main",
+        "km": 1100.8,
+        "offM": 300,
+        "source": "osm"
+      },
+      {
+        "lat": 48.35836,
+        "lon": 21.49437,
+        "kind": "spring",
+        "name": "Molnár-forrás II.",
+        "stage": "57",
+        "stageKind": "main",
+        "km": 1100.8,
+        "offM": 315,
+        "source": "osm"
+      },
+      {
+        "lat": 48.3586,
+        "lon": 21.49451,
+        "kind": "spring",
+        "name": "Molnár-forrás III.",
+        "stage": "57",
+        "stageKind": "main",
+        "km": 1100.8,
+        "offM": 341,
+        "source": "osm"
+      },
+      {
         "lat": 48.35813,
         "lon": 21.50657,
         "kind": "spring",
@@ -22388,6 +24819,17 @@
         "stageKind": "main",
         "km": 1101.8,
         "offM": 116,
+        "source": "osm"
+      },
+      {
+        "lat": 48.35291,
+        "lon": 21.51699,
+        "kind": "spring",
+        "name": "Kis-kút",
+        "stage": "57",
+        "stageKind": "main",
+        "km": 1102.5,
+        "offM": 466,
         "source": "osm"
       },
       {
@@ -22413,6 +24855,28 @@
         "source": "osm"
       },
       {
+        "lat": 48.36096,
+        "lon": 21.51357,
+        "kind": "drinking",
+        "name": null,
+        "stage": "57",
+        "stageKind": "main",
+        "km": 1103.2,
+        "offM": 277,
+        "source": "osm"
+      },
+      {
+        "lat": 48.36843,
+        "lon": 21.53987,
+        "kind": "spring",
+        "name": "Kocsis-forrás",
+        "stage": "57",
+        "stageKind": "main",
+        "km": 1105.0,
+        "offM": 453,
+        "source": "osm"
+      },
+      {
         "lat": 48.37128,
         "lon": 21.53703,
         "kind": "spring",
@@ -22424,6 +24888,39 @@
         "source": "osm"
       },
       {
+        "lat": 48.38502,
+        "lon": 21.56349,
+        "kind": "spring",
+        "name": "Gábor-kút",
+        "stage": "57",
+        "stageKind": "main",
+        "km": 1108.6,
+        "offM": 478,
+        "source": "osm"
+      },
+      {
+        "lat": 48.38695,
+        "lon": 21.57033,
+        "kind": "spring",
+        "name": "Csorgó-kút",
+        "stage": "57",
+        "stageKind": "main",
+        "km": 1109.5,
+        "offM": 416,
+        "source": "osm"
+      },
+      {
+        "lat": 48.3874,
+        "lon": 21.56995,
+        "kind": "spring",
+        "name": "Kapitány-völgyi Fenék-forrás",
+        "stage": "57",
+        "stageKind": "main",
+        "km": 1109.5,
+        "offM": 376,
+        "source": "osm"
+      },
+      {
         "lat": 48.39473,
         "lon": 21.60124,
         "kind": "spring",
@@ -22432,6 +24929,28 @@
         "stageKind": "main",
         "km": 1112.6,
         "offM": 240,
+        "source": "osm"
+      },
+      {
+        "lat": 48.39585,
+        "lon": 21.62817,
+        "kind": "spring",
+        "name": "Zsólyomka Alsó-forrás II.",
+        "stage": "58",
+        "stageKind": "main",
+        "km": 1114.6,
+        "offM": 428,
+        "source": "osm"
+      },
+      {
+        "lat": 48.39604,
+        "lon": 21.62791,
+        "kind": "spring",
+        "name": "Zsólyomka Felső-forrás III.",
+        "stage": "58",
+        "stageKind": "main",
+        "km": 1115.0,
+        "offM": 402,
         "source": "osm"
       },
       {
@@ -22476,6 +24995,94 @@
         "stageKind": "main",
         "km": 1117.9,
         "offM": 118,
+        "source": "osm"
+      },
+      {
+        "lat": 48.40515,
+        "lon": 21.59508,
+        "kind": "spring",
+        "name": "Juhaszóka-forrás",
+        "stage": "58",
+        "stageKind": "main",
+        "km": 1118.5,
+        "offM": 392,
+        "source": "osm"
+      },
+      {
+        "lat": 48.40538,
+        "lon": 21.59568,
+        "kind": "spring",
+        "name": "Árva-forrás",
+        "stage": "58",
+        "stageKind": "main",
+        "km": 1118.5,
+        "offM": 342,
+        "source": "osm"
+      },
+      {
+        "lat": 48.41135,
+        "lon": 21.59106,
+        "kind": "spring",
+        "name": "Felső Bik-forrás",
+        "stage": "58",
+        "stageKind": "main",
+        "km": 1119.8,
+        "offM": 479,
+        "source": "osm"
+      },
+      {
+        "lat": 48.41452,
+        "lon": 21.57808,
+        "kind": "spring",
+        "name": null,
+        "stage": "58",
+        "stageKind": "main",
+        "km": 1120.9,
+        "offM": 426,
+        "source": "osm"
+      },
+      {
+        "lat": 48.42597,
+        "lon": 21.57888,
+        "kind": "spring",
+        "name": null,
+        "stage": "58",
+        "stageKind": "main",
+        "km": 1121.6,
+        "offM": 396,
+        "source": "osm"
+      },
+      {
+        "lat": 48.41579,
+        "lon": 21.56352,
+        "kind": "spring",
+        "name": null,
+        "stage": "58",
+        "stageKind": "main",
+        "km": 1123.1,
+        "offM": 398,
+        "source": "osm"
+      },
+      {
+        "lat": 48.41624,
+        "lon": 21.54826,
+        "kind": "drinking",
+        "name": null,
+        "stage": "58",
+        "stageKind": "main",
+        "km": 1124.2,
+        "offM": 494,
+        "source": "osm"
+      },
+      {
+        "lat": 48.41868,
+        "lon": 21.54337,
+        "kind": "drinking",
+        "name": null,
+        "stage": "58",
+        "stageKind": "main",
+        "km": 1124.6,
+        "offM": 468,
         "source": "osm"
       },
       {
@@ -22534,6 +25141,17 @@
         "source": "osm"
       },
       {
+        "lat": 48.42385,
+        "lon": 21.52728,
+        "kind": "spring",
+        "name": "Bede-kút",
+        "stage": "58",
+        "stageKind": "main",
+        "km": 1125.8,
+        "offM": 385,
+        "source": "osm"
+      },
+      {
         "lat": 48.42579,
         "lon": 21.52913,
         "kind": "spring",
@@ -22575,6 +25193,17 @@
         "stageKind": "main",
         "km": 1126.1,
         "offM": 82,
+        "source": "osm"
+      },
+      {
+        "lat": 48.42462,
+        "lon": 21.52049,
+        "kind": "spring",
+        "name": "Királykutak alja forrásai",
+        "stage": "58",
+        "stageKind": "main",
+        "km": 1126.3,
+        "offM": 500,
         "source": "osm"
       },
       {
@@ -22652,6 +25281,17 @@
         "stageKind": "main",
         "km": 1130.1,
         "offM": 5,
+        "source": "osm"
+      },
+      {
+        "lat": 48.42464,
+        "lon": 21.49088,
+        "kind": "drinking",
+        "name": null,
+        "stage": "58",
+        "stageKind": "main",
+        "km": 1130.1,
+        "offM": 418,
         "source": "osm"
       },
       {
@@ -22754,6 +25394,17 @@
         "source": "osm"
       },
       {
+        "lat": 48.45275,
+        "lon": 21.47622,
+        "kind": "drinking",
+        "name": "Sas-forrás",
+        "stage": "58",
+        "stageKind": "main",
+        "km": 1133.1,
+        "offM": 285,
+        "source": "osm"
+      },
+      {
         "lat": 48.45302,
         "lon": 21.47972,
         "kind": "drinking",
@@ -22787,6 +25438,17 @@
         "source": "osm"
       },
       {
+        "lat": 48.45907,
+        "lon": 21.47706,
+        "kind": "drinking",
+        "name": null,
+        "stage": "58",
+        "stageKind": "main",
+        "km": 1133.8,
+        "offM": 477,
+        "source": "osm"
+      },
+      {
         "lat": 48.458,
         "lon": 21.48477,
         "kind": "drinking",
@@ -22806,6 +25468,50 @@
         "stageKind": "main",
         "km": 1136.5,
         "offM": 6,
+        "source": "osm"
+      },
+      {
+        "lat": 48.4741,
+        "lon": 21.50573,
+        "kind": "drinking",
+        "name": null,
+        "stage": "58",
+        "stageKind": "main",
+        "km": 1136.5,
+        "offM": 363,
+        "source": "osm"
+      },
+      {
+        "lat": 48.47367,
+        "lon": 21.50733,
+        "kind": "drinking",
+        "name": null,
+        "stage": "58",
+        "stageKind": "main",
+        "km": 1136.6,
+        "offM": 254,
+        "source": "osm"
+      },
+      {
+        "lat": 48.47393,
+        "lon": 21.50705,
+        "kind": "spring",
+        "name": "Közkút-források",
+        "stage": "58",
+        "stageKind": "main",
+        "km": 1136.6,
+        "offM": 289,
+        "source": "osm"
+      },
+      {
+        "lat": 48.4748,
+        "lon": 21.50641,
+        "kind": "spring",
+        "name": "Vízmű-forrás",
+        "stage": "58",
+        "stageKind": "main",
+        "km": 1136.6,
+        "offM": 395,
         "source": "osm"
       },
       {
@@ -22886,6 +25592,17 @@
         "source": "osm"
       },
       {
+        "lat": 48.4817,
+        "lon": 21.52682,
+        "kind": "drinking",
+        "name": null,
+        "stage": "58",
+        "stageKind": "main",
+        "km": 1138.6,
+        "offM": 339,
+        "source": "osm"
+      },
+      {
         "lat": 48.48407,
         "lon": 21.52569,
         "kind": "drinking",
@@ -22916,6 +25633,17 @@
         "stageKind": "main",
         "km": 1138.6,
         "offM": 189,
+        "source": "osm"
+      },
+      {
+        "lat": 48.4833,
+        "lon": 21.53204,
+        "kind": "spring",
+        "name": "Kastély-forrás",
+        "stage": "59",
+        "stageKind": "main",
+        "km": 1138.7,
+        "offM": 475,
         "source": "osm"
       },
       {
@@ -22952,6 +25680,28 @@
         "source": "osm"
       },
       {
+        "lat": 48.50141,
+        "lon": 21.53921,
+        "kind": "spring",
+        "name": "Hideg-kút Nyugati-forrás",
+        "stage": "59",
+        "stageKind": "main",
+        "km": 1141.2,
+        "offM": 464,
+        "source": "osm"
+      },
+      {
+        "lat": 48.51651,
+        "lon": 21.52918,
+        "kind": "spring",
+        "name": "Gáspár-kút",
+        "stage": "59",
+        "stageKind": "main",
+        "km": 1143.8,
+        "offM": 387,
+        "source": "osm"
+      },
+      {
         "lat": 48.51516,
         "lon": 21.52059,
         "kind": "spring",
@@ -22971,6 +25721,17 @@
         "stageKind": "main",
         "km": 1144.0,
         "offM": 169,
+        "source": "osm"
+      },
+      {
+        "lat": 48.51922,
+        "lon": 21.51767,
+        "kind": "spring",
+        "name": "Kenderes-forrás",
+        "stage": "59",
+        "stageKind": "main",
+        "km": 1145.0,
+        "offM": 384,
         "source": "osm"
       },
       {
@@ -23029,6 +25790,17 @@
         "source": "osm"
       },
       {
+        "lat": 48.51766,
+        "lon": 21.4997,
+        "kind": "drinking",
+        "name": null,
+        "stage": "59",
+        "stageKind": "main",
+        "km": 1146.7,
+        "offM": 329,
+        "source": "osm"
+      },
+      {
         "lat": 48.51847,
         "lon": 21.49953,
         "kind": "drinking",
@@ -23051,6 +25823,17 @@
         "source": "osm"
       },
       {
+        "lat": 48.5473,
+        "lon": 21.48907,
+        "kind": "drinking",
+        "name": null,
+        "stage": "59",
+        "stageKind": "main",
+        "km": 1150.1,
+        "offM": 362,
+        "source": "osm"
+      },
+      {
         "lat": 48.54661,
         "lon": 21.48725,
         "kind": "drinking",
@@ -23059,6 +25842,28 @@
         "stageKind": "main",
         "km": 1150.1,
         "offM": 223,
+        "source": "osm"
+      },
+      {
+        "lat": 48.54703,
+        "lon": 21.48886,
+        "kind": "drinking",
+        "name": null,
+        "stage": "59",
+        "stageKind": "main",
+        "km": 1150.1,
+        "offM": 329,
+        "source": "osm"
+      },
+      {
+        "lat": 48.53582,
+        "lon": 21.46836,
+        "kind": "spring",
+        "name": "Perpataki-forrás",
+        "stage": "59",
+        "stageKind": "main",
+        "km": 1151.7,
+        "offM": 271,
         "source": "osm"
       },
       {
@@ -23073,6 +25878,28 @@
         "source": "osm"
       },
       {
+        "lat": 48.5351,
+        "lon": 21.45767,
+        "kind": "drinking",
+        "name": null,
+        "stage": "59",
+        "stageKind": "main",
+        "km": 1152.4,
+        "offM": 473,
+        "source": "osm"
+      },
+      {
+        "lat": 48.53654,
+        "lon": 21.45905,
+        "kind": "drinking",
+        "name": null,
+        "stage": "59",
+        "stageKind": "main",
+        "km": 1152.4,
+        "offM": 292,
+        "source": "osm"
+      },
+      {
         "lat": 48.53932,
         "lon": 21.45841,
         "kind": "drinking",
@@ -23081,6 +25908,17 @@
         "stageKind": "main",
         "km": 1152.5,
         "offM": 1,
+        "source": "osm"
+      },
+      {
+        "lat": 48.53605,
+        "lon": 21.4573,
+        "kind": "drinking",
+        "name": null,
+        "stage": "59",
+        "stageKind": "main",
+        "km": 1152.5,
+        "offM": 372,
         "source": "osm"
       },
       {
@@ -23106,6 +25944,17 @@
         "source": "osm"
       },
       {
+        "lat": 48.53645,
+        "lon": 21.45677,
+        "kind": "drinking",
+        "name": null,
+        "stage": "59",
+        "stageKind": "main",
+        "km": 1152.7,
+        "offM": 327,
+        "source": "osm"
+      },
+      {
         "lat": 48.53786,
         "lon": 21.45618,
         "kind": "drinking",
@@ -23114,6 +25963,17 @@
         "stageKind": "main",
         "km": 1152.7,
         "offM": 165,
+        "source": "osm"
+      },
+      {
+        "lat": 48.53667,
+        "lon": 21.45679,
+        "kind": "drinking",
+        "name": null,
+        "stage": "59",
+        "stageKind": "main",
+        "km": 1152.7,
+        "offM": 304,
         "source": "osm"
       },
       {
@@ -23150,6 +26010,28 @@
         "source": "osm"
       },
       {
+        "lat": 48.53852,
+        "lon": 21.45222,
+        "kind": "drinking",
+        "name": null,
+        "stage": "59",
+        "stageKind": "main",
+        "km": 1152.8,
+        "offM": 273,
+        "source": "osm"
+      },
+      {
+        "lat": 48.5388,
+        "lon": 21.45197,
+        "kind": "drinking",
+        "name": null,
+        "stage": "59",
+        "stageKind": "main",
+        "km": 1152.8,
+        "offM": 274,
+        "source": "osm"
+      },
+      {
         "lat": 48.54118,
         "lon": 21.45586,
         "kind": "drinking",
@@ -23158,6 +26040,17 @@
         "stageKind": "main",
         "km": 1152.9,
         "offM": 4,
+        "source": "osm"
+      },
+      {
+        "lat": 48.54251,
+        "lon": 21.4516,
+        "kind": "drinking",
+        "name": null,
+        "stage": "59",
+        "stageKind": "main",
+        "km": 1152.9,
+        "offM": 320,
         "source": "osm"
       },
       {
@@ -23216,6 +26109,28 @@
         "source": "osm"
       },
       {
+        "lat": 48.54757,
+        "lon": 21.45872,
+        "kind": "spring",
+        "name": "Rostás-mocsolya II.-forrás",
+        "stage": "59",
+        "stageKind": "main",
+        "km": 1153.9,
+        "offM": 364,
+        "source": "osm"
+      },
+      {
+        "lat": 48.54977,
+        "lon": 21.45803,
+        "kind": "spring",
+        "name": "Rostás-mocsolya I.-forrás",
+        "stage": "59",
+        "stageKind": "main",
+        "km": 1154.1,
+        "offM": 492,
+        "source": "osm"
+      },
+      {
         "lat": 48.575,
         "lon": 21.43878,
         "kind": "spring",
@@ -23271,6 +26186,28 @@
         "source": "osm"
       },
       {
+        "lat": 48.54566,
+        "lon": 21.41228,
+        "kind": "drinking",
+        "name": null,
+        "stage": "59",
+        "stageKind": "main",
+        "km": 1165.1,
+        "offM": 377,
+        "source": "osm"
+      },
+      {
+        "lat": 48.54631,
+        "lon": 21.41115,
+        "kind": "drinking",
+        "name": null,
+        "stage": "59",
+        "stageKind": "main",
+        "km": 1165.1,
+        "offM": 472,
+        "source": "osm"
+      },
+      {
         "lat": 48.54121,
         "lon": 21.41581,
         "kind": "drinking",
@@ -23290,6 +26227,17 @@
         "stageKind": "main",
         "km": 1165.8,
         "offM": 248,
+        "source": "osm"
+      },
+      {
+        "lat": 48.53679,
+        "lon": 21.41463,
+        "kind": "spring",
+        "name": "Rimakerti-forrás",
+        "stage": "59",
+        "stageKind": "main",
+        "km": 1165.8,
+        "offM": 332,
         "source": "osm"
       },
       {
@@ -23326,6 +26274,17 @@
         "source": "osm"
       },
       {
+        "lat": 48.54187,
+        "lon": 21.40908,
+        "kind": "spring",
+        "name": "Rubanyeszkó-forrás",
+        "stage": "59",
+        "stageKind": "main",
+        "km": 1166.2,
+        "offM": 313,
+        "source": "osm"
+      },
+      {
         "lat": 48.54274,
         "lon": 21.41172,
         "kind": "spring",
@@ -23334,6 +26293,28 @@
         "stageKind": "main",
         "km": 1166.2,
         "offM": 141,
+        "source": "osm"
+      },
+      {
+        "lat": 48.54455,
+        "lon": 21.41232,
+        "kind": "drinking",
+        "name": null,
+        "stage": "59",
+        "stageKind": "main",
+        "km": 1166.2,
+        "offM": 291,
+        "source": "osm"
+      },
+      {
+        "lat": 48.54544,
+        "lon": 21.41172,
+        "kind": "drinking",
+        "name": null,
+        "stage": "59",
+        "stageKind": "main",
+        "km": 1166.2,
+        "offM": 398,
         "source": "osm"
       }
     ]

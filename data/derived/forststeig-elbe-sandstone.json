@@ -2123,7 +2123,7 @@
     "source": "osm",
     "extraSources": [],
     "retrieved": "2026-10-28T21:21:02Z",
-    "withinM": 250,
+    "withinM": 500,
     "routeKm": 103.9,
     "stageStarts": [
       {
@@ -2162,8 +2162,8 @@
         "toKm": 103.9
       },
       "any": {
-        "km": 14.4,
-        "fromKm": 29.5,
+        "km": 9.9,
+        "fromKm": 34.0,
         "toKm": 43.9
       }
     },
@@ -2172,7 +2172,7 @@
         "number": "1",
         "kind": "main",
         "drinking": 2,
-        "springs": 2
+        "springs": 4
       },
       {
         "number": "2",
@@ -2183,32 +2183,32 @@
       {
         "number": "3",
         "kind": "main",
-        "drinking": 2,
+        "drinking": 3,
         "springs": 1
       },
       {
         "number": "4",
         "kind": "main",
         "drinking": 4,
-        "springs": 9
+        "springs": 10
       },
       {
         "number": "5",
         "kind": "main",
-        "drinking": 1,
-        "springs": 4
+        "drinking": 2,
+        "springs": 9
       },
       {
         "number": "6",
         "kind": "main",
-        "drinking": 3,
-        "springs": 2
+        "drinking": 4,
+        "springs": 6
       },
       {
         "number": "7",
         "kind": "main",
         "drinking": 0,
-        "springs": 3
+        "springs": 4
       }
     ],
     "points": [
@@ -2243,6 +2243,28 @@
         "stageKind": "main",
         "km": 12.5,
         "offM": 13,
+        "source": "osm"
+      },
+      {
+        "lat": 50.83799,
+        "lon": 14.15019,
+        "kind": "spring",
+        "name": null,
+        "stage": "1",
+        "stageKind": "main",
+        "km": 12.6,
+        "offM": 462,
+        "source": "osm"
+      },
+      {
+        "lat": 50.84708,
+        "lon": 14.14066,
+        "kind": "spring",
+        "name": "Vorderer hohler Born",
+        "stage": "1",
+        "stageKind": "main",
+        "km": 13.5,
+        "offM": 312,
         "source": "osm"
       },
       {
@@ -2323,6 +2345,17 @@
         "source": "osm"
       },
       {
+        "lat": 50.81092,
+        "lon": 14.00863,
+        "kind": "drinking",
+        "name": "přepad z vodárenského zdroje",
+        "stage": "3",
+        "stageKind": "main",
+        "km": 34.0,
+        "offM": 259,
+        "source": "osm"
+      },
+      {
         "lat": 50.84502,
         "lon": 14.04239,
         "kind": "spring",
@@ -2375,6 +2408,17 @@
         "stageKind": "main",
         "km": 50.9,
         "offM": 139,
+        "source": "osm"
+      },
+      {
+        "lat": 50.83863,
+        "lon": 14.07118,
+        "kind": "spring",
+        "name": "Heideborn",
+        "stage": "4",
+        "stageKind": "main",
+        "km": 57.2,
+        "offM": 378,
         "source": "osm"
       },
       {
@@ -2466,6 +2510,50 @@
         "source": "osm"
       },
       {
+        "lat": 50.86067,
+        "lon": 14.10191,
+        "kind": "spring",
+        "name": null,
+        "stage": "5",
+        "stageKind": "main",
+        "km": 63.0,
+        "offM": 292,
+        "source": "osm"
+      },
+      {
+        "lat": 50.86083,
+        "lon": 14.10189,
+        "kind": "spring",
+        "name": null,
+        "stage": "5",
+        "stageKind": "main",
+        "km": 63.0,
+        "offM": 287,
+        "source": "osm"
+      },
+      {
+        "lat": 50.86166,
+        "lon": 14.10218,
+        "kind": "spring",
+        "name": null,
+        "stage": "5",
+        "stageKind": "main",
+        "km": 63.1,
+        "offM": 292,
+        "source": "osm"
+      },
+      {
+        "lat": 50.8614,
+        "lon": 14.10199,
+        "kind": "spring",
+        "name": null,
+        "stage": "5",
+        "stageKind": "main",
+        "km": 63.1,
+        "offM": 284,
+        "source": "osm"
+      },
+      {
         "lat": 50.86339,
         "lon": 14.10198,
         "kind": "spring",
@@ -2496,6 +2584,28 @@
         "stageKind": "main",
         "km": 67.0,
         "offM": 237,
+        "source": "osm"
+      },
+      {
+        "lat": 50.87229,
+        "lon": 14.08506,
+        "kind": "drinking",
+        "name": null,
+        "stage": "5",
+        "stageKind": "main",
+        "km": 67.0,
+        "offM": 285,
+        "source": "osm"
+      },
+      {
+        "lat": 50.89133,
+        "lon": 14.05411,
+        "kind": "spring",
+        "name": null,
+        "stage": "5",
+        "stageKind": "main",
+        "km": 74.6,
+        "offM": 422,
         "source": "osm"
       },
       {
@@ -2554,6 +2664,50 @@
         "source": "osm"
       },
       {
+        "lat": 50.90396,
+        "lon": 14.03853,
+        "kind": "drinking",
+        "name": null,
+        "stage": "6",
+        "stageKind": "main",
+        "km": 79.0,
+        "offM": 270,
+        "source": "osm"
+      },
+      {
+        "lat": 50.90257,
+        "lon": 14.05246,
+        "kind": "spring",
+        "name": null,
+        "stage": "6",
+        "stageKind": "main",
+        "km": 81.8,
+        "offM": 424,
+        "source": "osm"
+      },
+      {
+        "lat": 50.89422,
+        "lon": 14.06074,
+        "kind": "spring",
+        "name": "Rollborn",
+        "stage": "6",
+        "stageKind": "main",
+        "km": 82.4,
+        "offM": 374,
+        "source": "osm"
+      },
+      {
+        "lat": 50.89433,
+        "lon": 14.06052,
+        "kind": "spring",
+        "name": null,
+        "stage": "6",
+        "stageKind": "main",
+        "km": 82.4,
+        "offM": 360,
+        "source": "osm"
+      },
+      {
         "lat": 50.9048,
         "lon": 14.05531,
         "kind": "spring",
@@ -2576,6 +2730,17 @@
         "source": "osm"
       },
       {
+        "lat": 50.90223,
+        "lon": 14.10085,
+        "kind": "spring",
+        "name": "Queckenborn",
+        "stage": "6",
+        "stageKind": "main",
+        "km": 92.8,
+        "offM": 445,
+        "source": "osm"
+      },
+      {
         "lat": 50.91122,
         "lon": 14.1073,
         "kind": "spring",
@@ -2584,6 +2749,17 @@
         "stageKind": "main",
         "km": 93.6,
         "offM": 245,
+        "source": "osm"
+      },
+      {
+        "lat": 50.91233,
+        "lon": 14.10852,
+        "kind": "spring",
+        "name": null,
+        "stage": "7",
+        "stageKind": "main",
+        "km": 93.6,
+        "offM": 352,
         "source": "osm"
       },
       {

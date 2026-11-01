@@ -2145,7 +2145,7 @@
     "source": "osm",
     "extraSources": [],
     "retrieved": "2026-10-28T21:21:02Z",
-    "withinM": 250,
+    "withinM": 500,
     "routeKm": 88.0,
     "stageStarts": [
       {
@@ -2171,14 +2171,14 @@
     ],
     "longestGapKm": {
       "drinking": {
-        "km": 34.7,
-        "fromKm": 8.9,
-        "toKm": 43.6
+        "km": 34.3,
+        "fromKm": 44.0,
+        "toKm": 78.3
       },
       "any": {
-        "km": 24.2,
-        "fromKm": 19.4,
-        "toKm": 43.6
+        "km": 17.3,
+        "fromKm": 44.0,
+        "toKm": 61.3
       }
     },
     "stages": [
@@ -2186,25 +2186,25 @@
         "number": "1",
         "kind": "main",
         "drinking": 3,
-        "springs": 2
+        "springs": 7
       },
       {
         "number": "2",
         "kind": "main",
-        "drinking": 0,
-        "springs": 2
+        "drinking": 2,
+        "springs": 6
       },
       {
         "number": "3",
         "kind": "main",
-        "drinking": 2,
+        "drinking": 3,
         "springs": 0
       },
       {
         "number": "3",
         "kind": "variant",
         "drinking": 0,
-        "springs": 2
+        "springs": 3
       },
       {
         "number": "4",
@@ -2215,11 +2215,22 @@
       {
         "number": "5",
         "kind": "main",
-        "drinking": 4,
-        "springs": 1
+        "drinking": 5,
+        "springs": 2
       }
     ],
     "points": [
+      {
+        "lat": 48.50415,
+        "lon": 8.37526,
+        "kind": "spring",
+        "name": "Brunnenhäusle",
+        "stage": "1",
+        "stageKind": "main",
+        "km": 0.0,
+        "offM": 280,
+        "source": "osm"
+      },
       {
         "lat": 48.48499,
         "lon": 8.33542,
@@ -2265,6 +2276,39 @@
         "source": "osm"
       },
       {
+        "lat": 48.50165,
+        "lon": 8.32074,
+        "kind": "spring",
+        "name": null,
+        "stage": "1",
+        "stageKind": "main",
+        "km": 11.5,
+        "offM": 306,
+        "source": "osm"
+      },
+      {
+        "lat": 48.50132,
+        "lon": 8.32068,
+        "kind": "spring",
+        "name": null,
+        "stage": "1",
+        "stageKind": "main",
+        "km": 11.5,
+        "offM": 301,
+        "source": "osm"
+      },
+      {
+        "lat": 48.50173,
+        "lon": 8.31179,
+        "kind": "spring",
+        "name": "Bauernwald Brünnle",
+        "stage": "1",
+        "stageKind": "main",
+        "km": 11.7,
+        "offM": 319,
+        "source": "osm"
+      },
+      {
         "lat": 48.50962,
         "lon": 8.31334,
         "kind": "spring",
@@ -2273,6 +2317,39 @@
         "stageKind": "main",
         "km": 12.5,
         "offM": 5,
+        "source": "osm"
+      },
+      {
+        "lat": 48.5241,
+        "lon": 8.32173,
+        "kind": "spring",
+        "name": null,
+        "stage": "1",
+        "stageKind": "main",
+        "km": 14.1,
+        "offM": 500,
+        "source": "osm"
+      },
+      {
+        "lat": 48.50954,
+        "lon": 8.3069,
+        "kind": "spring",
+        "name": null,
+        "stage": "2",
+        "stageKind": "main",
+        "km": 16.4,
+        "offM": 291,
+        "source": "osm"
+      },
+      {
+        "lat": 48.50897,
+        "lon": 8.3028,
+        "kind": "spring",
+        "name": "Ellbachbrunnen",
+        "stage": "2",
+        "stageKind": "main",
+        "km": 16.6,
+        "offM": 370,
         "source": "osm"
       },
       {
@@ -2295,6 +2372,61 @@
         "stageKind": "main",
         "km": 19.4,
         "offM": 140,
+        "source": "osm"
+      },
+      {
+        "lat": 48.48849,
+        "lon": 8.26346,
+        "kind": "spring",
+        "name": "Renchquelle",
+        "stage": "2",
+        "stageKind": "main",
+        "km": 21.4,
+        "offM": 287,
+        "source": "osm"
+      },
+      {
+        "lat": 48.49081,
+        "lon": 8.24712,
+        "kind": "spring",
+        "name": null,
+        "stage": "2",
+        "stageKind": "main",
+        "km": 22.6,
+        "offM": 253,
+        "source": "osm"
+      },
+      {
+        "lat": 48.50816,
+        "lon": 8.25557,
+        "kind": "drinking",
+        "name": "Tannenfelser Brunnen",
+        "stage": "2",
+        "stageKind": "main",
+        "km": 24.7,
+        "offM": 316,
+        "source": "osm"
+      },
+      {
+        "lat": 48.52505,
+        "lon": 8.20839,
+        "kind": "drinking",
+        "name": null,
+        "stage": "2",
+        "stageKind": "main",
+        "km": 30.6,
+        "offM": 325,
+        "source": "osm"
+      },
+      {
+        "lat": 48.57241,
+        "lon": 8.22627,
+        "kind": "drinking",
+        "name": null,
+        "stage": "3",
+        "stageKind": "main",
+        "km": 40.0,
+        "offM": 438,
         "source": "osm"
       },
       {
@@ -2342,6 +2474,17 @@
         "source": "osm"
       },
       {
+        "lat": 48.58206,
+        "lon": 8.35812,
+        "kind": "spring",
+        "name": "Rossbrunnen",
+        "stage": "5",
+        "stageKind": "main",
+        "km": 69.7,
+        "offM": 340,
+        "source": "osm"
+      },
+      {
         "lat": 48.55803,
         "lon": 8.33695,
         "kind": "drinking",
@@ -2361,6 +2504,17 @@
         "stageKind": "main",
         "km": 79.1,
         "offM": 5,
+        "source": "osm"
+      },
+      {
+        "lat": 48.52906,
+        "lon": 8.35918,
+        "kind": "drinking",
+        "name": null,
+        "stage": "5",
+        "stageKind": "main",
+        "km": 83.1,
+        "offM": 259,
         "source": "osm"
       },
       {
@@ -2394,6 +2548,17 @@
         "stageKind": "main",
         "km": 87.0,
         "offM": 248,
+        "source": "osm"
+      },
+      {
+        "lat": 48.5365,
+        "lon": 8.23433,
+        "kind": "spring",
+        "name": "Wolfig-Brunnen",
+        "stage": "3",
+        "stageKind": "variant",
+        "km": null,
+        "offM": 288,
         "source": "osm"
       },
       {

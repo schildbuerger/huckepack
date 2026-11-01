@@ -1136,7 +1136,7 @@
     "source": "osm",
     "extraSources": [],
     "retrieved": "2026-10-30T21:24:51Z",
-    "withinM": 250,
+    "withinM": 500,
     "routeKm": 94.7,
     "stageStarts": [
       {
@@ -1196,7 +1196,7 @@
       {
         "number": "1",
         "kind": "main",
-        "drinking": 0,
+        "drinking": 1,
         "springs": 0
       },
       {
@@ -1255,6 +1255,17 @@
       }
     ],
     "points": [
+      {
+        "lat": 22.3973,
+        "lon": 114.32046,
+        "kind": "drinking",
+        "name": null,
+        "stage": "1",
+        "stageKind": "main",
+        "km": 0.0,
+        "offM": 469,
+        "source": "osm"
+      },
       {
         "lat": 22.42167,
         "lon": 114.33255,

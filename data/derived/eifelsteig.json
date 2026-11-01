@@ -7368,7 +7368,7 @@
     "source": "osm",
     "extraSources": [],
     "retrieved": "2026-10-28T21:21:02Z",
-    "withinM": 250,
+    "withinM": 500,
     "routeKm": 304.8,
     "stageStarts": [
       {
@@ -7473,7 +7473,7 @@
         "number": "5",
         "kind": "main",
         "drinking": 0,
-        "springs": 1
+        "springs": 2
       },
       {
         "number": "6",
@@ -7497,7 +7497,7 @@
         "number": "9",
         "kind": "main",
         "drinking": 3,
-        "springs": 0
+        "springs": 1
       },
       {
         "number": "10",
@@ -7508,7 +7508,7 @@
       {
         "number": "11",
         "kind": "main",
-        "drinking": 2,
+        "drinking": 3,
         "springs": 0
       },
       {
@@ -7527,13 +7527,13 @@
         "number": "14",
         "kind": "main",
         "drinking": 0,
-        "springs": 1
+        "springs": 2
       },
       {
         "number": "15",
         "kind": "main",
         "drinking": 0,
-        "springs": 4
+        "springs": 6
       }
     ],
     "points": [
@@ -7703,6 +7703,17 @@
         "source": "osm"
       },
       {
+        "lat": 50.53151,
+        "lon": 6.51254,
+        "kind": "spring",
+        "name": null,
+        "stage": "5",
+        "stageKind": "main",
+        "km": 85.8,
+        "offM": 479,
+        "source": "osm"
+      },
+      {
         "lat": 50.51774,
         "lon": 6.53438,
         "kind": "spring",
@@ -7780,6 +7791,17 @@
         "source": "osm"
       },
       {
+        "lat": 50.22868,
+        "lon": 6.6777,
+        "kind": "spring",
+        "name": "Hedenborn",
+        "stage": "9",
+        "stageKind": "main",
+        "km": 179.2,
+        "offM": 316,
+        "source": "osm"
+      },
+      {
         "lat": 50.22354,
         "lon": 6.66034,
         "kind": "drinking",
@@ -7810,6 +7832,17 @@
         "stageKind": "main",
         "km": 207.4,
         "offM": 18,
+        "source": "osm"
+      },
+      {
+        "lat": 50.14914,
+        "lon": 6.82489,
+        "kind": "drinking",
+        "name": null,
+        "stage": "11",
+        "stageKind": "main",
+        "km": 217.3,
+        "offM": 367,
         "source": "osm"
       },
       {
@@ -7846,6 +7879,17 @@
         "source": "osm"
       },
       {
+        "lat": 49.87442,
+        "lon": 6.6893,
+        "kind": "spring",
+        "name": null,
+        "stage": "14",
+        "stageKind": "main",
+        "km": 283.9,
+        "offM": 292,
+        "source": "osm"
+      },
+      {
         "lat": 49.82339,
         "lon": 6.63764,
         "kind": "spring",
@@ -7868,6 +7912,17 @@
         "source": "osm"
       },
       {
+        "lat": 49.82236,
+        "lon": 6.64678,
+        "kind": "spring",
+        "name": null,
+        "stage": "15",
+        "stageKind": "main",
+        "km": 294.4,
+        "offM": 268,
+        "source": "osm"
+      },
+      {
         "lat": 49.81316,
         "lon": 6.64506,
         "kind": "spring",
@@ -7887,6 +7942,17 @@
         "stageKind": "main",
         "km": 295.6,
         "offM": 10,
+        "source": "osm"
+      },
+      {
+        "lat": 49.78229,
+        "lon": 6.66095,
+        "kind": "spring",
+        "name": "Taubenstein-Quelle",
+        "stage": "15",
+        "stageKind": "main",
+        "km": 301.7,
+        "offM": 300,
         "source": "osm"
       }
     ]

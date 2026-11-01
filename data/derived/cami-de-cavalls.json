@@ -2628,7 +2628,7 @@
     "source": "osm",
     "extraSources": [],
     "retrieved": "2026-10-31T21:23:06Z",
-    "withinM": 250,
+    "withinM": 500,
     "routeKm": 180.5,
     "stageStarts": [
       {
@@ -2782,13 +2782,13 @@
       {
         "number": "10",
         "kind": "main",
-        "drinking": 1,
+        "drinking": 2,
         "springs": 0
       },
       {
         "number": "11",
         "kind": "main",
-        "drinking": 0,
+        "drinking": 1,
         "springs": 0
       },
       {
@@ -2812,7 +2812,7 @@
       {
         "number": "15",
         "kind": "main",
-        "drinking": 1,
+        "drinking": 3,
         "springs": 0
       },
       {
@@ -2842,7 +2842,7 @@
       {
         "number": "20",
         "kind": "main",
-        "drinking": 3,
+        "drinking": 4,
         "springs": 0
       }
     ],
@@ -2881,6 +2881,28 @@
         "source": "osm"
       },
       {
+        "lat": 39.99577,
+        "lon": 3.82662,
+        "kind": "drinking",
+        "name": null,
+        "stage": "10",
+        "stageKind": "main",
+        "km": 90.5,
+        "offM": 329,
+        "source": "osm"
+      },
+      {
+        "lat": 40.00158,
+        "lon": 3.83944,
+        "kind": "drinking",
+        "name": null,
+        "stage": "11",
+        "stageKind": "main",
+        "km": 92.7,
+        "offM": 252,
+        "source": "osm"
+      },
+      {
         "lat": 39.91512,
         "lon": 4.03935,
         "kind": "drinking",
@@ -2889,6 +2911,28 @@
         "stageKind": "main",
         "km": 134.5,
         "offM": 3,
+        "source": "osm"
+      },
+      {
+        "lat": 39.90033,
+        "lon": 4.07276,
+        "kind": "drinking",
+        "name": null,
+        "stage": "15",
+        "stageKind": "main",
+        "km": 139.8,
+        "offM": 333,
+        "source": "osm"
+      },
+      {
+        "lat": 39.89937,
+        "lon": 4.07478,
+        "kind": "drinking",
+        "name": null,
+        "stage": "15",
+        "stageKind": "main",
+        "km": 140.0,
+        "offM": 281,
         "source": "osm"
       },
       {
@@ -2933,6 +2977,17 @@
         "stageKind": "main",
         "km": 169.2,
         "offM": 12,
+        "source": "osm"
+      },
+      {
+        "lat": 39.87986,
+        "lon": 4.2908,
+        "kind": "drinking",
+        "name": null,
+        "stage": "20",
+        "stageKind": "main",
+        "km": 176.4,
+        "offM": 269,
         "source": "osm"
       },
       {

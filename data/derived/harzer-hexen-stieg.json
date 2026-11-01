@@ -3381,7 +3381,7 @@
     "source": "osm",
     "extraSources": [],
     "retrieved": "2026-10-28T21:21:02Z",
-    "withinM": 250,
+    "withinM": 500,
     "routeKm": 94.9,
     "stageStarts": [
       {
@@ -3407,14 +3407,14 @@
     ],
     "longestGapKm": {
       "drinking": {
-        "km": 53.9,
-        "fromKm": 41.0,
+        "km": 47.4,
+        "fromKm": 47.5,
         "toKm": 94.9
       },
       "any": {
-        "km": 29.3,
-        "fromKm": 41.0,
-        "toKm": 70.3
+        "km": 17.3,
+        "fromKm": 47.9,
+        "toKm": 65.2
       }
     },
     "stages": [
@@ -3428,25 +3428,25 @@
         "number": "2",
         "kind": "main",
         "drinking": 1,
-        "springs": 4
+        "springs": 5
       },
       {
         "number": "3",
         "kind": "main",
-        "drinking": 1,
-        "springs": 0
+        "drinking": 2,
+        "springs": 1
       },
       {
         "number": "3",
         "kind": "variant",
         "drinking": 0,
-        "springs": 3
+        "springs": 4
       },
       {
         "number": "4",
         "kind": "main",
         "drinking": 0,
-        "springs": 1
+        "springs": 2
       },
       {
         "number": "4",
@@ -3524,6 +3524,17 @@
         "source": "osm"
       },
       {
+        "lat": 51.79093,
+        "lon": 10.47269,
+        "kind": "spring",
+        "name": "Kleine Oker",
+        "stage": "2",
+        "stageKind": "main",
+        "km": 26.0,
+        "offM": 389,
+        "source": "osm"
+      },
+      {
         "lat": 51.79527,
         "lon": 10.47215,
         "kind": "drinking",
@@ -3543,6 +3554,39 @@
         "stageKind": "main",
         "km": 41.0,
         "offM": 9,
+        "source": "osm"
+      },
+      {
+        "lat": 51.77211,
+        "lon": 10.66966,
+        "kind": "drinking",
+        "name": "Kühle Quelle",
+        "stage": "3",
+        "stageKind": "main",
+        "km": 47.5,
+        "offM": 279,
+        "source": "osm"
+      },
+      {
+        "lat": 51.77085,
+        "lon": 10.67597,
+        "kind": "spring",
+        "name": null,
+        "stage": "3",
+        "stageKind": "main",
+        "km": 47.9,
+        "offM": 455,
+        "source": "osm"
+      },
+      {
+        "lat": 51.74847,
+        "lon": 10.8383,
+        "kind": "spring",
+        "name": null,
+        "stage": "4",
+        "stageKind": "main",
+        "km": 65.2,
+        "offM": 270,
         "source": "osm"
       },
       {
@@ -3587,6 +3631,17 @@
         "stageKind": "variant",
         "km": null,
         "offM": 90,
+        "source": "osm"
+      },
+      {
+        "lat": 51.72782,
+        "lon": 10.59432,
+        "kind": "spring",
+        "name": "Quelle Schultalwasser",
+        "stage": "3",
+        "stageKind": "variant",
+        "km": null,
+        "offM": 284,
         "source": "osm"
       },
       {
