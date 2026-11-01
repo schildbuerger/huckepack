@@ -265,6 +265,10 @@ class WaterTiers(unittest.TestCase):
         self.assertEqual(t["longestGapKm"]["treatment"]["km"], 40.0)
         self.assertEqual(t["longestGapKm"]["refill"]["km"], 30.0)
         self.assertEqual(t["longestGapKm"]["clean"]["km"], 40.0)  # drinking water or a refill, no springs
+        # refills whose water a source says is untreated count as any water, not clean water
+        u = along.water_tiers(water, beds, 100.0, untreated=True)
+        self.assertEqual(u["longestGapKm"]["clean"]["km"], 60.0)
+        self.assertEqual(u["longestGapKm"]["refill"]["km"], 30.0)
 
 if __name__ == "__main__":
     unittest.main()

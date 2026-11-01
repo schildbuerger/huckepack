@@ -22,6 +22,7 @@ import sys
 from pathlib import Path
 
 import osmium
+import yaml
 
 from pipeline import osm, osmlocal
 from pipeline.osmlocal import EXTRACTS_DIR, OSM_DIR
@@ -95,12 +96,14 @@ def candidates(slug, box):
     return out, sorted(stamps)[0]
 
 
-def water_tiers(water, beds, total_km):
+def water_tiers(water, beds, total_km, untreated=False):
     """Water in tiers (issue #119), on the main route: drinking water (OSM's, plus places to sleep
     tagged drinking_water=yes), refills (places to sleep within the water step's reach, except those
     tagged drinking_water=no), with treatment (springs too), and their combinations. Each with its
     longest stretch without: `clean` (drinking water or a refill) is the one the trail is rated by
-    (decided 2026-11-01), `refill` the stretch without any water at all."""
+    (decided 2026-11-01), `refill` the stretch without any water at all. With `untreated` (the
+    record's refillsUntreated: a source says the places' water must be treated), refills count as
+    any water only, not as clean water."""
     near = [p for p in beds if p["km"] is not None and p["offM"] <= water["withinM"]]
     promoted = [p for p in near if p.get("drinkingWater") == "yes"]
     refills = [p for p in near if p.get("drinkingWater") not in ("yes", "no")]
@@ -114,7 +117,7 @@ def water_tiers(water, beds, total_km):
         "longestGapKm": {
             "drinking": longest_gap(drinking, total_km),
             "treatment": longest_gap(treatment, total_km),
-            "clean": longest_gap(drinking + [p["km"] for p in refills], total_km),
+            "clean": longest_gap(drinking + ([] if untreated else [p["km"] for p in refills]), total_km),
             "refill": longest_gap(treatment + [p["km"] for p in refills], total_km),
         },
     }
@@ -183,7 +186,9 @@ def build(slug, refresh=False):
         "beds": beds,
     }
     if existing.get("water"):
-        result["water"] = water_tiers(existing["water"], beds["points"], total_km)
+        record = yaml.safe_load((ROOT / "data" / "trails" / f"{slug}.yaml").read_text())
+        result["water"] = water_tiers(existing["water"], beds["points"], total_km, bool(record.get("refillsUntreated")))
+        result["water"]["refillsUntreated"] = bool(record.get("refillsUntreated"))
     out.write_text(json.dumps({**existing, "along": result}, indent=2, ensure_ascii=False) + "\n")
     r, b = result["resupply"], result["beds"]
     print(f"{out.relative_to(ROOT)}: {len(r['points'])} resupply points, longest without {r['longestGapKm']['km']} km "

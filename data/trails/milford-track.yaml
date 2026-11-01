@@ -79,6 +79,11 @@ wildCamping:
   status: prohibited
   rule: Camping is not permitted on the Milford Track; walkers stay in the three DOC huts.
   source: doc
+refillsUntreated:
+  # DOC on each hut: "water from tap - not treated, boil before use"; so the huts count as any water,
+  # not as clean water (issue #119)
+  text: DOC's huts have cold tap water that is not treated; boil it before use.
+  source: doc
 access:
   # buses from Te Anau to the boat at Te Anau Downs and back from Milford Sound; Queenstown the
   # nearest international airport. Coordinates from OSM; distances by pipeline/access.py
@@ -109,8 +114,9 @@ notes:
     13 km (stage 3 11.5 % short); together they agree (30.2 against 30.5 km).
   - >-
     Water: OSM maps no drinking water within 500 m of the route, so the page counts 52.6 km without
-    any. DOC's huts have cold tap water, "not treated, boil before use"; not added as waterPoints,
-    as it isn't drinking water as it comes. Streams and rivers run beside most of the track.
+    any. DOC's huts have cold tap water, "not treated, boil before use"; not added as waterPoints, as it isn't drinking water as it comes, and
+    `refillsUntreated` keeps the huts out of clean water (they count as any water: 12.9 km
+    without, against 52.6 km without clean water). Streams and rivers run beside most of the track.
   - >-
     Data check (2026-11-01). Second source: English Wikipedia (53.5 km from Glade Wharf to Sandfly
     Point, three DOC huts, 15 to 20 hours over three days plus an hour or two to the first hut,

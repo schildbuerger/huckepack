@@ -470,7 +470,7 @@ const supplyLanes: Row[] = water
             { id: "water", label: "Water", gap: tiers.longestGapKm.refill, points: [...waterTicks, ...promotedTicks, ...refillTicks], group: true },
             { id: "water", label: "Public drinking water", gap: tiers.longestGapKm.drinking, points: [...waterTicks.filter((p) => !p.minor), ...promotedTicks], sub: true, parent: 0 },
             { id: "water", label: "Springs (treat before drinking)", gap: ownGap(waterTicks.filter((p) => p.minor)), points: waterTicks.filter((p) => p.minor), sub: true, parent: 0 },
-            { id: "water", label: "Refills at places to sleep", gap: ownGap(refillTicks), points: refillTicks, sub: true, parent: 0 },
+            { id: "water", label: t.refillsUntreated ? "Refills at places to sleep (treat before drinking)" : "Refills at places to sleep", gap: ownGap(refillTicks), points: refillTicks, sub: true, parent: 0 },
           ]
         : [{ id: "water", label: "Drinking water", gap: water.longestGapKm.drinking, points: waterTicks }]),
       ...(along
@@ -1519,7 +1519,8 @@ const trailLd = JSON.stringify({
                 {waterTotals.drinking} fountains, taps and springs marked as drinkable in OpenStreetMap within {water.withinM} m of the
                 trail{waterExtra.length > 0 && `, with the taps the trail's managers list (${waterExtra.join(", ")})`}
                 {tiers && tiers.promoted.length > 0 && `, and ${tiers.promoted.length} places to sleep OpenStreetMap marks as having drinking water`}.
-                {tiers && ` Clean water also counts the ${tiers.refills.length} huts, hostels, guest houses and campsites within ${tiers.withinM} m where hikers usually fill a bottle: guests come first, and many close out of season, so ask, and carry a little more than the gaps need. Places OpenStreetMap marks as without drinking water are left out.`}
+                {tiers && !t.refillsUntreated && ` Clean water also counts the ${tiers.refills.length} huts, hostels, guest houses and campsites within ${tiers.withinM} m where hikers usually fill a bottle: guests come first, and many close out of season, so ask, and carry a little more than the gaps need. Places OpenStreetMap marks as without drinking water are left out.`}
+                {tiers && t.refillsUntreated && ` The ${tiers.refills.length} places to sleep along the trail don't count as clean water here: ${t.refillsUntreated.text} They count as any water.`}
                 {" "}The counts include the approach and variant; the chart shows the main route.
               </p>
               <p>
@@ -1542,7 +1543,8 @@ const trailLd = JSON.stringify({
               <Explain id="about-any-water" term="Longest without any water" title="Any water">
                 <p>
                   Clean water, and the {waterTotals.springs} springs within {water.withinM} m of the trail whose water is of unknown
-                  quality: filter, boil or treat it, and expect some springs to run dry in late summer. Here the longest stretch
+                  quality{t.refillsUntreated && ", and the places to sleep whose water isn't treated"}: filter, boil or treat it, and
+                  expect some springs to run dry in late summer. Here the longest stretch
                   without any water runs from km {tiers.longestGapKm.refill.fromKm} to {tiers.longestGapKm.refill.toKm}.
                 </p>
               </Explain>

@@ -219,6 +219,11 @@ const trail = z
       })
       .optional(),
 
+    // When a source says the water at the trail's places to sleep isn't treated (the Milford Track's
+    // DOC huts: "boil before use"), its refills don't count as clean water, only as any water
+    // (issue #119; pipeline/along.py water_tiers()). `text`: the source's words, shown on the page
+    refillsUntreated: z.object({ text: z.string(), source: sourceRef }).optional(),
+
     // Travel hubs near the start: the nearest railway station (or, without railways, the main bus
     // station the trail's buses leave from) and airport(s). pipeline/access.py
     // derives their distance to the start by road.
@@ -485,6 +490,7 @@ const derived = z.object({
           refills: z.array(tierPoint),
           // clean: drinking water or a refill (the rating); refill: without any water at all
           longestGapKm: z.object({ drinking: gap, treatment: gap, clean: gap, refill: gap }),
+          refillsUntreated: z.boolean().optional(), // the record's refillsUntreated: refills aren't clean water
         })
         .optional(),
     })
