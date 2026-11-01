@@ -460,7 +460,7 @@ const supplyLanes: Row[] = water
   ? [
       ...(tiers
         ? [
-            { id: "water", label: "Water", gap: tiers.longestGapKm.refill, gapText: "km without water or a refill", points: [...waterTicks, ...promotedTicks, ...refillTicks], group: true },
+            { id: "water", label: "Water", gap: tiers.longestGapKm.refill, points: [...waterTicks, ...promotedTicks, ...refillTicks], group: true },
             { id: "water", label: "Public drinking water", gap: tiers.longestGapKm.drinking, points: [...waterTicks.filter((p) => !p.minor), ...promotedTicks], sub: true },
             { id: "water", label: "Springs (treat before drinking)", gap: ownGap(waterTicks.filter((p) => p.minor)), points: waterTicks.filter((p) => p.minor), sub: true },
             { id: "water", label: "Refills at places to sleep", gap: ownGap(refillTicks), points: refillTicks, sub: true },
@@ -1596,9 +1596,9 @@ const trailLd = JSON.stringify({
           <div class="chart-box">
           {subRows > 0 && (
             <button type="button" class="tier-toggle" aria-expanded="true" hidden>
-              <span class="chev" aria-hidden="true">▾</span>
+              <span class="chev" aria-hidden="true">›</span>
               <span class="tier-name">Water</span>
-              <span class="lane-gap">· {supplyLanes[0].gap.km} km without water or a refill</span>
+              <span class="lane-gap">· {supplyLanes[0].gap.km} km without</span>
             </button>
           )}
           <svg viewBox={`0 0 ${CHART.width} ${supplyAxis + 40}`} role="img" aria-label={supplySummary}>
@@ -1819,7 +1819,6 @@ const trailLd = JSON.stringify({
       for (const r of svg.querySelectorAll<SVGRectElement>(".stage-band")) r.setAttribute("height", String(height - 40 - data.top + 18));
       cursor.setAttribute("y2", String(height - 40));
       toggle!.setAttribute("aria-expanded", String(open));
-      toggle!.querySelector(".chev")!.textContent = open ? "▾" : "▸";
     };
     if (toggle && subCount) {
       toggle.hidden = false;
@@ -3039,35 +3038,41 @@ const trailLd = JSON.stringify({
   }
   .tier-toggle {
     position: absolute;
-    top: -6px;
+    top: -3px;
     left: 0;
     display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    padding: 2px 10px 2px 2px;
-    border: 1px solid var(--line);
-    border-radius: 999px;
-    background: var(--bg);
+    align-items: baseline;
+    gap: 5px;
+    padding: 0 4px 0 0;
+    border: 0;
+    background: none;
     color: var(--text);
     font: 600 0.85rem var(--sans);
     cursor: pointer;
   }
-  .tier-toggle:hover {
-    border-color: var(--muted);
+  .tier-toggle:hover .tier-name {
+    text-decoration: underline;
+    text-underline-offset: 3px;
   }
   .tier-toggle .chev {
-    display: inline-grid;
-    place-items: center;
-    width: 20px;
-    height: 20px;
-    border-radius: 50%;
-    background: var(--water);
-    color: var(--bg);
-    font-size: 0.7rem;
+    display: inline-block;
+    width: 0.7em;
+    color: var(--muted);
+    font-size: 1rem;
+    line-height: 1;
+    transition: transform 0.15s;
+  }
+  .tier-toggle[aria-expanded="true"] .chev {
+    transform: rotate(90deg);
   }
   .tier-toggle .lane-gap {
     color: var(--muted);
     font-weight: 400;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .tier-toggle .chev {
+      transition: none;
+    }
   }
   .waterline .lane-name.sub-name {
     fill: var(--muted);
