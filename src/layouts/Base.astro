@@ -20,6 +20,12 @@ const themeScript = inlineScript(
 try {
   const theme = localStorage.getItem("theme");
   if (theme === "light" || theme === "dark") document.documentElement.dataset.theme = theme;
+  // design previews (working rule 1, PreviewSwitch.astro): the approach picked per topic, so a local
+  // preview shows it from the first paint; no visitor of the live site has these keys
+  for (let i = 0; i < localStorage.length; i++) {
+    const key = localStorage.key(i);
+    if (key && key.startsWith("preview:")) document.documentElement.setAttribute("data-preview-" + key.slice(8), localStorage.getItem(key));
+  }
 } catch {}`,
 );
 // the address search engines and link previews should use (no query string, always with a slash)

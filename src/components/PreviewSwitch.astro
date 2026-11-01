@@ -1,0 +1,99 @@
+---
+// Design previews (working rule 1): a small switch fixed at the bottom left that flips the real page
+// between the approaches of one preview, "Now" (the page as it is) and A, B, C …, each with its
+// one-line idea shown beside the switch. It sets <html data-preview-<topic>="a"> before the first
+// paint (Base's head script restores it from localStorage key preview:<topic>, since a component in
+// the body renders after the Content Security Policy is written and can't add an inline script of its
+// own) and remembers the choice per topic, so it holds across pages and reloads; the approaches style
+// or script themselves off that attribute. Only used on local preview branches, never in a page on main.
+
+interface Props {
+  topic: string; // short id, e.g. "osm-links": the attribute is data-preview-osm-links
+  label: string; // what is being previewed, e.g. "Map links"
+  approaches: { id: string; name: string; idea: string }[]; // id "a", "b", …; name "A · Pinned tooltip"
+}
+const { topic, label, approaches } = Astro.props;
+const attr = `preview${topic.replace(/(^|-)([a-z])/g, (_, __, c: string) => c.toUpperCase())}`; // dataset key
+const key = `preview:${topic}`;
+const ideas = JSON.stringify(Object.fromEntries([["", "The page as it is now"], ...approaches.map((a) => [a.id, `${a.name}: ${a.idea}`])])).replaceAll("<", "\\u003c");
+---
+
+<div class="preview-switch" role="group" aria-label={`Design preview: ${label}`} data-attr={attr} data-key={key}>
+  <span class="ps-label">{label}</span>
+  <span class="ps-buttons">
+    <button type="button" data-v="">Now</button>
+    {approaches.map((a) => <button type="button" data-v={a.id} title={a.idea}>{a.id.toUpperCase()}</button>)}
+  </span>
+  <span class="ps-idea" aria-live="polite"></span>
+  <script type="application/json" class="ps-ideas" set:html={ideas} />
+</div>
+
+<script>
+  for (const bar of document.querySelectorAll<HTMLElement>(".preview-switch")) {
+    const attr = bar.dataset.attr!;
+    const key = bar.dataset.key!;
+    const ideas: Record<string, string> = JSON.parse(bar.querySelector(".ps-ideas")!.textContent!);
+    const idea = bar.querySelector<HTMLElement>(".ps-idea")!;
+    const root = document.documentElement;
+    const mark = () => {
+      const now = root.dataset[attr] ?? "";
+      for (const b of bar.querySelectorAll<HTMLButtonElement>("[data-v]")) b.setAttribute("aria-pressed", String(b.dataset.v === now));
+      idea.textContent = ideas[now] ?? "";
+    };
+    bar.addEventListener("click", (e) => {
+      const b = (e.target as Element).closest<HTMLButtonElement>("[data-v]");
+      if (!b) return;
+      if (b.dataset.v) root.dataset[attr] = b.dataset.v;
+      else delete root.dataset[attr];
+      try {
+        if (b.dataset.v) localStorage.setItem(key, b.dataset.v);
+        else localStorage.removeItem(key);
+      } catch {}
+      mark();
+      document.dispatchEvent(new CustomEvent("previewchange", { detail: { attr, value: b.dataset.v } }));
+    });
+    mark();
+  }
+</script>
+
+<style>
+  .preview-switch {
+    position: fixed;
+    z-index: 1000;
+    left: 12px;
+    bottom: 12px;
+    display: grid;
+    grid-template-columns: auto auto;
+    align-items: center;
+    gap: 4px 10px;
+    max-width: min(440px, calc(100vw - 24px));
+    padding: 6px 6px 8px 12px;
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    background: var(--bg);
+    box-shadow: 0 6px 20px rgb(0 0 0 / 0.15);
+    font: 13px/1.3 var(--sans);
+    color: var(--muted);
+  }
+  .ps-buttons {
+    display: flex;
+    gap: 2px;
+  }
+  .preview-switch button {
+    font: inherit;
+    padding: 5px 10px;
+    border: 0;
+    border-radius: 999px;
+    background: transparent;
+    color: var(--text);
+    cursor: pointer;
+  }
+  .preview-switch button[aria-pressed="true"] {
+    background: var(--accent);
+    color: var(--bg);
+  }
+  .ps-idea {
+    grid-column: 1 / -1;
+    font-size: 12px;
+  }
+</style>

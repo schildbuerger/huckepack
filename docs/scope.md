@@ -4,9 +4,11 @@
 
 - **Mission:** see [mission.md](mission.md). Every decision below and every new one
   is checked against it.
-- **Design changes:** every bigger design change is first built as a local
-  preview page with three different approaches; only the chosen one goes live
-  (CLAUDE.md, "Working rules").
+- **Design changes:** every bigger design change is first built as at least
+  three different approaches on the real pages, switched inline with a small
+  preview switch (`PreviewSwitch.astro`), on a local branch; only the chosen
+  one goes live (CLAUDE.md, "Working rules"; since 2026-11-01, before that a
+  separate preview page).
 - **Data checks:** every new trail's figures are confirmed against a second,
   independent source (at most 10 % apart, larger gaps noted and shown with
   their sources), or, where none exists, checked on the finished trail page
