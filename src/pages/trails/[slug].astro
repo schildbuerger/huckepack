@@ -445,8 +445,16 @@ const promotedTicks = (tiers?.promoted ?? []).map((p): LanePoint => ({ km: p.km,
 const refillTicks = (tiers?.refills ?? []).map((p): LanePoint => ({ km: p.km, what: `${BED_LABEL[p.kind] ?? "Place to sleep"}, refill`, name: p.name, stage: p.stage, minor: false, dashed: true }));
 // the chart's rows (issue #119; of three previews, approach B, collapsible): with tiers, "Water and
 // refills" (every kind, its gap the stretch without any) opens into public drinking water, springs
-// and refills, each shaded with the longest stretch left once its kind is counted; then shops.
-// `sub` rows fold away (a script; without it every row shows)
+// and refills, each shaded with its own longest stretch without that kind; then shops. `sub` rows
+// fold away (a script; without it every row shows). Every water tick looks the same: the lanes and
+// the tooltip say which kind it is
+const ownGap = (pts: LanePoint[]) => {
+  const total = water?.routeKm ?? 0;
+  const stops = [0, ...pts.map((p) => p.km).sort((a, b) => a - b), total];
+  let g = { km: 0, fromKm: 0, toKm: 0 };
+  for (let i = 1; i < stops.length; i++) if (stops[i] - stops[i - 1] > g.km) g = { km: stops[i] - stops[i - 1], fromKm: stops[i - 1], toKm: stops[i] };
+  return { km: Math.round(g.km * 10) / 10, fromKm: g.fromKm, toKm: g.toKm };
+};
 type Row = { id: string; label: string; gap: { km: number; fromKm: number; toKm: number }; gapText?: string; points: LanePoint[]; sub?: boolean; group?: boolean };
 const supplyLanes: Row[] = water
   ? [
@@ -454,8 +462,8 @@ const supplyLanes: Row[] = water
         ? [
             { id: "water", label: "Water and refills", gap: tiers.longestGapKm.refill, gapText: "km without water or a refill", points: [...waterTicks, ...promotedTicks, ...refillTicks], group: true },
             { id: "water", label: "Public drinking water", gap: tiers.longestGapKm.drinking, points: [...waterTicks.filter((p) => !p.minor), ...promotedTicks], sub: true },
-            { id: "water", label: "Springs (treat before drinking)", gap: tiers.longestGapKm.treatment, gapText: "km without, springs counted", points: waterTicks.filter((p) => p.minor), sub: true },
-            { id: "water", label: "Refills at places to sleep", gap: tiers.longestGapKm.refill, gapText: "km without, refills counted", points: refillTicks, sub: true },
+            { id: "water", label: "Springs (treat before drinking)", gap: ownGap(waterTicks.filter((p) => p.minor)), points: waterTicks.filter((p) => p.minor), sub: true },
+            { id: "water", label: "Refills at places to sleep", gap: ownGap(refillTicks), points: refillTicks, sub: true },
           ]
         : [{ id: "water", label: "Drinking water", gap: water.longestGapKm.drinking, points: waterTicks }]),
       ...(along
@@ -474,8 +482,9 @@ const supplyLanes: Row[] = water
 const LANE = { top: 30, step: 46, band: 26 };
 const laneY = (i: number) => LANE.top + i * LANE.step;
 const supplyAxis = laneY(supplyLanes.length) - 8;
-const tickPath = (pts: LanePoint[], y: number) =>
-  pts.map((p) => `M${xAt(Math.min(p.km, water?.routeKm ?? p.km))} ${p.minor ? y + 13 : y + 4}V${y + 22}`).join("");
+// one kind of tick for every place: a lane's sub rows are slimmer (from `top` to `bottom` in its band)
+const tickPath = (pts: LanePoint[], y: number, top = 4, bottom = 22) =>
+  pts.map((p) => `M${xAt(Math.min(p.km, water?.routeKm ?? p.km))} ${y + top}V${y + bottom}`).join("");
 const subRows = supplyLanes.filter((r) => r.sub).length;
 const supplySummary =
   water &&
@@ -1581,33 +1590,42 @@ const trailLd = JSON.stringify({
 
       {water.stageStarts.length > 0 && (
         <figure class="waterline">
-          <ul class="legend" aria-hidden="true">
-            <li><svg width="10" height="14"><path d="M5 1V13" class="mark-tick water" /></svg>Drinking water</li>
-            <li><svg width="10" height="14"><path d="M5 7V13" class="mark-tick water" /></svg>Spring</li>
-            {tiers && <li><svg width="10" height="14"><path d="M5 1V13" class="mark-tick water refill" /></svg>Refill at a place to sleep</li>}
-            {along && <li><svg width="10" height="14"><path d="M5 1V13" class="mark-tick shops" /></svg>Shop</li>}
-            <li><span class="swatch"></span>Longest stretch without</li>
-          </ul>
           <div class="chart-scroll">
           <div class="chart-box">
           {subRows > 0 && (
             <button type="button" class="tier-toggle" aria-expanded="true" hidden>
               <span class="chev" aria-hidden="true">▾</span>
-              <span class="tier-name">Water and refills</span> <span class="lane-gap">· {supplyLanes[0].gap.km} km without water or a refill</span>
+              <span class="tier-name">Water and refills</span>
+              <span class="lane-gap">· {supplyLanes[0].gap.km} km without water or a refill</span>
+              <span class="tier-hint">· 3 kinds</span>
             </button>
           )}
           <svg viewBox={`0 0 ${CHART.width} ${supplyAxis + 40}`} role="img" aria-label={supplySummary}>
             {stageTicks(water.stageStarts, water.routeKm).map(
               (tk) => tk.band && <rect class="stage-band" x={tk.x} y={LANE.top - 18} width={n1(tk.end - tk.x)} height={supplyAxis - LANE.top + 18} />,
             )}
+            {subRows > 0 && (
+              <path class="sub tree" d={`M${CHART.x0 + 6} ${laneY(0) + LANE.band + 4}V${laneY(subRows) - 5}${supplyLanes.slice(1, subRows + 1).map((_, k) => `M${CHART.x0 + 6} ${laneY(k + 1) - 5}h10`).join("")}`} />
+            )}
             {supplyLanes.map((lane, i) => (
               <g class:list={[{ sub: lane.sub, below: subRows > 0 && !lane.sub && !lane.group }]}>
-                <rect class="gap" x={xAt(lane.gap.fromKm)} y={laneY(i)} width={n1(xAt(lane.gap.toKm) - xAt(lane.gap.fromKm))} height={LANE.band} rx="4" />
-                <text class:list={["lane-name", { indent: lane.sub, "group-label": lane.group }]} x={CHART.x0 + (lane.sub ? 18 : 0)} y={laneY(i) - 6}>
-                  {lane.label} <tspan class="lane-gap">· {lane.gap.km} {lane.gapText ?? "km without"}</tspan>
-                </text>
-                <path class={`mark-tick ${lane.id}`} d={tickPath(lane.points.filter((p) => !p.dashed), laneY(i))} />
-                {lane.points.some((p) => p.dashed) && <path class={`mark-tick ${lane.id} refill`} d={tickPath(lane.points.filter((p) => p.dashed), laneY(i))} />}
+                {lane.sub ? (
+                  <>
+                    <rect class="gap" x={xAt(lane.gap.fromKm)} y={laneY(i) + 5} width={n1(xAt(lane.gap.toKm) - xAt(lane.gap.fromKm))} height={16} rx="3" />
+                    <text class="lane-name sub-name" x={CHART.x0 + 22} y={laneY(i) - 1}>
+                      {lane.label} <tspan class="lane-gap">· {lane.gap.km} km without</tspan>
+                    </text>
+                    <path class={`mark-tick ${lane.id}`} d={tickPath(lane.points, laneY(i), 7, 19)} />
+                  </>
+                ) : (
+                  <>
+                    <rect class="gap" x={xAt(lane.gap.fromKm)} y={laneY(i)} width={n1(xAt(lane.gap.toKm) - xAt(lane.gap.fromKm))} height={LANE.band} rx="4" />
+                    <text class:list={["lane-name", { "group-label": lane.group }]} x={CHART.x0} y={laneY(i) - 6}>
+                      {lane.label} <tspan class="lane-gap">· {lane.gap.km} {lane.gapText ?? "km without"}</tspan>
+                    </text>
+                    <path class={`mark-tick ${lane.id}`} d={tickPath(lane.points, laneY(i))} />
+                  </>
+                )}
               </g>
             ))}
             <g class:list={[{ below: subRows > 0 }]}>
@@ -1626,6 +1644,12 @@ const trailLd = JSON.stringify({
           </svg>
           </div>
           </div>
+          <!-- the key under the chart (issue #119): one kind of tick for all water -->
+          <ul class="legend below-chart" aria-hidden="true">
+            <li><svg width="10" height="14"><path d="M5 1V13" class="mark-tick water" /></svg>{tiers ? "Water (tap, spring or refill)" : "Water (tap or spring)"}</li>
+            {along && <li><svg width="10" height="14"><path d="M5 1V13" class="mark-tick shops" /></svg>Shop</li>}
+            <li><span class="swatch"></span>Longest stretch without</li>
+          </ul>
           <script
             is:inline
             type="application/json"
@@ -1645,7 +1669,7 @@ const trailLd = JSON.stringify({
               <p>
                 One tick per place along the main route, from OpenStreetMap{waterExtra.length > 0 && ` (water also from ${waterExtra.join(", ")})`}:
                 drinking water and springs within {water.withinM} m{tiers && `, refills at huts, hostels, guest houses and campsites within ${tiers.withinM} m`}{along && `, shops within ${along.withinM / 1000} km or ${along.stageEndM / 1000} km of a stage's end`}.
-                The shaded band in each lane is its longest stretch without{tiers && "; under \"Water and refills\" each kind's lane shades the longest stretch left once that kind is counted"}. The map may miss places or list ones that have
+                The shaded band in each lane is its longest stretch without{tiers && "; \"Water and refills\" counts every kind, and opens into one lane per kind, each with its own"}. The map may miss places or list ones that have
                 closed or run dry, so check locally.
               </p>
             </Explain>
@@ -3005,36 +3029,61 @@ const trailLd = JSON.stringify({
   .mark-tick.shops {
     stroke: var(--accent);
   }
-  /* refills at places to sleep (issue #119): dashed, so they don't read as taps */
-  .mark-tick.refill {
-    stroke-dasharray: 3 2;
-    opacity: 0.8;
-  }
-  /* water in tiers: "Water and refills" opens into its three kinds (a script folds them away) */
+  /* water in tiers (issue #119): "Water and refills" is a group row, a bordered disclosure in the
+     chart's label row; its three kinds open beneath it as slimmer lanes on a tree line, with smaller,
+     lighter labels (a script folds them away) */
   .chart-box {
     position: relative;
   }
   .tier-toggle {
     position: absolute;
-    top: -2px;
+    top: -6px;
     left: 0;
     display: inline-flex;
-    align-items: baseline;
-    gap: 6px;
-    padding: 2px 6px 2px 0;
-    border: 0;
-    background: none;
+    align-items: center;
+    gap: 8px;
+    padding: 2px 10px 2px 2px;
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    background: var(--bg);
     color: var(--text);
-    font: 600 0.82rem var(--sans);
+    font: 600 0.85rem var(--sans);
     cursor: pointer;
+  }
+  .tier-toggle:hover {
+    border-color: var(--muted);
+  }
+  .tier-toggle .chev {
+    display: inline-grid;
+    place-items: center;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: var(--water);
+    color: var(--bg);
+    font-size: 0.7rem;
   }
   .tier-toggle .lane-gap {
     color: var(--muted);
     font-weight: 400;
   }
-  .tier-toggle .chev {
-    display: inline-block;
-    width: 0.8em;
+  .tier-toggle .tier-hint {
+    color: var(--muted);
+    font-size: 0.75rem;
+    font-weight: 400;
+  }
+  .tier-toggle[aria-expanded="true"] .tier-hint {
+    display: none;
+  }
+  .waterline .lane-name.sub-name {
+    fill: var(--muted);
+    font-size: 12px;
+    font-weight: 500;
+  }
+  .waterline .tree {
+    fill: none;
+    stroke: var(--line);
+    stroke-width: 2;
   }
   .tiered .group-label,
   .folded .sub {
@@ -3042,6 +3091,9 @@ const trailLd = JSON.stringify({
   }
   .folded .below {
     transform: translateY(var(--shift));
+  }
+  .legend.below-chart {
+    margin: 6px 0 0;
   }
   .mark-tick.beds {
     stroke: var(--clim-high);
@@ -3370,6 +3422,14 @@ const trailLd = JSON.stringify({
     .chart-scroll > svg,
     .chart-scroll > .chart-box {
       min-width: 800px;
+    }
+    /* the water chart's (i) beside its key under the chart, clear of the group's button */
+    .waterline:has(.tier-toggle) > .chart-info {
+      top: auto;
+      bottom: 0;
+    }
+    .waterline:has(.tier-toggle) .legend.below-chart {
+      padding-right: 28px;
     }
     /* the water figures in tiers (issue #119): two columns, the rating under its number */
     .spec.cols .status.inline {
