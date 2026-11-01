@@ -1,0 +1,58 @@
+{
+  "climate-high.json": {
+    "retrieved": "2026-11-01T04:22:38+00:00",
+    "url": "https://openmeteo.s3.us-west-2.amazonaws.com/data/copernicus_era5_land+copernicus_era5?latitude=-44.8&longitude=167.8&elevation=1140"
+  },
+  "climate-low.json": {
+    "retrieved": "2026-11-01T04:26:47+00:00",
+    "url": "https://openmeteo.s3.us-west-2.amazonaws.com/data/copernicus_era5_land+copernicus_era5?latitude=-44.7&longitude=167.9&elevation=10"
+  },
+  "elevation-glo30.json": {
+    "retrieved": "2026-11-01T04:23:33+00:00",
+    "url": "https://copernicus-dem-30m.s3.eu-central-1.amazonaws.com/Copernicus_DSM_COG_10_S45_00_E167_00_DEM/Copernicus_DSM_COG_10_S45_00_E167_00_DEM.tif"
+  },
+  "landcover.json": {
+    "retrieved": "2026-11-01T04:23:34+00:00",
+    "url": "https://esa-worldcover.s3.eu-central-1.amazonaws.com/v200/2021/map/ESA_WorldCover_10m_2021_v200_\u2026_Map.tif"
+  },
+  "osm-relation.json": {
+    "retrieved": "2026-10-31T21:23:06Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-1-main.json": {
+    "retrieved": "2026-10-31T21:23:06Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-2-main.json": {
+    "retrieved": "2026-10-31T21:23:06Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-3-main.json": {
+    "retrieved": "2026-10-31T21:23:06Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-4-main.json": {
+    "retrieved": "2026-10-31T21:23:06Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-water.json": {
+    "retrieved": "2026-10-31T21:23:06Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-way-tags.json": {
+    "retrieved": "2026-10-31T21:23:06Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osrm-access-queenstown-airport-zqn.json": {
+    "retrieved": "2026-11-01T04:22:39+00:00",
+    "url": "https://router.project-osrm.org/route/v1/driving/168.74344,-45.0193;167.93031,-44.93215?overview=false"
+  },
+  "osrm-access-te-anau.json": {
+    "retrieved": "2026-11-01T04:22:39+00:00",
+    "url": "https://router.project-osrm.org/route/v1/driving/167.71749,-45.41449;167.93031,-44.93215?overview=false"
+  },
+  "wikimedia.json": {
+    "retrieved": "2026-11-01T04:22:42+00:00",
+    "url": "Q673819 2025-11..2026-10"
+  }
+}

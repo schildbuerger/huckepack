@@ -1,0 +1,172 @@
+name: Milford Track
+added: 2026-11-01
+aliases: [Milford Track Great Walk]
+website: https://www.doc.govt.nz/parks-and-recreation/places-to-go/fiordland/places/fiordland-national-park/things-to-do/tracks/milford-track/
+wikidata: Q673819
+managedBy:
+  # one of New Zealand's Great Walks; DOC runs the three huts for independent walkers
+  - name: Department of Conservation (Te Papa Atawhai)
+    url: https://www.doc.govt.nz/
+trailType: point-to-point
+continents: [Oceania]
+countries: [NZ]
+regions: [Southland, Fiordland]
+protectedAreas:
+  - Fiordland National Park
+  - Te Wāhipounamu (UNESCO World Heritage)
+termini:
+  # Glade Wharf at the head of Lake Te Anau, reached by boat from Te Anau Downs; Sandfly Point on
+  # Milford Sound, left by boat (OSM: the end of the track relation; Nominatim's "Sandfly Point" is
+  # another cape, on Lake Te Anau)
+  start:
+    name: Glade Wharf
+    lat: -44.93215
+    lon: 167.93031
+  end:
+    name: Sandfly Point
+    lat: -44.6836
+    lon: 167.9025
+  source: osm
+length:
+  # "53.5 km one way"
+  - km: 53.5
+    source: doc
+days:
+  # "can only be walked in one direction over 3 nights and 4 days"
+  min: 4
+  max: 4
+  source: doc
+stages:
+  # DOC's four days, hut to hut, with distance and time; the OSM relation (GW07) guides the matcher,
+  # cut at each hut
+  source: doc
+  list:
+    - { number: "1", kind: main, from: Glade Wharf, to: Clinton Hut, km: 5, minutes: 60, maxMinutes: 90, end: { name: Clinton Hut, lat: -44.90581, lon: 167.90832 } }
+    - { number: "2", kind: main, from: Clinton Hut, to: Mintaro Hut, km: 17.5, minutes: 360, end: { name: Mintaro Hut, lat: -44.80921, lon: 167.77015 } }
+    - { number: "3", kind: main, from: Mintaro Hut, to: Dumpling Hut, km: 13, minutes: 360, maxMinutes: 420, end: { name: Dumpling Hut, lat: -44.76846, lon: 167.76498 } }
+    - { number: "4", kind: main, from: Dumpling Hut, to: Sandfly Point, km: 18, minutes: 330, maxMinutes: 360, end: { name: Sandfly Point, lat: -44.6836, lon: 167.9025 } }
+route:
+  # built by `python -m pipeline.all milford-track`: OSM ways matched to the relation's pieces
+  # between the huts
+  source: osm
+  publishable: true
+  relation: 1385121
+difficulty:
+  estimated:
+    sac: T2
+    basis: >-
+      DOC grades the track intermediate in the Great Walks season: a gradual climb up the Clinton
+      valley, then over Omanui/McKinnon Pass (1,154 m, the highest point) and steadily down through
+      alpine gardens to the Arthur valley, on a formed track. Outside the season advanced and expert,
+      with ice, snow and river crossings. Mountain hiking on a good track over an alpine pass (T2).
+    source: doc
+treeLine:
+  # Mark & Sanderson (1962): the forest in the Hollyford valley, next to the Clinton and Arthur
+  # valleys, reaches "the treeline at 3250 ft" (990 m); McKinnon Pass rises above it
+  m: 990
+  source: mark1962
+season:
+  # the Great Walks season, 1 November to 30 April: "Best time to walk the track"
+  months: [11, 12, 1, 2, 3, 4]
+  text: Great Walks season, 1 November to 30 April
+  source: doc
+sleeping:
+  # DOC's three huts (bunks, a ranger in residence, booked in advance); the guided walks' lodges are
+  # separate and not for independent walkers
+  types: [hut]
+  source: doc
+wildCamping:
+  status: prohibited
+  rule: Camping is not permitted on the Milford Track; walkers stay in the three DOC huts.
+  source: doc
+access:
+  # buses from Te Anau to the boat at Te Anau Downs and back from Milford Sound; Queenstown the
+  # nearest international airport. Coordinates from OSM; distances by pipeline/access.py
+  - kind: bus
+    name: Te Anau
+    lat: -45.41449
+    lon: 167.71749
+    source: osm
+  - kind: airport
+    name: Queenstown Airport (ZQN)
+    lat: -45.0193
+    lon: 168.74344
+    source: osm
+tags: [great-walk, fiordland, national-park, waterfalls, alpine-pass]
+notes:
+  - >-
+    Stages: DOC's four days add up to 53.5 km (stated 53.5 km); DOC gives no ascent or descent.
+    Walked one way only, Glade Wharf to Sandfly Point, in a fixed hut sequence; both ends by boat.
+  - >-
+    Tree line (2026-11-01): Mark & Sanderson (1962) put the treeline at 3,250 ft (990 m) in the
+    Hollyford valley; International Parks gives mountain beech at the treeline at about 900 to
+    1,000 m in Fiordland. Te Ara's figure (about 1,000 m) sits behind a bot check and was not read.
+  - >-
+    Route (pipeline, 2026-11-01, Geofabrik extracts): the OSM relation (GW07, 1385121) runs
+    unbroken from Glade Wharf to Sandfly Point, cut at the three huts; every stage matches 100 %.
+    The map line is 52.6 km against the stated 53.5 km. Stages 2 and 3 split at the point nearest
+    Mintaro Hut, which lies off the track: 18.7 and 11.5 km on the map line against DOC's 17.5 and
+    13 km (stage 3 11.5 % short); together they agree (30.2 against 30.5 km).
+  - >-
+    Water: OSM maps no drinking water within 250 m of the route, so the page counts 52.6 km without
+    any. DOC's huts have cold tap water, "not treated, boil before use"; not added as waterPoints,
+    as it isn't drinking water as it comes. Streams and rivers run beside most of the track.
+  - >-
+    Data check (2026-11-01). Second source: English Wikipedia (53.5 km from Glade Wharf to Sandfly
+    Point, three DOC huts, 15 to 20 hours over three days plus an hour or two to the first hut,
+    McKinnon Pass the highest point). Length, termini, huts and days agree with DOC; the terrain
+    model's highest point is 1,137 m (DOC 1,154 m at the pass shelter, 1.5 %). DOC gives no ascent;
+    the page's terrain-model estimate is ≈ 1,880 m.
+dataCheck:
+  # working rule 2: English Wikipedia
+  date: 2026-11-01
+  against: [wikipedia-en]
+  deviations: []
+sources:
+  - id: doc
+    title: "Department of Conservation: Milford Track (length, days, stages with times, season, huts, camping, track category)"
+    url: https://www.doc.govt.nz/parks-and-recreation/places-to-go/fiordland/places/fiordland-national-park/things-to-do/tracks/milford-track/
+    licence: © Crown copyright, DOC (facts only)
+    retrieved: 2026-11-01
+  - id: mark1962
+    title: "A. F. Mark and F. R. Sanderson (1962): Fiordland ecology: the altitudinal gradient in forest composition, structure and regeneration in the Hollyford Valley, Fiordland. Proceedings of the New Zealand Ecological Society 9: 17–26 (tree line)"
+    url: https://newzealandecology.org/node/5132
+    licence: © New Zealand Ecological Society (facts only)
+    retrieved: 2026-11-01
+  - id: wikipedia-en
+    title: "Wikipedia (en): Milford Track (length, huts, days; data check)"
+    url: https://en.wikipedia.org/wiki/Milford_Track
+    licence: CC BY-SA 4.0
+    retrieved: 2026-11-01
+    checkOnly: true  # only for the data check
+  - id: wikimedia
+    title: "Wikimedia: page views of the trail's Wikipedia articles in every language, by people, over twelve months (Wikidata sitelinks, pageview API)"
+    url: https://wikimedia.org/api/rest_v1/
+    licence: CC0 1.0 (pageview data); Wikidata CC0
+    retrieved: 2026-11-01
+    checkOnly: true  # not on the trail page: the page views only rank the home page's popular trails
+  - id: osm
+    title: "OpenStreetMap contributors: paths, water, shops and places to sleep along the trail (Geofabrik extracts), stage ends, travel hubs"
+    url: https://www.openstreetmap.org/
+    licence: ODbL 1.0
+    retrieved: 2026-11-01
+  - id: copdem
+    title: "Copernicus DEM GLO-30 (30 m terrain model), tiles from AWS Open Data"
+    url: https://registry.opendata.aws/copernicus-dem/
+    licence: "Copernicus WorldDEM-30 licence, free; produced using Copernicus WorldDEM-30 © DLR e.V. 2010-2014 and © Airbus Defence and Space GmbH 2014-2018 provided under COPERNICUS by the European Union and ESA; all rights reserved"
+    retrieved: 2026-11-01
+  - id: worldcover
+    title: "ESA WorldCover 2021: 10 m land cover (via AWS Open Data)"
+    url: https://esa-worldcover.org/
+    licence: "CC BY 4.0; © ESA WorldCover project 2021 / Contains modified Copernicus Sentinel data (2021) processed by ESA WorldCover consortium"
+    retrieved: 2026-11-01
+  - id: era5
+    title: "Open-Meteo open data on AWS: ERA5-Land temperature and ERA5 precipitation, snow and wind, daily 1995–2024 (reanalysis)"
+    url: https://github.com/open-meteo/open-data
+    licence: CC BY 4.0 (Open-Meteo); contains modified Copernicus Climate Change Service information
+    retrieved: 2026-11-01
+  - id: osrm
+    title: "OSRM: road routes on OpenStreetMap data (router.project-osrm.org)"
+    url: https://project-osrm.org/
+    licence: Route data © OpenStreetMap contributors (ODbL)
+    retrieved: 2026-11-01

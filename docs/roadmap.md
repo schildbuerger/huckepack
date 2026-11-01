@@ -53,6 +53,8 @@ And the **Kungsleden** (#30, 464 km from Abisko to Hemavan in STF's 28 hut-to-hu
 its OSM stage relation, the rowing boats over the lakes included).
 Added 2026-11-01: the **Camí de Cavalls** (#72, GR 223, 185 km round Menorca in the island
 council's 20 sections, each with its own GPX as the matcher's guide; section 11 on the OSM relation).
+And the **Milford Track** (#43, 53.5 km in DOC's four hut-to-hut days, Glade Wharf to Sandfly
+Point, the OSM relation cut at the huts).
 
 | # | Trail | Region | Length (approx.) | Why |
 |---|---|---|---|---|
