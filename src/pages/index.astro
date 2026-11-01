@@ -24,8 +24,8 @@ const addedOf = new Map(entries.map((e) => [e.id, e.data.added]));
 const recent = [...trails]
   .sort((a, b) => addedOf.get(b.slug)!.getTime() - addedOf.get(a.slug)!.getTime() || a.name.localeCompare(b.name))
   .slice(0, RECENT);
-const addedText = (slug: string) =>
-  addedOf.get(slug)!.toLocaleDateString("en-GB", { day: "numeric", month: "long", year: "numeric", timeZone: "UTC" });
+const addedShort = (slug: string) =>
+  addedOf.get(slug)!.toLocaleDateString("en-GB", { day: "numeric", month: "short", year: "numeric", timeZone: "UTC" });
 // a trail's difficulty in one word: the hardest of its three ratings, climate for its best run of
 // season months, as the trail page's key figure shows it; months picked in the search re-rate it in
 // the browser (data-rate, src/lib/months.ts rerate())
@@ -36,9 +36,8 @@ const difficultyWord = (t: (typeof trails)[number]) => {
 const fmt = (n: number) => n.toLocaleString("en");
 const days = (d: [number, number] | null) => (d === null ? null : d[0] === d[1] ? `${d[0]}` : `${d[0]}–${d[1]}`);
 
-// the mission (docs/mission.md) as bullets under the headline: find, plan, sources
 // the three promises under the headline (of three previews, approach A: icon columns), each a short
-// title and one plain line; the mission's find, plan and sources
+// title and one plain line; the mission's find, plan and sources, joined by a trail from one to the next
 const usps: { icon: IconName; title: string; text: string }[] = [
   { icon: "map", title: "Trails that fit you", text: "By season, days, difficulty and landscape" },
   { icon: "route", title: "Know what to expect", text: "Stages, terrain, climate, water and beds" },
@@ -110,8 +109,8 @@ const popular = featuredAll
   .slice(0, POPULAR);
 const viewsWindow = derivedAll.find((d) => d?.popularity)?.popularity;
 const monthYear = (ym: string) => new Date(`${ym}-01T00:00:00Z`).toLocaleDateString("en-GB", { month: "long", year: "numeric", timeZone: "UTC" });
-// trails near you (issue #85): every trail's card is rendered with its start and finish; a script
-// finds the three nearest to the place the browser's time zone stands for (src/lib/timezones.json)
+// trails near you (issue #85): every trail is listed with its start and finish; a script finds the
+// six nearest to the place the browser's time zone stands for (src/lib/timezones.json)
 const ends = entries.map((e) => [
   [e.data.termini.start.lat, e.data.termini.start.lon],
   [e.data.termini.end.lat, e.data.termini.end.lon],
@@ -122,6 +121,16 @@ const rateOf = (t: (typeof trails)[number]) => rateData(t.terrainLevel, t.effort
 
 // the map teaser (issue #33): the land around the trails with a dot at each start, drawn at build time
 // (src/lib/world-outline.ts), so the home page loads no map library; it links to /trails/map/
+// the hero's landscape: three ridges from real trails' profiles (the highest, a middle one, the lowest),
+// back to front, each on its own height range and stretched to the band's width; and the night sky's
+// stars at fixed places
+const ridgeTrails = featuredAll.filter((f) => f.spark).sort((a, b) => b.spark!.peak - a.spark!.peak);
+const heroRidges = [ridgeTrails[0], ridgeTrails[Math.floor(ridgeTrails.length / 2)], ridgeTrails[ridgeTrails.length - 1]].filter(Boolean).map((f) => f!.spark!.area);
+const stars = (() => {
+  let seed = 7;
+  const rand = () => (seed = (seed * 1664525 + 1013904223) % 4294967296) / 4294967296;
+  return Array.from({ length: 70 }, () => [Math.round(rand() * 1000), Math.round(rand() * 380), +(0.8 + rand() * 1.6).toFixed(1)]);
+})();
 const outline = worldOutline(entries.map((e) => [e.data.termini.start.lon, e.data.termini.start.lat] as [number, number]));
 const countryCount = new Set(entries.flatMap((e) => e.data.countries)).size;
 
@@ -180,6 +189,17 @@ const countScript = inlineScript(Astro, `// The totals count up from 0 the first
   }, { threshold: 0.5 });
   io.observe(strip);
 })();`);
+// the hero's sky follows the visitor's clock: dawn, day, dusk or night, and the sun (or the moon) on
+// its arc across the band; before the first paint, so the sky never changes in front of the visitor
+const skyScript = inlineScript(Astro, `(() => {
+  const root = document.documentElement;
+  const hour = new Date().getHours();
+  root.dataset.sky = hour >= 21 || hour < 5 ? "night" : hour < 8 ? "dawn" : hour < 17 ? "day" : "dusk";
+  // 0 at sunrise on the left, 1 at sunset on the right (the moon the same through the night)
+  const f = hour >= 5 && hour < 21 ? (hour - 5) / 16 : ((hour + 3) % 24) / 8;
+  root.style.setProperty("--sun-x", (8 + f * 84).toFixed(1) + "%");
+  root.style.setProperty("--sun-y", (14 + Math.pow(2 * f - 1, 2) * 46).toFixed(1) + "%");
+})();`);
 const featuredScript = inlineScript(Astro, `// A random featured trail on each page load. Runs right after the cards, before the first
 // paint, so the first trail never flashes; without JavaScript the first one stays.
 (() => {
@@ -196,24 +216,39 @@ const featuredScript = inlineScript(Astro, `// A random featured trail on each p
   <!-- issue #83 (of three previews, approach B): search with suggestions, in the header -->
   <div slot="header" class="header-search"><TrailSearch id="search-header" size="compact" placeholder="Search" /></div>
 
-  <section class="hero">
-    <p class="eyebrow">Long-distance trails, in data</p>
-    <!-- the second sentence never splits, so the headline wraps between the two -->
-    <h1>Find your trail. <span class="nowrap">Go prepared.</span></h1>
-    <ul class="usps">
-      {usps.map((u) => (
-        <li>
-          <span class="usp-icon"><Icon name={u.icon} size={22} /></span>
-          <strong>{u.title}</strong>
-          <span class="usp-text">{u.text}</span>
-        </li>
+  <script is:inline set:html={skyScript} />
+  <!-- the hero on a band wall to wall: a sky by the hour, the sun or the moon, stars at night, and three
+       ridges of real trails in front, drifting with the pointer -->
+  <div class="hero-band">
+    <svg class="hb-stars" viewBox="0 0 1000 380" preserveAspectRatio="none" aria-hidden="true">
+      {stars.map(([x, y, r]) => <circle cx={x} cy={y} r={r} />)}
+    </svg>
+    <span class="hb-sun" aria-hidden="true"></span>
+    <div class="hb-ridges" aria-hidden="true">
+      {heroRidges.map((d, i) => (
+        <svg class={`hb-ridge r${i}`} viewBox="0 0 1000 110" preserveAspectRatio="none"><path d={d} /></svg>
       ))}
-    </ul>
-    <!-- issue #128 (of three previews, approach A): a trip search, when first, into the results -->
-    <TripSearch trails={trails} />
-    <p class="guide">Not sure yet? <a href="/trails/guide/">Help me choose <span aria-hidden="true">→</span></a></p>
-  </section>
+    </div>
+    <section class="hero">
+      <p class="label eyebrow">Long-distance trails, in data</p>
+      <!-- the second sentence never splits, so the headline wraps between the two -->
+      <h1>Find your trail. <span class="nowrap">Go prepared.</span></h1>
+      <!-- the three promises, as three waypoints on a little trail -->
+      <ol class="usps">
+        {usps.map((u) => (
+          <li>
+            <span class="usp-icon"><Icon name={u.icon} size={22} /></span>
+            <strong>{u.title}</strong>
+            <span class="usp-text">{u.text}</span>
+          </li>
+        ))}
+      </ol>
+      <!-- issue #128 (of three previews, approach A): a trip search, when first, into the results -->
+      <TripSearch trails={trails} />
+      <p class="guide">Not sure yet? <a href="/trails/guide/">Help me choose <span aria-hidden="true">→</span></a></p>
+    </section>
 
+  </div>
   <!-- each figure twice: the final value for screen readers, and a copy the script below counts up -->
   <dl class="strip totals">
     {[
@@ -233,135 +268,169 @@ const featuredScript = inlineScript(Astro, `// A random featured trail on each p
   </dl>
   <script is:inline set:html={countScript} />
 
-  {featuredAll.length > 0 && (
-    <section class="block">
-      <h2>Featured trail</h2>
-      {featuredAll.map(({ t: featured, spark, surface, climb, level }, i) => (
-        <a class="featured" href={`/trails/${featured.slug}/`} hidden={i > 0}>
-          <div class="featured-head">
-            <p class="place">{featured.countries.join(" · ")}</p>
-            <p class="name">{featured.name}</p>
-            {featured.localName && <p class="local">{featured.localName}</p>}
-          </div>
-          <dl class="featured-figures">
-            {featured.lengthKm !== null && <div><dt>Length</dt><dd>{fmt(featured.lengthKm)}<span>km</span></dd></div>}
-            {climb.climbed > 0 && (
-              <div>
-                <dt>Ascent{climb.climbedEst && " (estimate)"}</dt>
-                <dd>{climb.climbedEst && <span class="approx">≈</span>}{fmt(climb.climbed)}<span>m ↑</span></dd>
-              </div>
-            )}
-            {featured.days && <div><dt>Suggested</dt><dd>{days(featured.days)}<span>days</span></dd></div>}
-            {level && <div><dt>Difficulty</dt><dd data-rate={rateOf(featured)}><span class="rate-word">{level}</span></dd></div>}
-            {spark && <div><dt>Highest point</dt><dd>{fmt(spark.peak)}<span>m</span></dd></div>}
-          </dl>
-          {spark && <TrailSpark spark={spark} surface={surface} />}
-          <span class="open">Open the trail →</span>
-        </a>
-      ))}
-      <script is:inline set:html={featuredScript} />
-    </section>
-  )}
-
-  {popular.length > 0 && (
-    <section class="block">
-      <div class="block-head">
-        <h2>Popular trails</h2>
-        {viewsWindow && (
-          <Explain id="popular-info" icon term="About this list" title="Popular trails">
-            <p>
-              The trails whose Wikipedia articles people read most, in every language, {monthYear(viewsWindow.from)} to{" "}
-              {monthYear(viewsWindow.to)} (Wikimedia's page view data). It measures interest in a trail, not how many
-              hike it; a trail without an article isn't ranked.
-            </p>
-          </Explain>
-        )}
-      </div>
-      <div class="feats">
-        {popular.map(({ t, spark, surface }) => (
-          <a class="feat" href={`/trails/${t.slug}/`}>
-            <span class="feat-place">{t.countries.join(" · ")}</span>
-            <span class="feat-name">{t.name}</span>
-            <span class="feat-figures">{figureLine(t)}{difficultyWord(t) && <> · <span data-rate={rateOf(t)}><span class="rate-word">{difficultyWord(t)}</span></span></>}</span>
-            {spark && <TrailSpark spark={spark} surface={surface} height={70} />}
+  <!-- the featured trail beside the most read: a large visual on the left and a list on the right, the
+       same pattern as the map and the trails near you below -->
+  <div class="pair">
+    {featuredAll.length > 0 && (
+      <section class="featured-box" aria-labelledby="featured-h">
+        <div class="block-head"><h2 id="featured-h">Featured trail</h2></div>
+        {featuredAll.map(({ t: featured, spark, surface, climb, level }, i) => (
+          <a class="featured" href={`/trails/${featured.slug}/`} hidden={i > 0}>
+            <div class="featured-head">
+              <p class="place">{featured.countries.join(" · ")}</p>
+              <p class="name">{featured.name}</p>
+              {featured.localName && <p class="local">{featured.localName}</p>}
+            </div>
+            <dl class="featured-figures">
+              {featured.lengthKm !== null && <div><dt>Length</dt><dd>{fmt(featured.lengthKm)}<span>km</span></dd></div>}
+              {climb.climbed > 0 && (
+                <div>
+                  <dt>Ascent{climb.climbedEst && " (estimate)"}</dt>
+                  <dd>{climb.climbedEst && <span class="approx">≈</span>}{fmt(climb.climbed)}<span>m ↑</span></dd>
+                </div>
+              )}
+              {featured.days && <div><dt>Suggested</dt><dd>{days(featured.days)}<span>days</span></dd></div>}
+              {level && <div><dt>Difficulty</dt><dd data-rate={rateOf(featured)}><span class="rate-word">{level}</span></dd></div>}
+              {spark && <div><dt>Highest point</dt><dd>{fmt(spark.peak)}<span>m</span></dd></div>}
+            </dl>
+            {spark && <TrailSpark spark={spark} surface={surface} />}
+            <span class="open">Open the trail →</span>
           </a>
         ))}
-      </div>
-    </section>
-  )}
+        <script is:inline set:html={featuredScript} />
+      </section>
+    )}
+    {popular.length > 0 && (
+      <section aria-labelledby="popular-h">
+        <div class="block-head">
+          <h2 id="popular-h">Popular trails</h2>
+          {viewsWindow && (
+            <Explain id="popular-info" icon term="About this list" title="Popular trails">
+              <p>
+                The trails whose Wikipedia articles people read most, in every language, {monthYear(viewsWindow.from)} to{" "}
+                {monthYear(viewsWindow.to)} (Wikimedia's page view data). It measures interest in a trail, not how many
+                hike it; a trail without an article isn't ranked.
+              </p>
+            </Explain>
+          )}
+        </div>
+        <ol class="trail-list">
+          {popular.map(({ t }, rank) => (
+            <li>
+              <a href={`/trails/${t.slug}/`}>
+                <span class="tl-mark">{rank + 1}</span>
+                <span class="tl-name">{t.name}</span>
+                <span class="tl-place">{t.countries.join(" · ")}</span>
+                <span class="tl-fig">{figureLine(t)}{difficultyWord(t) && <> · <span data-rate={rateOf(t)}><span class="rate-word">{difficultyWord(t)}</span></span></>}</span>
+              </a>
+            </li>
+          ))}
+        </ol>
+      </section>
+    )}
+  </div>
 
-  <section class="block">
-    <!-- the map as an entry point of its own (issue #33), quieter than the hero's buttons: a static
-         teaser drawn at build time, the interactive map one click away -->
-    <a class="map-teaser" href="/trails/map/">
-      <span class="map-teaser-text">
-        <h2>Explore on the map</h2>
-        <span class="muted">All {entries.length} trails in {countryCount} countries on one map. Zoom into a region and see its trails.</span>
-        <span class="map-teaser-open">Open the map <span aria-hidden="true">→</span></span>
-      </span>
-      <svg class="map-teaser-svg" viewBox={`0 0 ${outline.width} ${outline.height}`} aria-hidden="true">
-        <path class="map-land" d={outline.landPath} />
-        {outline.dots.map(([x, y]) => <circle cx={x} cy={y} r="6" />)}
-      </svg>
-    </a>
-  </section>
-
-  <!-- shown by the script below only where the time zone gives a place; without JavaScript it stays hidden -->
-  <section class="block near" hidden>
-    <div class="block-head">
-      <h2>Trails near you</h2>
-      <Explain id="near-info" icon term="About this list" title="Trails near you">
-        <p>
-          The trails whose start or finish is nearest to <span data-near-city></span>,
-          the main city of your browser's time zone; distances in a straight line, rounded. Worked out on your device:
-          nothing is sent or stored, and no location permission is asked.
-        </p>
-      </Explain>
+  <!-- the map (issue #33) and the trails near you share one row: the outline map, folded,
+       which unfolds when pointed at, beside the trails nearest the visitor with their direction and
+       distance; that list is shown by the script below only where the time zone gives a place, and
+       without it the map takes the whole row -->
+  <div class="map-band">
+    <div class="map-band-inner">
+      <a class="map-link" href="/trails/map/">
+        <span class="map-link-inner">
+          <span class="map-teaser-text">
+            <span class="block-head"><h2>Explore on the map</h2></span>
+            <span class="muted">All {entries.length} trails in {countryCount} countries on one map. Zoom into a region and see its trails.</span>
+            <span class="map-teaser-open">Unfold the map <span aria-hidden="true">→</span></span>
+          </span>
+          <span class="folded" aria-hidden="true">
+            <svg class="map-teaser-svg" viewBox={`0 0 ${outline.width} ${outline.height}`}>
+              <path class="map-land" d={outline.landPath} />
+              {outline.dots.map(([x, y]) => <circle cx={x} cy={y} r="6" />)}
+              {[0.25, 0.5, 0.75].map((f) => <line x1={outline.width * f} x2={outline.width * f} y1="0" y2={outline.height} class="crease" />)}
+              <line x1="0" x2={outline.width} y1={outline.height / 2} y2={outline.height / 2} class="crease" />
+            </svg>
+          </span>
+        </span>
+      </a>
+      <section class="near" hidden>
+        <div class="block-head">
+          <h2>Trails near you</h2>
+          <Explain id="near-info" icon term="About this list" title="Trails near you">
+            <p>
+              The trails whose start or finish is nearest to <span data-near-city></span>, the main city of your browser's
+              time zone, with the direction and distance from there in a straight line (rounded). Worked out on your
+              device: nothing is sent or stored, and no location permission is asked.
+            </p>
+          </Explain>
+        </div>
+        <p class="label near-from">From <span data-near-from></span></p>
+        <ol class="trail-list" data-near-list>
+          {featuredAll.map(({ t }, i) => (
+            <li data-slug={t.slug} data-ends={JSON.stringify(ends[i])} hidden>
+              <a href={`/trails/${t.slug}/`}>
+                <span class="tl-mark"><span class="tl-arrow" data-arrow>↑</span></span>
+                <span class="tl-name">{t.name}</span>
+                <span class="tl-place">{t.countries.join(" · ")}</span>
+                <span class="tl-fig"><span data-dir></span> · <span data-dist></span></span>
+              </a>
+            </li>
+          ))}
+        </ol>
+      </section>
     </div>
-    <div class="feats" data-near-list>
-      {featuredAll.map(({ t, spark, surface }, i) => (
-        <a class="feat" href={`/trails/${t.slug}/`} data-slug={t.slug} data-ends={JSON.stringify(ends[i])} hidden>
-          <span class="feat-place">{t.countries.join(" · ")}</span>
-          <span class="feat-name">{t.name}</span>
-          <span class="feat-figures">{figureLine(t)}{difficultyWord(t) && <> · <span data-rate={rateOf(t)}><span class="rate-word">{difficultyWord(t)}</span></span></>}</span>
-          {spark && <TrailSpark spark={spark} surface={surface} height={70} />}
-          <span class="feat-why" data-dist></span>
-        </a>
-      ))}
-    </div>
-  </section>
+  </div>
   <script type="application/json" id="zones" set:html={JSON.stringify(zones)}></script>
   <script>
     // Trails near you (issue #85): the browser's time zone (Europe/Berlin) stands for its main
-    // city (the tz database's coordinates); the three trails whose start or finish is nearest, by
-    // great-circle distance. Worked out here; nothing is sent or stored.
+    // city (the tz database's coordinates); the six trails whose start or finish is nearest, by
+    // great-circle distance, with the compass direction to it. Worked out here; nothing is sent or stored.
     import { kmBetween, roundDistance } from "../lib/geo";
-    const NEARBY = 3;
+    const NEARBY = 6;
     const section = document.querySelector<HTMLElement>(".near")!;
     const zones: Record<string, [number, number]> = JSON.parse(document.getElementById("zones")!.textContent!);
     const zone = Intl.DateTimeFormat().resolvedOptions().timeZone;
     const here = zones[zone];
     if (here) {
-      // both points are [lat, lon] here (the tz table's and the cards' order)
+      const city = zone.split("/").pop()!.replace(/_/g, " ");
+      const rad = Math.PI / 180;
+      // both points are [lat, lon] here (the tz table's and the list's order)
       const km = (a: [number, number], b: [number, number]) => kmBetween([a[1], a[0]], [b[1], b[0]]);
+      const bearing = ([la1, lo1]: [number, number], [la2, lo2]: [number, number]) => {
+        const y = Math.sin((lo2 - lo1) * rad) * Math.cos(la2 * rad);
+        const x = Math.cos(la1 * rad) * Math.sin(la2 * rad) - Math.sin(la1 * rad) * Math.cos(la2 * rad) * Math.cos((lo2 - lo1) * rad);
+        return (Math.atan2(y, x) / rad + 360) % 360;
+      };
+      const POINTS = ["N", "NE", "E", "SE", "S", "SW", "W", "NW"];
+      const WORDS = ["north", "north-east", "east", "south-east", "south", "south-west", "west", "north-west"];
       const list = section.querySelector<HTMLElement>("[data-near-list]")!;
-      const cards = [...list.querySelectorAll<HTMLElement>("[data-slug]")];
-      const near = cards
-        .map((card) => ({ card, d: Math.min(...(JSON.parse(card.dataset.ends!) as [number, number][]).map((e) => km(here, e))) }))
+      const rows = [...list.querySelectorAll<HTMLElement>("[data-slug]")];
+      const near = rows
+        .map((row) => {
+          const best = (JSON.parse(row.dataset.ends!) as [number, number][]).map((e) => ({ e, d: km(here, e) })).sort((a, b) => a.d - b.d)[0];
+          return { row, d: best.d, b: bearing(here, best.e) };
+        })
         .sort((a, b) => a.d - b.d)
         .slice(0, NEARBY);
-      for (const { card, d } of near) {
-        card.querySelector<HTMLElement>("[data-dist]")!.textContent = `≈ ${roundDistance(d).toLocaleString("en")} km from you`;
-        card.hidden = false;
-        list.append(card); // nearest first
+      for (const { row, d, b } of near) {
+        const point = Math.round(b / 45) % 8;
+        const dist = roundDistance(d).toLocaleString("en");
+        row.querySelector<HTMLElement>("[data-arrow]")!.style.transform = `rotate(${Math.round(b)}deg)`;
+        row.querySelector<HTMLElement>("[data-dir]")!.textContent = POINTS[point];
+        row.querySelector<HTMLElement>("[data-dist]")!.textContent = `≈ ${dist} km`;
+        const a = row.querySelector<HTMLAnchorElement>("a")!;
+        a.setAttribute("aria-label", `${a.querySelector(".tl-name")!.textContent}: about ${dist} km to the ${WORDS[point]}`);
+        row.hidden = false;
+        list.append(row); // nearest first
       }
-      section.querySelector<HTMLElement>("[data-near-city]")!.textContent = zone.split("/").pop()!.replace(/_/g, " ");
+      section.querySelector<HTMLElement>("[data-near-city]")!.textContent = city;
+      section.querySelector<HTMLElement>("[data-near-from]")!.textContent = city;
       section.hidden = false;
     }
   </script>
 
   <section class="block">
-    <h2>On every trail page</h2>
+    <div class="block-head"><h2>On every trail page</h2></div>
     <ul class="features">
       {features.map((f) => (
         <li>
@@ -375,27 +444,30 @@ const featuredScript = inlineScript(Astro, `// A random featured trail on each p
     </ul>
   </section>
 
+  <!-- recent trails (issue #80) as a logbook: a table like a hut book, the newest entry first, one line each -->
   <section class="block">
-    <h2>Recent trails</h2>
-    <ul class="cards recent">
-      {recent.map((t) => (
-        <li>
-          <a class="card" href={`/trails/${t.slug}/`}>
-            <span class="card-place">{t.countries.join(", ")}</span>
-            <span class="card-name">{t.name}</span>
-            <span class="card-figures">
-              {figureLine(t)}{difficultyWord(t) && <> · <span data-rate={rateOf(t)}><span class="rate-word">{difficultyWord(t)}</span></span></>}
-            </span>
-            <span class="card-added">Added {addedText(t.slug)}</span>
-          </a>
-        </li>
-      ))}
-    </ul>
-    <p><a href="/trails/">Search all {trails.length} trails →</a></p>
+    <div class="block-head"><h2 id="log-h">Logbook · recently added</h2></div>
+    <div class="log-wrap">
+      <table class="log" aria-labelledby="log-h">
+        <thead><tr><th scope="col">Added</th><th scope="col">Trail</th><th scope="col">Length</th><th scope="col">Days</th><th scope="col">Rated</th></tr></thead>
+        <tbody>
+          {recent.map((t) => (
+            <tr>
+              <td class="log-date">{addedShort(t.slug)}</td>
+              <td><a href={`/trails/${t.slug}/`}>{t.name}</a> <span class="log-where">{t.countries.join(", ")}</span></td>
+              <td class="log-num">{t.lengthKm !== null ? `${fmt(t.lengthKm)} km` : "–"}</td>
+              <td class="log-num">{days(t.days) ?? "–"}</td>
+              <td>{difficultyWord(t) ? <span data-rate={rateOf(t)}><span class="rate-word">{difficultyWord(t)}</span></span> : "–"}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+    <p class="log-all"><a href="/trails/">Search all {trails.length} trails →</a></p>
   </section>
 
   <section class="block">
-    <h2>Built on open data</h2>
+    <div class="block-head"><h2>Built on open data</h2></div>
     <p class="intro muted">
       Trail figures often differ from one source to the next. We never pick one quietly: every number names its source,
       our own estimates are marked ≈, and every trail's figures are checked against a second, independent source. Each
@@ -420,6 +492,15 @@ const featuredScript = inlineScript(Astro, `// A random featured trail on each p
       <a class="button" href="/trails/">Explore the trails <span aria-hidden="true">→</span></a>
     </span>
   </div>
+  <script>
+    // the hero's ridges drift with the pointer, the nearer ones more (none with reduced motion)
+    const band = document.querySelector<HTMLElement>(".hero-band")!;
+    if (!matchMedia("(prefers-reduced-motion: reduce)").matches)
+      band.addEventListener("pointermove", (e) => {
+        const r = band.getBoundingClientRect();
+        band.style.setProperty("--px", (((e.clientX - r.left) / r.width - 0.5) * 2).toFixed(3));
+      });
+  </script>
   <script>
     const bar = document.querySelector<HTMLElement>(".cta-bar")!;
     const hero = document.querySelector<HTMLElement>(".hero .trip");
@@ -448,19 +529,148 @@ const featuredScript = inlineScript(Astro, `// A random featured trail on each p
 </Base>
 
 <style>
+  /* ── the hero: a band wall to wall, its sky following the visitor's clock ── */
+  :global(body) {
+    overflow-x: clip;
+  }
+  /* the band: wall to wall, under the header, room at its foot for the ridges; the day's sky until the
+     script has set the hour (and without JavaScript) */
+  .hero-band {
+    position: relative;
+    margin: 0 calc(50% - 50vw);
+    padding: 0 16px 150px;
+    overflow-x: clip;
+    isolation: isolate;
+    background: #d9e8e1;
+  }
+  .hero-band > .hero {
+    position: relative;
+    z-index: 2;
+  }
+  .hb-stars,
+  .hb-sun,
+  .hb-ridges {
+    position: absolute;
+    z-index: 1;
+    pointer-events: none;
+  }
+  .hb-stars {
+    display: none;
+  }
+  /* three flat ridges of real trails along the band's foot, back to front */
+  .hb-ridges {
+    inset: auto 0 0;
+    height: 230px;
+  }
+  .hb-ridge {
+    position: absolute;
+    left: -3%;
+    bottom: 0;
+    width: 106%;
+    transform: translateX(calc(var(--px, 0) * var(--depth) * 1%));
+    transition: transform 0.4s ease-out;
+  }
+  .hb-ridge.r0 {
+    --depth: -0.6;
+    height: 230px;
+    fill: #9bb072;
+  }
+  .hb-ridge.r1 {
+    --depth: -1.3;
+    height: 160px;
+    fill: #6f8a3b;
+  }
+  .hb-ridge.r2 {
+    --depth: -2.2;
+    height: 95px;
+    fill: #4c6420;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .hb-ridge {
+      transition: none;
+    }
+  }
+  /* the sky by the hour: flat colours for dawn, day, dusk and night; the sun (a moon at night) on its arc,
+     stars at night; fixed colours, not the theme's, since the sky is the visitor's time of day */
+  :global(html[data-sky="dawn"]) .hero-band {
+    background: #f2d8c2;
+  }
+  :global(html[data-sky="day"]) .hero-band {
+    background: #d9e8e1;
+  }
+  :global(html[data-sky="dusk"]) .hero-band {
+    background: #e7c0a2;
+  }
+  :global(html[data-sky="night"]) .hero-band {
+    background: #1d2733;
+  }
+  .hb-sun {
+    left: var(--sun-x, 70%);
+    top: var(--sun-y, 20%);
+    width: 110px;
+    height: 110px;
+    margin: -55px 0 0 -55px;
+    border-radius: 50%;
+    background: #f6c453;
+  }
+  :global(html[data-sky="night"]) .hb-sun {
+    width: 70px;
+    height: 70px;
+    margin: -35px 0 0 -35px;
+    background: #ecebdb;
+    box-shadow: inset -18px -6px 0 0 #1d2733;
+  }
+  :global(html[data-sky="night"]) .hb-stars {
+    display: block;
+    inset: 0 0 auto;
+    width: 100%;
+    height: 70%;
+    fill: #ecebdb;
+  }
+  /* the sky's words: dark by day, light at night, whatever the page's theme */
+  :global(html:not([data-sky="night"])) :is(.eyebrow, .hero h1, .usps strong, .guide a) {
+    color: #25261c;
+  }
+  :global(html:not([data-sky="night"])) :is(.usp-text, .guide) {
+    color: #4a4b3b;
+  }
+  :global(html[data-sky="night"]) :is(.eyebrow, .hero h1, .usps strong, .guide a) {
+    color: #ecebdb;
+  }
+  :global(html[data-sky="night"]) :is(.usp-text, .guide) {
+    color: #c3c2b0;
+  }
+  .hero-band .usp-icon {
+    background: #ffffffb3;
+    color: #4f6820;
+  }
+  :global(html[data-sky="night"]) .hb-ridge.r0 {
+    fill: #2c3a2c;
+  }
+  :global(html[data-sky="night"]) .hb-ridge.r1 {
+    fill: #233022;
+  }
+  :global(html[data-sky="night"]) .hb-ridge.r2 {
+    fill: #18211a;
+  }
+
   .hero {
     max-width: 720px;
     margin: 0 auto;
     padding: 88px 0 72px;
     text-align: center;
   }
-  .eyebrow {
-    margin: 0;
-    color: var(--accent-text);
-    font-size: 0.8rem;
+  /* the page's one small label: uppercase, spaced, small (the eyebrow, table heads, "From …") */
+  .label,
+  .log th {
+    font-size: 0.72rem;
     font-weight: 600;
     letter-spacing: 0.08em;
     text-transform: uppercase;
+  }
+  .eyebrow {
+    margin: 0;
+    color: var(--accent-text);
   }
   @media (max-width: 719px) {
     .hero {
@@ -471,12 +681,11 @@ const featuredScript = inlineScript(Astro, `// A random featured trail on each p
     margin: 16px 0 0;
     font-size: clamp(2.3rem, 6.5vw, 3.6rem);
   }
-  /* the list is centred as a block, its items left-aligned so the check marks line up */
   .nowrap {
     white-space: nowrap;
   }
-  /* the three promises: icon columns, an icon in a soft circle over a serif title and one plain line;
-     on phones each a row, the icon on the left */
+  /* the three promises: waypoints on a little dashed trail, each an icon in a soft circle over a serif
+     title and one plain line; on phones a row each, the icon on the left, the trail running down */
   .usps {
     display: grid;
     grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -487,9 +696,19 @@ const featuredScript = inlineScript(Astro, `// A random featured trail on each p
     list-style: none;
   }
   .usps li {
+    position: relative;
     display: grid;
     justify-items: center;
     gap: 6px;
+  }
+  /* the trail from one waypoint to the next, at the height of the circles */
+  .usps li + li::before {
+    content: "";
+    position: absolute;
+    top: 24px;
+    right: calc(50% + 34px);
+    width: calc(100% - 44px);
+    border-top: 2px dashed color-mix(in srgb, var(--accent) 55%, transparent);
   }
   .usp-icon {
     display: grid;
@@ -500,6 +719,10 @@ const featuredScript = inlineScript(Astro, `// A random featured trail on each p
     border-radius: 50%;
     background: var(--accent-soft);
     color: var(--accent-text);
+    transition: transform 0.25s cubic-bezier(0.3, 1.8, 0.5, 1);
+  }
+  .usps li:hover .usp-icon {
+    transform: translateY(-4px) rotate(-6deg);
   }
   .usps strong {
     font-family: var(--serif);
@@ -523,9 +746,23 @@ const featuredScript = inlineScript(Astro, `// A random featured trail on each p
       row-gap: 2px;
       text-align: left;
     }
+    .usps li + li::before {
+      top: -16px;
+      right: auto;
+      left: 23px;
+      width: 0;
+      height: 16px;
+      border-top: 0;
+      border-left: 2px dashed color-mix(in srgb, var(--accent) 55%, transparent);
+    }
     .usp-icon {
       grid-row: span 2;
       margin: 0;
+    }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .usp-icon {
+      transition: none;
     }
   }
   /* the guided questions, a quiet link under the trip search */
@@ -600,38 +837,24 @@ const featuredScript = inlineScript(Astro, `// A random featured trail on each p
     }
   }
 
-  /* strips: a rule on top, hairlines between items, like the trail pages; label first in the
-     markup (dt before dd), value first on screen */
+  /* totals and sources: grouped by space alone, no rules or hairlines; label first in the markup (dt
+     before dd), value first on screen. Totals: two columns on phones, four from 720 px, one row from
+     1080 px; sources: two columns on phones, three from 1080 px */
   .strip {
     display: grid;
+    gap: 18px 40px;
     margin: 0;
-    border-top: 1px solid var(--text);
-    border-bottom: 1px solid var(--line);
   }
-  .strip > div {
-    padding: 14px 16px;
-    border-left: 1px solid var(--line);
-  }
-  .strip > div:first-child {
-    padding-left: 0;
-    border-left: 0;
-  }
-  /* totals: two columns on phones, rows of four from 720 px, one row from 1080 px; sources: two columns on phones, three
-     from 720 px (six sources, two full rows) */
   .totals,
   .sources {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .totals {
+    margin-top: 56px;
   }
   @media (min-width: 720px) {
     .totals {
-      grid-template-columns: repeat(4, 1fr);
-    }
-    .totals > div:nth-child(4n + 1) {
-      padding-left: 0;
-      border-left: 0;
-    }
-    .totals > div:nth-child(n + 5) {
-      border-top: 1px solid var(--line);
+      grid-template-columns: repeat(4, minmax(0, 1fr));
     }
   }
   @media (min-width: 1080px) {
@@ -640,33 +863,8 @@ const featuredScript = inlineScript(Astro, `// A random featured trail on each p
       grid-auto-flow: column;
       grid-auto-columns: minmax(max-content, 1fr);
     }
-    .totals > div:nth-child(4n + 1):not(:first-child) {
-      padding-left: 16px;
-      border-left: 1px solid var(--line);
-    }
-    .totals > div:nth-child(n + 5) {
-      border-top: 0;
-    }
     .sources {
-      grid-template-columns: repeat(3, 1fr);
-    }
-    .sources > div:nth-child(3n + 1) {
-      padding-left: 0;
-      border-left: 0;
-    }
-    .sources > div:nth-child(n + 4) {
-      border-top: 1px solid var(--line);
-    }
-  }
-  @media (max-width: 719px) {
-    .totals > div:nth-child(odd),
-    .sources > div:nth-child(odd) {
-      padding-left: 0;
-      border-left: 0;
-    }
-    .totals > div:nth-child(n + 3),
-    .sources > div:nth-child(n + 3) {
-      border-top: 1px solid var(--line);
+      grid-template-columns: repeat(3, minmax(0, 1fr));
     }
   }
   .totals div,
@@ -687,7 +885,7 @@ const featuredScript = inlineScript(Astro, `// A random featured trail on each p
     line-height: 1.15;
   }
   .totals dd {
-    font-size: 1.9rem;
+    font-size: 2.3rem;
   }
   .totals dt,
   .featured-figures dt {
@@ -696,23 +894,60 @@ const featuredScript = inlineScript(Astro, `// A random featured trail on each p
     font-size: 0.8rem;
   }
 
-  .block {
-    margin-top: 56px;
+  /* sections: grouped by space, not lines: far apart from each other (112 px), close within; each
+     headed the same way, a number over a large title, an (i) at the right where the section explains
+     itself */
+  :global(main) {
+    counter-reset: section;
   }
-  .block h2 {
-    margin-bottom: 14px;
+  .block,
+  .pair {
+    margin-top: 112px;
+  }
+  .block-head {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 12px;
+    margin-bottom: 20px;
+    counter-increment: section;
+  }
+  .block-head h2 {
+    margin: 0;
+    font-size: clamp(1.7rem, 3vw, 2.2rem);
+  }
+  .block-head h2::before {
+    content: counter(section, decimal-leading-zero);
+    display: block;
+    margin-bottom: 4px;
+    color: var(--accent-text);
+    font-family: var(--sans);
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
   }
 
-  /* featured trail */
+  /* a large visual on the left and a list on the right: the featured trail beside the most read, the
+     map beside the trails near you */
+  .pair {
+    display: grid;
+    gap: 40px;
+    align-items: start;
+  }
+  @media (min-width: 960px) {
+    .pair {
+      grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr);
+      gap: 48px;
+    }
+  }
+
+  /* the featured trail: no card, it stands on the page under its head */
   .featured[hidden] {
     display: none;
   }
   .featured {
     display: grid;
-    gap: 20px;
-    padding: 24px;
-    border-radius: 14px;
-    background: var(--surface);
+    gap: 18px;
     color: var(--text);
     text-decoration: none;
   }
@@ -761,104 +996,140 @@ const featuredScript = inlineScript(Astro, `// A random featured trail on each p
     font-weight: 600;
   }
 
-  /* popular trails and trails near you (issues #84, #85): the featured card's look, three in a row */
-  /* the section's heading with its (i) at the right, which explains how the list is made */
-  .block-head {
-    display: flex;
-    align-items: baseline;
-    justify-content: space-between;
-    gap: 12px;
-    margin-bottom: 14px;
-  }
-  .block-head h2 {
+  /* trail lists (popular, near you): one row per trail, apart by space; a mark on the left (the rank,
+     or the compass arrow), the name and countries, the figures on the right */
+  .trail-list {
+    display: grid;
+    gap: 14px;
     margin: 0;
+    padding: 0;
+    list-style: none;
   }
-  .near[hidden],
-  .feat[hidden] {
+  .trail-list li[hidden] {
     display: none;
   }
-  .feats {
+  .trail-list a {
     display: grid;
-    grid-template-columns: 1fr;
-    gap: 16px;
-  }
-  @media (min-width: 640px) and (max-width: 899px) {
-    .feats {
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-    }
-  }
-  @media (min-width: 900px) {
-    .feats {
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-    }
-  }
-  .feat {
-    display: flex;
-    flex-direction: column;
-    gap: 2px;
-    padding: 18px 20px;
-    border-radius: 14px;
-    background: var(--surface);
+    grid-template-columns: 30px minmax(0, 1fr) auto;
+    align-items: baseline;
+    column-gap: 14px;
     color: var(--text);
     text-decoration: none;
   }
-  .feat:hover .feat-name {
+  .trail-list a:hover .tl-name {
     color: var(--accent-text);
+    text-decoration: underline;
   }
-  .feat-place {
-    color: var(--muted);
-    font-size: 0.8rem;
-  }
-  .feat-name {
-    margin-top: 2px;
+  .tl-mark {
+    grid-row: span 2;
+    align-self: center;
+    display: grid;
+    place-items: center;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background: var(--accent-soft);
+    color: var(--accent-text);
     font-family: var(--serif);
-    font-size: 1.4rem;
-    font-weight: 600;
-    line-height: 1.2;
-  }
-  .feat-figures {
-    margin: 6px 0 12px;
-    color: var(--accent-text);
-    font-size: 0.9rem;
     font-weight: 600;
   }
-  .feat-why {
-    margin-top: 10px;
+  .tl-arrow {
+    display: inline-block;
+    font-family: var(--sans);
+    font-weight: 700;
+    line-height: 1;
+  }
+  .tl-name {
+    font-family: var(--serif);
+    font-size: 1.1rem;
+    font-weight: 600;
+    line-height: 1.25;
+  }
+  .tl-place {
+    grid-column: 2;
     color: var(--muted);
     font-size: 0.8rem;
+  }
+  .tl-fig {
+    grid-column: 3;
+    grid-row: 1 / span 2;
+    align-self: center;
+    color: var(--muted);
+    font-size: 0.85rem;
+    text-align: right;
+    font-variant-numeric: tabular-nums;
+  }
+  @media (max-width: 559px) {
+    .trail-list a {
+      grid-template-columns: 30px minmax(0, 1fr);
+    }
+    .tl-fig {
+      grid-column: 2;
+      grid-row: auto;
+      text-align: left;
+    }
   }
 
-  /* the map teaser (issue #33): text and a static outline map in one link, like the featured card */
-  .map-teaser {
+  /* the map, and beside it the trails near you where they are shown, in the 1200 px column like the
+     row above */
+  .map-band {
+    margin-top: 112px;
+  }
+  .map-band-inner {
     display: grid;
-    gap: 18px;
-    align-items: center;
-    padding: 22px 24px;
-    border-radius: 14px;
-    background: var(--surface);
+    gap: 40px;
+    align-items: start;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  @media (min-width: 960px) {
+    .map-band-inner:has(> .near:not([hidden])) {
+      grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr);
+      gap: 48px;
+    }
+  }
+  .map-link {
+    display: block;
     color: var(--text);
     text-decoration: none;
   }
+  .map-link-inner {
+    display: grid;
+    gap: 22px;
+    align-items: center;
+  }
+  /* the map alone: text beside it */
   @media (min-width: 720px) {
-    .map-teaser {
-      grid-template-columns: minmax(0, 1fr) minmax(0, 1.3fr);
-      gap: 32px;
+    .map-band-inner:not(:has(> .near:not([hidden]))) .map-link-inner {
+      grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.4fr);
+      gap: 48px;
     }
   }
   .map-teaser-text {
     display: grid;
     gap: 8px;
   }
-  .map-teaser-text h2 {
-    margin: 0;
-  }
   .map-teaser-open {
     margin-top: 6px;
     color: var(--accent-text);
     font-weight: 600;
   }
-  .map-teaser:hover .map-teaser-open {
+  .map-link:hover .map-teaser-open {
     text-decoration: underline;
+  }
+  /* the folded map: tilted back with its folds; flat when pointed at or focused */
+  .folded {
+    position: relative;
+    display: block;
+    background: var(--bg);
+    box-shadow: 0 14px 24px -14px rgb(0 0 0 / 0.45);
+    transform: perspective(1000px) rotateX(16deg) rotateZ(-1deg);
+    transform-origin: center bottom;
+    transition: transform 0.5s cubic-bezier(0.2, 1.2, 0.4, 1);
+  }
+  .map-link:hover .folded,
+  .map-link:focus-visible .folded {
+    transform: none;
   }
   .map-teaser-svg {
     display: block;
@@ -867,12 +1138,37 @@ const featuredScript = inlineScript(Astro, `// A random featured trail on each p
     max-height: 300px;
   }
   .map-land {
-    fill: color-mix(in srgb, var(--text) 12%, var(--surface));
+    fill: color-mix(in srgb, var(--accent) 18%, var(--bg));
   }
   .map-teaser-svg circle {
     fill: var(--accent);
-    stroke: var(--surface);
+    stroke: var(--bg);
     stroke-width: 2.5;
+  }
+  /* the folds, as plain lines on the paper; they fade as the map unfolds */
+  .crease {
+    stroke: color-mix(in srgb, var(--text) 22%, transparent);
+    stroke-width: 1.5;
+    transition: opacity 0.4s;
+  }
+  .map-link:hover .crease,
+  .map-link:focus-visible .crease {
+    opacity: 0.3;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .folded,
+    .crease {
+      transition: none;
+    }
+  }
+
+  /* trails near you: the list's starting point, as a label */
+  .near[hidden] {
+    display: none;
+  }
+  .near-from {
+    margin: -6px 0 4px;
+    color: var(--muted);
   }
 
   /* features */
@@ -895,7 +1191,7 @@ const featuredScript = inlineScript(Astro, `// A random featured trail on each p
     place-items: center;
     width: 34px;
     height: 34px;
-    border-radius: 10px;
+    border-radius: 50%;
     background: var(--accent-soft);
     color: var(--accent-text);
   }
@@ -926,58 +1222,61 @@ const featuredScript = inlineScript(Astro, `// A random featured trail on each p
     font-size: 0.85rem;
   }
 
-  /* all trails */
-  .cards {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-    gap: 12px;
-    margin: 0 0 16px;
-    padding: 0;
-    list-style: none;
+  /* the logbook (issue #80): a table like a hut book, one line per entry, rows apart by space, the whole
+     row opens the trail */
+  .log-wrap {
+    overflow-x: auto;
   }
-  .card {
-    display: flex;
-    flex-direction: column;
-    gap: 4px;
-    height: 100%;
-    padding: 18px;
-    border: 1px solid var(--line);
-    border-radius: 12px;
+  .log {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0 10px;
+    font-size: 0.9rem;
+  }
+  .log th {
+    padding: 0 16px 0 0;
+    color: var(--muted);
+    text-align: left;
+  }
+  .log td {
+    padding: 0 16px 0 0;
+    vertical-align: baseline;
+    white-space: nowrap;
+  }
+  .log tr {
+    position: relative;
+  }
+  .log a {
+    font-family: var(--serif);
+    font-size: 1rem;
+    font-weight: 600;
     color: var(--text);
     text-decoration: none;
   }
-  .card:hover {
-    border-color: var(--accent);
+  .log a::after {
+    content: "";
+    position: absolute;
+    inset: 0;
   }
-  .card-place {
-    color: var(--muted);
-    font-size: 0.8rem;
+  .log tbody tr:hover {
+    background: var(--surface);
   }
-  .card-name {
-    font-family: var(--serif);
-    font-size: 1.25rem;
-    font-weight: 600;
-  }
-  .card-figures {
-    margin-top: 8px;
+  .log tbody tr:hover a {
     color: var(--accent-text);
-    font-size: 0.9rem;
-    font-weight: 600;
   }
-  .card-added {
-    margin-top: 6px;
+  .log-date,
+  .log-num {
+    font-variant-numeric: tabular-nums;
+  }
+  .log-date {
+    color: var(--muted);
+  }
+  .log-where {
+    margin-left: 6px;
     color: var(--muted);
     font-size: 0.8rem;
   }
-  /* recent trails (issue #80): six, in two even rows of three from 900 px, two columns from 560 px */
-  @media (min-width: 560px) {
-    .cards.recent {
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-    }
-  }
-  @media (min-width: 900px) {
-    .cards.recent {
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-    }
+  .log-all {
+    margin: 12px 0 0;
   }
 </style>

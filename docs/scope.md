@@ -181,6 +181,15 @@
   water blue. Chart, status and map colours are unchanged; every text colour
   passes WCAG AA in both modes.
 
+- **Home page design (2026-11-01):** after several local previews, the home
+  page is grouped by space rather than lines (numbered section heads, no
+  rules or boxes, flat colours only), pairs a large visual with a list (the
+  featured trail beside the popular trails, the map beside the trails near
+  you), shows the recent trails as a logbook, and opens on a hero whose sky
+  follows the visitor's clock, with ridges drawn from real trails' profiles.
+  Gradients and textures were ruled out; the more drastic redesigns are kept
+  as ideas in the "design exploration" issues (#129–#141).
+
 ## What a trail page could show
 
 - Route on a map, with sections or stages
