@@ -274,6 +274,7 @@
           "group": "resupply",
           "kind": "fuel",
           "name": "Allied",
+          "osm": "node/1022710901",
           "stage": "4",
           "stageKind": "main",
           "km": 52.6,
@@ -294,6 +295,7 @@
           "group": "beds",
           "kind": "hut",
           "name": "Glade House",
+          "osm": "node/1583602524",
           "stage": "1",
           "stageKind": "main",
           "km": 1.2,
@@ -306,6 +308,7 @@
           "kind": "hut",
           "name": "Clinton Hut",
           "drinkingWater": "untreated",
+          "osm": "node/1583602516",
           "stage": "1",
           "stageKind": "main",
           "km": 4.7,
@@ -317,6 +320,7 @@
           "group": "beds",
           "kind": "hut",
           "name": "Pompolona Lodge",
+          "osm": "node/1583691961",
           "stage": "2",
           "stageKind": "main",
           "km": 17.6,
@@ -328,6 +332,7 @@
           "group": "beds",
           "kind": "hut",
           "name": null,
+          "osm": "way/1251048562",
           "stage": "2",
           "stageKind": "main",
           "km": 21.6,
@@ -339,6 +344,7 @@
           "group": "beds",
           "kind": "hut",
           "name": "Mintaro Hut",
+          "osm": "way/1036124771",
           "stage": "2",
           "stageKind": "main",
           "km": 23.1,
@@ -350,6 +356,7 @@
           "group": "beds",
           "kind": "hut",
           "name": "Quintin Lodge",
+          "osm": "way/1029544844",
           "stage": "3",
           "stageKind": "main",
           "km": 31.5,
@@ -362,6 +369,7 @@
           "kind": "hut",
           "name": "Dumpling Hut",
           "drinkingWater": "untreated",
+          "osm": "way/1360316352",
           "stage": "3",
           "stageKind": "main",
           "km": 34.6,
@@ -373,6 +381,7 @@
           "group": "beds",
           "kind": "hut",
           "name": "Boatshed Hut",
+          "osm": "way/1029544845",
           "stage": "4",
           "stageKind": "main",
           "km": 40.0,
@@ -384,6 +393,7 @@
           "group": "beds",
           "kind": "hostel",
           "name": "Mitre Peak Lodge",
+          "osm": "node/3356356382",
           "stage": "4",
           "stageKind": "main",
           "km": 52.6,
@@ -410,49 +420,57 @@
           "kind": "hut",
           "name": "Glade House",
           "stage": "1",
-          "km": 1.2
+          "km": 1.2,
+          "osm": "node/1583602524"
         },
         {
           "kind": "hut",
           "name": "Clinton Hut",
           "stage": "1",
-          "km": 4.7
+          "km": 4.7,
+          "osm": "node/1583602516"
         },
         {
           "kind": "hut",
           "name": "Pompolona Lodge",
           "stage": "2",
-          "km": 17.6
+          "km": 17.6,
+          "osm": "node/1583691961"
         },
         {
           "kind": "hut",
           "name": null,
           "stage": "2",
-          "km": 21.6
+          "km": 21.6,
+          "osm": "way/1251048562"
         },
         {
           "kind": "hut",
           "name": "Mintaro Hut",
           "stage": "2",
-          "km": 23.1
+          "km": 23.1,
+          "osm": "way/1036124771"
         },
         {
           "kind": "hut",
           "name": "Quintin Lodge",
           "stage": "3",
-          "km": 31.5
+          "km": 31.5,
+          "osm": "way/1029544844"
         },
         {
           "kind": "hut",
           "name": "Dumpling Hut",
           "stage": "3",
-          "km": 34.6
+          "km": 34.6,
+          "osm": "way/1360316352"
         },
         {
           "kind": "hut",
           "name": "Boatshed Hut",
           "stage": "4",
-          "km": 40.0
+          "km": 40.0,
+          "osm": "way/1029544845"
         }
       ],
       "longestGapKm": {

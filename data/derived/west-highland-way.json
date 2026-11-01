@@ -10479,7 +10479,7 @@
   },
   "along": {
     "source": "osm",
-    "retrieved": "2026-10-28T21:21:02Z",
+    "retrieved": "2026-10-31T21:23:06Z",
     "withinM": 1000,
     "stageEndM": 3000,
     "routeKm": 151.7,
@@ -10491,6 +10491,7 @@
           "group": "resupply",
           "kind": "convenience",
           "name": "Londis",
+          "osm": "node/12103188006",
           "stage": "1",
           "stageKind": "main",
           "km": 0.0,
@@ -10502,6 +10503,7 @@
           "group": "resupply",
           "kind": "convenience",
           "name": "Baxter's Newsagent",
+          "osm": "node/12200676349",
           "stage": "1",
           "stageKind": "main",
           "km": 0.0,
@@ -10513,6 +10515,7 @@
           "group": "resupply",
           "kind": "supermarket",
           "name": "Tesco",
+          "osm": "way/86865097",
           "stage": "1",
           "stageKind": "main",
           "km": 0.0,
@@ -10524,6 +10527,7 @@
           "group": "resupply",
           "kind": "convenience",
           "name": "Day-Today",
+          "osm": "way/226419686",
           "stage": "1",
           "stageKind": "main",
           "km": 0.0,
@@ -10535,6 +10539,7 @@
           "group": "resupply",
           "kind": "convenience",
           "name": "Milngavie's Local Mart",
+          "osm": "way/443767179",
           "stage": "1",
           "stageKind": "main",
           "km": 0.0,
@@ -10546,6 +10551,7 @@
           "group": "resupply",
           "kind": "convenience",
           "name": "Londis",
+          "osm": "way/453811833",
           "stage": "1",
           "stageKind": "main",
           "km": 0.0,
@@ -10557,6 +10563,7 @@
           "group": "resupply",
           "kind": "supermarket",
           "name": "Waitrose",
+          "osm": "way/498095224",
           "stage": "1",
           "stageKind": "main",
           "km": 0.0,
@@ -10568,6 +10575,7 @@
           "group": "resupply",
           "kind": "supermarket",
           "name": "Aldi",
+          "osm": "way/839005123",
           "stage": "1",
           "stageKind": "main",
           "km": 0.0,
@@ -10579,6 +10587,7 @@
           "group": "resupply",
           "kind": "supermarket",
           "name": "M&S Foodhall",
+          "osm": "way/1566572384",
           "stage": "1",
           "stageKind": "main",
           "km": 0.0,
@@ -10590,6 +10599,7 @@
           "group": "resupply",
           "kind": "convenience",
           "name": "Milngavie Mini Market",
+          "osm": "way/443758688",
           "stage": "1",
           "stageKind": "main",
           "km": 0.1,
@@ -10601,6 +10611,7 @@
           "group": "resupply",
           "kind": "convenience",
           "name": "Premier",
+          "osm": "node/12164564581",
           "stage": "1",
           "stageKind": "main",
           "km": 0.3,
@@ -10612,6 +10623,7 @@
           "group": "resupply",
           "kind": "convenience",
           "name": "Day-Today",
+          "osm": "node/1783174283",
           "stage": "1",
           "stageKind": "main",
           "km": 0.7,
@@ -10623,6 +10635,7 @@
           "group": "resupply",
           "kind": "convenience",
           "name": "Spar",
+          "osm": "node/2902828927",
           "stage": "1",
           "stageKind": "main",
           "km": 19.1,
@@ -10634,6 +10647,7 @@
           "group": "resupply",
           "kind": "convenience",
           "name": "Village Shop",
+          "osm": "node/4895401900",
           "stage": "2",
           "stageKind": "main",
           "km": 30.2,
@@ -10645,6 +10659,7 @@
           "group": "resupply",
           "kind": "convenience",
           "name": "Reception (with Minimarket)",
+          "osm": "way/1198253966",
           "stage": "2",
           "stageKind": "main",
           "km": 35.2,
@@ -10656,6 +10671,7 @@
           "group": "resupply",
           "kind": "convenience",
           "name": "Rowardennan Shop",
+          "osm": "node/12986379408",
           "stage": "2",
           "stageKind": "main",
           "km": 42.0,
@@ -10667,6 +10683,7 @@
           "group": "resupply",
           "kind": "convenience",
           "name": "Beinglas Campsite Shop",
+          "osm": "node/4165748362",
           "stage": "4",
           "stageKind": "main",
           "km": 64.2,
@@ -10678,6 +10695,7 @@
           "group": "resupply",
           "kind": "convenience",
           "name": "Crianlarich Store",
+          "osm": "way/172284958",
           "stage": "4",
           "stageKind": "main",
           "km": 73.6,
@@ -10689,6 +10707,7 @@
           "group": "resupply",
           "kind": "convenience",
           "name": "Reception & Shop",
+          "osm": "node/4172844823",
           "stage": "4",
           "stageKind": "main",
           "km": 82.5,
@@ -10700,6 +10719,7 @@
           "group": "resupply",
           "kind": "convenience",
           "name": "KeyStore",
+          "osm": "node/4165952991",
           "stage": "5",
           "stageKind": "main",
           "km": 83.3,
@@ -10711,6 +10731,7 @@
           "group": "resupply",
           "kind": "convenience",
           "name": "The Green Welly Stop",
+          "osm": "node/4167972191",
           "stage": "4",
           "stageKind": "main",
           "km": 83.3,
@@ -10722,6 +10743,7 @@
           "group": "resupply",
           "kind": "convenience",
           "name": "Buth Bheag - The Wee Shop",
+          "osm": "node/12110720358",
           "stage": "6",
           "stageKind": "main",
           "km": 97.5,
@@ -10733,6 +10755,7 @@
           "group": "resupply",
           "kind": "supermarket",
           "name": "Co-op Food",
+          "osm": "node/905998547",
           "stage": "7",
           "stageKind": "main",
           "km": 127.1,
@@ -10744,6 +10767,7 @@
           "group": "resupply",
           "kind": "convenience",
           "name": "Glen Nevis campsite shop",
+          "osm": "node/2469956158",
           "stage": "8",
           "stageKind": "main",
           "km": 147.0,
@@ -10755,6 +10779,7 @@
           "group": "resupply",
           "kind": "supermarket",
           "name": "M&S Foodhall",
+          "osm": "node/5438582813",
           "stage": "8",
           "stageKind": "main",
           "km": 149.5,
@@ -10766,6 +10791,7 @@
           "group": "resupply",
           "kind": "convenience",
           "name": "Spar",
+          "osm": "node/2801442590",
           "stage": "8",
           "stageKind": "main",
           "km": 149.8,
@@ -10777,6 +10803,7 @@
           "group": "resupply",
           "kind": "supermarket",
           "name": "Aldi",
+          "osm": "way/595155091",
           "stage": "8",
           "stageKind": "main",
           "km": 149.8,
@@ -10788,6 +10815,7 @@
           "group": "resupply",
           "kind": "convenience",
           "name": "Ben Nevis Services",
+          "osm": "node/254873403",
           "stage": "8",
           "stageKind": "main",
           "km": 150.0,
@@ -10799,6 +10827,7 @@
           "group": "resupply",
           "kind": "convenience",
           "name": "McColl's",
+          "osm": "node/5672286264",
           "stage": "8",
           "stageKind": "main",
           "km": 150.4,
@@ -10810,6 +10839,7 @@
           "group": "resupply",
           "kind": "supermarket",
           "name": "Co-op Food",
+          "osm": "way/283189291",
           "stage": "8",
           "stageKind": "main",
           "km": 150.4,
@@ -10821,6 +10851,7 @@
           "group": "resupply",
           "kind": "supermarket",
           "name": "Lidl",
+          "osm": "way/197076841",
           "stage": "8",
           "stageKind": "main",
           "km": 150.7,
@@ -10832,6 +10863,7 @@
           "group": "resupply",
           "kind": "supermarket",
           "name": "Morrisons",
+          "osm": "way/197076676",
           "stage": "8",
           "stageKind": "main",
           "km": 150.9,
@@ -10843,6 +10875,7 @@
           "group": "resupply",
           "kind": "convenience",
           "name": "International Food Store",
+          "osm": "node/305522609",
           "stage": "8",
           "stageKind": "main",
           "km": 151.2,
@@ -10854,6 +10887,7 @@
           "group": "resupply",
           "kind": "supermarket",
           "name": "Spar",
+          "osm": "node/254878072",
           "stage": "8",
           "stageKind": "main",
           "km": 151.7,
@@ -10874,6 +10908,7 @@
           "group": "beds",
           "kind": "guesthouse",
           "name": "Best Foot Forward",
+          "osm": "way/443593726",
           "stage": "1",
           "stageKind": "main",
           "km": 0.0,
@@ -10885,6 +10920,7 @@
           "group": "beds",
           "kind": "guesthouse",
           "name": "Old Mill Cottage",
+          "osm": "node/11964712332",
           "stage": "1",
           "stageKind": "main",
           "km": 16.8,
@@ -10896,6 +10932,7 @@
           "group": "beds",
           "kind": "campsite",
           "name": null,
+          "osm": "node/12114107564",
           "stage": "1",
           "stageKind": "main",
           "km": 17.2,
@@ -10907,6 +10944,7 @@
           "group": "beds",
           "kind": "guesthouse",
           "name": "Altquhur Byre",
+          "osm": "node/12204169001",
           "stage": "1",
           "stageKind": "main",
           "km": 17.2,
@@ -10919,6 +10957,7 @@
           "kind": "campsite",
           "name": "Drymen Camping",
           "drinkingWater": "yes",
+          "osm": "way/708129469",
           "stage": "1",
           "stageKind": "main",
           "km": 17.3,
@@ -10931,6 +10970,7 @@
           "kind": "campsite",
           "name": null,
           "drinkingWater": "no",
+          "osm": "node/14222516214",
           "stage": "1",
           "stageKind": "main",
           "km": 18.2,
@@ -10942,6 +10982,7 @@
           "group": "beds",
           "kind": "guesthouse",
           "name": "Mulberry Lodge B&B",
+          "osm": "node/4161662687",
           "stage": "1",
           "stageKind": "main",
           "km": 18.6,
@@ -10953,6 +10994,7 @@
           "group": "beds",
           "kind": "guesthouse",
           "name": "The Hawthorns",
+          "osm": "node/7737926552",
           "stage": "1",
           "stageKind": "main",
           "km": 18.7,
@@ -10964,6 +11006,7 @@
           "group": "beds",
           "kind": "guesthouse",
           "name": "Ashbank",
+          "osm": "node/3760739788",
           "stage": "1",
           "stageKind": "main",
           "km": 19.1,
@@ -10975,6 +11018,7 @@
           "group": "beds",
           "kind": "guesthouse",
           "name": "Shandon Farmhouse B&B",
+          "osm": "node/4160642490",
           "stage": "2",
           "stageKind": "main",
           "km": 19.1,
@@ -10986,6 +11030,7 @@
           "group": "beds",
           "kind": "guesthouse",
           "name": "The Old School House",
+          "osm": "node/4161725393",
           "stage": "2",
           "stageKind": "main",
           "km": 19.1,
@@ -10997,6 +11042,7 @@
           "group": "beds",
           "kind": "guesthouse",
           "name": "Green Shadows B&B",
+          "osm": "node/4895337167",
           "stage": "1",
           "stageKind": "main",
           "km": 19.1,
@@ -11008,6 +11054,7 @@
           "group": "beds",
           "kind": "guesthouse",
           "name": "Bramblewood",
+          "osm": "node/7737806070",
           "stage": "1",
           "stageKind": "main",
           "km": 19.1,
@@ -11019,6 +11066,7 @@
           "group": "beds",
           "kind": "guesthouse",
           "name": "Angel Cottage",
+          "osm": "node/11950457269",
           "stage": "1",
           "stageKind": "main",
           "km": 19.1,
@@ -11030,6 +11078,7 @@
           "group": "beds",
           "kind": "guesthouse",
           "name": "Kip in the Kirk",
+          "osm": "way/443805719",
           "stage": "1",
           "stageKind": "main",
           "km": 19.1,
@@ -11041,6 +11090,7 @@
           "group": "beds",
           "kind": "campsite",
           "name": null,
+          "osm": "node/9897423719",
           "stage": "2",
           "stageKind": "main",
           "km": 21.0,
@@ -11052,6 +11102,7 @@
           "group": "beds",
           "kind": "campsite",
           "name": null,
+          "osm": "node/14222496682",
           "stage": "2",
           "stageKind": "main",
           "km": 21.7,
@@ -11063,6 +11114,7 @@
           "group": "beds",
           "kind": "campsite",
           "name": null,
+          "osm": "node/11130583297",
           "stage": "2",
           "stageKind": "main",
           "km": 22.9,
@@ -11074,6 +11126,7 @@
           "group": "beds",
           "kind": "campsite",
           "name": null,
+          "osm": "node/9773491025",
           "stage": "2",
           "stageKind": "main",
           "km": 25.1,
@@ -11086,6 +11139,7 @@
           "kind": "campsite",
           "name": "Wild Camp (3 Tents)",
           "drinkingWater": "no",
+          "osm": "node/12819257205",
           "stage": "2",
           "stageKind": "main",
           "km": 28.4,
@@ -11097,6 +11151,7 @@
           "group": "beds",
           "kind": "hostel",
           "name": "Arrochoile B&B",
+          "osm": "node/10911559700",
           "stage": "2",
           "stageKind": "main",
           "km": 29.6,
@@ -11108,6 +11163,7 @@
           "group": "beds",
           "kind": "guesthouse",
           "name": "The Oak Tree Inn",
+          "osm": "way/251911356",
           "stage": "2",
           "stageKind": "main",
           "km": 30.2,
@@ -11119,6 +11175,7 @@
           "group": "beds",
           "kind": "guesthouse",
           "name": "Balmaha Cottage",
+          "osm": "way/277825090",
           "stage": "2",
           "stageKind": "main",
           "km": 30.2,
@@ -11131,6 +11188,7 @@
           "kind": "campsite",
           "name": "Cashel Camping & Caravan Park Forest Holidays",
           "drinkingWater": "yes",
+          "osm": "node/667005293",
           "stage": "2",
           "stageKind": "main",
           "km": 35.3,
@@ -11143,6 +11201,7 @@
           "kind": "campsite",
           "name": "Sallochy Campsite - Woodland Camping",
           "drinkingWater": "yes",
+          "osm": "way/229580713",
           "stage": "2",
           "stageKind": "main",
           "km": 37.9,
@@ -11154,6 +11213,7 @@
           "group": "beds",
           "kind": "guesthouse",
           "name": "Coille Mhor Cottage",
+          "osm": "node/2327987339",
           "stage": "2",
           "stageKind": "main",
           "km": 40.3,
@@ -11166,6 +11226,7 @@
           "kind": "campsite",
           "name": "Lochan Maol Dhuinne Camping permit area March-September",
           "drinkingWater": "no",
+          "osm": "way/1188431843",
           "stage": "2",
           "stageKind": "main",
           "km": 41.2,
@@ -11177,6 +11238,7 @@
           "group": "beds",
           "kind": "campsite",
           "name": "Suie Field camping permit area March-September",
+          "osm": "way/1295100748",
           "stage": "2",
           "stageKind": "main",
           "km": 41.2,
@@ -11188,6 +11250,7 @@
           "group": "beds",
           "kind": "guesthouse",
           "name": "The Corries",
+          "osm": "node/4325847634",
           "stage": "2",
           "stageKind": "main",
           "km": 42.1,
@@ -11200,6 +11263,7 @@
           "kind": "campsite",
           "name": "Inverbeg Holiday Park",
           "drinkingWater": "yes",
+          "osm": "way/434529443",
           "stage": "2",
           "stageKind": "main",
           "km": 42.1,
@@ -11211,6 +11275,7 @@
           "group": "beds",
           "kind": "hostel",
           "name": "Rowardennan Lodge Youth Hostel",
+          "osm": "node/1305661065",
           "stage": "3",
           "stageKind": "main",
           "km": 42.9,
@@ -11222,6 +11287,7 @@
           "group": "beds",
           "kind": "hostel",
           "name": "Ben Lomond Bunkhouse",
+          "osm": "node/4896948722",
           "stage": "3",
           "stageKind": "main",
           "km": 43.1,
@@ -11233,6 +11299,7 @@
           "group": "beds",
           "kind": "guesthouse",
           "name": "Ben Lomond Cottage",
+          "osm": "node/7737771644",
           "stage": "3",
           "stageKind": "main",
           "km": 43.1,
@@ -11244,6 +11311,7 @@
           "group": "beds",
           "kind": "campsite",
           "name": "Rowardennan Lodge Youth Hostel",
+          "osm": "node/9773480148",
           "stage": "3",
           "stageKind": "main",
           "km": 43.1,
@@ -11255,6 +11323,7 @@
           "group": "beds",
           "kind": "campsite",
           "name": null,
+          "osm": "node/11130723710",
           "stage": "3",
           "stageKind": "main",
           "km": 44.9,
@@ -11266,6 +11335,7 @@
           "group": "beds",
           "kind": "campsite",
           "name": "Firkin Point D Wild camping permit area March-September",
+          "osm": "way/1295100750",
           "stage": "3",
           "stageKind": "main",
           "km": 44.9,
@@ -11277,6 +11347,7 @@
           "group": "beds",
           "kind": "campsite",
           "name": null,
+          "osm": "node/11130723713",
           "stage": "3",
           "stageKind": "main",
           "km": 45.3,
@@ -11288,6 +11359,7 @@
           "group": "beds",
           "kind": "campsite",
           "name": null,
+          "osm": "node/11130723714",
           "stage": "3",
           "stageKind": "main",
           "km": 45.4,
@@ -11299,6 +11371,7 @@
           "group": "beds",
           "kind": "campsite",
           "name": "Firkin Point C camping permit area March-September",
+          "osm": "way/1295100752",
           "stage": "3",
           "stageKind": "main",
           "km": 45.4,
@@ -11310,6 +11383,7 @@
           "group": "beds",
           "kind": "campsite",
           "name": null,
+          "osm": "node/9897423720",
           "stage": "3",
           "stageKind": "main",
           "km": 46.4,
@@ -11321,6 +11395,7 @@
           "group": "beds",
           "kind": "campsite",
           "name": null,
+          "osm": "node/11130723716",
           "stage": "3",
           "stageKind": "main",
           "km": 47.8,
@@ -11332,6 +11407,7 @@
           "group": "beds",
           "kind": "campsite",
           "name": null,
+          "osm": "node/11130723715",
           "stage": "3",
           "stageKind": "main",
           "km": 48.0,
@@ -11343,6 +11419,7 @@
           "group": "beds",
           "kind": "hut",
           "name": "Rowchoish",
+          "osm": "way/446514074",
           "stage": "3",
           "stageKind": "main",
           "km": 48.9,
@@ -11354,6 +11431,7 @@
           "group": "beds",
           "kind": "campsite",
           "name": null,
+          "osm": "node/11130755236",
           "stage": "3",
           "stageKind": "main",
           "km": 49.7,
@@ -11365,6 +11443,7 @@
           "group": "beds",
           "kind": "campsite",
           "name": null,
+          "osm": "node/11130755235",
           "stage": "3",
           "stageKind": "main",
           "km": 50.6,
@@ -11376,6 +11455,7 @@
           "group": "beds",
           "kind": "campsite",
           "name": null,
+          "osm": "node/11130755237",
           "stage": "3",
           "stageKind": "main",
           "km": 50.8,
@@ -11387,6 +11467,7 @@
           "group": "beds",
           "kind": "campsite",
           "name": null,
+          "osm": "node/12114353985",
           "stage": "3",
           "stageKind": "main",
           "km": 51.4,
@@ -11398,6 +11479,7 @@
           "group": "beds",
           "kind": "campsite",
           "name": null,
+          "osm": "node/9897423519",
           "stage": "3",
           "stageKind": "main",
           "km": 51.5,
@@ -11409,6 +11491,7 @@
           "group": "beds",
           "kind": "campsite",
           "name": null,
+          "osm": "node/11130755242",
           "stage": "3",
           "stageKind": "main",
           "km": 52.2,
@@ -11420,6 +11503,7 @@
           "group": "beds",
           "kind": "campsite",
           "name": null,
+          "osm": "node/11130755243",
           "stage": "3",
           "stageKind": "main",
           "km": 53.2,
@@ -11431,6 +11515,7 @@
           "group": "beds",
           "kind": "guesthouse",
           "name": "Inversnaid Lodge",
+          "osm": "node/969339263",
           "stage": "3",
           "stageKind": "main",
           "km": 53.6,
@@ -11442,6 +11527,7 @@
           "group": "beds",
           "kind": "campsite",
           "name": "Inveruglas camping permit area March-September",
+          "osm": "way/1295100747",
           "stage": "3",
           "stageKind": "main",
           "km": 55.1,
@@ -11453,6 +11539,7 @@
           "group": "beds",
           "kind": "campsite",
           "name": null,
+          "osm": "node/9897423721",
           "stage": "3",
           "stageKind": "main",
           "km": 55.8,
@@ -11464,6 +11551,7 @@
           "group": "beds",
           "kind": "campsite",
           "name": null,
+          "osm": "node/11130710974",
           "stage": "3",
           "stageKind": "main",
           "km": 58.6,
@@ -11475,6 +11563,7 @@
           "group": "beds",
           "kind": "campsite",
           "name": null,
+          "osm": "node/11130710973",
           "stage": "3",
           "stageKind": "main",
           "km": 58.7,
@@ -11486,6 +11575,7 @@
           "group": "beds",
           "kind": "hut",
           "name": "Doune Byre",
+          "osm": "way/278797747",
           "stage": "3",
           "stageKind": "main",
           "km": 59.6,
@@ -11497,6 +11587,7 @@
           "group": "beds",
           "kind": "campsite",
           "name": "Ardlui Holiday Home Park",
+          "osm": "node/3266706459",
           "stage": "3",
           "stageKind": "main",
           "km": 61.1,
@@ -11508,6 +11599,7 @@
           "group": "beds",
           "kind": "guesthouse",
           "name": "Rose Cottage",
+          "osm": "node/1749721519",
           "stage": "3",
           "stageKind": "main",
           "km": 64.0,
@@ -11520,6 +11612,7 @@
           "kind": "campsite",
           "name": "Beinglas Campsite",
           "drinkingWater": "yes",
+          "osm": "way/419038972",
           "stage": "3",
           "stageKind": "main",
           "km": 64.1,
@@ -11531,6 +11624,7 @@
           "group": "beds",
           "kind": "campsite",
           "name": null,
+          "osm": "node/14222527751",
           "stage": "4",
           "stageKind": "main",
           "km": 69.4,
@@ -11542,6 +11636,7 @@
           "group": "beds",
           "kind": "guesthouse",
           "name": "Hillview Guesthouse",
+          "osm": "node/3074867911",
           "stage": "4",
           "stageKind": "main",
           "km": 73.5,
@@ -11553,6 +11648,7 @@
           "group": "beds",
           "kind": "guesthouse",
           "name": "Glenbruar B&B",
+          "osm": "node/12893600097",
           "stage": "4",
           "stageKind": "main",
           "km": 73.6,
@@ -11564,6 +11660,7 @@
           "group": "beds",
           "kind": "campsite",
           "name": null,
+          "osm": "node/14222520165",
           "stage": "4",
           "stageKind": "main",
           "km": 73.6,
@@ -11575,6 +11672,7 @@
           "group": "beds",
           "kind": "guesthouse",
           "name": "Ewich Guest House  Bed & Breakfast",
+          "osm": "node/3101842570",
           "stage": "4",
           "stageKind": "main",
           "km": 76.6,
@@ -11586,6 +11684,7 @@
           "group": "beds",
           "kind": "campsite",
           "name": null,
+          "osm": "node/13017397301",
           "stage": "4",
           "stageKind": "main",
           "km": 77.2,
@@ -11597,6 +11696,7 @@
           "group": "beds",
           "kind": "campsite",
           "name": null,
+          "osm": "way/1181191597",
           "stage": "4",
           "stageKind": "main",
           "km": 79.0,
@@ -11608,6 +11708,7 @@
           "group": "beds",
           "kind": "guesthouse",
           "name": "Strathfillan House",
+          "osm": "node/1749662809",
           "stage": "4",
           "stageKind": "main",
           "km": 79.6,
@@ -11619,6 +11720,7 @@
           "group": "beds",
           "kind": "campsite",
           "name": null,
+          "osm": "node/9773493529",
           "stage": "4",
           "stageKind": "main",
           "km": 80.1,
@@ -11630,6 +11732,7 @@
           "group": "beds",
           "kind": "guesthouse",
           "name": "Glengarry House",
+          "osm": "way/335209581",
           "stage": "4",
           "stageKind": "main",
           "km": 82.0,
@@ -11641,6 +11744,7 @@
           "group": "beds",
           "kind": "guesthouse",
           "name": "Dalkell Cottage",
+          "osm": "node/4165969889",
           "stage": "4",
           "stageKind": "main",
           "km": 82.7,
@@ -11652,6 +11756,7 @@
           "group": "beds",
           "kind": "guesthouse",
           "name": "Kilbride Lodge",
+          "osm": "node/4165972690",
           "stage": "4",
           "stageKind": "main",
           "km": 82.7,
@@ -11663,6 +11768,7 @@
           "group": "beds",
           "kind": "hostel",
           "name": null,
+          "osm": "way/59621271",
           "stage": "4",
           "stageKind": "main",
           "km": 82.7,
@@ -11675,6 +11781,7 @@
           "kind": "campsite",
           "name": "By the Way",
           "drinkingWater": "yes",
+          "osm": "way/1172724074",
           "stage": "4",
           "stageKind": "main",
           "km": 82.7,
@@ -11686,6 +11793,7 @@
           "group": "beds",
           "kind": "hostel",
           "name": "By the Way",
+          "osm": "way/59621061",
           "stage": "4",
           "stageKind": "main",
           "km": 82.8,
@@ -11697,6 +11805,7 @@
           "group": "beds",
           "kind": "guesthouse",
           "name": "Clifton Cottage B&B",
+          "osm": "way/59688781",
           "stage": "4",
           "stageKind": "main",
           "km": 83.2,
@@ -11708,6 +11817,7 @@
           "group": "beds",
           "kind": "campsite",
           "name": null,
+          "osm": "node/12110716583",
           "stage": "5",
           "stageKind": "main",
           "km": 89.1,
@@ -11719,6 +11829,7 @@
           "group": "beds",
           "kind": "hostel",
           "name": "West Highland Way Sleeper",
+          "osm": "node/5094622544",
           "stage": "5",
           "stageKind": "main",
           "km": 93.4,
@@ -11730,6 +11841,7 @@
           "group": "beds",
           "kind": "campsite",
           "name": null,
+          "osm": "way/376602248",
           "stage": "5",
           "stageKind": "main",
           "km": 93.9,
@@ -11742,6 +11854,7 @@
           "kind": "campsite",
           "name": null,
           "drinkingWater": "no",
+          "osm": "node/9773480116",
           "stage": "6",
           "stageKind": "main",
           "km": 97.9,
@@ -11753,6 +11866,7 @@
           "group": "beds",
           "kind": "campsite",
           "name": null,
+          "osm": "node/11828234669",
           "stage": "6",
           "stageKind": "main",
           "km": 103.9,
@@ -11764,6 +11878,7 @@
           "group": "beds",
           "kind": "campsite",
           "name": null,
+          "osm": "node/12338140230",
           "stage": "6",
           "stageKind": "main",
           "km": 105.6,
@@ -11776,6 +11891,7 @@
           "kind": "campsite",
           "name": "Glencoe Mountain Resort",
           "drinkingWater": "yes",
+          "osm": "way/416173994",
           "stage": "6",
           "stageKind": "main",
           "km": 110.7,
@@ -11787,6 +11903,7 @@
           "group": "beds",
           "kind": "hut",
           "name": "Blackrock Cottage",
+          "osm": "way/94610847",
           "stage": "6",
           "stageKind": "main",
           "km": 111.2,
@@ -11798,6 +11915,7 @@
           "group": "beds",
           "kind": "campsite",
           "name": null,
+          "osm": "way/1200469100",
           "stage": "7",
           "stageKind": "main",
           "km": 113.1,
@@ -11809,6 +11927,7 @@
           "group": "beds",
           "kind": "hut",
           "name": null,
+          "osm": "way/1195081946",
           "stage": "7",
           "stageKind": "main",
           "km": 116.1,
@@ -11820,6 +11939,7 @@
           "group": "beds",
           "kind": "hut",
           "name": "Lagangarbh",
+          "osm": "way/83643673",
           "stage": "7",
           "stageKind": "main",
           "km": 117.5,
@@ -11831,6 +11951,7 @@
           "group": "beds",
           "kind": "campsite",
           "name": null,
+          "osm": "node/9904099218",
           "stage": "7",
           "stageKind": "main",
           "km": 118.0,
@@ -11842,6 +11963,7 @@
           "group": "beds",
           "kind": "campsite",
           "name": null,
+          "osm": "node/9773483151",
           "stage": "7",
           "stageKind": "main",
           "km": 120.1,
@@ -11853,6 +11975,7 @@
           "group": "beds",
           "kind": "guesthouse",
           "name": "Forest View",
+          "osm": "node/4169956402",
           "stage": "7",
           "stageKind": "main",
           "km": 126.7,
@@ -11864,6 +11987,7 @@
           "group": "beds",
           "kind": "guesthouse",
           "name": "Quiraing B&B",
+          "osm": "node/4170341192",
           "stage": "7",
           "stageKind": "main",
           "km": 126.7,
@@ -11875,6 +11999,7 @@
           "group": "beds",
           "kind": "campsite",
           "name": "Blackwater Campsite",
+          "osm": "way/211753745",
           "stage": "7",
           "stageKind": "main",
           "km": 126.8,
@@ -11886,6 +12011,7 @@
           "group": "beds",
           "kind": "guesthouse",
           "name": "Danca B&B",
+          "osm": "node/4170341094",
           "stage": "7",
           "stageKind": "main",
           "km": 126.9,
@@ -11897,6 +12023,7 @@
           "group": "beds",
           "kind": "hostel",
           "name": "Blackwater Hostel",
+          "osm": "way/94129740",
           "stage": "7",
           "stageKind": "main",
           "km": 127.0,
@@ -11908,6 +12035,7 @@
           "group": "beds",
           "kind": "hostel",
           "name": "West Highland Lodge",
+          "osm": "node/11279053471",
           "stage": "7",
           "stageKind": "main",
           "km": 127.1,
@@ -11919,6 +12047,7 @@
           "group": "beds",
           "kind": "guesthouse",
           "name": "Allt Na Leven",
+          "osm": "node/12830442398",
           "stage": "7",
           "stageKind": "main",
           "km": 127.1,
@@ -11930,6 +12059,7 @@
           "group": "beds",
           "kind": "campsite",
           "name": "Kinlochleven Aire Site",
+          "osm": "way/1385919965",
           "stage": "7",
           "stageKind": "main",
           "km": 127.1,
@@ -11941,6 +12071,7 @@
           "group": "beds",
           "kind": "guesthouse",
           "name": "The Old Police Station",
+          "osm": "way/94129808",
           "stage": "8",
           "stageKind": "main",
           "km": 127.3,
@@ -11952,6 +12083,7 @@
           "group": "beds",
           "kind": "guesthouse",
           "name": "Edencoille B&B",
+          "osm": "node/5003765422",
           "stage": "8",
           "stageKind": "main",
           "km": 127.7,
@@ -11963,6 +12095,7 @@
           "group": "beds",
           "kind": "guesthouse",
           "name": "Tigh Na Cheo guest house",
+          "osm": "way/210587702",
           "stage": "8",
           "stageKind": "main",
           "km": 127.7,
@@ -11974,6 +12107,7 @@
           "group": "beds",
           "kind": "campsite",
           "name": "MacDonald Hotel Campsite",
+          "osm": "node/6430320991",
           "stage": "8",
           "stageKind": "main",
           "km": 127.8,
@@ -11985,6 +12119,7 @@
           "group": "beds",
           "kind": "campsite",
           "name": "Kinlochleven Wild Camping Area",
+          "osm": "node/11131394516",
           "stage": "8",
           "stageKind": "main",
           "km": 127.8,
@@ -11997,6 +12132,7 @@
           "kind": "campsite",
           "name": null,
           "drinkingWater": "no",
+          "osm": "node/11828234569",
           "stage": "8",
           "stageKind": "main",
           "km": 128.5,
@@ -12009,6 +12145,7 @@
           "kind": "campsite",
           "name": "really small camp site",
           "drinkingWater": "no",
+          "osm": "node/12158637601",
           "stage": "8",
           "stageKind": "main",
           "km": 129.5,
@@ -12021,6 +12158,7 @@
           "kind": "campsite",
           "name": null,
           "drinkingWater": "no",
+          "osm": "node/12175048101",
           "stage": "8",
           "stageKind": "main",
           "km": 132.8,
@@ -12033,6 +12171,7 @@
           "kind": "campsite",
           "name": null,
           "drinkingWater": "no",
+          "osm": "node/11950495369",
           "stage": "8",
           "stageKind": "main",
           "km": 138.6,
@@ -12044,6 +12183,7 @@
           "group": "beds",
           "kind": "campsite",
           "name": null,
+          "osm": "node/14222513025",
           "stage": "8",
           "stageKind": "main",
           "km": 142.7,
@@ -12056,6 +12196,7 @@
           "kind": "campsite",
           "name": null,
           "drinkingWater": "no",
+          "osm": "node/14222513026",
           "stage": "8",
           "stageKind": "main",
           "km": 144.3,
@@ -12067,6 +12208,7 @@
           "group": "beds",
           "kind": "campsite",
           "name": null,
+          "osm": "node/14222513027",
           "stage": "8",
           "stageKind": "main",
           "km": 146.0,
@@ -12078,6 +12220,7 @@
           "group": "beds",
           "kind": "campsite",
           "name": null,
+          "osm": "node/14222513028",
           "stage": "8",
           "stageKind": "main",
           "km": 146.6,
@@ -12089,6 +12232,7 @@
           "group": "beds",
           "kind": "hostel",
           "name": "Glen Nevis Youth Hostel",
+          "osm": "way/200726445",
           "stage": "8",
           "stageKind": "main",
           "km": 146.6,
@@ -12101,6 +12245,7 @@
           "kind": "campsite",
           "name": "Glen Nevis Caravan and Camping Park",
           "drinkingWater": "yes",
+          "osm": "way/99714191",
           "stage": "8",
           "stageKind": "main",
           "km": 147.0,
@@ -12112,6 +12257,7 @@
           "group": "beds",
           "kind": "guesthouse",
           "name": "Achintee Farm",
+          "osm": "node/13189860247",
           "stage": "8",
           "stageKind": "main",
           "km": 148.2,
@@ -12123,6 +12269,7 @@
           "group": "beds",
           "kind": "guesthouse",
           "name": "The Brevins Guesthouse",
+          "osm": "node/2327994868",
           "stage": "8",
           "stageKind": "main",
           "km": 149.9,
@@ -12134,6 +12281,7 @@
           "group": "beds",
           "kind": "guesthouse",
           "name": "Cuil Na Sithe",
+          "osm": "node/472231352",
           "stage": "8",
           "stageKind": "main",
           "km": 150.0,
@@ -12145,6 +12293,7 @@
           "group": "beds",
           "kind": "guesthouse",
           "name": "Ben Nevis Guesthouse",
+          "osm": "node/13961760701",
           "stage": "8",
           "stageKind": "main",
           "km": 150.0,
@@ -12156,6 +12305,7 @@
           "group": "beds",
           "kind": "campsite",
           "name": null,
+          "osm": "node/14222513029",
           "stage": "8",
           "stageKind": "main",
           "km": 150.7,
@@ -12167,6 +12317,7 @@
           "group": "beds",
           "kind": "guesthouse",
           "name": "Craig Nevis",
+          "osm": "node/5182202592",
           "stage": "8",
           "stageKind": "main",
           "km": 150.8,
@@ -12178,6 +12329,7 @@
           "group": "beds",
           "kind": "guesthouse",
           "name": "Valtos Bed and Breakfast",
+          "osm": "node/6064447650",
           "stage": "8",
           "stageKind": "main",
           "km": 150.8,
@@ -12189,6 +12341,7 @@
           "group": "beds",
           "kind": "hostel",
           "name": "Fort William Backpackers",
+          "osm": "way/194467694",
           "stage": "8",
           "stageKind": "main",
           "km": 150.8,
@@ -12200,6 +12353,7 @@
           "group": "beds",
           "kind": "hostel",
           "name": "B&B",
+          "osm": "node/4197338993",
           "stage": "8",
           "stageKind": "main",
           "km": 150.9,
@@ -12211,6 +12365,7 @@
           "group": "beds",
           "kind": "guesthouse",
           "name": "Ardmory B&B",
+          "osm": "node/4171781494",
           "stage": "8",
           "stageKind": "main",
           "km": 151.0,
@@ -12222,6 +12377,7 @@
           "group": "beds",
           "kind": "guesthouse",
           "name": "Saint Andrew's Guest House",
+          "osm": "node/4171746298",
           "stage": "8",
           "stageKind": "main",
           "km": 151.2,
@@ -12233,6 +12389,7 @@
           "group": "beds",
           "kind": "hostel",
           "name": "Bank Street Lodge",
+          "osm": "node/885716653",
           "stage": "8",
           "stageKind": "main",
           "km": 151.3,
@@ -12244,6 +12401,7 @@
           "group": "beds",
           "kind": "guesthouse",
           "name": "Aldourie B&B",
+          "osm": "node/4171748707",
           "stage": "8",
           "stageKind": "main",
           "km": 151.3,
@@ -12255,6 +12413,7 @@
           "group": "beds",
           "kind": "guesthouse",
           "name": "Anagrae B&B",
+          "osm": "node/4171781392",
           "stage": "8",
           "stageKind": "main",
           "km": 151.4,
@@ -12266,6 +12425,7 @@
           "group": "beds",
           "kind": "guesthouse",
           "name": "Glenmoidart B&B",
+          "osm": "node/4171748704",
           "stage": "8",
           "stageKind": "main",
           "km": 151.5,
@@ -12277,6 +12437,7 @@
           "group": "beds",
           "kind": "campsite",
           "name": "The Helferindernot",
+          "osm": "node/13108588401",
           "stage": "8",
           "stageKind": "main",
           "km": 151.5,
@@ -12288,6 +12449,7 @@
           "group": "beds",
           "kind": "guesthouse",
           "name": "Melrose",
+          "osm": "node/6810071718",
           "stage": "8",
           "stageKind": "main",
           "km": 151.6,
@@ -12299,6 +12461,7 @@
           "group": "beds",
           "kind": "guesthouse",
           "name": "Gowan Brae House",
+          "osm": "node/1749766905",
           "stage": "8",
           "stageKind": "main",
           "km": 151.7,
@@ -12310,6 +12473,7 @@
           "group": "beds",
           "kind": "guesthouse",
           "name": "Myrtle Bank Guest House",
+          "osm": "node/2065633611",
           "stage": "8",
           "stageKind": "main",
           "km": 151.7,
@@ -12321,6 +12485,7 @@
           "group": "beds",
           "kind": "guesthouse",
           "name": "The Willows Guest House",
+          "osm": "node/2534025582",
           "stage": "8",
           "stageKind": "main",
           "km": 151.7,
@@ -12332,6 +12497,7 @@
           "group": "beds",
           "kind": "guesthouse",
           "name": "Lawriestone Guesthouse",
+          "osm": "node/4248785698",
           "stage": "8",
           "stageKind": "main",
           "km": 151.7,
@@ -12343,6 +12509,7 @@
           "group": "beds",
           "kind": "guesthouse",
           "name": "Fassfern Guest House",
+          "osm": "node/4895229224",
           "stage": "8",
           "stageKind": "main",
           "km": 151.7,
@@ -12354,6 +12521,7 @@
           "group": "beds",
           "kind": "guesthouse",
           "name": "Dalchreggan B&B",
+          "osm": "node/4895229227",
           "stage": "8",
           "stageKind": "main",
           "km": 151.7,
@@ -12365,6 +12533,7 @@
           "group": "beds",
           "kind": "guesthouse",
           "name": "Westcourt B&B",
+          "osm": "node/4895229229",
           "stage": "8",
           "stageKind": "main",
           "km": 151.7,
@@ -12376,6 +12545,7 @@
           "group": "beds",
           "kind": "guesthouse",
           "name": "Strathavon B&B",
+          "osm": "node/4895229230",
           "stage": "8",
           "stageKind": "main",
           "km": 151.7,
@@ -12387,6 +12557,7 @@
           "group": "beds",
           "kind": "guesthouse",
           "name": "Melantee b&b",
+          "osm": "node/4990583821",
           "stage": "8",
           "stageKind": "main",
           "km": 151.7,
@@ -12398,6 +12569,7 @@
           "group": "beds",
           "kind": "guesthouse",
           "name": "Braeside House",
+          "osm": "node/5294473225",
           "stage": "8",
           "stageKind": "main",
           "km": 151.7,
@@ -12409,6 +12581,7 @@
           "group": "beds",
           "kind": "guesthouse",
           "name": "Hill View Guest House",
+          "osm": "node/6806121161",
           "stage": "8",
           "stageKind": "main",
           "km": 151.7,
@@ -12420,6 +12593,7 @@
           "group": "beds",
           "kind": "guesthouse",
           "name": "Glen Shiel Guest House",
+          "osm": "node/6806140863",
           "stage": "8",
           "stageKind": "main",
           "km": 151.7,
@@ -12431,6 +12605,7 @@
           "group": "beds",
           "kind": "guesthouse",
           "name": "Stronchreggan View Guest House",
+          "osm": "node/6806174964",
           "stage": "8",
           "stageKind": "main",
           "km": 151.7,
@@ -12442,6 +12617,7 @@
           "group": "beds",
           "kind": "guesthouse",
           "name": "Loch Linnhe House",
+          "osm": "node/6806183365",
           "stage": "8",
           "stageKind": "main",
           "km": 151.7,
@@ -12453,6 +12629,7 @@
           "group": "beds",
           "kind": "guesthouse",
           "name": "Minaig B&B",
+          "osm": "node/6806383371",
           "stage": "8",
           "stageKind": "main",
           "km": 151.7,
@@ -12464,6 +12641,7 @@
           "group": "beds",
           "kind": "guesthouse",
           "name": "Burnlea B&B",
+          "osm": "node/6806398768",
           "stage": "8",
           "stageKind": "main",
           "km": 151.7,
@@ -12475,6 +12653,7 @@
           "group": "beds",
           "kind": "guesthouse",
           "name": "Hotel Alba B&B",
+          "osm": "node/6806443701",
           "stage": "8",
           "stageKind": "main",
           "km": 151.7,
@@ -12486,6 +12665,7 @@
           "group": "beds",
           "kind": "guesthouse",
           "name": "Morvich B&B",
+          "osm": "node/6806450382",
           "stage": "8",
           "stageKind": "main",
           "km": 151.7,
@@ -12497,6 +12677,7 @@
           "group": "beds",
           "kind": "guesthouse",
           "name": "The Gantocks B&B",
+          "osm": "node/6806466086",
           "stage": "8",
           "stageKind": "main",
           "km": 151.7,
@@ -12508,6 +12689,7 @@
           "group": "beds",
           "kind": "guesthouse",
           "name": "Camdale",
+          "osm": "node/10605005604",
           "stage": "8",
           "stageKind": "main",
           "km": 151.7,
@@ -12519,6 +12701,7 @@
           "group": "beds",
           "kind": "guesthouse",
           "name": "Lochview House",
+          "osm": "way/404366371",
           "stage": "8",
           "stageKind": "main",
           "km": 151.7,
@@ -12544,43 +12727,50 @@
           "kind": "campsite",
           "name": "Drymen Camping",
           "stage": "1",
-          "km": 17.3
+          "km": 17.3,
+          "osm": "way/708129469"
         },
         {
           "kind": "campsite",
           "name": "Cashel Camping & Caravan Park Forest Holidays",
           "stage": "2",
-          "km": 35.3
+          "km": 35.3,
+          "osm": "node/667005293"
         },
         {
           "kind": "campsite",
           "name": "Sallochy Campsite - Woodland Camping",
           "stage": "2",
-          "km": 37.9
+          "km": 37.9,
+          "osm": "way/229580713"
         },
         {
           "kind": "campsite",
           "name": "Beinglas Campsite",
           "stage": "3",
-          "km": 64.1
+          "km": 64.1,
+          "osm": "way/419038972"
         },
         {
           "kind": "campsite",
           "name": "By the Way",
           "stage": "4",
-          "km": 82.7
+          "km": 82.7,
+          "osm": "way/1172724074"
         },
         {
           "kind": "campsite",
           "name": "Glencoe Mountain Resort",
           "stage": "6",
-          "km": 110.7
+          "km": 110.7,
+          "osm": "way/416173994"
         },
         {
           "kind": "campsite",
           "name": "Glen Nevis Caravan and Camping Park",
           "stage": "8",
-          "km": 147.0
+          "km": 147.0,
+          "osm": "way/99714191"
         }
       ],
       "refills": [
@@ -12588,565 +12778,659 @@
           "kind": "campsite",
           "name": null,
           "stage": "1",
-          "km": 17.2
+          "km": 17.2,
+          "osm": "node/12114107564"
         },
         {
           "kind": "guesthouse",
           "name": "Altquhur Byre",
           "stage": "1",
-          "km": 17.2
+          "km": 17.2,
+          "osm": "node/12204169001"
         },
         {
           "kind": "guesthouse",
           "name": "Mulberry Lodge B&B",
           "stage": "1",
-          "km": 18.6
+          "km": 18.6,
+          "osm": "node/4161662687"
         },
         {
           "kind": "guesthouse",
           "name": "The Old School House",
           "stage": "2",
-          "km": 19.1
+          "km": 19.1,
+          "osm": "node/4161725393"
         },
         {
           "kind": "campsite",
           "name": null,
           "stage": "2",
-          "km": 21.0
+          "km": 21.0,
+          "osm": "node/9897423719"
         },
         {
           "kind": "campsite",
           "name": null,
           "stage": "2",
-          "km": 21.7
+          "km": 21.7,
+          "osm": "node/14222496682"
         },
         {
           "kind": "campsite",
           "name": null,
           "stage": "2",
-          "km": 22.9
+          "km": 22.9,
+          "osm": "node/11130583297"
         },
         {
           "kind": "campsite",
           "name": null,
           "stage": "2",
-          "km": 25.1
+          "km": 25.1,
+          "osm": "node/9773491025"
         },
         {
           "kind": "hostel",
           "name": "Arrochoile B&B",
           "stage": "2",
-          "km": 29.6
+          "km": 29.6,
+          "osm": "node/10911559700"
         },
         {
           "kind": "guesthouse",
           "name": "The Oak Tree Inn",
           "stage": "2",
-          "km": 30.2
+          "km": 30.2,
+          "osm": "way/251911356"
         },
         {
           "kind": "guesthouse",
           "name": "Balmaha Cottage",
           "stage": "2",
-          "km": 30.2
+          "km": 30.2,
+          "osm": "way/277825090"
         },
         {
           "kind": "guesthouse",
           "name": "Coille Mhor Cottage",
           "stage": "2",
-          "km": 40.3
+          "km": 40.3,
+          "osm": "node/2327987339"
         },
         {
           "kind": "hostel",
           "name": "Rowardennan Lodge Youth Hostel",
           "stage": "3",
-          "km": 42.9
+          "km": 42.9,
+          "osm": "node/1305661065"
         },
         {
           "kind": "hostel",
           "name": "Ben Lomond Bunkhouse",
           "stage": "3",
-          "km": 43.1
+          "km": 43.1,
+          "osm": "node/4896948722"
         },
         {
           "kind": "guesthouse",
           "name": "Ben Lomond Cottage",
           "stage": "3",
-          "km": 43.1
+          "km": 43.1,
+          "osm": "node/7737771644"
         },
         {
           "kind": "campsite",
           "name": "Rowardennan Lodge Youth Hostel",
           "stage": "3",
-          "km": 43.1
+          "km": 43.1,
+          "osm": "node/9773480148"
         },
         {
           "kind": "campsite",
           "name": null,
           "stage": "3",
-          "km": 44.9
+          "km": 44.9,
+          "osm": "node/11130723710"
         },
         {
           "kind": "campsite",
           "name": null,
           "stage": "3",
-          "km": 45.3
+          "km": 45.3,
+          "osm": "node/11130723713"
         },
         {
           "kind": "campsite",
           "name": null,
           "stage": "3",
-          "km": 45.4
+          "km": 45.4,
+          "osm": "node/11130723714"
         },
         {
           "kind": "campsite",
           "name": null,
           "stage": "3",
-          "km": 46.4
+          "km": 46.4,
+          "osm": "node/9897423720"
         },
         {
           "kind": "campsite",
           "name": null,
           "stage": "3",
-          "km": 47.8
+          "km": 47.8,
+          "osm": "node/11130723716"
         },
         {
           "kind": "campsite",
           "name": null,
           "stage": "3",
-          "km": 48.0
+          "km": 48.0,
+          "osm": "node/11130723715"
         },
         {
           "kind": "hut",
           "name": "Rowchoish",
           "stage": "3",
-          "km": 48.9
+          "km": 48.9,
+          "osm": "way/446514074"
         },
         {
           "kind": "campsite",
           "name": null,
           "stage": "3",
-          "km": 49.7
+          "km": 49.7,
+          "osm": "node/11130755236"
         },
         {
           "kind": "campsite",
           "name": null,
           "stage": "3",
-          "km": 50.6
+          "km": 50.6,
+          "osm": "node/11130755235"
         },
         {
           "kind": "campsite",
           "name": null,
           "stage": "3",
-          "km": 50.8
+          "km": 50.8,
+          "osm": "node/11130755237"
         },
         {
           "kind": "campsite",
           "name": null,
           "stage": "3",
-          "km": 51.4
+          "km": 51.4,
+          "osm": "node/12114353985"
         },
         {
           "kind": "campsite",
           "name": null,
           "stage": "3",
-          "km": 51.5
+          "km": 51.5,
+          "osm": "node/9897423519"
         },
         {
           "kind": "campsite",
           "name": null,
           "stage": "3",
-          "km": 52.2
+          "km": 52.2,
+          "osm": "node/11130755242"
         },
         {
           "kind": "campsite",
           "name": null,
           "stage": "3",
-          "km": 53.2
+          "km": 53.2,
+          "osm": "node/11130755243"
         },
         {
           "kind": "guesthouse",
           "name": "Inversnaid Lodge",
           "stage": "3",
-          "km": 53.6
+          "km": 53.6,
+          "osm": "node/969339263"
         },
         {
           "kind": "campsite",
           "name": null,
           "stage": "3",
-          "km": 55.8
+          "km": 55.8,
+          "osm": "node/9897423721"
         },
         {
           "kind": "campsite",
           "name": null,
           "stage": "3",
-          "km": 58.6
+          "km": 58.6,
+          "osm": "node/11130710974"
         },
         {
           "kind": "campsite",
           "name": null,
           "stage": "3",
-          "km": 58.7
+          "km": 58.7,
+          "osm": "node/11130710973"
         },
         {
           "kind": "hut",
           "name": "Doune Byre",
           "stage": "3",
-          "km": 59.6
+          "km": 59.6,
+          "osm": "way/278797747"
         },
         {
           "kind": "guesthouse",
           "name": "Rose Cottage",
           "stage": "3",
-          "km": 64.0
+          "km": 64.0,
+          "osm": "node/1749721519"
         },
         {
           "kind": "campsite",
           "name": null,
           "stage": "4",
-          "km": 69.4
+          "km": 69.4,
+          "osm": "node/14222527751"
         },
         {
           "kind": "campsite",
           "name": null,
           "stage": "4",
-          "km": 73.6
+          "km": 73.6,
+          "osm": "node/14222520165"
         },
         {
           "kind": "guesthouse",
           "name": "Ewich Guest House  Bed & Breakfast",
           "stage": "4",
-          "km": 76.6
+          "km": 76.6,
+          "osm": "node/3101842570"
         },
         {
           "kind": "campsite",
           "name": null,
           "stage": "4",
-          "km": 77.2
+          "km": 77.2,
+          "osm": "node/13017397301"
         },
         {
           "kind": "campsite",
           "name": null,
           "stage": "4",
-          "km": 79.0
+          "km": 79.0,
+          "osm": "way/1181191597"
         },
         {
           "kind": "guesthouse",
           "name": "Strathfillan House",
           "stage": "4",
-          "km": 79.6
+          "km": 79.6,
+          "osm": "node/1749662809"
         },
         {
           "kind": "campsite",
           "name": null,
           "stage": "4",
-          "km": 80.1
+          "km": 80.1,
+          "osm": "node/9773493529"
         },
         {
           "kind": "guesthouse",
           "name": "Glengarry House",
           "stage": "4",
-          "km": 82.0
+          "km": 82.0,
+          "osm": "way/335209581"
         },
         {
           "kind": "guesthouse",
           "name": "Dalkell Cottage",
           "stage": "4",
-          "km": 82.7
+          "km": 82.7,
+          "osm": "node/4165969889"
         },
         {
           "kind": "guesthouse",
           "name": "Kilbride Lodge",
           "stage": "4",
-          "km": 82.7
+          "km": 82.7,
+          "osm": "node/4165972690"
         },
         {
           "kind": "hostel",
           "name": null,
           "stage": "4",
-          "km": 82.7
+          "km": 82.7,
+          "osm": "way/59621271"
         },
         {
           "kind": "hostel",
           "name": "By the Way",
           "stage": "4",
-          "km": 82.8
+          "km": 82.8,
+          "osm": "way/59621061"
         },
         {
           "kind": "guesthouse",
           "name": "Clifton Cottage B&B",
           "stage": "4",
-          "km": 83.2
+          "km": 83.2,
+          "osm": "way/59688781"
         },
         {
           "kind": "campsite",
           "name": null,
           "stage": "5",
-          "km": 89.1
+          "km": 89.1,
+          "osm": "node/12110716583"
         },
         {
           "kind": "hostel",
           "name": "West Highland Way Sleeper",
           "stage": "5",
-          "km": 93.4
+          "km": 93.4,
+          "osm": "node/5094622544"
         },
         {
           "kind": "campsite",
           "name": null,
           "stage": "5",
-          "km": 93.9
+          "km": 93.9,
+          "osm": "way/376602248"
         },
         {
           "kind": "campsite",
           "name": null,
           "stage": "6",
-          "km": 103.9
+          "km": 103.9,
+          "osm": "node/11828234669"
         },
         {
           "kind": "campsite",
           "name": null,
           "stage": "6",
-          "km": 105.6
+          "km": 105.6,
+          "osm": "node/12338140230"
         },
         {
           "kind": "hut",
           "name": "Blackrock Cottage",
           "stage": "6",
-          "km": 111.2
+          "km": 111.2,
+          "osm": "way/94610847"
         },
         {
           "kind": "campsite",
           "name": null,
           "stage": "7",
-          "km": 113.1
+          "km": 113.1,
+          "osm": "way/1200469100"
         },
         {
           "kind": "hut",
           "name": null,
           "stage": "7",
-          "km": 116.1
+          "km": 116.1,
+          "osm": "way/1195081946"
         },
         {
           "kind": "hut",
           "name": "Lagangarbh",
           "stage": "7",
-          "km": 117.5
+          "km": 117.5,
+          "osm": "way/83643673"
         },
         {
           "kind": "campsite",
           "name": null,
           "stage": "7",
-          "km": 118.0
+          "km": 118.0,
+          "osm": "node/9904099218"
         },
         {
           "kind": "campsite",
           "name": null,
           "stage": "7",
-          "km": 120.1
+          "km": 120.1,
+          "osm": "node/9773483151"
         },
         {
           "kind": "guesthouse",
           "name": "Forest View",
           "stage": "7",
-          "km": 126.7
+          "km": 126.7,
+          "osm": "node/4169956402"
         },
         {
           "kind": "guesthouse",
           "name": "Quiraing B&B",
           "stage": "7",
-          "km": 126.7
+          "km": 126.7,
+          "osm": "node/4170341192"
         },
         {
           "kind": "campsite",
           "name": "Blackwater Campsite",
           "stage": "7",
-          "km": 126.8
+          "km": 126.8,
+          "osm": "way/211753745"
         },
         {
           "kind": "guesthouse",
           "name": "Danca B&B",
           "stage": "7",
-          "km": 126.9
+          "km": 126.9,
+          "osm": "node/4170341094"
         },
         {
           "kind": "hostel",
           "name": "Blackwater Hostel",
           "stage": "7",
-          "km": 127.0
+          "km": 127.0,
+          "osm": "way/94129740"
         },
         {
           "kind": "hostel",
           "name": "West Highland Lodge",
           "stage": "7",
-          "km": 127.1
+          "km": 127.1,
+          "osm": "node/11279053471"
         },
         {
           "kind": "guesthouse",
           "name": "Allt Na Leven",
           "stage": "7",
-          "km": 127.1
+          "km": 127.1,
+          "osm": "node/12830442398"
         },
         {
           "kind": "campsite",
           "name": "Kinlochleven Aire Site",
           "stage": "7",
-          "km": 127.1
+          "km": 127.1,
+          "osm": "way/1385919965"
         },
         {
           "kind": "guesthouse",
           "name": "The Old Police Station",
           "stage": "8",
-          "km": 127.3
+          "km": 127.3,
+          "osm": "way/94129808"
         },
         {
           "kind": "guesthouse",
           "name": "Tigh Na Cheo guest house",
           "stage": "8",
-          "km": 127.7
+          "km": 127.7,
+          "osm": "way/210587702"
         },
         {
           "kind": "campsite",
           "name": "MacDonald Hotel Campsite",
           "stage": "8",
-          "km": 127.8
+          "km": 127.8,
+          "osm": "node/6430320991"
         },
         {
           "kind": "campsite",
           "name": "Kinlochleven Wild Camping Area",
           "stage": "8",
-          "km": 127.8
+          "km": 127.8,
+          "osm": "node/11131394516"
         },
         {
           "kind": "campsite",
           "name": null,
           "stage": "8",
-          "km": 142.7
+          "km": 142.7,
+          "osm": "node/14222513025"
         },
         {
           "kind": "campsite",
           "name": null,
           "stage": "8",
-          "km": 146.0
+          "km": 146.0,
+          "osm": "node/14222513027"
         },
         {
           "kind": "campsite",
           "name": null,
           "stage": "8",
-          "km": 146.6
+          "km": 146.6,
+          "osm": "node/14222513028"
         },
         {
           "kind": "guesthouse",
           "name": "Achintee Farm",
           "stage": "8",
-          "km": 148.2
+          "km": 148.2,
+          "osm": "node/13189860247"
         },
         {
           "kind": "guesthouse",
           "name": "The Brevins Guesthouse",
           "stage": "8",
-          "km": 149.9
+          "km": 149.9,
+          "osm": "node/2327994868"
         },
         {
           "kind": "guesthouse",
           "name": "Ben Nevis Guesthouse",
           "stage": "8",
-          "km": 150.0
+          "km": 150.0,
+          "osm": "node/13961760701"
         },
         {
           "kind": "campsite",
           "name": null,
           "stage": "8",
-          "km": 150.7
+          "km": 150.7,
+          "osm": "node/14222513029"
         },
         {
           "kind": "guesthouse",
           "name": "Craig Nevis",
           "stage": "8",
-          "km": 150.8
+          "km": 150.8,
+          "osm": "node/5182202592"
         },
         {
           "kind": "guesthouse",
           "name": "Valtos Bed and Breakfast",
           "stage": "8",
-          "km": 150.8
+          "km": 150.8,
+          "osm": "node/6064447650"
         },
         {
           "kind": "hostel",
           "name": "Fort William Backpackers",
           "stage": "8",
-          "km": 150.8
+          "km": 150.8,
+          "osm": "way/194467694"
         },
         {
           "kind": "hostel",
           "name": "B&B",
           "stage": "8",
-          "km": 150.9
+          "km": 150.9,
+          "osm": "node/4197338993"
         },
         {
           "kind": "guesthouse",
           "name": "Ardmory B&B",
           "stage": "8",
-          "km": 151.0
+          "km": 151.0,
+          "osm": "node/4171781494"
         },
         {
           "kind": "guesthouse",
           "name": "Saint Andrew's Guest House",
           "stage": "8",
-          "km": 151.2
+          "km": 151.2,
+          "osm": "node/4171746298"
         },
         {
           "kind": "hostel",
           "name": "Bank Street Lodge",
           "stage": "8",
-          "km": 151.3
+          "km": 151.3,
+          "osm": "node/885716653"
         },
         {
           "kind": "guesthouse",
           "name": "Aldourie B&B",
           "stage": "8",
-          "km": 151.3
+          "km": 151.3,
+          "osm": "node/4171748707"
         },
         {
           "kind": "guesthouse",
           "name": "Anagrae B&B",
           "stage": "8",
-          "km": 151.4
+          "km": 151.4,
+          "osm": "node/4171781392"
         },
         {
           "kind": "guesthouse",
           "name": "Glenmoidart B&B",
           "stage": "8",
-          "km": 151.5
+          "km": 151.5,
+          "osm": "node/4171748704"
         },
         {
           "kind": "guesthouse",
           "name": "Melrose",
           "stage": "8",
-          "km": 151.6
+          "km": 151.6,
+          "osm": "node/6810071718"
         },
         {
           "kind": "guesthouse",
           "name": "Gowan Brae House",
           "stage": "8",
-          "km": 151.7
+          "km": 151.7,
+          "osm": "node/1749766905"
         },
         {
           "kind": "guesthouse",
           "name": "Fassfern Guest House",
           "stage": "8",
-          "km": 151.7
+          "km": 151.7,
+          "osm": "node/4895229224"
         },
         {
           "kind": "guesthouse",
           "name": "Braeside House",
           "stage": "8",
-          "km": 151.7
+          "km": 151.7,
+          "osm": "node/5294473225"
         },
         {
           "kind": "guesthouse",
           "name": "Lochview House",
           "stage": "8",
-          "km": 151.7
+          "km": 151.7,
+          "osm": "way/404366371"
         }
       ],
       "longestGapKm": {

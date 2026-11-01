@@ -2455,7 +2455,7 @@
   },
   "along": {
     "source": "osm",
-    "retrieved": "2026-10-30T21:24:51Z",
+    "retrieved": "2026-10-31T21:23:06Z",
     "withinM": 1000,
     "stageEndM": 3000,
     "routeKm": 468.8,
@@ -2467,6 +2467,7 @@
           "group": "resupply",
           "kind": "convenience",
           "name": "Fjällboden",
+          "osm": "node/1884082965",
           "stage": "1",
           "stageKind": "main",
           "km": 0.0,
@@ -2478,6 +2479,7 @@
           "group": "resupply",
           "kind": "convenience",
           "name": null,
+          "osm": "node/12795920074",
           "stage": "1",
           "stageKind": "main",
           "km": 14.2,
@@ -2489,6 +2491,7 @@
           "group": "resupply",
           "kind": "convenience",
           "name": null,
+          "osm": "node/12795920073",
           "stage": "3",
           "stageKind": "main",
           "km": 34.9,
@@ -2500,6 +2503,7 @@
           "group": "resupply",
           "kind": "convenience",
           "name": "Sälkastugorna",
+          "osm": "node/1884060818",
           "stage": "5",
           "stageKind": "main",
           "km": 60.2,
@@ -2511,6 +2515,7 @@
           "group": "resupply",
           "kind": "convenience",
           "name": null,
+          "osm": "node/12795920077",
           "stage": "6",
           "stageKind": "main",
           "km": 84.2,
@@ -2522,6 +2527,7 @@
           "group": "resupply",
           "kind": "convenience",
           "name": null,
+          "osm": "node/12795920075",
           "stage": "7",
           "stageKind": "main",
           "km": 93.1,
@@ -2533,6 +2539,7 @@
           "group": "resupply",
           "kind": "convenience",
           "name": null,
+          "osm": "node/12795920072",
           "stage": "9",
           "stageKind": "main",
           "km": 140.2,
@@ -2544,6 +2551,7 @@
           "group": "resupply",
           "kind": "convenience",
           "name": null,
+          "osm": "node/12795920076",
           "stage": "11",
           "stageKind": "main",
           "km": 172.3,
@@ -2555,6 +2563,7 @@
           "group": "resupply",
           "kind": "supermarket",
           "name": "ICA Nära Jäckvik",
+          "osm": "way/137930853",
           "stage": "18",
           "stageKind": "main",
           "km": 301.3,
@@ -2566,6 +2575,7 @@
           "group": "resupply",
           "kind": "convenience",
           "name": "Handelsbod Adolfström",
+          "osm": "node/1231376365",
           "stage": "20",
           "stageKind": "main",
           "km": 322.1,
@@ -2577,6 +2587,7 @@
           "group": "resupply",
           "kind": "supermarket",
           "name": "Ammarnäs livs",
+          "osm": "node/1921532825",
           "stage": "23",
           "stageKind": "main",
           "km": 392.1,
@@ -2588,6 +2599,7 @@
           "group": "resupply",
           "kind": "convenience",
           "name": null,
+          "osm": "node/9385273900",
           "stage": "28",
           "stageKind": "main",
           "km": 457.5,
@@ -2599,6 +2611,7 @@
           "group": "resupply",
           "kind": "supermarket",
           "name": "ICA Fjällboden",
+          "osm": "node/1835362471",
           "stage": "28",
           "stageKind": "main",
           "km": 468.8,
@@ -2610,6 +2623,7 @@
           "group": "resupply",
           "kind": "fuel",
           "name": "OKQ8 Hemavan Automatstation",
+          "osm": "way/1205576573",
           "stage": "28",
           "stageKind": "main",
           "km": 468.8,
@@ -2621,6 +2635,7 @@
           "group": "resupply",
           "kind": "convenience",
           "name": "Kebnekaise Fjällstation",
+          "osm": "node/12055567664",
           "stage": "N2",
           "stageKind": "approach",
           "km": null,
@@ -2641,6 +2656,7 @@
           "group": "beds",
           "kind": "hostel",
           "name": "Vandrarhem Keron",
+          "osm": "way/150243210",
           "stage": "1",
           "stageKind": "main",
           "km": 0.0,
@@ -2653,6 +2669,7 @@
           "kind": "campsite",
           "name": "Abisko turiststation",
           "drinkingWater": "yes",
+          "osm": "way/437014430",
           "stage": "1",
           "stageKind": "main",
           "km": 0.0,
@@ -2664,6 +2681,7 @@
           "group": "beds",
           "kind": "hut",
           "name": "Abiskojåkka Fjällstuga",
+          "osm": "way/150741216",
           "stage": "1",
           "stageKind": "main",
           "km": 0.2,
@@ -2675,6 +2693,7 @@
           "group": "beds",
           "kind": "campsite",
           "name": "Nissonjokk tältplats",
+          "osm": "node/4394926500",
           "stage": "1",
           "stageKind": "main",
           "km": 4.8,
@@ -2686,6 +2705,7 @@
           "group": "beds",
           "kind": "campsite",
           "name": null,
+          "osm": "node/12146295986",
           "stage": "1",
           "stageKind": "main",
           "km": 4.9,
@@ -2697,6 +2717,7 @@
           "group": "beds",
           "kind": "hut",
           "name": "Abiskojaure Fjällstuga",
+          "osm": "node/289406212",
           "stage": "1",
           "stageKind": "main",
           "km": 14.2,
@@ -2708,6 +2729,7 @@
           "group": "beds",
           "kind": "campsite",
           "name": null,
+          "osm": "node/4341597597",
           "stage": "1",
           "stageKind": "main",
           "km": 14.2,
@@ -2719,6 +2741,7 @@
           "group": "beds",
           "kind": "campsite",
           "name": "good place for camping",
+          "osm": "node/5818188874",
           "stage": "2",
           "stageKind": "main",
           "km": 15.6,
@@ -2730,6 +2753,7 @@
           "group": "beds",
           "kind": "campsite",
           "name": null,
+          "osm": "node/4341577625",
           "stage": "2",
           "stageKind": "main",
           "km": 17.1,
@@ -2741,6 +2765,7 @@
           "group": "beds",
           "kind": "campsite",
           "name": null,
+          "osm": "node/12146336325",
           "stage": "2",
           "stageKind": "main",
           "km": 17.4,
@@ -2752,6 +2777,7 @@
           "group": "beds",
           "kind": "campsite",
           "name": null,
+          "osm": "node/12146273195",
           "stage": "2",
           "stageKind": "main",
           "km": 17.5,
@@ -2763,6 +2789,7 @@
           "group": "beds",
           "kind": "campsite",
           "name": null,
+          "osm": "node/12146273194",
           "stage": "2",
           "stageKind": "main",
           "km": 24.6,
@@ -2774,6 +2801,7 @@
           "group": "beds",
           "kind": "campsite",
           "name": null,
+          "osm": "node/4341560647",
           "stage": "2",
           "stageKind": "main",
           "km": 26.6,
@@ -2785,6 +2813,7 @@
           "group": "beds",
           "kind": "campsite",
           "name": null,
+          "osm": "node/12146295970",
           "stage": "2",
           "stageKind": "main",
           "km": 28.5,
@@ -2796,6 +2825,7 @@
           "group": "beds",
           "kind": "campsite",
           "name": null,
+          "osm": "node/12146276318",
           "stage": "2",
           "stageKind": "main",
           "km": 29.0,
@@ -2807,6 +2837,7 @@
           "group": "beds",
           "kind": "campsite",
           "name": null,
+          "osm": "node/12146273193",
           "stage": "2",
           "stageKind": "main",
           "km": 33.5,
@@ -2818,6 +2849,7 @@
           "group": "beds",
           "kind": "campsite",
           "name": null,
+          "osm": "node/12146318948",
           "stage": "2",
           "stageKind": "main",
           "km": 33.7,
@@ -2829,6 +2861,7 @@
           "group": "beds",
           "kind": "campsite",
           "name": null,
+          "osm": "node/4341597515",
           "stage": "2",
           "stageKind": "main",
           "km": 34.8,
@@ -2840,6 +2873,7 @@
           "group": "beds",
           "kind": "hut",
           "name": "Alesjaure Fjällstuga",
+          "osm": "node/289257081",
           "stage": "3",
           "stageKind": "main",
           "km": 34.9,
@@ -2851,6 +2885,7 @@
           "group": "beds",
           "kind": "campsite",
           "name": null,
+          "osm": "node/4341597909",
           "stage": "3",
           "stageKind": "main",
           "km": 34.9,
@@ -2862,6 +2897,7 @@
           "group": "beds",
           "kind": "campsite",
           "name": null,
+          "osm": "node/12146295505",
           "stage": "3",
           "stageKind": "main",
           "km": 35.1,
@@ -2873,6 +2909,7 @@
           "group": "beds",
           "kind": "campsite",
           "name": null,
+          "osm": "node/13310035460",
           "stage": "3",
           "stageKind": "main",
           "km": 39.1,
@@ -2884,6 +2921,7 @@
           "group": "beds",
           "kind": "campsite",
           "name": null,
+          "osm": "node/12146295504",
           "stage": "3",
           "stageKind": "main",
           "km": 40.1,
@@ -2895,6 +2933,7 @@
           "group": "beds",
           "kind": "campsite",
           "name": null,
+          "osm": "node/12146295883",
           "stage": "3",
           "stageKind": "main",
           "km": 44.2,
@@ -2906,6 +2945,7 @@
           "group": "beds",
           "kind": "campsite",
           "name": null,
+          "osm": "node/13007252801",
           "stage": "3",
           "stageKind": "main",
           "km": 45.3,
@@ -2917,6 +2957,7 @@
           "group": "beds",
           "kind": "campsite",
           "name": null,
+          "osm": "node/13310066418",
           "stage": "3",
           "stageKind": "main",
           "km": 45.5,
@@ -2928,6 +2969,7 @@
           "group": "beds",
           "kind": "hut",
           "name": "Tjäktja Fjällstuga",
+          "osm": "node/1356403681",
           "stage": "3",
           "stageKind": "main",
           "km": 47.7,
@@ -2939,6 +2981,7 @@
           "group": "beds",
           "kind": "campsite",
           "name": null,
+          "osm": "node/12146284487",
           "stage": "4",
           "stageKind": "main",
           "km": 56.9,
@@ -2950,6 +2993,7 @@
           "group": "beds",
           "kind": "hut",
           "name": "Sälka Fjällstuga",
+          "osm": "node/1356403616",
           "stage": "5",
           "stageKind": "main",
           "km": 60.2,
@@ -2961,6 +3005,7 @@
           "group": "beds",
           "kind": "campsite",
           "name": null,
+          "osm": "node/12146295501",
           "stage": "5",
           "stageKind": "main",
           "km": 60.2,
@@ -2972,6 +3017,7 @@
           "group": "beds",
           "kind": "campsite",
           "name": null,
+          "osm": "node/12146282300",
           "stage": "5",
           "stageKind": "main",
           "km": 60.4,
@@ -2983,6 +3029,7 @@
           "group": "beds",
           "kind": "campsite",
           "name": null,
+          "osm": "node/4342261392",
           "stage": "5",
           "stageKind": "main",
           "km": 61.7,
@@ -2994,6 +3041,7 @@
           "group": "beds",
           "kind": "campsite",
           "name": null,
+          "osm": "node/12146273995",
           "stage": "5",
           "stageKind": "main",
           "km": 61.7,
@@ -3005,6 +3053,7 @@
           "group": "beds",
           "kind": "campsite",
           "name": null,
+          "osm": "node/12146270292",
           "stage": "5",
           "stageKind": "main",
           "km": 62.1,
@@ -3016,6 +3065,7 @@
           "group": "beds",
           "kind": "campsite",
           "name": null,
+          "osm": "node/12146286420",
           "stage": "5",
           "stageKind": "main",
           "km": 63.1,
@@ -3027,6 +3077,7 @@
           "group": "beds",
           "kind": "campsite",
           "name": null,
+          "osm": "node/4341597903",
           "stage": "5",
           "stageKind": "main",
           "km": 66.2,
@@ -3038,6 +3089,7 @@
           "group": "beds",
           "kind": "campsite",
           "name": null,
+          "osm": "node/4343332392",
           "stage": "5",
           "stageKind": "main",
           "km": 69.0,
@@ -3049,6 +3101,7 @@
           "group": "beds",
           "kind": "hut",
           "name": "Singi Fjällstuga",
+          "osm": "node/289250952",
           "stage": "5",
           "stageKind": "main",
           "km": 71.9,
@@ -3060,6 +3113,7 @@
           "group": "beds",
           "kind": "campsite",
           "name": null,
+          "osm": "node/12097526217",
           "stage": "6",
           "stageKind": "main",
           "km": 79.9,
@@ -3071,6 +3125,7 @@
           "group": "beds",
           "kind": "campsite",
           "name": null,
+          "osm": "node/10036289925",
           "stage": "6",
           "stageKind": "main",
           "km": 84.1,
@@ -3082,6 +3137,7 @@
           "group": "beds",
           "kind": "hut",
           "name": "Kaitumjaure Fjällstuga",
+          "osm": "node/4786913023",
           "stage": "6",
           "stageKind": "main",
           "km": 84.2,
@@ -3093,6 +3149,7 @@
           "group": "beds",
           "kind": "hut",
           "name": "Teusajaure Fjällstuga",
+          "osm": "node/339299832",
           "stage": "7",
           "stageKind": "main",
           "km": 93.1,
@@ -3104,6 +3161,7 @@
           "group": "beds",
           "kind": "hut",
           "name": "Vakkotavare Fjällstuga",
+          "osm": "node/339299833",
           "stage": "8",
           "stageKind": "main",
           "km": 107.7,
@@ -3115,6 +3173,7 @@
           "group": "beds",
           "kind": "campsite",
           "name": "Stora Sjöfallet",
+          "osm": "way/292601402",
           "stage": "9",
           "stageKind": "main",
           "km": 124.8,
@@ -3126,6 +3185,7 @@
           "group": "beds",
           "kind": "hut",
           "name": "Saltoluokta Fjällstation",
+          "osm": "node/1356402863",
           "stage": "9",
           "stageKind": "main",
           "km": 140.2,
@@ -3137,6 +3197,7 @@
           "group": "beds",
           "kind": "campsite",
           "name": null,
+          "osm": "node/14100998303",
           "stage": "10",
           "stageKind": "main",
           "km": 154.8,
@@ -3148,6 +3209,7 @@
           "group": "beds",
           "kind": "hut",
           "name": "Sitojaure Fjällstuga",
+          "osm": "node/4786913022",
           "stage": "11",
           "stageKind": "main",
           "km": 159.5,
@@ -3159,6 +3221,7 @@
           "group": "beds",
           "kind": "campsite",
           "name": null,
+          "osm": "node/14100998302",
           "stage": "11",
           "stageKind": "main",
           "km": 171.2,
@@ -3170,6 +3233,7 @@
           "group": "beds",
           "kind": "hut",
           "name": "Aktse Fjällstuga",
+          "osm": "node/339303441",
           "stage": "11",
           "stageKind": "main",
           "km": 172.3,
@@ -3181,6 +3245,7 @@
           "group": "beds",
           "kind": "hut",
           "name": "Pårte Fjällstuga",
+          "osm": "node/1669071479",
           "stage": "12",
           "stageKind": "main",
           "km": 195.8,
@@ -3192,6 +3257,7 @@
           "group": "beds",
           "kind": "campsite",
           "name": null,
+          "osm": "node/14100998301",
           "stage": "13",
           "stageKind": "main",
           "km": 198.4,
@@ -3203,6 +3269,7 @@
           "group": "beds",
           "kind": "hut",
           "name": "Kvikkjokk Fjällstation",
+          "osm": "node/1356458317",
           "stage": "14",
           "stageKind": "main",
           "km": 211.2,
@@ -3214,6 +3281,7 @@
           "group": "beds",
           "kind": "hostel",
           "name": "Kvikkjokk Hostel",
+          "osm": "node/14064914402",
           "stage": "14",
           "stageKind": "main",
           "km": 211.5,
@@ -3225,6 +3293,7 @@
           "group": "beds",
           "kind": "campsite",
           "name": null,
+          "osm": "way/363625798",
           "stage": "14",
           "stageKind": "main",
           "km": 212.3,
@@ -3236,6 +3305,7 @@
           "group": "beds",
           "kind": "campsite",
           "name": null,
+          "osm": "way/38073690",
           "stage": "14",
           "stageKind": "main",
           "km": 212.4,
@@ -3248,6 +3318,7 @@
           "kind": "hut",
           "name": "Tsielejåkkastuga",
           "drinkingWater": "yes",
+          "osm": "node/1750214495",
           "stage": "15",
           "stageKind": "main",
           "km": 227.1,
@@ -3259,6 +3330,7 @@
           "group": "beds",
           "kind": "campsite",
           "name": "Piteälven camp site",
+          "osm": "node/11206281717",
           "stage": "15",
           "stageKind": "main",
           "km": 247.8,
@@ -3270,6 +3342,7 @@
           "group": "beds",
           "kind": "campsite",
           "name": "Gásakláhko camp site",
+          "osm": "node/12772183973",
           "stage": "16",
           "stageKind": "main",
           "km": 261.8,
@@ -3281,6 +3354,7 @@
           "group": "beds",
           "kind": "hostel",
           "name": "Kyrkans Fjällgård Jäkkvik",
+          "osm": "way/137940723",
           "stage": "19",
           "stageKind": "main",
           "km": 301.4,
@@ -3292,6 +3366,7 @@
           "group": "beds",
           "kind": "campsite",
           "name": "Kyrkans Fjällgård Jäkkvik",
+          "osm": "node/13965335109",
           "stage": "19",
           "stageKind": "main",
           "km": 301.5,
@@ -3303,6 +3378,7 @@
           "group": "beds",
           "kind": "hut",
           "name": "Raststuga Pieljekaise",
+          "osm": "node/1967191335",
           "stage": "19",
           "stageKind": "main",
           "km": 304.6,
@@ -3314,6 +3390,7 @@
           "group": "beds",
           "kind": "campsite",
           "name": null,
+          "osm": "node/14099374801",
           "stage": "19",
           "stageKind": "main",
           "km": 307.5,
@@ -3325,6 +3402,7 @@
           "group": "beds",
           "kind": "hut",
           "name": "Pieljekaisestugan",
+          "osm": "node/1931961879",
           "stage": "19",
           "stageKind": "main",
           "km": 309.0,
@@ -3336,6 +3414,7 @@
           "group": "beds",
           "kind": "campsite",
           "name": null,
+          "osm": "node/10021854710",
           "stage": "19",
           "stageKind": "main",
           "km": 310.3,
@@ -3347,6 +3426,7 @@
           "group": "beds",
           "kind": "campsite",
           "name": "Rolf Sundqvist Turistservice",
+          "osm": "way/461726650",
           "stage": "19",
           "stageKind": "main",
           "km": 321.9,
@@ -3358,6 +3438,7 @@
           "group": "beds",
           "kind": "campsite",
           "name": "Adolfström Camping",
+          "osm": "node/1967191349",
           "stage": "20",
           "stageKind": "main",
           "km": 322.0,
@@ -3369,6 +3450,7 @@
           "group": "beds",
           "kind": "campsite",
           "name": "Värdshus Bäverholmen",
+          "osm": "node/1931923481",
           "stage": "20",
           "stageKind": "main",
           "km": 329.0,
@@ -3380,6 +3462,7 @@
           "group": "beds",
           "kind": "guesthouse",
           "name": "Värdshus Bäverholmen",
+          "osm": "node/1931923505",
           "stage": "20",
           "stageKind": "main",
           "km": 329.0,
@@ -3391,6 +3474,7 @@
           "group": "beds",
           "kind": "campsite",
           "name": null,
+          "osm": "node/14099373304",
           "stage": "20",
           "stageKind": "main",
           "km": 332.8,
@@ -3402,6 +3486,7 @@
           "group": "beds",
           "kind": "campsite",
           "name": null,
+          "osm": "node/14099373303",
           "stage": "21",
           "stageKind": "main",
           "km": 370.0,
@@ -3413,6 +3498,7 @@
           "group": "beds",
           "kind": "hut",
           "name": "Rävfallsstugan",
+          "osm": "way/320437155",
           "stage": "21",
           "stageKind": "main",
           "km": 370.0,
@@ -3424,6 +3510,7 @@
           "group": "beds",
           "kind": "campsite",
           "name": null,
+          "osm": "node/14099373302",
           "stage": "22",
           "stageKind": "main",
           "km": 370.1,
@@ -3435,6 +3522,7 @@
           "group": "beds",
           "kind": "campsite",
           "name": null,
+          "osm": "node/12093517312",
           "stage": "23",
           "stageKind": "main",
           "km": 390.9,
@@ -3446,6 +3534,7 @@
           "group": "beds",
           "kind": "hostel",
           "name": "Fjällhästens vandrarhem",
+          "osm": "way/623172475",
           "stage": "23",
           "stageKind": "main",
           "km": 391.7,
@@ -3457,6 +3546,7 @@
           "group": "beds",
           "kind": "hostel",
           "name": "Ammarnäsgårdens Vandrarhem",
+          "osm": "way/320434273",
           "stage": "23",
           "stageKind": "main",
           "km": 391.8,
@@ -3468,6 +3558,7 @@
           "group": "beds",
           "kind": "hostel",
           "name": "Ammarnäs Wärdshus",
+          "osm": "node/1965132866",
           "stage": "23",
           "stageKind": "main",
           "km": 392.1,
@@ -3479,6 +3570,7 @@
           "group": "beds",
           "kind": "hut",
           "name": "Aigert Fjällstuga",
+          "osm": "node/12772144390",
           "stage": "23",
           "stageKind": "main",
           "km": 399.3,
@@ -3490,6 +3582,7 @@
           "group": "beds",
           "kind": "hut",
           "name": null,
+          "osm": "way/174491081",
           "stage": "24",
           "stageKind": "main",
           "km": 406.8,
@@ -3501,6 +3594,7 @@
           "group": "beds",
           "kind": "hut",
           "name": "Serve Fjällstuga",
+          "osm": "node/12772144391",
           "stage": "24",
           "stageKind": "main",
           "km": 418.0,
@@ -3512,6 +3606,7 @@
           "group": "beds",
           "kind": "hut",
           "name": "Tärnasjö Fjällstuga",
+          "osm": "node/12772144392",
           "stage": "25",
           "stageKind": "main",
           "km": 431.3,
@@ -3523,6 +3618,7 @@
           "group": "beds",
           "kind": "campsite",
           "name": "Campsite",
+          "osm": "node/14204046681",
           "stage": "26",
           "stageKind": "main",
           "km": 432.6,
@@ -3534,6 +3630,7 @@
           "group": "beds",
           "kind": "campsite",
           "name": null,
+          "osm": "node/14099374701",
           "stage": "26",
           "stageKind": "main",
           "km": 441.1,
@@ -3545,6 +3642,7 @@
           "group": "beds",
           "kind": "hut",
           "name": "Syter Fjällstuga",
+          "osm": "node/339309788",
           "stage": "26",
           "stageKind": "main",
           "km": 445.3,
@@ -3556,6 +3654,7 @@
           "group": "beds",
           "kind": "campsite",
           "name": null,
+          "osm": "node/14099374601",
           "stage": "27",
           "stageKind": "main",
           "km": 450.0,
@@ -3567,6 +3666,7 @@
           "group": "beds",
           "kind": "hut",
           "name": "Viterskalet Fjällstuga",
+          "osm": "node/12772144393",
           "stage": "28",
           "stageKind": "main",
           "km": 457.5,
@@ -3578,6 +3678,7 @@
           "group": "beds",
           "kind": "campsite",
           "name": "Campsite",
+          "osm": "node/14204041943",
           "stage": "28",
           "stageKind": "main",
           "km": 460.8,
@@ -3589,6 +3690,7 @@
           "group": "beds",
           "kind": "campsite",
           "name": "Campsite",
+          "osm": "node/14099373203",
           "stage": "28",
           "stageKind": "main",
           "km": 460.9,
@@ -3600,6 +3702,7 @@
           "group": "beds",
           "kind": "campsite",
           "name": "Fjällforsens Camping",
+          "osm": "way/1235812475",
           "stage": "28",
           "stageKind": "main",
           "km": 467.4,
@@ -3611,6 +3714,7 @@
           "group": "beds",
           "kind": "hostel",
           "name": "Hemavan Fjällstation",
+          "osm": "way/490601230",
           "stage": "28",
           "stageKind": "main",
           "km": 468.6,
@@ -3622,6 +3726,7 @@
           "group": "beds",
           "kind": "hostel",
           "name": "Hemavans Fjällcenter",
+          "osm": "way/275577859",
           "stage": "28",
           "stageKind": "main",
           "km": 468.8,
@@ -3633,6 +3738,7 @@
           "group": "beds",
           "kind": "hostel",
           "name": "Kebnekaise fjällstation",
+          "osm": "node/289248555",
           "stage": "N2",
           "stageKind": "approach",
           "km": null,
@@ -3644,6 +3750,7 @@
           "group": "beds",
           "kind": "campsite",
           "name": null,
+          "osm": "node/883376550",
           "stage": "N1",
           "stageKind": "approach",
           "km": null,
@@ -3655,6 +3762,7 @@
           "group": "beds",
           "kind": "hut",
           "name": "Kebnekaise Restaurant",
+          "osm": "node/1356402043",
           "stage": "N2",
           "stageKind": "approach",
           "km": null,
@@ -3666,6 +3774,7 @@
           "group": "beds",
           "kind": "campsite",
           "name": null,
+          "osm": "node/4344464894",
           "stage": "N2",
           "stageKind": "approach",
           "km": null,
@@ -3677,6 +3786,7 @@
           "group": "beds",
           "kind": "campsite",
           "name": null,
+          "osm": "node/4344481798",
           "stage": "N1",
           "stageKind": "approach",
           "km": null,
@@ -3688,6 +3798,7 @@
           "group": "beds",
           "kind": "campsite",
           "name": null,
+          "osm": "node/4344500792",
           "stage": "N2",
           "stageKind": "approach",
           "km": null,
@@ -3699,6 +3810,7 @@
           "group": "beds",
           "kind": "campsite",
           "name": null,
+          "osm": "node/4344512792",
           "stage": "N2",
           "stageKind": "approach",
           "km": null,
@@ -3710,6 +3822,7 @@
           "group": "beds",
           "kind": "campsite",
           "name": null,
+          "osm": "node/4344512794",
           "stage": "N1",
           "stageKind": "approach",
           "km": null,
@@ -3721,6 +3834,7 @@
           "group": "beds",
           "kind": "campsite",
           "name": null,
+          "osm": "node/4344513092",
           "stage": "N2",
           "stageKind": "approach",
           "km": null,
@@ -3732,6 +3846,7 @@
           "group": "beds",
           "kind": "campsite",
           "name": null,
+          "osm": "node/5026263572",
           "stage": "N2",
           "stageKind": "approach",
           "km": null,
@@ -3743,6 +3858,7 @@
           "group": "beds",
           "kind": "campsite",
           "name": null,
+          "osm": "node/5026263573",
           "stage": "N2",
           "stageKind": "approach",
           "km": null,
@@ -3754,6 +3870,7 @@
           "group": "beds",
           "kind": "campsite",
           "name": null,
+          "osm": "node/12055567597",
           "stage": "N2",
           "stageKind": "approach",
           "km": null,
@@ -3765,6 +3882,7 @@
           "group": "beds",
           "kind": "campsite",
           "name": null,
+          "osm": "node/12146267475",
           "stage": "N2",
           "stageKind": "approach",
           "km": null,
@@ -3776,6 +3894,7 @@
           "group": "beds",
           "kind": "campsite",
           "name": null,
+          "osm": "way/436564889",
           "stage": "N2",
           "stageKind": "approach",
           "km": null,
@@ -3787,6 +3906,7 @@
           "group": "beds",
           "kind": "campsite",
           "name": null,
+          "osm": "way/436564890",
           "stage": "N1",
           "stageKind": "approach",
           "km": null,
@@ -3812,7 +3932,8 @@
           "kind": "hut",
           "name": "Tsielejåkkastuga",
           "stage": "15",
-          "km": 227.1
+          "km": 227.1,
+          "osm": "node/1750214495"
         }
       ],
       "refills": [
@@ -3820,505 +3941,589 @@
           "kind": "hostel",
           "name": "Vandrarhem Keron",
           "stage": "1",
-          "km": 0.0
+          "km": 0.0,
+          "osm": "way/150243210"
         },
         {
           "kind": "hut",
           "name": "Abiskojåkka Fjällstuga",
           "stage": "1",
-          "km": 0.2
+          "km": 0.2,
+          "osm": "way/150741216"
         },
         {
           "kind": "campsite",
           "name": "Nissonjokk tältplats",
           "stage": "1",
-          "km": 4.8
+          "km": 4.8,
+          "osm": "node/4394926500"
         },
         {
           "kind": "campsite",
           "name": null,
           "stage": "1",
-          "km": 4.9
+          "km": 4.9,
+          "osm": "node/12146295986"
         },
         {
           "kind": "hut",
           "name": "Abiskojaure Fjällstuga",
           "stage": "1",
-          "km": 14.2
+          "km": 14.2,
+          "osm": "node/289406212"
         },
         {
           "kind": "campsite",
           "name": null,
           "stage": "1",
-          "km": 14.2
+          "km": 14.2,
+          "osm": "node/4341597597"
         },
         {
           "kind": "campsite",
           "name": null,
           "stage": "2",
-          "km": 17.1
+          "km": 17.1,
+          "osm": "node/4341577625"
         },
         {
           "kind": "campsite",
           "name": null,
           "stage": "2",
-          "km": 17.4
+          "km": 17.4,
+          "osm": "node/12146336325"
         },
         {
           "kind": "campsite",
           "name": null,
           "stage": "2",
-          "km": 17.5
+          "km": 17.5,
+          "osm": "node/12146273195"
         },
         {
           "kind": "campsite",
           "name": null,
           "stage": "2",
-          "km": 24.6
+          "km": 24.6,
+          "osm": "node/12146273194"
         },
         {
           "kind": "campsite",
           "name": null,
           "stage": "2",
-          "km": 26.6
+          "km": 26.6,
+          "osm": "node/4341560647"
         },
         {
           "kind": "campsite",
           "name": null,
           "stage": "2",
-          "km": 28.5
+          "km": 28.5,
+          "osm": "node/12146295970"
         },
         {
           "kind": "campsite",
           "name": null,
           "stage": "2",
-          "km": 29.0
+          "km": 29.0,
+          "osm": "node/12146276318"
         },
         {
           "kind": "campsite",
           "name": null,
           "stage": "2",
-          "km": 33.5
+          "km": 33.5,
+          "osm": "node/12146273193"
         },
         {
           "kind": "campsite",
           "name": null,
           "stage": "2",
-          "km": 33.7
+          "km": 33.7,
+          "osm": "node/12146318948"
         },
         {
           "kind": "campsite",
           "name": null,
           "stage": "2",
-          "km": 34.8
+          "km": 34.8,
+          "osm": "node/4341597515"
         },
         {
           "kind": "hut",
           "name": "Alesjaure Fjällstuga",
           "stage": "3",
-          "km": 34.9
+          "km": 34.9,
+          "osm": "node/289257081"
         },
         {
           "kind": "campsite",
           "name": null,
           "stage": "3",
-          "km": 34.9
+          "km": 34.9,
+          "osm": "node/4341597909"
         },
         {
           "kind": "campsite",
           "name": null,
           "stage": "3",
-          "km": 35.1
+          "km": 35.1,
+          "osm": "node/12146295505"
         },
         {
           "kind": "campsite",
           "name": null,
           "stage": "3",
-          "km": 39.1
+          "km": 39.1,
+          "osm": "node/13310035460"
         },
         {
           "kind": "campsite",
           "name": null,
           "stage": "3",
-          "km": 40.1
+          "km": 40.1,
+          "osm": "node/12146295504"
         },
         {
           "kind": "campsite",
           "name": null,
           "stage": "3",
-          "km": 44.2
+          "km": 44.2,
+          "osm": "node/12146295883"
         },
         {
           "kind": "campsite",
           "name": null,
           "stage": "3",
-          "km": 45.3
+          "km": 45.3,
+          "osm": "node/13007252801"
         },
         {
           "kind": "campsite",
           "name": null,
           "stage": "3",
-          "km": 45.5
+          "km": 45.5,
+          "osm": "node/13310066418"
         },
         {
           "kind": "hut",
           "name": "Tjäktja Fjällstuga",
           "stage": "3",
-          "km": 47.7
+          "km": 47.7,
+          "osm": "node/1356403681"
         },
         {
           "kind": "campsite",
           "name": null,
           "stage": "4",
-          "km": 56.9
+          "km": 56.9,
+          "osm": "node/12146284487"
         },
         {
           "kind": "hut",
           "name": "Sälka Fjällstuga",
           "stage": "5",
-          "km": 60.2
+          "km": 60.2,
+          "osm": "node/1356403616"
         },
         {
           "kind": "campsite",
           "name": null,
           "stage": "5",
-          "km": 60.2
+          "km": 60.2,
+          "osm": "node/12146295501"
         },
         {
           "kind": "campsite",
           "name": null,
           "stage": "5",
-          "km": 60.4
+          "km": 60.4,
+          "osm": "node/12146282300"
         },
         {
           "kind": "campsite",
           "name": null,
           "stage": "5",
-          "km": 61.7
+          "km": 61.7,
+          "osm": "node/4342261392"
         },
         {
           "kind": "campsite",
           "name": null,
           "stage": "5",
-          "km": 61.7
+          "km": 61.7,
+          "osm": "node/12146273995"
         },
         {
           "kind": "campsite",
           "name": null,
           "stage": "5",
-          "km": 62.1
+          "km": 62.1,
+          "osm": "node/12146270292"
         },
         {
           "kind": "campsite",
           "name": null,
           "stage": "5",
-          "km": 63.1
+          "km": 63.1,
+          "osm": "node/12146286420"
         },
         {
           "kind": "campsite",
           "name": null,
           "stage": "5",
-          "km": 66.2
+          "km": 66.2,
+          "osm": "node/4341597903"
         },
         {
           "kind": "campsite",
           "name": null,
           "stage": "5",
-          "km": 69.0
+          "km": 69.0,
+          "osm": "node/4343332392"
         },
         {
           "kind": "hut",
           "name": "Singi Fjällstuga",
           "stage": "5",
-          "km": 71.9
+          "km": 71.9,
+          "osm": "node/289250952"
         },
         {
           "kind": "campsite",
           "name": null,
           "stage": "6",
-          "km": 79.9
+          "km": 79.9,
+          "osm": "node/12097526217"
         },
         {
           "kind": "hut",
           "name": "Kaitumjaure Fjällstuga",
           "stage": "6",
-          "km": 84.2
+          "km": 84.2,
+          "osm": "node/4786913023"
         },
         {
           "kind": "hut",
           "name": "Teusajaure Fjällstuga",
           "stage": "7",
-          "km": 93.1
+          "km": 93.1,
+          "osm": "node/339299832"
         },
         {
           "kind": "hut",
           "name": "Vakkotavare Fjällstuga",
           "stage": "8",
-          "km": 107.7
+          "km": 107.7,
+          "osm": "node/339299833"
         },
         {
           "kind": "campsite",
           "name": "Stora Sjöfallet",
           "stage": "9",
-          "km": 124.8
+          "km": 124.8,
+          "osm": "way/292601402"
         },
         {
           "kind": "hut",
           "name": "Saltoluokta Fjällstation",
           "stage": "9",
-          "km": 140.2
+          "km": 140.2,
+          "osm": "node/1356402863"
         },
         {
           "kind": "campsite",
           "name": null,
           "stage": "10",
-          "km": 154.8
+          "km": 154.8,
+          "osm": "node/14100998303"
         },
         {
           "kind": "hut",
           "name": "Sitojaure Fjällstuga",
           "stage": "11",
-          "km": 159.5
+          "km": 159.5,
+          "osm": "node/4786913022"
         },
         {
           "kind": "campsite",
           "name": null,
           "stage": "11",
-          "km": 171.2
+          "km": 171.2,
+          "osm": "node/14100998302"
         },
         {
           "kind": "hut",
           "name": "Aktse Fjällstuga",
           "stage": "11",
-          "km": 172.3
+          "km": 172.3,
+          "osm": "node/339303441"
         },
         {
           "kind": "hut",
           "name": "Pårte Fjällstuga",
           "stage": "12",
-          "km": 195.8
+          "km": 195.8,
+          "osm": "node/1669071479"
         },
         {
           "kind": "campsite",
           "name": null,
           "stage": "13",
-          "km": 198.4
+          "km": 198.4,
+          "osm": "node/14100998301"
         },
         {
           "kind": "hut",
           "name": "Kvikkjokk Fjällstation",
           "stage": "14",
-          "km": 211.2
+          "km": 211.2,
+          "osm": "node/1356458317"
         },
         {
           "kind": "campsite",
           "name": null,
           "stage": "14",
-          "km": 212.3
+          "km": 212.3,
+          "osm": "way/363625798"
         },
         {
           "kind": "campsite",
           "name": null,
           "stage": "14",
-          "km": 212.4
+          "km": 212.4,
+          "osm": "way/38073690"
         },
         {
           "kind": "campsite",
           "name": "Piteälven camp site",
           "stage": "15",
-          "km": 247.8
+          "km": 247.8,
+          "osm": "node/11206281717"
         },
         {
           "kind": "campsite",
           "name": "Gásakláhko camp site",
           "stage": "16",
-          "km": 261.8
+          "km": 261.8,
+          "osm": "node/12772183973"
         },
         {
           "kind": "hostel",
           "name": "Kyrkans Fjällgård Jäkkvik",
           "stage": "19",
-          "km": 301.4
+          "km": 301.4,
+          "osm": "way/137940723"
         },
         {
           "kind": "campsite",
           "name": "Kyrkans Fjällgård Jäkkvik",
           "stage": "19",
-          "km": 301.5
+          "km": 301.5,
+          "osm": "node/13965335109"
         },
         {
           "kind": "hut",
           "name": "Raststuga Pieljekaise",
           "stage": "19",
-          "km": 304.6
+          "km": 304.6,
+          "osm": "node/1967191335"
         },
         {
           "kind": "campsite",
           "name": null,
           "stage": "19",
-          "km": 307.5
+          "km": 307.5,
+          "osm": "node/14099374801"
         },
         {
           "kind": "hut",
           "name": "Pieljekaisestugan",
           "stage": "19",
-          "km": 309.0
+          "km": 309.0,
+          "osm": "node/1931961879"
         },
         {
           "kind": "campsite",
           "name": null,
           "stage": "19",
-          "km": 310.3
+          "km": 310.3,
+          "osm": "node/10021854710"
         },
         {
           "kind": "campsite",
           "name": "Rolf Sundqvist Turistservice",
           "stage": "19",
-          "km": 321.9
+          "km": 321.9,
+          "osm": "way/461726650"
         },
         {
           "kind": "campsite",
           "name": "Adolfström Camping",
           "stage": "20",
-          "km": 322.0
+          "km": 322.0,
+          "osm": "node/1967191349"
         },
         {
           "kind": "campsite",
           "name": "Värdshus Bäverholmen",
           "stage": "20",
-          "km": 329.0
+          "km": 329.0,
+          "osm": "node/1931923481"
         },
         {
           "kind": "guesthouse",
           "name": "Värdshus Bäverholmen",
           "stage": "20",
-          "km": 329.0
+          "km": 329.0,
+          "osm": "node/1931923505"
         },
         {
           "kind": "campsite",
           "name": null,
           "stage": "20",
-          "km": 332.8
+          "km": 332.8,
+          "osm": "node/14099373304"
         },
         {
           "kind": "campsite",
           "name": null,
           "stage": "21",
-          "km": 370.0
+          "km": 370.0,
+          "osm": "node/14099373303"
         },
         {
           "kind": "hut",
           "name": "Rävfallsstugan",
           "stage": "21",
-          "km": 370.0
+          "km": 370.0,
+          "osm": "way/320437155"
         },
         {
           "kind": "campsite",
           "name": null,
           "stage": "22",
-          "km": 370.1
+          "km": 370.1,
+          "osm": "node/14099373302"
         },
         {
           "kind": "campsite",
           "name": null,
           "stage": "23",
-          "km": 390.9
+          "km": 390.9,
+          "osm": "node/12093517312"
         },
         {
           "kind": "hostel",
           "name": "Fjällhästens vandrarhem",
           "stage": "23",
-          "km": 391.7
+          "km": 391.7,
+          "osm": "way/623172475"
         },
         {
           "kind": "hostel",
           "name": "Ammarnäsgårdens Vandrarhem",
           "stage": "23",
-          "km": 391.8
+          "km": 391.8,
+          "osm": "way/320434273"
         },
         {
           "kind": "hostel",
           "name": "Ammarnäs Wärdshus",
           "stage": "23",
-          "km": 392.1
+          "km": 392.1,
+          "osm": "node/1965132866"
         },
         {
           "kind": "hut",
           "name": "Aigert Fjällstuga",
           "stage": "23",
-          "km": 399.3
+          "km": 399.3,
+          "osm": "node/12772144390"
         },
         {
           "kind": "hut",
           "name": null,
           "stage": "24",
-          "km": 406.8
+          "km": 406.8,
+          "osm": "way/174491081"
         },
         {
           "kind": "hut",
           "name": "Serve Fjällstuga",
           "stage": "24",
-          "km": 418.0
+          "km": 418.0,
+          "osm": "node/12772144391"
         },
         {
           "kind": "hut",
           "name": "Tärnasjö Fjällstuga",
           "stage": "25",
-          "km": 431.3
+          "km": 431.3,
+          "osm": "node/12772144392"
         },
         {
           "kind": "campsite",
           "name": "Campsite",
           "stage": "26",
-          "km": 432.6
+          "km": 432.6,
+          "osm": "node/14204046681"
         },
         {
           "kind": "campsite",
           "name": null,
           "stage": "26",
-          "km": 441.1
+          "km": 441.1,
+          "osm": "node/14099374701"
         },
         {
           "kind": "hut",
           "name": "Syter Fjällstuga",
           "stage": "26",
-          "km": 445.3
+          "km": 445.3,
+          "osm": "node/339309788"
         },
         {
           "kind": "campsite",
           "name": null,
           "stage": "27",
-          "km": 450.0
+          "km": 450.0,
+          "osm": "node/14099374601"
         },
         {
           "kind": "hut",
           "name": "Viterskalet Fjällstuga",
           "stage": "28",
-          "km": 457.5
+          "km": 457.5,
+          "osm": "node/12772144393"
         },
         {
           "kind": "campsite",
           "name": "Campsite",
           "stage": "28",
-          "km": 460.8
+          "km": 460.8,
+          "osm": "node/14204041943"
         },
         {
           "kind": "campsite",
           "name": "Campsite",
           "stage": "28",
-          "km": 460.9
+          "km": 460.9,
+          "osm": "node/14099373203"
         },
         {
           "kind": "campsite",
           "name": "Fjällforsens Camping",
           "stage": "28",
-          "km": 467.4
+          "km": 467.4,
+          "osm": "way/1235812475"
         },
         {
           "kind": "hostel",
           "name": "Hemavan Fjällstation",
           "stage": "28",
-          "km": 468.6
+          "km": 468.6,
+          "osm": "way/490601230"
         }
       ],
       "longestGapKm": {
