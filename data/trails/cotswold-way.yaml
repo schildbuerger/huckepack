@@ -1,0 +1,210 @@
+name: Cotswold Way
+added: 2026-11-01
+aliases: [Cotswold Way National Trail]
+website: https://www.nationaltrail.co.uk/en_GB/trails/cotswold-way/
+wikidata: Q1136661
+managedBy:
+  # a National Trail: a trail partnership looks after it, with an annual grant from Natural England
+  - name: Natural England and the Cotswold Way trail partnership (National Trails)
+    url: https://www.nationaltrail.co.uk/en_GB/trails/cotswold-way/
+trailType: point-to-point
+continents: [Europe]
+countries: [GB]
+regions: [Gloucestershire, Worcestershire, South Gloucestershire, Bath and North East Somerset]
+protectedAreas:
+  - Cotswolds National Landscape
+termini:
+  # the Market Hall in Chipping Campden; the stone disc outside Bath Abbey's west doors (OSM)
+  start:
+    name: Chipping Campden
+    lat: 52.05067
+    lon: -1.78075
+  end:
+    name: Bath
+    lat: 51.38145
+    lon: -2.35887
+  source: osm
+established:
+  # launched by Gloucestershire County Council in May 1970 ("50th anniversary in 2020"); a National
+  # Trail since 24 May 2007 (English Wikipedia)
+  year: 1970
+  source: nt
+waymarking:
+  text: The National Trail acorn
+  source: nt
+length:
+  # "a 102 mile (164Km) long National Trail"
+  - km: 164
+    source: nt
+days:
+  # "Time to complete: around 7 to 10 days"
+  min: 7
+  max: 10
+  source: govuk
+stages:
+  # the National Trail's 15 sections with distance, ascent and descent (Route Description). One
+  # official GPX (a route drawn in OS Maps, from Bath to Chipping Campden; the pipeline turns it),
+  # cut at each section's `end` from OSM; it only guides the OSM matcher (kept local). Sections 7,
+  # 8, 9 and 11 follow the OSM relation instead, the current route: the 2019 GPX crosses the A417 at
+  # the old Air Balloon junction, rebuilt by the A417 Missing Link (OSM maps the new crossing as
+  # under construction: section 7 may bridge up to 200 m, maxBridgeM), and takes the Selsley Common
+  # route and the Stinchcombe Hill shortcut
+  source: nt
+  list:
+    - { number: "1", kind: main, from: Chipping Campden, to: Broadway, km: 9.6, ascentM: 173, descentM: 241, track: "https://nationaltrails.s3.eu-west-2.amazonaws.com/uploads/Cotswold-Way-2019.gpx", end: { name: Broadway, lat: 52.03538, lon: -1.86186 } }
+    - { number: "2", kind: main, from: Broadway, to: Wood Stanway, km: 10.5, ascentM: 248, descentM: 218, track: "https://nationaltrails.s3.eu-west-2.amazonaws.com/uploads/Cotswold-Way-2019.gpx", end: { name: Wood Stanway, lat: 51.97951, lon: -1.90979 } }
+    - { number: "3", kind: main, from: Wood Stanway, to: Winchcombe, km: 8.8, ascentM: 172, descentM: 207, track: "https://nationaltrails.s3.eu-west-2.amazonaws.com/uploads/Cotswold-Way-2019.gpx", end: { name: Winchcombe, lat: 51.95275, lon: -1.96751 } }
+    - { number: "4", kind: main, from: Winchcombe, to: Cleeve Hill, km: 9, ascentM: 330, descentM: 145, track: "https://nationaltrails.s3.eu-west-2.amazonaws.com/uploads/Cotswold-Way-2019.gpx", end: { name: Cleeve Hill Golf Club, lat: 51.94323, lon: -2.0178 } }
+    - { number: "5", kind: main, from: Cleeve Hill, to: Dowdeswell, km: 8.9, ascentM: 99, descentM: 249, track: "https://nationaltrails.s3.eu-west-2.amazonaws.com/uploads/Cotswold-Way-2019.gpx", end: { name: Dowdeswell Reservoir, lat: 51.87631, lon: -2.01558 } }
+    - { number: "6", kind: main, from: Dowdeswell, to: Leckhampton Hill, km: 7.6, ascentM: 275, descentM: 105, track: "https://nationaltrails.s3.eu-west-2.amazonaws.com/uploads/Cotswold-Way-2019.gpx", end: { name: Leckhampton Hill, lat: 51.8643, lon: -2.07603 } }
+    - { number: "7", kind: main, from: Leckhampton Hill, to: Birdlip, km: 9, ascentM: 130, descentM: 130, relation: 65239, maxBridgeM: 200, end: { name: Birdlip, lat: 51.82782, lon: -2.10895 } }
+    - { number: "8", kind: main, from: Birdlip, to: Painswick, km: 13.9, ascentM: 180, descentM: 325, relation: 65239, end: { name: Painswick, lat: 51.78573, lon: -2.19472 } }
+    - { number: "9", kind: main, from: Painswick, to: King's Stanley, km: 12.6, ascentM: 315, descentM: 330, relation: 65239, end: { name: King's Stanley, lat: 51.7292, lon: -2.27371 } }
+    - { number: "10", kind: main, from: King's Stanley, to: Dursley, km: 11.6, ascentM: 235, descentM: 290, track: "https://nationaltrails.s3.eu-west-2.amazonaws.com/uploads/Cotswold-Way-2019.gpx", end: { name: Dursley, lat: 51.68119, lon: -2.35519 } }
+    - { number: "11", kind: main, from: Dursley, to: Wotton-under-Edge, km: 11.8, ascentM: 260, descentM: 255, relation: 65239, end: { name: Wotton-under-Edge, lat: 51.63777, lon: -2.3523 } }
+    - { number: "12", kind: main, from: Wotton-under-Edge, to: Hawkesbury Upton, km: 11.9, ascentM: 300, descentM: 190, track: "https://nationaltrails.s3.eu-west-2.amazonaws.com/uploads/Cotswold-Way-2019.gpx", end: { name: Hawkesbury Upton, lat: 51.58038, lon: -2.31905 } }
+    - { number: "13", kind: main, from: Hawkesbury Upton, to: Tormarton, km: 12.4, ascentM: 145, descentM: 180, track: "https://nationaltrails.s3.eu-west-2.amazonaws.com/uploads/Cotswold-Way-2019.gpx", end: { name: Tormarton, lat: 51.50747, lon: -2.33369 } }
+    - { number: "14", kind: main, from: Tormarton, to: Cold Ashton, km: 10.6, ascentM: 170, descentM: 125, track: "https://nationaltrails.s3.eu-west-2.amazonaws.com/uploads/Cotswold-Way-2019.gpx", end: { name: Cold Ashton, lat: 51.45178, lon: -2.36002 } }
+    - { number: "15", kind: main, from: Cold Ashton, to: Bath, km: 16.5, ascentM: 225, descentM: 400, track: "https://nationaltrails.s3.eu-west-2.amazonaws.com/uploads/Cotswold-Way-2019.gpx", end: { name: Bath, lat: 51.38145, lon: -2.35887 } }
+route:
+  # built by `python -m pipeline.all cotswold-way`: OSM ways matched to the official GPX's pieces
+  source: osm
+  publishable: true
+difficulty:
+  estimated:
+    sac: T1
+    basis: >-
+      The National Trail describes field paths, broad tracks, woodland paths and quiet lanes along
+      the Cotswold escarpment, well waymarked, with frequent steep but short climbs (Cleeve Hill,
+      330 m, the highest point); no rocky or exposed ground. Hiking on good paths (T1).
+    source: nt
+season:
+  # "can be walked at any time of the year"; the trail is open all year (gov.uk)
+  months: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
+  text: All year; spring to autumn for the grasslands, clear winter days for the views
+  source: nt
+sleeping:
+  # OSM along the route (pipeline/along.py): campsites, a few hostels, B&Bs and inns in the villages;
+  # hotels in the towns
+  types: [campsite, hostel, guesthouse, hotel]
+  source: osm
+wildCamping:
+  status: prohibited
+  rule: >-
+    Wild camping is not permitted: campers use official campsites, or other accommodation where a
+    section has none.
+  source: nt
+access:
+  # Chipping Campden has no station: Moreton-in-Marsh (Cotswold Line) is the nearest; Bath Spa at the
+  # finish; Birmingham and Bristol the nearest international airports. Coordinates from OSM;
+  # distances by pipeline/access.py
+  - kind: station
+    name: Moreton-in-Marsh
+    lat: 51.99218
+    lon: -1.70027
+    source: osm
+  - kind: airport
+    name: Birmingham Airport (BHX)
+    lat: 52.45418
+    lon: -1.74387
+    source: osm
+  - kind: airport
+    name: Bristol Airport (BRS)
+    lat: 51.38297
+    lon: -2.71862
+    source: osm
+tags: [national-trail, escarpment, villages, hill-forts, bath]
+notes:
+  - >-
+    Stages: the National Trail's 15 sections add up to 164.7 km (stated 164 km); ascent 3,257 m and
+    descent 3,390 m. Section 5's descent reads "604 feet (249 metres)" on both National Trail pages;
+    604 ft are 184 m, the record keeps the stated metres. Section 11 has a 4.8 mile (7.8 km)
+    shortcut across Stinchcombe Hill, section 9 a choice of routes over Selsley Common or through
+    King's Stanley; neither is in the record.
+  - >-
+    Route (pipeline, 2026-11-01, Geofabrik extracts): the National Trail's GPX (2019, a route drawn
+    in OS Maps, from Bath) guides sections 1–6, 10 and 12–15; sections 7, 8, 9 and 11 follow the OSM
+    relation (65239), cut at their ends: the GPX crosses the A417 at the old Air Balloon junction,
+    which the A417 Missing Link rebuilt, and takes the Selsley Common route and the Stinchcombe Hill
+    shortcut. OSM maps the new A417 crossing as under construction: section 7 bridges a 133 m gap
+    there (maxBridgeM 200, user's decision 2026-11-01) plus three of 22–36 m. Every section matches
+    at least 96 %; the map line is 163.2 km against the sections' 164.7 km.
+  - >-
+    Sections 8 and 9 split at Painswick's town node: 11.1 and 14.6 km on the map line against the
+    National Trail's 13.9 and 12.6 km (both more than 10 % apart); together they agree (25.7 against
+    26.5 km), so the National Trail places Painswick's end of the section elsewhere. The GPX gives
+    the same 11.2 km from Birdlip to Painswick.
+  - >-
+    Ascent: the sections' 3,257 m against the terrain model's ≈ 4,470 m; the model runs high in the
+    escarpment's beech woods (it measures the treetops), and Countryfile's 3,300 m agrees with the
+    stated figure.
+  - >-
+    Water: OSM has 9 drinking water points near the route; the longest stretch without one is
+    61 km (km 6–67, Broadway to Birdlip). Walkers refill in the villages' pubs, cafés and shops,
+    which OSM doesn't record as water; the National Trail's interactive map has water points, but
+    not as a list to add as waterPoints.
+  - >-
+    Data check (2026-11-01). Second sources: Natural England's GOV.UK page (102 miles, 164 km;
+    around 7 to 10 days; Cleeve Hill the highest point at 330 m; open all year), English Wikipedia
+    (164 km; a National Trail since 24 May 2007) and Countryfile (ascent 3,300 m). Length, days,
+    season and ascent (1 %) agree; the terrain model's highest point is 314 m (5 % under 330 m).
+    The record's year is the 1970 launch; it became a National Trail in 2007.
+dataCheck:
+  # working rule 2: GOV.UK (Natural England), English Wikipedia, Countryfile
+  date: 2026-11-01
+  against: [govuk, wikipedia-en, countryfile]
+  deviations: []
+sources:
+  - id: nt
+    title: "National Trails: Cotswold Way (length, sections with distance and climbs, season, waymarking, camping, official GPX)"
+    url: https://www.nationaltrail.co.uk/en_GB/trails/cotswold-way/route/
+    licence: © National Trails (facts only)
+    retrieved: 2026-11-01
+  - id: govuk
+    title: "Natural England (GOV.UK): Visit a National Trail in England, Cotswold Way (days, highest point)"
+    url: https://www.gov.uk/government/publications/visit-a-national-trail-in-england/cotswold-way-national-trail
+    licence: Open Government Licence v3.0
+    retrieved: 2026-11-01
+  - id: wikipedia-en
+    title: "Wikipedia (en): Cotswold Way (length, National Trail since 2007; data check)"
+    url: https://en.wikipedia.org/wiki/Cotswold_Way
+    licence: CC BY-SA 4.0
+    retrieved: 2026-11-01
+    checkOnly: true  # only for the data check
+  - id: countryfile
+    title: "BBC Countryfile: Cotswold Way guide (ascent; data check)"
+    url: https://www.countryfile.com/go-outdoors/walks/cotswold-way-guide
+    licence: © Our Media (facts only)
+    retrieved: 2026-11-01
+    checkOnly: true  # only for the data check
+  - id: wikimedia
+    title: "Wikimedia: page views of the trail's Wikipedia articles in every language, by people, over twelve months (Wikidata sitelinks, pageview API)"
+    url: https://wikimedia.org/api/rest_v1/
+    licence: CC0 1.0 (pageview data); Wikidata CC0
+    retrieved: 2026-11-01
+    checkOnly: true  # not on the trail page: the page views only rank the home page's popular trails
+  - id: osm
+    title: "OpenStreetMap contributors: paths, water, shops and places to sleep along the trail (Geofabrik extracts), stage ends, travel hubs"
+    url: https://www.openstreetmap.org/
+    licence: ODbL 1.0
+    retrieved: 2026-11-01
+  - id: copdem
+    title: "Copernicus DEM GLO-30 (30 m terrain model), tiles from AWS Open Data"
+    url: https://registry.opendata.aws/copernicus-dem/
+    licence: "Copernicus WorldDEM-30 licence, free; produced using Copernicus WorldDEM-30 © DLR e.V. 2010-2014 and © Airbus Defence and Space GmbH 2014-2018 provided under COPERNICUS by the European Union and ESA; all rights reserved"
+    retrieved: 2026-11-01
+  - id: worldcover
+    title: "ESA WorldCover 2021: 10 m land cover (via AWS Open Data)"
+    url: https://esa-worldcover.org/
+    licence: "CC BY 4.0; © ESA WorldCover project 2021 / Contains modified Copernicus Sentinel data (2021) processed by ESA WorldCover consortium"
+    retrieved: 2026-11-01
+  - id: era5
+    title: "Open-Meteo open data on AWS: ERA5-Land temperature and ERA5 precipitation, snow and wind, daily 1995–2024 (reanalysis)"
+    url: https://github.com/open-meteo/open-data
+    licence: CC BY 4.0 (Open-Meteo); contains modified Copernicus Climate Change Service information
+    retrieved: 2026-11-01
+  - id: osrm
+    title: "OSRM: road routes on OpenStreetMap data (router.project-osrm.org)"
+    url: https://project-osrm.org/
+    licence: Route data © OpenStreetMap contributors (ODbL)
+    retrieved: 2026-11-01

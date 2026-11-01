@@ -418,7 +418,9 @@ def build(slug, refresh=False):
         ways, fetched = cache.get(f"osm-stage-{label}.json", osm.source_label(), download_ways)
         if fetched and osm.SOURCE == "overpass":
             time.sleep(5)  # be polite to the public Overpass server
-        line, report = osm.match(track, json.loads(ways))
+        # a stage can allow a longer bridge where OSM's crossing is still mapped as under
+        # construction (the Cotswold Way's A417 at the Air Balloon, 161 m; noted in the record)
+        line, report = osm.match(track, json.loads(ways), stage.get("maxBridgeM", osm.MAX_BRIDGE_M))
         report["covered"] *= walkable
         if stage["kind"] == "main":
             previous_end = track[-1]

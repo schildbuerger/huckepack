@@ -57,6 +57,9 @@ And the **Milford Track** (#43, 53.5 km in DOC's four hut-to-hut days, Glade Wha
 Point, the OSM relation cut at the huts).
 And the **Offa's Dyke Path** (#49, 285 km from Sedbury Cliffs to Prestatyn along the Welsh border
 in the National Trail's 12 sections, its one GPX cut at each section's end).
+And the **Cotswold Way** (#47, 164 km from Chipping Campden to Bath in the National Trail's 15
+sections; its GPX and, for four sections, the OSM relation, bridging the A417's new crossing that OSM
+maps as under construction).
 
 | # | Trail | Region | Length (approx.) | Why |
 |---|---|---|---|---|

@@ -76,6 +76,9 @@ const stage = z.object({
   relation: z.union([z.number().int().positive(), z.array(z.number().int().positive()).min(1)]).optional(),
   // when this stage's figures come from another source than the list's (the page names it)
   source: sourceRef.optional(),
+  // the longest gap between OSM ways the matcher may bridge on this stage (default 100 m), where
+  // OSM still maps a crossing as under construction; the record's notes say where and why
+  maxBridgeM: z.number().int().positive().optional(),
   // a stage that can't be walked in full (the Eifelsteig's stage 14, a bridge lost in a flood):
   // walkable to `at`, then the operator's recommended way on, leg by leg (`detour`, on foot or by
   // train or bus), drawn on the map in their own styles; the stage keeps its stated figures

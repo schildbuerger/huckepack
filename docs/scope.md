@@ -138,6 +138,20 @@
   terrain measure, not a dimension of its own. Of three previews, the key
   figure of B (bars per dimension and the hardest level) and the cards of A
   were chosen (2026-10-29).
+- **Stages where the official source has no day stages (2026-10-31,
+  2026-11-01):** without official stage figures, Wikipedia's stage list,
+  named as the source; where Wikipedia only lists places, the trail isn't
+  built until an open stage source exists (the GR 10, the GR 65, whose
+  stages are in FFRandonnée's paid topoguide, and the Cesta hrdinov SNP,
+  2026-11-01). Where the official sections are far longer than a day (the
+  Országos Kéktúra's 27 sections of 14–74 km), the stages are the operator's
+  recommended day stages: figures summed from the official table between
+  stamping points where a day ends at one, else estimated (≈) like any
+  missing stage figure (2026-11-01).
+- **A crossing OSM maps as under construction (2026-11-01):** a stage may
+  allow the matcher a longer bridge (`maxBridgeM`), noted in the record (the
+  Cotswold Way's A417 at the Air Balloon, 133 m), instead of holding the
+  trail until OSM opens the crossing.
 
 ## What a trail page could show
 

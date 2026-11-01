@@ -29,6 +29,7 @@ NEAR_M = 30  # a track point counts as covered if the matched line is this close
 TURN_ARM_M = 150  # a turnaround: the track 150 m before and after it lies together
 LOOP_GAP_M = 100  # a short loop: the track comes back within this of where it left
 MAX_BRIDGE_M = 100  # where OSM's ways don't connect, a gap up to this long near the track is bridged
+MAX_BRIDGES = 6  # at most this many per stage (the Cotswold Way's stage 7 needs four)
 
 
 class Projection:
@@ -237,12 +238,13 @@ def turnarounds(track, step=20, arm_m=TURN_ARM_M):
     return pts, sorted(turns)
 
 
-def match(track_lonlat, osm):
+def match(track_lonlat, osm, max_bridge_m=MAX_BRIDGE_M):
     """Return (OSM coordinates of the matched route as (lon, lat), report).
 
     report["ways"] lists the OSM ways the route uses, in order: [way id, metres], with
     consecutive pieces of the same way merged. Where the track turns back on itself (out to a
-    summit and back), each leg is matched on its own: the cheapest path would skip the spur."""
+    summit and back), each leg is matched on its own: the cheapest path would skip the spur.
+    `max_bridge_m`: the longest gap between OSM ways to bridge (a stage's `maxBridgeM`)."""
     nodes = {e["id"]: (e["lon"], e["lat"]) for e in osm["elements"] if e["type"] == "node"}
     ways = [e for e in osm["elements"] if e["type"] == "way"]
     proj = Projection(sum(lat for _, lat in track_lonlat) / len(track_lonlat))
@@ -256,7 +258,7 @@ def match(track_lonlat, osm):
     # the legs meet at the same node (the one nearest the turnaround), so they chain
     path, pairs = [], {}
     for leg in legs:
-        leg_path, via = _cheapest_path(leg, ways, xy)
+        leg_path, via = _cheapest_path(leg, ways, xy, max_bridge_m)
         path += leg_path[1:] if path else leg_path
         pairs.update({(a, b): via[b] for a, b in zip(leg_path, leg_path[1:])})
 
@@ -284,7 +286,7 @@ def match(track_lonlat, osm):
     return [nodes[n] for n in path], report
 
 
-def _cheapest_path(track, ways, xy):
+def _cheapest_path(track, ways, xy, max_bridge_m=MAX_BRIDGE_M):
     """The cheapest chain of OSM nodes from the track's start to its end, and the way that
     reaches each node."""
     index = SegmentIndex(track)
@@ -328,15 +330,15 @@ def _cheapest_path(track, ways, xy):
     # where OSM has no way across (a crossing mapped as removed, the Sauerland-Waldroute's Ruhr at
     # Bestwig), bridge the shortest gap near the track between what is reached and the rest, up to
     # MAX_BRIDGE_M; only then, so trails whose ways connect are untouched. Way id 0 marks the bridge
-    for _ in range(3):
+    for _ in range(MAX_BRIDGES):
         if target in dist:
             break
-        near = [n for n in graph if off[n] <= MAX_BRIDGE_M]
+        near = [n for n in graph if off[n] <= max_bridge_m]
         reached = [n for n in near if n in dist]
         rest = [n for n in near if n not in dist]
         # the shortest gap, counting how far its ends lie off the track
         pairs = ((math.dist(xy[a], xy[b]), a, b) for a in reached for b in rest)
-        gap = min(((length + off[a] + off[b], length, a, b) for length, a, b in pairs if length <= MAX_BRIDGE_M), default=None)
+        gap = min(((length + off[a] + off[b], length, a, b) for length, a, b in pairs if length <= max_bridge_m), default=None)
         if not gap:
             break
         _, length, a, b = gap

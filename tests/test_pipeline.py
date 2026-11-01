@@ -159,6 +159,13 @@ class Match(unittest.TestCase):
         with self.assertRaises(ValueError):
             osm.match(track, data)
 
+    def test_a_stage_can_allow_a_longer_bridge(self):
+        nodes = {1: (8.000, LAT), 2: (8.003, LAT), 3: (8.0047, LAT), 4: (8.008, LAT)}  # 120 m apart
+        data = osm_data(nodes, [(1, [1, 2]), (2, [3, 4])])
+        track = [(8.0 + i * 0.0008, LAT) for i in range(11)]
+        line, report = osm.match(track, data, max_bridge_m=200)
+        self.assertEqual([w for w, _ in report["ways"]], [1, 0, 2])
+
 
 class Surface(unittest.TestCase):
     def test_surface_tag_first(self):
