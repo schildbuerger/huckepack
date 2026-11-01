@@ -60,6 +60,9 @@ in the National Trail's 12 sections, its one GPX cut at each section's end).
 And the **Cotswold Way** (#47, 164 km from Chipping Campden to Bath in the National Trail's 15
 sections; its GPX and, for four sections, the OSM relation, bridging the A417's new crossing that OSM
 maps as under construction).
+And the **Országos Kéktúra** (#64, 1,183 km from Írott-kő to Hollóháza in 59 days: MTSZ's
+recommended day stages for sections 1–17, our grouping of the official legs between stamping points
+for 18–27, every figure summed from the official table).
 
 | # | Trail | Region | Length (approx.) | Why |
 |---|---|---|---|---|

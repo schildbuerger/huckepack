@@ -1,0 +1,390 @@
+{
+  "climate-high.json": {
+    "retrieved": "2026-11-01T07:43:47+00:00",
+    "url": "https://openmeteo.s3.us-west-2.amazonaws.com/data/copernicus_era5_land+copernicus_era5?latitude=47.9&longitude=20.0&elevation=1020"
+  },
+  "climate-low.json": {
+    "retrieved": "2026-11-01T07:40:24+00:00",
+    "url": "https://openmeteo.s3.us-west-2.amazonaws.com/data/copernicus_era5_land+copernicus_era5?latitude=46.8&longitude=17.4&elevation=100"
+  },
+  "elevation-glo30.json": {
+    "retrieved": "2026-11-01T07:36:53+00:00",
+    "url": "https://copernicus-dem-30m.s3.eu-central-1.amazonaws.com/Copernicus_DSM_COG_10_N46_00_E017_00_DEM/Copernicus_DSM_COG_10_N46_00_E017_00_DEM.tif https://copernicus-dem-30m.s3.eu-central-1.amazonaws.com/Copernicus_DSM_COG_10_N47_00_E016_00_DEM/Copernicus_DSM_COG_10_N47_00_E016_00_DEM.tif https://copernicus-dem-30m.s3.eu-central-1.amazonaws.com/Copernicus_DSM_COG_10_N47_00_E017_00_DEM/Copernicus_DSM_COG_10_N47_00_E017_00_DEM.tif https://copernicus-dem-30m.s3.eu-central-1.amazonaws.com/Copernicus_DSM_COG_10_N47_00_E018_00_DEM/Copernicus_DSM_COG_10_N47_00_E018_00_DEM.tif https://copernicus-dem-30m.s3.eu-central-1.amazonaws.com/Copernicus_DSM_COG_10_N47_00_E019_00_DEM/Copernicus_DSM_COG_10_N47_00_E019_00_DEM.tif https://copernicus-dem-30m.s3.eu-central-1.amazonaws.com/Copernicus_DSM_COG_10_N47_00_E020_00_DEM/Copernicus_DSM_COG_10_N47_00_E020_00_DEM.tif https://copernicus-dem-30m.s3.eu-central-1.amazonaws.com/Copernicus_DSM_COG_10_N48_00_E019_00_DEM/Copernicus_DSM_COG_10_N48_00_E019_00_DEM.tif https://copernicus-dem-30m.s3.eu-central-1.amazonaws.com/Copernicus_DSM_COG_10_N48_00_E020_00_DEM/Copernicus_DSM_COG_10_N48_00_E020_00_DEM.tif https://copernicus-dem-30m.s3.eu-central-1.amazonaws.com/Copernicus_DSM_COG_10_N48_00_E021_00_DEM/Copernicus_DSM_COG_10_N48_00_E021_00_DEM.tif"
+  },
+  "landcover.json": {
+    "retrieved": "2026-11-01T07:36:59+00:00",
+    "url": "https://esa-worldcover.s3.eu-central-1.amazonaws.com/v200/2021/map/ESA_WorldCover_10m_2021_v200_\u2026_Map.tif"
+  },
+  "osm-stage-1-main.json": {
+    "retrieved": "2026-10-28T21:21:02Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-10-main.json": {
+    "retrieved": "2026-10-28T21:21:02Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-11-main.json": {
+    "retrieved": "2026-10-28T21:21:02Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-12-main.json": {
+    "retrieved": "2026-10-28T21:21:02Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-13-main.json": {
+    "retrieved": "2026-10-28T21:21:02Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-14-main.json": {
+    "retrieved": "2026-10-28T21:21:02Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-15-main.json": {
+    "retrieved": "2026-10-28T21:21:02Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-16-main.json": {
+    "retrieved": "2026-10-28T21:21:02Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-17-main.json": {
+    "retrieved": "2026-10-28T21:21:02Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-18-main.json": {
+    "retrieved": "2026-10-28T21:21:02Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-19-main.json": {
+    "retrieved": "2026-10-28T21:21:02Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-2-main.json": {
+    "retrieved": "2026-10-28T21:21:02Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-20-main.json": {
+    "retrieved": "2026-10-28T21:21:02Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-21-main.json": {
+    "retrieved": "2026-10-28T21:21:02Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-22-main.json": {
+    "retrieved": "2026-10-28T21:21:02Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-23-main.json": {
+    "retrieved": "2026-10-28T21:21:02Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-24-main.json": {
+    "retrieved": "2026-10-28T21:21:02Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-25-main.json": {
+    "retrieved": "2026-10-28T21:21:02Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-26-main.json": {
+    "retrieved": "2026-10-28T21:21:02Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-27-main.json": {
+    "retrieved": "2026-10-28T21:21:02Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-28-main.json": {
+    "retrieved": "2026-10-28T21:21:02Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-29-main.json": {
+    "retrieved": "2026-10-28T21:21:02Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-3-main.json": {
+    "retrieved": "2026-10-28T21:21:02Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-30-main.json": {
+    "retrieved": "2026-10-28T21:21:02Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-31-main.json": {
+    "retrieved": "2026-10-28T21:21:02Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-32-main.json": {
+    "retrieved": "2026-10-28T21:21:02Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-33-main.json": {
+    "retrieved": "2026-10-28T21:21:02Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-34-main.json": {
+    "retrieved": "2026-10-28T21:21:02Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-35-main.json": {
+    "retrieved": "2026-10-28T21:21:02Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-36-main.json": {
+    "retrieved": "2026-10-28T21:21:02Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-37-main.json": {
+    "retrieved": "2026-10-28T21:21:02Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-38-main.json": {
+    "retrieved": "2026-10-28T21:21:02Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-39-main.json": {
+    "retrieved": "2026-10-28T21:21:02Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-4-main.json": {
+    "retrieved": "2026-10-28T21:21:02Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-40-main.json": {
+    "retrieved": "2026-10-28T21:21:02Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-41-main.json": {
+    "retrieved": "2026-10-28T21:21:02Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-42-main.json": {
+    "retrieved": "2026-10-28T21:21:02Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-43-main.json": {
+    "retrieved": "2026-10-28T21:21:02Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-44-main.json": {
+    "retrieved": "2026-10-28T21:21:02Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-45-main.json": {
+    "retrieved": "2026-10-28T21:21:02Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-46-main.json": {
+    "retrieved": "2026-10-28T21:21:02Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-47-main.json": {
+    "retrieved": "2026-10-28T21:21:02Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-48-main.json": {
+    "retrieved": "2026-10-28T21:21:02Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-49-main.json": {
+    "retrieved": "2026-10-28T21:21:02Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-5-main.json": {
+    "retrieved": "2026-10-28T21:21:02Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-50-main.json": {
+    "retrieved": "2026-10-28T21:21:02Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-51-main.json": {
+    "retrieved": "2026-10-28T21:21:02Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-52-main.json": {
+    "retrieved": "2026-10-28T21:21:02Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-53-main.json": {
+    "retrieved": "2026-10-28T21:21:02Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-54-main.json": {
+    "retrieved": "2026-10-28T21:21:02Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-55-main.json": {
+    "retrieved": "2026-10-28T21:21:02Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-56-main.json": {
+    "retrieved": "2026-10-28T21:21:02Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-57-main.json": {
+    "retrieved": "2026-10-28T21:21:02Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-58-main.json": {
+    "retrieved": "2026-10-28T21:21:02Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-59-main.json": {
+    "retrieved": "2026-10-28T21:21:02Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-6-main.json": {
+    "retrieved": "2026-10-28T21:21:02Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-7-main.json": {
+    "retrieved": "2026-10-28T21:21:02Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-8-main.json": {
+    "retrieved": "2026-10-28T21:21:02Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-9-main.json": {
+    "retrieved": "2026-10-28T21:21:02Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-water.json": {
+    "retrieved": "2026-10-28T21:21:02Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-way-tags.json": {
+    "retrieved": "2026-10-28T21:21:02Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osrm-access-budapest-ferenc-liszt-international-airport-bud.json": {
+    "retrieved": "2026-11-01T07:43:47+00:00",
+    "url": "https://router.project-osrm.org/route/v1/driving/19.25351,47.43527;16.43375,47.35276?overview=false"
+  },
+  "osrm-access-k-szeg.json": {
+    "retrieved": "2026-11-01T07:43:47+00:00",
+    "url": "https://router.project-osrm.org/route/v1/driving/16.55689,47.38174;16.43375,47.35276?overview=false"
+  },
+  "osrm-access-s-toralja-jhely.json": {
+    "retrieved": "2026-11-01T07:43:47+00:00",
+    "url": "https://router.project-osrm.org/route/v1/driving/21.65758,48.38582;16.43375,47.35276?overview=false"
+  },
+  "osrm-access-vienna-international-airport-vie.json": {
+    "retrieved": "2026-11-01T07:43:47+00:00",
+    "url": "https://router.project-osrm.org/route/v1/driving/16.5849,48.105;16.43375,47.35276?overview=false"
+  },
+  "stage-1-main.gpx": {
+    "retrieved": "2026-11-01T06:55:37+00:00",
+    "url": "https://turistaterkepek.hu/kekturahu/gpx/nagyszakasz/okt_01_20260827.gpx"
+  },
+  "stage-11-main.gpx": {
+    "retrieved": "2026-11-01T06:56:18+00:00",
+    "url": "https://turistaterkepek.hu/kekturahu/gpx/nagyszakasz/okt_04_20260722.gpx"
+  },
+  "stage-13-main.gpx": {
+    "retrieved": "2026-11-01T06:56:18+00:00",
+    "url": "https://turistaterkepek.hu/kekturahu/gpx/nagyszakasz/okt_05_20240715.gpx"
+  },
+  "stage-14-main.gpx": {
+    "retrieved": "2026-11-01T06:56:29+00:00",
+    "url": "https://turistaterkepek.hu/kekturahu/gpx/nagyszakasz/okt_06_20260806.gpx"
+  },
+  "stage-17-main.gpx": {
+    "retrieved": "2026-11-01T06:56:29+00:00",
+    "url": "https://turistaterkepek.hu/kekturahu/gpx/nagyszakasz/okt_07_20250430.gpx"
+  },
+  "stage-18-main.gpx": {
+    "retrieved": "2026-11-01T06:57:00+00:00",
+    "url": "https://turistaterkepek.hu/kekturahu/gpx/nagyszakasz/okt_08_20260910.gpx"
+  },
+  "stage-20-main.gpx": {
+    "retrieved": "2026-11-01T06:58:01+00:00",
+    "url": "https://turistaterkepek.hu/kekturahu/gpx/nagyszakasz/okt_09_20260827.gpx"
+  },
+  "stage-23-main.gpx": {
+    "retrieved": "2026-11-01T06:58:11+00:00",
+    "url": "https://turistaterkepek.hu/kekturahu/gpx/nagyszakasz/okt_10_20240731.gpx"
+  },
+  "stage-26-main.gpx": {
+    "retrieved": "2026-11-01T06:58:21+00:00",
+    "url": "https://turistaterkepek.hu/kekturahu/gpx/nagyszakasz/okt_11_20260430.gpx"
+  },
+  "stage-30-main.gpx": {
+    "retrieved": "2026-11-01T06:58:32+00:00",
+    "url": "https://turistaterkepek.hu/kekturahu/gpx/nagyszakasz/okt_12_20260625.gpx"
+  },
+  "stage-31-main.gpx": {
+    "retrieved": "2026-11-01T06:58:32+00:00",
+    "url": "https://turistaterkepek.hu/kekturahu/gpx/nagyszakasz/okt_13_20260625.gpx"
+  },
+  "stage-32-main.gpx": {
+    "retrieved": "2026-11-01T06:58:32+00:00",
+    "url": "https://turistaterkepek.hu/kekturahu/gpx/nagyszakasz/okt_14_20261001.gpx"
+  },
+  "stage-33-main.gpx": {
+    "retrieved": "2026-11-01T06:58:32+00:00",
+    "url": "https://turistaterkepek.hu/kekturahu/gpx/nagyszakasz/okt_15_20220616.gpx"
+  },
+  "stage-34-main.gpx": {
+    "retrieved": "2026-11-01T06:58:43+00:00",
+    "url": "https://turistaterkepek.hu/kekturahu/gpx/nagyszakasz/okt_16_20250702.gpx"
+  },
+  "stage-36-main.gpx": {
+    "retrieved": "2026-11-01T06:58:53+00:00",
+    "url": "https://turistaterkepek.hu/kekturahu/gpx/nagyszakasz/okt_17_20250508.gpx"
+  },
+  "stage-38-main.gpx": {
+    "retrieved": "2026-11-01T06:59:04+00:00",
+    "url": "https://turistaterkepek.hu/kekturahu/gpx/nagyszakasz/okt_18_20251016.gpx"
+  },
+  "stage-41-main.gpx": {
+    "retrieved": "2026-11-01T06:59:04+00:00",
+    "url": "https://turistaterkepek.hu/kekturahu/gpx/nagyszakasz/okt_19_20260611.gpx"
+  },
+  "stage-44-main.gpx": {
+    "retrieved": "2026-11-01T06:59:14+00:00",
+    "url": "https://turistaterkepek.hu/kekturahu/gpx/nagyszakasz/okt_20_20251016.gpx"
+  },
+  "stage-45-main.gpx": {
+    "retrieved": "2026-11-01T06:59:14+00:00",
+    "url": "https://turistaterkepek.hu/kekturahu/gpx/nagyszakasz/okt_21_20251016.gpx"
+  },
+  "stage-46-main.gpx": {
+    "retrieved": "2026-11-01T06:59:45+00:00",
+    "url": "https://turistaterkepek.hu/kekturahu/gpx/nagyszakasz/okt_22_20230511.gpx"
+  },
+  "stage-47-main.gpx": {
+    "retrieved": "2026-11-01T06:59:55+00:00",
+    "url": "https://turistaterkepek.hu/kekturahu/gpx/nagyszakasz/okt_23_20260715.gpx"
+  },
+  "stage-5-main.gpx": {
+    "retrieved": "2026-11-01T06:55:47+00:00",
+    "url": "https://turistaterkepek.hu/kekturahu/gpx/nagyszakasz/okt_02_20260827.gpx"
+  },
+  "stage-50-main.gpx": {
+    "retrieved": "2026-11-01T06:59:55+00:00",
+    "url": "https://turistaterkepek.hu/kekturahu/gpx/nagyszakasz/okt_24_20260903.gpx"
+  },
+  "stage-53-main.gpx": {
+    "retrieved": "2026-11-01T06:59:56+00:00",
+    "url": "https://turistaterkepek.hu/kekturahu/gpx/nagyszakasz/okt_25_20260924.gpx"
+  },
+  "stage-56-main.gpx": {
+    "retrieved": "2026-11-01T06:59:56+00:00",
+    "url": "https://turistaterkepek.hu/kekturahu/gpx/nagyszakasz/okt_26_20260319.gpx"
+  },
+  "stage-58-main.gpx": {
+    "retrieved": "2026-11-01T06:59:56+00:00",
+    "url": "https://turistaterkepek.hu/kekturahu/gpx/nagyszakasz/okt_27_20260806.gpx"
+  },
+  "stage-9-main.gpx": {
+    "retrieved": "2026-11-01T06:55:48+00:00",
+    "url": "https://turistaterkepek.hu/kekturahu/gpx/nagyszakasz/okt_03_20260722.gpx"
+  },
+  "wikimedia.json": {
+    "retrieved": "2026-11-01T07:43:52+00:00",
+    "url": "Q60088 2025-11..2026-10"
+  }
+}

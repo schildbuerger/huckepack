@@ -1,0 +1,261 @@
+name: Országos Kéktúra
+added: 2026-11-01
+aliases: [National Blue Trail, OKT, Kéktúra, Blue Trail]
+website: https://www.kektura.hu/okt-szakaszok
+wikidata: Q60088
+managedBy:
+  # MTSZ has run the trail since 1961; part of the National Blue Circuit (Országos Kékkör)
+  - name: Magyar Természetjáró Szövetség (Hungarian Hiking Association, MTSZ)
+    url: https://www.kektura.hu/
+trailType: point-to-point
+continents: [Europe]
+countries: [HU]
+regions: [Vas, Zala, Veszprém, Fejér, Komárom-Esztergom, Pest, Budapest, Nógrád, Heves, Borsod-Abaúj-Zemplén]
+protectedAreas:
+  - Írottkő Nature Park
+  - Balaton Uplands National Park
+  - Duna–Ipoly National Park
+  - Bükk National Park
+  - Aggtelek National Park
+termini:
+  # Írott-kő on the Austrian border, Hollóháza by the Slovak border: the first and last points of
+  # the official section tracks
+  start:
+    name: Írott-kő
+    lat: 47.35276
+    lon: 16.43375
+  end:
+    name: Hollóháza
+    lat: 48.54199
+    lon: 21.41329
+  source: kektura
+waymarking:
+  # MTSZ calls it the blue mark, "K jelzés"; English Wikipedia describes it: "a horizontal blue
+  # stripe on a white rectangle"
+  text: The blue mark (K jelzés), a blue stripe on white
+  symbol: blue-stripe-on-white
+  source: wikipedia-en
+length:
+  # "1 183,1 km" (OKT szakaszok, 2026)
+  - km: 1183.1
+    source: kektura
+ascent:
+  # "szint +/- 31 915 m / 32 500 m"
+  - m: 31915
+    source: kektura
+descent:
+  - m: 32500
+    source: kektura
+stages:
+  # MTSZ's 27 sections are 14–74 km, so the stages are days (user's decision 2026-11-01,
+  # docs/scope.md): sections 1–17 in the day stages each section page recommends ("Ajánlott napi
+  # szakaszolás"; section 1's third day ends at the Szeleste stamping point instead of the
+  # Ölbő-Alsószeleste railway stop), sections that are one day long as one stage, and sections
+  # 18–27, which recommend none, grouped by us into days of about 20–28 km between stamping points.
+  # Every figure is the sum of the official legs between stamping points (Szakaszadatok, 2026-09-10:
+  # distance, ascent, descent, time west to east). Each day names its section's official GPX, cut at
+  # the day's end (the track's point at the stamping point's official km within the section); it only guides the OSM matcher
+  # (kept local). Section 16 ends at Visegrád, 17 starts at Nagymaros: the Danube ferry between
+  # them is not walked
+  source: kektura
+  list:
+    - { number: "1", kind: main, from: Írott-kő, to: Kőszeg, km: 13.1, ascentM: 220, descentM: 825, minutes: 210, track: "https://turistaterkepek.hu/kekturahu/gpx/nagyszakasz/okt_01_20260827.gpx", end: { name: Kőszeg, lat: 47.38834, lon: 16.54320 } }
+    - { number: "2", kind: main, from: Kőszeg, to: Tömörd, km: 15.8, ascentM: 130, descentM: 180, minutes: 250, track: "https://turistaterkepek.hu/kekturahu/gpx/nagyszakasz/okt_01_20260827.gpx", end: { name: Tömörd, lat: 47.36539, lon: 16.67513 } }
+    - { number: "3", kind: main, from: Tömörd, to: Szeleste, km: 22.2, ascentM: 160, descentM: 220, minutes: 340, track: "https://turistaterkepek.hu/kekturahu/gpx/nagyszakasz/okt_01_20260827.gpx", end: { name: Szeleste, lat: 47.29931, lon: 16.84293 } }
+    - { number: "4", kind: main, from: Szeleste, to: Sárvár, km: 20.6, ascentM: 45, descentM: 45, minutes: 310, track: "https://turistaterkepek.hu/kekturahu/gpx/nagyszakasz/okt_01_20260827.gpx", end: { name: Sárvár, lat: 47.24557, lon: 16.94081 } }
+    - { number: "5", kind: main, from: Sárvár, to: Káld, km: 23.9, ascentM: 210, descentM: 205, minutes: 380, track: "https://turistaterkepek.hu/kekturahu/gpx/nagyszakasz/okt_02_20260827.gpx", end: { name: Káld, lat: 47.16191, lon: 17.04507 } }
+    - { number: "6", kind: main, from: Káld, to: Hosszúpereszteg, km: 10.9, ascentM: 90, descentM: 105, minutes: 170, track: "https://turistaterkepek.hu/kekturahu/gpx/nagyszakasz/okt_02_20260827.gpx", end: { name: Hosszúpereszteg, lat: 47.09190, lon: 17.02233 } }
+    - { number: "7", kind: main, from: Hosszúpereszteg, to: Ötvös, km: 21.1, ascentM: 90, descentM: 85, minutes: 330, track: "https://turistaterkepek.hu/kekturahu/gpx/nagyszakasz/okt_02_20260827.gpx", end: { name: Ötvös, lat: 47.01168, lon: 17.13802 } }
+    - { number: "8", kind: main, from: Ötvös, to: Sümeg, km: 16.7, ascentM: 60, descentM: 55, minutes: 250, track: "https://turistaterkepek.hu/kekturahu/gpx/nagyszakasz/okt_02_20260827.gpx", end: { name: Sümeg, lat: 46.98130, lon: 17.27127 } }
+    - { number: "9", kind: main, from: Sümeg, to: Zalaszántó, km: 20.8, ascentM: 425, descentM: 400, minutes: 350, track: "https://turistaterkepek.hu/kekturahu/gpx/nagyszakasz/okt_03_20260722.gpx", end: { name: Zalaszántó, lat: 46.88996, lon: 17.22856 } }
+    - { number: "10", kind: main, from: Zalaszántó, to: Keszthely, km: 23.8, ascentM: 360, descentM: 460, minutes: 390, track: "https://turistaterkepek.hu/kekturahu/gpx/nagyszakasz/okt_03_20260722.gpx", end: { name: Keszthely, lat: 46.75996, lon: 17.24966 } }
+    - { number: "11", kind: main, from: Keszthely, to: Vállus, km: 13.4, ascentM: 345, descentM: 225, minutes: 240, track: "https://turistaterkepek.hu/kekturahu/gpx/nagyszakasz/okt_04_20260722.gpx", end: { name: Vállus, lat: 46.84518, lon: 17.30438 } }
+    - { number: "12", kind: main, from: Vállus, to: Tapolca, km: 15.9, ascentM: 215, descentM: 320, minutes: 260, track: "https://turistaterkepek.hu/kekturahu/gpx/nagyszakasz/okt_04_20260722.gpx", end: { name: Tapolca, lat: 46.87735, lon: 17.42903 } }
+    - { number: "13", kind: main, from: Tapolca, to: Badacsonytördemic, km: 17.2, ascentM: 380, descentM: 385, minutes: 300, track: "https://turistaterkepek.hu/kekturahu/gpx/nagyszakasz/okt_05_20240715.gpx", end: { name: Badacsonytördemic, lat: 46.80847, lon: 17.46914 } }
+    - { number: "14", kind: main, from: Badacsonytördemic, to: Káptalantóti, km: 13.4, ascentM: 570, descentM: 555, minutes: 250, track: "https://turistaterkepek.hu/kekturahu/gpx/nagyszakasz/okt_06_20260806.gpx", end: { name: Káptalantóti, lat: 46.84991, lon: 17.51340 } }
+    - { number: "15", kind: main, from: Káptalantóti, to: Szentbékkálla, km: 13.5, ascentM: 495, descentM: 450, minutes: 250, track: "https://turistaterkepek.hu/kekturahu/gpx/nagyszakasz/okt_06_20260806.gpx", end: { name: Szentbékkálla, lat: 46.88708, lon: 17.56360 } }
+    - { number: "16", kind: main, from: Szentbékkálla, to: Nagyvázsony, km: 22.8, ascentM: 510, descentM: 425, minutes: 400, track: "https://turistaterkepek.hu/kekturahu/gpx/nagyszakasz/okt_06_20260806.gpx", end: { name: Nagyvázsony, lat: 46.98492, lon: 17.69466 } }
+    - { number: "17", kind: main, from: Nagyvázsony, to: Városlőd, km: 24.7, ascentM: 515, descentM: 475, minutes: 430, track: "https://turistaterkepek.hu/kekturahu/gpx/nagyszakasz/okt_07_20250430.gpx", end: { name: Városlőd, lat: 47.14807, lon: 17.65372 } }
+    - { number: "18", kind: main, from: Városlőd, to: Bakonybél, km: 19.0, ascentM: 360, descentM: 395, minutes: 320, track: "https://turistaterkepek.hu/kekturahu/gpx/nagyszakasz/okt_08_20260910.gpx", end: { name: Bakonybél, lat: 47.25805, lon: 17.72049 } }
+    - { number: "19", kind: main, from: Bakonybél, to: Zirc, km: 21.1, ascentM: 745, descentM: 630, minutes: 390, track: "https://turistaterkepek.hu/kekturahu/gpx/nagyszakasz/okt_08_20260910.gpx", end: { name: Zirc, lat: 47.26471, lon: 17.87863 } }
+    - { number: "20", kind: main, from: Zirc, to: Csőszpuszta, km: 20.3, ascentM: 470, descentM: 415, minutes: 340, track: "https://turistaterkepek.hu/kekturahu/gpx/nagyszakasz/okt_09_20260827.gpx", end: { name: Csőszpuszta, lat: 47.27164, lon: 18.05899 } }
+    - { number: "21", kind: main, from: Csőszpuszta, to: Bakonykúti, km: 18.4, ascentM: 285, descentM: 525, minutes: 310, track: "https://turistaterkepek.hu/kekturahu/gpx/nagyszakasz/okt_09_20260827.gpx", end: { name: Bakonykúti, lat: 47.24502, lon: 18.19707 } }
+    - { number: "22", kind: main, from: Bakonykúti, to: Bodajk, km: 19.1, ascentM: 465, descentM: 510, minutes: 330, track: "https://turistaterkepek.hu/kekturahu/gpx/nagyszakasz/okt_09_20260827.gpx", end: { name: Bodajk, lat: 47.32453, lon: 18.23193 } }
+    - { number: "23", kind: main, from: Bodajk, to: Gánt, km: 22.7, ascentM: 445, descentM: 380, minutes: 390, track: "https://turistaterkepek.hu/kekturahu/gpx/nagyszakasz/okt_10_20240731.gpx", end: { name: Gánt, lat: 47.38974, lon: 18.38687 } }
+    - { number: "24", kind: main, from: Gánt, to: Várgesztes, km: 18.0, ascentM: 475, descentM: 415, minutes: 310, track: "https://turistaterkepek.hu/kekturahu/gpx/nagyszakasz/okt_10_20240731.gpx", end: { name: Várgesztes, lat: 47.47610, lon: 18.39615 } }
+    - { number: "25", kind: main, from: Várgesztes, to: Szárliget, km: 15.5, ascentM: 450, descentM: 495, minutes: 280, track: "https://turistaterkepek.hu/kekturahu/gpx/nagyszakasz/okt_10_20240731.gpx", end: { name: Szárliget, lat: 47.51855, lon: 18.49622 } }
+    - { number: "26", kind: main, from: Szárliget, to: Koldusszállás, km: 21.0, ascentM: 515, descentM: 545, minutes: 360, track: "https://turistaterkepek.hu/kekturahu/gpx/nagyszakasz/okt_11_20260430.gpx", end: { name: Koldusszállás, lat: 47.58263, lon: 18.45409 } }
+    - { number: "27", kind: main, from: Koldusszállás, to: Bánya-hegyi erdészház, km: 11.5, ascentM: 360, descentM: 130, minutes: 210, track: "https://turistaterkepek.hu/kekturahu/gpx/nagyszakasz/okt_11_20260430.gpx", end: { name: Bánya-hegyi erdészház, lat: 47.66093, lon: 18.47632 } }
+    - { number: "28", kind: main, from: Bánya-hegyi erdészház, to: Mogyorósbánya, km: 20.4, ascentM: 570, descentM: 850, minutes: 360, track: "https://turistaterkepek.hu/kekturahu/gpx/nagyszakasz/okt_11_20260430.gpx", end: { name: Mogyorósbánya, lat: 47.72674, lon: 18.60234 } }
+    - { number: "29", kind: main, from: Mogyorósbánya, to: Dorog, km: 16.3, ascentM: 730, descentM: 760, minutes: 320, track: "https://turistaterkepek.hu/kekturahu/gpx/nagyszakasz/okt_11_20260430.gpx", end: { name: Dorog, lat: 47.72311, lon: 18.73285 } }
+    - { number: "30", kind: main, from: Dorog, to: Piliscsaba, km: 18.5, ascentM: 530, descentM: 425, minutes: 330, track: "https://turistaterkepek.hu/kekturahu/gpx/nagyszakasz/okt_12_20260625.gpx", end: { name: Piliscsaba, lat: 47.63942, lon: 18.82836 } }
+    - { number: "31", kind: main, from: Piliscsaba, to: Hűvösvölgy, km: 23.7, ascentM: 645, descentM: 650, minutes: 420, track: "https://turistaterkepek.hu/kekturahu/gpx/nagyszakasz/okt_13_20260625.gpx", end: { name: Hűvösvölgy, lat: 47.54199, lon: 18.96389 } }
+    - { number: "32", kind: main, from: Hűvösvölgy, to: Rozália téglagyár, km: 14.1, ascentM: 525, descentM: 625, minutes: 260, track: "https://turistaterkepek.hu/kekturahu/gpx/nagyszakasz/okt_14_20261001.gpx", end: { name: Rozália téglagyár, lat: 47.58505, lon: 18.98991 } }
+    - { number: "33", kind: main, from: Rozália téglagyár, to: Dobogókő, km: 22.8, ascentM: 1060, descentM: 490, minutes: 450, track: "https://turistaterkepek.hu/kekturahu/gpx/nagyszakasz/okt_15_20220616.gpx", end: { name: Dobogókő, lat: 47.71954, lon: 18.89867 } }
+    - { number: "34", kind: main, from: Dobogókő, to: Pilisszentlászló, km: 10.5, ascentM: 160, descentM: 495, minutes: 170, track: "https://turistaterkepek.hu/kekturahu/gpx/nagyszakasz/okt_16_20250702.gpx", end: { name: Pilisszentlászló, lat: 47.72320, lon: 18.98864 } }
+    - { number: "35", kind: main, from: Pilisszentlászló, to: Visegrád, km: 14.2, ascentM: 450, descentM: 710, minutes: 260, track: "https://turistaterkepek.hu/kekturahu/gpx/nagyszakasz/okt_16_20250702.gpx", end: { name: Visegrád, lat: 47.78685, lon: 18.96720 } }
+    - { number: "36", kind: main, from: Nagymaros, to: Kisinóci turistaház, km: 20.4, ascentM: 840, descentM: 615, minutes: 390, track: "https://turistaterkepek.hu/kekturahu/gpx/nagyszakasz/okt_17_20250508.gpx", end: { name: Kisinóci turistaház, lat: 47.89139, lon: 18.92700 } }
+    - { number: "37", kind: main, from: Kisinóci turistaház, to: Nógrád, km: 20.6, ascentM: 900, descentM: 1010, minutes: 400, track: "https://turistaterkepek.hu/kekturahu/gpx/nagyszakasz/okt_17_20250508.gpx", end: { name: Nógrád, lat: 47.90261, lon: 19.04592 } }
+    - { number: "38", kind: main, from: Nógrád, to: Naszály, km: 21.7, ascentM: 995, descentM: 560, minutes: 430, track: "https://turistaterkepek.hu/kekturahu/gpx/nagyszakasz/okt_18_20251016.gpx", end: { name: Naszály, lat: 47.83368, lon: 19.15292 } }
+    - { number: "39", kind: main, from: Naszály, to: Alsópetény, km: 18.2, ascentM: 320, descentM: 760, minutes: 300, track: "https://turistaterkepek.hu/kekturahu/gpx/nagyszakasz/okt_18_20251016.gpx", end: { name: Alsópetény, lat: 47.87517, lon: 19.24448 } }
+    - { number: "40", kind: main, from: Alsópetény, to: Becske, km: 20.0, ascentM: 565, descentM: 555, minutes: 360, track: "https://turistaterkepek.hu/kekturahu/gpx/nagyszakasz/okt_18_20251016.gpx", end: { name: Becske, lat: 47.91019, lon: 19.37613 } }
+    - { number: "41", kind: main, from: Becske, to: Nógrádsipek, km: 26.6, ascentM: 835, descentM: 845, minutes: 490, track: "https://turistaterkepek.hu/kekturahu/gpx/nagyszakasz/okt_19_20260611.gpx", end: { name: Nógrádsipek, lat: 48.00795, lon: 19.50177 } }
+    - { number: "42", kind: main, from: Nógrádsipek, to: Tepke, km: 25.3, ascentM: 980, descentM: 630, minutes: 480, track: "https://turistaterkepek.hu/kekturahu/gpx/nagyszakasz/okt_19_20260611.gpx", end: { name: Tepke, lat: 47.94927, lon: 19.63700 } }
+    - { number: "43", kind: main, from: Tepke, to: Mátraverebély, km: 22.5, ascentM: 585, descentM: 975, minutes: 400, track: "https://turistaterkepek.hu/kekturahu/gpx/nagyszakasz/okt_19_20260611.gpx", end: { name: Mátraverebély, lat: 47.97341, lon: 19.77826 } }
+    - { number: "44", kind: main, from: Mátraverebély, to: Mátraháza, km: 26.2, ascentM: 1320, descentM: 790, minutes: 515, track: "https://turistaterkepek.hu/kekturahu/gpx/nagyszakasz/okt_20_20251016.gpx", end: { name: Mátraháza, lat: 47.86836, lon: 19.97813 } }
+    - { number: "45", kind: main, from: Mátraháza, to: Sirok, km: 26.1, ascentM: 1030, descentM: 1580, minutes: 490, track: "https://turistaterkepek.hu/kekturahu/gpx/nagyszakasz/okt_21_20251016.gpx", end: { name: Sirok, lat: 47.93165, lon: 20.19452 } }
+    - { number: "46", kind: main, from: Sirok, to: Szarvaskő, km: 18.0, ascentM: 585, descentM: 520, minutes: 330, track: "https://turistaterkepek.hu/kekturahu/gpx/nagyszakasz/okt_22_20230511.gpx", end: { name: Szarvaskő, lat: 47.98810, lon: 20.33100 } }
+    - { number: "47", kind: main, from: Szarvaskő, to: Cserepes-kői-barlang, km: 20.9, ascentM: 1180, descentM: 630, minutes: 420, track: "https://turistaterkepek.hu/kekturahu/gpx/nagyszakasz/okt_23_20260715.gpx", end: { name: Cserepes-kői-barlang, lat: 48.05163, lon: 20.43362 } }
+    - { number: "48", kind: main, from: Cserepes-kői-barlang, to: Mályinka, km: 19.2, ascentM: 600, descentM: 1075, minutes: 350, track: "https://turistaterkepek.hu/kekturahu/gpx/nagyszakasz/okt_23_20260715.gpx", end: { name: Mályinka, lat: 48.15347, lon: 20.49428 } }
+    - { number: "49", kind: main, from: Mályinka, to: Putnok, km: 22.7, ascentM: 475, descentM: 625, minutes: 380, track: "https://turistaterkepek.hu/kekturahu/gpx/nagyszakasz/okt_23_20260715.gpx", end: { name: Putnok, lat: 48.28709, lon: 20.43730 } }
+    - { number: "50", kind: main, from: Putnok, to: Zádorfalva, km: 19.1, ascentM: 415, descentM: 345, minutes: 330, track: "https://turistaterkepek.hu/kekturahu/gpx/nagyszakasz/okt_24_20260903.gpx", end: { name: Zádorfalva, lat: 48.38632, lon: 20.48709 } }
+    - { number: "51", kind: main, from: Zádorfalva, to: Jósvafő, km: 19.3, ascentM: 545, descentM: 555, minutes: 340, track: "https://turistaterkepek.hu/kekturahu/gpx/nagyszakasz/okt_24_20260903.gpx", end: { name: Jósvafő, lat: 48.48484, lon: 20.54991 } }
+    - { number: "52", kind: main, from: Jósvafő, to: Bódvaszilas, km: 24.1, ascentM: 665, descentM: 710, minutes: 420, track: "https://turistaterkepek.hu/kekturahu/gpx/nagyszakasz/okt_24_20260903.gpx", end: { name: Bódvaszilas, lat: 48.53709, lon: 20.73368 } }
+    - { number: "53", kind: main, from: Bódvaszilas, to: Rakacaszend, km: 22.3, ascentM: 620, descentM: 605, minutes: 400, track: "https://turistaterkepek.hu/kekturahu/gpx/nagyszakasz/okt_25_20260924.gpx", end: { name: Rakacaszend, lat: 48.46208, lon: 20.83549 } }
+    - { number: "54", kind: main, from: Rakacaszend, to: Baktakék, km: 26.5, ascentM: 610, descentM: 630, minutes: 450, track: "https://turistaterkepek.hu/kekturahu/gpx/nagyszakasz/okt_25_20260924.gpx", end: { name: Baktakék, lat: 48.36418, lon: 21.02941 } }
+    - { number: "55", kind: main, from: Baktakék, to: Boldogkőváralja, km: 22.3, ascentM: 295, descentM: 290, minutes: 370, track: "https://turistaterkepek.hu/kekturahu/gpx/nagyszakasz/okt_25_20260924.gpx", end: { name: Boldogkőváralja, lat: 48.33938, lon: 21.23604 } }
+    - { number: "56", kind: main, from: Boldogkőváralja, to: Istvánkúti vadászház, km: 23.2, ascentM: 820, descentM: 475, minutes: 430, track: "https://turistaterkepek.hu/kekturahu/gpx/nagyszakasz/okt_26_20260319.gpx", end: { name: Istvánkúti vadászház, lat: 48.40855, lon: 21.40071 } }
+    - { number: "57", kind: main, from: Istvánkúti vadászház, to: Nagy-nyugodó, km: 28.6, ascentM: 825, descentM: 970, minutes: 510, track: "https://turistaterkepek.hu/kekturahu/gpx/nagyszakasz/okt_26_20260319.gpx", end: { name: Nagy-nyugodó, lat: 48.39219, lon: 21.62398 } }
+    - { number: "58", kind: main, from: Nagy-nyugodó, to: Füzérradvány, km: 24.5, ascentM: 645, descentM: 810, minutes: 430, track: "https://turistaterkepek.hu/kekturahu/gpx/nagyszakasz/okt_27_20260806.gpx", end: { name: Füzérradvány, lat: 48.48451, lon: 21.52500 } }
+    - { number: "59", kind: main, from: Füzérradvány, to: Hollóháza, km: 27.9, ascentM: 1205, descentM: 1080, minutes: 530, track: "https://turistaterkepek.hu/kekturahu/gpx/nagyszakasz/okt_27_20260806.gpx", end: { name: Hollóháza, lat: 48.54199, lon: 21.41329 } }
+route:
+  # built by `python -m pipeline.all orszagos-kektura`: OSM ways matched to the section tracks' pieces
+  source: osm
+  publishable: true
+difficulty:
+  estimated:
+    sac: T2
+    basis: >-
+      MTSZ's section descriptions lead over the Hungarian Central Range on forest paths and tracks,
+      with steep climbs in the Pilis, Börzsöny, Mátra (Kékes, 1,014 m, Hungary's highest point)
+      and Zemplén hills, and long flat stretches on field roads and tarmac in the west; no secured
+      or exposed passages. Mountain hiking on mostly good paths (T2).
+    source: kektura
+sleeping:
+  # OSM along the route (pipeline/along.py): tourist houses and self-catering huts (kulcsosház),
+  # campsites, hostels, guest houses and hotels in the towns
+  types: [hut, campsite, hostel, guesthouse, hotel]
+  source: osm
+wildCamping:
+  status: restricted
+  rule: >-
+    Anyone may walk in Hungary's forests, but staying more than 24 hours, camping and pitching a
+    tent there need the forest manager's consent (Forest Act § 93(1)); in national parks and other
+    protected areas only at designated sites or with the park directorate's permit.
+  source: forest-act
+access:
+  # Kőszeg station near the start (the climb to Írott-kő from Velem or Kőszeg), Sátoraljaújhely
+  # station near the finish; Vienna and Budapest the international airports. Coordinates from OSM;
+  # distances by pipeline/access.py
+  - kind: station
+    name: Kőszeg
+    lat: 47.38174
+    lon: 16.55689
+    source: osm
+  - kind: station
+    name: Sátoraljaújhely
+    lat: 48.38582
+    lon: 21.65758
+    source: osm
+  - kind: airport
+    name: Vienna International Airport (VIE)
+    lat: 48.105
+    lon: 16.5849
+    source: osm
+  - kind: airport
+    name: Budapest Ferenc Liszt International Airport (BUD)
+    lat: 47.43527
+    lon: 19.25351
+    source: osm
+tags: [national-trail, hills, forests, castles, danube-bend]
+notes:
+  - >-
+    Stages: 59 days add up to the official 1,183.1 km, 31,915 m of ascent and 32,500 m of descent
+    (the 161 stamping points' legs, Szakaszadatok 2026-09-10). Days 1–37 follow MTSZ's recommended
+    day stages for sections 1–17 (section 1's third day ends at the Szeleste stamping point, not
+    the Ölbő-Alsószeleste railway stop the page names, so both days keep official figures);
+    sections 5, 7, 12–15, 20–22 are one day each; days 38–59 (sections 18–27) are our grouping of
+    the official legs into days of about 20–28 km, as MTSZ recommends none there. Times are the
+    official walking times west to east, without breaks. Tepke has no stamping-point coordinates in
+    the official file: its day ends on the section 19 track at the stamping point's official
+    kilometre (51.9 km). Every day ends on its section's track at its stamping point's official
+    kilometre (scaled to the track's length): stamping points often sit off the track in a village.
+  - >-
+    Wild camping: the Forest Act's § 93(1) as quoted by Pénzcentrum (2023), since njt.hu didn't
+    answer on 2026-11-01; the act allows a stay of under 24 hours, the article reads, but its
+    wording is unclear and protected areas are stricter.
+  - >-
+    Route (pipeline, 2026-11-01, Geofabrik extracts): each day's piece of its section's official
+    GPX guides the matcher; every day matches at least 96 %, and the map line is 1,166.2 km
+    against the official 1,183.1 km (1.4 %). The Danube between Visegrád and Nagymaros is crossed
+    by ferry and is not part of any day.
+  - >-
+    Ascent: the official 31,915 m against the terrain model's ≈ 24,930 m (22 % lower): on trails
+    over 1,000 km the model is sampled every 500 m, which smooths away short climbs; English
+    Wikipedia's 31,460 m agrees with the official figure.
+  - >-
+    Water: 474 drinking water points in OSM; the longest stretch without one is 30.9 km (km
+    478–509, days 27–28 in the Gerecse hills); the official section pages name the springs and
+    villages to refill at. Beds: 30.3 km without a bed of the kinds counted (km 81–111, days 5–7
+    between Sárvár and Ötvös); hotels are not counted.
+  - >-
+    Travel hubs: Sátoraljaújhely station serves the finish at Hollóháza, 508 km by road from the
+    start; Kőszeg station and Vienna airport serve the start.
+  - >-
+    Data check (2026-11-01). Second source: English Wikipedia (1,172.4 km and 31,460 m climbing
+    west to east as of March 2023, Írott-kő to Hollóháza, the blue stripe on white). Length (0.9 %)
+    and ascent (1.4 %) agree, the difference being the yearly route changes; the 59 days' sums
+    equal the official totals. The terrain model's highest point is 1,023 m on the Kékes
+    (Hungary's highest, 1,014 m).
+dataCheck:
+  # working rule 2: English Wikipedia
+  date: 2026-11-01
+  against: [wikipedia-en]
+  deviations: []
+sources:
+  - id: kektura
+    title: "MTSZ, kektura.hu: Országos Kéktúra sections (length, ascent and descent), section pages (recommended day stages, descriptions, GPX), Szakaszadatok 2026-09-10 (legs between stamping points), stamping points GPX"
+    url: https://www.kektura.hu/okt-szakaszok
+    licence: © Magyar Természetjáró Szövetség (facts only)
+    retrieved: 2026-11-01
+  - id: forest-act
+    title: "2009. évi XXXVII. törvény az erdőről (Forest Act), § 91 and § 93(1), as quoted by Pénzcentrum, 26 July 2023"
+    url: https://njt.hu/jogszabaly/2009-37-00-00
+    licence: Hungarian legislation (public)
+    retrieved: 2026-11-01
+  - id: wikipedia-en
+    title: "Wikipedia (en): National Blue Trail (waymark; length, climb, termini for the data check)"
+    url: https://en.wikipedia.org/wiki/National_Blue_Trail
+    licence: CC BY-SA 4.0
+    retrieved: 2026-11-01
+  - id: wikimedia
+    title: "Wikimedia: page views of the trail's Wikipedia articles in every language, by people, over twelve months (Wikidata sitelinks, pageview API)"
+    url: https://wikimedia.org/api/rest_v1/
+    licence: CC0 1.0 (pageview data); Wikidata CC0
+    retrieved: 2026-11-01
+    checkOnly: true  # not on the trail page: the page views only rank the home page's popular trails
+  - id: osm
+    title: "OpenStreetMap contributors: paths, water, shops and places to sleep along the trail (Geofabrik extracts), stage ends, travel hubs"
+    url: https://www.openstreetmap.org/
+    licence: ODbL 1.0
+    retrieved: 2026-11-01
+  - id: copdem
+    title: "Copernicus DEM GLO-30 (30 m terrain model), tiles from AWS Open Data"
+    url: https://registry.opendata.aws/copernicus-dem/
+    licence: "Copernicus WorldDEM-30 licence, free; produced using Copernicus WorldDEM-30 © DLR e.V. 2010-2014 and © Airbus Defence and Space GmbH 2014-2018 provided under COPERNICUS by the European Union and ESA; all rights reserved"
+    retrieved: 2026-11-01
+  - id: worldcover
+    title: "ESA WorldCover 2021: 10 m land cover (via AWS Open Data)"
+    url: https://esa-worldcover.org/
+    licence: "CC BY 4.0; © ESA WorldCover project 2021 / Contains modified Copernicus Sentinel data (2021) processed by ESA WorldCover consortium"
+    retrieved: 2026-11-01
+  - id: era5
+    title: "Open-Meteo open data on AWS: ERA5-Land temperature and ERA5 precipitation, snow and wind, daily 1995–2024 (reanalysis)"
+    url: https://github.com/open-meteo/open-data
+    licence: CC BY 4.0 (Open-Meteo); contains modified Copernicus Climate Change Service information
+    retrieved: 2026-11-01
+  - id: osrm
+    title: "OSRM: road routes on OpenStreetMap data (router.project-osrm.org)"
+    url: https://project-osrm.org/
+    licence: Route data © OpenStreetMap contributors (ODbL)
+    retrieved: 2026-11-01

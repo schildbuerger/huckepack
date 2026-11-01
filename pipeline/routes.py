@@ -296,9 +296,14 @@ def build(slug, refresh=False):
         first = next(s for s in all_stages if s.get("track") == url)
         gpx, _ = cache.get(f"stage-{first['number']}-{first['kind']}.gpx", url, lambda: http_get(url))
         points = track_points(gpx)
-        if first.get("end") and nearest_index(points, start) > nearest_index(points, end):
-            # a whole-trail track drawn from the finish (the Cotswold Way's, from Bath): turned
-            points = points[::-1]
+        # a track drawn from the finish (the Cotswold Way's, from Bath) is turned: it should run from
+        # where the stage before its first stage ended (or the trail's start) to its last stage's end
+        users = [s for s in all_stages if s.get("track") == url and s.get("end")]
+        if users:
+            i = all_stages.index(users[0])
+            before = next((s["end"] for s in reversed(all_stages[:i]) if s.get("end") and s["kind"] == "main"), start)
+            if nearest_index(points, before) > nearest_index(points, users[-1]["end"]):
+                points = points[::-1]
         return tuple(points)
 
     def track_of(stage):
