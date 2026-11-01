@@ -22,11 +22,14 @@ const sky = SKYLINES[slug];
 const W = 1600;
 const H = 320;
 const TOP = 56;
-// the trail's profile as the nearest ridge, between 210 and 300 units down, on its own height range; near
-// both ends it sinks smoothly to the ground, so it flows into the band's foot
+// the trail's profile as the nearest ridge, its height following the trail's real relief (a coastal
+// path a low swell, an alpine one a tall ridge: 18 to 78 units for 0 to 1,800 m between its lowest and
+// highest point), smoothed, so it never hides the landscape behind it; near both ends it sinks smoothly
+// to the ground, so it flows into the band's foot
 const lo = Math.min(...points.map((p) => p[1]));
 const hi = Math.max(...points.map((p) => p[1]));
-const step = Math.max(1, Math.floor(points.length / 160));
+const amp = 18 + Math.min(1, (hi - lo) / 1800) * 60;
+const step = Math.max(1, Math.floor(points.length / 90));
 const thin = points.filter((_, i) => i % step === 0 || i === points.length - 1);
 const EDGE = 0.16 * W;
 const ease = (x: number) => {
@@ -34,13 +37,21 @@ const ease = (x: number) => {
   return f * f * (3 - 2 * f);
 };
 const rx = (km: number) => (km / routeKm) * W;
-const ry = (x: number, m: number) => H - (H - (296 - ((m - lo) / (hi - lo || 1)) * 86)) * ease(x);
-const ridge = `M0,${H}L${thin.map(([km, m]) => `${rx(km).toFixed(0)},${ry(rx(km), m).toFixed(0)}`).join("L")}L${W},${H}Z`;
+const ry = (x: number, m: number) => H - (H - (300 - ((m - lo) / (hi - lo || 1)) * amp)) * ease(x);
+const xy = thin.map(([km, m]) => [rx(km), ry(rx(km), m)]);
+// a quadratic through each point to the midpoint of the next: a smooth line through the profile
+const ridge =
+  `M0,${H}L${xy[0][0].toFixed(0)},${xy[0][1].toFixed(0)}` +
+  xy
+    .slice(1, -1)
+    .map(([x, y], i) => `Q${x.toFixed(0)},${y.toFixed(0)} ${((x + xy[i + 2][0]) / 2).toFixed(0)},${((y + xy[i + 2][1]) / 2).toFixed(0)}`)
+    .join("") +
+  `L${W},${H}Z`;
 ---
 
 {
   sky && (
-    <div class="skyline">
+    <div class="skyline" style={`--ground: ${sky.ground}`}>
       <div class="sk-crumbs">
         <slot name="crumbs" />
       </div>
@@ -51,11 +62,13 @@ const ridge = `M0,${H}L${thin.map(([km, m]) => `${rx(km).toFixed(0)},${ry(rx(km)
       <div class="sk-scene" aria-hidden="true">
         <span class="sk-sun" />
         <svg class="sk-svg" viewBox={`0 ${TOP} ${W} ${H - TOP}`} preserveAspectRatio="xMidYMax meet">
-          <polygon class="sk-rock" points={sky.massif} />
-          {sky.snow.map((p) => (
-            <polygon class="sk-snow" points={p} />
+          {sky.shapes.map((s) => (
+            <path class="sk-shape" d={s.d} style={`--c: ${s.c}`} />
           ))}
-          <path class="sk-ridge" d={ridge} />
+          <path class="sk-shape" d={ridge} style={`--c: ${sky.ridge}`} />
+          {(sky.front ?? []).map((s) => (
+            <path class="sk-shape" d={s.d} style={`--c: ${s.c}`} />
+          ))}
         </svg>
       </div>
     </div>
@@ -66,14 +79,14 @@ const ridge = `M0,${H}L${thin.map(([km, m]) => `${rx(km).toFixed(0)},${ry(rx(km)
   /* the band: wall to wall from the header down; the breadcrumb and the name in the page's column on the
      left, the miniature at the lower right standing on the ground that runs across the band's foot */
   .skyline {
-    --ground: 14px;
+    --ground-h: 14px;
     position: relative;
     display: grid;
     grid-template-columns: minmax(0, 1fr) auto;
     grid-template-rows: auto 1fr;
     column-gap: 32px;
     margin: 0 calc(50% - 50vw) 28px;
-    padding: 0 max(16px, calc(50vw - 600px)) var(--ground);
+    padding: 0 max(16px, calc(50vw - 600px)) var(--ground-h);
     overflow-x: clip;
     background: #d9e8e1;
   }
@@ -96,11 +109,11 @@ const ridge = `M0,${H}L${thin.map(([km, m]) => `${rx(km).toFixed(0)},${ry(rx(km)
     left: 0;
     right: 0;
     bottom: 0;
-    height: var(--ground);
-    background: #8fb05a;
+    height: var(--ground-h);
+    background: var(--ground);
   }
   :global(html[data-sky="night"]) .skyline::after {
-    background: #2b3a26;
+    background: color-mix(in srgb, var(--ground) 35%, #1d2733);
   }
 
   /* the breadcrumb and the name, in the sky's colours: dark by day, light at night, whatever the theme */
@@ -197,23 +210,12 @@ const ridge = `M0,${H}L${thin.map(([km, m]) => `${rx(km).toFixed(0)},${ry(rx(km)
     }
   }
 
-  /* the colours: rock, snow and the trail's forest ridge; by day and by night */
-  .sk-rock {
-    fill: #8e9aa6;
+  /* every shape in its own flat colour (src/lib/skylines.ts); at night the same colours sunk into the
+     night sky, so the landscape keeps its shapes and tones but goes dark */
+  .sk-shape {
+    fill: var(--c);
   }
-  .sk-snow {
-    fill: #f7f8f4;
-  }
-  .sk-ridge {
-    fill: #45663a;
-  }
-  :global(html[data-sky="night"]) .sk-rock {
-    fill: #3a4554;
-  }
-  :global(html[data-sky="night"]) .sk-snow {
-    fill: #b9c0cb;
-  }
-  :global(html[data-sky="night"]) .sk-ridge {
-    fill: #1f2c20;
+  :global(html[data-sky="night"]) .sk-shape {
+    fill: color-mix(in srgb, var(--c) 35%, #1d2733);
   }
 </style>
