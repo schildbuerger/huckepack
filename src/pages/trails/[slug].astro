@@ -503,6 +503,8 @@ const groupRows = supplyLanes.flatMap((r, i) => (r.group && supplyLanes.some((x)
 const subsOf = (g: number) => supplyLanes.filter((r) => r.parent === g).length;
 // the water chart's kilometres start right of the tree line its sub rows hang from (issue #119)
 const WX0 = subRows > 0 ? CHART.x0 + 26 : CHART.x0;
+// a lane's track reaches a little past both ends of the axis, so a tick at 0 km or at the end sits inside it
+const TRACK_PAD = 6;
 const wx = (km: number) => n1(WX0 + (Math.min(km, water?.routeKm ?? km) / (water?.routeKm || 1)) * (CHART.x1 - WX0));
 const tickPath = (pts: LanePoint[], y: number, top = 4, bottom = 22) => pts.map((p) => `M${wx(p.km)} ${y + top}V${y + bottom}`).join("");
 const supplySummary =
@@ -1615,12 +1617,12 @@ const trailLd = JSON.stringify({
               <g class="row" data-row={i}>
                 {lane.sub ? (
                   <>
-                    <rect class="track" x={WX0} y={laneY(i)} width={CHART.x1 - WX0} height={LANE.band} rx="4" />
-                    <rect class="gap" x={wx(lane.gap.fromKm)} y={laneY(i)} width={n1(wx(lane.gap.toKm) - wx(lane.gap.fromKm))} height={LANE.band} rx="4" />
+                    <rect class="track" x={WX0 - TRACK_PAD} y={laneY(i) + 5} width={CHART.x1 - WX0 + 2 * TRACK_PAD} height={16} rx="3" />
+                    <rect class="gap" x={wx(lane.gap.fromKm)} y={laneY(i) + 5} width={n1(wx(lane.gap.toKm) - wx(lane.gap.fromKm))} height={16} rx="3" />
                     <text class="lane-name sub-name" x={CHART.x0 + 22} y={laneY(i) - 1}>
                       {lane.label} <tspan class="lane-gap">· {lane.gap.km} km without</tspan>
                     </text>
-                    <path class={`mark-tick ${lane.id}`} d={tickPath(lane.points, laneY(i))} />
+                    <path class={`mark-tick ${lane.id}`} d={tickPath(lane.points, laneY(i), 7, 19)} />
                   </>
                 ) : (
                   <>
@@ -1630,7 +1632,7 @@ const trailLd = JSON.stringify({
                         d={`M${CHART.x0 + 6} ${laneY(i) + LANE.band + 4}V${laneY(i + subsOf(i)) - 5}${Array.from({ length: subsOf(i) }, (_, k) => `M${CHART.x0 + 6} ${laneY(i + k + 1) - 5}h10`).join("")}`}
                       />
                     )}
-                    <rect class="track" x={WX0} y={laneY(i)} width={CHART.x1 - WX0} height={LANE.band} rx="4" />
+                    <rect class="track" x={WX0 - TRACK_PAD} y={laneY(i)} width={CHART.x1 - WX0 + 2 * TRACK_PAD} height={LANE.band} rx="4" />
                     <rect class="gap" x={wx(lane.gap.fromKm)} y={laneY(i)} width={n1(wx(lane.gap.toKm) - wx(lane.gap.fromKm))} height={LANE.band} rx="4" />
                     <text class:list={["lane-name", { "group-label": lane.group }]} x={CHART.x0} y={laneY(i) - 6}>
                       {lane.label} <tspan class="lane-gap">· {lane.gap.km} {lane.gapText ?? "km without"}</tspan>
@@ -1878,7 +1880,7 @@ const trailLd = JSON.stringify({
         const g = parents[lane] >= 0 ? parents[lane] : lane;
         const ks = rows.map((r, k) => (r === g || parents[r] === g ? k : -1)).filter((k) => k >= 0);
         cursor.setAttribute("y1", String(top(ks[0]) - 4));
-        cursor.setAttribute("y2", String(top(ks[ks.length - 1]) + 26 + 4));
+        cursor.setAttribute("y2", String(top(ks[ks.length - 1]) + (parents[rows[ks[ks.length - 1]]] >= 0 ? 21 : 26) + 4));
       }
       const km = ((vx - X0) / (X1 - X0)) * data.total;
       // the nearest place within about 12 units (1.2 % of the route)
