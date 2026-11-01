@@ -4,7 +4,8 @@
 // the cards the filters leave out and moves the rest into the sorted order (by `data-slug`).
 import type { SearchTrail } from "../lib/search";
 import { SLEEPING_CATEGORIES, WATER_LEVELS } from "../lib/trails";
-import { LANDSCAPES, LEVEL_WORDS, MONTHS } from "../lib/filters";
+import { LANDSCAPES, LEVEL_WORDS, MONTHS, dimSay, ratedDims } from "../lib/filters";
+import { rateData } from "../lib/months";
 
 interface Props {
   trails: SearchTrail[];
@@ -33,9 +34,8 @@ const sleepText = (t: SearchTrail) =>
 const WILD = { allowed: "Wild camping allowed", restricted: "Wild camping restricted", prohibited: "No wild camping" };
 const WATER_WORD = Object.fromEntries(WATER_LEVELS.map((l) => [l.id, l.label]));
 // the card's difficulty (issue #22): the hardest dimension as a word, as on the trail page
-const topLevel = (t: SearchTrail) => (t.difficulty.length ? Math.max(...t.difficulty.map((d) => d.level)) : null);
-const levelSay = (d: SearchTrail["difficulty"][number]) =>
-  d.low ? `${LEVEL_WORDS[d.low - 1]} to ${LEVEL_WORDS[d.level - 1]}` : LEVEL_WORDS[d.level - 1];
+// (climate for its best run of season months; the header's month pick re-rates it, Base.astro)
+const topLevel = (t: SearchTrail) => ratedDims(t).overall;
 // the main landscape, as the trail page's key figure says it
 const landText = (t: SearchTrail) => {
   const top = Object.entries(t.landscape ?? {}).sort((a, b) => b[1] - a[1])[0];
@@ -71,20 +71,20 @@ const TONE = { frequent: "good", regular: "fair", scarce: "poor", allowed: "good
               {topLevel(t) && (
                 <div>
                   <dt>Difficulty</dt>
-                  <dd class="diff">
-                    <span class="sr-only">{t.difficulty.map((d) => `${d.label}: ${levelSay(d)}`).join("; ")}. Overall: </span>
+                  <dd class="diff" data-rate={rateData(t.terrainLevel, t.effortLevel, t.climateByMonth, t.season)}>
+                    <span class="sr-only rate-sr">{ratedDims(t).dims.map((d) => `${d.label}: ${dimSay(d)}`).join("; ")}. Overall: </span>
                     <!-- as the trail page's key figure: one bar per dimension (its initial beneath), as tall
-                         as its level; climate's season range lighter on top -->
+                         as its level; climate's harder season months lighter on top -->
                     <span class="diff-bars" aria-hidden="true">
-                      {t.difficulty.map((d) => (
-                        <span class="diff-col" title={`${d.label}: ${levelSay(d)}`}>
-                          <span class="diff-bar range" style={`height: ${d.level * 25}%`}></span>
-                          <span class="diff-bar" style={`height: ${(d.low ?? d.level) * 25}%`}></span>
+                      {ratedDims(t).dims.map((d) => (
+                        <span class="diff-col" data-dim={d.id} title={`${d.label}: ${dimSay(d)}`}>
+                          <span class="diff-bar range" style={`height: ${d.top * 25}%`}></span>
+                          <span class="diff-bar lv" style={`height: ${d.level * 25}%`}></span>
                           <span class="diff-tag">{d.label[0]}</span>
                         </span>
                       ))}
                     </span>
-                    {LEVEL_WORDS[topLevel(t)! - 1]}
+                    <span class="rate-word">{LEVEL_WORDS[topLevel(t)! - 1]}</span>
                   </dd>
                 </div>
               )}

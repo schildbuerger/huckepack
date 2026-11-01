@@ -3,6 +3,7 @@
 // hold stop indexes; the last stop of days and water means "no limit", and a difficulty range
 // from Easy to Hard filters nothing.
 import type { SearchTrail } from "./search";
+import { climateFor, monthsText } from "./months";
 
 // the SAC grades, for the "easiest first" sort's tie-break (no longer a filter: it is part of terrain)
 export const SAC = ["T1", "T2", "T3", "T4", "T5", "T6"];
@@ -73,14 +74,30 @@ export const terrainOn = (f: Filters) => f.terrainMin > 0 || f.terrainMax < LEVE
 export const climateOn = (f: Filters) => f.climateMin > 0 || f.climateMax < LEVEL_TOP;
 export const effortOn = (f: Filters) => f.effortMin > 0 || f.effortMax < LEVEL_TOP;
 
-// the climate a trail asks for: its hardest month among the months picked that lie in its season,
-// or its whole season when no month is picked (levels 1–4; null when it has no climate rating)
+// the climate a trail asks for (issue #114, src/lib/months.ts): its hardest month among the months
+// picked (outside its season too: a pick re-rates, it doesn't hide), or, with no pick, its best run
+// of at least two season months (levels 1–4; null when it has no climate rating)
 export function climateLevel(t: SearchTrail, months: number[]) {
   if (!t.climateByMonth.length) return null;
-  const season = t.season?.length ? t.season : [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
-  const ms = months.length ? season.filter((m) => months.includes(m)) : season;
-  return ms.length ? Math.max(...ms.map((m) => t.climateByMonth[m - 1])) : null;
+  return climateFor(t.climateByMonth, t.season ?? [], months).level;
 }
+
+// a trail's difficulty dimensions for the months picked (none: the default run): each with its
+// level, `top` the height of the lighter bar above it (the season's hardest month without a pick)
+// and, for climate, the months it's read for; `overall` the hardest. Cards, the trail map's
+// preview and the sort share it; the header's month pick re-rates static cards the same way
+// (Base.astro)
+export function ratedDims(t: SearchTrail, months: number[] = []) {
+  const dims = t.difficulty.map((d) => {
+    if (d.id !== "climate" || !t.climateByMonth.length) return { ...d, top: d.level, months: [] as number[], picked: false, out: [] as number[] };
+    const c = climateFor(t.climateByMonth, t.season ?? [], months);
+    return { ...d, level: c.level, top: c.picked ? c.level : c.worst, months: c.months, picked: c.picked, out: c.out };
+  });
+  return { dims, overall: dims.length ? Math.max(...dims.map((d) => d.level)) : null };
+}
+// a dimension in words: climate with its months ("Moderate in Sep–Oct", "Hard for Dec–Feb")
+export const dimSay = (d: { level: number; months: number[]; picked: boolean }) =>
+  d.months.length ? `${LEVEL_WORDS[d.level - 1]} ${d.picked ? "for" : "in"} ${monthsText(d.months)}` : LEVEL_WORDS[d.level - 1];
 // a level filter: once set, trails without that rating drop out
 const within = (level: number | null, min: number, max: number) => level !== null && level - 1 >= min && level - 1 <= max;
 

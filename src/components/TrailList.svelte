@@ -20,9 +20,10 @@
 
   let { trails, children }: { trails: SearchTrail[]; children?: import("svelte").Snippet } = $props();
 
-  // the hardest of a trail's three ratings over its season (for sorting)
+  // the hardest of a trail's three ratings, climate for the months picked (else its best run of
+  // season months, issue #114), for sorting
   const hardest = (t: SearchTrail) => {
-    const xs = [t.terrainLevel, t.effortLevel, climateLevel(t, [])].filter((x) => x !== null) as number[];
+    const xs = [t.terrainLevel, t.effortLevel, climateLevel(t, filters.months)].filter((x) => x !== null) as number[];
     return xs.length ? Math.max(...xs) : null;
   };
   const SORTS = {

@@ -12,6 +12,7 @@ import { ogTrail } from "../../lib/og-trail";
 import { routePreviewSvg } from "../../lib/route-preview";
 import { n1, stripPaths } from "../../lib/svg";
 import { difficulty, levelText, DIFFICULTY_NOTE, DIMENSION_TEXT, LEVELS, SCALES, type Level } from "../../lib/difficulty";
+import { monthsText, rateData } from "../../lib/months";
 import { existsSync } from "node:fs";
 import {
   countryName,
@@ -68,6 +69,11 @@ const sac = sacGrade(t);
 // difficulty in three dimensions (src/lib/difficulty.ts); the key figure names the hardest level
 const diff = difficulty(t, derived);
 const diffTop = Math.max(1, ...diff.dims.map((d) => d.level)) as Level;
+const climateDim = diff.dims.find((d) => d.id === "climate");
+const dimLevel = (id: string) => diff.dims.find((d) => d.id === id)?.level ?? null;
+// each month's climate measures, for the header's month pick (re-rated in the browser): [level,
+// text] per measure, in the climate card's order
+const climateMonths = climateDim ? diff.months.map((m) => climateDim.measures.map((x) => { const y = m.measures.find((z) => z.id === x.id)!; return [y.level, y.text]; })) : [];
 // title and description for tabs, search results and link previews: what and where, then the
 // figures a hiker decides on, as the key figures show them
 const listed = (xs: string[]) => (xs.length > 1 ? `${xs.slice(0, -1).join(", ")} and ${xs.at(-1)}` : xs[0]);
@@ -608,8 +614,8 @@ const trailLd = JSON.stringify({
               <ul class="diff-pop">
                 {diff.dims.map((d) => (
                   <li>
-                    <Meter level={d.level} low={d.low} />
-                    <strong>{d.label}: {levelText(d)}</strong>
+                    <Meter level={d.level} />
+                    <strong data-dim-text={d.id}>{d.label}: {levelText(d)}</strong>
                     <span>
                       {SCALES[d.by.id].label}: {d.by.estimate && "≈ "}{d.by.text}{d.by.where && ` (${d.by.where})`}
                     </span>
@@ -619,19 +625,20 @@ const trailLd = JSON.stringify({
               <a slot="foot" href="#difficulty">All measures</a>
             </Explain>
           </dt>
-          <dd class="diff-fig">
-            <span class="sr-only">{diff.dims.map((d) => `${d.label}: ${levelText(d)}`).join("; ")}</span>
-            <!-- one bar per dimension, as tall as its level; climate's season range lighter above -->
+          <dd class="diff-fig" data-rate={climateDim ? rateData(dimLevel("terrain"), dimLevel("effort"), diff.months.map((m) => m.level), diff.season) : undefined}>
+            <span class="sr-only rate-sr">{diff.dims.map((d) => `${d.label}: ${levelText(d)}`).join("; ")}</span>
+            <!-- one bar per dimension, as tall as its level; climate's harder season months lighter
+                 above (the header's month pick re-rates it, src/lib/months.ts) -->
             <span class="diff-bars" aria-hidden="true">
               {diff.dims.map((d) => (
-                <span class="diff-col" title={`${d.label}: ${levelText(d)}`}>
-                  <span class="diff-bar range" style={`height: ${d.level * 25}%`}></span>
-                  <span class="diff-bar" style={`height: ${(d.low ?? d.level) * 25}%`}></span>
+                <span class="diff-col" data-dim={d.id} title={`${d.label}: ${levelText(d)}`}>
+                  <span class="diff-bar range" style={`height: ${(d.worst ?? d.level) * 25}%`}></span>
+                  <span class="diff-bar lv" style={`height: ${d.level * 25}%`}></span>
                   <span class="diff-tag">{d.label[0]}</span>
                 </span>
               ))}
             </span>
-            <span class="big" aria-hidden="true">{LEVELS[diffTop - 1]}</span>
+            <span class="big rate-word" aria-hidden="true">{LEVELS[diffTop - 1]}</span>
           </dd>
         </div>
       )}
@@ -786,6 +793,9 @@ const trailLd = JSON.stringify({
   {diff.dims.length > 0 && (
     <section id="difficulty">
       <h2>Difficulty</h2>
+      {climateDim && (
+        <script is:inline type="application/json" id="climate-months" set:html={jsonBlock({ season: diff.season, months: climateMonths })} />
+      )}
       <div class="strip diff-cards" style={`--cols: ${diff.dims.length}`}>
         {diff.dims.map((d) => (
           <div>
@@ -809,13 +819,18 @@ const trailLd = JSON.stringify({
                 ))}
               </Explain>
             </p>
-            <p class="diff-level">
-              <Meter level={d.level} low={d.low} size="m" />
+            <p class="diff-level" data-dim-level={d.id}>
+              <Meter level={d.level} size="m" />
               <span>{levelText(d)}</span>
             </p>
+            {d.id === "climate" && (
+              <p class="rate-warn" hidden>
+                Outside the season ({monthsText(diff.season)}): facilities may be closed, and the weather is harder to plan for.
+              </p>
+            )}
             <ul class="measures">
               {d.measures.map((m) => (
-                <li class:list={{ set: m === d.by }}>
+                <li class:list={{ set: m === d.by }} data-measure={d.id === "climate" ? m.id : undefined}>
                   <Meter level={m.level} />
                   <span>
                     {m.id === "sac" ? (
@@ -839,7 +854,7 @@ const trailLd = JSON.stringify({
                     ) : (
                       SCALES[m.id].label
                     )}
-                    {m.where && <span class="muted"> · {m.where}</span>}
+                    {m.where && <span class="muted where"> · {m.where}</span>}
                   </span>
                   <span class="v">
                     {m.estimate && <span class="approx" aria-hidden="true">≈ </span>}
@@ -1584,6 +1599,57 @@ const trailLd = JSON.stringify({
     </ol>
   </footer>
 </Base>
+
+<script>
+  // The header's month pick (issue #114, src/components/MonthPick.astro) re-rates the Difficulty
+  // section's climate card in place: its level, each measure's hardest month among the months
+  // picked, and a note for months outside the season. Without a pick the page stays as built
+  // (the best run of season months); the key figure is re-rated by MonthPick itself (data-rate).
+  import { climateFor, monthsText, readPick } from "../../lib/months";
+
+  const block = document.getElementById("climate-months");
+  const WORDS = ["Easy", "Moderate", "Demanding", "Hard"];
+  const MONTH = (m: number) => new Date(2000, m - 1, 1).toLocaleString("en", { month: "long" });
+  const meter = (el: Element | null, level: number) => {
+    if (!el) return;
+    el.querySelectorAll("i").forEach((i, n) => i.classList.toggle("on", n < level));
+    el.setAttribute("aria-label", `${WORDS[level - 1]}, ${level} of 4`);
+  };
+  const recl = (pick: number[]) => {
+    if (!block) return;
+    const { season, months } = JSON.parse(block.textContent!) as { season: number[]; months: [number, string][][] };
+    const levels = months.map((ms) => Math.max(...ms.map((x) => x[0])));
+    const c = climateFor(levels, season, pick);
+    const text = `${WORDS[c.level - 1]} ${c.picked ? "for" : "in"} ${monthsText(c.months)}`;
+    const card = document.querySelector('[data-dim-level="climate"]');
+    meter(card?.querySelector(".meter") ?? null, c.level);
+    const word = card?.querySelector("span:not(.meter)");
+    if (word) word.textContent = text;
+    const pop = document.querySelector('[data-dim-text="climate"]');
+    if (pop) {
+      pop.textContent = `Climate: ${text}`;
+      meter(pop.parentElement!.querySelector(".meter"), c.level);
+    }
+    const warn = card?.parentElement?.querySelector<HTMLElement>(".rate-warn");
+    if (warn) warn.hidden = c.out.length === 0;
+    // each measure: its hardest month among the months rated
+    const rows = [...document.querySelectorAll<HTMLElement>("[data-measure]")];
+    const worst = rows.map((_, j) => c.months.reduce((a, m) => (months[m - 1][j][0] > months[a - 1][j][0] ? m : a), c.months[0]));
+    const top = Math.max(...worst.map((m, j) => months[m - 1][j][0]));
+    rows.forEach((row, j) => {
+      const [level, value] = months[worst[j] - 1][j];
+      meter(row.querySelector(".meter"), level);
+      const where = row.querySelector(".where");
+      if (where) where.textContent = ` · ${MONTH(worst[j])}`;
+      const v = row.querySelector(".v");
+      if (v) v.lastChild!.textContent = value;
+      row.classList.toggle("set", level === top && rows.findIndex((_, k) => months[worst[k] - 1][k][0] === top) === j);
+    });
+  };
+  const pick = readPick(location.search);
+  if (pick.length) recl(pick);
+  document.addEventListener("monthpick", (e) => recl((e as CustomEvent<number[]>).detail));
+</script>
 
 <script>
   // On-page navigation: marks the link of the section in view. The section counts as in view

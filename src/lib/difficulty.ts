@@ -6,10 +6,12 @@
 // what set it). Nothing is weighted or averaged.
 //
 //   Terrain  the path grade (SAC), climbing per km, steep stretches, natural ground
-//   Climate  heat, cold, wet days, snow, wind, per month; the trail's rating spans its season
+//   Climate  heat, cold, wet days, snow, wind, per month; rated for the season's best run of two or
+//            more months, or for the months picked (src/lib/months.ts, issue #114)
 //   Effort   the longest day's walking time
 import type { CollectionEntry } from "astro:content";
 import { gradients, mainStages, sacGrade, stageEstimates, stageTotals, walkingMinutes, STEEP_PERCENT } from "./trails";
+import { climateFor, monthsText } from "./months";
 
 type Trail = CollectionEntry<"trails">["data"];
 type DerivedData = CollectionEntry<"derived">["data"];
@@ -81,7 +83,8 @@ export type Dimension = {
   id: "terrain" | "climate" | "effort";
   label: string;
   level: Level;
-  low?: Level; // climate: the easiest season month, when it differs
+  months?: number[]; // climate: the months it's rated for (the best run, src/lib/months.ts)
+  worst?: Level; // climate: the season's hardest month
   by: Measure; // the measure that set the level
   measures: Measure[];
 };
@@ -146,13 +149,14 @@ export function difficulty(t: Trail, d?: DerivedData) {
       ];
       return { month: m.month, inSeason: season.includes(m.month), level: hardest(xs).level, measures: xs };
     }) ?? [];
-  const inSeason = months.filter((m) => m.inSeason);
-  if (inSeason.length) {
-    // the season's worst month sets the level; each measure shows its own worst season month
-    const level = Math.max(...inSeason.map((m) => m.level)) as Level;
-    const low = Math.min(...inSeason.map((m) => m.level)) as Level;
-    const xs = inSeason[0].measures.map((x) => worstOf(inSeason.map((m) => m.measures.find((y) => y.id === x.id)!)));
-    dims.push({ id: "climate", label: "Climate", level, low: low < level ? low : undefined, by: hardest(xs), measures: xs });
+  if (months.some((m) => m.inSeason)) {
+    // rated for the trail's best run of at least two consecutive season months (issue #114: a
+    // trail walked in its best months shouldn't read as hard as its worst); each measure shows
+    // its hardest month of that run. The header's month pick re-rates it in the browser.
+    const c = climateFor(months.map((m) => m.level), season);
+    const run = months.filter((m) => c.months.includes(m.month));
+    const xs = run[0].measures.map((x) => worstOf(run.map((m) => m.measures.find((y) => y.id === x.id)!)));
+    dims.push({ id: "climate", label: "Climate", level: c.level as Level, months: c.months, worst: c.worst as Level, by: hardest(xs), measures: xs });
   }
 
   // effort: the longest day; a stated time range counts its upper end, a stage without a time
@@ -184,9 +188,9 @@ function worstOf(xs: Measure[]) {
 
 export type Difficulty = ReturnType<typeof difficulty>;
 
-// a dimension's level in words; climate as a range over its season ("Moderate to Hard")
-export const levelText = (d: Pick<Dimension, "level" | "low">) =>
-  d.low ? `${LEVELS[d.low - 1]} to ${LEVELS[d.level - 1]}` : LEVELS[d.level - 1];
+// a dimension's level in words; climate with the months it's rated for ("Moderate in Sep–Oct")
+export const levelText = (d: Pick<Dimension, "level" | "months">) =>
+  d.months?.length ? `${LEVELS[d.level - 1]} in ${monthsText(d.months)}` : LEVELS[d.level - 1];
 
 export const DIMENSION_TEXT: Record<Dimension["id"], { question: string; how: string }> = {
   terrain: {
@@ -195,7 +199,7 @@ export const DIMENSION_TEXT: Record<Dimension["id"], { question: string; how: st
   },
   climate: {
     question: "How hot, cold, wet and windy does it get?",
-    how: "Rated for each month of the season from 30 years of weather (ERA5): the rating spans the season's easiest and hardest month, and each measure shows its hardest month.",
+    how: "Rated for each month from 30 years of weather (ERA5). Without a month picked (the month pick at the top of the page), the rating is for the trail's best run of at least two months in its season, and each measure shows its hardest month of that run; a pick re-rates it for your months.",
   },
   effort: {
     question: "How long are the days?",

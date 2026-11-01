@@ -30,9 +30,18 @@ How hard a trail is, rated the same way for every trail (issue #16). The rule li
 | Climate | Wind | < 15 km/h | 15–20 | 20–25 | ≥ 25 | mean of each day's strongest wind (hourly mean, 10 m), the windier of both points |
 | Effort | Longest day | ≤ 4 h | 4–6 h | 6–8 h | > 8 h | walking time of the longest main stage (stated; a range counts its upper end; else DIN 33466) |
 
-**Climate by month.** Each month is rated on its own; the trail's rating spans its season (the
-record's `season.months`, all months if none): "Moderate to Hard" means its easiest season month
-is Moderate and its hardest Hard. Each measure shows its own hardest season month.
+**Climate by month (issue #114, 2026-11-01).** Each month is rated on its own. Without a month
+picked, a trail's climate rating is its **best run of at least two consecutive season months**
+(the record's `season.months`, all months if none; across the new year too): of every such run,
+the one whose hardest month is easiest, on a tie the longest; the run's hardest month sets the
+level, "Moderate in Sep–Oct". A one-month season is rated by its month. The season's hardest
+month still shows, lighter, above the climate bar. With the header's month pick (the URL's
+`months`, the same setting as the search's When filter; nothing is stored), the rating is the
+hardest of the picked months, outside the season too, with a note there ("Outside the season").
+Each measure shows its own hardest month of the months rated. Before 2026-11-01 the season's
+hardest month set the rating, which made 17 of 25 trails read "Hard" overall; a hiker plans for
+the months they'll go, not for the worst one. The rules are `src/lib/months.ts`, shared by the
+build and the browser.
 
 ## Why these choices
 

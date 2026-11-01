@@ -155,6 +155,11 @@
   along the route, on the page, in the search filter and on the cards
   alike; OSM's shelters (day shelters, whatever their tagged type) don't count
   as beds.
+- **Difficulty by month (issue #114, 2026-11-01):** without a pick, climate
+  is rated for a trail's best run of at least two consecutive season months;
+  a month pick in every page's header (approach A of three previews, with an
+  (i) on why the months matter) re-rates every page. The pick lives only in
+  the URL and is the same setting as the search's When filter.
 - **A crossing OSM maps as under construction (2026-11-01):** a stage may
   allow the matcher a longer bridge (`maxBridgeM`), noted in the record (the
   Cotswold Way's A417 at the Air Balloon, 133 m), instead of holding the

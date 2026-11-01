@@ -1,5 +1,6 @@
 ---
 import ThemeToggle from "../components/ThemeToggle.astro";
+import MonthPick from "../components/MonthPick.astro";
 import logo from "../assets/logo.svg?raw"; // written by design/logos/make.py
 import { inlineScript } from "../lib/inline-script";
 
@@ -87,6 +88,7 @@ const siteLd =
         </a>
         <div class="header-end">
           <slot name="header" />
+          <MonthPick />
           <ThemeToggle />
         </div>
       </div>
@@ -347,6 +349,30 @@ const siteLd =
     display: flex;
     align-items: center;
     gap: 14px;
+  }
+  /* phones: the month pick (MonthPick.astro) gets a row of its own under the logo, the page's own
+     items and the theme switch */
+  @media (max-width: 639px) {
+    .site-header .wrap {
+      flex-wrap: wrap;
+      height: auto;
+      min-height: 60px;
+    }
+    .header-end {
+      display: contents;
+    }
+    .header-end > :global(.month-pick) {
+      order: 3;
+      flex-basis: 100%;
+      padding-bottom: 10px;
+    }
+    .header-end > :global(.theme-toggle),
+    .header-end > :global(*:not(.month-pick)) {
+      margin-left: 8px;
+    }
+    .brand {
+      margin-right: auto;
+    }
   }
   .brand {
     display: inline-flex;

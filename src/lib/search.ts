@@ -22,13 +22,13 @@ export function searchSummary(id: string, t: Trail, d?: DerivedData) {
   return {
     ...base,
     climb: base.ascentM !== null ? { m: base.ascentM, est: false } : estUp !== null ? { m: estUp, est: true } : null,
-    // each dimension's level for the card's difficulty bars (issue #22); climate's `low` is the
-    // gentlest month of the season where it differs
-    difficulty: diff.dims.map((x) => ({ id: x.id, label: x.label, level: x.level as number, low: (x.low ?? null) as number | null })),
+    // each dimension's level for the card's difficulty bars (issue #22); climate's for its best run
+    // of season months (issue #114), re-rated for a month pick by ratedDims() (src/lib/filters.ts)
+    difficulty: diff.dims.map((x) => ({ id: x.id, label: x.label, level: x.level as number })),
     terrainLevel: level("terrain"), // 1–4, null when not rated
     effortLevel: level("effort"),
-    // the climate level of each month (index 0 = January), empty when not rated; the filter takes
-    // the hardest of the months asked for, within the season
+    // the climate level of each month (index 0 = January), empty when not rated; a month pick and
+    // the climate filter read it (climateLevel())
     climateByMonth: diff.months.map((m) => m.level as number),
     landscape: d?.landcover?.shares ?? null, // share of each landscape group (src/pages/trails/[slug].astro LAND)
   };

@@ -510,7 +510,7 @@
         {/each}
     </div>
     {#if picked}
-      {#key picked.slug}<TrailPreview trail={picked} onclose={closePreview} />{/key}
+      {#key picked.slug}<TrailPreview trail={picked} months={filters.months} onclose={closePreview} />{/key}
     {/if}
   </div>
   <aside class="wm-side">

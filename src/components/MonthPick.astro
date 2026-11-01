@@ -1,0 +1,196 @@
+---
+// The header's month pick (issue #114; of three previews, approach A): "Any month ▾" opens a
+// 12-month grid (a month, or a second for the run from the first to it). The pick lives only in
+// the URL (`months`, the same parameter as the search's When filter; nothing is stored), so
+// applying it reloads the page with it. Every difficulty on the page is then re-rated for those
+// months (src/lib/months.ts rerate(), elements with data-rate), and links within huckepack carry
+// it along. Without a pick, climate is rated for each trail's best run of season months.
+import Explain from "./Explain.astro";
+import { MONTH_ABBR } from "../lib/months";
+---
+
+<div class="month-pick">
+  <button type="button" class="mp-pill" popovertarget="month-pick-grid" aria-label="Months you'd walk: any month">
+    <span class="mp-text">Any month</span> <span aria-hidden="true">▾</span>
+  </button>
+  <Explain id="month-pick-info" term="Why pick your months" title="Why the months matter" icon>
+    <p>
+      A trail's weather, and so its difficulty, changes through the year: pick the months you'd walk early on, and every
+      rating on huckepack is read for them instead of for each trail's best months.
+    </p>
+  </Explain>
+  <div id="month-pick-grid" class="mp-pop" popover>
+    <p class="mp-hint">Pick a month, or a second one for a run.</p>
+    <div class="mp-grid" role="group" aria-label="Months">
+      {MONTH_ABBR.map((m, i) => <button type="button" data-m={i + 1} aria-pressed="false">{m}</button>)}
+    </div>
+    <p class="mp-actions">
+      <button type="button" class="mp-any">Any month</button>
+      <button type="button" class="mp-apply" disabled>Rate for these months</button>
+    </p>
+  </div>
+</div>
+
+<script>
+  import { monthsText, readPick, rerate, runBetween } from "../lib/months";
+
+  const pill = document.querySelector<HTMLElement>(".mp-pill")!;
+  const pop = document.getElementById("month-pick-grid")!;
+  const apply = pop.querySelector<HTMLButtonElement>(".mp-apply")!;
+  let chosen: number[] = [];
+  let anchor: number | null = null;
+
+  // the URL with a pick (or without one): applying it reloads the page, so the islands (search,
+  // trail map, guide) read it like any of their filters
+  // (commas kept plain, as the search's own links write them: months=7,8)
+  const withPick = (u: URL, pick: number[]) => {
+    if (pick.length) u.searchParams.set("months", pick.join(","));
+    else u.searchParams.delete("months");
+    return u.pathname + u.search.replaceAll("%2C", ",") + u.hash;
+  };
+  const urlWith = (pick: number[]) => withPick(new URL(location.href), pick);
+
+  // what the page shows for the pick: the pill, every difficulty, the links within huckepack
+  const show = () => {
+    const pick = readPick(location.search);
+    const text = pick.length ? monthsText(pick) : "Any month";
+    pill.querySelector(".mp-text")!.textContent = text;
+    pill.classList.toggle("on", pick.length > 0);
+    pill.setAttribute("aria-label", `Months you'd walk: ${pick.length ? text : "any month"}`);
+    rerate(document, pick);
+    for (const a of document.querySelectorAll<HTMLAnchorElement>("a[href]")) {
+      if (a.host !== location.host || a.closest(".mp-pop") || a.getAttribute("href")!.startsWith("#")) continue;
+      a.href = withPick(new URL(a.href), pick);
+    }
+    document.dispatchEvent(new CustomEvent("monthpick", { detail: pick }));
+  };
+
+  const drawGrid = () => {
+    for (const b of pop.querySelectorAll<HTMLButtonElement>("[data-m]")) {
+      const on = chosen.includes(Number(b.dataset.m));
+      b.classList.toggle("on", on);
+      b.setAttribute("aria-pressed", String(on));
+    }
+    apply.disabled = chosen.length === 0;
+    apply.textContent = chosen.length ? `Rate for ${monthsText(chosen)}` : "Rate for these months";
+  };
+  pop.addEventListener("toggle", () => {
+    chosen = readPick(location.search);
+    anchor = chosen.length === 1 ? chosen[0] : null;
+    drawGrid();
+  });
+  for (const b of pop.querySelectorAll<HTMLButtonElement>("[data-m]")) {
+    b.addEventListener("click", () => {
+      const m = Number(b.dataset.m);
+      if (anchor === null || chosen.length > 1) {
+        chosen = [m];
+        anchor = m;
+      } else if (m === anchor) {
+        chosen = [];
+        anchor = null;
+      } else chosen = runBetween(anchor, m);
+      drawGrid();
+    });
+  }
+  apply.addEventListener("click", () => location.assign(urlWith(chosen)));
+  pop.querySelector(".mp-any")!.addEventListener("click", () => location.assign(urlWith([])));
+
+  // the search, the trail map and the guide write their filters into the URL themselves (the When
+  // filter is the same pick): follow them
+  const replace = history.replaceState.bind(history);
+  history.replaceState = (...args: Parameters<History["replaceState"]>) => {
+    replace(...args);
+    show();
+  };
+  show();
+</script>
+
+<style>
+  .month-pick {
+    display: flex;
+    align-items: center;
+    gap: 2px;
+  }
+  .mp-pill {
+    padding: 5px 11px;
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    background: var(--bg);
+    color: var(--text);
+    font: 500 0.82rem var(--sans);
+    white-space: nowrap;
+    cursor: pointer;
+  }
+  .mp-pill.on {
+    border-color: var(--accent);
+    background: var(--accent-soft);
+  }
+  .mp-pop {
+    width: min(300px, calc(100vw - 32px));
+    margin: 0;
+    padding: 14px;
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    background: var(--bg);
+    color: var(--text);
+    box-shadow: 0 8px 24px rgb(0 0 0 / 0.18);
+    /* under the header's right end */
+    inset: 56px 16px auto auto;
+  }
+  .mp-hint {
+    margin: 0 0 10px;
+    color: var(--muted);
+    font-size: 0.8rem;
+  }
+  .mp-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 6px;
+  }
+  .mp-grid button,
+  .mp-actions button {
+    padding: 8px 0;
+    border: 1px solid var(--line);
+    border-radius: 6px;
+    background: var(--bg);
+    color: var(--text);
+    font: 0.85rem var(--sans);
+    cursor: pointer;
+  }
+  .mp-grid button.on {
+    border-color: var(--accent);
+    background: var(--accent-soft);
+  }
+  .mp-actions {
+    display: flex;
+    gap: 8px;
+    margin: 12px 0 0;
+  }
+  .mp-actions button {
+    flex: 1;
+    padding: 8px 10px;
+  }
+  .mp-apply {
+    border-color: var(--accent) !important;
+    background: var(--accent) !important;
+    color: #fff !important;
+    font-weight: 600 !important;
+  }
+  .mp-apply:disabled {
+    opacity: 0.45;
+    cursor: default;
+  }
+  /* phones: the header holds the logo, this and the theme switch (and the home page's search) */
+  /* phones: on its own row under the header's first line (Base.astro), the grid opens beneath it */
+  @media (max-width: 639px) {
+    .mp-pop {
+      inset: 104px 16px auto 16px;
+      width: auto;
+    }
+  }
+  @media (pointer: coarse) {
+    .mp-grid button {
+      padding: 12px 0;
+    }
+  }
+</style>

@@ -6,6 +6,7 @@ import assert from "node:assert/strict";
 import { barMetres, gradients, sleepingCategories, trailClimb, trailLength, walkingMinutes, stageTotals, STEEP_PERCENT } from "../src/lib/trails.ts";
 import { mergeRuns, stripPaths, n1 } from "../src/lib/svg.ts";
 import { kmBetween, roundDistance } from "../src/lib/geo.ts";
+import { bestRun, climateFor, monthsText, readPick, runBetween } from "../src/lib/months.ts";
 
 // a record with only what these functions read
 const trail = (over: Record<string, unknown> = {}) =>
@@ -108,3 +109,22 @@ test("distances on the globe", () => {
   assert.ok(Math.abs(kmBetween([13.405, 52.52], [11.582, 48.135]) - 504) < 5);
   assert.equal(typeof roundDistance(237), "number");
 });
+
+test("months: the best run of at least two season months, and a pick", () => {
+  // Rothaarsteig-like: all year, hard in winter, moderate in Sep–Oct
+  const levels = [4, 4, 4, 3, 3, 3, 3, 3, 2, 2, 3, 4];
+  assert.deepEqual(bestRun(levels, []), [9, 10]);
+  // a season across the new year (Nov–Apr) stays in calendar order
+  assert.deepEqual(bestRun([3, 3, 3, 3, 4, 4, 4, 4, 4, 4, 4, 4], [11, 12, 1, 2, 3, 4]), [1, 2, 3, 4]);
+  // one easy month alone doesn't make the run: the pair around it decides
+  assert.deepEqual(bestRun([4, 4, 4, 4, 4, 4, 4, 4, 2, 4, 4, 4], [6, 7, 8, 9, 10]), [6, 7, 8, 9, 10]);
+  const c = climateFor(levels, [], [12, 1, 2]);
+  assert.deepEqual([c.level, c.worst, c.picked, c.out], [4, 4, true, []]);
+  assert.deepEqual(climateFor(levels, [5, 6, 7, 8, 9, 10], [1]).out, [1]);
+  assert.equal(monthsText([9, 10]), "Sep–Oct");
+  assert.equal(monthsText([11, 12, 1, 2]), "Nov–Feb");
+  assert.equal(monthsText([1, 5]), "Jan, May");
+  assert.deepEqual(runBetween(11, 2), [11, 12, 1, 2]);
+  assert.deepEqual(readPick("?months=7,8&where=Italy"), [7, 8]);
+});
+

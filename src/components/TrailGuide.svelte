@@ -4,6 +4,7 @@
   // would leave, counted with the same test as the search page (src/lib/filters.ts).
   import { onMount } from "svelte";
   import { SLEEPING_CATEGORIES } from "../lib/trails";
+  import { readPick } from "../lib/months";
   import type { SearchTrail } from "../lib/search";
   import {
     DAYS,
@@ -83,7 +84,7 @@
     { id: "days", question: "How many days do you have?", help: "A trail stays if the days its managers suggest overlap yours." },
     { id: "terrain", question: "How demanding may the terrain be?", help: "Our terrain rating: the path grade, how much and how steeply the trail climbs, and the ground." },
     { id: "effort", question: "How long may a day be?", help: "The walking time of the trail's longest stage." },
-    { id: "climate", question: "What weather can you take?", help: "Our climate rating from 30 years of weather, in the months you picked (within each trail's season), or over its whole season." },
+    { id: "climate", question: "What weather can you take?", help: "Our climate rating from 30 years of weather, for the months you picked, or for each trail's best run of months in its season." },
     { id: "land", question: "What would you like to walk through?", help: "Pick as many as you like. A trail stays if at least a fifth of it is one of them." },
     { id: "ground", question: "What would you like underfoot?" },
     { id: "sleep", question: "Where would you like to sleep?", help: "Pick everything you'll need. A trail stays if it offers all of them." },
@@ -135,7 +136,9 @@
   // bottom edge on every question (CSS has an estimate for before this runs)
   const fit = () => guide?.style.setProperty("--top", `${guide.getBoundingClientRect().top + scrollY}px`);
   onMount(() => {
-    history.replaceState({ step: 0 }, "", location.pathname);
+    // the header's month pick (issue #114) answers the first question; the URL keeps it
+    f.months = readPick(location.search);
+    history.replaceState({ step: 0 }, "", location.pathname + location.search);
     const back = (e: PopStateEvent) => (step = e.state?.step ?? 0);
     addEventListener("popstate", back);
     addEventListener("resize", fit);

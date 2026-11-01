@@ -8,6 +8,7 @@ import TrailSearch from "../components/TrailSearch.astro";
 import { mainStages, stageEstimates, trailClimb, walkingMinutes } from "../lib/trails";
 import { LEVELS } from "../lib/difficulty";
 import { climateLevel } from "../lib/filters";
+import { rateData } from "../lib/months";
 import { searchSummary } from "../lib/search";
 import zones from "../lib/timezones.json";
 import { worldOutline } from "../lib/world-outline";
@@ -24,8 +25,9 @@ const recent = [...trails]
   .slice(0, RECENT);
 const addedText = (slug: string) =>
   addedOf.get(slug)!.toLocaleDateString("en-GB", { day: "numeric", month: "long", year: "numeric", timeZone: "UTC" });
-// a trail's difficulty in one word: the hardest of its three ratings over its season, as the
-// trail page's key figure shows it
+// a trail's difficulty in one word: the hardest of its three ratings, climate for its best run of
+// season months, as the trail page's key figure shows it; the header's month pick re-rates it in
+// the browser (data-rate, src/lib/months.ts rerate())
 const difficultyWord = (t: (typeof trails)[number]) => {
   const xs = [t.terrainLevel, t.effortLevel, climateLevel(t, [])].filter((x) => x !== null) as number[];
   return xs.length ? LEVELS[Math.max(...xs) - 1] : null;
@@ -114,7 +116,8 @@ const ends = entries.map((e) => [
   [e.data.termini.end.lat, e.data.termini.end.lon],
 ]);
 const figureLine = (t: (typeof trails)[number]) =>
-  [t.lengthKm !== null && `${fmt(t.lengthKm)} km`, t.days && `${days(t.days)} days`, difficultyWord(t)].filter(Boolean).join(" · ");
+  [t.lengthKm !== null && `${fmt(t.lengthKm)} km`, t.days && `${days(t.days)} days`].filter(Boolean).join(" · ");
+const rateOf = (t: (typeof trails)[number]) => rateData(t.terrainLevel, t.effortLevel, t.climateByMonth, t.season);
 
 // the map teaser (issue #33): the land around the trails with a dot at each start, drawn at build time
 // (src/lib/world-outline.ts), so the home page loads no map library; it links to /trails/map/
@@ -249,7 +252,7 @@ const featuredScript = inlineScript(Astro, `// A random featured trail on each p
               </div>
             )}
             {featured.days && <div><dt>Suggested</dt><dd>{days(featured.days)}<span>days</span></dd></div>}
-            {level && <div><dt>Difficulty</dt><dd>{level}</dd></div>}
+            {level && <div><dt>Difficulty</dt><dd data-rate={rateOf(featured)}><span class="rate-word">{level}</span></dd></div>}
             {spark && <div><dt>Highest point</dt><dd>{fmt(spark.peak)}<span>m</span></dd></div>}
           </dl>
           {spark && <TrailSpark spark={spark} surface={surface} />}
@@ -279,7 +282,7 @@ const featuredScript = inlineScript(Astro, `// A random featured trail on each p
           <a class="feat" href={`/trails/${t.slug}/`}>
             <span class="feat-place">{t.countries.join(" · ")}</span>
             <span class="feat-name">{t.name}</span>
-            <span class="feat-figures">{figureLine(t)}</span>
+            <span class="feat-figures">{figureLine(t)}{difficultyWord(t) && <> · <span data-rate={rateOf(t)}><span class="rate-word">{difficultyWord(t)}</span></span></>}</span>
             {spark && <TrailSpark spark={spark} surface={surface} height={70} />}
           </a>
         ))}
@@ -320,7 +323,7 @@ const featuredScript = inlineScript(Astro, `// A random featured trail on each p
         <a class="feat" href={`/trails/${t.slug}/`} data-slug={t.slug} data-ends={JSON.stringify(ends[i])} hidden>
           <span class="feat-place">{t.countries.join(" · ")}</span>
           <span class="feat-name">{t.name}</span>
-          <span class="feat-figures">{figureLine(t)}</span>
+          <span class="feat-figures">{figureLine(t)}{difficultyWord(t) && <> · <span data-rate={rateOf(t)}><span class="rate-word">{difficultyWord(t)}</span></span></>}</span>
           {spark && <TrailSpark spark={spark} surface={surface} height={70} />}
           <span class="feat-why" data-dist></span>
         </a>
@@ -381,9 +384,7 @@ const featuredScript = inlineScript(Astro, `// A random featured trail on each p
             <span class="card-place">{t.countries.join(", ")}</span>
             <span class="card-name">{t.name}</span>
             <span class="card-figures">
-              {[t.lengthKm !== null && `${fmt(t.lengthKm)} km`, t.days && `${days(t.days)} days`, difficultyWord(t)]
-                .filter(Boolean)
-                .join(" · ")}
+              {figureLine(t)}{difficultyWord(t) && <> · <span data-rate={rateOf(t)}><span class="rate-word">{difficultyWord(t)}</span></span></>}
             </span>
             <span class="card-added">Added {addedText(t.slug)}</span>
           </a>

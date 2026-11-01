@@ -6,9 +6,10 @@
   // map frames the trail in the room the card leaves (framePadding()).
   import type { SearchTrail } from "../lib/search";
   import { WATER_LEVELS } from "../lib/trails";
-  import { LANDSCAPES, LEVEL_WORDS, MONTHS } from "../lib/filters";
+  import { LANDSCAPES, LEVEL_WORDS, MONTHS, dimSay, ratedDims } from "../lib/filters";
 
-  let { trail: t, onclose }: { trail: SearchTrail; onclose: () => void } = $props();
+  // months: the month pick (the map's When filter, the header's pick), climate re-rated for it
+  let { trail: t, months = [], onclose }: { trail: SearchTrail; months?: number[]; onclose: () => void } = $props();
 
   const fmt = (n: number) => n.toLocaleString("en");
   const dayText = (d: [number, number]) => (d[0] === d[1] ? `${d[0]}` : `${d[0]}–${d[1]}`);
@@ -16,9 +17,8 @@
     const s = [...ms].sort((a, b) => a - b);
     return s.length === 12 ? "All year" : s.map((m) => MONTHS[m - 1]).join(", ");
   };
-  const top = $derived(t.difficulty.length ? Math.max(...t.difficulty.map((d) => d.level)) : null);
-  const levelSay = (d: SearchTrail["difficulty"][number]) =>
-    d.low ? `${LEVEL_WORDS[d.low - 1]} to ${LEVEL_WORDS[d.level - 1]}` : LEVEL_WORDS[d.level - 1];
+  const rated = $derived(ratedDims(t, months));
+  const top = $derived(rated.overall);
   const land = $derived.by(() => {
     const best = Object.entries(t.landscape ?? {}).sort((a, b) => b[1] - a[1])[0];
     const label = best && LANDSCAPES.find((l) => l.id === best[0])?.label;
@@ -63,12 +63,12 @@
       <div>
         <dt>Difficulty</dt>
         <dd class="diff">
-          <span class="sr-only">{t.difficulty.map((d) => `${d.label}: ${levelSay(d)}`).join("; ")}. Overall: </span>
+          <span class="sr-only">{rated.dims.map((d) => `${d.label}: ${dimSay(d)}`).join("; ")}. Overall: </span>
           <span class="diff-bars" aria-hidden="true">
-            {#each t.difficulty as d}
-              <span class="diff-col" title={`${d.label}: ${levelSay(d)}`}>
-                <span class="diff-bar range" style={`height: ${d.level * 25}%`}></span>
-                <span class="diff-bar" style={`height: ${(d.low ?? d.level) * 25}%`}></span>
+            {#each rated.dims as d}
+              <span class="diff-col" title={`${d.label}: ${dimSay(d)}`}>
+                <span class="diff-bar range" style={`height: ${d.top * 25}%`}></span>
+                <span class="diff-bar" style={`height: ${d.level * 25}%`}></span>
               </span>
             {/each}
           </span>
