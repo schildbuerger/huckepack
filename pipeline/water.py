@@ -1,7 +1,7 @@
 """Water sources along a trail, from OpenStreetMap.
 
-    .venv/bin/python -m pipeline.water <slug>            # use the cached OSM download
-    .venv/bin/python -m pipeline.water <slug> --refresh  # download again
+    ~/.venvs/huckepack/bin/python -m pipeline.water <slug>            # use the cached OSM download
+    ~/.venvs/huckepack/bin/python -m pipeline.water <slug> --refresh  # download again
 
 Needs public/routes/<slug>.geojson (run pipeline.routes first). Finds drinking water and
 springs within WITHIN_M of the route (Overpass, cached in data/raw/<slug>/osm-water.json) and

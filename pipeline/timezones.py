@@ -1,6 +1,6 @@
 """Where each time zone is, for the home page's "Trails near you" (issue #85).
 
-    .venv/bin/python -m pipeline.timezones   # download the tz database's tables, write the JSON
+    ~/.venvs/huckepack/bin/python -m pipeline.timezones   # download the tz database's tables, write the JSON
 
 The browser knows its time zone (Europe/Berlin, America/Denver) without asking and without
 sending anything; the home page turns it into a rough place with this table and sorts the trails

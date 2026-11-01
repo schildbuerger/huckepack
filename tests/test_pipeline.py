@@ -2,7 +2,7 @@
 the site. No downloads; small made-up tracks and OSM data near 50° N, where 0.001° of longitude is
 about 71 m and 0.001° of latitude about 111 m.
 
-    .venv/bin/python -m unittest discover -s tests
+    ~/.venvs/huckepack/bin/python -m unittest discover -s tests
 """
 
 import math

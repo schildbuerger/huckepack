@@ -3,7 +3,7 @@ length and coverage (`measured` in data/derived/<slug>.json, written by pipeline
 match the values recorded in tests/route_expectations.json. A pipeline change that moves a line
 fails here until the change is checked and the expectations are rewritten on purpose:
 
-    UPDATE_ROUTE_EXPECTATIONS=1 .venv/bin/python -m unittest tests.test_route_regression
+    UPDATE_ROUTE_EXPECTATIONS=1 ~/.venvs/huckepack/bin/python -m unittest tests.test_route_regression
 """
 
 import json

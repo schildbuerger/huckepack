@@ -1,12 +1,12 @@
 """A new trail record with every field to fill, so none is forgotten.
 
-    .venv/bin/python -m pipeline.new_trail <slug> "<Official name>"
+    ~/.venvs/huckepack/bin/python -m pipeline.new_trail <slug> "<Official name>"
 
 Writes data/trails/<slug>.yaml from the template below: every field the trail pages use, each
 `null` with a comment on what belongs there and where it comes from. The build fails on any
 `null` left (the schema in src/content.config.ts accepts no null), so a gap can't slip through:
 fill each field, or delete an optional one the sources don't give (and say why in `notes`). Then
-.venv/bin/python -m pipeline.all <slug>, work through its check, and do the data check (working
+~/.venvs/huckepack/bin/python -m pipeline.all <slug>, work through its check, and do the data check (working
 rule 2). Never commit a record that doesn't build.
 """
 

@@ -1,7 +1,7 @@
 """Landscape along a trail: land cover from ESA WorldCover.
 
-    .venv/bin/python -m pipeline.landcover <slug>            # use the cached samples
-    .venv/bin/python -m pipeline.landcover <slug> --refresh  # read the land cover map again
+    ~/.venvs/huckepack/bin/python -m pipeline.landcover <slug>            # use the cached samples
+    ~/.venvs/huckepack/bin/python -m pipeline.landcover <slug> --refresh  # read the land cover map again
 
 Needs the elevation step (pipeline.elevation): it samples the same points, every 100 m along the
 main stages of the map line, so land cover and heights share their kilometres. Each sample's class

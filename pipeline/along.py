@@ -1,8 +1,8 @@
 """Resupply and beds along a trail (issues #96 and #97): shops and places to sleep near the route,
 with their km along the main route and the longest stretch without one, like pipeline/water.py.
 
-    .venv/bin/python -m pipeline.along <slug>            # use the cached points
-    .venv/bin/python -m pipeline.along <slug> --refresh  # read the extracts again
+    ~/.venvs/huckepack/bin/python -m pipeline.along <slug>            # use the cached points
+    ~/.venvs/huckepack/bin/python -m pipeline.along <slug> --refresh  # read the extracts again
 
 Needs public/routes/<slug>.geojson (pipeline.routes) and the trail's OSM corridor, whose
 Geofabrik extracts it reads once more for the tags it needs (the corridor itself reaches only

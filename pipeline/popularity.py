@@ -1,7 +1,7 @@
 """How much interest a trail draws: views of its Wikipedia articles (issue #84).
 
-    .venv/bin/python -m pipeline.popularity <slug>            # use the cached counts
-    .venv/bin/python -m pipeline.popularity <slug> --refresh  # ask Wikimedia again
+    ~/.venvs/huckepack/bin/python -m pipeline.popularity <slug>            # use the cached counts
+    ~/.venvs/huckepack/bin/python -m pipeline.popularity <slug> --refresh  # ask Wikimedia again
 
 The record's `wikidata` item (Q…) lists the trail's Wikipedia article in every language
 (sitelinks); for each, the views by people (agent "user", so no bots and crawlers) over the last

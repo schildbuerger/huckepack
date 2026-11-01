@@ -1,7 +1,7 @@
 """Build a trail's map line from OpenStreetMap, guided by the GPX tracks of its stages.
 
-    .venv/bin/python -m pipeline.routes <slug>            # use cached downloads in data/raw/<slug>/
-    .venv/bin/python -m pipeline.routes <slug> --refresh  # download tracks and OSM ways again
+    ~/.venvs/huckepack/bin/python -m pipeline.routes <slug>            # use cached downloads in data/raw/<slug>/
+    ~/.venvs/huckepack/bin/python -m pipeline.routes <slug> --refresh  # download tracks and OSM ways again
 
 Trails without GPX tracks can name their OSM hiking relation instead (`route.relation`, plus
 `route.alternatives`, ways with role "alternative" that close gaps in the main members): its

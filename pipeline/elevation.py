@@ -1,7 +1,7 @@
 """Elevation profile of a trail's main route.
 
-    .venv/bin/python -m pipeline.elevation <slug>            # use cached elevations
-    .venv/bin/python -m pipeline.elevation <slug> --refresh  # sample the terrain model again
+    ~/.venvs/huckepack/bin/python -m pipeline.elevation <slug>            # use cached elevations
+    ~/.venvs/huckepack/bin/python -m pipeline.elevation <slug> --refresh  # sample the terrain model again
 
 Needs public/routes/<slug>.geojson (pipeline.routes). Samples the main stages every SPACING_M
 along the map line (the same kilometres as the water and surface charts) and reads each

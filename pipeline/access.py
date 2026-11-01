@@ -1,7 +1,7 @@
 """Distances from a trail's travel hubs (railway station, airports) to its start.
 
-    .venv/bin/python -m pipeline.access <slug>            # use the cached routing results
-    .venv/bin/python -m pipeline.access <slug> --refresh  # ask the router again
+    ~/.venvs/huckepack/bin/python -m pipeline.access <slug>            # use the cached routing results
+    ~/.venvs/huckepack/bin/python -m pipeline.access <slug> --refresh  # ask the router again
 
 For each hub in the `access` list of data/trails/<slug>.yaml: the driving distance and time to
 the trail's start from OSRM (routing on OpenStreetMap data; public demo server, so light use

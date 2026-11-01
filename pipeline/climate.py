@@ -1,8 +1,8 @@
 """Climate by month along a trail, and daylight hours.
 
-    .venv/bin/python -m pipeline.climate <slug>            # use cached weather data
-    .venv/bin/python -m pipeline.climate <slug> --refresh  # ask the weather API again
-    .venv/bin/python -m pipeline.climate --pending         # every trail whose climate is due
+    ~/.venvs/huckepack/bin/python -m pipeline.climate <slug>            # use cached weather data
+    ~/.venvs/huckepack/bin/python -m pipeline.climate <slug> --refresh  # ask the weather API again
+    ~/.venvs/huckepack/bin/python -m pipeline.climate --pending         # every trail whose climate is due
 
 Needs the elevation step (pipeline.elevation), whose highest and lowest points of the main
 route are the two places looked up: the trail's high and low ground. For each, 30 years of
@@ -156,7 +156,7 @@ def build(slug, refresh=False):
         try:
             data, fresh = cache.get(name, url, download)
         except QuotaReached as error:
-            print(f"  climate pending: {error} (run `.venv/bin/python -m pipeline.climate --pending` later)")
+            print(f"  climate pending: {error} (run `~/.venvs/huckepack/bin/python -m pipeline.climate --pending` later)")
             return False
         if fresh:
             print(f"  downloaded {label.lower()} ({point['m']} m)")

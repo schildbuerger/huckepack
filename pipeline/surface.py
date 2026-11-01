@@ -1,7 +1,7 @@
 """Surfaces along a trail, from the OpenStreetMap ways its route uses.
 
-    .venv/bin/python -m pipeline.surface <slug>            # use the cached OSM tags
-    .venv/bin/python -m pipeline.surface <slug> --refresh  # download the tags again
+    ~/.venvs/huckepack/bin/python -m pipeline.surface <slug>            # use the cached OSM tags
+    ~/.venvs/huckepack/bin/python -m pipeline.surface <slug> --refresh  # download the tags again
 
 Needs `routeWays` in data/derived/<slug>.json and public/routes/<slug>.geojson (both from
 pipeline.routes). Downloads the tags of every way the route uses (Overpass, cached in

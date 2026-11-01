@@ -1,9 +1,9 @@
 """Every pipeline step for a trail, in order, then a check of the results.
 
-    .venv/bin/python -m pipeline.all <slug>                  # run what's due, using the caches
-    .venv/bin/python -m pipeline.all <slug> --refresh        # download everything again
-    .venv/bin/python -m pipeline.all <slug> --from water     # resume at a step after a failure
-    .venv/bin/python -m pipeline.all <slug> --check          # only the check
+    ~/.venvs/huckepack/bin/python -m pipeline.all <slug>                  # run what's due, using the caches
+    ~/.venvs/huckepack/bin/python -m pipeline.all <slug> --refresh        # download everything again
+    ~/.venvs/huckepack/bin/python -m pipeline.all <slug> --from water     # resume at a step after a failure
+    ~/.venvs/huckepack/bin/python -m pipeline.all <slug> --check          # only the check
 
 Steps: routes, water, along, surface, elevation, landcover, climate, access, popularity (each also runs on its own,
 pipeline/<step>.py). The caches in data/raw/<slug>/ make a second run fast. When the map line
@@ -55,7 +55,7 @@ def run(slug, refresh=False, start="routes"):
             importlib.import_module(f"pipeline.{step}").build(slug, refresh=refresh)
         except (Exception, SystemExit) as error:
             print(f"\n{step} failed: {error}")
-            print(f"resume with: .venv/bin/python -m pipeline.all {slug} --from {step}")
+            print(f"resume with: ~/.venvs/huckepack/bin/python -m pipeline.all {slug} --from {step}")
             raise SystemExit(1)
         if step == "routes" and before is not None and _hash(route) != before:
             dropped = [n for n in ROUTE_CACHES if (ROOT / "data" / "raw" / slug / n).exists()]
@@ -120,7 +120,7 @@ def check(slug):
     from pipeline.climate import pending
 
     if pending(slug):
-        flags.append("climate: pending (built by an older method, or its places moved); run `.venv/bin/python -m pipeline.climate --pending`, and don't publish the trail before")
+        flags.append("climate: pending (built by an older method, or its places moved); run `~/.venvs/huckepack/bin/python -m pipeline.climate --pending`, and don't publish the trail before")
     elif derived.get("climate"):
         fine.append("climate: up to date")
 

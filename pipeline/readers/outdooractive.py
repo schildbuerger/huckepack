@@ -1,7 +1,7 @@
 """Stage lists from Outdooractive (and toubiz) tour pages, ready to paste into a trail record.
 
-    .venv/bin/python -m pipeline.readers.outdooractive <stage page url> [<url> ...]
-    .venv/bin/python -m pipeline.readers.outdooractive --overview <page listing the stages>
+    ~/.venvs/huckepack/bin/python -m pipeline.readers.outdooractive <stage page url> [<url> ...]
+    ~/.venvs/huckepack/bin/python -m pipeline.readers.outdooractive --overview <page listing the stages>
 
 Many tourism portals run on Outdooractive (outdooractive.com, touren.kaernten.at, regional
 "Tourenportal" sites) or toubiz (schwarzwald-tourismus.info), and their tour pages share one layout: a title with the stage's start and
