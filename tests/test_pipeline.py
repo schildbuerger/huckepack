@@ -61,6 +61,10 @@ class TrackPoints(unittest.TestCase):
                '<trk><name>Alternative</name><trkseg><trkpt lat="51" lon="9"/></trkseg></trk></gpx>')
         self.assertEqual(routes.track_points(gpx), self.expected)
 
+    def test_gpx_route_points_without_a_track(self):
+        gpx = '<gpx><rte><name>Route</name><rtept lat="50.1" lon="8.1"><ele>3</ele></rtept><rtept lat="50.2" lon="8.2"/></rte></gpx>'
+        self.assertEqual(routes.track_points(gpx), self.expected)
+
     def test_no_track_is_an_error(self):
         with self.assertRaises(ValueError):
             routes.track_points("<html>no line here</html>")

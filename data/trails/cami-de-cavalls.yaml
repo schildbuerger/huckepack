@@ -1,0 +1,206 @@
+name: Camí de Cavalls
+added: 2026-11-01
+aliases: [GR 223, GR-223, Camino Natural Camí de Cavalls]
+website: https://www.camidecavalls.com/
+wikidata: Q1031801
+managedBy:
+  # the island council runs the path under the Llei del Camí de Cavalls (2000); a GR since 2012
+  # (homologated by the Balearic mountain federation for FEDME, renewed 24 June 2025)
+  - name: Consell Insular de Menorca
+    url: https://www.camidecavalls.com/
+trailType: loop
+continents: [Europe]
+countries: [ES]
+regions: [Balearic Islands, Menorca]
+protectedAreas:
+  - Menorca Biosphere Reserve
+  - S'Albufera des Grau Natural Park
+termini:
+  # km 0 at the head of Maó harbour (la colàrsega del port), where section 1 starts and section 20
+  # ends: the first point of the official section 1 GPX
+  start:
+    name: Maó
+    lat: 39.89754
+    lon: 4.25736
+  end:
+    name: Maó
+    lat: 39.89754
+    lon: 4.25736
+  source: cime
+established:
+  # reopened in full as a path for walkers and horses in 2010, a GR since 2012
+  year: 2012
+  source: cime-gr
+waymarking:
+  text: White over red GR stripes, with the Caminos Naturales signposts
+  symbol: white-red-stripes
+  source: cime-gr
+length:
+  # "185 Km", "divididos en 20 tramos"
+  - km: 185
+    source: turespana
+stages:
+  # the island council's 20 sections (trams) with distance, cumulative ascent and descent; each
+  # with its own GPX, which only guides the OSM matcher (kept local). Section 11's GPX lists its
+  # three segments out of order, so the OSM relation (GR 223) guides it, cut at Cap d'Artrutx (the
+  # section 12 GPX's first point)
+  source: cime
+  list:
+    - { number: "1", kind: main, from: Maó, to: Es Grau, km: 9.96, ascentM: 244, descentM: 244, track: "https://www.camidecavalls.com/documents/documents/8993doc19.gpx" }
+    - { number: "2", kind: main, from: Es Grau, to: Favàritx, km: 8.5, ascentM: 197, descentM: 191, track: "https://www.camidecavalls.com/documents/documents/8994doc19.gpx" }
+    - { number: "3", kind: main, from: Favàritx, to: "Arenal d'en Castell", km: 13.5, ascentM: 284, descentM: 273, track: "https://www.camidecavalls.com/documents/documents/8995doc19.gpx" }
+    - { number: "4", kind: main, from: "Arenal d'en Castell", to: Cala Tirant, km: 10.8, ascentM: 154, descentM: 164, track: "https://www.camidecavalls.com/documents/documents/8996doc19.gpx" }
+    - { number: "5", kind: main, from: Cala Tirant, to: Binimel·là, km: 9.48, ascentM: 235, descentM: 239, track: "https://www.camidecavalls.com/documents/documents/8997doc19.gpx" }
+    - { number: "6", kind: main, from: Binimel·là, to: Els Alocs, km: 8.76, ascentM: 379, descentM: 370, track: "https://www.camidecavalls.com/documents/documents/8998doc19.gpx" }
+    - { number: "7", kind: main, from: Els Alocs, to: Algaiarens, km: 9.61, ascentM: 304, descentM: 306, track: "https://www.camidecavalls.com/documents/documents/8999doc19.gpx" }
+    - { number: "8", kind: main, from: Algaiarens, to: Cala Morell, km: 5.39, ascentM: 150, descentM: 119, track: "https://www.camidecavalls.com/documents/documents/9000doc19.gpx" }
+    - { number: "9", kind: main, from: Cala Morell, to: Punta Nati, km: 6.96, ascentM: 128, descentM: 135, track: "https://www.camidecavalls.com/documents/documents/9001doc19.gpx" }
+    - { number: "10", kind: main, from: Punta Nati, to: Ciutadella, km: 10.5, ascentM: 137, descentM: 165, track: "https://www.camidecavalls.com/documents/documents/9002doc19.gpx" }
+    - { number: "11", kind: main, from: Ciutadella, to: "Cap d'Artrutx", km: 13, ascentM: 99, descentM: 98, relation: 1501400, end: { name: "Cap d'Artrutx", lat: 39.93185, lon: 3.8233 } }
+    - { number: "12", kind: main, from: "Cap d'Artrutx", to: Cala en Turqueta, km: 13.2, ascentM: 122, descentM: 116, track: "https://www.camidecavalls.com/documents/documents/9004doc19.gpx" }
+    - { number: "13", kind: main, from: Cala en Turqueta, to: Cala Galdana, km: 6.38, ascentM: 172, descentM: 143, track: "https://www.camidecavalls.com/documents/documents/9005doc19.gpx" }
+    - { number: "14", kind: main, from: Cala Galdana, to: Sant Tomàs, km: 10.4, ascentM: 216, descentM: 263, track: "https://www.camidecavalls.com/documents/documents/9006doc19.gpx" }
+    - { number: "15", kind: main, from: Sant Tomàs, to: Son Bou, km: 6.43, ascentM: 117, descentM: 98, track: "https://www.camidecavalls.com/documents/documents/9007doc19.gpx" }
+    - { number: "16", kind: main, from: Son Bou, to: Cala en Porter, km: 7.92, ascentM: 170, descentM: 172, track: "https://www.camidecavalls.com/documents/documents/9008doc19.gpx" }
+    - { number: "17", kind: main, from: Cala en Porter, to: Binissafúller, km: 11.6, ascentM: 182, descentM: 176, track: "https://www.camidecavalls.com/documents/documents/9009doc19.gpx" }
+    - { number: "18", kind: main, from: Binissafúller, to: Punta Prima, km: 8.06, ascentM: 96, descentM: 103, track: "https://www.camidecavalls.com/documents/documents/9010doc19.gpx" }
+    - { number: "19", kind: main, from: Punta Prima, to: Cala de Sant Esteve, km: 7.2, ascentM: 74, descentM: 55, track: "https://www.camidecavalls.com/documents/documents/9011doc19.gpx" }
+    - { number: "20", kind: main, from: Cala de Sant Esteve, to: Maó, km: 6, ascentM: 88, descentM: 100, track: "https://www.camidecavalls.com/documents/documents/9012doc19.gpx" }
+route:
+  # built by `python -m pipeline.all cami-de-cavalls`: OSM ways matched to the official sections' GPX
+  source: osm
+  publishable: true
+difficulty:
+  estimated:
+    sac: T2
+    basis: >-
+      The island council describes coastal paths, field tracks and some roads, generally flat but
+      crossing the southern ravines (barrancs), with rocky stretches (Punta Nati to Ciutadella
+      "especially rocky") and the risk of falls on cliff edges marked on its sections; the highest
+      section point is 118 m. Mountain hiking on mostly good paths with some rough, exposed ground
+      (T2).
+    source: cime
+sleeping:
+  # OSM along the route (pipeline/along.py): a few campsites and hostels, guest houses and hotels in
+  # the resorts and towns
+  types: [campsite, hostel, guesthouse, hotel]
+  source: osm
+wildCamping:
+  status: restricted
+  rule: >-
+    Sleeping on the beaches without a tent (bivouac) is generally allowed; tents and other
+    structures are prohibited by the Coasts Act and every town's bylaws. Never in dunes or
+    sensitive vegetation, no fires or stoves; in s'Albufera des Grau Natural Park only after
+    notifying the park.
+  source: cime-faq
+access:
+  # Maó's bus station near the start, Ciutadella's halfway round, Menorca Airport. Coordinates from
+  # OSM; distances by pipeline/access.py
+  - kind: bus
+    name: Maó bus station
+    lat: 39.88684
+    lon: 4.2583
+    source: osm
+  - kind: bus
+    name: Ciutadella bus station
+    lat: 39.99819
+    lon: 3.83913
+    source: osm
+  - kind: airport
+    name: Menorca Airport (MAH)
+    lat: 39.86299
+    lon: 4.22061
+    source: osm
+tags: [island, coast, coves, ravines, biosphere-reserve]
+notes:
+  - >-
+    Stages: the island council's 20 sections add up to 183.7 km (stated 185 km by Turespaña, and on
+    the OSM relation); ascent 3,548 m, descent 3,530 m. The council gives no days and no season;
+    the record has neither.
+  - >-
+    Route (pipeline, 2026-11-01, Geofabrik extracts): the council's section GPX files are routes
+    (rtept) or tracks; section 11's lists its three segments out of order (its start last), so the
+    OSM relation (GR 223, 1501400) guides it, cut at Cap d'Artrutx. Every section matches at least
+    98 %; the map line is 180.5 km against the sections' 183.7 km.
+  - >-
+    Water: OSM has only 8 drinking water points near the route; the longest stretch without one is
+    89.1 km (km 0–89.1, Maó round the north coast to Ciutadella). The north coast is largely
+    undeveloped; walkers refill in the resorts' bars and shops, which OSM doesn't record as water.
+    The council's section pages mark drinking water on their maps, but list no points to add as
+    waterPoints.
+  - >-
+    Beds: 46.6 km without a bed of the kinds counted (km 42–89, Cala Tirant to Ciutadella along the
+    wild north coast); hotels in the resorts are not counted, and wild camping is limited to a
+    bivouac on the beaches.
+  - >-
+    Data check (2026-11-01). Second sources: Turespaña (185 km, 20 stages of about 5 to 13 km,
+    difficulty "media") and Catalan Wikipedia (185 km, twenty stages, highest point 125 m,
+    cumulative ascent about 4,000 m, GR 223 since 2012). Length, stage count, stage distances and
+    the GR year agree; the terrain model's highest point is 127 m (the council's highest section
+    point 118 m, Wikipedia 125 m). Apart: the ascent, the sections' 3,548 m against Wikipedia's
+    "about four thousand" (11 %); the terrain model estimates about 3,460 m, close to the
+    council's.
+dataCheck:
+  # working rule 2: Turespaña and Catalan Wikipedia
+  date: 2026-11-01
+  against: [turespana, wikipedia-ca]
+  deviations:
+    - { figure: "Ascent", ours: "3,548 m (sum of the 20 sections)", theirs: "about 4,000 m", source: wikipedia-ca }
+sources:
+  - id: cime
+    title: "Consell Insular de Menorca: Camí de Cavalls, its 20 sections (distance, ascent and descent, highest and lowest point, GPX)"
+    url: https://www.camidecavalls.com/
+    licence: © Consell Insular de Menorca (facts only)
+    retrieved: 2026-11-01
+  - id: cime-gr
+    title: "Consell Insular de Menorca: GR 223, a long-distance path in Menorca (waymarking, GR since 2012)"
+    url: https://www.camidecavalls.com/contingut.aspx?IdPub=10565
+    licence: © Consell Insular de Menorca (facts only)
+    retrieved: 2026-11-01
+  - id: cime-faq
+    title: "Consell Insular de Menorca: Camí de Cavalls, frequently asked questions (sleeping on the beaches)"
+    url: https://www.camidecavalls.com/Contingut.aspx?IdPub=9927
+    licence: © Consell Insular de Menorca (facts only)
+    retrieved: 2026-11-01
+  - id: turespana
+    title: "Turespaña (spain.info): Camí de Cavalls (length, 20 stages, difficulty)"
+    url: https://www.spain.info/es/rutas-senderismo/cami-de-cavalls-senderismo-espana/
+    licence: © Turespaña (facts only)
+    retrieved: 2026-11-01
+  - id: wikipedia-ca
+    title: "Wikipedia (ca): Camí de Cavalls (length, stages, highest point, cumulative ascent; data check)"
+    url: https://ca.wikipedia.org/wiki/Camí_de_Cavalls
+    licence: CC BY-SA 4.0
+    retrieved: 2026-11-01
+    checkOnly: true  # only for the data check
+  - id: wikimedia
+    title: "Wikimedia: page views of the trail's Wikipedia articles in every language, by people, over twelve months (Wikidata sitelinks, pageview API)"
+    url: https://wikimedia.org/api/rest_v1/
+    licence: CC0 1.0 (pageview data); Wikidata CC0
+    retrieved: 2026-11-01
+    checkOnly: true  # not on the trail page: the page views only rank the home page's popular trails
+  - id: osm
+    title: "OpenStreetMap contributors: paths, water, shops and places to sleep along the trail (Geofabrik extracts), stage ends, travel hubs"
+    url: https://www.openstreetmap.org/
+    licence: ODbL 1.0
+    retrieved: 2026-11-01
+  - id: copdem
+    title: "Copernicus DEM GLO-30 (30 m terrain model), tiles from AWS Open Data"
+    url: https://registry.opendata.aws/copernicus-dem/
+    licence: "Copernicus WorldDEM-30 licence, free; produced using Copernicus WorldDEM-30 © DLR e.V. 2010-2014 and © Airbus Defence and Space GmbH 2014-2018 provided under COPERNICUS by the European Union and ESA; all rights reserved"
+    retrieved: 2026-11-01
+  - id: worldcover
+    title: "ESA WorldCover 2021: 10 m land cover (via AWS Open Data)"
+    url: https://esa-worldcover.org/
+    licence: "CC BY 4.0; © ESA WorldCover project 2021 / Contains modified Copernicus Sentinel data (2021) processed by ESA WorldCover consortium"
+    retrieved: 2026-11-01
+  - id: era5
+    title: "Open-Meteo open data on AWS: ERA5-Land temperature and ERA5 precipitation, snow and wind, daily 1995–2024 (reanalysis)"
+    url: https://github.com/open-meteo/open-data
+    licence: CC BY 4.0 (Open-Meteo); contains modified Copernicus Climate Change Service information
+    retrieved: 2026-11-01
+  - id: osrm
+    title: "OSRM: road routes on OpenStreetMap data (router.project-osrm.org)"
+    url: https://project-osrm.org/
+    licence: Route data © OpenStreetMap contributors (ODbL)
+    retrieved: 2026-11-01

@@ -1,0 +1,202 @@
+{
+  "climate-high.json": {
+    "retrieved": "2026-11-01T03:58:33+00:00",
+    "url": "https://openmeteo.s3.us-west-2.amazonaws.com/data/copernicus_era5_land+copernicus_era5?latitude=40.1&longitude=4.0&elevation=130"
+  },
+  "climate-low.json": {
+    "retrieved": "2026-11-01T03:54:02+00:00",
+    "url": "https://openmeteo.s3.us-west-2.amazonaws.com/data/copernicus_era5_land+copernicus_era5?latitude=40.0&longitude=4.2&elevation=0"
+  },
+  "elevation-glo30.json": {
+    "retrieved": "2026-11-01T03:50:52+00:00",
+    "url": "https://copernicus-dem-30m.s3.eu-central-1.amazonaws.com/Copernicus_DSM_COG_10_N39_00_E003_00_DEM/Copernicus_DSM_COG_10_N39_00_E003_00_DEM.tif https://copernicus-dem-30m.s3.eu-central-1.amazonaws.com/Copernicus_DSM_COG_10_N39_00_E004_00_DEM/Copernicus_DSM_COG_10_N39_00_E004_00_DEM.tif https://copernicus-dem-30m.s3.eu-central-1.amazonaws.com/Copernicus_DSM_COG_10_N40_00_E003_00_DEM/Copernicus_DSM_COG_10_N40_00_E003_00_DEM.tif https://copernicus-dem-30m.s3.eu-central-1.amazonaws.com/Copernicus_DSM_COG_10_N40_00_E004_00_DEM/Copernicus_DSM_COG_10_N40_00_E004_00_DEM.tif"
+  },
+  "landcover.json": {
+    "retrieved": "2026-11-01T03:50:53+00:00",
+    "url": "https://esa-worldcover.s3.eu-central-1.amazonaws.com/v200/2021/map/ESA_WorldCover_10m_2021_v200_\u2026_Map.tif"
+  },
+  "osm-relation-1501400.json": {
+    "retrieved": "2026-10-31T21:23:06Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-1-main.json": {
+    "retrieved": "2026-10-31T21:23:06Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-10-main.json": {
+    "retrieved": "2026-10-31T21:23:06Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-11-main.json": {
+    "retrieved": "2026-10-31T21:23:06Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-12-main.json": {
+    "retrieved": "2026-10-31T21:23:06Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-13-main.json": {
+    "retrieved": "2026-10-31T21:23:06Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-14-main.json": {
+    "retrieved": "2026-10-31T21:23:06Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-15-main.json": {
+    "retrieved": "2026-10-31T21:23:06Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-16-main.json": {
+    "retrieved": "2026-10-31T21:23:06Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-17-main.json": {
+    "retrieved": "2026-10-31T21:23:06Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-18-main.json": {
+    "retrieved": "2026-10-31T21:23:06Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-19-main.json": {
+    "retrieved": "2026-10-31T21:23:06Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-2-main.json": {
+    "retrieved": "2026-10-31T21:23:06Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-20-main.json": {
+    "retrieved": "2026-10-31T21:23:06Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-3-main.json": {
+    "retrieved": "2026-10-31T21:23:06Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-4-main.json": {
+    "retrieved": "2026-10-31T21:23:06Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-5-main.json": {
+    "retrieved": "2026-10-31T21:23:06Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-6-main.json": {
+    "retrieved": "2026-10-31T21:23:06Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-7-main.json": {
+    "retrieved": "2026-10-31T21:23:06Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-8-main.json": {
+    "retrieved": "2026-10-31T21:23:06Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-9-main.json": {
+    "retrieved": "2026-10-31T21:23:06Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-water.json": {
+    "retrieved": "2026-10-31T21:23:06Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-way-tags.json": {
+    "retrieved": "2026-10-31T21:23:06Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osrm-access-ciutadella-bus-station.json": {
+    "retrieved": "2026-11-01T03:58:33+00:00",
+    "url": "https://router.project-osrm.org/route/v1/driving/3.83913,39.99819;4.25736,39.89754?overview=false"
+  },
+  "osrm-access-ma-bus-station.json": {
+    "retrieved": "2026-11-01T03:58:33+00:00",
+    "url": "https://router.project-osrm.org/route/v1/driving/4.2583,39.88684;4.25736,39.89754?overview=false"
+  },
+  "osrm-access-menorca-airport-mah.json": {
+    "retrieved": "2026-11-01T03:58:33+00:00",
+    "url": "https://router.project-osrm.org/route/v1/driving/4.22061,39.86299;4.25736,39.89754?overview=false"
+  },
+  "stage-1-main.gpx": {
+    "retrieved": "2026-11-01T03:47:56+00:00",
+    "url": "https://www.camidecavalls.com/documents/documents/8993doc19.gpx"
+  },
+  "stage-10-main.gpx": {
+    "retrieved": "2026-11-01T03:48:10+00:00",
+    "url": "https://www.camidecavalls.com/documents/documents/9002doc19.gpx"
+  },
+  "stage-12-main.gpx": {
+    "retrieved": "2026-11-01T03:48:10+00:00",
+    "url": "https://www.camidecavalls.com/documents/documents/9004doc19.gpx"
+  },
+  "stage-13-main.gpx": {
+    "retrieved": "2026-11-01T03:48:10+00:00",
+    "url": "https://www.camidecavalls.com/documents/documents/9005doc19.gpx"
+  },
+  "stage-14-main.gpx": {
+    "retrieved": "2026-11-01T03:48:11+00:00",
+    "url": "https://www.camidecavalls.com/documents/documents/9006doc19.gpx"
+  },
+  "stage-15-main.gpx": {
+    "retrieved": "2026-11-01T03:48:11+00:00",
+    "url": "https://www.camidecavalls.com/documents/documents/9007doc19.gpx"
+  },
+  "stage-16-main.gpx": {
+    "retrieved": "2026-11-01T03:48:22+00:00",
+    "url": "https://www.camidecavalls.com/documents/documents/9008doc19.gpx"
+  },
+  "stage-17-main.gpx": {
+    "retrieved": "2026-11-01T03:48:22+00:00",
+    "url": "https://www.camidecavalls.com/documents/documents/9009doc19.gpx"
+  },
+  "stage-18-main.gpx": {
+    "retrieved": "2026-11-01T03:48:43+00:00",
+    "url": "https://www.camidecavalls.com/documents/documents/9010doc19.gpx"
+  },
+  "stage-19-main.gpx": {
+    "retrieved": "2026-11-01T03:48:44+00:00",
+    "url": "https://www.camidecavalls.com/documents/documents/9011doc19.gpx"
+  },
+  "stage-2-main.gpx": {
+    "retrieved": "2026-11-01T03:47:56+00:00",
+    "url": "https://www.camidecavalls.com/documents/documents/8994doc19.gpx"
+  },
+  "stage-20-main.gpx": {
+    "retrieved": "2026-11-01T03:48:44+00:00",
+    "url": "https://www.camidecavalls.com/documents/documents/9012doc19.gpx"
+  },
+  "stage-3-main.gpx": {
+    "retrieved": "2026-11-01T03:47:57+00:00",
+    "url": "https://www.camidecavalls.com/documents/documents/8995doc19.gpx"
+  },
+  "stage-4-main.gpx": {
+    "retrieved": "2026-11-01T03:47:57+00:00",
+    "url": "https://www.camidecavalls.com/documents/documents/8996doc19.gpx"
+  },
+  "stage-5-main.gpx": {
+    "retrieved": "2026-11-01T03:47:57+00:00",
+    "url": "https://www.camidecavalls.com/documents/documents/8997doc19.gpx"
+  },
+  "stage-6-main.gpx": {
+    "retrieved": "2026-11-01T03:47:58+00:00",
+    "url": "https://www.camidecavalls.com/documents/documents/8998doc19.gpx"
+  },
+  "stage-7-main.gpx": {
+    "retrieved": "2026-11-01T03:47:58+00:00",
+    "url": "https://www.camidecavalls.com/documents/documents/8999doc19.gpx"
+  },
+  "stage-8-main.gpx": {
+    "retrieved": "2026-11-01T03:47:59+00:00",
+    "url": "https://www.camidecavalls.com/documents/documents/9000doc19.gpx"
+  },
+  "stage-9-main.gpx": {
+    "retrieved": "2026-11-01T03:48:09+00:00",
+    "url": "https://www.camidecavalls.com/documents/documents/9001doc19.gpx"
+  },
+  "wikimedia.json": {
+    "retrieved": "2026-11-01T03:58:35+00:00",
+    "url": "Q1031801 2025-11..2026-10"
+  }
+}

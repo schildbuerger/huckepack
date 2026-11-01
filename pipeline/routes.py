@@ -106,6 +106,13 @@ def track_points(gpx):
         lon = re.search(r'\blon="([-\d.]+)"', attrs)
         points.append((float(lon.group(1)), float(lat.group(1))))
     if not points:
+        # a GPX route instead of a track (the National Trails' Cotswold Way file, drawn in OS Maps;
+        # the Camí de Cavalls' section files)
+        for attrs in re.findall(r"<rtept\b([^>]*)>", gpx):
+            lat = re.search(r'\blat="([-\d.]+)"', attrs)
+            lon = re.search(r'\blon="([-\d.]+)"', attrs)
+            points.append((float(lon.group(1)), float(lat.group(1))))
+    if not points:
         # "@type" can also be a list (["GeoCoordinates", "GeoShape"], with the start's coordinates
         # before the line: hermannshoehen.teutoburgerwald.de)
         shape = re.search(r'"GeoShape"\]?\s*,(?:\s*"(?:latitude|longitude)"\s*:\s*[-\d.]+\s*,)*\s*"line"\s*:\s*"([-\d.,\s]+)"', gpx)
@@ -288,7 +295,11 @@ def build(slug, refresh=False):
         # cached under the first stage that names the url: a whole-trail track is downloaded once
         first = next(s for s in all_stages if s.get("track") == url)
         gpx, _ = cache.get(f"stage-{first['number']}-{first['kind']}.gpx", url, lambda: http_get(url))
-        return tuple(track_points(gpx))
+        points = track_points(gpx)
+        if first.get("end") and nearest_index(points, start) > nearest_index(points, end):
+            # a whole-trail track drawn from the finish (the Cotswold Way's, from Bath): turned
+            points = points[::-1]
+        return tuple(points)
 
     def track_of(stage):
         return list(track_of_url(stage["track"]))

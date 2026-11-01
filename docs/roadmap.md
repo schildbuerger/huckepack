@@ -51,6 +51,8 @@ And the **Tour du Mont Blanc** (#55, about 170 km around the Mont Blanc massif f
 English Wikipedia's eleven legs, the OSM relation's main itinerary cut at their ends).
 And the **Kungsleden** (#30, 464 km from Abisko to Hemavan in STF's 28 hut-to-hut legs, each on
 its OSM stage relation, the rowing boats over the lakes included).
+Added 2026-11-01: the **Camí de Cavalls** (#72, GR 223, 185 km round Menorca in the island
+council's 20 sections, each with its own GPX as the matcher's guide; section 11 on the OSM relation).
 
 | # | Trail | Region | Length (approx.) | Why |
 |---|---|---|---|---|
