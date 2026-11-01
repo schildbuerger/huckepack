@@ -1,8 +1,8 @@
 <script lang="ts">
   // The trail map (issue #33): every trail on one map beside a list of the trails. The list holds
   // every trail the filters leave, sorted by distance from you (the main city of the browser's time
-  // zone, as the home page's "Trails near you"; else from the map's centre); the first view is centred on you, wide
-  // enough for the nearest trails; a search at its top, like the header search
+  // zone, as the home page's "Trails near you"; else from the map's centre); the first view shows every
+  // trail (issue #116; from 2026-10-30 it was centred on you); a search at its top, like the header search
   // (TrailSearch.astro), narrows it by name or country and suggests countries (a pick frames the map
   // on their trails) and trails (a pick zooms to the route). The search page's filters
   // (FilterPanel.svelte) sit as one button per planning question along the map's top, in the same URL
@@ -255,20 +255,6 @@
     );
   }
 
-  // the first view where your place is known: centred on it, wide enough for the nearest trails
-  const NEAREST = 3;
-  function aroundHere(ts: Trail[]): [[number, number], [number, number]] | null {
-    if (!here || !ts.length) return null;
-    const [lon, lat] = here;
-    const near = [...ts].sort((a, b) => km(here!, a.startLonLat) - km(here!, b.startLonLat)).slice(0, NEAREST);
-    const dx = Math.min(Math.max(...near.map((t) => Math.abs(t.startLonLat[0] - lon))) * 1.15 + 0.5, 170);
-    const dy = Math.max(...near.map((t) => Math.abs(t.startLonLat[1] - lat))) * 1.15 + 0.3;
-    return [
-      [lon - dx, Math.max(lat - dy, -80)],
-      [lon + dx, Math.min(lat + dy, 80)],
-    ];
-  }
-
   // zoom to one trail's route (or its start where no route is drawn), once its preview is shown
   // a trail picked before the map has started: its card shows at once, the map zooms once it's there
   let pendingZoom: string | null = null;
@@ -399,7 +385,7 @@
       map = new maplibre.Map({
         container,
         style: await overviewStyle(theme),
-        bounds: aroundHere(matching) ?? allBounds,
+        bounds: allBounds,
         cooperativeGestures: true,
         attributionControl: { customAttribution: "Routes: OpenStreetMap contributors" },
       });
@@ -440,11 +426,8 @@
         applyFilters();
         highlight(hovered, selected);
         updateCenter();
-        if (!framedOnce) {
-          const b = aroundHere(matching);
-          if (b) map.fitBounds(b, { padding: framePadding(), maxZoom: 7, animate: false }, { resetList: true });
-          else if (matching.length < trails.length) frame(matching, { resetList: true });
-        }
+        // the first view: every trail, or the ones the URL's filters leave
+        if (!framedOnce && matching.length < trails.length) frame(matching, { resetList: true });
         framedOnce = true;
         if (pendingZoom) zoomTo(pendingZoom);
         pendingZoom = null;
