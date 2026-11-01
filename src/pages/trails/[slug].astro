@@ -455,25 +455,33 @@ const ownGap = (pts: LanePoint[]) => {
   for (let i = 1; i < stops.length; i++) if (stops[i] - stops[i - 1] > g.km) g = { km: stops[i] - stops[i - 1], fromKm: stops[i - 1], toKm: stops[i] };
   return { km: Math.round(g.km * 10) / 10, fromKm: g.fromKm, toKm: g.toKm };
 };
-type Row = { id: string; label: string; gap: { km: number; fromKm: number; toKm: number }; gapText?: string; points: LanePoint[]; sub?: boolean; group?: boolean };
+type Row = { id: string; label: string; gap: { km: number; fromKm: number; toKm: number }; gapText?: string; points: LanePoint[]; sub?: boolean; group?: boolean; parent?: number };
+// shops by kind, under "Shops" the same way (each with its own longest stretch without)
+const shopTicks = along ? onMain(along.resupply.points).map((p): LanePoint & { kind: string } => ({ km: p.km, what: SHOP_LABEL[p.kind], name: p.name, stage: p.stage, minor: false, kind: p.kind })) : [];
+const SHOP_KINDS = [
+  { label: "Supermarkets", kinds: ["supermarket"] },
+  { label: "Convenience and general stores", kinds: ["convenience", "general"] },
+  { label: "Petrol station shops", kinds: ["fuel"] },
+].filter((k) => shopTicks.some((p) => k.kinds.includes(p.kind)));
 const supplyLanes: Row[] = water
   ? [
       ...(tiers
         ? [
             { id: "water", label: "Water", gap: tiers.longestGapKm.refill, points: [...waterTicks, ...promotedTicks, ...refillTicks], group: true },
-            { id: "water", label: "Public drinking water", gap: tiers.longestGapKm.drinking, points: [...waterTicks.filter((p) => !p.minor), ...promotedTicks], sub: true },
-            { id: "water", label: "Springs (treat before drinking)", gap: ownGap(waterTicks.filter((p) => p.minor)), points: waterTicks.filter((p) => p.minor), sub: true },
-            { id: "water", label: "Refills at places to sleep", gap: ownGap(refillTicks), points: refillTicks, sub: true },
+            { id: "water", label: "Public drinking water", gap: tiers.longestGapKm.drinking, points: [...waterTicks.filter((p) => !p.minor), ...promotedTicks], sub: true, parent: 0 },
+            { id: "water", label: "Springs (treat before drinking)", gap: ownGap(waterTicks.filter((p) => p.minor)), points: waterTicks.filter((p) => p.minor), sub: true, parent: 0 },
+            { id: "water", label: "Refills at places to sleep", gap: ownGap(refillTicks), points: refillTicks, sub: true, parent: 0 },
           ]
         : [{ id: "water", label: "Drinking water", gap: water.longestGapKm.drinking, points: waterTicks }]),
       ...(along
         ? [
-            {
-              id: "shops",
-              label: "Shops",
-              gap: along.resupply.longestGapKm,
-              points: onMain(along.resupply.points).map((p): LanePoint => ({ km: p.km, what: SHOP_LABEL[p.kind], name: p.name, stage: p.stage, minor: false })),
-            },
+            { id: "shops", label: "Shops", gap: along.resupply.longestGapKm, points: shopTicks, group: SHOP_KINDS.length > 1 },
+            ...(SHOP_KINDS.length > 1
+              ? SHOP_KINDS.map((k) => {
+                  const pts = shopTicks.filter((p) => k.kinds.includes(p.kind));
+                  return { id: "shops", label: k.label, gap: ownGap(pts), points: pts, sub: true, parent: tiers ? 4 : 1 };
+                })
+              : []),
           ]
         : []),
     ]
@@ -484,6 +492,9 @@ const laneY = (i: number) => LANE.top + i * LANE.step;
 const supplyAxis = laneY(supplyLanes.length) - 8;
 // one kind of tick for every place: a lane's sub rows are slimmer (from `top` to `bottom` in its band)
 const subRows = supplyLanes.filter((r) => r.sub).length;
+// group rows that open into their kinds (Water, Shops), and how many rows each holds
+const groupRows = supplyLanes.flatMap((r, i) => (r.group && supplyLanes.some((x) => x.parent === i) ? [i] : []));
+const subsOf = (g: number) => supplyLanes.filter((r) => r.parent === g).length;
 // the water chart's kilometres start right of the tree line its sub rows hang from (issue #119)
 const WX0 = subRows > 0 ? CHART.x0 + 26 : CHART.x0;
 const wx = (km: number) => n1(WX0 + (Math.min(km, water?.routeKm ?? km) / (water?.routeKm || 1)) * (CHART.x1 - WX0));
@@ -1594,22 +1605,19 @@ const trailLd = JSON.stringify({
         <figure class="waterline">
           <div class="chart-scroll">
           <div class="chart-box">
-          {subRows > 0 && (
-            <button type="button" class="tier-toggle" aria-expanded="true" hidden>
+          {groupRows.map((g) => (
+            <button type="button" class="tier-toggle" data-group={g} aria-expanded="true" hidden>
               <span class="chev" aria-hidden="true">›</span>
-              <span class="tier-name">Water</span>
-              <span class="lane-gap">· {supplyLanes[0].gap.km} km without</span>
+              <span class="tier-name">{supplyLanes[g].label}</span>
+              <span class="lane-gap">· {supplyLanes[g].gap.km} km without</span>
             </button>
-          )}
+          ))}
           <svg viewBox={`0 0 ${CHART.width} ${supplyAxis + 40}`} role="img" aria-label={supplySummary}>
             {stageTicks(water.stageStarts, water.routeKm, wx).map(
               (tk) => tk.band && <rect class="stage-band" x={tk.x} y={LANE.top - 18} width={n1(tk.end - tk.x)} height={supplyAxis - LANE.top + 18} />,
             )}
-            {subRows > 0 && (
-              <path class="sub tree" d={`M${CHART.x0 + 6} ${laneY(0) + LANE.band + 4}V${laneY(subRows) - 5}${supplyLanes.slice(1, subRows + 1).map((_, k) => `M${CHART.x0 + 6} ${laneY(k + 1) - 5}h10`).join("")}`} />
-            )}
             {supplyLanes.map((lane, i) => (
-              <g class:list={[{ sub: lane.sub, below: subRows > 0 && !lane.sub && !lane.group }]}>
+              <g class="row" data-row={i}>
                 {lane.sub ? (
                   <>
                     <rect class="gap" x={wx(lane.gap.fromKm)} y={laneY(i) + 5} width={n1(wx(lane.gap.toKm) - wx(lane.gap.fromKm))} height={16} rx="3" />
@@ -1620,6 +1628,12 @@ const trailLd = JSON.stringify({
                   </>
                 ) : (
                   <>
+                    {groupRows.includes(i) && (
+                      <path
+                        class="tree"
+                        d={`M${CHART.x0 + 6} ${laneY(i) + LANE.band + 4}V${laneY(i + subsOf(i)) - 5}${Array.from({ length: subsOf(i) }, (_, k) => `M${CHART.x0 + 6} ${laneY(i + k + 1) - 5}h10`).join("")}`}
+                      />
+                    )}
                     <rect class="gap" x={wx(lane.gap.fromKm)} y={laneY(i)} width={n1(wx(lane.gap.toKm) - wx(lane.gap.fromKm))} height={LANE.band} rx="4" />
                     <text class:list={["lane-name", { "group-label": lane.group }]} x={CHART.x0} y={laneY(i) - 6}>
                       {lane.label} <tspan class="lane-gap">· {lane.gap.km} {lane.gapText ?? "km without"}</tspan>
@@ -1629,7 +1643,7 @@ const trailLd = JSON.stringify({
                 )}
               </g>
             ))}
-            <g class:list={[{ below: subRows > 0 }]}>
+            <g class="axis">
             <line class="route" x1={WX0} x2={CHART.x1} y1={supplyAxis} y2={supplyAxis} />
             {stageTicks(water.stageStarts, water.routeKm, wx).map((tk) => (
               <g>
@@ -1662,7 +1676,7 @@ const trailLd = JSON.stringify({
               step: LANE.step,
               height: supplyAxis + 40,
               lanes: supplyLanes.map((l) => l.points.map((p) => [p.km, p.what, p.name ?? "", p.stage])),
-              sub: supplyLanes.map((l) => Boolean(l.sub)), // rows that fold away (issue #119)
+              parent: supplyLanes.map((l) => l.parent ?? -1), // the group a row folds into (issue #119), -1: none
             })}
           />
           <div class="tip" role="status" hidden><strong></strong><span></span></div>
@@ -1801,33 +1815,54 @@ const trailLd = JSON.stringify({
       x0?: number;
       x1?: number;
       lanes: [number, string, string, string][][]; // km, what, name, stage
-      sub?: boolean[]; // rows that fold away under "Water" (issue #119)
+      parent?: number[]; // the group row each row folds into, -1 for none (issue #119)
     } = JSON.parse(figure.querySelector(".chart-data")!.textContent!);
     const X0 = data.x0 ?? 8;
     const X1 = data.x1 ?? 992;
     const mid = data.mid ?? 13;
-    // water in tiers: "Water" folds its three kinds away (shut on load; without this
-    // script every row shows); the rows below move up and the drawing gets shorter
-    const toggle = figure.querySelector<HTMLButtonElement>(".tier-toggle");
-    const subCount = (data.sub ?? []).filter(Boolean).length;
+    // groups (Water, Shops) fold their kinds away (shut on load; without this script every row
+    // shows): the visible rows move up, the axis follows and the drawing gets shorter
+    const parents = data.parent ?? data.lanes.map(() => -1);
+    const toggles = [...figure.querySelectorAll<HTMLButtonElement>(".tier-toggle")];
+    const open = new Set<number>();
     let height = data.height;
-    const fold = (open: boolean) => {
-      figure.classList.toggle("folded", !open);
-      height = data.height - (open ? 0 : subCount * data.step);
+    let visible = data.lanes.map((_, i) => i);
+    const layout = () => {
+      visible = data.lanes.map((_, i) => i).filter((i) => parents[i] < 0 || open.has(parents[i]));
+      for (const g of svg.querySelectorAll<SVGGElement>("g.row")) {
+        const i = Number(g.dataset.row);
+        const k = visible.indexOf(i);
+        g.style.display = k < 0 ? "none" : "";
+        g.style.transform = k < 0 ? "" : `translateY(${(k - i) * data.step}px)`;
+        g.classList.toggle("open", open.has(i));
+      }
+      const shift = (visible.length - data.lanes.length) * data.step;
+      svg.querySelector<SVGGElement>("g.axis")!.style.transform = `translateY(${shift}px)`;
+      height = data.height + shift;
       svg.setAttribute("viewBox", `0 0 1000 ${height}`);
-      svg.style.setProperty("--shift", `${-subCount * data.step}px`);
       for (const r of svg.querySelectorAll<SVGRectElement>(".stage-band")) r.setAttribute("height", String(height - 40 - data.top + 18));
       cursor.setAttribute("y2", String(height - 40));
-      toggle!.setAttribute("aria-expanded", String(open));
+      for (const t of toggles) {
+        const g = Number(t.dataset.group);
+        t.style.top = `${((data.top + visible.indexOf(g) * data.step - 24) / height) * 100}%`;
+        t.setAttribute("aria-expanded", String(open.has(g)));
+      }
     };
-    if (toggle && subCount) {
-      toggle.hidden = false;
+    if (toggles.length) {
       figure.classList.add("tiered");
-      fold(false);
-      toggle.addEventListener("click", () => fold(figure.classList.contains("folded")));
+      for (const t of toggles) {
+        t.hidden = false;
+        t.addEventListener("click", () => {
+          const g = Number(t.dataset.group);
+          if (open.has(g)) open.delete(g);
+          else open.add(g);
+          layout();
+        });
+      }
+      layout();
     }
     // the rows on screen, top to bottom
-    const shown = () => data.lanes.map((_, i) => i).filter((i) => !(figure.classList.contains("folded") && data.sub?.[i]));
+    const shown = () => visible;
     const show = (clientX: number, clientY: number) => {
       const box = svg.getBoundingClientRect();
       const vx = ((clientX - box.left) / box.width) * 1000;
@@ -3038,7 +3073,7 @@ const trailLd = JSON.stringify({
   }
   .tier-toggle {
     position: absolute;
-    top: -3px;
+    top: -3px; /* the script places each group's button in its row's label space */
     left: 0;
     display: inline-flex;
     align-items: baseline;
@@ -3085,11 +3120,8 @@ const trailLd = JSON.stringify({
     stroke-width: 2;
   }
   .tiered .group-label,
-  .folded .sub {
+  .tiered .row:not(.open) .tree {
     display: none;
-  }
-  .folded .below {
-    transform: translateY(var(--shift));
   }
   .legend.below-chart {
     margin: 6px 0 0;
