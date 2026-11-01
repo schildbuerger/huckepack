@@ -7303,6 +7303,473 @@
         "hostels": 17,
         "rooms": 76
       }
+    },
+    "water": {
+      "withinM": 500,
+      "promoted": [],
+      "refills": [
+        {
+          "kind": "campsite",
+          "name": null,
+          "stage": "1",
+          "km": 0.4
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Jasmine House B&B",
+          "stage": "1",
+          "km": 13.0
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Low Cock How",
+          "stage": "1",
+          "km": 22.2
+        },
+        {
+          "kind": "hostel",
+          "name": "Scouts - Ennerdale Campsite",
+          "stage": "2",
+          "km": 27.0
+        },
+        {
+          "kind": "hostel",
+          "name": "Ennerdale",
+          "stage": "2",
+          "km": 33.5
+        },
+        {
+          "kind": "hostel",
+          "name": "YHA Black Sail",
+          "stage": "2",
+          "km": 39.2
+        },
+        {
+          "kind": "hostel",
+          "name": "Honister Pass YHA",
+          "stage": "2",
+          "km": 43.4
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Thorneythwaite Farm",
+          "stage": "2",
+          "km": 46.2
+        },
+        {
+          "kind": "campsite",
+          "name": "Seatoller Farm",
+          "stage": "2",
+          "km": 46.2
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Seatoller Farm B&B",
+          "stage": "2",
+          "km": 46.2
+        },
+        {
+          "kind": "campsite",
+          "name": "Chapel House Farm Campsite",
+          "stage": "2",
+          "km": 47.3
+        },
+        {
+          "kind": "hostel",
+          "name": "YHA Borrowdale",
+          "stage": "2",
+          "km": 47.4
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Gillercombe",
+          "stage": "2",
+          "km": 47.6
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Yew Tree Farm",
+          "stage": "2",
+          "km": 48.1
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Kiln How",
+          "stage": "3",
+          "km": 48.1
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Rose Cottage",
+          "stage": "3",
+          "km": 48.2
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Yew Craggs",
+          "stage": "3",
+          "km": 48.3
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Knotts View",
+          "stage": "3",
+          "km": 49.7
+        },
+        {
+          "kind": "campsite",
+          "name": "National Trust Campsite",
+          "stage": "3",
+          "km": 50.3
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Tilly's Barn",
+          "stage": "3",
+          "km": 50.8
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Oak Lodge",
+          "stage": "3",
+          "km": 59.5
+        },
+        {
+          "kind": "hostel",
+          "name": "Thorney How",
+          "stage": "3",
+          "km": 59.8
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Stone Arthur Cottage",
+          "stage": "3",
+          "km": 60.8
+        },
+        {
+          "kind": "hut",
+          "name": "George Starkey Hut",
+          "stage": "3",
+          "km": 71.2
+        },
+        {
+          "kind": "guesthouse",
+          "name": "School House B&B",
+          "stage": "3",
+          "km": 71.2
+        },
+        {
+          "kind": "hostel",
+          "name": "Patterdale Youth Hostel",
+          "stage": "4",
+          "km": 71.5
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Old Water View",
+          "stage": "4",
+          "km": 71.5
+        },
+        {
+          "kind": "campsite",
+          "name": "Patterdale Youth Hostel camp site",
+          "stage": "4",
+          "km": 71.5
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Wordsworth",
+          "stage": "4",
+          "km": 71.8
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Crookabeck B&B",
+          "stage": "4",
+          "km": 72.4
+        },
+        {
+          "kind": "campsite",
+          "name": "Aragon Camping",
+          "stage": "4",
+          "km": 88.8
+        },
+        {
+          "kind": "campsite",
+          "name": "New Ing Lodge Camping",
+          "stage": "4",
+          "km": 95.1
+        },
+        {
+          "kind": "hostel",
+          "name": "New Ing Lodge",
+          "stage": "4",
+          "km": 95.1
+        },
+        {
+          "kind": "hostel",
+          "name": "Bents Camping Barn",
+          "stage": "5",
+          "km": 117.3
+        },
+        {
+          "kind": "campsite",
+          "name": "Pennine View Park",
+          "stage": "5",
+          "km": 125.4
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Lockholme Bed and Breakfast",
+          "stage": "5",
+          "km": 125.6
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Bollam Cottage",
+          "stage": "5",
+          "km": 125.9
+        },
+        {
+          "kind": "guesthouse",
+          "name": "The Jolly Farmers",
+          "stage": "5",
+          "km": 126.0
+        },
+        {
+          "kind": "hostel",
+          "name": "Kirkby Stephen Hostel",
+          "stage": "5",
+          "km": 126.2
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Fletcher House",
+          "stage": "5",
+          "km": 126.3
+        },
+        {
+          "kind": "guesthouse",
+          "name": "The Old Croft House",
+          "stage": "5",
+          "km": 126.7
+        },
+        {
+          "kind": "campsite",
+          "name": "Park House Camping & Keld Bunkhouse",
+          "stage": "6",
+          "km": 144.0
+        },
+        {
+          "kind": "campsite",
+          "name": "Rukin's Park Lodge Campsite",
+          "stage": "6",
+          "km": 144.8
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Butt House",
+          "stage": "6",
+          "km": 144.8
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Arkleside Country Guest House",
+          "stage": "8",
+          "km": 162.3
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Ivy Cottage",
+          "stage": "8",
+          "km": 162.3
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Hackney House",
+          "stage": "8",
+          "km": 162.4
+        },
+        {
+          "kind": "campsite",
+          "name": "Orchard Caravan And Camping Park",
+          "stage": "8",
+          "km": 162.5
+        },
+        {
+          "kind": "hostel",
+          "name": "Dales Bike Hostel",
+          "stage": "8",
+          "km": 163.3
+        },
+        {
+          "kind": "guesthouse",
+          "name": "The Barn Home Farm",
+          "stage": "8",
+          "km": 163.5
+        },
+        {
+          "kind": "hostel",
+          "name": "Camping Barn",
+          "stage": "8",
+          "km": 174.5
+        },
+        {
+          "kind": "campsite",
+          "name": "Swaleview Caravan Park",
+          "stage": "8",
+          "km": 174.5
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Westend Guesthouse",
+          "stage": "8",
+          "km": 177.8
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Arndale B&B",
+          "stage": "8",
+          "km": 178.6
+        },
+        {
+          "kind": "guesthouse",
+          "name": "The Barn",
+          "stage": "8",
+          "km": 178.7
+        },
+        {
+          "kind": "guesthouse",
+          "name": "66 Frenchgate Guesthouse",
+          "stage": "8",
+          "km": 178.7
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Castle House B&B",
+          "stage": "9",
+          "km": 178.8
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Millgate House",
+          "stage": "9",
+          "km": 178.8
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Old Brewery Guesthouse",
+          "stage": "9",
+          "km": 179.0
+        },
+        {
+          "kind": "hostel",
+          "name": "Bunk Barn",
+          "stage": "9",
+          "km": 185.4
+        },
+        {
+          "kind": "campsite",
+          "name": "Church Holme",
+          "stage": "9",
+          "km": 201.2
+        },
+        {
+          "kind": "guesthouse",
+          "name": "The White Swan",
+          "stage": "9",
+          "km": 201.4
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Swan House Bed & Breakfast",
+          "stage": "9",
+          "km": 218.7
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Elstavale",
+          "stage": "9",
+          "km": 223.2
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Park House B&B",
+          "stage": "10",
+          "km": 224.8
+        },
+        {
+          "kind": "campsite",
+          "name": "Lordstones Country Park",
+          "stage": "10",
+          "km": 236.2
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Beggars Bridge B&B",
+          "stage": "12",
+          "km": 270.6
+        },
+        {
+          "kind": "campsite",
+          "name": "Priory Farm Campsite",
+          "stage": "12",
+          "km": 275.5
+        },
+        {
+          "kind": "campsite",
+          "name": null,
+          "stage": "12",
+          "km": 298.5
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Northcliff B&B",
+          "stage": "12",
+          "km": 299.3
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Glen-Lyn",
+          "stage": "12",
+          "km": 299.5
+        },
+        {
+          "kind": "guesthouse",
+          "name": "North Ings B&B",
+          "stage": "12",
+          "km": 299.5
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Birtley House B&B",
+          "stage": "12",
+          "km": 299.6
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Olsen Cottage Sunnyside",
+          "stage": "12",
+          "km": 299.7
+        }
+      ],
+      "longestGapKm": {
+        "drinking": {
+          "km": 75.1,
+          "fromKm": 50.3,
+          "toKm": 125.4
+        },
+        "treatment": {
+          "km": 46.2,
+          "fromKm": 0.0,
+          "toKm": 46.2
+        },
+        "refill": {
+          "km": 18.2,
+          "fromKm": 243.7,
+          "toKm": 261.9
+        }
+      }
     }
   },
   "surface": {

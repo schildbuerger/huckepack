@@ -28273,6 +28273,7 @@
           "group": "beds",
           "kind": "campsite",
           "name": "Jugendzeltplatz Rotterdell",
+          "drinkingWater": "yes",
           "stage": "1",
           "stageKind": "main",
           "km": 8.0,
@@ -28350,6 +28351,7 @@
           "group": "beds",
           "kind": "campsite",
           "name": "Ruf des Venns",
+          "drinkingWater": "no",
           "stage": "2",
           "stageKind": "main",
           "km": 25.3,
@@ -28438,6 +28440,7 @@
           "group": "beds",
           "kind": "campsite",
           "name": "Aachener Camping Club",
+          "drinkingWater": "yes",
           "stage": "3",
           "stageKind": "main",
           "km": 31.4,
@@ -28471,6 +28474,7 @@
           "group": "beds",
           "kind": "campsite",
           "name": "Zum Jone Bur",
+          "drinkingWater": "yes",
           "stage": "3",
           "stageKind": "main",
           "km": 40.9,
@@ -28537,6 +28541,7 @@
           "group": "beds",
           "kind": "campsite",
           "name": "Camp-Hammer",
+          "drinkingWater": "yes",
           "stage": "3",
           "stageKind": "main",
           "km": 47.3,
@@ -28702,6 +28707,7 @@
           "group": "beds",
           "kind": "campsite",
           "name": "Trekkingplatz P01 Nordstern",
+          "drinkingWater": "no",
           "stage": "4",
           "stageKind": "main",
           "km": 68.7,
@@ -28757,6 +28763,7 @@
           "group": "beds",
           "kind": "campsite",
           "name": "Walden",
+          "drinkingWater": "no",
           "stage": "5",
           "stageKind": "main",
           "km": 80.6,
@@ -28768,6 +28775,7 @@
           "group": "beds",
           "kind": "campsite",
           "name": "Land in Sicht",
+          "drinkingWater": "no",
           "stage": "5",
           "stageKind": "main",
           "km": 80.6,
@@ -28779,6 +28787,7 @@
           "group": "beds",
           "kind": "campsite",
           "name": "Schlüsselstelle",
+          "drinkingWater": "no",
           "stage": "5",
           "stageKind": "main",
           "km": 91.5,
@@ -28856,6 +28865,7 @@
           "group": "beds",
           "kind": "campsite",
           "name": "Ich bin mal kurz weg",
+          "drinkingWater": "no",
           "stage": "6",
           "stageKind": "main",
           "km": 109.2,
@@ -28988,6 +28998,7 @@
           "group": "beds",
           "kind": "campsite",
           "name": "Felsenhof",
+          "drinkingWater": "yes",
           "stage": "9",
           "stageKind": "main",
           "km": 175.0,
@@ -29076,6 +29087,7 @@
           "group": "beds",
           "kind": "campsite",
           "name": "Camping Am Maar",
+          "drinkingWater": "yes",
           "stage": "11",
           "stageKind": "main",
           "km": 211.9,
@@ -29334,6 +29346,312 @@
         "camping": 25,
         "hostels": 20,
         "rooms": 50
+      }
+    },
+    "water": {
+      "withinM": 500,
+      "promoted": [
+        {
+          "kind": "campsite",
+          "name": "Jugendzeltplatz Rotterdell",
+          "stage": "1",
+          "km": 8.0
+        },
+        {
+          "kind": "campsite",
+          "name": "Camp-Hammer",
+          "stage": "3",
+          "km": 47.3
+        },
+        {
+          "kind": "campsite",
+          "name": "Felsenhof",
+          "stage": "9",
+          "km": 175.0
+        },
+        {
+          "kind": "campsite",
+          "name": "Camping Am Maar",
+          "stage": "11",
+          "km": 211.9
+        }
+      ],
+      "refills": [
+        {
+          "kind": "guesthouse",
+          "name": "Pension Britta",
+          "stage": "1",
+          "km": 13.7
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Venngasthof Zur Buche",
+          "stage": "2",
+          "km": 26.7
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Gästehaus Kuck",
+          "stage": "2",
+          "km": 26.7
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Zum Stehling",
+          "stage": "2",
+          "km": 27.8
+        },
+        {
+          "kind": "hostel",
+          "name": "DJH Jugendherberge Monschau - Burg Monschau",
+          "stage": "2",
+          "km": 30.7
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Eleganza Monschau",
+          "stage": "3",
+          "km": 31.1
+        },
+        {
+          "kind": "campsite",
+          "name": "Perlenau",
+          "stage": "3",
+          "km": 33.1
+        },
+        {
+          "kind": "campsite",
+          "name": "Jugendzeltplatz Widdau",
+          "stage": "3",
+          "km": 43.4
+        },
+        {
+          "kind": "campsite",
+          "name": "Felshang",
+          "stage": "3",
+          "km": 47.1
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Ferienhaus Blick Auf Dedenborn",
+          "stage": "3",
+          "km": 51.1
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Ferienhaus Arno Braun",
+          "stage": "3",
+          "km": 51.1
+        },
+        {
+          "kind": "campsite",
+          "name": "Campingplatz Sonnenschein",
+          "stage": "3",
+          "km": 52.0
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Pension Wölkchen",
+          "stage": "4",
+          "km": 55.2
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Gästezimmer Hüpgen",
+          "stage": "4",
+          "km": 55.2
+        },
+        {
+          "kind": "hostel",
+          "name": "K13 Gästehaus",
+          "stage": "4",
+          "km": 67.7
+        },
+        {
+          "kind": "hostel",
+          "name": "Eifeler Haus Vogelsang",
+          "stage": "4",
+          "km": 68.6
+        },
+        {
+          "kind": "hostel",
+          "name": "DJH Jugendherberge Gemünd Vogelsang im Nationalpark Eifel",
+          "stage": "4",
+          "km": 75.1
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Pension Müller - Zum alten Rathaus",
+          "stage": "4",
+          "km": 76.2
+        },
+        {
+          "kind": "hostel",
+          "name": "Landhaus Hohenfried",
+          "stage": "5",
+          "km": 77.8
+        },
+        {
+          "kind": "campsite",
+          "name": "Jugendzeltplatz Nettersheim",
+          "stage": "6",
+          "km": 103.5
+        },
+        {
+          "kind": "hostel",
+          "name": "Jugendgästehaus Nettersheim",
+          "stage": "6",
+          "km": 105.0
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Pension Sonnenschein",
+          "stage": "6",
+          "km": 105.1
+        },
+        {
+          "kind": "hostel",
+          "name": "DJH Jugendherberge Blankenheim - Burg Blankenheim",
+          "stage": "6",
+          "km": 117.1
+        },
+        {
+          "kind": "campsite",
+          "name": "Jugendzeltplatz Alendorf",
+          "stage": "7",
+          "km": 130.8
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Gästehaus Kloep",
+          "stage": "9",
+          "km": 160.9
+        },
+        {
+          "kind": "hostel",
+          "name": "Schullandheim",
+          "stage": "9",
+          "km": 170.9
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Gästehaus zur Linde",
+          "stage": "9",
+          "km": 181.6
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Mawile-Eifelschlaf",
+          "stage": "10",
+          "km": 189.2
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Jehnen am Eifelsteig",
+          "stage": "10",
+          "km": 201.2
+        },
+        {
+          "kind": "guesthouse",
+          "name": null,
+          "stage": "10",
+          "km": 201.7
+        },
+        {
+          "kind": "hostel",
+          "name": "DJH Eifelmaar-Jugendherberge Daun",
+          "stage": "11",
+          "km": 207.2
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Auszeit am Eifelsteig",
+          "stage": "11",
+          "km": 208.3
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Café del Maar",
+          "stage": "11",
+          "km": 212.0
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Haus Liesertal",
+          "stage": "11",
+          "km": 218.8
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Gästehaus Wilhelmsruh",
+          "stage": "11",
+          "km": 227.4
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Cozy Escapes",
+          "stage": "12",
+          "km": 228.7
+        },
+        {
+          "kind": "hostel",
+          "name": "Klosterherberge Himmerod",
+          "stage": "13",
+          "km": 246.3
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Pension Hoffmann",
+          "stage": "13",
+          "km": 265.8
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Pitsch",
+          "stage": "14",
+          "km": 266.1
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Burg Pension Bruch",
+          "stage": "14",
+          "km": 266.4
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Gasthaus Kronauer",
+          "stage": "14",
+          "km": 270.7
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Gasthaus Reichert",
+          "stage": "15",
+          "km": 288.3
+        },
+        {
+          "kind": "hostel",
+          "name": "DJH Römerstadt-Jugendherberge Trier",
+          "stage": "15",
+          "km": 304.3
+        }
+      ],
+      "longestGapKm": {
+        "drinking": {
+          "km": 38.9,
+          "fromKm": 265.9,
+          "toKm": 304.8
+        },
+        "treatment": {
+          "km": 37.7,
+          "fromKm": 228.2,
+          "toKm": 265.9
+        },
+        "refill": {
+          "km": 22.5,
+          "fromKm": 130.8,
+          "toKm": 153.3
+        }
       }
     }
   }

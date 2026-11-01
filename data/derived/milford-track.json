@@ -305,6 +305,7 @@
           "group": "beds",
           "kind": "hut",
           "name": "Clinton Hut",
+          "drinkingWater": "untreated",
           "stage": "1",
           "stageKind": "main",
           "km": 4.7,
@@ -360,6 +361,7 @@
           "group": "beds",
           "kind": "hut",
           "name": "Dumpling Hut",
+          "drinkingWater": "untreated",
           "stage": "3",
           "stageKind": "main",
           "km": 34.6,
@@ -398,6 +400,77 @@
         "camping": 0,
         "hostels": 1,
         "rooms": 0
+      }
+    },
+    "water": {
+      "withinM": 500,
+      "promoted": [],
+      "refills": [
+        {
+          "kind": "hut",
+          "name": "Glade House",
+          "stage": "1",
+          "km": 1.2
+        },
+        {
+          "kind": "hut",
+          "name": "Clinton Hut",
+          "stage": "1",
+          "km": 4.7
+        },
+        {
+          "kind": "hut",
+          "name": "Pompolona Lodge",
+          "stage": "2",
+          "km": 17.6
+        },
+        {
+          "kind": "hut",
+          "name": null,
+          "stage": "2",
+          "km": 21.6
+        },
+        {
+          "kind": "hut",
+          "name": "Mintaro Hut",
+          "stage": "2",
+          "km": 23.1
+        },
+        {
+          "kind": "hut",
+          "name": "Quintin Lodge",
+          "stage": "3",
+          "km": 31.5
+        },
+        {
+          "kind": "hut",
+          "name": "Dumpling Hut",
+          "stage": "3",
+          "km": 34.6
+        },
+        {
+          "kind": "hut",
+          "name": "Boatshed Hut",
+          "stage": "4",
+          "km": 40.0
+        }
+      ],
+      "longestGapKm": {
+        "drinking": {
+          "km": 52.6,
+          "fromKm": 0.0,
+          "toKm": 52.6
+        },
+        "treatment": {
+          "km": 52.6,
+          "fromKm": 0.0,
+          "toKm": 52.6
+        },
+        "refill": {
+          "km": 12.9,
+          "fromKm": 4.7,
+          "toKm": 17.6
+        }
       }
     }
   },

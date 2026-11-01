@@ -7186,6 +7186,7 @@
           "group": "beds",
           "kind": "campsite",
           "name": "Trekkingcamp Alteburg",
+          "drinkingWater": "no",
           "stage": "3",
           "stageKind": "main",
           "km": 36.4,
@@ -7197,6 +7198,7 @@
           "group": "beds",
           "kind": "campsite",
           "name": "Trekkingcamp Ellerspring",
+          "drinkingWater": "no",
           "stage": "4",
           "stageKind": "main",
           "km": 43.1,
@@ -7208,6 +7210,7 @@
           "group": "beds",
           "kind": "campsite",
           "name": "Trekkingcamp Ochsenbaumer Höhe",
+          "drinkingWater": "no",
           "stage": "4",
           "stageKind": "main",
           "km": 49.6,
@@ -7411,6 +7414,83 @@
         "camping": 8,
         "hostels": 4,
         "rooms": 14
+      }
+    },
+    "water": {
+      "withinM": 500,
+      "promoted": [],
+      "refills": [
+        {
+          "kind": "guesthouse",
+          "name": "Whisky Mansion Kirn",
+          "stage": "1",
+          "km": 1.0
+        },
+        {
+          "kind": "campsite",
+          "name": "Trekkingcamp Schmidtburg",
+          "stage": "2",
+          "km": 16.8
+        },
+        {
+          "kind": "campsite",
+          "name": "Naturcamp Schmidtburg",
+          "stage": "2",
+          "km": 16.9
+        },
+        {
+          "kind": "hostel",
+          "name": "Jugendfreizeitheim Emmerichshütte",
+          "stage": "5",
+          "km": 60.4
+        },
+        {
+          "kind": "hostel",
+          "name": "Jugendfreizeitheim Emmerichshütte",
+          "stage": "5",
+          "km": 60.4
+        },
+        {
+          "kind": "campsite",
+          "name": "Trekkingcamp Lauschhütte",
+          "stage": "5",
+          "km": 65.4
+        },
+        {
+          "kind": "campsite",
+          "name": "Campingplatz Marienort",
+          "stage": "6",
+          "km": 75.3
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Pension Milberg",
+          "stage": "6",
+          "km": 76.9
+        },
+        {
+          "kind": "hostel",
+          "name": "DJH Rhein-Nahe-Jugendherberge",
+          "stage": "6",
+          "km": 82.6
+        }
+      ],
+      "longestGapKm": {
+        "drinking": {
+          "km": 44.3,
+          "fromKm": 27.5,
+          "toKm": 71.8
+        },
+        "treatment": {
+          "km": 21.4,
+          "fromKm": 47.5,
+          "toKm": 68.9
+        },
+        "refill": {
+          "km": 12.9,
+          "fromKm": 47.5,
+          "toKm": 60.4
+        }
       }
     }
   }

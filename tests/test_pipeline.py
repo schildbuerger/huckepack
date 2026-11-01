@@ -248,5 +248,22 @@ class Walkable(unittest.TestCase):
         self.assertFalse(osmlocal.walkable({}))
 
 
+
+class WaterTiers(unittest.TestCase):
+    def test_drinking_treatment_and_refills(self):
+        water = {"withinM": 500, "points": [{"kind": "drinking", "km": 10.0}, {"kind": "spring", "km": 30.0}]}
+        beds = [
+            {"kind": "hut", "name": "A", "stage": "2", "km": 50.0, "offM": 100},  # a refill
+            {"kind": "hut", "name": "B", "stage": "3", "km": 70.0, "offM": 100, "drinkingWater": "yes"},  # drinking water
+            {"kind": "campsite", "name": "C", "stage": "3", "km": 80.0, "offM": 100, "drinkingWater": "no"},  # left out
+            {"kind": "hostel", "name": "D", "stage": "3", "km": 85.0, "offM": 900},  # beyond the water reach
+        ]
+        t = along.water_tiers(water, beds, 100.0)
+        self.assertEqual([p["name"] for p in t["promoted"]], ["B"])
+        self.assertEqual([p["name"] for p in t["refills"]], ["A"])
+        self.assertEqual(t["longestGapKm"]["drinking"], {"km": 60.0, "fromKm": 10.0, "toKm": 70.0})
+        self.assertEqual(t["longestGapKm"]["treatment"]["km"], 40.0)
+        self.assertEqual(t["longestGapKm"]["refill"]["km"], 30.0)
+
 if __name__ == "__main__":
     unittest.main()

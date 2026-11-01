@@ -16899,6 +16899,7 @@
           "group": "beds",
           "kind": "campsite",
           "name": "Camping Delecke Südufer",
+          "drinkingWater": "yes",
           "stage": "6",
           "stageKind": "main",
           "km": 72.5,
@@ -16965,6 +16966,7 @@
           "group": "beds",
           "kind": "campsite",
           "name": "Campingplatz Kallenhardt",
+          "drinkingWater": "yes",
           "stage": "10",
           "stageKind": "main",
           "km": 114.8,
@@ -17097,6 +17099,7 @@
           "group": "beds",
           "kind": "campsite",
           "name": "St. Muffert bei Heringhausen",
+          "drinkingWater": "no",
           "stage": "14",
           "stageKind": "variant",
           "km": null,
@@ -17119,6 +17122,7 @@
           "group": "beds",
           "kind": "campsite",
           "name": "Trekkingplatz Buttenberg",
+          "drinkingWater": "no",
           "stage": "15",
           "stageKind": "variant",
           "km": null,
@@ -17201,6 +17205,83 @@
         "camping": 17,
         "hostels": 7,
         "rooms": 16
+      }
+    },
+    "water": {
+      "withinM": 500,
+      "promoted": [],
+      "refills": [
+        {
+          "kind": "campsite",
+          "name": "Campen am Damm",
+          "stage": "3",
+          "km": 37.8
+        },
+        {
+          "kind": "campsite",
+          "name": "Campingplatz 5a, Wohnmobil und Wohnwagenstellplätze",
+          "stage": "3",
+          "km": 37.8
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Privat-Pension Wiesehoff",
+          "stage": "4",
+          "km": 58.3
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Altstadthaus",
+          "stage": "4",
+          "km": 58.4
+        },
+        {
+          "kind": "campsite",
+          "name": "Kemper",
+          "stage": "5",
+          "km": 67.6
+        },
+        {
+          "kind": "campsite",
+          "name": null,
+          "stage": "10",
+          "km": 117.5
+        },
+        {
+          "kind": "hostel",
+          "name": "JGH Rüthen",
+          "stage": "11",
+          "km": 120.1
+        },
+        {
+          "kind": "hostel",
+          "name": "Jugendwaldheim Ringelstein",
+          "stage": "11",
+          "km": 130.4
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Planken",
+          "stage": "12",
+          "km": 142.6
+        }
+      ],
+      "longestGapKm": {
+        "drinking": {
+          "km": 46.5,
+          "fromKm": 58.1,
+          "toKm": 104.6
+        },
+        "treatment": {
+          "km": 17.7,
+          "fromKm": 145.6,
+          "toKm": 163.3
+        },
+        "refill": {
+          "km": 17.7,
+          "fromKm": 145.6,
+          "toKm": 163.3
+        }
       }
     }
   }

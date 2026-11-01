@@ -155,6 +155,12 @@
   along the route, on the page, in the search filter and on the cards
   alike; OSM's shelters (day shelters, whatever their tagged type) don't count
   as beds.
+- **Water in tiers (issue #119, 2026-11-01):** drinking water keeps the
+  availability rating; springs give a second rating "with treatment"; huts,
+  hostels, guest houses and campsites within 500 m show as refills without a
+  rating (guests first, closed out of season). The search filter, the trail
+  map and the guide offer "with treatment". On the page, one collapsible
+  group "Water and refills" over the three kinds (approach B of three).
 - **Difficulty by month (issue #114, 2026-11-01):** without a pick, climate
   is rated for a trail's best run of at least two consecutive season months;
   a month pick in every page's header (approach A of three previews, with an

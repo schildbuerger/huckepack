@@ -22937,6 +22937,7 @@
           "group": "beds",
           "kind": "campsite",
           "name": "Eurocamp",
+          "drinkingWater": "yes",
           "stage": "3",
           "stageKind": "main",
           "km": 54.4,
@@ -23278,6 +23279,7 @@
           "group": "beds",
           "kind": "campsite",
           "name": "Camping Eggewald",
+          "drinkingWater": "yes",
           "stage": "10",
           "stageKind": "main",
           "km": 165.5,
@@ -23360,6 +23362,155 @@
         "camping": 9,
         "hostels": 11,
         "rooms": 30
+      }
+    },
+    "water": {
+      "withinM": 500,
+      "promoted": [],
+      "refills": [
+        {
+          "kind": "guesthouse",
+          "name": "Bed, Bike, Breakfast bei Bruno",
+          "stage": "1",
+          "km": 16.2
+        },
+        {
+          "kind": "campsite",
+          "name": "Campingplatz Dörenther Klippen",
+          "stage": "2",
+          "km": 28.7
+        },
+        {
+          "kind": "campsite",
+          "name": "Campingplatz Bocketal",
+          "stage": "2",
+          "km": 32.3
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Pension und Ferienwohnung Bauernhof Bücker",
+          "stage": "2",
+          "km": 37.3
+        },
+        {
+          "kind": "hostel",
+          "name": "Jugendherberge Tecklenburg",
+          "stage": "2",
+          "km": 38.5
+        },
+        {
+          "kind": "campsite",
+          "name": null,
+          "stage": "3",
+          "km": 39.7
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Pension Utlaut",
+          "stage": "3",
+          "km": 55.3
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Haus Gladbeck",
+          "stage": "4",
+          "km": 60.3
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Pension Süß",
+          "stage": "5",
+          "km": 82.6
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Plaza",
+          "stage": "5",
+          "km": 84.5
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Pension Gräber",
+          "stage": "7",
+          "km": 124.9
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Domizil am Welschen",
+          "stage": "8",
+          "km": 125.5
+        },
+        {
+          "kind": "hostel",
+          "name": "Naturfreundehaus Bielefeld",
+          "stage": "8",
+          "km": 127.0
+        },
+        {
+          "kind": "campsite",
+          "name": "Campingplatz Quellental",
+          "stage": "8",
+          "km": 134.4
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Berg-Cafe",
+          "stage": "9",
+          "km": 146.8
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Haus des Gastes Papiermühle",
+          "stage": "9",
+          "km": 146.8
+        },
+        {
+          "kind": "guesthouse",
+          "name": null,
+          "stage": "9",
+          "km": 152.1
+        },
+        {
+          "kind": "hostel",
+          "name": "Jugendherberge Horn-Bad Meinberg",
+          "stage": "9",
+          "km": 154.8
+        },
+        {
+          "kind": "hostel",
+          "name": "Naturfreundehaus In der Schnat",
+          "stage": "9",
+          "km": 159.5
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Pension Haus Dewenter",
+          "stage": "13",
+          "km": 211.2
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Agatha Kleffner",
+          "stage": "13",
+          "km": 224.6
+        }
+      ],
+      "longestGapKm": {
+        "drinking": {
+          "km": 67.8,
+          "fromKm": 157.0,
+          "toKm": 224.8
+        },
+        "treatment": {
+          "km": 25.1,
+          "fromKm": 0.3,
+          "toKm": 25.4
+        },
+        "refill": {
+          "km": 15.9,
+          "fromKm": 0.3,
+          "toKm": 16.2
+        }
       }
     }
   }

@@ -43683,6 +43683,7 @@
           "group": "beds",
           "kind": "campsite",
           "name": "Trekkingplatz Herzogau",
+          "drinkingWater": "no",
           "stage": "N9",
           "stageKind": "main",
           "km": 176.6,
@@ -43716,6 +43717,7 @@
           "group": "beds",
           "kind": "campsite",
           "name": "Campingplatz Einberg",
+          "drinkingWater": "yes",
           "stage": "N10",
           "stageKind": "main",
           "km": 193.7,
@@ -44354,6 +44356,7 @@
           "group": "beds",
           "kind": "campsite",
           "name": "Zeltplatz Passau",
+          "drinkingWater": "yes",
           "stage": "N23",
           "stageKind": "main",
           "km": 412.5,
@@ -44519,6 +44522,7 @@
           "group": "beds",
           "kind": "campsite",
           "name": "Zurück_zur_Natur",
+          "drinkingWater": "yes",
           "stage": "S19",
           "stageKind": "variant",
           "km": null,
@@ -44530,6 +44534,7 @@
           "group": "beds",
           "kind": "campsite",
           "name": "Zurück_zur_Natur",
+          "drinkingWater": "yes",
           "stage": "S19",
           "stageKind": "variant",
           "km": null,
@@ -44733,6 +44738,300 @@
         "camping": 16,
         "hostels": 11,
         "rooms": 75
+      }
+    },
+    "water": {
+      "withinM": 500,
+      "promoted": [
+        {
+          "kind": "campsite",
+          "name": "Zeltplatz Passau",
+          "stage": "N23",
+          "km": 412.5
+        }
+      ],
+      "refills": [
+        {
+          "kind": "guesthouse",
+          "name": null,
+          "stage": "1",
+          "km": 12.4
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Gästehaus \"Weißenstein\"",
+          "stage": "1",
+          "km": 19.3
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Gästehaus am Schlossberg",
+          "stage": "1",
+          "km": 19.4
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Gästehaus am Steinwald",
+          "stage": "1",
+          "km": 19.4
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Pension Höfer",
+          "stage": "2",
+          "km": 35.6
+        },
+        {
+          "kind": "campsite",
+          "name": "Trekkingplatz Zeitelfleck",
+          "stage": "3",
+          "km": 43.7
+        },
+        {
+          "kind": "campsite",
+          "name": "Waldnaab Camping Neustadt",
+          "stage": "4",
+          "km": 58.8
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Gästehaus \"Am Sonnenhang\"",
+          "stage": "4",
+          "km": 69.9
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Gasthof Lindenhof",
+          "stage": "6",
+          "km": 85.5
+        },
+        {
+          "kind": "campsite",
+          "name": "Campingplatz Waldkraft",
+          "stage": "6",
+          "km": 92.2
+        },
+        {
+          "kind": "hostel",
+          "name": "JGH Trausnitz",
+          "stage": "6",
+          "km": 99.1
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Pension Burgblick",
+          "stage": "6",
+          "km": 99.2
+        },
+        {
+          "kind": "campsite",
+          "name": "Campingplatz Trausnitz",
+          "stage": "6",
+          "km": 100.1
+        },
+        {
+          "kind": "guesthouse",
+          "name": null,
+          "stage": "6",
+          "km": 100.4
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Pension Tannenhof",
+          "stage": "6",
+          "km": 106.9
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Pension-Ferienwohnungen Frey",
+          "stage": "6",
+          "km": 107.0
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Gasthaus Kraus",
+          "stage": "N9",
+          "km": 160.5
+        },
+        {
+          "kind": "hut",
+          "name": "Waldvereinshütte",
+          "stage": "N10",
+          "km": 178.5
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Gästehaus Göttlinger",
+          "stage": "N11",
+          "km": 194.4
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Pension Schönbuchen",
+          "stage": "N11",
+          "km": 213.6
+        },
+        {
+          "kind": "hut",
+          "name": "Chamer Hütte",
+          "stage": "N13",
+          "km": 235.9
+        },
+        {
+          "kind": "hut",
+          "name": "Zwieseler Hütte",
+          "stage": "N13",
+          "km": 238.0
+        },
+        {
+          "kind": "hut",
+          "name": "Arberschutzhaus",
+          "stage": "N13",
+          "km": 238.5
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Maier Pension",
+          "stage": "N14",
+          "km": 249.3
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Pension Sonneneck",
+          "stage": "N14",
+          "km": 249.6
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Gästehaus Am Berg",
+          "stage": "N14",
+          "km": 249.6
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Pension Bellevue",
+          "stage": "N14",
+          "km": 249.8
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Villa Kunterbunt",
+          "stage": "N14",
+          "km": 250.0
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Pension Wiesenau",
+          "stage": "N14",
+          "km": 250.0
+        },
+        {
+          "kind": "hut",
+          "name": "Falkenstein Schutzhaus",
+          "stage": "N15",
+          "km": 262.6
+        },
+        {
+          "kind": "hut",
+          "name": "Höllbachschwellhütte",
+          "stage": "N16",
+          "km": 264.9
+        },
+        {
+          "kind": "hut",
+          "name": "Waldschmidthaus",
+          "stage": "N16",
+          "km": 289.4
+        },
+        {
+          "kind": "hut",
+          "name": "Lusenschutzhaus",
+          "stage": "N18",
+          "km": 303.3
+        },
+        {
+          "kind": "guesthouse",
+          "name": null,
+          "stage": "N19",
+          "km": 315.0
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Gasthof-Pension Alpe",
+          "stage": "N19",
+          "km": 320.1
+        },
+        {
+          "kind": "hostel",
+          "name": "Forellenhof",
+          "stage": "N19",
+          "km": 323.6
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Pension & Blockhausurlaub \" zum Pfenniggeiger \" -Am Goldsteig-",
+          "stage": "N20",
+          "km": 323.8
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Pension Kricklsäge",
+          "stage": "N20",
+          "km": 325.0
+        },
+        {
+          "kind": "hut",
+          "name": "Berggasthof Dreisessel",
+          "stage": "N21",
+          "km": 353.0
+        },
+        {
+          "kind": "campsite",
+          "name": "Knaus Campingpark Lackenhäuser",
+          "stage": "N21",
+          "km": 360.0
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Jagdhof",
+          "stage": "N21",
+          "km": 367.4
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Zum Kirchenwirt",
+          "stage": "N23",
+          "km": 403.8
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Haus Panorama",
+          "stage": "N23",
+          "km": 412.2
+        },
+        {
+          "kind": "hostel",
+          "name": "Jugendherberge Passau",
+          "stage": "N23",
+          "km": 412.7
+        }
+      ],
+      "longestGapKm": {
+        "drinking": {
+          "km": 64.7,
+          "fromKm": 158.8,
+          "toKm": 223.5
+        },
+        "treatment": {
+          "km": 49.2,
+          "fromKm": 360.5,
+          "toKm": 409.7
+        },
+        "refill": {
+          "km": 36.4,
+          "fromKm": 367.4,
+          "toKm": 403.8
+        }
       }
     }
   }

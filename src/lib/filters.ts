@@ -38,6 +38,7 @@ export interface Filters {
   sleep: string[]; // sleeping category ids, all required
   wild: "" | "some" | "allowed";
   waterMax: number; // WATER_KM.length: any
+  waterTreat: boolean; // the water filter counts springs too (issue #119: "with treatment")
   naturalMin: number; // 0: any
   // difficulty ranges as level indexes, 0 (Easy) to LEVEL_TOP (Hard); 0 to LEVEL_TOP: any
   terrainMin: number;
@@ -57,6 +58,7 @@ export const noFilters = (): Filters => ({
   sleep: [],
   wild: "",
   waterMax: WATER_KM.length,
+  waterTreat: false,
   naturalMin: 0,
   terrainMin: 0,
   terrainMax: LEVEL_TOP,
@@ -110,7 +112,7 @@ export function matches(t: SearchTrail, f: Filters) {
   if (f.sleep.length && !f.sleep.every((s) => t.sleeping.includes(s))) return false;
   if (f.wild === "allowed" && t.wildCamping !== "allowed") return false;
   if (f.wild === "some" && t.wildCamping !== "allowed" && t.wildCamping !== "restricted") return false;
-  if (waterOn(f) && !(t.water && t.water.gapKm <= WATER_KM[f.waterMax])) return false;
+  if (waterOn(f) && !(t.water && (f.waterTreat ? t.water.treatGapKm : t.water.gapKm) <= WATER_KM[f.waterMax])) return false;
   if (naturalOn(f) && !(t.surface && t.surface.natural * 100 >= NATURAL_PCT[f.naturalMin])) return false;
   if (terrainOn(f) && !within(t.terrainLevel, f.terrainMin, f.terrainMax)) return false;
   if (climateOn(f) && !within(climateLevel(t, f.months), f.climateMin, f.climateMax)) return false;
@@ -119,7 +121,7 @@ export function matches(t: SearchTrail, f: Filters) {
   return true;
 }
 
-// URL parameters: months=4,5 days=4-7 where=Italy sleep=huts wild=some water=20 natural=50
+// URL parameters: months=4,5 days=4-7 where=Italy sleep=huts wild=some water=20 treat=1 natural=50
 // terrain=moderate-hard climate=moderate effort=moderate land=forest,bare. A difficulty is a range
 // "from-to", or one level for "up to" it (the form older links used; an old sac= is ignored)
 export function toParams(f: Filters) {
@@ -130,6 +132,7 @@ export function toParams(f: Filters) {
   if (f.sleep.length) p.set("sleep", f.sleep.join(","));
   if (f.wild) p.set("wild", f.wild);
   if (waterOn(f)) p.set("water", String(WATER_KM[f.waterMax]));
+  if (f.waterTreat) p.set("treat", "1");
   if (naturalOn(f)) p.set("natural", String(NATURAL_PCT[f.naturalMin]));
   const level = (min: number, max: number) => (min > 0 ? `${LEVEL_IDS[min]}-${LEVEL_IDS[max]}` : LEVEL_IDS[max]);
   if (terrainOn(f)) p.set("terrain", level(f.terrainMin, f.terrainMax));
@@ -165,6 +168,7 @@ export function fromParams(p: URLSearchParams, sleepIds: string[]): Filters {
     sleep: list("sleep").filter((s) => sleepIds.includes(s)),
     wild: wild === "some" || wild === "allowed" ? wild : "",
     waterMax: stop(WATER_KM, p.get("water"), WATER_KM.length),
+    waterTreat: p.get("treat") === "1",
     naturalMin: stop(NATURAL_PCT, p.get("natural"), 0),
     terrainMin,
     terrainMax,
@@ -202,7 +206,7 @@ export const WATER_STOPS = [...WATER_KM.map((km) => `${km} km`), "Any"];
 export const NATURAL_STOPS = NATURAL_PCT.map((n) => (n ? `${n} %` : "Any"));
 export const daysText = (f: Filters) =>
   !daysOn(f) ? "Any length" : f.dayLo === f.dayHi ? `${DAY_STOPS[f.dayLo]} days` : `${DAYS[f.dayLo]}–${DAY_STOPS[f.dayHi]} days`;
-export const waterText = (f: Filters) => (waterOn(f) ? `Every ${WATER_KM[f.waterMax]} km or less` : "Any");
+export const waterText = (f: Filters) => (waterOn(f) ? `Every ${WATER_KM[f.waterMax]} km or less${f.waterTreat ? ", springs counted" : ""}` : "Any");
 export const naturalText = (f: Filters) => (naturalOn(f) ? `${NATURAL_PCT[f.naturalMin]} %+ natural` : "Any");
 // a difficulty range in words: "Any", "Demanding", "Up to moderate", "Demanding or harder",
 // "Moderate to demanding"
@@ -232,6 +236,6 @@ export function activeFilters(f: Filters, sleeping: { id: string; label: string 
     naturalOn(f) && { label: `At least ${NATURAL_PCT[f.naturalMin]} % natural ground`, reset: { naturalMin: 0 } },
     ...f.sleep.map((id) => ({ label: sleeping.find((c) => c.id === id)?.label ?? id, reset: { sleep: without(f.sleep, id) } })),
     f.wild && { label: f.wild === "allowed" ? "Wild camping allowed" : "Wild camping possible", reset: { wild: "" as const } },
-    waterOn(f) && { label: `Water every ${WATER_KM[f.waterMax]} km or less`, reset: { waterMax: WATER_KM.length } },
+    waterOn(f) && { label: `Water every ${WATER_KM[f.waterMax]} km or less${f.waterTreat ? " (springs counted)" : ""}`, reset: { waterMax: WATER_KM.length, waterTreat: false } },
   ].filter(Boolean) as { label: string; reset: Partial<Filters> }[];
 }

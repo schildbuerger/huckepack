@@ -7766,6 +7766,7 @@
           "group": "beds",
           "kind": "campsite",
           "name": "Camping Acquacheta",
+          "drinkingWater": "yes",
           "stage": "2",
           "stageKind": "main",
           "km": 8.9,
@@ -7898,6 +7899,7 @@
           "group": "beds",
           "kind": "hut",
           "name": "La Calla",
+          "drinkingWater": "yes",
           "stage": "4",
           "stageKind": "main",
           "km": 44.0,
@@ -7964,6 +7966,7 @@
           "group": "beds",
           "kind": "hut",
           "name": "Rifugio Cotozzo",
+          "drinkingWater": "yes",
           "stage": "5",
           "stageKind": "main",
           "km": 57.5,
@@ -8228,6 +8231,7 @@
           "group": "beds",
           "kind": "hut",
           "name": "Rifugio Casanova",
+          "drinkingWater": "yes",
           "stage": "6",
           "stageKind": "variant",
           "km": null,
@@ -8255,6 +8259,186 @@
         "camping": 4,
         "hostels": 6,
         "rooms": 17
+      }
+    },
+    "water": {
+      "withinM": 500,
+      "promoted": [
+        {
+          "kind": "campsite",
+          "name": "Camping Acquacheta",
+          "stage": "2",
+          "km": 8.9
+        },
+        {
+          "kind": "hut",
+          "name": "La Calla",
+          "stage": "4",
+          "km": 44.0
+        },
+        {
+          "kind": "hut",
+          "name": "Rifugio Cotozzo",
+          "stage": "5",
+          "km": 57.5
+        }
+      ],
+      "refills": [
+        {
+          "kind": "hut",
+          "name": "Rifugio Casa Ponte",
+          "stage": "1",
+          "km": 0.0
+        },
+        {
+          "kind": "hut",
+          "name": "Capanno di Colla Gurioli",
+          "stage": "1",
+          "km": 2.6
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Maneggio Rio Destro",
+          "stage": "1",
+          "km": 8.2
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Ostello Il Vignale",
+          "stage": "1",
+          "km": 8.3
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Casa vacanze Borgo di Serignana",
+          "stage": "2",
+          "km": 27.5
+        },
+        {
+          "kind": "hut",
+          "name": "Rifugio Punto Tappa GEA",
+          "stage": "2",
+          "km": 29.1
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Il Vado",
+          "stage": "3",
+          "km": 29.3
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Bed & Breakfast Villa I Ciliegi",
+          "stage": "3",
+          "km": 30.4
+        },
+        {
+          "kind": "hut",
+          "name": "Rifugio Borbotto",
+          "stage": "3",
+          "km": 33.3
+        },
+        {
+          "kind": "hut",
+          "name": "Rifugio Città di Forlì",
+          "stage": "4",
+          "km": 42.6
+        },
+        {
+          "kind": "hut",
+          "name": "Rifugio \"La Burraia\"",
+          "stage": "4",
+          "km": 42.8
+        },
+        {
+          "kind": "hostel",
+          "name": "Foresteria del Monastero di Camaldoli",
+          "stage": "4",
+          "km": 55.8
+        },
+        {
+          "kind": "hut",
+          "name": "Rifugio Fangacci \"Onorio Mellini\"",
+          "stage": "5",
+          "km": 62.7
+        },
+        {
+          "kind": "hut",
+          "name": "Rifugio Campo dell'Agio",
+          "stage": "5",
+          "km": 67.8
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Albergo Ristorante La Torre",
+          "stage": "6",
+          "km": 67.9
+        },
+        {
+          "kind": "guesthouse",
+          "name": "B&B - Antica Podesteria 'Casa Luca'",
+          "stage": "6",
+          "km": 68.2
+        },
+        {
+          "kind": "hostel",
+          "name": "Locanda Carbonile",
+          "stage": "6",
+          "km": 71.2
+        },
+        {
+          "kind": "guesthouse",
+          "name": "B&B Rossana Località Biforco",
+          "stage": "6",
+          "km": 85.9
+        },
+        {
+          "kind": "guesthouse",
+          "name": "B&B da Silvia",
+          "stage": "6",
+          "km": 85.9
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Casartù",
+          "stage": "6",
+          "km": 86.0
+        },
+        {
+          "kind": "hostel",
+          "name": "Casa Benedica",
+          "stage": "7",
+          "km": 94.6
+        },
+        {
+          "kind": "hostel",
+          "name": "Dormitorio del pellegrino",
+          "stage": "7",
+          "km": 95.1
+        },
+        {
+          "kind": "hostel",
+          "name": "Refettorio del Pellegrino",
+          "stage": "7",
+          "km": 95.1
+        }
+      ],
+      "longestGapKm": {
+        "drinking": {
+          "km": 7.7,
+          "fromKm": 0.2,
+          "toKm": 7.9
+        },
+        "treatment": {
+          "km": 7.1,
+          "fromKm": 87.5,
+          "toKm": 94.6
+        },
+        "refill": {
+          "km": 7.1,
+          "fromKm": 87.5,
+          "toKm": 94.6
+        }
       }
     }
   }

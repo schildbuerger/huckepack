@@ -4253,6 +4253,89 @@
         "hostels": 2,
         "rooms": 11
       }
+    },
+    "water": {
+      "withinM": 500,
+      "promoted": [],
+      "refills": [
+        {
+          "kind": "guesthouse",
+          "name": null,
+          "stage": "10",
+          "km": 88.7
+        },
+        {
+          "kind": "hostel",
+          "name": "Alberg Sa Vinyeta",
+          "stage": "10",
+          "km": 91.4
+        },
+        {
+          "kind": "guesthouse",
+          "name": "apartchalets villas Elvira",
+          "stage": "11",
+          "km": 97.3
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Escorpio",
+          "stage": "17",
+          "km": 153.9
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Acuario",
+          "stage": "17",
+          "km": 153.9
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Virgo",
+          "stage": "17",
+          "km": 154.0
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Leo",
+          "stage": "17",
+          "km": 154.0
+        },
+        {
+          "kind": "hostel",
+          "name": "Hostal Mar Blava",
+          "stage": "18",
+          "km": 167.3
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Hostal La Isla",
+          "stage": "20",
+          "km": 178.7
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Sant Jaume, 27",
+          "stage": "20",
+          "km": 179.4
+        }
+      ],
+      "longestGapKm": {
+        "drinking": {
+          "km": 89.1,
+          "fromKm": 0.0,
+          "toKm": 89.1
+        },
+        "treatment": {
+          "km": 54.0,
+          "fromKm": 10.6,
+          "toKm": 64.6
+        },
+        "refill": {
+          "km": 54.0,
+          "fromKm": 10.6,
+          "toKm": 64.6
+        }
+      }
     }
   },
   "surface": {

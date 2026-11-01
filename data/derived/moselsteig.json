@@ -37381,6 +37381,7 @@
           "group": "beds",
           "kind": "campsite",
           "name": "Mosel-Camping Dreiländereck",
+          "drinkingWater": "yes",
           "stage": "1",
           "stageKind": "main",
           "km": 21.5,
@@ -37601,6 +37602,7 @@
           "group": "beds",
           "kind": "campsite",
           "name": "Campingplatz Igel",
+          "drinkingWater": "yes",
           "stage": "3",
           "stageKind": "main",
           "km": 59.2,
@@ -37689,6 +37691,7 @@
           "group": "beds",
           "kind": "campsite",
           "name": "Campingplatz Treviris",
+          "drinkingWater": "yes",
           "stage": "4",
           "stageKind": "main",
           "km": 75.8,
@@ -37777,6 +37780,7 @@
           "group": "beds",
           "kind": "campsite",
           "name": "Camping- & Wohnmobilpark \"Zum Fährturm\"",
+          "drinkingWater": "yes",
           "stage": "5",
           "stageKind": "main",
           "km": 101.7,
@@ -38250,6 +38254,7 @@
           "group": "beds",
           "kind": "campsite",
           "name": "Camping Sonnenberg",
+          "drinkingWater": "yes",
           "stage": "8",
           "stageKind": "main",
           "km": 134.1,
@@ -38778,6 +38783,7 @@
           "group": "beds",
           "kind": "campsite",
           "name": "KNAUS Campingpark Bernkastel-Kues",
+          "drinkingWater": "yes",
           "stage": "10",
           "stageKind": "main",
           "km": 171.8,
@@ -39053,6 +39059,7 @@
           "group": "beds",
           "kind": "campsite",
           "name": "MoselCamping Bernkastel",
+          "drinkingWater": "yes",
           "stage": "11",
           "stageKind": "main",
           "km": 181.0,
@@ -39812,6 +39819,7 @@
           "group": "beds",
           "kind": "campsite",
           "name": "In den Weinbergen",
+          "drinkingWater": "no",
           "stage": "12",
           "stageKind": "main",
           "km": 203.8,
@@ -40417,6 +40425,7 @@
           "group": "beds",
           "kind": "campsite",
           "name": "Unter den Obstbäumen",
+          "drinkingWater": "yes",
           "stage": "14",
           "stageKind": "main",
           "km": 221.2,
@@ -40604,6 +40613,7 @@
           "group": "beds",
           "kind": "campsite",
           "name": "Moselcampingplatz Pünderich",
+          "drinkingWater": "yes",
           "stage": "14",
           "stageKind": "main",
           "km": 226.5,
@@ -41187,6 +41197,7 @@
           "group": "beds",
           "kind": "campsite",
           "name": "Zum Feuerberg",
+          "drinkingWater": "yes",
           "stage": "17",
           "stageKind": "main",
           "km": 265.2,
@@ -41220,6 +41231,7 @@
           "group": "beds",
           "kind": "campsite",
           "name": "Campingplatz Nehren",
+          "drinkingWater": "yes",
           "stage": "17",
           "stageKind": "main",
           "km": 268.7,
@@ -41264,6 +41276,7 @@
           "group": "beds",
           "kind": "campsite",
           "name": "Holländischer Hof",
+          "drinkingWater": "yes",
           "stage": "17",
           "stageKind": "main",
           "km": 270.6,
@@ -41440,6 +41453,7 @@
           "group": "beds",
           "kind": "campsite",
           "name": "Family Camping",
+          "drinkingWater": "yes",
           "stage": "17",
           "stageKind": "main",
           "km": 273.7,
@@ -42441,6 +42455,7 @@
           "group": "beds",
           "kind": "campsite",
           "name": "Pommernland",
+          "drinkingWater": "yes",
           "stage": "19",
           "stageKind": "main",
           "km": 310.2,
@@ -42529,6 +42544,7 @@
           "group": "beds",
           "kind": "campsite",
           "name": "Freizeitinsel Mosel Islands",
+          "drinkingWater": "yes",
           "stage": "19",
           "stageKind": "main",
           "km": 312.8,
@@ -42738,6 +42754,7 @@
           "group": "beds",
           "kind": "campsite",
           "name": "KNAUS Campingpark Mosel/Burgen",
+          "drinkingWater": "yes",
           "stage": "21",
           "stageKind": "main",
           "km": 331.3,
@@ -42771,6 +42788,7 @@
           "group": "beds",
           "kind": "campsite",
           "name": "Campinginsel Sonnenwerth",
+          "drinkingWater": "no",
           "stage": "21",
           "stageKind": "main",
           "km": 336.2,
@@ -43145,6 +43163,7 @@
           "group": "beds",
           "kind": "campsite",
           "name": "Ferieninsel Winningen an der Mosel",
+          "drinkingWater": "yes",
           "stage": "23",
           "stageKind": "main",
           "km": 367.9,
@@ -43233,6 +43252,7 @@
           "group": "beds",
           "kind": "campsite",
           "name": "KNAUS Campingpark Koblenz",
+          "drinkingWater": "yes",
           "stage": "24",
           "stageKind": "main",
           "km": 385.4,
@@ -43249,6 +43269,2064 @@
         "camping": 48,
         "hostels": 10,
         "rooms": 476
+      }
+    },
+    "water": {
+      "withinM": 500,
+      "promoted": [
+        {
+          "kind": "campsite",
+          "name": "Moselcampingplatz Pünderich",
+          "stage": "14",
+          "km": 226.5
+        },
+        {
+          "kind": "campsite",
+          "name": "Zum Feuerberg",
+          "stage": "17",
+          "km": 265.2
+        },
+        {
+          "kind": "campsite",
+          "name": "Campingplatz Nehren",
+          "stage": "17",
+          "km": 268.7
+        },
+        {
+          "kind": "campsite",
+          "name": "Holländischer Hof",
+          "stage": "17",
+          "km": 270.6
+        },
+        {
+          "kind": "campsite",
+          "name": "Family Camping",
+          "stage": "17",
+          "km": 273.7
+        },
+        {
+          "kind": "campsite",
+          "name": "Pommernland",
+          "stage": "19",
+          "km": 310.2
+        },
+        {
+          "kind": "campsite",
+          "name": "KNAUS Campingpark Mosel/Burgen",
+          "stage": "21",
+          "km": 331.3
+        },
+        {
+          "kind": "campsite",
+          "name": "KNAUS Campingpark Koblenz",
+          "stage": "24",
+          "km": 385.4
+        }
+      ],
+      "refills": [
+        {
+          "kind": "guesthouse",
+          "name": "Pension Lisa",
+          "stage": "1",
+          "km": 1.5
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Schlossgut Pillingen",
+          "stage": "1",
+          "km": 5.5
+        },
+        {
+          "kind": "guesthouse",
+          "name": "SAUERWEINs Weingut",
+          "stage": "1",
+          "km": 23.0
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Gästehaus und Pension zur Moselbrücke",
+          "stage": "2",
+          "km": 31.2
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Culinarium Schlafgut",
+          "stage": "2",
+          "km": 39.0
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Weingut Hubertus M. Apel",
+          "stage": "2",
+          "km": 39.1
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Gästehaus Karl Sonntag",
+          "stage": "2",
+          "km": 39.1
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Dostert-Schmitt",
+          "stage": "2",
+          "km": 39.2
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Gästehaus Zilliken",
+          "stage": "2",
+          "km": 39.2
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Weingut & Gästehaus J. Dostert",
+          "stage": "2",
+          "km": 39.2
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Gästehaus Birgit und Bernd Frieden",
+          "stage": "2",
+          "km": 39.3
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Culinarium",
+          "stage": "2",
+          "km": 39.3
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Landhaus Lutz",
+          "stage": "3",
+          "km": 57.3
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Gästehaus Rausch",
+          "stage": "3",
+          "km": 58.0
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Haus am Saarufer",
+          "stage": "3",
+          "km": 61.2
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Gasthaus an der Saarmündung",
+          "stage": "4",
+          "km": 63.0
+        },
+        {
+          "kind": "campsite",
+          "name": "Camping Konz Saarmündung",
+          "stage": "4",
+          "km": 63.0
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Robert Schuman Haus",
+          "stage": "4",
+          "km": 78.7
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Gästehaus Barmherzigen Brüder Trier",
+          "stage": "4",
+          "km": 81.1
+        },
+        {
+          "kind": "hostel",
+          "name": "Kolpinghaus Warsberger Hof",
+          "stage": "4",
+          "km": 81.4
+        },
+        {
+          "kind": "hostel",
+          "name": "Evergreen Hostel",
+          "stage": "5",
+          "km": 82.4
+        },
+        {
+          "kind": "hostel",
+          "name": "DJH Römerstadt-Jugendherberge Trier",
+          "stage": "5",
+          "km": 85.1
+        },
+        {
+          "kind": "guesthouse",
+          "name": null,
+          "stage": "5",
+          "km": 93.4
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Weingut Thesen",
+          "stage": "6",
+          "km": 102.0
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Weinatrium Wallerath",
+          "stage": "6",
+          "km": 102.1
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Weingut-Pension Schiff",
+          "stage": "6",
+          "km": 102.9
+        },
+        {
+          "kind": "campsite",
+          "name": "Dauer Caravaning Platz Mehring",
+          "stage": "6",
+          "km": 112.6
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Gästehaus Albert Mathey",
+          "stage": "6",
+          "km": 113.2
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Weingut Schmittchens Klosterhof",
+          "stage": "6",
+          "km": 113.6
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Gästehaus \"Alt Mehring\"",
+          "stage": "6",
+          "km": 113.8
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Gästehaus Sebastiani",
+          "stage": "6",
+          "km": 113.8
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Pension Blees",
+          "stage": "6",
+          "km": 113.8
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Wein & Gästehaus Winfried Schmitt",
+          "stage": "7",
+          "km": 113.9
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Gästehaus Linster",
+          "stage": "7",
+          "km": 114.7
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Gästehaus Heimfarth",
+          "stage": "7",
+          "km": 114.8
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Gästehaus Marlies Kollmann",
+          "stage": "7",
+          "km": 115.3
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Weingut & Gästehaus Kühner - Adams",
+          "stage": "7",
+          "km": 115.6
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Gästehaus Alexanderhof",
+          "stage": "7",
+          "km": 128.0
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Gästehaus Renate",
+          "stage": "7",
+          "km": 128.0
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Hof Sonnental",
+          "stage": "7",
+          "km": 128.1
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Gästehaus Katrin",
+          "stage": "7",
+          "km": 128.1
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Weingut-Gästehaus Porten",
+          "stage": "7",
+          "km": 128.2
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Gästehaus Annemie",
+          "stage": "7",
+          "km": 128.3
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Gästehaus Vinum",
+          "stage": "7",
+          "km": 128.3
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Pension Günther Scholtes",
+          "stage": "7",
+          "km": 128.3
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Sektstuuf St. Laurentius",
+          "stage": "7",
+          "km": 128.4
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Gästehaus-Strausswirtschaft Löwenhof",
+          "stage": "7",
+          "km": 128.4
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Weingut Sandra Berweiler",
+          "stage": "7",
+          "km": 128.4
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Weingut Kurtrierer Hof",
+          "stage": "7",
+          "km": 128.4
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Schu",
+          "stage": "7",
+          "km": 128.4
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Weingut-Gästehaus Loersch-Eifel",
+          "stage": "8",
+          "km": 134.5
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Pension-Restaurant Rauchfang",
+          "stage": "8",
+          "km": 135.2
+        },
+        {
+          "kind": "campsite",
+          "name": "Campingplatz Neumagen-Dhron",
+          "stage": "8",
+          "km": 141.3
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Gästehaus Voyage",
+          "stage": "8",
+          "km": 141.4
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Gästehaus Weingut Schmitz",
+          "stage": "8",
+          "km": 141.6
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Pension Stüberl",
+          "stage": "8",
+          "km": 141.6
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Gästehaus Warnsberger Weinhof",
+          "stage": "8",
+          "km": 141.8
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Moselherberge",
+          "stage": "8",
+          "km": 142.0
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Landgasthof Altes Weingut",
+          "stage": "9",
+          "km": 142.4
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Gästehaus Römerweinhof",
+          "stage": "9",
+          "km": 142.5
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Gästehaus Marietta",
+          "stage": "9",
+          "km": 158.7
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Zimmer am Weg",
+          "stage": "9",
+          "km": 158.7
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Gaststätte und Pension Zur Traube",
+          "stage": "9",
+          "km": 158.7
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Pension Familie Rohr",
+          "stage": "9",
+          "km": 158.9
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Weingut & Gästehaus Falkenburg",
+          "stage": "9",
+          "km": 159.8
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Weingut Ferres",
+          "stage": "10",
+          "km": 160.3
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Weingut Selbach-Erz",
+          "stage": "10",
+          "km": 160.6
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Gästezimmer Weingut Harald Konrad Fehres",
+          "stage": "10",
+          "km": 163.2
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Weingut Bottler",
+          "stage": "10",
+          "km": 166.0
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Gästehaus Schmidt",
+          "stage": "10",
+          "km": 173.7
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Haus Bonsai",
+          "stage": "10",
+          "km": 173.7
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Gästehaus BonGarden",
+          "stage": "10",
+          "km": 173.8
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Kelterhaus",
+          "stage": "10",
+          "km": 174.0
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Weingut-Pension Leo Schwab",
+          "stage": "10",
+          "km": 174.2
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Weingut & Gästehaus Schmitz-Bergweiler",
+          "stage": "11",
+          "km": 174.4
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Alter Klosterhof",
+          "stage": "11",
+          "km": 174.5
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Zummethöhe",
+          "stage": "11",
+          "km": 178.9
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Gästehaus Eckstein",
+          "stage": "11",
+          "km": 178.9
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Kees Kieren",
+          "stage": "11",
+          "km": 180.8
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Gasthaus Feyen",
+          "stage": "11",
+          "km": 184.8
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Ferienhaus Raju",
+          "stage": "11",
+          "km": 185.3
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Saengerheim",
+          "stage": "11",
+          "km": 188.0
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Riesling-Weingut Walter Gerlach",
+          "stage": "11",
+          "km": 190.1
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Weingut Walter Schmitz",
+          "stage": "11",
+          "km": 190.1
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Weingut Hermann-Josef Schmitz",
+          "stage": "11",
+          "km": 190.7
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Hotel-Pension-Weinstube \"Alter Klosterhof\"",
+          "stage": "11",
+          "km": 190.9
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Weingut Derkum",
+          "stage": "11",
+          "km": 190.9
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Weingut Erbes Henn",
+          "stage": "11",
+          "km": 190.9
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Weingut Dieter Oster",
+          "stage": "11",
+          "km": 191.1
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Weingut, Straußwirtschaft Wolfgang Mies",
+          "stage": "11",
+          "km": 191.1
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Weingut Berthold Oster",
+          "stage": "12",
+          "km": 191.3
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Gästehaus Petra",
+          "stage": "12",
+          "km": 191.3
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Gästehaus C.H. Berres",
+          "stage": "12",
+          "km": 191.7
+        },
+        {
+          "kind": "campsite",
+          "name": "Campingplatz Erden",
+          "stage": "12",
+          "km": 192.7
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Weingut Felix Wey",
+          "stage": "12",
+          "km": 202.0
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Landhaus Am Ufer",
+          "stage": "12",
+          "km": 202.7
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Wein- und Gästehaus Boor",
+          "stage": "12",
+          "km": 202.7
+        },
+        {
+          "kind": "campsite",
+          "name": "Moselcamping Rissbach",
+          "stage": "12",
+          "km": 203.9
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Gästehaus Müller",
+          "stage": "12",
+          "km": 205.3
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Weingut Trossen",
+          "stage": "12",
+          "km": 205.5
+        },
+        {
+          "kind": "hostel",
+          "name": "Monkey Factory Mini Home-Stay Hostel",
+          "stage": "12",
+          "km": 205.6
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Aacher Hof",
+          "stage": "12",
+          "km": 205.7
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Gästehaus Haussmann",
+          "stage": "12",
+          "km": 205.8
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Café Balles",
+          "stage": "12",
+          "km": 206.0
+        },
+        {
+          "kind": "hostel",
+          "name": "Pilgerherberge Alte Lateinschule",
+          "stage": "13",
+          "km": 206.3
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Gästehaus Franz",
+          "stage": "13",
+          "km": 209.6
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Weingut Spier",
+          "stage": "13",
+          "km": 212.7
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Gästehaus Ute",
+          "stage": "13",
+          "km": 213.0
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Zum Weinkrug",
+          "stage": "13",
+          "km": 213.2
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Landgasthof Zur Sonne",
+          "stage": "13",
+          "km": 213.2
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Weingut Gästehaus Tempelhof",
+          "stage": "13",
+          "km": 213.2
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Weingut Immich-Herberts",
+          "stage": "13",
+          "km": 213.2
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Gästehaus Römer",
+          "stage": "13",
+          "km": 213.2
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Gästehaus Alte Weinstube",
+          "stage": "13",
+          "km": 213.3
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Weingut Gerd Kettermann",
+          "stage": "13",
+          "km": 213.4
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Zum Weinstock",
+          "stage": "13",
+          "km": 213.6
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Haus der Haasen",
+          "stage": "13",
+          "km": 213.7
+        },
+        {
+          "kind": "guesthouse",
+          "name": null,
+          "stage": "13",
+          "km": 213.9
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Weingut Sauer-Kettermann",
+          "stage": "13",
+          "km": 214.9
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Weingut Hugo Conrad",
+          "stage": "13",
+          "km": 216.5
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Weingut Bucher",
+          "stage": "13",
+          "km": 216.9
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Weingut Bucher",
+          "stage": "13",
+          "km": 216.9
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Bed & Breakfast Sandra Müller",
+          "stage": "13",
+          "km": 216.9
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Kunst Hotel \"zur Post\"",
+          "stage": "13",
+          "km": 217.2
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Weingut Burggarten",
+          "stage": "13",
+          "km": 217.2
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Gästehaus Falklay",
+          "stage": "13",
+          "km": 217.3
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Gästehaus Fuhrmann",
+          "stage": "13",
+          "km": 217.3
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Gästehaus Müller",
+          "stage": "13",
+          "km": 220.1
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Haus Karina",
+          "stage": "13",
+          "km": 220.1
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Helma Schuh-Mais",
+          "stage": "13",
+          "km": 220.1
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Weingut Gästehaus Schuh-Sausen",
+          "stage": "13",
+          "km": 220.1
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Weingut-Gästehaus Dauns",
+          "stage": "13",
+          "km": 220.1
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Alte Dorfbrennerei",
+          "stage": "13",
+          "km": 220.2
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Meurer Mosel Reil",
+          "stage": "13",
+          "km": 220.2
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Wein- und Gästehaus Günther Burg-Niesen",
+          "stage": "13",
+          "km": 220.2
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Weingut Helmut Kees-Feiten",
+          "stage": "13",
+          "km": 220.2
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Weingut Schneiders-Müller",
+          "stage": "13",
+          "km": 220.2
+        },
+        {
+          "kind": "hostel",
+          "name": "Motorrad Gasthaus de Waard",
+          "stage": "13",
+          "km": 220.2
+        },
+        {
+          "kind": "guesthouse",
+          "name": "H. J. Scherrer",
+          "stage": "13",
+          "km": 220.4
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Weingut Henrichs",
+          "stage": "13",
+          "km": 220.4
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Gästezimmer Am Moselufer",
+          "stage": "13",
+          "km": 220.5
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Haus Burgblick",
+          "stage": "14",
+          "km": 220.6
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Gästehaus Röhl-Engel",
+          "stage": "14",
+          "km": 220.7
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Weingut Burghof",
+          "stage": "14",
+          "km": 220.7
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Haus Liane",
+          "stage": "14",
+          "km": 220.8
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Ferienweingut Simon",
+          "stage": "14",
+          "km": 220.9
+        },
+        {
+          "kind": "campsite",
+          "name": "Campingplatz Moselland",
+          "stage": "14",
+          "km": 221.7
+        },
+        {
+          "kind": "hut",
+          "name": "Driesch Hütte",
+          "stage": "14",
+          "km": 225.0
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Gästehaus Siegbert Lay",
+          "stage": "14",
+          "km": 226.0
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Gästehaus Franzen",
+          "stage": "14",
+          "km": 226.5
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Gästehaus Schwickardt",
+          "stage": "14",
+          "km": 226.5
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Weingut Erich Goldschmidt",
+          "stage": "14",
+          "km": 228.6
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Gästehaus Karl-Heinz Diederich",
+          "stage": "14",
+          "km": 229.0
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Keglerstübchen",
+          "stage": "14",
+          "km": 229.6
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Pension Gibbert-Pohl",
+          "stage": "14",
+          "km": 229.6
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Bremm-Keltenhof",
+          "stage": "14",
+          "km": 231.2
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Weingut Haas-Lenz",
+          "stage": "14",
+          "km": 231.8
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Gästehaus \"Marientaler Au\"",
+          "stage": "14",
+          "km": 232.2
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Haus Till E.",
+          "stage": "14",
+          "km": 232.4
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Gästehaus Eberhard",
+          "stage": "15",
+          "km": 232.8
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Pension \"Am Römerbad\"",
+          "stage": "15",
+          "km": 232.8
+        },
+        {
+          "kind": "hut",
+          "name": "Einkehrstation Collis Turm",
+          "stage": "15",
+          "km": 233.6
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Cafe im Hamm",
+          "stage": "15",
+          "km": 235.3
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Ferienweingut Werner Scheid",
+          "stage": "15",
+          "km": 238.5
+        },
+        {
+          "kind": "guesthouse",
+          "name": null,
+          "stage": "15",
+          "km": 239.2
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Weingut Lenz",
+          "stage": "15",
+          "km": 243.7
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Gasthaus Korneli",
+          "stage": "15",
+          "km": 246.4
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Gästehaus Nelius-Kirch",
+          "stage": "15",
+          "km": 246.8
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Gästehaus Elisabeth",
+          "stage": "15",
+          "km": 249.1
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Gästehaus Krämer",
+          "stage": "16",
+          "km": 251.8
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Gästehaus Markert",
+          "stage": "16",
+          "km": 251.8
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Weingut Rolf Croeff",
+          "stage": "16",
+          "km": 251.8
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Gästehaus Käthe Bergen",
+          "stage": "16",
+          "km": 251.9
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Gästehaus Treis",
+          "stage": "16",
+          "km": 254.1
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Gästezimmer Zelt",
+          "stage": "16",
+          "km": 254.1
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Pension Kölsch",
+          "stage": "16",
+          "km": 254.1
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Weingut Schmitz",
+          "stage": "16",
+          "km": 254.1
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Pension Kölsch",
+          "stage": "16",
+          "km": 257.1
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Weingut Hans-Georg Thiesen",
+          "stage": "16",
+          "km": 260.0
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Erhard Pellio",
+          "stage": "16",
+          "km": 260.1
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Weingut Franz-Paul Schinnen \"Schinnens Scheune\"",
+          "stage": "16",
+          "km": 260.1
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Ferienweingut Probst",
+          "stage": "16",
+          "km": 261.1
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Ferienweingut Peter Göbel",
+          "stage": "16",
+          "km": 261.6
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Friderichshof",
+          "stage": "16",
+          "km": 261.7
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Gästehaus am Feuerberg",
+          "stage": "16",
+          "km": 262.6
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Pension Rehschopp",
+          "stage": "16",
+          "km": 262.7
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Weinhaus Peter Andre",
+          "stage": "16",
+          "km": 262.9
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Haus Elvira",
+          "stage": "16",
+          "km": 262.9
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Ferienweingut Liebfried",
+          "stage": "17",
+          "km": 268.7
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Pension am Römerberg",
+          "stage": "17",
+          "km": 268.7
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Pension Moselblick",
+          "stage": "17",
+          "km": 269.5
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Gästehaus Richard Sehl",
+          "stage": "17",
+          "km": 270.3
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Pension Weingut Enck-Menten",
+          "stage": "17",
+          "km": 270.4
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Altes Weingut an der Vogtei",
+          "stage": "17",
+          "km": 270.7
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Weingut Wilfried Boos",
+          "stage": "17",
+          "km": 271.0
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Ferienweingut Karl Desoye",
+          "stage": "17",
+          "km": 271.2
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Gästehaus Thiesen",
+          "stage": "17",
+          "km": 271.2
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Serwazi-Wein",
+          "stage": "17",
+          "km": 273.0
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Bleck's Vista",
+          "stage": "17",
+          "km": 273.0
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Weingut Hirschen-Schuster",
+          "stage": "17",
+          "km": 273.2
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Weingut & Gästehaus Freimuth",
+          "stage": "17",
+          "km": 273.2
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Wein- und Gästehaus M. Bai",
+          "stage": "17",
+          "km": 273.2
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Moselgasthof Andries",
+          "stage": "17",
+          "km": 273.2
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Weingut Manfred Andres",
+          "stage": "17",
+          "km": 273.3
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Weinhaus Dernst",
+          "stage": "17",
+          "km": 273.3
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Gästehaus & Weingut Lenartz-Beth",
+          "stage": "17",
+          "km": 273.4
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Weingut E. Serwazi",
+          "stage": "17",
+          "km": 273.6
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Weinhof & Pension Schneiders-Andres",
+          "stage": "17",
+          "km": 273.6
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Weingut Kochems",
+          "stage": "17",
+          "km": 273.7
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Gästehaus Brodam",
+          "stage": "17",
+          "km": 274.9
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Haus Christa",
+          "stage": "17",
+          "km": 274.9
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Pension Mosellablick",
+          "stage": "17",
+          "km": 274.9
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Gästehaus Arnoldi",
+          "stage": "17",
+          "km": 275.4
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Pension Schausten - Feldhausen",
+          "stage": "17",
+          "km": 276.2
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Weingut Reinhold Burg",
+          "stage": "17",
+          "km": 276.3
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Haus Lenartz",
+          "stage": "17",
+          "km": 276.4
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Ferienweingut Peters",
+          "stage": "17",
+          "km": 276.6
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Gästehaus Portugall",
+          "stage": "17",
+          "km": 276.6
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Weingut Alfons Lenz",
+          "stage": "17",
+          "km": 276.6
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Burgschenke Altes Winzerhaus",
+          "stage": "17",
+          "km": 278.4
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Haus Johanna",
+          "stage": "17",
+          "km": 278.6
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Villa Beilstein",
+          "stage": "17",
+          "km": 278.7
+        },
+        {
+          "kind": "campsite",
+          "name": "Happy Holiday",
+          "stage": "17",
+          "km": 278.7
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Gästehaus Cilli Freimuth",
+          "stage": "18",
+          "km": 278.8
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Gästehaus Fuhrmann",
+          "stage": "18",
+          "km": 279.4
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Villa Hausmann",
+          "stage": "18",
+          "km": 279.4
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Alte Weinstuben - Steinfelder Hof",
+          "stage": "18",
+          "km": 279.7
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Ferienweingut Hermes",
+          "stage": "18",
+          "km": 279.8
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Ferienweingut Kirsch",
+          "stage": "18",
+          "km": 279.8
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Ferienweingut Schinnen-Boos",
+          "stage": "18",
+          "km": 280.1
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Gästehaus Preuß",
+          "stage": "18",
+          "km": 280.1
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Ferienweingut Klaus Thiesen",
+          "stage": "18",
+          "km": 280.3
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Ferienweingut Schneider",
+          "stage": "18",
+          "km": 280.3
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Pension / Weingut \"Brunnenhof\"",
+          "stage": "18",
+          "km": 281.0
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Ferienweingut Thiesen",
+          "stage": "18",
+          "km": 281.1
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Gästehaus Steuer",
+          "stage": "18",
+          "km": 281.3
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Gästehaus Claudia Schmiedel",
+          "stage": "18",
+          "km": 281.5
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Gästezimmer Götz",
+          "stage": "18",
+          "km": 281.7
+        },
+        {
+          "kind": "campsite",
+          "name": "Campingplatz Bruttig",
+          "stage": "18",
+          "km": 282.1
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Gästehaus Andrae",
+          "stage": "18",
+          "km": 282.2
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Moselpension Bruttig",
+          "stage": "18",
+          "km": 282.3
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Ferienweingut Schneiders",
+          "stage": "18",
+          "km": 282.6
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Ferienweingut Klein-Götz",
+          "stage": "18",
+          "km": 282.7
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Haus Mühlenruh",
+          "stage": "18",
+          "km": 282.7
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Ferienweingut Ostermann",
+          "stage": "18",
+          "km": 282.8
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Landgasthaus Kaster",
+          "stage": "18",
+          "km": 286.5
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Gasthaus Zucchet",
+          "stage": "18",
+          "km": 286.6
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Dax' Vinotel",
+          "stage": "18",
+          "km": 287.1
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Weinbergs-Loge",
+          "stage": "18",
+          "km": 287.3
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Ferienweingut Beuter",
+          "stage": "18",
+          "km": 287.5
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Ferienweingut Rudi Steuer",
+          "stage": "18",
+          "km": 287.5
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Ferienweingut Stein",
+          "stage": "18",
+          "km": 287.5
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Landgasthof Winzerscheune",
+          "stage": "18",
+          "km": 288.1
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Haus Edeltraud",
+          "stage": "18",
+          "km": 290.5
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Pension Eckerskorn",
+          "stage": "18",
+          "km": 291.6
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Haus Burgfrieden",
+          "stage": "18",
+          "km": 292.1
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Pension Elisabeth",
+          "stage": "18",
+          "km": 292.1
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Pension Heib",
+          "stage": "18",
+          "km": 292.1
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Gasthaus Lenz",
+          "stage": "18",
+          "km": 292.1
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Pension Winne Muller",
+          "stage": "18",
+          "km": 292.1
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Hotel Haus Sonnschein",
+          "stage": "18",
+          "km": 292.2
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Haus Thiel",
+          "stage": "18",
+          "km": 292.2
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Haus Möwe",
+          "stage": "18",
+          "km": 292.3
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Zum Weingutsmuseum",
+          "stage": "18",
+          "km": 292.6
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Gästehaus Albers",
+          "stage": "19",
+          "km": 292.7
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Café Pension Becker",
+          "stage": "19",
+          "km": 292.8
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Zum fröhlichen Weinberg",
+          "stage": "19",
+          "km": 292.8
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Pension Hendriks",
+          "stage": "19",
+          "km": 292.9
+        },
+        {
+          "kind": "guesthouse",
+          "name": "CHAPEAU-CLAQUE",
+          "stage": "19",
+          "km": 292.9
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Weingut Winzerhof Haxel",
+          "stage": "19",
+          "km": 293.0
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Pension Lange",
+          "stage": "19",
+          "km": 293.1
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Pension Max",
+          "stage": "19",
+          "km": 293.3
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Gästehaus Aladin",
+          "stage": "19",
+          "km": 293.3
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Haus Fingerhut",
+          "stage": "19",
+          "km": 293.3
+        },
+        {
+          "kind": "campsite",
+          "name": "Campingplatz Schausten",
+          "stage": "19",
+          "km": 293.3
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Pension Dapper",
+          "stage": "19",
+          "km": 293.6
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Boutique Hotel Villa Cuchema",
+          "stage": "19",
+          "km": 293.6
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Haus Ruth Heimes",
+          "stage": "19",
+          "km": 297.1
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Gästehaus Hilken-Loosen",
+          "stage": "19",
+          "km": 298.8
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Haus Cornely",
+          "stage": "19",
+          "km": 298.8
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Gästehaus \"Zum Achten Himmel\"",
+          "stage": "19",
+          "km": 298.8
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Gästezimmer Haus Nehren",
+          "stage": "19",
+          "km": 298.9
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Café-Restaurant Moselterrasse",
+          "stage": "19",
+          "km": 298.9
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Gastätte-Pension »Mosella«",
+          "stage": "19",
+          "km": 299.2
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Weingut Zenzen",
+          "stage": "19",
+          "km": 310.3
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Weinpension Birkenbeil",
+          "stage": "19",
+          "km": 310.6
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Ferienweingut Michels-Kaufmann",
+          "stage": "19",
+          "km": 310.7
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Weingut Jakob Zenzen Erben",
+          "stage": "19",
+          "km": 310.8
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Weingut Michels",
+          "stage": "19",
+          "km": 310.9
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Weingut Henerichs",
+          "stage": "19",
+          "km": 311.1
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Gästezimmer \"beim Ewermilla\"",
+          "stage": "19",
+          "km": 311.6
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Landhaus \"Unter den Weinbergen\"",
+          "stage": "19",
+          "km": 315.7
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Gästehaus Barz",
+          "stage": "20",
+          "km": 315.9
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Gästehaus \"Villa Cornely\"",
+          "stage": "20",
+          "km": 316.0
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Alte Weinstube Burg Eltz",
+          "stage": "20",
+          "km": 316.2
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Hotelpension Sonnenhof",
+          "stage": "20",
+          "km": 320.1
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Weingut Jakob Müller",
+          "stage": "20",
+          "km": 320.1
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Weingut Dehen",
+          "stage": "20",
+          "km": 320.1
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Gästehaus Henrich",
+          "stage": "20",
+          "km": 328.7
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Im alten Halfenhaus",
+          "stage": "21",
+          "km": 329.3
+        },
+        {
+          "kind": "campsite",
+          "name": "Camping Burgen",
+          "stage": "21",
+          "km": 334.7
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Winzerhof Gietzen",
+          "stage": "21",
+          "km": 336.8
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Altes Weingut Bröhl",
+          "stage": "21",
+          "km": 336.9
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Weingut 1869 Brunnenhof",
+          "stage": "21",
+          "km": 337.0
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Zur Traube",
+          "stage": "21",
+          "km": 337.9
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Café Braun",
+          "stage": "21",
+          "km": 342.5
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Hotel Garni Moselblick",
+          "stage": "22",
+          "km": 345.1
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Pension Fam. Rosemarie Klein",
+          "stage": "22",
+          "km": 345.1
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Panorama-Café",
+          "stage": "22",
+          "km": 345.1
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Turmgasthaus Burg Thurant",
+          "stage": "22",
+          "km": 345.1
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Gasthaus Zum Rebstock",
+          "stage": "22",
+          "km": 345.1
+        },
+        {
+          "kind": "hostel",
+          "name": "Pilgerherberge am Bleidenberg",
+          "stage": "22",
+          "km": 345.2
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Pension Steiner",
+          "stage": "22",
+          "km": 345.3
+        },
+        {
+          "kind": "guesthouse",
+          "name": "BIO-Ferienweingut Leyendecker",
+          "stage": "22",
+          "km": 346.8
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Gasthaus Traube",
+          "stage": "22",
+          "km": 354.6
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Linkemühle",
+          "stage": "22",
+          "km": 355.0
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Pension Marienhof",
+          "stage": "22",
+          "km": 355.4
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Cafe Sander",
+          "stage": "22",
+          "km": 355.4
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Fremdenzimmer Raupach",
+          "stage": "22",
+          "km": 356.0
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Landhaus Julia",
+          "stage": "23",
+          "km": 357.0
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Altes Winzerhaus Moselschänke",
+          "stage": "23",
+          "km": 357.5
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Gästehaus \"Alte Kellerei\"",
+          "stage": "23",
+          "km": 357.5
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Winzerhaus am Brunnen",
+          "stage": "23",
+          "km": 357.5
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Ferienhaus Therese",
+          "stage": "23",
+          "km": 357.7
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Landgasthaus \"Zur Kupferkanne\"",
+          "stage": "23",
+          "km": 358.5
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Pension Löhr",
+          "stage": "23",
+          "km": 358.6
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Landhotel Höreth im Wald",
+          "stage": "23",
+          "km": 359.0
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Gästezimmer Wendt",
+          "stage": "23",
+          "km": 369.0
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Weingasthaus Zum Fährhof",
+          "stage": "23",
+          "km": 369.7
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Weingut Hess-Hautt",
+          "stage": "23",
+          "km": 369.9
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Gästezimmer Sturm",
+          "stage": "23",
+          "km": 370.2
+        }
+      ],
+      "longestGapKm": {
+        "drinking": {
+          "km": 30.0,
+          "fromKm": 158.2,
+          "toKm": 188.2
+        },
+        "treatment": {
+          "km": 30.0,
+          "fromKm": 158.2,
+          "toKm": 188.2
+        },
+        "refill": {
+          "km": 17.5,
+          "fromKm": 5.5,
+          "toKm": 23.0
+        }
       }
     }
   }

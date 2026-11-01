@@ -29405,6 +29405,7 @@
           "group": "beds",
           "kind": "campsite",
           "name": "Trekking-Camp \"Sonneninsel Dobel\"",
+          "drinkingWater": "no",
           "stage": "1",
           "stageKind": "main",
           "km": 25.3,
@@ -29526,6 +29527,7 @@
           "group": "beds",
           "kind": "campsite",
           "name": "Trekking-Camp Schwarzenbach",
+          "drinkingWater": "no",
           "stage": "3",
           "stageKind": "main",
           "km": 56.9,
@@ -29548,6 +29550,7 @@
           "group": "beds",
           "kind": "campsite",
           "name": "Trekking-Camp Grimbach",
+          "drinkingWater": "no",
           "stage": "3",
           "stageKind": "main",
           "km": 63.5,
@@ -29559,6 +29562,7 @@
           "group": "beds",
           "kind": "campsite",
           "name": "Naturcamping Herrenwies",
+          "drinkingWater": "yes",
           "stage": "3",
           "stageKind": "main",
           "km": 64.1,
@@ -29669,6 +29673,7 @@
           "group": "beds",
           "kind": "campsite",
           "name": "Trekking-Camp Bösellbach",
+          "drinkingWater": "no",
           "stage": "4",
           "stageKind": "main",
           "km": 98.3,
@@ -29845,6 +29850,7 @@
           "group": "beds",
           "kind": "campsite",
           "name": "Trekking-Camp Herrenwald",
+          "drinkingWater": "yes",
           "stage": "7",
           "stageKind": "main",
           "km": 149.2,
@@ -29867,6 +29873,7 @@
           "group": "beds",
           "kind": "campsite",
           "name": "Trekking-Camp Fischbach",
+          "drinkingWater": "yes",
           "stage": "7",
           "stageKind": "main",
           "km": 150.4,
@@ -29900,6 +29907,7 @@
           "group": "beds",
           "kind": "campsite",
           "name": "Trekking-Camp Elzhof",
+          "drinkingWater": "yes",
           "stage": "8",
           "stageKind": "main",
           "km": 154.0,
@@ -30043,6 +30051,7 @@
           "group": "beds",
           "kind": "campsite",
           "name": "Bühlhof",
+          "drinkingWater": "yes",
           "stage": "9",
           "stageKind": "main",
           "km": 194.3,
@@ -30208,6 +30217,7 @@
           "group": "beds",
           "kind": "hut",
           "name": "Rheinfelder Hütte",
+          "drinkingWater": "yes",
           "stage": "10",
           "stageKind": "main",
           "km": 224.4,
@@ -30472,6 +30482,7 @@
           "group": "beds",
           "kind": "campsite",
           "name": "Campingplatz Weiherhof",
+          "drinkingWater": "yes",
           "stage": "9 Ost",
           "stageKind": "variant",
           "km": null,
@@ -30631,6 +30642,294 @@
         "camping": 19,
         "hostels": 21,
         "rooms": 59
+      }
+    },
+    "water": {
+      "withinM": 500,
+      "promoted": [
+        {
+          "kind": "campsite",
+          "name": "Trekking-Camp Herrenwald",
+          "stage": "7",
+          "km": 149.2
+        },
+        {
+          "kind": "campsite",
+          "name": "Bühlhof",
+          "stage": "9",
+          "km": 194.3
+        }
+      ],
+      "refills": [
+        {
+          "kind": "hostel",
+          "name": "Jugendherberge Burg Rabeneck Pforzheim",
+          "stage": "1",
+          "km": 1.4
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Gaststätte Sonnenberg",
+          "stage": "1",
+          "km": 3.6
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Gasthaus Grüner Baum",
+          "stage": "1",
+          "km": 11.4
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Waldhorn",
+          "stage": "1",
+          "km": 15.0
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Gasthof Pension Pflug",
+          "stage": "1",
+          "km": 18.7
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Gasthaus Cafe Hirsch",
+          "stage": "1",
+          "km": 18.8
+        },
+        {
+          "kind": "hostel",
+          "name": "EC Freizeit- und Schulungszentrum",
+          "stage": "1",
+          "km": 24.8
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Hotelpension Heidi",
+          "stage": "1",
+          "km": 25.4
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Gästehaus E. Kerber",
+          "stage": "1",
+          "km": 25.7
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Haus Birkenwald",
+          "stage": "2",
+          "km": 26.3
+        },
+        {
+          "kind": "campsite",
+          "name": "Trekking-Camp Latschig",
+          "stage": "2",
+          "km": 47.0
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Löwen",
+          "stage": "3",
+          "km": 52.4
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Privatpension Wunsch",
+          "stage": "3",
+          "km": 52.7
+        },
+        {
+          "kind": "hut",
+          "name": "Naturfreundehaus Badener Höhe",
+          "stage": "3",
+          "km": 64.2
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Bergwaldhütte Sand",
+          "stage": "3",
+          "km": 65.8
+        },
+        {
+          "kind": "hostel",
+          "name": "Bergheim Hundseck",
+          "stage": "3",
+          "km": 67.6
+        },
+        {
+          "kind": "hostel",
+          "name": "Berghaus Hundseck",
+          "stage": "3",
+          "km": 67.8
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Hochkopfstub",
+          "stage": "3",
+          "km": 71.3
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Zur großen Tanne",
+          "stage": "4",
+          "km": 71.5
+        },
+        {
+          "kind": "hut",
+          "name": "Ski- und Wanderheim Ochsenstall",
+          "stage": "4",
+          "km": 73.2
+        },
+        {
+          "kind": "hut",
+          "name": "Darmstädter Hütte",
+          "stage": "4",
+          "km": 81.6
+        },
+        {
+          "kind": "hut",
+          "name": "Sexauer Hütte",
+          "stage": "5",
+          "km": 104.8
+        },
+        {
+          "kind": "hut",
+          "name": "Karlshütte",
+          "stage": "5",
+          "km": 105.1
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Harkhof",
+          "stage": "5",
+          "km": 115.9
+        },
+        {
+          "kind": "hut",
+          "name": "Hohenlochenhütte",
+          "stage": "6",
+          "km": 124.7
+        },
+        {
+          "kind": "hut",
+          "name": "Bruder-Klaus-Heim",
+          "stage": "7",
+          "km": 140.7
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Vesperstube Silberberg",
+          "stage": "7",
+          "km": 149.4
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Gasthaus Wilhelmshöhe",
+          "stage": "7",
+          "km": 150.8
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Waldschulzeltplatz und Schindelhaus Weißenbach",
+          "stage": "8",
+          "km": 156.2
+        },
+        {
+          "kind": "hostel",
+          "name": "Naturfreundehaus Brend",
+          "stage": "8",
+          "km": 161.2
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Landgasthof Hirschen",
+          "stage": "8",
+          "km": 166.9
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Kalte Herberge",
+          "stage": "9",
+          "km": 172.9
+        },
+        {
+          "kind": "hut",
+          "name": "Berghäusle Wanderheim",
+          "stage": "9",
+          "km": 189.1
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Bläsihof",
+          "stage": "9",
+          "km": 191.8
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Gästehaus Wiesler",
+          "stage": "9",
+          "km": 193.9
+        },
+        {
+          "kind": "guesthouse",
+          "name": null,
+          "stage": "9",
+          "km": 194.6
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Gästehaus Schwarzwaldhüsle",
+          "stage": "10",
+          "km": 197.4
+        },
+        {
+          "kind": "hut",
+          "name": "Berggasthof & Pension zur Todtnauer Hütte",
+          "stage": "10",
+          "km": 210.7
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Haus Talblick",
+          "stage": "10",
+          "km": 223.4
+        },
+        {
+          "kind": "guesthouse",
+          "name": null,
+          "stage": "10",
+          "km": 224.4
+        },
+        {
+          "kind": "campsite",
+          "name": "Terrassen Camping Kandern",
+          "stage": "11",
+          "km": 255.3
+        },
+        {
+          "kind": "hostel",
+          "name": "SILO by TALENT",
+          "stage": "12",
+          "km": 280.9
+        }
+      ],
+      "longestGapKm": {
+        "drinking": {
+          "km": 46.1,
+          "fromKm": 3.8,
+          "toKm": 49.9
+        },
+        "treatment": {
+          "km": 28.6,
+          "fromKm": 3.8,
+          "toKm": 32.4
+        },
+        "refill": {
+          "km": 18.7,
+          "fromKm": 256.0,
+          "toKm": 274.7
+        }
       }
     }
   }

@@ -10886,6 +10886,7 @@
           "group": "beds",
           "kind": "campsite",
           "name": "Drymen Camping",
+          "drinkingWater": "yes",
           "stage": "1",
           "stageKind": "main",
           "km": 17.3,
@@ -10897,6 +10898,7 @@
           "group": "beds",
           "kind": "campsite",
           "name": null,
+          "drinkingWater": "no",
           "stage": "1",
           "stageKind": "main",
           "km": 18.2,
@@ -11051,6 +11053,7 @@
           "group": "beds",
           "kind": "campsite",
           "name": "Wild Camp (3 Tents)",
+          "drinkingWater": "no",
           "stage": "2",
           "stageKind": "main",
           "km": 28.4,
@@ -11095,6 +11098,7 @@
           "group": "beds",
           "kind": "campsite",
           "name": "Cashel Camping & Caravan Park Forest Holidays",
+          "drinkingWater": "yes",
           "stage": "2",
           "stageKind": "main",
           "km": 35.3,
@@ -11106,6 +11110,7 @@
           "group": "beds",
           "kind": "campsite",
           "name": "Sallochy Campsite - Woodland Camping",
+          "drinkingWater": "yes",
           "stage": "2",
           "stageKind": "main",
           "km": 37.9,
@@ -11128,6 +11133,7 @@
           "group": "beds",
           "kind": "campsite",
           "name": "Lochan Maol Dhuinne Camping permit area March-September",
+          "drinkingWater": "no",
           "stage": "2",
           "stageKind": "main",
           "km": 41.2,
@@ -11161,6 +11167,7 @@
           "group": "beds",
           "kind": "campsite",
           "name": "Inverbeg Holiday Park",
+          "drinkingWater": "yes",
           "stage": "2",
           "stageKind": "main",
           "km": 42.1,
@@ -11480,6 +11487,7 @@
           "group": "beds",
           "kind": "campsite",
           "name": "Beinglas Campsite",
+          "drinkingWater": "yes",
           "stage": "3",
           "stageKind": "main",
           "km": 64.1,
@@ -11634,6 +11642,7 @@
           "group": "beds",
           "kind": "campsite",
           "name": "By the Way",
+          "drinkingWater": "yes",
           "stage": "4",
           "stageKind": "main",
           "km": 82.7,
@@ -11700,6 +11709,7 @@
           "group": "beds",
           "kind": "campsite",
           "name": null,
+          "drinkingWater": "no",
           "stage": "6",
           "stageKind": "main",
           "km": 97.9,
@@ -11733,6 +11743,7 @@
           "group": "beds",
           "kind": "campsite",
           "name": "Glencoe Mountain Resort",
+          "drinkingWater": "yes",
           "stage": "6",
           "stageKind": "main",
           "km": 110.7,
@@ -11953,6 +11964,7 @@
           "group": "beds",
           "kind": "campsite",
           "name": null,
+          "drinkingWater": "no",
           "stage": "8",
           "stageKind": "main",
           "km": 128.5,
@@ -11964,6 +11976,7 @@
           "group": "beds",
           "kind": "campsite",
           "name": "really small camp site",
+          "drinkingWater": "no",
           "stage": "8",
           "stageKind": "main",
           "km": 129.5,
@@ -11975,6 +11988,7 @@
           "group": "beds",
           "kind": "campsite",
           "name": null,
+          "drinkingWater": "no",
           "stage": "8",
           "stageKind": "main",
           "km": 132.8,
@@ -11986,6 +12000,7 @@
           "group": "beds",
           "kind": "campsite",
           "name": null,
+          "drinkingWater": "no",
           "stage": "8",
           "stageKind": "main",
           "km": 138.6,
@@ -12008,6 +12023,7 @@
           "group": "beds",
           "kind": "campsite",
           "name": null,
+          "drinkingWater": "no",
           "stage": "8",
           "stageKind": "main",
           "km": 144.3,
@@ -12052,6 +12068,7 @@
           "group": "beds",
           "kind": "campsite",
           "name": "Glen Nevis Caravan and Camping Park",
+          "drinkingWater": "yes",
           "stage": "8",
           "stageKind": "main",
           "km": 147.0,
@@ -12486,6 +12503,636 @@
         "camping": 65,
         "hostels": 12,
         "rooms": 67
+      }
+    },
+    "water": {
+      "withinM": 500,
+      "promoted": [
+        {
+          "kind": "campsite",
+          "name": "Drymen Camping",
+          "stage": "1",
+          "km": 17.3
+        },
+        {
+          "kind": "campsite",
+          "name": "Cashel Camping & Caravan Park Forest Holidays",
+          "stage": "2",
+          "km": 35.3
+        },
+        {
+          "kind": "campsite",
+          "name": "Sallochy Campsite - Woodland Camping",
+          "stage": "2",
+          "km": 37.9
+        },
+        {
+          "kind": "campsite",
+          "name": "Beinglas Campsite",
+          "stage": "3",
+          "km": 64.1
+        },
+        {
+          "kind": "campsite",
+          "name": "By the Way",
+          "stage": "4",
+          "km": 82.7
+        },
+        {
+          "kind": "campsite",
+          "name": "Glencoe Mountain Resort",
+          "stage": "6",
+          "km": 110.7
+        },
+        {
+          "kind": "campsite",
+          "name": "Glen Nevis Caravan and Camping Park",
+          "stage": "8",
+          "km": 147.0
+        }
+      ],
+      "refills": [
+        {
+          "kind": "campsite",
+          "name": null,
+          "stage": "1",
+          "km": 17.2
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Altquhur Byre",
+          "stage": "1",
+          "km": 17.2
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Mulberry Lodge B&B",
+          "stage": "1",
+          "km": 18.6
+        },
+        {
+          "kind": "guesthouse",
+          "name": "The Old School House",
+          "stage": "2",
+          "km": 19.1
+        },
+        {
+          "kind": "campsite",
+          "name": null,
+          "stage": "2",
+          "km": 21.0
+        },
+        {
+          "kind": "campsite",
+          "name": null,
+          "stage": "2",
+          "km": 21.7
+        },
+        {
+          "kind": "campsite",
+          "name": null,
+          "stage": "2",
+          "km": 22.9
+        },
+        {
+          "kind": "campsite",
+          "name": null,
+          "stage": "2",
+          "km": 25.1
+        },
+        {
+          "kind": "hostel",
+          "name": "Arrochoile B&B",
+          "stage": "2",
+          "km": 29.6
+        },
+        {
+          "kind": "guesthouse",
+          "name": "The Oak Tree Inn",
+          "stage": "2",
+          "km": 30.2
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Balmaha Cottage",
+          "stage": "2",
+          "km": 30.2
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Coille Mhor Cottage",
+          "stage": "2",
+          "km": 40.3
+        },
+        {
+          "kind": "hostel",
+          "name": "Rowardennan Lodge Youth Hostel",
+          "stage": "3",
+          "km": 42.9
+        },
+        {
+          "kind": "hostel",
+          "name": "Ben Lomond Bunkhouse",
+          "stage": "3",
+          "km": 43.1
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Ben Lomond Cottage",
+          "stage": "3",
+          "km": 43.1
+        },
+        {
+          "kind": "campsite",
+          "name": "Rowardennan Lodge Youth Hostel",
+          "stage": "3",
+          "km": 43.1
+        },
+        {
+          "kind": "campsite",
+          "name": null,
+          "stage": "3",
+          "km": 44.9
+        },
+        {
+          "kind": "campsite",
+          "name": null,
+          "stage": "3",
+          "km": 45.3
+        },
+        {
+          "kind": "campsite",
+          "name": null,
+          "stage": "3",
+          "km": 45.4
+        },
+        {
+          "kind": "campsite",
+          "name": null,
+          "stage": "3",
+          "km": 46.4
+        },
+        {
+          "kind": "campsite",
+          "name": null,
+          "stage": "3",
+          "km": 47.8
+        },
+        {
+          "kind": "campsite",
+          "name": null,
+          "stage": "3",
+          "km": 48.0
+        },
+        {
+          "kind": "hut",
+          "name": "Rowchoish",
+          "stage": "3",
+          "km": 48.9
+        },
+        {
+          "kind": "campsite",
+          "name": null,
+          "stage": "3",
+          "km": 49.7
+        },
+        {
+          "kind": "campsite",
+          "name": null,
+          "stage": "3",
+          "km": 50.6
+        },
+        {
+          "kind": "campsite",
+          "name": null,
+          "stage": "3",
+          "km": 50.8
+        },
+        {
+          "kind": "campsite",
+          "name": null,
+          "stage": "3",
+          "km": 51.4
+        },
+        {
+          "kind": "campsite",
+          "name": null,
+          "stage": "3",
+          "km": 51.5
+        },
+        {
+          "kind": "campsite",
+          "name": null,
+          "stage": "3",
+          "km": 52.2
+        },
+        {
+          "kind": "campsite",
+          "name": null,
+          "stage": "3",
+          "km": 53.2
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Inversnaid Lodge",
+          "stage": "3",
+          "km": 53.6
+        },
+        {
+          "kind": "campsite",
+          "name": null,
+          "stage": "3",
+          "km": 55.8
+        },
+        {
+          "kind": "campsite",
+          "name": null,
+          "stage": "3",
+          "km": 58.6
+        },
+        {
+          "kind": "campsite",
+          "name": null,
+          "stage": "3",
+          "km": 58.7
+        },
+        {
+          "kind": "hut",
+          "name": "Doune Byre",
+          "stage": "3",
+          "km": 59.6
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Rose Cottage",
+          "stage": "3",
+          "km": 64.0
+        },
+        {
+          "kind": "campsite",
+          "name": null,
+          "stage": "4",
+          "km": 69.4
+        },
+        {
+          "kind": "campsite",
+          "name": null,
+          "stage": "4",
+          "km": 73.6
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Ewich Guest House  Bed & Breakfast",
+          "stage": "4",
+          "km": 76.6
+        },
+        {
+          "kind": "campsite",
+          "name": null,
+          "stage": "4",
+          "km": 77.2
+        },
+        {
+          "kind": "campsite",
+          "name": null,
+          "stage": "4",
+          "km": 79.0
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Strathfillan House",
+          "stage": "4",
+          "km": 79.6
+        },
+        {
+          "kind": "campsite",
+          "name": null,
+          "stage": "4",
+          "km": 80.1
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Glengarry House",
+          "stage": "4",
+          "km": 82.0
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Dalkell Cottage",
+          "stage": "4",
+          "km": 82.7
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Kilbride Lodge",
+          "stage": "4",
+          "km": 82.7
+        },
+        {
+          "kind": "hostel",
+          "name": null,
+          "stage": "4",
+          "km": 82.7
+        },
+        {
+          "kind": "hostel",
+          "name": "By the Way",
+          "stage": "4",
+          "km": 82.8
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Clifton Cottage B&B",
+          "stage": "4",
+          "km": 83.2
+        },
+        {
+          "kind": "campsite",
+          "name": null,
+          "stage": "5",
+          "km": 89.1
+        },
+        {
+          "kind": "hostel",
+          "name": "West Highland Way Sleeper",
+          "stage": "5",
+          "km": 93.4
+        },
+        {
+          "kind": "campsite",
+          "name": null,
+          "stage": "5",
+          "km": 93.9
+        },
+        {
+          "kind": "campsite",
+          "name": null,
+          "stage": "6",
+          "km": 103.9
+        },
+        {
+          "kind": "campsite",
+          "name": null,
+          "stage": "6",
+          "km": 105.6
+        },
+        {
+          "kind": "hut",
+          "name": "Blackrock Cottage",
+          "stage": "6",
+          "km": 111.2
+        },
+        {
+          "kind": "campsite",
+          "name": null,
+          "stage": "7",
+          "km": 113.1
+        },
+        {
+          "kind": "hut",
+          "name": null,
+          "stage": "7",
+          "km": 116.1
+        },
+        {
+          "kind": "hut",
+          "name": "Lagangarbh",
+          "stage": "7",
+          "km": 117.5
+        },
+        {
+          "kind": "campsite",
+          "name": null,
+          "stage": "7",
+          "km": 118.0
+        },
+        {
+          "kind": "campsite",
+          "name": null,
+          "stage": "7",
+          "km": 120.1
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Forest View",
+          "stage": "7",
+          "km": 126.7
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Quiraing B&B",
+          "stage": "7",
+          "km": 126.7
+        },
+        {
+          "kind": "campsite",
+          "name": "Blackwater Campsite",
+          "stage": "7",
+          "km": 126.8
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Danca B&B",
+          "stage": "7",
+          "km": 126.9
+        },
+        {
+          "kind": "hostel",
+          "name": "Blackwater Hostel",
+          "stage": "7",
+          "km": 127.0
+        },
+        {
+          "kind": "hostel",
+          "name": "West Highland Lodge",
+          "stage": "7",
+          "km": 127.1
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Allt Na Leven",
+          "stage": "7",
+          "km": 127.1
+        },
+        {
+          "kind": "campsite",
+          "name": "Kinlochleven Aire Site",
+          "stage": "7",
+          "km": 127.1
+        },
+        {
+          "kind": "guesthouse",
+          "name": "The Old Police Station",
+          "stage": "8",
+          "km": 127.3
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Tigh Na Cheo guest house",
+          "stage": "8",
+          "km": 127.7
+        },
+        {
+          "kind": "campsite",
+          "name": "MacDonald Hotel Campsite",
+          "stage": "8",
+          "km": 127.8
+        },
+        {
+          "kind": "campsite",
+          "name": "Kinlochleven Wild Camping Area",
+          "stage": "8",
+          "km": 127.8
+        },
+        {
+          "kind": "campsite",
+          "name": null,
+          "stage": "8",
+          "km": 142.7
+        },
+        {
+          "kind": "campsite",
+          "name": null,
+          "stage": "8",
+          "km": 146.0
+        },
+        {
+          "kind": "campsite",
+          "name": null,
+          "stage": "8",
+          "km": 146.6
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Achintee Farm",
+          "stage": "8",
+          "km": 148.2
+        },
+        {
+          "kind": "guesthouse",
+          "name": "The Brevins Guesthouse",
+          "stage": "8",
+          "km": 149.9
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Ben Nevis Guesthouse",
+          "stage": "8",
+          "km": 150.0
+        },
+        {
+          "kind": "campsite",
+          "name": null,
+          "stage": "8",
+          "km": 150.7
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Craig Nevis",
+          "stage": "8",
+          "km": 150.8
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Valtos Bed and Breakfast",
+          "stage": "8",
+          "km": 150.8
+        },
+        {
+          "kind": "hostel",
+          "name": "Fort William Backpackers",
+          "stage": "8",
+          "km": 150.8
+        },
+        {
+          "kind": "hostel",
+          "name": "B&B",
+          "stage": "8",
+          "km": 150.9
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Ardmory B&B",
+          "stage": "8",
+          "km": 151.0
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Saint Andrew's Guest House",
+          "stage": "8",
+          "km": 151.2
+        },
+        {
+          "kind": "hostel",
+          "name": "Bank Street Lodge",
+          "stage": "8",
+          "km": 151.3
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Aldourie B&B",
+          "stage": "8",
+          "km": 151.3
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Anagrae B&B",
+          "stage": "8",
+          "km": 151.4
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Glenmoidart B&B",
+          "stage": "8",
+          "km": 151.5
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Melrose",
+          "stage": "8",
+          "km": 151.6
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Gowan Brae House",
+          "stage": "8",
+          "km": 151.7
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Fassfern Guest House",
+          "stage": "8",
+          "km": 151.7
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Braeside House",
+          "stage": "8",
+          "km": 151.7
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Lochview House",
+          "stage": "8",
+          "km": 151.7
+        }
+      ],
+      "longestGapKm": {
+        "drinking": {
+          "km": 19.8,
+          "fromKm": 127.1,
+          "toKm": 146.9
+        },
+        "treatment": {
+          "km": 19.8,
+          "fromKm": 127.1,
+          "toKm": 146.9
+        },
+        "refill": {
+          "km": 14.9,
+          "fromKm": 127.8,
+          "toKm": 142.7
+        }
       }
     }
   }

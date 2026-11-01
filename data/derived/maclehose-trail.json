@@ -4162,6 +4162,7 @@
           "group": "beds",
           "kind": "campsite",
           "name": "曝罟灣營地 Po Kwu Wan Camp Site",
+          "drinkingWater": "no",
           "stage": "1",
           "stageKind": "main",
           "km": 2.5,
@@ -4173,6 +4174,7 @@
           "group": "beds",
           "kind": "campsite",
           "name": "元五墳營地 Yuen Ng Fan Campsite",
+          "drinkingWater": "no",
           "stage": "1",
           "stageKind": "main",
           "km": 2.7,
@@ -4184,6 +4186,7 @@
           "group": "beds",
           "kind": "campsite",
           "name": "白臘營地 Pak Lap Campsite",
+          "drinkingWater": "no",
           "stage": "1",
           "stageKind": "main",
           "km": 7.6,
@@ -4206,6 +4209,7 @@
           "group": "beds",
           "kind": "campsite",
           "name": "西灣營地 Sai Wan Camp Site",
+          "drinkingWater": "no",
           "stage": "2",
           "stageKind": "main",
           "km": 15.7,
@@ -4217,6 +4221,7 @@
           "group": "beds",
           "kind": "campsite",
           "name": "鹹田灣營地 Ham Tin Wan Camp Site",
+          "drinkingWater": "no",
           "stage": "2",
           "stageKind": "main",
           "km": 17.6,
@@ -4272,6 +4277,7 @@
           "group": "beds",
           "kind": "campsite",
           "name": "北潭凹營地 Pak Tam Au Campsite",
+          "drinkingWater": "no",
           "stage": "2",
           "stageKind": "main",
           "km": 23.1,
@@ -4294,6 +4300,7 @@
           "group": "beds",
           "kind": "campsite",
           "name": "嶂上營地 Cheung Sheung Campsite",
+          "drinkingWater": "no",
           "stage": "3",
           "stageKind": "main",
           "km": 26.5,
@@ -4541,6 +4548,107 @@
         "camping": 28,
         "hostels": 9,
         "rooms": 2
+      }
+    },
+    "water": {
+      "withinM": 500,
+      "promoted": [],
+      "refills": [
+        {
+          "kind": "campsite",
+          "name": "浪茄灣營地 Long Ke Wan Campsite",
+          "stage": "2",
+          "km": 10.3
+        },
+        {
+          "kind": "hostel",
+          "name": "白普理堂青年旅社 Bradbury Hall Youth Hostel",
+          "stage": "2",
+          "km": 20.9
+        },
+        {
+          "kind": "campsite",
+          "name": "水浪窩營地 Shui Long Wo Campsite",
+          "stage": "4",
+          "km": 33.3
+        },
+        {
+          "kind": "campsite",
+          "name": "昂平營地 Ngong Ping Campsite",
+          "stage": "4",
+          "km": 39.3
+        },
+        {
+          "kind": "campsite",
+          "name": "香港童軍總會基維爾營地 Scout Association of Hong Kong Gilwell Campsite",
+          "stage": "4",
+          "km": 44.8
+        },
+        {
+          "kind": "campsite",
+          "name": "鉛礦坳營地 Lead Mine Pass Campsite",
+          "stage": "8",
+          "km": 65.7
+        },
+        {
+          "kind": "hostel",
+          "name": "施樂園 Sze Lok Yuen",
+          "stage": "8",
+          "km": 71.3
+        },
+        {
+          "kind": "campsite",
+          "name": "扶輪公園營地 Rotary Club Campsite",
+          "stage": "8",
+          "km": 73.7
+        },
+        {
+          "kind": "campsite",
+          "name": "荃錦營地 Twisk Campsite",
+          "stage": "9",
+          "km": 74.0
+        },
+        {
+          "kind": "campsite",
+          "name": "荃錦營地 Twisk Campsite",
+          "stage": "9",
+          "km": 74.1
+        },
+        {
+          "kind": "campsite",
+          "name": "荃錦營地 Twisk Campsite",
+          "stage": "9",
+          "km": 74.3
+        },
+        {
+          "kind": "campsite",
+          "name": "田夫仔營地 Tin Fu Tsai Campsite",
+          "stage": "10",
+          "km": 79.9
+        },
+        {
+          "kind": "campsite",
+          "name": "九段 Route 9",
+          "stage": "10",
+          "km": 88.7
+        }
+      ],
+      "longestGapKm": {
+        "drinking": {
+          "km": 29.0,
+          "fromKm": 65.7,
+          "toKm": 94.7
+        },
+        "treatment": {
+          "km": 23.6,
+          "fromKm": 0.0,
+          "toKm": 23.6
+        },
+        "refill": {
+          "km": 10.6,
+          "fromKm": 10.3,
+          "toKm": 20.9
+        }
       }
     }
   },

@@ -4122,6 +4122,7 @@
           "group": "beds",
           "kind": "hut",
           "name": "Höskuldsskáli",
+          "drinkingWater": "yes",
           "stage": "1",
           "stageKind": "main",
           "km": 10.0,
@@ -4446,6 +4447,120 @@
         "camping": 23,
         "hostels": 0,
         "rooms": 0
+      }
+    },
+    "water": {
+      "withinM": 500,
+      "promoted": [
+        {
+          "kind": "hut",
+          "name": "Höskuldsskáli",
+          "stage": "1",
+          "km": 10.0
+        }
+      ],
+      "refills": [
+        {
+          "kind": "campsite",
+          "name": "Landmannalaugar",
+          "stage": "1",
+          "km": 0.0
+        },
+        {
+          "kind": "hut",
+          "name": "Landmannalaugar",
+          "stage": "1",
+          "km": 0.0
+        },
+        {
+          "kind": "campsite",
+          "name": "Höskuldsskáli",
+          "stage": "2",
+          "km": 10.2
+        },
+        {
+          "kind": "hut",
+          "name": "Álftavatn",
+          "stage": "2",
+          "km": 20.9
+        },
+        {
+          "kind": "campsite",
+          "name": null,
+          "stage": "3",
+          "km": 24.5
+        },
+        {
+          "kind": "hut",
+          "name": "Hvanngil",
+          "stage": "3",
+          "km": 24.7
+        },
+        {
+          "kind": "campsite",
+          "name": "Hvanngil",
+          "stage": "3",
+          "km": 24.7
+        },
+        {
+          "kind": "campsite",
+          "name": "Emstrur",
+          "stage": "3",
+          "km": 36.5
+        },
+        {
+          "kind": "campsite",
+          "name": null,
+          "stage": "4",
+          "km": 36.6
+        },
+        {
+          "kind": "hut",
+          "name": "Emstrur",
+          "stage": "4",
+          "km": 36.6
+        },
+        {
+          "kind": "hut",
+          "name": "Skagfjörðsskáli",
+          "stage": "4",
+          "km": 52.1
+        },
+        {
+          "kind": "campsite",
+          "name": "Þórsmörk Langidalur",
+          "stage": "4",
+          "km": 52.1
+        },
+        {
+          "kind": "hut",
+          "name": "Slyppugil",
+          "stage": "4",
+          "km": 52.2
+        },
+        {
+          "kind": "campsite",
+          "name": null,
+          "stage": "4",
+          "km": 52.2
+        }
+      ],
+      "longestGapKm": {
+        "drinking": {
+          "km": 15.7,
+          "fromKm": 36.5,
+          "toKm": 52.2
+        },
+        "treatment": {
+          "km": 15.7,
+          "fromKm": 36.5,
+          "toKm": 52.2
+        },
+        "refill": {
+          "km": 15.5,
+          "fromKm": 36.6,
+          "toKm": 52.1
+        }
       }
     }
   }

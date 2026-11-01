@@ -4502,6 +4502,7 @@
           "group": "beds",
           "kind": "campsite",
           "name": "Camping du Pontet",
+          "drinkingWater": "yes",
           "stage": "2",
           "stageKind": "main",
           "km": 18.7,
@@ -4513,6 +4514,7 @@
           "group": "beds",
           "kind": "campsite",
           "name": null,
+          "drinkingWater": "yes",
           "stage": "2",
           "stageKind": "main",
           "km": 19.0,
@@ -4634,6 +4636,7 @@
           "group": "beds",
           "kind": "hut",
           "name": "Bivacco Gino Rainetto",
+          "drinkingWater": "no",
           "stage": "4",
           "stageKind": "main",
           "km": 48.8,
@@ -4733,6 +4736,7 @@
           "group": "beds",
           "kind": "campsite",
           "name": "Tronchey",
+          "drinkingWater": "yes",
           "stage": "5",
           "stageKind": "main",
           "km": 71.3,
@@ -4788,6 +4792,7 @@
           "group": "beds",
           "kind": "campsite",
           "name": "Camping des Glaciers",
+          "drinkingWater": "yes",
           "stage": "7",
           "stageKind": "main",
           "km": 94.2,
@@ -5030,6 +5035,7 @@
           "group": "beds",
           "kind": "campsite",
           "name": "Camping du Glacier D'Argentiere",
+          "drinkingWater": "yes",
           "stage": "10",
           "stageKind": "main",
           "km": 139.0,
@@ -5085,6 +5091,7 @@
           "group": "beds",
           "kind": "campsite",
           "name": "Mer de Glace",
+          "drinkingWater": "yes",
           "stage": "11",
           "stageKind": "main",
           "km": 145.0,
@@ -5107,6 +5114,7 @@
           "group": "beds",
           "kind": "campsite",
           "name": null,
+          "drinkingWater": "no",
           "stage": "11",
           "stageKind": "main",
           "km": 152.7,
@@ -5156,6 +5164,288 @@
         "camping": 21,
         "hostels": 7,
         "rooms": 12
+      }
+    },
+    "water": {
+      "withinM": 500,
+      "promoted": [
+        {
+          "kind": "campsite",
+          "name": "Camping du Pontet",
+          "stage": "2",
+          "km": 18.7
+        },
+        {
+          "kind": "campsite",
+          "name": null,
+          "stage": "2",
+          "km": 19.0
+        },
+        {
+          "kind": "campsite",
+          "name": "Camping des Glaciers",
+          "stage": "7",
+          "km": 94.2
+        }
+      ],
+      "refills": [
+        {
+          "kind": "guesthouse",
+          "name": "Gite Michel Fagot",
+          "stage": "1",
+          "km": 0.2
+        },
+        {
+          "kind": "campsite",
+          "name": null,
+          "stage": "1",
+          "km": 1.1
+        },
+        {
+          "kind": "campsite",
+          "name": "Camping Bellevue",
+          "stage": "1",
+          "km": 1.1
+        },
+        {
+          "kind": "campsite",
+          "name": null,
+          "stage": "1",
+          "km": 1.4
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Chalet Mountain Vibes B&B",
+          "stage": "1",
+          "km": 2.1
+        },
+        {
+          "kind": "hut",
+          "name": "Refuge du Fioux",
+          "stage": "1",
+          "km": 6.8
+        },
+        {
+          "kind": "hut",
+          "name": "Auberge de Bionnassay",
+          "stage": "1",
+          "km": 8.0
+        },
+        {
+          "kind": "hut",
+          "name": "Chalet du CAF Contamines",
+          "stage": "2",
+          "km": 17.2
+        },
+        {
+          "kind": "hut",
+          "name": "Chalet - Refuge de Nant Borrant",
+          "stage": "2",
+          "km": 21.9
+        },
+        {
+          "kind": "campsite",
+          "name": "Aire de bivouac (TMB)",
+          "stage": "2",
+          "km": 22.5
+        },
+        {
+          "kind": "campsite",
+          "name": "Aire de bivouac",
+          "stage": "2",
+          "km": 24.2
+        },
+        {
+          "kind": "hut",
+          "name": "Refuge de la Balme",
+          "stage": "2",
+          "km": 24.4
+        },
+        {
+          "kind": "hut",
+          "name": "Refuge du Col de la Croix du Bonhomme",
+          "stage": "2",
+          "km": 29.8
+        },
+        {
+          "kind": "campsite",
+          "name": "Aire de bivouac des Chapieux",
+          "stage": "2",
+          "km": 34.4
+        },
+        {
+          "kind": "hut",
+          "name": "Refuge des Mottets",
+          "stage": "3",
+          "km": 40.5
+        },
+        {
+          "kind": "hut",
+          "name": "La Casermetta",
+          "stage": "3",
+          "km": 45.3
+        },
+        {
+          "kind": "hut",
+          "name": "Rifugio Elisabetta Soldini Montanaro",
+          "stage": "3",
+          "km": 47.7
+        },
+        {
+          "kind": "hut",
+          "name": "Rifugio Combal",
+          "stage": "4",
+          "km": 50.7
+        },
+        {
+          "kind": "hut",
+          "name": "Rifugio Maison Vieille Bar - Ristorante",
+          "stage": "4",
+          "km": 57.7
+        },
+        {
+          "kind": "hut",
+          "name": "Rifugio Le Randonneur",
+          "stage": "4",
+          "km": 58.3
+        },
+        {
+          "kind": "hostel",
+          "name": null,
+          "stage": "5",
+          "km": 64.4
+        },
+        {
+          "kind": "hut",
+          "name": "Rifugio Bertone",
+          "stage": "5",
+          "km": 67.3
+        },
+        {
+          "kind": "hut",
+          "name": "Rifugio Walter Bonatti",
+          "stage": "6",
+          "km": 74.6
+        },
+        {
+          "kind": "hut",
+          "name": "Rifugio Elena",
+          "stage": "6",
+          "km": 82.0
+        },
+        {
+          "kind": "hut",
+          "name": "Gîte de la Léchère",
+          "stage": "6",
+          "km": 91.9
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Croquenature",
+          "stage": "7",
+          "km": 102.6
+        },
+        {
+          "kind": "guesthouse",
+          "name": null,
+          "stage": "7",
+          "km": 108.2
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Gite Bon Abri",
+          "stage": "8",
+          "km": 110.0
+        },
+        {
+          "kind": "hut",
+          "name": "Plan de l'Au",
+          "stage": "8",
+          "km": 112.8
+        },
+        {
+          "kind": "campsite",
+          "name": "Camping de l'Arpille",
+          "stage": "8",
+          "km": 121.9
+        },
+        {
+          "kind": "hostel",
+          "name": "Gîte de la Gardienne",
+          "stage": "9",
+          "km": 123.7
+        },
+        {
+          "kind": "hostel",
+          "name": "Auberge du Mont Blanc",
+          "stage": "9",
+          "km": 123.9
+        },
+        {
+          "kind": "hut",
+          "name": "Refuge Le Peuty",
+          "stage": "9",
+          "km": 125.1
+        },
+        {
+          "kind": "campsite",
+          "name": "Le Peuty",
+          "stage": "9",
+          "km": 125.1
+        },
+        {
+          "kind": "hut",
+          "name": "Refuge du Col de Balme",
+          "stage": "9",
+          "km": 129.4
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Auberge La Boerne (gîte d'étape du GR du TMB)",
+          "stage": "10",
+          "km": 137.0
+        },
+        {
+          "kind": "campsite",
+          "name": "Boerne",
+          "stage": "10",
+          "km": 137.0
+        },
+        {
+          "kind": "campsite",
+          "name": "Bivouac Chéserys",
+          "stage": "10",
+          "km": 140.4
+        },
+        {
+          "kind": "hut",
+          "name": "La Flégère",
+          "stage": "11",
+          "km": 143.0
+        },
+        {
+          "kind": "hut",
+          "name": "Refuge de Bellachat",
+          "stage": "11",
+          "km": 152.7
+        }
+      ],
+      "longestGapKm": {
+        "drinking": {
+          "km": 22.0,
+          "fromKm": 137.0,
+          "toKm": 159.0
+        },
+        "treatment": {
+          "km": 13.8,
+          "fromKm": 145.2,
+          "toKm": 159.0
+        },
+        "refill": {
+          "km": 9.0,
+          "fromKm": 82.9,
+          "toKm": 91.9
+        }
       }
     }
   },

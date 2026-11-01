@@ -320,10 +320,13 @@ const alongGroup = <K extends [string, ...string[]]>(kinds: K) =>
         stageKind,
         km: z.number().nullable(), // along the main route; null on approaches and variants
         offM: z.number(),
+        drinkingWater: z.string().optional(), // a place's OSM drinking_water tag (issue #119)
       }),
     ),
     longestGapKm: gap,
   });
+// a place to sleep in the water tiers (issue #119)
+const tierPoint = z.object({ kind: z.string(), name: z.string().nullable(), stage: z.string(), km: z.number() });
 
 const derived = z.object({
   // pipeline/routes.py: each stage's length on the full matched OSM line and the share of its track
@@ -472,6 +475,17 @@ const derived = z.object({
       beds: alongGroup(["hut", "shelter", "campsite", "hostel", "guesthouse"]).extend({
         byGroup: z.object({ huts: z.number().int(), camping: z.number().int(), hostels: z.number().int(), rooms: z.number().int() }),
       }),
+      // water in three tiers (issue #119, pipeline/along.py water_tiers()): drinking water (places
+      // to sleep tagged drinking_water=yes added, `promoted`), with treatment (springs too), with
+      // refills (other places to sleep within the water reach; shown, never rated)
+      water: z
+        .object({
+          withinM: z.number(),
+          promoted: z.array(tierPoint),
+          refills: z.array(tierPoint),
+          longestGapKm: z.object({ drinking: gap, treatment: gap, refill: gap }),
+        })
+        .optional(),
     })
     .optional(),
 });

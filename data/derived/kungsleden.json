@@ -2645,6 +2645,7 @@
           "group": "beds",
           "kind": "campsite",
           "name": "Abisko turiststation",
+          "drinkingWater": "yes",
           "stage": "1",
           "stageKind": "main",
           "km": 0.0,
@@ -3239,6 +3240,7 @@
           "group": "beds",
           "kind": "hut",
           "name": "Tsielejåkkastuga",
+          "drinkingWater": "yes",
           "stage": "15",
           "stageKind": "main",
           "km": 227.1,
@@ -3794,6 +3796,540 @@
         "camping": 70,
         "hostels": 9,
         "rooms": 1
+      }
+    },
+    "water": {
+      "withinM": 500,
+      "promoted": [
+        {
+          "kind": "hut",
+          "name": "Tsielejåkkastuga",
+          "stage": "15",
+          "km": 227.1
+        }
+      ],
+      "refills": [
+        {
+          "kind": "hostel",
+          "name": "Vandrarhem Keron",
+          "stage": "1",
+          "km": 0.0
+        },
+        {
+          "kind": "hut",
+          "name": "Abiskojåkka Fjällstuga",
+          "stage": "1",
+          "km": 0.2
+        },
+        {
+          "kind": "campsite",
+          "name": "Nissonjokk tältplats",
+          "stage": "1",
+          "km": 4.8
+        },
+        {
+          "kind": "campsite",
+          "name": null,
+          "stage": "1",
+          "km": 4.9
+        },
+        {
+          "kind": "hut",
+          "name": "Abiskojaure Fjällstuga",
+          "stage": "1",
+          "km": 14.2
+        },
+        {
+          "kind": "campsite",
+          "name": null,
+          "stage": "1",
+          "km": 14.2
+        },
+        {
+          "kind": "campsite",
+          "name": null,
+          "stage": "2",
+          "km": 17.1
+        },
+        {
+          "kind": "campsite",
+          "name": null,
+          "stage": "2",
+          "km": 17.4
+        },
+        {
+          "kind": "campsite",
+          "name": null,
+          "stage": "2",
+          "km": 17.5
+        },
+        {
+          "kind": "campsite",
+          "name": null,
+          "stage": "2",
+          "km": 24.6
+        },
+        {
+          "kind": "campsite",
+          "name": null,
+          "stage": "2",
+          "km": 26.6
+        },
+        {
+          "kind": "campsite",
+          "name": null,
+          "stage": "2",
+          "km": 28.5
+        },
+        {
+          "kind": "campsite",
+          "name": null,
+          "stage": "2",
+          "km": 29.0
+        },
+        {
+          "kind": "campsite",
+          "name": null,
+          "stage": "2",
+          "km": 33.5
+        },
+        {
+          "kind": "campsite",
+          "name": null,
+          "stage": "2",
+          "km": 33.7
+        },
+        {
+          "kind": "campsite",
+          "name": null,
+          "stage": "2",
+          "km": 34.8
+        },
+        {
+          "kind": "hut",
+          "name": "Alesjaure Fjällstuga",
+          "stage": "3",
+          "km": 34.9
+        },
+        {
+          "kind": "campsite",
+          "name": null,
+          "stage": "3",
+          "km": 34.9
+        },
+        {
+          "kind": "campsite",
+          "name": null,
+          "stage": "3",
+          "km": 35.1
+        },
+        {
+          "kind": "campsite",
+          "name": null,
+          "stage": "3",
+          "km": 39.1
+        },
+        {
+          "kind": "campsite",
+          "name": null,
+          "stage": "3",
+          "km": 40.1
+        },
+        {
+          "kind": "campsite",
+          "name": null,
+          "stage": "3",
+          "km": 44.2
+        },
+        {
+          "kind": "campsite",
+          "name": null,
+          "stage": "3",
+          "km": 45.3
+        },
+        {
+          "kind": "campsite",
+          "name": null,
+          "stage": "3",
+          "km": 45.5
+        },
+        {
+          "kind": "hut",
+          "name": "Tjäktja Fjällstuga",
+          "stage": "3",
+          "km": 47.7
+        },
+        {
+          "kind": "campsite",
+          "name": null,
+          "stage": "4",
+          "km": 56.9
+        },
+        {
+          "kind": "hut",
+          "name": "Sälka Fjällstuga",
+          "stage": "5",
+          "km": 60.2
+        },
+        {
+          "kind": "campsite",
+          "name": null,
+          "stage": "5",
+          "km": 60.2
+        },
+        {
+          "kind": "campsite",
+          "name": null,
+          "stage": "5",
+          "km": 60.4
+        },
+        {
+          "kind": "campsite",
+          "name": null,
+          "stage": "5",
+          "km": 61.7
+        },
+        {
+          "kind": "campsite",
+          "name": null,
+          "stage": "5",
+          "km": 61.7
+        },
+        {
+          "kind": "campsite",
+          "name": null,
+          "stage": "5",
+          "km": 62.1
+        },
+        {
+          "kind": "campsite",
+          "name": null,
+          "stage": "5",
+          "km": 63.1
+        },
+        {
+          "kind": "campsite",
+          "name": null,
+          "stage": "5",
+          "km": 66.2
+        },
+        {
+          "kind": "campsite",
+          "name": null,
+          "stage": "5",
+          "km": 69.0
+        },
+        {
+          "kind": "hut",
+          "name": "Singi Fjällstuga",
+          "stage": "5",
+          "km": 71.9
+        },
+        {
+          "kind": "campsite",
+          "name": null,
+          "stage": "6",
+          "km": 79.9
+        },
+        {
+          "kind": "hut",
+          "name": "Kaitumjaure Fjällstuga",
+          "stage": "6",
+          "km": 84.2
+        },
+        {
+          "kind": "hut",
+          "name": "Teusajaure Fjällstuga",
+          "stage": "7",
+          "km": 93.1
+        },
+        {
+          "kind": "hut",
+          "name": "Vakkotavare Fjällstuga",
+          "stage": "8",
+          "km": 107.7
+        },
+        {
+          "kind": "campsite",
+          "name": "Stora Sjöfallet",
+          "stage": "9",
+          "km": 124.8
+        },
+        {
+          "kind": "hut",
+          "name": "Saltoluokta Fjällstation",
+          "stage": "9",
+          "km": 140.2
+        },
+        {
+          "kind": "campsite",
+          "name": null,
+          "stage": "10",
+          "km": 154.8
+        },
+        {
+          "kind": "hut",
+          "name": "Sitojaure Fjällstuga",
+          "stage": "11",
+          "km": 159.5
+        },
+        {
+          "kind": "campsite",
+          "name": null,
+          "stage": "11",
+          "km": 171.2
+        },
+        {
+          "kind": "hut",
+          "name": "Aktse Fjällstuga",
+          "stage": "11",
+          "km": 172.3
+        },
+        {
+          "kind": "hut",
+          "name": "Pårte Fjällstuga",
+          "stage": "12",
+          "km": 195.8
+        },
+        {
+          "kind": "campsite",
+          "name": null,
+          "stage": "13",
+          "km": 198.4
+        },
+        {
+          "kind": "hut",
+          "name": "Kvikkjokk Fjällstation",
+          "stage": "14",
+          "km": 211.2
+        },
+        {
+          "kind": "campsite",
+          "name": null,
+          "stage": "14",
+          "km": 212.3
+        },
+        {
+          "kind": "campsite",
+          "name": null,
+          "stage": "14",
+          "km": 212.4
+        },
+        {
+          "kind": "campsite",
+          "name": "Piteälven camp site",
+          "stage": "15",
+          "km": 247.8
+        },
+        {
+          "kind": "campsite",
+          "name": "Gásakláhko camp site",
+          "stage": "16",
+          "km": 261.8
+        },
+        {
+          "kind": "hostel",
+          "name": "Kyrkans Fjällgård Jäkkvik",
+          "stage": "19",
+          "km": 301.4
+        },
+        {
+          "kind": "campsite",
+          "name": "Kyrkans Fjällgård Jäkkvik",
+          "stage": "19",
+          "km": 301.5
+        },
+        {
+          "kind": "hut",
+          "name": "Raststuga Pieljekaise",
+          "stage": "19",
+          "km": 304.6
+        },
+        {
+          "kind": "campsite",
+          "name": null,
+          "stage": "19",
+          "km": 307.5
+        },
+        {
+          "kind": "hut",
+          "name": "Pieljekaisestugan",
+          "stage": "19",
+          "km": 309.0
+        },
+        {
+          "kind": "campsite",
+          "name": null,
+          "stage": "19",
+          "km": 310.3
+        },
+        {
+          "kind": "campsite",
+          "name": "Rolf Sundqvist Turistservice",
+          "stage": "19",
+          "km": 321.9
+        },
+        {
+          "kind": "campsite",
+          "name": "Adolfström Camping",
+          "stage": "20",
+          "km": 322.0
+        },
+        {
+          "kind": "campsite",
+          "name": "Värdshus Bäverholmen",
+          "stage": "20",
+          "km": 329.0
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Värdshus Bäverholmen",
+          "stage": "20",
+          "km": 329.0
+        },
+        {
+          "kind": "campsite",
+          "name": null,
+          "stage": "20",
+          "km": 332.8
+        },
+        {
+          "kind": "campsite",
+          "name": null,
+          "stage": "21",
+          "km": 370.0
+        },
+        {
+          "kind": "hut",
+          "name": "Rävfallsstugan",
+          "stage": "21",
+          "km": 370.0
+        },
+        {
+          "kind": "campsite",
+          "name": null,
+          "stage": "22",
+          "km": 370.1
+        },
+        {
+          "kind": "campsite",
+          "name": null,
+          "stage": "23",
+          "km": 390.9
+        },
+        {
+          "kind": "hostel",
+          "name": "Fjällhästens vandrarhem",
+          "stage": "23",
+          "km": 391.7
+        },
+        {
+          "kind": "hostel",
+          "name": "Ammarnäsgårdens Vandrarhem",
+          "stage": "23",
+          "km": 391.8
+        },
+        {
+          "kind": "hostel",
+          "name": "Ammarnäs Wärdshus",
+          "stage": "23",
+          "km": 392.1
+        },
+        {
+          "kind": "hut",
+          "name": "Aigert Fjällstuga",
+          "stage": "23",
+          "km": 399.3
+        },
+        {
+          "kind": "hut",
+          "name": null,
+          "stage": "24",
+          "km": 406.8
+        },
+        {
+          "kind": "hut",
+          "name": "Serve Fjällstuga",
+          "stage": "24",
+          "km": 418.0
+        },
+        {
+          "kind": "hut",
+          "name": "Tärnasjö Fjällstuga",
+          "stage": "25",
+          "km": 431.3
+        },
+        {
+          "kind": "campsite",
+          "name": "Campsite",
+          "stage": "26",
+          "km": 432.6
+        },
+        {
+          "kind": "campsite",
+          "name": null,
+          "stage": "26",
+          "km": 441.1
+        },
+        {
+          "kind": "hut",
+          "name": "Syter Fjällstuga",
+          "stage": "26",
+          "km": 445.3
+        },
+        {
+          "kind": "campsite",
+          "name": null,
+          "stage": "27",
+          "km": 450.0
+        },
+        {
+          "kind": "hut",
+          "name": "Viterskalet Fjällstuga",
+          "stage": "28",
+          "km": 457.5
+        },
+        {
+          "kind": "campsite",
+          "name": "Campsite",
+          "stage": "28",
+          "km": 460.8
+        },
+        {
+          "kind": "campsite",
+          "name": "Campsite",
+          "stage": "28",
+          "km": 460.9
+        },
+        {
+          "kind": "campsite",
+          "name": "Fjällforsens Camping",
+          "stage": "28",
+          "km": 467.4
+        },
+        {
+          "kind": "hostel",
+          "name": "Hemavan Fjällstation",
+          "stage": "28",
+          "km": 468.6
+        }
+      ],
+      "longestGapKm": {
+        "drinking": {
+          "km": 165.0,
+          "fromKm": 227.1,
+          "toKm": 392.1
+        },
+        "treatment": {
+          "km": 83.1,
+          "fromKm": 309.0,
+          "toKm": 392.1
+        },
+        "refill": {
+          "km": 39.6,
+          "fromKm": 261.8,
+          "toKm": 301.4
+        }
       }
     }
   },

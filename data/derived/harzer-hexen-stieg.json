@@ -10121,6 +10121,7 @@
           "group": "beds",
           "kind": "campsite",
           "name": "Harz Hideaway",
+          "drinkingWater": "yes",
           "stage": "1",
           "stageKind": "main",
           "km": 7.4,
@@ -10896,6 +10897,125 @@
         "camping": 6,
         "hostels": 15,
         "rooms": 52
+      }
+    },
+    "water": {
+      "withinM": 500,
+      "promoted": [],
+      "refills": [
+        {
+          "kind": "hostel",
+          "name": "Haus der Jugend",
+          "stage": "1",
+          "km": 0.2
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Hotel/Restaurant Tiroler Stuben",
+          "stage": "1",
+          "km": 0.4
+        },
+        {
+          "kind": "campsite",
+          "name": "Campingplatz Prahljust",
+          "stage": "2",
+          "km": 11.8
+        },
+        {
+          "kind": "hostel",
+          "name": "DJH Jugendherberge Torfhaus",
+          "stage": "2",
+          "km": 32.5
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Am Felsen",
+          "stage": "4",
+          "km": 58.3
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Altes Köhlerführerhaus",
+          "stage": "4",
+          "km": 66.6
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Eiscafé Nr. 1",
+          "stage": "4",
+          "km": 67.4
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Harzbaude Susanne",
+          "stage": "4",
+          "km": 67.5
+        },
+        {
+          "kind": "campsite",
+          "name": "Reiterhof an der Talsperre",
+          "stage": "4",
+          "km": 75.6
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Zum Stausee",
+          "stage": "4",
+          "km": 76.4
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Pension Waldfrieden",
+          "stage": "4",
+          "km": 76.6
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Pension \"Harz Residenz\"",
+          "stage": "5",
+          "km": 82.7
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Pension Waldesruh",
+          "stage": "5",
+          "km": 85.3
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Ferienhaus Popp",
+          "stage": "5",
+          "km": 85.7
+        },
+        {
+          "kind": "hostel",
+          "name": "Jugendherberge Thale - Nebengebäude \"Kleiner Waldkater\"",
+          "stage": "5",
+          "km": 93.6
+        },
+        {
+          "kind": "hostel",
+          "name": "Jugendherberge Thale",
+          "stage": "5",
+          "km": 93.7
+        }
+      ],
+      "longestGapKm": {
+        "drinking": {
+          "km": 47.4,
+          "fromKm": 47.5,
+          "toKm": 94.9
+        },
+        "treatment": {
+          "km": 17.3,
+          "fromKm": 47.9,
+          "toKm": 65.2
+        },
+        "refill": {
+          "km": 10.4,
+          "fromKm": 47.9,
+          "toKm": 58.3
+        }
       }
     }
   }

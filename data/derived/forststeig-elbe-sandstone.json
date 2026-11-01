@@ -9070,6 +9070,7 @@
           "group": "beds",
           "kind": "campsite",
           "name": "Zschirnstein-Biwak",
+          "drinkingWater": "no",
           "stage": "1",
           "stageKind": "main",
           "km": 9.7,
@@ -9103,6 +9104,7 @@
           "group": "beds",
           "kind": "campsite",
           "name": "Taubenteich-Biwak",
+          "drinkingWater": "no",
           "stage": "2",
           "stageKind": "main",
           "km": 15.5,
@@ -9114,6 +9116,7 @@
           "group": "beds",
           "kind": "hut",
           "name": "Útulna Na Hvězdě",
+          "drinkingWater": "no",
           "stage": "2",
           "stageKind": "main",
           "km": 21.7,
@@ -9180,6 +9183,7 @@
           "group": "beds",
           "kind": "campsite",
           "name": "Autokemp Pod Císařem",
+          "drinkingWater": "yes",
           "stage": "3",
           "stageKind": "main",
           "km": 28.8,
@@ -9367,6 +9371,7 @@
           "group": "beds",
           "kind": "hut",
           "name": "Bielatal-Hütte",
+          "drinkingWater": "yes",
           "stage": "4",
           "stageKind": "main",
           "km": 46.2,
@@ -9378,6 +9383,7 @@
           "group": "beds",
           "kind": "campsite",
           "name": "Zehrborn-Biwak",
+          "drinkingWater": "no",
           "stage": "4",
           "stageKind": "main",
           "km": 51.4,
@@ -9400,6 +9406,7 @@
           "group": "beds",
           "kind": "hut",
           "name": "Trekkinghütte \"Rotsteinhütte\"",
+          "drinkingWater": "no",
           "stage": "5",
           "stageKind": "main",
           "km": 61.5,
@@ -9411,6 +9418,7 @@
           "group": "beds",
           "kind": "campsite",
           "name": "Spitzstein Biwak",
+          "drinkingWater": "no",
           "stage": "5",
           "stageKind": "main",
           "km": 66.3,
@@ -9422,6 +9430,7 @@
           "group": "beds",
           "kind": "hut",
           "name": "Spitzsteinbiwak",
+          "drinkingWater": "no",
           "stage": "5",
           "stageKind": "main",
           "km": 66.3,
@@ -9455,6 +9464,7 @@
           "group": "beds",
           "kind": "campsite",
           "name": "Nikolsdorf-Biwak",
+          "drinkingWater": "no",
           "stage": "5",
           "stageKind": "main",
           "km": 79.0,
@@ -9477,6 +9487,7 @@
           "group": "beds",
           "kind": "campsite",
           "name": "Biwak-Quirl",
+          "drinkingWater": "no",
           "stage": "6",
           "stageKind": "main",
           "km": 83.6,
@@ -9631,6 +9642,7 @@
           "group": "beds",
           "kind": "campsite",
           "name": "Camping Königstein",
+          "drinkingWater": "yes",
           "stage": "7",
           "stageKind": "main",
           "km": 93.6,
@@ -10120,6 +10132,174 @@
         "camping": 16,
         "hostels": 8,
         "rooms": 65
+      }
+    },
+    "water": {
+      "withinM": 500,
+      "promoted": [
+        {
+          "kind": "campsite",
+          "name": "Autokemp Pod Císařem",
+          "stage": "3",
+          "km": 28.8
+        },
+        {
+          "kind": "hut",
+          "name": "Bielatal-Hütte",
+          "stage": "4",
+          "km": 46.2
+        }
+      ],
+      "refills": [
+        {
+          "kind": "guesthouse",
+          "name": "U Křiváků",
+          "stage": "1",
+          "km": 0.0
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Pension Jitřenka Hřensko",
+          "stage": "1",
+          "km": 0.4
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Penzion Vlasta",
+          "stage": "1",
+          "km": 2.5
+        },
+        {
+          "kind": "hut",
+          "name": "Kalkbude",
+          "stage": "1",
+          "km": 7.3
+        },
+        {
+          "kind": "hut",
+          "name": "Trekkinghütte \"Grenzbaude\"",
+          "stage": "1",
+          "km": 13.6
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Pod Rozhlednou",
+          "stage": "2",
+          "km": 23.6
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Švýcarský dům",
+          "stage": "2",
+          "km": 25.6
+        },
+        {
+          "kind": "guesthouse",
+          "name": "U Lesa",
+          "stage": "2",
+          "km": 26.0
+        },
+        {
+          "kind": "campsite",
+          "name": null,
+          "stage": "2",
+          "km": 28.3
+        },
+        {
+          "kind": "hut",
+          "name": "Trekkinghütte \"Kamphütte\"",
+          "stage": "4",
+          "km": 42.6
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Pension Felswelten",
+          "stage": "4",
+          "km": 45.5
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Herberge Anna",
+          "stage": "4",
+          "km": 46.0
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Herberge Ottomühle",
+          "stage": "4",
+          "km": 46.0
+        },
+        {
+          "kind": "campsite",
+          "name": "Campingplatz Nikolsdorfer Berg",
+          "stage": "6",
+          "km": 79.0
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Pension Waldidylle",
+          "stage": "6",
+          "km": 93.5
+        },
+        {
+          "kind": "hostel",
+          "name": "Urlaub im Schäferwagen",
+          "stage": "7",
+          "km": 93.6
+        },
+        {
+          "kind": "hut",
+          "name": "Biwak \"Alte Gärtnerei\" (Forststeigbiwak)",
+          "stage": "7",
+          "km": 93.6
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Pension & Landgasthaus „Erholung“",
+          "stage": "7",
+          "km": 93.6
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Pension Landhaus Gohrisch",
+          "stage": "7",
+          "km": 93.6
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Kopprasch's Bierstüb'l",
+          "stage": "7",
+          "km": 102.9
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Strohbach",
+          "stage": "7",
+          "km": 103.1
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Elbgarten",
+          "stage": "7",
+          "km": 103.3
+        }
+      ],
+      "longestGapKm": {
+        "drinking": {
+          "km": 24.9,
+          "fromKm": 79.0,
+          "toKm": 103.9
+        },
+        "treatment": {
+          "km": 9.9,
+          "fromKm": 34.0,
+          "toKm": 43.9
+        },
+        "refill": {
+          "km": 8.6,
+          "fromKm": 34.0,
+          "toKm": 42.6
+        }
       }
     }
   }

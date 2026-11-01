@@ -134,7 +134,15 @@ export function summarize(id: string, t: Trail, d?: DerivedData) {
     season: t.season?.months ?? null,
     start: t.termini.start.name,
     end: t.termini.end.name,
-    water: d?.water ? { level: waterLevel(d.water.longestGapKm.drinking.km).id, gapKm: d.water.longestGapKm.drinking.km } : null,
+    // drinking water as the trail page rates it (with places to sleep tagged drinking_water=yes,
+    // issue #119), and with treatment (springs counted) for the water filter's "with treatment"
+    water: d?.water
+      ? (() => {
+          const gaps = d.along?.water?.longestGapKm;
+          const gapKm = (gaps?.drinking ?? d.water.longestGapKm.drinking).km;
+          return { level: waterLevel(gapKm).id, gapKm, treatGapKm: (gaps?.treatment ?? d.water.longestGapKm.any).km };
+        })()
+      : null,
     surface: d?.surface
       ? { natural: d.surface.totals.natural?.share ?? 0, gravel: d.surface.totals.gravel?.share ?? 0, paved: d.surface.totals.paved?.share ?? 0 }
       : null,

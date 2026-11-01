@@ -88,8 +88,34 @@ def candidates(slug, box):
             if not what or key in seen:
                 continue
             seen.add(key)
-            out.append({"lon": round(lon, 6), "lat": round(lat, 6), "group": what[0], "kind": what[1], "name": tags.get("name")})
+            point = {"lon": round(lon, 6), "lat": round(lat, 6), "group": what[0], "kind": what[1], "name": tags.get("name")}
+            if what[0] == "beds" and tags.get("drinking_water"):
+                point["drinkingWater"] = tags["drinking_water"]  # issue #119: yes makes a place drinking water
+            out.append(point)
     return out, sorted(stamps)[0]
+
+
+def water_tiers(water, beds, total_km):
+    """Water in three tiers (issue #119), on the main route: drinking water (OSM's, plus places to
+    sleep tagged drinking_water=yes), with treatment (springs too) and with refills (places to sleep
+    within the water step's reach, except those tagged drinking_water=no: guests first, closed out
+    of season, so shown but never rated). Each with its longest stretch without."""
+    near = [p for p in beds if p["km"] is not None and p["offM"] <= water["withinM"]]
+    promoted = [p for p in near if p.get("drinkingWater") == "yes"]
+    refills = [p for p in near if p.get("drinkingWater") not in ("yes", "no")]
+    kms = lambda kind: [p["km"] for p in water["points"] if p["km"] is not None and p["kind"] == kind]
+    drinking = kms("drinking") + [p["km"] for p in promoted]
+    treatment = drinking + kms("spring")
+    return {
+        "withinM": water["withinM"],
+        "promoted": [{k: p[k] for k in ("kind", "name", "stage", "km")} for p in promoted],
+        "refills": [{k: p[k] for k in ("kind", "name", "stage", "km")} for p in refills],
+        "longestGapKm": {
+            "drinking": longest_gap(drinking, total_km),
+            "treatment": longest_gap(treatment, total_km),
+            "refill": longest_gap(treatment + [p["km"] for p in refills], total_km),
+        },
+    }
 
 
 def build(slug, refresh=False):
@@ -128,6 +154,7 @@ def build(slug, refresh=False):
         props = stages[nearest]["properties"]
         points.append({
             **{k: c[k] for k in ("lat", "lon", "group", "kind", "name")},
+            **({"drinkingWater": c["drinkingWater"]} if c.get("drinkingWater") else {}),
             "stage": props["number"],
             "stageKind": props["kind"],
             "km": round((offset[nearest] + a) / 1000, 1) if nearest in offset else None,
@@ -142,6 +169,8 @@ def build(slug, refresh=False):
 
     beds = part("beds")
     beds["byGroup"] = {g: sum(1 for p in beds["points"] if BED_GROUP[p["kind"]] == g) for g in ("huts", "camping", "hostels", "rooms")}
+    out = ROOT / "data" / "derived" / f"{slug}.json"
+    existing = json.loads(out.read_text()) if out.exists() else {}
     result = {
         "source": "osm",
         "retrieved": cached["retrieved"],
@@ -151,8 +180,8 @@ def build(slug, refresh=False):
         "resupply": part("resupply"),
         "beds": beds,
     }
-    out = ROOT / "data" / "derived" / f"{slug}.json"
-    existing = json.loads(out.read_text()) if out.exists() else {}
+    if existing.get("water"):
+        result["water"] = water_tiers(existing["water"], beds["points"], total_km)
     out.write_text(json.dumps({**existing, "along": result}, indent=2, ensure_ascii=False) + "\n")
     r, b = result["resupply"], result["beds"]
     print(f"{out.relative_to(ROOT)}: {len(r['points'])} resupply points, longest without {r['longestGapKm']['km']} km "

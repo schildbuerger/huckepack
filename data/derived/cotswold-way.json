@@ -6116,6 +6116,257 @@
         "hostels": 4,
         "rooms": 66
       }
+    },
+    "water": {
+      "withinM": 500,
+      "promoted": [],
+      "refills": [
+        {
+          "kind": "guesthouse",
+          "name": "Badgers Hall",
+          "stage": "1",
+          "km": 0.0
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Cornerways B & B",
+          "stage": "1",
+          "km": 0.0
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Dove Cottage",
+          "stage": "1",
+          "km": 8.9
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Olive Branch Guest House",
+          "stage": "1",
+          "km": 9.0
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Hadley House",
+          "stage": "1",
+          "km": 9.1
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Cowley House B & B",
+          "stage": "2",
+          "km": 9.7
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Burhill Farm B & B",
+          "stage": "2",
+          "km": 11.5
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Wood Stanway Farmhouse B&B",
+          "stage": "2",
+          "km": 20.0
+        },
+        {
+          "kind": "campsite",
+          "name": "Hayles Fruit Farm Campsite",
+          "stage": "3",
+          "km": 25.0
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Oaklands B&B",
+          "stage": "3",
+          "km": 28.3
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Postlip Hall Farm",
+          "stage": "4",
+          "km": 35.9
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Upper Hill Farm B&B",
+          "stage": "5",
+          "km": 41.4
+        },
+        {
+          "kind": "campsite",
+          "name": "The Tree Nursery",
+          "stage": "6",
+          "km": 50.1
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Tibbiwell Lodge B&B",
+          "stage": "8",
+          "km": 74.5
+        },
+        {
+          "kind": "guesthouse",
+          "name": "ARC Painswick",
+          "stage": "8",
+          "km": 74.5
+        },
+        {
+          "kind": "campsite",
+          "name": "Conygres Scout Campsite",
+          "stage": "11",
+          "km": 111.3
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Old Swan Cottage",
+          "stage": "14",
+          "km": 145.8
+        },
+        {
+          "kind": "guesthouse",
+          "name": "The Squash Court B&B",
+          "stage": "15",
+          "km": 153.3
+        },
+        {
+          "kind": "campsite",
+          "name": "Cleeve Hill Scout Campsite",
+          "stage": "15",
+          "km": 158.4
+        },
+        {
+          "kind": "guesthouse",
+          "name": "My Hotel Ryugu",
+          "stage": "15",
+          "km": 158.8
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Weston Lawn",
+          "stage": "15",
+          "km": 159.7
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Waltons Guest House",
+          "stage": "15",
+          "km": 161.9
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Lamp Post Villa",
+          "stage": "15",
+          "km": 161.9
+        },
+        {
+          "kind": "guesthouse",
+          "name": "The Bath House",
+          "stage": "15",
+          "km": 162.2
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Hill House Guest Accomodation",
+          "stage": "15",
+          "km": 162.4
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Brocks",
+          "stage": "15",
+          "km": 162.4
+        },
+        {
+          "kind": "guesthouse",
+          "name": "The Belmont Guest House",
+          "stage": "15",
+          "km": 162.5
+        },
+        {
+          "kind": "guesthouse",
+          "name": "The Old Rectory Bed & Breakfast",
+          "stage": "15",
+          "km": 162.7
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Henrietta House",
+          "stage": "15",
+          "km": 162.9
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Trim Street House",
+          "stage": "15",
+          "km": 162.9
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Broad Street Townhouse",
+          "stage": "15",
+          "km": 162.9
+        },
+        {
+          "kind": "hostel",
+          "name": "Bath YMCA",
+          "stage": "15",
+          "km": 162.9
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Bath Townhouse",
+          "stage": "15",
+          "km": 163.1
+        },
+        {
+          "kind": "hostel",
+          "name": "Bath Backpackers",
+          "stage": "15",
+          "km": 163.2
+        },
+        {
+          "kind": "guesthouse",
+          "name": "The Windsor",
+          "stage": "15",
+          "km": 163.2
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Henry Guest House",
+          "stage": "15",
+          "km": 163.2
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Anabelles",
+          "stage": "15",
+          "km": 163.2
+        },
+        {
+          "kind": "guesthouse",
+          "name": "eight",
+          "stage": "15",
+          "km": 163.2
+        }
+      ],
+      "longestGapKm": {
+        "drinking": {
+          "km": 61.0,
+          "fromKm": 5.7,
+          "toKm": 66.7
+        },
+        "treatment": {
+          "km": 22.7,
+          "fromKm": 135.7,
+          "toKm": 158.4
+        },
+        "refill": {
+          "km": 16.9,
+          "fromKm": 118.7,
+          "toKm": 135.6
+        }
+      }
     }
   },
   "surface": {

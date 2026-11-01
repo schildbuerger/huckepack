@@ -31193,6 +31193,7 @@
           "group": "beds",
           "kind": "campsite",
           "name": "Tündérkert Kemping",
+          "drinkingWater": "yes",
           "stage": "11",
           "stageKind": "main",
           "km": 188.9,
@@ -33129,6 +33130,7 @@
           "group": "beds",
           "kind": "campsite",
           "name": "Vándorsólyom Kemping",
+          "drinkingWater": "yes",
           "stage": "35",
           "stageKind": "main",
           "km": 624.5,
@@ -33283,6 +33285,7 @@
           "group": "beds",
           "kind": "campsite",
           "name": "Kék Duna Autós Camping",
+          "drinkingWater": "yes",
           "stage": "35",
           "stageKind": "main",
           "km": 626.3,
@@ -34713,6 +34716,7 @@
           "group": "beds",
           "kind": "hut",
           "name": "Rózsaszállás",
+          "drinkingWater": "no",
           "stage": "45",
           "stageKind": "main",
           "km": 831.4,
@@ -36577,6 +36581,2376 @@
         "camping": 37,
         "hostels": 35,
         "rooms": 464
+      }
+    },
+    "water": {
+      "withinM": 500,
+      "promoted": [
+        {
+          "kind": "campsite",
+          "name": "Kék Duna Autós Camping",
+          "stage": "35",
+          "km": 626.3
+        }
+      ],
+      "refills": [
+        {
+          "kind": "guesthouse",
+          "name": "Borostyán Vendégház",
+          "stage": "1",
+          "km": 11.6
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Kiss vendégházak",
+          "stage": "1",
+          "km": 11.9
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Sziget vendégház",
+          "stage": "1",
+          "km": 12.0
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Kasper Vendégház",
+          "stage": "1",
+          "km": 12.1
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Református vendégház",
+          "stage": "1",
+          "km": 12.2
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Kóczián Pihenőház",
+          "stage": "1",
+          "km": 12.4
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Fogadó A Kóbor Macskához",
+          "stage": "1",
+          "km": 12.6
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Andalgó Hold",
+          "stage": "1",
+          "km": 12.8
+        },
+        {
+          "kind": "guesthouse",
+          "name": "AACS Panzió és Pizzéria",
+          "stage": "2",
+          "km": 13.3
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Kőszeg Panzió",
+          "stage": "2",
+          "km": 13.3
+        },
+        {
+          "kind": "campsite",
+          "name": "Camping Gyöngyvirág",
+          "stage": "2",
+          "km": 13.7
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Önkormányzati vendégház",
+          "stage": "2",
+          "km": 28.0
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Vadászkastély",
+          "stage": "4",
+          "km": 59.6
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Adél Apartman",
+          "stage": "4",
+          "km": 68.7
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Hold Apartmanok",
+          "stage": "4",
+          "km": 69.1
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Tinódi Fogadó",
+          "stage": "4",
+          "km": 69.2
+        },
+        {
+          "kind": "campsite",
+          "name": "Vadkert Major",
+          "stage": "5",
+          "km": 71.1
+        },
+        {
+          "kind": "campsite",
+          "name": "Thermal camping",
+          "stage": "5",
+          "km": 71.2
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Éva Panzió",
+          "stage": "5",
+          "km": 71.7
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Korona Panzió",
+          "stage": "5",
+          "km": 71.8
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Villa",
+          "stage": "5",
+          "km": 72.9
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Kismackó turistaszoba",
+          "stage": "5",
+          "km": 80.7
+        },
+        {
+          "kind": "campsite",
+          "name": "Szajki Tavak Camping",
+          "stage": "7",
+          "km": 111.0
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Kéktúra Vendégház",
+          "stage": "8",
+          "km": 134.1
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Letícia vendégház",
+          "stage": "9",
+          "km": 143.1
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Szabó Ház",
+          "stage": "9",
+          "km": 143.5
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Khalifa Vendégház",
+          "stage": "9",
+          "km": 143.6
+        },
+        {
+          "kind": "campsite",
+          "name": "Kovakő Camp",
+          "stage": "9",
+          "km": 145.4
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Sarvalyi vadászház",
+          "stage": "9",
+          "km": 149.1
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Zöldvendégház",
+          "stage": "9",
+          "km": 162.5
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Kék Pitypang Vendégház",
+          "stage": "10",
+          "km": 163.5
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Öreghegyi Apartman",
+          "stage": "10",
+          "km": 163.7
+        },
+        {
+          "kind": "hostel",
+          "name": "Laky Demeter Turistaház",
+          "stage": "10",
+          "km": 169.7
+        },
+        {
+          "kind": "guesthouse",
+          "name": "A Kert Apartman",
+          "stage": "10",
+          "km": 169.8
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Gabi Villa",
+          "stage": "10",
+          "km": 178.8
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Anna Vendégház",
+          "stage": "10",
+          "km": 178.9
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Hévíz",
+          "stage": "10",
+          "km": 179.1
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Guszti Villa",
+          "stage": "10",
+          "km": 179.2
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Bötös Villa",
+          "stage": "10",
+          "km": 179.3
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Tarr Apartmanok",
+          "stage": "11",
+          "km": 186.9
+        },
+        {
+          "kind": "guesthouse",
+          "name": "ART Apartman",
+          "stage": "11",
+          "km": 186.9
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Móritz Vendégház",
+          "stage": "11",
+          "km": 187.1
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Steinhaus Bed & Breakfast",
+          "stage": "11",
+          "km": 187.2
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Nussbaum Panzió",
+          "stage": "11",
+          "km": 187.2
+        },
+        {
+          "kind": "campsite",
+          "name": "Camping Gärtnerhof",
+          "stage": "11",
+          "km": 187.4
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Muschel Panzió",
+          "stage": "11",
+          "km": 187.5
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Nádas Apartmanház",
+          "stage": "11",
+          "km": 187.6
+        },
+        {
+          "kind": "campsite",
+          "name": "Castrum Camping",
+          "stage": "11",
+          "km": 187.7
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Gizella-ház",
+          "stage": "11",
+          "km": 187.9
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Barbara vendégház",
+          "stage": "11",
+          "km": 187.9
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Violetta Vendégház",
+          "stage": "11",
+          "km": 188.4
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Domb apartmanház",
+          "stage": "11",
+          "km": 190.8
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Katalin vendégház",
+          "stage": "12",
+          "km": 205.8
+        },
+        {
+          "kind": "guesthouse",
+          "name": null,
+          "stage": "12",
+          "km": 207.0
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Lovász apartman",
+          "stage": "12",
+          "km": 214.9
+        },
+        {
+          "kind": "hostel",
+          "name": "Bauxit hostel",
+          "stage": "13",
+          "km": 216.1
+        },
+        {
+          "kind": "hut",
+          "name": "Kaán Károly Kulcsosház",
+          "stage": "13",
+          "km": 221.2
+        },
+        {
+          "kind": "guesthouse",
+          "name": "DOKA ház",
+          "stage": "13",
+          "km": 222.5
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Stefi vendégház",
+          "stage": "13",
+          "km": 225.4
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Janka apartman",
+          "stage": "13",
+          "km": 229.0
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Napsugár Vendégház",
+          "stage": "13",
+          "km": 229.0
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Mandulakert Vendégház",
+          "stage": "13",
+          "km": 229.0
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Jani Gyula",
+          "stage": "13",
+          "km": 229.9
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Guns pince",
+          "stage": "13",
+          "km": 231.1
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Kele Vendégház",
+          "stage": "13",
+          "km": 232.1
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Szőlőskert Vendégház",
+          "stage": "14",
+          "km": 235.1
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Schmuck apartmanház",
+          "stage": "14",
+          "km": 239.0
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Almás vendégház",
+          "stage": "14",
+          "km": 239.6
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Csille Apartman",
+          "stage": "14",
+          "km": 242.3
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Hiláriusz vendégház",
+          "stage": "14",
+          "km": 244.8
+        },
+        {
+          "kind": "campsite",
+          "name": "\"Tóti\" Nomád táborhely",
+          "stage": "14",
+          "km": 245.0
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Liliom vendégház",
+          "stage": "15",
+          "km": 245.3
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Alpaka Apartman",
+          "stage": "15",
+          "km": 245.4
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Káli vendégház",
+          "stage": "15",
+          "km": 257.5
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Kőtenger Panzió",
+          "stage": "15",
+          "km": 257.6
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Villa Kála",
+          "stage": "15",
+          "km": 257.7
+        },
+        {
+          "kind": "hostel",
+          "name": "Szent Benedek turistaszálló",
+          "stage": "16",
+          "km": 257.9
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Magánszállás (Horváth Dezső)",
+          "stage": "16",
+          "km": 258.2
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Orsi Vendégház",
+          "stage": "16",
+          "km": 258.2
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Ferenc Ház",
+          "stage": "16",
+          "km": 258.2
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Kőtulipán Vendégház",
+          "stage": "16",
+          "km": 258.7
+        },
+        {
+          "kind": "guesthouse",
+          "name": "MCS Borház",
+          "stage": "16",
+          "km": 260.2
+        },
+        {
+          "kind": "hostel",
+          "name": "Balaton-felvidéki Erdészeti Erdei Iskola",
+          "stage": "16",
+          "km": 272.3
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Vázsonyvölgy Vendégház",
+          "stage": "16",
+          "km": 280.1
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Malomkő Panzió és Étterem",
+          "stage": "16",
+          "km": 280.1
+        },
+        {
+          "kind": "hostel",
+          "name": "Kinizsi Turistaszálló",
+          "stage": "16",
+          "km": 280.1
+        },
+        {
+          "kind": "hostel",
+          "name": "Zarándokszállás",
+          "stage": "16",
+          "km": 280.1
+        },
+        {
+          "kind": "hostel",
+          "name": "Iglauer Park",
+          "stage": "17",
+          "km": 303.5
+        },
+        {
+          "kind": "hostel",
+          "name": "Szent Mihály-völgyi Zarándokház",
+          "stage": "17",
+          "km": 303.8
+        },
+        {
+          "kind": "guesthouse",
+          "name": null,
+          "stage": "17",
+          "km": 304.0
+        },
+        {
+          "kind": "hostel",
+          "name": "Gerence Fogadó Turistaszálló",
+          "stage": "18",
+          "km": 322.6
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Manna Apartman",
+          "stage": "18",
+          "km": 323.2
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Örökzöld Vendégház",
+          "stage": "18",
+          "km": 323.3
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Bakonybél Vendégház",
+          "stage": "19",
+          "km": 323.4
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Apartman Bernát",
+          "stage": "19",
+          "km": 323.4
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Bakonybéli parasztház",
+          "stage": "19",
+          "km": 323.5
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Bakonyvári Vendégház",
+          "stage": "19",
+          "km": 323.5
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Hegyalja Vendégház",
+          "stage": "19",
+          "km": 323.5
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Juhász Ház",
+          "stage": "19",
+          "km": 324.2
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Pál Ház",
+          "stage": "19",
+          "km": 324.2
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Márkus-ház",
+          "stage": "19",
+          "km": 325.4
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Bakonybéli Hubertus Vendégház",
+          "stage": "19",
+          "km": 325.4
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Rézkakas Fogadó",
+          "stage": "19",
+          "km": 343.3
+        },
+        {
+          "kind": "guesthouse",
+          "name": null,
+          "stage": "19",
+          "km": 343.6
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Bakony apartman",
+          "stage": "19",
+          "km": 343.9
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Horváth Kert Vendégház",
+          "stage": "19",
+          "km": 344.0
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Jeskó Panzió",
+          "stage": "19",
+          "km": 344.0
+        },
+        {
+          "kind": "hostel",
+          "name": "Jeskó ifjúsági szálló",
+          "stage": "19",
+          "km": 344.0
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Prém-malom vendégház Closed",
+          "stage": "20",
+          "km": 354.7
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Római fürdő Apartmanház",
+          "stage": "20",
+          "km": 354.9
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Panoráma Vendégház Jásd",
+          "stage": "20",
+          "km": 360.4
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Erdőalja vendégház",
+          "stage": "20",
+          "km": 360.6
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Lovas Major vendégház",
+          "stage": "20",
+          "km": 360.6
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Napocska vendégház",
+          "stage": "20",
+          "km": 363.7
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Bányász TE kulcsosház",
+          "stage": "21",
+          "km": 371.1
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Kúti vendégház",
+          "stage": "21",
+          "km": 382.5
+        },
+        {
+          "kind": "hostel",
+          "name": null,
+          "stage": "22",
+          "km": 391.4
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Fehérvárcsurgói szállás",
+          "stage": "22",
+          "km": 392.0
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Zöld Küllő",
+          "stage": "22",
+          "km": 393.8
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Gaja-völgyi Vendégház",
+          "stage": "22",
+          "km": 394.5
+        },
+        {
+          "kind": "campsite",
+          "name": "Bodajki Falutábor",
+          "stage": "22",
+          "km": 398.9
+        },
+        {
+          "kind": "campsite",
+          "name": "Tölgyes Tábor és Turistaközpont",
+          "stage": "22",
+          "km": 398.9
+        },
+        {
+          "kind": "guesthouse",
+          "name": null,
+          "stage": "23",
+          "km": 401.8
+        },
+        {
+          "kind": "hostel",
+          "name": null,
+          "stage": "23",
+          "km": 401.9
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Falusi Vendégház",
+          "stage": "23",
+          "km": 409.3
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Gránás Turistaház",
+          "stage": "24",
+          "km": 423.8
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Mindszenti turistaház",
+          "stage": "24",
+          "km": 429.2
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Steinau Vendégház",
+          "stage": "24",
+          "km": 436.6
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Esterházy Ökoturisztikai Központ",
+          "stage": "24",
+          "km": 436.6
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Várgesztesi Vadászház",
+          "stage": "24",
+          "km": 440.8
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Gesztesi vendégház",
+          "stage": "24",
+          "km": 441.3
+        },
+        {
+          "kind": "hut",
+          "name": null,
+          "stage": "25",
+          "km": 444.2
+        },
+        {
+          "kind": "hut",
+          "name": "Csákányospusztai turistaház",
+          "stage": "25",
+          "km": 451.3
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Vadmacska Vadászház",
+          "stage": "25",
+          "km": 453.0
+        },
+        {
+          "kind": "hut",
+          "name": "Somlyóvári kulcsosház",
+          "stage": "26",
+          "km": 469.5
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Vadászház",
+          "stage": "27",
+          "km": 477.6
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Rancs Fogadó",
+          "stage": "28",
+          "km": 495.1
+        },
+        {
+          "kind": "hostel",
+          "name": "Marót-hegyi Sólyomfészek",
+          "stage": "28",
+          "km": 495.5
+        },
+        {
+          "kind": "campsite",
+          "name": null,
+          "stage": "28",
+          "km": 495.5
+        },
+        {
+          "kind": "hostel",
+          "name": "Szalézi Ifjusági Ház",
+          "stage": "28",
+          "km": 503.4
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Szalézi Rendház",
+          "stage": "28",
+          "km": 503.4
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Szalma vendégház",
+          "stage": "28",
+          "km": 508.6
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Plébánia, zarándokszállás",
+          "stage": "29",
+          "km": 514.8
+        },
+        {
+          "kind": "guesthouse",
+          "name": null,
+          "stage": "29",
+          "km": 521.9
+        },
+        {
+          "kind": "hut",
+          "name": "Rotter Lajos turistaház",
+          "stage": "32",
+          "km": 574.4
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Csúcshegyi Vendégház",
+          "stage": "32",
+          "km": 576.1
+        },
+        {
+          "kind": "hostel",
+          "name": "Som-hegyi turistaház",
+          "stage": "33",
+          "km": 597.5
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Rózsaszín Béka Vendégház. Zarándokszállás",
+          "stage": "33",
+          "km": 597.9
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Kislugas panzió és vendéglő",
+          "stage": "33",
+          "km": 598.2
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Oak Tree Apartment",
+          "stage": "33",
+          "km": 598.4
+        },
+        {
+          "kind": "guesthouse",
+          "name": "turistaszálló",
+          "stage": "33",
+          "km": 598.8
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Platán Étterem Panzió",
+          "stage": "33",
+          "km": 601.2
+        },
+        {
+          "kind": "hut",
+          "name": "Báró Eötvös Loránd Menedékház",
+          "stage": "34",
+          "km": 602.4
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Makovecz vendégház",
+          "stage": "34",
+          "km": 602.9
+        },
+        {
+          "kind": "hostel",
+          "name": "Dobogókő jurtaszállások",
+          "stage": "34",
+          "km": 602.9
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Visegrád turistaház",
+          "stage": "35",
+          "km": 625.1
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Anna Vendégház",
+          "stage": "35",
+          "km": 625.1
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Ezüstfenyő üdülő",
+          "stage": "35",
+          "km": 625.5
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Vendégház a tábornokhoz",
+          "stage": "35",
+          "km": 625.7
+        },
+        {
+          "kind": "hostel",
+          "name": "Jeka, László turistaszálló",
+          "stage": "35",
+          "km": 625.9
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Pillangós vendégház",
+          "stage": "35",
+          "km": 626.0
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Rózsa vendégház",
+          "stage": "35",
+          "km": 626.0
+        },
+        {
+          "kind": "hostel",
+          "name": "Mátyás Jeka ifjúsági szálló",
+          "stage": "35",
+          "km": 626.1
+        },
+        {
+          "kind": "hostel",
+          "name": "JEKA Hungária Kft.",
+          "stage": "35",
+          "km": 626.1
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Honti Panzió",
+          "stage": "35",
+          "km": 626.2
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Dunna Vendégház",
+          "stage": "36",
+          "km": 626.7
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Nagymarosi Vadszőlős Vendégház",
+          "stage": "36",
+          "km": 626.8
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Szent Márton Közösségi Ház",
+          "stage": "36",
+          "km": 627.0
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Édeske szállás",
+          "stage": "36",
+          "km": 627.1
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Tölgyes vendégház",
+          "stage": "36",
+          "km": 627.2
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Kilátó Vendégház Nagymaros",
+          "stage": "36",
+          "km": 627.6
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Grand Maros",
+          "stage": "36",
+          "km": 632.7
+        },
+        {
+          "kind": "hut",
+          "name": null,
+          "stage": "36",
+          "km": 637.1
+        },
+        {
+          "kind": "hut",
+          "name": "Vadász Tanya",
+          "stage": "36",
+          "km": 637.1
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Szépvölgy Vendégház",
+          "stage": "36",
+          "km": 643.8
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Apukám háza",
+          "stage": "36",
+          "km": 644.1
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Málnáskert Vendégház",
+          "stage": "36",
+          "km": 644.3
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Orgona vendégház",
+          "stage": "36",
+          "km": 644.4
+        },
+        {
+          "kind": "campsite",
+          "name": null,
+          "stage": "36",
+          "km": 644.8
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Casa Rosa Vendégház",
+          "stage": "36",
+          "km": 645.2
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Kisinóci Turistaház",
+          "stage": "37",
+          "km": 646.5
+        },
+        {
+          "kind": "hut",
+          "name": "Nagy-Hideg-hegy Sí- és Túraközpont",
+          "stage": "37",
+          "km": 652.0
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Tulipán vendégház",
+          "stage": "38",
+          "km": 667.1
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Magyarkúti fogadó - Faházak",
+          "stage": "38",
+          "km": 674.6
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Józsefvárosi gyermeküdülő",
+          "stage": "38",
+          "km": 674.6
+        },
+        {
+          "kind": "campsite",
+          "name": "Sátorhely",
+          "stage": "38",
+          "km": 674.8
+        },
+        {
+          "kind": "campsite",
+          "name": "Táborozó hely",
+          "stage": "38",
+          "km": 677.2
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Szepi fogadó",
+          "stage": "38",
+          "km": 680.2
+        },
+        {
+          "kind": "hut",
+          "name": null,
+          "stage": "38",
+          "km": 687.1
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Faluház",
+          "stage": "39",
+          "km": 694.5
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Körtefa vendégház",
+          "stage": "40",
+          "km": 706.1
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Levendula vendégház",
+          "stage": "40",
+          "km": 706.1
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Bagolyvár apartmanház",
+          "stage": "40",
+          "km": 714.2
+        },
+        {
+          "kind": "guesthouse",
+          "name": "2.sz. turistaház",
+          "stage": "40",
+          "km": 715.5
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Cserhát Vendégházak",
+          "stage": "40",
+          "km": 715.6
+        },
+        {
+          "kind": "guesthouse",
+          "name": null,
+          "stage": "41",
+          "km": 725.9
+        },
+        {
+          "kind": "guesthouse",
+          "name": "TeleKék Vendégház",
+          "stage": "41",
+          "km": 726.0
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Sárga Ház A Kék Úton",
+          "stage": "41",
+          "km": 726.2
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Kendős Parasztház",
+          "stage": "41",
+          "km": 731.7
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Szandai önkormányzat vendégháza",
+          "stage": "41",
+          "km": 731.8
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Árdai vendégház",
+          "stage": "41",
+          "km": 736.3
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Dézsafürdő Vendégház",
+          "stage": "41",
+          "km": 741.5
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Vadrózsás vendégház",
+          "stage": "41",
+          "km": 751.7
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Tornácos Vendégház",
+          "stage": "41",
+          "km": 752.0
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Doboskút Vendégház",
+          "stage": "42",
+          "km": 753.1
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Pipás vendégház",
+          "stage": "42",
+          "km": 763.0
+        },
+        {
+          "kind": "guesthouse",
+          "name": null,
+          "stage": "42",
+          "km": 763.1
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Hexadon Vendégház",
+          "stage": "42",
+          "km": 763.2
+        },
+        {
+          "kind": "hostel",
+          "name": "Hollóköves Vendégházak - Potla Turistaszálló",
+          "stage": "42",
+          "km": 763.2
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Nefelejcs Vendégház",
+          "stage": "42",
+          "km": 763.3
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Kemencés Vendégház",
+          "stage": "42",
+          "km": 763.5
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Héhely Vendégház",
+          "stage": "42",
+          "km": 763.6
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Karaván Vendégház",
+          "stage": "42",
+          "km": 763.6
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Hétlámpás Vendégház",
+          "stage": "42",
+          "km": 763.6
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Várlak Hollókőn Vendégház",
+          "stage": "42",
+          "km": 763.6
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Tugari Vendégház",
+          "stage": "42",
+          "km": 763.6
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Lankás Vendégház",
+          "stage": "42",
+          "km": 763.6
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Lugas Vendégház",
+          "stage": "42",
+          "km": 767.8
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Cserhát Vendégház",
+          "stage": "42",
+          "km": 767.9
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Toldi Vendégház",
+          "stage": "42",
+          "km": 767.9
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Toldi-ház vendégház",
+          "stage": "42",
+          "km": 770.4
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Told Gold Panzió és Fogadó",
+          "stage": "42",
+          "km": 770.4
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Szekeres vendégház",
+          "stage": "42",
+          "km": 770.6
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Fecskés Vendégház",
+          "stage": "42",
+          "km": 770.9
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Csermely Vendégház",
+          "stage": "42",
+          "km": 771.2
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Angyalkert Tábor",
+          "stage": "42",
+          "km": 772.1
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Patakpart Vendégház",
+          "stage": "42",
+          "km": 772.1
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Oliva vendégház",
+          "stage": "43",
+          "km": 789.3
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Pálik Vendégház",
+          "stage": "43",
+          "km": 789.4
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Piroska Vendégház",
+          "stage": "43",
+          "km": 789.4
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Csend háza",
+          "stage": "43",
+          "km": 794.7
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Zarándokszállás",
+          "stage": "43",
+          "km": 794.8
+        },
+        {
+          "kind": "hut",
+          "name": "Ágasvári turistaház",
+          "stage": "44",
+          "km": 807.4
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Montem",
+          "stage": "44",
+          "km": 810.7
+        },
+        {
+          "kind": "guesthouse",
+          "name": "A Páholy - Grand Chalet Mátra",
+          "stage": "44",
+          "km": 810.9
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Hello Mátra Vendégház",
+          "stage": "44",
+          "km": 811.0
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Vadrózsa Vendégház",
+          "stage": "44",
+          "km": 811.0
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Gyopár vendégház",
+          "stage": "44",
+          "km": 811.3
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Slowlife Mátra Vendégház",
+          "stage": "44",
+          "km": 811.3
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Boróka vendégház",
+          "stage": "44",
+          "km": 811.4
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Vaskúti Faház",
+          "stage": "44",
+          "km": 811.5
+        },
+        {
+          "kind": "guesthouse",
+          "name": "3 Patak panzió",
+          "stage": "44",
+          "km": 811.5
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Csuszka",
+          "stage": "44",
+          "km": 811.6
+        },
+        {
+          "kind": "guesthouse",
+          "name": "dr. Keken András Evangélikus Menedékház",
+          "stage": "44",
+          "km": 811.7
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Kétkerék vendégház",
+          "stage": "44",
+          "km": 812.2
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Észak Csillaga Vendégház",
+          "stage": "44",
+          "km": 812.2
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Vadász Turista Centrum Apartman",
+          "stage": "44",
+          "km": 812.3
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Barangoló vendégház",
+          "stage": "44",
+          "km": 812.4
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Parrag Panzió",
+          "stage": "44",
+          "km": 812.5
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Csillagles Vendégház",
+          "stage": "44",
+          "km": 812.5
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Mantara Vendégház",
+          "stage": "44",
+          "km": 812.5
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Belle-Aire Hegyvidéki Vendégház",
+          "stage": "44",
+          "km": 812.6
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Molnárkalács Vendégház",
+          "stage": "44",
+          "km": 815.5
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Mátrai 5 Vendégház",
+          "stage": "44",
+          "km": 815.6
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Galyatető Vendégház",
+          "stage": "44",
+          "km": 815.6
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Mountain Home",
+          "stage": "44",
+          "km": 815.9
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Galya Vendégház",
+          "stage": "44",
+          "km": 816.0
+        },
+        {
+          "kind": "guesthouse",
+          "name": "BKV Zrt. Pihenőház",
+          "stage": "44",
+          "km": 816.1
+        },
+        {
+          "kind": "hut",
+          "name": "Turistacentrum",
+          "stage": "44",
+          "km": 816.5
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Galya Garden Hegyi Ízek Háza",
+          "stage": "44",
+          "km": 816.5
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Hívogat-Lak Vendégház",
+          "stage": "44",
+          "km": 816.5
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Galya Apartmanház",
+          "stage": "44",
+          "km": 816.5
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Pagoda-panzió",
+          "stage": "44",
+          "km": 824.9
+        },
+        {
+          "kind": "hostel",
+          "name": "4 Évszak Hegyihotel",
+          "stage": "44",
+          "km": 825.0
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Zarándokszállás",
+          "stage": "45",
+          "km": 825.2
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Stephanie panzió",
+          "stage": "45",
+          "km": 849.3
+        },
+        {
+          "kind": "guesthouse",
+          "name": "SIROCAVE Barlang Apartmanok",
+          "stage": "45",
+          "km": 850.4
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Borókás Vendégház",
+          "stage": "46",
+          "km": 850.9
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Csibész vendégház",
+          "stage": "46",
+          "km": 850.9
+        },
+        {
+          "kind": "campsite",
+          "name": "VÁR-CAMPING Sirok",
+          "stage": "46",
+          "km": 851.6
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Szarvaskő Vendégház",
+          "stage": "47",
+          "km": 868.4
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Öko-Park Panzió-Kemping és Kalandpark",
+          "stage": "47",
+          "km": 868.5
+        },
+        {
+          "kind": "campsite",
+          "name": "Kalandpark",
+          "stage": "47",
+          "km": 868.5
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Telekessy vendégház",
+          "stage": "47",
+          "km": 875.4
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Tök-Ász vendégház",
+          "stage": "47",
+          "km": 878.9
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Viktória Vendégház",
+          "stage": "47",
+          "km": 879.1
+        },
+        {
+          "kind": "hostel",
+          "name": "Bükki Kalcit Motel",
+          "stage": "47",
+          "km": 879.3
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Bélkő Panzió",
+          "stage": "47",
+          "km": 879.4
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Ferencz Vendégház",
+          "stage": "47",
+          "km": 880.1
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Tópartilak 3.",
+          "stage": "47",
+          "km": 880.2
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Villa Tópart",
+          "stage": "47",
+          "km": 880.4
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Fenyves vendégház",
+          "stage": "47",
+          "km": 880.5
+        },
+        {
+          "kind": "hut",
+          "name": "Őr-kő kulcsosház",
+          "stage": "47",
+          "km": 886.9
+        },
+        {
+          "kind": "guesthouse",
+          "name": "ÉMÁSZ-üdülő",
+          "stage": "48",
+          "km": 899.6
+        },
+        {
+          "kind": "hut",
+          "name": "Bánkúti Turistaház",
+          "stage": "48",
+          "km": 899.9
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Bíró udvar vendégház",
+          "stage": "48",
+          "km": 907.6
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Papréte vendégház",
+          "stage": "49",
+          "km": 908.3
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Piroska vendégház",
+          "stage": "49",
+          "km": 912.0
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Rácz vendégház",
+          "stage": "49",
+          "km": 912.1
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Upponyi Erdész vendégház",
+          "stage": "49",
+          "km": 917.0
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Regica vendégház (Bereczki vendégház)",
+          "stage": "49",
+          "km": 917.2
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Panoráma vendégház (Bereczki vendégház)",
+          "stage": "49",
+          "km": 917.2
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Marika Vendégház",
+          "stage": "49",
+          "km": 917.4
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Varga vendégház",
+          "stage": "49",
+          "km": 917.5
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Upponyi turistaház",
+          "stage": "49",
+          "km": 917.5
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Agócs vendégház",
+          "stage": "49",
+          "km": 917.5
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Vadász vendégház (Bereczki vendégház)",
+          "stage": "49",
+          "km": 917.8
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Rózsa vendégház",
+          "stage": "50",
+          "km": 930.9
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Putnok Város Önkormányzatának Vendégháza",
+          "stage": "50",
+          "km": 931.3
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Biokertes vendégház",
+          "stage": "50",
+          "km": 943.5
+        },
+        {
+          "kind": "guesthouse",
+          "name": "E. Kovács vendégház",
+          "stage": "50",
+          "km": 943.6
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Kakasvári Vendégház",
+          "stage": "50",
+          "km": 943.7
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Paplak",
+          "stage": "51",
+          "km": 949.5
+        },
+        {
+          "kind": "hostel",
+          "name": "Baradla Turistaszálló",
+          "stage": "51",
+          "km": 962.3
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Kövirózsa Panzió",
+          "stage": "51",
+          "km": 963.5
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Karszt Szálló",
+          "stage": "51",
+          "km": 963.5
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Rózsa Apartman",
+          "stage": "51",
+          "km": 963.5
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Jósva Vendégház",
+          "stage": "51",
+          "km": 968.2
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Garan vendégház",
+          "stage": "51",
+          "km": 968.3
+        },
+        {
+          "kind": "guesthouse",
+          "name": null,
+          "stage": "51",
+          "km": 968.3
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Kiscsermely Vendégház",
+          "stage": "51",
+          "km": 968.3
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Fecskefészek Vendégház",
+          "stage": "52",
+          "km": 968.5
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Angyalház Vendégház",
+          "stage": "52",
+          "km": 968.5
+        },
+        {
+          "kind": "hostel",
+          "name": "Szelcepuszta Turistaház",
+          "stage": "52",
+          "km": 976.0
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Diófa Vendégház",
+          "stage": "52",
+          "km": 992.1
+        },
+        {
+          "kind": "hut",
+          "name": "Martonyi és vidéke Vadásztársulat vadászháza",
+          "stage": "53",
+          "km": 995.7
+        },
+        {
+          "kind": "guesthouse",
+          "name": "János 3:16 vendégház",
+          "stage": "53",
+          "km": 996.8
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Árpád vendégház",
+          "stage": "53",
+          "km": 997.3
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Zsályás ház",
+          "stage": "53",
+          "km": 1010.4
+        },
+        {
+          "kind": "hostel",
+          "name": "Hímes lak",
+          "stage": "53",
+          "km": 1010.6
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Talentum",
+          "stage": "54",
+          "km": 1023.3
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Talentum vendégház",
+          "stage": "54",
+          "km": 1023.4
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Túl az Óperencián vendégház",
+          "stage": "54",
+          "km": 1023.4
+        },
+        {
+          "kind": "hostel",
+          "name": "Talentum Erdei Iskola és Turistaház",
+          "stage": "54",
+          "km": 1023.4
+        },
+        {
+          "kind": "guesthouse",
+          "name": null,
+          "stage": "55",
+          "km": 1043.9
+        },
+        {
+          "kind": "guesthouse",
+          "name": null,
+          "stage": "55",
+          "km": 1044.2
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Lábatlan Vendégház",
+          "stage": "55",
+          "km": 1047.7
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Éva panzió",
+          "stage": "55",
+          "km": 1059.0
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Enyh-hely Vendégház",
+          "stage": "55",
+          "km": 1062.9
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Vár-Lak Vendégház",
+          "stage": "55",
+          "km": 1063.0
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Levendula Vendégház",
+          "stage": "56",
+          "km": 1063.1
+        },
+        {
+          "kind": "guesthouse",
+          "name": "BoldogKőHáz",
+          "stage": "56",
+          "km": 1063.4
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Tóhegy Vendégház",
+          "stage": "56",
+          "km": 1065.6
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Vendégház",
+          "stage": "56",
+          "km": 1065.9
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Tulipanzió vendégház",
+          "stage": "56",
+          "km": 1066.2
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Mogyoróskai turistaház",
+          "stage": "56",
+          "km": 1073.4
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Hegyipatak vendégház",
+          "stage": "56",
+          "km": 1073.5
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Napkelte vendégház",
+          "stage": "56",
+          "km": 1073.8
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Sasfészek Panzió",
+          "stage": "56",
+          "km": 1073.8
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Várhegy alkotó és vendégház",
+          "stage": "56",
+          "km": 1074.0
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Hercegnő Vendégház",
+          "stage": "56",
+          "km": 1074.3
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Kuckozó vendégház",
+          "stage": "56",
+          "km": 1074.5
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Kun-hegy vendégház",
+          "stage": "56",
+          "km": 1074.5
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Veronika Panzió",
+          "stage": "56",
+          "km": 1077.8
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Várbarát vh.",
+          "stage": "56",
+          "km": 1077.9
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Bakos Bertalanné panziója",
+          "stage": "56",
+          "km": 1078.1
+        },
+        {
+          "kind": "hut",
+          "name": "István-kúti kőház (négyévszakos pihenőház)",
+          "stage": "57",
+          "km": 1086.0
+        },
+        {
+          "kind": "hut",
+          "name": "Eszkála eh.",
+          "stage": "57",
+          "km": 1093.4
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Vilma néni szállása",
+          "stage": "57",
+          "km": 1102.7
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Református vendégház",
+          "stage": "57",
+          "km": 1102.8
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Vöröskő vendégház",
+          "stage": "58",
+          "km": 1117.9
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Koronás Vad Vendégház",
+          "stage": "58",
+          "km": 1124.2
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Vendégház",
+          "stage": "58",
+          "km": 1124.9
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Két Bagoly Vendégház",
+          "stage": "58",
+          "km": 1125.0
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Hutapatak vendégház",
+          "stage": "58",
+          "km": 1125.2
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Dolina Vendégház",
+          "stage": "58",
+          "km": 1125.4
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Barát-bérc Vendégház",
+          "stage": "58",
+          "km": 1130.0
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Hutai Ház",
+          "stage": "58",
+          "km": 1130.2
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Gilevár fogadó",
+          "stage": "58",
+          "km": 1130.4
+        },
+        {
+          "kind": "campsite",
+          "name": null,
+          "stage": "58",
+          "km": 1133.7
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Huta Vendégház",
+          "stage": "58",
+          "km": 1133.7
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Vadrózsa Vendégház",
+          "stage": "58",
+          "km": 1133.7
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Gabi Vendégház",
+          "stage": "58",
+          "km": 1133.7
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Jager vendégház",
+          "stage": "58",
+          "km": 1133.8
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Hanyi Istók Turistaház és Erdei Tábor",
+          "stage": "58",
+          "km": 1135.3
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Kis-Kocsis vendégház",
+          "stage": "58",
+          "km": 1136.6
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Kati vendégház",
+          "stage": "58",
+          "km": 1136.7
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Silvanus Panzió",
+          "stage": "58",
+          "km": 1136.8
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Illés vendégház",
+          "stage": "58",
+          "km": 1136.9
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Megálló Üdülőház és Fogadó",
+          "stage": "58",
+          "km": 1136.9
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Ifjúsági tábor",
+          "stage": "58",
+          "km": 1138.6
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Nagymáté vendégház",
+          "stage": "59",
+          "km": 1138.6
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Szent Eduárd Vendégház",
+          "stage": "58",
+          "km": 1138.6
+        },
+        {
+          "kind": "campsite",
+          "name": "Ifjúsági jurtatábor",
+          "stage": "59",
+          "km": 1150.0
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Vendégház",
+          "stage": "59",
+          "km": 1150.1
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Amália",
+          "stage": "59",
+          "km": 1150.1
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Hegyköz Vendégház",
+          "stage": "59",
+          "km": 1150.1
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Várkert vendégház",
+          "stage": "59",
+          "km": 1152.2
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Kőrózsa vendégház",
+          "stage": "59",
+          "km": 1152.4
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Katolikus plébánia vendégszobák",
+          "stage": "59",
+          "km": 1152.6
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Borbála vendégház",
+          "stage": "59",
+          "km": 1152.7
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Fűzéri vendégház",
+          "stage": "59",
+          "km": 1152.7
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Gréta vendégház",
+          "stage": "59",
+          "km": 1152.9
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Judit vendégház",
+          "stage": "59",
+          "km": 1152.9
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Víg vándor vendégház",
+          "stage": "59",
+          "km": 1152.9
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Farkas-lak Vendégház",
+          "stage": "59",
+          "km": 1152.9
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Kék-Túra Vendégház",
+          "stage": "59",
+          "km": 1153.0
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Kónya vendégház",
+          "stage": "59",
+          "km": 1153.1
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Éva panzió",
+          "stage": "59",
+          "km": 1165.8
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Vadász Panzió",
+          "stage": "59",
+          "km": 1166.2
+        }
+      ],
+      "longestGapKm": {
+        "drinking": {
+          "km": 30.9,
+          "fromKm": 477.6,
+          "toKm": 508.5
+        },
+        "treatment": {
+          "km": 23.1,
+          "fromKm": 110.8,
+          "toKm": 133.9
+        },
+        "refill": {
+          "km": 22.9,
+          "fromKm": 111.0,
+          "toKm": 133.9
+        }
       }
     }
   },

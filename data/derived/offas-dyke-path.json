@@ -6293,6 +6293,239 @@
         "hostels": 3,
         "rooms": 22
       }
+    },
+    "water": {
+      "withinM": 500,
+      "promoted": [],
+      "refills": [
+        {
+          "kind": "guesthouse",
+          "name": "Woodfield Arms",
+          "stage": "1",
+          "km": 2.8
+        },
+        {
+          "kind": "campsite",
+          "name": "Beeches Farm Campsite",
+          "stage": "1",
+          "km": 12.1
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Inglewood House",
+          "stage": "1",
+          "km": 23.5
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Creates Bed & Breakfast",
+          "stage": "1",
+          "km": 29.0
+        },
+        {
+          "kind": "campsite",
+          "name": "Monnow Bridge Caravan Site",
+          "stage": "2",
+          "km": 29.7
+        },
+        {
+          "kind": "campsite",
+          "name": "Hendre Farmhouse Orchard Campsite",
+          "stage": "2",
+          "km": 34.9
+        },
+        {
+          "kind": "campsite",
+          "name": "Hogshead Camping Site",
+          "stage": "2",
+          "km": 45.0
+        },
+        {
+          "kind": "guesthouse",
+          "name": "The Old Rectory",
+          "stage": "2",
+          "km": 51.2
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Lancaster Arms",
+          "stage": "2",
+          "km": 54.9
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Elmsleugh bed and breakfast",
+          "stage": "3",
+          "km": 79.8
+        },
+        {
+          "kind": "guesthouse",
+          "name": "La Fosse",
+          "stage": "3",
+          "km": 80.4
+        },
+        {
+          "kind": "guesthouse",
+          "name": "The Bear",
+          "stage": "3",
+          "km": 80.5
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Hay Stables",
+          "stage": "3",
+          "km": 80.5
+        },
+        {
+          "kind": "guesthouse",
+          "name": "St. Mary's B&B",
+          "stage": "4",
+          "km": 80.7
+        },
+        {
+          "kind": "guesthouse",
+          "name": "The Firs",
+          "stage": "4",
+          "km": 80.7
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Belmont Guest House",
+          "stage": "4",
+          "km": 80.8
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Seven Stars",
+          "stage": "4",
+          "km": 80.9
+        },
+        {
+          "kind": "guesthouse",
+          "name": "The Bridge Bed & Breakfast",
+          "stage": "4",
+          "km": 81.1
+        },
+        {
+          "kind": "campsite",
+          "name": "Riverside Glamping by the Wye",
+          "stage": "4",
+          "km": 81.3
+        },
+        {
+          "kind": "campsite",
+          "name": "Radnor's End",
+          "stage": "4",
+          "km": 81.6
+        },
+        {
+          "kind": "campsite",
+          "name": "Black Mountain View Caravan Park",
+          "stage": "4",
+          "km": 83.5
+        },
+        {
+          "kind": "hostel",
+          "name": "Kington Youth Hostel",
+          "stage": "4",
+          "km": 104.6
+        },
+        {
+          "kind": "campsite",
+          "name": "Fleece Meadow Campsite",
+          "stage": "4",
+          "km": 104.6
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Red Lion",
+          "stage": "6",
+          "km": 126.1
+        },
+        {
+          "kind": "campsite",
+          "name": "Panpwnton Farm",
+          "stage": "6",
+          "km": 127.0
+        },
+        {
+          "kind": "campsite",
+          "name": "Springhill Farm",
+          "stage": "6",
+          "km": 136.5
+        },
+        {
+          "kind": "guesthouse",
+          "name": "The Quarry House",
+          "stage": "6",
+          "km": 138.6
+        },
+        {
+          "kind": "campsite",
+          "name": null,
+          "stage": "7",
+          "km": 169.2
+        },
+        {
+          "kind": "campsite",
+          "name": null,
+          "stage": "8",
+          "km": 181.8
+        },
+        {
+          "kind": "campsite",
+          "name": null,
+          "stage": "8",
+          "km": 181.8
+        },
+        {
+          "kind": "guesthouse",
+          "name": null,
+          "stage": "10",
+          "km": 213.8
+        },
+        {
+          "kind": "campsite",
+          "name": "Tan Y Castell",
+          "stage": "10",
+          "km": 222.4
+        },
+        {
+          "kind": "campsite",
+          "name": "Llyn Rhys Campsite",
+          "stage": "10",
+          "km": 234.6
+        },
+        {
+          "kind": "campsite",
+          "name": "Station House Caravan Park",
+          "stage": "12",
+          "km": 264.6
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Plas Ifan Guest House",
+          "stage": "12",
+          "km": 282.7
+        }
+      ],
+      "longestGapKm": {
+        "drinking": {
+          "km": 125.0,
+          "fromKm": 91.4,
+          "toKm": 216.4
+        },
+        "treatment": {
+          "km": 122.7,
+          "fromKm": 93.7,
+          "toKm": 216.4
+        },
+        "refill": {
+          "km": 32.0,
+          "fromKm": 181.8,
+          "toKm": 213.8
+        }
+      }
     }
   },
   "surface": {

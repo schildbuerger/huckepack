@@ -13294,6 +13294,7 @@
           "group": "beds",
           "kind": "campsite",
           "name": "Trekkingplatz Feuereiche",
+          "drinkingWater": "no",
           "stage": "1",
           "stageKind": "main",
           "km": 13.7,
@@ -13404,6 +13405,7 @@
           "group": "beds",
           "kind": "campsite",
           "name": "Ritzhagen bei Willingen",
+          "drinkingWater": "no",
           "stage": "1",
           "stageKind": "main",
           "km": 22.0,
@@ -13827,6 +13829,185 @@
         "camping": 11,
         "hostels": 6,
         "rooms": 33
+      }
+    },
+    "water": {
+      "withinM": 500,
+      "promoted": [],
+      "refills": [
+        {
+          "kind": "guesthouse",
+          "name": "Dependance zur Post",
+          "stage": "1",
+          "km": 0.1
+        },
+        {
+          "kind": "campsite",
+          "name": "Camping & Ferienpark Brilon",
+          "stage": "1",
+          "km": 3.0
+        },
+        {
+          "kind": "campsite",
+          "name": "Trekkingplatz Himmelsnah",
+          "stage": "1",
+          "km": 3.6
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Gutscafé am Blütengarten",
+          "stage": "1",
+          "km": 16.8
+        },
+        {
+          "kind": "hostel",
+          "name": "Sauerlandhütte Bruchhausen",
+          "stage": "1",
+          "km": 17.8
+        },
+        {
+          "kind": "campsite",
+          "name": "Bruchhausen",
+          "stage": "1",
+          "km": 17.8
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Astenblick",
+          "stage": "2",
+          "km": 34.1
+        },
+        {
+          "kind": "campsite",
+          "name": "Biwakplatz an der Ruipes-Ropes-Hütte",
+          "stage": "2",
+          "km": 37.4
+        },
+        {
+          "kind": "guesthouse",
+          "name": "An den Linden",
+          "stage": "2",
+          "km": 41.5
+        },
+        {
+          "kind": "campsite",
+          "name": "camping-hochsauerland",
+          "stage": "3",
+          "km": 43.5
+        },
+        {
+          "kind": "campsite",
+          "name": "camping-hochsauerland",
+          "stage": "3",
+          "km": 43.5
+        },
+        {
+          "kind": "hostel",
+          "name": "Hostel Erlebnisberg Kappe",
+          "stage": "3",
+          "km": 45.4
+        },
+        {
+          "kind": "hostel",
+          "name": "Sauerland Villa",
+          "stage": "3",
+          "km": 45.4
+        },
+        {
+          "kind": "campsite",
+          "name": "Camping Winterberg",
+          "stage": "3",
+          "km": 45.7
+        },
+        {
+          "kind": "hostel",
+          "name": "DJH Jugendherberge Winterberg",
+          "stage": "3",
+          "km": 49.8
+        },
+        {
+          "kind": "hostel",
+          "name": "DJH Sportheim Neuastenberg",
+          "stage": "3",
+          "km": 50.2
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Pension Mountain View Sauerland",
+          "stage": "3",
+          "km": 50.3
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Lorenz",
+          "stage": "3",
+          "km": 50.6
+        },
+        {
+          "kind": "hut",
+          "name": "Sauerlandhütte",
+          "stage": "3",
+          "km": 51.1
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Pension Haus Gerke",
+          "stage": "3",
+          "km": 52.7
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Haus Hubertus",
+          "stage": "3",
+          "km": 52.7
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Haus Berchstein",
+          "stage": "3",
+          "km": 52.7
+        },
+        {
+          "kind": "campsite",
+          "name": null,
+          "stage": "4",
+          "km": 79.9
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Pension Vogt",
+          "stage": "6",
+          "km": 95.1
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Zum Lahnhof",
+          "stage": "7",
+          "km": 109.8
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Pension Cristel Vopel",
+          "stage": "8",
+          "km": 146.4
+        }
+      ],
+      "longestGapKm": {
+        "drinking": {
+          "km": 32.3,
+          "fromKm": 113.6,
+          "toKm": 145.9
+        },
+        "treatment": {
+          "km": 19.8,
+          "fromKm": 126.1,
+          "toKm": 145.9
+        },
+        "refill": {
+          "km": 19.8,
+          "fromKm": 126.1,
+          "toKm": 145.9
+        }
       }
     }
   }

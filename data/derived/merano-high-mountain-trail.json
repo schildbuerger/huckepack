@@ -9537,6 +9537,7 @@
           "group": "beds",
           "kind": "hut",
           "name": "Hahnenkammhütte",
+          "drinkingWater": "no",
           "stage": "3",
           "stageKind": "main",
           "km": 26.8,
@@ -10626,6 +10627,7 @@
           "group": "beds",
           "kind": "campsite",
           "name": "Waldcamping Naturns",
+          "drinkingWater": "yes",
           "stage": "6",
           "stageKind": "main",
           "km": 51.8,
@@ -10895,6 +10897,203 @@
         "camping": 8,
         "hostels": 3,
         "rooms": 141
+      }
+    },
+    "water": {
+      "withinM": 500,
+      "promoted": [],
+      "refills": [
+        {
+          "kind": "guesthouse",
+          "name": "Christlhof - Zimmer + FeWo",
+          "stage": "1",
+          "km": 8.8
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Valtelehof",
+          "stage": "2",
+          "km": 12.5
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Magdfeld",
+          "stage": "2",
+          "km": 17.0
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Alpenland",
+          "stage": "2",
+          "km": 17.9
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Unterthurnerhof",
+          "stage": "3",
+          "km": 24.6
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Walde - Zimmer + FeWo",
+          "stage": "3",
+          "km": 24.8
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Gasthof Talbauer",
+          "stage": "3",
+          "km": 29.6
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Hochmuth",
+          "stage": "4",
+          "km": 30.6
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Berggasthof Oberhochmuthof",
+          "stage": "4",
+          "km": 30.6
+        },
+        {
+          "kind": "hut",
+          "name": "Gampen-Kuhalm",
+          "stage": "4",
+          "km": 33.9
+        },
+        {
+          "kind": "hut",
+          "name": "Schutzhaus Hochgang - Rifugio Casa del Valico",
+          "stage": "4",
+          "km": 35.7
+        },
+        {
+          "kind": "hut",
+          "name": "Tablander Alm",
+          "stage": "4",
+          "km": 38.9
+        },
+        {
+          "kind": "hut",
+          "name": "Schutzhütte Nasereit - Rifugio Nasereit",
+          "stage": "4",
+          "km": 41.1
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Giggelberg",
+          "stage": "4",
+          "km": 43.5
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Patleidhof",
+          "stage": "6",
+          "km": 52.4
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Linthof",
+          "stage": "6",
+          "km": 52.6
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Katharinabergerhof",
+          "stage": "6",
+          "km": 58.6
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Obervernatschhof",
+          "stage": "7",
+          "km": 59.7
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Montferthof",
+          "stage": "7",
+          "km": 60.5
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Nassreidhof",
+          "stage": "7",
+          "km": 64.4
+        },
+        {
+          "kind": "hostel",
+          "name": "Rableid Alm",
+          "stage": "8",
+          "km": 69.0
+        },
+        {
+          "kind": "hut",
+          "name": "Stettiner Hütte - Rifugio Petrarca",
+          "stage": "8",
+          "km": 77.3
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Gasthof Zeppichl - FeWo + Zimmer + Lager",
+          "stage": "9",
+          "km": 85.8
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Enzian",
+          "stage": "9",
+          "km": 86.6
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Häuslerhof",
+          "stage": "9",
+          "km": 86.8
+        },
+        {
+          "kind": "hostel",
+          "name": "KSJ-Freizeithaus Widum Pfelders",
+          "stage": "9",
+          "km": 86.8
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Thomashof - Zimmer + FeWo",
+          "stage": "9",
+          "km": 86.8
+        },
+        {
+          "kind": "campsite",
+          "name": "Camping Bergkristall",
+          "stage": "9",
+          "km": 89.3
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Gasthof Innerhütt",
+          "stage": "9",
+          "km": 90.7
+        }
+      ],
+      "longestGapKm": {
+        "drinking": {
+          "km": 18.7,
+          "fromKm": 51.8,
+          "toKm": 70.5
+        },
+        "treatment": {
+          "km": 14.8,
+          "fromKm": 12.6,
+          "toKm": 27.4
+        },
+        "refill": {
+          "km": 7.4,
+          "fromKm": 44.4,
+          "toKm": 51.8
+        }
       }
     }
   }

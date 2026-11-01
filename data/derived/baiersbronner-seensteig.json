@@ -8251,6 +8251,7 @@
           "group": "beds",
           "kind": "campsite",
           "name": "Trekking-Camp Gutellbach",
+          "drinkingWater": "no",
           "stage": "1",
           "stageKind": "main",
           "km": 11.2,
@@ -8273,6 +8274,7 @@
           "group": "beds",
           "kind": "campsite",
           "name": "Natur-Camp Tannenfels",
+          "drinkingWater": "yes",
           "stage": "1",
           "stageKind": "main",
           "km": 14.1,
@@ -8295,6 +8297,7 @@
           "group": "beds",
           "kind": "campsite",
           "name": "Trekking-Camp Bösellbach",
+          "drinkingWater": "no",
           "stage": "2",
           "stageKind": "main",
           "km": 18.7,
@@ -8361,6 +8364,7 @@
           "group": "beds",
           "kind": "campsite",
           "name": "Trekking-Camp Seibelseckle",
+          "drinkingWater": "no",
           "stage": "4",
           "stageKind": "main",
           "km": 49.1,
@@ -8504,6 +8508,7 @@
           "group": "beds",
           "kind": "campsite",
           "name": "Trekking-Camp Erdbeerloch",
+          "drinkingWater": "no",
           "stage": "3",
           "stageKind": "variant",
           "km": null,
@@ -8520,6 +8525,101 @@
         "camping": 5,
         "hostels": 0,
         "rooms": 17
+      }
+    },
+    "water": {
+      "withinM": 500,
+      "promoted": [],
+      "refills": [
+        {
+          "kind": "guesthouse",
+          "name": "Pension Sohlhof",
+          "stage": "1",
+          "km": 1.5
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Züfle",
+          "stage": "1",
+          "km": 14.1
+        },
+        {
+          "kind": "hut",
+          "name": "Darmstädter Hütte",
+          "stage": "3",
+          "km": 39.4
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Pension Oesterle",
+          "stage": "4",
+          "km": 63.7
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Landhaus Waldeshöhe",
+          "stage": "5",
+          "km": 67.8
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Bergforelle",
+          "stage": "5",
+          "km": 81.8
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Schwarzwald-Pension Otto UG",
+          "stage": "5",
+          "km": 84.8
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Landhaus Isolde",
+          "stage": "5",
+          "km": 84.8
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Landhaus Muehlengrund",
+          "stage": "5",
+          "km": 85.1
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Haus Sommerberg",
+          "stage": "5",
+          "km": 85.7
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Gästehaus Gaiser",
+          "stage": "5",
+          "km": 87.8
+        },
+        {
+          "kind": "guesthouse",
+          "name": "Hotel Krone",
+          "stage": "5",
+          "km": 88.0
+        }
+      ],
+      "longestGapKm": {
+        "drinking": {
+          "km": 34.3,
+          "fromKm": 44.0,
+          "toKm": 78.3
+        },
+        "treatment": {
+          "km": 17.3,
+          "fromKm": 44.0,
+          "toKm": 61.3
+        },
+        "refill": {
+          "km": 17.3,
+          "fromKm": 44.0,
+          "toKm": 61.3
+        }
       }
     }
   }

@@ -89,7 +89,7 @@
     { id: "ground", question: "What would you like underfoot?" },
     { id: "sleep", question: "Where would you like to sleep?", help: "Pick everything you'll need. A trail stays if it offers all of them." },
     { id: "wild", question: "Would you like to camp in the wild?" },
-    { id: "water", question: "How far can you go between drinking water?", help: "The longest stretch of the trail without a tap, fountain or drinking spring." },
+    { id: "water", question: "How far can you go between drinking water?", help: "The longest stretch of the trail without a tap, fountain or drinking spring; with treatment, other springs count too." },
   ];
 
   let f = $state<Filters>(noFilters());
@@ -255,6 +255,10 @@
       {#each WATER_OPTIONS as o}
         {@render option(o)}
       {/each}
+      <!-- issue #119: springs count too for hikers who treat their water -->
+      <button type="button" class="option wide" aria-pressed={f.waterTreat} onclick={() => (f.waterTreat = !f.waterTreat)}>
+        <span class="label">I filter or treat spring water</span><span class="count">Springs count as water</span>
+      </button>
     {:else if s.id === "ground"}
       {#each GROUND_OPTIONS as o}
         {@render option(o)}
