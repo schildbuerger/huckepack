@@ -143,6 +143,9 @@ export function summarize(id: string, t: Trail, d?: DerivedData) {
           return { level: waterLevel(gapKm).id, gapKm, treatGapKm: (gaps?.refill ?? d.water.longestGapKm.any).km };
         })()
       : null,
+    // the longest stretches without a shop and without a bed (pipeline/along.py; issues #96, #97)
+    shopGapKm: d?.along?.resupply.longestGapKm.km ?? null,
+    bedGapKm: d?.along?.beds.longestGapKm.km ?? null,
     surface: d?.surface
       ? { natural: d.surface.totals.natural?.share ?? 0, gravel: d.surface.totals.gravel?.share ?? 0, paved: d.surface.totals.paved?.share ?? 0 }
       : null,

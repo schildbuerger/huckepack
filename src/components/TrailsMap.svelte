@@ -29,6 +29,10 @@
     noFilters,
     toParams,
     waterText,
+    shopOn,
+    bedOn,
+    SHOP_KM,
+    BED_KM,
     naturalText,
     type Filters,
   } from "../lib/filters";
@@ -109,8 +113,8 @@
           .join(", "),
     },
     { id: "land", label: "Landscape", groups: ["land", "ground"], on: (f: Filters) => [f.land.length ? `${f.land.length} picked` : "", naturalText(f) !== "Any" ? naturalText(f) : ""].filter(Boolean).join(", ") },
-    { id: "sleep", label: "Nights", groups: ["sleep", "wild"], on: (f: Filters) => [f.sleep.length ? `${f.sleep.length} kinds` : "", f.wild ? "wild camping" : ""].filter(Boolean).join(", ") },
-    { id: "water", label: "Water", groups: ["water"], on: (f: Filters) => (waterText(f) === "Any" ? "" : waterText(f)) },
+    { id: "sleep", label: "Nights", groups: ["sleep", "wild"], on: (f: Filters) => [f.sleep.length ? `${f.sleep.length} kinds` : "", f.wild ? "wild camping" : "", bedOn(f) ? `bed ≤ ${BED_KM[f.bedMax]} km` : ""].filter(Boolean).join(", ") },
+    { id: "water", label: "Water & shops", groups: ["water"], on: (f: Filters) => [waterText(f) === "Any" ? "" : waterText(f), shopOn(f) ? `shop ≤ ${SHOP_KM[f.shopMax]} km` : ""].filter(Boolean).join(", ") },
   ] as const;
   let barOpen = $state<string | null>(null);
   let barH = $state(0);

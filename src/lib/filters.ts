@@ -12,6 +12,9 @@ export const MONTHS = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "
 export const DAYS = [1, 2, 3, 4, 5, 6, 7, 8, 10, 14, 15, 21, 30, 45, 60];
 export const DAYS_ALL = DAYS.length - 1;
 export const WATER_KM = [5, 10, 15, 20, 25, 30, 40];
+// the longest stretch without a shop or a bed (issues #96 and #97); the last stop: any
+export const SHOP_KM = [20, 40, 60, 80];
+export const BED_KM = [10, 20, 30, 40];
 export const NATURAL_PCT = [0, 10, 20, 30, 40, 50, 60, 70, 80, 90];
 // difficulty levels (src/lib/difficulty.ts LEVELS); each difficulty filter is a range of them, and
 // the whole range (Easy to Hard, LEVEL_TOP) filters nothing, unrated trails included
@@ -39,6 +42,8 @@ export interface Filters {
   wild: "" | "some" | "allowed";
   waterMax: number; // WATER_KM.length: any
   waterTreat: boolean; // the water filter counts any water, springs too (issue #119)
+  shopMax: number; // SHOP_KM.length: any
+  bedMax: number; // BED_KM.length: any
   naturalMin: number; // 0: any
   // difficulty ranges as level indexes, 0 (Easy) to LEVEL_TOP (Hard); 0 to LEVEL_TOP: any
   terrainMin: number;
@@ -59,6 +64,8 @@ export const noFilters = (): Filters => ({
   wild: "",
   waterMax: WATER_KM.length,
   waterTreat: false,
+  shopMax: SHOP_KM.length,
+  bedMax: BED_KM.length,
   naturalMin: 0,
   terrainMin: 0,
   terrainMax: LEVEL_TOP,
@@ -71,6 +78,8 @@ export const noFilters = (): Filters => ({
 
 export const daysOn = (f: Filters) => f.dayLo > 0 || f.dayHi < DAYS_ALL;
 export const waterOn = (f: Filters) => f.waterMax < WATER_KM.length;
+export const shopOn = (f: Filters) => f.shopMax < SHOP_KM.length;
+export const bedOn = (f: Filters) => f.bedMax < BED_KM.length;
 export const naturalOn = (f: Filters) => f.naturalMin > 0;
 export const terrainOn = (f: Filters) => f.terrainMin > 0 || f.terrainMax < LEVEL_TOP;
 export const climateOn = (f: Filters) => f.climateMin > 0 || f.climateMax < LEVEL_TOP;
@@ -113,6 +122,8 @@ export function matches(t: SearchTrail, f: Filters) {
   if (f.wild === "allowed" && t.wildCamping !== "allowed") return false;
   if (f.wild === "some" && t.wildCamping !== "allowed" && t.wildCamping !== "restricted") return false;
   if (waterOn(f) && !(t.water && (f.waterTreat ? t.water.treatGapKm : t.water.gapKm) <= WATER_KM[f.waterMax])) return false;
+  if (shopOn(f) && !(t.shopGapKm !== null && t.shopGapKm <= SHOP_KM[f.shopMax])) return false;
+  if (bedOn(f) && !(t.bedGapKm !== null && t.bedGapKm <= BED_KM[f.bedMax])) return false;
   if (naturalOn(f) && !(t.surface && t.surface.natural * 100 >= NATURAL_PCT[f.naturalMin])) return false;
   if (terrainOn(f) && !within(t.terrainLevel, f.terrainMin, f.terrainMax)) return false;
   if (climateOn(f) && !within(climateLevel(t, f.months), f.climateMin, f.climateMax)) return false;
@@ -121,7 +132,7 @@ export function matches(t: SearchTrail, f: Filters) {
   return true;
 }
 
-// URL parameters: months=4,5 days=4-7 where=Italy sleep=huts wild=some water=20 treat=1 natural=50
+// URL parameters: months=4,5 days=4-7 where=Italy sleep=huts wild=some water=20 treat=1 shop=40 bed=20 natural=50
 // terrain=moderate-hard climate=moderate effort=moderate land=forest,bare. A difficulty is a range
 // "from-to", or one level for "up to" it (the form older links used; an old sac= is ignored)
 export function toParams(f: Filters) {
@@ -133,6 +144,8 @@ export function toParams(f: Filters) {
   if (f.wild) p.set("wild", f.wild);
   if (waterOn(f)) p.set("water", String(WATER_KM[f.waterMax]));
   if (f.waterTreat) p.set("treat", "1");
+  if (shopOn(f)) p.set("shop", String(SHOP_KM[f.shopMax]));
+  if (bedOn(f)) p.set("bed", String(BED_KM[f.bedMax]));
   if (naturalOn(f)) p.set("natural", String(NATURAL_PCT[f.naturalMin]));
   const level = (min: number, max: number) => (min > 0 ? `${LEVEL_IDS[min]}-${LEVEL_IDS[max]}` : LEVEL_IDS[max]);
   if (terrainOn(f)) p.set("terrain", level(f.terrainMin, f.terrainMax));
@@ -169,6 +182,8 @@ export function fromParams(p: URLSearchParams, sleepIds: string[]): Filters {
     wild: wild === "some" || wild === "allowed" ? wild : "",
     waterMax: stop(WATER_KM, p.get("water"), WATER_KM.length),
     waterTreat: p.get("treat") === "1",
+    shopMax: stop(SHOP_KM, p.get("shop"), SHOP_KM.length),
+    bedMax: stop(BED_KM, p.get("bed"), BED_KM.length),
     naturalMin: stop(NATURAL_PCT, p.get("natural"), 0),
     terrainMin,
     terrainMax,
@@ -204,6 +219,10 @@ export function places(trails: SearchTrail[]) {
 export const DAY_STOPS = DAYS.map((d, i) => (i === DAYS.length - 1 ? `${d}+` : `${d}`));
 export const WATER_STOPS = [...WATER_KM.map((km) => `${km} km`), "Any"];
 export const NATURAL_STOPS = NATURAL_PCT.map((n) => (n ? `${n} %` : "Any"));
+export const SHOP_STOPS = [...SHOP_KM.map((km) => `${km} km`), "Any"];
+export const BED_STOPS = [...BED_KM.map((km) => `${km} km`), "Any"];
+export const shopText = (f: Filters) => (shopOn(f) ? `Every ${SHOP_KM[f.shopMax]} km or less` : "Any");
+export const bedText = (f: Filters) => (bedOn(f) ? `Every ${BED_KM[f.bedMax]} km or less` : "Any");
 export const daysText = (f: Filters) =>
   !daysOn(f) ? "Any length" : f.dayLo === f.dayHi ? `${DAY_STOPS[f.dayLo]} days` : `${DAYS[f.dayLo]}–${DAY_STOPS[f.dayHi]} days`;
 export const waterText = (f: Filters) => (waterOn(f) ? `Every ${WATER_KM[f.waterMax]} km or less${f.waterTreat ? ", springs counted" : ""}` : "Any");
@@ -237,5 +256,7 @@ export function activeFilters(f: Filters, sleeping: { id: string; label: string 
     ...f.sleep.map((id) => ({ label: sleeping.find((c) => c.id === id)?.label ?? id, reset: { sleep: without(f.sleep, id) } })),
     f.wild && { label: f.wild === "allowed" ? "Wild camping allowed" : "Wild camping possible", reset: { wild: "" as const } },
     waterOn(f) && { label: `Water every ${WATER_KM[f.waterMax]} km or less${f.waterTreat ? " (springs counted)" : ""}`, reset: { waterMax: WATER_KM.length, waterTreat: false } },
+    shopOn(f) && { label: `A shop every ${SHOP_KM[f.shopMax]} km or less`, reset: { shopMax: SHOP_KM.length } },
+    bedOn(f) && { label: `A bed every ${BED_KM[f.bedMax]} km or less`, reset: { bedMax: BED_KM.length } },
   ].filter(Boolean) as { label: string; reset: Partial<Filters> }[];
 }

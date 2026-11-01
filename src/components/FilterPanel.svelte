@@ -19,6 +19,12 @@
     NATURAL_STOPS,
     WATER_KM,
     WATER_STOPS,
+    SHOP_KM,
+    SHOP_STOPS,
+    BED_KM,
+    BED_STOPS,
+    shopText,
+    bedText,
     daysText,
     levelText,
     matches,
@@ -54,6 +60,8 @@
   let dayLoLive = $derived(liveStops(DAYS.length, (i) => ({ dayLo: i })).map((ok, i) => ok || i > filters.dayHi));
   let dayHiLive = $derived(liveStops(DAYS.length, (i) => ({ dayHi: i })).map((ok, i) => ok || i < filters.dayLo));
   let waterLive = $derived(liveStops(WATER_STOPS.length, (i) => ({ waterMax: i })));
+  let shopLive = $derived(liveStops(SHOP_STOPS.length, (i) => ({ shopMax: i })));
+  let bedLive = $derived(liveStops(BED_STOPS.length, (i) => ({ bedMax: i })));
   let naturalLive = $derived(liveStops(NATURAL_STOPS.length, (i) => ({ naturalMin: i })));
   // difficulty thumbs, as the day thumbs: stops beyond the other thumb count as live
   const levelLive = (key: "terrain" | "climate" | "effort", min: number, max: number) => ({
@@ -205,6 +213,14 @@
           <button type="button" class="chip" aria-pressed={filters.sleep.includes(c.id)} disabled={off} title={off ? NONE : undefined} onclick={() => (filters.sleep = toggle(filters.sleep, c.id))}>{c.label}</button>
         {/each}
       </div>
+      <!-- issue #97: the longest stretch of the main route without a hut, campsite, hostel or guest house -->
+      <div class="sub">
+        <Explain id={`${idPrefix}x-bed`} term="A bed every" title="Beds along the route">
+          <p>The longest stretch of the main route without a hut, campsite, hostel or guest house mapped in OpenStreetMap (within 1 km of the trail or 3 km of a stage's end; hotels are not counted) must be at most this long.</p>
+        </Explain>
+        <span class="value">{bedText(filters)}</span>
+      </div>
+      <Range stops={BED_STOPS} bind:hi={filters.bedMax} live={bedLive} off={BED_KM.length} label="Longest stretch without a bed, at most" ticks={[0, BED_KM.length]} />
     </div>
     {/if}
 
@@ -246,6 +262,14 @@
         <button type="button" role="radio" aria-checked={!filters.waterTreat} onclick={() => (filters.waterTreat = false)}>Clean water</button>
         <button type="button" role="radio" aria-checked={filters.waterTreat} onclick={() => (filters.waterTreat = true)}>Any water</button>
       </div>
+      <!-- issue #96: the longest stretch of the main route without a shop -->
+      <div class="sub">
+        <Explain id={`${idPrefix}x-shop`} term="A shop every" title="Shops along the route">
+          <p>The longest stretch of the main route without a supermarket, convenience or general store or a petrol station with a shop mapped in OpenStreetMap (within 1 km of the trail or 3 km of a stage's end) must be at most this long. Small village shops are often missing in OpenStreetMap.</p>
+        </Explain>
+        <span class="value">{shopText(filters)}</span>
+      </div>
+      <Range stops={SHOP_STOPS} bind:hi={filters.shopMax} live={shopLive} off={SHOP_KM.length} label="Longest stretch without a shop, at most" ticks={[0, SHOP_KM.length]} />
     </div>
     {/if}
 
