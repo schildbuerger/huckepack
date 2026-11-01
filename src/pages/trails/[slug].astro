@@ -1623,6 +1623,7 @@ const trailLd = JSON.stringify({
               <g class="row" data-row={i}>
                 {lane.sub ? (
                   <>
+                    <rect class="track" x={WX0} y={laneY(i) + 5} width={CHART.x1 - WX0} height={16} rx="3" />
                     <rect class="gap" x={wx(lane.gap.fromKm)} y={laneY(i) + 5} width={n1(wx(lane.gap.toKm) - wx(lane.gap.fromKm))} height={16} rx="3" />
                     <text class="lane-name sub-name" x={CHART.x0 + 22} y={laneY(i) - 1}>
                       {lane.label} <tspan class="lane-gap">· {lane.gap.km} km without</tspan>
@@ -1637,6 +1638,7 @@ const trailLd = JSON.stringify({
                         d={`M${CHART.x0 + 6} ${laneY(i) + LANE.band + 4}V${laneY(i + subsOf(i)) - 5}${Array.from({ length: subsOf(i) }, (_, k) => `M${CHART.x0 + 6} ${laneY(i + k + 1) - 5}h10`).join("")}`}
                       />
                     )}
+                    <rect class="track" x={WX0} y={laneY(i)} width={CHART.x1 - WX0} height={LANE.band} rx="4" />
                     <rect class="gap" x={wx(lane.gap.fromKm)} y={laneY(i)} width={n1(wx(lane.gap.toKm) - wx(lane.gap.fromKm))} height={LANE.band} rx="4" />
                     <text class:list={["lane-name", { "group-label": lane.group }]} x={CHART.x0} y={laneY(i) - 6}>
                       {lane.label} <tspan class="lane-gap">· {lane.gap.km} {lane.gapText ?? "km without"}</tspan>
@@ -1879,6 +1881,13 @@ const trailLd = JSON.stringify({
       const top = (k: number) => (data.parent ? rowTop(rows, k) : data.top + k * data.step);
       const row = rows.reduce((best, _, k) => (Math.abs(top(k) + mid - vy) < Math.abs(top(best) + mid - vy) ? k : best), 0);
       const lane = rows[row];
+      // with groups (Water, Shops), the line runs only through the hovered group and its open kinds
+      if (data.parent) {
+        const g = parents[lane] >= 0 ? parents[lane] : lane;
+        const ks = rows.map((r, k) => (r === g || parents[r] === g ? k : -1)).filter((k) => k >= 0);
+        cursor.setAttribute("y1", String(top(ks[0]) - 4));
+        cursor.setAttribute("y2", String(top(ks[ks.length - 1]) + (parents[rows[ks[ks.length - 1]]] >= 0 ? 21 : 26) + 4));
+      }
       const km = ((vx - X0) / (X1 - X0)) * data.total;
       // the nearest place within about 12 units (1.2 % of the route)
       const near = data.lanes[lane].reduce<[number, string, string, string] | null>(
@@ -3129,6 +3138,10 @@ const trailLd = JSON.stringify({
     fill: none;
     stroke: var(--line);
     stroke-width: 2;
+  }
+  /* each lane's soft track, so the rows stand apart */
+  .waterline .track {
+    fill: color-mix(in srgb, var(--text) 4%, transparent);
   }
   .tiered .group-label,
   .tiered .row:not(.open) .tree {
