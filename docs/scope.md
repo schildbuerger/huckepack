@@ -173,6 +173,13 @@
   allow the matcher a longer bridge (`maxBridgeM`), noted in the record (the
   Cotswold Way's A417 at the Air Balloon, 133 m), instead of holding the
   trail until OSM opens the crossing.
+- **Colour palette (2026-11-01):** the site's base colours turned from
+  terracotta on cream to olive moss (accent #5a7526, #b4cb76 in dark mode) on
+  a slightly greener cream, to look more outdoors while keeping the warm, calm
+  page. Of three previews (forest green on green paper, moss on cream, pine on
+  cool stone), moss was chosen: closest to the old warmth, and apart from the
+  water blue. Chart, status and map colours are unchanged; every text colour
+  passes WCAG AA in both modes.
 
 ## What a trail page could show
 

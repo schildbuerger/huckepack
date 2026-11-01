@@ -2,7 +2,7 @@
 
     python3 design/logos/make.py
 
-Colours are CSS variables with fallbacks, so the files work standalone (terracotta and ink)
+Colours are CSS variables with fallbacks, so the files work standalone (moss green and ink)
 and follow the site's theme when inlined: --logo-ink, --logo-accent, --logo-soft.
 Pixel logos are drawn from the grids below: o = ink, # = accent, p = soft accent, . = empty.
 Small grids (12 × 12) on purpose: a pictogram has to survive at 16 px.
@@ -12,9 +12,9 @@ import re
 from pathlib import Path
 
 HERE = Path(__file__).resolve().parent
-INK = "var(--logo-ink, #2a221d)"
-ACCENT = "var(--logo-accent, #b0502a)"
-SOFT = "var(--logo-soft, #e8b79c)"
+INK = "var(--logo-ink, #25261c)"
+ACCENT = "var(--logo-accent, #5a7526)"
+SOFT = "var(--logo-soft, #c3d19a)"
 COLOURS = {"o": INK, "#": ACCENT, "p": SOFT}
 
 
@@ -196,7 +196,7 @@ LOGOS = {
     "a6-cairn-micro": pixel_svg(CAIRN_MICRO, "Cairn, pixel, micro"),
 }
 
-def pixel_png(grid, size, scale, background=None, colour="#b0502a"):
+def pixel_png(grid, size, scale, background=None, colour="#5a7526"):
     """The grid as a PNG, every logo pixel a scale × scale block, centred on a size × size canvas.
     Standard library only (zlib); `background` None means transparent."""
     import struct
@@ -248,9 +248,9 @@ if __name__ == "__main__":
         print(f"{target.relative_to(SITE)}  ({FINAL})")
     # PNG versions at whole-number scales of the 8 × 8 grid, so the pixels stay sharp
     pngs = {
-        "apple-touch-icon.png": pixel_png(CAIRN_MICRO, 180, 18, background="#fbf7f1"),  # iOS home screen
+        "apple-touch-icon.png": pixel_png(CAIRN_MICRO, 180, 18, background="#f9f8f0"),  # iOS home screen
         "favicon-32.png": pixel_png(CAIRN_MICRO, 32, 4),  # browsers without SVG favicons
-        "icon-512.png": pixel_png(CAIRN_MICRO, 512, 56, background="#fbf7f1"),  # large square icon
+        "icon-512.png": pixel_png(CAIRN_MICRO, 512, 56, background="#f9f8f0"),  # large square icon
     }
     for name, data in pngs.items():
         (SITE / "public" / name).write_bytes(data)

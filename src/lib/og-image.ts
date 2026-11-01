@@ -12,12 +12,12 @@ export const OG = { width: 1200, height: 630 };
 // the light theme's tokens (src/layouts/Base.astro): link previews show on any background, and the
 // cream page is the site's face
 const C = {
-  bg: "#fbf7f1",
-  surface: "#f4ece1",
-  text: "#2a221d",
-  muted: "#706359",
-  line: "#e6dccf",
-  accent: "#b0502a",
+  bg: "#f9f8f0",
+  surface: "#efeee0",
+  text: "#25261c",
+  muted: "#61624c",
+  line: "#e0dfcc",
+  accent: "#5a7526",
   natural: "#b26232",
   gravel: "#c9a64d",
   paved: "#50565c",
