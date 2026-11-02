@@ -549,7 +549,6 @@
     <li><span class="key dot start"></span> {start.name}</li>
     <li><span class="key dot end"></span> {end.name}</li>
   {/if}
-  {#each groups.filter((g) => shown[g.id]) as g (g.id)}<li><span class="key place {g.id}"></span> {g.label}</li>{/each}
   <li><span class="key contour"></span> Contour lines</li>
 </ul>
 
@@ -782,27 +781,6 @@
   .count {
     color: var(--muted);
     font-variant-numeric: tabular-nums;
-  }
-  .key.place {
-    width: 10px;
-    height: 10px;
-    border: 1.5px solid var(--bg);
-    border-radius: 50%;
-    box-shadow: 0 0 0 1px var(--line);
-  }
-  .key.place.drinking {
-    background: var(--water);
-  }
-  .key.place.springs {
-    border: 2px solid var(--water);
-    background: var(--bg);
-    box-shadow: none;
-  }
-  .key.place.shops {
-    background: var(--accent);
-  }
-  .key.place.beds {
-    background: var(--clim-high);
   }
   .map :global(.maplibregl-popup-content) {
     padding: 8px 10px;
