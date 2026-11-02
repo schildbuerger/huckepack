@@ -118,7 +118,11 @@
     const items = new Map([...list.children].map((li) => [(li as HTMLElement).dataset.slug!, li as HTMLElement]));
     const keep = new Set(shown.map((t) => t.slug));
     for (const [slug, li] of items) li.hidden = !keep.has(slug);
-    for (const t of shown) list.append(items.get(t.slug)!);
+    // cards beyond the first ones arrive a moment after the trails (/trails/cards.html): skip them until then
+    for (const t of shown) {
+      const li = items.get(t.slug);
+      if (li) list.append(li);
+    }
     list.parentElement!.hidden = shown.length === 0;
   });
 </script>
