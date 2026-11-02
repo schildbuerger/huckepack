@@ -83,7 +83,7 @@ Lago Pehoé catamaran as its way out, the first leg that isn't walked).
 | 6 | Continental Divide Trail | USA | 5,000 km | Completes the Triple Crown |
 | 7 | ~~Kungsleden~~ (added) | Sweden | 440 km | Well-known Nordic trail |
 | 8 | ~~West Highland Way~~ (added) | Scotland | 154 km | Popular, well documented |
-| 9 | Lycian Way | Turkey | 540 km | Well-known Mediterranean route |
+| 9 | Lycian Way (set aside 2026-11-02, #121) | Turkey | 760 km | Well-known Mediterranean route; no open stage data, and OSM's route measures 441 km |
 | 10 | Israel National Trail | Israel | 1,000 km | Popular desert-to-sea route |
 
 Others to consider: John Muir Trail, Colorado Trail, Arizona Trail, Bruce
