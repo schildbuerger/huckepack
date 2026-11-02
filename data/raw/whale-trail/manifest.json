@@ -1,0 +1,54 @@
+{
+  "climate-high.json": {
+    "retrieved": "2026-11-02T11:26:29+00:00",
+    "url": "https://openmeteo.s3.us-west-2.amazonaws.com/data/copernicus_era5_land+copernicus_era5?latitude=-34.4&longitude=20.6&elevation=600"
+  },
+  "climate-low.json": {
+    "retrieved": "2026-11-02T11:22:56+00:00",
+    "url": "https://openmeteo.s3.us-west-2.amazonaws.com/data/copernicus_era5_land+copernicus_era5?latitude=-34.5&longitude=20.7&elevation=0"
+  },
+  "elevation-glo30.json": {
+    "retrieved": "2026-11-02T11:16:41+00:00",
+    "url": "https://copernicus-dem-30m.s3.eu-central-1.amazonaws.com/Copernicus_DSM_COG_10_S35_00_E020_00_DEM/Copernicus_DSM_COG_10_S35_00_E020_00_DEM.tif"
+  },
+  "landcover.json": {
+    "retrieved": "2026-11-02T11:16:42+00:00",
+    "url": "https://esa-worldcover.s3.eu-central-1.amazonaws.com/v200/2021/map/ESA_WorldCover_10m_2021_v200_\u2026_Map.tif"
+  },
+  "osm-named-ways.json": {
+    "retrieved": "2026-11-02T11:06:28+00:00",
+    "url": "https://overpass-api.de/api/interpreter"
+  },
+  "osm-stage-1-main.json": {
+    "retrieved": "2026-11-01T21:21:36Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-2-main.json": {
+    "retrieved": "2026-11-01T21:21:36Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-3-main.json": {
+    "retrieved": "2026-11-01T21:21:36Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-4-main.json": {
+    "retrieved": "2026-11-01T21:21:36Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-5-main.json": {
+    "retrieved": "2026-11-01T21:21:36Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-water.json": {
+    "retrieved": "2026-11-01T21:21:36Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-way-tags.json": {
+    "retrieved": "2026-11-01T21:21:36Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osrm-access-cape-town-international-airport-cpt.json": {
+    "retrieved": "2026-11-02T11:26:30+00:00",
+    "url": "https://router.project-osrm.org/route/v1/driving/18.60211,-33.9718;20.53487,-34.37907?overview=false"
+  }
+}

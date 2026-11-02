@@ -142,6 +142,16 @@ class Relations(unittest.TestCase):
         path = routes.relation_path(rel["elements"], (8.0, LAT), (8.01, LAT))
         self.assertEqual(path, straight)
 
+    def test_path_joins_way_ends_close_together(self):
+        # two ways ending 50 m apart without a shared node: joined only with join_m
+        a = [(8.000, LAT), (8.005, LAT)]
+        b = [(8.0057, LAT), (8.010, LAT)]
+        rel = self.relation({1: a, 2: b})
+        with self.assertRaises(ValueError):
+            routes.relation_path(rel["elements"], (8.0, LAT), (8.01, LAT))
+        path = routes.relation_path(rel["elements"], (8.0, LAT), (8.01, LAT), join_m=100)
+        self.assertEqual(path, a + b)
+
 
 class Match(unittest.TestCase):
     def test_follows_the_way_near_the_track(self):

@@ -192,6 +192,9 @@ const trail = z
         // a relation with side branches (the W Trek's valleys): each stage is the shortest way over
         // its ways from where it begins to its `end`, instead of a piece of one chained line
         branched: z.boolean().default(false),
+        // no route relation in OSM (the Whale Trail): the name its ways carry, a regular expression for
+        // Overpass; each stage is the shortest way over them to its `end`
+        wayName: z.string().optional(),
       })
       .optional(),
 

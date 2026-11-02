@@ -75,6 +75,9 @@ Lago Pehoé catamaran as its way out, the first leg that isn't walked).
 And the **West Coast Trail** (#144, added on 2026-11-02, Vancouver Island, 75 km from Pachena Bay to
 Gordon River in 8 days: Parks Canada's day plans from the mid-point at Balaats'adt joined end to end,
 with the Nitinaht Narrows and Gordon River ferries as transfers).
+And the **Whale Trail** (#149, added on 2026-11-02, the first trail in Africa: De Hoop Nature
+Reserve, South Africa, 55.7 km from Potberg to Koppie Alleen in CapeNature's 5 days between its huts;
+OSM has no route relation, so the map line follows the ways named "Whale Trail", `route.wayName`).
 
 | # | Trail | Region | Length (approx.) | Why |
 |---|---|---|---|---|

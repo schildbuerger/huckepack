@@ -235,9 +235,14 @@ def relation_piece(elements, alternatives, start, a, b):
     return piece(full, a, b)
 
 
-def relation_path(elements, a, b):
+NAMED_JOIN_M = 250
+
+
+def relation_path(elements, a, b, join_m=0):
     """The shortest way from the point nearest a to the one nearest b over the relation's ways
-    (lon, lat). For a railway line, whose double tracks and junctions a chain can't follow."""
+    (lon, lat). For a railway line, whose double tracks and junctions a chain can't follow, and for
+    ways with side branches. join_m: way ends this close count as joined where OSM's ways don't share
+    a node."""
     ways = [[(p["lon"], p["lat"]) for p in e["geometry"]] for e in elements if e["type"] == "way"]
     proj = osm.Projection(a[1])
     graph = {}
@@ -246,6 +251,15 @@ def relation_path(elements, a, b):
             d = math.dist(proj.xy(*p), proj.xy(*q))
             graph.setdefault(p, []).append((q, d))
             graph.setdefault(q, []).append((p, d))
+    if join_m:
+        ends = list({p for g in ways for p in (g[0], g[-1])})
+        xy = [proj.xy(*p) for p in ends]
+        for i, p in enumerate(ends):
+            for j in range(i + 1, len(ends)):
+                d = math.dist(xy[i], xy[j])
+                if 0 < d <= join_m:
+                    graph[p].append((ends[j], d))
+                    graph[ends[j]].append((p, d))
     near = lambda t: min(graph, key=lambda p: math.dist(proj.xy(*p), proj.xy(*t)))
     source, target = near(a), near(b)
     dist, prev, todo = {source: 0.0}, {}, [(0.0, source)]
@@ -295,6 +309,15 @@ def build(slug, refresh=False):
     guides = {}
     relation = trail.get("route", {}).get("relation")
     start, end = trail["termini"]["start"], trail["termini"]["end"]
+    # no route relation in OSM (the Whale Trail): the ways that carry the trail's name, around its
+    # stage ends, from Overpass (the extracts' corridor keeps no names); they guide the matcher
+    named, named_ways = trail.get("route", {}).get("wayName"), []
+    if named:
+        pts = [(start["lon"], start["lat"]), (end["lon"], end["lat"])] + [(s["end"]["lon"], s["end"]["lat"]) for s in all_stages if s.get("end")]
+        box = (min(p[1] for p in pts) - 0.03, min(p[0] for p in pts) - 0.03, max(p[1] for p in pts) + 0.03, max(p[0] for p in pts) + 0.03)
+        query = f'[out:json][timeout:120];way["name"~"{named}"]({box[0]:.5f},{box[1]:.5f},{box[2]:.5f},{box[3]:.5f});out geom;'
+        data, _ = cache.get("osm-named-ways.json", osm.OVERPASS, lambda: json.dumps(osm.fetch(query), separators=(",", ":")).encode())
+        named_ways = [e for e in json.loads(data)["elements"] if e["type"] == "way"]
 
     @functools.cache
     def track_of_url(url):
@@ -332,6 +355,7 @@ def build(slug, refresh=False):
             detour_points += [(p["lon"], p["lat"]) for c in detours for leg in c.get("detour", []) for p in [leg["to"], *leg.get("via", [])]]
             relation_ids = ([relation] if relation else []) + [r for s in all_stages for r in stage_relations(s)]
             relation_ids += [leg["relation"] for c in detours for leg in c.get("detour", []) if leg.get("relation")]
+            tracks += [(p["lon"], p["lat"]) for w in named_ways for p in w["geometry"]]
             src = osm.source(slug, tracks + detour_points + (coarse if tracks else []), relation_ids, coarse, refresh)
         return src
 
@@ -374,25 +398,35 @@ def build(slug, refresh=False):
             begin = to
         return out
 
-    if not stages and relation:
+    def shortest_guides(elements, join_m=0):
+        # each stage the shortest way over the ways from where it begins (as in the loop below: the
+        # previous main stage's end, or a variant's after a variant) to its end
+        out, previous, last = {}, (start["lon"], start["lat"]), None
+        for s in stages:
+            begin = last[1] if s["kind"] != "main" and last and last[0] != "main" else previous
+            to = (s["end"]["lon"], s["end"]["lat"])
+            out[(s["number"], s["kind"])] = relation_path(elements, begin, to, join_m)
+            if s["kind"] == "main":
+                previous = to
+            last = (s["kind"], to)
+        return out
+
+    if not stages and named_ways:
+        # no relation: the ways named for the trail, each stage the shortest way over them; where the
+        # trail runs on unnamed paths or a beach between them (the Whale Trail's 139 and 189 m), their
+        # ends up to NAMED_JOIN_M apart count as joined: the guide only leads the matcher, which then
+        # follows the real paths and reports what it bridges
+        stages = [s for s in all_stages if s.get("end")]
+        guides = shortest_guides(named_ways, NAMED_JOIN_M)
+    elif not stages and relation:
         # no GPX: the OSM relation, split at the stage ends, guides the matcher
         stages = [s for s in all_stages if s.get("end")]
         data, _ = cache.get(
             "osm-relation.json", osm.source_label(), lambda: json.dumps(osm_src().relation(relation, children=False), separators=(",", ":")).encode()
         )
         if trail["route"].get("branched"):
-            # a relation with side branches (the W Trek's valleys), which no chain follows: each
-            # stage is the shortest way over its ways from where it begins (as in the loop below:
-            # the previous main stage's end, or a variant's after a variant) to its end
-            elements, guides = json.loads(data)["elements"], {}
-            previous, last = (start["lon"], start["lat"]), None
-            for s in stages:
-                begin = last[1] if s["kind"] != "main" and last and last[0] != "main" else previous
-                end = (s["end"]["lon"], s["end"]["lat"])
-                guides[(s["number"], s["kind"])] = relation_path(elements, begin, end)
-                if s["kind"] == "main":
-                    previous = end
-                last = (s["kind"], end)
+            # a relation with side branches (the W Trek's valleys), which no chain follows
+            guides = shortest_guides(json.loads(data)["elements"])
         else:
             line = relation_line(json.loads(data), trail["route"].get("alternatives", []), (start["lon"], start["lat"]))
             if len(stages) > 2 and nearest_index(line, stages[0]["end"]) > nearest_index(line, stages[-2]["end"]):

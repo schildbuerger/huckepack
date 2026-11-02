@@ -1,0 +1,171 @@
+name: Whale Trail
+added: 2026-11-02
+website: https://capenature.co.za/activities/the-whale-trail-de-hoop-nature-reserve
+managedBy:
+  - name: CapeNature, De Hoop Nature Reserve
+    url: https://capenature.co.za/activities/the-whale-trail-de-hoop-nature-reserve
+trailType: point-to-point
+continents: [Africa]
+countries: [ZA]
+regions: [Western Cape]
+protectedAreas:
+  - De Hoop Nature Reserve
+termini:
+  # Potberg hut, where the trail starts, and the Koppie Alleen parking, where the shuttle collects
+  # hikers (OSM)
+  start:
+    name: Potberg
+    lat: -34.37907
+    lon: 20.53487
+  end:
+    name: Koppie Alleen
+    lat: -34.47559
+    lon: 20.50595
+  source: osm
+waymarking:
+  text: Clearly marked; follow the white footprint and other directional signs
+  source: capenature
+length:
+  # "The approximate 55,7 km trail"
+  - km: 55.7
+    approx: true
+    source: capenature
+days:
+  min: 5
+  max: 5
+  source: capenature
+stages:
+  # CapeNature's information sheet: five days between its five huts, with distance, grade and time;
+  # days 3 and 5 give the hours of actual walking ("± 6 hours (4 hours of actual walking)"), which
+  # are recorded. Stage ends: the huts and the Koppie Alleen parking (OSM)
+  source: capenature
+  list:
+    - { number: "1", kind: main, from: Potberg, to: Cupidoskraal, km: 15.5, minutes: 480, end: { lat: -34.41953, lon: 20.6319 } }
+    - { number: "2", kind: main, from: Cupidoskraal, to: Noetsie, km: 15.2, minutes: 480, end: { lat: -34.45233, lon: 20.73312 } }
+    - { number: "3", kind: main, from: Noetsie, to: Hamerkop, km: 8.5, minutes: 240, end: { lat: -34.44875, lon: 20.66834 } }
+    - { number: "4", kind: main, from: Hamerkop, to: Vaalkrans, km: 10.5, minutes: 360, end: { lat: -34.46129, lon: 20.57019 } }
+    - { number: "5", kind: main, from: Vaalkrans, to: Koppie Alleen, km: 7, minutes: 120, end: { lat: -34.47559, lon: 20.50595 } }
+route:
+  # built by `python -m pipeline.all whale-trail`: OSM has no route relation for the trail, but maps
+  # its ways with the name "Whale Trail" (about 53 km): each stage the shortest way over them between
+  # the huts, matched to the OSM paths
+  source: osm
+  publishable: true
+  wayName: Whale Trail
+difficulty:
+  # no SAC grade is published; our estimate from CapeNature's own grades
+  estimated:
+    sac: T2
+    basis: >-
+      CapeNature grades day 1 "moderate to strenuous" (over the top of Potberg at 611 m, "the
+      toughest stretch"), days 2–4 "moderate" and day 5 "easy": marked paths through mountain fynbos
+      and over limestone hills, then beaches and rocky coast where freak waves and rip currents are
+      the danger. Mountain hiking on good paths (T2).
+    source: capenature
+sleeping:
+  # five Whale Trail huts, "each fully equipped hut sleeps up to 12 people"; luggage carried between
+  # them (porterage, extra cost)
+  types: [hut]
+  source: capenature
+waterPoints:
+  # "The Whale Trail utilises underground water, which is safe for drinking, except at Noetsie, where
+  # you will find a tap which is marked with a 'drinking water only' sign": every hut has drinking water
+  source: capenature
+  list:
+    - { name: Potberg hut, lat: -34.37907, lon: 20.53487 }
+    - { name: Cupidoskraal hut, lat: -34.41953, lon: 20.6319 }
+    - { name: Noetsie hut (the tap marked "drinking water only"), lat: -34.45233, lon: 20.73312 }
+    - { name: Hamerkop hut, lat: -34.44875, lon: 20.66834 }
+    - { name: Vaalkrans hut, lat: -34.46129, lon: 20.57019 }
+permit:
+  # "Booking confirmation: this is your entry permit"
+  required: true
+  name: Whale Trail booking
+  issuedBy: CapeNature
+  how: >-
+    Book the trail with CapeNature; the booking confirmation is the entry permit. Hikers arrive at
+    Potberg the afternoon before and the briefing there is compulsory for all.
+  url: https://capenature.co.za/activities/the-whale-trail-de-hoop-nature-reserve
+  source: capenature
+access:
+  # Cape Town's international airport, about three hours' drive away; no railway or bus to the reserve.
+  # Coordinates from OSM; distances by pipeline/access.py
+  - kind: airport
+    name: Cape Town International Airport (CPT)
+    lat: -33.9718
+    lon: 18.60211
+    source: osm
+tags: [coast, fynbos, whales, huts, slackpacking]
+notes:
+  - >-
+    The trail walks east over Potberg (611 m) to the coast at Noetsie, then west along the coast to
+    Koppie Alleen, where a shuttle takes hikers back to Potberg (45 minutes). Luggage can be carried
+    from hut to hut (porterage, extra cost), so many hikers carry only a day pack. Southern right
+    whales are in the bay from June to November.
+  - >-
+    Season: CapeNature names none; the trail is walked all year. None recorded. Wild camping: no
+    source found; hikers stay in the huts, and fires in the veld are prohibited. Tree line: none
+    recorded, the trail stays below 611 m.
+  - >-
+    Water: besides the huts' taps, "the only water point on the trail is approximately 10.5 km from
+    the 1st hut"; walk with at least 2 litres a day. Children under 8 are not allowed.
+  - >-
+    Map line: OSM has no route relation, but about 53 km of ways named "Whale Trail" in three pieces
+    (139 and 189 m apart); each stage is the shortest way over them between the huts, matched to the
+    OSM paths. 53.1 km against the stated 55.7 km (5 %). Noetsie – Hamerkop is 7.1 against 8.5 km
+    ("a lovely sandy beach stretching all the way to Hamerkop", where no single line gives the walked
+    distance); Vaalkrans – Koppie Alleen is 86 % matched (the coast at the Hippo Pools, which OSM maps
+    no path along) and ends 460 m below the Koppie Alleen parking, where the named ways end.
+  - >-
+    Supply: no shops along the trail (all inside the reserve); hikers bring all their food, with the
+    porterage carrying it between huts.
+  - >-
+    Data check (2026-11-02): no independent source repeats the stages (SA Hikes copies CapeNature's
+    figures word for word). SA Hikes' GPS track: 51.06 km against the stated 55.7 km (8 %), 1,169 m
+    up and 1,327 m down against the terrain model's 1,650 m up (41 %, in `dataCheck`: the model reads
+    the dune and fynbos surface and the track's own smoothing differs; the page marks the estimate
+    ≈). Highest point: 603 m on the terrain model against Potberg's 611 m (CapeNature). Days: 5 both.
+dataCheck:
+  # working rule 2: SA Hikes' GPS track (its stage figures are CapeNature's); the OSM map line
+  date: 2026-11-02
+  against: [sahikes]
+  deviations:
+    - { figure: "Ascent", ours: "≈ 1,650 m (terrain model)", theirs: "1,169 m (GPS track)", source: sahikes }
+    - { figure: "Stage 3 length", ours: "8.5 km", theirs: "7.1 km (map line, along the beach)", source: osm }
+sources:
+  - id: capenature
+    title: "CapeNature: The Whale Trail (De Hoop Nature Reserve), information sheet (stages, huts, water, rules, booking)"
+    url: https://www.capenature.co.za/uploads/files/What-to-do/WhaleTrail-Information-Sheet.pdf
+    licence: © CapeNature (facts only)
+    retrieved: 2026-11-02
+  - id: sahikes
+    title: "SA Hikes: The Whale Trail (a GPS track's length, ascent and descent; data check)"
+    url: https://sahikes.com/southern-africa-hikes/western-cape/de-hoop-nature-reserve/the-whale-trail
+    licence: © SA Hikes (facts only)
+    retrieved: 2026-11-02
+    checkOnly: true
+  - id: osm
+    title: "OpenStreetMap contributors: the ways named Whale Trail, the huts, paths, water and places to sleep along the way (Geofabrik extract), travel hubs"
+    url: https://www.openstreetmap.org/
+    licence: ODbL 1.0
+    retrieved: 2026-11-02
+  - id: copdem
+    title: "Copernicus DEM GLO-30 (30 m terrain model), tiles from AWS Open Data"
+    url: https://registry.opendata.aws/copernicus-dem/
+    licence: "Copernicus WorldDEM-30 licence, free; produced using Copernicus WorldDEM-30 © DLR e.V. 2010-2014 and © Airbus Defence and Space GmbH 2014-2018 provided under COPERNICUS by the European Union and ESA; all rights reserved"
+    retrieved: 2026-11-02
+  - id: worldcover
+    title: "ESA WorldCover 2021: 10 m land cover (via AWS Open Data)"
+    url: https://esa-worldcover.org/
+    licence: "CC BY 4.0; © ESA WorldCover project 2021 / Contains modified Copernicus Sentinel data (2021) processed by ESA WorldCover consortium"
+    retrieved: 2026-11-02
+  - id: era5
+    title: "Open-Meteo open data on AWS: ERA5-Land temperature and ERA5 precipitation, snow and wind, daily 1995–2024 (reanalysis)"
+    url: https://github.com/open-meteo/open-data
+    licence: CC BY 4.0 (Open-Meteo); contains modified Copernicus Climate Change Service information
+    retrieved: 2026-11-02
+  - id: osrm
+    title: "OSRM: road routes on OpenStreetMap data (router.project-osrm.org)"
+    url: https://project-osrm.org/
+    licence: Route data © OpenStreetMap contributors (ODbL)
+    retrieved: 2026-11-02

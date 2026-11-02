@@ -490,6 +490,21 @@ export const SKYLINES: Record<string, Skyline> = {
     ],
     front: [{ d: water(40, 540, 298), c: "#5b7f9a" }],
   },
+  "whale-trail": {
+    view: "De Hoop: Potberg's fynbos ridge, the white limestone dunes of the coast and a southern right whale's tail in the Indian Ocean",
+    ridge: "#7d8a52",
+    ground: "#e6dcc0",
+    shapes: [
+      { d: hills([[0, G], [120, 236], [260, 196], [360, 186], [460, 204], [600, 240], [760, 270], [900, G]]), c: "#8a9070" },
+      { d: hills([[620, G], [760, 286], [900, 270], [1040, 276], [1180, 262], [1320, 278], [1460, 284], [1600, G]]), c: "#f1ece0" },
+      { d: hills([[200, G], [400, 272], [620, 262], [860, 276], [1100, 286], [1300, G]]), c: "#a3a46c" },
+    ],
+    front: [
+      { d: water(1000, 1600, 294), c: SEA },
+      // the tail of a southern right whale, rising from the water
+      { d: "M1356,294L1360,280L1346,270L1352,266L1366,276L1376,262L1382,266L1370,282L1372,294Z", c: "#2f3a45" },
+    ],
+  },
   westweg: {
     view: "The Black Forest's heights: the Hornisgrinde's long ridge, the Feldberg with its tower, the bald dome of the Belchen",
     ridge: "#2f4a2c",
