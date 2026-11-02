@@ -7,16 +7,15 @@ before building it.
 
 ## Trails
 
-In progress: **Path of Sacred Forests** (Sentiero delle Foreste Sacre, Italy,
-7 stages, about 100 km), the first record, built from the national park's
+The first record: **Path of Sacred Forests** (Sentiero delle Foreste Sacre, Italy,
+7 stages, about 100 km), built from the national park's
 stage pages (`data/trails/path-of-sacred-forests.yaml`).
 
-Also in progress: **Forststeig Elbe Sandstone** (Forststeig Elbsandstein, Saxony, Germany, and Czechia, 7 stages,
-105 km), the second record and a test of the whole setup on a new trail, built from
+The second: **Forststeig Elbe Sandstone** (Forststeig Elbsandstein, Saxony, Germany, and Czechia, 7 stages,
+105 km), a test of the whole setup on a new trail, built from
 Sachsenforst's route overview and GPX tracks (`data/trails/forststeig-elbe-sandstone.yaml`).
 
-Also in progress: **Laugavegur** (Iceland, Landmannalaugar – Þórsmörk, 4 stages, 54 km), the third
-record, built from Ferðafélag Íslands' trail and hut pages; no official GPX, so the map line follows
+The third: **Laugavegur** (Iceland, Landmannalaugar – Þórsmörk, 4 stages, 54 km), built from Ferðafélag Íslands' trail and hut pages; no official GPX, so the map line follows
 the OSM hiking relation (`data/trails/laugavegur.yaml`).
 
 Added on 2026-10-29: **Alpe-Adria-Trail** (Austria, Slovenia, Italy, 37 main stages and the
@@ -63,13 +62,16 @@ maps as under construction).
 And the **Országos Kéktúra** (#64, 1,183 km from Írott-kő to Hollóháza in 59 days: MTSZ's
 recommended day stages for sections 1–17, our grouping of the official legs between stamping points
 for 18–27, every figure summed from the official table).
+And the **Camino Francés** (#122, added on 2026-11-02, 769 km from Saint-Jean-Pied-de-Port to
+Santiago in 36 days: Wikipedia's stages, the Xunta de Galicia's for the six Galician days from Sarria;
+the map line follows the OSM section relations).
 
 | # | Trail | Region | Length (approx.) | Why |
 |---|---|---|---|---|
 | 1 | Pacific Crest Trail | USA | 4,265 km | Most-hiked long trail; public US agency data; completion lists |
 | 2 | Appalachian Trail | USA | 3,500 km | Most-hiked long trail; NPS data |
 | 3 | Te Araroa | New Zealand | 3,000 km | Popular abroad; DOC open data |
-| 4 | Camino de Santiago (Camino Francés) | Spain | 780 km | Most-walked long route; pilgrim office statistics |
+| 4 | ~~Camino de Santiago (Camino Francés)~~ (added) | Spain | 780 km | Most-walked long route; pilgrim office statistics |
 | 5 | GR 20 | Corsica, France | 180 km | Best-known European thru-hike |
 | 6 | Continental Divide Trail | USA | 5,000 km | Completes the Triple Crown |
 | 7 | ~~Kungsleden~~ (added) | Sweden | 440 km | Well-known Nordic trail |

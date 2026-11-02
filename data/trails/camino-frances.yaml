@@ -1,0 +1,204 @@
+name: Camino Francés
+added: 2026-11-02
+aliases: [French Way, Camino de Santiago, Way of St. James, Camiño Francés]
+website: https://www.caminodesantiago.gal/es/planifica/las-rutas/camino-frances
+wikidata: Q1029584
+managedBy:
+  # the Xunta de Galicia delimits the Galician Way officially ("están delimitados oficialmente por
+  # la Xunta de Galicia") and runs the public albergue network there; the regions it crosses before
+  # Galicia keep their own parts
+  - name: Xunta de Galicia
+    url: https://www.caminodesantiago.gal/
+trailType: point-to-point
+continents: [Europe]
+countries: [FR, ES]
+regions: [Nouvelle-Aquitaine, Navarre, La Rioja, Castile and León, Galicia]
+termini:
+  # Saint-Jean-Pied-de-Port, where English Wikipedia's itinerary starts, and the cathedral of
+  # Santiago (OSM)
+  start:
+    name: Saint-Jean-Pied-de-Port
+    lat: 43.16295
+    lon: -1.23805
+  end:
+    name: Santiago de Compostela
+    lat: 42.8804
+    lon: -8.54463
+  source: osm
+length:
+  # English Wikipedia's itinerary from Saint-Jean-Pied-de-Port (its stage table adds up to 769 km)
+  - km: 769
+    source: wikipedia
+stages:
+  # no official stage list exists for the whole way ("there is no set itinerary for this route",
+  # Wikipedia): English Wikipedia's example itinerary to Sarria (working decision 2026-10-31:
+  # Wikipedia's stage list where no official one exists), then the Xunta's official Galician stages
+  # from Sarria to Santiago, which differ from Wikipedia's by up to 18 % (notes). Each stage follows
+  # its section of the OSM superroute Camino Francés (2163573), cut at the stage town (OSM)
+  source: wikipedia
+  list:
+    - { number: "1", kind: main, from: Saint-Jean-Pied-de-Port, to: Roncesvalles, km: 25, relation: 2163569, end: { lat: 43.00917, lon: -1.32017 } }
+    - { number: "2", kind: main, from: Roncesvalles, to: Zubiri, km: 21.5, relation: 2163569, end: { lat: 42.93058, lon: -1.50432 } }
+    - { number: "3", kind: main, from: Zubiri, to: Pamplona, km: 22, relation: 2163569, end: { lat: 42.8182, lon: -1.64401 } }
+    - { number: "4", kind: main, from: Pamplona, to: Puente la Reina, km: 23.5, relation: 2163569, end: { lat: 42.67171, lon: -1.81553 } }
+    - { number: "5", kind: main, from: Puente la Reina, to: Estella, km: 22, relation: 2163569, end: { lat: 42.67209, lon: -2.03148 } }
+    - { number: "6", kind: main, from: Estella, to: Los Arcos, km: 22, relation: 2163569, end: { lat: 42.56974, lon: -2.19231 } }
+    - { number: "7", kind: main, from: Los Arcos, to: Logroño, km: 28, relation: 2163569, end: { lat: 42.45817, lon: -2.44992 } }
+    - { number: "8", kind: main, from: Logroño, to: Nájera, km: 29, relation: [2163569, 2163558], end: { lat: 42.41674, lon: -2.73369 } }
+    - { number: "9", kind: main, from: Nájera, to: Santo Domingo de la Calzada, km: 21, relation: 2163558, end: { lat: 42.44067, lon: -2.95364 } }
+    - { number: "10", kind: main, from: Santo Domingo de la Calzada, to: Belorado, km: 23, relation: 2163558, end: { lat: 42.42671, lon: -3.1965 } }
+    - { number: "11", kind: main, from: Belorado, to: San Juan de Ortega, km: 24, relation: 2163558, end: { lat: 42.37527, lon: -3.43625 } }
+    - { number: "12", kind: main, from: San Juan de Ortega, to: Burgos, km: 28, relation: 2163558, end: { lat: 42.34073, lon: -3.70456 } }
+    - { number: "13", kind: main, from: Burgos, to: Hornillos del Camino, km: 20, relation: 2163560, end: { lat: 42.33854, lon: -3.92595 } }
+    - { number: "14", kind: main, from: Hornillos del Camino, to: Castrojeriz, km: 20, relation: 2163560, end: { lat: 42.28837, lon: -4.14064 } }
+    - { number: "15", kind: main, from: Castrojeriz, to: Frómista, km: 23, relation: 2163560, end: { lat: 42.26769, lon: -4.4055 } }
+    - { number: "16", kind: main, from: Frómista, to: Carrión de los Condes, km: 19, relation: 2163560, end: { lat: 42.33854, lon: -4.60171 } }
+    - { number: "17", kind: main, from: Carrión de los Condes, to: Calzadilla de la Cueza, km: 17, relation: 2163560, end: { lat: 42.32889, lon: -4.80395 } }
+    - { number: "18", kind: main, from: Calzadilla de la Cueza, to: Sahagún, km: 22, relation: 2163560, end: { lat: 42.3719, lon: -5.03131 } }
+    - { number: "19", kind: main, from: Sahagún, to: El Burgo Ranero, km: 19.5, relation: 2163560, end: { lat: 42.42229, lon: -5.21867 } }
+    - { number: "20", kind: main, from: El Burgo Ranero, to: Mansilla de las Mulas, km: 19, relation: 2163560, end: { lat: 42.4991, lon: -5.41692 } }
+    - { number: "21", kind: main, from: Mansilla de las Mulas, to: León, km: 19, relation: [2163560, 2163561], end: { lat: 42.59946, lon: -5.56668 } }
+    - { number: "22", kind: main, from: León, to: Villadangos del Páramo, km: 24, relation: 2163561, end: { lat: 42.51729, lon: -5.7668 } }
+    - { number: "23", kind: main, from: Villadangos del Páramo, to: Astorga, km: 28, relation: 2163561, end: { lat: 42.4554, lon: -6.05292 } }
+    - { number: "24", kind: main, from: Astorga, to: Rabanal del Camino, km: 20, relation: 2163561, end: { lat: 42.48169, lon: -6.28427 } }
+    - { number: "25", kind: main, from: Rabanal del Camino, to: El Acebo, km: 16.5, relation: 2163561, end: { lat: 42.49891, lon: -6.45703 } }
+    - { number: "26", kind: main, from: El Acebo, to: Ponferrada, km: 16, relation: 2163561, end: { lat: 42.54541, lon: -6.59387 } }
+    - { number: "27", kind: main, from: Ponferrada, to: Villafranca del Bierzo, km: 23, relation: [2163561, 2163565], end: { lat: 42.60558, lon: -6.81117 } }
+    - { number: "28", kind: main, from: Villafranca del Bierzo, to: La Faba, km: 25, relation: 2163565, end: { lat: 42.68527, lon: -7.00962 } }
+    - { number: "29", kind: main, from: La Faba, to: Fillobal, km: 24, relation: 2163565, end: { lat: 42.74404, lon: -7.20468 } }
+    - { number: "30", kind: main, from: Fillobal, to: Sarria, km: 17.5, relation: 2163565, end: { lat: 42.77744, lon: -7.41435 } }
+    - { number: "31", kind: main, from: Sarria, to: Portomarín, km: 22, relation: 2163565, source: xunta, end: { lat: 42.80816, lon: -7.61561 } }
+    - { number: "32", kind: main, from: Portomarín, to: Palas de Rei, km: 25.1, relation: 2163565, source: xunta, end: { lat: 42.87391, lon: -7.8698 } }
+    - { number: "33", kind: main, from: Palas de Rei, to: Melide, km: 14.6, relation: [2163565, 2163559], source: xunta, end: { lat: 42.91457, lon: -8.01361 } }
+    - { number: "34", kind: main, from: Melide, to: Arzúa, km: 14.5, relation: 2163559, source: xunta, end: { lat: 42.927, lon: -8.16414 } }
+    - { number: "35", kind: main, from: Arzúa, to: O Pedrouzo, km: 18.4, relation: 2163559, source: xunta, end: { lat: 42.90468, lon: -8.36242 } }
+    - { number: "36", kind: main, from: O Pedrouzo, to: Santiago de Compostela, km: 20.2, relation: 2163559, source: xunta, end: { lat: 42.8804, lon: -8.54463 } }
+route:
+  # built by `python -m pipeline.all camino-frances`: OSM ways matched to the superroute's sections
+  # between the stage ends
+  source: osm
+  publishable: true
+difficulty:
+  estimated:
+    sac: T1
+    basis: >-
+      The Xunta's guide plans the way at a normal walking pace of 4 km an hour; Wikipedia's itinerary
+      runs through villages and towns on paths, tracks and lanes, its highest point about 1,515 m
+      near Manjarín in the Montes de León. Easy walking without alpine terrain (T1).
+    source: wikipedia
+sleeping:
+  # "albergues, refugios, hostales, casas rurales, hoteles" (the Xunta's guide); in Galicia an
+  # albergue every 10 to 15 km
+  types: [hostel, guesthouse]
+  source: xunta-guide
+access:
+  # trains to Bayonne, then the line to Saint-Jean-Pied-de-Port; Biarritz airport. Coordinates from
+  # OSM; distances by pipeline/access.py
+  - kind: station
+    name: Gare de Bayonne
+    lat: 43.49616
+    lon: -1.46973
+    source: osm
+  - kind: airport
+    name: Biarritz Pays Basque Airport (BIQ)
+    lat: 43.46909
+    lon: -1.52287
+    source: osm
+tags: [pilgrimage, camino-de-santiago, albergues, unesco]
+notes:
+  - >-
+    Stages: no official list covers the whole way. Stages 1–30 are English Wikipedia's example
+    itinerary from Saint-Jean-Pied-de-Port to Sarria; 31–36 the Xunta's official stages from Sarria
+    to Santiago (caminodesantiago.gal), which split Wikipedia's Palas de Rei – Arzúa at Melide.
+    Against Wikipedia's Galician legs: Sarria – Portomarín 22 against 21 km (5 %), Portomarín – Palas
+    de Rei 25.1 against 24.5 (2 %), Palas de Rei – Arzúa 29.1 against 25.5 (14 %), Arzúa – O Pedrouzo
+    18.4 against 20 (8 %), O Pedrouzo – Santiago 20.2 against 16.5 (22 %); the official figures stand.
+  - >-
+    Length: Wikipedia's table gives 769 km from Saint-Jean-Pied-de-Port, its text 780 km from
+    Roncesvalles (the article doesn't reconcile them); the Xunta's guide gives 775 km from
+    Roncesvalles ("los 775 km del Camino Francés (Roncesvalles-Santiago)") and at least 31 days for
+    them. Our stages add up to 776 km from Saint-Jean.
+  - >-
+    Days: no source gives a range (the Xunta: "al menos, 31 días" from Roncesvalles; Wikipedia: "at
+    least four weeks"), so the record has none. Season: no official source names one (the way is
+    walked all year; the Xunta's albergues stay open); none recorded. Wild camping and waymarking:
+    no official source found; not recorded.
+  - >-
+    Tree line: none recorded. The way's highest point is about 1,515 m near Manjarín (Wikipedia), on
+    the open heath of the Montes de León, where no regional tree-line figure applies.
+  - >-
+    Data check (2026-11-02): every stage against Gronze's 33 stages (a pilgrim guide), by stage where
+    both end in the same town, else between shared towns: all within 10 % (largest: San Juan de
+    Ortega – Burgos 28 against 25.8 km, León – Astorga 52 against 48.3 km). Against the OSM map line
+    (760.5 km, 1 % under the stated 769 km) three of Wikipedia's stage splits are more than 10 % off
+    (in `dataCheck`): Sahagún – El Burgo Ranero 19.5 against 17.3 km, León – Villadangos del Páramo
+    24 against 20.5 km (Gronze's León – San Martín del Camino, 24.6 km, puts Villadangos about 20 km
+    from León) and Fillobal – Sarria 17.5 against 21.2 km (by San Xil; Wikipedia's figure matches
+    Triacastela – Sarria); between shared towns the sums agree (Carrión – Mansilla 77.5 against 76.4
+    km on the map and 75.8 km at Gronze, Villafranca – Sarria 66.5 against 66.6 and 66.2 km). The
+    stated figures stand. Total: 769 km against the Xunta's 775 km from Roncesvalles plus about
+    25 km from Saint-Jean (4 %); days: 36 against Gronze's 33 (9 %). Highest point: 1,510 m on the
+    terrain model against Wikipedia's about 1,515 m.
+dataCheck:
+  # working rule 2: Gronze's stages; the OSM map line for the stage splits; the Xunta for the total
+  date: 2026-11-02
+  against: [gronze, xunta-guide]
+  deviations:
+    - { figure: "Stage 19 length", ours: "19.5 km", theirs: "17.3 km (map line)", source: osm }
+    - { figure: "Stage 22 length", ours: "24 km", theirs: "20.5 km (map line)", source: osm }
+    - { figure: "Stage 30 length", ours: "17.5 km", theirs: "21.2 km (map line, by San Xil)", source: osm }
+    - { figure: "Palas de Rei – Arzúa (stages 33–34)", ours: "29.1 km", theirs: "25.5 km", source: wikipedia }
+    - { figure: "Stage 36 length", ours: "20.2 km", theirs: "16.5 km", source: wikipedia }
+sources:
+  - id: xunta
+    title: "Xunta de Galicia, Camino de Santiago official portal: the Camino Francés in Galicia and its stages with distances"
+    url: https://www.caminodesantiago.gal/es/planifica/las-rutas/camino-frances
+    licence: © Xunta de Galicia (facts only)
+    retrieved: 2026-11-02
+  - id: xunta-guide
+    title: "Xunta de Galicia (Turgalicia): Guía de consejos del Camino de Santiago (length, days, accommodation)"
+    url: https://www.caminodesantiago.gal/documents/17639/121503/GUIADE%7E1.PDF
+    licence: © Xunta de Galicia (facts only)
+    retrieved: 2026-11-02
+  - id: wikipedia
+    title: "Wikipedia (en): French Way (example itinerary with stage distances; highest point)"
+    url: https://en.wikipedia.org/wiki/French_Way
+    licence: CC BY-SA 4.0
+    retrieved: 2026-11-02
+  - id: gronze
+    title: "Gronze.com: Camino Francés, its 33 stages with distances (pilgrim guide; data check)"
+    url: https://www.gronze.com/camino-frances
+    licence: © Gronze (facts only)
+    retrieved: 2026-11-02
+    checkOnly: true
+  - id: wikimedia
+    title: "Wikimedia: page views of the trail's Wikipedia articles in every language, by people, over twelve months (Wikidata sitelinks, pageview API)"
+    url: https://wikimedia.org/api/rest_v1/
+    licence: CC0 1.0 (pageview data); Wikidata CC0
+    retrieved: 2026-11-02
+    checkOnly: true
+  - id: osm
+    title: "OpenStreetMap contributors: the superroute Camino Francés (2163573) and its sections, paths, water, shops and places to sleep along the way (Geofabrik extracts), stage towns, travel hubs"
+    url: https://www.openstreetmap.org/relation/2163573
+    licence: ODbL 1.0
+    retrieved: 2026-11-02
+  - id: copdem
+    title: "Copernicus DEM GLO-30 (30 m terrain model), tiles from AWS Open Data"
+    url: https://registry.opendata.aws/copernicus-dem/
+    licence: "Copernicus WorldDEM-30 licence, free; produced using Copernicus WorldDEM-30 © DLR e.V. 2010-2014 and © Airbus Defence and Space GmbH 2014-2018 provided under COPERNICUS by the European Union and ESA; all rights reserved"
+    retrieved: 2026-11-02
+  - id: worldcover
+    title: "ESA WorldCover 2021: 10 m land cover (via AWS Open Data)"
+    url: https://esa-worldcover.org/
+    licence: "CC BY 4.0; © ESA WorldCover project 2021 / Contains modified Copernicus Sentinel data (2021) processed by ESA WorldCover consortium"
+    retrieved: 2026-11-02
+  - id: era5
+    title: "Open-Meteo open data on AWS: ERA5-Land temperature and ERA5 precipitation, snow and wind, daily 1995–2024 (reanalysis)"
+    url: https://github.com/open-meteo/open-data
+    licence: CC BY 4.0 (Open-Meteo); contains modified Copernicus Climate Change Service information
+    retrieved: 2026-11-02
+  - id: osrm
+    title: "OSRM: road routes on OpenStreetMap data (router.project-osrm.org)"
+    url: https://project-osrm.org/
+    licence: Route data © OpenStreetMap contributors (ODbL)
+    retrieved: 2026-11-02

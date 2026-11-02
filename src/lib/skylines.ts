@@ -66,6 +66,9 @@ const statue = (x: number, y: number) =>
 // a chapel or sanctuary: a hall with a bell tower (its roofs drawn apart)
 const sanctuary = (x: number, y: number) => `M${x - 34},${y}V${y - 14}H${x + 20}V${y}Z M${x + 20},${y}V${y - 30}H${x + 30}V${y}Z`;
 const sanctuaryRoofs = (x: number, y: number) => `M${x - 36},${y - 14}L${x - 7},${y - 24}L${x + 22},${y - 14}Z M${x + 18},${y - 30}L${x + 25},${y - 38}L${x + 32},${y - 30}Z`;
+// a cathedral front: a nave between two towers with pointed tops
+const cathedral = (x: number, y: number) =>
+  `M${x - 26},${y}V${y - 22}H${x + 26}V${y}Z M${x - 34},${y}V${y - 52}L${x - 27},${y - 66}L${x - 20},${y - 52}V${y}Z M${x + 20},${y}V${y - 52}L${x + 27},${y - 66}L${x + 34},${y - 52}V${y}Z M${x - 6},${y - 22}L${x},${y - 34}L${x + 6},${y - 22}Z`;
 // sandstone pillars, each [x, top]
 const pillars = (cols: P[], w = 14) => cols.map(([x, top]) => `M${x - w / 2},${G}L${x - w / 2 + 2},${top + 4}L${x},${top}L${x + w / 2 - 2},${top + 5}L${x + w / 2},${G}Z`).join(" ");
 // a waterfall: a thin white thread down a cliff
@@ -132,6 +135,17 @@ export const SKYLINES: Record<string, Skyline> = {
       { d: lighthouseBand(1240, 247, 44), c: "#2a2a2a" },
     ],
     front: [{ d: water(0, 1600, 290), c: SEA }],
+  },
+  "camino-frances": {
+    view: "From the green Pyrenees over the golden Meseta and the hills of the Bierzo and O Cebreiro to the twin towers of Santiago's cathedral",
+    ridge: "#8a9a4a",
+    ground: "#d8c27a",
+    shapes: [
+      { d: range([[0, G], [60, 250], [130, 214], [190, 192], [250, 206], [320, 230], [400, 258], [480, G]]), c: "#6f8a6a" },
+      { d: hills([[1050, G], [1150, 256], [1250, 236], [1330, 246], [1420, 262], [1500, G]]), c: "#7a8f6a" },
+      { d: hills([[300, G], [500, 286], [800, 282], [1100, 286], [1200, G]]), c: "#d8c27a" },
+      { d: cathedral(1520, 300), c: "#c9b48a" },
+    ],
   },
   "coast-to-coast": {
     view: "From the Irish Sea over the Lake District fells and the Pennines to the North York Moors and the North Sea",

@@ -172,8 +172,10 @@ def relation_line(relation, alternatives, start, from_open_end=False):
         # middle can lie nearer `start` where the route bends (the Rothaarsteig's stages 6–8)
         tips = [xy(g[0]) for g in wanted] + [xy(g[-1]) for g in wanted]
         loose = [(g, p) for g in wanted for p in (xy(g[0]), xy(g[-1])) if sum(math.dist(p, q) <= 30 for q in tips) == 1]
-        first, s = min(loose, key=lambda t: math.dist(t[1], s))
-    else:
+        # no loose end where branches leave both ends (the Camino Francés' first two sections):
+        # then the chain starts as without from_open_end
+        first, s = min(loose, key=lambda t: math.dist(t[1], s)) if loose else (None, s)
+    if not from_open_end or first is None:
         first = min(wanted, key=lambda g: min(math.dist(xy(g[0]), s), math.dist(xy(g[-1]), s)))
     wanted.remove(first)
     line = first if math.dist(xy(first[0]), s) <= math.dist(xy(first[-1]), s) else first[::-1]
@@ -224,7 +226,11 @@ def relation_piece(elements, alternatives, start, a, b):
     the relation's open end instead."""
     full = relation_line({"elements": elements}, alternatives, start)
     tip = relation_line({"elements": elements}, alternatives, start, True)
-    if line_km(tip) > line_km(full) + 1:
+    # only a chain that stopped clearly short gives way (the Rothaarsteig's stopped after a few ways):
+    # where two branches leave the start together (the Camino Francés' Napoleon and Valcarlos routes
+    # at Saint-Jean), that end isn't "open" and the open-end chain may begin at the far end, barely
+    # longer than the full one
+    if line_km(tip) > line_km(full) * 1.05 + 1:
         full = tip
     return piece(full, a, b)
 

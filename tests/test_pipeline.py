@@ -124,6 +124,16 @@ class Relations(unittest.TestCase):
         self.assertEqual(routes.relation_line(rel, [], (8.0, LAT))[-1], (8.002, LAT))
         self.assertEqual(routes.relation_line(rel, [2], (8.0, LAT))[-1], (8.004, LAT))
 
+    def test_two_branches_at_the_start_keep_the_chain_from_the_start(self):
+        # the Camino Francés at Saint-Jean: two routes leave the start and join, so the start
+        # isn't a loose end and the open-end chain begins at the far end, only a branch longer
+        a = [(8.000, LAT), (8.030, LAT)]
+        main = [(8.030, LAT), (8.200, LAT), (8.500, LAT)]
+        b = [(8.000, LAT), (8.015, LAT + 0.003), (8.030, LAT)]
+        rel = self.relation({1: a, 2: main, 3: b})
+        line = routes.relation_piece(rel["elements"], [], (8.0, LAT), (8.0, LAT), (8.2, LAT))
+        self.assertEqual(line, [(8.000, LAT), (8.030, LAT), (8.200, LAT)])
+
     def test_railway_path_takes_the_shorter_track(self):
         # two parallel tracks between the stations, joined at both ends; one makes a detour
         straight = [(8.000, LAT), (8.005, LAT), (8.010, LAT)]
