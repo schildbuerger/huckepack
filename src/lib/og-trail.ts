@@ -9,7 +9,10 @@ import type { OgTrail } from "./og-image";
 export function ogTrail(id: string, data: CollectionEntry<"trails">["data"], derived?: CollectionEntry<"derived">["data"]): OgTrail {
   const s = searchSummary(id, data, derived);
   const levels = [s.terrainLevel, s.effortLevel, climateLevel(s, [])].filter((x) => x !== null) as number[];
+  const elevation = derived?.elevation;
   return {
+    slug: id,
+    profile: elevation ? { points: elevation.points as [number, number][], routeKm: elevation.routeKm } : null,
     name: s.name,
     countries: s.countries,
     lengthKm: s.lengthKm,

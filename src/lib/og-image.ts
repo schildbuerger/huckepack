@@ -1,11 +1,14 @@
 // A trail's link-preview image (Open Graph, 1200 × 630; review of 2026-10-30, #16; of three
 // previews, approach C: the trail page's key-figure strip with the season months and the ground
-// underfoot), drawn as SVG and rasterised to PNG with sharp at build time (src/pages/og/[slug].png.ts). The text is drawn as outlines from Source Serif 4
+// underfoot; since issue #146, 2026-11-02, the trail's skyline in place of that last row where it has
+// one), drawn as SVG and rasterised to PNG with sharp at build time (src/pages/og/[slug].png.ts). The text is drawn as outlines from Source Serif 4
 // (SIL Open Font License, @fontsource/source-serif-4), so the image looks the same on any machine
 // that builds it; the site's own serif stack is system fonts, which a build server doesn't have.
 import { readFileSync } from "node:fs";
 import opentype from "opentype.js";
 import sharp from "sharp";
+import { SKYLINES, SKY_W, SKY_H, profileRidge } from "./skylines";
+import { SKY } from "./sky";
 
 export const OG = { width: 1200, height: 630 };
 
@@ -24,6 +27,8 @@ const C = {
 };
 
 export interface OgTrail {
+  slug: string;
+  profile: { points: [number, number][]; routeKm: number } | null; // the elevation profile, for the skyline
   name: string;
   countries: string[];
   lengthKm: number | null;
@@ -163,8 +168,49 @@ function content(t: OgTrail) {
   return out.join("");
 }
 
+// the trail's skyline (src/lib/skylines.ts, the trail page's head) with its own profile as the nearest
+// ridge, scaled to `width` and standing on y `foot`, a strip of its
+// ground under it, `ground` high
+function skyline(t: OgTrail, width: number, foot: number, ground: number) {
+  const sky = SKYLINES[t.slug];
+  if (!sky || !t.profile) return "";
+  const s = width / SKY_W;
+  const x0 = (OG.width - width) / 2;
+  const y0 = foot - SKY_H * s;
+  const shapes = [...sky.shapes, { d: profileRidge(t.profile.points, t.profile.routeKm), c: sky.ridge }, ...(sky.front ?? [])];
+  return (
+    `<g transform="translate(${r1(x0)} ${r1(y0)}) scale(${s})">${shapes.map((p) => `<path d="${p.d}" fill="${p.c}"/>`).join("")}</g>` +
+    `<rect x="0" y="${foot}" width="${OG.width}" height="${ground}" fill="${sky.ground}"/>`
+  );
+}
+
+// with a skyline (issue #146; of three previews, approach C): the name, countries, rule and figures as
+// before, and instead of the season and ground row the trail's skyline across the bottom
+function stripWithSkyline(t: OgTrail) {
+  const out: string[] = [];
+  out.push(text(t.name, 72, 130, 80, { weight: 700, max: 1056 }).svg);
+  out.push(text(t.countries.join(" · "), 72, 188, 32, { fill: C.muted }).svg);
+  out.push(`<rect x="72" y="234" width="1056" height="3" fill="${C.text}"/>`);
+  const figs = figures(t);
+  const colW = 1056 / Math.max(figs.length, 1);
+  figs.forEach(([v, u, label], i) => {
+    const x = 72 + i * colW;
+    if (i) out.push(`<rect x="${x - 24}" y="258" width="1.5" height="100" fill="${C.line}"/>`);
+    const value = text(v, x, 322, 56, { weight: 600, max: colW - 40 });
+    out.push(value.svg);
+    if (u) out.push(text(u, x + value.width + 8, 322, 26, { fill: C.muted }).svg);
+    out.push(text(label, x, 356, 22, { fill: C.muted }).svg);
+  });
+  // the skyline on a band of the page head's day sky, so its snow shows against it
+  out.push(`<rect x="0" y="388" width="${OG.width}" height="${OG.height - 388}" fill="${SKY.day}"/>`);
+  out.push(skyline(t, OG.width, OG.height - 18, 18));
+  out.push(brand(OG.width - 72, 76, "end"));
+  return out.join("");
+}
+
 export function ogSvg(t: OgTrail) {
-  return `<svg xmlns="http://www.w3.org/2000/svg" width="${OG.width}" height="${OG.height}" viewBox="0 0 ${OG.width} ${OG.height}"><rect width="100%" height="100%" fill="${C.bg}"/>${content(t)}</svg>`;
+  const body = SKYLINES[t.slug] && t.profile ? stripWithSkyline(t) : content(t);
+  return `<svg xmlns="http://www.w3.org/2000/svg" width="${OG.width}" height="${OG.height}" viewBox="0 0 ${OG.width} ${OG.height}"><rect width="100%" height="100%" fill="${C.bg}"/>${body}</svg>`;
 }
 
 export async function ogPng(t: OgTrail) {

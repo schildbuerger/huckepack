@@ -183,6 +183,12 @@
   Location, "Permit: Required · fee charged" (approach A2 of the preview's
   compact versions of A): no how-to text, no amounts, no link. The fees stay
   in the record for a later filter.
+- **Link previews with the skyline (issue #146, 2026-11-02):** a trail's
+  social image keeps its name, countries and four figures and shows the
+  trail's skyline (the page head's drawing, with the trail's own profile as
+  the nearest ridge) on a band of day sky across the bottom, in place of the
+  season and ground row (approach C of three); the ridge is one function
+  (`profileRidge`, src/lib/skylines.ts) shared with the page head.
 - **The Location facts' order (issue #145, 2026-11-02):** by priority, in
   one grid (approach A of three previews): country and regions, start and
   finish, route type and permit, travel hubs, then protected areas, the

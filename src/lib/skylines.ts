@@ -97,6 +97,43 @@ const mitre: P[] = [[600, G], [660, 250], [700, 180], [725, 112], [738, 92], [75
 const nevis: P[] = [[1100, G], [1180, 246], [1260, 196], [1320, 172], [1380, 166], [1440, 176], [1500, 206], [1560, 250], [1600, G]];
 const montBlanc: P[] = [[0, G], [60, 304], [110, 272], [140, 226], [158, 170], [170, 122], [185, 118], [200, 124], [222, 150], [238, 136], [244, 132], [250, 144], [270, 168], [300, 180], [330, 172], [360, 180], [390, 190], [420, 188], [438, 156], [450, 180], [466, 148], [480, 176], [496, 140], [512, 170], [530, 152], [548, 182], [572, 168], [596, 114], [602, 104], [608, 104], [614, 116], [640, 136], [680, 112], [720, 98], [752, 106], [790, 94], [815, 87], [842, 96], [880, 86], [920, 76], [955, 71], [995, 74], [1040, 82], [1080, 92], [1110, 97], [1150, 92], [1188, 102], [1228, 124], [1250, 122], [1290, 132], [1325, 106], [1340, 97], [1352, 100], [1380, 136], [1430, 168], [1490, 212], [1540, 252], [1580, 292], [1600, G]];
 
+// the drawing's box and the top it is shown from (just above the highest summit)
+export const SKY_W = 1600;
+export const SKY_H = G;
+export const SKY_TOP = 56;
+
+// the trail's own elevation profile ([km, metres]) as the nearest ridge, its height following the
+// trail's real relief (a coastal path a low swell, an alpine one a tall ridge: 18 to 78 units for 0
+// to 1,800 m between its lowest and highest point), smoothed, so it never hides the landscape behind
+// it; near both ends it sinks smoothly to the ground, so it flows into the band's foot. Shared by the
+// trail page's head (TrailSkyline.astro) and the link-preview image (og-image.ts)
+export function profileRidge(points: [number, number][], routeKm: number) {
+  const W = SKY_W;
+  const H = SKY_H;
+  const lo = Math.min(...points.map((p) => p[1]));
+  const hi = Math.max(...points.map((p) => p[1]));
+  const amp = 18 + Math.min(1, (hi - lo) / 1800) * 60;
+  const step = Math.max(1, Math.floor(points.length / 90));
+  const thin = points.filter((_, i) => i % step === 0 || i === points.length - 1);
+  const EDGE = 0.16 * W;
+  const ease = (x: number) => {
+    const f = Math.min(1, Math.min(x, W - x) / EDGE);
+    return f * f * (3 - 2 * f);
+  };
+  const rx = (km: number) => (km / routeKm) * W;
+  const ry = (x: number, m: number) => H - (H - (300 - ((m - lo) / (hi - lo || 1)) * amp)) * ease(x);
+  const xy = thin.map(([km, m]) => [rx(km), ry(rx(km), m)]);
+  // a quadratic through each point to the midpoint of the next: a smooth line through the profile
+  return (
+    `M0,${H}L${xy[0][0].toFixed(0)},${xy[0][1].toFixed(0)}` +
+    xy
+      .slice(1, -1)
+      .map(([x, y], i) => `Q${x.toFixed(0)},${y.toFixed(0)} ${((x + xy[i + 2][0]) / 2).toFixed(0)},${((y + xy[i + 2][1]) / 2).toFixed(0)}`)
+      .join("") +
+    `L${W},${H}Z`
+  );
+}
+
 export const SKYLINES: Record<string, Skyline> = {
   "alpe-adria-trail": {
     view: "From the Grossglockner over Carinthia's lakes to the Julian Alps and the Adriatic",

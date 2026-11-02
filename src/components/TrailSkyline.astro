@@ -6,7 +6,7 @@
 // away, with the trail's own elevation profile as the nearest ridge. The drawing has no cut edges: the
 // massif slopes down and the ridge tapers into the ground, which runs across the band's foot. Flat colours
 // and shapes only; the drawing is decorative (aria-hidden), the name is the page's h1.
-import { SKYLINES } from "../lib/skylines";
+import { SKYLINES, SKY_W, SKY_H, SKY_TOP, profileRidge } from "../lib/skylines";
 
 interface Props {
   slug: string;
@@ -18,35 +18,9 @@ interface Props {
 const { slug, name, localName, points, routeKm } = Astro.props;
 const sky = SKYLINES[slug];
 
-// the drawing's box: the skyline's full width, from just above the highest summit to the ground
-const W = 1600;
-const H = 320;
-const TOP = 56;
-// the trail's profile as the nearest ridge, its height following the trail's real relief (a coastal
-// path a low swell, an alpine one a tall ridge: 18 to 78 units for 0 to 1,800 m between its lowest and
-// highest point), smoothed, so it never hides the landscape behind it; near both ends it sinks smoothly
-// to the ground, so it flows into the band's foot
-const lo = Math.min(...points.map((p) => p[1]));
-const hi = Math.max(...points.map((p) => p[1]));
-const amp = 18 + Math.min(1, (hi - lo) / 1800) * 60;
-const step = Math.max(1, Math.floor(points.length / 90));
-const thin = points.filter((_, i) => i % step === 0 || i === points.length - 1);
-const EDGE = 0.16 * W;
-const ease = (x: number) => {
-  const f = Math.min(1, Math.min(x, W - x) / EDGE);
-  return f * f * (3 - 2 * f);
-};
-const rx = (km: number) => (km / routeKm) * W;
-const ry = (x: number, m: number) => H - (H - (300 - ((m - lo) / (hi - lo || 1)) * amp)) * ease(x);
-const xy = thin.map(([km, m]) => [rx(km), ry(rx(km), m)]);
-// a quadratic through each point to the midpoint of the next: a smooth line through the profile
-const ridge =
-  `M0,${H}L${xy[0][0].toFixed(0)},${xy[0][1].toFixed(0)}` +
-  xy
-    .slice(1, -1)
-    .map(([x, y], i) => `Q${x.toFixed(0)},${y.toFixed(0)} ${((x + xy[i + 2][0]) / 2).toFixed(0)},${((y + xy[i + 2][1]) / 2).toFixed(0)}`)
-    .join("") +
-  `L${W},${H}Z`;
+// the drawing's box (SKY_W × SKY_H), shown from just above the highest summit (SKY_TOP) to the ground;
+// the trail's own profile as the nearest ridge (profileRidge, shared with the link-preview image)
+const ridge = profileRidge(points, routeKm);
 ---
 
 {
@@ -61,7 +35,7 @@ const ridge =
       </div>
       <div class="sk-scene" aria-hidden="true">
         <span class="sk-sun" />
-        <svg class="sk-svg" viewBox={`0 ${TOP} ${W} ${H - TOP}`} preserveAspectRatio="xMidYMax meet">
+        <svg class="sk-svg" viewBox={`0 ${SKY_TOP} ${SKY_W} ${SKY_H - SKY_TOP}`} preserveAspectRatio="xMidYMax meet">
           {sky.shapes.map((s) => (
             <path class="sk-shape" d={s.d} style={`--c: ${s.c}`} />
           ))}
