@@ -72,6 +72,9 @@ requires a licensed agency, so it can't be walked independently.
 And the **W Trek** (#74, added on 2026-11-02, Torres del Paine, CONAF's legs from Hotel Las Torres
 to Paine Grande with the valleys to Base Torres, the Mirador Británico and Grey as variants, and the
 Lago Pehoé catamaran as its way out, the first leg that isn't walked).
+And the **West Coast Trail** (#144, added on 2026-11-02, Vancouver Island, 75 km from Pachena Bay to
+Gordon River in 8 days: Parks Canada's day plans from the mid-point at Balaats'adt joined end to end,
+with the Nitinaht Narrows and Gordon River ferries as transfers).
 
 | # | Trail | Region | Length (approx.) | Why |
 |---|---|---|---|---|

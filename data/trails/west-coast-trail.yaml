@@ -1,0 +1,189 @@
+name: West Coast Trail
+added: 2026-11-02
+aliases: [WCT, Dominion Lifesaving Trail]
+website: https://parks.canada.ca/pn-np/bc/pacificrim/activ/SCO-WCT
+wikidata: Q3434548
+managedBy:
+  - name: Parks Canada, Pacific Rim National Park Reserve
+    url: https://parks.canada.ca/pn-np/bc/pacificrim/activ/SCO-WCT
+trailType: point-to-point
+continents: [North America]
+countries: [CA]
+regions: [British Columbia]
+protectedAreas:
+  - Pacific Rim National Park Reserve
+termini:
+  # Pachena Bay near Bamfield (north) and the Gordon River ferry landing below Port Renfrew (south), OSM
+  start:
+    name: Pachena Bay
+    lat: 48.79626
+    lon: -125.1214
+  end:
+    name: Gordon River
+    lat: 48.57687
+    lon: -124.41646
+  source: osm
+established:
+  # built in 1907 as the Dominion Lifesaving Trail, for the rescue of shipwrecked sailors
+  year: 1907
+  source: wikipedia
+length:
+  - km: 75
+    source: parks-canada
+days:
+  min: 6
+  max: 8
+  source: parks-canada
+stages:
+  # Parks Canada's day plans from the mid-point at Balaats'adt (Nitinaht Village), north to Pachena
+  # Bay in 3 days and south to Gordon River in 5, with the km markers from Pachena Bay; joined here
+  # into one southbound trip (the northern days turned round). Stage ends: the campsites (OSM)
+  source: parks-canada-balaatsadt
+  list:
+    - { number: "1", kind: main, from: Pachena Bay, to: Darling River, km: 14, end: { lat: 48.71964, lon: -125.05083 } }
+    - { number: "2", kind: main, from: Darling River, to: Tsusiat Falls, km: 11, end: { lat: 48.68977, lon: -124.92539 } }
+    - { number: "3", kind: main, from: Tsusiat Falls, to: Nitinaht Narrows, km: 8, end: { lat: 48.67439, lon: -124.85338 } }
+    - { number: "4", kind: main, from: Nitinaht Narrows, to: Cribs Creek, km: 9.5, end: { lat: 48.62852, lon: -124.76889 } }
+    - { number: "5", kind: main, from: Cribs Creek, to: Walbran Creek, km: 11, end: { lat: 48.58004, lon: -124.6561 } }
+    - { number: "6", kind: main, from: Walbran Creek, to: Camper Bay, km: 9, end: { lat: 48.55781, lon: -124.55056 } }
+    - { number: "7", kind: main, from: Camper Bay, to: Thrasher Cove, km: 8, end: { lat: 48.55829, lon: -124.47253 } }
+    - { number: "8", kind: main, from: Thrasher Cove, to: Gordon River, km: 5, end: { lat: 48.57687, lon: -124.41646 } }
+  transfers:
+    # the two crossings no one walks: the ferries over Nitinaht Narrows (Ditidaht First Nation) and
+    # the Gordon River (Pacheedaht First Nation), their lines OSM's ferry ways 300842724 and 300854295
+    - by: boat
+      start: { name: Nitinaht Narrows, lat: 48.67439, lon: -124.85338 }
+      end: { name: the narrows' south-east shore, lat: 48.67573, lon: -124.85162 }
+      source: parks-canada
+    - by: boat
+      start: { name: Gordon River, lat: 48.57687, lon: -124.41646 }
+      end: { name: Port Renfrew (Gordon River trailhead), lat: 48.57912, lon: -124.40958 }
+      source: parks-canada
+route:
+  # built by `python -m pipeline.all west-coast-trail`: OSM ways matched to the OSM hiking relation
+  # "West Coast Trail" (6955341), split at the campsites
+  source: osm
+  publishable: true
+  relation: 6955341
+difficulty:
+  # no SAC grade is published; our estimate from Parks Canada's description
+  estimated:
+    sac: T3
+    basis: >-
+      Parks Canada: a "remote Type 3 trail" that "even experienced hikers find challenging": over
+      100 ladder systems, deep mud, fast-flowing river crossings and cable cars, broken or missing
+      boardwalks and ladder rungs, steep slopes and earth slumps, beach stretches passable only at
+      low tide, and rough weather. Demanding hiking with hands on ladders and roots (T3); not alpine.
+    source: parks-canada
+season:
+  # "closing the trail from October 7 to April 30 annually"; reservable May to September
+  months: [5, 6, 7, 8, 9]
+  text: May to early October (closed 7 October to 30 April)
+  source: parks-canada
+sleeping:
+  types: [campsite]
+  source: wikipedia
+wildCamping:
+  status: restricted
+  rule: >-
+    Overnight stays need the West Coast Trail Backcountry Use Permit, reserved for an entry at Pachena
+    Bay, Balaats'adt (Nitinaht Village) or Gordon River; fires, where not banned, small and below the
+    high-tide line.
+  source: parks-canada
+access:
+  # Victoria's international airport; no railway on Vancouver Island, the trail buses leave from
+  # Victoria and Nanaimo. Coordinates from OSM; distances by pipeline/access.py
+  - kind: airport
+    name: Victoria International Airport (YYJ)
+    lat: 48.6463
+    lon: -123.421
+    source: osm
+tags: [coast, rainforest, ladders, river-crossings, national-park]
+notes:
+  - >-
+    Stages: Parks Canada gives no end-to-end itinerary, but its page for the mid-point entry at
+    Balaats'adt plans both halves by day with the trail's km markers: Nitinaht Narrows – Tsusiat
+    Falls (km 33.5–25, 8 km), Darling River (25–14, 11 km) and Pachena Bay (14–0, 14 km) to the north,
+    and Cribs Creek (32.5–42, 9.5 km), Walbran Creek (42–53, 11 km), Camper Creek/Bay (53–62, 9 km),
+    Thrasher Cove (62–70, 8 km) and Gordon River (5 km; the page's marker reads "70 km to 71 km") to
+    the south. Joined southbound they make 8 days and 75.5 km, against 75 km and 6–8 days.
+  - >-
+    Two crossings are by boat: the ferries over Nitinaht Narrows and the Gordon River, run in the
+    hiking season by the Ditidaht and Pacheedaht First Nations (their fees in the permit). They aren't
+    walked and count in no figure; the map shows them.
+  - >-
+    Length: Wikipedia says the official 75 km "has not been changed or updated by Parks Canada for
+    many years after being re-routed numerous times"; hikers' GPS tracks give 80–92 km.
+  - >-
+    Tree line: none recorded. The trail stays near sea level; its highest points are a few hundred
+    metres up.
+  - >-
+    Map line: Tsusiat Falls – Nitinaht Narrows is 6.7 km to the ferry landing against Parks Canada's
+    8 km (markers 25–33.5) and Nitinaht Narrows – Cribs Creek 10.3 against 9.5 km; together 17.0
+    against 17.5 km (3 %), the whole trail 74.0 against 75.5 km. Cribs Creek – Walbran Creek is 83 %
+    matched: "from Carmanah Point, the trail follows the beach until Walbran Creek" (Parks Canada),
+    where OSM maps no path.
+  - >-
+    Supply: no shops on the trail. Wikipedia names two places selling food, the ferry operator at
+    Nitinaht Narrows (km 32) and Nytom (formerly Chez Monique's) south of the Carmanah lighthouse;
+    OSM maps neither as a shop, so the page counts 73.7 km without one. No drinking water points
+    either: hikers treat creek water.
+  - >-
+    Data check (2026-11-02): Parks Canada's figures against Wikipedia's: length 75 km both; days
+    6–8 against "an average of 7 days"; the km markers of the stage ends against Wikipedia's cable
+    cars and bridges (Walbran Creek km 53, Camper Creek km 62, both the same); the two ferries and
+    the campsites with bear boxes agree. Wikipedia adds that hikers' GPS tracks give 80–92 km (see
+    the length note); our map line gives 74.0 km. No deviation over 10 %.
+dataCheck:
+  # working rule 2: Wikipedia; the OSM map line
+  date: 2026-11-02
+  against: [wikipedia]
+  deviations:
+    - { figure: "Stage 3 length", ours: "8 km", theirs: "6.7 km (map line, to the ferry landing)", source: osm }
+sources:
+  - id: parks-canada
+    title: "Parks Canada: West Coast Trail (length, days, season, permits, ferries, conditions)"
+    url: https://parks.canada.ca/pn-np/bc/pacificrim/activ/SCO-WCT
+    licence: © His Majesty the King in Right of Canada (facts only)
+    retrieved: 2026-11-02
+  - id: parks-canada-balaatsadt
+    title: "Parks Canada: Balaats'adt (Nitinaht Village) Trailhead, the day plans north and south with km markers"
+    url: https://parks.canada.ca/pn-np/bc/pacificrim/activ/ssco-wctu/balaatsadt
+    licence: © His Majesty the King in Right of Canada (facts only)
+    retrieved: 2026-11-02
+  - id: wikipedia
+    title: "Wikipedia (en): West Coast Trail (history, campsites, ferries, distance)"
+    url: https://en.wikipedia.org/wiki/West_Coast_Trail
+    licence: CC BY-SA 4.0
+    retrieved: 2026-11-02
+  - id: wikimedia
+    title: "Wikimedia: page views of the trail's Wikipedia articles in every language, by people, over twelve months (Wikidata sitelinks, pageview API)"
+    url: https://wikimedia.org/api/rest_v1/
+    licence: CC0 1.0 (pageview data); Wikidata CC0
+    retrieved: 2026-11-02
+    checkOnly: true
+  - id: osm
+    title: "OpenStreetMap contributors: the hiking relation West Coast Trail (6955341), the Nitinaht Narrows and Gordon River ferries, paths, water and places to sleep along the way (Geofabrik extract), campsites, travel hubs"
+    url: https://www.openstreetmap.org/relation/6955341
+    licence: ODbL 1.0
+    retrieved: 2026-11-02
+  - id: copdem
+    title: "Copernicus DEM GLO-30 (30 m terrain model), tiles from AWS Open Data"
+    url: https://registry.opendata.aws/copernicus-dem/
+    licence: "Copernicus WorldDEM-30 licence, free; produced using Copernicus WorldDEM-30 © DLR e.V. 2010-2014 and © Airbus Defence and Space GmbH 2014-2018 provided under COPERNICUS by the European Union and ESA; all rights reserved"
+    retrieved: 2026-11-02
+  - id: worldcover
+    title: "ESA WorldCover 2021: 10 m land cover (via AWS Open Data)"
+    url: https://esa-worldcover.org/
+    licence: "CC BY 4.0; © ESA WorldCover project 2021 / Contains modified Copernicus Sentinel data (2021) processed by ESA WorldCover consortium"
+    retrieved: 2026-11-02
+  - id: era5
+    title: "Open-Meteo open data on AWS: ERA5-Land temperature and ERA5 precipitation, snow and wind, daily 1995–2024 (reanalysis)"
+    url: https://github.com/open-meteo/open-data
+    licence: CC BY 4.0 (Open-Meteo); contains modified Copernicus Climate Change Service information
+    retrieved: 2026-11-02
+  - id: osrm
+    title: "OSRM: road routes on OpenStreetMap data (router.project-osrm.org)"
+    url: https://project-osrm.org/
+    licence: Route data © OpenStreetMap contributors (ODbL)
+    retrieved: 2026-11-02

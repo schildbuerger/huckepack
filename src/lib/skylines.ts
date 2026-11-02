@@ -419,6 +419,27 @@ export const SKYLINES: Record<string, Skyline> = {
     ],
     front: [{ d: water(980, 1600, 298), c: "#4fb0b4" }],
   },
+  "west-coast-trail": {
+    view: "Vancouver Island's rainforest coast: dark conifer headlands, Tsusiat Falls pouring onto the beach and the Carmanah Point lighthouse over the Pacific",
+    ridge: "#2f4a34",
+    ground: "#cdbf98",
+    shapes: [
+      { d: hills([[0, G], [140, 250], [320, 232], [520, 246], [700, 230], [900, 248], [1080, 236], [1260, 252], [1440, 262], [1600, G]]), c: "#5f7a6a" },
+      // tall spruce and cedar along the headlands, each a narrow spire
+      {
+        d: [60, 110, 150, 210, 260, 330, 380, 440, 600, 650, 700, 760, 820, 1180, 1230, 1290, 1340].map((x, i) => `M${x - 9},${G}L${x},${200 + (i % 4) * 12}L${x + 9},${G}Z`).join(" "),
+        c: "#2c4632",
+      },
+      // the sandstone cliff of Tsusiat Point with the falls over it
+      { d: range([[880, G], [890, 262], [1000, 258], [1010, G]]), c: "#8a7a62" },
+      { d: waterfall(950, 262, 298, 8), c: "#f2f4f0" },
+      // Carmanah Point: a low headland with its lighthouse
+      { d: range([[1380, G], [1400, 270], [1480, 266], [1500, G]]), c: "#3d5a40" },
+      { d: lighthouse(1440, 268, 34), c: "#f4f1ea" },
+      { d: lighthouseBand(1440, 268, 34), c: "#c0392b" },
+    ],
+    front: [{ d: water(0, 1600, 300), c: SEA }],
+  },
   "west-highland-way": {
     view: "Loch Lomond's hills, the moor, the pyramid of Buachaille Etive Mòr and Ben Nevis's snow-flecked bulk",
     ridge: "#6f7a4a",
