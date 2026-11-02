@@ -65,6 +65,9 @@
   let expanded = $state(false); // the map fills the window inside the page
   let resetView = () => {};
   let fitAfterResize = () => {};
+  // the finish's marker for the legend, as the map draws it: a dark disc with a small white flag
+  const FLAG =
+    '<svg viewBox="0 0 24 24" width="20" height="20"><circle cx="12" cy="12" r="11" fill="var(--text)"/><rect x="8" y="6" width="1.8" height="12" fill="var(--bg)"/><path d="M9.8 6 17 8.5 9.8 11Z" fill="var(--bg)"/></svg>';
   // lucide icons (ISC licence), drawn in the button's text colour
   const svg = (d: string) => `<svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">${d}</svg>`;
   const ICON = {
@@ -297,71 +300,87 @@
             paint: { "line-color": waterBlue, "line-width": 3, "line-dasharray": [1.2, 1.2] },
           });
         }
-        // where the stages start and end (issue #151; of three previews, approach B): each main stage's
-        // number in a badge midway along it, and a small ring where one stage ends and the next begins
-        if (route) {
-          const main = route.features.filter((f: any) => f.properties.kind === "main");
-          const point = (coordinates: number[], properties: object) => ({ type: "Feature", properties, geometry: { type: "Point", coordinates } });
-          // halfway along a stage's line (longitudes shortened by about the cosine of the latitude)
-          const midpoint = (c: number[][]) => {
-            const d = c.slice(1).map((p, i) => Math.hypot(p[0] - c[i][0], (p[1] - c[i][1]) * 1.5));
-            let half = d.reduce((a, x) => a + x, 0) / 2;
-            for (let i = 0; i < d.length; i++) {
-              if (half <= d[i]) return c[i + 1];
-              half -= d[i];
-            }
-            return c[c.length - 1];
-          };
-          map.addSource("stage-ends", {
+        // the start, the stages and the finish (issue #153; of three previews, approach A, after #151's
+        // numbers midway and rings at the boundaries read as three kinds of circle): one kind of marker,
+        // a numbered stop where each main stage starts, numbered as in the stages table (the first, the
+        // trailhead, filled dark and larger), and a flag at the finish. Without a map line, the termini
+        // as dots.
+        const main = (route?.features ?? []).filter((f: any) => f.properties.kind === "main");
+        if (main.length) {
+          const pt = (coordinates: number[], properties: object) => ({ type: "Feature", properties, geometry: { type: "Point", coordinates } });
+          const fc = (features: object[]) => ({ type: "FeatureCollection", features });
+          // the finish: a dark disc with a small white flag, drawn on a canvas at twice the size
+          const cv = document.createElement("canvas");
+          cv.width = cv.height = 48;
+          const g = cv.getContext("2d")!;
+          g.scale(2, 2);
+          g.fillStyle = ink;
+          g.beginPath();
+          g.arc(12, 12, 11, 0, Math.PI * 2);
+          g.fill();
+          g.fillStyle = paper;
+          g.fillRect(8, 6, 1.8, 12);
+          g.beginPath();
+          g.moveTo(9.8, 6);
+          g.lineTo(17, 8.5);
+          g.lineTo(9.8, 11);
+          g.closePath();
+          g.fill();
+          if (map.hasImage("finish-flag")) map.removeImage("finish-flag");
+          map.addImage("finish-flag", g.getImageData(0, 0, 48, 48), { pixelRatio: 2 });
+          map.addSource("stage-stops", {
             type: "geojson",
-            data: { type: "FeatureCollection", features: main.slice(0, -1).map((f: any) => point(f.geometry.coordinates.at(-1), { name: f.properties.to })) },
+            data: fc(main.map((f: any, i: number) => pt(f.geometry.coordinates[0], { number: f.properties.number, first: i === 0 }))),
           } as any);
-          map.addSource("stage-mids", {
-            type: "geojson",
-            data: { type: "FeatureCollection", features: main.map((f: any) => point(midpoint(f.geometry.coordinates), { number: f.properties.number })) },
-          } as any);
+          map.addSource("finish", { type: "geojson", data: fc([pt(main.at(-1).geometry.coordinates.at(-1), {})]) } as any);
           map.addLayer({
-            id: "stage-ends",
+            id: "stage-stops",
             type: "circle",
-            source: "stage-ends",
-            paint: { "circle-radius": 4.5, "circle-color": paper, "circle-stroke-color": ink, "circle-stroke-width": 2 },
+            source: "stage-stops",
+            paint: {
+              "circle-radius": ["case", ["get", "first"], 11, 9],
+              "circle-color": ["case", ["get", "first"], ink, paper],
+              "circle-stroke-color": ink,
+              "circle-stroke-width": 2,
+            },
           });
           map.addLayer({
-            id: "stage-numbers",
-            type: "circle",
-            source: "stage-mids",
-            paint: { "circle-radius": 9, "circle-color": accent, "circle-stroke-color": paper, "circle-stroke-width": 1.5 },
-          });
-          map.addLayer({
-            id: "stage-number-labels",
+            id: "stage-stop-numbers",
             type: "symbol",
-            source: "stage-mids",
+            source: "stage-stops",
             layout: { "text-field": ["get", "number"], "text-font": ["Noto Sans Regular"], "text-size": 11, "text-allow-overlap": true, "text-ignore-placement": true },
-            paint: { "text-color": paper },
+            paint: { "text-color": ["case", ["get", "first"], paper, ink] },
+          });
+          map.addLayer({
+            id: "finish",
+            type: "symbol",
+            source: "finish",
+            layout: { "icon-image": "finish-flag", "icon-allow-overlap": true, "icon-ignore-placement": true },
+          });
+        } else {
+          map.addSource("termini", {
+            type: "geojson",
+            data: {
+              type: "FeatureCollection",
+              features: [start, end].map((p, i) => ({
+                type: "Feature",
+                properties: { name: p.name, end: i === 1 },
+                geometry: { type: "Point", coordinates: [p.lon, p.lat] },
+              })),
+            },
+          });
+          map.addLayer({
+            id: "termini",
+            type: "circle",
+            source: "termini",
+            paint: {
+              "circle-radius": 7,
+              "circle-color": ["case", ["get", "end"], ink, paper],
+              "circle-stroke-color": ink,
+              "circle-stroke-width": 2.5,
+            },
           });
         }
-        map.addSource("termini", {
-          type: "geojson",
-          data: {
-            type: "FeatureCollection",
-            features: [start, end].map((p, i) => ({
-              type: "Feature",
-              properties: { name: p.name, end: i === 1 },
-              geometry: { type: "Point", coordinates: [p.lon, p.lat] },
-            })),
-          },
-        });
-        map.addLayer({
-          id: "termini",
-          type: "circle",
-          source: "termini",
-          paint: {
-            "circle-radius": 7,
-            "circle-color": ["case", ["get", "end"], ink, paper],
-            "circle-stroke-color": ink,
-            "circle-stroke-width": 2.5,
-          },
-        });
       });
 
       // follow the site theme (src/lib/map-theme.ts)
@@ -400,10 +419,17 @@
   <li><span class="key other"></span> Approach or variant</li>
   {#if detours.includes("foot")}<li><span class="key foot"></span> Detour on foot</li>{/if}
   {#if detours.some((d) => d !== "foot")}<li><span class="key ride"></span> Detour by {detours.includes("bus") ? (detours.includes("train") ? "train or bus" : "bus") : "train"}</li>{/if}
-  {#if stages > 1}<li><span class="key stage-no" aria-hidden="true">1</span> Stage</li><li><span class="key dot stage-end"></span> Stage end</li>{/if}
+
   {#if transfers.length}<li><span class="key transfer"></span> By {transfers.join(" or ")}</li>{/if}
-  <li><span class="key dot start"></span> {start.name}</li>
-  <li><span class="key dot end"></span> {end.name}</li>
+  {#if routeUrl && stages > 0}
+    <!-- the map's markers (issue #153): the start as stop 1, the other stage starts, the finish's flag -->
+    <li><span class="key stop first" aria-hidden="true">1</span> Start: {start.name}</li>
+    {#if stages > 1}<li><span class="key stop" aria-hidden="true">2</span> Where a stage starts, numbered as in the stages table</li>{/if}
+    <li><span class="key flag" aria-hidden="true">{@html FLAG}</span> Finish: {end.name}</li>
+  {:else}
+    <li><span class="key dot start"></span> {start.name}</li>
+    <li><span class="key dot end"></span> {end.name}</li>
+  {/if}
   <li><span class="key contour"></span> Contour lines</li>
 </ul>
 
@@ -511,7 +537,11 @@
     stroke-width: 2.5;
     vector-effect: non-scaling-stroke;
   }
+  /* as the map's markers (issue #153): the start dark like stop 1, the finish dark with its flag */
   .map :global(.route-preview .rp-start) {
+    fill: var(--text);
+  }
+  .map :global(.route-preview .rp-flag) {
     fill: var(--bg);
   }
   .map :global(.route-preview .rp-end) {
@@ -568,22 +598,31 @@
       linear-gradient(var(--text), var(--text)) center / 100% 2px no-repeat,
       repeating-linear-gradient(90deg, var(--text) 0 1.5px, transparent 1.5px 7px) center / 100% 8px no-repeat;
   }
-  .key.stage-no {
+  .key.stop {
     width: 18px;
     height: 18px;
-    border: 0;
+    border: 2px solid var(--text);
     border-radius: 50%;
-    background: var(--accent);
-    color: var(--bg);
-    font-size: 11px;
-    line-height: 18px;
+    background: var(--bg);
+    color: var(--text);
+    font-size: 10px;
+    line-height: 14px;
     text-align: center;
   }
-  .key.stage-end {
-    width: 9px;
-    height: 9px;
-    border-width: 2px;
-    background: var(--bg);
+  .key.stop.first {
+    width: 20px;
+    height: 20px;
+    background: var(--text);
+    color: var(--bg);
+    line-height: 16px;
+  }
+  .key.flag {
+    width: 20px;
+    height: 20px;
+    border: 0;
+  }
+  .key.flag :global(svg) {
+    display: block;
   }
   .key.transfer {
     height: 6px;

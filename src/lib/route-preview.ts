@@ -63,6 +63,12 @@ export function routePreview(
   const r = n1(0.009 * Math.max(W, H));
   out.push(`<circle class="rp-start" cx="${px(start.lon)}" cy="${py(start.lat)}" r="${r}"/>`);
   out.push(`<circle class="rp-end" cx="${px(end.lon)}" cy="${py(end.lat)}" r="${r}"/>`);
+  // the finish's flag, as on the map (issue #153): a pole and a pennant inside the dark disc
+  const [fx, fy] = [Number(px(end.lon)), Number(py(end.lat))];
+  const u = r / 11;
+  out.push(
+    `<path class="rp-flag" d="M${n1(fx - 4 * u)} ${n1(fy - 6 * u)}h${n1(1.8 * u)}v${n1(12 * u)}h${n1(-1.8 * u)}Z M${n1(fx - 2.2 * u)} ${n1(fy - 6 * u)}L${n1(fx + 5 * u)} ${n1(fy - 3.5 * u)}L${n1(fx - 2.2 * u)} ${n1(fy - u)}Z"/>`,
+  );
 
   return { viewBox: `0 0 ${W} ${H}`, body: out.join("") };
 }

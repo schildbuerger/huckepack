@@ -195,11 +195,16 @@
   the browser's full screen, which iPhones don't offer for maps. "Reset view"
   appears once the visitor has panned or zoomed and brings back the first
   framing, the whole trail (approach C of three).
-- **Stage marks on the trail map (issue #151, 2026-11-02):** each main
-  stage's number in a small badge in the trail colour midway along it, and a
-  small ring (smaller than the start and finish) where one stage ends and
-  the next begins (approach B of three, its rings made a little larger); the
-  legend names both.
+- **Start, stages and finish on the trail map (issues #151 and #153,
+  2026-11-02):** one kind of marker, after #151's midway number badges and
+  boundary rings read as three kinds of circle beside the start and finish:
+  a numbered stop where each main stage starts, numbered as in the stages
+  table (stop 1, the start, filled dark and larger), and a dark disc with a
+  white flag at the finish (approach A of three, following the research in
+  #153: hierarchy by size, numbers that match the list, few marks, meaning
+  in shape and labels rather than colour). The legend names the start and
+  finish and explains the stops; the preview before the map loads shows
+  the same start and finish.
 - **Minimum figures (issue #148, 2026-11-02):** every trail shows its length,
   ascent and descent, days and averages. The ascent and descent may be the
   terrain model's estimate (≈) where no source states them. Days are the
