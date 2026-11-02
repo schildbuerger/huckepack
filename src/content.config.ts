@@ -9,6 +9,20 @@ import { z } from "astro/zod";
 
 const sourceRef = z.string().min(1);
 
+// an animal or plant that can be dangerous to hikers (issue #156): its kind (the silhouette drawn),
+// name ("Black bear", "Snakes (Cape cobra, puff adder, boomslang)"), our level with why, and what to do
+// and not to do in the official source's words
+const danger = <K extends string>(kinds: [K, ...K[]]) =>
+  z.object({
+    kind: z.enum(kinds),
+    name: z.string(),
+    level: z.enum(["low", "moderate", "high"]),
+    basis: z.string(),
+    do: z.array(z.string()).min(1),
+    dont: z.array(z.string()).default([]),
+    source: sourceRef,
+  });
+
 const CONTINENTS = [
   "Africa",
   "Antarctica",
@@ -231,6 +245,21 @@ const trail = z
         status: z.enum(["allowed", "restricted", "prohibited"]),
         rule: z.string(),
         source: sourceRef,
+      })
+      .optional(),
+
+    // Animals that can be dangerous to hikers in the trail's region (issue #156, decided 2026-11-02):
+    // large animals, venomous snakes, scorpions and spiders, and ticks; no insects. `level` is our own
+    // rating (low, moderate, high: how likely a hiker meets it on the trail and how serious an encounter
+    // can be), with its `basis`; what to do and what not to do in the source's words, which is official
+    // (a park service, a wildlife or health agency). `plants`: the same for plants that harm on touch
+    // (giant hogweed), where an official source warns of them in the trail's region. `none`: an official
+    // source saying the region has none; neither means nothing is known yet, and the page shows no section
+    animals: z
+      .object({
+        list: z.array(danger(["bear", "wolf", "big-cat", "boar", "cattle", "dog", "snake", "scorpion", "spider", "tick"])).default([]),
+        plants: z.array(danger(["hogweed"])).default([]),
+        none: z.object({ text: z.string(), source: sourceRef }).optional(),
       })
       .optional(),
 

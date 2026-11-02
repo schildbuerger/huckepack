@@ -95,6 +95,30 @@ access:
     lat: -33.9718
     lon: 18.60211
     source: osm
+animals:
+  # CapeNature's sheet names snake bites and scorpion stings among the trail's possible dangers; what
+  # to do from the City of Cape Town (the same species of the Western Cape). Levels ours
+  list:
+    - kind: snake
+      name: Snakes (Cape cobra, puff adder, boomslang)
+      level: high
+      basis: Venomous snakes live in the reserve's fynbos and dunes; a bite can be life-threatening within hours, and the trail is far from a hospital.
+      do:
+        - Remain calm, and act quickly
+        - Get to a hospital as quickly as possible
+        - Try to identify the snake
+        - "Call the Tygerberg Poison Centre: 0861 555 777"
+      dont:
+        - Run after a bite; it sends the venom through the body faster
+      source: capetown-snakes
+    - kind: scorpion
+      name: Scorpions
+      level: low
+      basis: Most of the region's scorpions are painful but harmless; a few thick-tailed ones can be dangerous.
+      do:
+        - Remain calm
+        - After the sting of a thick-tailed scorpion, call for help or get to a hospital
+      source: capetown-snakes
 tags: [coast, fynbos, whales, huts, slackpacking]
 notes:
   - >-
@@ -133,6 +157,11 @@ dataCheck:
     - { figure: "Ascent", ours: "≈ 1,650 m (terrain model)", theirs: "1,169 m (GPS track)", source: sahikes }
     - { figure: "Stage 3 length", ours: "8.5 km", theirs: "7.1 km (map line, along the beach)", source: osm }
 sources:
+  - id: capetown-snakes
+    title: "City of Cape Town: care with snakes and scorpions (first aid for snake bites and scorpion stings)"
+    url: https://www.capetown.gov.za/Explore%20and%20enjoy/visitor-safety/general-safety-awareness/care-with-snakes-and-scorpions
+    licence: © City of Cape Town (facts only)
+    retrieved: 2026-11-02
   - id: capenature
     title: "CapeNature: The Whale Trail (De Hoop Nature Reserve), information sheet (stages, huts, water, rules, booking)"
     url: https://www.capenature.co.za/uploads/files/What-to-do/WhaleTrail-Information-Sheet.pdf

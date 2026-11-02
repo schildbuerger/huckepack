@@ -1,0 +1,511 @@
+---
+// Animals and plants that can be dangerous to hikers on the trail (issue #156): a band wall to wall, like
+// the page head, with the trail's own skyline behind (src/lib/animal-art.ts) and the animals and plants
+// as silhouettes (PhyloPic) standing in front, each named above it like a panorama board's (the name,
+// and low, moderate or high as a three-step meter and the word in the status colour, so the level never
+// rests on colour alone, joined to its body by a leader line; the name underlined as a link). The
+// section's heading and the (i) sit in the band's sky, in line with the page's content. A click or tap
+// on one opens a dialog in the middle of the screen with why the level, and what to do and not to do in
+// the official source's words; Esc, Close or a click beside it closes it. On phones the band scrolls
+// sideways.
+import Explain from "./Explain.astro";
+import { backdrop, SCENE_W, SCENE_H, BLEED, TOP, place, silhouette, credit, type AnimalKind } from "../lib/animal-art";
+
+type Danger = {
+  kind: AnimalKind;
+  name: string;
+  level: "low" | "moderate" | "high";
+  basis: string;
+  do: string[];
+  dont: string[];
+  source: string;
+};
+interface Props {
+  animals: Danger[];
+  plants: Danger[];
+  none?: { text: string; source: string };
+  sourceName: (id: string) => string;
+  slug: string;
+}
+const { animals, plants, none, sourceName, slug } = Astro.props;
+
+const LEVELS = { low: { word: "Low", n: 1 }, moderate: { word: "Moderate", n: 2 }, high: { word: "High", n: 3 } } as const;
+const ORDER = ["high", "moderate", "low"] as const;
+const sorted = [...animals.map((a) => ({ ...a, plant: false })), ...plants.map((a) => ({ ...a, plant: true }))].sort(
+  (a, b) => ORDER.indexOf(a.level) - ORDER.indexOf(b.level),
+);
+const sources = [...new Set(sorted.map((a) => a.source))].map(sourceName);
+const meter = (n: number) => [1, 2, 3].map((i) => i <= n);
+const spots = place(sorted.map((a) => a.kind));
+// the labels, like a panorama board's: one line in the sky above the mountains, each joined to its
+// animal by a leader; the name without its list of species ("Snakes (Cape cobra, …)" reads "Snakes")
+const LABEL_Y = 30;
+const shortName = (name: string) => name.replace(/\s*\(.*\)\s*$/, "");
+const what = plants.length ? (animals.length ? "Animals and plants" : "Plants") : "Animals";
+---
+
+{
+  (sorted.length > 0 || none) && (
+    <section id="animals" class:list={{ band: sorted.length > 0 }}>
+      <div class="band-head">
+        <h2>Wildlife</h2>
+        {sorted.length > 0 && (
+          <div class="chart-info">
+            <Explain id="animals-info" icon term="About this chart" title="Wildlife">
+              <p>
+                {what} that can be dangerous to hikers on this trail: large animals, venomous snakes, scorpions and spiders, ticks,
+                and plants that harm on touch. The level is ours, from how likely a hiker meets one on the trail and how serious an
+                encounter can be: Low, Moderate or High. What to do comes from the official source{sources.length > 1 ? "s" : ""}:{" "}
+                {sources.join("; ")}.
+              </p>
+              <p>
+                The silhouettes come from PhyloPic, not to scale; each one's maker is named with its advice. The landscape is the
+                trail's own, drawn by us.
+              </p>
+            </Explain>
+          </div>
+        )}
+      </div>
+      {none && !sorted.length && <p class="an-none">{none.text} <span class="muted">({sourceName(none.source)})</span></p>}
+
+      {sorted.length > 0 && (
+        <figure class="wild" data-wild>
+          <div class="scroll">
+            <svg
+              class="scene"
+              viewBox={`${-BLEED} ${-TOP} ${SCENE_W + 2 * BLEED} ${SCENE_H + TOP}`}
+              preserveAspectRatio="xMidYMax slice"
+              role="group"
+              aria-label={`The trail's ${what.toLowerCase()}`}
+            >
+              <g aria-hidden="true" set:html={backdrop(slug)} />
+              {spots.map((p, i) => {
+                const a = sorted[i];
+                const word = LEVELS[a.level].word;
+                const lw = 22 + word.length * 8;
+                return (
+                  <g
+                    class={`pick lv-${a.level}`}
+                    tabindex="0"
+                    role="button"
+                    aria-haspopup="dialog"
+                    aria-label={`${a.name}, ${word} danger: what to do`}
+                    data-pick={i}
+                  >
+                    <rect class="hit" x={p.x - 6} y={p.y - 8} width={p.w + 12} height={p.h + 14} rx="10" />
+                    <rect class="hit" x={p.hx - 70} y={LABEL_Y - 18} width="140" height="44" rx="8" />
+                    <ellipse class="shadow" cx={p.cx} cy={p.base + 1} rx={p.w * 0.42} ry="4" />
+                    <path class="leader" d={`M${p.hx} ${LABEL_Y + 24} V${p.hy - 6}`} />
+                    <circle class="leader-dot" cx={p.hx} cy={p.hy - 6} r="2.4" />
+                    <image class="animal" href={silhouette(p.kind).url} x={p.x} y={p.y} width={p.w} height={p.h} preserveAspectRatio="xMidYMax meet" />
+                    <text class="label-name" x={p.hx} y={LABEL_Y}>
+                      {shortName(a.name)}
+                    </text>
+                    <g class="label-level" transform={`translate(${p.hx - lw / 2} ${LABEL_Y + 9})`}>
+                      {meter(LEVELS[a.level].n).map((on, k) => (
+                        <rect class:list={["pip", { on }]} x={k * 6} y="2" width="4.5" height="6" rx="1" />
+                      ))}
+                      <text x="22" y="8.4">
+                        {word}
+                      </text>
+                    </g>
+                  </g>
+                );
+              })}
+            </svg>
+          </div>
+
+          {sorted.map((a, i) => (
+            <dialog class={`an-dialog lv-${a.level}`} data-dialog={i} aria-labelledby={`an-d-${i}`}>
+              <div class="d-head">
+                <img class="d-art" src={silhouette(a.kind).url} alt="" />
+                <div>
+                  <h3 id={`an-d-${i}`}>{a.name}</h3>
+                  <p class="an-level">
+                    <span class="meter" aria-hidden="true">{meter(LEVELS[a.level].n).map((on) => <span class:list={{ on }} />)}</span>
+                    {LEVELS[a.level].word} danger
+                  </p>
+                </div>
+                <button type="button" class="d-close" aria-label="Close">
+                  ✕
+                </button>
+              </div>
+              <div class="d-body">
+                <p class="d-basis">{a.basis}</p>
+                <div class="d-cols">
+                  <div>
+                    <p class="an-sub">{a.plant ? "What to do" : "If you meet one"}</p>
+                    <ul class="an-do">{a.do.map((d) => <li>{d}</li>)}</ul>
+                  </div>
+                  {a.dont.length > 0 && (
+                    <div>
+                      <p class="an-sub">Don't</p>
+                      <ul class="an-dont">{a.dont.map((d) => <li>{d}</li>)}</ul>
+                    </div>
+                  )}
+                </div>
+                <p class="d-src">
+                  Advice: {sourceName(a.source)}. Level: ours. Silhouette: {credit(a.kind)}.
+                </p>
+              </div>
+            </dialog>
+          ))}
+        </figure>
+      )}
+    </section>
+  )
+}
+
+<script>
+  // a click, tap, Enter or Space on an animal or plant opens its dialog; Esc, Close or a click on the
+  // backdrop closes it, and the focus returns to it. On phones the band scrolls sideways; it starts
+  // centred on the scene
+  for (const box of document.querySelectorAll<HTMLElement>("[data-wild]")) {
+    const scroll = box.querySelector<HTMLElement>(".scroll")!;
+    scroll.scrollLeft = (scroll.scrollWidth - scroll.clientWidth) / 2;
+    const dialogs = box.querySelectorAll<HTMLDialogElement>("[data-dialog]");
+    for (const p of box.querySelectorAll<SVGGElement>("[data-pick]")) {
+      const dialog = dialogs[Number(p.dataset.pick)];
+      const open = () => {
+        dialog.showModal();
+        dialog.addEventListener("close", () => p.focus({ preventScroll: true }), { once: true });
+      };
+      p.addEventListener("click", open);
+      p.addEventListener("keydown", (e) => {
+        if (e.key === "Enter" || e.key === " ") {
+          e.preventDefault();
+          open();
+        }
+      });
+    }
+    for (const dialog of dialogs) {
+      dialog.querySelector(".d-close")!.addEventListener("click", () => dialog.close());
+      dialog.addEventListener("click", (e) => {
+        if (e.target === dialog) dialog.close();
+      });
+    }
+  }
+</script>
+
+<style>
+  /* the section 36 px from the one before, as the trail page's others */
+  section {
+    margin-top: 36px;
+    scroll-margin-top: 64px;
+  }
+  /* the band: wall to wall like the page head (TrailSkyline.astro), the heading and the (i) in its sky,
+     in line with the page's content column */
+  .band {
+    position: relative;
+    margin-inline: calc(50% - 50vw);
+    overflow-x: clip;
+  }
+  .band-head {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+  }
+  .band .band-head {
+    position: absolute;
+    z-index: 2;
+    top: 10px;
+    left: max(16px, calc(50vw - 600px));
+    right: max(16px, calc(50vw - 600px));
+    pointer-events: none;
+  }
+  .band .band-head > * {
+    pointer-events: auto;
+  }
+  .band-head h2 {
+    margin: 0;
+  }
+  @media (min-width: 1080px) {
+    .band-head h2 {
+      font-size: 1.15rem;
+      line-height: 1.25;
+    }
+  }
+  /* the heading in the scene's ink on its day sky, whatever the theme (the sky's colours are fixed) */
+  .band .band-head h2 {
+    color: #2b3026;
+  }
+  .band .chart-info :global(.term.icon) {
+    color: #2b3026;
+  }
+  .an-none {
+    margin: 0;
+  }
+  /* levels: the status colours (Base.astro), soft for fills */
+  .lv-low {
+    --lv: var(--good);
+    --lv-soft: var(--good-soft);
+  }
+  .lv-moderate {
+    --lv: var(--fair);
+    --lv-soft: var(--fair-soft);
+  }
+  .lv-high {
+    --lv: var(--poor);
+    --lv-soft: var(--poor-soft);
+  }
+
+  .wild {
+    margin: 0;
+  }
+  /* the scene fills the band's width and a fixed height, cropped at the sides on narrow screens (the
+     scene's middle, where the animals stand, always shows); phones scroll it sideways */
+  .scroll {
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+  .scene {
+    display: block;
+    width: 100%;
+    height: clamp(320px, 25vw, 380px);
+  }
+  @media (max-width: 759px) {
+    .scene {
+      width: 1000px;
+      height: 320px;
+    }
+  }
+  /* fixed colours, like a picture (the skylines' rule), a little dimmer in dark mode */
+  :global(html[data-theme="dark"]) .scene {
+    filter: brightness(0.82);
+  }
+  .scene :global(.sky) {
+    fill: #dfe9ec;
+  }
+  .scene :global(.far) {
+    fill: #bccad0;
+  }
+  .scene :global(.snow) {
+    fill: #f4f6f5;
+  }
+  .scene :global(.hills) {
+    fill: #a9c19c;
+  }
+  .scene :global(.trees) {
+    fill: #6f9474;
+  }
+  .scene :global(.meadow) {
+    fill: #9dbb78;
+  }
+  .scene :global(.rock) {
+    fill: #a59c88;
+  }
+  .scene :global(.bush) {
+    fill: #7f9f5c;
+  }
+  .scene :global(.ground) {
+    fill: #8fae66;
+  }
+  .pick {
+    cursor: pointer;
+    outline: none;
+  }
+  .pick .hit {
+    fill: transparent;
+  }
+  .pick .shadow {
+    fill: #2b3026;
+    opacity: 0.18;
+  }
+  .pick:hover .animal {
+    filter: brightness(0.6);
+  }
+  .pick:hover .shadow {
+    opacity: 0.32;
+  }
+  .pick:focus-visible .hit {
+    stroke: #2b3026;
+    stroke-width: 2;
+    stroke-dasharray: 6 4;
+  }
+  /* the labels: the scene's ink on its sky, the level in darker status colours, fixed like the scene */
+  .leader {
+    stroke: #2b3026;
+    stroke-width: 1;
+    opacity: 0.55;
+  }
+  .leader-dot {
+    fill: #2b3026;
+    opacity: 0.7;
+  }
+  .label-name {
+    fill: #2b3026;
+    font-family: var(--serif);
+    font-size: 16px;
+    font-weight: 600;
+    text-anchor: middle;
+    text-decoration: underline dotted;
+    text-underline-offset: 3px;
+  }
+  .label-level .pip {
+    fill: none;
+    stroke: var(--lv-pill);
+  }
+  .label-level .pip.on {
+    fill: var(--lv-pill);
+  }
+  .label-level text {
+    fill: var(--lv-pill);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+  .pick:hover .label-name,
+  .pick:focus-visible .label-name {
+    text-decoration: underline solid;
+  }
+  .pick:hover .leader {
+    opacity: 1;
+  }
+  .lv-low {
+    --lv-pill: #4a6534;
+  }
+  .lv-moderate {
+    --lv-pill: #7f5410;
+  }
+  .lv-high {
+    --lv-pill: #9c3626;
+  }
+
+  /* the dialog, in the middle of the screen; its body scrolls when the screen is short */
+  .an-dialog {
+    width: min(560px, calc(100vw - 32px));
+    max-height: calc(100dvh - 32px);
+    padding: 0;
+    border: 1px solid var(--line);
+    border-top: 6px solid var(--lv);
+    border-radius: 12px;
+    background: var(--bg);
+    color: var(--text);
+  }
+  .an-dialog[open] {
+    display: flex;
+    flex-direction: column;
+  }
+  .an-dialog::backdrop {
+    background: rgb(0 0 0 / 0.45);
+  }
+  .d-head {
+    display: flex;
+    flex: none;
+    gap: 14px;
+    align-items: center;
+    padding: 12px 16px;
+    background: var(--lv-soft);
+  }
+  .d-art {
+    flex: none;
+    width: 64px;
+    height: 64px;
+    object-fit: contain;
+  }
+  /* the silhouettes are drawn in dark ink; light in dark mode */
+  :global(html[data-theme="dark"]) .d-art {
+    filter: invert(0.9);
+  }
+  .d-head > div {
+    flex: 1;
+  }
+  .d-head h3 {
+    margin: 0;
+    font-size: 1.15rem;
+  }
+  .d-close {
+    align-self: flex-start;
+    width: 34px;
+    height: 34px;
+    border: 1px solid var(--line);
+    border-radius: 50%;
+    background: var(--bg);
+    color: var(--text);
+    font: inherit;
+    cursor: pointer;
+  }
+  .d-close:hover {
+    background: var(--surface);
+  }
+  .d-body {
+    overflow-y: auto;
+    padding: 4px 18px 18px;
+  }
+  .d-basis {
+    margin: 12px 0 0;
+    font-size: 0.92rem;
+  }
+  .d-cols {
+    display: grid;
+    grid-template-columns: 1.3fr 1fr;
+    gap: 0 24px;
+  }
+  .d-src {
+    margin: 16px 0 0;
+    color: var(--muted);
+    font-size: 0.8rem;
+  }
+  @media (max-width: 559px) {
+    .d-cols {
+      grid-template-columns: 1fr;
+    }
+  }
+  .an-level {
+    display: flex;
+    gap: 6px;
+    align-items: center;
+    margin: 0;
+    font-size: 0.85rem;
+    font-weight: 600;
+  }
+  .meter {
+    display: inline-flex;
+    gap: 2px;
+  }
+  .meter span {
+    width: 10px;
+    height: 6px;
+    border: 1px solid var(--lv);
+    border-radius: 1px;
+  }
+  .meter span.on {
+    background: var(--lv);
+  }
+  .an-sub {
+    margin: 12px 0 4px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+  .an-do,
+  .an-dont {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    font-size: 0.9rem;
+  }
+  .an-do li,
+  .an-dont li {
+    position: relative;
+    margin: 3px 0;
+    padding-left: 20px;
+  }
+  .an-do li::before,
+  .an-dont li::before {
+    position: absolute;
+    left: 0;
+    font-weight: 700;
+  }
+  .an-do li::before {
+    content: "✓";
+    color: var(--good);
+  }
+  .an-dont li::before {
+    content: "✕";
+    color: var(--poor);
+  }
+</style>

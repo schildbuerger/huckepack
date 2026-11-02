@@ -108,6 +108,24 @@ access:
     lat: 55.87056
     lon: -4.4357
     source: osm
+animals:
+  # NatureScot (with the Care of Burns in Scotland network): giant hogweed is "widespread across central
+  # and eastern parts" of Scotland, "commonly found along river banks", where the Way starts (Milngavie,
+  # the Allander and Endrick Water, Loch Lomond). Level ours
+  plants:
+    - kind: hogweed
+      name: Giant hogweed
+      level: moderate
+      basis: Widespread along river banks in central Scotland, where the Way starts; its sap makes the skin burn in sunlight, sometimes seriously and for long, and can cause blindness.
+      do:
+        - "Know it: 2–4 m tall, flower heads up to 80 cm across, stems with purple blotches"
+        - Keep children and dogs away from it
+        - After contact, wash the skin with soap and water as soon as possible
+        - Cover the skin and keep it out of sunlight for at least 48 hours, even on overcast days
+        - Get medical help if redness or blisters appear, or if you feel unwell
+      dont:
+        - Touch it or brush against it
+      source: naturescot-hogweed
 tags: [highlands, lochs, moorland, glens]
 notes:
   - >-
@@ -144,6 +162,11 @@ dataCheck:
     - { figure: "Days", ours: "6–7 days", theirs: "7–8 days", source: wikipedia }
     - { figure: "Ascent", ours: "≈ 3,930 m (our estimate)", theirs: "3,155 m", source: wikipedia }
 sources:
+  - id: naturescot-hogweed
+    title: "NatureScot: Scots warned of giant hogweed danger (with the Care of Burns in Scotland network), 28 June 2022"
+    url: https://presscentre.nature.scot/news/scots-warned-of-giant-hogweed-danger
+    licence: © NatureScot (facts only)
+    retrieved: 2026-11-02
   - id: whw
     title: "West Highland Way Management Group: the official site (route sections with distances and heights)"
     url: https://www.westhighlandway.org/the-route/milngavie-to-drymen/

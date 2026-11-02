@@ -7,6 +7,7 @@ import Explain from "../../components/Explain.astro";
 import Breadcrumbs from "../../components/Breadcrumbs.astro";
 import Meter from "../../components/Meter.astro";
 import Waymark from "../../components/Waymark.astro";
+import TrailAnimals from "../../components/TrailAnimals.astro";
 import TrailSkyline from "../../components/TrailSkyline.astro";
 import { SKYLINES } from "../../lib/skylines";
 import { SKY_SCRIPT } from "../../lib/sky";
@@ -607,6 +608,7 @@ const nav = [
   { id: "landscape", label: "Landscape", show: Boolean(landcover) },
   { id: "sleeping", label: "Sleeping", show: Boolean(t.sleeping || t.wildCamping) },
   { id: "water", label: along ? "Water & Supply" : "Water", show: Boolean(water) },
+  { id: "animals", label: "Wildlife", show: Boolean(t.animals?.list.length || t.animals?.plants.length || t.animals?.none) },
 ].filter((n) => n.show);
 
 // structured data (review #17, the light option): the page is about the trail as a place, with its
@@ -1822,6 +1824,9 @@ const trailLd = JSON.stringify({
       )}
     </section>
   )}
+
+  <!-- dangerous animals (issue #156), after the water and supply -->
+  <TrailAnimals animals={t.animals?.list ?? []} plants={t.animals?.plants ?? []} none={t.animals?.none} sourceName={sourceShort} slug={trail.id} />
 
   <!-- the sources as a footnote: below a short rule, small and muted, not in the navigation -->
   <footer id="sources" class="sources">

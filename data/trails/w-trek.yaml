@@ -128,6 +128,25 @@ access:
     lat: -53.005
     lon: -70.8445
     source: osm
+animals:
+  # CONAF's leaflet for Torres del Paine, "Cómo reaccionar ante la presencia de un puma": the hours of
+  # greatest risk are dawn, dusk and night; the advice translated. Level ours
+  list:
+    - kind: big-cat
+      name: Puma
+      level: moderate
+      basis: Pumas live along the W and are seen by hikers; most keep away, and the risk is greatest at dawn, dusk and night.
+      do:
+        - Let the animal go its way
+        - Stay calm and standing, and keep it in sight
+        - "If it is aggressive, look bigger: wave your arms, raise your jacket, make noise, shout"
+        - If it stays aggressive, throw stones and sticks
+        - Tell CONAF's staff about an aggressive puma
+      dont:
+        - Run, or turn your back on it
+        - Walk at dawn, dusk or night, or at least not alone
+        - Follow or corner it, above all with cubs or while it feeds
+      source: conaf-puma
 tags: [mountains, glaciers, lakes, huts, national-park]
 notes:
   - >-
@@ -173,6 +192,11 @@ dataCheck:
     - { figure: "Stage 1 length", ours: "11.6 km", theirs: "13.5 km (map line)", source: osm }
     - { figure: "Stage 2 length", ours: "5 km", theirs: "4.5 km (map line)", source: osm }
 sources:
+  - id: conaf-puma
+    title: "CONAF: Parque Nacional Torres del Paine, cómo reaccionar ante la presencia de un puma (leaflet)"
+    url: https://parquetorresdelpaine.cl/wp-content/uploads/2022/03/Folleto-puma-1.pdf
+    licence: © CONAF (facts only)
+    retrieved: 2026-11-02
   - id: conaf
     title: "CONAF: Parque Nacional Torres del Paine, its trails (length, time, difficulty), services and rules"
     url: https://www.conaf.cl/parques/parque-nacional-torres-del-paine/

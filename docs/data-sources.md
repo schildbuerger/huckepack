@@ -33,6 +33,12 @@ source before using it, and record the result here.
 | Open-Meteo historical weather API (ERA5, ERA5-Land) | Daily temperature, precipitation, snow, wind and gusts by location | CC BY 4.0; contains modified Copernicus Climate Change Service information | In use: `pipeline/climate.py`, 1995–2024 at each trail's lowest and highest point |
 | WorldClim | Gridded monthly climate normals | Free for non-commercial use, check terms | Alternative for climate normals |
 
+## Drawings
+
+| Source | What | Licence | Notes |
+|---|---|---|---|
+| PhyloPic | Silhouettes of the animals and plants in the Wildlife section (issue #156), one a kind in `src/assets/animals/` | CC0 1.0, except the giant hogweed (Lizzie Harper, CC BY 4.0) | Each maker and licence named in the section (`credit()` in `src/lib/animal-art.ts`); check a new silhouette's licence and species on PhyloPic before adding it (a "wolf" there was a coyote) |
+
 ## Methods
 
 | Method | What | Notes |

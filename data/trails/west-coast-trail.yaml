@@ -117,6 +117,56 @@ access:
     lat: 48.6463
     lon: -123.421
     source: osm
+animals:
+  # Parks Canada: "Black bears, wolves and cougars use the beaches and trails. All wild animals are
+  # potentially dangerous"; the same advice for all three ("these tips apply to all large animal
+  # encounters"). Levels ours: likely to meet, rarely attacking
+  list:
+    - kind: bear
+      name: Black bear
+      level: moderate
+      basis: Bears use the beaches and trails, and Parks Canada reports more encounters with hikers; attacks are rare, but an encounter can be serious.
+      do:
+        - Stay calm and do not run
+        - "Stand your ground: act big, make noise and keep eye contact"
+        - Back away slowly and give the animal at least 100 metres
+        - Gather your group and pick up small children
+        - If it approaches, use bear spray; if it does not leave, throw objects and fight back
+      dont:
+        - Run
+        - Linger or take photos; leave as soon as it is safe
+        - Leave food, garbage or toiletries where animals can reach them
+      source: pc-wildlife
+    - kind: wolf
+      name: Wolf
+      level: moderate
+      basis: Wolves use the beaches and trails, some of them used to people; Parks Canada asks hikers to report every sighting.
+      do:
+        - Stay calm and do not run
+        - "Stand your ground: act big, make noise and keep eye contact"
+        - Back away slowly and give the animal at least 100 metres
+        - Gather your group and pick up small children
+        - If it approaches, use bear spray; if it does not leave, throw objects and fight back
+      dont:
+        - Run
+        - Linger or take photos; leave as soon as it is safe
+        - Leave food, garbage or toiletries where animals can reach them
+      source: pc-wildlife
+    - kind: big-cat
+      name: Cougar
+      level: moderate
+      basis: Cougars use the trails but are seldom seen; an attack is very rare but can be grave.
+      do:
+        - Stay calm and do not run
+        - "Stand your ground: act big, make noise and keep eye contact"
+        - Back away slowly and give the animal at least 100 metres
+        - Gather your group and pick up small children
+        - If it approaches, use bear spray; if it does not leave, throw objects and fight back
+      dont:
+        - Run
+        - Linger or take photos; leave as soon as it is safe
+        - Leave food, garbage or toiletries where animals can reach them
+      source: pc-wildlife
 tags: [coast, rainforest, ladders, river-crossings, national-park]
 notes:
   - >-
@@ -160,6 +210,11 @@ dataCheck:
   deviations:
     - { figure: "Stage 3 length", ours: "8 km", theirs: "6.7 km (map line, to the ferry landing)", source: osm }
 sources:
+  - id: pc-wildlife
+    title: "Parks Canada: Pacific Rim National Park Reserve, living with wildlife (wolves, bears, cougars; what to do)"
+    url: https://parks.canada.ca/pn-np/bc/pacificrim/nature/faune-wildlife
+    licence: © His Majesty the King in Right of Canada (facts only)
+    retrieved: 2026-11-02
   - id: parks-canada
     title: "Parks Canada: West Coast Trail (length, days, season, permits, ferries, conditions)"
     url: https://parks.canada.ca/pn-np/bc/pacificrim/activ/SCO-WCT

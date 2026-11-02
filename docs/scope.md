@@ -161,6 +161,18 @@
   along the route, on the page, in the search filter and on the cards
   alike; OSM's shelters (day shelters, whatever their tagged type) don't count
   as beds.
+- **Dangerous animals and plants (issue #156, 2026-11-02):** the trail page's
+  Wildlife section shows the animals that can be dangerous to hikers in the
+  trail's region (large animals, venomous snakes, scorpions and spiders, ticks;
+  no insects) and plants that harm on touch (giant hogweed), only where an
+  official source (a park service, a wildlife or health agency) names them;
+  what to do and not to do in its words, the level (Low, Moderate, High) our
+  own with its basis. Where an official source says the region has none, the
+  page says so with the source; otherwise the section is left out. Of three
+  previews, approach C, reworked into one wall-to-wall band: the trail's own
+  skyline with the animals and plants as PhyloPic silhouettes in front,
+  labelled like a panorama board, each opening its advice in a dialog. Hand-drawn
+  animals fell short of public silhouettes in a side-by-side check.
 - **Water in tiers (issue #119, 2026-11-01):** the availability rating is for
   clean water, drinking water or a refill at a hut, hostel, guest house or
   campsite within 500 m (first decided as drinking water only, with refills
