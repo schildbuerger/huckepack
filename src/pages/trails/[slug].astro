@@ -186,6 +186,14 @@ const closedText = (s: (typeof closedStages)[number]) => {
   );
 };
 
+// permits and fees (issue #104): the record keeps whether a permit is needed and how to get it, and
+// the trail's or park's own fees (no hut or campsite prices) with currency and year; the page says
+// only whether a permit is needed and whether a fee is charged, one row in Location (approach A2 of
+// the preview, 2026-11-02)
+const permit = t.permit;
+const fees = t.fees;
+const hasPermitInfo = Boolean(permit || fees.length);
+
 // legs that aren't walked (stages.transfers: the W Trek's catamaran): like a closed stage's detour by
 // train, on the map in their own style and named in the note under the stages table, in no figure
 const transfers = t.stages?.transfers ?? [];
@@ -859,6 +867,12 @@ const trailLd = JSON.stringify({
           <a class="site-link" href={t.website}>Official website</a>
         </dd>
       </div>
+      {hasPermitInfo && (
+        <div>
+          <dt>Permit</dt>
+          <dd>{[permit && (permit.required ? "Required" : "Not needed"), fees.length > 0 && "fee charged"].filter(Boolean).join(" · ").replace(/^f/, "F")}</dd>
+        </div>
+      )}
     </dl>
     <div id="map" class="map-col">
       <TrailMap

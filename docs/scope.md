@@ -175,6 +175,14 @@
   the difficulty. A month pick in every page's header (approach A of three
   previews) did this until 2026-11-01; it was removed when the home page's
   trip search (issue #128) started asking for the months first.
+- **Permits and fees (issue #104, 2026-10-31 and 2026-11-02):** a record
+  keeps whether a permit is needed (its name, issuer, how and when to get
+  it) and the trail's or park's own fees with currency and the year of the
+  price, from official sources only; no hut or campsite prices, and no
+  "not needed" without a source saying so. The page shows one short row in
+  Location, "Permit: Required · fee charged" (approach A2 of the preview's
+  compact versions of A): no how-to text, no amounts, no link. The fees stay
+  in the record for a later filter.
 - **Legs that aren't walked (2026-11-02, the W Trek's catamaran):** treated
   like the Eifelsteig's closed stage and its train detour: drawn on the map in
   their own style (a dashed ink line, "By boat" in the key) and named in the

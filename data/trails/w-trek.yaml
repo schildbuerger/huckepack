@@ -101,6 +101,20 @@ wildCamping:
     Camping only at the authorised, signposted campsites, booked before entering the park; no
     stoves outside their cooking areas and no fires anywhere in the park.
   source: conaf
+permit:
+  # CONAF's ticket sales for its parks; every night must also be booked before entering the park (the wild camping rule)
+  required: true
+  name: Park entry ticket
+  issuedBy: CONAF
+  how: >-
+    Bought online before the visit, as a day or a multi-day entry; national and foreign visitors
+    pay different prices and buy their tickets separately.
+  url: https://www.pasesparques.cl/es/torres-del-paine-300/parque-nacional-torres-del-paine-3412
+  source: conaf-pases
+fees:
+  # CONAF's prices as sold on 2026-11-02, in Chilean pesos; children up to 12 free
+  - { name: "Park entry, more than one day, foreign visitors", amount: 48500, currency: CLP, per: per adult, year: 2026, source: conaf-pases }
+  - { name: "Park entry, more than one day, Chilean residents", amount: 14200, currency: CLP, per: per adult, year: 2026, source: conaf-pases }
 access:
   # Puerto Natales' bus station (the park buses: Laguna Amarga, Pudeto, administration) and Punta
   # Arenas' international airport. Coordinates from OSM; distances by pipeline/access.py
@@ -162,6 +176,11 @@ sources:
   - id: conaf
     title: "CONAF: Parque Nacional Torres del Paine, its trails (length, time, difficulty), services and rules"
     url: https://www.conaf.cl/parques/parque-nacional-torres-del-paine/
+    licence: © CONAF (facts only)
+    retrieved: 2026-11-02
+  - id: conaf-pases
+    title: "CONAF, Pases Parques: Parque Nacional Torres del Paine, entry tickets and prices"
+    url: https://www.pasesparques.cl/es/torres-del-paine-300/parque-nacional-torres-del-paine-3412
     licence: © CONAF (facts only)
     retrieved: 2026-11-02
   - id: vertice

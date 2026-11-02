@@ -90,6 +90,25 @@ wildCamping:
     Bay, Balaats'adt (Nitinaht Village) or Gordon River; fires, where not banned, small and below the
     high-tide line.
   source: parks-canada
+permit:
+  # "a West Coast Trail Backcountry Use Permit is required for all users"; "all spaces are 100%
+  # reservable", limited per day
+  required: true
+  name: West Coast Trail Backcountry Use Permit
+  issuedBy: Parks Canada
+  how: >-
+    Reserve an entry at Pachena Bay, Balaats'adt (Nitinaht Village) or Gordon River online or through
+    the Parks Canada call centre; overnight hikers are limited each day and every space is reserved.
+    All hikers watch the Hiker Safety Primer before starting.
+  booking: From 8 a.m. PT on 5 February for the 2026 season, up to 2 days before departure
+  url: https://reservation.pc.gc.ca/
+  source: parks-canada
+fees:
+  # Parks Canada's fee schedule for Pacific Rim (dated 2025-12-03, the 2026 season), in Canadian dollars
+  - { name: "West Coast Trail (Backcountry Use Permit and Orientation Fee)", amount: 208.5, currency: CAD, per: per person and trip, year: 2026, source: parks-canada-fees }
+  - { name: "Ferry, Gordon River", amount: 28, currency: CAD, per: per person, year: 2026, source: parks-canada-fees }
+  - { name: "Ferry, Nitinaht Narrows", amount: 28, currency: CAD, per: per person, year: 2026, source: parks-canada-fees }
+  - { name: "National park entry", amount: 12.25, currency: CAD, per: per adult and day, year: 2026, note: "free under 18", source: parks-canada-fees }
 access:
   # Victoria's international airport; no railway on Vancouver Island, the trail buses leave from
   # Victoria and Nanaimo. Coordinates from OSM; distances by pipeline/access.py
@@ -149,6 +168,11 @@ sources:
   - id: parks-canada-balaatsadt
     title: "Parks Canada: Balaats'adt (Nitinaht Village) Trailhead, the day plans north and south with km markers"
     url: https://parks.canada.ca/pn-np/bc/pacificrim/activ/ssco-wctu/balaatsadt
+    licence: © His Majesty the King in Right of Canada (facts only)
+    retrieved: 2026-11-02
+  - id: parks-canada-fees
+    title: "Parks Canada: Pacific Rim National Park Reserve, fees (entry, West Coast Trail, ferries)"
+    url: https://parks.canada.ca/pn-np/bc/pacificrim/visit/tarifs-fees
     licence: © His Majesty the King in Right of Canada (facts only)
     retrieved: 2026-11-02
   - id: wikipedia

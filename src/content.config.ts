@@ -231,6 +231,35 @@ const trail = z
       })
       .optional(),
 
+    // Permits and fees (issue #104, decided 2026-10-31): whether a permit is needed and how to get it,
+    // and the trail's or park's own fees with their currency and the year of the price; no hut or
+    // campsite prices. Recorded only where an official source says so (an unknown permit is left
+    // out, not recorded as "not needed")
+    permit: z
+      .object({
+        required: z.boolean(),
+        name: z.string(), // what it is called: "West Coast Trail Backcountry Use Permit"
+        issuedBy: z.string(),
+        how: z.string(), // how to get it, in a sentence or two
+        booking: z.string().optional(), // when it can be booked: "from 5 February for the season"
+        url: z.url().optional(), // where to book or buy it
+        source: sourceRef,
+      })
+      .optional(),
+    fees: z
+      .array(
+        z.object({
+          name: z.string(), // "Ferry, Gordon River"
+          amount: z.number().nonnegative(),
+          currency: z.string().regex(/^[A-Z]{3}$/), // ISO 4217: CAD, CLP, EUR
+          per: z.string(), // "per person and trip", "per adult and day"
+          year: z.number().int(), // the year the price is for
+          note: z.string().optional(),
+          source: sourceRef,
+        }),
+      )
+      .default([]),
+
     // Drinking water a source names that OSM lacks (e.g. the taps in a trail's huts);
     // pipeline/water.py adds them to OSM's points
     waterPoints: z
