@@ -331,7 +331,7 @@ const featuredScript = inlineScript(Astro, `// A random featured trail on each p
                   {featured.lengthKm !== null && <div><dt>Distance</dt><dd>{fmt(featured.lengthKm)}<span>km</span></dd></div>}
                   {climb.climbed > 0 && <div><dt>Ascent{climb.climbedEst && ", estimate"}</dt><dd>{climb.climbedEst && "≈"}{fmt(climb.climbed)}<span>m</span></dd></div>}
                   {featured.days && <div><dt>Days</dt><dd>{days(featured.days)}</dd></div>}
-                  {level && <div><dt>Difficulty</dt><dd class="rs-word" data-rate={rateOf(featured)}><span class="rate-word">{level}</span></dd></div>}
+                  {level && <div><dt>Difficulty</dt><dd data-rate={rateOf(featured)}><span class="rate-word">{level}</span></dd></div>}
                 </dl>
                 {featured.surface && (
                   <div class="rs-ground">
@@ -1566,22 +1566,20 @@ const featuredScript = inlineScript(Astro, `// A random featured trail on each p
     letter-spacing: 0.08em;
     text-transform: uppercase;
   }
+  /* every figure alike, the difficulty's word too (sized so "Demanding" fits its half) */
   .rs-stats dd {
     margin: 0;
     font-family: var(--serif);
-    font-size: clamp(2.2rem, 4vw, 3.2rem);
+    font-size: clamp(2rem, 3.4vw, 2.7rem);
     font-weight: 800;
     line-height: 1;
   }
-  .rs-stats dd span {
+  .rs-stats dd > span:not(.rate-word) {
     margin-left: 4px;
     font-family: var(--sans);
     font-size: 1rem;
     font-weight: 600;
     color: #61624c;
-  }
-  .rs-stats .rs-word {
-    font-size: clamp(1.6rem, 3vw, 2.2rem);
   }
   .rs-ground {
     display: grid;
