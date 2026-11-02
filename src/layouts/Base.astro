@@ -1,5 +1,4 @@
 ---
-import ThemeToggle from "../components/ThemeToggle.astro";
 import HeaderSearch from "../components/HeaderSearch.astro";
 import logo from "../assets/logo.svg?raw"; // written by design/logos/make.py
 import { inlineScript } from "../lib/inline-script";
@@ -16,14 +15,14 @@ interface Props {
 }
 const { title, description, personal = false, full = false } = Astro.props;
 const image = Astro.props.image ?? { path: "/og/page/site.png", alt: await ogPageAlt("site") };
-// apply a saved light/dark choice before the first paint; no choice means auto (system setting);
+// the theme before the first paint (issue #155): light, unless the visitor switched to dark (the
+// sun or moon in a drawing, the easter egg below); the system setting doesn't count;
 // and mark the page as having JavaScript (html.js), for content that waits for a script to settle
 const themeScript = inlineScript(
   Astro,
   `document.documentElement.classList.add("js");
 try {
-  const theme = localStorage.getItem("theme");
-  if (theme === "light" || theme === "dark") document.documentElement.dataset.theme = theme;
+  document.documentElement.dataset.theme = localStorage.getItem("theme") === "dark" ? "dark" : "light";
   // design previews (working rule 1, PreviewSwitch.astro): the approach picked per topic, so a local
   // preview shows it from the first paint; no visitor of the live site has these keys
   for (let i = 0; i < localStorage.length; i++) {
@@ -83,10 +82,9 @@ const siteLd =
           <span class="brand-mark" aria-hidden="true" set:html={logo} />
           huckepack
         </a>
-        <!-- the same on every page (issue #154): the search as an icon, then the theme switch -->
+        <!-- the same on every page (issues #154, #155): the search as an icon -->
         <div class="header-end">
           <HeaderSearch />
-          <ThemeToggle />
         </div>
       </div>
     </header>
@@ -102,6 +100,19 @@ const siteLd =
         <p class="legal-links"><a href="/legal-notice/" rel="nofollow">Legal notice</a><a href="/privacy/" rel="nofollow">Privacy</a></p>
       </div>
     </footer>
+    <script>
+      // the easter egg (issue #155): a click on the sun, or the moon at night, in a drawing (the home
+      // page's hero, a trail page's skyline) switches between light and dark and remembers it
+      document.addEventListener("click", (e) => {
+        if (!(e.target as Element).closest?.("[data-theme-sun]")) return;
+        const root = document.documentElement;
+        const next = root.dataset.theme === "dark" ? "light" : "dark";
+        root.dataset.theme = next;
+        try {
+          localStorage.setItem("theme", next);
+        } catch {}
+      });
+    </script>
     <script>
       // links to other websites open in a new tab (with a note for screen readers); links within
       // huckepack stay in the same tab, so back and the breadcrumbs work as usual
@@ -187,7 +198,7 @@ const siteLd =
     --sans: system-ui, -apple-system, "Segoe UI", sans-serif;
     color-scheme: light;
   }
-  /* dark: chosen in the theme switch, or the system setting when the switch is on auto */
+  /* dark: after the easter egg (a click on a drawing's sun or moon, issue #155) */
   :root[data-theme="dark"] {
     --bg: #18190f;
     --surface: #202217;
@@ -224,45 +235,6 @@ const siteLd =
     --grade-down: #5a529e;
     --grade-down-steep: #b3acf0;
     color-scheme: dark;
-  }
-  @media (prefers-color-scheme: dark) {
-    :root:not([data-theme="light"]) {
-      --bg: #18190f;
-      --surface: #202217;
-      --text: #ecebdb;
-      --muted: #a7a78f;
-      --line: #36382a;
-      --accent: #b4cb76;
-      --accent-text: var(--accent);
-      --accent-soft: #2d3320;
-      --good: #a9c48a;
-      --good-soft: #283020;
-      --fair: #e2b866;
-      --fair-soft: #382d18;
-      --poor: #ee9c87;
-      --poor-soft: #3b231e;
-      --water: #86b6db;
-      --surface-natural: #a74f21;
-      --surface-gravel: #ad8f2a;
-      --surface-paved: #babec3;
-      --surface-unknown: #4a4038;
-      --clim-low: #c97a37;
-      --clim-high: #a99be8;
-      --wet: #4a7aa1;
-      --snow: #c4dcef;
-      --daylight: #f5c518;
-      --land-forest: #4ba22a;
-      --land-open: #656a08;
-      --land-moss: #0a9b94;
-      --land-bare: #8e3da5;
-      --land-water: #298afe;
-      --land-farm: #a84900;
-      --grade-up: #8f4a2e;
-      --grade-up-steep: #ee9f76;
-      --grade-down: #5a529e;
-      --grade-down-steep: #b3acf0;
-      color-scheme: dark;
-    }
   }
   * {
     box-sizing: border-box;
@@ -360,7 +332,7 @@ const siteLd =
     justify-content: space-between;
     height: 60px;
   }
-  /* the header's right side, the same on every page: the search icon, then the theme switch */
+  /* the header's right side, the same on every page: the search icon */
   .header-end {
     display: flex;
     align-items: center;

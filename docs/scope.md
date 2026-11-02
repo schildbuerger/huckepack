@@ -189,8 +189,15 @@
   the nearest ridge) on a band of day sky across the bottom, in place of the
   season and ground row (approach C of three); the ridge is one function
   (`profileRidge`, src/lib/skylines.ts) shared with the page head.
+- **Light by default, the sun and moon as a switch (issue #155, 2026-11-02):**
+  the site is light for everyone, whatever the system setting (no
+  prefers-color-scheme rules any more); the header has no theme switch.
+  An easter egg: a click on the sun, or the moon at night, in a drawing (the
+  home page's hero, a trail page's skyline) switches between light and dark
+  and remembers it (localStorage "theme"). The hero's text lets clicks
+  through to the sun; its links, buttons, fields and the trip search don't.
 - **The header (issue #154, 2026-11-02):** the same on every page: the
-  logo, a search icon and the theme switch. The icon opens the trail search
+  logo and a search icon (the theme switch went with #155). The icon opens the trail search
   in the header row, left of it (approach A of three); on phones over the
   logo, across the header bar and clear of the icon, with 16 px text (iPhones
   zoom into smaller fields) and the suggestions across the screen.

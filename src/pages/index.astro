@@ -216,7 +216,7 @@ const featuredScript = inlineScript(Astro, `// A random featured trail on each p
     <svg class="hb-stars" viewBox="0 0 1000 380" preserveAspectRatio="none" aria-hidden="true">
       {stars.map(([x, y, r]) => <circle cx={x} cy={y} r={r} />)}
     </svg>
-    <span class="hb-sun" aria-hidden="true"></span>
+    <span class="hb-sun" aria-hidden="true" data-theme-sun></span>
     <div class="hb-ridges" aria-hidden="true">
       {heroRidges.map((d, i) => (
         <svg class={`hb-ridge r${i}`} viewBox="0 0 1000 110" preserveAspectRatio="none"><path d={d} /></svg>
@@ -539,6 +539,13 @@ const featuredScript = inlineScript(Astro, `// A random featured trail on each p
   .hero-band > .hero {
     position: relative;
     z-index: 2;
+    /* the hero's text lets clicks through to the sun behind it (the easter egg, issue #155); its links,
+       buttons and fields take them as usual */
+    pointer-events: none;
+  }
+  .hero-band > .hero :is(a, button, input, select, label, textarea, [role="option"], [role="listbox"], [tabindex]),
+  .hero-band > .hero :global(.trip) {
+    pointer-events: auto;
   }
   .hb-stars,
   .hb-sun,
@@ -597,7 +604,9 @@ const featuredScript = inlineScript(Astro, `// A random featured trail on each p
   :global(html[data-sky="night"]) .hero-band {
     background: #1d2733;
   }
+  /* the sun or moon switches the theme (the easter egg, issue #155, Base.astro) */
   .hb-sun {
+    pointer-events: auto;
     left: var(--sun-x, 70%);
     top: var(--sun-y, 20%);
     width: 110px;

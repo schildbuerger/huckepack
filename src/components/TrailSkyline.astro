@@ -34,7 +34,7 @@ const ridge = profileRidge(points, routeKm);
         {localName && <p class="sk-local">{localName}</p>}
       </div>
       <div class="sk-scene" aria-hidden="true">
-        <span class="sk-sun" />
+        <span class="sk-sun" data-theme-sun />
         <svg class="sk-svg" viewBox={`0 ${SKY_TOP} ${SKY_W} ${SKY_H - SKY_TOP}`} preserveAspectRatio="xMidYMax meet">
           {sky.shapes.map((s) => (
             <path class="sk-shape" d={s.d} style={`--c: ${s.c}`} />
@@ -143,6 +143,8 @@ const ridge = profileRidge(points, routeKm);
   .sk-svg {
     position: relative;
     z-index: 1;
+    /* clicks pass through the drawing to the sun behind it (the easter egg, issue #155) */
+    pointer-events: none;
     display: block;
     width: 100%;
     height: auto;

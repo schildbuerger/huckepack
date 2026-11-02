@@ -1,7 +1,7 @@
 // The basemap and theme handling both maps share (TrailMap on a trail page, TrailsMap on the trail
 // map): OpenFreeMap's styles for the site's light and dark theme, the theme in effect, the colour
-// tokens, and a watcher that calls back when the theme changes (the header switch sets
-// <html data-theme>; auto follows the system setting).
+// tokens, and a watcher that calls back when the theme changes (<html data-theme>: light, or dark
+// after the easter egg, issue #155).
 
 export const STYLES = {
   light: "https://tiles.openfreemap.org/styles/liberty",
@@ -9,11 +9,7 @@ export const STYLES = {
 };
 export type Theme = keyof typeof STYLES;
 
-export const currentTheme = (): Theme => {
-  const chosen = document.documentElement.dataset.theme;
-  if (chosen === "light" || chosen === "dark") return chosen;
-  return matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
-};
+export const currentTheme = (): Theme => (document.documentElement.dataset.theme === "dark" ? "dark" : "light");
 
 // the basemap for an overview of trails (the trail map): the theme's style without the layers such a
 // map doesn't need (points of interest, buildings, house numbers, airports), which halved its
@@ -56,10 +52,5 @@ export function watchTheme(onChange: (theme: Theme) => void): () => void {
   };
   const observer = new MutationObserver(check);
   observer.observe(document.documentElement, { attributes: true, attributeFilter: ["data-theme"] });
-  const system = matchMedia("(prefers-color-scheme: dark)");
-  system.addEventListener("change", check);
-  return () => {
-    observer.disconnect();
-    system.removeEventListener("change", check);
-  };
+  return () => observer.disconnect();
 }

@@ -3,7 +3,7 @@
   // (AWS Terrain Tiles, no key) and the trail's line from public/routes/<slug>.geojson. Main
   // stages are solid; approaches and variants dashed; a closed stage's detour (kind "detour") dotted
   // on foot and as a railway line (ink with ties) by train or bus. The basemap follows the site theme
-  // (Liberty light, Dark dark), also when the header switch changes it; route and termini take
+  // (Liberty light, Dark dark), also when the theme changes (the sun or moon, issue #155); route and termini take
   // their colours from the theme tokens.
   import { onMount } from "svelte";
   // MapLibre looks for its worker next to its own script, which isn't there once Vite
