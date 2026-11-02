@@ -189,10 +189,12 @@
   the nearest ridge) on a band of day sky across the bottom, in place of the
   season and ground row (approach C of three); the ridge is one function
   (`profileRidge`, src/lib/skylines.ts) shared with the page head.
-- **Places as layers on the trail map (issue #103, 2026-11-02):** under the
-  legend, "Show on the map" switches for drinking water, springs, shops and
-  places to sleep (only the kinds a trail has, with their counts), in the
-  colours of the Water & Supply and Sleeping charts; a click shows the place,
+- **Places as layers on the trail map (issue #103, 2026-11-02):** a Layers button inside the map, under the zoom buttons, opens a small
+  panel "Show on the map" with drinking water, springs, shops and places to
+  sleep (only the kinds a trail has, each with its icon in its colour and its
+  count; approach A of three, with C's icons); the dots are in the colours of
+  the Water & Supply and Sleeping charts, and the legend lists the layers
+  that are on; a click shows the place,
   its kind and its link (its OSM object, or a record's own source). The
   places come from /places/<slug>.json (src/pages/places/[slug].json.ts,
   built from the derived data), loaded only when a layer is switched on, so

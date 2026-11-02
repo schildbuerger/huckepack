@@ -11,6 +11,12 @@
   import workerUrl from "maplibre-gl/dist/maplibre-gl-worker.mjs?url";
   import maplibreCssUrl from "maplibre-gl/dist/maplibre-gl.css?url";
   import { STYLES, currentTheme, token, watchTheme, loadMaplibreCss } from "../lib/map-theme";
+  // icons for the layer switches (lucide-static, ISC licence)
+  import iconDroplet from "lucide-static/icons/droplet.svg?raw";
+  import iconDroplets from "lucide-static/icons/droplets.svg?raw";
+  import iconBasket from "lucide-static/icons/shopping-basket.svg?raw";
+  import iconBed from "lucide-static/icons/bed-double.svg?raw";
+  import iconLayers from "lucide-static/icons/layers.svg?raw";
 
   interface Point {
     name: string;
@@ -75,12 +81,16 @@
   // Water & Supply and Sleeping charts; switched on under the legend, loaded only then; a click shows the
   // place with its link (its OSM object, or a record's own source)
   type PlaceGroup = "drinking" | "springs" | "shops" | "beds";
-  const PLACE_GROUPS: { id: PlaceGroup; label: string }[] = [
-    { id: "drinking", label: "Drinking water" },
-    { id: "springs", label: "Springs" },
-    { id: "shops", label: "Shops" },
-    { id: "beds", label: "Places to sleep" },
+  const PLACE_GROUPS: { id: PlaceGroup; label: string; short: string; icon: string }[] = [
+    { id: "drinking", label: "Drinking water", short: "Water", icon: iconDroplet },
+    { id: "springs", label: "Springs", short: "Springs", icon: iconDroplets },
+    { id: "shops", label: "Shops", short: "Shops", icon: iconBasket },
+    { id: "beds", label: "Places to sleep", short: "Beds", icon: iconBed },
   ];
+  // the switches (issue #103; of three previews, approach A with C's icons): a Layers button under the
+  // zoom buttons opens a small panel inside the map, each layer with its icon in its colour and its count
+  let layersOpen = $state(false);
+  const groups = $derived(PLACE_GROUPS.filter((g) => placeCounts[g.id]));
   let shown = $state<Record<PlaceGroup, boolean>>({ drinking: false, springs: false, shops: false, beds: false });
   let places: Record<PlaceGroup, [number, number, string, string, string][]> | null = null;
   let mapRef: any;
@@ -492,6 +502,35 @@
       {#if moved}<button type="button" class="map-btn" onclick={() => resetView()}>{@html ICON.reset} Reset view</button>{/if}
     </div>
   {/if}
+  {#if !showPreview && !failed && placesUrl && groups.length}
+      <div
+        class="lay-a"
+        role="presentation"
+        onkeydown={(e) => {
+          if (e.key === "Escape" && layersOpen) {
+            layersOpen = false;
+            (e.currentTarget as HTMLElement).querySelector("button")?.focus();
+          }
+        }}
+      >
+        <button type="button" class="lay-btn" aria-expanded={layersOpen} aria-controls="lay-panel" title="Layers" onclick={() => (layersOpen = !layersOpen)}>
+          {@html iconLayers}<span class="sr-only">Layers</span>
+        </button>
+        {#if layersOpen}
+          <div class="lay-panel" id="lay-panel" role="group" aria-label="Show on the map">
+            <p class="lay-title">Show on the map</p>
+            {#each groups as g (g.id)}
+              <label class="lay-row">
+                <input type="checkbox" checked={shown[g.id]} onchange={() => togglePlaces(g.id)} />
+                <span class="lay-icon {g.id}" aria-hidden="true">{@html g.icon}</span>
+                <span class="lay-name">{g.label}</span>
+                <span class="count">{placeCounts[g.id]}</span>
+              </label>
+            {/each}
+          </div>
+        {/if}
+      </div>
+  {/if}
 </div>
 <ul class="legend">
   <li><span class="key main"></span> Trail</li>
@@ -510,20 +549,9 @@
     <li><span class="key dot start"></span> {start.name}</li>
     <li><span class="key dot end"></span> {end.name}</li>
   {/if}
+  {#each groups.filter((g) => shown[g.id]) as g (g.id)}<li><span class="key place {g.id}"></span> {g.label}</li>{/each}
   <li><span class="key contour"></span> Contour lines</li>
 </ul>
-{#if placesUrl && PLACE_GROUPS.some((g) => placeCounts[g.id])}
-  <fieldset class="layers">
-    <legend>Show on the map</legend>
-    {#each PLACE_GROUPS.filter((g) => placeCounts[g.id]) as g (g.id)}
-      <label class="layer">
-        <input type="checkbox" checked={shown[g.id]} onchange={() => togglePlaces(g.id)} />
-        <span class="key place {g.id}"></span>
-        {g.label} <span class="count">{placeCounts[g.id]}</span>
-      </label>
-    {/each}
-  </fieldset>
-{/if}
 
 <style>
   /* the map's own buttons (issue #152): Expand or Close, and Reset view once moved; expanded, the
@@ -659,36 +687,99 @@
       min-height: 360px;
     }
   }
-  /* the layer switches under the legend (issue #103) */
-  .layers {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 4px 16px;
-    align-items: center;
-    margin: 6px 0 0;
+  /* the layer switches inside the map (issue #103): a button under the zoom buttons and its panel */
+  .lay-a {
+    position: absolute;
+    top: 78px;
+    right: 10px;
+    z-index: 3;
+  }
+  .lay-btn {
+    display: grid;
+    place-items: center;
+    width: 30px;
+    height: 30px;
     padding: 0;
     border: 0;
-    font-size: 0.85em;
-    color: var(--muted);
-  }
-  .layers legend {
-    float: left;
-    margin-right: 4px;
-    padding: 0;
+    border-radius: 4px;
+    background: var(--bg);
     color: var(--text);
-    font-weight: 600;
-  }
-  .layer {
-    display: inline-flex;
-    gap: 6px;
-    align-items: center;
+    box-shadow: 0 0 0 2px rgb(0 0 0 / 10%);
     cursor: pointer;
   }
-  .layer input {
+  .lay-btn :global(svg) {
+    width: 18px;
+    height: 18px;
+  }
+  .lay-btn[aria-expanded="true"] {
+    background: var(--surface);
+  }
+  .lay-panel {
+    position: absolute;
+    top: 0;
+    right: 38px;
+    display: grid;
+    gap: 2px;
+    min-width: 210px;
+    padding: 8px 10px;
+    border-radius: 6px;
+    background: var(--bg);
+    box-shadow: 0 0 0 2px rgb(0 0 0 / 10%);
+    font-size: 0.85rem;
+  }
+  .lay-title {
+    margin: 0 0 4px;
+    font-weight: 600;
+  }
+  .lay-row {
+    display: grid;
+    grid-template-columns: auto auto 1fr auto;
+    gap: 8px;
+    align-items: center;
+    min-height: 28px;
+    cursor: pointer;
+  }
+  .lay-row input {
     margin: 0;
     accent-color: var(--accent);
   }
-  .layer .count {
+  /* each layer's icon in its colour on the map */
+  .lay-icon {
+    display: grid;
+    place-items: center;
+    width: 26px;
+    height: 26px;
+    border-radius: 4px;
+    color: var(--bg);
+  }
+  .lay-icon :global(svg) {
+    width: 16px;
+    height: 16px;
+  }
+  .lay-icon.drinking,
+  .lay-icon.springs {
+    background: var(--water);
+  }
+  .lay-icon.shops {
+    background: var(--accent);
+  }
+  .lay-icon.beds {
+    background: var(--clim-high);
+  }
+  .lay-btn:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+  }
+  .sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    white-space: nowrap;
+  }
+
+  .count {
     color: var(--muted);
     font-variant-numeric: tabular-nums;
   }
