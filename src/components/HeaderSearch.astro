@@ -1,0 +1,109 @@
+---
+// The header's search on every page (issue #154; of three previews, approach A): a magnifier button
+// that opens the trail search (TrailSearch, trails and countries with suggestions) in the header row,
+// left of the button. Esc (after the suggestions), the button again or a click outside closes it;
+// opening puts the focus in the field.
+import TrailSearch from "./TrailSearch.astro";
+import Icon from "./Icon.astro";
+---
+
+<div class="hsearch" data-hsearch>
+  <button type="button" class="hs-toggle" aria-expanded="false" aria-controls="hs-panel" title="Search trails">
+    <Icon name="search" size={17} label="Search trails" />
+  </button>
+  <div class="hs-panel" id="hs-panel" hidden>
+    <div class="hs-inner">
+      <TrailSearch id="search-header" size="compact" placeholder="Search a trail or a country" />
+    </div>
+  </div>
+</div>
+
+<script>
+  for (const box of document.querySelectorAll<HTMLElement>("[data-hsearch]")) {
+    const toggle = box.querySelector<HTMLButtonElement>(".hs-toggle")!;
+    const panel = box.querySelector<HTMLElement>(".hs-panel")!;
+    const input = panel.querySelector<HTMLInputElement>("input")!;
+    const set = (open: boolean) => {
+      panel.hidden = !open;
+      toggle.setAttribute("aria-expanded", String(open));
+      box.classList.toggle("open", open);
+      document.documentElement.classList.toggle("hsearch-open", open);
+      if (open) input.focus();
+    };
+    toggle.addEventListener("click", () => set(panel.hidden === true));
+    box.addEventListener("keydown", (e) => {
+      // the field's own Escape closes its suggestions first (TrailSearch); a second one closes the search
+      if (e.key === "Escape" && !panel.hidden && input.getAttribute("aria-expanded") !== "true") {
+        set(false);
+        toggle.focus();
+      }
+    });
+    document.addEventListener("pointerdown", (e) => {
+      if (!panel.hidden && !box.contains(e.target as Node)) set(false);
+    });
+  }
+</script>
+
+<style>
+  .hsearch {
+    display: flex;
+    align-items: center;
+  }
+  .hs-toggle {
+    display: grid;
+    place-items: center;
+    width: 34px;
+    height: 34px;
+    padding: 0;
+    border: 1px solid var(--line);
+    border-radius: 50%;
+    background: var(--bg);
+    color: var(--text);
+    cursor: pointer;
+  }
+  .hs-toggle:hover,
+  .open .hs-toggle {
+    background: var(--surface);
+  }
+  .hs-toggle:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+  }
+
+  /* the field opens in the header row, left of the button */
+  .hsearch {
+    position: relative;
+  }
+  .hs-panel {
+    position: absolute;
+    top: 50%;
+    right: 42px;
+    z-index: 50;
+    width: 280px;
+    transform: translateY(-50%);
+  }
+  /* phones: over the logo, across the header bar (the header is the anchor, so the field stays with it
+     when the page scrolls), stopping short of the button, which closes it; 16 px text, since iPhones
+     zoom into smaller fields; the suggestions hang from the field across the screen */
+  @media (max-width: 559px) {
+    .hsearch {
+      position: static;
+    }
+    .hs-panel {
+      top: 12px;
+      /* clear of the button: the page margin (16) + the theme switch (90) + the gap (8) + the button (34) + 8 */
+      right: 156px;
+      left: 16px;
+      width: auto;
+      transform: none;
+    }
+    .hs-panel :global(input) {
+      font-size: 16px;
+    }
+    .hs-panel :global(.compact .results) {
+      position: absolute;
+      inset: calc(100% + 6px) -140px auto 0;
+      width: auto;
+    }
+  }
+</style>

@@ -1,5 +1,6 @@
 ---
 import ThemeToggle from "../components/ThemeToggle.astro";
+import HeaderSearch from "../components/HeaderSearch.astro";
 import logo from "../assets/logo.svg?raw"; // written by design/logos/make.py
 import { inlineScript } from "../lib/inline-script";
 import { ogPageAlt } from "../lib/og-pages";
@@ -82,8 +83,9 @@ const siteLd =
           <span class="brand-mark" aria-hidden="true" set:html={logo} />
           huckepack
         </a>
+        <!-- the same on every page (issue #154): the search as an icon, then the theme switch -->
         <div class="header-end">
-          <slot name="header" />
+          <HeaderSearch />
           <ThemeToggle />
         </div>
       </div>
@@ -349,6 +351,7 @@ const siteLd =
   }
 
   .site-header {
+    position: relative; /* the header search's band (issue #154) hangs from it */
     border-bottom: 1px solid var(--line);
   }
   .site-header .wrap {
@@ -357,14 +360,13 @@ const siteLd =
     justify-content: space-between;
     height: 60px;
   }
-  /* the header's right side: a page's own header items (the home page's search), then the theme switch */
+  /* the header's right side, the same on every page: the search icon, then the theme switch */
   .header-end {
     display: flex;
     align-items: center;
     gap: 14px;
   }
-  /* phones: the page's own items (the home page's search) shrink to the room the logo and the
-     theme switch leave */
+  /* phones: a little closer together */
   @media (max-width: 559px) {
     .header-end {
       flex: 1 1 auto;

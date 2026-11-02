@@ -189,6 +189,11 @@
   the nearest ridge) on a band of day sky across the bottom, in place of the
   season and ground row (approach C of three); the ridge is one function
   (`profileRidge`, src/lib/skylines.ts) shared with the page head.
+- **The header (issue #154, 2026-11-02):** the same on every page: the
+  logo, a search icon and the theme switch. The icon opens the trail search
+  in the header row, left of it (approach A of three); on phones over the
+  logo, across the header bar and clear of the icon, with 16 px text (iPhones
+  zoom into smaller fields) and the suggestions across the screen.
 - **Full view and reset view on the trail map (issue #152, 2026-11-02):**
   an "Expand" button (top left) grows the map over the whole window inside
   the page, where the wheel zooms without Ctrl; "Close" or Esc returns. Not

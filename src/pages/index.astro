@@ -5,7 +5,6 @@ import Base from "../layouts/Base.astro";
 import Icon, { type IconName } from "../components/Icon.astro";
 import TrailSpark from "../components/TrailSpark.astro";
 import Explain from "../components/Explain.astro";
-import TrailSearch from "../components/TrailSearch.astro";
 import TripSearch from "../components/TripSearch.astro";
 import { mainStages, stageEstimates, trailClimb, walkingMinutes } from "../lib/trails";
 import { LEVELS } from "../lib/difficulty";
@@ -209,7 +208,6 @@ const featuredScript = inlineScript(Astro, `// A random featured trail on each p
   description="Find the long-distance hiking trail that suits you and go prepared: stages, terrain, climate, water and beds for every trail, from official and open sources, checked against a second source."
 >
   <!-- issue #83 (of three previews, approach B): search with suggestions, in the header -->
-  <div slot="header" class="header-search"><TrailSearch id="search-header" size="compact" placeholder="Search" /></div>
 
   <script is:inline set:html={skyScript} />
   <!-- the hero on a band wall to wall: a sky by the hour, the sun or the moon, stars at night, and three
@@ -768,18 +766,6 @@ const featuredScript = inlineScript(Astro, `// A random featured trail on each p
   .guide a {
     color: var(--accent-text);
     font-weight: 600;
-  }
-
-  /* the header's search (issue #83) */
-  .header-search {
-    width: 240px;
-  }
-  @media (max-width: 559px) {
-    .header-search {
-      flex: 0 1 150px;
-      width: auto;
-      min-width: 0;
-    }
   }
 
   /* the sticky call to action (issue #81): a slim bar along the bottom, sliding in */
