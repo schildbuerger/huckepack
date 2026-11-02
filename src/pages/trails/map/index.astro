@@ -2,6 +2,7 @@
 // The trail map (issue #33; of three previews, approach B): every trail on one map beside a list of
 // the trails, nearest to you first, with the search page's filters (src/components/TrailsMap.svelte). Linked from the home page's "Explore on
 // the map" and the search page.
+import { ogPageAlt } from "../../../lib/og-pages";
 import { getCollection, getEntry } from "astro:content";
 import Base from "../../../layouts/Base.astro";
 import Breadcrumbs from "../../../components/Breadcrumbs.astro";
@@ -26,6 +27,7 @@ const outline = worldOutline(trails.map((t) => t.startLonLat), { width: 1000, pa
 ---
 
 <Base
+  image={{ path: "/og/page/map.png", alt: await ogPageAlt("map") }}
   full
   title="Trail map · huckepack"
   description={`All ${trails.length} official long-distance hiking trails on one map, in ${countries} countries: zoom into a region and see its trails with length, days and difficulty.`}

@@ -1,4 +1,5 @@
 ---
+import { ogPageAlt } from "../../../lib/og-pages";
 import { getCollection, getEntry } from "astro:content";
 import Base from "../../../layouts/Base.astro";
 import Breadcrumbs from "../../../components/Breadcrumbs.astro";
@@ -11,6 +12,7 @@ const trails = await Promise.all(
 ---
 
 <Base
+  image={{ path: "/og/page/guide.png", alt: await ogPageAlt("guide") }}
   title="Which long-distance trail suits you? Help me choose · huckepack"
   description="Eleven short questions about your hike (when, where, how long, how hard, the weather, the landscape, the ground underfoot, sleeping and water) lead to the trails that fit."
 >

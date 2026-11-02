@@ -189,6 +189,13 @@
   the nearest ridge) on a band of day sky across the bottom, in place of the
   season and ground row (approach C of three); the ridge is one function
   (`profileRidge`, src/lib/skylines.ts) shared with the page head.
+- **Link previews for every page (issue #147, 2026-11-02):** every page has a
+  1200 × 630 image (approach B of three, a picture per page): the home page
+  three trails' skylines, the trail search six trails as cards, the map the
+  trails' starts on the world's land, the guide its questions; the legal
+  notice, privacy and 404 the home page's picture under "huckepack" (Base's
+  default, /og/page/site.png). In every link-preview image the address and
+  cairn are small and muted in the top-right corner, clear of the headline.
 - **The Location facts' order (issue #145, 2026-11-02):** by priority, in
   one grid (approach A of three previews): country and regions, start and
   finish, route type and permit, travel hubs, then protected areas, the

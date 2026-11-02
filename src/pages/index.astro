@@ -1,4 +1,5 @@
 ---
+import { ogPageAlt } from "../lib/og-pages";
 import { getCollection, getEntry } from "astro:content";
 import Base from "../layouts/Base.astro";
 import Icon, { type IconName } from "../components/Icon.astro";
@@ -203,6 +204,7 @@ const featuredScript = inlineScript(Astro, `// A random featured trail on each p
 ---
 
 <Base
+  image={{ path: "/og/page/home.png", alt: await ogPageAlt("home") }}
   title="huckepack: find a long-distance hiking trail and go prepared"
   description="Find the long-distance hiking trail that suits you and go prepared: stages, terrain, climate, water and beds for every trail, from official and open sources, checked against a second source."
 >

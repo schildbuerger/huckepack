@@ -1,4 +1,5 @@
 ---
+import { ogPageAlt } from "../../lib/og-pages";
 import { getCollection, getEntry } from "astro:content";
 import Base from "../../layouts/Base.astro";
 import Breadcrumbs from "../../components/Breadcrumbs.astro";
@@ -21,6 +22,7 @@ const eleRange: [number, number] = lows.length
 ---
 
 <Base
+  image={{ path: "/og/page/trails.png", alt: await ogPageAlt("trails") }}
   title="Find a long-distance hiking trail · huckepack"
   description={`${trails.length} official long-distance hiking trails, to filter by month, region, walking days, difficulty, landscape, ground underfoot, where to sleep and water on the way.`}
 >

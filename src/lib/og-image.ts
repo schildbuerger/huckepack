@@ -14,7 +14,7 @@ export const OG = { width: 1200, height: 630 };
 
 // the light theme's tokens (src/layouts/Base.astro): link previews show on any background, and the
 // cream page is the site's face
-const C = {
+export const C = {
   bg: "#f9f8f0",
   surface: "#efeee0",
   text: "#25261c",
@@ -68,7 +68,7 @@ const pathData = (commands: Command[]) =>
     .join("");
 
 // text as one path; characters the latin subset lacks come from latin-ext; anchor: start, middle, end
-function text(str: string, x: number, y: number, size: number, opts: { weight?: 400 | 600 | 700; fill?: string; anchor?: string; max?: number } = {}) {
+export function text(str: string, x: number, y: number, size: number, opts: { weight?: 400 | 600 | 700; fill?: string; anchor?: string; max?: number } = {}) {
   const weight = opts.weight ?? 400;
   const glyphFont = (ch: string) => (font(weight).charToGlyph(ch).index ? font(weight) : font(weight, "latin-ext"));
   // shrink to fit `max` width
@@ -93,13 +93,14 @@ function text(str: string, x: number, y: number, size: number, opts: { weight?: 
   return { svg: `<path d="${d}" fill="${opts.fill ?? C.text}"/>`, width };
 }
 
-const fmt = (n: number) => n.toLocaleString("en");
+export const fmt = (n: number) => n.toLocaleString("en");
 const days = (d: [number, number]) => (d[0] === d[1] ? `${d[0]}` : `${d[0]}–${d[1]}`);
 // the cairn logo (src/assets/logo.svg, 8 × 8 pixels) at `size`, in the accent colour, and the address
-function brand(x: number, y: number, anchor: "start" | "end" = "start") {
-  const size = 32;
-  const label = text("huckepack.me", 0, 0, 30, { weight: 600, fill: C.text });
-  const total = size + 14 + label.width;
+// small, in the muted text colour (issue #147): it marks the image without competing with the headline
+export function brand(x: number, y: number, anchor: "start" | "end" = "start") {
+  const size = 20;
+  const label = text("huckepack.me", 0, 0, 20, { weight: 600, fill: C.muted });
+  const total = size + 10 + label.width;
   const x0 = anchor === "end" ? x - total : x;
   const px = size / 8;
   const cairn = [
@@ -110,7 +111,7 @@ function brand(x: number, y: number, anchor: "start" | "end" = "start") {
   ]
     .map(([cx, cy, w]) => `<rect x="${x0 + cx * px}" y="${y - size + cy * px}" width="${w * px}" height="${px}" fill="${C.accent}"/>`)
     .join("");
-  const word = text("huckepack.me", x0 + size + 14, y - 3, 30, { weight: 600, fill: C.text });
+  const word = text("huckepack.me", x0 + size + 10, y - 2, 20, { weight: 600, fill: C.muted });
   return cairn + word.svg;
 }
 
@@ -171,17 +172,20 @@ function content(t: OgTrail) {
 // the trail's skyline (src/lib/skylines.ts, the trail page's head) with its own profile as the nearest
 // ridge, scaled to `width` and standing on y `foot`, a strip of its
 // ground under it, `ground` high
+// a trail's skyline (its hand-drawn shapes and its own profile as the nearest ridge) drawn `width`
+// wide from x `x0`, standing on y `foot`
+export function skylineShapes(slug: string, profile: OgTrail["profile"], x0: number, width: number, foot: number) {
+  const sky = SKYLINES[slug];
+  if (!sky || !profile) return "";
+  const s = width / SKY_W;
+  const shapes = [...sky.shapes, { d: profileRidge(profile.points, profile.routeKm), c: sky.ridge }, ...(sky.front ?? [])];
+  return `<g transform="translate(${r1(x0)} ${r1(foot - SKY_H * s)}) scale(${s})">${shapes.map((p) => `<path d="${p.d}" fill="${p.c}"/>`).join("")}</g>`;
+}
+
 function skyline(t: OgTrail, width: number, foot: number, ground: number) {
   const sky = SKYLINES[t.slug];
   if (!sky || !t.profile) return "";
-  const s = width / SKY_W;
-  const x0 = (OG.width - width) / 2;
-  const y0 = foot - SKY_H * s;
-  const shapes = [...sky.shapes, { d: profileRidge(t.profile.points, t.profile.routeKm), c: sky.ridge }, ...(sky.front ?? [])];
-  return (
-    `<g transform="translate(${r1(x0)} ${r1(y0)}) scale(${s})">${shapes.map((p) => `<path d="${p.d}" fill="${p.c}"/>`).join("")}</g>` +
-    `<rect x="0" y="${foot}" width="${OG.width}" height="${ground}" fill="${sky.ground}"/>`
-  );
+  return skylineShapes(t.slug, t.profile, (OG.width - width) / 2, width, foot) + `<rect x="0" y="${foot}" width="${OG.width}" height="${ground}" fill="${sky.ground}"/>`;
 }
 
 // with a skyline (issue #146; of three previews, approach C): the name, countries, rule and figures as
@@ -196,7 +200,9 @@ function stripWithSkyline(t: OgTrail) {
   figs.forEach(([v, u, label], i) => {
     const x = 72 + i * colW;
     if (i) out.push(`<rect x="${x - 24}" y="258" width="1.5" height="100" fill="${C.line}"/>`);
-    const value = text(v, x, 322, 56, { weight: 600, max: colW - 40 });
+    // the value shrinks so it and its unit fit the column ("≈ 12,420 m")
+    const unitW = u ? text(u, 0, 0, 26).width + 8 : 0;
+    const value = text(v, x, 322, 56, { weight: 600, max: colW - 48 - unitW });
     out.push(value.svg);
     if (u) out.push(text(u, x + value.width + 8, 322, 26, { fill: C.muted }).svg);
     out.push(text(label, x, 356, 22, { fill: C.muted }).svg);
@@ -204,7 +210,7 @@ function stripWithSkyline(t: OgTrail) {
   // the skyline on a band of the page head's day sky, so its snow shows against it
   out.push(`<rect x="0" y="388" width="${OG.width}" height="${OG.height - 388}" fill="${SKY.day}"/>`);
   out.push(skyline(t, OG.width, OG.height - 18, 18));
-  out.push(brand(OG.width - 72, 76, "end"));
+  out.push(brand(OG.width - 72, 50, "end"));
   return out.join("");
 }
 
@@ -214,8 +220,11 @@ export function ogSvg(t: OgTrail) {
 }
 
 export async function ogPng(t: OgTrail) {
-  return sharp(Buffer.from(ogSvg(t))).png({ compressionLevel: 9, palette: true, quality: 90 }).toBuffer();
+  return svgPng(ogSvg(t));
 }
+
+// an image's SVG as the PNG the link previews use
+export const svgPng = (svg: string) => sharp(Buffer.from(svg)).png({ compressionLevel: 9, palette: true, quality: 90 }).toBuffer();
 
 // what the image shows, in words (og:image:alt)
 export function ogAlt(t: OgTrail) {
