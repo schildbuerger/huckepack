@@ -123,6 +123,7 @@
         const accent = token("--accent");
         const ink = token("--text");
         const paper = token("--bg");
+        const waterBlue = token("--water");
         const paint = TERRAIN_PAINT[theme];
 
         // terrain goes under water, roads, buildings and labels, so they stay on top
@@ -229,15 +230,24 @@
             filter: ["all", ["==", ["get", "kind"], "detour"], ["!=", ["get", "by"], "foot"]],
             paint: { "line-color": ink, "line-width": 7, "line-dasharray": [0.3, 2.2] },
           });
-          // a leg that isn't walked (the W Trek's catamaran): a thin dashed ink line, like a ferry
-          // on a printed map
+          // a leg that isn't walked (the W Trek's catamaran): by boat a short-dashed water-blue line
+          // on a light casing, like a ferry on a printed map, so it reads apart from the variants'
+          // dashes in the trail's colour
+          map.addLayer({
+            id: "transfer-casing",
+            type: "line",
+            source: "route",
+            filter: ["==", ["get", "kind"], "transfer"],
+            layout: { "line-join": "round", "line-cap": "round" },
+            paint: { "line-color": paper, "line-width": 6, "line-opacity": 0.9 },
+          });
           map.addLayer({
             id: "transfer",
             type: "line",
             source: "route",
             filter: ["==", ["get", "kind"], "transfer"],
             layout: { "line-join": "round" },
-            paint: { "line-color": ink, "line-width": 2, "line-dasharray": [3, 2] },
+            paint: { "line-color": waterBlue, "line-width": 3, "line-dasharray": [1.2, 1.2] },
           });
         }
         map.addSource("termini", {
@@ -343,6 +353,13 @@
     opacity: 0.7;
     vector-effect: non-scaling-stroke;
   }
+  .map :global(.route-preview .rp-transfer) {
+    fill: none;
+    stroke: var(--water);
+    stroke-width: 3;
+    stroke-dasharray: 3 3;
+    vector-effect: non-scaling-stroke;
+  }
   .map :global(.route-preview .rp-start),
   .map :global(.route-preview .rp-end) {
     stroke: var(--text);
@@ -407,7 +424,9 @@
       repeating-linear-gradient(90deg, var(--text) 0 1.5px, transparent 1.5px 7px) center / 100% 8px no-repeat;
   }
   .key.transfer {
-    border-top: 2px dashed var(--text);
+    height: 6px;
+    border-top: 0;
+    background: repeating-linear-gradient(90deg, var(--water) 0 4px, transparent 4px 8px) center / 100% 3px no-repeat;
   }
   .key.contour {
     border-top: 1px solid var(--muted);
