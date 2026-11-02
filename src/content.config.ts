@@ -257,7 +257,7 @@ const trail = z
     // source saying the region has none; neither means nothing is known yet, and the page shows no section
     animals: z
       .object({
-        list: z.array(danger(["bear", "wolf", "big-cat", "boar", "cattle", "dog", "snake", "scorpion", "spider", "tick"])).default([]),
+        list: z.array(danger(["bear", "wolf", "big-cat", "boar", "cattle", "dog", "monkey", "snake", "scorpion", "spider", "tick"])).default([]),
         plants: z.array(danger(["hogweed"])).default([]),
         none: z.object({ text: z.string(), source: sourceRef }).optional(),
       })

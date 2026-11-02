@@ -111,6 +111,23 @@ access:
     lat: 50.10257
     lon: 14.25608
     source: osm
+animals:
+  # Ticks: the RKI's TBE risk areas (2026) and the federal health agency's advice. Level ours
+  list:
+    - kind: tick
+      name: "Ticks (Lyme disease, tick-borne encephalitis)"
+      level: moderate
+      basis: "Ticks that carry Lyme disease live all over Germany, in forests and meadows; the Robert Koch Institute lists the district of Sächsische Schweiz-Osterzgebirge, where the trail's German part lies as a risk area for tick-borne encephalitis (TBE), against which a vaccine protects."
+      do:
+        - "Wear closed shoes, long sleeves and long trousers, the socks pulled over the trouser legs; light clothes show ticks"
+        - "Use a tick repellent as its maker directs; it protects only for a while, and not fully"
+        - "After the walk, search your body: the hollows of the knees, the groin, the armpits, behind the ears, the head and the hairline"
+        - "Remove a tick as soon as you can: grip it by its head close to the skin with tweezers or a tick card, pull it slowly and straight out, then disinfect the bite"
+        - "See a doctor if a red ring at least 5 cm across spreads around the bite within 3 to 30 days, or fever and aching follow a bite"
+        - "Ask a doctor about the TBE vaccination well before you go: Germany's vaccination committee (STIKO) recommends it for people exposed to ticks in TBE risk areas"
+      dont:
+        - "Treat the tick with oil or cream, or squeeze it: it may release more germs"
+      source: bzga-borreliose
 tags: [sandstone, table-mountains, cross-border, trekking-huts, forests]
 notes:
   - >-
@@ -175,6 +192,16 @@ dataCheck:
     - { figure: "Stage 6 ascent and descent", ours: "347 / 346 m", theirs: "395 / 464 m", source: tvsaechsischeschweiz }
     - { figure: "Stage 7 ascent and descent", ours: "249 / 455 m", theirs: "367 / 515 m", source: tvsaechsischeschweiz }
 sources:
+  - id: rki-fsme
+    title: "Robert Koch-Institut: FSME-Risikogebiete in Deutschland, Epidemiologisches Bulletin 9/2026 (as of January 2026)"
+    url: https://www.rki.de/DE/Aktuelles/Publikationen/Epidemiologisches-Bulletin/2026/09_26.pdf
+    licence: © Robert Koch-Institut (facts only)
+    retrieved: 2026-11-02
+  - id: bzga-borreliose
+    title: "Bundeszentrale für gesundheitliche Aufklärung (infektionsschutz.de): Bürgerinformation Borreliose, protection against ticks (as of August 2019)"
+    url: https://infektionsschutz.de/download/2902-Erregersteckbrief-Borreliose.pdf
+    licence: © BZgA (facts only)
+    retrieved: 2026-11-02
   - id: sachsenforst
     title: "Sachsenforst: Forststeig Elbsandstein (home page, route overview with stage figures and GPX, overnight in the forest)"
     url: https://www.forststeig.sachsen.de/routenuebersicht-4132.html

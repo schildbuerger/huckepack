@@ -107,6 +107,24 @@ access:
     lat: 46.23771
     lon: 6.10798
     source: osm
+animals:
+  # Livestock guard dogs (the Pays du Mont-Blanc's advice). Level ours
+  list:
+    - kind: dog
+      name: "Livestock guard dogs (patous)"
+      level: low
+      basis: "Flocks on the alpine pastures around Mont Blanc are watched by large guard dogs (patous); the Pays du Mont-Blanc, where the tour starts, tells hikers how to pass them."
+      do:
+        - "Approach slowly, stay calm and watch: the dog may come towards you and bark, which is normal, it wants to keep you from its flock"
+        - "Show it you are harmless: take off your hat and sunglasses, hold your poles in one hand and talk to it calmly"
+        - "Keep your own dog on a lead, and stay together if you are a group"
+        - "Walk around the flock, never through it"
+        - "Once the encounter is over, go on calmly; if the dog doesn't calm down, turn back"
+      dont:
+        - "Frighten it: no shouting or sudden movements"
+        - "Stroke it"
+        - "Carry your dog in your arms"
+      source: pmb-patou
 tags: [alps, mont-blanc, huts, passes, glaciers]
 notes:
   - >-
@@ -144,6 +162,11 @@ dataCheck:
     - { figure: "Stage 9 length", ours: "13 km (Wikipedia)", theirs: "15.7 km (map line)", source: osm }
     - { figure: "Stage 10 length", ours: "8 km (Wikipedia)", theirs: "6.6 km (map line)", source: osm }
 sources:
+  - id: pmb-patou
+    title: "Sallanches Mont-Blanc tourist office (Pays du Mont-Blanc): guide to sites open to dogs, “Comment réagir face à un patou ?”"
+    url: https://sallanchesmontblanc.com/sites/default/files/Brochure%20Chiens_web.pdf
+    licence: © Office de tourisme de Sallanches (facts only)
+    retrieved: 2026-11-02
   - id: tmb
     title: "Tour du Mont-Blanc, official website (length, climb, days, season, refuges, bivouac rules)"
     url: https://www.montourdumontblanc.com/en/

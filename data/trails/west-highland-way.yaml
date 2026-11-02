@@ -112,6 +112,32 @@ animals:
   # NatureScot (with the Care of Burns in Scotland network): giant hogweed is "widespread across central
   # and eastern parts" of Scotland, "commonly found along river banks", where the Way starts (Milngavie,
   # the Allander and Endrick Water, Loch Lomond). Level ours
+  # cattle (HSE with the Scottish Outdoor Access Code) and ticks (NHS)
+  list:
+    - kind: cattle
+      name: "Cattle"
+      level: moderate
+      basis: "The Way crosses farmland where cattle graze; the Health and Safety Executive names cows with calves and walkers with dogs as the two most common factors in incidents between cattle and the public in Scotland."
+      do:
+        - "Be aware of potentially dangerous farm animals, and keep a safe distance when passing through an area with livestock"
+        - "Consider using an alternative route around a field with cattle"
+      dont:
+        - "Take dogs into fields where there are young animals"
+      source: hse-cattle-scotland
+    - kind: tick
+      name: "Ticks (Lyme disease)"
+      level: low
+      basis: "Ticks that can carry Lyme disease live all over the UK, in woods and long grass; the NHS names grassy and wooded areas in southern England and the Scottish Highlands as high-risk areas."
+      do:
+        - "Cover your skin while walking and tuck your trousers into your socks"
+        - "Use insect repellent on your clothes and skin; products containing DEET are best"
+        - "Stay on clear paths whenever possible"
+        - "Wear light-coloured clothing so ticks are easier to see and brush off"
+        - "Remove a tick with fine-tipped tweezers or a tick-removal tool: grasp it as close to the skin as possible, pull slowly upwards, then clean the bite"
+        - "Get an urgent GP appointment or call NHS 111 if, within 3 months of a bite, you feel unwell with flu-like symptoms or a round or oval rash appears"
+      dont:
+        - "Squeeze or crush the tick when you remove it"
+      source: nhs-lyme
   plants:
     - kind: hogweed
       name: Giant hogweed
@@ -162,6 +188,16 @@ dataCheck:
     - { figure: "Days", ours: "6–7 days", theirs: "7–8 days", source: wikipedia }
     - { figure: "Ascent", ours: "≈ 3,930 m (our estimate)", theirs: "3,155 m", source: wikipedia }
 sources:
+  - id: hse-cattle-scotland
+    title: "Health and Safety Executive: Cattle and public access in Scotland (information sheet AIS17S, with the Scottish Outdoor Access Code's advice)"
+    url: https://www.outdooraccess-scotland.scot/sites/default/files/2018-09/HSE%20Information%20sheet%20No%2017S%28rev1%29%20-%20Cattle%20and%20public%20access%20in%20Scotland%20-%20Advice.pdf
+    licence: © Crown copyright, Open Government Licence (facts only)
+    retrieved: 2026-11-02
+  - id: nhs-lyme
+    title: "NHS: Lyme disease (avoiding tick bites, removing ticks, when to get help)"
+    url: https://www.nhs.uk/conditions/lyme-disease/
+    licence: © NHS, Open Government Licence (facts only)
+    retrieved: 2026-11-02
   - id: naturescot-hogweed
     title: "NatureScot: Scots warned of giant hogweed danger (with the Care of Burns in Scotland network), 28 June 2022"
     url: https://presscentre.nature.scot/news/scots-warned-of-giant-hogweed-danger

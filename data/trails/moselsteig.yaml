@@ -117,6 +117,22 @@ access:
     lat: 49.62771
     lon: 6.21085
     source: osm
+animals:
+  # Ticks: Lyme disease all over Germany (the federal health agency's advice). Level ours
+  list:
+    - kind: tick
+      name: "Ticks (Lyme disease)"
+      level: low
+      basis: "Ticks that carry Lyme disease live all over Germany, in forests and meadows; about one tick bite in 100 leads to the illness, which antibiotics treat well when caught early."
+      do:
+        - "Wear closed shoes, long sleeves and long trousers, the socks pulled over the trouser legs; light clothes show ticks"
+        - "Use a tick repellent as its maker directs; it protects only for a while, and not fully"
+        - "After the walk, search your body: the hollows of the knees, the groin, the armpits, behind the ears, the head and the hairline"
+        - "Remove a tick as soon as you can: grip it by its head close to the skin with tweezers or a tick card, pull it slowly and straight out, then disinfect the bite"
+        - "See a doctor if a red ring at least 5 cm across spreads around the bite within 3 to 30 days, or fever and aching follow a bite"
+      dont:
+        - "Treat the tick with oil or cream, or squeeze it: it may release more germs"
+      source: bzga-borreliose
 tags: [mosel, vineyards, river, castles, wine]
 notes:
   - >-
@@ -163,6 +179,11 @@ dataCheck:
     - { figure: "Stage 9 length", ours: "18 km", theirs: "14.5 km", source: wikipedia }
     - { figure: "Stage 17 length", ours: "16 km", theirs: "18 km", source: wikipedia }
 sources:
+  - id: bzga-borreliose
+    title: "Bundeszentrale für gesundheitliche Aufklärung (infektionsschutz.de): Bürgerinformation Borreliose, protection against ticks (as of August 2019)"
+    url: https://infektionsschutz.de/download/2902-Erregersteckbrief-Borreliose.pdf
+    licence: © BZgA (facts only)
+    retrieved: 2026-11-02
   - id: mlt
     title: "Mosellandtouristik: Moselsteig (visitmosel.de, FAQ; whole-route and 24 stage tours on the Tourenplaner Rheinland-Pfalz: distances, times, climbs, grades, season, tracks)"
     url: https://www.tourenplaner-rheinland-pfalz.de/de/tour/fernwanderweg/moselsteig-gesamtstrecke-.-dein-weg-mehr-zu-erleben/10142775/

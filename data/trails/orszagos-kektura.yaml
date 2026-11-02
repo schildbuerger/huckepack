@@ -167,6 +167,23 @@ access:
     lat: 47.43527
     lon: 19.25351
     source: osm
+animals:
+  # Ticks (the Hungarian government offices' public information, 2025). Level ours
+  list:
+    - kind: tick
+      name: "Ticks (Lyme disease, tick-borne encephalitis)"
+      level: moderate
+      basis: "Ticks in Hungary carry Lyme disease and tick-borne encephalitis; the government offices recommend the TBE vaccine especially to hikers."
+      do:
+        - "Get vaccinated against tick-borne encephalitis; there is no vaccine against Lyme disease"
+        - "Wear closed clothing: long sleeves and long trousers, the trouser legs tucked into the socks"
+        - "Use an approved tick repellent on clothes or skin, and repeat it when it wears off"
+        - "After the walk, check your whole body, especially the skin folds, the hollows of the knees, the neck and behind the ears"
+        - "Remove a tick quickly: within 4 to 6 hours is safe against encephalitis, within 24 hours keeps the risk of Lyme disease low"
+        - "Watch your health after a bite, especially the skin around it, and for fever, tiredness or aching joints"
+      dont:
+        - "Squeeze the tick's body while you remove it"
+      source: hu-kullancs
 tags: [national-trail, hills, forests, castles, danube-bend]
 notes:
   - >-
@@ -213,6 +230,11 @@ dataCheck:
   against: [wikipedia-en]
   deviations: []
 sources:
+  - id: hu-kullancs
+    title: "Kormányhivatalok (Hungarian government offices): Lakossági tájékoztató a kullancsokról (public information on ticks, May 2025)"
+    url: https://kormanyhivatalok.hu/sites/default/files/2025-05/-lakossagi-tajekoztato-a-kullancsokrol.docx
+    licence: © Kormányhivatalok (facts only)
+    retrieved: 2026-11-02
   - id: kektura
     title: "MTSZ, kektura.hu: Országos Kéktúra sections (length, ascent and descent), section pages (recommended day stages, descriptions, GPX), Szakaszadatok 2026-09-10 (legs between stamping points), stamping points GPX"
     url: https://www.kektura.hu/okt-szakaszok

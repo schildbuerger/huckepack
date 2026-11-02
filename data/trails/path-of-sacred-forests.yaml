@@ -89,6 +89,25 @@ access:
     lat: 44.53449
     lon: 11.28794
     source: osm
+animals:
+  # Livestock guard dogs (the national park's leaflet). Level ours
+  list:
+    - kind: dog
+      name: "Livestock guard dogs"
+      level: low
+      basis: "The wolf has returned to the Foreste Casentinesi, and the national park gives its shepherds guard dogs (mostly Maremma sheepdogs) to defend the flocks on the pastures."
+      do:
+        - "Go round a flock at a distance, never through it"
+        - "If dogs come towards you, they are checking whether you are a danger: stay calm and walk on quietly"
+        - "If they stay worried, turn back calmly and find another way round"
+        - "Keep your own dog on a lead; if the dogs start to fight, let it go so it can sort it out"
+        - "On a bike, get off near a guarded flock and push it"
+      dont:
+        - "Touch or stroke the flock's animals"
+        - "Stare at the dogs or shout"
+        - "Run away"
+        - "Raise sticks or stones: it makes you look more dangerous"
+      source: casentinesi-cani
 tags: [forests, monasteries, apennines, national-park]
 notes:
   - >-
@@ -129,6 +148,11 @@ dataCheck:
   deviations:
     - { figure: "Stage 6 length", ours: "18.5 km", theirs: "about 16.2 km", source: thewom }
 sources:
+  - id: casentinesi-cani
+    title: "Parco Nazionale Foreste Casentinesi: Escursionismo e cani da guardiania (leaflet on hiking and livestock guard dogs)"
+    url: https://www.parcoforestecasentinesi.it/sites/default/files/CANI_DIFESATTIVA_PARCO_06.pdf
+    licence: © Parco Nazionale Foreste Casentinesi (facts only)
+    retrieved: 2026-11-02
   - id: pnfc
     title: "Parco Nazionale Foreste Casentinesi: Trail of the Sacred Forests (overview and stage pages, GPX)"
     url: https://trekking.parcoforestecasentinesi.it/en/sacred-forests/

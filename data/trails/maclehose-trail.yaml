@@ -102,6 +102,39 @@ access:
     lat: 22.31255
     lon: 113.91134
     source: osm
+animals:
+  # Snakes (AFCD's hiking safety guidelines) and the monkeys of Kam Shan Country Park (AFCD). Levels ours
+  list:
+    - kind: snake
+      name: "Venomous snakes (kraits, cobras, bamboo snakes)"
+      level: high
+      basis: "AFCD names the banded and many-banded krait, the king cobra, the Chinese cobra and the bamboo snake as Hong Kong's common venomous snakes, more active in spring, summer and autumn; a bite needs antivenom in hospital."
+      do:
+        - "Wear long trousers and ankle boots"
+        - "Use the maintained paths, and avoid dense woodland and tall undergrowth"
+        - "If you see a snake, keep calm and stay still: let it go away"
+        - "After a bite, keep the injured person lying down at rest, and rush them to hospital"
+        - "Try to remember the snake's type, colours and pattern, so the right antivenom can be used"
+      dont:
+        - "Provoke a snake"
+        - "Cut, suck or wash the wound"
+        - "Raise the bitten limb or move more than needed"
+        - "Drink alcohol"
+      source: afcd-hiking
+    - kind: monkey
+      name: "Monkeys (rhesus macaques)"
+      level: low
+      basis: "Macaques live in Kam Shan Country Park, which stage 6 crosses; years of feeding have made some fearless of people. In 2024 a man attacked by a monkey caught a disease from it."
+      do:
+        - "When monkeys approach, slow down, keep an appropriate distance and walk on calmly"
+        - "Wash your hands thoroughly with soap and water after any contact with a monkey or its droppings"
+        - "Get medical help at once if a monkey bites or scratches you"
+        - "Call 1823 if monkeys disturb you, or 999 in an emergency"
+      dont:
+        - "Feed monkeys: it's illegal anywhere in Hong Kong (a fine of up to HK$10,000)"
+        - "Eat in front of them, or look them in the eye"
+        - "Go close to them or touch them"
+      source: afcd-monkeys-2024
 tags: [hong-kong, country-parks, coast, ridges, reservoirs]
 notes:
   - >-
@@ -141,6 +174,21 @@ dataCheck:
     - { figure: "Section 3 length", ours: "10.2 km", theirs: "9 km", source: wikipedia }
     - { figure: "Section times (1, 2, 3, 5, 6, 7, 10)", ours: "3.25, 5.25, 4, 3.75, 1.75, 3, 4.75 h", theirs: "2.5, 4, 2.5, 2.5, 1, 2.5, 4 h", source: wikipedia }
 sources:
+  - id: afcd-hiking
+    title: "AFCD (Agriculture, Fisheries and Conservation Department): Country Park Hiking Safety Guidelines, snakebite (2016)"
+    url: https://www.afcd.gov.hk/english/country/cou_vis/cou_vis_gac/files/common/CP_Hiking_Safety_Guildelines_201601_Eng_compressed.pdf
+    licence: © Government of the Hong Kong SAR (facts only)
+    retrieved: 2026-11-02
+  - id: afcd-monkeys
+    title: "AFCD: Prevent Monkey Nuisances (the monkeys of Kam Shan Country Park)"
+    url: https://www.afcd.gov.hk/english/conservation/con_fau/con_fau_nui/con_fau_nui_str/con_fau_nui_str.html
+    licence: © Government of the Hong Kong SAR (facts only)
+    retrieved: 2026-11-02
+  - id: afcd-monkeys-2024
+    title: "Hong Kong Government press release: AFCD urges public not to come into contact with monkeys (4 April 2024)"
+    url: https://www.info.gov.hk/gia/general/202404/04/P2024040400327.htm
+    licence: © Government of the Hong Kong SAR (facts only)
+    retrieved: 2026-11-02
   - id: afcd
     title: "AFCD: Enjoy Hiking, hiking.gov.hk (MacLehose Trail sections 1–10: length, walking time, star ratings, GPX)"
     url: https://www.hiking.gov.hk/trail/info/id/bStIb016ZGszVk5WWElJN2FzdTdRdz09

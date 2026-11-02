@@ -8,7 +8,7 @@
 import { SKYLINES, SKY_W, SKY_H } from "./skylines";
 import { SKY } from "./sky";
 
-export type AnimalKind = "bear" | "wolf" | "big-cat" | "boar" | "cattle" | "dog" | "snake" | "scorpion" | "spider" | "tick" | "hogweed";
+export type AnimalKind = "bear" | "wolf" | "big-cat" | "boar" | "cattle" | "dog" | "monkey" | "snake" | "scorpion" | "spider" | "tick" | "hogweed";
 
 const FILES = import.meta.glob<string>("../assets/animals/*.svg", { query: "?raw", import: "default", eager: true });
 const URLS = import.meta.glob<string>("../assets/animals/*.svg", { query: "?url", import: "default", eager: true });
@@ -31,6 +31,7 @@ const ANIMALS: Record<AnimalKind, Animal> = {
   boar: { h: 74, anchor: [0.45, 0.03], credit: "Ferran Sayol", species: "Sus scrofa" },
   cattle: { h: 100, anchor: [0.4, 0.06], credit: "Katy Lawler", species: "Bos taurus" },
   dog: { h: 84, anchor: [0.5, 0.3], credit: "Rachel T. Mason", species: "Canis familiaris dingo" },
+  monkey: { h: 58, anchor: [0.4, 0.12], credit: "Ben Murrell", species: "Macaca mulatta" },
   snake: { h: 74, anchor: [0.45, 0.25], credit: "Blair Perry", species: "Crotalus viridis" },
   scorpion: { h: 36, anchor: [0.45, 0.25], credit: "Caleb M. Gordon", species: "Paruroctonus boreus" },
   spider: { h: 36, anchor: [0.55, 0.3], credit: "Sean McCann", species: "Latrodectus hesperus" },

@@ -148,6 +148,34 @@ access:
     lat: 47.79346
     lon: 13.00183
     source: osm
+animals:
+  # Cattle on the alpine pastures (the Austrian ministry's 10 rules) and ticks (AGES: TBE risk all over Austria). Levels ours
+  list:
+    - kind: cattle
+      name: "Cattle on alpine pastures"
+      level: moderate
+      basis: "In Carinthia the trail crosses alpine pastures where cattle graze in summer; mother cows protect their calves, and dogs make an encounter riskier."
+      do:
+        - "Avoid contact with grazing animals and keep a safe distance; stay calm and don't startle them"
+        - "Stay on the marked paths"
+        - "Keep your dog under control on a short lead; if an animal is about to attack, let the dog off at once"
+        - "If cattle approach: stay calm, don't turn your back on them, step out of their way"
+        - "At the first sign of unrest, leave the pasture quickly"
+        - "Use gates where there are any, close them behind you and cross the pasture quickly"
+        - "Walk round animals blocking the path with as wide a berth as you can"
+      dont:
+        - "Feed the animals"
+        - "Let mother cows and dogs meet"
+      source: bml-almen
+    - kind: tick
+      name: "Ticks (tick-borne encephalitis, Lyme disease)"
+      level: moderate
+      basis: "AGES, Austria's health agency, says the risk of catching tick-borne encephalitis (TBE) from a tick bite exists all over Austria, one of the most affected countries in Central Europe."
+      do:
+        - "Get vaccinated against TBE before you go: AGES calls it the best protection, also for travellers to Austria"
+        - "Wear closed clothing that fits well"
+        - "Check your body for ticks after walking through forest, bushes, tall grass or meadows"
+      source: ages-fsme
 tags: [alpine, lakes, cross-border, coast, culture]
 notes:
   - >-
@@ -211,6 +239,16 @@ dataCheck:
     - { figure: "Stage 34 length", ours: "23.8 km", theirs: "30.5 km", source: wikivoyage }
     - { figure: "Season", ours: "mid-June to early October", theirs: "mid-April to October", source: wikivoyage }
 sources:
+  - id: bml-almen
+    title: "Austrian Federal Ministry of Agriculture: Sichere Almen, 10 rules for dealing with grazing animals (leaflet)"
+    url: https://info.bml.gv.at/dam/jcr:b955ba4b-fd0f-4182-9aac-d12171d6a377/NEU%20BML_Folder_Sichere%20Almen_DE_220727.pdf
+    licence: © BMLUK (facts only)
+    retrieved: 2026-11-02
+  - id: ages-fsme
+    title: "AGES (Austrian Agency for Health and Food Safety): FSME (tick-borne encephalitis)"
+    url: https://www.ages.at/mensch/krankheit/krankheitserreger-von-a-bis-z/fsme
+    licence: © AGES (facts only)
+    retrieved: 2026-11-02
   - id: aat
     title: "Alpe-Adria-Trail: official website (the trail, FAQ, signposts, stages)"
     url: https://www.alpe-adria-trail.com/en/the-trail/faqs/
