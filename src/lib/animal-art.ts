@@ -56,8 +56,11 @@ const SMALL: AnimalKind[] = ["scorpion", "spider", "tick"];
 export const SCENE_W = 900;
 export const SCENE_H = 280;
 // the band runs wall to wall: sky and ground reach this far beyond the scene's sides, and the sky this
-// far above it, where the section's heading sits
-export const BLEED = 400;
+// far above it, where the section's heading sits. The band draws the scene cropped to its box
+// ("slice"); 2,400 units a side keep the drawing wider than any screen at the band's height (5,700
+// units, over 6,000 px at 380 px tall), so it is only ever cropped at the sides, never at the top
+// where the labels are
+export const BLEED = 2400;
 export const TOP = 44;
 const BACK_Y = 236; // where the large animals stand
 const FRONT_Y = 266; // the small ones, nearer
@@ -92,7 +95,15 @@ const GENERIC = [
 const SKY_FOOT = 206; // where the skyline's ground lies in the scene
 export const backdrop = (slug: string) => {
   const sky = SKYLINES[slug];
-  if (!sky) return `<g transform="translate(${-BLEED} 0) scale(${(SCENE_W + 2 * BLEED) / SCENE_W} 1)">${GENERIC}</g>`;
+  // no skyline: the generic landscape, repeated across the band, every other copy mirrored so the
+  // hills meet without a seam
+  if (!sky) {
+    const n = Math.ceil(BLEED / SCENE_W);
+    const tiles = [];
+    for (let i = -n; i <= n; i++)
+      tiles.push(i % 2 ? `<g transform="translate(${(i + 1) * SCENE_W} 0) scale(-1 1)">${GENERIC}</g>` : `<g transform="translate(${i * SCENE_W} 0)">${GENERIC}</g>`);
+    return tiles.join("");
+  }
   // drawn larger than the scene's width allows, cropped evenly at both sides (the landmarks stay in)
   const k = 0.66;
   const dx = (SCENE_W - SKY_W * k) / 2;
