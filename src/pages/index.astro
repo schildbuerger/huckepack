@@ -127,7 +127,7 @@ const rateOf = (t: (typeof trails)[number]) => rateData(t.terrainLevel, t.effort
 // (src/lib/world-outline.ts), so the home page loads no map library; it links to /trails/map/
 // the hero's landscape: three ridges from real trails' profiles (the highest, a middle one, the lowest),
 // back to front, each on its own height range and stretched to the band's width; and the night sky's
-// stars at fixed places
+// stars at fixed places (x in tenths of a percent of the width, y in a 380-high sky, radius in pixels)
 const ridgeTrails = featuredAll.filter((f) => f.spark).sort((a, b) => b.spark!.peak - a.spark!.peak);
 const heroRidges = [ridgeTrails[0], ridgeTrails[Math.floor(ridgeTrails.length / 2)], ridgeTrails[ridgeTrails.length - 1]].filter(Boolean).map((f) => f!.spark!.area);
 const stars = (() => {
@@ -216,8 +216,10 @@ const featuredScript = inlineScript(Astro, `// A random featured trail on each p
   <!-- the hero on a band wall to wall: a sky by the hour, the sun or the moon, stars at night, and three
        ridges of real trails in front, drifting with the pointer -->
   <div class="hero-band">
-    <svg class="hb-stars" viewBox="0 0 1000 380" preserveAspectRatio="none" aria-hidden="true">
-      {stars.map(([x, y, r]) => <circle cx={x} cy={y} r={r} />)}
+    <!-- no viewBox: each star's place is a share of the sky (percentages), its radius in pixels, so the
+         stars stay round dots whatever the band's shape (a stretched viewBox drew them as ellipses) -->
+    <svg class="hb-stars" aria-hidden="true">
+      {stars.map(([x, y, r]) => <circle cx={`${x / 10}%`} cy={`${+(y / 3.8).toFixed(1)}%`} r={r} />)}
     </svg>
     <span class="hb-sun" aria-hidden="true" data-theme-sun></span>
     <div class="hb-ridges" aria-hidden="true">
