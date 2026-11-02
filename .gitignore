@@ -37,3 +37,6 @@ data/osm/
 
 # Proton Drive's copies of files changed on two devices at once ("name (# Edit conflict … #).ext")
 *(# Edit conflict*
+
+# the patched deepmerge ships its builds (issue #157)
+!vendor/deepmerge/dist/
