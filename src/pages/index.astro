@@ -123,7 +123,7 @@ const figureLine = (t: (typeof trails)[number]) =>
   [t.lengthKm !== null && `${fmt(t.lengthKm)} km`, t.days && `${days(t.days)} days`].filter(Boolean).join(" · ");
 const rateOf = (t: (typeof trails)[number]) => rateData(t.terrainLevel, t.effortLevel, t.climateByMonth, t.season);
 
-// the map teaser (issue #33): the land around the trails with a dot at each start, drawn at build time
+// the map section (issue #33): the whole world with a flag at each trail's start, drawn at build time
 // (src/lib/world-outline.ts), so the home page loads no map library; it links to /trails/map/
 // the hero's landscape: three ridges from real trails' profiles (the highest, a middle one, the lowest),
 // back to front, each on its own height range and stretched to the band's width; and the night sky's
@@ -135,8 +135,15 @@ const stars = (() => {
   const rand = () => (seed = (seed * 1664525 + 1013904223) % 4294967296) / 4294967296;
   return Array.from({ length: 70 }, () => [Math.round(rand() * 1000), Math.round(rand() * 380), +(0.8 + rand() * 1.6).toFixed(1)]);
 })();
-const outline = worldOutline(entries.map((e) => [e.data.termini.start.lon, e.data.termini.start.lat] as [number, number]));
 const countryCount = new Set(entries.flatMap((e) => e.data.countries)).size;
+// the clouds drifting over the map section, each with its birds ([x, y] from the cloud's left foot)
+const clouds = [
+  { x: 60, y: 40, k: 1, birds: [[38, -14], [46, -9]] },
+  { x: 250, y: 18, k: 0.8, birds: [[-12, 4], [-6, 9], [-16, 11]] },
+  { x: 410, y: 52, k: 1.2, birds: [[44, -6], [50, 0]] },
+  { x: 520, y: 26, k: 0.9, birds: [[-10, -6], [-4, -1]] },
+];
+const world = worldOutline(entries.map((e) => [e.data.termini.start.lon, e.data.termini.start.lat] as [number, number]), { world: true });
 
 // what a trail page shows, in its order (src/pages/trails/[slug].astro)
 const features: { icon: IconName; title: string; text: string }[] = [
@@ -329,29 +336,51 @@ const featuredScript = inlineScript(Astro, `// A random featured trail on each p
     )}
   </div>
 
-  <!-- the map (issue #33) and the trails near you share one row: the outline map, folded,
-       which unfolds when pointed at, beside the trails nearest the visitor with their direction and
-       distance; that list is shown by the script below only where the time zone gives a place, and
-       without it the map takes the whole row -->
+  <!-- the map as its own section (2026-11-02; of three previews, approach A, refined): a band wall to wall
+       in the hero's flat style, the whole world in its light green on a calm sea, a flag in the sun's
+       yellow at each trail's start; the heading and text on the open sea of the South Pacific, in line
+       with the content column; the whole band opens the trail map -->
+  <section class="atlas" aria-labelledby="atlas-h">
+    <a class="atlas-link" href="/trails/map/">
+      <svg class="atlas-map" viewBox={`0 0 ${world.width} ${world.height}`} preserveAspectRatio="xMidYMid meet" aria-hidden="true">
+        <path class="atlas-land" d={world.landPath} />
+        <g class="atlas-pins">
+          {world.dots.map(([x, y]) => (
+            <g transform={`translate(${x} ${y})`}>
+              <path class="pole" d="M0 0 V-11" />
+              <path class="flag" d="M0 -11 L7 -8.6 L0 -6.2 Z" />
+              <circle class="dot" r="1.6" />
+            </g>
+          ))}
+        </g>
+        <!-- a few flat clouds drifting across, each with two or three birds flying along -->
+        <g class="clouds">
+          {clouds.map(({ x, y, k, birds }, i) => (
+            <g class="cloud" style={`--c: ${i}`}>
+              <path
+                class="puff"
+                d={`M${x} ${y} h${30 * k} a${6 * k} ${6 * k} 0 0 0 -${6 * k} -${8 * k} a${9 * k} ${9 * k} 0 0 0 -${16 * k} -${2 * k} a${7 * k} ${7 * k} 0 0 0 -${8 * k} ${10 * k} z`}
+              />
+              {birds.map(([bx, by], j) => (
+                <path class="bird" style={`--b: ${i * 3 + j}`} d={`M${x + bx - 3.6} ${y + by} q1.8 -2.3 3.6 0 q1.8 -2.3 3.6 0`} />
+              ))}
+            </g>
+          ))}
+        </g>
+      </svg>
+      <span class="atlas-text">
+        <span class="block-head"><h2 id="atlas-h">Explore on the map</h2></span>
+        <span class="atlas-sub">All {entries.length} trails in {countryCount} countries on one map. Zoom into a region and see its trails.</span>
+        <span class="atlas-open">Open the map <span aria-hidden="true">→</span></span>
+      </span>
+    </a>
+  </section>
+
+
+  <!-- the trails near you (issue #85): the trails nearest the visitor with their direction and distance;
+       shown by the script below only where the time zone gives a place -->
   <div class="map-band">
     <div class="map-band-inner">
-      <a class="map-link" href="/trails/map/">
-        <span class="map-link-inner">
-          <span class="map-teaser-text">
-            <span class="block-head"><h2>Explore on the map</h2></span>
-            <span class="muted">All {entries.length} trails in {countryCount} countries on one map. Zoom into a region and see its trails.</span>
-            <span class="map-teaser-open">Unfold the map <span aria-hidden="true">→</span></span>
-          </span>
-          <span class="folded" aria-hidden="true">
-            <svg class="map-teaser-svg" viewBox={`0 0 ${outline.width} ${outline.height}`}>
-              <path class="map-land" d={outline.landPath} />
-              {outline.dots.map(([x, y]) => <circle cx={x} cy={y} r="6" />)}
-              {[0.25, 0.5, 0.75].map((f) => <line x1={outline.width * f} x2={outline.width * f} y1="0" y2={outline.height} class="crease" />)}
-              <line x1="0" x2={outline.width} y1={outline.height / 2} y2={outline.height / 2} class="crease" />
-            </svg>
-          </span>
-        </span>
-      </a>
       <section class="near" hidden>
         <div class="block-head">
           <h2>Trails near you</h2>
@@ -1128,80 +1157,6 @@ const featuredScript = inlineScript(Astro, `// A random featured trail on each p
       gap: 48px;
     }
   }
-  .map-link {
-    display: block;
-    color: var(--text);
-    text-decoration: none;
-  }
-  .map-link-inner {
-    display: grid;
-    gap: 22px;
-    align-items: center;
-  }
-  /* the map alone: text beside it */
-  @media (min-width: 720px) {
-    .map-band-inner:not(:has(> .near:not([hidden]))) .map-link-inner {
-      grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.4fr);
-      gap: 48px;
-    }
-  }
-  .map-teaser-text {
-    display: grid;
-    gap: 8px;
-  }
-  .map-teaser-open {
-    margin-top: 6px;
-    color: var(--accent-text);
-    font-weight: 600;
-  }
-  .map-link:hover .map-teaser-open {
-    text-decoration: underline;
-  }
-  /* the folded map: tilted back with its folds; flat when pointed at or focused */
-  .folded {
-    position: relative;
-    display: block;
-    background: var(--bg);
-    box-shadow: 0 14px 24px -14px rgb(0 0 0 / 0.45);
-    transform: perspective(1000px) rotateX(16deg) rotateZ(-1deg);
-    transform-origin: center bottom;
-    transition: transform 0.5s cubic-bezier(0.2, 1.2, 0.4, 1);
-  }
-  .map-link:hover .folded,
-  .map-link:focus-visible .folded {
-    transform: none;
-  }
-  .map-teaser-svg {
-    display: block;
-    width: 100%;
-    height: auto;
-    max-height: 300px;
-  }
-  .map-land {
-    fill: color-mix(in srgb, var(--accent) 18%, var(--bg));
-  }
-  .map-teaser-svg circle {
-    fill: var(--accent);
-    stroke: var(--bg);
-    stroke-width: 2.5;
-  }
-  /* the folds, as plain lines on the paper; they fade as the map unfolds */
-  .crease {
-    stroke: color-mix(in srgb, var(--text) 22%, transparent);
-    stroke-width: 1.5;
-    transition: opacity 0.4s;
-  }
-  .map-link:hover .crease,
-  .map-link:focus-visible .crease {
-    opacity: 0.3;
-  }
-  @media (prefers-reduced-motion: reduce) {
-    .folded,
-    .crease {
-      transition: none;
-    }
-  }
-
   /* trails near you: the list's starting point, as a label */
   .near[hidden] {
     display: none;
@@ -1320,4 +1275,101 @@ const featuredScript = inlineScript(Astro, `// A random featured trail on each p
     margin: 12px 0 0;
   }
 
+
+  /* the map section: a band wall to wall like the hero's, flat colours fixed like a picture's (the
+     hero's sky is the time of day, this one a sea), the same in both themes */
+  .atlas {
+    position: relative;
+    margin: 112px calc(50% - 50vw) 0;
+    overflow: hidden;
+    background: #cfe1e4;
+  }
+  .atlas-link {
+    display: block;
+    position: relative;
+    color: #25261c;
+    text-decoration: none;
+  }
+  .atlas-map {
+    display: block;
+    width: 100%;
+    height: clamp(300px, 42vw, 600px);
+  }
+  /* the text on the open sea of the South Pacific, at the band's lower left, in line with the content
+     column; on phones under the map */
+  .atlas-text {
+    position: absolute;
+    left: max(16px, calc(50vw - 600px));
+    bottom: clamp(20px, 4vw, 56px);
+    display: grid;
+    gap: 6px;
+    max-width: 300px;
+  }
+  .atlas-text h2 {
+    margin: 0;
+  }
+  .atlas-sub {
+    color: #3f4033;
+  }
+  .atlas-open {
+    margin-top: 4px;
+    color: #3f5619;
+    font-weight: 600;
+  }
+  .atlas-link:hover .atlas-open,
+  .atlas-link:focus-visible .atlas-open {
+    text-decoration: underline;
+  }
+  .atlas-link:focus-visible {
+    outline: 3px solid #3f5619;
+    outline-offset: -6px;
+  }
+  @media (max-width: 719px) {
+    .atlas-text {
+      position: static;
+      max-width: none;
+      padding: 4px 16px 24px;
+    }
+  }
+
+  /* clouds drifting across the map, about 70 s a crossing, each with birds flapping along (still with
+     reduced motion) */
+  .puff {
+    fill: #f9f8f0;
+    opacity: 0.85;
+  }
+  .bird {
+    fill: none;
+    stroke: #25261c;
+    stroke-width: 0.8;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    transform-box: fill-box;
+    transform-origin: center bottom;
+    animation: flap 0.9s ease-in-out infinite alternate;
+    animation-delay: calc(var(--b) * -0.23s);
+  }
+  @keyframes flap {
+    to {
+      transform: scaleY(0.35);
+    }
+  }
+  .cloud {
+    animation: drift 70s linear infinite;
+    animation-delay: calc(var(--c) * -17s);
+  }
+  @keyframes drift {
+    from {
+      transform: translateX(-160px);
+    }
+    to {
+      transform: translateX(660px);
+    }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .cloud,
+    .bird {
+      animation: none;
+    }
+  }
 </style>
