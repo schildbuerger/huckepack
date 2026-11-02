@@ -1,0 +1,110 @@
+{
+  "climate-high.json": {
+    "retrieved": "2026-11-02T07:04:23+00:00",
+    "url": "https://openmeteo.s3.us-west-2.amazonaws.com/data/copernicus_era5_land+copernicus_era5?latitude=42.4&longitude=8.9&elevation=2600"
+  },
+  "climate-low.json": {
+    "retrieved": "2026-11-02T07:01:08+00:00",
+    "url": "https://openmeteo.s3.us-west-2.amazonaws.com/data/copernicus_era5_land+copernicus_era5?latitude=41.7&longitude=9.3&elevation=250"
+  },
+  "elevation-glo30.json": {
+    "retrieved": "2026-11-02T06:57:47+00:00",
+    "url": "https://copernicus-dem-30m.s3.eu-central-1.amazonaws.com/Copernicus_DSM_COG_10_N41_00_E009_00_DEM/Copernicus_DSM_COG_10_N41_00_E009_00_DEM.tif https://copernicus-dem-30m.s3.eu-central-1.amazonaws.com/Copernicus_DSM_COG_10_N42_00_E008_00_DEM/Copernicus_DSM_COG_10_N42_00_E008_00_DEM.tif https://copernicus-dem-30m.s3.eu-central-1.amazonaws.com/Copernicus_DSM_COG_10_N42_00_E009_00_DEM/Copernicus_DSM_COG_10_N42_00_E009_00_DEM.tif"
+  },
+  "landcover.json": {
+    "retrieved": "2026-11-02T06:57:49+00:00",
+    "url": "https://esa-worldcover.s3.eu-central-1.amazonaws.com/v200/2021/map/ESA_WorldCover_10m_2021_v200_\u2026_Map.tif"
+  },
+  "osm-relation.json": {
+    "retrieved": "2026-10-31T21:23:06Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-1-main.json": {
+    "retrieved": "2026-10-31T21:23:06Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-10-main.json": {
+    "retrieved": "2026-10-31T21:23:06Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-11-main.json": {
+    "retrieved": "2026-10-31T21:23:06Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-12-main.json": {
+    "retrieved": "2026-10-31T21:23:06Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-13-main.json": {
+    "retrieved": "2026-10-31T21:23:06Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-14-main.json": {
+    "retrieved": "2026-10-31T21:23:06Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-15-main.json": {
+    "retrieved": "2026-10-31T21:23:06Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-16-main.json": {
+    "retrieved": "2026-10-31T21:23:06Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-2-main.json": {
+    "retrieved": "2026-10-31T21:23:06Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-3-main.json": {
+    "retrieved": "2026-10-31T21:23:06Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-4-main.json": {
+    "retrieved": "2026-10-31T21:23:06Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-5-main.json": {
+    "retrieved": "2026-10-31T21:23:06Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-6-main.json": {
+    "retrieved": "2026-10-31T21:23:06Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-7-main.json": {
+    "retrieved": "2026-10-31T21:23:06Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-8-main.json": {
+    "retrieved": "2026-10-31T21:23:06Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-9-main.json": {
+    "retrieved": "2026-10-31T21:23:06Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-water.json": {
+    "retrieved": "2026-10-31T21:23:06Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-way-tags.json": {
+    "retrieved": "2026-10-31T21:23:06Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osrm-access-bastia-poretta-airport-bia.json": {
+    "retrieved": "2026-11-02T07:04:24+00:00",
+    "url": "https://router.project-osrm.org/route/v1/driving/9.4822,42.55441;8.85529,42.50837?overview=false"
+  },
+  "osrm-access-calvi-sainte-catherine-airport-cly.json": {
+    "retrieved": "2026-11-02T07:04:23+00:00",
+    "url": "https://router.project-osrm.org/route/v1/driving/8.79208,42.52981;8.85529,42.50837?overview=false"
+  },
+  "osrm-access-gare-de-calvi.json": {
+    "retrieved": "2026-11-02T07:04:23+00:00",
+    "url": "https://router.project-osrm.org/route/v1/driving/8.75596,42.5648;8.85529,42.50837?overview=false"
+  },
+  "wikimedia.json": {
+    "retrieved": "2026-11-02T07:04:28+00:00",
+    "url": "Q262374 2025-11..2026-10"
+  }
+}

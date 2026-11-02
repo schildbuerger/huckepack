@@ -1178,6 +1178,8 @@ const trailLd = JSON.stringify({
       <p class="note muted">
         Totals and averages count the main stages only.
         {closedStages.map(closedText)}
+        {/* no source publishes the distances (docs/scope.md, 2026-11-02): ours, from the map line */}
+        {t.stages.source === "huckepack-measured" && " Distances are ours, measured on the OpenStreetMap map line between the stage ends: no source publishes them."}
         {t.stages.timesSource && ` Walking times from ${sourceShort(t.stages.timesSource)}.`}
         {t.stages.list
           .filter((s) => s.source)

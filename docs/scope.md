@@ -149,7 +149,11 @@
   Országos Kéktúra's 27 sections of 14–74 km), the stages are the operator's
   recommended day stages: figures summed from the official table between
   stamping points where a day ends at one, else estimated (≈) like any
-  missing stage figure (2026-11-01).
+  missing stage figure (2026-11-01). Where an official source names the day
+  stages but no source gives their distances (the GR 20's 16 stages, with
+  times only), the distances are our own, measured on the OSM map line
+  between the stage ends, under their own source (`huckepack-measured`, "no
+  source publishes them"), so the page says they are ours (2026-11-02).
 - **Sleeping (issue #113, 2026-11-01):** beds have their own lanes in the
   Sleeping section (one per category, approach B of three previews); the
   rest is "Water & Supply". A category counts as available where the

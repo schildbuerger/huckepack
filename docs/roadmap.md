@@ -65,6 +65,10 @@ for 18–27, every figure summed from the official table).
 And the **Camino Francés** (#122, added on 2026-11-02, 769 km from Saint-Jean-Pied-de-Port to
 Santiago in 36 days: Wikipedia's stages, the Xunta de Galicia's for the six Galician days from Sarria;
 the map line follows the OSM section relations).
+And the **GR 20** (#123, added on 2026-11-02, about 180 km from Calenzana to Conca in the Corsican
+regional park's 16 stages with its walking times; no source publishes stage distances, so they are
+measured on our OSM map line). The Santa Cruz Trek (#75) was dropped the same day: Peru's park service
+requires a licensed agency, so it can't be walked independently.
 
 | # | Trail | Region | Length (approx.) | Why |
 |---|---|---|---|---|
@@ -72,7 +76,7 @@ the map line follows the OSM section relations).
 | 2 | Appalachian Trail | USA | 3,500 km | Most-hiked long trail; NPS data |
 | 3 | Te Araroa | New Zealand | 3,000 km | Popular abroad; DOC open data |
 | 4 | ~~Camino de Santiago (Camino Francés)~~ (added) | Spain | 780 km | Most-walked long route; pilgrim office statistics |
-| 5 | GR 20 | Corsica, France | 180 km | Best-known European thru-hike |
+| 5 | ~~GR 20~~ (added) | Corsica, France | 180 km | Best-known European thru-hike |
 | 6 | Continental Divide Trail | USA | 5,000 km | Completes the Triple Crown |
 | 7 | ~~Kungsleden~~ (added) | Sweden | 440 km | Well-known Nordic trail |
 | 8 | ~~West Highland Way~~ (added) | Scotland | 154 km | Popular, well documented |

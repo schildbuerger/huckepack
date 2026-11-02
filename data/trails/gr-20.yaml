@@ -1,0 +1,217 @@
+name: GR 20
+added: 2026-11-02
+localName: Fra li monti
+aliases: [GR20, Fra li monti]
+website: https://pnr-resa.corsica/
+wikidata: Q262374
+managedBy:
+  - name: Parc naturel régional de Corse
+    url: https://pnr-resa.corsica/
+trailType: point-to-point
+continents: [Europe]
+countries: [FR]
+regions: [Corsica]
+protectedAreas:
+  - Parc naturel régional de Corse
+termini:
+  # Calenzana and Conca, the villages where the platform's first stage starts and last ends (OSM)
+  start:
+    name: Calenzana
+    lat: 42.50837
+    lon: 8.85529
+  end:
+    name: Conca
+    lat: 41.73432
+    lon: 9.33584
+  source: osm
+established:
+  # "1971 : homologation par le Comité national des Sentiers de grande randonnée"
+  year: 1971
+  source: wikipedia-fr
+waymarking:
+  text: Clearly waymarked throughout with white and red marks
+  symbol: white-red-stripes
+  source: wikipedia
+length:
+  - km: 180
+    approx: true
+    source: wikipedia
+days:
+  # the park's 16 stages, Calenzana to Conca
+  min: 16
+  max: 16
+  source: pnr-resa
+treeLine:
+  # "Il atteint au maximum 1750-1800 m et marque la limite supérieure des forêts sur l'île": the
+  # montane zone reaches 1,750–1,800 m at most and marks the upper limit of the island's forests
+  m: 1800
+  fromM: 1750
+  source: wikipedia-fr-corse
+stages:
+  # The park's 16 stages (its GR20 booking platform) with their walking times north to south. No
+  # source publishes stage distances (the park's own site pnr-corse.com doesn't load; Wikipedia
+  # gives times only), so the distances are our own, measured on the OSM map line of the main
+  # route ("GR 20 Principale", 12484370), split at the refuges (OSM). Decided 2026-11-02.
+  source: huckepack-measured
+  timesSource: pnr-resa
+  list:
+    - { number: "1", kind: main, from: Calenzana, to: Ortu di u Piobbu, km: 11.3, minutes: 390, end: { lat: 42.46519, lon: 8.90688 } }
+    - { number: "2", kind: main, from: Ortu di u Piobbu, to: Carrozzu, km: 7.3, minutes: 420, end: { lat: 42.42626, lon: 8.90047 } }
+    - { number: "3", kind: main, from: Carrozzu, to: Ascu Stagnu, km: 4.9, minutes: 370, end: { lat: 42.4035, lon: 8.92231 } }
+    - { number: "4", kind: main, from: Ascu Stagnu, to: Tighjettu, km: 8.4, minutes: 480, end: { lat: 42.36224, lon: 8.90883 } }
+    - { number: "5", kind: main, from: Tighjettu, to: Ciottulu di i Mori, km: 6.4, minutes: 240, end: { lat: 42.33495, lon: 8.86814 } }
+    - { number: "6", kind: main, from: Ciottulu di i Mori, to: Manganu, km: 25.0, minutes: 480, end: { lat: 42.21981, lon: 8.98046 } }
+    - { number: "7", kind: main, from: Manganu, to: Petra Piana, km: 8.4, minutes: 390, end: { lat: 42.19807, lon: 9.05245 } }
+    - { number: "8", kind: main, from: Petra Piana, to: L'Onda, km: 9.9, minutes: 290, end: { lat: 42.15216, lon: 9.07284 } }
+    - { number: "9", kind: main, from: L'Onda, to: Vizzavona, km: 10.1, minutes: 365, end: { lat: 42.12858, lon: 9.13376 } }
+    - { number: "10", kind: main, from: Vizzavona, to: E Capannelle, km: 14.1, minutes: 315, end: { lat: 42.07632, lon: 9.14521 } }
+    - { number: "11", kind: main, from: E Capannelle, to: Prati, km: 17.6, minutes: 370, end: { lat: 42.00864, lon: 9.21828 } }
+    - { number: "12", kind: main, from: Prati, to: Usciolu, km: 10.9, minutes: 345, end: { lat: 41.93512, lon: 9.20598 } }
+    - { number: "13", kind: main, from: Usciolu, to: Cuscionu (Matalza), km: 10.8, minutes: 265, end: { lat: 41.87428, lon: 9.1524 } }
+    - { number: "14", kind: main, from: Cuscionu (Matalza), to: Asinau, km: 9.9, minutes: 255, end: { lat: 41.84148, lon: 9.21434 } }
+    - { number: "15", kind: main, from: Asinau, to: Paliri, km: 15.3, minutes: 420, end: { lat: 41.79415, lon: 9.25961 } }
+    - { number: "16", kind: main, from: Paliri, to: Conca, km: 13.2, minutes: 300, end: { lat: 41.73432, lon: 9.33584 } }
+route:
+  # built by `python -m pipeline.all gr-20`: OSM ways matched to the OSM hiking relation "GR 20
+  # Principale" (12484370), split at the refuges
+  source: osm
+  publishable: true
+  relation: 12484370
+difficulty:
+  # no grade is published; our estimate from the park's stage descriptions
+  estimated:
+    sac: T4
+    basis: >-
+      The park publishes no grade. Its stage texts describe an "increasingly rugged trail that may
+      require the use of hands" from the first day, scree and rockfalls, "technical and very
+      mineral" stages and steep corridors to passes above 2,000 m; English Wikipedia calls it
+      "the most difficult of all the GR routes". Hands needed in places on exposed rock is
+      alpine hiking (T4); the southern half, from Vizzavona, is easier.
+    source: pnr-resa
+season:
+  # "un itinéraire d'été, normalement praticable … entre mi-juin et début novembre"; snowfields
+  # until early July high up
+  months: [6, 7, 8, 9, 10]
+  text: Mid-June to early November
+  source: wikipedia-fr
+sleeping:
+  # the park's refuges with bivouac areas beside them; gîtes at Vizzavona, E Capannelle and on the
+  # Cuscionu plateau (the platform's accommodation lists)
+  types: [hut, campsite, guesthouse]
+  source: pnr-resa
+wildCamping:
+  status: prohibited
+  rule: >-
+    Tents only beside the refuges; pitching along the trail is not permitted.
+  source: wikipedia
+access:
+  # Calvi's railway station and airport, nearest the start at Calenzana; Bastia, the island's
+  # main airport. Coordinates from OSM; distances by pipeline/access.py
+  - kind: station
+    name: Gare de Calvi
+    lat: 42.5648
+    lon: 8.75596
+    source: osm
+  - kind: airport
+    name: Calvi Sainte-Catherine Airport (CLY)
+    lat: 42.52981
+    lon: 8.79208
+    source: osm
+  - kind: airport
+    name: Bastia Poretta Airport (BIA)
+    lat: 42.55441
+    lon: 9.4822
+    source: osm
+tags: [mountains, huts, scrambling, island]
+notes:
+  - >-
+    Stages: the park's booking platform names 16 stages with walking times both ways (we show north
+    to south) but no distances; French Wikipedia lists the same times. No source publishes stage
+    distances (the park's site pnr-corse.com didn't load on 2026-11-02), so they are measured on our
+    OSM map line (decided 2026-11-02, source `huckepack-measured`). Stage 13 ends on the Cuscionu
+    plateau; French Wikipedia names the Matalza refuge, used as the stage end (the platform also
+    lists the bergeries of Bassetta and I Croci).
+  - >-
+    Stage 4: the Cirque de la Solitude has been closed by decree since the rockfall of 10 June
+    2015; the diversion is the official route now ("the new official GR20 route, registered with
+    the FFRP", the platform). French Wikipedia's 6 hours are the old route's; the platform gives 8.
+  - >-
+    Variants not recorded: the Bonifatu start, the Castel di Vergio stop, the ridge variant after
+    Petra Piana and the alpine variant through the Bavella needles (no source gives their figures).
+  - >-
+    Length: English Wikipedia "about 180 km" with 12,000 m of ascent; French Wikipedia 179 km and
+    about 11,000 m. No ascent recorded: the two differ by 9 % and neither gives the descent.
+  - >-
+    Data check (2026-11-02): the platform's stage times against French Wikipedia's: 14 of 16 the
+    same; stage 4 8 h against 6 h (the old route through the Cirque de la Solitude, see above) and
+    stage 9 6 h 05 against 6 h 50 (12 %), both in `dataCheck`. Length: 180 km (English Wikipedia)
+    against 179 km (French); our map line 178.0 km and our stage sum 183.5 km, both within 2 %. Days:
+    16 stages, as French Wikipedia ("16 étapes (recommandation de la FFRP)"; English: "about 15
+    days"). Stage distances have no second source (they are ours). Tree line: 1,750–1,800 m (Corse)
+    against "Étages de végétation en Corse": the montane forest up to 1,800 m on south slopes, 1,600 m
+    on north slopes. The terrain model's highest point, 2,595 m on stage 4's diversion, has no stated
+    counterpart.
+dataCheck:
+  # working rule 2: French Wikipedia for the stage times, length and days; English for the length
+  date: 2026-11-02
+  against: [wikipedia-fr, wikipedia]
+  deviations:
+    - { figure: "Stage 4 time", ours: "8 h", theirs: "6 h (the old route through the Cirque de la Solitude)", source: wikipedia-fr }
+    - { figure: "Stage 9 time", ours: "6 h 05", theirs: "6 h 50", source: wikipedia-fr }
+sources:
+  - id: pnr-resa
+    title: "Parc naturel régional de Corse: GR20 booking platform, the stages of the GR20 (times, descriptions, accommodation)"
+    url: https://pnr-resa.corsica/
+    licence: © Parc naturel régional de Corse (facts only)
+    retrieved: 2026-11-02
+  - id: huckepack-measured
+    title: "huckepack: stage distances measured on our OpenStreetMap map line (no source publishes them)"
+    url: https://www.openstreetmap.org/relation/12484370
+    licence: ODbL 1.0 (measured on OpenStreetMap data)
+    retrieved: 2026-11-02
+  - id: wikipedia
+    title: "Wikipedia (en): GR 20 (length, waymarking, camping)"
+    url: https://en.wikipedia.org/wiki/GR_20
+    licence: CC BY-SA 4.0
+    retrieved: 2026-11-02
+  - id: wikipedia-fr
+    title: "Wikipédia (fr): Sentier de grande randonnée 20 (history, season, stage times)"
+    url: https://fr.wikipedia.org/wiki/Sentier_de_grande_randonn%C3%A9e_20
+    licence: CC BY-SA 4.0
+    retrieved: 2026-11-02
+  - id: wikipedia-fr-corse
+    title: "Wikipédia (fr): Corse, vegetation zones (the upper limit of the island's forests)"
+    url: https://fr.wikipedia.org/wiki/Corse
+    licence: CC BY-SA 4.0
+    retrieved: 2026-11-02
+  - id: wikimedia
+    title: "Wikimedia: page views of the trail's Wikipedia articles in every language, by people, over twelve months (Wikidata sitelinks, pageview API)"
+    url: https://wikimedia.org/api/rest_v1/
+    licence: CC0 1.0 (pageview data); Wikidata CC0
+    retrieved: 2026-11-02
+    checkOnly: true
+  - id: osm
+    title: "OpenStreetMap contributors: the hiking relation GR 20 Principale (12484370), paths, water, shops and places to sleep along the way (Geofabrik extract), refuges, travel hubs"
+    url: https://www.openstreetmap.org/relation/12484370
+    licence: ODbL 1.0
+    retrieved: 2026-11-02
+  - id: copdem
+    title: "Copernicus DEM GLO-30 (30 m terrain model), tiles from AWS Open Data"
+    url: https://registry.opendata.aws/copernicus-dem/
+    licence: "Copernicus WorldDEM-30 licence, free; produced using Copernicus WorldDEM-30 © DLR e.V. 2010-2014 and © Airbus Defence and Space GmbH 2014-2018 provided under COPERNICUS by the European Union and ESA; all rights reserved"
+    retrieved: 2026-11-02
+  - id: worldcover
+    title: "ESA WorldCover 2021: 10 m land cover (via AWS Open Data)"
+    url: https://esa-worldcover.org/
+    licence: "CC BY 4.0; © ESA WorldCover project 2021 / Contains modified Copernicus Sentinel data (2021) processed by ESA WorldCover consortium"
+    retrieved: 2026-11-02
+  - id: era5
+    title: "Open-Meteo open data on AWS: ERA5-Land temperature and ERA5 precipitation, snow and wind, daily 1995–2024 (reanalysis)"
+    url: https://github.com/open-meteo/open-data
+    licence: CC BY 4.0 (Open-Meteo); contains modified Copernicus Climate Change Service information
+    retrieved: 2026-11-02
+  - id: osrm
+    title: "OSRM: road routes on OpenStreetMap data (router.project-osrm.org)"
+    url: https://project-osrm.org/
+    licence: Route data © OpenStreetMap contributors (ODbL)
+    retrieved: 2026-11-02
