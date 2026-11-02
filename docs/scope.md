@@ -167,7 +167,13 @@
   no insects) and plants that harm on touch (giant hogweed), only where an
   official source (a park service, a wildlife or health agency) names them;
   what to do and not to do in its words, the level (Low, Moderate, High) our
-  own with its basis. Where an official source says the region has none, the
+  own with its basis, by one rule read from the official source (checked for
+  every entry 2026-11-02): High where the source calls the species common
+  and a bite can be life-threatening within hours or needs antivenom;
+  Moderate where it warns of attacks or serious harm (injury, encephalitis,
+  severe burns, a dangerous infection, a life-threatening sting) or places
+  the trail in an official TBE risk area; Low where the harm is mostly minor
+  or treatable (Lyme disease) or avoidable by behaviour alone. Where an official source says the region has none, the
   page says so with the source; otherwise the section is left out. Of three
   previews, approach C, reworked into one wall-to-wall band: the trail's own
   skyline with the animals and plants as PhyloPic silhouettes in front,
