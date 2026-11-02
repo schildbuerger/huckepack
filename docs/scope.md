@@ -90,8 +90,8 @@
     EE→T3, EEA→T4, the lower bound where the scales overlap) and labelled as
     converted.
   - Stages are recorded per trail (km, ascent, descent, time, start and end
-    elevation), marked as main, approach or variant. Totals and averages per
-    day are computed from the main stages, never stored, and only from
+    elevation), marked as main, approach or variant. Totals and averages
+    per stage are computed from the main stages, never stored, and only from
     figures of the same source.
   - Sleeping: only which types exist along the trail (huts, campsites,
     hostels, …), not individual places. Wild camping as allowed, restricted
@@ -189,6 +189,17 @@
   the nearest ridge) on a band of day sky across the bottom, in place of the
   season and ground row (approach C of three); the ridge is one function
   (`profileRidge`, src/lib/skylines.ts) shared with the page head.
+- **Minimum figures (issue #148, 2026-11-02):** every trail shows its length,
+  ascent and descent, days and averages. The ascent and descent may be the
+  terrain model's estimate (≈) where no source states them. Days are the
+  ones a source suggests, else one day per main stage (`trailDays()`, said
+  so in the tile's popover; no provider published days for the Camí de
+  Cavalls, Camino Francés, Goldsteig, Kungsleden, MacLehose Trail or
+  Országos Kéktúra). The averages are per stage (`perStage()`: the main
+  stages' totals over their number, so one source), the ascent from the
+  stages' climbs or else the terrain model's per-stage estimate (≈);
+  before, averages per day showed only where days and stages shared a
+  source.
 - **Link previews for every page (issue #147, 2026-11-02):** every page has a
   1200 × 630 image (approach B of three, a picture per page): the home page
   three trails' skylines, the trail search six trails as cards, the map the

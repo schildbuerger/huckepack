@@ -68,17 +68,32 @@ export function compareLength(t: Trail, d?: DerivedData) {
   return measuredLength(d)?.value ?? trailLength(t)?.value ?? null;
 }
 
-// Averages per day only when the days and the stage totals come from the same source,
-// so figures from different sources are never mixed.
-export function perDay(t: Trail) {
+// The trail's days (issue #148): the days a source suggests, else one day per main stage, so every
+// trail with stages has them; `perStage` marks the second, which the page names as such.
+export function trailDays(t: Trail) {
+  if (t.days) return { min: t.days.min, max: t.days.max, source: t.days.source, perStage: false };
+  const n = mainStages(t).length;
+  return t.stages && n ? { min: n, max: n, source: t.stages.source, perStage: true } : undefined;
+}
+
+// Averages per stage (issue #148, decided 2026-11-02): the main stages' totals over their number, so
+// they come from one source and every trail with stages has them (before, averages per day showed only
+// where the days and the stages shared a source). The ascent from the stages' own climbs, else from the
+// terrain model's estimate per stage (≈, stageEstimates), when every main stage has one.
+export function perStage(t: Trail, d?: DerivedData) {
   const totals = stageTotals(t);
-  if (!totals || !t.days || t.days.source !== totals.km.source) return undefined;
-  const days = (t.days.min + t.days.max) / 2;
-  const how = `stage totals over ${t.days.min === t.days.max ? t.days.min : `${t.days.min}–${t.days.max}`} days`;
-  return {
-    km: { value: Math.round((totals.km.value / days) * 10) / 10, source: totals.km.source, how },
-    ascentM: totals.ascentM && { value: Math.round(totals.ascentM.value / days / 10) * 10, source: totals.km.source, how },
-  };
+  const main = mainStages(t);
+  if (!totals || !main.length) return undefined;
+  const n = main.length;
+  const to10 = (m: number) => Math.round(m / n / 10) * 10;
+  let ascentM: { value: number; est: boolean } | undefined;
+  if (totals.ascentM) ascentM = { value: to10(totals.ascentM.value), est: false };
+  else {
+    const est = stageEstimates(t, d);
+    const ups = main.map((s) => est.get(s.number)?.ascentM);
+    if (ups.every((m) => m !== undefined)) ascentM = { value: to10(ups.reduce((a, m) => a + m!, 0)), est: true };
+  }
+  return { km: Math.round((totals.km.value / n) * 10) / 10, ascentM, stages: n, source: totals.km.source };
 }
 
 // CAI grades mapped to the SAC scale for filtering. The scales overlap rather than match;
@@ -126,7 +141,8 @@ export function summarize(id: string, t: Trail, d?: DerivedData) {
     lengthKm: trailLength(t)?.value ?? null,
     compareKm: compareLength(t, d), // for sorting and totals (compareLength())
     ascentM: trailClimb(t)?.up ?? null,
-    days: t.days ? ([t.days.min, t.days.max] as [number, number]) : null,
+    // the suggested days, else one day per main stage (trailDays)
+    days: ((d) => (d ? ([d.min, d.max] as [number, number]) : null))(trailDays(t)),
     sac: sacGrade(t)?.value ?? null,
     wildCamping: t.wildCamping?.status ?? null,
     sleeping: sleepingCategories(t.sleeping?.types ?? [], d?.along?.beds.byGroup) as string[],

@@ -21,7 +21,8 @@ import { existsSync } from "node:fs";
 import {
   countryName,
   monthName,
-  perDay,
+  perStage,
+  trailDays,
   sacGrade,
   mainStages,
   stageEstimates,
@@ -72,7 +73,8 @@ const totals = stageTotals(t);
 const length = trailLength(t);
 // the length on our map line, where every main stage is well matched (measuredLength())
 const measured = measuredLength(derived);
-const daily = perDay(t);
+const days = trailDays(t);
+const daily = perStage(t, derived);
 const sac = sacGrade(t);
 // difficulty in three dimensions (src/lib/difficulty.ts); the key figure names the hardest level
 const diff = difficulty(t, derived);
@@ -760,16 +762,38 @@ const trailLd = JSON.stringify({
           </dd>
         </div>
       )}
-      {t.days && (
+      {days && (
         <div>
-          <dt>Suggested</dt>
-          <dd><span class="big">{range(t.days.min, t.days.max)}</span><span class="unit">days</span></dd>
+          <dt>
+            {days.perStage ? (
+              <Explain id="days-info" term="Days">
+                <p>No source suggests a number of days, so the page counts one day per main stage ({days.min}).</p>
+              </Explain>
+            ) : (
+              "Suggested"
+            )}
+          </dt>
+          <dd><span class="big">{range(days.min, days.max)}</span><span class="unit">days</span></dd>
         </div>
       )}
       {daily && (
         <div>
-          <dt>Per day</dt>
-          <dd><span class="big">{daily.km.value}</span><span class="unit">km{daily.ascentM && ` · ${fmt(daily.ascentM.value)} m ↑`}</span></dd>
+          <dt>
+            <Explain id="per-stage-info" term="Per stage">
+              <p>
+                The {daily.stages} main stages' totals over their number ({sourceShort(daily.source)}), so the averages come from one source.
+                {daily.ascentM?.est && " The ascent is the terrain model's estimate per stage (≈), since the stages state no climbs."}
+              </p>
+            </Explain>
+          </dt>
+          <dd>
+            <span class="big">{daily.km}</span><span class="unit">km</span>
+            {daily.ascentM && (
+              <span class="unit">
+                · {daily.ascentM.est && <span aria-hidden="true">≈ </span>}{daily.ascentM.est && <span class="sr-only">about </span>}{fmt(daily.ascentM.value)} m ↑
+              </span>
+            )}
+          </dd>
         </div>
       )}
       {t.season && (
