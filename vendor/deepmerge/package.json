@@ -1,0 +1,14 @@
+{
+  "name": "deepmerge",
+  "version": "4.3.1-huckepack.1",
+  "description": "A library for deep (recursive) merging of Javascript objects",
+  "license": "MIT",
+  "main": "dist/cjs.js",
+  "types": "index.d.ts",
+  "files": [
+    "dist",
+    "index.d.ts",
+    "license.txt"
+  ],
+  "huckepack": "Patched copy of deepmerge 4.3.1 (MIT): mergeObject() skips the key __proto__ (GHSA-gcqx-w48m-w2h4, issue #157). Remove with the override in package.json once upstream releases a fix."
+}

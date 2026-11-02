@@ -14,6 +14,7 @@
     "@astrojs/svelte": "9.1.1",
     "@fontsource/source-serif-4": "5.3.1",
     "astro": "7.4.2",
+    "deepmerge": "file:vendor/deepmerge",
     "lucide-static": "1.63.0",
     "maplibre-contour": "0.1.1",
     "maplibre-gl": "6.16.0",
@@ -25,5 +26,8 @@
     "@astrojs/check": "0.9.12",
     "@types/node": "22.20.5",
     "typescript": "6.0.3"
+  },
+  "overrides": {
+    "deepmerge": "$deepmerge"
   }
 }

@@ -87,6 +87,7 @@ Inside Claude Code's sandbox, pip needs `PIP_CACHE_DIR="$TMPDIR/pip-cache"`. Pyt
 - Links: a script in `Base.astro` opens every link to another website in a new tab (`target="_blank"`, `rel="noopener noreferrer"`, plus a screen-reader note in `.sr-only`); links within huckepack stay in the same tab. It runs once on load, so links added later (e.g. map attribution) must set the target themselves.
 - Keep pages prerendered: only interactive parts (filters, maps, charts) become Svelte islands.
 - Package versions are pinned exactly. TypeScript stays on 6.x until `@astrojs/svelte` and `@astrojs/check` support 7.
+- `vendor/deepmerge` (issue #157): a patched copy of deepmerge 4.3.1 (MIT; `mergeObject()` skips the key `__proto__`, GHSA-gcqx-w48m-w2h4), a direct dependency forced on the Svelte Vite plugin by `overrides: { deepmerge: "$deepmerge" }` (a `file:` path in the override itself resolves inside the plugin's folder). Versioned `4.3.1-huckepack.1`, so audits don't match it to the advisory. Once deepmerge releases a fix, drop the folder, the dependency and the override.
 
 ## Ground rules
 
