@@ -58,6 +58,31 @@
 
   let container: HTMLDivElement;
   let failed = $state(false);
+  // full view and reset view (issue #152; of three previews, approach C): "Expand" grows the map over
+  // the whole window inside the page (the browser's full screen isn't there for maps on iPhones),
+  // "Close" or Esc returns; "Reset view" brings back the first framing once the visitor has moved it
+  let moved = $state(false); // the visitor has panned or zoomed since the first framing
+  let expanded = $state(false); // the map fills the window inside the page
+  let resetView = () => {};
+  let fitAfterResize = () => {};
+  // lucide icons (ISC licence), drawn in the button's text colour
+  const svg = (d: string) => `<svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">${d}</svg>`;
+  const ICON = {
+    reset: svg('<path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/>'),
+    max: svg('<path d="M8 3H5a2 2 0 0 0-2 2v3"/><path d="M21 8V5a2 2 0 0 0-2-2h-3"/><path d="M3 16v3a2 2 0 0 0 2 2h3"/><path d="M16 21h3a2 2 0 0 0 2-2v-3"/>'),
+    close: svg('<path d="M18 6 6 18"/><path d="m6 6 12 12"/>'),
+  };
+  // the map over the whole window inside the page; Esc closes it
+  const onKey = (e: KeyboardEvent) => {
+    if (e.key === "Escape" && expanded) toggleExpanded();
+  };
+  function toggleExpanded() {
+    expanded = !expanded;
+    document.documentElement.classList.toggle("map-expanded", expanded);
+    if (expanded) window.addEventListener("keydown", onKey);
+    else window.removeEventListener("keydown", onKey);
+    setTimeout(fitAfterResize, 30);
+  }
   let showPreview = $state(true);
 
   onMount(() => {
@@ -116,6 +141,26 @@
       });
       map.addControl(new maplibre.NavigationControl({ showCompass: false }), "top-right");
       map.addControl(new maplibre.ScaleControl({ unit: "metric" }), "bottom-left");
+
+      // the first framing, to return to; a pan or zoom by the visitor (not ours) marks the map moved
+      const first: [[number, number], [number, number]] = [
+        [Math.min(...lons), Math.min(...lats)],
+        [Math.max(...lons), Math.max(...lats)],
+      ];
+      resetView = () => {
+        map?.fitBounds(first, { padding: 32 });
+        moved = false;
+      };
+      map.on("moveend", (e: any) => {
+        if (e.originalEvent) moved = true;
+      });
+      // expanded, the wheel zooms without Ctrl or Cmd; in the page it scrolls the page
+      fitAfterResize = () => {
+        map?.resize();
+        if (expanded) map?.cooperativeGestures.disable();
+        else map?.cooperativeGestures.enable();
+        if (!moved) map?.fitBounds(first, { padding: 32, animate: false });
+      };
       // the preview gives way once the map has drawn, framed the same, so the route stays put
       map.once("load", () => (showPreview = false));
 
@@ -338,9 +383,17 @@
   });
 </script>
 
-<div class="map" class:fill bind:this={container} role="region" aria-label="Map of the trail">
+<div class="map" class:fill class:expanded bind:this={container} role="region" aria-label="Map of the trail">
   {#if showPreview}{@render children?.()}{/if}
   {#if failed}<p class="failed">The map couldn't be loaded.</p>{/if}
+  {#if !showPreview && !failed}
+    <div class="map-btns tl">
+      <button type="button" class="map-btn" aria-pressed={expanded} onclick={toggleExpanded}>
+        {@html expanded ? ICON.close : ICON.max} {expanded ? "Close" : "Expand"}
+      </button>
+      {#if moved}<button type="button" class="map-btn" onclick={() => resetView()}>{@html ICON.reset} Reset view</button>{/if}
+    </div>
+  {/if}
 </div>
 <ul class="legend">
   <li><span class="key main"></span> Trail</li>
@@ -355,6 +408,52 @@
 </ul>
 
 <style>
+  /* the map's own buttons (issue #152): Expand or Close, and Reset view once moved; expanded, the
+     map covers the window inside the page */
+  .map-btns {
+    position: absolute;
+    z-index: 3;
+    display: flex;
+    gap: 8px;
+  }
+  .map-btns.tl {
+    top: 10px;
+    left: 10px;
+  }
+  .map-btn {
+    display: inline-flex;
+    gap: 6px;
+    align-items: center;
+    min-height: 32px;
+    padding: 4px 12px;
+    border: 1px solid var(--line);
+    border-radius: 16px;
+    background: var(--bg);
+    color: var(--text);
+    font: inherit;
+    font-size: 0.85rem;
+    cursor: pointer;
+  }
+  .map-btn:hover {
+    background: var(--surface);
+  }
+  .map-btn:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+  }
+  .map.expanded {
+    position: fixed;
+    inset: 0;
+    z-index: 1000;
+    width: auto;
+    height: auto;
+    aspect-ratio: auto;
+    border: 0;
+    border-radius: 0;
+  }
+  :global(html.map-expanded) {
+    overflow: hidden;
+  }
   .map {
     position: relative;
     width: 100%;

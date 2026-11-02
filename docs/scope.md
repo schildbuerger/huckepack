@@ -189,6 +189,12 @@
   the nearest ridge) on a band of day sky across the bottom, in place of the
   season and ground row (approach C of three); the ridge is one function
   (`profileRidge`, src/lib/skylines.ts) shared with the page head.
+- **Full view and reset view on the trail map (issue #152, 2026-11-02):**
+  an "Expand" button (top left) grows the map over the whole window inside
+  the page, where the wheel zooms without Ctrl; "Close" or Esc returns. Not
+  the browser's full screen, which iPhones don't offer for maps. "Reset view"
+  appears once the visitor has panned or zoomed and brings back the first
+  framing, the whole trail (approach C of three).
 - **Stage marks on the trail map (issue #151, 2026-11-02):** each main
   stage's number in a small badge in the trail colour midway along it, and a
   small ring (smaller than the start and finish) where one stage ends and
