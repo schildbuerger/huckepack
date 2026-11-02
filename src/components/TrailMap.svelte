@@ -142,8 +142,15 @@
         ],
         fitBoundsOptions: { padding: 32 },
         cooperativeGestures: true,
-        attributionControl: routeAttribution ? { customAttribution: `Route: ${routeAttribution}` } : {},
+        // the sources behind the (i), compact everywhere and closed until the visitor opens it
+        attributionControl: { compact: true, ...(routeAttribution ? { customAttribution: `Route: ${routeAttribution}` } : {}) },
       });
+      // MapLibre shows the compact attribution's text until the first drag; fold it from the start, as
+      // its own first drag does (MapLibre 6: the class goes, `open` stays), and again on every style,
+      // since a theme switch redraws it
+      const closeAttribution = () => container.querySelector(".maplibregl-ctrl-attrib")?.classList.remove("maplibregl-compact-show");
+      map.on("styledata", closeAttribution);
+      map.once("load", closeAttribution);
       map.addControl(new maplibre.NavigationControl({ showCompass: false }), "top-right");
       map.addControl(new maplibre.ScaleControl({ unit: "metric" }), "bottom-left");
 
