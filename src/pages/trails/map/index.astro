@@ -3,24 +3,15 @@
 // the trails, nearest to you first, with the search page's filters (src/components/TrailsMap.svelte). Linked from the home page's "Explore on
 // the map" and the search page.
 import { ogPageAlt } from "../../../lib/og-pages";
-import { getCollection, getEntry } from "astro:content";
 import Base from "../../../layouts/Base.astro";
 import Breadcrumbs from "../../../components/Breadcrumbs.astro";
 import TrailsMap from "../../../components/TrailsMap.svelte";
-import { searchSummary } from "../../../lib/search";
-import { climateLevel } from "../../../lib/filters";
-import { LEVELS } from "../../../lib/difficulty";
 import { worldOutline } from "../../../lib/world-outline";
+import { allSearchTrails } from "../../../lib/search-all";
 
-const trails = (
-  await Promise.all(
-    (await getCollection("trails")).map(async (e) => {
-      const s = searchSummary(e.id, e.data, (await getEntry("derived", e.id))?.data);
-      const xs = [s.terrainLevel, s.effortLevel, climateLevel(s, [])].filter((x) => x !== null) as number[];
-      return { ...s, startLonLat: [e.data.termini.start.lon, e.data.termini.start.lat] as [number, number], level: xs.length ? LEVELS[Math.max(...xs) - 1] : null };
-    }),
-  )
-).sort((a, b) => a.name.localeCompare(b.name));
+// the trails' summaries reach the map from /trails/search.json (issue #93); here only for the title's
+// count and the static outline
+const trails = await allSearchTrails();
 const countries = new Set(trails.flatMap((t) => t.countries)).size;
 // the map's first look before MapLibre starts: framed like its view of all trails (start ± 8° ± 4°)
 const outline = worldOutline(trails.map((t) => t.startLonLat), { width: 1000, padLon: 8, padSouth: 4, padNorth: 4 });
@@ -33,7 +24,7 @@ const outline = worldOutline(trails.map((t) => t.startLonLat), { width: 1000, pa
   description={`All ${trails.length} official long-distance hiking trails on one map, in ${countries} countries: zoom into a region and see its trails with length, days and difficulty.`}
 >
   <!-- the map fills the window; the breadcrumb and title head the list column beside it -->
-  <TrailsMap client:load trails={trails}>
+  <TrailsMap client:load>
     <Breadcrumbs trail={[{ label: "Trails", href: "/trails/" }]} current="Map" />
     <h1>Trail map</h1>
     <!-- until the interactive map starts on the first interaction: the trails' starts on the land's

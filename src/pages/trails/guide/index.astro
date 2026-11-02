@@ -1,14 +1,8 @@
 ---
 import { ogPageAlt } from "../../../lib/og-pages";
-import { getCollection, getEntry } from "astro:content";
 import Base from "../../../layouts/Base.astro";
 import Breadcrumbs from "../../../components/Breadcrumbs.astro";
 import TrailGuide from "../../../components/TrailGuide.svelte";
-import { searchSummary } from "../../../lib/search";
-
-const trails = await Promise.all(
-  (await getCollection("trails")).map(async ({ id, data }) => searchSummary(id, data, (await getEntry("derived", id))?.data)),
-);
 ---
 
 <Base
@@ -18,7 +12,7 @@ const trails = await Promise.all(
 >
   <Breadcrumbs trail={[{ label: "Trails", href: "/trails/" }]} current="Help me choose" />
   <h1>Help me choose</h1>
-  <TrailGuide client:load trails={trails} />
+  <TrailGuide client:load />
 </Base>
 
 <style>

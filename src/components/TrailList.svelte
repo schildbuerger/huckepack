@@ -6,6 +6,7 @@
   import { onMount } from "svelte";
   import { SLEEPING_CATEGORIES } from "../lib/trails";
   import type { SearchTrail } from "../lib/search";
+  import { loadTrails } from "../lib/search-data";
   import {
     SAC,
     activeFilters,
@@ -18,7 +19,12 @@
   } from "../lib/filters";
   import FilterPanel from "./FilterPanel.svelte";
 
-  let { trails, children }: { trails: SearchTrail[]; children?: import("svelte").Snippet } = $props();
+  // the trails' summaries come from /trails/search.json, not the page's HTML (issue #93); `total` for
+  // the count until they're in; `more`: the page carries only the first cards, the rest come with
+  // /trails/cards.html
+  let { total = 0, more = false, children }: { total?: number; more?: boolean; children?: import("svelte").Snippet } = $props();
+  let trails = $state<SearchTrail[]>([]);
+  let cardsIn = $state(0); // how many times cards were added, so the order is applied to them too
 
   // the hardest of a trail's three ratings, climate for the months picked (else its best run of
   // season months, issue #114), for sorting
@@ -60,6 +66,17 @@
     );
     sort = (p.get("sort") ?? "") in SORTS ? (p.get("sort") as SortKey) : "name";
     ready = true;
+    loadTrails().then(async (t) => {
+      trails = t;
+      if (!more) return;
+      const html = await fetch("/trails/cards.html").then((r) => (r.ok ? r.text() : ""));
+      const list = cardsHost?.querySelector<HTMLElement>("ol.cards");
+      const extra = new DOMParser().parseFromString(html, "text/html").querySelector("ol.cards");
+      if (list && extra) {
+        list.append(...extra.children);
+        cardsIn++;
+      }
+    });
   });
 
   // keep the URL in step with the filters (replace, not push: the back button leaves the page)
@@ -96,7 +113,8 @@
   let cardsHost: HTMLElement;
   $effect(() => {
     const list = cardsHost?.querySelector<HTMLElement>("ol.cards");
-    if (!list) return;
+    if (!list || !trails.length) return;
+    void cardsIn;
     const items = new Map([...list.children].map((li) => [(li as HTMLElement).dataset.slug!, li as HTMLElement]));
     const keep = new Set(shown.map((t) => t.slug));
     for (const [slug, li] of items) li.hidden = !keep.has(slug);
@@ -111,7 +129,7 @@
       <h2>Filters</h2>
       <!-- always in the layout, only hidden, so showing it doesn't shift the filters below -->
       <button type="button" class="link" class:hidden={!active.length} onclick={reset}>Clear all</button>
-      <button type="button" class="close" onclick={() => (filtersOpen = false)}>Show {shown.length} {shown.length === 1 ? "trail" : "trails"}</button>
+      <button type="button" class="close" onclick={() => (filtersOpen = false)}>Show {trails.length ? shown.length : total} {(trails.length ? shown.length : total) === 1 ? "trail" : "trails"}</button>
     </div>
 
     <FilterPanel {trails} bind:filters />
@@ -120,8 +138,8 @@
   <div class="results">
     <div class="bar">
       <p class="count" role="status">
-        {#if active.length}<strong>{shown.length}</strong> of {trails.length} {trails.length === 1 ? "trail" : "trails"}
-        {:else}<strong>{trails.length}</strong> {trails.length === 1 ? "trail" : "trails"}{/if}
+        {#if active.length}<strong>{shown.length}</strong> of {trails.length || total} {(trails.length || total) === 1 ? "trail" : "trails"}
+        {:else}<strong>{trails.length || total}</strong> {(trails.length || total) === 1 ? "trail" : "trails"}{/if}
         <!-- the trail map (issue #33), a quiet way to the same trails by place, with the same filters -->
         <a class="map-link" href={`/trails/map/${toParams(filters).toString() ? `?${toParams(filters)}` : ""}`}>Map view <span aria-hidden="true">→</span></a>
       </p>
@@ -146,7 +164,7 @@
 
     <!-- the cards, plain HTML from TrailCards.astro: only hidden and ordered here (issue #86) -->
     <div class="cards-host" bind:this={cardsHost}>{@render children?.()}</div>
-    {#if !shown.length}
+    {#if trails.length && !shown.length}
       <div class="empty">
         <p><strong>No trails match all of these filters.</strong></p>
         <p class="muted">Remove one of the filters above, or <button type="button" class="link" onclick={reset}>clear them all</button>.</p>

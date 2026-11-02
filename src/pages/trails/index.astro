@@ -1,24 +1,15 @@
 ---
 import { ogPageAlt } from "../../lib/og-pages";
-import { getCollection, getEntry } from "astro:content";
 import Base from "../../layouts/Base.astro";
 import Breadcrumbs from "../../components/Breadcrumbs.astro";
 import TrailList from "../../components/TrailList.svelte";
 import TrailCards from "../../components/TrailCards.astro";
-import { searchSummary } from "../../lib/search";
+import { CARDS_IN_PAGE, allSearchTrails, eleRangeOf } from "../../lib/search-all";
 
-const trails = (
-  await Promise.all(
-    (await getCollection("trails")).map(async ({ id, data }) => searchSummary(id, data, (await getEntry("derived", id))?.data)),
-  )
-).sort((a, b) => a.name.localeCompare(b.name));
-
-// one height scale for every card's elevation profile, so the profiles compare honestly
-const lows = trails.flatMap((t) => (t.lowestM === null ? [] : [t.lowestM]));
-const highs = trails.flatMap((t) => (t.highestM === null ? [] : [t.highestM]));
-const eleRange: [number, number] = lows.length
-  ? [Math.max(0, Math.floor((Math.min(...lows) - 100) / 100) * 100), Math.ceil((Math.max(...highs) + 100) / 100) * 100]
-  : [0, 1000];
+// the trails' summaries reach the list from /trails/search.json; the page carries only the first
+// CARDS_IN_PAGE cards, the rest come with /trails/cards.html (issue #93)
+const trails = await allSearchTrails();
+const eleRange = eleRangeOf(trails);
 ---
 
 <Base
@@ -32,8 +23,8 @@ const eleRange: [number, number] = lows.length
     Narrow the list down by when you can go, how long and how hard, and how you want to sleep. Every card shows the
     season, the elevation profile on one scale for all trails, and the ground underfoot.
   </p>
-  <TrailList client:load trails={trails}>
-    <TrailCards trails={trails} eleRange={eleRange} />
+  <TrailList client:load total={trails.length} more={trails.length > CARDS_IN_PAGE}>
+    <TrailCards trails={trails.slice(0, CARDS_IN_PAGE)} eleRange={eleRange} />
   </TrailList>
 </Base>
 

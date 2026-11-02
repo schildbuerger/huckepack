@@ -189,6 +189,12 @@
   the nearest ridge) on a band of day sky across the bottom, in place of the
   season and ground row (approach C of three); the ridge is one function
   (`profileRidge`, src/lib/skylines.ts) shared with the page head.
+- **Ready for hundreds of trails (issue #93, 2026-11-02):** no page carries
+  every trail: one cached file of search summaries for the search, map,
+  guide, header search and trails near you; the search page's first 24 cards
+  in its HTML, the rest loaded after; seven featured-trail candidates per
+  build; a fixed point budget for the map's route file. Measured with 150
+  synthetic trails (pages nearly flat, against 1.5–2.2 MB before).
 - **Places as layers on the trail map (issue #103, 2026-11-02):** a Layers button inside the map, under the zoom buttons, opens a small
   panel "Show on the map" with drinking water, springs, shops and places to
   sleep (only the kinds a trail has, each with its icon in its colour and its

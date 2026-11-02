@@ -6,6 +6,7 @@
   import { SLEEPING_CATEGORIES } from "../lib/trails";
   import { readPick } from "../lib/months";
   import type { SearchTrail } from "../lib/search";
+  import { loadTrails } from "../lib/search-data";
   import {
     DAYS,
     DAYS_ALL,
@@ -23,11 +24,14 @@
     type Filters,
   } from "../lib/filters";
 
-  let { trails }: { trails: SearchTrail[] } = $props();
+  // the trails' summaries from /trails/search.json (issue #93), not in the page's HTML; the counts show
+  // once they're in
+  let trails = $state<SearchTrail[]>([]);
+  let loaded = $state(false);
 
   const at = (stops: number[], v: number) => stops.indexOf(v);
   const sleepingOptions = SLEEPING_CATEGORIES.filter((c) => c.id !== "wild-camping");
-  const places = placesOf(trails);
+  const places = $derived(placesOf(trails));
   const MONTH_NAMES = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 
   // single-choice questions: each option sets its filter fields; the last option of each is "any"
@@ -104,7 +108,7 @@
   const isSet = (set: Partial<Filters>) =>
     Object.entries(set).every(([k, v]) => JSON.stringify(f[k as keyof Filters]) === JSON.stringify(v));
   const toggle = <T,>(list: T[], value: T) => (list.includes(value) ? list.filter((x) => x !== value) : [...list, value]);
-  const trailsWord = (n: number) => `${n} ${n === 1 ? "trail" : "trails"}`;
+  const trailsWord = (n: number) => (loaded ? `${n} ${n === 1 ? "trail" : "trails"}` : "");
   let total = $derived(count(f));
 
   // has this question been answered (anything other than "any")?
@@ -136,6 +140,10 @@
   // bottom edge on every question (CSS has an estimate for before this runs)
   const fit = () => guide?.style.setProperty("--top", `${guide.getBoundingClientRect().top + scrollY}px`);
   onMount(() => {
+    loadTrails().then((t) => {
+      trails = t;
+      loaded = true;
+    });
     // months in the URL (the search's When filter, issue #114) answer the first question
     f.months = readPick(location.search);
     history.replaceState({ step: 0 }, "", location.pathname + location.search);

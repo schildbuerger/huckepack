@@ -47,13 +47,13 @@
   import earthIcon from "lucide-static/icons/earth.svg?raw";
 
   type Trail = SearchTrail & { startLonLat: [number, number]; level: string | null };
+  import { loadTrails } from "../lib/search-data";
   // `children`: the page's breadcrumb and title, shown at the top of the list column
   // `preview`: the static world outline (src/lib/world-outline.ts) shown until the map starts
-  let {
-    trails,
-    children,
-    preview,
-  }: { trails: Trail[]; children?: import("svelte").Snippet; preview?: import("svelte").Snippet } = $props();
+  let { children, preview }: { children?: import("svelte").Snippet; preview?: import("svelte").Snippet } = $props();
+  // the trails' summaries from /trails/search.json, not the page's HTML (issue #93)
+  let trails = $state<Trail[]>([]);
+  const trailsIn = typeof window === "undefined" ? Promise.resolve() : loadTrails().then((t) => (trails = t as Trail[]));
 
   const fmt = (n: number) => n.toLocaleString("en");
   const figures = (t: Trail) =>
@@ -79,7 +79,7 @@
   let hovered = $state<string | null>(null);
   let selected = $state<string | null>(null);
   let query = $state("");
-  const all = trails.map((t) => t.slug);
+  const all = $derived(trails.map((t) => t.slug));
 
   // the search page's filters (src/lib/filters.ts, FilterPanel.svelte), in the URL with the same
   // parameters, so "Map view" and "List view" carry them across; trails that don't match leave the
@@ -120,8 +120,8 @@
   let barH = $state(0);
 
   // the list's search: every word must start a word of the trail's names or countries
-  const terms = new Map(
-    trails.map((t) => [t.slug, [t.name, t.localName ?? "", ...t.aliases, ...t.countries].join(" ").toLowerCase().split(/[\s,/()-]+/)]),
+  const terms = $derived(
+    new Map(trails.map((t) => [t.slug, [t.name, t.localName ?? "", ...t.aliases, ...t.countries].join(" ").toLowerCase().split(/[\s,/()-]+/)])),
   );
   const found = (t: Trail) => {
     const words = query.trim().toLowerCase().split(/\s+/).filter(Boolean);
@@ -139,7 +139,7 @@
   const fromYou = (d: number) => `≈ ${fmt(roundDistance(d))} km from you`;
 
   // suggestions while typing: countries first (with how many trails), then trails by name
-  const countries = [...new Set(trails.flatMap((t) => t.countries))].sort((a, b) => a.localeCompare(b));
+  const countries = $derived([...new Set(trails.flatMap((t) => t.countries))].sort((a, b) => a.localeCompare(b)));
   const startsWithWords = (text: string, q: string) => {
     const words = q.trim().toLowerCase().split(/\s+/).filter(Boolean);
     const parts = text.toLowerCase().split(/[\s,/()-]+/);
@@ -361,6 +361,7 @@
       const [maplibre] = await Promise.all([import("maplibre-gl"), loadMaplibreCss(maplibreCssUrl)]);
       maplibre.setWorkerUrl(workerUrl);
       maplibreRef = maplibre;
+      await trailsIn;
       const routes = await fetch("/trails/routes.json").then((r) => {
         if (!r.ok) throw new Error(`routes: HTTP ${r.status}`);
         return r.json();

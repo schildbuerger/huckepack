@@ -99,6 +99,13 @@ const featuredAll = trails.map((t, i) => {
   })();
   return { t, spark, surface: d?.surface, climb: perTrail[i], level: difficultyWord(t) };
 });
+// the featured trail's candidates (issue #93): seven, chosen at build time in an order that changes
+// with the build's day, so the page carries the same seven cards (with their drawings) however many
+// trails there are; the script below shows one of them at random
+const FEATURED = 7;
+const buildDay = Math.floor(Date.now() / 86_400_000);
+const shuffleKey = (slug: string) => [...`${slug}:${buildDay}`].reduce((h, c) => (Math.imul(h, 31) + c.charCodeAt(0)) >>> 0, 7);
+const featuredSet = [...featuredAll].sort((a, b) => shuffleKey(a.t.slug) - shuffleKey(b.t.slug)).slice(0, FEATURED);
 
 // popular trails (issue #84): the three whose Wikipedia articles people viewed most in twelve months,
 // all languages summed (pipeline/popularity.py, Wikimedia); trails without an article aren't ranked
@@ -110,12 +117,8 @@ const popular = featuredAll
   .slice(0, POPULAR);
 const viewsWindow = derivedAll.find((d) => d?.popularity)?.popularity;
 const monthYear = (ym: string) => new Date(`${ym}-01T00:00:00Z`).toLocaleDateString("en-GB", { month: "long", year: "numeric", timeZone: "UTC" });
-// trails near you (issue #85): every trail is listed with its start and finish; a script finds the
-// six nearest to the place the browser's time zone stands for (src/lib/timezones.json)
-const ends = entries.map((e) => [
-  [e.data.termini.start.lat, e.data.termini.start.lon],
-  [e.data.termini.end.lat, e.data.termini.end.lon],
-]);
+// trails near you (issue #85): a script finds the six whose start or finish is nearest to the place the
+// browser's time zone stands for (src/lib/timezones.json), from /trails/search.json (issue #93)
 const figureLine = (t: (typeof trails)[number]) =>
   [t.lengthKm !== null && `${fmt(t.lengthKm)} km`, t.days && `${days(t.days)} days`].filter(Boolean).join(" · ");
 const rateOf = (t: (typeof trails)[number]) => rateData(t.terrainLevel, t.effortLevel, t.climateByMonth, t.season);
@@ -264,10 +267,10 @@ const featuredScript = inlineScript(Astro, `// A random featured trail on each p
   <!-- the featured trail beside the most read: a large visual on the left and a list on the right, the
        same pattern as the map and the trails near you below -->
   <div class="pair">
-    {featuredAll.length > 0 && (
+    {featuredSet.length > 0 && (
       <section class="featured-box" aria-labelledby="featured-h">
         <div class="block-head"><h2 id="featured-h">Featured trail</h2></div>
-        {featuredAll.map(({ t: featured, spark, surface, climb, level }, i) => (
+        {featuredSet.map(({ t: featured, spark, surface, climb, level }, i) => (
           <a class="featured" href={`/trails/${featured.slug}/`} hidden={i > 0}>
             <div class="featured-head">
               <p class="place">{featured.countries.join(" · ")}</p>
@@ -358,17 +361,17 @@ const featuredScript = inlineScript(Astro, `// A random featured trail on each p
           </Explain>
         </div>
         <p class="label near-from">From <span data-near-from></span></p>
+        <!-- one row as a template, filled for the six nearest from /trails/search.json (issue #93), so the
+             page doesn't list every trail -->
         <ol class="trail-list" data-near-list>
-          {featuredAll.map(({ t }, i) => (
-            <li data-slug={t.slug} data-ends={JSON.stringify(ends[i])} hidden>
-              <a href={`/trails/${t.slug}/`}>
-                <span class="tl-mark"><span class="tl-arrow" data-arrow>↑</span></span>
-                <span class="tl-name">{t.name}</span>
-                <span class="tl-place">{t.countries.join(" · ")}</span>
-                <span class="tl-fig"><span data-dir></span> · <span data-dist></span></span>
-              </a>
-            </li>
-          ))}
+          <li data-near-row hidden>
+            <a href="/trails/">
+              <span class="tl-mark"><span class="tl-arrow" data-arrow>↑</span></span>
+              <span class="tl-name"></span>
+              <span class="tl-place"></span>
+              <span class="tl-fig"><span data-dir></span> · <span data-dist></span></span>
+            </a>
+          </li>
         </ol>
       </section>
     </div>
@@ -379,6 +382,7 @@ const featuredScript = inlineScript(Astro, `// A random featured trail on each p
     // city (the tz database's coordinates); the six trails whose start or finish is nearest, by
     // great-circle distance, with the compass direction to it. Worked out here; nothing is sent or stored.
     import { kmBetween, roundDistance } from "../lib/geo";
+    import { loadTrails } from "../lib/search-data";
     const NEARBY = 6;
     const section = document.querySelector<HTMLElement>(".near")!;
     const zones: Record<string, [number, number]> = JSON.parse(document.getElementById("zones")!.textContent!);
@@ -397,15 +401,22 @@ const featuredScript = inlineScript(Astro, `// A random featured trail on each p
       const POINTS = ["N", "NE", "E", "SE", "S", "SW", "W", "NW"];
       const WORDS = ["north", "north-east", "east", "south-east", "south", "south-west", "west", "north-west"];
       const list = section.querySelector<HTMLElement>("[data-near-list]")!;
-      const rows = [...list.querySelectorAll<HTMLElement>("[data-slug]")];
-      const near = rows
-        .map((row) => {
-          const best = (JSON.parse(row.dataset.ends!) as [number, number][]).map((e) => ({ e, d: km(here, e) })).sort((a, b) => a.d - b.d)[0];
-          return { row, d: best.d, b: bearing(here, best.e) };
+      const template = list.querySelector<HTMLElement>("[data-near-row]")!;
+      const trails = await loadTrails();
+      const near = trails
+        .map((t) => {
+          const best = t.ends.map((e) => ({ e, d: km(here, e) })).sort((a, b) => a.d - b.d)[0];
+          return { t, d: best.d, b: bearing(here, best.e) };
         })
         .sort((a, b) => a.d - b.d)
         .slice(0, NEARBY);
-      for (const { row, d, b } of near) {
+      template.remove();
+      for (const { t, d, b } of near) {
+        const row = template.cloneNode(true) as HTMLElement;
+        row.removeAttribute("data-near-row");
+        row.querySelector<HTMLAnchorElement>("a")!.href = `/trails/${t.slug}/`;
+        row.querySelector<HTMLElement>(".tl-name")!.textContent = t.name;
+        row.querySelector<HTMLElement>(".tl-place")!.textContent = t.countries.join(" · ");
         const point = Math.round(b / 45) % 8;
         const dist = roundDistance(d).toLocaleString("en");
         row.querySelector<HTMLElement>("[data-arrow]")!.style.transform = `rotate(${Math.round(b)}deg)`;

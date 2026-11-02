@@ -2,27 +2,15 @@
 // Search with suggestions (issue #83): type a trail's name (or its local or other names) or a
 // country; suggestions are grouped into countries (first: to the trail search filtered to it, with
 // how many trails) and trails (by name only, to the trail page). An ARIA combobox: arrow keys, Enter, Escape; a
-// static page, so the trails are listed in the markup and a script filters them. `size`: large for
+// static page: the trails and countries come from /trails/search.json when the field is first used
+// (issue #93), not in the markup of every page, and a script lists and filters them. `size`: large for
 // the hero, compact for the header.
-import { getCollection } from "astro:content";
-import { countryName } from "../lib/trails";
-
 interface Props {
   id: string;
   size?: "large" | "compact";
   placeholder?: string;
 }
 const { id, size = "large", placeholder = "Search a trail or a country" } = Astro.props;
-const entries = (await getCollection("trails")).sort((a, b) => a.data.name.localeCompare(b.data.name));
-const trails = entries.map((e) => ({
-  slug: e.id,
-  name: e.data.name,
-  countries: e.data.countries.map(countryName),
-  terms: [e.data.name, e.data.localName, ...e.data.aliases].filter(Boolean).join(" ").toLowerCase(),
-}));
-const countries = [...new Set(trails.flatMap((t) => t.countries))]
-  .sort((a, b) => a.localeCompare(b))
-  .map((c) => ({ name: c, count: trails.filter((t) => t.countries.includes(c)).length }));
 const listId = `${id}-list`;
 ---
 
@@ -42,31 +30,55 @@ const listId = `${id}-list`;
   />
   <div class="results" id={listId} role="listbox" aria-label="Suggestions" hidden>
     <p class="group" role="presentation" data-group="countries">Countries</p>
-    {countries.map((c) => (
-      <a role="option" id={`${id}-c-${c.name.replace(/\W+/g, "-")}`} href={`/trails/?where=${encodeURIComponent(c.name)}`} data-terms={c.name.toLowerCase()} data-kind="countries">
-        <span>{c.name}</span>
-        <span class="muted">{c.count} {c.count === 1 ? "trail" : "trails"}</span>
-      </a>
-    ))}
     <p class="group" role="presentation" data-group="trails">Trails</p>
-    {trails.map((t) => (
-      <a role="option" id={`${id}-t-${t.slug}`} href={`/trails/${t.slug}/`} data-terms={t.terms} data-kind="trails">
-        <span>{t.name}</span>
-        <span class="muted">{t.countries.join(", ")}</span>
-      </a>
-    ))}
+    <!-- one option as the template the script fills, so its options carry this component's styles -->
+    <a role="option" data-option-template hidden href="/trails/"><span></span><span class="muted"></span></a>
     <p class="none muted" role="presentation" hidden>No trail or country matches. <a href="/trails/">Browse all trails</a></p>
   </div>
 </div>
 
 <script>
+  import { loadTrails } from "../lib/search-data";
   // every search box on the page: filter the suggestions as one types; words match in any order and
   // at a word's start ("west" finds West Highland Way and Westweg, "germ" Germany)
   for (const box of document.querySelectorAll<HTMLElement>("[data-search]")) {
     const input = box.querySelector<HTMLInputElement>("input")!;
     const list = box.querySelector<HTMLElement>("[role=listbox]")!;
-    const options = [...list.querySelectorAll<HTMLAnchorElement>("[role=option]")];
     const groups = [...list.querySelectorAll<HTMLElement>("[data-group]")];
+    const template = list.querySelector<HTMLAnchorElement>("[data-option-template]")!;
+    template.remove();
+    // the options, built from /trails/search.json when the field is first used: countries (to the
+    // trail search filtered to it, with how many trails) and trails (to the trail page)
+    let options: HTMLAnchorElement[] = [];
+    let building: Promise<void> | undefined;
+    const option = (href: string, terms: string, kind: string, optionId: string, label: string, note: string) => {
+      const o = template.cloneNode(true) as HTMLAnchorElement;
+      o.removeAttribute("data-option-template");
+      o.hidden = false;
+      o.href = href;
+      o.id = optionId;
+      o.dataset.terms = terms;
+      o.dataset.kind = kind;
+      const [name, muted] = o.querySelectorAll("span");
+      name.textContent = label;
+      muted.textContent = note;
+      return o;
+    };
+    const build = () =>
+      (building ??= loadTrails().then((trails) => {
+        const countries = [...new Set(trails.flatMap((t) => t.countries))].sort((a, b) => a.localeCompare(b));
+        const slug = (v: string) => v.replace(/\W+/g, "-");
+        const byCountry = countries.map((c) => {
+          const n = trails.filter((t) => t.countries.includes(c)).length;
+          return option(`/trails/?where=${encodeURIComponent(c)}`, c.toLowerCase(), "countries", `${input.id}-c-${slug(c)}`, c, `${n} ${n === 1 ? "trail" : "trails"}`);
+        });
+        const byTrail = trails.map((t) =>
+          option(`/trails/${t.slug}/`, [t.name, t.localName, ...t.aliases].filter(Boolean).join(" ").toLowerCase(), "trails", `${input.id}-t-${t.slug}`, t.name, t.countries.join(", ")),
+        );
+        groups[0].after(...byCountry);
+        groups[1].after(...byTrail);
+        options = [...byCountry, ...byTrail];
+      }));
     const none = list.querySelector<HTMLElement>(".none")!;
     let active = -1;
     const visible = () => options.filter((o) => !o.hidden);
@@ -99,8 +111,8 @@ const listId = `${id}-list`;
       input.removeAttribute("aria-activedescendant");
       active = -1;
     }
-    input.addEventListener("input", update);
-    input.addEventListener("focus", () => input.value.trim() && update());
+    input.addEventListener("input", () => build().then(update));
+    input.addEventListener("focus", () => build().then(() => input.value.trim() && update()));
     input.addEventListener("keydown", (e) => {
       const vis = visible();
       if (e.key === "ArrowDown" && vis.length) {

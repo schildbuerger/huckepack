@@ -1,15 +1,21 @@
 // Every trail's main route in one small file for the world map (issue #33): the main stages of
-// public/routes/<slug>.geojson, thinned to about 150 points per trail, one MultiLineString each,
-// with the trail's slug. Built with the site.
+// public/routes/<slug>.geojson, thinned, one MultiLineString each, with the trail's slug. Built with
+// the site. The points are shared out from one budget (issue #93): up to 150 per trail, fewer as
+// trails are added (at least 25), so the file stays about the same size; a trail's own page has the
+// detailed line.
 import type { APIRoute } from "astro";
 import { getCollection } from "astro:content";
 import { existsSync, readFileSync } from "node:fs";
 
-const POINTS = 150;
+const BUDGET = 6000;
+const MOST = 150;
+const LEAST = 25;
 
 export const GET: APIRoute = async () => {
   const features = [];
-  for (const trail of await getCollection("trails")) {
+  const trails = await getCollection("trails");
+  const POINTS = Math.max(LEAST, Math.min(MOST, Math.floor(BUDGET / Math.max(trails.length, 1))));
+  for (const trail of trails) {
     const file = `public/routes/${trail.id}.geojson`;
     if (!existsSync(file)) continue;
     const route = JSON.parse(readFileSync(file, "utf8"));
