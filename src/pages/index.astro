@@ -380,17 +380,37 @@ const featuredScript = inlineScript(Astro, `// A random featured trail on each p
             </Explain>
           )}
         </div>
-        <ol class="trail-list">
-          {popular.map(({ t }, rank) => (
-            <li>
-              <a href={`/trails/${t.slug}/`}>
-                <span class="tl-mark">{rank + 1}</span>
-                <span class="tl-name">{t.name}</span>
-                <span class="tl-place">{t.countries.join(" · ")}</span>
-                <span class="tl-fig">{figureLine(t)}{difficultyWord(t) && <> · <span data-rate={rateOf(t)}><span class="rate-word">{difficultyWord(t)}</span></span></>}</span>
-              </a>
-            </li>
-          ))}
+        <!-- the three most read as a podium of routes (2026-11-02), in the featured band's style: a small card
+             each with the route drawn as it comes into view, the rank as a giant number behind, the figures
+             and the article's reads; on wide screens the first in the middle and highest, on a step whose
+             height is its rank -->
+        <ol class="podium">
+          {popular.map(({ t, views }, rank) => {
+            const route = routeShape(t.slug);
+            return (
+              <li class={`pd-${rank + 1}`}>
+                <a href={`/trails/${t.slug}/`} data-draw>
+                  <span class="pd-giant" aria-hidden="true">{rank + 1}</span>
+                  {route && (
+                    <svg class="pd-route" viewBox="0 0 200 140" aria-hidden="true">
+                      <path class="rs-under" d={route.d} />
+                      <path class="rs-line" d={route.d} pathLength="1" />
+                      <circle class="rs-start" cx={route.start[0]} cy={route.start[1]} r="6" />
+                      <circle class="rs-end" cx={route.end[0]} cy={route.end[1]} r="6" />
+                    </svg>
+                  )}
+                  <span class="pd-text">
+                    <span class="pd-place">{t.countries.join(" · ")}</span>
+                    <span class="pd-name">{t.name}</span>
+                    <span class="pd-fig">{figureLine(t)}{difficultyWord(t) && <> · <span data-rate={rateOf(t)}><span class="rate-word">{difficultyWord(t)}</span></span></>}</span>
+                    <span class="pd-views">{fmt(views!)} article reads</span>
+                  </span>
+                </a>
+                <span class="pd-step" aria-hidden="true">{rank + 1}</span>
+                <span class="sr-only">Rank {rank + 1}</span>
+              </li>
+            );
+          })}
         </ol>
       </section>
     )}
@@ -1611,6 +1631,139 @@ const featuredScript = inlineScript(Astro, `// A random featured trail on each p
     }
     .rs-walker {
       display: none;
+    }
+  }
+
+  /* the popular trails as a podium of routes: small cards in the featured band's style, the route drawn as
+     it comes into view (the band's .rs-* strokes and its script), the rank as a giant faint number; from
+     760 px three in a row, the first in the middle and highest, each on a step as high as its rank. Fixed
+     colours, their text in fixed colours (AA) */
+  .podium {
+    display: grid;
+    gap: 20px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+  .podium li {
+    display: grid;
+  }
+  .podium a {
+    position: relative;
+    overflow: hidden;
+    display: grid;
+    gap: 12px;
+    padding: 18px 20px 20px;
+    border-radius: 20px;
+    background: #e3ecea;
+    color: #25261c;
+    text-decoration: none;
+    transition: transform 0.25s ease;
+  }
+  .podium a:hover,
+  .podium a:focus-visible {
+    transform: translateY(-4px);
+  }
+  .pd-giant {
+    position: absolute;
+    right: 8px;
+    top: -18px;
+    color: #d0dedb;
+    font-family: var(--serif);
+    font-size: 9rem;
+    font-weight: 800;
+    line-height: 1;
+    pointer-events: none;
+  }
+  .pd-route {
+    position: relative;
+    display: block;
+    width: 100%;
+    max-height: 170px;
+  }
+  .pd-text {
+    position: relative;
+    display: grid;
+    gap: 4px;
+  }
+  .pd-place,
+  .pd-views {
+    color: #61624c;
+    font-size: 0.85rem;
+  }
+  .pd-name {
+    font-family: var(--serif);
+    font-size: 1.5rem;
+    font-weight: 800;
+    line-height: 1.1;
+  }
+  .pd-fig {
+    font-weight: 600;
+  }
+  .pd-views {
+    margin-top: 4px;
+  }
+  .podium a:hover .pd-name,
+  .podium a:focus-visible .pd-name {
+    text-decoration: underline;
+    text-decoration-thickness: 2px;
+    text-underline-offset: 4px;
+  }
+  /* the steps: a slim band on phones, the podium's blocks from 760 px */
+  .pd-step {
+    display: grid;
+    place-items: center;
+    height: 30px;
+    margin: -14px 16px 0;
+    border-radius: 0 0 12px 12px;
+    font-family: var(--serif);
+    font-size: 1.1rem;
+    font-weight: 800;
+  }
+  .pd-1 .pd-step {
+    background: #4c6420;
+    color: #f3f0de;
+  }
+  .pd-2 .pd-step {
+    background: #5a7526;
+    color: #f9f8f0;
+  }
+  .pd-3 .pd-step {
+    background: #9bb072;
+    color: #25261c;
+  }
+  @media (min-width: 760px) {
+    .podium {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      align-items: end;
+      gap: 18px;
+    }
+    .podium .pd-1 {
+      order: 2;
+    }
+    .podium .pd-2 {
+      order: 1;
+    }
+    .podium .pd-3 {
+      order: 3;
+    }
+    .pd-step {
+      margin: 0;
+      border-radius: 0;
+      font-size: 2.4rem;
+    }
+    .pd-1 .pd-step {
+      height: 96px;
+    }
+    .pd-2 .pd-step {
+      height: 64px;
+    }
+    .pd-3 .pd-step {
+      height: 40px;
+      font-size: 1.8rem;
+    }
+    .podium a {
+      border-radius: 20px 20px 0 0;
     }
   }
 </style>
