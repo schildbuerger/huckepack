@@ -26,6 +26,7 @@
     detours = [],
     transfers = [],
     stages = 0,
+    others = [],
     children,
     fill = false,
   }: {
@@ -36,6 +37,7 @@
     detours?: ("foot" | "train" | "bus")[]; // how the route's detours go, for the legend
     transfers?: ("boat" | "bus" | "train")[]; // the legs that aren't walked (stages.transfers), for the legend
     stages?: number; // the number of main stages, for the legend's stage keys
+    others?: ("approach" | "variant")[]; // the other kinds of stage on the map, so the legend lists only those
     // the route drawn at build time (src/lib/route-preview.ts), passed in as static markup (not a prop,
     // which the page would carry a second time as data), shown until the map has drawn
     children?: import("svelte").Snippet;
@@ -416,16 +418,17 @@
 </div>
 <ul class="legend">
   <li><span class="key main"></span> Trail</li>
-  <li><span class="key other"></span> Approach or variant</li>
+  <!-- only what this map shows (issue #153); the start's and finish's names are in the facts beside it -->
+  {#if others.length}<li><span class="key other"></span> {others.includes("approach") ? (others.includes("variant") ? "Approach or variant" : "Approach") : "Variant"}</li>{/if}
   {#if detours.includes("foot")}<li><span class="key foot"></span> Detour on foot</li>{/if}
   {#if detours.some((d) => d !== "foot")}<li><span class="key ride"></span> Detour by {detours.includes("bus") ? (detours.includes("train") ? "train or bus" : "bus") : "train"}</li>{/if}
 
   {#if transfers.length}<li><span class="key transfer"></span> By {transfers.join(" or ")}</li>{/if}
   {#if routeUrl && stages > 0}
     <!-- the map's markers (issue #153): the start as stop 1, the other stage starts, the finish's flag -->
-    <li><span class="key stop first" aria-hidden="true">1</span> Start: {start.name}</li>
-    {#if stages > 1}<li><span class="key stop" aria-hidden="true">2</span> Where a stage starts, numbered as in the stages table</li>{/if}
-    <li><span class="key flag" aria-hidden="true">{@html FLAG}</span> Finish: {end.name}</li>
+    <li><span class="key stop first" aria-hidden="true">1</span> Start</li>
+    {#if stages > 1}<li><span class="key stop" aria-hidden="true">2</span> Stage start</li>{/if}
+    <li><span class="key flag" aria-hidden="true">{@html FLAG}</span> Finish</li>
   {:else}
     <li><span class="key dot start"></span> {start.name}</li>
     <li><span class="key dot end"></span> {end.name}</li>
