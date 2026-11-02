@@ -25,6 +25,7 @@
     routeAttribution,
     detours = [],
     transfers = [],
+    stages = 0,
     children,
     fill = false,
   }: {
@@ -34,6 +35,7 @@
     routeAttribution: string | null;
     detours?: ("foot" | "train" | "bus")[]; // how the route's detours go, for the legend
     transfers?: ("boat" | "bus" | "train")[]; // the legs that aren't walked (stages.transfers), for the legend
+    stages?: number; // the number of main stages, for the legend's stage keys
     // the route drawn at build time (src/lib/route-preview.ts), passed in as static markup (not a prop,
     // which the page would carry a second time as data), shown until the map has drawn
     children?: import("svelte").Snippet;
@@ -250,6 +252,49 @@
             paint: { "line-color": waterBlue, "line-width": 3, "line-dasharray": [1.2, 1.2] },
           });
         }
+        // where the stages start and end (issue #151; of three previews, approach B): each main stage's
+        // number in a badge midway along it, and a small ring where one stage ends and the next begins
+        if (route) {
+          const main = route.features.filter((f: any) => f.properties.kind === "main");
+          const point = (coordinates: number[], properties: object) => ({ type: "Feature", properties, geometry: { type: "Point", coordinates } });
+          // halfway along a stage's line (longitudes shortened by about the cosine of the latitude)
+          const midpoint = (c: number[][]) => {
+            const d = c.slice(1).map((p, i) => Math.hypot(p[0] - c[i][0], (p[1] - c[i][1]) * 1.5));
+            let half = d.reduce((a, x) => a + x, 0) / 2;
+            for (let i = 0; i < d.length; i++) {
+              if (half <= d[i]) return c[i + 1];
+              half -= d[i];
+            }
+            return c[c.length - 1];
+          };
+          map.addSource("stage-ends", {
+            type: "geojson",
+            data: { type: "FeatureCollection", features: main.slice(0, -1).map((f: any) => point(f.geometry.coordinates.at(-1), { name: f.properties.to })) },
+          } as any);
+          map.addSource("stage-mids", {
+            type: "geojson",
+            data: { type: "FeatureCollection", features: main.map((f: any) => point(midpoint(f.geometry.coordinates), { number: f.properties.number })) },
+          } as any);
+          map.addLayer({
+            id: "stage-ends",
+            type: "circle",
+            source: "stage-ends",
+            paint: { "circle-radius": 4.5, "circle-color": paper, "circle-stroke-color": ink, "circle-stroke-width": 2 },
+          });
+          map.addLayer({
+            id: "stage-numbers",
+            type: "circle",
+            source: "stage-mids",
+            paint: { "circle-radius": 9, "circle-color": accent, "circle-stroke-color": paper, "circle-stroke-width": 1.5 },
+          });
+          map.addLayer({
+            id: "stage-number-labels",
+            type: "symbol",
+            source: "stage-mids",
+            layout: { "text-field": ["get", "number"], "text-font": ["Noto Sans Regular"], "text-size": 11, "text-allow-overlap": true, "text-ignore-placement": true },
+            paint: { "text-color": paper },
+          });
+        }
         map.addSource("termini", {
           type: "geojson",
           data: {
@@ -302,6 +347,7 @@
   <li><span class="key other"></span> Approach or variant</li>
   {#if detours.includes("foot")}<li><span class="key foot"></span> Detour on foot</li>{/if}
   {#if detours.some((d) => d !== "foot")}<li><span class="key ride"></span> Detour by {detours.includes("bus") ? (detours.includes("train") ? "train or bus" : "bus") : "train"}</li>{/if}
+  {#if stages > 1}<li><span class="key stage-no" aria-hidden="true">1</span> Stage</li><li><span class="key dot stage-end"></span> Stage end</li>{/if}
   {#if transfers.length}<li><span class="key transfer"></span> By {transfers.join(" or ")}</li>{/if}
   <li><span class="key dot start"></span> {start.name}</li>
   <li><span class="key dot end"></span> {end.name}</li>
@@ -422,6 +468,23 @@
     background:
       linear-gradient(var(--text), var(--text)) center / 100% 2px no-repeat,
       repeating-linear-gradient(90deg, var(--text) 0 1.5px, transparent 1.5px 7px) center / 100% 8px no-repeat;
+  }
+  .key.stage-no {
+    width: 18px;
+    height: 18px;
+    border: 0;
+    border-radius: 50%;
+    background: var(--accent);
+    color: var(--bg);
+    font-size: 11px;
+    line-height: 18px;
+    text-align: center;
+  }
+  .key.stage-end {
+    width: 9px;
+    height: 9px;
+    border-width: 2px;
+    background: var(--bg);
   }
   .key.transfer {
     height: 6px;

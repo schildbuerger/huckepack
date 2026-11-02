@@ -945,6 +945,7 @@ const trailLd = JSON.stringify({
         routeAttribution={routeAttribution}
         detours={detourModes}
         transfers={transferModes}
+        stages={mainView.length}
         fill
       >
         {routeUrl && <Fragment set:html={routePreviewSvg(trail.id, t.termini, `Route of the ${t.name}, from ${t.termini.start.name} to ${t.termini.end.name}`)} />}

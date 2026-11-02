@@ -189,6 +189,11 @@
   the nearest ridge) on a band of day sky across the bottom, in place of the
   season and ground row (approach C of three); the ridge is one function
   (`profileRidge`, src/lib/skylines.ts) shared with the page head.
+- **Stage marks on the trail map (issue #151, 2026-11-02):** each main
+  stage's number in a small badge in the trail colour midway along it, and a
+  small ring (smaller than the start and finish) where one stage ends and
+  the next begins (approach B of three, its rings made a little larger); the
+  legend names both.
 - **Minimum figures (issue #148, 2026-11-02):** every trail shows its length,
   ascent and descent, days and averages. The ascent and descent may be the
   terrain model's estimate (≈) where no source states them. Days are the
