@@ -27,6 +27,8 @@
     transfers = [],
     stages = 0,
     others = [],
+    placesUrl = null,
+    placeCounts = {},
     children,
     fill = false,
   }: {
@@ -38,6 +40,8 @@
     transfers?: ("boat" | "bus" | "train")[]; // the legs that aren't walked (stages.transfers), for the legend
     stages?: number; // the number of main stages, for the legend's stage keys
     others?: ("approach" | "variant")[]; // the other kinds of stage on the map, so the legend lists only those
+    placesUrl?: string | null; // the trail's places (src/pages/places/[slug].json.ts), loaded when a layer is switched on
+    placeCounts?: Partial<Record<PlaceGroup, number>>; // how many of each, for the layer switches
     // the route drawn at build time (src/lib/route-preview.ts), passed in as static markup (not a prop,
     // which the page would carry a second time as data), shown until the map has drawn
     children?: import("svelte").Snippet;
@@ -67,6 +71,68 @@
   let expanded = $state(false); // the map fills the window inside the page
   let resetView = () => {};
   let fitAfterResize = () => {};
+  // the optional layers (issue #103): drinking water, springs, shops and places to sleep, as in the
+  // Water & Supply and Sleeping charts; switched on under the legend, loaded only then; a click shows the
+  // place with its link (its OSM object, or a record's own source)
+  type PlaceGroup = "drinking" | "springs" | "shops" | "beds";
+  const PLACE_GROUPS: { id: PlaceGroup; label: string }[] = [
+    { id: "drinking", label: "Drinking water" },
+    { id: "springs", label: "Springs" },
+    { id: "shops", label: "Shops" },
+    { id: "beds", label: "Places to sleep" },
+  ];
+  let shown = $state<Record<PlaceGroup, boolean>>({ drinking: false, springs: false, shops: false, beds: false });
+  let places: Record<PlaceGroup, [number, number, string, string, string][]> | null = null;
+  let mapRef: any;
+  let maplibreRef: any;
+  const handled = new Set<string>(); // layers whose pointer and click handlers are set (they outlive a style)
+  const esc = (v: string) => v.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/"/g, "&quot;");
+  function addPlaceLayers() {
+    const map = mapRef;
+    if (!map || !places || !map.isStyleLoaded?.()) return;
+    const water = token("--water");
+    const paper = token("--bg");
+    const paint: Record<PlaceGroup, object> = {
+      drinking: { "circle-radius": 5, "circle-color": water, "circle-stroke-color": paper, "circle-stroke-width": 1.5 },
+      springs: { "circle-radius": 4, "circle-color": paper, "circle-stroke-color": water, "circle-stroke-width": 2 },
+      shops: { "circle-radius": 5, "circle-color": token("--accent"), "circle-stroke-color": paper, "circle-stroke-width": 1.5 },
+      beds: { "circle-radius": 5, "circle-color": token("--clim-high"), "circle-stroke-color": paper, "circle-stroke-width": 1.5 },
+    };
+    for (const { id } of PLACE_GROUPS) {
+      const layer = `places-${id}`;
+      if (!map.getSource(layer)) {
+        map.addSource(layer, {
+          type: "geojson",
+          data: {
+            type: "FeatureCollection",
+            features: places[id].map(([lon, lat, what, name, link]) => ({ type: "Feature", properties: { what, name, link }, geometry: { type: "Point", coordinates: [lon, lat] } })),
+          },
+        });
+        // above the trail line, below the stage stops and the finish
+        map.addLayer({ id: layer, type: "circle", source: layer, paint: paint[id] }, map.getLayer("stage-stops") ? "stage-stops" : undefined);
+      }
+      if (!handled.has(layer)) {
+        handled.add(layer);
+        map.on("mouseenter", layer, () => (map.getCanvas().style.cursor = "pointer"));
+        map.on("mouseleave", layer, () => (map.getCanvas().style.cursor = ""));
+        map.on("click", layer, (e: any) => {
+          const p = e.features[0].properties;
+          const link = p.link ? `<br><a href="${esc(p.link)}" target="_blank" rel="noopener noreferrer">${p.link.includes("openstreetmap.org") ? "View on OpenStreetMap" : "View its source"} ↗</a>` : "";
+          new maplibreRef.Popup({ offset: 8, maxWidth: "240px" })
+            .setLngLat(e.features[0].geometry.coordinates)
+            .setHTML(`<strong>${esc(p.name || p.what)}</strong>${p.name ? `<br>${esc(p.what)}` : ""}${link}`)
+            .addTo(map);
+        });
+      }
+      map.setLayoutProperty(layer, "visibility", shown[id] ? "visible" : "none");
+    }
+  }
+  async function togglePlaces(id: PlaceGroup) {
+    shown[id] = !shown[id];
+    if (!places && placesUrl) places = await fetch(placesUrl).then((r) => r.json());
+    addPlaceLayers();
+  }
+
   // the finish's marker for the legend, as the map draws it: a dark disc with a small white flag
   const FLAG =
     '<svg viewBox="0 0 24 24" width="20" height="20"><circle cx="12" cy="12" r="11" fill="var(--text)"/><rect x="8" y="6" width="1.8" height="12" fill="var(--bg)"/><path d="M9.8 6 17 8.5 9.8 11Z" fill="var(--bg)"/></svg>';
@@ -112,6 +178,7 @@
       // MapLibre's stylesheet comes with its script, not in the page's head (src/lib/map-theme.ts)
       const [maplibre, { default: contour }] = await Promise.all([import("maplibre-gl"), import("maplibre-contour"), loadMaplibreCss(maplibreCssUrl)]);
       maplibre.setWorkerUrl(workerUrl);
+      maplibreRef = maplibre;
       // one DEM source feeds both the hill shading and the contour lines (decoded in its own worker)
       const dem = new contour.DemSource({ url: TERRAIN, encoding: "terrarium", maxzoom: 12, worker: true });
       dem.setupMaplibre(maplibre);
@@ -153,6 +220,7 @@
       map.once("load", closeAttribution);
       map.addControl(new maplibre.NavigationControl({ showCompass: false }), "top-right");
       map.addControl(new maplibre.ScaleControl({ unit: "metric" }), "bottom-left");
+      mapRef = map;
 
       // the first framing, to return to; a pan or zoom by the visitor (not ours) marks the map moved
       const first: [[number, number], [number, number]] = [
@@ -390,6 +458,8 @@
             },
           });
         }
+        // the places switched on, again after a theme switch (a new style drops them)
+        if (places) setTimeout(addPlaceLayers);
       });
 
       // follow the site theme (src/lib/map-theme.ts)
@@ -442,6 +512,18 @@
   {/if}
   <li><span class="key contour"></span> Contour lines</li>
 </ul>
+{#if placesUrl && PLACE_GROUPS.some((g) => placeCounts[g.id])}
+  <fieldset class="layers">
+    <legend>Show on the map</legend>
+    {#each PLACE_GROUPS.filter((g) => placeCounts[g.id]) as g (g.id)}
+      <label class="layer">
+        <input type="checkbox" checked={shown[g.id]} onchange={() => togglePlaces(g.id)} />
+        <span class="key place {g.id}"></span>
+        {g.label} <span class="count">{placeCounts[g.id]}</span>
+      </label>
+    {/each}
+  </fieldset>
+{/if}
 
 <style>
   /* the map's own buttons (issue #152): Expand or Close, and Reset view once moved; expanded, the
@@ -576,6 +658,75 @@
       aspect-ratio: auto;
       min-height: 360px;
     }
+  }
+  /* the layer switches under the legend (issue #103) */
+  .layers {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px 16px;
+    align-items: center;
+    margin: 6px 0 0;
+    padding: 0;
+    border: 0;
+    font-size: 0.85em;
+    color: var(--muted);
+  }
+  .layers legend {
+    float: left;
+    margin-right: 4px;
+    padding: 0;
+    color: var(--text);
+    font-weight: 600;
+  }
+  .layer {
+    display: inline-flex;
+    gap: 6px;
+    align-items: center;
+    cursor: pointer;
+  }
+  .layer input {
+    margin: 0;
+    accent-color: var(--accent);
+  }
+  .layer .count {
+    color: var(--muted);
+    font-variant-numeric: tabular-nums;
+  }
+  .key.place {
+    width: 10px;
+    height: 10px;
+    border: 1.5px solid var(--bg);
+    border-radius: 50%;
+    box-shadow: 0 0 0 1px var(--line);
+  }
+  .key.place.drinking {
+    background: var(--water);
+  }
+  .key.place.springs {
+    border: 2px solid var(--water);
+    background: var(--bg);
+    box-shadow: none;
+  }
+  .key.place.shops {
+    background: var(--accent);
+  }
+  .key.place.beds {
+    background: var(--clim-high);
+  }
+  .map :global(.maplibregl-popup-content) {
+    padding: 8px 10px;
+    border-radius: 6px;
+    background: var(--bg);
+    color: var(--text);
+    font: inherit;
+    font-size: 0.85rem;
+    line-height: 1.4;
+  }
+  .map :global(.maplibregl-popup-content a) {
+    color: var(--accent-text);
+  }
+  .map :global(.maplibregl-popup-tip) {
+    display: none;
   }
   .legend {
     display: flex;

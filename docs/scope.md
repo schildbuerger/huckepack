@@ -189,6 +189,14 @@
   the nearest ridge) on a band of day sky across the bottom, in place of the
   season and ground row (approach C of three); the ridge is one function
   (`profileRidge`, src/lib/skylines.ts) shared with the page head.
+- **Places as layers on the trail map (issue #103, 2026-11-02):** under the
+  legend, "Show on the map" switches for drinking water, springs, shops and
+  places to sleep (only the kinds a trail has, with their counts), in the
+  colours of the Water & Supply and Sleeping charts; a click shows the place,
+  its kind and its link (its OSM object, or a record's own source). The
+  places come from /places/<slug>.json (src/pages/places/[slug].json.ts,
+  built from the derived data), loaded only when a layer is switched on, so
+  the page carries none of them.
 - **Light by default, the sun and moon as a switch (issue #155, 2026-11-02):**
   the site is light for everyone, whatever the system setting (no
   prefers-color-scheme rules any more); the header has no theme switch.

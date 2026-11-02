@@ -947,6 +947,13 @@ const trailLd = JSON.stringify({
         transfers={transferModes}
         stages={mainView.length}
         others={[...new Set(stageView.filter((s) => s.kind !== "main").map((s) => s.kind as "approach" | "variant"))]}
+        placesUrl={derived?.water ? `/places/${trail.id}.json` : null}
+        placeCounts={{
+          drinking: derived?.water?.points.filter((p) => p.kind === "drinking").length,
+          springs: derived?.water?.points.filter((p) => p.kind === "spring").length,
+          shops: derived?.along?.resupply.points.length,
+          beds: derived?.along?.beds.points.length,
+        }}
         fill
       >
         {routeUrl && <Fragment set:html={routePreviewSvg(trail.id, t.termini, `Route of the ${t.name}, from ${t.termini.start.name} to ${t.termini.end.name}`)} />}
