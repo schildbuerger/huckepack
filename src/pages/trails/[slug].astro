@@ -194,6 +194,30 @@ const permit = t.permit;
 const fees = t.fees;
 const hasPermitInfo = Boolean(permit || fees.length);
 
+// the Location facts in order of priority (issue #145, approach A of three previews, 2026-11-02):
+// where it is, the route and what it takes, getting there, then the background. Two columns; a fact
+// alone before a wide one (travel hubs, protected areas, a long managing body) is widened too, so
+// no cell stays empty beside it
+const LOC_FACTS = [
+  { key: "country", show: true, wide: false },
+  { key: "regions", show: t.regions.length > 0, wide: false },
+  { key: "start", show: true, wide: false },
+  { key: "finish", show: true, wide: false },
+  { key: "route", show: true, wide: false },
+  { key: "permit", show: hasPermitInfo, wide: false },
+  { key: "hubs", show: hubs.length > 0, wide: true },
+  { key: "protected", show: t.protectedAreas.length > 0, wide: true },
+  { key: "managed", show: true, wide: t.managedBy.map((m) => m.name).join(", ").length > 40 },
+  { key: "waymark", show: Boolean(t.waymarking), wide: false },
+].filter((f) => f.show);
+let locCol = 0;
+LOC_FACTS.forEach((f, i) => {
+  if (f.wide) {
+    if (locCol === 1) LOC_FACTS[i - 1].wide = true;
+    locCol = 0;
+  } else locCol = 1 - locCol;
+});
+
 // legs that aren't walked (stages.transfers: the W Trek's catamaran): like a closed stage's detour by
 // train, on the map in their own style and named in the note under the stages table, in no figure
 const transfers = t.stages?.transfers ?? [];
@@ -795,84 +819,98 @@ const trailLd = JSON.stringify({
     <h2>Location</h2>
     <div class="loc-map">
     <dl class="loc">
-      <div>
-        <dt>Start</dt>
-        <dd>{t.termini.start.name}</dd>
-      </div>
-      <div>
-        <dt>Finish</dt>
-        <dd>{t.termini.end.name}</dd>
-      </div>
-      {hubs.length > 0 && (
-        <div class="wide">
-          <dt>Travel hubs</dt>
-          <dd>
-            <ul class="hubs">
-              {hubs.map((h) => (
-                <li>
-                  <span class="hub-kind">
-                    <Icon
-                      name={h.kind === "station" ? "train-front" : h.kind === "bus" ? "bus" : "plane"}
-                      size={15}
-                      label={h.kind === "station" ? "Train station" : h.kind === "bus" ? "Bus station" : "Airport"}
-                    />
-                  </span>
-                  <span>
-                    {h.name}
-                    {h.roadKm !== undefined && derived?.access && (
-                      <span class="hub-dist">{h.roadKm} km by road · {h.driveMin} min</span>
-                    )}
-                  </span>
-                </li>
-              ))}
-            </ul>
-          </dd>
+      {LOC_FACTS.map((f) => (
+        <div class:list={[{ wide: f.wide }]}>
+          {f.key === "country" && (
+            <>
+              <dt>Country</dt>
+              <dd>{t.countries.map(countryName).join(", ")}</dd>
+            </>
+          )}
+          {f.key === "regions" && (
+            <>
+              <dt>Regions</dt>
+              <dd>{t.regions.join(", ")}</dd>
+            </>
+          )}
+          {f.key === "start" && (
+            <>
+              <dt>Start</dt>
+              <dd>{t.termini.start.name}</dd>
+            </>
+          )}
+          {f.key === "finish" && (
+            <>
+              <dt>Finish</dt>
+              <dd>{t.termini.end.name}</dd>
+            </>
+          )}
+          {f.key === "route" && (
+            <>
+              <dt>Route type</dt>
+              <dd>{TRAIL_TYPES[t.trailType]}</dd>
+            </>
+          )}
+          {f.key === "permit" && (
+            <>
+              <dt>Permit</dt>
+              <dd>{[permit && (permit.required ? "Required" : "Not needed"), fees.length > 0 && "fee charged"].filter(Boolean).join(" · ").replace(/^f/, "F")}</dd>
+            </>
+          )}
+          {f.key === "hubs" && (
+            <>
+              <dt>Travel hubs</dt>
+              <dd>
+                <ul class="hubs">
+                  {hubs.map((h) => (
+                    <li>
+                      <span class="hub-kind">
+                        <Icon
+                          name={h.kind === "station" ? "train-front" : h.kind === "bus" ? "bus" : "plane"}
+                          size={15}
+                          label={h.kind === "station" ? "Train station" : h.kind === "bus" ? "Bus station" : "Airport"}
+                        />
+                      </span>
+                      <span>
+                        {h.name}
+                        {h.roadKm !== undefined && derived?.access && (
+                          <span class="hub-dist">{h.roadKm} km by road · {h.driveMin} min</span>
+                        )}
+                      </span>
+                    </li>
+                  ))}
+                </ul>
+              </dd>
+            </>
+          )}
+          {f.key === "protected" && (
+            <>
+              <dt>Protected areas</dt>
+              <dd>{t.protectedAreas.join("; ")}</dd>
+            </>
+          )}
+          {f.key === "managed" && (
+            <>
+              <dt>Managed by</dt>
+              <dd>
+                {t.managedBy.map((m) => m.name).join(", ")}
+                <a class="site-link" href={t.website}>Official website</a>
+              </dd>
+            </>
+          )}
+          {f.key === "waymark" && t.waymarking && (
+            <>
+              <dt>Waymarking</dt>
+              <dd class:list={{ marked: t.waymarking.symbol }}>
+                {t.waymarking.symbol && (
+                  <span class="marks">{[t.waymarking.symbol].flat().map((s) => <Waymark symbol={s} number={t.waymarking!.number} />)}</span>
+                )}
+                <span>{t.waymarking.text}</span>
+              </dd>
+            </>
+          )}
         </div>
-      )}
-      <div>
-        <dt>Country</dt>
-        <dd>{t.countries.map(countryName).join(", ")}</dd>
-      </div>
-      {t.regions.length > 0 && (
-        <div>
-          <dt>Regions</dt>
-          <dd>{t.regions.join(", ")}</dd>
-        </div>
-      )}
-      {t.protectedAreas.length > 0 && (
-        <div class="wide">
-          <dt>Protected areas</dt>
-          <dd>{t.protectedAreas.join("; ")}</dd>
-        </div>
-      )}
-      {t.waymarking && (
-        <div>
-          <dt>Waymarking</dt>
-          <dd class:list={{ marked: t.waymarking.symbol }}>
-            {t.waymarking.symbol && (
-              <span class="marks">{[t.waymarking.symbol].flat().map((s) => <Waymark symbol={s} number={t.waymarking!.number} />)}</span>
-            )}
-            <span>{t.waymarking.text}</span>
-          </dd>
-        </div>
-      )}
-      <div>
-        <dt>Route type</dt>
-        <dd>{TRAIL_TYPES[t.trailType]}</dd>
-      </div>
-      <div class:list={[{ wide: t.managedBy.map((m) => m.name).join(", ").length > 40 }]}>
-        <dt>Managed by</dt>
-        <dd>
-          {t.managedBy.map((m) => m.name).join(", ")}
-          <a class="site-link" href={t.website}>Official website</a>
-        </dd>
-      </div>
-      {hasPermitInfo && (
-        <div>
-          <dt>Permit</dt>
-          <dd>{[permit && (permit.required ? "Required" : "Not needed"), fees.length > 0 && "fee charged"].filter(Boolean).join(" · ").replace(/^f/, "F")}</dd>
-        </div>
-      )}
+      ))}
     </dl>
     <div id="map" class="map-col">
       <TrailMap

@@ -183,6 +183,11 @@
   Location, "Permit: Required · fee charged" (approach A2 of the preview's
   compact versions of A): no how-to text, no amounts, no link. The fees stay
   in the record for a later filter.
+- **The Location facts' order (issue #145, 2026-11-02):** by priority, in
+  one grid (approach A of three previews): country and regions, start and
+  finish, route type and permit, travel hubs, then protected areas, the
+  managing body and waymarking. A fact alone before a wide one is widened,
+  so no cell stays empty.
 - **Legs that aren't walked (2026-11-02, the W Trek's catamaran):** treated
   like the Eifelsteig's closed stage and its train detour: drawn on the map in
   their own style (a dashed ink line, "By boat" in the key) and named in the
