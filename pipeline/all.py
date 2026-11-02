@@ -87,7 +87,7 @@ def check(slug):
     (flags if poor else fine).append(f"route: stages under 95 % matched: {', '.join(poor)} (OSM may lack a path; note it)" if poor else "route: every stage at least 95 % matched")
 
     # lengths: per stage (map line against stated) and the whole main route
-    by_stage = {(f["properties"]["number"], f["properties"]["kind"]): _line_km(f["geometry"]["coordinates"]) for f in route["features"]}
+    by_stage = {(f["properties"]["number"], f["properties"]["kind"]): _line_km(f["geometry"]["coordinates"]) for f in route["features"] if "number" in f["properties"]}
     long_off = [
         f"{s['number']} ({by_stage[(s['number'], s['kind'])]:.1f} km against {s['km']} km)"
         for s in stages

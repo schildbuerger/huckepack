@@ -158,8 +158,26 @@ const trail = z
       .optional(),
     // `timesSource`: when the stage times come from another source than the rest of the stage
     // figures (e.g. the stage source publishes none); the page names it under the table
+    // `transfers`: legs that aren't walked (the W Trek's catamaran over Lago Pehoé), after the
+    // stages: drawn on the map through `via` (OSM's ferry way), never in the totals or charts
     stages: z
-      .object({ source: sourceRef, timesSource: sourceRef.optional(), list: z.array(stage).min(1) })
+      .object({
+        source: sourceRef,
+        timesSource: sourceRef.optional(),
+        list: z.array(stage).min(1),
+        transfers: z
+          .array(
+            z.object({
+              by: z.enum(["boat", "bus", "train"]),
+              start: point, // named: "Paine Grande"
+              end: point,
+              via: z.array(z.object({ lat: z.number(), lon: z.number() })).default([]),
+              minutes: z.number().int().positive().optional(),
+              source: sourceRef,
+            }),
+          )
+          .default([]),
+      })
       .optional(),
     // The map line, built by the pipeline into public/routes/<slug>.geojson. `publishable`
     // is false when the geometry's licence doesn't allow republishing it (e.g. official GPX).
@@ -171,6 +189,9 @@ const trail = z
         // `alternatives`: ways with role "alternative" to use, where the main members leave a gap
         relation: z.number().int().optional(),
         alternatives: z.array(z.number().int()).default([]),
+        // a relation with side branches (the W Trek's valleys): each stage is the shortest way over
+        // its ways from where it begins to its `end`, instead of a piece of one chained line
+        branched: z.boolean().default(false),
       })
       .optional(),
 

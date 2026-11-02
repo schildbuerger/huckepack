@@ -1,0 +1,207 @@
+name: W Trek
+added: 2026-11-02
+localName: Circuito W
+aliases: [W Circuit, Ruta del W, La W]
+website: https://www.conaf.cl/parques/parque-nacional-torres-del-paine/
+managedBy:
+  - name: CONAF (Corporación Nacional Forestal), Torres del Paine National Park
+    url: https://www.conaf.cl/parques/parque-nacional-torres-del-paine/
+trailType: point-to-point
+continents: [South America]
+countries: [CL]
+regions: [Magallanes]
+protectedAreas:
+  - Torres del Paine National Park
+termini:
+  # Hotel Las Torres, where CONAF's legs begin, and Paine Grande at the catamaran (OSM)
+  start:
+    name: Hotel Las Torres
+    lat: -50.97316
+    lon: -72.87498
+  end:
+    name: Paine Grande
+    lat: -51.07265
+    lon: -73.09378
+  source: osm
+waymarking:
+  text: Clearly marked paths
+  source: wikipedia
+length:
+  # "covers 50 miles": the whole W with its three valleys walked out and back
+  - km: 80
+    approx: true
+    source: wikipedia
+days:
+  min: 3
+  max: 5
+  source: wikipedia
+stages:
+  # CONAF's trails of the W, leg by leg ("Senderos habilitados": length and time each), from Hotel
+  # Las Torres west to Paine Grande; the three valleys are variants, walked out and back (one way
+  # here), and the catamaran over Lago Pehoé is the way out. Stage ends from OSM.
+  source: conaf
+  list:
+    - { number: "V1", kind: variant, from: Hotel Las Torres, to: Mirador Base Torres, km: 9.4, minutes: 270, end: { lat: -50.94267, lon: -72.94966 } }
+    - { number: "1", kind: main, from: Hotel Las Torres, to: Los Cuernos, km: 11.6, minutes: 270, end: { lat: -51.02385, lon: -72.98537 } }
+    - { number: "2", kind: main, from: Los Cuernos, to: Italiano, km: 5, minutes: 150, end: { lat: -51.02692, lon: -73.04043 } }
+    - { number: "V2", kind: variant, from: Italiano, to: Mirador Británico, km: 5.4, minutes: 180, end: { lat: -50.98268, lon: -73.05375 } }
+    - { number: "3", kind: main, from: Italiano, to: Paine Grande, km: 7.5, minutes: 150, end: { lat: -51.07265, lon: -73.09378 } }
+    - { number: "V3", kind: variant, from: Paine Grande, to: Grey, km: 11, minutes: 210, end: { lat: -51.00822, lon: -73.17605 } }
+  transfers:
+    # the catamaran from Paine Grande over Lago Pehoé to Pudeto, where the buses to Puerto Natales
+    # leave; its line OSM's ferry way 130034232
+    - by: boat
+      start: { name: Paine Grande, lat: -51.07381, lon: -73.09281 }
+      end: { name: Pudeto, lat: -51.0628, lon: -72.99034 }
+      via:
+        - { lat: -51.07377, lon: -73.09146 }
+        - { lat: -51.0757, lon: -73.08706 }
+        - { lat: -51.08597, lon: -73.06526 }
+        - { lat: -51.0907, lon: -73.05161 }
+        - { lat: -51.09159, lon: -73.03906 }
+        - { lat: -51.09043, lon: -73.02032 }
+        - { lat: -51.08794, lon: -73.00251 }
+        - { lat: -51.0849, lon: -72.99445 }
+        - { lat: -51.0815, lon: -72.9935 }
+        - { lat: -51.07601, lon: -72.99816 }
+        - { lat: -51.07378, lon: -72.99895 }
+        - { lat: -51.06815, lon: -72.99641 }
+        - { lat: -51.06567, lon: -72.99202 }
+        - { lat: -51.06271, lon: -72.99146 }
+      minutes: 30
+      source: vertice
+route:
+  # built by `python -m pipeline.all w-trek`: OSM ways matched to the OSM hiking relation "La Ruta
+  # del W" (2203617), each stage the shortest way over it to its end (the valleys branch off it)
+  source: osm
+  publishable: true
+  relation: 2203617
+  branched: true
+difficulty:
+  # no SAC grade is published; our estimate from CONAF's own ratings
+  estimated:
+    sac: T2
+    basis: >-
+      CONAF rates the legs "media" (moderate) and the climbs to the Mirador Británico and the Mirador
+      Base Torres "exigente" (demanding); the last 1.4 km to Base Torres crosses a glacial moraine.
+      Marked mountain paths, steep and rocky in places (T2); snow from May to September.
+    source: conaf
+season:
+  months: [9, 10, 11, 12, 1, 2, 3, 4]
+  text: September to April; in winter the W is walked only with a guide
+  source: wikipedia
+sleeping:
+  # the concessions' refugios and campsites (CONAF: "servicios concesionados de alojamiento, zonas
+  # para acampar"), booked before entering the park
+  types: [hut, campsite]
+  source: conaf
+wildCamping:
+  status: prohibited
+  rule: >-
+    Camping only at the authorised, signposted campsites, booked before entering the park; no
+    stoves outside their cooking areas and no fires anywhere in the park.
+  source: conaf
+access:
+  # Puerto Natales' bus station (the park buses: Laguna Amarga, Pudeto, administration) and Punta
+  # Arenas' international airport. Coordinates from OSM; distances by pipeline/access.py
+  - kind: bus
+    name: Rodoviario Puerto Natales
+    lat: -51.7287
+    lon: -72.488
+    source: osm
+  - kind: airport
+    name: Punta Arenas Airport (PUQ)
+    lat: -53.005
+    lon: -70.8445
+    source: osm
+tags: [mountains, glaciers, lakes, huts, national-park]
+notes:
+  - >-
+    Stages: CONAF publishes the W leg by leg, not by day. The main stages are its legs Hotel Las
+    Torres – Los Cuernos, Los Cuernos – Italiano (past the Francés campsite, 2 km before Italiano)
+    and Italiano – Paine Grande; the valleys to the Mirador Base Torres (CONAF's three legs, 5 + 3 +
+    1.4 km, 2 h + 1 h 30 + 1 h), the Mirador Británico and Grey are variants, walked out and back,
+    shown one way. Out and back they add up to 75.7 km, against Wikipedia's 50 miles (80 km).
+  - >-
+    The catamaran over Lago Pehoé (Paine Grande – Pudeto, about 30 minutes, Vertice) is the way out:
+    it isn't walked and counts in no figure. Paine Grande can also be left on foot to the park
+    administration (CONAF: 17 km, 5 hours, there and back).
+  - >-
+    Season: from 16 September no accredited guide is required on Base Torres and the W in
+    the season (the park's notice, read on 2026-11-02), but microspikes and poles are; in winter (May to September) the
+    W is walked only with a guide (CONAF's winter protocol). Established, waymark symbol and Wikidata item: no
+    source found (Wikidata has the park, not the W); not recorded.
+  - >-
+    Tree line: none recorded. The route stays below about 1,100 m (the Mirador Británico), under
+    the height where the tree line matters for these pages.
+  - >-
+    Map line: Hotel Las Torres – Los Cuernos is 13.5 km on OSM's path (it climbs north-west over the
+    hill before dropping to Lago Nordenskjöld) against CONAF's 11.6 km, and Los Cuernos – Italiano
+    4.5 against 5 km; together 18.0 against 16.6 km (8 %), the main route 25.2 against 24.1 km (5 %).
+    CONAF's figures stand (in `dataCheck`).
+  - >-
+    Access: Punta Arenas (345 km by road) is the nearest international airport; Puerto Natales'
+    airfield has seasonal domestic flights only.
+  - >-
+    Data check (2026-11-02): CONAF's legs against Vertice's (the refugio operator): Italiano –
+    Paine Grande 7.5 against 7.6 km (2.5 h both); Paine Grande – Grey 11 km both, 3 h 30 against
+    4 h 30 (29 %, in `dataCheck`). Days: Wikipedia's 3–5 against Las Torres' 4- and 5-day
+    programmes (in `dataCheck`: 3 against 4). Length: the legs out and back 75.7 km against
+    Wikipedia's 50 miles (80 km, 6 %). Season and camping rules: CONAF and Wikipedia agree (no
+    camping outside the signposted sites; snow May to September, the W guided in winter).
+dataCheck:
+  # working rule 2: Vertice for the western legs, Las Torres for the days, the OSM map line
+  date: 2026-11-02
+  against: [vertice, lastorres]
+  deviations:
+    - { figure: "Paine Grande – Grey time", ours: "3 h 30", theirs: "4 h 30", source: vertice }
+    - { figure: "Fewest days", ours: "3", theirs: "4 (the shortest programme)", source: lastorres }
+    - { figure: "Stage 1 length", ours: "11.6 km", theirs: "13.5 km (map line)", source: osm }
+    - { figure: "Stage 2 length", ours: "5 km", theirs: "4.5 km (map line)", source: osm }
+sources:
+  - id: conaf
+    title: "CONAF: Parque Nacional Torres del Paine, its trails (length, time, difficulty), services and rules"
+    url: https://www.conaf.cl/parques/parque-nacional-torres-del-paine/
+    licence: © CONAF (facts only)
+    retrieved: 2026-11-02
+  - id: vertice
+    title: "Vertice Patagonia: Refugio Paine Grande and Refugio Grey, access trails and the Lago Pehoé catamaran"
+    url: https://www.vertice.travel/alojamiento/refugio-camping-paine-grande/
+    licence: © Vertice Patagonia (facts only)
+    retrieved: 2026-11-02
+  - id: lastorres
+    title: "Las Torres Patagonia: the W Circuit, 4D/3N and 5D/4N itineraries"
+    url: https://lastorres.com/en/circuitos-de-trekking/w-circuit/
+    licence: © Las Torres Patagonia (facts only)
+    retrieved: 2026-11-02
+    checkOnly: true
+  - id: wikipedia
+    title: "Wikipedia (en): Torres del Paine National Park (the W's length, days and season; camping rules)"
+    url: https://en.wikipedia.org/wiki/Torres_del_Paine_National_Park
+    licence: CC BY-SA 4.0
+    retrieved: 2026-11-02
+  - id: osm
+    title: "OpenStreetMap contributors: the hiking relation La Ruta del W (2203617), the Lago Pehoé ferry, paths, water, shops and places to sleep along the way (Geofabrik extract), refugios, travel hubs"
+    url: https://www.openstreetmap.org/relation/2203617
+    licence: ODbL 1.0
+    retrieved: 2026-11-02
+  - id: copdem
+    title: "Copernicus DEM GLO-30 (30 m terrain model), tiles from AWS Open Data"
+    url: https://registry.opendata.aws/copernicus-dem/
+    licence: "Copernicus WorldDEM-30 licence, free; produced using Copernicus WorldDEM-30 © DLR e.V. 2010-2014 and © Airbus Defence and Space GmbH 2014-2018 provided under COPERNICUS by the European Union and ESA; all rights reserved"
+    retrieved: 2026-11-02
+  - id: worldcover
+    title: "ESA WorldCover 2021: 10 m land cover (via AWS Open Data)"
+    url: https://esa-worldcover.org/
+    licence: "CC BY 4.0; © ESA WorldCover project 2021 / Contains modified Copernicus Sentinel data (2021) processed by ESA WorldCover consortium"
+    retrieved: 2026-11-02
+  - id: era5
+    title: "Open-Meteo open data on AWS: ERA5-Land temperature and ERA5 precipitation, snow and wind, daily 1995–2024 (reanalysis)"
+    url: https://github.com/open-meteo/open-data
+    licence: CC BY 4.0 (Open-Meteo); contains modified Copernicus Climate Change Service information
+    retrieved: 2026-11-02
+  - id: osrm
+    title: "OSRM: road routes on OpenStreetMap data (router.project-osrm.org)"
+    url: https://project-osrm.org/
+    licence: Route data © OpenStreetMap contributors (ODbL)
+    retrieved: 2026-11-02

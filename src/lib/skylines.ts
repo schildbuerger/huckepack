@@ -399,6 +399,26 @@ export const SKYLINES: Record<string, Skyline> = {
       { d: "M160,136L170,122L185,118L200,124L214,140L196,144L182,140L170,144Z", c: SNOW },
     ],
   },
+  "w-trek": {
+    view: "The three granite Torres and the dark-capped Cuernos del Paine over the steppe and the turquoise Lago Pehoé",
+    ridge: "#7f8a5a",
+    ground: "#b7b07a",
+    shapes: [
+      { d: range([[0, G], [80, 270], [180, 240], [300, 226], [420, 236], [520, 252], [620, G]]), c: "#a9b2b8" },
+      {
+        d: range([[160, G], [200, 250], [222, 170], [228, 112], [236, 104], [244, 116], [252, 160], [262, 150], [268, 96], [276, 88], [284, 100], [292, 150], [302, 156], [308, 118], [316, 112], [322, 124], [330, 180], [360, 250], [400, G]]),
+        c: "#b4aa9c",
+      },
+      {
+        d: range([[700, G], [760, 252], [820, 210], [850, 172], [866, 150], [880, 160], [900, 142], [916, 132], [934, 148], [960, 138], [978, 128], [996, 146], [1030, 178], [1090, 222], [1160, 260], [1220, G]]),
+        c: "#c9bfae",
+      },
+      // the Cuernos' dark sedimentary caps over their pale granite
+      { d: "M850,172L866,150L880,160L900,142L916,132L934,148L960,138L978,128L996,146L1010,160L986,158L964,152L940,160L916,148L900,158L880,172L862,166Z", c: "#4a4440" },
+      { d: hills([[0, G], [220, 288], [520, 280], [820, 286], [1100, 278], [1400, 286], [1600, G]]), c: "#a7a26e" },
+    ],
+    front: [{ d: water(980, 1600, 298), c: "#4fb0b4" }],
+  },
   "west-highland-way": {
     view: "Loch Lomond's hills, the moor, the pyramid of Buachaille Etive Mòr and Ben Nevis's snow-flecked bulk",
     ridge: "#6f7a4a",

@@ -1,0 +1,62 @@
+{
+  "climate-high.json": {
+    "retrieved": "2026-11-02T07:44:30+00:00",
+    "url": "https://openmeteo.s3.us-west-2.amazonaws.com/data/copernicus_era5_land+copernicus_era5?latitude=-51.0&longitude=-72.9&elevation=450"
+  },
+  "climate-low.json": {
+    "retrieved": "2026-11-02T07:41:11+00:00",
+    "url": "https://openmeteo.s3.us-west-2.amazonaws.com/data/copernicus_era5_land+copernicus_era5?latitude=-51.1&longitude=-73.1&elevation=40"
+  },
+  "elevation-glo30.json": {
+    "retrieved": "2026-11-02T07:37:50+00:00",
+    "url": "https://copernicus-dem-30m.s3.eu-central-1.amazonaws.com/Copernicus_DSM_COG_10_S51_00_W073_00_DEM/Copernicus_DSM_COG_10_S51_00_W073_00_DEM.tif https://copernicus-dem-30m.s3.eu-central-1.amazonaws.com/Copernicus_DSM_COG_10_S52_00_W073_00_DEM/Copernicus_DSM_COG_10_S52_00_W073_00_DEM.tif https://copernicus-dem-30m.s3.eu-central-1.amazonaws.com/Copernicus_DSM_COG_10_S52_00_W074_00_DEM/Copernicus_DSM_COG_10_S52_00_W074_00_DEM.tif"
+  },
+  "landcover.json": {
+    "retrieved": "2026-11-02T07:37:51+00:00",
+    "url": "https://esa-worldcover.s3.eu-central-1.amazonaws.com/v200/2021/map/ESA_WorldCover_10m_2021_v200_\u2026_Map.tif"
+  },
+  "osm-relation.json": {
+    "retrieved": "2026-11-01T21:21:36Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-1-main.json": {
+    "retrieved": "2026-11-01T21:21:36Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-2-main.json": {
+    "retrieved": "2026-11-01T21:21:36Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-3-main.json": {
+    "retrieved": "2026-11-01T21:21:36Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-V1-variant.json": {
+    "retrieved": "2026-11-01T21:21:36Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-V2-variant.json": {
+    "retrieved": "2026-11-01T21:21:36Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-V3-variant.json": {
+    "retrieved": "2026-11-01T21:21:36Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-water.json": {
+    "retrieved": "2026-11-01T21:21:36Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-way-tags.json": {
+    "retrieved": "2026-11-01T21:21:36Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osrm-access-punta-arenas-airport-puq.json": {
+    "retrieved": "2026-11-02T07:44:30+00:00",
+    "url": "https://router.project-osrm.org/route/v1/driving/-70.8445,-53.005;-72.87498,-50.97316?overview=false"
+  },
+  "osrm-access-rodoviario-puerto-natales.json": {
+    "retrieved": "2026-11-02T07:44:30+00:00",
+    "url": "https://router.project-osrm.org/route/v1/driving/-72.488,-51.7287;-72.87498,-50.97316?overview=false"
+  }
+}

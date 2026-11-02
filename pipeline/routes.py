@@ -380,12 +380,26 @@ def build(slug, refresh=False):
         data, _ = cache.get(
             "osm-relation.json", osm.source_label(), lambda: json.dumps(osm_src().relation(relation, children=False), separators=(",", ":")).encode()
         )
-        line = relation_line(json.loads(data), trail["route"].get("alternatives", []), (start["lon"], start["lat"]))
-        if len(stages) > 2 and nearest_index(line, stages[0]["end"]) > nearest_index(line, stages[-2]["end"]):
-            # a round trip (the Tour du Mont Blanc) can chain either way round from its start:
-            # the walking direction is the one that reaches the first stage's end first
-            line = line[::-1]
-        guides = {s["number"]: piece for s, piece in zip(stages, split_at(line, stages))}
+        if trail["route"].get("branched"):
+            # a relation with side branches (the W Trek's valleys), which no chain follows: each
+            # stage is the shortest way over its ways from where it begins (as in the loop below:
+            # the previous main stage's end, or a variant's after a variant) to its end
+            elements, guides = json.loads(data)["elements"], {}
+            previous, last = (start["lon"], start["lat"]), None
+            for s in stages:
+                begin = last[1] if s["kind"] != "main" and last and last[0] != "main" else previous
+                end = (s["end"]["lon"], s["end"]["lat"])
+                guides[(s["number"], s["kind"])] = relation_path(elements, begin, end)
+                if s["kind"] == "main":
+                    previous = end
+                last = (s["kind"], end)
+        else:
+            line = relation_line(json.loads(data), trail["route"].get("alternatives", []), (start["lon"], start["lat"]))
+            if len(stages) > 2 and nearest_index(line, stages[0]["end"]) > nearest_index(line, stages[-2]["end"]):
+                # a round trip (the Tour du Mont Blanc) can chain either way round from its start:
+                # the walking direction is the one that reaches the first stage's end first
+                line = line[::-1]
+            guides = {(s["number"], s["kind"]): piece for s, piece in zip(stages, split_at(line, stages))}
     if not stages:
         raise SystemExit(f"{slug}: no stage has a track (or an end point and a route.relation)")
     features, stage_ways, measured = [], [], []
@@ -394,8 +408,8 @@ def build(slug, refresh=False):
     last = None  # the stage before, so a run of variants chains from one to the next
     for stage in stages:
         label = f"{stage['number']}-{stage['kind']}"
-        if stage["number"] in guides:
-            track = guides[stage["number"]]
+        if (stage["number"], stage["kind"]) in guides:
+            track = guides[(stage["number"], stage["kind"])]
         elif stage.get("relation"):
             # one relation, or several in a row (an OSM section and the start of the next);
             # chained from where the previous main stage ended, or, for a variant after a
@@ -458,6 +472,18 @@ def build(slug, refresh=False):
         )
         if stage.get("closed"):
             features += detour_features(stage, label)
+    # the legs that aren't walked (the W Trek's catamaran over Lago Pehoé): drawn through their
+    # via points (from OSM's ferry way), not matched, and not in the measured length, water or surfaces
+    for leg in trail["stages"].get("transfers", []):
+        points = [leg["start"], *leg.get("via", []), leg["end"]]
+        features.append(
+            {
+                "type": "Feature",
+                "properties": {"kind": "transfer", "by": leg["by"], "from": leg["start"]["name"], "to": leg["end"]["name"]},
+                "geometry": {"type": "LineString", "coordinates": [[round(p["lon"], 5), round(p["lat"], 5)] for p in points]},
+            }
+        )
+        print(f"{'  transfer':<12} {leg['by']:>7} {leg['start']['name']} to {leg['end']['name']}")
     out = ROOT / "public" / "routes" / f"{slug}.geojson"
     out.parent.mkdir(parents=True, exist_ok=True)
     out.write_text(json.dumps({"type": "FeatureCollection", "features": features}, separators=(",", ":")) + "\n")

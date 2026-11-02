@@ -126,7 +126,7 @@ def water_tiers(water, beds, total_km, untreated=False):
 
 def build(slug, refresh=False):
     route = json.loads((ROOT / "public" / "routes" / f"{slug}.geojson").read_text())
-    stages = [f for f in route["features"] if f["properties"]["kind"] != "detour"]
+    stages = [f for f in route["features"] if f["properties"]["kind"] not in ("detour", "transfer")]
     every = [tuple(c) for f in stages for c in f["geometry"]["coordinates"]]
     proj = osm.Projection(sum(lat for _, lat in every) / len(every))
     lines = [[proj.xy(*c) for c in f["geometry"]["coordinates"]] for f in stages]

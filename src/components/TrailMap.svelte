@@ -24,6 +24,7 @@
     end,
     routeAttribution,
     detours = [],
+    transfers = [],
     children,
     fill = false,
   }: {
@@ -32,6 +33,7 @@
     end: Point;
     routeAttribution: string | null;
     detours?: ("foot" | "train" | "bus")[]; // how the route's detours go, for the legend
+    transfers?: ("boat" | "bus" | "train")[]; // the legs that aren't walked (stages.transfers), for the legend
     // the route drawn at build time (src/lib/route-preview.ts), passed in as static markup (not a prop,
     // which the page would carry a second time as data), shown until the map has drawn
     children?: import("svelte").Snippet;
@@ -227,6 +229,16 @@
             filter: ["all", ["==", ["get", "kind"], "detour"], ["!=", ["get", "by"], "foot"]],
             paint: { "line-color": ink, "line-width": 7, "line-dasharray": [0.3, 2.2] },
           });
+          // a leg that isn't walked (the W Trek's catamaran): a thin dashed ink line, like a ferry
+          // on a printed map
+          map.addLayer({
+            id: "transfer",
+            type: "line",
+            source: "route",
+            filter: ["==", ["get", "kind"], "transfer"],
+            layout: { "line-join": "round" },
+            paint: { "line-color": ink, "line-width": 2, "line-dasharray": [3, 2] },
+          });
         }
         map.addSource("termini", {
           type: "geojson",
@@ -280,6 +292,7 @@
   <li><span class="key other"></span> Approach or variant</li>
   {#if detours.includes("foot")}<li><span class="key foot"></span> Detour on foot</li>{/if}
   {#if detours.some((d) => d !== "foot")}<li><span class="key ride"></span> Detour by {detours.includes("bus") ? (detours.includes("train") ? "train or bus" : "bus") : "train"}</li>{/if}
+  {#if transfers.length}<li><span class="key transfer"></span> By {transfers.join(" or ")}</li>{/if}
   <li><span class="key dot start"></span> {start.name}</li>
   <li><span class="key dot end"></span> {end.name}</li>
   <li><span class="key contour"></span> Contour lines</li>
@@ -392,6 +405,9 @@
     background:
       linear-gradient(var(--text), var(--text)) center / 100% 2px no-repeat,
       repeating-linear-gradient(90deg, var(--text) 0 1.5px, transparent 1.5px 7px) center / 100% 8px no-repeat;
+  }
+  .key.transfer {
+    border-top: 2px dashed var(--text);
   }
   .key.contour {
     border-top: 1px solid var(--muted);
