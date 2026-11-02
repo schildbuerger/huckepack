@@ -583,10 +583,11 @@ const featuredScript = inlineScript(Astro, `// A random featured trail on each p
     position: relative;
     z-index: 2;
     /* the hero's text lets clicks through to the sun behind it (the easter egg, issue #155); its links,
-       buttons and fields take them as usual */
+       buttons and fields take them as usual, and so do the promises, whose icons hop when pointed at */
     pointer-events: none;
   }
   .hero-band > .hero :is(a, button, input, select, label, textarea, [role="option"], [role="listbox"], [tabindex]),
+  .hero-band > .hero .usps li,
   .hero-band > .hero :global(.trip) {
     pointer-events: auto;
   }
