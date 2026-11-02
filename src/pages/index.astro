@@ -3,7 +3,6 @@ import { ogPageAlt } from "../lib/og-pages";
 import { getCollection, getEntry } from "astro:content";
 import Base from "../layouts/Base.astro";
 import Icon, { type IconName } from "../components/Icon.astro";
-import TrailSpark from "../components/TrailSpark.astro";
 import Explain from "../components/Explain.astro";
 import TripSearch from "../components/TripSearch.astro";
 import { mainStages, stageEstimates, trailClimb, walkingMinutes } from "../lib/trails";
@@ -15,6 +14,7 @@ import zones from "../lib/timezones.json";
 import { worldOutline } from "../lib/world-outline";
 import { inlineScript } from "../lib/inline-script";
 import { SKY_SCRIPT } from "../lib/sky";
+import { readFileSync, existsSync } from "node:fs";
 
 const entries = (await getCollection("trails")).sort((a, b) => a.data.name.localeCompare(b.data.name));
 const derivedAll = await Promise.all(entries.map(async (e) => (await getEntry("derived", e.id))?.data));
@@ -106,6 +106,25 @@ const FEATURED = 7;
 const buildDay = Math.floor(Date.now() / 86_400_000);
 const shuffleKey = (slug: string) => [...`${slug}:${buildDay}`].reduce((h, c) => (Math.imul(h, 31) + c.charCodeAt(0)) >>> 0, 7);
 const featuredSet = [...featuredAll].sort((a, b) => shuffleKey(a.t.slug) - shuffleKey(b.t.slug)).slice(0, FEATURED);
+
+// the featured trail's route shape: the main stages from public/routes/ (the map line), equirectangular,
+// fitted into a 200 × 140 box, about 240 points, with its start and finish
+const routeShape = (slug: string) => {
+  const file = `public/routes/${slug}.geojson`;
+  if (!existsSync(file)) return null;
+  const fc = JSON.parse(readFileSync(file, "utf8"));
+  const pts: [number, number][] = fc.features.filter((f: any) => f.properties.kind === "main").flatMap((f: any) => f.geometry.coordinates);
+  if (pts.length < 2) return null;
+  const k = Math.cos(((pts.reduce((a, p) => a + p[1], 0) / pts.length) * Math.PI) / 180);
+  const xs = pts.map((p) => p[0] * k), ys = pts.map((p) => -p[1]);
+  const [x0, x1, y0, y1] = [Math.min(...xs), Math.max(...xs), Math.min(...ys), Math.max(...ys)];
+  const sc = Math.min(180 / (x1 - x0 || 1), 120 / (y1 - y0 || 1));
+  const ox = (200 - (x1 - x0) * sc) / 2, oy = (140 - (y1 - y0) * sc) / 2;
+  const step = Math.max(1, Math.floor(pts.length / 240));
+  const xy = pts.filter((_, i) => i % step === 0 || i === pts.length - 1).map((_, i, a) => a[i]).map((p) => [+(ox + (p[0] * k - x0) * sc).toFixed(1), +(oy + (-p[1] - y0) * sc).toFixed(1)]);
+  return { d: `M${xy.map((p) => p.join(",")).join("L")}`, start: xy[0], end: xy[xy.length - 1] };
+};
+
 
 // popular trails (issue #84): the three whose Wikipedia articles people viewed most in twelve months,
 // all languages summed (pipeline/popularity.py, Wikimedia); trails without an article aren't ranked
@@ -274,36 +293,77 @@ const featuredScript = inlineScript(Astro, `// A random featured trail on each p
   </dl>
   <script is:inline set:html={countScript} />
 
-  <!-- the featured trail beside the most read: a large visual on the left and a list on the right, the
-       same pattern as the map and the trails near you below -->
+  <!-- the featured trail (2026-11-02; of five previews after public designs, approach D, like a route
+       app's): a band wall to wall with soft wave edges, the trail's real route drawn when the band comes into
+       view and a walker travelling it, the name, start and finish, big figures and the ground underfoot; the
+       length as a giant number behind (decorative). The most read trails follow under it -->
   <div class="pair">
     {featuredSet.length > 0 && (
       <section class="featured-box" aria-labelledby="featured-h">
         <div class="block-head"><h2 id="featured-h">Featured trail</h2></div>
-        {featuredSet.map(({ t: featured, spark, surface, climb, level }, i) => (
-          <a class="featured" href={`/trails/${featured.slug}/`} hidden={i > 0}>
-            <div class="featured-head">
-              <p class="place">{featured.countries.join(" · ")}</p>
-              <p class="name">{featured.name}</p>
-              {featured.localName && <p class="local">{featured.localName}</p>}
-            </div>
-            <dl class="featured-figures">
-              {featured.lengthKm !== null && <div><dt>Length</dt><dd>{fmt(featured.lengthKm)}<span>km</span></dd></div>}
-              {climb.climbed > 0 && (
-                <div>
-                  <dt>Ascent{climb.climbedEst && " (estimate)"}</dt>
-                  <dd>{climb.climbedEst && <span class="approx">≈</span>}{fmt(climb.climbed)}<span>m ↑</span></dd>
-                </div>
-              )}
-              {featured.days && <div><dt>Suggested</dt><dd>{days(featured.days)}<span>days</span></dd></div>}
-              {level && <div><dt>Difficulty</dt><dd data-rate={rateOf(featured)}><span class="rate-word">{level}</span></dd></div>}
-              {spark && <div><dt>Highest point</dt><dd>{fmt(spark.peak)}<span>m</span></dd></div>}
-            </dl>
-            {spark && <TrailSpark spark={spark} surface={surface} />}
-            <span class="open">Open the trail →</span>
-          </a>
-        ))}
+        {featuredSet.map(({ t: featured, surface: _surface, climb, level }, i) => {
+          const route = routeShape(featured.slug);
+          return (
+            <a class="featured" href={`/trails/${featured.slug}/`} hidden={i > 0} data-draw>
+              <p class="rs-giant" aria-hidden="true">{featured.lengthKm !== null ? fmt(featured.lengthKm) : ""}</p>
+              <div class="rs-shape" aria-hidden="true">
+                {route && (
+                  <svg viewBox="0 0 200 140">
+                    <path class="rs-under" d={route.d} />
+                    <path class="rs-line" d={route.d} pathLength="1" />
+                    <circle class="rs-start" cx={route.start[0]} cy={route.start[1]} r="5" />
+                    <circle class="rs-end" cx={route.end[0]} cy={route.end[1]} r="5" />
+                    <circle class="rs-walker" r="4">
+                      <animateMotion dur="9s" repeatCount="indefinite" path={route.d} begin="2s" />
+                    </circle>
+                  </svg>
+                )}
+              </div>
+              <div class="rs-info">
+                <p class="rs-where">{featured.countries.join(" · ")}</p>
+                <p class="rs-name">{featured.name}</p>
+                {featured.localName && <p class="rs-local">{featured.localName}</p>}
+                <p class="rs-route">
+                  <span class="rs-dot start" aria-hidden="true"></span>{featured.start} <span class="rs-arrow" aria-hidden="true">→</span>
+                  <span class="sr-only">to</span> <span class="rs-dot end" aria-hidden="true"></span>{featured.end}
+                </p>
+                <dl class="rs-stats">
+                  {featured.lengthKm !== null && <div><dt>Distance</dt><dd>{fmt(featured.lengthKm)}<span>km</span></dd></div>}
+                  {climb.climbed > 0 && <div><dt>Ascent{climb.climbedEst && ", estimate"}</dt><dd>{climb.climbedEst && "≈"}{fmt(climb.climbed)}<span>m</span></dd></div>}
+                  {featured.days && <div><dt>Days</dt><dd>{days(featured.days)}</dd></div>}
+                  {level && <div><dt>Difficulty</dt><dd class="rs-word" data-rate={rateOf(featured)}><span class="rate-word">{level}</span></dd></div>}
+                </dl>
+                {featured.surface && (
+                  <div class="rs-ground">
+                    <span class="rs-bar" aria-hidden="true">
+                      <span style={`flex: ${featured.surface.natural}; background: var(--surface-natural)`}></span>
+                      <span style={`flex: ${featured.surface.gravel}; background: var(--surface-gravel)`}></span>
+                      <span style={`flex: ${featured.surface.paved}; background: var(--surface-paved)`}></span>
+                    </span>
+                    <span class="rs-ground-text">{Math.round(featured.surface.natural * 100)} % natural · {Math.round(featured.surface.gravel * 100)} % gravel · {Math.round(featured.surface.paved * 100)} % paved</span>
+                  </div>
+                )}
+                <span class="rs-open">Open the trail →</span>
+              </div>
+            </a>
+          );
+        })}
         <script is:inline set:html={featuredScript} />
+        <script>
+          // the featured trail draws its route when it comes into view
+          for (const el of document.querySelectorAll<HTMLElement>("[data-draw]")) {
+            if (!("IntersectionObserver" in window)) el.classList.add("drawn");
+            else {
+              const io = new IntersectionObserver((es) => {
+                if (es.some((e) => e.isIntersecting)) {
+                  el.classList.add("drawn");
+                  io.disconnect();
+                }
+              }, { threshold: 0.3 });
+              io.observe(el);
+            }
+          }
+        </script>
       </section>
     )}
     {popular.length > 0 && (
@@ -903,8 +963,7 @@ const featuredScript = inlineScript(Astro, `// A random featured trail on each p
       grid-template-columns: repeat(3, minmax(0, 1fr));
     }
   }
-  .totals div,
-  .featured-figures div {
+  .totals div {
     display: flex;
     flex-direction: column;
   }
@@ -912,8 +971,7 @@ const featuredScript = inlineScript(Astro, `// A random featured trail on each p
     display: inline-block;
     font-variant-numeric: tabular-nums;
   }
-  .totals dd,
-  .featured-figures dd {
+  .totals dd {
     order: 1;
     margin: 0;
     font-family: var(--serif);
@@ -949,8 +1007,7 @@ const featuredScript = inlineScript(Astro, `// A random featured trail on each p
     color: var(--accent-text);
     font-size: 1.6rem;
   }
-  .totals dt,
-  .featured-figures dt {
+  .totals dt {
     order: 2;
     color: var(--muted);
     font-size: 0.8rem;
@@ -1009,61 +1066,6 @@ const featuredScript = inlineScript(Astro, `// A random featured trail on each p
       grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr);
       gap: 48px;
     }
-  }
-
-  /* the featured trail: no card, it stands on the page under its head */
-  .featured[hidden] {
-    display: none;
-  }
-  .featured {
-    display: grid;
-    gap: 18px;
-    color: var(--text);
-    text-decoration: none;
-  }
-  .featured:hover .open {
-    text-decoration: underline;
-  }
-  .featured-head p {
-    margin: 0;
-  }
-  .place {
-    color: var(--muted);
-    font-size: 0.85rem;
-  }
-  .name {
-    font-family: var(--serif);
-    font-size: clamp(1.6rem, 4vw, 2.1rem);
-    font-weight: 600;
-    line-height: 1.2;
-  }
-  .local {
-    color: var(--muted);
-    font-style: italic;
-  }
-  .featured-figures {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px 32px;
-    margin: 0;
-  }
-  .featured-figures dd {
-    font-size: 1.5rem;
-  }
-  .featured-figures dd span {
-    margin-left: 4px;
-    color: var(--muted);
-    font-family: var(--sans);
-    font-size: 0.8rem;
-    font-weight: 400;
-  }
-  /* our estimate, as on the trail pages */
-  .featured-figures dd span.approx {
-    margin: 0 3px 0 0;
-  }
-  .open {
-    color: var(--accent-text);
-    font-weight: 600;
   }
 
   /* trail lists (popular, near you): one row per trail, apart by space; a mark on the left (the rank,
@@ -1388,6 +1390,229 @@ const featuredScript = inlineScript(Astro, `// A random featured trail on each p
     .cloud,
     .bird {
       animation: none;
+    }
+  }
+
+  /* the featured trail: a band wall to wall in the canvas colour with soft wave edges, so it flows from
+     the stamps above into the popular trails below; the content in the page's column. Fixed colours, so
+     their text colours are fixed too (AA on them); still with reduced motion */
+  .pair {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .featured-box {
+    position: relative;
+    margin: 0 calc(50% - 50vw) 24px;
+    padding: 40px max(16px, calc(50vw - 600px)) 56px;
+    background: #e3ecea;
+    color: #25261c;
+    --muted: #61624c;
+    --accent-text: #4f6820;
+  }
+  .featured-box::before,
+  .featured-box::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    height: 47px;
+    background: #e3ecea;
+    -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1200' height='48' viewBox='0 0 1200 48' preserveAspectRatio='none'%3E%3Cpath d='M0 48 V30 C200 6 380 6 600 24 C820 42 1000 42 1200 18 V48 Z'/%3E%3C/svg%3E") center / 100% 100% no-repeat;
+    mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1200' height='48' viewBox='0 0 1200 48' preserveAspectRatio='none'%3E%3Cpath d='M0 48 V30 C200 6 380 6 600 24 C820 42 1000 42 1200 18 V48 Z'/%3E%3C/svg%3E") center / 100% 100% no-repeat;
+    pointer-events: none;
+  }
+  .featured-box::before {
+    top: -46px;
+  }
+  .featured-box::after {
+    bottom: -46px;
+    transform: scale(-1, -1);
+  }
+  .featured[hidden] {
+    display: none;
+  }
+  .featured {
+    position: relative;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 24px;
+    align-items: center;
+    color: #25261c;
+    text-decoration: none;
+  }
+  @media (min-width: 760px) {
+    .featured {
+      grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
+      gap: 40px;
+    }
+  }
+  .featured p {
+    margin: 0;
+  }
+  .rs-giant {
+    position: absolute;
+    right: -10px;
+    bottom: -60px;
+    color: #d0dedb;
+    font-family: var(--serif);
+    font-size: clamp(9rem, 22vw, 18rem);
+    font-weight: 800;
+    line-height: 1;
+    pointer-events: none;
+  }
+  .rs-shape,
+  .rs-info {
+    position: relative;
+  }
+  .rs-shape svg {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+  .rs-under {
+    fill: none;
+    stroke: #f9f8f0;
+    stroke-width: 10;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+  .rs-line {
+    fill: none;
+    stroke: #4c6420;
+    stroke-width: 5;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    stroke-dasharray: 1;
+    stroke-dashoffset: 1;
+    transition: stroke-dashoffset 2.2s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  .drawn .rs-line {
+    stroke-dashoffset: 0;
+  }
+  .rs-start,
+  .rs-end {
+    stroke: #f9f8f0;
+    stroke-width: 2.5;
+  }
+  .rs-start {
+    fill: #5a7526;
+  }
+  .rs-end {
+    fill: #a63d24;
+  }
+  .rs-walker {
+    fill: #e9a92c;
+    stroke: #25261c;
+    stroke-width: 1.5;
+    opacity: 0;
+    transition: opacity 0.4s 2.2s;
+  }
+  .drawn .rs-walker {
+    opacity: 1;
+  }
+  .rs-info {
+    display: grid;
+    gap: 12px;
+  }
+  .rs-where {
+    color: #61624c;
+  }
+  .rs-name {
+    font-family: var(--serif);
+    font-size: clamp(2rem, 4vw, 3.2rem);
+    font-weight: 800;
+    line-height: 1;
+  }
+  .rs-local {
+    color: #61624c;
+    font-family: var(--serif);
+    font-style: italic;
+  }
+  .rs-route {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 4px 8px;
+    font-weight: 600;
+  }
+  .rs-arrow {
+    color: #a63d24;
+  }
+  .rs-dot {
+    display: inline-block;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+  }
+  .rs-dot.start {
+    background: #5a7526;
+  }
+  .rs-dot.end {
+    background: #a63d24;
+  }
+  .rs-stats {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 14px 18px;
+    margin: 6px 0 0;
+  }
+  .rs-stats div {
+    display: flex;
+    flex-direction: column-reverse;
+  }
+  .rs-stats dt {
+    color: #61624c;
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+  .rs-stats dd {
+    margin: 0;
+    font-family: var(--serif);
+    font-size: clamp(2.2rem, 4vw, 3.2rem);
+    font-weight: 800;
+    line-height: 1;
+  }
+  .rs-stats dd span {
+    margin-left: 4px;
+    font-family: var(--sans);
+    font-size: 1rem;
+    font-weight: 600;
+    color: #61624c;
+  }
+  .rs-stats .rs-word {
+    font-size: clamp(1.6rem, 3vw, 2.2rem);
+  }
+  .rs-ground {
+    display: grid;
+    gap: 8px;
+  }
+  .rs-bar {
+    display: flex;
+    height: 18px;
+    border-radius: 9px;
+    overflow: hidden;
+  }
+  .rs-ground-text {
+    color: #61624c;
+    font-size: 0.85rem;
+  }
+  .rs-open {
+    margin-top: 4px;
+    color: #4f6820;
+    font-weight: 700;
+  }
+  .featured:hover .rs-open,
+  .featured:focus-visible .rs-open {
+    text-decoration: underline;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .rs-line {
+      transition: none;
+      stroke-dashoffset: 0;
+    }
+    .rs-walker {
+      display: none;
     }
   }
 </style>
