@@ -382,8 +382,7 @@ const featuredScript = inlineScript(Astro, `// A random featured trail on each p
         </div>
         <!-- the three most read as a podium of routes (2026-11-02), in the featured band's style: a small card
              each with the route drawn as it comes into view, the rank as a giant number behind, the figures
-             and the article's reads; on wide screens the first in the middle and highest, on a step whose
-             height is its rank -->
+             and the article's reads; on wide screens the first in the middle -->
         <ol class="podium">
           {popular.map(({ t, views }, rank) => {
             const route = routeShape(t.slug);
@@ -406,7 +405,6 @@ const featuredScript = inlineScript(Astro, `// A random featured trail on each p
                     <span class="pd-views">{fmt(views!)} article reads</span>
                   </span>
                 </a>
-                <span class="pd-step" aria-hidden="true">{rank + 1}</span>
                 <span class="sr-only">Rank {rank + 1}</span>
               </li>
             );
@@ -1636,8 +1634,7 @@ const featuredScript = inlineScript(Astro, `// A random featured trail on each p
 
   /* the popular trails as a podium of routes: small cards in the featured band's style, the route drawn as
      it comes into view (the band's .rs-* strokes and its script), the rank as a giant faint number; from
-     760 px three in a row, the first in the middle and highest, each on a step as high as its rank. Fixed
-     colours, their text in fixed colours (AA) */
+     760 px three in a row, the first in the middle. Fixed colours, their text in fixed colours (AA) */
   .podium {
     display: grid;
     gap: 20px;
@@ -1647,6 +1644,10 @@ const featuredScript = inlineScript(Astro, `// A random featured trail on each p
   }
   .podium li {
     display: grid;
+  }
+  .podium a {
+    height: 100%;
+    align-content: start;
   }
   .podium a {
     position: relative;
@@ -1709,33 +1710,10 @@ const featuredScript = inlineScript(Astro, `// A random featured trail on each p
     text-decoration-thickness: 2px;
     text-underline-offset: 4px;
   }
-  /* the steps: a slim band on phones, the podium's blocks from 760 px */
-  .pd-step {
-    display: grid;
-    place-items: center;
-    height: 30px;
-    margin: -14px 16px 0;
-    border-radius: 0 0 12px 12px;
-    font-family: var(--serif);
-    font-size: 1.1rem;
-    font-weight: 800;
-  }
-  .pd-1 .pd-step {
-    background: #4c6420;
-    color: #f3f0de;
-  }
-  .pd-2 .pd-step {
-    background: #5a7526;
-    color: #f9f8f0;
-  }
-  .pd-3 .pd-step {
-    background: #9bb072;
-    color: #25261c;
-  }
   @media (min-width: 760px) {
     .podium {
       grid-template-columns: repeat(3, minmax(0, 1fr));
-      align-items: end;
+      align-items: stretch;
       gap: 18px;
     }
     .podium .pd-1 {
@@ -1747,23 +1725,8 @@ const featuredScript = inlineScript(Astro, `// A random featured trail on each p
     .podium .pd-3 {
       order: 3;
     }
-    .pd-step {
-      margin: 0;
-      border-radius: 0;
-      font-size: 2.4rem;
-    }
-    .pd-1 .pd-step {
-      height: 96px;
-    }
-    .pd-2 .pd-step {
-      height: 64px;
-    }
-    .pd-3 .pd-step {
-      height: 40px;
-      font-size: 1.8rem;
-    }
     .podium a {
-      border-radius: 20px 20px 0 0;
+      border-radius: 20px;
     }
   }
 </style>
