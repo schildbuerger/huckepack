@@ -175,6 +175,11 @@
   the difficulty. A month pick in every page's header (approach A of three
   previews) did this until 2026-11-01; it was removed when the home page's
   trip search (issue #128) started asking for the months first.
+- **Legs that aren't walked (2026-11-02, the W Trek's catamaran):** treated
+  like the Eifelsteig's closed stage and its train detour: drawn on the map in
+  their own style (a dashed ink line, "By boat" in the key) and named in the
+  note under the stages table and in the record's notes; no row in the table
+  and in no figure (`stages.transfers`).
 - **A crossing OSM maps as under construction (2026-11-01):** a stage may
   allow the matcher a longer bridge (`maxBridgeM`), noted in the record (the
   Cotswold Way's A417 at the Air Balloon, 133 m), instead of holding the

@@ -69,6 +69,9 @@ And the **GR 20** (#123, added on 2026-11-02, about 180 km from Calenzana to Con
 regional park's 16 stages with its walking times; no source publishes stage distances, so they are
 measured on our OSM map line). The Santa Cruz Trek (#75) was dropped the same day: Peru's park service
 requires a licensed agency, so it can't be walked independently.
+And the **W Trek** (#74, added on 2026-11-02, Torres del Paine, CONAF's legs from Hotel Las Torres
+to Paine Grande with the valleys to Base Torres, the Mirador Británico and Grey as variants, and the
+Lago Pehoé catamaran as its way out, the first leg that isn't walked).
 
 | # | Trail | Region | Length (approx.) | Why |
 |---|---|---|---|---|
