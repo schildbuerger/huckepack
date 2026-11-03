@@ -1,0 +1,232 @@
+name: Pieterpad
+added: 2026-11-03
+aliases: [LAW 9, Pieterpad LAW 9]
+website: https://www.pieterpad.nl/
+wikidata: Q19727555
+managedBy:
+  # "Het Pieterpad is in beheer bij de Stichting Pieterpad. Vrijwilligers onderhouden deze
+  # wandelroute"; Wandelnet publishes it as long-distance path LAW 9
+  - name: Stichting Pieterpad
+    url: https://www.pieterpad.nl/
+  - name: Wandelnet (LAW 9)
+    url: https://www.wandelnet.nl/pieterpad
+trailType: point-to-point
+continents: [Europe]
+countries: [NL, DE]
+regions: [Groningen, Drenthe, Overijssel, Gelderland, Limburg, North Rhine-Westphalia]
+protectedAreas: []
+termini:
+  # the first point of the Stichting's stage 1 GPX in Pieterburen, the last of stage 26's on the
+  # Sint-Pietersberg
+  start:
+    name: Pieterburen
+    lat: 53.40003
+    lon: 6.45316
+  end:
+    name: Sint-Pietersberg (Maastricht)
+    lat: 50.83662
+    lon: 5.68565
+  source: sp
+established:
+  # "In 1983 werd het Pieterpad halverwege in Vorden officieel in gebruik genomen" (Dutch Wikipedia)
+  year: 1983
+  source: wikipedia
+waymarking:
+  # "in beide richtingen gemarkeerd met de internationaal gebruikelijke wit-rode strepen voor
+  # lange-afstand wandelpaden (LAW)"
+  text: White and red stripes of the Dutch long-distance paths (LAW), in both directions
+  symbol: white-red-stripes
+  source: sp
+length:
+  # "Het Pieterpad (LAW 9) … heeft een lengte van maar liefst 502 kilometer, opgesplitst in twee
+  # delen en verder onderverdeeld in 26 dagwandelingen"; the stages sum to 506.2 km
+  - km: 502
+    source: wn
+days:
+  # "26 dagwandelingen"
+  min: 26
+  max: 26
+  source: wn
+stages:
+  # Wandelnet's 26 stage pages (Pieterpad 1, etappe 01–13, and Pieterpad 2, etappe 01–13, here
+  # numbered through), one km figure each; no climbs, heights or times. Each stage's GPX is the
+  # Stichting's ("de actuele routelijn … inclusief de laatste routewijzigingen"), only guiding the
+  # OSM matcher (kept local). The Stichting's prologue loop at Pieterburen (10 km) is left out
+  source: wn
+  list:
+    - { number: "1", kind: main, from: Pieterburen, to: Winsum, km: 12.0, track: "https://www.pieterpad.nl/component/phocadownload/category/1-gpx-files?download=1:pieterburen-winsum&Itemid=101" }
+    - { number: "2", kind: main, from: Winsum, to: Groningen, km: 21.6, track: "https://www.pieterpad.nl/component/phocadownload/category/1-gpx-files?download=2:winsum-groningen&Itemid=101" }
+    - { number: "3", kind: main, from: Groningen, to: Zuidlaren, km: 21.2, track: "https://www.pieterpad.nl/component/phocadownload/category/1-gpx-files?download=3:gpx-groningen-zuidlaren&Itemid=101" }
+    - { number: "4", kind: main, from: Zuidlaren, to: Rolde, km: 17.3, track: "https://www.pieterpad.nl/component/phocadownload/category/1-gpx-files?download=4:gpx-zuidlaren-rolde&Itemid=101" }
+    - { number: "5", kind: main, from: Rolde, to: Schoonloo, km: 18.4, track: "https://www.pieterpad.nl/component/phocadownload/category/1-gpx-files?download=5:gpx-rolde-schoonloo&Itemid=101" }
+    - { number: "6", kind: main, from: Schoonloo, to: Sleen, km: 23.4, track: "https://www.pieterpad.nl/component/phocadownload/category/1-gpx-files?download=6:gpx-schoonloo-sleen&Itemid=101" }
+    - { number: "7", kind: main, from: Sleen, to: Coevorden, km: 21.3, track: "https://www.pieterpad.nl/component/phocadownload/category/1-gpx-files?download=7:gpx-sleen-coevorden&Itemid=101" }
+    - { number: "8", kind: main, from: Coevorden, to: Hardenberg, km: 19.1, track: "https://www.pieterpad.nl/component/phocadownload/category/1-gpx-files?download=8:gpx-coevorden-hardenberg&Itemid=101" }
+    - { number: "9", kind: main, from: Hardenberg, to: Ommen, km: 21.5, track: "https://www.pieterpad.nl/component/phocadownload/category/1-gpx-files?download=9:gpx-hardenberg-ommen&Itemid=101" }
+    - { number: "10", kind: main, from: Ommen, to: Hellendoorn, km: 20.2, track: "https://www.pieterpad.nl/component/phocadownload/category/1-gpx-files?download=10:gpx-ommen-hellendoorn&Itemid=101" }
+    - { number: "11", kind: main, from: Hellendoorn, to: Holten, km: 15.6, track: "https://www.pieterpad.nl/component/phocadownload/category/1-gpx-files?download=11:gpx-hellendoorn-holten&Itemid=101" }
+    - { number: "12", kind: main, from: Holten, to: Laren, km: 14.9, track: "https://www.pieterpad.nl/component/phocadownload/category/1-gpx-files?download=13:gpx-holten-laren&Itemid=101" }
+    - { number: "13", kind: main, from: Laren, to: Vorden, km: 13.4, track: "https://www.pieterpad.nl/component/phocadownload/category/1-gpx-files?download=14:gpx-laren-vorden&Itemid=101" }
+    - { number: "14", kind: main, from: Vorden, to: Zelhem, km: 17.5, track: "https://www.pieterpad.nl/component/phocadownload/category/1-gpx-files?download=15:gpx-vorden-zelhem&Itemid=101" }
+    - { number: "15", kind: main, from: Zelhem, to: Braamt, km: 17.3, track: "https://www.pieterpad.nl/component/phocadownload/category/1-gpx-files?download=16:gpx-zelhem-braamt&Itemid=101" }
+    - { number: "16", kind: main, from: Braamt, to: Millingen aan de Rijn, km: 24.7, track: "https://www.pieterpad.nl/component/phocadownload/category/1-gpx-files?download=17:gpx-braamt-millingen&Itemid=101", maxBridgeM: 600, maxBridges: 12 }
+    - { number: "17", kind: main, from: Millingen aan de Rijn, to: Groesbeek, km: 20.4, track: "https://www.pieterpad.nl/component/phocadownload/category/1-gpx-files?download=18:gpx-millingen-aan-de-rijn-groesbeek&Itemid=101" }
+    - { number: "18", kind: main, from: Groesbeek, to: Gennep, km: 14.4, track: "https://www.pieterpad.nl/component/phocadownload/category/1-gpx-files?download=19:gpx-groesbeek-gennep&Itemid=101" }
+    - { number: "19", kind: main, from: Gennep, to: Vierlingsbeek, km: 18.8, track: "https://www.pieterpad.nl/component/phocadownload/category/1-gpx-files?download=20:gpx-gennep-vierlingsbeek&Itemid=101", maxBridgeM: 600, maxBridges: 12 }
+    - { number: "20", kind: main, from: Vierlingsbeek, to: Swolgen, km: 23.7, track: "https://www.pieterpad.nl/component/phocadownload/category/1-gpx-files?download=21:gpx-vierlingsbeek-swolgen&Itemid=101" }
+    - { number: "21", kind: main, from: Swolgen, to: Venlo, km: 20.9, track: "https://www.pieterpad.nl/component/phocadownload/category/1-gpx-files?download=22:gpx-swolgen-venlo&Itemid=101", maxBridgeM: 600, maxBridges: 12 }
+    - { number: "22", kind: main, from: Venlo, to: Swalmen, km: 22.6, track: "https://www.pieterpad.nl/component/phocadownload/category/1-gpx-files?download=23:gpx-venlo-swalmen&Itemid=101" }
+    - { number: "23", kind: main, from: Swalmen, to: Montfort, km: 22.4, track: "https://www.pieterpad.nl/component/phocadownload/category/1-gpx-files?download=24:gpx-swalmen-montfort&Itemid=101" }
+    - { number: "24", kind: main, from: Montfort, to: Sittard, km: 24.3, track: "https://www.pieterpad.nl/component/phocadownload/category/1-gpx-files?download=25:gpx-montfort-sittard&Itemid=101" }
+    - { number: "25", kind: main, from: Sittard, to: Strabeek (Valkenburg), km: 22.3, track: "https://www.pieterpad.nl/component/phocadownload/category/1-gpx-files?download=26:gpx-sittard-strabeek&Itemid=101" }
+    - { number: "26", kind: main, from: Strabeek (Valkenburg), to: Sint-Pietersberg, km: 17.0, track: "https://www.pieterpad.nl/component/phocadownload/category/1-gpx-files?download=27:gpx-strabeek-sint-pietersberg&Itemid=101" }
+route:
+  # built by `python -m pipeline.all pieterpad`: OSM ways matched to the Stichting's GPX
+  source: osm
+  publishable: true
+difficulty:
+  # no grade is published; our estimate from the Stichting's description
+  estimated:
+    sac: T1
+    basis: >-
+      The Stichting says no particular fitness is needed ("Er is geen bijzondere wandelconditie
+      voor nodig") and that the route keeps to smaller, mostly unpaved roads and paths across
+      farmland, heath, forest and the low hills of Salland, Montferland and South Limburg; there
+      are no mountain passages. Hiking on good paths (T1).
+    source: sp
+sleeping:
+  # the Stichting's list of places to stay along the route: hotels, B&Bs, holiday homes and
+  # campsites, each with its stages
+  types: [hotel, guesthouse, campsite]
+  source: sp
+access:
+  # Groningen station, the nearest main station (trains and buses to Winsum and Pieterburen), and
+  # Amsterdam Schiphol. Coordinates from OSM; distances by pipeline/access.py
+  - kind: station
+    name: Groningen
+    lat: 53.21047
+    lon: 6.56412
+    source: osm
+  - kind: airport
+    name: Amsterdam Airport Schiphol (AMS)
+    lat: 52.32698
+    lon: 4.74151
+    source: osm
+animals:
+  # Ticks: Lyme disease all over the Netherlands (RIVM); the TBE virus is found in ticks on the
+  # Sallandse Heuvelrug, which the trail crosses between Hellendoorn and Holten, about 1 in 1,500
+  # ticks there, and the RIVM advises no vaccination for the Netherlands. The short stretches in
+  # Germany (Kleve and Heinsberg districts) are no TBE risk districts (RKI 2026). Level ours
+  list:
+    - kind: tick
+      name: "Ticks (Lyme disease)"
+      level: low
+      basis: "Ticks live all over the Netherlands, mostly in grass, shrubs and dead leaves; about one in five carries the Lyme bacterium, and two to three bites in 100 lead to the illness. The TBE virus has been found on the Sallandse Heuvelrug, in about one tick in 1,500; no vaccination is needed for the Netherlands."
+      do:
+        - "Stay on the paths and avoid tall grass and shrubs"
+        - "Wear closed shoes, long sleeves and long trousers, the trouser legs tucked into your socks if you like"
+        - "Spray your clothes and rub uncovered skin with a tick repellent such as DEET"
+        - "Check yourself and others after every walk: the groin, the armpits, under the edges of underwear, behind the ears and along the hairline"
+        - "Remove a tick as soon as you can with pointed tweezers or a tick remover: grip it by the head close to the skin and pull it out slowly; then disinfect the bite with 70 % alcohol or iodine"
+        - "Watch the skin around the bite for three months and see a doctor if a patch of colour spreads there, or fever and aching follow in the weeks after"
+      dont:
+        - "Squeeze the tick's body"
+        - "Disinfect the tick before removing it: it then spits into the bite"
+      source: rivm
+tags: [lowlands, heath, forest, farmland, villages]
+notes:
+  - >-
+    The trail crosses the Netherlands from north to south: from the Wadden coast at Pieterburen
+    over the terp land to Groningen, along the Hondsrug onto the Drenthe plateau with its heaths,
+    hunebeds and the Drentsche Aa, past Coevorden along the Overijsselse Vecht, over the Sallandse
+    Heuvelrug into the Achterhoek (part 1 ends at Vorden), through Montferland and over the Rhine
+    by ferry to Millingen, past Groesbeek and along the Maas through Limburg to the Sint-Pietersberg
+    at Maastricht. It touches Germany at Hoch-Elten, Zyfflich and the Selfkant (Isenbruch, Millen).
+  - >-
+    Season: none published (the Stichting, Wandelnet), so none recorded. Wild camping: no official
+    source states the rule for the route (in the Netherlands it is set by municipal bylaws and
+    landowners; the Stichting asks walkers to follow the landowners' rules), so none recorded.
+    Tree line: none recorded, the trail stays below about 200 m.
+  - >-
+    Figures: Wandelnet states 502 km (part 1 239 km, part 2 263 km; its text also says 257 km),
+    the Stichting "ruim 500 km"; the stages sum to 239.9 and 266.3 km, 506.2 km. No climbs, heights
+    or times are published; the page estimates them (terrain model, DIN 33466).
+  - >-
+    Map line: the Stichting's GPX guides the OSM matcher; every stage at least 98 % matched, 505.1 km
+    against the stated 502 km. The trail crosses the Rhine by ferry from Pannerden's side to
+    Millingen (stage 16, bridged 516 m) and the Maas by ferry on stage 19 (bridged 157 m): OSM's
+    ferry lines aren't in the matcher's paths, so these stages allow longer bridges (`maxBridgeM`,
+    `maxBridges`). Stage 26 ends with a 3.4 km loop over the Sint-Pietersberg back to its last
+    point. Highest point 137 m (terrain model) in South Limburg. OSM maps few taps in South Limburg
+    (25 km without drinking water near the end).
+  - >-
+    Dogs: allowed on most of the route but often on a lead, e.g. where grazing animals are; on a
+    few short stretches not at all, with a detour (the Stichting).
+  - >-
+    Data check (2026-11-03): Wandelnet's stage figures against the Stichting Pieterpad's stage
+    table (whole km): all 26 within 0.6 km (4 %); total 502 against the Stichting's "ruim 500" and
+    Dutch Wikipedia's 501 km; termini Pieterburen and Sint-Pietersberg agree (the Stichting,
+    Wikipedia); waymarking white-red (both). No deviation over 10 %.
+dataCheck:
+  # working rule 2: the Stichting Pieterpad's stage table and Dutch Wikipedia
+  date: 2026-11-03
+  against: [sp, wikipedia]
+  deviations: []
+sources:
+  - id: wn
+    title: "Wandelnet: Pieterpad (LAW 9), its two parts and 26 stage pages (Pieterpad 1 and 2, etappe 01–13) with each stage's length"
+    url: https://www.wandelnet.nl/pieterpad
+    licence: All rights reserved (facts only)
+    retrieved: 2026-11-03
+  - id: sp
+    title: "Stichting Pieterpad (pieterpad.nl): the stages with their GPX files, waymarking, the guest rules and places to stay"
+    url: https://www.pieterpad.nl/etappes
+    licence: All rights reserved (facts only)
+    retrieved: 2026-11-03
+  - id: wikipedia
+    title: "Wikipedia (nl): Pieterpad (length, opening; data check)"
+    url: https://nl.wikipedia.org/wiki/Pieterpad
+    licence: CC BY-SA 4.0
+    retrieved: 2026-11-03
+  - id: rivm
+    title: "RIVM (Rijksinstituut voor Volksgezondheid en Milieu): Tekenbeten, preventing, checking for and removing ticks, Lyme disease and tick-borne encephalitis (as of July 2026)"
+    url: https://www.rivm.nl/tekenbeten
+    licence: © RIVM (facts only)
+    retrieved: 2026-11-03
+  - id: rki-fsme
+    title: "Robert Koch-Institut: FSME-Risikogebiete in Deutschland, Epidemiologisches Bulletin 9/2026 (as of January 2026)"
+    url: https://www.rki.de/DE/Aktuelles/Publikationen/Epidemiologisches-Bulletin/2026/09_26.pdf
+    licence: © Robert Koch-Institut (facts only)
+    retrieved: 2026-11-03
+    checkOnly: true  # only the tick level's basis: the German stretches are in no TBE risk district
+  - id: wikimedia
+    title: "Wikimedia: page views of the trail's Wikipedia articles in every language, by people, over twelve months (Wikidata sitelinks, pageview API)"
+    url: https://wikimedia.org/api/rest_v1/
+    licence: CC0 1.0 (pageview data); Wikidata CC0
+    retrieved: 2026-11-03
+    checkOnly: true  # not on the trail page: the page views only rank the home page's popular trails
+  - id: osm
+    title: "OpenStreetMap contributors: paths, water, shops and places to sleep along the trail (Geofabrik extracts), travel hubs"
+    url: https://www.openstreetmap.org/
+    licence: ODbL 1.0
+    retrieved: 2026-11-03
+  - id: copdem
+    title: "Copernicus DEM GLO-30 (30 m terrain model), tiles from AWS Open Data"
+    url: https://registry.opendata.aws/copernicus-dem/
+    licence: "Copernicus WorldDEM-30 licence, free; produced using Copernicus WorldDEM-30 © DLR e.V. 2010-2014 and © Airbus Defence and Space GmbH 2014-2018 provided under COPERNICUS by the European Union and ESA; all rights reserved"
+    retrieved: 2026-11-03
+  - id: worldcover
+    title: "ESA WorldCover 2021: 10 m land cover (via AWS Open Data)"
+    url: https://esa-worldcover.org/
+    licence: "CC BY 4.0; © ESA WorldCover project 2021 / Contains modified Copernicus Sentinel data (2021) processed by ESA WorldCover consortium"
+    retrieved: 2026-11-03
+  - id: era5
+    title: "Open-Meteo open data on AWS: ERA5-Land temperature and ERA5 precipitation, snow and wind, daily 1995–2024 (reanalysis)"
+    url: https://github.com/open-meteo/open-data
+    licence: CC BY 4.0 (Open-Meteo); contains modified Copernicus Climate Change Service information
+    retrieved: 2026-11-03
+  - id: osrm
+    title: "OSRM: road routes on OpenStreetMap data (router.project-osrm.org)"
+    url: https://project-osrm.org/
+    licence: Route data © OpenStreetMap contributors (ODbL)
+    retrieved: 2026-11-03

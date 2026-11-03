@@ -305,6 +305,12 @@
   allow the matcher a longer bridge (`maxBridgeM`), noted in the record (the
   Cotswold Way's A417 at the Air Balloon, 133 m), instead of holding the
   trail until OSM opens the crossing.
+- **A river ferry within a stage (2026-11-03):** where a walking stage
+  crosses a river by a small ferry (the Pieterpad's over the Rhine at
+  Millingen and over the Maas twice), the matcher bridges it like a missing
+  crossing (`maxBridgeM`, and `maxBridges` where small unconnected bits of OSM
+  near the track use up the default six first); the record's notes name the
+  ferries. A leg between stages that isn't walked stays a transfer.
 - **Colour palette (2026-11-01):** the site's base colours turned from
   terracotta on cream to olive moss (accent #5a7526, #b4cb76 in dark mode) on
   a slightly greener cream, to look more outdoors while keeping the warm, calm

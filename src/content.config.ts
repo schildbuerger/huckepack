@@ -93,6 +93,9 @@ const stage = z.object({
   // the longest gap between OSM ways the matcher may bridge on this stage (default 100 m), where
   // OSM still maps a crossing as under construction; the record's notes say where and why
   maxBridgeM: z.number().int().positive().optional(),
+  // how many gaps the matcher may bridge on this stage (default 6), where small unconnected bits of
+  // OSM near the track use up the bridges before a long one (the Pieterpad's ferries over the Rhine)
+  maxBridges: z.number().int().positive().optional(),
   // a stage that can't be walked in full (the Eifelsteig's stage 14, a bridge lost in a flood):
   // walkable to `at`, then the operator's recommended way on, leg by leg (`detour`, on foot or by
   // train or bus), drawn on the map in their own styles; the stage keeps its stated figures

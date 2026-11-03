@@ -1,0 +1,246 @@
+{
+  "climate-high.json": {
+    "retrieved": "2026-11-03T15:07:55+00:00",
+    "url": "https://openmeteo.s3.us-west-2.amazonaws.com/data/copernicus_era5_land+copernicus_era5?latitude=50.9&longitude=5.8&elevation=140"
+  },
+  "climate-low.json": {
+    "retrieved": "2026-11-03T15:02:29+00:00",
+    "url": "https://openmeteo.s3.us-west-2.amazonaws.com/data/copernicus_era5_land+copernicus_era5?latitude=53.4&longitude=6.5&elevation=0"
+  },
+  "elevation-glo30.json": {
+    "retrieved": "2026-11-03T15:03:50+00:00",
+    "url": "https://copernicus-dem-30m.s3.eu-central-1.amazonaws.com/Copernicus_DSM_COG_10_N50_00_E005_00_DEM/Copernicus_DSM_COG_10_N50_00_E005_00_DEM.tif https://copernicus-dem-30m.s3.eu-central-1.amazonaws.com/Copernicus_DSM_COG_10_N51_00_E005_00_DEM/Copernicus_DSM_COG_10_N51_00_E005_00_DEM.tif https://copernicus-dem-30m.s3.eu-central-1.amazonaws.com/Copernicus_DSM_COG_10_N51_00_E006_00_DEM/Copernicus_DSM_COG_10_N51_00_E006_00_DEM.tif https://copernicus-dem-30m.s3.eu-central-1.amazonaws.com/Copernicus_DSM_COG_10_N52_00_E006_00_DEM/Copernicus_DSM_COG_10_N52_00_E006_00_DEM.tif https://copernicus-dem-30m.s3.eu-central-1.amazonaws.com/Copernicus_DSM_COG_10_N53_00_E006_00_DEM/Copernicus_DSM_COG_10_N53_00_E006_00_DEM.tif"
+  },
+  "landcover.json": {
+    "retrieved": "2026-11-03T15:04:02+00:00",
+    "url": "https://esa-worldcover.s3.eu-central-1.amazonaws.com/v200/2021/map/ESA_WorldCover_10m_2021_v200_\u2026_Map.tif"
+  },
+  "osm-stage-1-main.json": {
+    "retrieved": "2026-11-01T21:21:36Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-10-main.json": {
+    "retrieved": "2026-11-01T21:21:36Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-11-main.json": {
+    "retrieved": "2026-11-01T21:21:36Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-12-main.json": {
+    "retrieved": "2026-11-01T21:21:36Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-13-main.json": {
+    "retrieved": "2026-11-01T21:21:36Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-14-main.json": {
+    "retrieved": "2026-11-01T21:21:36Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-15-main.json": {
+    "retrieved": "2026-11-01T21:21:36Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-16-main.json": {
+    "retrieved": "2026-11-01T21:21:36Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-17-main.json": {
+    "retrieved": "2026-11-01T21:21:36Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-18-main.json": {
+    "retrieved": "2026-11-01T21:21:36Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-19-main.json": {
+    "retrieved": "2026-11-01T21:21:36Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-2-main.json": {
+    "retrieved": "2026-11-01T21:21:36Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-20-main.json": {
+    "retrieved": "2026-11-01T21:21:36Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-21-main.json": {
+    "retrieved": "2026-11-01T21:21:36Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-22-main.json": {
+    "retrieved": "2026-11-01T21:21:36Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-23-main.json": {
+    "retrieved": "2026-11-01T21:21:36Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-24-main.json": {
+    "retrieved": "2026-11-01T21:21:36Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-25-main.json": {
+    "retrieved": "2026-11-01T21:21:36Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-26-main.json": {
+    "retrieved": "2026-11-01T21:21:36Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-3-main.json": {
+    "retrieved": "2026-11-01T21:21:36Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-4-main.json": {
+    "retrieved": "2026-11-01T21:21:36Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-5-main.json": {
+    "retrieved": "2026-11-01T21:21:36Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-6-main.json": {
+    "retrieved": "2026-11-01T21:21:36Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-7-main.json": {
+    "retrieved": "2026-11-01T21:21:36Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-8-main.json": {
+    "retrieved": "2026-11-01T21:21:36Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-9-main.json": {
+    "retrieved": "2026-11-01T21:21:36Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-water.json": {
+    "retrieved": "2026-11-01T21:21:36Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-way-tags.json": {
+    "retrieved": "2026-11-01T21:21:36Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osrm-access-amsterdam-airport-schiphol-ams.json": {
+    "retrieved": "2026-11-03T15:12:04+00:00",
+    "url": "https://router.project-osrm.org/route/v1/driving/4.74151,52.32698;6.45316,53.40003?overview=false"
+  },
+  "osrm-access-groningen.json": {
+    "retrieved": "2026-11-03T15:12:03+00:00",
+    "url": "https://router.project-osrm.org/route/v1/driving/6.56412,53.21047;6.45316,53.40003?overview=false"
+  },
+  "stage-1-main.gpx": {
+    "retrieved": "2026-11-03T14:36:04+00:00",
+    "url": "https://www.pieterpad.nl/component/phocadownload/category/1-gpx-files?download=1:pieterburen-winsum&Itemid=101"
+  },
+  "stage-10-main.gpx": {
+    "retrieved": "2026-11-03T14:36:08+00:00",
+    "url": "https://www.pieterpad.nl/component/phocadownload/category/1-gpx-files?download=10:gpx-ommen-hellendoorn&Itemid=101"
+  },
+  "stage-11-main.gpx": {
+    "retrieved": "2026-11-03T14:36:09+00:00",
+    "url": "https://www.pieterpad.nl/component/phocadownload/category/1-gpx-files?download=11:gpx-hellendoorn-holten&Itemid=101"
+  },
+  "stage-12-main.gpx": {
+    "retrieved": "2026-11-03T14:36:09+00:00",
+    "url": "https://www.pieterpad.nl/component/phocadownload/category/1-gpx-files?download=13:gpx-holten-laren&Itemid=101"
+  },
+  "stage-13-main.gpx": {
+    "retrieved": "2026-11-03T14:36:09+00:00",
+    "url": "https://www.pieterpad.nl/component/phocadownload/category/1-gpx-files?download=14:gpx-laren-vorden&Itemid=101"
+  },
+  "stage-14-main.gpx": {
+    "retrieved": "2026-11-03T14:36:10+00:00",
+    "url": "https://www.pieterpad.nl/component/phocadownload/category/1-gpx-files?download=15:gpx-vorden-zelhem&Itemid=101"
+  },
+  "stage-15-main.gpx": {
+    "retrieved": "2026-11-03T14:36:41+00:00",
+    "url": "https://www.pieterpad.nl/component/phocadownload/category/1-gpx-files?download=16:gpx-zelhem-braamt&Itemid=101"
+  },
+  "stage-16-main.gpx": {
+    "retrieved": "2026-11-03T14:36:41+00:00",
+    "url": "https://www.pieterpad.nl/component/phocadownload/category/1-gpx-files?download=17:gpx-braamt-millingen&Itemid=101"
+  },
+  "stage-17-main.gpx": {
+    "retrieved": "2026-11-03T14:36:42+00:00",
+    "url": "https://www.pieterpad.nl/component/phocadownload/category/1-gpx-files?download=18:gpx-millingen-aan-de-rijn-groesbeek&Itemid=101"
+  },
+  "stage-18-main.gpx": {
+    "retrieved": "2026-11-03T14:36:42+00:00",
+    "url": "https://www.pieterpad.nl/component/phocadownload/category/1-gpx-files?download=19:gpx-groesbeek-gennep&Itemid=101"
+  },
+  "stage-19-main.gpx": {
+    "retrieved": "2026-11-03T14:36:42+00:00",
+    "url": "https://www.pieterpad.nl/component/phocadownload/category/1-gpx-files?download=20:gpx-gennep-vierlingsbeek&Itemid=101"
+  },
+  "stage-2-main.gpx": {
+    "retrieved": "2026-11-03T14:36:04+00:00",
+    "url": "https://www.pieterpad.nl/component/phocadownload/category/1-gpx-files?download=2:winsum-groningen&Itemid=101"
+  },
+  "stage-20-main.gpx": {
+    "retrieved": "2026-11-03T14:36:43+00:00",
+    "url": "https://www.pieterpad.nl/component/phocadownload/category/1-gpx-files?download=21:gpx-vierlingsbeek-swolgen&Itemid=101"
+  },
+  "stage-21-main.gpx": {
+    "retrieved": "2026-11-03T14:36:43+00:00",
+    "url": "https://www.pieterpad.nl/component/phocadownload/category/1-gpx-files?download=22:gpx-swolgen-venlo&Itemid=101"
+  },
+  "stage-22-main.gpx": {
+    "retrieved": "2026-11-03T14:36:44+00:00",
+    "url": "https://www.pieterpad.nl/component/phocadownload/category/1-gpx-files?download=23:gpx-venlo-swalmen&Itemid=101"
+  },
+  "stage-23-main.gpx": {
+    "retrieved": "2026-11-03T14:36:44+00:00",
+    "url": "https://www.pieterpad.nl/component/phocadownload/category/1-gpx-files?download=24:gpx-swalmen-montfort&Itemid=101"
+  },
+  "stage-24-main.gpx": {
+    "retrieved": "2026-11-03T14:36:44+00:00",
+    "url": "https://www.pieterpad.nl/component/phocadownload/category/1-gpx-files?download=25:gpx-montfort-sittard&Itemid=101"
+  },
+  "stage-25-main.gpx": {
+    "retrieved": "2026-11-03T14:36:45+00:00",
+    "url": "https://www.pieterpad.nl/component/phocadownload/category/1-gpx-files?download=26:gpx-sittard-strabeek&Itemid=101"
+  },
+  "stage-26-main.gpx": {
+    "retrieved": "2026-11-03T14:36:45+00:00",
+    "url": "https://www.pieterpad.nl/component/phocadownload/category/1-gpx-files?download=27:gpx-strabeek-sint-pietersberg&Itemid=101"
+  },
+  "stage-3-main.gpx": {
+    "retrieved": "2026-11-03T14:36:05+00:00",
+    "url": "https://www.pieterpad.nl/component/phocadownload/category/1-gpx-files?download=3:gpx-groningen-zuidlaren&Itemid=101"
+  },
+  "stage-4-main.gpx": {
+    "retrieved": "2026-11-03T14:36:05+00:00",
+    "url": "https://www.pieterpad.nl/component/phocadownload/category/1-gpx-files?download=4:gpx-zuidlaren-rolde&Itemid=101"
+  },
+  "stage-5-main.gpx": {
+    "retrieved": "2026-11-03T14:36:05+00:00",
+    "url": "https://www.pieterpad.nl/component/phocadownload/category/1-gpx-files?download=5:gpx-rolde-schoonloo&Itemid=101"
+  },
+  "stage-6-main.gpx": {
+    "retrieved": "2026-11-03T14:36:06+00:00",
+    "url": "https://www.pieterpad.nl/component/phocadownload/category/1-gpx-files?download=6:gpx-schoonloo-sleen&Itemid=101"
+  },
+  "stage-7-main.gpx": {
+    "retrieved": "2026-11-03T14:36:06+00:00",
+    "url": "https://www.pieterpad.nl/component/phocadownload/category/1-gpx-files?download=7:gpx-sleen-coevorden&Itemid=101"
+  },
+  "stage-8-main.gpx": {
+    "retrieved": "2026-11-03T14:36:08+00:00",
+    "url": "https://www.pieterpad.nl/component/phocadownload/category/1-gpx-files?download=8:gpx-coevorden-hardenberg&Itemid=101"
+  },
+  "stage-9-main.gpx": {
+    "retrieved": "2026-11-03T14:36:08+00:00",
+    "url": "https://www.pieterpad.nl/component/phocadownload/category/1-gpx-files?download=9:gpx-hardenberg-ommen&Itemid=101"
+  },
+  "wikimedia.json": {
+    "retrieved": "2026-11-03T15:15:22+00:00",
+    "url": "Q19727555 2025-11..2026-10"
+  }
+}

@@ -186,6 +186,28 @@ class Match(unittest.TestCase):
         line, report = osm.match(track, data, max_bridge_m=200)
         self.assertEqual([w for w, _ in report["ways"]], [1, 0, 2])
 
+    def test_a_loop_of_over_3_km_is_split(self):
+        # 500 m in, a loop of 1.5 km out, 150 m across and 1.5 km back (3.15 km), 500 m on
+        pts = [(x, 0.0) for x in range(0, 2001, 20)] + [(2000.0, y) for y in range(20, 151, 20)]
+        pts += [(x, 150.0) for x in range(1980, 499, -20)] + [(500.0, y) for y in range(130, 39, -20)]
+        pts += [(x, 40.0) for x in range(480, -1, -20)]
+        _, turns = osm.turnarounds(pts)
+        self.assertEqual(len(turns), 1)
+
+    def test_a_stage_can_allow_more_bridges(self):
+        # eight ways in a row with 20 m gaps between them: seven gaps, one more than the default
+        nodes, ways = {}, []
+        for i in range(8):
+            a, b = 2 * i + 1, 2 * i + 2
+            nodes[a], nodes[b] = (8.0 + i * 0.0014, LAT), (8.0 + i * 0.0014 + 0.0011, LAT)
+            ways.append((i + 1, [a, b]))
+        data = osm_data(nodes, ways)
+        track = [(8.0 + i * 0.0005, LAT) for i in range(22)]
+        with self.assertRaises(ValueError):
+            osm.match(track, data)
+        line, report = osm.match(track, data, max_bridges=7)
+        self.assertEqual([w for w, _ in report["ways"]].count(0), 7)
+
 
 class Surface(unittest.TestCase):
     def test_surface_tag_first(self):

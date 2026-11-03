@@ -596,6 +596,33 @@ export const SKYLINES: Record<string, Skyline> = {
       { d: "M984,260V250H996V260Z", c: "#4f4a40" },
     ],
   },
+  "pieterpad": {
+    view: "The Netherlands from north to south in one wide view: Groningen's tall church tower over the flat land, a hunebed of great stones on the Drenthe heath, a windmill by a canal, the woods of the low hills, and the Sint-Pietersberg's flat-topped ridge far to the south",
+    ridge: "#4f6a33",
+    ground: "#7f9a4a",
+    shapes: [
+      // the Sint-Pietersberg: a long, flat-topped ridge of marl, far off
+      { d: range([[1220, G], [1270, 252], [1320, 244], [1560, 242], [1600, 246], [1600, G]]), c: "#9aa9a0" },
+      // the low wooded hills of Salland and the Montferland
+      { d: hills([[700, G], [780, 254], [880, 248], [980, 256], [1060, 262], [1120, G]]), c: FAR },
+      // Groningen's church tower: a tall square tower with a slender spire, over the town
+      { d: "M330,268V246H420V268Z", c: "#a29c8c" },
+      { d: "M366,246V176H384V246Z M369,176V160H381V176Z", c: "#b4a48c" },
+      { d: "M371,160L375,132L379,160Z", c: "#6a5a4a" },
+      // the flat land, the heath of Drenthe and a canal
+      { d: range([[0, G], [0, 268], [1600, 266], [1600, G]]), c: "#8aa45a" },
+      { d: hills([[440, G], [480, 272], [600, 268], [720, 272], [760, G]]), c: "#9a7f8a" },
+      { d: water(840, 1180, 276), c: SEA },
+      { d: range([[0, G], [0, 286], [1600, 286], [1600, G]]), c: "#7f9a4a" },
+      // a hunebed: three standing boulders under a long capstone on the heath
+      { d: "M556,272Q556,260 568,258Q582,260 582,272Z M590,272Q590,258 604,256Q618,258 618,272Z M626,272Q626,260 638,258Q650,260 650,272Z", c: "#8a8478" },
+      { d: "M552,260Q560,246 600,244Q644,246 654,260Q600,254 552,260Z", c: "#6f6a60" },
+      // a windmill on the canal's dike: the body, the cap and the sails
+      { d: "M1192,268L1198,228H1214L1220,268Z", c: "#6f5a48" },
+      { d: "M1194,230Q1206,218 1218,230Z", c: "#4f4038" },
+      { d: "M1206,226L1178,198L1182,194L1210,222Z M1206,226L1234,254L1230,258L1202,230Z M1206,226L1234,198L1238,202L1210,230Z M1206,226L1178,254L1174,250L1202,222Z", c: "#e3d6bc" },
+    ],
+  },
   "pfaelzer-weinsteig": {
     view: "The Haardt edge of the Palatinate Forest: the wooded ridge up to the Kalmit with its stone tower, the Trifels on its sandstone rock, the Hambacher Schloss on its hill and vineyards below",
     ridge: "#4f6a33",
