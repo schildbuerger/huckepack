@@ -651,8 +651,11 @@ const featuredScript = inlineScript(Astro, `// A random featured trail on each p
   }
   /* the band: wall to wall, under the header, room at its foot for the ridges; the day's sky until the
      script has set the hour (and without JavaScript) */
+  /* z-index: the band is its own layer (isolation), and the trip search's panels open out of it over
+     the totals band below, whose turned stamps form layers of their own; the band must sit above them */
   .hero-band {
     position: relative;
+    z-index: 3;
     margin: 0 calc(50% - 50vw);
     padding: 0 16px 150px;
     overflow-x: clip;
