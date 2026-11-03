@@ -1,0 +1,182 @@
+name: High Coast Trail
+added: 2026-11-03
+localName: Höga Kusten-leden
+aliases: [Höga Kustenleden, Höga Kusten-leden, High Coast Trail Sweden]
+website: https://www.hogakusten.com/hogakustenleden
+wikidata: Q3146332
+managedBy:
+  # Höga Kusten Destinationsutveckling, the tourism company of the municipalities, publishes the
+  # trail and its nine stages (accepted as official, decided 2026-11-03); Swedish Wikipedia names
+  # Region Västernorrland as the trail authority
+  - name: Höga Kusten Destinationsutveckling (the municipalities' tourism company)
+    url: https://www.hogakusten.com/hogakustenleden
+trailType: point-to-point
+continents: [Europe]
+countries: [SE]
+regions: [Västernorrland]
+protectedAreas:
+  - Skuleskogen National Park
+termini:
+  # Hornöberget at the High Coast Bridge and Varvsberget above Örnsköldsvik (OSM)
+  start:
+    name: Hornöberget
+    lat: 62.80265
+    lon: 17.95969
+  end:
+    name: Örnsköldsvik (Varvsberget)
+    lat: 63.28818
+    lon: 18.69279
+  source: osm
+waymarking:
+  # "Leden är välmarkerad med orange färg på träd och stolpar"
+  text: Orange paint on trees and posts
+  source: hk
+length:
+  # "135 km" (hogakusten.com); the nine stages sum to 139.8 km
+  - km: 135
+    source: hk
+stages:
+  # hogakusten.com's nine stage pages, each headed with length, grade and time. No official GPX:
+  # OSM maps the trail as seven section relations (the older division, superroute 1730468); stages
+  # 1–5 follow theirs, 6–9 are cut from the last two at the stage ends (OSM)
+  source: hk
+  list:
+    - { number: "1", kind: main, from: Hornöberget, to: Lövvik, km: 11.0, minutes: 300, maxMinutes: 360, relation: 19096564 }
+    - { number: "2", kind: main, from: Lövvik, to: Gavik, km: 26.8, minutes: 600, maxMinutes: 720, relation: 19096563 }
+    - { number: "3", kind: main, from: Gavik, to: Lappudden, km: 9.4, minutes: 180, relation: 19096562 }
+    - { number: "4", kind: main, from: Lappudden, to: Ullånger, km: 14.6, minutes: 360, maxMinutes: 420, relation: 19096561 }
+    - { number: "5", kind: main, from: Ullånger, to: Skuleberget, km: 20.8, minutes: 420, maxMinutes: 540, relation: 19096560 }
+    - { number: "6", kind: main, from: Skuleberget, to: Skuleskogen Entré Syd, km: 10.86, minutes: 180, relation: 19096559, end: { name: Skuleskogen Entré Syd, lat: 63.08415, lon: 18.47873 } }
+    - { number: "7", kind: main, from: Skuleskogen Entré Syd, to: Skuleskogen Entré Nord, km: 7.5, minutes: 120, maxMinutes: 180, relation: 19096559, end: { name: Skuleskogen Entré Nord, lat: 63.1343, lon: 18.5172 } }
+    - { number: "8", kind: main, from: Skuleskogen Entré Nord, to: Balesudden, km: 20, minutes: 360, maxMinutes: 420, relation: [19096559, 19096558], end: { name: Balesudden, lat: 63.20341, lon: 18.70008 } }
+    - { number: "9", kind: main, from: Balesudden, to: Örnsköldsvik, km: 18.8, minutes: 360, relation: 19096558, end: { name: Örnsköldsvik (Varvsberget), lat: 63.28818, lon: 18.69279 } }
+route:
+  # built by `python -m pipeline.all high-coast-trail`: OSM ways matched to the section relations
+  source: osm
+  publishable: true
+difficulty:
+  # hogakusten.com grades its stages "Lätt", "Medel" or "Svår"; no SAC grade. Our estimate
+  estimated:
+    sac: T2
+    basis: >-
+      hogakusten.com grades four stages difficult ("Svår"), with steep climbs over the High Coast's
+      rounded mountains (Skuleberget, Valkallen) and rocky paths through the Skuleskogen forest, and
+      easier stages on gravel roads; it advises steering clear of the Slåttdalsskrevan gorge because of
+      rockfall. Mountain hiking on clear paths (T2).
+    source: hk
+sleeping:
+  # "inom varje etapp finns minst en möjlighet till övernattning under tak": timbered cabins, B&Bs,
+  # hotels and campsites along the stages (hogakusten.com's stage pages)
+  types: [hut, guesthouse, hotel, campsite]
+  source: hk
+wildCamping:
+  # the right of public access ("Allemansrätten … kan du … sätta upp ditt tält"), except in
+  # Skuleskogen National Park: "I parken får du endast tälta på anvisade tältplatser"
+  status: allowed
+  rule: >-
+    The right of public access lets you pitch a tent for a night, with care for the land and its
+    owners; in Skuleskogen National Park only at the designated tent sites.
+  source: hk
+access:
+  # Härnösand station near the start, and Sundsvall–Timrå Airport. Coordinates from OSM; distances
+  # by pipeline/access.py
+  - kind: station
+    name: Härnösand
+    lat: 62.635
+    lon: 17.92797
+    source: osm
+  - kind: airport
+    name: Sundsvall–Timrå Airport (SDL)
+    lat: 62.52782
+    lon: 17.44063
+    source: osm
+animals:
+  # Ticks (1177, Sweden's health guide). Level ours
+  list:
+    - kind: tick
+      name: "Ticks (Lyme disease, TBE)"
+      level: low
+      basis: "Ticks can pass on Lyme disease, and TBE in some risk areas; most bites need no care if the tick comes out quickly."
+      do:
+        - "Wear covering clothes and shoes, socks and high boots"
+        - "Look for ticks on your body after being outdoors, not forgetting the scalp and behind the ears"
+        - "Grip the tick as close to the skin as you can and pull it slowly straight out, then wash the bite with soap and water"
+        - "Contact a health centre if a redness appears one to four weeks after a bite"
+      source: 1177-fasting
+tags: [coast, world-heritage, national-park, forest, archipelago]
+notes:
+  - >-
+    The trail runs through the High Coast World Heritage Site from the High Coast Bridge at
+    Hornöberget north along the steep, forested coast, past Lövvik, the Valkallen and Gavik to
+    Lappudden and Ullånger, over Skuleberget, through Skuleskogen National Park and the Balesudden
+    nature reserve to Örnsköldsvik. The land here still rises after the last ice age, with old
+    shorelines and cobble fields high above the sea.
+  - >-
+    Stages: hogakusten.com divides the trail into nine stages (135 km; the 2023 product sheet still
+    had seven, Swedish Wikipedia lists thirteen at 128.6 km). Water: some springs and brooks can dry
+    out in hot, dry spells (hogakusten.com). Season: none stated. Tree line: none recorded, the trail
+    stays below about 300 m.
+  - >-
+    Map line: OSM's section relations (superroute 1730468, the older seven sections), cut at
+    Skuleskogen's south and north entrances and at Balesudden for the current nine stages; every
+    stage 100 % matched, 135.3 km against the stages' 139.8 km. Stage 9 measures 16.8 km against
+    18.8 km: OSM's relation ends at Varvsberget above the town. A gap of 832 m in the relation near
+    Skuleskogen is bridged. Highest point 293 m (terrain model) on Skuleberget.
+  - >-
+    Data check (2026-11-03): hogakusten.com's figures against English Wikipedia: 135 km from
+    Hornöberget to Örnsköldsvik in nine sections, orange waymarks: all agree. Swedish Wikipedia
+    gives 128.6 km in thirteen stages (5 %) and names Region Västernorrland as trail authority; its
+    stage division is older. No deviation over 10 %.
+dataCheck:
+  # working rule 2: English and Swedish Wikipedia
+  date: 2026-11-03
+  against: [wikipedia]
+  deviations: []
+sources:
+  - id: hk
+    title: "Höga Kusten Destinationsutveckling (hogakusten.com): Höga Kusten-leden and its nine stage pages (length, grade, time, places to stay, rules)"
+    url: https://www.hogakusten.com/hogakustenleden
+    licence: All rights reserved (facts only)
+    retrieved: 2026-11-03
+  - id: wikipedia
+    title: "English and Swedish Wikipedia: High Coast Trail / Höga kustenleden (length, sections, trail authority; data check)"
+    url: https://en.wikipedia.org/wiki/High_Coast_Trail
+    licence: CC BY-SA 4.0
+    retrieved: 2026-11-03
+    checkOnly: true
+  - id: 1177-fasting
+    title: "1177 (Sweden's health guide): Fästingbett (protection, removing a tick, when to seek care; updated 2 September 2026)"
+    url: https://www.1177.se/olyckor--skador/bett-stick-och-vaxter/fastingbett
+    licence: © 1177 (facts only)
+    retrieved: 2026-11-03
+  - id: wikimedia
+    title: "Wikimedia: page views of the trail's Wikipedia articles in every language, by people, over twelve months (Wikidata sitelinks, pageview API)"
+    url: https://wikimedia.org/api/rest_v1/
+    licence: CC0 1.0 (pageview data); Wikidata CC0
+    retrieved: 2026-11-03
+    checkOnly: true  # not on the trail page: the page views only rank the home page's popular trails
+  - id: osm
+    title: "OpenStreetMap contributors: paths, water, shops and places to sleep along the trail (Geofabrik extracts), travel hubs"
+    url: https://www.openstreetmap.org/
+    licence: ODbL 1.0
+    retrieved: 2026-11-03
+  - id: copdem
+    title: "Copernicus DEM GLO-30 (30 m terrain model), tiles from AWS Open Data"
+    url: https://registry.opendata.aws/copernicus-dem/
+    licence: "Copernicus WorldDEM-30 licence, free; produced using Copernicus WorldDEM-30 © DLR e.V. 2010-2014 and © Airbus Defence and Space GmbH 2014-2018 provided under COPERNICUS by the European Union and ESA; all rights reserved"
+    retrieved: 2026-11-03
+  - id: worldcover
+    title: "ESA WorldCover 2021: 10 m land cover (via AWS Open Data)"
+    url: https://esa-worldcover.org/
+    licence: "CC BY 4.0; © ESA WorldCover project 2021 / Contains modified Copernicus Sentinel data (2021) processed by ESA WorldCover consortium"
+    retrieved: 2026-11-03
+  - id: era5
+    title: "Open-Meteo open data on AWS: ERA5-Land temperature and ERA5 precipitation, snow and wind, daily 1995–2024 (reanalysis)"
+    url: https://github.com/open-meteo/open-data
+    licence: CC BY 4.0 (Open-Meteo); contains modified Copernicus Climate Change Service information
+    retrieved: 2026-11-03
+  - id: osrm
+    title: "OSRM: road routes on OpenStreetMap data (router.project-osrm.org)"
+    url: https://project-osrm.org/
+    licence: Route data © OpenStreetMap contributors (ODbL)
+    retrieved: 2026-11-03

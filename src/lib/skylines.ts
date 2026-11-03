@@ -786,6 +786,24 @@ export const SKYLINES: Record<string, Skyline> = {
       { d: range([[0, G], [0, 274], [1600, 272], [1600, G]]), c: "#5f7a3f" },
     ],
   },
+  "high-coast-trail": {
+    view: "The High Coast of Sweden: the suspension bridge over the Ångermanälven, steep forested hills rising straight from the Gulf of Bothnia, the dome of Skuleberget and islands in the sea",
+    ridge: "#3f5a3a",
+    ground: "#4f6a3a",
+    shapes: [
+      // islands far out in the sea
+      { d: hills([[1300, G], [1350, 252], [1440, 246], [1520, 256], [1560, G]]), c: "#8a9aa3" },
+      { d: water(0, 1600, 262), c: SEA },
+      // the High Coast Bridge: two towers and the main cable
+      { d: "M120,264V182H130V264Z M400,264V182H410V264Z", c: "#c9ccd0" },
+      { d: "M60,244Q125,180 125,182Q265,250 405,182Q405,180 470,244L470,246Q405,184 405,186Q265,254 125,186Q125,184 60,246Z", c: "#c9ccd0" },
+      { d: "M40,246H500V250H40Z", c: "#b8bcc0" },
+      // the steep forested coast, and Skuleberget's rounded dome
+      { d: hills([[560, G], [620, 230], [720, 210], [820, 226], [900, 244], [960, G]]), c: FOREST },
+      { d: hills([[880, G], [960, 214], [1040, 186], [1120, 192], [1200, 226], [1280, G]]), c: "#4f6a3a" },
+      { d: range([[0, G], [0, 280], [1600, 280], [1600, G]]), c: "#4f6a3a" },
+    ],
+  },
   "pfaelzer-weinsteig": {
     view: "The Haardt edge of the Palatinate Forest: the wooded ridge up to the Kalmit with its stone tower, the Trifels on its sandstone rock, the Hambacher Schloss on its hill and vineyards below",
     ridge: "#4f6a33",
