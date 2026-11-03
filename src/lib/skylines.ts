@@ -687,6 +687,29 @@ export const SKYLINES: Record<string, Skyline> = {
       { d: range([[0, G], [0, 276], [600, 272], [840, 280], [1180, 280], [1600, 274], [1600, G]]), c: "#7f9a4a" },
     ],
   },
+  "pembrokeshire-coast-path": {
+    view: "The Pembrokeshire coast: red and grey sea cliffs with the Green Bridge of Wales, a natural arch, and sea stacks in the surf, an island far out, and the green clifftop fields with a Neolithic cromlech",
+    ridge: "#4f6a3a",
+    ground: "#6f9a4a",
+    shapes: [
+      // an island far out at sea
+      { d: hills([[120, G], [170, 248], [260, 240], [330, 252], [360, G]]), c: "#8a9aa3" },
+      { d: water(0, 1600, 262), c: SEA },
+      // sea stacks
+      { d: range([[520, 266], [526, 230], [544, 226], [550, 266]]), c: "#8a7a6a" },
+      { d: range([[600, 266], [606, 244], [618, 242], [622, 266]]), c: "#8a7a6a" },
+      // the Green Bridge of Wales: a limestone arch standing in the sea
+      { d: "M660,266V226Q660,216 680,214H760Q776,216 776,226V266H756V246Q756,234 718,232Q680,234 680,246V266Z", c: "#a89a84" },
+      // the cliffs: a high headland running out to the sea
+      { d: range([[780, G], [790, 222], [820, 212], [980, 206], [1160, 214], [1400, 210], [1600, 216], [1600, G]]), c: "#8a6f5a" },
+      // the clifftop fields
+      { d: range([[800, G], [810, 216], [990, 210], [1170, 218], [1400, 214], [1600, 220], [1600, G]]), c: "#7f9a4a" },
+      // a cromlech: a capstone on its uprights
+      { d: "M1220,214V196H1228V214Z M1262,214V194H1270V214Z", c: "#6f6a60" },
+      { d: "M1210,198Q1240,184 1280,194L1278,200Q1240,192 1212,202Z", c: "#8a8478" },
+      { d: range([[0, G], [0, 284], [780, 284], [800, 270], [1600, 272], [1600, G]]), c: "#6f9a4a" },
+    ],
+  },
   "pfaelzer-weinsteig": {
     view: "The Haardt edge of the Palatinate Forest: the wooded ridge up to the Kalmit with its stone tower, the Trifels on its sandstone rock, the Hambacher Schloss on its hill and vineyards below",
     ridge: "#4f6a33",
