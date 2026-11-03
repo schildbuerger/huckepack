@@ -976,7 +976,7 @@ const featuredScript = inlineScript(Astro, `// A random featured trail on each p
     --stamp: #f6f3e4;
     --stamp-label: #dfe6c4;
     margin: 0 calc(50% - 50vw);
-    padding: 48px 16px 64px;
+    padding: 48px 16px 96px;
     background: #4c6420;
   }
   :global(html[data-sky="night"]) .totals-band {
@@ -1070,6 +1070,11 @@ const featuredScript = inlineScript(Astro, `// A random featured trail on each p
   .block,
   .pair {
     margin-top: 112px;
+  }
+  /* the featured band follows the totals' green band directly: its wave edge rises out of the green
+     (the band keeps 96 px below the stamps for it), no cream gap between */
+  .totals-band + .pair {
+    margin-top: 0;
   }
   .block-head {
     display: flex;
