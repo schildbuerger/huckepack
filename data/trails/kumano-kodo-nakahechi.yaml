@@ -1,0 +1,195 @@
+name: Kumano Kodo Nakahechi
+added: 2026-11-03
+localName: 熊野古道 中辺路
+aliases: [Kumano Kodo, Nakahechi, Kumano Kodō Nakahechi, Imperial Route]
+website: https://www.tb-kumano.jp/en/kumano-kodo/nakahechi/
+wikidata: Q30074932
+managedBy:
+  # the Tanabe City Kumano Tourism Bureau publishes the route, its sections, closures and safety
+  # advice; part of the UNESCO World Heritage Site "Sacred Sites and Pilgrimage Routes in the Kii
+  # Mountain Range"
+  - name: Tanabe City Kumano Tourism Bureau
+    url: https://www.tb-kumano.jp/en/kumano-kodo/nakahechi/
+trailType: point-to-point
+continents: [Asia]
+countries: [JP]
+regions: [Wakayama]
+protectedAreas: []
+termini:
+  # Takijiri-oji, "the point of entry to the sacred area of Kumano", and Kumano Nachi Taisha (OSM)
+  start:
+    name: Takijiri-oji
+    lat: 33.77553
+    lon: 135.50369
+  end:
+    name: Kumano Nachi Taisha
+    lat: 33.66843
+    lon: 135.89044
+  source: osm
+stages:
+  # the bureau's four sections from Takijiri-oji to Kumano Nachi Taisha (decided 2026-11-03: the
+  # Nakahechi to Nachi), each page's course data (distance, time, elevation gain and loss). The
+  # Kogumotori-goe starts at Ukegawa, about 3 km (45 minutes' walk, or a bus) from Hongu Taisha.
+  # No official GPX: each section follows its OSM relation, cut at its end (OSM)
+  source: tb
+  list:
+    - { number: "1", kind: main, from: Takijiri-oji, to: Tsugizakura-oji, km: 17, ascentM: 1260, descentM: 850, minutes: 420, maxMinutes: 600, relation: 17094646, end: { name: Tsugizakura-oji, lat: 33.8285, lon: 135.63414 } }
+    - { number: "2", kind: main, from: Tsugizakura-oji, to: Kumano Hongu Taisha, km: 21, ascentM: 850, descentM: 1360, minutes: 480, maxMinutes: 660, relation: 17094646, end: { name: Kumano Hongu Taisha, lat: 33.84035, lon: 135.77363 } }
+    - { number: "3", kind: main, from: Ukegawa, to: Koguchi, km: 13, ascentM: 670, descentM: 690, minutes: 270, maxMinutes: 360, relation: 17097854, end: { name: Koguchi, lat: 33.75866, lon: 135.8418 } }
+    - { number: "4", kind: main, from: Koguchi, to: Kumano Nachi Taisha, km: 14, ascentM: 1260, descentM: 930, minutes: 420, maxMinutes: 540, relation: 17095001, end: { name: Kumano Nachi Taisha, lat: 33.66843, lon: 135.89044 } }
+route:
+  # built by `python -m pipeline.all kumano-kodo-nakahechi`: OSM ways matched to each section's OSM
+  # relation (17094646 Nakahechi, 17097854 Kogumotori-goe, 17095001 Ogumotori-goe)
+  source: osm
+  publishable: true
+difficulty:
+  # the bureau rates its sections 4 (Takijiri to Hongu, Kogumotori-goe) and 5 (Ogumotori-goe) on its
+  # own scale; no SAC grade. Our estimate
+  estimated:
+    sac: T2
+    basis: >-
+      "A diverse mountain route with a mixture of unpaved, uneven trails, ancient cobblestones and
+      stairs, and paved roads through villages. There are many steep climbs and ascents. The route
+      is not technically difficult, but it is physically challenging"; the old cobble steps are
+      slippery when wet. Mountain hiking on clear paths (T2).
+    source: tb-tips
+season:
+  # "The Nakahechi route is open year-round … Spring and fall are popular seasons"; summers hot,
+  # humid and wet, typhoons possible
+  months: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
+  text: Open year-round; spring and autumn are popular
+  source: tb-tips
+sleeping:
+  # guesthouses and inns along the route (meals "at the guesthouse and inns"), and the campsites the
+  # bureau names in Chikatsuyu, Kawayu Onsen, Wataze Onsen and Koguchi
+  types: [guesthouse, campsite]
+  source: tb-tips
+wildCamping:
+  # "Camping can severely damage these sites … Much of the mountains are privately owned … camping
+  # is frowned upon outside of official camping areas … Please, no open campfires"
+  status: restricted
+  rule: >-
+    Camping only at official campsites (Chikatsuyu, Kawayu Onsen, Wataze Onsen, Koguchi): the route
+    passes sacred sites and mostly private land; no open campfires.
+  source: tb-tips
+access:
+  # Kii-Tanabe, the station for the buses to Takijiri, and Kansai International Airport.
+  # Coordinates from OSM; distances by pipeline/access.py
+  - kind: station
+    name: Kii-Tanabe
+    lat: 33.73288
+    lon: 135.38454
+    source: osm
+  - kind: airport
+    name: Kansai International Airport (KIX)
+    lat: 34.4342
+    lon: 135.22252
+    source: osm
+animals:
+  # the bureau's "Creatures to be Wary of"; levels ours. Its giant centipede, Asian giant hornet and
+  # land leech have no silhouette on the site yet, so they're named in the notes only
+  list:
+    - kind: snake
+      name: "Japanese pit viper (mamushi)"
+      level: moderate
+      basis: "A venomous snake, 40–80 cm, grey to reddish brown with irregular yellow bands and a triangular head; it lives along the Kumano Kodo."
+      do:
+        - "Know it by its triangular head"
+        - "Avoid it when you see it"
+      dont:
+        - "Go near it"
+      source: tb-tips
+    - kind: tick
+      name: "Ticks"
+      level: low
+      basis: "Ticks attach to the skin and suck blood; some cases of tick-borne viruses have been reported in Japan, though rarely."
+      do:
+        - "Wear long-sleeved shirts and long trousers"
+        - "Check your body after the hike"
+      source: tb-tips
+    - kind: bear
+      name: "Asiatic black bear (tsukinowaguma)"
+      level: low
+      basis: "Few are left in the area, but they have been seen on rare occasions."
+      do:
+        - "Keep your distance if you see one"
+        - "Report it to the local authorities at the first chance"
+      source: tb-tips
+tags: [pilgrimage, world-heritage, shrines, forest, mountains]
+notes:
+  - >-
+    The Nakahechi, the "Imperial Route" of the Kumano pilgrimage, enters the sacred area of Kumano at
+    Takijiri-oji, climbs through cedar and cypress forests past the oji shrines by Chikatsuyu and
+    Tsugizakura-oji to Kumano Hongu Taisha, then crosses the mountains by the Kogumotori-goe to
+    Koguchi and the Ogumotori-goe, with the steep Dogiri-zaka, to Kumano Nachi Taisha and the Nachi
+    falls. The third grand shrine, Kumano Hayatama Taisha in Shingu, is reached by the Kumano-gawa
+    river route (by boat) and is not part of the walk.
+  - >-
+    Hongu to Ukegawa: the Kogumotori-goe starts at Ukegawa on Route 168, about 3 km and 45 minutes'
+    walk (or a short bus ride) from Hongu Taisha; this link is not a section of its own and not on
+    the map. Detours and closures after landslides are posted on the bureau's tips page. Other
+    creatures the bureau warns of: the giant centipede (mukade), the Asian giant hornet (most
+    aggressive in autumn) and the land leech. Tree line: none recorded, the route stays below about
+    900 m.
+  - >-
+    Map line: each section follows its OSM relation; every section 100 % matched, 62.1 km against
+    the bureau's 65 km (Takijiri to Hongu 35.8 km against 38, the Kumotori routes 26.3 km against 27).
+    The stages' stated 4,040 m of climbing against about 3,950 m on the terrain model. Highest point
+    882 m on the Ogumotori-goe.
+  - >-
+    Data check (2026-11-03): the bureau's figures against English Wikipedia (Kumano Kodō, Nakahechi):
+    Takijiri-oji to Hongu "about 37 km", usually two days (the bureau's 17 + 21 km, 3 %); Hongu to
+    Nachi two days via Koguchi on the Kogumotori-goe and Ogumotori-goe: agree. No deviation over 10 %.
+dataCheck:
+  # working rule 2: English Wikipedia
+  date: 2026-11-03
+  against: [wikipedia]
+  deviations: []
+sources:
+  - id: tb
+    title: "Tanabe City Kumano Tourism Bureau: the Nakahechi and its section pages (Takijiri-oji to Tsugizakura-oji, Tsugizakura-oji to Kumano Hongu Taisha, Kogumotori-goe, Ogumotori-goe) with their course data"
+    url: https://www.tb-kumano.jp/en/kumano-kodo/nakahechi/
+    licence: All rights reserved (facts only)
+    retrieved: 2026-11-03
+  - id: tb-tips
+    title: "Tanabe City Kumano Tourism Bureau: Kumano Kodo tips and safety (route difficulty, weather and season, camping, creatures to be wary of, closures)"
+    url: https://www.tb-kumano.jp/en/kumano-kodo/tips/
+    licence: All rights reserved (facts only)
+    retrieved: 2026-11-03
+  - id: wikipedia
+    title: "English Wikipedia: Kumano Kodō (the Nakahechi's length and days; data check)"
+    url: https://en.wikipedia.org/wiki/Kumano_Kod%C5%8D
+    licence: CC BY-SA 4.0
+    retrieved: 2026-11-03
+    checkOnly: true
+  - id: wikimedia
+    title: "Wikimedia: page views of the trail's Wikipedia articles in every language, by people, over twelve months (Wikidata sitelinks, pageview API)"
+    url: https://wikimedia.org/api/rest_v1/
+    licence: CC0 1.0 (pageview data); Wikidata CC0
+    retrieved: 2026-11-03
+    checkOnly: true  # not on the trail page: the page views only rank the home page's popular trails
+  - id: osm
+    title: "OpenStreetMap contributors: paths, water, shops and places to sleep along the trail (Geofabrik extracts), travel hubs"
+    url: https://www.openstreetmap.org/
+    licence: ODbL 1.0
+    retrieved: 2026-11-03
+  - id: copdem
+    title: "Copernicus DEM GLO-30 (30 m terrain model), tiles from AWS Open Data"
+    url: https://registry.opendata.aws/copernicus-dem/
+    licence: "Copernicus WorldDEM-30 licence, free; produced using Copernicus WorldDEM-30 © DLR e.V. 2010-2014 and © Airbus Defence and Space GmbH 2014-2018 provided under COPERNICUS by the European Union and ESA; all rights reserved"
+    retrieved: 2026-11-03
+  - id: worldcover
+    title: "ESA WorldCover 2021: 10 m land cover (via AWS Open Data)"
+    url: https://esa-worldcover.org/
+    licence: "CC BY 4.0; © ESA WorldCover project 2021 / Contains modified Copernicus Sentinel data (2021) processed by ESA WorldCover consortium"
+    retrieved: 2026-11-03
+  - id: era5
+    title: "Open-Meteo open data on AWS: ERA5-Land temperature and ERA5 precipitation, snow and wind, daily 1995–2024 (reanalysis)"
+    url: https://github.com/open-meteo/open-data
+    licence: CC BY 4.0 (Open-Meteo); contains modified Copernicus Climate Change Service information
+    retrieved: 2026-11-03
+  - id: osrm
+    title: "OSRM: road routes on OpenStreetMap data (router.project-osrm.org)"
+    url: https://project-osrm.org/
+    licence: Route data © OpenStreetMap contributors (ODbL)
+    retrieved: 2026-11-03

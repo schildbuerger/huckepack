@@ -768,6 +768,24 @@ export const SKYLINES: Record<string, Skyline> = {
       { d: "M226,278V266H232V278Z M240,278V266H246V278Z", c: "#4f4038" },
     ],
   },
+  "kumano-kodo-nakahechi": {
+    view: "The Kii mountains on the Kumano Kodo: ridge after ridge of forested mountains fading into the haze, a vermilion torii and a shrine roof in the cedars, and the Nachi falls with the three-storied pagoda",
+    ridge: "#3f5a3a",
+    ground: "#4f6a3a",
+    shapes: [
+      // ridges of forested mountains, paler with distance
+      { d: hills([[0, G], [140, 214], [320, 200], [520, 220], [700, 204], [900, 224], [1100, 206], [1320, 220], [1600, 210], [1600, G]]), c: "#a3b3ad" },
+      { d: hills([[0, G], [200, 230], [420, 218], [640, 236], [860, 222], [1080, 240], [1320, 228], [1600, 238], [1600, G]]), c: "#7f9488" },
+      { d: hills([[0, G], [160, 252], [380, 242], [600, 256], [820, 246], [1060, 258], [1300, 250], [1600, 256], [1600, G]]), c: FOREST },
+      // the Nachi falls on a cliff, and the pagoda before it
+      { d: range([[1180, G], [1190, 230], [1230, 218], [1270, 226], [1290, G]]), c: "#6f7f74" },
+      { d: waterfall(1232, 222, 270, 6), c: "#e8eef0" },
+      { d: "M1300,272V262H1336V272Z M1304,262L1318,254L1332,262Z M1306,254V246H1330V254Z M1302,246L1318,238L1334,246Z M1308,238V232H1328V238Z M1304,232L1318,222L1332,232Z", c: "#c0503a" },
+      // a torii in the cedars
+      { d: "M420,272V244H426V272Z M454,272V244H460V272Z M412,244V238H468V244Z M416,250V247H464V250Z", c: "#c0503a" },
+      { d: range([[0, G], [0, 274], [1600, 272], [1600, G]]), c: "#5f7a3f" },
+    ],
+  },
   "pfaelzer-weinsteig": {
     view: "The Haardt edge of the Palatinate Forest: the wooded ridge up to the Kalmit with its stone tower, the Trifels on its sandstone rock, the Hambacher Schloss on its hill and vineyards below",
     ridge: "#4f6a33",

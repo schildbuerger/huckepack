@@ -1,0 +1,70 @@
+{
+  "climate-high.json": {
+    "retrieved": "2026-11-03T17:49:09+00:00",
+    "url": "https://openmeteo.s3.us-west-2.amazonaws.com/data/copernicus_era5_land+copernicus_era5?latitude=33.7&longitude=135.9&elevation=880"
+  },
+  "climate-low.json": {
+    "retrieved": "2026-11-03T17:45:50+00:00",
+    "url": "https://openmeteo.s3.us-west-2.amazonaws.com/data/copernicus_era5_land+copernicus_era5?latitude=33.8&longitude=135.8&elevation=60"
+  },
+  "elevation-glo30.json": {
+    "retrieved": "2026-11-03T17:42:16+00:00",
+    "url": "https://copernicus-dem-30m.s3.eu-central-1.amazonaws.com/Copernicus_DSM_COG_10_N33_00_E135_00_DEM/Copernicus_DSM_COG_10_N33_00_E135_00_DEM.tif"
+  },
+  "landcover.json": {
+    "retrieved": "2026-11-03T17:42:19+00:00",
+    "url": "https://esa-worldcover.s3.eu-central-1.amazonaws.com/v200/2021/map/ESA_WorldCover_10m_2021_v200_\u2026_Map.tif"
+  },
+  "osm-relation-17094646.json": {
+    "retrieved": "2026-11-02T21:21:26Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-relation-17095001.json": {
+    "retrieved": "2026-11-02T21:21:26Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-relation-17097854.json": {
+    "retrieved": "2026-11-02T21:21:26Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-relation.json": {
+    "retrieved": "2026-11-02T21:21:26Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-1-main.json": {
+    "retrieved": "2026-11-02T21:21:26Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-2-main.json": {
+    "retrieved": "2026-11-02T21:21:26Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-3-main.json": {
+    "retrieved": "2026-11-02T21:21:26Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-4-main.json": {
+    "retrieved": "2026-11-02T21:21:26Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-water.json": {
+    "retrieved": "2026-11-02T21:21:26Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-way-tags.json": {
+    "retrieved": "2026-11-02T21:21:26Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osrm-access-kansai-international-airport-kix.json": {
+    "retrieved": "2026-11-03T17:49:09+00:00",
+    "url": "https://router.project-osrm.org/route/v1/driving/135.22252,34.4342;135.50369,33.77553?overview=false"
+  },
+  "osrm-access-kii-tanabe.json": {
+    "retrieved": "2026-11-03T17:49:09+00:00",
+    "url": "https://router.project-osrm.org/route/v1/driving/135.38454,33.73288;135.50369,33.77553?overview=false"
+  },
+  "wikimedia.json": {
+    "retrieved": "2026-11-03T17:49:10+00:00",
+    "url": "Q30074932 2025-11..2026-10"
+  }
+}
