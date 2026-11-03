@@ -1,0 +1,66 @@
+{
+  "climate-high.json": {
+    "retrieved": "2026-11-03T07:22:55+00:00",
+    "url": "https://openmeteo.s3.us-west-2.amazonaws.com/data/copernicus_era5_land+copernicus_era5?latitude=50.5&longitude=6.3&elevation=640"
+  },
+  "climate-low.json": {
+    "retrieved": "2026-11-03T07:19:38+00:00",
+    "url": "https://openmeteo.s3.us-west-2.amazonaws.com/data/copernicus_era5_land+copernicus_era5?latitude=50.7&longitude=6.5&elevation=180"
+  },
+  "elevation-glo30.json": {
+    "retrieved": "2026-11-03T07:16:13+00:00",
+    "url": "https://copernicus-dem-30m.s3.eu-central-1.amazonaws.com/Copernicus_DSM_COG_10_N50_00_E006_00_DEM/Copernicus_DSM_COG_10_N50_00_E006_00_DEM.tif"
+  },
+  "landcover.json": {
+    "retrieved": "2026-11-03T07:16:14+00:00",
+    "url": "https://esa-worldcover.s3.eu-central-1.amazonaws.com/v200/2021/map/ESA_WorldCover_10m_2021_v200_\u2026_Map.tif"
+  },
+  "osm-stage-1-main.json": {
+    "retrieved": "2026-11-01T21:21:36Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-2-main.json": {
+    "retrieved": "2026-11-01T21:21:36Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-3-main.json": {
+    "retrieved": "2026-11-01T21:21:36Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-4-main.json": {
+    "retrieved": "2026-11-01T21:21:36Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-water.json": {
+    "retrieved": "2026-11-01T21:21:36Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-way-tags.json": {
+    "retrieved": "2026-11-01T21:21:36Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osrm-access-aachen-hauptbahnhof.json": {
+    "retrieved": "2026-11-03T07:22:55+00:00",
+    "url": "https://router.project-osrm.org/route/v1/driving/6.09138,50.76777;6.25344,50.53432?overview=false"
+  },
+  "osrm-access-cologne-bonn-airport-cgn.json": {
+    "retrieved": "2026-11-03T07:22:55+00:00",
+    "url": "https://router.project-osrm.org/route/v1/driving/7.13896,50.86778;6.25344,50.53432?overview=false"
+  },
+  "stage-1-main.gpx": {
+    "retrieved": "2026-11-03T07:11:05+00:00",
+    "url": "https://www.nationalpark-eifel.de/cache/dl-Wildnis-Trail-Etappe-1-GPX--8ca70db38030b91b9c401abcbd2a94e9.gpx"
+  },
+  "stage-2-main.gpx": {
+    "retrieved": "2026-11-03T07:11:05+00:00",
+    "url": "https://www.nationalpark-eifel.de/cache/dl-Wildnis-Trail-Etappe-2-GPX--fb59a07c9a6b97e3218324d232f380ad.gpx"
+  },
+  "stage-3-main.gpx": {
+    "retrieved": "2026-11-03T07:11:05+00:00",
+    "url": "https://www.nationalpark-eifel.de/cache/dl-Wildnis-Trail-Etappe-3-GPX--92418e4902fe623d27f361ea8dd40b87.gpx"
+  },
+  "stage-4-main.gpx": {
+    "retrieved": "2026-11-03T07:11:05+00:00",
+    "url": "https://www.nationalpark-eifel.de/cache/dl-Wildnis-Trail-Etappe-4-GPX--f61684ec0a8831c2672ec0f263da1bf1.gpx"
+  }
+}

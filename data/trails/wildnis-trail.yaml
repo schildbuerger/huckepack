@@ -1,0 +1,195 @@
+name: Wildnis-Trail
+added: 2026-11-03
+aliases: [Wilderness Trail, Wildnis-Trail Nationalpark Eifel]
+website: https://www.nationalpark-eifel.de/de/nationalpark-erleben/wildnis-trail/
+managedBy:
+  # the Eifel National Park's administration (Nationalparkforstamt Eifel) publishes the route, its
+  # stages and their GPX files
+  - name: Nationalparkverwaltung Eifel (Nationalparkforstamt Eifel)
+    url: https://www.nationalpark-eifel.de/de/nationalpark-erleben/wildnis-trail/
+trailType: point-to-point
+continents: [Europe]
+countries: [DE]
+regions: [North Rhine-Westphalia]
+protectedAreas:
+  - Eifel National Park
+termini:
+  # the first point of the official stage 1 GPX at the national park gate in Höfen, the last of
+  # stage 4's at Zerkall
+  start:
+    name: Monschau-Höfen
+    lat: 50.53432
+    lon: 6.25344
+  end:
+    name: Hürtgenwald-Zerkall
+    lat: 50.6913
+    lon: 6.45453
+  source: np
+length:
+  # "Vier Etappen, 85 Kilometer"
+  - km: 85
+    source: np
+ascent:
+  # "Wenn Sie den gesamten Trail zurücklegen, liegen 1.891 Höhenmeter Anstieg und 2.251 Höhenmeter
+  # Gefälle vor Ihnen"; the stages sum to 1,802 and 2,220 m
+  - m: 1891
+    source: np
+descent:
+  - m: 2251
+    source: np
+stages:
+  # the park's four stage pages: length, climbs, the heights of start and finish. Each stage's
+  # official GPX (Nationalparkforstamt Eifel) only guides the OSM matcher (kept local)
+  source: np
+  list:
+    - { number: "1", kind: main, from: Monschau-Höfen, to: Einruhr, km: 23.9, ascentM: 477, descentM: 750, startEleM: 540, endEleM: 280, track: "https://www.nationalpark-eifel.de/cache/dl-Wildnis-Trail-Etappe-1-GPX--8ca70db38030b91b9c401abcbd2a94e9.gpx" }
+    - { number: "2", kind: main, from: Einruhr, to: Gemünd, km: 20, ascentM: 552, descentM: 510, startEleM: 280, endEleM: 335, track: "https://www.nationalpark-eifel.de/cache/dl-Wildnis-Trail-Etappe-2-GPX--fb59a07c9a6b97e3218324d232f380ad.gpx" }
+    - { number: "3", kind: main, from: Gemünd, to: Heimbach, km: 22.3, ascentM: 380, descentM: 523, startEleM: 335, endEleM: 215, track: "https://www.nationalpark-eifel.de/cache/dl-Wildnis-Trail-Etappe-3-GPX--92418e4902fe623d27f361ea8dd40b87.gpx" }
+    - { number: "4", kind: main, from: Heimbach, to: Hürtgenwald-Zerkall, km: 17.8, ascentM: 393, descentM: 437, startEleM: 204, endEleM: 173, track: "https://www.nationalpark-eifel.de/cache/dl-Wildnis-Trail-Etappe-4-GPX--f61684ec0a8831c2672ec0f263da1bf1.gpx" }
+route:
+  # built by `python -m pipeline.all wildnis-trail`: OSM ways matched to the official GPX
+  source: osm
+  publishable: true
+difficulty:
+  # no grade is published; our estimate from the park's descriptions
+  estimated:
+    sac: T2
+    basis: >-
+      The park promises "anspruchsvolle Strecken" and calls stage 1 the most demanding, with many
+      kilometres and climbs; the route follows narrow paths along the steep slopes above the Obersee
+      and an "abenteuerliche Höhenpfad", otherwise forest roads and meadow paths. Eifel Tourismus
+      rates the stages moderate. Hiking on good paths with steep sections (T2); no exposed passages.
+    source: np
+sleeping:
+  # the park names guest houses, hotels and holiday flats at each stage town; camping only on
+  # campsites outside the park
+  types: [guesthouse, hotel]
+  source: np
+wildCamping:
+  # "Zelten und jegliches Übernachten – auch in Wohnmobilen – ist verboten. Nutzen Sie ausgewiesene
+  # Plätze im Nationalparkumfeld"
+  status: prohibited
+  rule: >-
+    Tents and any overnight stay, campervans included, are prohibited in the national park; use the
+    designated sites around it.
+  source: np
+access:
+  # Aachen Hauptbahnhof, the region's main station (bus SB 63 towards the park), and Cologne Bonn
+  # Airport. Coordinates from OSM; distances by pipeline/access.py
+  - kind: station
+    name: Aachen Hauptbahnhof
+    lat: 50.76777
+    lon: 6.09138
+    source: osm
+  - kind: airport
+    name: Cologne Bonn Airport (CGN)
+    lat: 50.86778
+    lon: 7.13896
+    source: osm
+animals:
+  # Ticks: Lyme disease all over Germany (the federal health agency's advice); no district on the
+  # trail is a TBE risk area (RKI 2026: North Rhine-Westphalia's only one is SK Solingen). Level ours
+  list:
+    - kind: tick
+      name: "Ticks (Lyme disease)"
+      level: low
+      basis: "Ticks that carry Lyme disease live all over Germany, in forests and meadows; about one tick bite in 100 leads to the illness, which antibiotics treat well when caught early."
+      do:
+        - "Wear closed shoes, long sleeves and long trousers, the socks pulled over the trouser legs; light clothes show ticks"
+        - "Use a tick repellent as its maker directs; it protects only for a while, and not fully"
+        - "After the walk, search your body: the hollows of the knees, the groin, the armpits, behind the ears, the head and the hairline"
+        - "Remove a tick as soon as you can: grip it by its head close to the skin with tweezers or a tick card, pull it slowly and straight out, then disinfect the bite"
+        - "See a doctor if a red ring at least 5 cm across spreads around the bite within 3 to 30 days, or fever and aching follow a bite"
+      dont:
+        - "Treat the tick with oil or cream, or squeeze it: it may release more germs"
+      source: bzga-borreliose
+tags: [national-park, forest, reservoirs, wilderness]
+notes:
+  - >-
+    The trail crosses the Eifel National Park from south to north: from Höfen past the narcissus
+    meadows and the Erkensruhr valley to Einruhr on the Obersee, along the lake and over the Urft
+    dam and the Dreiborn plateau past Vogelsang to Gemünd, through the old beech forests of the
+    Kermeter past Mariawald abbey to Heimbach, and through the oak woods of the Hetzinger Wald to
+    Zerkall on the Rur.
+  - >-
+    Safety: around Vogelsang, a military training area until 2005, leaving the marked paths is
+    forbidden because of unexploded ordnance (the park). Dogs on a lead in the whole park.
+  - >-
+    Season: none published (the park, Eifel Tourismus), so none recorded. Waymarking: the park
+    describes none; an undated brochure without a named publisher (wackerberg.de) mentions
+    signposts with a wildcat pictogram, not used. Tree line: none recorded, the trail stays below
+    about 630 m.
+  - >-
+    Figures: the stages sum to 84.0 km against the stated 85 km, and to 1,802 m up and 2,220 m
+    down against the stated 1,891 and 2,251 m. No stage times are published; the page estimates
+    them (DIN 33466).
+  - >-
+    Map line: the official GPX guides the OSM matcher; every stage at least 95 % matched, 83.0 km
+    against the stages' 84.0 km. Highest point 640 m (terrain model) against the park's 625 m at
+    Wahlerscheid.
+  - >-
+    Data check (2026-11-03): the park's stage figures against Eifel Tourismus's stage pages:
+    23.9 against 24.0 km, 20 against 19.8 km, 22.3 against 22.6 km (all within 2 %); stage 1's
+    climbs 477/750 m against 438/691 m (8 %). Eifel Tourismus's stage 4 page is gone; the brochure
+    gives 17.7 against 17.8 km (its other stages 24.7, 20.5, 22.4 km, climbs within 15 %, an older
+    edition). Termini Höfen and Zerkall agree. No deviation over 10 % against Eifel Tourismus.
+dataCheck:
+  # working rule 2: Eifel Tourismus's stage pages (stages 1–3; its stage 4 page is gone), the
+  # brochure for stage 4
+  date: 2026-11-03
+  against: [eifel-tourismus, brochure]
+  deviations: []
+sources:
+  - id: np
+    title: "Nationalpark Eifel (Nationalparkforstamt Eifel): Wildnis-Trail, the four stages (length, climbs, heights) with their GPX files, rules in the national park"
+    url: https://www.nationalpark-eifel.de/de/nationalpark-erleben/wildnis-trail/die-vier-etappen/
+    licence: All rights reserved (facts only)
+    retrieved: 2026-11-03
+  - id: eifel-tourismus
+    title: "Eifel Tourismus GmbH (eifel.info): 1., 2. and 3. Etappe: Wildnis-Trail (length, climbs; data check)"
+    url: https://www.eifel.info/en/touren/1-etappe-wildnis-trail
+    licence: All rights reserved (facts only)
+    retrieved: 2026-11-03
+    checkOnly: true
+  - id: brochure
+    title: "Wandern auf dem Wildnis-Trail (brochure, undated, no publisher named; hosted by wackerberg.de): stage lengths, times and climbs (data check)"
+    url: https://www.wackerberg.de/media/prospekte/wandern-wildnistrail.pdf
+    licence: All rights reserved (facts only)
+    retrieved: 2026-11-03
+    checkOnly: true
+  - id: bzga-borreliose
+    title: "Bundeszentrale für gesundheitliche Aufklärung (infektionsschutz.de): Bürgerinformation Borreliose, protection against ticks (as of August 2019)"
+    url: https://infektionsschutz.de/download/2902-Erregersteckbrief-Borreliose.pdf
+    licence: © BZgA (facts only)
+    retrieved: 2026-11-03
+  - id: rki-fsme
+    title: "Robert Koch-Institut: FSME-Risikogebiete in Deutschland, Epidemiologisches Bulletin 9/2026 (as of January 2026)"
+    url: https://www.rki.de/DE/Aktuelles/Publikationen/Epidemiologisches-Bulletin/2026/09_26.pdf
+    licence: © Robert Koch-Institut (facts only)
+    retrieved: 2026-11-03
+    checkOnly: true  # only the tick level's basis: no district on the trail is a TBE risk area
+  - id: osm
+    title: "OpenStreetMap contributors: paths, water, shops and places to sleep along the trail (Geofabrik extracts), travel hubs"
+    url: https://www.openstreetmap.org/
+    licence: ODbL 1.0
+    retrieved: 2026-11-03
+  - id: copdem
+    title: "Copernicus DEM GLO-30 (30 m terrain model), tiles from AWS Open Data"
+    url: https://registry.opendata.aws/copernicus-dem/
+    licence: "Copernicus WorldDEM-30 licence, free; produced using Copernicus WorldDEM-30 © DLR e.V. 2010-2014 and © Airbus Defence and Space GmbH 2014-2018 provided under COPERNICUS by the European Union and ESA; all rights reserved"
+    retrieved: 2026-11-03
+  - id: worldcover
+    title: "ESA WorldCover 2021: 10 m land cover (via AWS Open Data)"
+    url: https://esa-worldcover.org/
+    licence: "CC BY 4.0; © ESA WorldCover project 2021 / Contains modified Copernicus Sentinel data (2021) processed by ESA WorldCover consortium"
+    retrieved: 2026-11-03
+  - id: era5
+    title: "Open-Meteo open data on AWS: ERA5-Land temperature and ERA5 precipitation, snow and wind, daily 1995–2024 (reanalysis)"
+    url: https://github.com/open-meteo/open-data
+    licence: CC BY 4.0 (Open-Meteo); contains modified Copernicus Climate Change Service information
+    retrieved: 2026-11-03
+  - id: osrm
+    title: "OSRM: road routes on OpenStreetMap data (router.project-osrm.org)"
+    url: https://project-osrm.org/
+    licence: Route data © OpenStreetMap contributors (ODbL)
+    retrieved: 2026-11-03

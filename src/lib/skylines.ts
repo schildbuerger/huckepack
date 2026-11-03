@@ -595,4 +595,25 @@ export const SKYLINES: Record<string, Skyline> = {
       { d: orchard(170, 1540, [276, 288, 300], 18, 3), c: "#6f8a34" },
     ],
   },
+  "wildnis-trail": {
+    view: "The Eifel National Park: rolling wooded hills, the Urft dam holding back its lake, Vogelsang's tower on the Dreiborn plateau, the beech woods of the Kermeter and a meadow of wild narcissi",
+    ridge: "#3f5a33",
+    ground: "#6f8a4a",
+    shapes: [
+      { d: hills([[0, G], [140, 246], [360, 232], [560, 242], [780, 226], [1000, 240], [1220, 228], [1420, 244], [1600, 238], [1600, G]]), c: FAR },
+      // the Dreiborn plateau with Vogelsang's square tower
+      { d: hills([[880, G], [940, 252], [1080, 240], [1240, 244], [1340, 262], [1400, G]]), c: "#9aa86a" },
+      { d: "M1104,242V206H1120V242Z M1086,242V228H1138V242Z", c: "#c9c0aa" },
+      // the Kermeter's beech woods
+      { d: hills([[0, G], [60, 258], [200, 244], [340, 252], [470, 262], [520, G]]), c: FOREST },
+      // the lake and the Urft dam's curved wall between its wooded slopes
+      { d: range([[400, G], [440, 262], [500, 248], [540, 252], [566, 266], [580, G]]), c: FIR },
+      { d: range([[620, G], [636, 266], [700, 248], [780, 240], [860, 256], [920, G]]), c: FIR },
+      { d: "M560,268Q600,258 640,268V276H560Z", c: "#c9c3b2" },
+      { d: water(380, 960, 276), c: LAKE },
+      // a meadow of wild narcissi
+      { d: hills([[1300, G], [1360, 276], [1480, 270], [1600, 278], [1600, G]]), c: "#8fb05a" },
+      { d: orchard(1380, 1580, [284, 294], 14, 2.5), c: "#f2d24a" },
+    ],
+  },
 };
