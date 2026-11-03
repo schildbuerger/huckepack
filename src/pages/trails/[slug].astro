@@ -1,4 +1,5 @@
 ---
+import { trailTitle } from "../../lib/page-title";
 import { getCollection, getEntry, type CollectionEntry } from "astro:content";
 import Base from "../../layouts/Base.astro";
 import TrailMap from "../../components/TrailMap.svelte";
@@ -90,14 +91,16 @@ const climateMonths = climateDim ? diff.months.map((m) => climateDim.measures.ma
 const listed = (xs: string[]) => (xs.length > 1 ? `${xs.slice(0, -1).join(", ")} and ${xs.at(-1)}` : xs[0]);
 // countries whose English name takes "the" ("in the United Kingdom")
 const WITH_THE = new Set(["GB", "US", "NL", "PH", "AE"]);
-const where = listed(t.countries.map((c) => (WITH_THE.has(c) ? `the ${countryName(c)}` : countryName(c))));
+const countryList = t.countries.map((c) => (WITH_THE.has(c) ? `the ${countryName(c)}` : countryName(c)));
+const where = listed(countryList);
 const lengthText = length ? `${length.approx ? "about " : ""}${Math.round(length.value).toLocaleString("en")} km` : null;
 // the season as one run of months, also across the new year (December to March); none if it has gaps
 const months = t.season?.months ?? [];
 const runStart = months.filter((m) => !months.includes(m === 1 ? 12 : m - 1));
 const seasonRun =
   runStart.length === 1 ? [runStart[0], months.find((m) => !months.includes(m === 12 ? 1 : m + 1))!] : null;
-const pageTitle = `${t.name}: ${lengthText ? `${lengthText} hike` : "hike"} in ${where} · huckepack`;
+// at most 60 characters, shortened step by step where it's longer (src/lib/page-title.ts, issue #181)
+const pageTitle = trailTitle(t.name, length ? Math.round(length.value).toLocaleString("en") : null, Boolean(length?.approx), countryList);
 const pageDescription = [
   `${t.name}, ${where}:`,
   [

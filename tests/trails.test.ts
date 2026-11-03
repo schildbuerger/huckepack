@@ -128,3 +128,19 @@ test("months: the best run of at least two season months, and a pick", () => {
   assert.deepEqual(readPick("?months=7,8&where=Italy"), [7, 8]);
 });
 
+
+// trail page titles: at most 60 characters, shortened step by step (issue #181)
+import { trailTitle, TITLE_MAX } from "../src/lib/page-title.ts";
+test("trail titles keep the full pattern when it fits", () => {
+  assert.equal(trailTitle("Dingle Way", "176", false, ["Ireland"]), "Dingle Way: 176 km hike in Ireland · huckepack");
+});
+test("trail titles drop about, then the site's name, then shorten the countries", () => {
+  assert.equal(trailTitle("Alpe-Adria-Trail", "750", true, ["Austria", "Slovenia", "Italy"]), "Alpe-Adria-Trail: 750 km hike in Austria, Slovenia and Italy");
+  assert.equal(trailTitle("Forststeig Elbe Sandstone", "105", false, ["Germany", "Czechia"]), "Forststeig Elbe Sandstone: 105 km hike in Germany & Czechia");
+  assert.equal(trailTitle("Tour du Mont Blanc", "170", false, ["France", "Italy", "Switzerland"]), "Tour du Mont Blanc: 170 km hike in France +2");
+  assert.equal(trailTitle("GR 20", "180", true, ["France"]), "GR 20: about 180 km hike in France · huckepack");
+});
+test("trail titles stay within the limit", () => {
+  for (const [name, countries] of [["Merano High Mountain Trail", ["Italy"]], ["Coast to Coast Path", ["the United Kingdom"]], ["Path of Sacred Forests", ["Italy"]]] as const)
+    assert.ok(trailTitle(name, "1,183", true, [...countries]).length <= TITLE_MAX, name);
+});

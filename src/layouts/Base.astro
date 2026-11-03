@@ -8,12 +8,13 @@ interface Props {
   title: string;
   description?: string;
   personal?: boolean; // a page with the operator's personal details (legal notice, privacy policy)
+  noindex?: boolean; // a page that isn't one (the 404 page): no canonical address, not indexed
   full?: boolean; // the page fills the window between header and footer, without the width cap (the trail map)
   // the link-preview image (a trail's /og/<slug>.png or a page's /og/page/<page>.png, 1200 × 630)
   // with its words; else the site's own (/og/page/site.png: the legal notice, privacy, 404)
   image?: { path: string; alt: string };
 }
-const { title, description, personal = false, full = false } = Astro.props;
+const { title, description, personal = false, noindex = false, full = false } = Astro.props;
 const image = Astro.props.image ?? { path: "/og/page/site.png", alt: await ogPageAlt("site") };
 // the theme before the first paint (issue #155): light, unless the visitor switched to dark (the
 // sun or moon in a drawing, the easter egg below); the system setting doesn't count;
@@ -46,12 +47,13 @@ const siteLd =
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{title}</title>
     {description && <meta name="description" content={description} />}
-    <link rel="canonical" href={canonical} />
+    {!noindex && <link rel="canonical" href={canonical} />}
+    {noindex && <meta name="robots" content="noindex" />}
     <!-- link previews (Open Graph, also read by Mastodon, Signal, Slack and others) -->
     <meta property="og:site_name" content="huckepack" />
     <meta property="og:type" content="website" />
     <meta property="og:locale" content="en" />
-    <meta property="og:url" content={canonical} />
+    {!noindex && <meta property="og:url" content={canonical} />}
     <meta property="og:title" content={title} />
     {description && <meta property="og:description" content={description} />}
     <meta property="og:image" content={new URL(image.path, Astro.site)} />

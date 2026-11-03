@@ -234,7 +234,7 @@ const featuredScript = inlineScript(Astro, `// A random featured trail on each p
 <Base
   image={{ path: "/og/page/home.png", alt: await ogPageAlt("home") }}
   title="huckepack: find a long-distance hiking trail and go prepared"
-  description="Find the long-distance hiking trail that suits you and go prepared: stages, terrain, climate, water and beds for every trail, from official and open sources, checked against a second source."
+  description={`Compare ${totals.trails} official long-distance hiking trails in ${totals.countries} countries: stages, terrain, climate, water and beds, every figure from official and open sources.`}
 >
   <!-- issue #83 (of three previews, approach B): search with suggestions, in the header -->
 

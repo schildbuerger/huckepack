@@ -5,6 +5,8 @@
 # can't fetch a page can't see its noindex and may still list the bare URL.
 User-agent: *
 Allow: /
+# the search page's remaining cards, an HTML fragment its script fetches: not a page (issue #184)
+Disallow: /trails/cards.html
 
 Sitemap: https://huckepack.me/sitemap.xml
 

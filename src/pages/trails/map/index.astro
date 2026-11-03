@@ -20,13 +20,14 @@ const outline = worldOutline(trails.map((t) => t.startLonLat), { width: 1000, pa
 <Base
   image={{ path: "/og/page/map.png", alt: await ogPageAlt("map") }}
   full
-  title="Trail map · huckepack"
+  title="Map of long-distance hiking trails worldwide · huckepack"
   description={`All ${trails.length} official long-distance hiking trails on one map, in ${countries} countries: zoom into a region and see its trails with length, days and difficulty.`}
 >
   <!-- the map fills the window; the breadcrumb and title head the list column beside it -->
   <TrailsMap client:load>
     <Breadcrumbs trail={[{ label: "Trails", href: "/trails/" }]} current="Map" />
-    <h1>Trail map</h1>
+    <h1>Long-distance trails on the map</h1>
+    <p class="map-lede">{trails.length} official trails in {countries} countries: zoom in, or filter by month, length and difficulty.</p>
     <!-- until the interactive map starts on the first interaction: the trails' starts on the land's
          outline, drawn here (issue #86) -->
     <svg slot="preview" viewBox={`0 0 ${outline.width} ${outline.height}`} preserveAspectRatio="xMidYMid meet">

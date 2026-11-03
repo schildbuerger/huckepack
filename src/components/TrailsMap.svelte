@@ -647,6 +647,12 @@
   .wm-head :global(.crumbs) {
     margin-top: 0;
   }
+  /* one sentence under the title: what the map holds (issue #186) */
+  .wm-head :global(.map-lede) {
+    margin: 2px 0 0;
+    color: var(--muted);
+    font-size: 0.85rem;
+  }
 
   /* the search, as the header's (TrailSearch.astro) */
   .search {
