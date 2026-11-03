@@ -728,6 +728,25 @@ export const SKYLINES: Record<string, Skyline> = {
       { d: range([[0, G], [0, 272], [880, 270], [920, 278], [1280, 278], [1320, 270], [1600, 272], [1600, G]]), c: "#7f9a4a" },
     ],
   },
+  "pennine-way": {
+    view: "The Yorkshire Dales on the Pennine Way: Pen-y-ghent's stepped gritstone and limestone profile over open moorland, the curved limestone cliff of Malham Cove, a drystone wall running over the fields",
+    ridge: "#5f7a3f",
+    ground: "#7f9a4a",
+    shapes: [
+      // far moorland ridges of the Pennines
+      { d: hills([[0, G], [160, 232], [420, 218], [700, 228], [980, 214], [1280, 224], [1600, 216], [1600, G]]), c: "#9aa69a" },
+      // Pen-y-ghent: a long back rising in two steps to its blunt nose
+      { d: range([[900, G], [960, 240], [1040, 230], [1110, 226], [1150, 206], [1180, 202], [1210, 186], [1260, 182], [1290, 196], [1320, 214], [1400, 236], [1480, G]]), c: "#7f8a74" },
+      // heather moorland in front
+      { d: hills([[0, G], [100, 248], [300, 240], [520, 252], [700, 262], [760, G]]), c: "#8a6f7f" },
+      // Malham Cove: a curved white limestone cliff in a green dale
+      { d: range([[300, G], [330, 250], [360, 226], [380, 222], [520, 222], [540, 228], [570, 252], [600, G]]), c: "#d6d0c2" },
+      { d: range([[330, G], [340, 252], [600, 252], [610, G]]), c: "#6f9050" },
+      // the dale's fields and a drystone wall over them
+      { d: range([[0, G], [0, 270], [600, 266], [1000, 272], [1600, 266], [1600, G]]), c: "#7f9a4a" },
+      { d: "M0,276L400,270L800,274L1200,268L1600,272V275L1200,271L800,277L400,273L0,279Z", c: "#a8a090" },
+    ],
+  },
   "great-glen-way": {
     view: "The Great Glen: Ben Nevis far to the south-west, the long trough of Loch Ness between steep wooded sides, the ruined tower of Urquhart Castle on its point, and a lock on the Caledonian Canal",
     ridge: "#3f5a3a",

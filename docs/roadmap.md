@@ -78,6 +78,17 @@ with the Nitinaht Narrows and Gordon River ferries as transfers).
 And the **Whale Trail** (#149, added on 2026-11-02, the first trail in Africa: De Hoop Nature
 Reserve, South Africa, 55.7 km from Potberg to Koppie Alleen in CapeNature's 5 days between its huts;
 OSM has no route relation, so the map line follows the ways named "Whale Trail", `route.wayName`).
+Added on 2026-11-03, a batch from the "Add Trail" issues: the **Schluchtensteig** (#62), the
+**Cleveland Way** (#46), the **Dingle Way** (#65), the **Pfälzer Weinsteig** (#59), the
+**Wildnis-Trail** (#63), the **Kerry Way** (#173, the shortest way over its branched OSM relation),
+the **Pieterpad** (#177, the first trail in the Netherlands; river ferries bridged, `maxBridges`),
+the **Rennsteig** (#171), the **Malerweg** (#166), the **Wicklow Way** (#167), the
+**Pembrokeshire Coast Path** (#168), **Hadrian's Wall Path** (#161), the **Great Glen Way** (#172)
+and the **Pennine Way** (#160). Set aside with their open questions on the issues: among others the
+Inca Trail (guide-only), the Kumano Kodo and the Adlerweg (which line or parts), the High Coast
+Trail and the Cumbria Way (official status), the South West Coast Path and the Fishermen's Trail
+(stage lists not readable automatically), and the John Muir and Wonderland Trails (waiting for
+stage-less pages, #204).
 
 | # | Trail | Region | Length (approx.) | Why |
 |---|---|---|---|---|
@@ -93,7 +104,7 @@ OSM has no route relation, so the map line follows the ways named "Whale Trail",
 | 10 | Israel National Trail | Israel | 1,000 km | Popular desert-to-sea route |
 
 Others to consider: John Muir Trail, Colorado Trail, Arizona Trail, Bruce
-Trail, Pennine Way, South West Coast Path, GR 10 / GR 11, Via Alpina, Tour du
+Trail, ~~Pennine Way~~ (added), South West Coast Path, GR 10 / GR 11, Via Alpina, Tour du
 Mont Blanc, Great Himalaya Trail, Larapinta Trail, Bibbulmun Track, Overland
 Track, European long-distance path E1.
 

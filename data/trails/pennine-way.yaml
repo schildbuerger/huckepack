@@ -1,0 +1,244 @@
+name: Pennine Way
+added: 2026-11-03
+aliases: [The Pennine Way, Pennine Way National Trail]
+website: https://www.nationaltrail.co.uk/en_GB/trails/pennine-way/
+wikidata: Q1478622
+managedBy:
+  # a National Trail (Natural England), with National Trails' route pages and GPX
+  - name: Natural England (National Trail)
+    url: https://www.gov.uk/government/publications/visit-a-national-trail-in-england/pennine-way-national-trail
+trailType: point-to-point
+continents: [Europe]
+countries: [GB]
+regions: [England, Scotland]
+protectedAreas:
+  - Peak District National Park
+  - Yorkshire Dales National Park
+  - Northumberland National Park
+termini:
+  # the first and last points of the National Trail's GPX (its first track, the main route) at
+  # Edale and Kirk Yetholm
+  start:
+    name: Edale
+    lat: 53.37045
+    lon: -1.81683
+  end:
+    name: Kirk Yetholm
+    lat: 55.5471
+    lon: -2.27566
+  source: nt
+established:
+  # opened in 1965 as Britain's first long-distance path (English Wikipedia)
+  year: 1965
+  source: wikipedia
+waymarking:
+  # "All National Trails are marked with an acorn symbol or the trail name"; a logo, not drawn
+  text: The National Trail acorn, or the trail's name, on gates and signposts
+  source: govuk
+length:
+  # "Length: 268 miles (431 km)"; the sixteen sections sum to 409 km
+  - km: 431
+    source: govuk
+days:
+  # "Time to complete: around 16 to 19 days"
+  min: 16
+  max: 19
+  source: govuk
+stages:
+  # gov.uk's sixteen example sections with miles and km. One official GPX for the whole trail
+  # (National Trails; its first track is the main route), cut at each section's `end` from OSM; it
+  # only guides the OSM matcher (kept local)
+  source: govuk
+  list:
+    - { number: "1", kind: main, from: "Edale", to: "Crowden", km: 26, track: "https://nationaltrails.s3.eu-west-2.amazonaws.com/uploads/Pennine-Way-elev-1.gpx", end: { name: "Crowden", lat: 53.49209, lon: -1.90018 } }
+    - { number: "2", kind: main, from: "Crowden", to: "Standedge", km: 18, track: "https://nationaltrails.s3.eu-west-2.amazonaws.com/uploads/Pennine-Way-elev-1.gpx", end: { name: "Standedge", lat: 53.60264, lon: -1.99421 } }
+    - { number: "3", kind: main, from: "Standedge", to: "Calder Valley", km: 18, track: "https://nationaltrails.s3.eu-west-2.amazonaws.com/uploads/Pennine-Way-elev-1.gpx", end: { name: "Calder Valley", lat: 53.73419, lon: -2.04474 } }
+    - { number: "4", kind: main, from: "Calder Valley", to: "Ickornshaw", km: 26, track: "https://nationaltrails.s3.eu-west-2.amazonaws.com/uploads/Pennine-Way-elev-1.gpx", end: { name: "Ickornshaw", lat: 53.88145, lon: -2.05389 } }
+    - { number: "5", kind: main, from: "Ickornshaw", to: "Malham", km: 27, track: "https://nationaltrails.s3.eu-west-2.amazonaws.com/uploads/Pennine-Way-elev-1.gpx", end: { name: "Malham", lat: 54.06092, lon: -2.15291 } }
+    - { number: "6", kind: main, from: "Malham", to: "Horton in Ribblesdale", km: 23, track: "https://nationaltrails.s3.eu-west-2.amazonaws.com/uploads/Pennine-Way-elev-1.gpx", end: { name: "Horton in Ribblesdale", lat: 54.14776, lon: -2.29299 } }
+    - { number: "7", kind: main, from: "Horton in Ribblesdale", to: "Hawes", km: 23, track: "https://nationaltrails.s3.eu-west-2.amazonaws.com/uploads/Pennine-Way-elev-1.gpx", end: { name: "Hawes", lat: 54.30382, lon: -2.19695 } }
+    - { number: "8", kind: main, from: "Hawes", to: "Tan Hill", km: 27, track: "https://nationaltrails.s3.eu-west-2.amazonaws.com/uploads/Pennine-Way-elev-1.gpx", end: { name: "Tan Hill", lat: 54.45541, lon: -2.16026 } }
+    - { number: "9", kind: main, from: "Tan Hill", to: "Middleton-in-Teesdale", km: 27, track: "https://nationaltrails.s3.eu-west-2.amazonaws.com/uploads/Pennine-Way-elev-1.gpx", end: { name: "Middleton-in-Teesdale", lat: 54.62145, lon: -2.08507 } }
+    - { number: "10", kind: main, from: "Middleton-in-Teesdale", to: "Dufton", km: 34, track: "https://nationaltrails.s3.eu-west-2.amazonaws.com/uploads/Pennine-Way-elev-1.gpx", end: { name: "Dufton", lat: 54.6283, lon: -2.48277 } }
+    - { number: "11", kind: main, from: "Dufton", to: "Alston", km: 32, track: "https://nationaltrails.s3.eu-west-2.amazonaws.com/uploads/Pennine-Way-elev-1.gpx", end: { name: "Alston", lat: 54.80968, lon: -2.442 } }
+    - { number: "12", kind: main, from: "Alston", to: "Greenhead", km: 26, track: "https://nationaltrails.s3.eu-west-2.amazonaws.com/uploads/Pennine-Way-elev-1.gpx", end: { name: "Greenhead", lat: 54.98674, lon: -2.535 } }
+    - { number: "13", kind: main, from: "Greenhead", to: "Bellingham", km: 35, track: "https://nationaltrails.s3.eu-west-2.amazonaws.com/uploads/Pennine-Way-elev-1.gpx", end: { name: "Bellingham", lat: 55.14448, lon: -2.25413 } }
+    - { number: "14", kind: main, from: "Bellingham", to: "Byrness", km: 24, track: "https://nationaltrails.s3.eu-west-2.amazonaws.com/uploads/Pennine-Way-elev-1.gpx", end: { name: "Byrness", lat: 55.31807, lon: -2.36364 } }
+    - { number: "15", kind: main, from: "Byrness", to: "Windy Gyle", km: 22, track: "https://nationaltrails.s3.eu-west-2.amazonaws.com/uploads/Pennine-Way-elev-1.gpx", end: { name: "Windy Gyle", lat: 55.43176, lon: -2.24723 } }
+    - { number: "16", kind: main, from: "Windy Gyle", to: "Kirk Yetholm", km: 21, track: "https://nationaltrails.s3.eu-west-2.amazonaws.com/uploads/Pennine-Way-elev-1.gpx", end: { name: "Kirk Yetholm", lat: 55.5471, lon: -2.27566 } }
+route:
+  # built by `python -m pipeline.all pennine-way`: OSM ways matched to the National Trail's GPX
+  source: osm
+  publishable: true
+difficulty:
+  # no grade is published; our estimate from gov.uk's section descriptions
+  estimated:
+    sac: T2
+    basis: >-
+      A hilly, in places very remote upland route over the Pennines: paths smooth and firm in some
+      places, narrow, uneven, wet and boggy in others, often on stone flags across the moors; the
+      section from Dufton over Cross Fell (over 1,000 m by gov.uk's words, 893 m) is exposed, the
+      scramble by Cauldron Snout rocky and slippery, and navigation can be hard in bad weather.
+      Mountain hiking (T2).
+    source: govuk
+season:
+  # "The trail is open all year. You should be prepared for changeable weather all year round,
+  # including snow in winter"
+  months: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
+  text: All year, with snow in winter
+  source: govuk
+sleeping:
+  # National Trails' map lists B&Bs, hotels and pubs, self-catering, camping and glamping, hostels
+  # and bunkhouses along the trail
+  types: [guesthouse, hotel, campsite, hostel]
+  source: nt-info
+wildCamping:
+  # "There is a tradition of backpackers sleeping in the hills, but … in England and Wales, there
+  # are normally no rights for national trail users to wild camp along the way – so seeking the
+  # landowner's permission is recommended"
+  status: prohibited
+  rule: >-
+    England gives no right to wild camp along the Trail: tents only on campsites or with the
+    landowner's permission, and take all waste away.
+  source: nt-info
+access:
+  # Manchester Piccadilly, the main station for Edale (trains on the Hope Valley line), and
+  # Manchester Airport. Coordinates from OSM; distances by pipeline/access.py
+  - kind: station
+    name: Manchester Piccadilly
+    lat: 53.47742
+    lon: -2.23083
+    source: osm
+  - kind: airport
+    name: Manchester Airport (MAN)
+    lat: 53.35034
+    lon: -2.28037
+    source: osm
+animals:
+  # Cattle (the Countryside Code, HSE) and ticks (NHS). Levels ours
+  list:
+    - kind: cattle
+      name: "Cattle"
+      level: moderate
+      basis: "The path crosses fields where cattle graze; the Health and Safety Executive names cows with calves and walkers with dogs as the two most common factors in incidents between cattle and the public."
+      do:
+        - "Give livestock plenty of space: their behaviour can be unpredictable, especially when they are with their young"
+        - "Keep your dog on a lead around livestock"
+        - "Let your dog off the lead if you feel threatened by livestock: releasing it makes it easier for you both to reach safety"
+        - "Follow the farmer's directions when animals are being moved or gathered"
+      dont:
+        - "Risk getting hurt protecting your dog"
+        - "Feed livestock"
+      source: countryside-code
+    - kind: tick
+      name: "Ticks (Lyme disease)"
+      level: low
+      basis: "Ticks that can carry Lyme disease live all over the UK, in woods and long grass; the NHS names grassy and wooded areas in southern England and the Scottish Highlands as high-risk areas."
+      do:
+        - "Cover your skin while walking and tuck your trousers into your socks"
+        - "Use insect repellent on your clothes and skin; products containing DEET are best"
+        - "Stay on clear paths whenever possible"
+        - "Wear light-coloured clothing so ticks are easier to see and brush off"
+        - "Remove a tick with fine-tipped tweezers or a tick-removal tool: grasp it as close to the skin as possible, pull slowly upwards, then clean the bite"
+        - "Get an urgent GP appointment or call NHS 111 if, within 3 months of a bite, you feel unwell with flu-like symptoms or a round or oval rash appears"
+      dont:
+        - "Squeeze or crush the tick when you remove it"
+      source: nhs-lyme
+tags: [moorland, uplands, national-park, national-trail]
+notes:
+  - >-
+    The trail runs up the Pennines, the backbone of England: from Edale over Kinder Scout and
+    Bleaklow, across the gritstone moors of the South Pennines, through the Yorkshire Dales by Malham
+    Cove, Pen-y-ghent and Great Shunner Fell to Tan Hill, along the Tees by High Force and Cauldron
+    Snout to High Cup and Dufton, over Cross Fell (893 m) to Alston, along Hadrian's Wall near
+    Greenhead, through Wark Forest and the Cheviot Hills on the border to Kirk Yetholm in Scotland.
+  - >-
+    Length: the stated 268 miles (431 km) include loops and alternatives (the Bowes Loop between
+    Tan Hill and Middleton-in-Teesdale); the sixteen sections sum to 409 km. Section 15 ends on Windy
+    Gyle, a summit on the border with no amenities, as gov.uk's example has it. Byrness to Kirk
+    Yetholm crosses a military training area. Tree line: none recorded, the route stays below 900 m.
+  - >-
+    Map line: the National Trail's GPX (its first track) guides the OSM matcher, cut at the section
+    ends; 417.4 km. Sections 12 (94 %), 14 (91 %) and 15 (94 %) are under 95 % matched: in Wark
+    Forest and the Kielder forests and on the Cheviot border fence the GPX and OSM's paths part by up
+    to 260 m; the map follows OSM. gov.uk's example sections are rounded: sections 2 (20.4 km on the
+    map line against 18), 3 (20.7 against 18), 9 (32.5 against 27) and 15 (18.7 against 22) differ by
+    more than 10 %; the page keeps gov.uk's figures. Highest point 892 m (terrain model) on Cross
+    Fell. OSM maps no shop for the first 66 km (Edale to the Calder Valley, off-route villages aside)
+    and no tap or bed on the last 38–44 km over the Cheviots.
+  - >-
+    Data check (2026-11-03): gov.uk's figures against English Wikipedia: length 268 miles (431 km)
+    against 268 miles, opened 1965, highest point Cross Fell 893 m, Edale to Kirk Yetholm: all
+    agree. Wikipedia gives no section figures. No deviation over 10 %.
+dataCheck:
+  # working rule 2: English Wikipedia
+  date: 2026-11-03
+  against: [wikipedia]
+  deviations: []
+sources:
+  - id: govuk
+    title: "Natural England (gov.uk): Pennine Way National Trail (length, days, the sixteen sections with miles and km, season, waymarking)"
+    url: https://www.gov.uk/government/publications/visit-a-national-trail-in-england/pennine-way-national-trail
+    licence: Open Government Licence v3.0
+    retrieved: 2026-11-03
+  - id: nt
+    title: "National Trails: Pennine Way and the official GPX"
+    url: https://www.nationaltrail.co.uk/en_GB/trails/pennine-way/
+    licence: All rights reserved (facts only)
+    retrieved: 2026-11-03
+  - id: nt-info
+    title: "National Trails: Pennine Way trail information (camping, places to stay)"
+    url: https://www.nationaltrail.co.uk/en_GB/trails/pennine-way/trail-information/
+    licence: All rights reserved (facts only)
+    retrieved: 2026-11-03
+  - id: wikipedia
+    title: "English Wikipedia: Pennine Way (opening; length and highest point for the data check)"
+    url: https://en.wikipedia.org/wiki/Pennine_Way
+    licence: CC BY-SA 4.0
+    retrieved: 2026-11-03
+  - id: countryside-code
+    title: "Natural England and Natural Resources Wales: The Countryside Code, advice for countryside visitors (updated 26 May 2023)"
+    url: https://www.gov.uk/government/publications/the-countryside-code/the-countryside-code-advice-for-countryside-visitors
+    licence: Open Government Licence v3.0
+    retrieved: 2026-11-03
+  - id: hse-cattle
+    title: "Health and Safety Executive: Cattle and public access in England and Wales (information sheet)"
+    url: https://www.hse.gov.uk/pubns/ais17ew.pdf
+    licence: © Crown copyright, Open Government Licence (facts only)
+    retrieved: 2026-11-03
+  - id: nhs-lyme
+    title: "NHS: Lyme disease (avoiding tick bites, removing ticks, when to get help)"
+    url: https://www.nhs.uk/conditions/lyme-disease/
+    licence: © NHS, Open Government Licence (facts only)
+    retrieved: 2026-11-03
+  - id: wikimedia
+    title: "Wikimedia: page views of the trail's Wikipedia articles in every language, by people, over twelve months (Wikidata sitelinks, pageview API)"
+    url: https://wikimedia.org/api/rest_v1/
+    licence: CC0 1.0 (pageview data); Wikidata CC0
+    retrieved: 2026-11-03
+    checkOnly: true  # not on the trail page: the page views only rank the home page's popular trails
+  - id: osm
+    title: "OpenStreetMap contributors: paths, water, shops and places to sleep along the trail (Geofabrik extracts), travel hubs"
+    url: https://www.openstreetmap.org/
+    licence: ODbL 1.0
+    retrieved: 2026-11-03
+  - id: copdem
+    title: "Copernicus DEM GLO-30 (30 m terrain model), tiles from AWS Open Data"
+    url: https://registry.opendata.aws/copernicus-dem/
+    licence: "Copernicus WorldDEM-30 licence, free; produced using Copernicus WorldDEM-30 © DLR e.V. 2010-2014 and © Airbus Defence and Space GmbH 2014-2018 provided under COPERNICUS by the European Union and ESA; all rights reserved"
+    retrieved: 2026-11-03
+  - id: worldcover
+    title: "ESA WorldCover 2021: 10 m land cover (via AWS Open Data)"
+    url: https://esa-worldcover.org/
+    licence: "CC BY 4.0; © ESA WorldCover project 2021 / Contains modified Copernicus Sentinel data (2021) processed by ESA WorldCover consortium"
+    retrieved: 2026-11-03
+  - id: era5
+    title: "Open-Meteo open data on AWS: ERA5-Land temperature and ERA5 precipitation, snow and wind, daily 1995–2024 (reanalysis)"
+    url: https://github.com/open-meteo/open-data
+    licence: CC BY 4.0 (Open-Meteo); contains modified Copernicus Climate Change Service information
+    retrieved: 2026-11-03
+  - id: osrm
+    title: "OSRM: road routes on OpenStreetMap data (router.project-osrm.org)"
+    url: https://project-osrm.org/
+    licence: Route data © OpenStreetMap contributors (ODbL)
+    retrieved: 2026-11-03
