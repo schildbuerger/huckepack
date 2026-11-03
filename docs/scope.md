@@ -229,6 +229,13 @@
   the nearest ridge) on a band of day sky across the bottom, in place of the
   season and ground row (approach C of three); the ridge is one function
   (`profileRidge`, src/lib/skylines.ts) shared with the page head.
+- **Skylines without cut-offs (2026-11-03, the user's rule):** no skyline
+  shape may end in a sharp edge where it meets the foot of the drawing; every
+  landform runs smoothly down to the ground. `range()` gives any broad shape
+  (80 units or wider) whose end drops steeper than 2 : 1 a curved foot that
+  meets the ground tangentially, as far out as the drop is high; slender
+  shapes (sea stacks, rock pillars, trunks, towers) keep their steep sides. A
+  test checks every skyline (tests/trails.test.ts).
 - **Ready for hundreds of trails (issue #93, 2026-11-02):** no page carries
   every trail: one cached file of search summaries for the search, map,
   guide, header search and trails near you; the search page's first 24 cards

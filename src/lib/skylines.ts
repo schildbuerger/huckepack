@@ -21,8 +21,33 @@ export interface Skyline {
 
 const G = 320; // the ground
 const pt = (p: P) => `${p[0]},${p[1]}`;
+// No cut-offs (2026-11-03): a broad shape (BROAD units or wider) never meets the ground in a wall.
+// Where its end drops steeper than 2 : 1 (run under STEEP × rise; a cliff, a headland), `range` gives
+// it a curved foot that sweeps out and meets the ground tangentially, FOOT × the drop away; slender
+// shapes (sea stacks, pillars, trunks, towers) keep their steep sides. tests/trails.test.ts checks
+// every skyline against it
+export const BROAD = 80;
+export const STEEP = 0.5;
+const FOOT = 1;
+// the end at `ground` (x on the ground) rising to `top`: a straight edge, or a curved foot
+const foot = (ground: number, top: P, dir: -1 | 1) => {
+  const rise = G - top[1];
+  if (ground <= 0 || ground >= SKY_W || Math.abs(top[0] - ground) >= STEEP * rise) return { at: ground, curve: "" };
+  const at = Math.min(SKY_W, Math.max(0, top[0] + dir * FOOT * rise));
+  return { at, curve: `${top[0] + dir * 0.35 * rise},${G} ` };
+};
 // a range of mountains through hand-placed points, its ends brought down to the ground
-const range = (pts: P[]) => `M${pts[0][0]},${G}L${pts.slice(1, -1).map(pt).join("L")}L${pts[pts.length - 1][0]},${G}Z`;
+const range = (pts: P[]) => {
+  const top = pts.slice(1, -1);
+  const [x0, x1] = [pts[0][0], pts[pts.length - 1][0]];
+  if (Math.abs(x1 - x0) < BROAD) return `M${x0},${G}L${top.map(pt).join("L")}L${x1},${G}Z`;
+  const a = foot(x0, top[0], -1);
+  const b = foot(x1, top[top.length - 1], 1);
+  const start = a.curve ? `M${a.at},${G}Q${a.curve}${pt(top[0])}` : `M${a.at},${G}L${pt(top[0])}`;
+  const rest = top.slice(1).map((p) => `L${pt(p)}`).join("");
+  const end = b.curve ? `Q${b.curve}${b.at},${G}` : `L${b.at},${G}`;
+  return `${start}${rest}${end}Z`;
+};
 // rounded hills: the same through smooth curves (quadratics through the midpoints)
 const hills = (pts: P[]) => {
   const p = pts.slice(1, -1);

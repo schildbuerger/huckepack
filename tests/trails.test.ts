@@ -7,6 +7,7 @@ import { barMetres, gradients, sleepingCategories, trailClimb, trailLength, walk
 import { mergeRuns, stripPaths, n1 } from "../src/lib/svg.ts";
 import { kmBetween, roundDistance } from "../src/lib/geo.ts";
 import { bestRun, climateFor, monthsText, readPick, runBetween } from "../src/lib/months.ts";
+import { SKYLINES, SKY_W, SKY_H, BROAD, STEEP } from "../src/lib/skylines.ts";
 
 // a record with only what these functions read
 const trail = (over: Record<string, unknown> = {}) =>
@@ -143,4 +144,38 @@ test("trail titles drop about, then the site's name, then shorten the countries"
 test("trail titles stay within the limit", () => {
   for (const [name, countries] of [["Merano High Mountain Trail", ["Italy"]], ["Coast to Coast Path", ["the United Kingdom"]], ["Path of Sacred Forests", ["Italy"]]] as const)
     assert.ok(trailTitle(name, "1,183", true, [...countries]).length <= TITLE_MAX, name);
+});
+
+// No cut-offs (2026-11-03): every broad skyline shape meets the ground gently, never in a wall
+test("skyline shapes meet the ground without a cut-off", () => {
+  const walls: string[] = [];
+  for (const [slug, sky] of Object.entries(SKYLINES)) {
+    for (const [layer, shapes] of [["shapes", sky.shapes], ["front", sky.front ?? []]] as const) {
+      shapes.forEach((shape, i) => {
+        for (const sub of shape.d.split(/(?=M)/)) {
+          // the subpath's points (curves by their end points)
+          const pts: [number, number][] = [];
+          let cur: [number, number] = [0, 0];
+          for (const [, cmd, args] of sub.matchAll(/([MLHVQZ])([^MLHVQZA]*)/g)) {
+            const a = args.split(/[ ,]+/).filter(Boolean).map(Number);
+            if (cmd === "M" || cmd === "L") cur = [a[0], a[1]];
+            else if (cmd === "H") cur = [a[0], cur[1]];
+            else if (cmd === "V") cur = [cur[0], a[0]];
+            else if (cmd === "Q") cur = [a[2], a[3]];
+            else continue;
+            pts.push(cur);
+          }
+          if (pts.length < 3 || pts[0][1] !== SKY_H) continue;
+          const xs = pts.map((p) => p[0]);
+          if (Math.max(...xs) - Math.min(...xs) < BROAD) continue; // slender: a stack, a pillar, a trunk
+          for (const [g, p] of [[pts[0], pts[1]], [pts[pts.length - 1], pts[pts.length - 2]]]) {
+            if (g[1] !== SKY_H || g[0] <= 0 || g[0] >= SKY_W) continue; // at the band's edge
+            const rise = SKY_H - p[1];
+            if (rise > 12 && Math.abs(p[0] - g[0]) < STEEP * rise) walls.push(`${slug} ${layer}[${i}] at x=${g[0]}`);
+          }
+        }
+      });
+    }
+  }
+  assert.deepEqual(walls, []);
 });
