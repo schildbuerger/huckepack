@@ -1,0 +1,187 @@
+name: Alta Via dei Parchi
+added: 2026-11-03
+aliases: [AVP, Alta Via dei Parchi Emilia-Romagna]
+website: https://ambiente.regione.emilia-romagna.it/en/parchi-natura2000/protected-areas/the-alta-via-dei-parchi
+managedBy:
+  # the Regione Emilia-Romagna (Protected Areas, Forestry and Mountains Development Department)
+  # "approved and funded the interventions proposed by the managing bodies of the Parks" for the
+  # trail's upkeep, signage and publications
+  - name: Regione Emilia-Romagna, with the parks' managing bodies
+    url: https://ambiente.regione.emilia-romagna.it/en/parchi-natura2000/protected-areas/the-alta-via-dei-parchi
+trailType: point-to-point
+continents: [Europe]
+countries: [IT]
+regions: [Emilia-Romagna, Tuscany, Marche]
+protectedAreas:
+  - Tuscan-Emilian Apennine National Park
+  - Foreste Casentinesi National Park
+  - Sasso Simone and Simoncello Interregional Park
+termini:
+  # Berceto and the Eremo Madonna del Faggio at Montecopiolo (OSM)
+  start:
+    name: Berceto
+    lat: 44.51061
+    lon: 9.98965
+  end:
+    name: Eremo Madonna del Faggio
+    lat: 43.80621
+    lon: 12.33384
+  source: osm
+length:
+  # "The complete itinerary is about 500 kilometers long (> 30'000 m of elevation gain) and it is
+  # divided into 27 stages"
+  - km: 500
+    approx: true
+    source: rer
+stages:
+  # the Region's 27 named stages (its stage page; the GPX files behind it now need a staff login).
+  # No source publishes stage distances, so they are measured on our OSM map line (decided
+  # 2026-11-03, the GR 20 rule; source `huckepack-measured`); each stage follows its OSM relation
+  # "Alta Via dei Parchi: Tappa NN" (superroute 7654002)
+  source: huckepack-measured
+  list:
+    - { number: "1", kind: main, from: "Berceto", to: "Lago Santo Parmense", km: 21.0, relation: 12216685 }
+    - { number: "2", kind: main, from: "Lago Santo Parmense", to: "Prato Spilla", km: 15.7, relation: 12214646 }
+    - { number: "3", kind: main, from: "Prato Spilla", to: "Passo del Cerreto", km: 15.8, relation: 12214340 }
+    - { number: "4", kind: main, from: "Passo del Cerreto", to: "Passo Pradarena", km: 10.7, relation: 12214234 }
+    - { number: "5", kind: main, from: "Passo Pradarena", to: "Lama Lite", km: 12.8, relation: 12214097 }
+    - { number: "6", kind: main, from: "Lama Lite", to: "San Pellegrino in Alpe", km: 16.6, relation: 12213936 }
+    - { number: "7", kind: main, from: "San Pellegrino in Alpe", to: "Lago Santo Modenese", km: 14.2, relation: 12213846 }
+    - { number: "8", kind: main, from: "Lago Santo Modenese", to: "Abetone", km: 12.7, relation: 12213789 }
+    - { number: "9", kind: main, from: "Abetone", to: "Lago Scaffaiolo", km: 15.8, relation: 11138136 }
+    - { number: "10", kind: main, from: "Lago Scaffaiolo", to: "Rifugio Monte Cavallo", km: 13.4, relation: 7654397 }
+    - { number: "11", kind: main, from: "Rifugio Monte Cavallo", to: "Poranceto", km: 30.2, relation: 7654395 }
+    - { number: "12", kind: main, from: "Poranceto", to: "Boccadirio", km: 17.4, relation: 7654393 }
+    - { number: "13", kind: main, from: "Boccadirio", to: "Alpe di Monghidoro", km: 19.4, relation: 7654324 }
+    - { number: "14", kind: main, from: "Alpe di Monghidoro", to: "Le Selve", km: 23.5, relation: 7654315 }
+    - { number: "15", kind: main, from: "Le Selve", to: "Tossignano", km: 21.2, relation: 7654231 }
+    - { number: "16", kind: main, from: "Tossignano", to: "Carnè", km: 19.8, relation: 7654200 }
+    - { number: "17", kind: main, from: "Carnè", to: "Marradi", km: 28.8, relation: 7654184 }
+    - { number: "18", kind: main, from: "Marradi", to: "Lago di Ponte", km: 16.0, relation: 4863744 }
+    - { number: "19", kind: main, from: "Lago di Ponte", to: "San Benedetto in Alpe", km: 8.3, relation: 7654085 }
+    - { number: "20", kind: main, from: "San Benedetto in Alpe", to: "Castagno d'Andrea", km: 21.1, relation: 4863763 }
+    - { number: "21", kind: main, from: "Castagno d'Andrea", to: "Campigna", km: 16.9, relation: 4863810 }
+    - { number: "22", kind: main, from: "Campigna", to: "Camaldoli", km: 13.5, relation: 4863818 }
+    - { number: "23", kind: main, from: "Camaldoli", to: "Badia Prataglia", km: 14.8, relation: 4863853 }
+    - { number: "24", kind: main, from: "Badia Prataglia", to: "La Verna", km: 28.2, relation: 4863890 }
+    - { number: "25", kind: main, from: "La Verna", to: "Rifugio Biancaneve al Fumaiolo", km: 21.8, relation: 4863911 }
+    - { number: "26", kind: main, from: "Rifugio Biancaneve al Fumaiolo", to: "Bascio", km: 21.8, relation: 7662375 }
+    - { number: "27", kind: main, from: "Bascio", to: "Eremo Madonna del Faggio", km: 19.8, relation: 7662499 }
+route:
+  # built by `python -m pipeline.all alta-via-dei-parchi`: OSM ways matched to the stage relations
+  source: osm
+  publishable: true
+difficulty:
+  # no grade is published; our estimate from the Region's description
+  estimated:
+    sac: T2
+    basis: >-
+      The trail runs along the main Apennine ridge between Emilia and Tuscany, "often approaching 2000
+      m of altitude" in the Tuscan-Emilian Apennine National Park, then descends through the Bolognese
+      mountains and the forests of the Casentino; more than 30,000 m of climbing over about 500 km.
+      Mountain hiking on marked paths (T2).
+    source: rer
+treeLine:
+  # the upper limit of the beech forest in the northern Apennines, "compreso tra 1700 e 1800 m di
+  # quota" (Magnani 2007, University of Bologna)
+  m: 1800
+  fromM: 1700
+  source: magnani-treeline
+wildCamping:
+  # the Region: bivouacking in protected areas was allowed only during the Covid emergency; now
+  # municipalities may designate temporary rest areas for tents; otherwise campsites or authorised
+  # places, and each park has its own rules
+  status: restricted
+  rule: >-
+    Tents only at campsites, authorised places or the temporary rest areas municipalities may set up
+    along the route; ask the park authorities and municipalities, each has its own rules.
+  source: rer-camping
+access:
+  # Parma station (trains and buses to Berceto) and Bologna Airport. Coordinates from OSM; distances
+  # by pipeline/access.py
+  - kind: station
+    name: Parma
+    lat: 44.80935
+    lon: 10.32888
+    source: osm
+  - kind: airport
+    name: Bologna Guglielmo Marconi Airport (BLQ)
+    lat: 44.53443
+    lon: 11.28845
+    source: osm
+tags: [apennines, ridge, national-park, forest, monasteries]
+notes:
+  - >-
+    The trail starts at Berceto near the Cisa Pass and follows the main ridge between Emilia and
+    Tuscany through the Tuscan-Emilian Apennine National Park, the Alto Appennino Modenese and Corno
+    alle Scale parks, down to the Suviana and Brasimone lakes, over the Bolognese mountains to the
+    gypsum ridge of the Vena del Gesso Romagnola, back to the ridge into the ancient forests of the
+    Foreste Casentinesi with the monasteries of Camaldoli and La Verna, over Monte Fumaiolo to the
+    Sasso Simone and Simoncello park and the Eremo Madonna del Faggio.
+  - >-
+    Wildlife: no official source on the trail's animals was found (2026-11-03), so none is listed.
+    Season: none stated by the Region.
+  - >-
+    Map line: each stage follows its OSM section relation (AVP01–AVP27), every stage at least 95 %
+    matched; 482.0 km against the Region's "about 500 km" (4 %). The Region publishes no stage
+    distances, so they are measured on the map line (491.3 km summed per stage). No stage climbs are
+    published; the page estimates about 25,230 m up from the terrain model.
+  - >-
+    Data check (2026-11-03): no second source gives figures; the built page against the Region's
+    stage list (27 stages, Berceto to the Eremo Madonna del Faggio: agree) and totals: length within
+    4 %, but the terrain-model ascent of about 25,230 m is 16 % under the Region's "more than
+    30,000 m of elevation gain" (a 30 m terrain model smooths the many short climbs on the ridge).
+dataCheck:
+  # working rule 2: no second source gives stage figures (no Wikipedia article); the built page is
+  # checked against the Region's stage list and totals
+  date: 2026-11-03
+  against: []
+  pageAgainst: [rer]
+  deviations:
+    - { figure: ascent, ours: "about 25,230 m (terrain model)", theirs: "more than 30,000 m", source: rer }
+sources:
+  - id: rer
+    title: "Regione Emilia-Romagna: The Alta Via dei Parchi and its 27 stages (about 500 km, more than 30,000 m of elevation gain)"
+    url: https://ambiente.regione.emilia-romagna.it/en/parchi-natura2000/protected-areas/the-alta-via-dei-parchi/stages
+    licence: All rights reserved (facts only)
+    retrieved: 2026-11-03
+  - id: rer-camping
+    title: "Regione Emilia-Romagna: Camping opportunities along the Alta Via dei Parchi (updated 27 November 2025)"
+    url: https://ambiente.regione.emilia-romagna.it/en/parchi-natura2000/protected-areas/the-alta-via-dei-parchi/bivouac-with-tent/camping-opportunities-along-the-alta-via-dei-parchi
+    licence: All rights reserved (facts only)
+    retrieved: 2026-11-03
+  - id: magnani-treeline
+    title: "Silvia Magnani: Ecologia del limite altitudinale del bosco nell'Appennino settentrionale (doctoral thesis, University of Bologna, 2007)"
+    url: https://amsdottorato.unibo.it/id/eprint/292/1/Tesi_di_dottorato_Silvia_Magnani.pdf
+    licence: All rights reserved (facts only)
+    retrieved: 2026-11-03
+  - id: huckepack-measured
+    title: "huckepack: stage distances measured on our OpenStreetMap map line (no source publishes them)"
+    url: https://www.openstreetmap.org/relation/7654002
+    licence: ODbL 1.0 (measured on OpenStreetMap data)
+    retrieved: 2026-11-03
+  - id: osm
+    title: "OpenStreetMap contributors: paths, water, shops and places to sleep along the trail (Geofabrik extracts), travel hubs"
+    url: https://www.openstreetmap.org/
+    licence: ODbL 1.0
+    retrieved: 2026-11-03
+  - id: copdem
+    title: "Copernicus DEM GLO-30 (30 m terrain model), tiles from AWS Open Data"
+    url: https://registry.opendata.aws/copernicus-dem/
+    licence: "Copernicus WorldDEM-30 licence, free; produced using Copernicus WorldDEM-30 © DLR e.V. 2010-2014 and © Airbus Defence and Space GmbH 2014-2018 provided under COPERNICUS by the European Union and ESA; all rights reserved"
+    retrieved: 2026-11-03
+  - id: worldcover
+    title: "ESA WorldCover 2021: 10 m land cover (via AWS Open Data)"
+    url: https://esa-worldcover.org/
+    licence: "CC BY 4.0; © ESA WorldCover project 2021 / Contains modified Copernicus Sentinel data (2021) processed by ESA WorldCover consortium"
+    retrieved: 2026-11-03
+  - id: era5
+    title: "Open-Meteo open data on AWS: ERA5-Land temperature and ERA5 precipitation, snow and wind, daily 1995–2024 (reanalysis)"
+    url: https://github.com/open-meteo/open-data
+    licence: CC BY 4.0 (Open-Meteo); contains modified Copernicus Climate Change Service information
+    retrieved: 2026-11-03
+  - id: osrm
+    title: "OSRM: road routes on OpenStreetMap data (router.project-osrm.org)"
+    url: https://project-osrm.org/
+    licence: Route data © OpenStreetMap contributors (ODbL)
+    retrieved: 2026-11-03

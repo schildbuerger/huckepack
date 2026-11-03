@@ -823,6 +823,22 @@ export const SKYLINES: Record<string, Skyline> = {
       { d: range([[0, G], [0, 280], [1600, 280], [1600, G]]), c: "#4f6a3a" },
     ],
   },
+  "alta-via-dei-parchi": {
+    view: "The northern Apennines: the grassy main ridge above the beech line, the forested valleys of the Casentino, and the sanctuary of La Verna on its sheer limestone cliff",
+    ridge: "#4f6a3a",
+    ground: "#6f8a4a",
+    shapes: [
+      // the main ridge, grassy above the beech line
+      { d: hills([[0, G], [120, 220], [300, 196], [460, 206], [620, 190], [800, 212], [1000, 222], [1200, 210], [1400, 226], [1600, 218], [1600, G]]), c: "#9aa68a" },
+      // the beech forests below it
+      { d: hills([[0, G], [140, 242], [340, 232], [540, 246], [760, 236], [980, 250], [1200, 242], [1600, 252], [1600, G]]), c: FOREST },
+      // La Verna: a wooded cliff with the sanctuary on top
+      { d: range([[1060, G], [1080, 236], [1100, 214], [1180, 210], [1200, 230], [1220, G]]), c: "#a89a84" },
+      { d: "M1110,214V198H1170V214Z M1136,198V182H1146V198Z", c: "#d6c8a8" },
+      { d: "M1106,198L1140,190L1174,198Z M1134,182L1141,172L1148,182Z", c: "#8a5a44" },
+      { d: range([[0, G], [0, 270], [1600, 268], [1600, G]]), c: "#7f9a4a" },
+    ],
+  },
   "pfaelzer-weinsteig": {
     view: "The Haardt edge of the Palatinate Forest: the wooded ridge up to the Kalmit with its stone tower, the Trifels on its sandstone rock, the Hambacher Schloss on its hill and vineyards below",
     ridge: "#4f6a33",
