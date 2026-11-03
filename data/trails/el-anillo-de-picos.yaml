@@ -1,0 +1,214 @@
+name: El Anillo de Picos
+added: 2026-11-03
+localName: El Anillo de Picos (3 Macizos)
+aliases: [Anillo de Picos, Ring of Picos, Anillo Tres Macizos, The Ring of Peaks]
+website: https://elanillodepicos.com/
+wikidata: Q140068766
+managedBy:
+  # run by the refuges of the Picos de Europa and their wardens (issue #77), not by the national
+  # park; the site books the refuges and sells the stamp passport
+  - name: El Anillo de Picos, the refuges of the Picos de Europa and their wardens
+    url: https://elanillodepicos.com/
+trailType: loop
+continents: [Europe]
+countries: [ES]
+regions: [Asturias, Cantabria, Castile and León]
+protectedAreas:
+  - Picos de Europa National Park
+termini:
+  # the itineraries page describes the ring from the Vega de Ario refuge (OSM), though "se puede
+  # comenzar desde cualquiera de los refugios y hacer en la dirección que se prefiera"
+  start:
+    name: Refugio de Vega de Ario
+    lat: 43.24293
+    lon: -4.92309
+  end:
+    name: Refugio de Vega de Ario
+    lat: 43.24293
+    lon: -4.92309
+  source: osm
+length:
+  # the home page: "115 km, 3 massif, 9 shelters"; the comparison table: 110 km for the 3 Macizos
+  - km: 115
+    approx: true
+    source: anillo
+ascent:
+  # the comparison table: 9.350 m for the 3 Macizos
+  - m: 9350
+    source: anillo-itinerarios
+waymarking:
+  # "el itinerario no dispone siempre de señalización especial. Aunque si se encuentra, en su mayor
+  # parte, marcas de pintura señalando algún PR y hitos"
+  text: No waymarks of its own; mostly the paint marks of local PR paths and cairns, so carry the map
+  source: anillo-consejos
+stages:
+  # the itineraries page's eight stages round the three massifs from Vega de Ario, with their times
+  # (decided 2026-11-03: the official site's stages; its comparison table
+  # lists the 3 Macizos as "9 Etapas" in eleven legs between the refuges and the valley). No source
+  # publishes stage distances, so they are measured on our OSM map line (the GR 20 rule; source
+  # `huckepack-measured`); each stage cuts the OSM relation "El Anillo de Picos (3 Macizos)"
+  # (8359856) at its refuge (OSM)
+  source: huckepack-measured
+  timesSource: anillo-itinerarios
+  list:
+    - { number: "1", kind: main, from: Vega de Ario, to: Vegarredonda, km: 7.4, minutes: 240, maxMinutes: 360, end: { name: Refugio de Vegarredonda, lat: 43.23439, lon: -4.9929 } }
+    - { number: "2", kind: main, from: Vegarredonda, to: Vegabaño, km: 15.3, minutes: 480, maxMinutes: 600, end: { name: Refugio de Vegabaño, lat: 43.16606, lon: -5.00496 } }
+    - { number: "3", kind: main, from: Vegabaño, to: Collado Jermoso, km: 17.6, minutes: 450, end: { name: Refugio Collado Jermoso, lat: 43.17293, lon: -4.8692 } }
+    - { number: "4", kind: main, from: Collado Jermoso, to: Cabaña Verónica, km: 4.8, minutes: 150, end: { name: Refugio Cabaña Verónica, lat: 43.17612, lon: -4.83418 } }
+    - { number: "5", kind: main, from: Cabaña Verónica, to: Casetón de Andara, km: 19.5, minutes: 480, end: { name: Refugio Casetón de Ándara, lat: 43.21399, lon: -4.71211 } }
+    - { number: "6", kind: main, from: Casetón de Andara, to: Vega de Urriellu, km: 15.1, minutes: 480, end: { name: Refugio de Urriellu, lat: 43.20272, lon: -4.82128 } }
+    - { number: "7", kind: main, from: Vega de Urriellu, to: Jou de los Cabrones, km: 3.8, minutes: 165, end: { name: Refugio Jou de los Cabrones, lat: 43.21405, lon: -4.85753 } }
+    - { number: "8", kind: main, from: Jou de los Cabrones, to: Vega de Ario, km: 22.8, minutes: 600, maxMinutes: 660, end: { name: Refugio de Vega de Ario, lat: 43.24293, lon: -4.92309 } }
+route:
+  # built by `python -m pipeline.all el-anillo-de-picos`: OSM ways matched to the relation's pieces
+  # between the refuges
+  source: osm
+  publishable: true
+  relation: 8359856
+difficulty:
+  # the site rates the 3 Macizos "Muy alta"; no SAC grade. Our estimate
+  estimated:
+    sac: T4
+    basis: >-
+      The site rates the three-massif ring "muy alta", its hardest. Ario to Vegarredonda is "una
+      ruta sin sendero" on cairns; the way up to Collado Jermoso is steep ground "donde tendremos
+      que ayudarnos de las manos"; from Urriellu "una corta trepada" to the Horcada Arenera; below
+      Jou de los Cabrones "unos tramos expuestos protegidos con cuerda fija", then the Canal de Trea.
+      Alpine hiking with easy scrambling and exposed passages (T4); stages up to 10–11 hours.
+    source: anillo-itinerarios
+treeLine:
+  # "La altitud máxima (1797 metros) del límite del bosque en el Parque Nacional de los Picos de
+  # Europa", lower than in most European mountains for the oceanic climate (OAPN, INDUROT)
+  m: 1797
+  source: indurot-treeline
+season:
+  # "Official dates from 1st June until 15th October"
+  months: [6, 7, 8, 9, 10]
+  text: 1 June to 15 October, the official dates
+  source: anillo
+sleeping:
+  # the nine refuges, booked through the site ("reservar en los refugios con más de 15 días de
+  # antelación")
+  types: [hut]
+  source: anillo
+wildCamping:
+  # the national park's plan (PRUG), Decreto 21/2026 (Asturias), art. 51: "únicamente se permitirá el
+  # vivac o la pernocta al raso vinculada a las actividades de montaña y escalada, hasta un máximo de
+  # 3 noches ... siempre por encima de la cota 1.800 m"; tents only in bad weather or force majeure,
+  # above 1,800 m, from an hour before sunset to an hour after sunrise; art. 52: otherwise camping only
+  # on authorised campsites; art. 53.7: at the guarded refuges only by authorisation, for force majeure
+  status: restricted
+  rule: >-
+    In the national park, sleeping in the open (without a tent) only for mountaineering, above
+    1,800 m and for up to three nights; a tent only in bad weather or an emergency, above 1,800 m,
+    pitched from an hour before sunset to an hour after sunrise. Otherwise camping only on authorised
+    campsites, and not outside the refuges unless authorised for force majeure.
+  source: prug-asturias
+access:
+  # Oviedo station (Asturias's main station; buses on to Cangas de Onís and the Lagos de Covadonga
+  # below Vega de Ario) and Asturias Airport. Coordinates from OSM; distances by pipeline/access.py
+  - kind: station
+    name: Oviedo
+    lat: 43.36636
+    lon: -5.85487
+    source: osm
+  - kind: airport
+    name: Asturias Airport (OVD)
+    lat: 43.56162
+    lon: -6.03091
+    source: osm
+tags: [mountains, huts, limestone, national-park, scrambling]
+notes:
+  - >-
+    The ring crosses all three massifs of the Picos de Europa from hut to hut: from Vega de Ario over
+    the western massif (Cornión) to Vegarredonda and down through the beech forests to Vegabaño,
+    across the Valdeón valley up to Collado Jermoso and Cabaña Verónica in the central massif
+    (Urrieles), over the Áliva meadows and the Canalón de Jidiello into the eastern massif (Ándara),
+    back past the Picu Urriellu (Naranjo de Bulnes) to Jou de los Cabrones, and down by Bulnes,
+    the Cares gorge and the Canal de Trea to Vega de Ario.
+  - >-
+    Water: "En Picos de Europa escasea el agua y es fácil que sólo haya en los refugios" (the site):
+    carry plenty on every stage. In bad weather or poor visibility the site advises the normal path
+    by the lakes from Ario to Vegarredonda instead of the unmarked first stage. Cabaña Verónica, a
+    former aircraft-carrier gun turret, is the smallest refuge. Emergencies: 112.
+  - >-
+    Wild camping: the rule is the national park's plan (PRUG) as Asturias approved it (Decreto
+    21/2026, in force); Castile and León (Decreto 17/2025) and Cantabria (Decreto 57/2026) approved
+    the same plan for their parts of the park. Their texts weren't checked word by word (Castile and
+    León's annex is a scanned image).
+  - >-
+    Map line: each stage cuts the OSM relation "El Anillo de Picos (3 Macizos)" (8359856) at its
+    refuge, every stage fully matched; 106.3 km summed per stage (the stage distances, measured).
+    OSM has one shop on the ring: food is the refuges' meals and the picnics they prepare (the
+    site), so the page's longest stretch without resupply, 71 km, counts only shops.
+  - >-
+    Data check (2026-11-03): no second source gives figures; the built page against the site's own:
+    106.3 km against the home page's 115 km (8 %) and the comparison table's 110 km (3 %); the
+    terrain model's climb, about 8,820 m, against the table's 9.350 m (6 %); the eight stages and
+    refuges agree with the itineraries page. No deviation over 10 %.
+  - >-
+    Wildlife: no official source on the animals a walker meets on the ring was found (2026-11-03),
+    so none is listed.
+dataCheck:
+  # working rule 2: no second source gives figures (no Wikipedia article); the built page is checked
+  # against the site's own stage list and totals
+  date: 2026-11-03
+  against: []
+  pageAgainst: [anillo, anillo-itinerarios]
+  deviations: []
+sources:
+  - id: anillo
+    title: "El Anillo de Picos (elanillodepicos.com): the ring (115 km, 3 massifs, 9 refuges), its official dates and refuges"
+    url: https://elanillodepicos.com/
+    licence: All rights reserved (facts only)
+    retrieved: 2026-11-03
+  - id: anillo-itinerarios
+    title: "El Anillo de Picos: Itinerarios, the eight stages with times and refuge heights, and the comparison of the three rings (3 Macizos: 110 km, 9.350 m, \"Muy alta\")"
+    url: https://elanillodepicos.com/itinerarios/
+    licence: All rights reserved (facts only)
+    retrieved: 2026-11-03
+  - id: anillo-consejos
+    title: "El Anillo de Picos: Consejos (waymarking, water, booking, camping at the refuges)"
+    url: https://elanillodepicos.com/consejos/
+    licence: All rights reserved (facts only)
+    retrieved: 2026-11-03
+  - id: prug-asturias
+    title: "Principado de Asturias: Decreto 21/2026, de 16 de marzo, Plan Rector de Uso y Gestión del Parque Nacional de los Picos de Europa (BOPA 30 March 2026), art. 51–53"
+    url: https://miprincipado.asturias.es/bopa/2026/03/30/2026-02506.pdf
+    licence: Public decree (facts only)
+    retrieved: 2026-11-03
+  - id: indurot-treeline
+    title: "Organismo Autónomo Parques Nacionales: Bases para el seguimiento de los cambios en la flora y vegetación como consecuencia del cambio climático en el Parque Nacional de los Picos de Europa (INDUROT, Universidad de Oviedo, 2008–2009)"
+    url: https://www.miteco.gob.es/content/dam/miteco/es/parques-nacionales-oapn/red-seguimiento/vegetacion6_tcm30-505351.pdf
+    licence: © Organismo Autónomo Parques Nacionales (facts only)
+    retrieved: 2026-11-03
+  - id: huckepack-measured
+    title: "huckepack: stage distances measured on our OpenStreetMap map line (no source publishes them)"
+    url: https://www.openstreetmap.org/relation/8359856
+    licence: ODbL 1.0 (measured on OpenStreetMap data)
+    retrieved: 2026-11-03
+  - id: osm
+    title: "OpenStreetMap contributors: paths, water, shops and places to sleep along the trail (Geofabrik extracts), travel hubs"
+    url: https://www.openstreetmap.org/
+    licence: ODbL 1.0
+    retrieved: 2026-11-03
+  - id: copdem
+    title: "Copernicus DEM GLO-30 (30 m terrain model), tiles from AWS Open Data"
+    url: https://registry.opendata.aws/copernicus-dem/
+    licence: "Copernicus WorldDEM-30 licence, free; produced using Copernicus WorldDEM-30 © DLR e.V. 2010-2014 and © Airbus Defence and Space GmbH 2014-2018 provided under COPERNICUS by the European Union and ESA; all rights reserved"
+    retrieved: 2026-11-03
+  - id: worldcover
+    title: "ESA WorldCover 2021: 10 m land cover (via AWS Open Data)"
+    url: https://esa-worldcover.org/
+    licence: "CC BY 4.0; © ESA WorldCover project 2021 / Contains modified Copernicus Sentinel data (2021) processed by ESA WorldCover consortium"
+    retrieved: 2026-11-03
+  - id: era5
+    title: "Open-Meteo open data on AWS: ERA5-Land temperature and ERA5 precipitation, snow and wind, daily 1995–2024 (reanalysis)"
+    url: https://github.com/open-meteo/open-data
+    licence: CC BY 4.0 (Open-Meteo); contains modified Copernicus Climate Change Service information
+    retrieved: 2026-11-03
+  - id: osrm
+    title: "OSRM: road routes on OpenStreetMap data (router.project-osrm.org)"
+    url: https://project-osrm.org/
+    licence: Route data © OpenStreetMap contributors (ODbL)
+    retrieved: 2026-11-03

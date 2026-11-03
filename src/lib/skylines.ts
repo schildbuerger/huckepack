@@ -852,6 +852,21 @@ export const SKYLINES: Record<string, Skyline> = {
       { d: hills([[0, G], [120, 266], [260, 282], [420, 272], [600, 286], [780, 278], [960, 290], [1140, 280], [1320, 270], [1480, 282], [1600, 276], [1600, G]]), c: FOREST },
     ],
   },
+  "el-anillo-de-picos": {
+    view: "The central massif of the Picos de Europa from the Vega de Urriellu: the sheer limestone block of the Picu Urriellu (Naranjo de Bulnes) above grey jagged ridges, high pasture in front",
+    ridge: "#6f8a4a",
+    ground: MEADOW,
+    shapes: [
+      // the jagged grey ridges of the massif behind
+      { d: range([[0, G], [80, 250], [160, 214], [220, 196], [262, 176], [300, 188], [340, 160], [380, 176], [430, 150], [480, 168], [540, 146], [600, 170], [700, 160], [760, 176], [900, 150], [960, 166], [1020, 144], [1080, 160], [1140, 138], [1200, 156], [1270, 148], [1340, 172], [1420, 196], [1520, 236], [1600, 250], [1600, G]]), c: "#a9aca8" },
+      // the Picu Urriellu: a steep-walled block with a slanting top
+      { d: range([[600, G], [640, 250], [690, 190], [714, 130], [722, 100], [780, 90], [826, 102], [834, 132], [852, 196], [890, 256], [940, G]]), c: "#c9c3b4" },
+      // its shaded west face
+      { d: "M722,100L714,130L690,190L672,222L702,240L730,170L742,124Z", c: "#b2ab9b" },
+      // the high pasture and scree in front
+      { d: hills([[0, G], [140, 286], [320, 270], [520, 280], [720, 266], [920, 278], [1120, 272], [1320, 284], [1500, 276], [1600, 282], [1600, G]]), c: "#7f9a4a" },
+    ],
+  },
   "pfaelzer-weinsteig": {
     view: "The Haardt edge of the Palatinate Forest: the wooded ridge up to the Kalmit with its stone tower, the Trifels on its sandstone rock, the Hambacher Schloss on its hill and vineyards below",
     ridge: "#4f6a33",
