@@ -892,6 +892,26 @@ export const SKYLINES: Record<string, Skyline> = {
       { d: hills([[0, G], [140, 286], [320, 270], [520, 280], [720, 266], [920, 278], [1120, 272], [1320, 284], [1500, 276], [1600, 282], [1600, G]]), c: "#7f9a4a" },
     ],
   },
+  "fishermens-trail": {
+    view: "The Costa Vicentina: dark schist cliffs over the Atlantic with a sea stack where storks nest, the lighthouse on Cabo de São Vicente far off, and a sandy cove below the clifftop heath",
+    ridge: "#6f7a4a",
+    ground: "#cdb27a",
+    shapes: [
+      // Cabo de São Vicente far off, with its lighthouse
+      { d: range([[0, G], [0, 238], [150, 232], [290, 240], [350, 252], [380, G]]), c: "#a3a39c" },
+      { d: lighthouse(130, 233, 24), c: "#f4f1ea" },
+      { d: water(0, 1600, 254), c: SEA },
+      // a sea stack with a stork's nest on top
+      { d: range([[560, 270], [566, 216], [592, 210], [602, 270]]), c: "#7a6a5c" },
+      { d: "M568,214L572,206H592L596,212Z", c: "#5a4a3a" },
+      // the cliffs, their schist face dark and reddish
+      { d: range([[700, G], [712, 208], [770, 196], [1000, 190], [1250, 198], [1600, 192], [1600, G]]), c: "#7a6458" },
+      // the heath along the clifftop
+      { d: range([[750, G], [762, 202], [1000, 195], [1250, 203], [1600, 197], [1600, G]]), c: "#8f9a6a" },
+      // a sandy cove below
+      { d: range([[0, G], [0, 284], [300, 278], [600, 284], [720, 292], [780, G]]), c: "#e0c99a" },
+    ],
+  },
   "pfaelzer-weinsteig": {
     view: "The Haardt edge of the Palatinate Forest: the wooded ridge up to the Kalmit with its stone tower, the Trifels on its sandstone rock, the Hambacher Schloss on its hill and vineyards below",
     ridge: "#4f6a33",

@@ -1,0 +1,193 @@
+name: Fishermen's Trail
+added: 2026-11-03
+localName: Trilho dos Pescadores
+aliases: [Rota Vicentina, Fishermans Trail, Fisherman's Trail, Trilho dos Pescadores da Rota Vicentina]
+website: https://rotavicentina.com/en/fishermens-trail/
+managedBy:
+  # the Associação Rota Vicentina marks and maintains the Rota Vicentina's walking trails (issue #13)
+  - name: Associação Rota Vicentina
+    url: https://rotavicentina.com/
+trailType: point-to-point
+continents: [Europe]
+countries: [PT]
+regions: [Alentejo, Algarve]
+protectedAreas:
+  - Southwest Alentejo and Vicentine Coast Natural Park
+termini:
+  # where OSM's stage relations 1 and 13 start and end (superroute 20810829, "Praia de São Torpes" to
+  # "Lagos")
+  start:
+    name: Praia de São Torpes
+    lat: 37.92756
+    lon: -8.80679
+  end:
+    name: Lagos
+    lat: 37.10900
+    lon: -8.67210
+  source: osm
+waymarking:
+  # the signage page: "São quatro os tipos de marcas ... caminho certo, caminho errado e mudança de
+  # direcção à esquerda e à direita. A cor varia de acordo com a tipologia de trilho"; the Fishermen's
+  # Trail's colours are shown only as images, so not named here; "Intuitive signage to make the entire
+  # journey in autonomy, both ways" (the trail page)
+  text: Its own painted marks, in colours apart from the Historical Way's, for the right way, the wrong way and turns left and right, to walk without a guide in both directions
+  source: rota-vicentina-sinaletica
+length:
+  # "Fishermen's Trail includes a total of 13 steps, a total of 226,5 km"
+  - km: 226.5
+    source: rota-vicentina
+stages:
+  # the trail page's stage list, which the site renders in the browser only: distance, duration,
+  # ascent and descent per stage, copied from the page into this conversation by the site's operator on
+  # 2026-11-03 (issue #13). Each stage names its OSM stage relation (superroute 20810829, "Rota
+  # Vicentina - Trilho dos Pescadores")
+  source: rota-vicentina-stages
+  list:
+    - { number: "1", kind: main, from: São Torpes, to: Porto Covo, km: 10.2, ascentM: 23, descentM: 0, minutes: 155, relation: 20810605 }
+    - { number: "2", kind: main, from: Porto Covo, to: Vila Nova de Milfontes, km: 19.6, ascentM: 76, descentM: 71, minutes: 315, relation: 20810602 }
+    - { number: "3", kind: main, from: Vila Nova de Milfontes, to: Almograve, km: 14.6, ascentM: 94, descentM: 93, minutes: 225, relation: 20810603 }
+    - { number: "4", kind: main, from: Almograve, to: Zambujeira do Mar, km: 21.5, ascentM: 162, descentM: 162, minutes: 350, relation: 20810601 }
+    - { number: "5", kind: main, from: Zambujeira do Mar, to: Odeceixe, km: 18.7, ascentM: 303, descentM: 352, minutes: 340, relation: 20810600 }
+    - { number: "6", kind: main, from: Odeceixe, to: Aljezur, km: 22.6, ascentM: 185, descentM: 198, minutes: 350, relation: 20810599 }
+    - { number: "7", kind: main, from: Aljezur, to: Arrifana, km: 17.1, ascentM: 223, descentM: 178, minutes: 286, relation: 20810598 }
+    - { number: "8", kind: main, from: Arrifana, to: Carrapateira, km: 19.4, ascentM: 277, descentM: 298, minutes: 310, relation: 20810597 }
+    - { number: "9", kind: main, from: Carrapateira, to: Vila do Bispo, km: 15.3, ascentM: 302, descentM: 232, minutes: 258, relation: 20810596 }
+    - { number: "10", kind: main, from: Vila do Bispo, to: Sagres, km: 20.2, ascentM: 114, descentM: 179, minutes: 318, relation: 20810595 }
+    - { number: "11", kind: main, from: Sagres, to: Salema, km: 19.6, ascentM: 348, descentM: 371, minutes: 325, relation: 20810594 }
+    - { number: "12", kind: main, from: Salema, to: Luz, km: 11.5, ascentM: 217, descentM: 217, minutes: 204, relation: 20810593 }
+    - { number: "13", kind: main, from: Luz, to: Lagos, km: 10.9, ascentM: 214, descentM: 217, minutes: 205, relation: 20810592 }
+route:
+  # built by `python -m pipeline.all fishermens-trail`: OSM ways matched to the stage relations
+  source: osm
+  publishable: true
+difficulty:
+  # the site rates the stages Easy, Moderate or Difficult and the trail "somewhat difficult"; no SAC
+  # grade. Our estimate
+  estimated:
+    sac: T2
+    basis: >-
+      "A single track walkable only on foot, along the cliffs, with lots of sand and therefore more
+      demanding from the physical point of view"; "60% to 70% of sandy trails"; "Not recommended to
+      people with vertigo or fear of heights"; the cliffs are eroding, "be careful of the danger of
+      falling". Clear paths with steep drops beside them and no scrambling (T2); the sand makes the
+      days harder than their climbs.
+    source: rota-vicentina
+season:
+  # "13 one-day stages, which can be walked in both directions, between the months of September and
+  # June"
+  months: [9, 10, 11, 12, 1, 2, 3, 4, 5, 6]
+  text: September to June
+  source: rota-vicentina
+sleeping:
+  # "Accommodation and other services along the entire route ... No wild camping. Search for the
+  # campsites."
+  types: [campsite]
+  source: rota-vicentina
+wildCamping:
+  # "No wild camping. Search for the campsites."
+  status: prohibited
+  rule: No wild camping; sleep at the campsites or the accommodation along the route.
+  source: rota-vicentina
+access:
+  # Lisbon's Sete Rios coach station (express coaches to Sines and Porto Covo; no passenger railway
+  # reaches the start) and the airports of Lisbon and Faro. Coordinates from OSM; distances by
+  # pipeline/access.py
+  - kind: bus
+    name: Lisbon Sete Rios
+    lat: 38.74183
+    lon: -9.16627
+    source: osm
+  - kind: airport
+    name: Lisbon Airport (LIS)
+    lat: 38.78099
+    lon: -9.13601
+    source: osm
+  - kind: airport
+    name: Faro Airport (FAO)
+    lat: 37.01751
+    lon: -7.97058
+    source: osm
+tags: [coast, cliffs, sand, natural-park, beaches]
+notes:
+  - >-
+    The trail follows the paths the locals take to the beaches and fishing spots along the cliffs of
+    the Alentejo and the Costa Vicentina, from São Torpes near Sines past Porto Covo, Vila Nova de
+    Milfontes, Zambujeira do Mar and Odeceixe into the Algarve, round Cabo de São Vicente to Sagres
+    and along the south coast to Lagos. It is one of the Rota Vicentina's walking trails, beside the
+    inland Historical Way.
+  - >-
+    Rules of the trail page: on foot only, at most 15 people per group, no vehicles in the dunes,
+    trail running "not compatible with the care that this ecosystem requires"; private land is
+    crossed with the owners' leave, for walkers only.
+  - >-
+    Stage figures: the page's stages sum to 221.2 km against its stated 226.5 km (2 %); the trail
+    page also says "13 one day trails, with a maximum of 22.5 km", where the longest listed stage is
+    22.6 km.
+  - >-
+    Ascent: the stages' stated climbs sum to 2,538 m up and 2,568 m down; the terrain model gives
+    about 4,420 m along the map line, 74 % more. Its 30 m grid counts every rise of the clifftops and
+    dunes and the treetops in the 12 % of forest; the page shows the stated figures.
+  - >-
+    Tree line: the route stays near sea level (highest point 158 m in the terrain model), far below
+    any tree line.
+  - >-
+    Wildlife: no official source on the animals a walker meets on the trail was found (2026-11-03),
+    so none is listed.
+  - >-
+    Data check (2026-11-03). Second source: DECO PROteste (6 September 2024): 226 km from São Torpes
+    to Lagos in 13 stages, the first and last about 10 km each, 70 % on sand, wild camping
+    prohibited; it advises April to June and September to October against heat, rain and wind,
+    inside the official September to June. All agree (226 against 226.5 km).
+dataCheck:
+  date: 2026-11-03
+  against: [deco-proteste]
+  pageAgainst: [rota-vicentina-stages]
+  deviations:
+    - { figure: ascent, ours: "about 4,420 m (terrain model)", theirs: "2,538 m (the stages' sum)", source: rota-vicentina-stages }
+sources:
+  - id: rota-vicentina
+    title: "Rota Vicentina: Fishermen's Trail (13 stages, 226.5 km, September to June, no wild camping)"
+    url: https://rotavicentina.com/en/fishermens-trail/
+    licence: All rights reserved (facts only)
+    retrieved: 2026-11-03
+  - id: rota-vicentina-stages
+    title: "Rota Vicentina: Stages of the Fishermen's Trail, distance, duration, ascent and descent per stage (shown in the browser; copied from the page on 2026-11-03)"
+    url: https://rotavicentina.com/en/fishermens-trail/
+    licence: All rights reserved (facts only)
+    retrieved: 2026-11-03
+  - id: rota-vicentina-sinaletica
+    title: "Rota Vicentina: Sinalética (the waymarks of the walking trails)"
+    url: https://rotavicentina.com/sinaletica/
+    licence: All rights reserved (facts only)
+    retrieved: 2026-11-03
+  - id: deco-proteste
+    title: "DECO PROteste: Trilho dos Pescadores no Parque Natural do Sudoeste Alentejano e Costa Vicentina (6 September 2024)"
+    url: https://www.deco.proteste.pt/familia-consumo/ferias-lazer/noticias/trilho-pescadores-parque-natural-sudoeste-alentejano-costa-vicentina
+    licence: All rights reserved (facts only)
+    retrieved: 2026-11-03
+    checkOnly: true
+  - id: osm
+    title: "OpenStreetMap contributors: the Fishermen's Trail stage relations (superroute 20810829), paths, water, shops and places to sleep along the trail (Geofabrik extract), travel hubs"
+    url: https://www.openstreetmap.org/relation/20810829
+    licence: ODbL 1.0
+    retrieved: 2026-11-03
+  - id: copdem
+    title: "Copernicus DEM GLO-30 (30 m terrain model), tiles from AWS Open Data"
+    url: https://registry.opendata.aws/copernicus-dem/
+    licence: "Copernicus WorldDEM-30 licence, free; produced using Copernicus WorldDEM-30 © DLR e.V. 2010-2014 and © Airbus Defence and Space GmbH 2014-2018 provided under COPERNICUS by the European Union and ESA; all rights reserved"
+    retrieved: 2026-11-03
+  - id: worldcover
+    title: "ESA WorldCover 2021: 10 m land cover (via AWS Open Data)"
+    url: https://esa-worldcover.org/
+    licence: "CC BY 4.0; © ESA WorldCover project 2021 / Contains modified Copernicus Sentinel data (2021) processed by ESA WorldCover consortium"
+    retrieved: 2026-11-03
+  - id: era5
+    title: "Open-Meteo open data on AWS: ERA5-Land temperature and ERA5 precipitation, snow and wind, daily 1995–2024 (reanalysis)"
+    url: https://github.com/open-meteo/open-data
+    licence: CC BY 4.0 (Open-Meteo); contains modified Copernicus Climate Change Service information
+    retrieved: 2026-11-03
+  - id: osrm
+    title: "OSRM: road routes on OpenStreetMap data (router.project-osrm.org)"
+    url: https://project-osrm.org/
+    licence: Route data © OpenStreetMap contributors (ODbL)
+    retrieved: 2026-11-03
