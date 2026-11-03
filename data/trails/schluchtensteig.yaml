@@ -1,0 +1,235 @@
+name: Schluchtensteig
+added: 2026-11-03
+website: https://www.schluchtensteig.de/
+wikidata: Q2244967
+managedBy:
+  # "Infostelle Schluchtensteig, Projektstelle Wandern, c/o Landratsamt Waldshut"; built as a joint
+  # project of the towns along it, the Schwarzwaldverein, the Naturpark Südschwarzwald, the district
+  # of Waldshut and Schwarzwald Tourismus (German Wikipedia)
+  - name: Landratsamt Waldshut (Infostelle Schluchtensteig)
+    url: https://www.schluchtensteig.de/
+trailType: point-to-point
+continents: [Europe]
+countries: [DE]
+regions: [Baden-Württemberg]
+protectedAreas:
+  - Naturpark Südschwarzwald
+  - Wutachschlucht nature reserve
+termini:
+  # Stühlingen station (German Wikipedia: "beginnt am Bahnhof in Stühlingen") and the finish in
+  # Wehr's castle park (the official stage 6 page: "die Zielstation im Schlosspark"), from OSM
+  start:
+    name: Stühlingen
+    lat: 47.7431
+    lon: 8.44602
+  end:
+    name: Wehr
+    lat: 47.62617
+    lon: 7.90556
+  source: osm
+established:
+  # opened on 5 June 2008 (German Wikipedia)
+  year: 2008
+  source: wikipedia
+waymarking:
+  # the Schwarzwaldverein's Schluchtensteig diamond, "Stilisierter Flusslauf mit Berg und Tal": a
+  # logo, not redrawn (waymark rule, issue #82)
+  text: The Schluchtensteig diamond of the Schwarzwaldverein, a stylised river between mountain and valley
+  source: wikipedia
+length:
+  # "Wandern auf 119 km durch den Naturpark Südschwarzwald"
+  - km: 119
+    source: sst
+ascent:
+  # the official overview: 3,180 m up, 3,290 m down
+  - m: 3180
+    source: sst
+descent:
+  - m: 3290
+    source: sst
+days:
+  # "5 - 6 Etappen"; the FAQ: "6 Tagesetappen, die zwischen 18-22 km lang sind"
+  min: 5
+  max: 6
+  source: sst
+stages:
+  # the six stages as Schwarzwald Tourismus publishes them on Outdooractive (the official site's
+  # stage pages embed these tours): distance, climbs, time; each tour page carries its track (read
+  # by pipeline/osm.py, only to guide the OSM matcher)
+  source: stg
+  list:
+    - { number: "1", kind: main, from: "Stühlingen", to: "Blumberg", km: 18.6, ascentM: 588, descentM: 344, minutes: 330, track: "https://www.outdooractive.com/de/route/wandern/schwarzwald/schluchtensteig-etappe-1-von-stuehlingen-nach-blumberg/2811721/" }
+    - { number: "2", kind: main, from: "Blumberg", to: "Schattenmühle", km: 20.3, ascentM: 262, descentM: 304, minutes: 360, track: "https://www.outdooractive.com/de/route/wandern/schwarzwald/schluchtensteig-etappe-2-von-blumberg-zur-schattenmuehle/2805905/" }
+    - { number: "3", kind: main, from: "Schattenmühle", to: "Schluchsee-Fischbach", km: 18.2, ascentM: 729, descentM: 342, minutes: 360, track: "https://www.outdooractive.com/de/route/wandern/schwarzwald/schluchtensteig-etappe-3-von-der-schattenmuehle-nach-fischbach-schluchsee/2811726/" }
+    - { number: "4", kind: main, from: "Schluchsee-Fischbach", to: "St. Blasien", km: 20.1, ascentM: 378, descentM: 656, minutes: 390, track: "https://www.outdooractive.com/de/route/wandern/schwarzwald/schluchtensteig-etappe-4-von-schluchsee-fischbach-nach-st.-blasien/2811730/" }
+    - { number: "5", kind: main, from: "St. Blasien", to: "Todtmoos", km: 18.9, ascentM: 615, descentM: 574, minutes: 360, track: "https://www.outdooractive.com/de/route/wandern/schwarzwald/schluchtensteig-etappe-5-von-st.-blasien-nach-todtmoos/2805916/" }
+    - { number: "6", kind: main, from: "Todtmoos", to: "Wehr", km: 23.5, ascentM: 386, descentM: 845, minutes: 480, track: "https://www.outdooractive.com/de/route/wandern/schwarzwald/schluchtensteig-etappe-6-von-todtmoos-nach-wehr/2805917/" }
+route:
+  # built by `python -m pipeline.all schluchtensteig`: OSM ways matched to the stages' tracks
+  source: osm
+  publishable: true
+difficulty:
+  # no grade is published; our estimate from the official descriptions
+  estimated:
+    sac: T2
+    basis: >-
+      The official stage pages describe narrow paths through the gorges, "teils etwas ausgesetzten
+      schmalen Pfaden" in the Wutachflühen, an 8 m ladder-like stair into the Schleifenbach gorge
+      (with a detour for dogs and walkers without a head for heights) and rock walls "mithilfe eines
+      Drahtseilgeländers gesichert" along the Wutach. Mountain hiking on mostly good paths with a few
+      secured, slightly exposed sections (T2); German Wikipedia rates every stage "schwer".
+    source: sst
+season:
+  # "Die beste Wanderzeit ist von Mai bis Oktober; mit dem ersten Schnee wird seine Begehung, meist
+  # ab November, nicht mehr empfohlen" (German Wikipedia)
+  months: [5, 6, 7, 8, 9, 10]
+  text: May to October; not recommended once the first snow falls, usually from November
+  source: wikipedia
+sleeping:
+  # the official "Steiggastgeber" (rooms, holiday flats), the Black Forest's trekking camps and the
+  # one-night camps along the trail
+  types: [hotel, guesthouse, campsite]
+  source: sst
+wildCamping:
+  status: restricted
+  rule: >-
+    Tents only at the Black Forest's bookable trekking camps (May to October, "erstmals ganz
+    offiziell erlaubt", off the villages and found by GPS) and at the one-night camps that farmers,
+    villages and private hosts offer along the Schluchtensteig; elsewhere camping in the forest isn't
+    allowed.
+  source: sst
+access:
+  # Basel Badischer Bahnhof, the official arrival page's recommended station (then train and bus to
+  # Stühlingen); EuroAirport Basel-Mulhouse and Zürich airports. Coordinates from OSM; distances by
+  # pipeline/access.py
+  - kind: station
+    name: Basel Badischer Bahnhof
+    lat: 47.56746
+    lon: 7.60731
+    source: osm
+  - kind: airport
+    name: EuroAirport Basel-Mulhouse (BSL)
+    lat: 47.59914
+    lon: 7.53028
+    source: osm
+  - kind: airport
+    name: Zürich Airport (ZRH)
+    lat: 47.46314
+    lon: 8.55185
+    source: osm
+animals:
+  # Cattle on the suckler-cow pastures the official FAQ warns of, and ticks (the RKI's TBE risk areas,
+  # 2026, with the federal health agency's advice). Levels ours
+  list:
+    - kind: cattle
+      name: Suckler cows on the pastures
+      level: moderate
+      basis: "The official FAQ warns that the trail crosses pastures with suckler cows in season, where a mother cow defending her calf can't be ruled out."
+      do:
+        - "Cross the pasture quickly"
+        - "Keep your distance from cows and calves"
+        - "Keep your dog on a lead"
+      source: sst
+    - kind: tick
+      name: "Ticks (Lyme disease, tick-borne encephalitis)"
+      level: moderate
+      basis: "Ticks that carry Lyme disease live all over Germany, in forests and meadows; the Robert Koch Institute lists every district the Schluchtensteig crosses (Waldshut, Schwarzwald-Baar, Breisgau-Hochschwarzwald) as a risk area for tick-borne encephalitis (TBE), against which a vaccine protects."
+      do:
+        - "Wear closed shoes, long sleeves and long trousers, the socks pulled over the trouser legs; light clothes show ticks"
+        - "Use a tick repellent as its maker directs; it protects only for a while, and not fully"
+        - "After the walk, search your body: the hollows of the knees, the groin, the armpits, behind the ears, the head and the hairline"
+        - "Remove a tick as soon as you can: grip it by its head close to the skin with tweezers or a tick card, pull it slowly and straight out, then disinfect the bite"
+        - "See a doctor if a red ring at least 5 cm across spreads around the bite within 3 to 30 days, or fever and aching follow a bite"
+        - "Ask a doctor about the TBE vaccination well before you go: Germany's vaccination committee (STIKO) recommends it for people exposed to ticks in TBE risk areas"
+      dont:
+        - "Treat the tick with oil or cream, or squeeze it: it may release more germs"
+      source: bzga-borreliose
+tags: [gorges, waterfalls, forest, lakes, black-forest]
+notes:
+  - >-
+    The trail runs from Stühlingen on the Swiss border through the Wutach gorge (stages 1–3), over
+    the Bildstein and round the Schluchsee to the highest point at the Krummenkreuz (1,148 m), to
+    St. Blasien's dome, over the Hotzenwald to Todtmoos and down the Wehra gorge to Wehr. A
+    "Qualitätsweg Wanderbares Deutschland", recertified in 2025 (German Wikipedia). The official
+    site lists refill stations for drinking water along the trail. Stage 2's end at the Schattenmühle
+    has no bus; hosts in Bonndorf, Löffingen, Bräunlingen or Hüfingen collect walkers by
+    arrangement (official stage page).
+  - >-
+    Figures: the official overview gives 119 km with 3,180 m up and 3,290 m down; the six stage
+    tours sum to 119.6 km, 2,958 m up and 3,065 m down (7 % less climbing). The page shows the
+    official total pair and the stage tours' figures per stage. Times from the stage tours; the
+    official stage pages give 5.5, 6, 6, 5.5, 6 and 7.5 h (stage 4: 5.5 against 6.5 h).
+  - >-
+    Season: May to October (German Wikipedia; the official FAQ calls the gorges pleasantly cool in
+    summer). Wild camping: only at the trekking and one-night camps. Tree line: none recorded, the
+    trail stays below 1,148 m.
+  - >-
+    Map line: every stage 100 % matched to OSM, 117.5 km against the tours' 119.6 km (2 %).
+    Terrain model: about 4,340 m up against the tours' 2,958 m and the official 3,180 m; the model
+    reads the treetops (76 % of the route is forest), so the page shows the official pair. Highest
+    point on the model 1,160 m against the official Krummenkreuz 1,148 m.
+  - >-
+    Supply: villages and towns at every stage end (Blumberg, Lenzkirch, Schluchsee, St. Blasien,
+    Todtmoos, Wehr); stage 2 runs through the gorge without a village.
+dataCheck:
+  # working rule 2: German Wikipedia's stage figures
+  date: 2026-11-03
+  against: [wikipedia]
+  deviations: []
+sources:
+  - id: sst
+    title: "Infostelle Schluchtensteig (Landratsamt Waldshut): schluchtensteig.de, overview, stage pages, FAQ, arrival, trekking (length, climbs, stages, times, sleeping, camping, cows)"
+    url: https://www.schluchtensteig.de/
+    licence: All rights reserved (facts only)
+    retrieved: 2026-11-03
+  - id: stg
+    title: "Schwarzwald Tourismus GmbH on Outdooractive: Schluchtensteig stages 1–6 (distance, climbs, time; the tours embedded in the official stage pages)"
+    url: https://www.outdooractive.com/de/route/wandern/schwarzwald/schluchtensteig-etappe-1-von-stuehlingen-nach-blumberg/2811721/
+    licence: All rights reserved (facts only)
+    retrieved: 2026-11-03
+  - id: wikipedia
+    title: "German Wikipedia: Schluchtensteig (opening, waymark, season, stage tables; data check)"
+    url: https://de.wikipedia.org/wiki/Schluchtensteig
+    licence: CC BY-SA 4.0
+    retrieved: 2026-11-03
+  - id: rki-fsme
+    title: "Robert Koch-Institut: FSME-Risikogebiete in Deutschland, Epidemiologisches Bulletin 9/2026 (as of January 2026)"
+    url: https://www.rki.de/DE/Aktuelles/Publikationen/Epidemiologisches-Bulletin/2026/09_26.pdf
+    licence: © Robert Koch-Institut (facts only)
+    retrieved: 2026-11-03
+  - id: bzga-borreliose
+    title: "Bundeszentrale für gesundheitliche Aufklärung (infektionsschutz.de): Bürgerinformation Borreliose, protection against ticks (as of August 2019)"
+    url: https://infektionsschutz.de/download/2902-Erregersteckbrief-Borreliose.pdf
+    licence: © BZgA (facts only)
+    retrieved: 2026-11-03
+  - id: wikimedia
+    title: "Wikimedia REST API: Wikipedia page views per article, all languages (popularity ranking)"
+    url: https://wikimedia.org/api/rest_v1/
+    licence: CC0 1.0
+    retrieved: 2026-11-03
+    checkOnly: true
+  - id: osm
+    title: "OpenStreetMap contributors: the Westweg relations (superroute 62900), paths and water along the trail (Geofabrik extracts), travel hubs"
+    url: https://www.openstreetmap.org/relation/62900
+    licence: ODbL 1.0
+    retrieved: 2026-11-03
+  - id: copdem
+    title: "Copernicus DEM GLO-30 (30 m terrain model), tiles from AWS Open Data"
+    url: https://registry.opendata.aws/copernicus-dem/
+    licence: "Copernicus WorldDEM-30 licence, free; produced using Copernicus WorldDEM-30 © DLR e.V. 2010-2014 and © Airbus Defence and Space GmbH 2014-2018 provided under COPERNICUS by the European Union and ESA; all rights reserved"
+    retrieved: 2026-11-03
+  - id: worldcover
+    title: "ESA WorldCover 2021: 10 m land cover (via AWS Open Data)"
+    url: https://esa-worldcover.org/
+    licence: "CC BY 4.0; © ESA WorldCover project 2021 / Contains modified Copernicus Sentinel data (2021) processed by ESA WorldCover consortium"
+    retrieved: 2026-11-03
+  - id: era5
+    title: "Open-Meteo open data on AWS: ERA5-Land temperature and ERA5 precipitation, snow and wind, daily 1995–2024 (reanalysis)"
+    url: https://github.com/open-meteo/open-data
+    licence: CC BY 4.0 (Open-Meteo); contains modified Copernicus Climate Change Service information
+    retrieved: 2026-10-31
+  - id: osrm
+    title: "OSRM: road routes on OpenStreetMap data (router.project-osrm.org)"
+    url: https://project-osrm.org/
+    licence: Route data © OpenStreetMap contributors (ODbL)
+    retrieved: 2026-11-03

@@ -517,4 +517,23 @@ export const SKYLINES: Record<string, Skyline> = {
       { d: hills([[0, G], [200, 266], [440, 256], [680, 266], [920, 258], [1160, 268], [1400, 262], [1600, G]]), c: FIR },
     ],
   },
+  schluchtensteig: {
+    view: "The Southern Black Forest: the Wutach gorge's rock walls with a waterfall, dark fir hills round the Schluchsee and the green dome of St. Blasien",
+    ridge: "#2f4a2c",
+    ground: "#6f8f4a",
+    shapes: [
+      { d: hills([[0, G], [120, 252], [300, 226], [460, 238], [620, 214], [780, 232], [960, 220], [1120, 240], [1280, 226], [1440, 246], [1600, G]]), c: "#7f9a8e" },
+      // the Wutach gorge: two rock walls with a waterfall between them
+      { d: range([[40, G], [60, 250], [92, 212], [124, 204], [150, 228], [170, G]]), c: "#8a7f6c" },
+      { d: range([[196, G], [212, 226], [238, 198], [276, 206], [302, 240], [320, G]]), c: "#9a8e76" },
+      { d: waterfall(184, 232, 300, 5), c: "#f2f4f0" },
+      { d: hills([[300, G], [420, 262], [560, 246], [700, 260], [840, G]]), c: FAR },
+      // St. Blasien's dome on its drum, with the lantern
+      { d: "M1136,272V236H1224V272Z", c: "#e9e4d8" },
+      { d: dome(1180, 236, 44), c: "#5e8a86" },
+      { d: tower(1180, 192, 14, 9), c: "#5e8a86" },
+      { d: hills([[0, G], [200, 272], [460, 264], [720, 274], [980, 266], [1240, 276], [1480, 268], [1600, G]]), c: FIR },
+    ],
+    front: [{ d: water(780, 1100, 296), c: LAKE }],
+  },
 };

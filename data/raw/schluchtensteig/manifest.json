@@ -1,0 +1,90 @@
+{
+  "climate-high.json": {
+    "retrieved": "2026-11-03T05:54:59+00:00",
+    "url": "https://openmeteo.s3.us-west-2.amazonaws.com/data/copernicus_era5_land+copernicus_era5?latitude=47.8&longitude=8.1&elevation=1160"
+  },
+  "climate-low.json": {
+    "retrieved": "2026-11-03T05:51:41+00:00",
+    "url": "https://openmeteo.s3.us-west-2.amazonaws.com/data/copernicus_era5_land+copernicus_era5?latitude=47.6&longitude=7.9&elevation=350"
+  },
+  "elevation-glo30.json": {
+    "retrieved": "2026-11-03T05:48:16+00:00",
+    "url": "https://copernicus-dem-30m.s3.eu-central-1.amazonaws.com/Copernicus_DSM_COG_10_N47_00_E007_00_DEM/Copernicus_DSM_COG_10_N47_00_E007_00_DEM.tif https://copernicus-dem-30m.s3.eu-central-1.amazonaws.com/Copernicus_DSM_COG_10_N47_00_E008_00_DEM/Copernicus_DSM_COG_10_N47_00_E008_00_DEM.tif"
+  },
+  "landcover.json": {
+    "retrieved": "2026-11-03T05:48:19+00:00",
+    "url": "https://esa-worldcover.s3.eu-central-1.amazonaws.com/v200/2021/map/ESA_WorldCover_10m_2021_v200_\u2026_Map.tif"
+  },
+  "osm-stage-1-main.json": {
+    "retrieved": "2026-11-01T21:21:36Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-2-main.json": {
+    "retrieved": "2026-11-01T21:21:36Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-3-main.json": {
+    "retrieved": "2026-11-01T21:21:36Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-4-main.json": {
+    "retrieved": "2026-11-01T21:21:36Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-5-main.json": {
+    "retrieved": "2026-11-01T21:21:36Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-6-main.json": {
+    "retrieved": "2026-11-01T21:21:36Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-water.json": {
+    "retrieved": "2026-11-01T21:21:36Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-way-tags.json": {
+    "retrieved": "2026-11-01T21:21:36Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osrm-access-basel-badischer-bahnhof.json": {
+    "retrieved": "2026-11-03T05:54:59+00:00",
+    "url": "https://router.project-osrm.org/route/v1/driving/7.60731,47.56746;8.44602,47.7431?overview=false"
+  },
+  "osrm-access-euroairport-basel-mulhouse-bsl.json": {
+    "retrieved": "2026-11-03T05:54:59+00:00",
+    "url": "https://router.project-osrm.org/route/v1/driving/7.53028,47.59914;8.44602,47.7431?overview=false"
+  },
+  "osrm-access-z-rich-airport-zrh.json": {
+    "retrieved": "2026-11-03T05:54:59+00:00",
+    "url": "https://router.project-osrm.org/route/v1/driving/8.55185,47.46314;8.44602,47.7431?overview=false"
+  },
+  "stage-1-main.gpx": {
+    "retrieved": "2026-11-03T05:39:43+00:00",
+    "url": "https://www.outdooractive.com/de/route/wandern/schwarzwald/schluchtensteig-etappe-1-von-stuehlingen-nach-blumberg/2811721/"
+  },
+  "stage-2-main.gpx": {
+    "retrieved": "2026-11-03T05:39:43+00:00",
+    "url": "https://www.outdooractive.com/de/route/wandern/schwarzwald/schluchtensteig-etappe-2-von-blumberg-zur-schattenmuehle/2805905/"
+  },
+  "stage-3-main.gpx": {
+    "retrieved": "2026-11-03T05:39:43+00:00",
+    "url": "https://www.outdooractive.com/de/route/wandern/schwarzwald/schluchtensteig-etappe-3-von-der-schattenmuehle-nach-fischbach-schluchsee/2811726/"
+  },
+  "stage-4-main.gpx": {
+    "retrieved": "2026-11-03T05:39:54+00:00",
+    "url": "https://www.outdooractive.com/de/route/wandern/schwarzwald/schluchtensteig-etappe-4-von-schluchsee-fischbach-nach-st.-blasien/2811730/"
+  },
+  "stage-5-main.gpx": {
+    "retrieved": "2026-11-03T05:40:05+00:00",
+    "url": "https://www.outdooractive.com/de/route/wandern/schwarzwald/schluchtensteig-etappe-5-von-st.-blasien-nach-todtmoos/2805916/"
+  },
+  "stage-6-main.gpx": {
+    "retrieved": "2026-11-03T05:40:05+00:00",
+    "url": "https://www.outdooractive.com/de/route/wandern/schwarzwald/schluchtensteig-etappe-6-von-todtmoos-nach-wehr/2805917/"
+  },
+  "wikimedia.json": {
+    "retrieved": "2026-11-03T05:55:42+00:00",
+    "url": "Q2244967 2025-11..2026-10"
+  }
+}
