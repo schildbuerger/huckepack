@@ -1,0 +1,198 @@
+name: Great Glen Way
+added: 2026-11-03
+localName: Slighe a' Ghlinne Mhòir
+aliases: [The Great Glen Way]
+website: https://www.greatglenway.com/
+wikidata: Q380086
+managedBy:
+  # one of Scotland's Great Trails, looked after by the Highland Council's Great Glen Way team
+  # (greatglenway@highland.gov.uk; the council's own Great Glen Way pages now lead to this site)
+  - name: The Highland Council (Great Glen Way team), one of Scotland's Great Trails
+    url: https://www.greatglenway.com/
+trailType: point-to-point
+continents: [Europe]
+countries: [GB]
+regions: [Scotland]
+protectedAreas: []
+termini:
+  # the Old Fort in Fort William, where the Way "begins (or ends)", and Inverness Castle (OSM)
+  start:
+    name: Fort William
+    lat: 56.82135
+    lon: -5.10774
+  end:
+    name: Inverness
+    lat: 57.47643
+    lon: -4.22564
+  source: osm
+established:
+  # "It was opened in 2002" (English Wikipedia)
+  year: 2002
+  source: wikipedia
+length:
+  # "This magnificent 75 mile/120 km waymarked route" (the routes page; the home page speaks of "79
+  # miles of path, track, canal and loch", the high routes included); the six sections sum to
+  # 121.1 km by the low routes
+  - km: 120
+    source: ggw
+days:
+  # "The route can be walked in 4 – 7 days"
+  min: 4
+  max: 7
+  source: ggw
+stages:
+  # the Great Glen Way team's six route sections (miles and km), each by its low route; the high
+  # routes on sections 4–6 are noted. No official GPX: each section is the shortest way over the OSM
+  # relation (126572) between the section ends (OSM)
+  source: ggw
+  list:
+    - { number: "1", kind: main, from: Fort William, to: Gairlochy, km: 17, end: { name: Gairlochy, lat: 56.91311, lon: -4.99597 } }
+    - { number: "2", kind: main, from: Gairlochy, to: South Laggan, km: 20.7, end: { name: South Laggan, lat: 57.02536, lon: -4.82309 } }
+    - { number: "3", kind: main, from: South Laggan, to: Fort Augustus, km: 19.5, end: { name: Fort Augustus, lat: 57.14478, lon: -4.68142 } }
+    - { number: "4", kind: main, from: Fort Augustus, to: Invermoriston, km: 11.7, end: { name: Invermoriston, lat: 57.21485, lon: -4.61743 } }
+    - { number: "5", kind: main, from: Invermoriston, to: Drumnadrochit, km: 22, end: { name: Drumnadrochit, lat: 57.33623, lon: -4.4798 } }
+    - { number: "6", kind: main, from: Drumnadrochit, to: Inverness, km: 30.2, end: { name: Inverness, lat: 57.47643, lon: -4.22564 } }
+route:
+  # built by `python -m pipeline.all great-glen-way`: OSM ways matched to the relation's line
+  # between the section ends
+  source: osm
+  publishable: true
+  relation: 126572
+difficulty:
+  # no grade is published; our estimate from the Great Glen Way team's descriptions
+  estimated:
+    sac: T1
+    basis: >-
+      Mostly low-level on canal towpaths, forest tracks and minor roads, and "suits all levels of
+      walker"; the sections above Loch Ness climb on forest tracks and footpaths, the optional high
+      routes over open hillside to 434 m; some stretches follow the A82 on pavements. Hiking on good
+      paths (T1).
+    source: ggw
+sleeping:
+  # the Great Glen Way's accommodation directory (B&Bs, guest houses, a hotel, a hostel) and the
+  # formal campsites it names at Fort William, Gairlochy, Invergarry, Fort Augustus, Drumnadrochit,
+  # Wester Laide and Inverness
+  types: [guesthouse, hotel, hostel, campsite]
+  source: ggw-access
+wildCamping:
+  # "Wild camping is permitted along the Great Glen Way (Under the Land Reform [Scotland] Act 2003)
+  # so long as campers adhere to certain guidelines set out in the Scottish Outdoor Access Code"
+  status: allowed
+  rule: >-
+    Wild camping is allowed under the Scottish Outdoor Access Code: small groups, no more than three
+    nights in one place, well away from buildings and roads, not in fields of crops or farm animals,
+    leave no trace; Scottish Canals offers free pitches along the Caledonian Canal.
+  source: ggw-access
+access:
+  # Fort William station (trains from Glasgow) and Inverness Airport, which the Great Glen Way team
+  # names. Coordinates from OSM; distances by pipeline/access.py
+  - kind: station
+    name: Fort William
+    lat: 56.82056
+    lon: -5.10531
+    source: osm
+  - kind: airport
+    name: Inverness Airport (INV)
+    lat: 57.54315
+    lon: -4.05058
+    source: osm
+animals:
+  # Ticks (the Great Glen Way team's safety page names the risk; the NHS's advice). Level ours
+  list:
+    - kind: tick
+      name: "Ticks (Lyme disease)"
+      level: low
+      basis: "Ticks that can carry Lyme disease live all over the UK, in woods and long grass; the NHS names grassy and wooded areas in southern England and the Scottish Highlands as high-risk areas."
+      do:
+        - "Cover your skin while walking and tuck your trousers into your socks"
+        - "Use insect repellent on your clothes and skin; products containing DEET are best"
+        - "Stay on clear paths whenever possible"
+        - "Wear light-coloured clothing so ticks are easier to see and brush off"
+        - "Remove a tick with fine-tipped tweezers or a tick-removal tool: grasp it as close to the skin as possible, pull slowly upwards, then clean the bite"
+        - "Get an urgent GP appointment or call NHS 111 if, within 3 months of a bite, you feel unwell with flu-like symptoms or a round or oval rash appears"
+      dont:
+        - "Squeeze or crush the tick when you remove it"
+      source: nhs-lyme
+tags: [lochs, canal, glens, highlands]
+notes:
+  - >-
+    The Way follows the Great Glen, Scotland's great geological fault, from the Old Fort in Fort
+    William past Neptune's Staircase along the Caledonian Canal to Gairlochy, the length of Loch Lochy
+    to Laggan Locks, along Loch Oich on the old railway line and the canal to Fort Augustus, through
+    the forests above Loch Ness by Invermoriston and Drumnadrochit, and over the Abriachan woods to
+    Inverness. It starts where the West Highland Way ends.
+  - >-
+    High routes: on sections 4–6 a high route climbs above the trees (Fort Augustus – Invermoriston
+    12.2 km, Invermoriston – Drumnadrochit 21.4 km to 420 m, Drumnadrochit – Inverness 31.5 km to
+    434 m, the Way's highest point); the stages follow the low routes. Section 2 has a diversion
+    "until around 2030" round the Coire Glas hydro scheme, adding 600 m. Season: none stated (midges
+    are worst June to September); tree line: none recorded, the Way stays below 450 m.
+  - >-
+    Map line: no official GPX; the OSM relation (126572, the low routes; the high routes are
+    relations of their own) chained and cut at the section ends; every section 100 % matched,
+    123.2 km against the sections' 121.1 km. Sections 2 and 3 split at South Laggan 1.6 km earlier
+    than the stated figures suggest (19.1 and 21.0 km against 20.7 and 19.5; together they agree).
+    Highest point 381 m (terrain model) in the Abriachan woods. OSM maps few taps between
+    Drumnadrochit and Inverness (27 km without drinking water).
+  - >-
+    Data check (2026-11-03): the Great Glen Way team's figures against English Wikipedia: length
+    120 km against 125 km (4 %), opened 2002, Fort William to Inverness, highest point in the
+    Abriachan Forest 375 m against 381 m on the terrain model: all agree. Wikipedia's 1,835 m of
+    ascent is the high routes' figure (Scotland's Great Trails), not shown. No deviation over 10 %.
+dataCheck:
+  # working rule 2: English Wikipedia
+  date: 2026-11-03
+  against: [wikipedia]
+  deviations: []
+sources:
+  - id: ggw
+    title: "Great Glen Way (the Highland Council's Great Glen Way team): the routes and its six route sections with distances, days"
+    url: https://www.greatglenway.com/info/3/routes
+    licence: All rights reserved (facts only)
+    retrieved: 2026-11-03
+  - id: ggw-access
+    title: "Great Glen Way: access and camping, accommodation and services (wild camping, campsites, places to stay)"
+    url: https://www.greatglenway.com/greatglenway/homepage/15/access_and_camping_along_the_great_glen_way
+    licence: All rights reserved (facts only)
+    retrieved: 2026-11-03
+  - id: wikipedia
+    title: "English Wikipedia: Great Glen Way (opening; length, ascent and highest point for the data check)"
+    url: https://en.wikipedia.org/wiki/Great_Glen_Way
+    licence: CC BY-SA 4.0
+    retrieved: 2026-11-03
+  - id: nhs-lyme
+    title: "NHS: Lyme disease (avoiding tick bites, removing ticks, when to get help)"
+    url: https://www.nhs.uk/conditions/lyme-disease/
+    licence: © NHS, Open Government Licence (facts only)
+    retrieved: 2026-11-02
+  - id: wikimedia
+    title: "Wikimedia: page views of the trail's Wikipedia articles in every language, by people, over twelve months (Wikidata sitelinks, pageview API)"
+    url: https://wikimedia.org/api/rest_v1/
+    licence: CC0 1.0 (pageview data); Wikidata CC0
+    retrieved: 2026-11-03
+    checkOnly: true  # not on the trail page: the page views only rank the home page's popular trails
+  - id: osm
+    title: "OpenStreetMap contributors: paths, water, shops and places to sleep along the trail (Geofabrik extracts), travel hubs"
+    url: https://www.openstreetmap.org/
+    licence: ODbL 1.0
+    retrieved: 2026-11-03
+  - id: copdem
+    title: "Copernicus DEM GLO-30 (30 m terrain model), tiles from AWS Open Data"
+    url: https://registry.opendata.aws/copernicus-dem/
+    licence: "Copernicus WorldDEM-30 licence, free; produced using Copernicus WorldDEM-30 © DLR e.V. 2010-2014 and © Airbus Defence and Space GmbH 2014-2018 provided under COPERNICUS by the European Union and ESA; all rights reserved"
+    retrieved: 2026-11-03
+  - id: worldcover
+    title: "ESA WorldCover 2021: 10 m land cover (via AWS Open Data)"
+    url: https://esa-worldcover.org/
+    licence: "CC BY 4.0; © ESA WorldCover project 2021 / Contains modified Copernicus Sentinel data (2021) processed by ESA WorldCover consortium"
+    retrieved: 2026-11-03
+  - id: era5
+    title: "Open-Meteo open data on AWS: ERA5-Land temperature and ERA5 precipitation, snow and wind, daily 1995–2024 (reanalysis)"
+    url: https://github.com/open-meteo/open-data
+    licence: CC BY 4.0 (Open-Meteo); contains modified Copernicus Climate Change Service information
+    retrieved: 2026-11-03
+  - id: osrm
+    title: "OSRM: road routes on OpenStreetMap data (router.project-osrm.org)"
+    url: https://project-osrm.org/
+    licence: Route data © OpenStreetMap contributors (ODbL)
+    retrieved: 2026-11-03

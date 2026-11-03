@@ -728,6 +728,27 @@ export const SKYLINES: Record<string, Skyline> = {
       { d: range([[0, G], [0, 272], [880, 270], [920, 278], [1280, 278], [1320, 270], [1600, 272], [1600, G]]), c: "#7f9a4a" },
     ],
   },
+  "great-glen-way": {
+    view: "The Great Glen: Ben Nevis far to the south-west, the long trough of Loch Ness between steep wooded sides, the ruined tower of Urquhart Castle on its point, and a lock on the Caledonian Canal",
+    ridge: "#3f5a3a",
+    ground: "#6f8a4a",
+    shapes: [
+      // Ben Nevis, far off
+      { d: range([[60, G], [140, 220], [200, 196], [250, 186], [300, 192], [380, 218], [460, G]]), c: "#a3adb5" },
+      // the steep sides of the glen, rising either side of the loch
+      { d: hills([[380, G], [480, 222], [640, 208], [820, 220], [940, 248], [980, G]]), c: "#6f8a74" },
+      { d: hills([[1100, G], [1200, 230], [1360, 212], [1500, 220], [1600, 226], [1600, G]]), c: "#6f8a74" },
+      { d: water(500, 1600, 262), c: SEA },
+      // Urquhart Castle: a ruined tower on its point above the loch
+      { d: hills([[980, G], [1010, 260], [1060, 254], [1110, 262], [1130, G]]), c: FOREST },
+      { d: "M1040,256V226H1062V256Z M1040,226V220H1046V226Z M1056,226V220H1062V226Z", c: "#a89a84" },
+      { d: "M1062,256V242H1080V256Z", c: "#a89a84" },
+      // the canal with a lock gate, and the towpath fields
+      { d: range([[0, G], [0, 270], [500, 268], [520, 284], [1600, 284], [1600, G]]), c: "#7f9a4a" },
+      { d: water(80, 380, 280), c: SEA },
+      { d: "M226,278V266H232V278Z M240,278V266H246V278Z", c: "#4f4038" },
+    ],
+  },
   "pfaelzer-weinsteig": {
     view: "The Haardt edge of the Palatinate Forest: the wooded ridge up to the Kalmit with its stone tower, the Trifels on its sandstone rock, the Hambacher Schloss on its hill and vineyards below",
     ridge: "#4f6a33",
