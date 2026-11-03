@@ -912,6 +912,26 @@ export const SKYLINES: Record<string, Skyline> = {
       { d: range([[0, G], [0, 284], [300, 278], [600, 284], [720, 292], [780, G]]), c: "#e0c99a" },
     ],
   },
+  "south-west-coast-path": {
+    view: "St Michael's Mount in Mount's Bay: the tidal island with its castle above the woods, the Cornish cliffs of the far shore, and the beach at Marazion in front",
+    ridge: "#4f6a3a",
+    ground: "#6f9a4a",
+    shapes: [
+      // the far shore of Mount's Bay
+      { d: hills([[700, G], [900, 246], [1200, 238], [1450, 244], [1600, 240], [1600, G]]), c: "#9aa6a0" },
+      { d: water(0, 1600, 258), c: SEA },
+      // St Michael's Mount: a rocky island, wooded below, with its castle on top
+      { d: hills([[470, G], [530, 246], [600, 208], [660, 200], [730, 230], [800, G]]), c: "#8a8070" },
+      { d: hills([[480, G], [540, 262], [620, 244], [720, 250], [790, G]]), c: "#6f8a5a" },
+      { d: castle(640, 206, 0.8), c: "#cbbd9f" },
+      { d: castleRoofs(640, 206, 0.8), c: "#8a7a6a" },
+      // the cliffs on the near shore, green fields on top
+      { d: range([[1040, G], [1060, 232], [1200, 222], [1400, 228], [1600, 220], [1600, G]]), c: "#8a6f5a" },
+      { d: range([[1080, G], [1090, 228], [1200, 226], [1400, 232], [1600, 224], [1600, G]]), c: "#7f9a4a" },
+      // the beach at Marazion
+      { d: range([[0, G], [0, 282], [500, 280], [900, 286], [1600, 284], [1600, G]]), c: "#d8c49a" },
+    ],
+  },
   "pfaelzer-weinsteig": {
     view: "The Haardt edge of the Palatinate Forest: the wooded ridge up to the Kalmit with its stone tower, the Trifels on its sandstone rock, the Hambacher Schloss on its hill and vineyards below",
     ridge: "#4f6a33",

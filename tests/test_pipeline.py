@@ -150,6 +150,16 @@ class Relations(unittest.TestCase):
         line = routes.relation_piece(rel["elements"], [], (8.0, LAT), (8.0, LAT), (8.2, LAT))
         self.assertEqual(line, [(8.000, LAT), (8.030, LAT), (8.200, LAT)])
 
+    def test_a_chain_from_the_middle_starts_at_the_open_end(self):
+        # a variant whose relation passes close to where the stage before ended, in its middle
+        # (the South Dorset Ridgeway above Abbotsbury): the chain runs end to end
+        a = [(8.000, LAT), (8.020, LAT)]
+        b = [(8.020, LAT), (8.040, LAT + 0.001)]
+        c = [(8.040, LAT + 0.001), (8.200, LAT)]
+        rel = self.relation({1: a, 2: b, 3: c})
+        line = routes.relation_chain(rel["elements"], [], (8.040, LAT + 0.0012))
+        self.assertEqual({line[0], line[-1]}, {(8.000, LAT), (8.200, LAT)})
+
     def test_railway_path_takes_the_shorter_track(self):
         # two parallel tracks between the stations, joined at both ends; one makes a detour
         straight = [(8.000, LAT), (8.005, LAT), (8.010, LAT)]
@@ -209,6 +219,15 @@ class Match(unittest.TestCase):
         pts += [(x, 40.0) for x in range(480, -1, -20)]
         _, turns = osm.turnarounds(pts)
         self.assertEqual(len(turns), 1)
+
+    def test_a_stage_that_is_a_loop_is_split(self):
+        # 6 km out along one side of a square and back round the other three to the start
+        side = 1500
+        pts = [(x, 0.0) for x in range(0, side + 1, 20)] + [(float(side), y) for y in range(20, side + 1, 20)]
+        pts += [(x, float(side)) for x in range(side - 20, -1, -20)] + [(0.0, y) for y in range(side - 20, -1, -20)]
+        fine, turns = osm.turnarounds(pts)
+        self.assertEqual(len(turns), 1)
+        self.assertGreater(math.dist(fine[0], fine[turns[0]]), 2000)  # the far corner
 
     def test_a_stage_can_allow_more_bridges(self):
         # eight ways in a row with 20 m gaps between them: seven gaps, one more than the default

@@ -219,20 +219,23 @@ def piece(line, a, b):
     return line[i : j + 1]
 
 
-def relation_piece(elements, alternatives, start, a, b):
-    """The relations' ways chained from the end nearest the trail's `start` (chaining from a point
-    in the middle could head the wrong way), cut from the point nearest a to the one nearest b.
-    Where the chain began at a way in the middle of the relation (it stops early), it begins at
-    the relation's open end instead."""
+def relation_chain(elements, alternatives, start):
+    """The relations' ways chained from the end nearest `start`. Where that chain began at a way in
+    the middle of the relation (it stops early: the Rothaarsteig's stages 6–8, the South West Coast
+    Path's South Dorset Ridgeway, which passes just above Abbotsbury where stage 47 ends), it begins
+    at the relation's open end nearest `start` instead."""
     full = relation_line({"elements": elements}, alternatives, start)
     tip = relation_line({"elements": elements}, alternatives, start, True)
-    # only a chain that stopped clearly short gives way (the Rothaarsteig's stopped after a few ways):
-    # where two branches leave the start together (the Camino Francés' Napoleon and Valcarlos routes
-    # at Saint-Jean), that end isn't "open" and the open-end chain may begin at the far end, barely
-    # longer than the full one
-    if line_km(tip) > line_km(full) * 1.05 + 1:
-        full = tip
-    return piece(full, a, b)
+    # only a chain that stopped clearly short gives way: where two branches leave the start
+    # together (the Camino Francés' Napoleon and Valcarlos routes at Saint-Jean), that end isn't
+    # "open" and the open-end chain may begin at the far end, barely longer than the full one
+    return tip if line_km(tip) > line_km(full) * 1.05 + 1 else full
+
+
+def relation_piece(elements, alternatives, start, a, b):
+    """The relations' ways chained from the end nearest the trail's `start` (chaining from a point
+    in the middle could head the wrong way), cut from the point nearest a to the one nearest b."""
+    return piece(relation_chain(elements, alternatives, start), a, b)
 
 
 NAMED_JOIN_M = 250
@@ -469,7 +472,7 @@ def build(slug, refresh=False):
                 # a stage that is only part of its relations: the piece from where it begins to its `end`
                 track = relation_piece(elements, stage.get("alternatives", []), (start["lon"], start["lat"]), begin, (stage["end"]["lon"], stage["end"]["lat"]))
             else:
-                track = relation_line({"elements": elements}, stage.get("alternatives", []), begin)
+                track = relation_chain(elements, stage.get("alternatives", []), begin)
         else:
             track = track_of(stage)
             if stage.get("end"):

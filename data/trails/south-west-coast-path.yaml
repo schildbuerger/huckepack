@@ -1,0 +1,332 @@
+name: South West Coast Path
+added: 2026-11-03
+aliases: [SWCP, South West Way, Coast Path]
+website: https://www.nationaltrail.co.uk/en_GB/trails/south-west-coast-path/
+wikidata: Q1631281
+managedBy:
+  # a National Trail (Natural England), cared for by the South West Coast Path Team with the South
+  # West Coast Path Association, a charity (issue #159; National Trails)
+  - name: Natural England and the South West Coast Path Team (National Trails)
+    url: https://www.nationaltrail.co.uk/en_GB/trails/south-west-coast-path/
+  - name: South West Coast Path Association
+    url: https://www.southwestcoastpath.org.uk/
+trailType: point-to-point
+continents: [Europe]
+countries: [GB]
+regions: [Somerset, Devon, Cornwall, Dorset]
+protectedAreas:
+  - Exmoor National Park
+termini:
+  # where OSM's sections 1 and 52 start and end (superroute 2376086): the Path's marker on Minehead's
+  # seafront and South Haven Point at the mouth of Poole Harbour
+  start:
+    name: Minehead
+    lat: 51.21148
+    lon: -3.47371
+  end:
+    name: South Haven Point
+    lat: 50.68018
+    lon: -1.94995
+  source: osm
+established:
+  # "Designated a National Trail in 1978" (its last section, Somerset and North Devon; Wikipedia)
+  year: 1978
+  source: nt
+waymarking:
+  # "National Trails are signed with an acorn symbol and/or the Trail name which you will see on
+  # stiles, gates and signposts"; a logo, not drawn
+  text: The National Trail acorn, or the Path's name, on stiles, gates and signposts
+  source: nt-info
+length:
+  # "a 630-mile (1,014km) National Trail"
+  - km: 1014
+    source: govuk
+ascent:
+  # "over 115,000 feet (35,000m) of ascent and descent along the route"; National Trails: "the
+  # equivalent of scaling Mount Everest four times", so the climb alone (the Path starts and ends at
+  # sea level, so it drops as much)
+  - m: 35000
+    source: govuk
+descent:
+  - m: 35000
+    source: govuk
+days:
+  # "Time to complete: around 30 to 56 days"
+  min: 30
+  max: 56
+  source: govuk
+stages:
+  # the Association's 52-day itinerary ("the most popular"), in miles, converted to km (1 mile =
+  # 1.609344 km); the site blocks automated readers, so the list was copied from the page by the site's
+  # operator on 2026-11-03 (issue #159). Each stage names its OSM section relation (superroute
+  # 2376086), whose 52 sections are the same days; the South Dorset Ridgeway is the itinerary's
+  # inland alternative between West Bexington and Osmington. Stages 7 and 20 give their end so the
+  # Devon and Cornwall extracts are read (relation-only trails find their extracts by stage ends)
+  source: swcpa-itinerary
+  list:
+    - { number: "1", kind: main, from: Minehead, to: Porlock Weir, km: 14.5, relation: 2191940 }
+    - { number: "2", kind: main, from: Porlock Weir, to: Lynmouth, km: 19.3, relation: 2205249 }
+    - { number: "3", kind: main, from: Lynmouth, to: Combe Martin, km: 20.9, relation: 2371752 }
+    - { number: "4", kind: main, from: Combe Martin, to: Woolacombe, km: 20.9, relation: 2371849 }
+    - { number: "5", kind: main, from: Woolacombe, to: Braunton, km: 24.1, relation: 2372163 }
+    - { number: "6", kind: main, from: Braunton, to: Instow, km: 20.9, relation: 2372201 }
+    - { number: "7", kind: main, from: Instow, to: "Westward Ho! (via Bideford)", km: 17.7, relation: 2372431, end: { name: "Westward Ho!", lat: 51.05222, lon: -4.20921 } }
+    - { number: "8", kind: main, from: "Westward Ho!", to: Clovelly, km: 17.7, relation: 2372555 }
+    - { number: "9", kind: main, from: Clovelly, to: Hartland Quay, km: 16.1, relation: 2372584 }
+    - { number: "10", kind: main, from: Hartland Quay, to: Bude, km: 24.1, relation: 2373766 }
+    - { number: "11", kind: main, from: Bude, to: Crackington Haven, km: 16.1, relation: 2374165 }
+    - { number: "12", kind: main, from: Crackington Haven, to: Tintagel, km: 17.7, relation: 2374227 }
+    - { number: "13", kind: main, from: Tintagel, to: Port Isaac, km: 14.5, relation: 2374237 }
+    - { number: "14", kind: main, from: Port Isaac, to: Padstow, km: 19.3, relation: 2374244 }
+    - { number: "15", kind: main, from: Padstow, to: Porthcothan, km: 21.7, relation: 2374261 }
+    - { number: "16", kind: main, from: Porthcothan, to: Newquay, km: 17.7, relation: 2374270 }
+    - { number: "17", kind: main, from: Newquay, to: Perranporth, km: 17.7, relation: 2374449 }
+    - { number: "18", kind: main, from: Perranporth, to: Portreath, km: 19.3, relation: 2374546 }
+    - { number: "19", kind: main, from: Portreath, to: Hayle, km: 19.3, relation: 2374556 }
+    - { number: "20", kind: main, from: Hayle, to: St Ives, km: 9.7, relation: 2374590, end: { name: St Ives, lat: 50.21453, lon: -5.48445 } }
+    - { number: "21", kind: main, from: St Ives, to: Pendeen, km: 22.5, relation: 2374605 }
+    - { number: "22", kind: main, from: Pendeen, to: Sennen Cove, km: 14.5, relation: 2374612 }
+    - { number: "23", kind: main, from: Sennen Cove, to: Lamorna, km: 19.3, relation: 2374624 }
+    - { number: "24", kind: main, from: Lamorna, to: Marazion, km: 14.5, relation: 2374632 }
+    - { number: "25", kind: main, from: Marazion, to: Porthleven, km: 17.7, relation: 2374655 }
+    - { number: "26", kind: main, from: Porthleven, to: The Lizard, km: 20.9, relation: 2375676 }
+    - { number: "27", kind: main, from: The Lizard, to: Coverack, km: 17.7, relation: 2375687 }
+    - { number: "28", kind: main, from: Coverack, to: Helford, km: 20.9, relation: 2375711 }
+    - { number: "29", kind: main, from: Helford, to: Falmouth, km: 16.1, relation: 2375724 }
+    - { number: "30", kind: main, from: Falmouth, to: Portloe, km: 22.5, relation: 2375770 }
+    - { number: "31", kind: main, from: Portloe, to: Mevagissey, km: 19.3, relation: 2375786 }
+    - { number: "32", kind: main, from: Mevagissey, to: Par, km: 19.3, relation: 2375852 }
+    - { number: "33", kind: main, from: Par, to: Polperro, km: 20.9, relation: 2375882 }
+    - { number: "34", kind: main, from: Polperro, to: Portwrinkle, km: 19.3, relation: 2375924 }
+    - { number: "35", kind: main, from: Portwrinkle, to: Plymouth, km: 20.9, relation: 2375987 }
+    - { number: "36", kind: main, from: Plymouth, to: River Yealm, km: 24.1, relation: 2376012 }
+    - { number: "37", kind: main, from: Wembury, to: Bigbury-on-Sea, km: 22.5, relation: 2376018 }
+    - { number: "38", kind: main, from: Bigbury-on-Sea, to: Salcombe, km: 22.5, relation: 2376042 }
+    - { number: "39", kind: main, from: Salcombe, to: Torcross, km: 20.9, relation: 2376063 }
+    - { number: "40", kind: main, from: Torcross, to: Dartmouth, km: 16.1, relation: 2376077 }
+    - { number: "41", kind: main, from: Dartmouth, to: Brixham, km: 17.7, relation: 2376085 }
+    - { number: "42", kind: main, from: Brixham, to: Babbacombe, km: 17.7, relation: 2376117 }
+    - { number: "43", kind: main, from: Babbacombe, to: Exmouth, km: 25.7, relation: 2376118, maxBridgeM: 150, maxBridges: 12 }
+    - { number: "44", kind: main, from: Exmouth, to: Sidmouth, km: 20.9, relation: 2376119 }
+    - { number: "45", kind: main, from: Sidmouth, to: Seaton, km: 17.7, relation: 2376336 }
+    - { number: "46", kind: main, from: Seaton, to: Seatown, km: 22.5, relation: 2376368 }
+    - { number: "47", kind: main, from: Seatown, to: Abbotsbury, km: 19.3, relation: 2376377 }
+    - { number: "SDR", kind: variant, from: West Bexington, to: "Osmington (South Dorset Ridgeway)", km: 27.4, relation: 2190977 }
+    - { number: "48", kind: main, from: Abbotsbury, to: "Ferry Bridge (Wyke Regis)", km: 17.7, relation: 2376383 }
+    - { number: "49", kind: main, from: Ferrybridge, to: "Ferrybridge (round the Isle of Portland)", km: 20.9, relation: 2376414 }
+    - { number: "50", kind: main, from: Ferrybridge, to: Lulworth, km: 22.5, relation: 2376424 }
+    - { number: "51", kind: main, from: Lulworth, to: "Worth Matravers (through the Lulworth Ranges)", km: 22.5, relation: 2376430 }
+    - { number: "52", kind: main, from: Worth Matravers, to: South Haven Point, km: 22.5, relation: 2376455 }
+route:
+  # built by `python -m pipeline.all south-west-coast-path`: OSM ways matched to the section
+  # relations, their estuary ferries included
+  source: osm
+  publishable: true
+difficulty:
+  # no published grade. Our estimate
+  estimated:
+    sac: T2
+    basis: >-
+      "The South West Coast Path can be challenging in places" and "there are steep hills and rugged
+      coastal paths in many places": a clear, waymarked path along cliff tops with steep climbs and
+      drops at every cove and river mouth, without scrambling (T2).
+    source: govuk
+season:
+  # "The trail is open all year"
+  months: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
+  text: Open all year
+  source: govuk
+sleeping:
+  # "There are plenty of campsites along the Trail"; the map's accommodation: B&Bs, hotels and pubs,
+  # self-catering, camping and glamping, hostels and bunkhouses
+  types: [campsite, hostel, guesthouse, hotel]
+  source: nt-info
+wildCamping:
+  # "in England and Wales, there are normally no rights for national trail users to wild camp along
+  # the way – so seeking the landowner's permission is recommended"
+  status: prohibited
+  rule: >-
+    England gives no right to wild camp along the Trail: tents only on campsites or with the
+    landowner's permission.
+  source: nt-info
+access:
+  # Taunton (the main line's station for Minehead, buses on to the start) and the airports of Bristol
+  # and Exeter. Coordinates from OSM; distances by pipeline/access.py
+  - kind: station
+    name: Taunton
+    lat: 51.02329
+    lon: -3.10267
+    source: osm
+  - kind: airport
+    name: Bristol Airport (BRS)
+    lat: 51.38307
+    lon: -2.71866
+    source: osm
+  - kind: airport
+    name: Exeter Airport (EXT)
+    lat: 50.73485
+    lon: -3.41381
+    source: osm
+animals:
+  # Cattle (the Countryside Code, HSE) and ticks (NHS). Levels ours
+  list:
+    - kind: cattle
+      name: "Cattle"
+      level: moderate
+      basis: "The Path crosses clifftop fields where cattle graze; the Health and Safety Executive names cows with calves and walkers with dogs as the two most common factors in incidents between cattle and the public."
+      do:
+        - "Give livestock plenty of space: their behaviour can be unpredictable, especially when they are with their young"
+        - "Keep your dog on a lead around livestock"
+        - "Let your dog off the lead if you feel threatened by livestock: releasing it makes it easier for you both to reach safety"
+        - "Follow the farmer's directions when animals are being moved or gathered"
+      dont:
+        - "Risk getting hurt protecting your dog"
+        - "Feed livestock"
+      source: countryside-code
+    - kind: tick
+      name: "Ticks (Lyme disease)"
+      level: moderate
+      basis: "Ticks that can carry Lyme disease live all over the UK, in woods and long grass; the NHS names grassy and wooded areas in southern England and the Scottish Highlands as high-risk areas, and the whole Path runs through southern England."
+      do:
+        - "Cover your skin while walking and tuck your trousers into your socks"
+        - "Use insect repellent on your clothes and skin; products containing DEET are best"
+        - "Stay on clear paths whenever possible"
+        - "Wear light-coloured clothing so ticks are easier to see and brush off"
+        - "Remove a tick with fine-tipped tweezers or a tick-removal tool: grasp it as close to the skin as possible, pull slowly upwards, then clean the bite"
+        - "Get an urgent GP appointment or call NHS 111 if, within 3 months of a bite, you feel unwell with flu-like symptoms or a round or oval rash appears"
+      dont:
+        - "Squeeze or crush the tick when you remove it"
+      source: nhs-lyme
+tags: [coast, cliffs, beaches, national-trail, ferries, national-park]
+notes:
+  - >-
+    England's longest National Trail runs round the south-west peninsula from Minehead along
+    Exmoor's cliffs and the North Devon coast, round all of Cornwall past Land's End and the Lizard,
+    along the South Devon coast and the Jurassic Coast of Dorset to South Haven Point at Poole
+    Harbour. It rises and falls at every river mouth.
+  - >-
+    Ferries: the Path crosses estuaries by passenger ferry (gov.uk: "a number of ferries that you
+    have to take"): the Camel (Rock to Padstow), Helford, Fal (Falmouth to St Mawes and on to Place),
+    Fowey (Polruan), Tamar (Cremyll), Yealm, Avon (Bigbury), Salcombe, Dart, Teign and Exe
+    (Starcross to Exmouth). Several are seasonal or tidal (Wikipedia: "ferries with limited
+    availability"); OSM's sections include them as ferry ways, so the map line and its kilometres
+    run across them. The Erme has no ferry and is waded at low tide or walked round inland.
+  - >-
+    Map line: each stage follows its OSM section relation. On stage 43 the Starcross ferry lands on
+    Starcross pier, which OSM maps as a pier without a path (way 13771996, `foot=customers`), so the
+    matcher bridges its 105 m (`maxBridgeM: 150`; unknown surface); six short gaps in OSM's paths on the same stage, 5–33 m, take the other bridges first (`maxBridges: 12`).
+  - >-
+    The Lulworth Ranges (stage 51) are a military range, open to walkers only on most weekends and
+    in holiday periods (Wikipedia names the closures as a hazard); check before setting out.
+  - >-
+    Stage figures: the itinerary gives whole miles (stage 15: 13.5) and sums to 627.5 miles
+    (1,009.2 km) against the stated 630 miles (1,014 km); its weeks state 87 and 69 miles where their
+    stages sum to 86 and 68. Stage 36 ends at the River Yealm (Wembury side) and stage 37 starts
+    across it at Noss Mayo, by the seasonal Yealm ferry; the itinerary names that start "Wembury".
+  - >-
+    Tree line: the Path's highest point is the Great Hangman near Combe Martin, 318 m (Wikipedia),
+    far below any tree line.
+  - >-
+    Map line and stages: the stages' sum, 1,009.2 km, and the map line, 1,009.0 km, agree, but OSM's
+    section ends lie elsewhere than the itinerary's whole-mile days in a few towns, so twelve stages
+    differ from it by more than 10 % (6: 17.5 against 20.9 km, 7: 13.6 against 17.7, 17: 22.0
+    against 17.7, 20: 10.7 against 9.7, 21: 19.7 against 22.5, 25: 15.8 against 17.7, 30: 26.9
+    against 22.5, 32: 17.2 against 19.3, 42: 21.9 against 17.7, 45: 15.8 against 17.7, 51: 19.5
+    against 22.5, 52: 26.9 against 22.5); the page shows the itinerary's figures. Stage 49 is a
+    loop round Portland, matched in two halves split at its farthest point; the South Dorset
+    Ridgeway variant matches over its full 27.2 km.
+  - >-
+    Water: OSM has 99 drinking water points; the longest stretch without one is 25.1 km on the
+    south Cornish coast (km 497–523, Falmouth to Portloe and on), where cafés and pubs in the
+    coves are the refills.
+  - >-
+    Ascent: the terrain model gives about 18,250 m, about half the stated 35,000 m. On trails over
+    1,000 km it samples the route every 500 m, which misses most of the coast's short, steep
+    climbs into and out of the coves; the stated figure is the Association's sum along the path
+    (Wikipedia: 35,031 m), which the page shows.
+  - >-
+    Data check (2026-11-03). Second source: Wikipedia: 630 miles (1,014 km) from Minehead to Poole
+    Harbour, 114,931 ft (35,031 m) climbed, its last section designated in 1978, 30 to 60 days, open
+    all year, highest point the Great Hangman (318 m). All agree with gov.uk and National Trails
+    (35,031 against 35,000 m; 60 against 56 days, 7 %). No second source lists the 52 days; OSM's
+    52 section relations are the same days and stage ends, and the built page was checked against
+    the itinerary. The terrain model's climb is the one deviation over 10 % (above).
+dataCheck:
+  date: 2026-11-03
+  against: [wikipedia]
+  pageAgainst: [swcpa-itinerary]
+  deviations:
+    - { figure: ascent, ours: "about 18,250 m (terrain model)", theirs: "35,000 m", source: govuk }
+sources:
+  - id: govuk
+    title: "Natural England (gov.uk): Visit a National Trail in England, South West Coast Path (630 miles, 30 to 56 days, ascent, open all year)"
+    url: https://www.gov.uk/government/publications/visit-a-national-trail-in-england/south-west-coast-path-national-trail
+    licence: Open Government Licence v3.0
+    retrieved: 2026-11-03
+  - id: nt
+    title: "National Trails: South West Coast Path (designated 1978, 630 miles, Everest four times)"
+    url: https://www.nationaltrail.co.uk/en_GB/trails/south-west-coast-path/
+    licence: All rights reserved (facts only)
+    retrieved: 2026-11-03
+  - id: nt-info
+    title: "National Trails: South West Coast Path map and information (camping, places to stay, waymarking)"
+    url: https://www.nationaltrail.co.uk/en_GB/trails/south-west-coast-path/trail-information/
+    licence: All rights reserved (facts only)
+    retrieved: 2026-11-03
+  - id: swcpa-itinerary
+    title: "South West Coast Path Association: 52 day itinerary, stage ends and miles (copied from the page on 2026-11-03)"
+    url: https://www.southwestcoastpath.org.uk/walk-coast-path/trip-planning/SWCP-itinerary/
+    licence: All rights reserved (facts only)
+    retrieved: 2026-11-03
+  - id: wikipedia
+    title: "Wikipedia: South West Coast Path (630 miles, 35,031 m climbed, 30 to 60 days, highest point 318 m)"
+    url: https://en.wikipedia.org/wiki/South_West_Coast_Path
+    licence: CC BY-SA 4.0
+    retrieved: 2026-11-03
+    checkOnly: true
+  - id: countryside-code
+    title: "Natural England and Natural Resources Wales: The Countryside Code, advice for countryside visitors (updated 26 May 2023)"
+    url: https://www.gov.uk/government/publications/the-countryside-code/the-countryside-code-advice-for-countryside-visitors
+    licence: Open Government Licence v3.0
+    retrieved: 2026-11-03
+  - id: hse-cattle
+    title: "Health and Safety Executive: Cattle and public access in England and Wales (information sheet)"
+    url: https://www.hse.gov.uk/pubns/ais17ew.pdf
+    licence: © Crown copyright, Open Government Licence (facts only)
+    retrieved: 2026-11-03
+  - id: nhs-lyme
+    title: "NHS: Lyme disease (avoiding tick bites, removing ticks, when to get help)"
+    url: https://www.nhs.uk/conditions/lyme-disease/
+    licence: © NHS, Open Government Licence (facts only)
+    retrieved: 2026-11-03
+  - id: wikimedia
+    title: "Wikimedia: page views of the trail's Wikipedia articles in every language, by people, over twelve months (Wikidata sitelinks, pageview API)"
+    url: https://wikimedia.org/api/rest_v1/
+    licence: CC0 1.0 (pageview data); Wikidata CC0
+    retrieved: 2026-11-03
+    checkOnly: true
+  - id: osm
+    title: "OpenStreetMap contributors: the South West Coast Path section relations (superroute 2376086), paths, ferries, water, shops and places to sleep along the Path (Geofabrik extracts), travel hubs"
+    url: https://www.openstreetmap.org/relation/2376086
+    licence: ODbL 1.0
+    retrieved: 2026-11-03
+  - id: copdem
+    title: "Copernicus DEM GLO-30 (30 m terrain model), tiles from AWS Open Data"
+    url: https://registry.opendata.aws/copernicus-dem/
+    licence: "Copernicus WorldDEM-30 licence, free; produced using Copernicus WorldDEM-30 © DLR e.V. 2010-2014 and © Airbus Defence and Space GmbH 2014-2018 provided under COPERNICUS by the European Union and ESA; all rights reserved"
+    retrieved: 2026-11-03
+  - id: worldcover
+    title: "ESA WorldCover 2021: 10 m land cover (via AWS Open Data)"
+    url: https://esa-worldcover.org/
+    licence: "CC BY 4.0; © ESA WorldCover project 2021 / Contains modified Copernicus Sentinel data (2021) processed by ESA WorldCover consortium"
+    retrieved: 2026-11-03
+  - id: era5
+    title: "Open-Meteo open data on AWS: ERA5-Land temperature and ERA5 precipitation, snow and wind, daily 1995–2024 (reanalysis)"
+    url: https://github.com/open-meteo/open-data
+    licence: CC BY 4.0 (Open-Meteo); contains modified Copernicus Climate Change Service information
+    retrieved: 2026-11-03
+  - id: osrm
+    title: "OSRM: road routes on OpenStreetMap data (router.project-osrm.org)"
+    url: https://project-osrm.org/
+    licence: Route data © OpenStreetMap contributors (ODbL)
+    retrieved: 2026-11-03

@@ -1,0 +1,466 @@
+{
+  "climate-high.json": {
+    "retrieved": "2026-11-03T22:02:31+00:00",
+    "url": "https://openmeteo.s3.us-west-2.amazonaws.com/data/copernicus_era5_land+copernicus_era5?latitude=51.2&longitude=-3.7&elevation=310"
+  },
+  "climate-low.json": {
+    "retrieved": "2026-11-03T21:47:47+00:00",
+    "url": "https://openmeteo.s3.us-west-2.amazonaws.com/data/copernicus_era5_land+copernicus_era5?latitude=51.1&longitude=-4.2&elevation=0"
+  },
+  "elevation-glo30.json": {
+    "retrieved": "2026-11-03T21:58:58+00:00",
+    "url": "https://copernicus-dem-30m.s3.eu-central-1.amazonaws.com/Copernicus_DSM_COG_10_N49_00_W006_00_DEM/Copernicus_DSM_COG_10_N49_00_W006_00_DEM.tif https://copernicus-dem-30m.s3.eu-central-1.amazonaws.com/Copernicus_DSM_COG_10_N50_00_W002_00_DEM/Copernicus_DSM_COG_10_N50_00_W002_00_DEM.tif https://copernicus-dem-30m.s3.eu-central-1.amazonaws.com/Copernicus_DSM_COG_10_N50_00_W003_00_DEM/Copernicus_DSM_COG_10_N50_00_W003_00_DEM.tif https://copernicus-dem-30m.s3.eu-central-1.amazonaws.com/Copernicus_DSM_COG_10_N50_00_W004_00_DEM/Copernicus_DSM_COG_10_N50_00_W004_00_DEM.tif https://copernicus-dem-30m.s3.eu-central-1.amazonaws.com/Copernicus_DSM_COG_10_N50_00_W005_00_DEM/Copernicus_DSM_COG_10_N50_00_W005_00_DEM.tif https://copernicus-dem-30m.s3.eu-central-1.amazonaws.com/Copernicus_DSM_COG_10_N50_00_W006_00_DEM/Copernicus_DSM_COG_10_N50_00_W006_00_DEM.tif https://copernicus-dem-30m.s3.eu-central-1.amazonaws.com/Copernicus_DSM_COG_10_N51_00_W004_00_DEM/Copernicus_DSM_COG_10_N51_00_W004_00_DEM.tif https://copernicus-dem-30m.s3.eu-central-1.amazonaws.com/Copernicus_DSM_COG_10_N51_00_W005_00_DEM/Copernicus_DSM_COG_10_N51_00_W005_00_DEM.tif"
+  },
+  "landcover.json": {
+    "retrieved": "2026-11-03T21:59:09+00:00",
+    "url": "https://esa-worldcover.s3.eu-central-1.amazonaws.com/v200/2021/map/ESA_WorldCover_10m_2021_v200_\u2026_Map.tif"
+  },
+  "osm-relation-2190977.json": {
+    "retrieved": "2026-11-02T21:21:26Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-relation-2191940.json": {
+    "retrieved": "2026-11-02T21:21:26Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-relation-2205249.json": {
+    "retrieved": "2026-11-02T21:21:26Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-relation-2371752.json": {
+    "retrieved": "2026-11-02T21:21:26Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-relation-2371849.json": {
+    "retrieved": "2026-11-02T21:21:26Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-relation-2372163.json": {
+    "retrieved": "2026-11-02T21:21:26Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-relation-2372201.json": {
+    "retrieved": "2026-11-02T21:21:26Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-relation-2372431.json": {
+    "retrieved": "2026-11-02T21:21:26Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-relation-2372555.json": {
+    "retrieved": "2026-11-02T21:21:26Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-relation-2372584.json": {
+    "retrieved": "2026-11-02T21:21:26Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-relation-2373766.json": {
+    "retrieved": "2026-11-02T21:21:26Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-relation-2374165.json": {
+    "retrieved": "2026-11-02T21:21:26Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-relation-2374227.json": {
+    "retrieved": "2026-11-02T21:21:26Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-relation-2374237.json": {
+    "retrieved": "2026-11-02T21:21:26Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-relation-2374244.json": {
+    "retrieved": "2026-11-02T21:21:26Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-relation-2374261.json": {
+    "retrieved": "2026-11-02T21:21:26Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-relation-2374270.json": {
+    "retrieved": "2026-11-02T21:21:26Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-relation-2374449.json": {
+    "retrieved": "2026-11-02T21:21:26Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-relation-2374546.json": {
+    "retrieved": "2026-11-02T21:21:26Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-relation-2374556.json": {
+    "retrieved": "2026-11-02T21:21:26Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-relation-2374590.json": {
+    "retrieved": "2026-11-02T21:21:26Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-relation-2374605.json": {
+    "retrieved": "2026-11-02T21:21:26Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-relation-2374612.json": {
+    "retrieved": "2026-11-02T21:21:26Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-relation-2374624.json": {
+    "retrieved": "2026-11-02T21:21:26Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-relation-2374632.json": {
+    "retrieved": "2026-11-02T21:21:26Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-relation-2374655.json": {
+    "retrieved": "2026-11-02T21:21:26Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-relation-2375676.json": {
+    "retrieved": "2026-11-02T21:21:26Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-relation-2375687.json": {
+    "retrieved": "2026-11-02T21:21:26Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-relation-2375711.json": {
+    "retrieved": "2026-11-02T21:21:26Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-relation-2375724.json": {
+    "retrieved": "2026-11-02T21:21:26Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-relation-2375770.json": {
+    "retrieved": "2026-11-02T21:21:26Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-relation-2375786.json": {
+    "retrieved": "2026-11-02T21:21:26Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-relation-2375852.json": {
+    "retrieved": "2026-11-02T21:21:26Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-relation-2375882.json": {
+    "retrieved": "2026-11-02T21:21:26Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-relation-2375924.json": {
+    "retrieved": "2026-11-02T21:21:26Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-relation-2375987.json": {
+    "retrieved": "2026-11-02T21:21:26Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-relation-2376012.json": {
+    "retrieved": "2026-11-02T21:21:26Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-relation-2376018.json": {
+    "retrieved": "2026-11-02T21:21:26Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-relation-2376042.json": {
+    "retrieved": "2026-11-02T21:21:26Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-relation-2376063.json": {
+    "retrieved": "2026-11-02T21:21:26Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-relation-2376077.json": {
+    "retrieved": "2026-11-02T21:21:26Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-relation-2376085.json": {
+    "retrieved": "2026-11-02T21:21:26Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-relation-2376117.json": {
+    "retrieved": "2026-11-02T21:21:26Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-relation-2376118.json": {
+    "retrieved": "2026-11-02T21:21:26Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-relation-2376119.json": {
+    "retrieved": "2026-11-02T21:21:26Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-relation-2376336.json": {
+    "retrieved": "2026-11-02T21:21:26Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-relation-2376368.json": {
+    "retrieved": "2026-11-02T21:21:26Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-relation-2376377.json": {
+    "retrieved": "2026-11-02T21:21:26Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-relation-2376383.json": {
+    "retrieved": "2026-11-02T21:21:26Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-relation-2376414.json": {
+    "retrieved": "2026-11-02T21:21:26Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-relation-2376424.json": {
+    "retrieved": "2026-11-02T21:21:26Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-relation-2376430.json": {
+    "retrieved": "2026-11-02T21:21:26Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-relation-2376455.json": {
+    "retrieved": "2026-11-02T21:21:26Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-1-main.json": {
+    "retrieved": "2026-11-02T21:21:26Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-10-main.json": {
+    "retrieved": "2026-11-02T21:21:26Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-11-main.json": {
+    "retrieved": "2026-11-02T21:21:26Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-12-main.json": {
+    "retrieved": "2026-11-02T21:21:26Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-13-main.json": {
+    "retrieved": "2026-11-02T21:21:26Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-14-main.json": {
+    "retrieved": "2026-11-02T21:21:26Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-15-main.json": {
+    "retrieved": "2026-11-02T21:21:26Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-16-main.json": {
+    "retrieved": "2026-11-02T21:21:26Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-17-main.json": {
+    "retrieved": "2026-11-02T21:21:26Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-18-main.json": {
+    "retrieved": "2026-11-02T21:21:26Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-19-main.json": {
+    "retrieved": "2026-11-02T21:21:26Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-2-main.json": {
+    "retrieved": "2026-11-02T21:21:26Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-20-main.json": {
+    "retrieved": "2026-11-02T21:21:26Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-21-main.json": {
+    "retrieved": "2026-11-02T21:21:26Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-22-main.json": {
+    "retrieved": "2026-11-02T21:21:26Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-23-main.json": {
+    "retrieved": "2026-11-02T21:21:26Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-24-main.json": {
+    "retrieved": "2026-11-02T21:21:26Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-25-main.json": {
+    "retrieved": "2026-11-02T21:21:26Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-26-main.json": {
+    "retrieved": "2026-11-02T21:21:26Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-27-main.json": {
+    "retrieved": "2026-11-02T21:21:26Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-28-main.json": {
+    "retrieved": "2026-11-02T21:21:26Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-29-main.json": {
+    "retrieved": "2026-11-02T21:21:26Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-3-main.json": {
+    "retrieved": "2026-11-02T21:21:26Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-30-main.json": {
+    "retrieved": "2026-11-02T21:21:26Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-31-main.json": {
+    "retrieved": "2026-11-02T21:21:26Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-32-main.json": {
+    "retrieved": "2026-11-02T21:21:26Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-33-main.json": {
+    "retrieved": "2026-11-02T21:21:26Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-34-main.json": {
+    "retrieved": "2026-11-02T21:21:26Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-35-main.json": {
+    "retrieved": "2026-11-02T21:21:26Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-36-main.json": {
+    "retrieved": "2026-11-02T21:21:26Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-37-main.json": {
+    "retrieved": "2026-11-02T21:21:26Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-38-main.json": {
+    "retrieved": "2026-11-02T21:21:26Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-39-main.json": {
+    "retrieved": "2026-11-02T21:21:26Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-4-main.json": {
+    "retrieved": "2026-11-02T21:21:26Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-40-main.json": {
+    "retrieved": "2026-11-02T21:21:26Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-41-main.json": {
+    "retrieved": "2026-11-02T21:21:26Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-42-main.json": {
+    "retrieved": "2026-11-02T21:21:26Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-43-main.json": {
+    "retrieved": "2026-11-02T21:21:26Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-44-main.json": {
+    "retrieved": "2026-11-02T21:21:26Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-45-main.json": {
+    "retrieved": "2026-11-02T21:21:26Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-46-main.json": {
+    "retrieved": "2026-11-02T21:21:26Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-47-main.json": {
+    "retrieved": "2026-11-02T21:21:26Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-48-main.json": {
+    "retrieved": "2026-11-02T21:21:26Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-49-main.json": {
+    "retrieved": "2026-11-02T21:21:26Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-5-main.json": {
+    "retrieved": "2026-11-02T21:21:26Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-50-main.json": {
+    "retrieved": "2026-11-02T21:21:26Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-51-main.json": {
+    "retrieved": "2026-11-02T21:21:26Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-52-main.json": {
+    "retrieved": "2026-11-02T21:21:26Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-6-main.json": {
+    "retrieved": "2026-11-02T21:21:26Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-7-main.json": {
+    "retrieved": "2026-11-02T21:21:26Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-8-main.json": {
+    "retrieved": "2026-11-02T21:21:26Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-9-main.json": {
+    "retrieved": "2026-11-02T21:21:26Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-SDR-variant.json": {
+    "retrieved": "2026-11-02T21:21:26Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-water.json": {
+    "retrieved": "2026-11-02T21:21:26Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-way-tags.json": {
+    "retrieved": "2026-11-02T21:21:26Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osrm-access-bristol-airport-brs.json": {
+    "retrieved": "2026-11-03T21:51:00+00:00",
+    "url": "https://router.project-osrm.org/route/v1/driving/-2.71866,51.38307;-3.47371,51.21148?overview=false"
+  },
+  "osrm-access-exeter-airport-ext.json": {
+    "retrieved": "2026-11-03T21:51:00+00:00",
+    "url": "https://router.project-osrm.org/route/v1/driving/-3.41381,50.73485;-3.47371,51.21148?overview=false"
+  },
+  "osrm-access-taunton.json": {
+    "retrieved": "2026-11-03T21:51:00+00:00",
+    "url": "https://router.project-osrm.org/route/v1/driving/-3.10267,51.02329;-3.47371,51.21148?overview=false"
+  },
+  "wikimedia.json": {
+    "retrieved": "2026-11-03T22:03:12+00:00",
+    "url": "Q1631281 2025-11..2026-10"
+  }
+}

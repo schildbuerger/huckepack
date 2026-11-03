@@ -211,7 +211,8 @@ def turnarounds(track, step=20, arm_m=TURN_ARM_M):
     up and down the same path (the points arm_m before and after lie together, and the turn is at
     least 100 m from them), or a short loop out to a viewpoint and back on a parallel path (the
     track leaves a point and comes back within LOOP_GAP_M of it after 0.6 to 4 km; the turn is the
-    loop's farthest point, at least three times as far out as the gap)."""
+    loop's farthest point, at least three times as far out as the gap), or a whole track that ends
+    where it began (split at its farthest point)."""
     pts = resample(track, step)
     k = round(arm_m / step)
     found = []
@@ -235,6 +236,13 @@ def turnarounds(track, step=20, arm_m=TURN_ARM_M):
             i = j
         else:
             i += 1
+    # a stage that is itself a loop (the South West Coast Path's round of the Isle of Portland, 22 km
+    # from Ferrybridge back to Ferrybridge): split at its farthest point, or the cheapest path from
+    # its start to its end would be empty
+    if len(pts) > lo and math.dist(pts[0], pts[-1]) < LOOP_GAP_M:
+        far = max(range(len(pts)), key=lambda m: math.dist(pts[0], pts[m]))
+        if far not in turns:
+            turns.append(far)
     return pts, sorted(turns)
 
 

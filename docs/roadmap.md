@@ -87,11 +87,10 @@ the **Rennsteig** (#171), the **Malerweg** (#166), the **Wicklow Way** (#167), t
 the **Pennine Way** (#160), the **Kumano Kodo Nakahechi** (#202, the first trail in Japan; to Nachi,
 4 days), the **High Coast Trail** (#176), the **GR 70 Chemin de Stevenson** (#175, Le Puy to Alès in
 French Wikipedia's stages) and the **Alta Via dei Parchi** (#66, stage distances measured on the
-map line), and the **Adlerweg** (#44, its cable cars as rides inside the stages) **El Anillo de Picos** (#77, the site's eight stages, distances measured on the map line) and the **Fishermen's Trail** (#13, Rota Vicentina's 13 stages from São Torpes to Lagos, the list copied from the site by hand). Set aside with their open questions on the issues: among others the Inca Trail
+map line), and the **Adlerweg** (#44, its cable cars as rides inside the stages), **El Anillo de Picos** (#77, the site's eight stages, distances measured on the map line), the **Fishermen's Trail** (#13, Rota Vicentina's 13 stages from São Torpes to Lagos, the list copied from the site by hand) and the **South West Coast Path** (#159, the Association's 52-day itinerary, copied by hand, with the South Dorset Ridgeway as a variant). Set aside with their open questions on the issues: among others the Inca Trail
 (guide-only), the E5 (#162, no
 stage list for Tirol's line), the
-Cumbria Way (official status), the Peaks of the Balkans and the Camino Primitivo (waiting), the
-South West Coast Path (stage list not readable automatically), and the
+Cumbria Way (official status), the Peaks of the Balkans and the Camino Primitivo (waiting), and the
 John Muir and Wonderland Trails (waiting for stage-less pages, #204).
 
 | # | Trail | Region | Length (approx.) | Why |
@@ -108,7 +107,7 @@ John Muir and Wonderland Trails (waiting for stage-less pages, #204).
 | 10 | Israel National Trail | Israel | 1,000 km | Popular desert-to-sea route |
 
 Others to consider: John Muir Trail, Colorado Trail, Arizona Trail, Bruce
-Trail, ~~Pennine Way~~ (added), South West Coast Path, GR 10 / GR 11, Via Alpina, Tour du
+Trail, ~~Pennine Way~~ (added), ~~South West Coast Path~~ (added), GR 10 / GR 11, Via Alpina, Tour du
 Mont Blanc, Great Himalaya Trail, Larapinta Trail, Bibbulmun Track, Overland
 Track, European long-distance path E1.
 

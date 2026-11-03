@@ -1292,7 +1292,7 @@ const trailLd = JSON.stringify({
           </table>
         </div>
         <button type="button" class="show-all" aria-expanded="false" hidden>
-          Show all {mainView.length} stages{stageView.length > mainView.length && ` and ${stageView.length - mainView.length} ${stageView.every((s) => s.kind !== "approach") ? "variants" : "approaches and variants"}`}
+          Show all {mainView.length} stages{stageView.length > mainView.length && ` and ${stageView.length - mainView.length} ${stageView.every((s) => s.kind !== "approach") ? (stageView.length - mainView.length === 1 ? "variant" : "variants") : "approaches and variants"}`}
         </button>
       </div>
       <p class="note muted">
