@@ -573,4 +573,26 @@ export const SKYLINES: Record<string, Skyline> = {
       { d: "M1174,266V256H1182V266Z", c: "#4f4a40" },
     ],
   },
+  "pfaelzer-weinsteig": {
+    view: "The Haardt edge of the Palatinate Forest: the wooded ridge up to the Kalmit with its stone tower, the Trifels on its sandstone rock, the Hambacher Schloss on its hill and vineyards below",
+    ridge: "#4f6a33",
+    ground: "#8a9a4a",
+    shapes: [
+      // the Haardt: one long wooded ridge, highest at the Kalmit
+      { d: hills([[0, G], [120, 238], [320, 222], [520, 200], [640, 190], [760, 202], [960, 222], [1160, 214], [1360, 230], [1600, 236], [1600, G]]), c: FAR },
+      { d: tower(640, 192, 16, 8), c: "#b08a6a" },
+      // the Trifels on its red sandstone rock above Annweiler
+      { d: range([[1160, G], [1200, 250], [1226, 222], [1236, 214], [1282, 214], [1294, 226], [1330, 256], [1380, G]]), c: FOREST },
+      { d: range([[1222, 232], [1230, 214], [1288, 214], [1296, 232]]), c: "#b0644a" },
+      { d: castle(1259, 214, 0.75), c: "#c79a7a" },
+      { d: castleRoofs(1259, 214, 0.75), c: "#6a4a3e" },
+      // the Hambacher Schloss on its wooded hill
+      { d: hills([[230, G], [300, 240], [385, 216], [470, 232], [540, 262], [600, G]]), c: FOREST },
+      { d: "M352,236V218H418V236Z M362,218V204H374V218Z M396,218V206H408V218Z", c: "#e3d6bc" },
+      { d: "M350,218L385,208L420,218Z M360,204L368,196L376,204Z M394,206L402,198L410,206Z", c: "#a05a44" },
+      // the vineyard slopes along the Wine Route
+      { d: hills([[0, G], [160, 270], [420, 262], [700, 268], [980, 258], [1240, 266], [1460, 262], [1600, 270], [1600, G]]), c: "#9cb35a" },
+      { d: orchard(170, 1540, [276, 288, 300], 18, 3), c: "#6f8a34" },
+    ],
+  },
 };

@@ -1,0 +1,126 @@
+{
+  "climate-high.json": {
+    "retrieved": "2026-11-03T07:03:27+00:00",
+    "url": "https://openmeteo.s3.us-west-2.amazonaws.com/data/copernicus_era5_land+copernicus_era5?latitude=49.3&longitude=8.1&elevation=670"
+  },
+  "climate-low.json": {
+    "retrieved": "2026-11-03T07:00:08+00:00",
+    "url": "https://openmeteo.s3.us-west-2.amazonaws.com/data/copernicus_era5_land+copernicus_era5?latitude=49.5&longitude=8.2&elevation=120"
+  },
+  "elevation-glo30.json": {
+    "retrieved": "2026-11-03T06:56:42+00:00",
+    "url": "https://copernicus-dem-30m.s3.eu-central-1.amazonaws.com/Copernicus_DSM_COG_10_N49_00_E007_00_DEM/Copernicus_DSM_COG_10_N49_00_E007_00_DEM.tif https://copernicus-dem-30m.s3.eu-central-1.amazonaws.com/Copernicus_DSM_COG_10_N49_00_E008_00_DEM/Copernicus_DSM_COG_10_N49_00_E008_00_DEM.tif"
+  },
+  "landcover.json": {
+    "retrieved": "2026-11-03T06:56:45+00:00",
+    "url": "https://esa-worldcover.s3.eu-central-1.amazonaws.com/v200/2021/map/ESA_WorldCover_10m_2021_v200_\u2026_Map.tif"
+  },
+  "osm-stage-1-main.json": {
+    "retrieved": "2026-11-01T21:21:36Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-10-main.json": {
+    "retrieved": "2026-11-01T21:21:36Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-11-main.json": {
+    "retrieved": "2026-11-01T21:21:36Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-2-main.json": {
+    "retrieved": "2026-11-01T21:21:36Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-3-main.json": {
+    "retrieved": "2026-11-01T21:21:36Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-4-main.json": {
+    "retrieved": "2026-11-01T21:21:36Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-5-main.json": {
+    "retrieved": "2026-11-01T21:21:36Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-6-main.json": {
+    "retrieved": "2026-11-01T21:21:36Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-7-main.json": {
+    "retrieved": "2026-11-01T21:21:36Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-8-main.json": {
+    "retrieved": "2026-11-01T21:21:36Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-9-main.json": {
+    "retrieved": "2026-11-01T21:21:36Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-water.json": {
+    "retrieved": "2026-11-01T21:21:36Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-way-tags.json": {
+    "retrieved": "2026-11-01T21:21:36Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osrm-access-frankfurt-airport-fra.json": {
+    "retrieved": "2026-11-03T07:03:27+00:00",
+    "url": "https://router.project-osrm.org/route/v1/driving/8.5552,50.02441;8.18143,49.60929?overview=false"
+  },
+  "osrm-access-mannheim-hauptbahnhof.json": {
+    "retrieved": "2026-11-03T07:03:27+00:00",
+    "url": "https://router.project-osrm.org/route/v1/driving/8.46982,49.47966;8.18143,49.60929?overview=false"
+  },
+  "stage-1-main.gpx": {
+    "retrieved": "2026-11-03T06:53:30+00:00",
+    "url": "https://www.outdooractive.com/de/route/fernwanderweg/pfalz/pfaelzer-weinsteig-etappe-01-bockenheim-neuleiningen/11127434/"
+  },
+  "stage-10-main.gpx": {
+    "retrieved": "2026-11-03T06:54:23+00:00",
+    "url": "https://www.outdooractive.com/de/route/fernwanderweg/pfalz/pfaelzer-weinsteig-etappe-10-klingenmuenster-bad-bergzabern/1513121/"
+  },
+  "stage-11-main.gpx": {
+    "retrieved": "2026-11-03T06:54:23+00:00",
+    "url": "https://www.outdooractive.com/de/route/fernwanderweg/pfalz/pfaelzer-weinsteig-etappe-11-bad-bergzabern-schweigen-rechtenbach/1544494/"
+  },
+  "stage-2-main.gpx": {
+    "retrieved": "2026-11-03T06:53:30+00:00",
+    "url": "https://www.outdooractive.com/de/route/fernwanderweg/pfalz/pfaelzer-weinsteig-etappe-02-neuleiningen-bad-duerkheim/1498408/"
+  },
+  "stage-3-main.gpx": {
+    "retrieved": "2026-11-03T06:53:40+00:00",
+    "url": "https://www.outdooractive.com/de/route/fernwanderweg/pfalz/pfaelzer-weinsteig-etappe-03-bad-duerkheim-deidesheim/1552041/"
+  },
+  "stage-4-main.gpx": {
+    "retrieved": "2026-11-03T06:53:51+00:00",
+    "url": "https://www.outdooractive.com/de/route/fernwanderweg/pfalz/pfaelzer-weinsteig-etappe-04-deidesheim-neustadt-a.-d.-weinstrasse/1561343/"
+  },
+  "stage-5-main.gpx": {
+    "retrieved": "2026-11-03T06:53:51+00:00",
+    "url": "https://www.outdooractive.com/de/route/fernwanderweg/pfalz/pfaelzer-weinsteig-etappe-05-neustadt-a.-d.-weinstrasse-st.-martin/1544885/"
+  },
+  "stage-6-main.gpx": {
+    "retrieved": "2026-11-03T06:54:01+00:00",
+    "url": "https://www.outdooractive.com/de/route/fernwanderweg/pfalz/pfaelzer-weinsteig-etappe-06-st.-martin-burrweiler/1513953/"
+  },
+  "stage-7-main.gpx": {
+    "retrieved": "2026-11-03T06:54:02+00:00",
+    "url": "https://www.outdooractive.com/de/route/fernwanderweg/pfalz/pfaelzer-weinsteig-etappe-07-burrweiler-dernbach/1481451/"
+  },
+  "stage-8-main.gpx": {
+    "retrieved": "2026-11-03T06:54:12+00:00",
+    "url": "https://www.outdooractive.com/de/route/fernwanderweg/pfalz/pfaelzer-weinsteig-etappe-08-dernbach-annweiler-am-trifels/1558710/"
+  },
+  "stage-9-main.gpx": {
+    "retrieved": "2026-11-03T06:54:22+00:00",
+    "url": "https://www.outdooractive.com/de/route/fernwanderweg/pfalz/pfaelzer-weinsteig-etappe-09-annweiler-am-trifels-klingenmuenster/1495988/"
+  },
+  "wikimedia.json": {
+    "retrieved": "2026-11-03T07:03:27+00:00",
+    "url": "Q2084528 2025-11..2026-10"
+  }
+}

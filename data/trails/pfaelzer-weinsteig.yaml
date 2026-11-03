@@ -1,0 +1,214 @@
+name: Pfälzer Weinsteig
+added: 2026-11-03
+aliases: [Palatinate Wine Trail]
+website: https://www.pfalz.de/de/route/pfaelzer-weinsteig
+wikidata: Q2084528
+managedBy:
+  # Pfalz.Touristik e.V. ("Zum Wohl die Pfalz") publishes the route and its stages (German Wikipedia
+  # names it as the route's author)
+  - name: Pfalz.Touristik e.V.
+    url: https://www.pfalz.de/de/route/pfaelzer-weinsteig
+trailType: point-to-point
+continents: [Europe]
+countries: [DE]
+regions: [Rhineland-Palatinate]
+protectedAreas:
+  - Pfälzerwald-Nordvogesen Biosphere Reserve
+termini:
+  # the Haus der Deutschen Weinstraße in Bockenheim and the Deutsches Weintor in Schweigen, where
+  # the official stages start and end (OSM)
+  start:
+    name: Bockenheim an der Weinstraße
+    lat: 49.60929
+    lon: 8.18143
+  end:
+    name: Schweigen-Rechtenbach
+    lat: 49.05219
+    lon: 7.9563
+  source: osm
+established:
+  # "Eröffnet wurde der Fernwanderweg im Dezember 2010"; the northern eleventh stage followed in
+  # March 2015 (German Wikipedia)
+  year: 2010
+  source: wikipedia
+waymarking:
+  # the trail's own logo (German Wikipedia's infobox shows it as the waymark): not redrawn
+  # (waymark rule, issue #82)
+  text: Waymarked throughout with the Pfälzer Weinsteig's own logo
+  source: wikipedia
+length:
+  # "Der offiziell 172 Km lange Pfälzer Weinsteig (Abweichungen bei Track-Übertragung!)": 172 to
+  # 185 km depending on the detours into the villages (the complete route's page)
+  - km: 172
+    source: pt
+ascent:
+  # the complete route's figures (5,668 m up, 5,602 m down); the stages sum to 5,999 and 5,980 m
+  - m: 5668
+    source: pt
+descent:
+  - m: 5602
+    source: pt
+stages:
+  # the eleven stages as Pfalz.Touristik publishes them on Outdooractive (publisher "Zum Wohl die
+  # Pfalz", linked from pfalz.de): distance, climbs, time; each tour page carries its track (read by
+  # pipeline/osm.py, only to guide the OSM matcher)
+  source: pt
+  list:
+    - { number: "1", kind: main, from: Bockenheim, to: Neuleiningen, km: 17.1, ascentM: 480, descentM: 381, minutes: 280, track: "https://www.outdooractive.com/de/route/fernwanderweg/pfalz/pfaelzer-weinsteig-etappe-01-bockenheim-neuleiningen/11127434/" }
+    - { number: "2", kind: main, from: Neuleiningen, to: Bad Dürkheim, km: 17.6, ascentM: 323, descentM: 455, minutes: 300, track: "https://www.outdooractive.com/de/route/fernwanderweg/pfalz/pfaelzer-weinsteig-etappe-02-neuleiningen-bad-duerkheim/1498408/" }
+    - { number: "3", kind: main, from: Bad Dürkheim, to: Deidesheim, km: 15.2, ascentM: 476, descentM: 494, minutes: 270, track: "https://www.outdooractive.com/de/route/fernwanderweg/pfalz/pfaelzer-weinsteig-etappe-03-bad-duerkheim-deidesheim/1552041/" }
+    - { number: "4", kind: main, from: Deidesheim, to: Neustadt an der Weinstraße, km: 19.8, ascentM: 588, descentM: 560, minutes: 360, track: "https://www.outdooractive.com/de/route/fernwanderweg/pfalz/pfaelzer-weinsteig-etappe-04-deidesheim-neustadt-a.-d.-weinstrasse/1561343/" }
+    - { number: "5", kind: main, from: Neustadt an der Weinstraße, to: St. Martin, km: 19.8, ascentM: 786, descentM: 700, minutes: 405, track: "https://www.outdooractive.com/de/route/fernwanderweg/pfalz/pfaelzer-weinsteig-etappe-05-neustadt-a.-d.-weinstrasse-st.-martin/1544885/" }
+    - { number: "6", kind: main, from: St. Martin, to: Burrweiler, km: 16.7, ascentM: 669, descentM: 656, minutes: 315, track: "https://www.outdooractive.com/de/route/fernwanderweg/pfalz/pfaelzer-weinsteig-etappe-06-st.-martin-burrweiler/1513953/" }
+    - { number: "7", kind: main, from: Burrweiler, to: Dernbach, km: 17.2, ascentM: 585, descentM: 639, minutes: 330, track: "https://www.outdooractive.com/de/route/fernwanderweg/pfalz/pfaelzer-weinsteig-etappe-07-burrweiler-dernbach/1481451/" }
+    - { number: "8", kind: main, from: Dernbach, to: Annweiler am Trifels, km: 14.3, ascentM: 603, descentM: 631, minutes: 300, track: "https://www.outdooractive.com/de/route/fernwanderweg/pfalz/pfaelzer-weinsteig-etappe-08-dernbach-annweiler-am-trifels/1558710/" }
+    - { number: "9", kind: main, from: Annweiler am Trifels, to: Klingenmünster, km: 17.6, ascentM: 656, descentM: 669, minutes: 330, track: "https://www.outdooractive.com/de/route/fernwanderweg/pfalz/pfaelzer-weinsteig-etappe-09-annweiler-am-trifels-klingenmuenster/1495988/" }
+    - { number: "10", kind: main, from: Klingenmünster, to: Bad Bergzabern, km: 12.9, ascentM: 329, descentM: 342, minutes: 225, track: "https://www.outdooractive.com/de/route/fernwanderweg/pfalz/pfaelzer-weinsteig-etappe-10-klingenmuenster-bad-bergzabern/1513121/" }
+    - { number: "11", kind: main, from: Bad Bergzabern, to: Schweigen-Rechtenbach, km: 16, ascentM: 504, descentM: 453, minutes: 285, track: "https://www.outdooractive.com/de/route/fernwanderweg/pfalz/pfaelzer-weinsteig-etappe-11-bad-bergzabern-schweigen-rechtenbach/1544494/" }
+route:
+  # built by `python -m pipeline.all pfaelzer-weinsteig`: OSM ways matched to the stage pages' tracks
+  source: osm
+  publishable: true
+difficulty:
+  # the complete route's page: "Schwierigkeit T1", overall "Schwer"
+  sac:
+    grade: T1
+    source: pt
+season:
+  # the complete route's best months: March to November (German Wikipedia: "März bis November")
+  months: [3, 4, 5, 6, 7, 8, 9, 10, 11]
+  text: March to November
+  source: pt
+sleeping:
+  # OSM along the route (pipeline/along.py): 110 guest houses and B&Bs in the wine villages, 9
+  # campsites, 8 hostels, 4 huts
+  types: [guesthouse, hostel, campsite, hut]
+  source: osm
+wildCamping:
+  status: restricted
+  rule: >-
+    In Rhineland-Palatinate, tents in the forest need the forest owner's consent (Landeswaldgesetz
+    § 22 (4) no. 3); the vineyards and fields are private land.
+  source: lwaldg-rp
+access:
+  # Mannheim Hauptbahnhof, the region's main station, and Frankfurt Airport. Bockenheim has only a
+  # regional station. Coordinates from OSM; distances by pipeline/access.py
+  - kind: station
+    name: Mannheim Hauptbahnhof
+    lat: 49.47966
+    lon: 8.46982
+    source: osm
+  - kind: airport
+    name: Frankfurt Airport (FRA)
+    lat: 50.02441
+    lon: 8.5552
+    source: osm
+animals:
+  # Ticks: Lyme disease all over Germany (the federal health agency's advice); none of the districts
+  # the trail crosses is a TBE risk area (RKI 2026: Rhineland-Palatinate's only one is LK
+  # Birkenfeld). Level ours
+  list:
+    - kind: tick
+      name: "Ticks (Lyme disease)"
+      level: low
+      basis: "Ticks that carry Lyme disease live all over Germany, in forests and meadows; about one tick bite in 100 leads to the illness, which antibiotics treat well when caught early."
+      do:
+        - "Wear closed shoes, long sleeves and long trousers, the socks pulled over the trouser legs; light clothes show ticks"
+        - "Use a tick repellent as its maker directs; it protects only for a while, and not fully"
+        - "After the walk, search your body: the hollows of the knees, the groin, the armpits, behind the ears, the head and the hairline"
+        - "Remove a tick as soon as you can: grip it by its head close to the skin with tweezers or a tick card, pull it slowly and straight out, then disinfect the bite"
+        - "See a doctor if a red ring at least 5 cm across spreads around the bite within 3 to 30 days, or fever and aching follow a bite"
+      dont:
+        - "Treat the tick with oil or cream, or squeeze it: it may release more germs"
+      source: bzga-borreliose
+tags: [vineyards, wine, forest, castles]
+notes:
+  - >-
+    The Weinsteig runs north to south along the German Wine Route, switching between the vineyards
+    of the Haardt edge and the eastern Palatinate Forest: Neuleiningen, Bad Dürkheim, Deidesheim,
+    Neustadt, the Kalmit (673 m, its highest point), the Hambacher Schloss, the Villa Ludwigshöhe,
+    Annweiler below the Trifels, Bad Bergzabern and the Deutsches Weintor at Schweigen on the French
+    border, where the Pfälzer Waldpfad continues.
+  - >-
+    Season: March to November (Pfalz.Touristik's best months). Wild camping: forest owner's consent
+    in Rhineland-Palatinate. Tree line: none recorded, the trail stays below about 680 m. Ticks: the
+    RKI's 2026 bulletin lists LK Birkenfeld as Rhineland-Palatinate's only TBE risk area; LK Bad
+    Dürkheim, SK Neustadt, LK Südliche Weinstraße and SK Landau are not.
+  - >-
+    Figures: the stated length is 172 km "officially", 172 to 185 km depending on the detours into
+    the villages; the stages sum to 184.2 km (they include the ways into the stage towns). The
+    complete route's 5,668 m up and 5,602 m down are shown; the stages sum to 5,999 and 5,980 m.
+  - >-
+    Map line: the stage pages' tracks (kept local) guide the OSM matcher; every stage at least 95 %
+    matched, 179.8 km against the stages' 184.2 km; highest point 674 m (terrain model) against the
+    Kalmit's 673 m.
+  - >-
+    Data check (2026-11-03): Pfalz.Touristik's figures against German Wikipedia (its stage table
+    from Publicpress's Leporello map): all eleven stage distances within 2 % (e.g. 15.2 against
+    14.9 km, 17.6 against 17.4 km); length 172 km against 185 km (Wikipedia: 172 to 185 km with the
+    detours into the villages; its table sums to 183.7 km), 7 %; ascent 5,668 against 6,073 m and
+    descent 5,602 against 6,013 m, 7 %; highest point the Kalmit, 673 m; Bockenheim to
+    Schweigen-Rechtenbach; season March to November: all agree, no deviation over 10 %.
+dataCheck:
+  # working rule 2: German Wikipedia (stage distances from Publicpress's Leporello map)
+  date: 2026-11-03
+  against: [wikipedia]
+  deviations: []
+sources:
+  - id: pt
+    title: "Pfalz.Touristik e.V. (\"Zum Wohl die Pfalz\") on Outdooractive: Pfälzer Weinsteig complete route (length, climbs, difficulty, best months) and its eleven stage pages (distance, climbs, time), linked from pfalz.de"
+    url: https://www.outdooractive.com/de/route/fernwanderweg/pfalz/pfaelzer-weinsteig-gesamtroute/11219679/
+    licence: All rights reserved (facts only)
+    retrieved: 2026-11-03
+  - id: wikipedia
+    title: "German Wikipedia: Pfälzer Weinsteig (opening, waymark; stage table from Publicpress's map for the data check)"
+    url: https://de.wikipedia.org/wiki/Pf%C3%A4lzer_Weinsteig
+    licence: CC BY-SA 4.0
+    retrieved: 2026-11-03
+  - id: lwaldg-rp
+    title: "Landeswaldgesetz Rheinland-Pfalz (LWaldG), § 22 (4): what needs the forest owner's consent"
+    url: https://umwelt-online.de/recht/natursch/laender/rp/wald2.htm
+    licence: Public domain (state law)
+    retrieved: 2026-11-03
+  - id: bzga-borreliose
+    title: "Bundeszentrale für gesundheitliche Aufklärung (infektionsschutz.de): Bürgerinformation Borreliose, protection against ticks (as of August 2019)"
+    url: https://infektionsschutz.de/download/2902-Erregersteckbrief-Borreliose.pdf
+    licence: © BZgA (facts only)
+    retrieved: 2026-11-03
+  - id: rki-fsme
+    title: "Robert Koch-Institut: FSME-Risikogebiete in Deutschland, Epidemiologisches Bulletin 9/2026 (as of January 2026)"
+    url: https://www.rki.de/DE/Aktuelles/Publikationen/Epidemiologisches-Bulletin/2026/09_26.pdf
+    licence: © Robert Koch-Institut (facts only)
+    retrieved: 2026-11-03
+    checkOnly: true  # only the tick level's basis: no district on the trail is a TBE risk area
+  - id: wikimedia
+    title: "Wikimedia: page views of the trail's Wikipedia articles in every language, by people, over twelve months (Wikidata sitelinks, pageview API)"
+    url: https://wikimedia.org/api/rest_v1/
+    licence: CC0 1.0 (pageview data); Wikidata CC0
+    retrieved: 2026-11-03
+    checkOnly: true  # not on the trail page: the page views only rank the home page's popular trails
+  - id: osm
+    title: "OpenStreetMap contributors: paths, water, shops and places to sleep along the trail (Geofabrik extracts), termini, travel hubs"
+    url: https://www.openstreetmap.org/
+    licence: ODbL 1.0
+    retrieved: 2026-11-03
+  - id: copdem
+    title: "Copernicus DEM GLO-30 (30 m terrain model), tiles from AWS Open Data"
+    url: https://registry.opendata.aws/copernicus-dem/
+    licence: "Copernicus WorldDEM-30 licence, free; produced using Copernicus WorldDEM-30 © DLR e.V. 2010-2014 and © Airbus Defence and Space GmbH 2014-2018 provided under COPERNICUS by the European Union and ESA; all rights reserved"
+    retrieved: 2026-11-03
+  - id: worldcover
+    title: "ESA WorldCover 2021: 10 m land cover (via AWS Open Data)"
+    url: https://esa-worldcover.org/
+    licence: "CC BY 4.0; © ESA WorldCover project 2021 / Contains modified Copernicus Sentinel data (2021) processed by ESA WorldCover consortium"
+    retrieved: 2026-11-03
+  - id: era5
+    title: "Open-Meteo open data on AWS: ERA5-Land temperature and ERA5 precipitation, snow and wind, daily 1995–2024 (reanalysis)"
+    url: https://github.com/open-meteo/open-data
+    licence: CC BY 4.0 (Open-Meteo); contains modified Copernicus Climate Change Service information
+    retrieved: 2026-11-03
+  - id: osrm
+    title: "OSRM: road routes on OpenStreetMap data (router.project-osrm.org)"
+    url: https://project-osrm.org/
+    licence: Route data © OpenStreetMap contributors (ODbL)
+    retrieved: 2026-11-03
