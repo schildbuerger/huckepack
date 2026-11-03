@@ -83,12 +83,16 @@ Added on 2026-11-03, a batch from the "Add Trail" issues: the **Schluchtensteig*
 **Wildnis-Trail** (#63), the **Kerry Way** (#173, the shortest way over its branched OSM relation),
 the **Pieterpad** (#177, the first trail in the Netherlands; river ferries bridged, `maxBridges`),
 the **Rennsteig** (#171), the **Malerweg** (#166), the **Wicklow Way** (#167), the
-**Pembrokeshire Coast Path** (#168), **Hadrian's Wall Path** (#161), the **Great Glen Way** (#172)
-and the **Pennine Way** (#160). Set aside with their open questions on the issues: among others the
-Inca Trail (guide-only), the Kumano Kodo and the Adlerweg (which line or parts), the High Coast
-Trail and the Cumbria Way (official status), the South West Coast Path and the Fishermen's Trail
-(stage lists not readable automatically), and the John Muir and Wonderland Trails (waiting for
-stage-less pages, #204).
+**Pembrokeshire Coast Path** (#168), **Hadrian's Wall Path** (#161), the **Great Glen Way** (#172),
+the **Pennine Way** (#160), the **Kumano Kodo Nakahechi** (#202, the first trail in Japan; to Nachi,
+4 days), the **High Coast Trail** (#176), the **GR 70 Chemin de Stevenson** (#175, Le Puy to Alès in
+French Wikipedia's stages) and the **Alta Via dei Parchi** (#66, stage distances measured on the
+map line). Set aside with their open questions on the issues: among others the Inca Trail
+(guide-only), the Adlerweg (#44, its cable-car legs; parked on a local branch), the E5 (#162, no
+stage list for Tirol's line), the Anillo de Picos (#77, the official stage counts disagree), the
+Cumbria Way (official status), the Peaks of the Balkans and the Camino Primitivo (waiting), the
+South West Coast Path and the Fishermen's Trail (stage lists not readable automatically), and the
+John Muir and Wonderland Trails (waiting for stage-less pages, #204).
 
 | # | Trail | Region | Length (approx.) | Why |
 |---|---|---|---|---|
