@@ -1,0 +1,214 @@
+name: Kerry Way
+added: 2026-11-03
+localName: Slí Uíbh Ráthaigh
+aliases: [The Kerry Way]
+website: https://kerryway.ie/
+wikidata: Q1739608
+managedBy:
+  # a National Waymarked Trail (Sport Ireland's National Trails Office); trail management: South
+  # Kerry Development Partnership (Sport Ireland's trail page), with the Kerry Way Committee, whose
+  # site this is ("Copyright © Kerry Way Committee") and Kerry County Council (English Wikipedia)
+  - name: South Kerry Development Partnership and the Kerry Way Committee (National Waymarked Trail, Sport Ireland)
+    url: https://www.sportireland.ie/outdoors/walking/trails/kerry-way
+trailType: loop
+continents: [Europe]
+countries: [IE]
+regions: [County Kerry]
+protectedAreas:
+  - Killarney National Park
+termini:
+  # a loop from and back to Killarney: the grid reference where the committee's stage 1 starts and
+  # stage 9 finishes (V 96701 89300, Irish Grid, converted)
+  start:
+    name: Killarney
+    lat: 52.04656
+    lon: -9.50638
+  end:
+    name: Killarney
+    lat: 52.04656
+    lon: -9.50638
+  source: kw
+established:
+  # "The full route was completed in 1989" (English Wikipedia; the first section opened in 1985)
+  year: 1989
+  source: wikipedia
+waymarking:
+  # "Waymarking: Yellow arrow on black background" (Sport Ireland). The National Waymarked Ways'
+  # walker logo is the operator's design, not drawn
+  text: Yellow arrows on a black background
+  source: si
+length:
+  # "215 Kilometres · 9 Sections" (the committee's home page); the stage pages sum to 202.4 km
+  - km: 215
+    source: kw
+stages:
+  # the committee's nine stage pages, each with length, hours, grade, ascent and the grid references
+  # of start and finish (Irish Grid, converted to the `end` points); no descent is given. Stage 3 via
+  # the Windy Gap (the Seefin option is 18 km), stage 6 the coastal route (option 1). No official GPX:
+  # each stage cuts the OSM relation "The Kerry Way" (183744) at its end (OSM)
+  source: kw
+  list:
+    - { number: "1", kind: main, from: Killarney, to: Black Valley, km: 21.4, ascentM: 863, minutes: 360, maxMinutes: 480, end: { name: Black Valley, lat: 51.98696, lon: -9.65285 } }
+    - { number: "2", kind: main, from: Black Valley, to: Glencar, km: 20, ascentM: 683, minutes: 360, maxMinutes: 480, end: { name: Glencar, lat: 51.99461, lon: -9.85795 } }
+    - { number: "3", kind: main, from: Glencar, to: Glenbeigh, km: 13.5, ascentM: 441, minutes: 240, maxMinutes: 360, end: { name: Glenbeigh, lat: 52.05642, lon: -9.93953 } }
+    - { number: "4", kind: main, from: Glenbeigh, to: Cahersiveen, km: 30.6, ascentM: 750, minutes: 480, maxMinutes: 600, end: { name: Cahersiveen, lat: 51.9472, lon: -10.22063 } }
+    - { number: "5", kind: main, from: Cahersiveen, to: Waterville, km: 30.6, ascentM: 980, minutes: 480, maxMinutes: 600, end: { name: Waterville, lat: 51.8273, lon: -10.17305 } }
+    - { number: "6", kind: main, from: Waterville, to: Caherdaniel, km: 11.5, ascentM: 365, minutes: 180, maxMinutes: 240, end: { name: Caherdaniel, lat: 51.76992, lon: -10.09898 } }
+    - { number: "7", kind: main, from: Caherdaniel, to: Sneem, km: 17.3, ascentM: 517, minutes: 300, maxMinutes: 420, end: { name: Sneem, lat: 51.83905, lon: -9.90178 } }
+    - { number: "8", kind: main, from: Sneem, to: Kenmare, km: 34, ascentM: 763, minutes: 480, maxMinutes: 600, end: { name: Kenmare, lat: 51.88089, lon: -9.58393 } }
+    - { number: "9", kind: main, from: Kenmare, to: Killarney, km: 23.5, ascentM: 713, minutes: 360, maxMinutes: 480, end: { name: Killarney, lat: 52.04656, lon: -9.50638 } }
+route:
+  # built by `python -m pipeline.all kerry-way`: OSM ways matched to the shortest way over the
+  # relation between the stage ends. The relation holds the options (Seefin, stage 6's inland route,
+  # the Derrynane Mass Path, the Dromid spur) and the stretch from Derrycunnihy to Killarney walked on
+  # both stage 1 and stage 9, which no chain follows
+  source: osm
+  publishable: true
+  relation: 183744
+  branched: true
+difficulty:
+  # the committee grades its stages Moderate or Moderate to Demanding, Sport Ireland the trail
+  # Strenuous; no SAC grade. Our estimate
+  estimated:
+    sac: T2
+    basis: >-
+      Quiet roads, boreens, field and woodland paths, and open moorland that can be very wet,
+      isolated and muddy, with sustained steep climbs to mountain passes of up to 385 m (Sport
+      Ireland); the committee grades its stages Moderate to Demanding, weather dependent. Mountain
+      hiking on clear tracks (T2), no exposed passages.
+    source: kw
+season:
+  # "Season: Any" (English Wikipedia's infobox); the committee and Sport Ireland name none
+  months: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
+  text: Any season
+  source: wikipedia
+sleeping:
+  # the committee names the hostel in the Black Valley (stage 1) and Dromid Hostel (its transport
+  # page); it lists no other accommodation, so the rest comes from OSM
+  types: [hostel]
+  source: kw
+access:
+  # Killarney's railway station (trains from Cork and Dublin) and Kerry Airport, which the committee
+  # names. Coordinates from OSM; distances by pipeline/access.py
+  - kind: station
+    name: Killarney
+    lat: 52.05915
+    lon: -9.50232
+    source: osm
+  - kind: airport
+    name: Kerry Airport (KIR)
+    lat: 52.18091
+    lon: -9.52578
+    source: osm
+animals:
+  # Ticks (HSE Health Protection Surveillance Centre; the committee also warns of ticks). Level
+  # ours. No Irish official source found for cattle on walking routes (2026-11-03), so none listed
+  list:
+    - kind: tick
+      name: "Ticks (Lyme disease)"
+      level: low
+      basis: "Ticks are active across Ireland from spring to autumn; the HPSC names walking paths bordered by long grass, fields and vegetation near lakes and seaside beaches among the places they are most likely."
+      do:
+        - "Cover exposed skin with long trousers tucked into socks or boots, long sleeves and closed shoes or boots"
+        - "Use a repellent containing at least 20 % DEET, picaridin or IR3535 on exposed skin"
+        - "Check your skin and clothing every 3 to 4 hours in tick areas, and do a full-body check after you get in"
+        - "Grip an attached tick as close to the skin as possible with fine-tipped tweezers or a tick removal tool and pull steadily away from the skin, then wash the bite and apply antiseptic"
+        - "See your GP if a rash, especially a spreading bull's-eye rash, or flu-like symptoms follow a tick bite, and tell them about the bite"
+      dont:
+        - "Twist or crush the tick when you remove it"
+        - "Use a lit cigarette, a match head, alcohol or petroleum jelly to remove a tick"
+      source: hpsc-lyme
+tags: [mountains, coast, lakes, moorland, national-park, national-waymarked-trail]
+notes:
+  - >-
+    The Way circles the Iveragh Peninsula from Killarney: through Killarney National Park past
+    Muckross House and Torc Waterfall, along the Old Kenmare Road to the Black Valley, under the
+    MacGillycuddy's Reeks over the Bridia Pass to Glencar, by the Windy Gap to Glenbeigh, above Dingle
+    Bay over Mountain Stage to Cahersiveen, along the hog's back ridges to Waterville, on the old coach
+    road above Ballinskelligs Bay to Caherdaniel, by Staigue Fort to Sneem, along Kenmare Bay to
+    Kenmare, and over the Old Kenmare Road back to Killarney, repeating stage 1 from Derrycunnihy.
+  - >-
+    Season: any (English Wikipedia; the committee and Sport Ireland name none). Wild camping: no
+    official source found for Ireland (2026-11-03), so none recorded. Dogs are not permitted on the
+    Kerry Way (Sport Ireland). Tree line: none recorded, the Way stays below about 400 m.
+  - >-
+    Figures: the committee's home page and route page give rounder stage figures than its stage
+    pages (e.g. stage 8 30 km against 34 km, stage 3 18 km, the Seefin option); the record follows
+    the stage pages. They sum to 202.4 km and 6,075 m of ascent against the stated 215 km; stage 6's
+    inland option 2 (29 km) and the Seefin and Derrynane options are not in the stage list. Sport
+    Ireland states 232.1 km (its text 230 km) and 5,310 m.
+  - >-
+    Flooding: Sport Ireland warns that the stretch between Derrycunnihy Church and Lord Brandon's
+    Cottage (stages 1 and 9) floods at times, especially after heavy rain.
+  - >-
+    Map line: the shortest way over OSM's relation (183744) between the stage ends; every stage
+    100 % matched and within 3 % of the committee's km, 200.9 km against the stages' 202.4 km.
+    Highest point 385 m (terrain model), exactly Sport Ireland's Windy Gap at 385 m. OSM maps only
+    three drinking water taps along the Way (the longest stretch without one 74 km).
+  - >-
+    Data check (2026-11-03): the committee's figures against Sport Ireland's trail page and English
+    Wikipedia (whose infobox cites the Irish Sports Council's former page): length 215 km against
+    232.1 km (Sport Ireland, 7 %) and 214 km (Wikipedia); nine stages against Sport Ireland's nine
+    days; highest point Windy Gap 385 m (Sport Ireland, Wikipedia) against 385 m on the terrain
+    model; a loop from Killarney; the designation and management: all agree. Ascent: the stages'
+    6,075 m against 5,310 m (Sport Ireland, Wikipedia; 14 %), recorded in dataCheck; the page keeps
+    the committee's stage figures.
+dataCheck:
+  # working rule 2: Sport Ireland's trail page and English Wikipedia (whose infobox cites the Irish
+  # Sports Council's former trail page)
+  date: 2026-11-03
+  against: [si, wikipedia]
+  deviations:
+    - { figure: "Total ascent (sum of the stages)", ours: "6,075 m", theirs: "5,310 m", source: si }
+sources:
+  - id: kw
+    title: "The Kerry Way (Kerry Way Committee, kerryway.ie): the nine stage pages (length, hours, grade, ascent, grid references of start and finish), transport, things to know"
+    url: https://kerryway.ie/the-route/
+    licence: All rights reserved (facts only)
+    retrieved: 2026-11-03
+  - id: si
+    title: "Sport Ireland (National Trails Office): Kerry Way, National Waymarked Trail (grade, length, ascent, waymarking, trail management)"
+    url: https://www.sportireland.ie/outdoors/walking/trails/kerry-way
+    licence: All rights reserved (facts only)
+    retrieved: 2026-11-03
+  - id: wikipedia
+    title: "English Wikipedia: Kerry Way (designation, management, opening, season; length and ascent for the data check)"
+    url: https://en.wikipedia.org/wiki/Kerry_Way
+    licence: CC BY-SA 4.0
+    retrieved: 2026-11-03
+  - id: hpsc-lyme
+    title: "HSE Health Protection Surveillance Centre: Lyme disease (where ticks are found, avoiding bites, removing ticks, when to see a GP)"
+    url: https://www.hpsc.ie/a-z/vectorborne/lymedisease/
+    licence: © HSE Health Protection Surveillance Centre (facts only)
+    retrieved: 2026-11-03
+  - id: wikimedia
+    title: "Wikimedia: page views of the trail's Wikipedia articles in every language, by people, over twelve months (Wikidata sitelinks, pageview API)"
+    url: https://wikimedia.org/api/rest_v1/
+    licence: CC0 1.0 (pageview data); Wikidata CC0
+    retrieved: 2026-11-03
+    checkOnly: true  # not on the trail page: the page views only rank the home page's popular trails
+  - id: osm
+    title: "OpenStreetMap contributors: paths, water, shops and places to sleep along the trail (Geofabrik extracts), travel hubs"
+    url: https://www.openstreetmap.org/
+    licence: ODbL 1.0
+    retrieved: 2026-11-03
+  - id: copdem
+    title: "Copernicus DEM GLO-30 (30 m terrain model), tiles from AWS Open Data"
+    url: https://registry.opendata.aws/copernicus-dem/
+    licence: "Copernicus WorldDEM-30 licence, free; produced using Copernicus WorldDEM-30 © DLR e.V. 2010-2014 and © Airbus Defence and Space GmbH 2014-2018 provided under COPERNICUS by the European Union and ESA; all rights reserved"
+    retrieved: 2026-11-03
+  - id: worldcover
+    title: "ESA WorldCover 2021: 10 m land cover (via AWS Open Data)"
+    url: https://esa-worldcover.org/
+    licence: "CC BY 4.0; © ESA WorldCover project 2021 / Contains modified Copernicus Sentinel data (2021) processed by ESA WorldCover consortium"
+    retrieved: 2026-11-03
+  - id: era5
+    title: "Open-Meteo open data on AWS: ERA5-Land temperature and ERA5 precipitation, snow and wind, daily 1995–2024 (reanalysis)"
+    url: https://github.com/open-meteo/open-data
+    licence: CC BY 4.0 (Open-Meteo); contains modified Copernicus Climate Change Service information
+    retrieved: 2026-11-03
+  - id: osrm
+    title: "OSRM: road routes on OpenStreetMap data (router.project-osrm.org)"
+    url: https://project-osrm.org/
+    licence: Route data © OpenStreetMap contributors (ODbL)
+    retrieved: 2026-11-03

@@ -573,6 +573,29 @@ export const SKYLINES: Record<string, Skyline> = {
       { d: "M1174,266V256H1182V266Z", c: "#4f4a40" },
     ],
   },
+  "kerry-way": {
+    view: "The Iveragh Peninsula: the MacGillycuddy's Reeks up to Carrauntoohil over the Killarney lakes, Ballinskelligs Bay with the Skelligs' twin peaks far out in the Atlantic, green hills and Staigue's round stone fort",
+    ridge: "#3f5a3a",
+    ground: "#6f9a4a",
+    shapes: [
+      // the Reeks: a jagged ridge rising to Carrauntoohil, Ireland's highest summit
+      { d: range([[160, G], [240, 230], [300, 206], [340, 214], [390, 186], [430, 196], [470, 168], [500, 160], [530, 174], [580, 182], [630, 204], [700, 214], [780, 236], [860, G]]), c: "#93a3ad" },
+      // nearer, rounded hills of the peninsula
+      { d: hills([[0, G], [90, 238], [200, 252], [330, 240], [470, 252], [560, 266], [620, G]]), c: "#7a8f84" },
+      { d: hills([[820, G], [900, 236], [1000, 226], [1080, 240], [1160, 256], [1220, G]]), c: "#7f9384" },
+      // a lake of Killarney under the Reeks, and the bay out to the Skelligs
+      { d: water(240, 760, 264), c: SEA },
+      { d: water(1090, 1600, 262), c: SEA },
+      // Skellig Michael's two peaks and Little Skellig, far out
+      { d: range([[1330, 262], [1342, 234], [1350, 242], [1360, 222], [1374, 262]]), c: "#6f7f86" },
+      { d: range([[1430, 262], [1442, 244], [1454, 262]]), c: "#728a7c" },
+      // green fields along the coast road
+      { d: range([[0, G], [0, 268], [180, 264], [240, 286], [760, 286], [830, 262], [1000, 256], [1080, 262], [1100, 288], [1600, 288], [1600, G]]), c: "#6f9050" },
+      // Staigue Fort: a round dry-stone wall on its green knoll
+      { d: "M960,260V244Q960,238 990,238Q1020,238 1020,244V260Z", c: "#a29c8c" },
+      { d: "M984,260V250H996V260Z", c: "#4f4a40" },
+    ],
+  },
   "pfaelzer-weinsteig": {
     view: "The Haardt edge of the Palatinate Forest: the wooded ridge up to the Kalmit with its stone tower, the Trifels on its sandstone rock, the Hambacher Schloss on its hill and vineyards below",
     ridge: "#4f6a33",

@@ -137,7 +137,11 @@ const stageView = (t.stages?.list ?? []).map((s) => {
       ? { up: s.ascentM, down: s.descentM, est: false }
       : est?.ascentM !== undefined && est.descentM !== undefined
         ? { up: est.ascentM, down: est.descentM, est: true }
-        : null;
+        : // a stated ascent without a descent (the Irish committees' fact files): the ascent alone,
+          // never mixed with an estimated descent
+          s.ascentM !== undefined
+          ? { up: s.ascentM, down: undefined, est: false }
+          : null;
   return { ...s, ele, time, climb };
 });
 // total ascent and descent: the stated pair, else the stated stage sums (trailClimb()), else the sum
@@ -146,8 +150,8 @@ const mainView = stageView.filter((s) => s.kind === "main");
 const climb = trailClimb(t);
 const climbTotal = climb
     ? { up: climb.up, down: climb.down, est: false }
-    : mainView.length && mainView.every((s) => s.climb)
-      ? { up: mainView.reduce((a, s) => a + s.climb!.up, 0), down: mainView.reduce((a, s) => a + s.climb!.down, 0), est: true }
+    : mainView.length && mainView.every((s) => s.climb?.down !== undefined)
+      ? { up: mainView.reduce((a, s) => a + s.climb!.up, 0), down: mainView.reduce((a, s) => a + s.climb!.down!, 0), est: true }
       : null;
 const estClimb = stageView.some((s) => s.climb?.est);
 // trails with many stages (issue #25): from MANY_STAGES main stages the charts' stage axes label only
@@ -1252,7 +1256,7 @@ const trailLd = JSON.stringify({
                         )}
                       </td>
                       <td class:list={[{ est: s.climb?.est }]}>
-                        {s.climb && (
+                        {s.climb?.down !== undefined && (
                           <>
                             {s.climb.est && <span class="visually-hidden">estimated </span>}
                             {s.climb.est && <span aria-hidden="true">≈ </span>}{fmt(s.climb.down)} m ↓
