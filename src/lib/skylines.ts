@@ -786,6 +786,25 @@ export const SKYLINES: Record<string, Skyline> = {
       { d: range([[0, G], [0, 274], [1600, 272], [1600, G]]), c: "#5f7a3f" },
     ],
   },
+  "gr-70-chemin-de-stevenson": {
+    view: "Stevenson's way south: the volcanic cones of the Velay, the long bare granite back of the Mont Lozère, the deep wooded valleys of the Cévennes, and the old humpback bridge at Le Pont-de-Montvert",
+    ridge: "#5f7a3f",
+    ground: "#7f9a4a",
+    shapes: [
+      // the Mont Lozère: a long, bare granite ridge
+      { d: hills([[600, G], [700, 226], [860, 206], [1020, 200], [1180, 210], [1320, 228], [1440, G]]), c: "#a3a89a" },
+      // the volcanic cones of the Velay
+      { d: range([[0, G], [60, 244], [110, 214], [130, 210], [180, 244], [240, G]]), c: "#8a9a8a" },
+      { d: range([[200, G], [250, 240], [300, 222], [320, 220], [370, 246], [430, G]]), c: "#7f9488" },
+      // the Cévennes' wooded ridges, falling south
+      { d: hills([[1100, G], [1200, 240], [1340, 228], [1480, 244], [1600, 236], [1600, G]]), c: FOREST },
+      { d: hills([[380, G], [480, 256], [640, 246], [800, 258], [900, 266], [960, G]]), c: "#4f6a3a" },
+      // the stone bridge over the Tarn
+      { d: water(840, 1120, 262), c: SEA },
+      { d: "M880,270Q980,222 1080,270H1062Q980,238 898,270Z M876,270H898V286H876Z M1062,270H1084V286H1062Z", c: "#a89a84" },
+      { d: range([[0, G], [0, 272], [840, 270], [860, 288], [1100, 288], [1120, 270], [1600, 270], [1600, G]]), c: "#7f9a4a" },
+    ],
+  },
   "high-coast-trail": {
     view: "The High Coast of Sweden: the suspension bridge over the Ångermanälven, steep forested hills rising straight from the Gulf of Bothnia, the dome of Skuleberget and islands in the sea",
     ridge: "#3f5a3a",
