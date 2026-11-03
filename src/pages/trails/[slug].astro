@@ -17,7 +17,7 @@ import { ogAlt } from "../../lib/og-image";
 import { ogTrail } from "../../lib/og-trail";
 import { routePreviewSvg } from "../../lib/route-preview";
 import { n1, stripPaths } from "../../lib/svg";
-import { difficulty, levelText, DIFFICULTY_NOTE, DIMENSION_TEXT, LEVELS, SCALES, type Level } from "../../lib/difficulty";
+import { difficulty, levelText, DIFFICULTY_FACTS, DIMENSION_TEXT, LEVELS, SCALES, type Level } from "../../lib/difficulty";
 import { monthsText, rateData } from "../../lib/months";
 import { existsSync } from "node:fs";
 import {
@@ -32,8 +32,9 @@ import {
   trailLength,
   trailClimb,
   measuredLength,
-  SAC_NOTE,
+  SAC_FACTS,
   SAC_SCALE,
+  WATER_LEVELS,
   SLEEPING_CATEGORIES,
   SLEEPING_LABELS,
   OSM_SLEEP_MIN,
@@ -75,6 +76,9 @@ const totals = stageTotals(t);
 const length = trailLength(t);
 // the length on our map line, where every main stage is well matched (measuredLength())
 const measured = measuredLength(derived);
+// the length's wording in its info box: how it was found and its source
+const lengthHow = length ? (length.how === "stated total" ? "the stated length" : `the ${length.how}`) : "";
+const lengthSrc = length ? sources[length.source].title.split(":")[0] : "";
 const days = trailDays(t);
 const daily = perStage(t, derived);
 const sac = sacGrade(t);
@@ -674,22 +678,20 @@ const trailLd = JSON.stringify({
         <div>
           <dt>
             <Explain id="length-info" term="Length">
-              <p>
-                {length.approx ? "About " : ""}{fmt(length.value)} km: {length.how === "stated total" ? "the stated length" : `the ${length.how}`}{" "}
-                ({sources[length.source].title.split(":")[0]}).
-              </p>
-              {measured ? (
-                <p>
-                  Measured on our map line: {fmt(measured.value)} km, the route as OpenStreetMap maps it along the
-                  official track. The charts on this page run along the same line, and the search sorts trails by it, so
-                  lengths compare the same way.
-                </p>
-              ) : derived?.measured && (
-                <p>
-                  Our map line follows only {Math.round(derived.measured.minCovered * 100)} % of the official track on its
-                  weakest stage, so it isn't used as a length; the search sorts this trail by the figure above.
-                </p>
-              )}
+              <dl class="pop-facts">
+                <dt>Stated</dt><dd>{length.approx ? "About " : ""}{fmt(length.value)} km, {lengthHow} ({lengthSrc})</dd>
+                {measured ? (
+                  <>
+                    <dt>Map line</dt><dd>{fmt(measured.value)} km, OpenStreetMap along the official track</dd>
+                    <dt>Used for</dt><dd>The charts on this page, and comparing trails in the search</dd>
+                  </>
+                ) : derived?.measured && (
+                  <>
+                    <dt>Map line</dt><dd>Not used: only {Math.round(derived.measured.minCovered * 100)} % matched on its weakest stage</dd>
+                    <dt>Search</dt><dd>Compares this trail by the stated length</dd>
+                  </>
+                )}
+              </dl>
             </Explain>
           </dt>
           <dd>
@@ -702,25 +704,26 @@ const trailLd = JSON.stringify({
         <div>
           <dt>
             <Explain id="climb-info" term="Ascent · descent">
-              {climb ? (
-                <p>
-                  {fmt(climb.up)} m up and {fmt(climb.down)} m down: {climb.how === "stated total" ? "the stated totals" : `the ${climb.how}`}{" "}
-                  ({sources[climb.source].title.split(":")[0]}).
-                </p>
-              ) : (
-                <p>
-                  Estimated from the terrain model, as the sum of every main stage's climbs and drops between
-                  samples {sampleM} m apart. No source states them. The model measures the treetops in forests, so
-                  it reads high there.
-                </p>
-              )}
-              {climb?.how === "stated total" && totals?.ascentM && totals.descentM &&
-                (totals.ascentM.value !== climb.up || totals.descentM.value !== climb.down) && (
-                <p>
-                  The {mainView.length} main stages in the stages table add up to {fmt(totals.ascentM.value)} m up
-                  and {fmt(totals.descentM.value)} m down.
-                </p>
-              )}
+              <dl class="pop-facts">
+                {climb ? (
+                  <>
+                    <dt>This trail</dt><dd>{fmt(climb.up)} m up, {fmt(climb.down)} m down</dd>
+                    <dt>Source</dt><dd>{climb.how === "stated total" ? "The stated totals" : `The ${climb.how}`} ({sources[climb.source].title.split(":")[0]})</dd>
+                  </>
+                ) : (
+                  <>
+                    <dt>This trail</dt><dd>Estimated from the terrain model (≈): no source states them</dd>
+                    <dt>How</dt><dd>Every main stage's climbs and drops between samples {sampleM} m apart</dd>
+                    <dt>Keep in mind</dt><dd>In forests the model reads the treetops, so it reads high there</dd>
+                  </>
+                )}
+                {climb?.how === "stated total" && totals?.ascentM && totals.descentM &&
+                  (totals.ascentM.value !== climb.up || totals.descentM.value !== climb.down) && (
+                  <>
+                    <dt>Stage sums</dt><dd>{fmt(totals.ascentM.value)} m up, {fmt(totals.descentM.value)} m down ({mainView.length} main stages)</dd>
+                  </>
+                )}
+              </dl>
             </Explain>
           </dt>
           <!-- both climbs in one tile: two small lines, as tall as the big numbers beside them -->
@@ -735,7 +738,9 @@ const trailLd = JSON.stringify({
         <div>
           <dt>
             <Explain id="difficulty-info" term="Difficulty">
-              <p>{DIFFICULTY_NOTE}</p>
+              <dl class="pop-facts">
+                {DIFFICULTY_FACTS.map(([k, v]) => <><dt>{k}</dt><dd>{v}</dd></>)}
+              </dl>
               <ul class="diff-pop">
                 {diff.dims.map((d) => (
                   <li>
@@ -772,7 +777,10 @@ const trailLd = JSON.stringify({
           <dt>
             {days.perStage ? (
               <Explain id="days-info" term="Days">
-                <p>No source suggests a number of days, so the page counts one day per main stage ({days.min}).</p>
+                <dl class="pop-facts">
+                  <dt>This trail</dt><dd>{days.min} days, one per main stage</dd>
+                  <dt>Why</dt><dd>No source suggests a number of days</dd>
+                </dl>
               </Explain>
             ) : (
               "Suggested"
@@ -785,10 +793,11 @@ const trailLd = JSON.stringify({
         <div>
           <dt>
             <Explain id="per-stage-info" term="Per stage">
-              <p>
-                The {daily.stages} main stages' totals over their number ({sourceShort(daily.source)}), so the averages come from one source.
-                {daily.ascentM?.est && " The ascent is the terrain model's estimate per stage (≈), since the stages state no climbs."}
-              </p>
+              <dl class="pop-facts">
+                <dt>How</dt><dd>The {daily.stages} main stages' totals over their number</dd>
+                <dt>Source</dt><dd>{sourceShort(daily.source)}, so the averages come from one source</dd>
+                {daily.ascentM?.est && <><dt>Ascent</dt><dd>The terrain model's estimate per stage (≈): the stages state no climbs</dd></>}
+              </dl>
             </Explain>
           </dt>
           <dd>
@@ -819,7 +828,9 @@ const trailLd = JSON.stringify({
         <div>
           <dt>
             <Explain id="landscape-info" term="Landscape">
-              <p>Land cover along the main route, from ESA WorldCover satellite data:</p>
+              <dl class="pop-facts">
+                <dt>Source</dt><dd>ESA WorldCover satellite land cover, along the main route</dd>
+              </dl>
               <ul class="land-pop">
                 {[...landRows].sort((a, b) => landcover.shares[b.id] - landcover.shares[a.id]).map((g) => (
                   <li><span class="swatch-key" style={`--c: var(--land-${g.id})`} aria-hidden="true"></span>{g.label}: {pct(landcover.shares[g.id])}</li>
@@ -978,22 +989,29 @@ const trailLd = JSON.stringify({
           <div>
             <p class="diff-label">
               <Explain id={`about-${d.id}`} term={d.label}>
-                <p>{DIMENSION_TEXT[d.id].question} {DIMENSION_TEXT[d.id].how} The rating takes its hardest measure.</p>
-                {d.measures.map((m) => (
-                  <div class="bands">
-                    <p><strong>{SCALES[m.id].label}</strong>: {SCALES[m.id].from}.</p>
-                    <ol>
-                      {SCALES[m.id].bands.map((b, i) =>
-                        b !== "–" && (
-                          <li class:list={{ current: i + 1 === m.level }}>
-                            <span>{LEVELS[i]}</span>
-                            {b}
-                          </li>
-                        ),
-                      )}
-                    </ol>
-                  </div>
-                ))}
+                <dl class="pop-facts">
+                  <dt>Rates</dt><dd>{DIMENSION_TEXT[d.id].question}</dd>
+                  <dt>How</dt><dd>{DIMENSION_TEXT[d.id].points.join(" ")}</dd>
+                  <dt>Level</dt><dd>The hardest measure sets it</dd>
+                  {d.measures.map((m) => (
+                    <>
+                      <dt>{SCALES[m.id].label}</dt>
+                      <dd>
+                        <span class="pop-note">{SCALES[m.id].from}</span>
+                        <ol class="pop-scale">
+                          {SCALES[m.id].bands.map((b, i) =>
+                            b !== "–" && (
+                              <li class:list={{ current: i + 1 === m.level }}>
+                                <span>{LEVELS[i]}</span>
+                                {b}
+                              </li>
+                            ),
+                          )}
+                        </ol>
+                      </dd>
+                    </>
+                  ))}
+                </dl>
               </Explain>
             </p>
             <p class="diff-level" data-dim-level={d.id}>
@@ -1012,20 +1030,17 @@ const trailLd = JSON.stringify({
                   <span>
                     {m.id === "sac" ? (
                       <Explain id="sac-info" term="Path grade" title="SAC hiking scale">
-                        <p>{SAC_NOTE}</p>
-                        {sac && (
-                          <p>
-                            This trail: <strong>{sac.value}</strong>{sac.how !== "stated" && ` (${sac.how})`}.{sac.basis && ` ${sac.basis}`}
-                          </p>
-                        )}
-                        <ol class="sac-scale">
+                        <dl class="pop-facts pop-grades">
+                          {sac && <><dt>This trail</dt><dd><strong>{sac.value}</strong>{sac.how !== "stated" && ` (${sac.how})`}</dd></>}
+                          {sac?.basis && <><dt>Basis</dt><dd>{sac.basis}</dd></>}
+                          {SAC_FACTS.map(([k, v]) => <><dt>{k}</dt><dd>{v}</dd></>)}
                           {Object.entries(SAC_SCALE).map(([grade, g]) => (
-                            <li class:list={[{ current: grade === sac?.value }]}>
-                              <strong>{grade} · {g.name}</strong>
-                              <span>{g.text}</span>
-                            </li>
+                            <>
+                              <dt class:list={[{ current: grade === sac?.value }]}>{grade} · {g.name}</dt>
+                              <dd class:list={[{ current: grade === sac?.value }]}>{g.text}</dd>
+                            </>
                           ))}
-                        </ol>
+                        </dl>
                         <a slot="foot" href="https://www.sac-cas.ch/en/ausbildung-und-sicherheit/tourenplanung/grading-systems/">The scale at the Swiss Alpine Club</a>
                       </Explain>
                     ) : (
@@ -1172,12 +1187,14 @@ const trailLd = JSON.stringify({
         </div>
         <figcaption class="chart-info">
           <Explain id="about-climate-chart" term="About this chart" title="Climate by month" icon>
-            <p>
-              Averages for {climate.years[0]}–{climate.years[1]} from ERA5 reanalysis via Open-Meteo, at the trail's lowest
-              and highest point, adjusted to each point's elevation. Bars span the mean night low to the mean day high; wet
-              days have at least 1 mm of rain, snow days at least 1 cm of snow. Daylight runs from sunrise to sunset in the
-              middle of the month. The shaded months are the trail's season.
-            </p>
+            <dl class="pop-facts">
+              <dt>Source</dt><dd>ERA5 reanalysis via Open-Meteo, averages for {climate.years[0]}–{climate.years[1]}</dd>
+              <dt>Places</dt><dd>The trail's lowest and highest point, adjusted to their height</dd>
+              <dt>Bars</dt><dd>From the mean night low to the mean day high</dd>
+              <dt>Wet days</dt><dd>At least 1 mm of rain; snow days at least 1 cm of snow</dd>
+              <dt>Daylight</dt><dd>Sunrise to sunset in the middle of the month</dd>
+              <dt>Shading</dt><dd>The trail's season</dd>
+            </dl>
           </Explain>
         </figcaption>
       </figure>
@@ -1308,16 +1325,12 @@ const trailLd = JSON.stringify({
         <div>
           <dt>
               <Explain id="grade-info" term="Steepest climb · descent" title="Gradient">
-                <p>
-                  The steepest 500 m of the trail in walking direction, uphill and downhill. On this trail the steepest
-                  climb is {grad.climb.grade}{"\u00a0"}% ({degrees(grad.climb.grade)}°, {grad.climb.changeM} m up over 500 m) on
-                  stage {grad.climb.stage}, the steepest descent {signed(grad.descent.grade)}{"\u00a0"}% ({degrees(grad.descent.grade)}°,{" "}
-                  {Math.abs(grad.descent.changeM)} m down) on stage {grad.descent.stage}.
-                </p>
-                <p>
-                  A gradient is height per distance: 20 % means 20 m up for every 100 m forward. Percent and degrees don't
-                  grow alike: 100 % is 45°, not 90°.
-                </p>
+                <dl class="pop-facts">
+                  <dt>Steepest climb</dt><dd>{grad.climb.grade}{"\u00a0"}% ({degrees(grad.climb.grade)}°), {grad.climb.changeM} m up over 500 m, stage {grad.climb.stage}</dd>
+                  <dt>Steepest descent</dt><dd>{signed(grad.descent.grade)}{"\u00a0"}% ({degrees(grad.descent.grade)}°), {Math.abs(grad.descent.changeM)} m down over 500 m, stage {grad.descent.stage}</dd>
+                  <dt>Gradient</dt><dd>Height per distance: 20 % is 20 m up per 100 m forward; 100 % is 45°, not 90°</dd>
+                  <dt>Keep in mind</dt><dd>Averages over 500 m from a 30 m terrain model: steps and ladders within them are steeper</dd>
+                </dl>
                 <table>
                   <thead><tr><th>Gradient</th><th>Angle</th><th>Feels like</th></tr></thead>
                   <tbody>
@@ -1327,10 +1340,6 @@ const trailLd = JSON.stringify({
                     <tr><td>100 %</td><td>45°</td><td>Scrambling</td></tr>
                   </tbody>
                 </table>
-                <p>
-                  Averages over 500 m from a 30 m terrain model: short pitches within them, such as steps and ladders, are
-                  steeper.
-                </p>
               </Explain>
           </dt>
           <dd class="climbs">
@@ -1341,12 +1350,11 @@ const trailLd = JSON.stringify({
         <div>
           <dt>
               <Explain id="steep-info" term={`Steep ≥ ${STEEP_PERCENT} %`} title="Steep stretches">
-                <p>
-                  How many kilometres of the main route climb or descend at {STEEP_PERCENT} % or more ({degrees(STEEP_PERCENT)}°,
-                  15 m of height per 100 m), measured in {barM} m stretches: on this trail {grad.steepUpKm} km up and{" "}
-                  {grad.steepDownKm} km down, the darkest parts of the profile. Such stretches are slow going uphill and hard
-                  on the knees downhill.
-                </p>
+                <dl class="pop-facts">
+                  <dt>This trail</dt><dd>{grad.steepUpKm} km up, {grad.steepDownKm} km down: the darkest parts of the profile</dd>
+                  <dt>Steep</dt><dd>{STEEP_PERCENT} % or more ({degrees(STEEP_PERCENT)}°, 15 m of height per 100 m), in {barM} m stretches</dd>
+                  <dt>Why it matters</dt><dd>Slow going uphill, hard on the knees downhill</dd>
+                </dl>
               </Explain>
           </dt>
           <dd><span class="big">{Math.round((grad.steepUpKm + grad.steepDownKm) * 10) / 10}</span><span class="unit">km</span></dd>
@@ -1445,29 +1453,17 @@ const trailLd = JSON.stringify({
           </div>
           <figcaption class="chart-info">
             <Explain id="about-terrain-chart" term="About this chart" title="Terrain along the route" icon>
-              <p>
-                Heights from the Copernicus terrain model (30 m grid, every {sampleM} m along the main route); it measures the
-                treetops in forests, so heights may differ from signposts by some metres.
-              </p>
-              <p>
-                The profile colours each {barM} m by its gradient in walking direction: the steeper, the darker, climbs warm
-                and descents violet, from level ground to ±{RAMP_MAX} % and beyond.
-              </p>
-              {surface && (
-                <p>
-                  The strip under the profile shows the ground underfoot, from OpenStreetMap; for the{" "}
-                  {pct(surface.inferredShare)} of the route without a surface tag, the type of way decides (footpaths natural,
-                  tracks gravel).
-                </p>
-              )}
-              {treeLine && (
-                <p>
-                  The tree line marks the height where trees stop growing in this region
-                  {treeLine.fromM ? `, between ${fmt(treeLine.fromM)} and ${fmt(treeLine.m)} m depending on the slope` : `, about ${fmt(treeLine.m)} m`}{" "}
-                  ({sourceShort(treeLine.source)}). Above it the route crosses open ground without trees. Pasture and clearing can
-                  keep the forest lower than this in places.
-                </p>
-              )}
+              <dl class="pop-facts">
+                <dt>Heights</dt><dd>Copernicus terrain model, 30 m grid, every {sampleM} m along the main route; in forests it reads the treetops</dd>
+                <dt>Colours</dt><dd>Each {barM} m by its gradient in walking direction: climbs warm, descents violet, darker when steeper (to ±{RAMP_MAX} %)</dd>
+                {surface && <><dt>Ground</dt><dd>The strip below, from OpenStreetMap; the {pct(surface.inferredShare)} without a surface tag is read from the way type (footpaths natural, tracks gravel)</dd></>}
+                {treeLine && (
+                  <>
+                    <dt>Tree line</dt>
+                    <dd>{treeLine.fromM ? `${fmt(treeLine.fromM)}–${fmt(treeLine.m)} m, depending on the slope` : `About ${fmt(treeLine.m)} m`} ({sourceShort(treeLine.source)}): above it, open ground without trees. Pasture and clearing can keep the forest lower</dd>
+                  </>
+                )}
+              </dl>
             </Explain>
           </figcaption>
         </figure>
@@ -1534,11 +1530,12 @@ const trailLd = JSON.stringify({
         />
         <figcaption class="chart-info">
           <Explain id="about-landscape-chart" term="About this chart" title="Landscape along the route" icon>
-            <p>
-              Land cover from ESA WorldCover 2021 (10 m satellite map), every {sampleM} m along the main route; each point takes
-              the most common class within 30 m, so the path itself doesn't count as bare ground. Its eleven classes are
-              folded into the six groups shown. It says what the landscape looks like, not which plants grow there.
-            </p>
+            <dl class="pop-facts">
+              <dt>Source</dt><dd>ESA WorldCover 2021, a 10 m satellite map</dd>
+              <dt>Points</dt><dd>Every {sampleM} m along the main route; each takes the most common class within 30 m, so the path itself doesn't count as bare ground</dd>
+              <dt>Groups</dt><dd>Its eleven classes, folded into the six shown</dd>
+              <dt>Keep in mind</dt><dd>What the landscape looks like, not which plants grow there</dd>
+            </dl>
           </Explain>
         </figcaption>
       </figure>
@@ -1553,12 +1550,15 @@ const trailLd = JSON.stringify({
           <li class:list={[{ off: c.status.tone === "none" }]}>
             <p class="avail-name">
               <Explain id={`about-${c.id}`} term={c.label}>
-                <p>{c.hint}</p>
-                {c.id !== "wild-camping" && (
-                  <p>
-                    Available where the trail's own source lists it{along && `, or where OpenStreetMap maps at least ${OSM_SLEEP_MIN} within ${along.withinM / 1000} km of the trail or ${along.stageEndM / 1000} km of a stage's end`}.
-                  </p>
-                )}
+                <dl class="pop-facts">
+                  <dt>What</dt><dd>{c.hint}</dd>
+                  {c.id !== "wild-camping" && (
+                    <>
+                      <dt>Available</dt>
+                      <dd>Where the trail's own source lists it{along && `, or where OpenStreetMap maps ${OSM_SLEEP_MIN} or more within ${along.withinM / 1000} km of the trail or ${along.stageEndM / 1000} km of a stage's end`}</dd>
+                    </>
+                  )}
+                </dl>
               </Explain>
             </p>
             <p class="status">
@@ -1632,13 +1632,12 @@ const trailLd = JSON.stringify({
           <div class="tip" role="status" hidden><strong></strong><span></span></div>
           <figcaption class="chart-info">
             <Explain id="about-beds-chart" term="About this chart" title="Places to sleep along the route" icon>
-              <p>
-                One tick per place to sleep along the main route, from OpenStreetMap: {bedRows.map((r) => `${r.count} ${BED_WORDS[r.id]}`).join(", ")}{" "}
-                within {along.withinM / 1000} km of the trail or {along.stageEndM / 1000} km of a stage's end (stage towns often
-                lie off the trail). Hotels and day shelters are left out. The shaded column is the longest stretch without any,
-                from km {bedGap.fromKm} to {bedGap.toKm}. The map may miss places or list ones that have closed, so book or check
-                locally.
-              </p>
+              <dl class="pop-facts">
+                <dt>Ticks</dt><dd>One per place to sleep: {bedRows.map((r) => `${r.count} ${BED_WORDS[r.id]}`).join(", ")}</dd>
+                <dt>Counted</dt><dd>Within {along.withinM / 1000} km of the trail or {along.stageEndM / 1000} km of a stage's end (stage towns often lie off the trail); no hotels or day shelters</dd>
+                <dt>Shaded</dt><dd>The longest stretch without any, km {bedGap.fromKm}–{bedGap.toKm}</dd>
+                <dt>Source</dt><dd>OpenStreetMap: it may miss places or list closed ones, so book or check locally</dd>
+              </dl>
             </Explain>
           </figcaption>
         </figure>
@@ -1653,18 +1652,35 @@ const trailLd = JSON.stringify({
         <div>
           <dt>
             <Explain id="about-dry-stretch" term={tiers ? "Longest without clean water" : "Longest without drinking water"} title={tiers ? "Clean water" : "Drinking water"}>
-              <p>
-                {waterTotals.drinking} fountains, taps and springs marked as drinkable in OpenStreetMap within {water.withinM} m of the
-                trail{waterExtra.length > 0 && `, with the taps the trail's managers list (${waterExtra.join(", ")})`}
-                {tiers && tiers.promoted.length > 0 && `, and ${tiers.promoted.length} places to sleep OpenStreetMap marks as having drinking water`}.
-                {tiers && !t.refillsUntreated && ` Clean water also counts the ${tiers.refills.length} huts, hostels, guest houses and campsites within ${tiers.withinM} m where hikers usually fill a bottle: guests come first, and many close out of season, so ask, and carry a little more than the gaps need. Places OpenStreetMap marks as without drinking water are left out.`}
-                {tiers && t.refillsUntreated && ` The ${tiers.refills.length} places to sleep along the trail don't count as clean water here: ${t.refillsUntreated.text} They count as any water.`}
-                {" "}The counts include the approach and variant; the chart shows the main route.
-              </p>
-              <p>
-                Rated by the longest stretch of the main route without {tiers ? "clean" : "drinking"} water: frequent up to 10 km,
-                regular up to 20 km, scarce beyond. Here: from km {drinkGap!.fromKm} to {drinkGap!.toKm}{gapStages}.
-              </p>
+              <dl class="pop-facts">
+                <dt>This trail</dt><dd>{drinkGap!.km} km without {tiers ? "clean" : "drinking"} water, km {drinkGap!.fromKm}–{drinkGap!.toKm}{gapStages}</dd>
+                <dt>Rating</dt>
+                <dd>
+                  <ol class="pop-scale">
+                    {WATER_LEVELS.map((l) => (
+                      <li class:list={{ current: l.id === level?.id }}><span>{l.label}</span>{l.maxGapKm === Infinity ? "beyond" : `up to ${l.maxGapKm} km`}</li>
+                    ))}
+                  </ol>
+                </dd>
+                <dt>Counted</dt>
+                <dd>
+                  Within {water.withinM} m: {waterTotals.drinking} taps, fountains and drinking springs
+                  {waterExtra.length > 0 && `, the managers' taps (${waterExtra.join(", ")})`}
+                  {tiers && tiers.promoted.length > 0 && `, ${tiers.promoted.length} places to sleep with drinking water`}
+                  {tiers && !t.refillsUntreated && `, ${tiers.refills.length} refills at huts, hostels, guest houses and campsites`}
+                </dd>
+                {tiers && !t.refillsUntreated && (
+                  <>
+                    <dt>Refills</dt><dd>Guests come first and many close out of season: ask, and carry a little extra. Places marked without drinking water are left out</dd>
+                  </>
+                )}
+                {tiers && t.refillsUntreated && (
+                  <>
+                    <dt>Not counted</dt><dd>The {tiers.refills.length} places to sleep: {t.refillsUntreated.text} They count as any water</dd>
+                  </>
+                )}
+                <dt>Source</dt><dd>OpenStreetMap; the counts include the approach and variant, the chart shows the main route</dd>
+              </dl>
             </Explain>
           </dt>
           <dd>
@@ -1679,13 +1695,19 @@ const trailLd = JSON.stringify({
           <div>
             <dt>
               <Explain id="about-any-water" term="Longest without any water" title="Any water">
-                <p>
-                  Clean water, and the {waterTotals.springs} springs within {water.withinM} m of the trail whose water is of unknown
-                  quality{t.refillsUntreated && ", and the places to sleep whose water isn't treated"}: filter, boil or treat it, and
-                  expect some springs to run dry in late summer. Here the longest stretch
-                  without any water runs from km {tiers.longestGapKm.refill.fromKm} to {tiers.longestGapKm.refill.toKm}. Rated
-                  like clean water: frequent up to 10 km, regular up to 20 km, scarce beyond.
-                </p>
+                <dl class="pop-facts">
+                  <dt>This trail</dt><dd>{tiers.longestGapKm.refill.km} km without any water, km {tiers.longestGapKm.refill.fromKm}–{tiers.longestGapKm.refill.toKm}</dd>
+                  <dt>Rating</dt>
+                  <dd>
+                    <ol class="pop-scale">
+                      {WATER_LEVELS.map((l) => (
+                        <li class:list={{ current: l.id === anyLevel?.id }}><span>{l.label}</span>{l.maxGapKm === Infinity ? "beyond" : `up to ${l.maxGapKm} km`}</li>
+                      ))}
+                    </ol>
+                  </dd>
+                  <dt>Counted</dt><dd>Clean water, plus the {waterTotals.springs} springs within {water.withinM} m{t.refillsUntreated && " and the places to sleep whose water isn't treated"}</dd>
+                  <dt>Keep in mind</dt><dd>Spring water's quality is unknown: filter, boil or treat it, and expect some springs to run dry in late summer</dd>
+                </dl>
               </Explain>
             </dt>
             <dd>
@@ -1704,13 +1726,11 @@ const trailLd = JSON.stringify({
             <div>
               <dt>
                 <Explain id="about-shops" term="Longest without a shop" title="Shops">
-                  <p>
-                    {along.resupply.points.length} supermarkets, convenience and general stores and petrol stations with a shop in
-                    OpenStreetMap, within {along.withinM / 1000} km of the trail or {along.stageEndM / 1000} km of a stage's end
-                    (stage towns often lie off the trail). Small village shops are often missing, and opening hours vary: check
-                    before relying on one. Here the longest stretch without runs from km {along.resupply.longestGapKm.fromKm} to{" "}
-                    {along.resupply.longestGapKm.toKm}.
-                  </p>
+                  <dl class="pop-facts">
+                    <dt>This trail</dt><dd>{along.resupply.longestGapKm.km} km without a shop, km {along.resupply.longestGapKm.fromKm}–{along.resupply.longestGapKm.toKm}</dd>
+                    <dt>Counted</dt><dd>{along.resupply.points.length} supermarkets, convenience and general stores and petrol station shops, within {along.withinM / 1000} km of the trail or {along.stageEndM / 1000} km of a stage's end</dd>
+                    <dt>Keep in mind</dt><dd>Small village shops are often missing in OpenStreetMap, and opening hours vary: check before relying on one</dd>
+                  </dl>
                 </Explain>
               </dt>
               <dd><span class="big">{along.resupply.longestGapKm.km}</span><span class="unit">km</span></dd>
@@ -1720,10 +1740,10 @@ const trailLd = JSON.stringify({
           <div>
             <dt>
               <Explain id="about-springs" term="Drinkability unknown" title="Springs">
-                <p>
-                  Other springs within {water.withinM} m of the trail. Whether they are drinkable is unknown: treat the water,
-                  and expect some to run dry in late summer.
-                </p>
+                <dl class="pop-facts">
+                  <dt>Counted</dt><dd>Other springs within {water.withinM} m of the trail, from OpenStreetMap</dd>
+                  <dt>Keep in mind</dt><dd>Whether they're drinkable is unknown: treat the water, and expect some to run dry in late summer</dd>
+                </dl>
               </Explain>
             </dt>
             <dd><span class="big">{waterTotals.springs}</span><span class="unit">springs</span></dd>
@@ -1815,12 +1835,15 @@ const trailLd = JSON.stringify({
           <div class="tip" role="status" hidden><strong></strong><span></span></div>
           <figcaption class="chart-info">
             <Explain id="about-water-chart" term="About this chart" title={along ? "Water and shops along the route" : "Water along the route"} icon>
-              <p>
-                One tick per place along the main route, from OpenStreetMap{waterExtra.length > 0 && ` (water also from ${waterExtra.join(", ")})`}:
-                drinking water and springs within {water.withinM} m{tiers && `, refills at huts, hostels, guest houses and campsites within ${tiers.withinM} m`}{along && `, shops within ${along.withinM / 1000} km or ${along.stageEndM / 1000} km of a stage's end`}.
-                The shaded band in each lane is its longest stretch without{tiers && "; \"Water\" counts every kind, and opens into one lane per kind, each with its own"}. The map may miss places or list ones that have
-                closed or run dry, so check locally.
-              </p>
+              <dl class="pop-facts">
+                <dt>Ticks</dt><dd>One per place along the main route</dd>
+                <dt>Counted</dt>
+                <dd>
+                  Drinking water and springs within {water.withinM} m{tiers && `; refills at huts, hostels, guest houses and campsites within ${tiers.withinM} m`}{along && `; shops within ${along.withinM / 1000} km, or ${along.stageEndM / 1000} km of a stage's end`}
+                </dd>
+                <dt>Shaded</dt><dd>Each lane's longest stretch without{tiers && ". \"Water\" counts every kind and opens into one lane per kind, each with its own"}</dd>
+                <dt>Source</dt><dd>OpenStreetMap{waterExtra.length > 0 && `, water also from ${waterExtra.join(", ")}`}: it may miss places or list ones that have closed or run dry, so check locally</dd>
+              </dl>
             </Explain>
           </figcaption>
         </figure>
@@ -2776,54 +2799,6 @@ const trailLd = JSON.stringify({
   .measures .v {
     white-space: nowrap;
     font-variant-numeric: tabular-nums;
-  }
-  /* a measure's four bands in its popover, the trail's band marked */
-  .bands p {
-    margin: 10px 0 4px;
-  }
-  .bands ol {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(0, 1fr));
-    gap: 2px;
-    margin: 0;
-    padding: 0;
-    list-style: none;
-    font-size: 0.85em;
-  }
-  .bands li {
-    padding: 4px 6px;
-    border-radius: 6px;
-    color: var(--muted);
-  }
-  .bands li span {
-    display: block;
-    color: var(--text);
-    font-weight: 600;
-  }
-  .bands li.current {
-    background: var(--accent-soft);
-    color: var(--text);
-  }
-  .sac-scale {
-    margin: 0 0 12px;
-    padding: 0;
-    list-style: none;
-  }
-  .sac-scale {
-    margin-bottom: 0;
-  }
-  .sac-scale li {
-    padding: 8px 10px;
-    border-radius: 8px;
-    color: var(--muted);
-  }
-  .sac-scale li.current {
-    background: var(--accent-soft);
-    color: var(--text);
-  }
-  .sac-scale strong {
-    display: block;
-    color: var(--text);
   }
   .sources {
     margin-top: 72px;

@@ -52,17 +52,15 @@ const what = plants.length ? (animals.length ? "Animals and plants" : "Plants") 
         {sorted.length > 0 && (
           <div class="chart-info">
             <Explain id="animals-info" icon term="About this chart" title="Wildlife">
-              <p>
-                {what} that can be dangerous to hikers on this trail: large animals, venomous snakes, scorpions and spiders, ticks,
-                and plants that harm on touch. The level is ours, read from the official source: High where a bite of a species
-                it calls common can be life-threatening within hours; Moderate where it warns of attacks or serious harm, or places
-                the trail in a risk area for tick-borne encephalitis; Low where the harm is mostly minor or treatable, or avoidable by
-                how you behave. What to do comes from the official source{sources.length > 1 ? "s" : ""}: {sources.join("; ")}.
-              </p>
-              <p>
-                The silhouettes come from PhyloPic, not to scale; each one's maker is named with its advice. The landscape is the
-                trail's own, drawn by us.
-              </p>
+              <dl class="pop-facts">
+                <dt>Shows</dt><dd>{what} that can be dangerous to hikers on this trail: large animals, venomous snakes, scorpions and spiders, ticks, and plants that harm on touch</dd>
+                <dt>Level</dt><dd>Ours, read from the official source</dd>
+                <dt>High</dt><dd>A bite of a species it calls common can be life-threatening within hours</dd>
+                <dt>Moderate</dt><dd>It warns of attacks or serious harm, or places the trail in a risk area for tick-borne encephalitis</dd>
+                <dt>Low</dt><dd>The harm is mostly minor or treatable, or avoidable by how you behave</dd>
+                <dt>What to do</dt><dd>From the official source{sources.length > 1 ? "s" : ""}: {sources.join("; ")}</dd>
+                <dt>Pictures</dt><dd>Silhouettes from PhyloPic, not to scale, each maker named with its advice; the landscape is the trail's own, drawn by us</dd>
+              </dl>
             </Explain>
           </div>
         )}

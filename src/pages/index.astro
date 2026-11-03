@@ -375,11 +375,10 @@ const featuredScript = inlineScript(Astro, `// A random featured trail on each p
           <h2 id="popular-h">Popular trails</h2>
           {viewsWindow && (
             <Explain id="popular-info" icon term="About this list" title="Popular trails">
-              <p>
-                The trails whose Wikipedia articles people read most, in every language, {monthYear(viewsWindow.from)} to{" "}
-                {monthYear(viewsWindow.to)} (Wikimedia's page view data). It measures interest in a trail, not how many
-                hike it; a trail without an article isn't ranked.
-              </p>
+              <dl class="pop-facts">
+                <dt>Ranked by</dt><dd>Reads of the trail's Wikipedia articles, in every language, {monthYear(viewsWindow.from)} to {monthYear(viewsWindow.to)} (Wikimedia's page view data)</dd>
+                <dt>Keep in mind</dt><dd>It measures interest in a trail, not how many hike it; a trail without an article isn't ranked</dd>
+              </dl>
             </Explain>
           )}
         </div>
@@ -466,11 +465,11 @@ const featuredScript = inlineScript(Astro, `// A random featured trail on each p
         <div class="block-head">
           <h2>Trails near you</h2>
           <Explain id="near-info" icon term="About this list" title="Trails near you">
-            <p>
-              The trails whose start or finish is nearest to <span data-near-city></span>, the main city of your browser's
-              time zone, with the direction and distance from there in a straight line (rounded). Worked out on your
-              device: nothing is sent or stored, and no location permission is asked.
-            </p>
+            <dl class="pop-facts">
+              <dt>Nearest to</dt><dd><span data-near-city></span>, the main city of your browser's time zone, by each trail's start or finish</dd>
+              <dt>Distance</dt><dd>Direction and straight-line distance from there, rounded</dd>
+              <dt>Privacy</dt><dd>Worked out on your device: nothing is sent or stored, and no location permission is asked</dd>
+            </dl>
           </Explain>
         </div>
         <p class="label near-from">From <span data-near-from></span></p>

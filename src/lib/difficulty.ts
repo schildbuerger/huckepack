@@ -192,20 +192,34 @@ export type Difficulty = ReturnType<typeof difficulty>;
 export const levelText = (d: Pick<Dimension, "level" | "months">) =>
   d.months?.length ? `${LEVELS[d.level - 1]} in ${monthsText(d.months)}` : LEVELS[d.level - 1];
 
-export const DIMENSION_TEXT: Record<Dimension["id"], { question: string; how: string }> = {
+export const DIMENSION_TEXT: Record<Dimension["id"], { question: string; how: string; points: string[] }> = {
   terrain: {
     question: "How hard is the ground to walk: the path, the climbing, the steep bits, the ground underfoot?",
     how: "Rated over the whole main route.",
+    points: ["Rated over the whole main route."],
   },
   climate: {
     question: "How hot, cold, wet and windy does it get?",
     how: "Rated for each month from 30 years of weather (ERA5). Without months picked (the search's When filter), the rating is for the trail's best run of at least two months in its season, and each measure shows its hardest month of that run; a pick re-rates it for your months.",
+    // the info box's short form of `how`
+    points: [
+      "From 30 years of daily weather (ERA5), rated per month.",
+      "Without months picked: the trail's best run of at least two season months, each measure at its hardest month.",
+      "Pick months in the search to rate it for yours.",
+    ],
   },
   effort: {
     question: "How long are the days?",
     how: "Rated by the longest main stage; a time range counts its upper end.",
+    points: ["Rated by the longest main stage; a time range counts its upper end."],
   },
 };
 
+// the trail page's Difficulty info box: DIFFICULTY_NOTE as fact rows
+export const DIFFICULTY_FACTS: [string, string][] = [
+  ["What", "How hard the trail is, in three ways: the terrain, the climate in season and the length of the days"],
+  ["Scale", "Easy to Hard, with the same thresholds for every trail; each takes its hardest measure"],
+  ["Keep in mind", "It describes the trail, not how it will feel to you: that depends on your fitness, experience, pack and the weather you get"],
+];
 export const DIFFICULTY_NOTE =
   "How hard a trail is, in three ways: the terrain, the climate in season and the length of the days. Each is rated from Easy to Hard with the same thresholds for every trail, and takes its hardest measure. It describes the trail, not how it will feel to you: that depends on your fitness, experience, pack and the weather you get.";

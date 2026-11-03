@@ -126,6 +126,78 @@ const ICON = '<svg class="info" viewBox="0 0 24 24" width="18" height="18" fill=
     font-weight: 500;
     font-size: 0.8rem;
   }
+  /* the box's content (issue #205): fact rows, a short label beside each value, and rating scales as
+     cells with this trail's band marked. Its own rules win over those of where the term sits (a key
+     figure's dt and dd are reordered and kept on one line there) */
+  .pop-text :global(.pop-facts) {
+    display: grid;
+    grid-template-columns: max-content minmax(0, 1fr);
+    gap: 7px 14px;
+    margin: 0 0 10px;
+    line-height: 1.45;
+  }
+  .pop-text :global(.pop-facts dt),
+  .pop-text :global(.pop-facts dd) {
+    order: 0;
+    display: block;
+    min-width: 0;
+    margin: 0;
+    font-size: inherit;
+    white-space: normal;
+    text-align: left;
+    text-transform: none;
+    letter-spacing: normal;
+  }
+  .pop-text :global(.pop-facts dt) {
+    max-width: 8.5em;
+    padding-top: 1px;
+    color: var(--muted);
+    font-size: 0.8rem;
+    font-weight: 500;
+  }
+  .pop-text :global(.pop-facts dd) {
+    color: var(--text);
+    font-weight: 400;
+  }
+  .pop-text :global(.pop-note) {
+    display: block;
+    color: var(--muted);
+    font-size: 0.82rem;
+  }
+  .pop-text :global(.pop-scale) {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(0, 1fr));
+    gap: 2px;
+    margin: 4px 0 0;
+    padding: 0;
+    list-style: none;
+    font-size: 0.8rem;
+    line-height: 1.35;
+  }
+  .pop-text :global(.pop-scale li) {
+    padding: 4px 6px;
+    border-radius: 6px;
+    color: var(--muted);
+  }
+  .pop-text :global(.pop-scale li span) {
+    display: block;
+    color: var(--text);
+    font-weight: 600;
+  }
+  .pop-text :global(.pop-scale li.current) {
+    background: var(--accent-soft);
+    color: var(--text);
+  }
+  /* a scale whose bands are described in words (the SAC grades): rows, this trail's marked */
+  .pop-text :global(.pop-grades dt.current),
+  .pop-text :global(.pop-grades dd.current) {
+    color: var(--text);
+    font-weight: 600;
+  }
+  .pop-text :global(.pop-grades dt.current) {
+    box-shadow: inset 3px 0 0 var(--accent);
+    padding-left: 8px;
+  }
   .pop-foot {
     display: flex;
     justify-content: space-between;

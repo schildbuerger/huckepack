@@ -81,7 +81,10 @@
     <div class="group" role="group" aria-labelledby={`${idPrefix}g-when`}>
       <div class="legend" id={`${idPrefix}g-when`}>
         <Explain id={`${idPrefix}x-when`} term="When do you want to go?" title="Season">
-          <p>A trail matches if its season includes any of the months you pick. The season is what the trail's managers recommend; outside it, huts and services may be closed or snow may block the way.</p>
+          <dl class="pop-facts">
+            <dt>Matches</dt><dd>Trails whose season includes any month you pick</dd>
+            <dt>Season</dt><dd>What the trail's managers recommend; outside it, huts and services may be closed or snow may block the way</dd>
+          </dl>
         </Explain>
       </div>
       <div class="months">
@@ -97,8 +100,10 @@
     <div class="group" role="group" aria-labelledby={`${idPrefix}g-where`}>
       <div class="legend" id={`${idPrefix}g-where`}>
         <Explain id={`${idPrefix}x-where`} term="Where?" title="Continents and countries">
-          <p>Pick as many as you like; a trail matches if it runs through any of them.</p>
-          <p>A continent includes all its countries. Picking a country within a chosen continent narrows the choice to that country.</p>
+          <dl class="pop-facts">
+            <dt>Matches</dt><dd>Trails through any place you pick; pick as many as you like</dd>
+            <dt>Continents</dt><dd>Include all their countries; picking one of their countries narrows the choice to it</dd>
+          </dl>
         </Explain>
       </div>
       <!-- a continent, its countries beneath; countries a chosen continent covers show as included -->
@@ -133,7 +138,10 @@
     <div class="group" role="group" aria-labelledby={`${idPrefix}g-long`}>
       <div class="legend" id={`${idPrefix}g-long`}>
         <Explain id={`${idPrefix}x-long`} term="How long?" title="Walking days">
-          <p>The number of days the trail's managers suggest for the whole route. Where they give a range, such as 6–8 days, the trail matches if that range overlaps yours.</p>
+          <dl class="pop-facts">
+            <dt>Days</dt><dd>As the trail's managers suggest for the whole route</dd>
+            <dt>Ranges</dt><dd>A range like 6–8 days matches if it overlaps yours</dd>
+          </dl>
         </Explain>
         <span class="value">{daysText(filters)}</span>
       </div>
@@ -145,11 +153,21 @@
     <div class="group" role="group" aria-labelledby={`${idPrefix}g-hard`}>
       <div class="legend" id={`${idPrefix}g-hard`}>
         <Explain id={`${idPrefix}x-hard`} term="How hard?" title="Difficulty">
-          <p>The ratings on each trail page's Difficulty section, from Easy to Hard with the same thresholds for every trail. Slide either end: the left thumb for the least, the right for the most you want. Once you set one, trails without that rating drop out.</p>
-          <dl>
-            <dt>Terrain</dt><dd>The path grade (SAC scale), how much and how steeply it climbs, and how much is natural ground.</dd>
-            <dt>Climate</dt><dd>Heat, cold, wet days, snow and wind: in the months you picked above (within the trail's season), or over its whole season.</dd>
-            <dt>Effort</dt><dd>The longest day: up to 4 h is easy, 4–6 h moderate, 6–8 h demanding, more is hard.</dd>
+          <dl class="pop-facts">
+            <dt>Ratings</dt><dd>From each trail page's Difficulty section: Easy to Hard, the same thresholds for every trail</dd>
+            <dt>Sliders</dt><dd>Left thumb the least, right thumb the most you want; once you set one, trails without that rating drop out</dd>
+            <dt>Terrain</dt><dd>The path grade (SAC scale), how much and how steeply it climbs, and how much is natural ground</dd>
+            <dt>Climate</dt><dd>Heat, cold, wet days, snow and wind: in the months you picked above (within the trail's season), or over its whole season</dd>
+            <dt>Effort</dt>
+            <dd>
+              The longest day
+              <ol class="pop-scale">
+                <li><span>Easy</span>up to 4 h</li>
+                <li><span>Moderate</span>4–6 h</li>
+                <li><span>Demanding</span>6–8 h</li>
+                <li><span>Hard</span>more</li>
+              </ol>
+            </dd>
           </dl>
         </Explain>
       </div>
@@ -171,7 +189,10 @@
     <div class="group" role="group" aria-labelledby={`${idPrefix}g-land`}>
       <div class="legend" id={`${idPrefix}g-land`}>
         <Explain id={`${idPrefix}x-land`} term="Landscape" title="Landscape">
-          <p>What the trail passes through, from ESA WorldCover satellite land cover: a trail matches if at least {Math.round(LANDSCAPE_SHARE * 100)} % of its main route is a landscape you pick (any of them).</p>
+          <dl class="pop-facts">
+            <dt>Matches</dt><dd>At least {Math.round(LANDSCAPE_SHARE * 100)} % of the main route is a landscape you pick (any of them)</dd>
+            <dt>Source</dt><dd>ESA WorldCover satellite land cover</dd>
+          </dl>
         </Explain>
       </div>
       <div class="chips">
@@ -186,7 +207,11 @@
     <div class="group" role="group" aria-labelledby={`${idPrefix}g-terrain`}>
       <div class="legend" id={`${idPrefix}g-terrain`}>
         <Explain id={`${idPrefix}x-terrain`} term="Natural ground" title="Ground underfoot">
-          <p>The share of the main route on natural ground at least, from OpenStreetMap's surface tags. The bar under each card's profile shows the mix:</p>
+          <dl class="pop-facts">
+            <dt>Matches</dt><dd>At least this share of the main route on natural ground</dd>
+            <dt>Source</dt><dd>OpenStreetMap's surface tags</dd>
+            <dt>On the cards</dt><dd>The bar under each profile shows the mix:</dd>
+          </dl>
           <!-- the same colours as the surface bar on each card -->
           <ul class="ground">
             <li><span style="background: var(--surface-natural)"></span>Natural: earth, grass, rock</li>
@@ -203,8 +228,8 @@
     <div class="group" role="group" aria-labelledby={`${idPrefix}g-sleep`}>
       <div class="legend" id={`${idPrefix}g-sleep`}>
         <Explain id={`${idPrefix}x-sleep`} term="Where to sleep">
-          <p>A trail matches if it offers every kind you pick.</p>
-          <dl>
+          <dl class="pop-facts">
+            <dt>Matches</dt><dd>Trails that offer every kind you pick</dd>
             {#each sleepingOptions as c}<dt>{c.label}</dt><dd>{c.hint}</dd>{/each}
           </dl>
         </Explain>
@@ -218,7 +243,10 @@
       <!-- issue #97: the longest stretch of the main route without a hut, campsite, hostel or guest house -->
       <div class="sub">
         <Explain id={`${idPrefix}x-bed`} term="A bed every" title="Beds along the route">
-          <p>The longest stretch of the main route without a hut, campsite, hostel or guest house mapped in OpenStreetMap (within 1 km of the trail or 3 km of a stage's end; hotels are not counted) must be at most this long.</p>
+          <dl class="pop-facts">
+            <dt>Matches</dt><dd>The longest stretch of the main route without a bed is at most this long</dd>
+            <dt>Counted</dt><dd>Huts, campsites, hostels and guest houses in OpenStreetMap, within 1 km of the trail or 3 km of a stage's end; no hotels</dd>
+          </dl>
         </Explain>
         <span class="value">{bedText(filters)}</span>
       </div>
@@ -230,11 +258,11 @@
     <div class="group" role="group" aria-labelledby={`${idPrefix}g-wild`}>
       <div class="legend" id={`${idPrefix}g-wild`}>
         <Explain id={`${idPrefix}x-wild`} term="Wild camping">
-          <dl>
-            <dt>Possible</dt><dd>Allowed, or allowed only in certain places or under rules, such as designated bivouac sites.</dd>
-            <dt>Allowed</dt><dd>Pitching a tent outside campsites is allowed along the trail.</dd>
+          <dl class="pop-facts">
+            <dt>Possible</dt><dd>Allowed, or allowed only in certain places or under rules, such as designated bivouac sites</dd>
+            <dt>Allowed</dt><dd>Pitching a tent outside campsites is allowed along the trail</dd>
+            <dt>Exact rule</dt><dd>On each trail page</dd>
           </dl>
-          <p>Each trail page gives the exact rule.</p>
         </Explain>
       </div>
       <div class="segmented" role="radiogroup" aria-labelledby={`${idPrefix}g-wild`}>
@@ -249,11 +277,16 @@
     <div class="group" role="group" aria-labelledby={`${idPrefix}g-water`}>
       <div class="legend" id={`${idPrefix}g-water`}>
         <Explain id={`${idPrefix}x-water`} term="Water" title="Water">
-          <p>The longest stretch of the main route without clean water (taps, fountains and drinking springs mapped in OpenStreetMap, or a refill at a hut, hostel, guest house or campsite) must be at most this long.</p>
-          <p>Any water counts springs too: water of unknown quality you filter, boil or treat.</p>
-          <p>Trail pages rate it in three steps:</p>
-          <dl>
-            {#each WATER_LEVELS as l}<dt>{l.label}</dt><dd>{l.hint}.</dd>{/each}
+          <dl class="pop-facts">
+            <dt>Matches</dt><dd>The longest stretch of the main route without water is at most this long</dd>
+            <dt>Clean water</dt><dd>Taps, fountains and drinking springs in OpenStreetMap, or a refill at a hut, hostel, guest house or campsite</dd>
+            <dt>Any water</dt><dd>Springs too: water of unknown quality you filter, boil or treat</dd>
+            <dt>Trail pages</dt>
+            <dd>
+              <ol class="pop-scale">
+                {#each WATER_LEVELS as l}<li><span>{l.label}</span>{l.maxGapKm === Infinity ? "beyond" : `up to ${l.maxGapKm} km`}</li>{/each}
+              </ol>
+            </dd>
           </dl>
         </Explain>
         <span class="value">{waterText(filters)}</span>
@@ -267,7 +300,11 @@
       <!-- issue #96: the longest stretch of the main route without a shop -->
       <div class="sub">
         <Explain id={`${idPrefix}x-shop`} term="A shop every" title="Shops along the route">
-          <p>The longest stretch of the main route without a supermarket, convenience or general store or a petrol station with a shop mapped in OpenStreetMap (within 1 km of the trail or 3 km of a stage's end) must be at most this long. Small village shops are often missing in OpenStreetMap.</p>
+          <dl class="pop-facts">
+            <dt>Matches</dt><dd>The longest stretch of the main route without a shop is at most this long</dd>
+            <dt>Counted</dt><dd>Supermarkets, convenience and general stores and petrol station shops in OpenStreetMap, within 1 km of the trail or 3 km of a stage's end</dd>
+            <dt>Keep in mind</dt><dd>Small village shops are often missing in OpenStreetMap</dd>
+          </dl>
         </Explain>
         <span class="value">{shopText(filters)}</span>
       </div>

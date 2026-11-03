@@ -118,7 +118,12 @@ export function sacGrade(t: Trail): (Derived<string> & { basis?: string }) | und
   return undefined;
 }
 
-// Said wherever the SAC grade is explained (trail page, search filter).
+// Said wherever the SAC grade is explained (trail page): SAC_NOTE as fact rows for the info box
+export const SAC_FACTS: [string, string][] = [
+  ["Scale", "The Swiss Alpine Club's hiking scale, from T1 (easy) to T6 (very hard)"],
+  ["Why", "Trails rate difficulty in many local scales, or only in words; we translate each into this one so trails compare"],
+  ["Keep in mind", "An estimate: how hard a trail feels depends on your fitness, experience, pack and the weather"],
+];
 export const SAC_NOTE =
   "Trails rate their difficulty in many local scales, or only describe it in words. We translate each rating into the Swiss Alpine Club's hiking scale, from T1 (easy) to T6 (very hard), so trails can be compared. It stays an estimate: how hard a trail feels depends on your fitness, experience, pack and the weather."
 
