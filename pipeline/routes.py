@@ -288,6 +288,21 @@ def nearest_index(line, point):
     return min(range(len(line)), key=lambda k: math.dist(proj.xy(*line[k]), target))
 
 
+def walked_pieces(track, rides):
+    """The track without its rides: the pieces before, between and after them, each from the point
+    nearest a ride's end to the point nearest the next ride's start (a ride is a {start, end}
+    transfer). A piece under 50 m, at a ride from the stage's start or to its end, is dropped."""
+    pieces, begin = [], 0
+    for ride in rides:
+        i, j = nearest_index(track, ride["start"]), nearest_index(track, ride["end"])
+        if not begin <= i < j:
+            raise ValueError(f"ride {ride['start']['name']} to {ride['end']['name']} doesn't follow the track in order")
+        pieces.append(track[begin : i + 1])
+        begin = j
+    pieces.append(track[begin:])
+    return [p for p in pieces if len(p) > 1 and line_km(p) >= 0.05]
+
+
 def split_at(line, stages):
     """One piece of the line per stage, cut at the point nearest each stage's end."""
     proj = osm.Projection(line[0][1])
@@ -477,9 +492,25 @@ def build(slug, refresh=False):
         ways, fetched = cache.get(f"osm-stage-{label}.json", osm.source_label(), download_ways)
         if fetched and osm.SOURCE == "overpass":
             time.sleep(5)  # be polite to the public Overpass server
-        # a stage can allow a longer bridge where OSM's crossing is still mapped as under
-        # construction (the Cotswold Way's A417 at the Air Balloon, 161 m; noted in the record)
-        line, report = osm.match(track, json.loads(ways), stage.get("maxBridgeM", osm.MAX_BRIDGE_M), stage.get("maxBridges", osm.MAX_BRIDGES))
+        # a ride inside the stage (a transfer with `stage`: the Adlerweg's Rofanseilbahn down to
+        # Maurach): the official track runs along the lift, so the walked pieces on either side are
+        # matched on their own and written as parts of the stage (`part` from 2 on), the ride drawn
+        # as its transfer below. The pieces' figures add up to the stage's
+        rides = [leg for leg in trail["stages"].get("transfers", []) if leg.get("stage") == stage["number"] and stage["kind"] == "main"]
+        lines, reports = [], []
+        for walk in walked_pieces(track, rides) if rides else [track]:
+            # a stage can allow a longer bridge where OSM's crossing is still mapped as under
+            # construction (the Cotswold Way's A417 at the Air Balloon, 161 m; noted in the record)
+            line, report = osm.match(walk, json.loads(ways), stage.get("maxBridgeM", osm.MAX_BRIDGE_M), stage.get("maxBridges", osm.MAX_BRIDGES))
+            lines.append(line)
+            reports.append(report)
+        report = {
+            "km": sum(r["km"] for r in reports),
+            "track_km": sum(r["track_km"] for r in reports),
+            "covered": sum(r["covered"] * r["track_km"] for r in reports) / sum(r["track_km"] for r in reports),
+            "max_off_m": max(r["max_off_m"] for r in reports),
+            "ways": [w for r in reports for w in r["ways"]],
+        }
         report["covered"] *= walkable
         if stage["kind"] == "main":
             previous_end = track[-1]
@@ -491,29 +522,38 @@ def build(slug, refresh=False):
         )
         stage_ways.append({"number": stage["number"], "kind": stage["kind"], "ways": report["ways"]})
         measured.append({"number": stage["number"], "kind": stage["kind"], "km": round(report["km"], 2), "covered": round(report["covered"], 3)})
-        features.append(
-            {
-                "type": "Feature",
-                "properties": {
-                    **{k: stage[k] for k in ("number", "kind", "from", "to")},
-                    "covered": round(report["covered"], 3),
-                },
-                "geometry": {
-                    "type": "LineString",
-                    "coordinates": [[round(x, 5), round(y, 5)] for x, y in simplify(line, TOLERANCE_M)],
-                },
-            }
-        )
+        for n, line in enumerate(lines, 1):
+            features.append(
+                {
+                    "type": "Feature",
+                    "properties": {
+                        **{k: stage[k] for k in ("number", "kind", "from", "to")},
+                        "covered": round(report["covered"], 3),
+                        **({"part": n} if n > 1 else {}),
+                    },
+                    "geometry": {
+                        "type": "LineString",
+                        "coordinates": [[round(x, 5), round(y, 5)] for x, y in simplify(line, TOLERANCE_M)],
+                    },
+                }
+            )
         if stage.get("closed"):
             features += detour_features(stage, label)
-    # the legs that aren't walked (the W Trek's catamaran over Lago Pehoé): drawn through their
-    # via points (from OSM's ferry way), not matched, and not in the measured length, water or surfaces
+    # the legs that aren't walked (the W Trek's catamaran over Lago Pehoé, the Adlerweg's cable
+    # cars): drawn through their via points (from OSM's ferry or aerialway way), not matched, and not
+    # in the measured length, water or surfaces
     for leg in trail["stages"].get("transfers", []):
         points = [leg["start"], *leg.get("via", []), leg["end"]]
         features.append(
             {
                 "type": "Feature",
-                "properties": {"kind": "transfer", "by": leg["by"], "from": leg["start"]["name"], "to": leg["end"]["name"]},
+                "properties": {
+                    "kind": "transfer",
+                    "by": leg["by"],
+                    "from": leg["start"]["name"],
+                    "to": leg["end"]["name"],
+                    **({"stage": leg["stage"]} if leg.get("stage") else {}),
+                },
                 "geometry": {"type": "LineString", "coordinates": [[round(p["lon"], 5), round(p["lat"], 5)] for p in points]},
             }
         )

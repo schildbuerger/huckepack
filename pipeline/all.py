@@ -83,11 +83,15 @@ def check(slug):
         return abs(a - b) / b > OFF if b else False
 
     # the OSM match, per stage
-    poor = [f"{f['properties']['number']} ({f['properties']['covered']:.0%})" for f in route["features"] if f["properties"].get("covered", 1) < 0.95]
+    poor = [f"{f['properties']['number']} ({f['properties']['covered']:.0%})" for f in route["features"] if f["properties"].get("covered", 1) < 0.95 and "part" not in f["properties"]]
     (flags if poor else fine).append(f"route: stages under 95 % matched: {', '.join(poor)} (OSM may lack a path; note it)" if poor else "route: every stage at least 95 % matched")
 
     # lengths: per stage (map line against stated) and the whole main route
-    by_stage = {(f["properties"]["number"], f["properties"]["kind"]): _line_km(f["geometry"]["coordinates"]) for f in route["features"] if "number" in f["properties"]}
+    by_stage = {}  # a stage in parts (rides between them) adds them up
+    for f in route["features"]:
+        if "number" in f["properties"] and f["properties"]["kind"] != "transfer":
+            key = (f["properties"]["number"], f["properties"]["kind"])
+            by_stage[key] = by_stage.get(key, 0) + _line_km(f["geometry"]["coordinates"])
     long_off = [
         f"{s['number']} ({by_stage[(s['number'], s['kind'])]:.1f} km against {s['km']} km)"
         for s in stages

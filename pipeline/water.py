@@ -169,6 +169,7 @@ def build(slug, refresh=False):
             "springs": sum(1 for w in points if w["stage"] == f["properties"]["number"] and w["stageKind"] == f["properties"]["kind"] and w["kind"] == "spring"),
         }
         for f in stages
+        if "part" not in f["properties"]  # a stage's later parts (after a ride) count with it
     ]
     on_main = [w for w in points if w["km"] is not None]
     water = {
@@ -179,7 +180,7 @@ def build(slug, refresh=False):
         "routeKm": round(total_km, 1),
         # where each main stage starts along the main route, on the same map line as `km`
         "stageStarts": [
-            {"number": stages[i]["properties"]["number"], "km": round(offset[i] / 1000, 1)} for i in main
+            {"number": stages[i]["properties"]["number"], "km": round(offset[i] / 1000, 1)} for i in main if "part" not in stages[i]["properties"]
         ],
         "longestGapKm": {
             "drinking": longest_gap([w["km"] for w in on_main if w["kind"] == "drinking"], total_km),

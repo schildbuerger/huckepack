@@ -74,7 +74,12 @@ def build(slug, refresh=False):
         xy = [proj.xy(*c) for c in coords]
         return sum(math.dist(a, b) for a, b in zip(xy, xy[1:])) / 1000
 
-    map_km = {(f["properties"]["number"], f["properties"]["kind"]): line_km(f) for f in route["features"] if "number" in f["properties"]}
+    # a stage in parts (rides between them, pipeline/routes.py) adds them up
+    map_km = {}
+    for f in route["features"]:
+        if "number" in f["properties"] and f["properties"]["kind"] != "transfer":
+            key = (f["properties"]["number"], f["properties"]["kind"])
+            map_km[key] = map_km.get(key, 0) + line_km(f)
     main = sorted((s for s in stage_ways if s["kind"] == "main"), key=lambda s: osm.stage_order(s["number"]))
 
     runs, km, totals, inferred = [], 0.0, {c: 0.0 for c in [*CATEGORIES, "unknown"]}, 0.0

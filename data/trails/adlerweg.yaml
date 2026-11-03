@@ -1,0 +1,274 @@
+name: Adlerweg
+added: 2026-11-03
+aliases: [Eagle Walk, Adlerweg Tirol, Osttiroler Adlerweg]
+website: https://www.tirol.at/aktivitaeten/sport/wandern/weitwanderwege/anspruchsvolle-weitwanderwege/adlerweg
+managedBy:
+  # Tirol Werbung publishes the Adlerweg, its 33 stage pages with their GPX files and the stamp pass
+  - name: Tirol Werbung
+    url: https://www.tirol.at/aktivitaeten/sport/wandern/weitwanderwege/anspruchsvolle-weitwanderwege/adlerweg
+trailType: point-to-point
+continents: [Europe]
+countries: [AT]
+regions: [Tyrol]
+protectedAreas:
+  - Karwendel Nature Park
+  - Hohe Tauern National Park
+termini:
+  # the first point of stage 1's GPX in St. Johann in Tirol and the last of stage 24's at St.
+  # Christoph am Arlberg; the East Tyrol part (stages 25–33) runs from Ströden to the Lucknerhaus
+  start:
+    name: St. Johann in Tirol
+    lat: 47.51982
+    lon: 12.43079
+  end:
+    name: St. Christoph am Arlberg
+    lat: 47.13036
+    lon: 10.21044
+  source: tw
+length:
+  # "426 Kilometer und 30.000 Höhenmeter auf 33 Tagesetappen"; the stages sum to 424.4 km
+  - km: 426
+    source: tw
+stages:
+  # Tirol Werbung's 33 stage pages (length, time, climb and descent, grade), each with its GPX,
+  # which only guides the OSM matcher (kept local): 24 across North Tyrol and 9 in East Tyrol, which
+  # Tirol labels O1–O9 and the record numbers 25–33 (decided 2026-11-03: one trail, both parts; the
+  # map shows the gap between them)
+  source: tw
+  list:
+    - { number: "1", kind: main, from: "St. Johann", to: "Gaudeamushütte", km: 13.0, ascentM: 1060, descentM: 470, minutes: 300, track: "https://tirol.mapservices.eu/nefos_app/api/gpx/imx_xR7kIE5LaSrqNTM6/de/generate/2964018" }
+    - { number: "2", kind: main, from: "Gaudeamushütte", to: "Kaindlhütte", km: 15.1, ascentM: 888, descentM: 854, minutes: 390, track: "https://tirol.mapservices.eu/nefos_app/api/gpx/imx_xR7kIE5LaSrqNTM6/de/generate/2964070" }
+    - { number: "3", kind: main, from: "Kaindlhütte", to: "Kufstein", km: 12.5, ascentM: 160, descentM: 968, minutes: 240, track: "https://tirol.mapservices.eu/nefos_app/api/gpx/imx_xR7kIE5LaSrqNTM6/de/generate/2964098" }
+    - { number: "4", kind: main, from: "Kufstein", to: "Gasthof Buchacker", km: 10.7, ascentM: 1330, descentM: 500, minutes: 330, track: "https://tirol.mapservices.eu/nefos_app/api/gpx/imx_xR7kIE5LaSrqNTM6/de/generate/2964115" }
+    - { number: "5", kind: main, from: "Gasthof Buchacker", to: "Gasthof Gwercherwirt", km: 18.0, ascentM: 980, descentM: 1630, minutes: 360, track: "https://tirol.mapservices.eu/nefos_app/api/gpx/imx_xR7kIE5LaSrqNTM6/de/generate/2970321" }
+    - { number: "6", kind: main, from: "Pinegg", to: "Steinberg am Rofan", km: 17.8, ascentM: 1100, descentM: 780, minutes: 420, track: "https://tirol.mapservices.eu/nefos_app/api/gpx/imx_xR7kIE5LaSrqNTM6/de/generate/2970331" }
+    - { number: "7", kind: main, from: "Steinberg am Rofan", to: "Erfurter Hütte", km: 18.0, ascentM: 1590, descentM: 770, minutes: 480, track: "https://tirol.mapservices.eu/nefos_app/api/gpx/imx_xR7kIE5LaSrqNTM6/de/generate/2970343" }
+    - { number: "8", kind: main, from: "Erfurter Hütte", to: "Lamsenjochhütte", km: 17.0, ascentM: 1030, descentM: 70, minutes: 360, track: "https://tirol.mapservices.eu/nefos_app/api/gpx/imx_xR7kIE5LaSrqNTM6/de/generate/3146620" }
+    - { number: "9", kind: main, from: "Lamsenjochhütte", to: "Falkenhütte", km: 12.5, ascentM: 810, descentM: 920, minutes: 360, track: "https://tirol.mapservices.eu/nefos_app/api/gpx/imx_xR7kIE5LaSrqNTM6/de/generate/3150009" }
+    - { number: "10", kind: main, from: "Falkenhütte", to: "Karwendelhaus", km: 9.0, ascentM: 440, descentM: 520, minutes: 210, track: "https://tirol.mapservices.eu/nefos_app/api/gpx/imx_xR7kIE5LaSrqNTM6/de/generate/3151917" }
+    - { number: "11", kind: main, from: "Karwendelhaus", to: "Hallerangerhaus / Hallerangeralm", km: 14.0, ascentM: 1440, descentM: 1450, minutes: 510, track: "https://tirol.mapservices.eu/nefos_app/api/gpx/imx_xR7kIE5LaSrqNTM6/de/generate/3154586" }
+    - { number: "12", kind: main, from: "Hallerangerhaus", to: "Nordkette Innsbruck", km: 13.0, ascentM: 1150, descentM: 970, minutes: 330, track: "https://tirol.mapservices.eu/nefos_app/api/gpx/imx_xR7kIE5LaSrqNTM6/de/generate/3156711" }
+    - { number: "13", kind: main, from: "Innsbruck", to: "Zirbenweg – Innsbruck", km: 8.0, ascentM: 300, descentM: 210, minutes: 150, track: "https://tirol.mapservices.eu/nefos_app/api/gpx/imx_xR7kIE5LaSrqNTM6/de/generate/3158825" }
+    - { number: "14", kind: main, from: "Innsbruck", to: "Solsteinhaus", km: 7.0, ascentM: 940, descentM: 70, minutes: 180, track: "https://tirol.mapservices.eu/nefos_app/api/gpx/imx_xR7kIE5LaSrqNTM6/de/generate/3160772" }
+    - { number: "15", kind: main, from: "Solsteinhaus", to: "Leutasch", km: 20.0, ascentM: 870, descentM: 1530, minutes: 390, track: "https://tirol.mapservices.eu/nefos_app/api/gpx/imx_xR7kIE5LaSrqNTM6/de/generate/3163135" }
+    - { number: "16", kind: main, from: "Leutasch", to: "Ehrwald", km: 23.0, ascentM: 590, descentM: 730, minutes: 420, track: "https://tirol.mapservices.eu/nefos_app/api/gpx/imx_xR7kIE5LaSrqNTM6/de/generate/3164524" }
+    - { number: "17", kind: main, from: "Ehrwald", to: "Lorea Hütte", km: 19.0, ascentM: 1170, descentM: 1190, minutes: 330, track: "https://tirol.mapservices.eu/nefos_app/api/gpx/imx_xR7kIE5LaSrqNTM6/de/generate/3164602" }
+    - { number: "18", kind: main, from: "Lorea Hütte", to: "Anhalter Hütte", km: 16.0, ascentM: 1200, descentM: 1180, minutes: 390, track: "https://tirol.mapservices.eu/nefos_app/api/gpx/imx_xR7kIE5LaSrqNTM6/de/generate/3164608" }
+    - { number: "19", kind: main, from: "Anhalter Hütte", to: "Hanauer Hütte", km: 12.3, ascentM: 750, descentM: 870, minutes: 240, track: "https://tirol.mapservices.eu/nefos_app/api/gpx/imx_xR7kIE5LaSrqNTM6/de/generate/3164617" }
+    - { number: "20", kind: main, from: "Hanauer Hütte", to: "Württemberger Haus", km: 11.0, ascentM: 1240, descentM: 930, minutes: 420, track: "https://tirol.mapservices.eu/nefos_app/api/gpx/imx_xR7kIE5LaSrqNTM6/de/generate/3164685" }
+    - { number: "21", kind: main, from: "Württemberger Haus", to: "Memminger Hütte", km: 7.0, ascentM: 670, descentM: 650, minutes: 300, track: "https://tirol.mapservices.eu/nefos_app/api/gpx/imx_xR7kIE5LaSrqNTM6/de/generate/3164691" }
+    - { number: "22", kind: main, from: "Memminger Hütte", to: "Ansbacher Hütte", km: 10.0, ascentM: 1040, descentM: 900, minutes: 360, track: "https://tirol.mapservices.eu/nefos_app/api/gpx/imx_xR7kIE5LaSrqNTM6/de/generate/3164713" }
+    - { number: "23", kind: main, from: "Ansbacher Hütte", to: "Kaiserjochhaus", km: 8.5, ascentM: 520, descentM: 580, minutes: 300, track: "https://tirol.mapservices.eu/nefos_app/api/gpx/imx_xR7kIE5LaSrqNTM6/de/generate/3164755" }
+    - { number: "24", kind: main, from: "Kaiserjochhaus", to: "St. Christoph am Arlberg", km: 17.5, ascentM: 950, descentM: 1450, minutes: 420, track: "https://tirol.mapservices.eu/nefos_app/api/gpx/imx_xR7kIE5LaSrqNTM6/de/generate/3179091" }
+    - { number: "25", kind: main, from: "Ströden", to: "Johannishütte", km: 13.0, ascentM: 1430, descentM: 730, minutes: 390, track: "https://tirol.mapservices.eu/nefos_app/api/gpx/imx_xR7kIE5LaSrqNTM6/de/generate/3271867" }
+    - { number: "26", kind: main, from: "Johannishütte", to: "Eisseehütte", km: 10.0, ascentM: 1020, descentM: 620, minutes: 360, track: "https://tirol.mapservices.eu/nefos_app/api/gpx/imx_xR7kIE5LaSrqNTM6/de/generate/3271898" }
+    - { number: "27", kind: main, from: "Eisseehütte", to: "Bonn-Matreier-Hütte", km: 7.0, ascentM: 600, descentM: 370, minutes: 210, track: "https://tirol.mapservices.eu/nefos_app/api/gpx/imx_xR7kIE5LaSrqNTM6/de/generate/3271906" }
+    - { number: "28", kind: main, from: "Bonn-Matreier Hütte", to: "Badener Hütte", km: 10.0, ascentM: 800, descentM: 950, minutes: 300, track: "https://tirol.mapservices.eu/nefos_app/api/gpx/imx_xR7kIE5LaSrqNTM6/de/generate/3271912" }
+    - { number: "29", kind: main, from: "Badener Hütte", to: "Matreier Tauernhaus", km: 14.0, ascentM: 450, descentM: 1550, minutes: 330, track: "https://tirol.mapservices.eu/nefos_app/api/gpx/imx_xR7kIE5LaSrqNTM6/de/generate/3271918" }
+    - { number: "30", kind: main, from: "Matrei in Osttirol", to: "Sudetendeutsche Hütte", km: 8.0, ascentM: 1250, descentM: 100, minutes: 240, track: "https://tirol.mapservices.eu/nefos_app/api/gpx/imx_xR7kIE5LaSrqNTM6/de/generate/3271929" }
+    - { number: "31", kind: main, from: "Sudetendeutsche Hütte", to: "Kalser Tauernhaus", km: 7.5, ascentM: 300, descentM: 1200, minutes: 240, track: "https://tirol.mapservices.eu/nefos_app/api/gpx/imx_xR7kIE5LaSrqNTM6/de/generate/3271938" }
+    - { number: "32", kind: main, from: "Kalser Tauernhaus", to: "Stüdlhütte", km: 14.0, ascentM: 1440, descentM: 400, minutes: 390, track: "https://tirol.mapservices.eu/nefos_app/api/gpx/imx_xR7kIE5LaSrqNTM6/de/generate/3271961" }
+    - { number: "33", kind: main, from: "Stüdlhütte", to: "Lucknerhaus", km: 11.0, ascentM: 450, descentM: 1330, minutes: 330, track: "https://tirol.mapservices.eu/nefos_app/api/gpx/imx_xR7kIE5LaSrqNTM6/de/generate/3271978" }
+  # the lifts the stage pages ride (decided 2026-11-03: rides inside a stage, not walked and in no
+  # figure; Tirol's stage figures leave them out): stage 8 "Von der Erfurter Hütte mit der
+  # Rofanseilbahn hinunter nach Maurach", stage 12 "schweben wir mit der Nordkettenbahn hinab bis in
+  # die Stadtmitte" (Hafelekar, Seegrube and Hungerburg railways), stage 17 "Mit dem Lift zur
+  # Grubigalm". Stations and the funicular's curve from OSM's aerialway and railway ways
+  transfers:
+    - { by: cable car, stage: "8", start: { name: Erfurter Hütte (Rofanseilbahn), lat: 47.4413, lon: 11.76345 }, end: { name: Maurach, lat: 47.42449, lon: 11.75132 }, source: tw }
+    - { by: cable car, stage: "12", start: { name: Hafelekar, lat: 47.31198, lon: 11.38357 }, end: { name: Seegrube, lat: 47.30655, lon: 11.37979 }, source: tw }
+    - { by: cable car, stage: "12", start: { name: Seegrube, lat: 47.30639, lon: 11.37974 }, end: { name: Hungerburg, lat: 47.28617, lon: 11.39901 }, source: tw }
+    - { by: funicular, stage: "12", start: { name: Hungerburg, lat: 47.28629, lon: 11.40011 }, end: { name: Innsbruck Congress, lat: 47.27106, lon: 11.39546 }, via: [{ lat: 47.28461, lon: 11.40097 }, { lat: 47.28163, lon: 11.4002 }, { lat: 47.27722, lon: 11.39754 }, { lat: 47.2744, lon: 11.39658 }], source: tw }
+    - { by: cable car, stage: "17", start: { name: Lermoos (Grubigsteinbahn), lat: 47.40144, lon: 10.87892 }, end: { name: Grubigalm, lat: 47.3921, lon: 10.8695 }, source: tw }
+route:
+  # built by `python -m pipeline.all adlerweg`: OSM ways matched to Tirol Werbung's GPX
+  source: osm
+  publishable: true
+difficulty:
+  # Tirol Werbung grades its stages easy to difficult ("leicht", "mittelschwierig", "schwierig")
+  # and rates condition and technique out of 6; no SAC grade. Our estimate
+  estimated:
+    sac: T3
+    basis: >-
+      Tirol Werbung grades its stages moderate or difficult (one easy): alpine paths from hut to hut
+      through the Kaisergebirge, Rofan, Karwendel and Lechtal Alps and past the Großvenediger and
+      Großglockner, rating condition and technique up to 5 of 6, with climbs of up to 1,590 m a day.
+      Demanding mountain hiking (T3).
+    source: tw
+treeLine:
+  # the BFW's high-subalpine zone: in the northern intermediate Alps (growth regions 2.1 and 2.2, the
+  # Nordtirol stages) "1800–2050 (2150)" m, in the East Tyrol central Alps (1.2) "1950–2200 (2300)" m
+  m: 2200
+  fromM: 1800
+  source: bfw
+season:
+  # every stage page marks its best months; all 33 share July to September (most also June, the
+  # lower North Tyrol stages May to October)
+  months: [7, 8, 9]
+  text: July to September, when every stage is in season
+  source: tw
+sleeping:
+  # alpine huts and inns at the stage ends (Tirol Werbung's stage pages)
+  types: [hut, guesthouse]
+  source: tw
+wildCamping:
+  # "In Tirol ist es grundsätzlich verboten, außerhalb von Campingplätzen zu campieren", except for
+  # bivouacking "im hochalpinen Gelände (oberhalb der Waldgrenze)" (oesterreich.gv.at, 16 March 2026)
+  status: prohibited
+  rule: >-
+    Camping outside campsites is prohibited in Tyrol; a one-off emergency bivouac in high alpine
+    terrain above the tree line is allowed.
+  source: oegv-campen
+access:
+  # Innsbruck Hauptbahnhof, Tyrol's main station, and Innsbruck and Munich airports. Coordinates
+  # from OSM; distances by pipeline/access.py
+  - kind: station
+    name: Innsbruck Hauptbahnhof
+    lat: 47.26319
+    lon: 11.40109
+    source: osm
+  - kind: airport
+    name: Innsbruck Airport (INN)
+    lat: 47.25973
+    lon: 11.34187
+    source: osm
+  - kind: airport
+    name: Munich Airport (MUC)
+    lat: 48.35396
+    lon: 11.77859
+    source: osm
+animals:
+  # Cattle on the alpine pastures (the Austrian ministry's 10 rules) and ticks (AGES: TBE risk all over Austria). Levels ours
+  list:
+    - kind: cattle
+      name: "Cattle on alpine pastures"
+      level: moderate
+      basis: "The trail crosses alpine pastures where cattle graze in summer; mother cows protect their calves, and dogs make an encounter riskier."
+      do:
+        - "Avoid contact with grazing animals and keep a safe distance; stay calm and don't startle them"
+        - "Stay on the marked paths"
+        - "Keep your dog under control on a short lead; if an animal is about to attack, let the dog off at once"
+        - "If cattle approach: stay calm, don't turn your back on them, step out of their way"
+        - "At the first sign of unrest, leave the pasture quickly"
+        - "Use gates where there are any, close them behind you and cross the pasture quickly"
+        - "Walk round animals blocking the path with as wide a berth as you can"
+      dont:
+        - "Feed the animals"
+        - "Let mother cows and dogs meet"
+      source: bml-almen
+    - kind: tick
+      name: "Ticks (tick-borne encephalitis, Lyme disease)"
+      level: moderate
+      basis: "AGES, Austria's health agency, says the risk of catching tick-borne encephalitis (TBE) from a tick bite exists all over Austria, one of the most affected countries in Central Europe."
+      do:
+        - "Get vaccinated against TBE before you go: AGES calls it the best protection, also for travellers to Austria"
+        - "Wear closed clothing that fits well"
+        - "Check your body for ticks after walking through forest, bushes, tall grass or meadows"
+      source: ages-fsme
+tags: [alpine, huts, national-park, limestone-alps, glaciers]
+notes:
+  - >-
+    The Adlerweg crosses Tyrol from east to west: from St. Johann in Tirol along the Wilder Kaiser to
+    Kufstein, through the Brandenberger Alps and the Rofan to the Achensee, through the Karwendel to
+    the Nordkette above Innsbruck, past the Zirbenweg and the Solstein, through the Gaistal to
+    Ehrwald, and through the Lechtal Alps from hut to hut to St. Christoph am Arlberg. The East Tyrol
+    Adlerweg (stages 25–33, Tirol's O1–O9) runs separately from Ströden in the Virgental round the
+    Großvenediger and the Großglockner to the Lucknerhaus.
+  - >-
+    Gaps between stages: the North Tyrol stages don't all join end to end (Kufstein to the start of
+    stage 4, the Gwercherwirt to Pinegg, the Nordkette and the Zirbenweg above Innsbruck, Innsbruck
+    to the Solsteinhaus start), where walkers take a bus, a cable car or the train; the East Tyrol
+    part starts about 120 km from the North Tyrol route. The figures follow Tirol Werbung's stages.
+  - >-
+    Rides: stage 8 starts with the Rofanseilbahn down from the Erfurter Hütte to Maurach, stage 12
+    ends with the Hafelekarbahn, the Seegrubenbahn and the Hungerburgbahn down into Innsbruck, and
+    stage 17 takes the Grubigsteinbahn from Lermoos up to the Grubigalm (Tirol Werbung's stage
+    pages; the official GPX runs along the lifts). They are transfers inside their stages, not
+    walked and in no figure; with them cut out, stages 8 and 12 match fully, 17.0 and 13.0 km
+    against Tirol's 17 and 13 km.
+  - >-
+    Map line: the official GPX guides the OSM matcher. Where it leaves the mapped paths, the line
+    follows the nearest one: stage 22 (Memminger Hütte to Ansbacher Hütte) for 1.4 km about 2 km
+    after the start, up to 450 m off (86 % matched); stage 31 near the Silesia Höhenweg for 0.7 km
+    after the Sudetendeutsche Hütte, up to 215 m off (82 %); stage 14's first 0.4 km at Hochzirl,
+    up to 200 m (93 %); short stretches on stages 5 and 17 (94 %). Probably older lines or paths
+    OSM lacks; noted 2026-11-03.
+  - >-
+    Stage lengths: six stages' map lines differ from Tirol's stated km by more than 10 %, mostly
+    because Tirol's own GPX does: stage 4 9.3 km (GPX 9.7) against 10.7 km, stage 5 16.1 (GPX 15.8)
+    against 18.0, stage 30 11.0 (GPX 12.0) against 8.0, stage 17 22.9 (GPX 20.8, without the lift)
+    against 19.0; stages 28 (8.7 against 10.0 km) and 31 (6.5 against 7.5 km) where the line takes
+    the mapped path (above). The page keeps Tirol's figures.
+  - >-
+    Along the way: OSM has no shop from the Ansbacher Hütte (stage 23) to the end of the East Tyrol
+    part, 117 km of map line, where the huts serve meals; and no place to sleep mapped between the
+    Gasthof Buchacker and Steinberg am Rofan (stages 5–6, 33 km), though Tirol ends stage 5 at the
+    Gasthof Gwercherwirt.
+  - >-
+    Data check (2026-11-03): Tirol Werbung's figures against German Wikipedia (Weitwanderwege in
+    Österreich, Adlerweg): North Tyrol 329.9 km in 24 stages against 320 km in 24 day stages (3 %),
+    East Tyrol 94.5 km in 9 stages against 93 km in 9 (2 %); St. Johann in Tirol to St. Christoph am
+    Arlberg: agree. The stated 30,000 m of climbing against the stages' 29,958 m. No deviation over
+    10 %.
+dataCheck:
+  # working rule 2: German Wikipedia
+  date: 2026-11-03
+  against: [wikipedia]
+  deviations: []
+sources:
+  - id: tw
+    title: "Tirol Werbung (tirol.at): the Adlerweg and its 33 stage pages (length, time, climb and descent, grade, best season) with their GPX files"
+    url: https://www.tirol.at/aktivitaeten/sport/wandern/wandertouren/adlerweg-gesamtverlauf
+    licence: All rights reserved (facts only)
+    retrieved: 2026-11-03
+  - id: oegv-campen
+    title: "oesterreich.gv.at (Austrian government): Campen, Tirol (as of 16 March 2026)"
+    url: https://www.oesterreich.gv.at/de/themen/reisen_und_freizeit/freizeit-in-der-natur/campen/Seite.3390007
+    licence: © Republik Österreich (facts only)
+    retrieved: 2026-11-03
+  - id: bfw
+    title: "BFW (Kilian, Müller, Starlinger): Die forstlichen Wuchsgebiete Österreichs, 1994 (altitude zones per forest growth region; tree line)"
+    url: https://bfw.ac.at/300/pdf/1027.pdf
+    licence: All rights reserved (facts only)
+    retrieved: 2026-11-03
+  - id: wikipedia
+    title: "German Wikipedia: Weitwanderwege in Österreich, Adlerweg (lengths and stages; data check)"
+    url: https://de.wikipedia.org/wiki/Weitwanderwege_in_%C3%96sterreich
+    licence: CC BY-SA 4.0
+    retrieved: 2026-11-03
+    checkOnly: true
+  - id: bml-almen
+    title: "Austrian Federal Ministry of Agriculture: Sichere Almen, 10 rules for dealing with grazing animals (leaflet)"
+    url: https://info.bml.gv.at/dam/jcr:b955ba4b-fd0f-4182-9aac-d12171d6a377/NEU%20BML_Folder_Sichere%20Almen_DE_220727.pdf
+    licence: © BMLUK (facts only)
+    retrieved: 2026-11-03
+  - id: ages-fsme
+    title: "AGES (Austrian Agency for Health and Food Safety): FSME (tick-borne encephalitis)"
+    url: https://www.ages.at/mensch/krankheit/krankheitserreger-von-a-bis-z/fsme
+    licence: © AGES (facts only)
+    retrieved: 2026-11-03
+  - id: osm
+    title: "OpenStreetMap contributors: paths, water, shops and places to sleep along the trail (Geofabrik extracts), travel hubs"
+    url: https://www.openstreetmap.org/
+    licence: ODbL 1.0
+    retrieved: 2026-11-03
+  - id: copdem
+    title: "Copernicus DEM GLO-30 (30 m terrain model), tiles from AWS Open Data"
+    url: https://registry.opendata.aws/copernicus-dem/
+    licence: "Copernicus WorldDEM-30 licence, free; produced using Copernicus WorldDEM-30 © DLR e.V. 2010-2014 and © Airbus Defence and Space GmbH 2014-2018 provided under COPERNICUS by the European Union and ESA; all rights reserved"
+    retrieved: 2026-11-03
+  - id: worldcover
+    title: "ESA WorldCover 2021: 10 m land cover (via AWS Open Data)"
+    url: https://esa-worldcover.org/
+    licence: "CC BY 4.0; © ESA WorldCover project 2021 / Contains modified Copernicus Sentinel data (2021) processed by ESA WorldCover consortium"
+    retrieved: 2026-11-03
+  - id: era5
+    title: "Open-Meteo open data on AWS: ERA5-Land temperature and ERA5 precipitation, snow and wind, daily 1995–2024 (reanalysis)"
+    url: https://github.com/open-meteo/open-data
+    licence: CC BY 4.0 (Open-Meteo); contains modified Copernicus Climate Change Service information
+    retrieved: 2026-11-03
+  - id: osrm
+    title: "OSRM: road routes on OpenStreetMap data (router.project-osrm.org)"
+    url: https://project-osrm.org/
+    licence: Route data © OpenStreetMap contributors (ODbL)
+    retrieved: 2026-11-03

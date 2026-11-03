@@ -311,6 +311,16 @@
   crossing (`maxBridgeM`, and `maxBridges` where small unconnected bits of OSM
   near the track use up the default six first); the record's notes name the
   ferries. A leg between stages that isn't walked stays a transfer.
+- **A lift within a stage (2026-11-03, the Adlerweg):** where the operator's
+  stage rides a cable car or funicular (the Adlerweg's Rofanseilbahn down to
+  Maurach, the Nordkettenbahnen into Innsbruck, the Grubigsteinbahn up from
+  Lermoos), the ride is a transfer with the `stage` it lies in: the stage keeps
+  its number and stated figures (which leave the ride out), its map line is the
+  walked pieces on either side, matched on their own, and the ride is drawn in
+  the ink style of a ride (a thin line with ties, "By cable car" in the key)
+  and named in the note under the stages table; in no figure. Of three ways
+  (a transfer, cutting the stages at the lift stations, a walked variant
+  alongside), decided: a transfer, so the stages stay the operator's.
 - **Colour palette (2026-11-01):** the site's base colours turned from
   terracotta on cream to olive moss (accent #5a7526, #b4cb76 in dark mode) on
   a slightly greener cream, to look more outdoors while keeping the warm, calm

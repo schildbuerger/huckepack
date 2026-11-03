@@ -176,7 +176,10 @@ const trail = z
     // `timesSource`: when the stage times come from another source than the rest of the stage
     // figures (e.g. the stage source publishes none); the page names it under the table
     // `transfers`: legs that aren't walked (the W Trek's catamaran over Lago Pehoé), after the
-    // stages: drawn on the map through `via` (OSM's ferry way), never in the totals or charts
+    // stages: drawn on the map through `via` (OSM's ferry way), never in the totals or charts. With
+    // `stage`, a ride inside that main stage (the Adlerweg's cable cars, decided 2026-11-03): its
+    // official track runs along the lift, which pipeline/routes.py cuts out, so the stage's map line
+    // is the walked pieces on either side; the stated figures stay the source's
     stages: z
       .object({
         source: sourceRef,
@@ -185,7 +188,8 @@ const trail = z
         transfers: z
           .array(
             z.object({
-              by: z.enum(["boat", "bus", "train"]),
+              by: z.enum(["boat", "bus", "train", "cable car", "funicular"]),
+              stage: z.string().optional(), // the main stage the ride lies in
               start: point, // named: "Paine Grande"
               end: point,
               via: z.array(z.object({ lat: z.number(), lon: z.number() })).default([]),

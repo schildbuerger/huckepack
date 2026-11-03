@@ -116,7 +116,8 @@ def route_samples(slug):
     for f in stages:
         line = f["geometry"]["coordinates"]
         xy = [proj.xy(*c) for c in line]
-        starts.append({"number": f["properties"]["number"], "km": round(walked / 1000, 2)})
+        if "part" not in f["properties"]:  # a stage's later parts (after a ride) don't start it
+            starts.append({"number": f["properties"]["number"], "km": round(walked / 1000, 2)})
         next_at = math.ceil(walked / spacing) * spacing
         for (a, b), (la, lb) in zip(zip(xy, xy[1:]), zip(line, line[1:])):
             seg = math.dist(a, b)

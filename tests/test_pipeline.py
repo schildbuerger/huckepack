@@ -93,6 +93,22 @@ class Lines(unittest.TestCase):
         first, second = routes.split_at(self.line, stages)
         self.assertEqual((first[0], first[-1], second[-1]), (self.line[0], self.line[3], self.line[10]))
 
+    def test_walked_pieces_leave_out_the_rides(self):
+        def ride(a, b):
+            return {"start": {"name": "a", "lon": a, "lat": LAT}, "end": {"name": "b", "lon": b, "lat": LAT}}
+
+        # a ride in the middle: the walk before it and after it
+        before, after = routes.walked_pieces(self.line, [ride(8.003, 8.006)])
+        self.assertEqual((before[0], before[-1], after[0], after[-1]), (self.line[0], self.line[3], self.line[6], self.line[10]))
+        # a ride from the start and one to the end (the Adlerweg's stages 8 and 12): one walk between
+        (walk,) = routes.walked_pieces(self.line, [ride(8.0, 8.002), ride(8.008, 8.01)])
+        self.assertEqual((walk[0], walk[-1]), (self.line[2], self.line[8]))
+
+    def test_rides_out_of_order_are_an_error(self):
+        ride = {"start": {"name": "a", "lon": 8.006, "lat": LAT}, "end": {"name": "b", "lon": 8.003, "lat": LAT}}
+        with self.assertRaises(ValueError):
+            routes.walked_pieces(self.line, [ride])
+
     def test_simplify_keeps_ends_and_drops_straight_points(self):
         out = routes.simplify(self.line, 10)
         self.assertEqual((out[0], out[-1]), (self.line[0], self.line[-1]))

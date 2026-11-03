@@ -839,6 +839,19 @@ export const SKYLINES: Record<string, Skyline> = {
       { d: range([[0, G], [0, 270], [1600, 268], [1600, G]]), c: "#7f9a4a" },
     ],
   },
+  "adlerweg": {
+    view: "The Wilder Kaiser from the alpine meadows on its south side, where the Adlerweg begins: the jagged limestone wall of the Ellmauer Halt and its neighbours above forest and pasture",
+    ridge: FOREST,
+    ground: MEADOW,
+    shapes: [
+      // the limestone wall, pale grey, its towers and notches
+      { d: range([[80, G], [160, 250], [230, 196], [270, 168], [300, 150], [318, 158], [340, 132], [362, 146], [390, 124], [412, 138], [440, 112], [462, 96], [480, 108], [506, 102], [530, 126], [556, 118], [584, 140], [612, 128], [640, 150], [676, 138], [712, 160], [760, 150], [800, 172], [860, 166], [920, 190], [1000, 214], [1100, 238], [1200, 262], [1320, 288], [1440, G]]), c: "#b3b2ab" },
+      // scree below the wall
+      { d: hills([[180, G], [260, 262], [380, 236], [500, 230], [620, 238], [760, 252], [900, 270], [1040, 290], [1180, G]]), c: "#cfcbbd" },
+      // the forest at its foot
+      { d: hills([[0, G], [120, 266], [260, 282], [420, 272], [600, 286], [780, 278], [960, 290], [1140, 280], [1320, 270], [1480, 282], [1600, 276], [1600, G]]), c: FOREST },
+    ],
+  },
   "pfaelzer-weinsteig": {
     view: "The Haardt edge of the Palatinate Forest: the wooded ridge up to the Kalmit with its stone tower, the Trifels on its sandstone rock, the Hambacher Schloss on its hill and vineyards below",
     ridge: "#4f6a33",

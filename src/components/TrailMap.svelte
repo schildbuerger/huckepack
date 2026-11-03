@@ -43,7 +43,7 @@
     end: Point;
     routeAttribution: string | null;
     detours?: ("foot" | "train" | "bus")[]; // how the route's detours go, for the legend
-    transfers?: ("boat" | "bus" | "train")[]; // the legs that aren't walked (stages.transfers), for the legend
+    transfers?: ("boat" | "bus" | "train" | "cable car" | "funicular")[]; // the legs that aren't walked (stages.transfers), for the legend
     stages?: number; // the number of main stages, for the legend's stage keys
     others?: ("approach" | "variant")[]; // the other kinds of stage on the map, so the legend lists only those
     placesUrl?: string | null; // the trail's places (src/pages/places/[slug].json.ts), loaded when a layer is switched on
@@ -343,7 +343,8 @@
             paint: { "line-color": accent, "line-width": 4 },
           });
           // a closed stage's detour: on foot a dotted line in the trail's colour, by train or bus
-          // a thin ink line with ties across, like a railway on a printed map
+          // a thin ink line with ties across, like a railway on a printed map; a ride that isn't
+          // walked (a transfer other than a boat: the Adlerweg's cable cars) the same way
           map.addLayer({
             id: "detour-foot",
             type: "line",
@@ -356,7 +357,7 @@
             id: "detour-ride",
             type: "line",
             source: "route",
-            filter: ["all", ["==", ["get", "kind"], "detour"], ["!=", ["get", "by"], "foot"]],
+            filter: ["any", ["all", ["==", ["get", "kind"], "detour"], ["!=", ["get", "by"], "foot"]], ["all", ["==", ["get", "kind"], "transfer"], ["!=", ["get", "by"], "boat"]]],
             layout: { "line-join": "round" },
             paint: { "line-color": ink, "line-width": 2 },
           });
@@ -364,7 +365,7 @@
             id: "detour-ride-ties",
             type: "line",
             source: "route",
-            filter: ["all", ["==", ["get", "kind"], "detour"], ["!=", ["get", "by"], "foot"]],
+            filter: ["any", ["all", ["==", ["get", "kind"], "detour"], ["!=", ["get", "by"], "foot"]], ["all", ["==", ["get", "kind"], "transfer"], ["!=", ["get", "by"], "boat"]]],
             paint: { "line-color": ink, "line-width": 7, "line-dasharray": [0.3, 2.2] },
           });
           // a leg that isn't walked (the W Trek's catamaran): by boat a short-dashed water-blue line
@@ -374,7 +375,7 @@
             id: "transfer-casing",
             type: "line",
             source: "route",
-            filter: ["==", ["get", "kind"], "transfer"],
+            filter: ["all", ["==", ["get", "kind"], "transfer"], ["==", ["get", "by"], "boat"]],
             layout: { "line-join": "round", "line-cap": "round" },
             paint: { "line-color": paper, "line-width": 6, "line-opacity": 0.9 },
           });
@@ -382,7 +383,7 @@
             id: "transfer",
             type: "line",
             source: "route",
-            filter: ["==", ["get", "kind"], "transfer"],
+            filter: ["all", ["==", ["get", "kind"], "transfer"], ["==", ["get", "by"], "boat"]],
             layout: { "line-join": "round" },
             paint: { "line-color": waterBlue, "line-width": 3, "line-dasharray": [1.2, 1.2] },
           });
@@ -392,7 +393,8 @@
         // a numbered stop where each main stage starts, numbered as in the stages table (the first, the
         // trailhead, filled dark and larger), and a flag at the finish. Without a map line, the termini
         // as dots.
-        const main = (route?.features ?? []).filter((f: any) => f.properties.kind === "main");
+        // a stage in parts (rides between them) starts at its first part
+        const main = (route?.features ?? []).filter((f: any) => f.properties.kind === "main" && !f.properties.part);
         if (main.length) {
           const pt = (coordinates: number[], properties: object) => ({ type: "Feature", properties, geometry: { type: "Point", coordinates } });
           const fc = (features: object[]) => ({ type: "FeatureCollection", features });
@@ -419,7 +421,7 @@
             type: "geojson",
             data: fc(main.map((f: any, i: number) => pt(f.geometry.coordinates[0], { number: f.properties.number, first: i === 0 }))),
           } as any);
-          map.addSource("finish", { type: "geojson", data: fc([pt(main.at(-1).geometry.coordinates.at(-1), {})]) } as any);
+          map.addSource("finish", { type: "geojson", data: fc([pt((route?.features ?? []).filter((f: any) => f.properties.kind === "main").at(-1).geometry.coordinates.at(-1), {})]) } as any);
           map.addLayer({
             id: "stage-stops",
             type: "circle",
@@ -539,7 +541,8 @@
   {#if detours.includes("foot")}<li><span class="key foot"></span> Detour on foot</li>{/if}
   {#if detours.some((d) => d !== "foot")}<li><span class="key ride"></span> Detour by {detours.includes("bus") ? (detours.includes("train") ? "train or bus" : "bus") : "train"}</li>{/if}
 
-  {#if transfers.length}<li><span class="key transfer"></span> By {transfers.join(" or ")}</li>{/if}
+  {#if transfers.includes("boat")}<li><span class="key transfer"></span> By boat</li>{/if}
+  {#if transfers.some((t) => t !== "boat")}<li><span class="key ride"></span> By {transfers.filter((t) => t !== "boat").join(" or ")}</li>{/if}
   {#if routeUrl && stages > 0}
     <!-- the map's markers (issue #153): the start as stop 1, the other stage starts, the finish's flag -->
     <li><span class="key stop first" aria-hidden="true">1</span> Start</li>
@@ -648,6 +651,12 @@
     stroke: var(--water);
     stroke-width: 3;
     stroke-dasharray: 3 3;
+    vector-effect: non-scaling-stroke;
+  }
+  .map :global(.route-preview .rp-ride) {
+    fill: none;
+    stroke: var(--text);
+    stroke-width: 2;
     vector-effect: non-scaling-stroke;
   }
   .map :global(.route-preview .rp-start),

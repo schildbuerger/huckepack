@@ -1,0 +1,302 @@
+{
+  "climate-high.json": {
+    "retrieved": "2026-11-03T18:03:39+00:00",
+    "url": "https://openmeteo.s3.us-west-2.amazonaws.com/data/copernicus_era5_land+copernicus_era5?latitude=47.0&longitude=12.4&elevation=3050"
+  },
+  "climate-low.json": {
+    "retrieved": "2026-11-03T18:00:15+00:00",
+    "url": "https://openmeteo.s3.us-west-2.amazonaws.com/data/copernicus_era5_land+copernicus_era5?latitude=47.6&longitude=12.2&elevation=480"
+  },
+  "elevation-glo30.json": {
+    "retrieved": "2026-11-03T19:27:35+00:00",
+    "url": "https://copernicus-dem-30m.s3.eu-central-1.amazonaws.com/Copernicus_DSM_COG_10_N47_00_E010_00_DEM/Copernicus_DSM_COG_10_N47_00_E010_00_DEM.tif https://copernicus-dem-30m.s3.eu-central-1.amazonaws.com/Copernicus_DSM_COG_10_N47_00_E011_00_DEM/Copernicus_DSM_COG_10_N47_00_E011_00_DEM.tif https://copernicus-dem-30m.s3.eu-central-1.amazonaws.com/Copernicus_DSM_COG_10_N47_00_E012_00_DEM/Copernicus_DSM_COG_10_N47_00_E012_00_DEM.tif"
+  },
+  "landcover.json": {
+    "retrieved": "2026-11-03T19:27:53+00:00",
+    "url": "https://esa-worldcover.s3.eu-central-1.amazonaws.com/v200/2021/map/ESA_WorldCover_10m_2021_v200_\u2026_Map.tif"
+  },
+  "osm-stage-1-main.json": {
+    "retrieved": "2026-11-02T21:21:26Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-10-main.json": {
+    "retrieved": "2026-11-02T21:21:26Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-11-main.json": {
+    "retrieved": "2026-11-02T21:21:26Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-12-main.json": {
+    "retrieved": "2026-11-02T21:21:26Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-13-main.json": {
+    "retrieved": "2026-11-02T21:21:26Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-14-main.json": {
+    "retrieved": "2026-11-02T21:21:26Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-15-main.json": {
+    "retrieved": "2026-11-02T21:21:26Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-16-main.json": {
+    "retrieved": "2026-11-02T21:21:26Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-17-main.json": {
+    "retrieved": "2026-11-02T21:21:26Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-18-main.json": {
+    "retrieved": "2026-11-02T21:21:26Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-19-main.json": {
+    "retrieved": "2026-11-02T21:21:26Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-2-main.json": {
+    "retrieved": "2026-11-02T21:21:26Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-20-main.json": {
+    "retrieved": "2026-11-02T21:21:26Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-21-main.json": {
+    "retrieved": "2026-11-02T21:21:26Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-22-main.json": {
+    "retrieved": "2026-11-02T21:21:26Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-23-main.json": {
+    "retrieved": "2026-11-02T21:21:26Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-24-main.json": {
+    "retrieved": "2026-11-02T21:21:26Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-25-main.json": {
+    "retrieved": "2026-11-02T21:21:26Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-26-main.json": {
+    "retrieved": "2026-11-02T21:21:26Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-27-main.json": {
+    "retrieved": "2026-11-02T21:21:26Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-28-main.json": {
+    "retrieved": "2026-11-02T21:21:26Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-29-main.json": {
+    "retrieved": "2026-11-02T21:21:26Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-3-main.json": {
+    "retrieved": "2026-11-02T21:21:26Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-30-main.json": {
+    "retrieved": "2026-11-02T21:21:26Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-31-main.json": {
+    "retrieved": "2026-11-02T21:21:26Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-32-main.json": {
+    "retrieved": "2026-11-02T21:21:26Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-33-main.json": {
+    "retrieved": "2026-11-02T21:21:26Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-4-main.json": {
+    "retrieved": "2026-11-02T21:21:26Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-5-main.json": {
+    "retrieved": "2026-11-02T21:21:26Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-6-main.json": {
+    "retrieved": "2026-11-02T21:21:26Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-7-main.json": {
+    "retrieved": "2026-11-02T21:21:26Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-8-main.json": {
+    "retrieved": "2026-11-02T21:21:26Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-9-main.json": {
+    "retrieved": "2026-11-02T21:21:26Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-water.json": {
+    "retrieved": "2026-11-02T21:21:26Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-way-tags.json": {
+    "retrieved": "2026-11-02T21:21:26Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osrm-access-innsbruck-airport-inn.json": {
+    "retrieved": "2026-11-03T18:03:40+00:00",
+    "url": "https://router.project-osrm.org/route/v1/driving/11.34187,47.25973;12.43079,47.51982?overview=false"
+  },
+  "osrm-access-innsbruck-hauptbahnhof.json": {
+    "retrieved": "2026-11-03T18:03:39+00:00",
+    "url": "https://router.project-osrm.org/route/v1/driving/11.40109,47.26319;12.43079,47.51982?overview=false"
+  },
+  "osrm-access-munich-airport-muc.json": {
+    "retrieved": "2026-11-03T18:03:40+00:00",
+    "url": "https://router.project-osrm.org/route/v1/driving/11.77859,48.35396;12.43079,47.51982?overview=false"
+  },
+  "stage-1-main.gpx": {
+    "retrieved": "2026-11-03T17:43:14+00:00",
+    "url": "https://tirol.mapservices.eu/nefos_app/api/gpx/imx_xR7kIE5LaSrqNTM6/de/generate/2964018"
+  },
+  "stage-10-main.gpx": {
+    "retrieved": "2026-11-03T17:43:26+00:00",
+    "url": "https://tirol.mapservices.eu/nefos_app/api/gpx/imx_xR7kIE5LaSrqNTM6/de/generate/3151917"
+  },
+  "stage-11-main.gpx": {
+    "retrieved": "2026-11-03T17:43:37+00:00",
+    "url": "https://tirol.mapservices.eu/nefos_app/api/gpx/imx_xR7kIE5LaSrqNTM6/de/generate/3154586"
+  },
+  "stage-12-main.gpx": {
+    "retrieved": "2026-11-03T17:43:47+00:00",
+    "url": "https://tirol.mapservices.eu/nefos_app/api/gpx/imx_xR7kIE5LaSrqNTM6/de/generate/3156711"
+  },
+  "stage-13-main.gpx": {
+    "retrieved": "2026-11-03T17:43:47+00:00",
+    "url": "https://tirol.mapservices.eu/nefos_app/api/gpx/imx_xR7kIE5LaSrqNTM6/de/generate/3158825"
+  },
+  "stage-14-main.gpx": {
+    "retrieved": "2026-11-03T17:43:47+00:00",
+    "url": "https://tirol.mapservices.eu/nefos_app/api/gpx/imx_xR7kIE5LaSrqNTM6/de/generate/3160772"
+  },
+  "stage-15-main.gpx": {
+    "retrieved": "2026-11-03T17:43:47+00:00",
+    "url": "https://tirol.mapservices.eu/nefos_app/api/gpx/imx_xR7kIE5LaSrqNTM6/de/generate/3163135"
+  },
+  "stage-16-main.gpx": {
+    "retrieved": "2026-11-03T17:43:48+00:00",
+    "url": "https://tirol.mapservices.eu/nefos_app/api/gpx/imx_xR7kIE5LaSrqNTM6/de/generate/3164524"
+  },
+  "stage-17-main.gpx": {
+    "retrieved": "2026-11-03T17:43:58+00:00",
+    "url": "https://tirol.mapservices.eu/nefos_app/api/gpx/imx_xR7kIE5LaSrqNTM6/de/generate/3164602"
+  },
+  "stage-18-main.gpx": {
+    "retrieved": "2026-11-03T17:43:58+00:00",
+    "url": "https://tirol.mapservices.eu/nefos_app/api/gpx/imx_xR7kIE5LaSrqNTM6/de/generate/3164608"
+  },
+  "stage-19-main.gpx": {
+    "retrieved": "2026-11-03T17:43:59+00:00",
+    "url": "https://tirol.mapservices.eu/nefos_app/api/gpx/imx_xR7kIE5LaSrqNTM6/de/generate/3164617"
+  },
+  "stage-2-main.gpx": {
+    "retrieved": "2026-11-03T17:43:14+00:00",
+    "url": "https://tirol.mapservices.eu/nefos_app/api/gpx/imx_xR7kIE5LaSrqNTM6/de/generate/2964070"
+  },
+  "stage-20-main.gpx": {
+    "retrieved": "2026-11-03T17:43:59+00:00",
+    "url": "https://tirol.mapservices.eu/nefos_app/api/gpx/imx_xR7kIE5LaSrqNTM6/de/generate/3164685"
+  },
+  "stage-21-main.gpx": {
+    "retrieved": "2026-11-03T17:44:09+00:00",
+    "url": "https://tirol.mapservices.eu/nefos_app/api/gpx/imx_xR7kIE5LaSrqNTM6/de/generate/3164691"
+  },
+  "stage-22-main.gpx": {
+    "retrieved": "2026-11-03T17:44:09+00:00",
+    "url": "https://tirol.mapservices.eu/nefos_app/api/gpx/imx_xR7kIE5LaSrqNTM6/de/generate/3164713"
+  },
+  "stage-23-main.gpx": {
+    "retrieved": "2026-11-03T17:44:09+00:00",
+    "url": "https://tirol.mapservices.eu/nefos_app/api/gpx/imx_xR7kIE5LaSrqNTM6/de/generate/3164755"
+  },
+  "stage-24-main.gpx": {
+    "retrieved": "2026-11-03T17:44:20+00:00",
+    "url": "https://tirol.mapservices.eu/nefos_app/api/gpx/imx_xR7kIE5LaSrqNTM6/de/generate/3179091"
+  },
+  "stage-25-main.gpx": {
+    "retrieved": "2026-11-03T17:44:20+00:00",
+    "url": "https://tirol.mapservices.eu/nefos_app/api/gpx/imx_xR7kIE5LaSrqNTM6/de/generate/3271867"
+  },
+  "stage-26-main.gpx": {
+    "retrieved": "2026-11-03T17:44:20+00:00",
+    "url": "https://tirol.mapservices.eu/nefos_app/api/gpx/imx_xR7kIE5LaSrqNTM6/de/generate/3271898"
+  },
+  "stage-27-main.gpx": {
+    "retrieved": "2026-11-03T17:44:21+00:00",
+    "url": "https://tirol.mapservices.eu/nefos_app/api/gpx/imx_xR7kIE5LaSrqNTM6/de/generate/3271906"
+  },
+  "stage-28-main.gpx": {
+    "retrieved": "2026-11-03T17:44:21+00:00",
+    "url": "https://tirol.mapservices.eu/nefos_app/api/gpx/imx_xR7kIE5LaSrqNTM6/de/generate/3271912"
+  },
+  "stage-29-main.gpx": {
+    "retrieved": "2026-11-03T17:44:21+00:00",
+    "url": "https://tirol.mapservices.eu/nefos_app/api/gpx/imx_xR7kIE5LaSrqNTM6/de/generate/3271918"
+  },
+  "stage-3-main.gpx": {
+    "retrieved": "2026-11-03T17:43:15+00:00",
+    "url": "https://tirol.mapservices.eu/nefos_app/api/gpx/imx_xR7kIE5LaSrqNTM6/de/generate/2964098"
+  },
+  "stage-30-main.gpx": {
+    "retrieved": "2026-11-03T17:44:22+00:00",
+    "url": "https://tirol.mapservices.eu/nefos_app/api/gpx/imx_xR7kIE5LaSrqNTM6/de/generate/3271929"
+  },
+  "stage-31-main.gpx": {
+    "retrieved": "2026-11-03T17:44:22+00:00",
+    "url": "https://tirol.mapservices.eu/nefos_app/api/gpx/imx_xR7kIE5LaSrqNTM6/de/generate/3271938"
+  },
+  "stage-32-main.gpx": {
+    "retrieved": "2026-11-03T17:44:22+00:00",
+    "url": "https://tirol.mapservices.eu/nefos_app/api/gpx/imx_xR7kIE5LaSrqNTM6/de/generate/3271961"
+  },
+  "stage-33-main.gpx": {
+    "retrieved": "2026-11-03T17:44:22+00:00",
+    "url": "https://tirol.mapservices.eu/nefos_app/api/gpx/imx_xR7kIE5LaSrqNTM6/de/generate/3271978"
+  },
+  "stage-4-main.gpx": {
+    "retrieved": "2026-11-03T17:43:25+00:00",
+    "url": "https://tirol.mapservices.eu/nefos_app/api/gpx/imx_xR7kIE5LaSrqNTM6/de/generate/2964115"
+  },
+  "stage-5-main.gpx": {
+    "retrieved": "2026-11-03T17:43:25+00:00",
+    "url": "https://tirol.mapservices.eu/nefos_app/api/gpx/imx_xR7kIE5LaSrqNTM6/de/generate/2970321"
+  },
+  "stage-6-main.gpx": {
+    "retrieved": "2026-11-03T17:43:25+00:00",
+    "url": "https://tirol.mapservices.eu/nefos_app/api/gpx/imx_xR7kIE5LaSrqNTM6/de/generate/2970331"
+  },
+  "stage-7-main.gpx": {
+    "retrieved": "2026-11-03T17:43:26+00:00",
+    "url": "https://tirol.mapservices.eu/nefos_app/api/gpx/imx_xR7kIE5LaSrqNTM6/de/generate/2970343"
+  },
+  "stage-8-main.gpx": {
+    "retrieved": "2026-11-03T17:43:26+00:00",
+    "url": "https://tirol.mapservices.eu/nefos_app/api/gpx/imx_xR7kIE5LaSrqNTM6/de/generate/3146620"
+  },
+  "stage-9-main.gpx": {
+    "retrieved": "2026-11-03T17:43:26+00:00",
+    "url": "https://tirol.mapservices.eu/nefos_app/api/gpx/imx_xR7kIE5LaSrqNTM6/de/generate/3150009"
+  }
+}

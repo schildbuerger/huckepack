@@ -136,7 +136,8 @@ def build(slug, refresh=False):
         offset[i] = walked
         walked += sum(math.dist(a, b) for a, b in zip(lines[i], lines[i][1:]))
     total_km = walked / 1000
-    ends = [lines[i][-1] for i in main]
+    # where each main stage ends: the last of its parts (a stage in parts has rides between them)
+    ends = [lines[i][-1] for i, k in zip(main, main[1:] + [None]) if k is None or "part" not in stages[k]["properties"]]
 
     cache_path = ROOT / "data" / "raw" / slug / "osm-along.json"
     if refresh or not cache_path.exists():

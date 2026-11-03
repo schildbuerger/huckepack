@@ -48,11 +48,13 @@ export function routePreview(
 
   const main = features.filter((f) => f.properties.kind === "main");
   const others = features.filter((f) => f.properties.kind !== "main" && f.properties.kind !== "transfer");
-  const transfers = features.filter((f) => f.properties.kind === "transfer"); // a boat: water blue, as on the map
+  const transfers = features.filter((f) => f.properties.kind === "transfer" && f.properties.by === "boat"); // water blue, as on the map
+  const rides = features.filter((f) => f.properties.kind === "transfer" && f.properties.by !== "boat"); // a cable car: ink
   const out: string[] = [];
 
   if (others.length) out.push(`<path class="rp-other" d="${others.map((f) => path(f.geometry.coordinates)).join("")}"/>`);
   if (transfers.length) out.push(`<path class="rp-transfer" d="${transfers.map((f) => path(f.geometry.coordinates)).join("")}"/>`);
+  if (rides.length) out.push(`<path class="rp-ride" d="${rides.map((f) => path(f.geometry.coordinates)).join("")}"/>`);
   if (main.length) {
     const d = main.map((f) => path(f.geometry.coordinates)).join("");
     out.push(`<path class="rp-casing" d="${d}"/><path class="rp-main" d="${d}"/>`);

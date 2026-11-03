@@ -232,12 +232,13 @@ LOC_FACTS.forEach((f, i) => {
   } else locCol = 1 - locCol;
 });
 
-// legs that aren't walked (stages.transfers: the W Trek's catamaran): like a closed stage's detour by
-// train, on the map in their own style and named in the note under the stages table, in no figure
+// legs that aren't walked (stages.transfers: the W Trek's catamaran, the Adlerweg's cable cars inside
+// stages): like a closed stage's detour by train, on the map in their own style and named in the note
+// under the stages table, in no figure
 const transfers = t.stages?.transfers ?? [];
 const transferModes = [...new Set(transfers.map((leg) => leg.by))];
 const transferText = (leg: (typeof transfers)[number]) =>
-  ` From ${leg.start.name}, the way on is by ${leg.by} to ${leg.end.name}${leg.minutes ? ` (about ${leg.minutes < 60 ? `${leg.minutes} min` : hours(leg.minutes)})` : ""}, not walked and in no figure (${sourceShort(leg.source)})${routeUrl ? "; the map shows it" : ""}.`;
+  ` ${leg.stage ? `On stage ${leg.stage}, from` : "From"} ${leg.start.name}, the way on is by ${leg.by} to ${leg.end.name}${leg.minutes ? ` (about ${leg.minutes < 60 ? `${leg.minutes} min` : hours(leg.minutes)})` : ""}, not walked and in no figure (${sourceShort(leg.source)})${routeUrl ? "; the map shows it" : ""}.`;
 
 // water in tiers (issue #119, pipeline/along.py water_tiers()): drinking water rates; springs give
 // a second rating "with treatment"; places to sleep within the water reach show as refills, unrated
