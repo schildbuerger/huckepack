@@ -710,6 +710,24 @@ export const SKYLINES: Record<string, Skyline> = {
       { d: range([[0, G], [0, 284], [780, 284], [800, 270], [1600, 272], [1600, G]]), c: "#6f9a4a" },
     ],
   },
+  "hadrians-wall-path": {
+    view: "Hadrian's Wall in the central sector: the Roman wall riding the crags of the Whin Sill above a lough, a milecastle on the ridge, the wide moorland of Northumberland to the north",
+    ridge: "#4f6a3a",
+    ground: "#7f9a4a",
+    shapes: [
+      // the moorland to the north, far off
+      { d: hills([[0, G], [200, 232], [500, 222], [800, 230], [1100, 220], [1400, 228], [1600, 224], [1600, G]]), c: "#9aa69a" },
+      // the Whin Sill: a ridge with a steep north face, rising and falling
+      { d: range([[0, G], [0, 250], [180, 236], [300, 214], [380, 228], [500, 206], [620, 222], [760, 200], [900, 216], [1040, 230], [1200, 212], [1360, 228], [1600, 238], [1600, G]]), c: "#6f8a5a" },
+      // the Wall along the crest
+      { d: "M0,250L180,236L300,214L380,228L500,206L620,222L760,200L900,216L1040,230L1200,212L1360,228L1600,238V230L1360,220L1200,204L1040,222L900,208L760,192L620,214L500,198L380,220L300,206L180,228L0,242Z", c: "#b8ad98" },
+      // a milecastle on the ridge
+      { d: "M736,202V188H784V196Z", c: "#a89a84" },
+      // a lough below the crags
+      { d: water(900, 1300, 262), c: SEA },
+      { d: range([[0, G], [0, 272], [880, 270], [920, 278], [1280, 278], [1320, 270], [1600, 272], [1600, G]]), c: "#7f9a4a" },
+    ],
+  },
   "pfaelzer-weinsteig": {
     view: "The Haardt edge of the Palatinate Forest: the wooded ridge up to the Kalmit with its stone tower, the Trifels on its sandstone rock, the Hambacher Schloss on its hill and vineyards below",
     ridge: "#4f6a33",

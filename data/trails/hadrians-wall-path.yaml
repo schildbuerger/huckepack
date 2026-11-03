@@ -1,0 +1,227 @@
+name: Hadrian's Wall Path
+added: 2026-11-03
+aliases: [Hadrians Wall Path, Hadrian's Wall Path National Trail]
+website: https://www.nationaltrail.co.uk/en_GB/trails/hadrians-wall-path/
+wikidata: Q1567583
+managedBy:
+  # a National Trail (Natural England), with National Trails' route pages and GPX
+  - name: Natural England (National Trail)
+    url: https://www.gov.uk/government/publications/visit-a-national-trail-in-england/hadrians-wall-path-national-trail
+trailType: point-to-point
+continents: [Europe]
+countries: [GB]
+regions: [England]
+protectedAreas:
+  - Northumberland National Park
+termini:
+  # the ends of the National Trail's GPX (a route drawn from Bowness): Segedunum at Wallsend and the
+  # trail's end at Bowness-on-Solway
+  start:
+    name: Wallsend
+    lat: 54.98871
+    lon: -1.531
+  end:
+    name: Bowness-on-Solway
+    lat: 54.95414
+    lon: -3.21165
+  source: nt
+established:
+  # "became the 15th National Trail in 2003" (English Wikipedia)
+  year: 2003
+  source: wikipedia
+waymarking:
+  # "All National Trails are marked with an acorn symbol or the trail name"; a logo, not drawn
+  text: The National Trail acorn, or the trail's name, on gates and signposts
+  source: govuk
+length:
+  # "Length: 84 miles (135km)"; the six sections sum to 136 km
+  - km: 135
+    source: govuk
+days:
+  # "around 6 to 7 days for experienced walkers"
+  min: 6
+  max: 7
+  source: govuk
+stages:
+  # gov.uk's example sections with miles and km, the same six as National Trails' route description.
+  # One official GPX for the whole trail (National Trails), cut at each section's `end` from OSM; it
+  # only guides the OSM matcher (kept local)
+  source: govuk
+  list:
+    - { number: "1", kind: main, from: "Wallsend", to: "Heddon-on-the-Wall", km: 24, track: "https://nationaltrails.s3.eu-west-2.amazonaws.com/uploads/Hadrians_Wall_Path-1.gpx", end: { name: "Heddon-on-the-Wall", lat: 54.99694, lon: -1.79293 } }
+    - { number: "2", kind: main, from: "Heddon-on-the-Wall", to: "Chollerford", km: 25, track: "https://nationaltrails.s3.eu-west-2.amazonaws.com/uploads/Hadrians_Wall_Path-1.gpx", end: { name: "Chollerford", lat: 55.02968, lon: -2.12788 } }
+    - { number: "3", kind: main, from: "Chollerford", to: "Steel Rigg", km: 19, track: "https://nationaltrails.s3.eu-west-2.amazonaws.com/uploads/Hadrians_Wall_Path-1.gpx", end: { name: "Steel Rigg", lat: 55.00241, lon: -2.3899 } }
+    - { number: "4", kind: main, from: "Steel Rigg", to: "Walton", km: 26, track: "https://nationaltrails.s3.eu-west-2.amazonaws.com/uploads/Hadrians_Wall_Path-1.gpx", end: { name: "Walton", lat: 54.97064, lon: -2.75923 } }
+    - { number: "5", kind: main, from: "Walton", to: "Carlisle", km: 18, track: "https://nationaltrails.s3.eu-west-2.amazonaws.com/uploads/Hadrians_Wall_Path-1.gpx", end: { name: "Carlisle", lat: 54.89901, lon: -2.93811 } }
+    - { number: "6", kind: main, from: "Carlisle", to: "Bowness-on-Solway", km: 24, track: "https://nationaltrails.s3.eu-west-2.amazonaws.com/uploads/Hadrians_Wall_Path-1.gpx", end: { name: "Bowness-on-Solway", lat: 54.95414, lon: -3.21165 } }
+route:
+  # built by `python -m pipeline.all hadrians-wall-path`: OSM ways matched to the National Trail's GPX
+  source: osm
+  publishable: true
+difficulty:
+  # no grade is published; our estimate from gov.uk's description
+  estimated:
+    sac: T1
+    basis: >-
+      Mostly a natural grass surface; the section between Chollerford and Birdoswald is "a switchback
+      with lots of short climbs and descents" along the crags of the Whin Sill (at most 345 m),
+      otherwise farmland, riverside paths and city streets with gentle gradients; it can be muddy in
+      wet weather. Hiking on clear paths (T1).
+    source: govuk
+season:
+  # "The trail is open all year. For conservation reasons, it's recommended to visit the trail
+  # between Easter and October"
+  months: [4, 5, 6, 7, 8, 9, 10]
+  text: Easter to October, for the Wall's sake
+  source: govuk
+sleeping:
+  # National Trails' map lists B&Bs, hotels and pubs, self-catering, camping and glamping, hostels
+  # and bunkhouses along the trail
+  types: [guesthouse, hotel, campsite, hostel]
+  source: nt-info
+wildCamping:
+  # "in England and Wales, there are normally no rights for national trail users to wild camp along
+  # the way – so seeking the landowner's permission is recommended"
+  status: prohibited
+  rule: >-
+    England gives no right to wild camp along the Trail: tents only on campsites or with the
+    landowner's permission.
+  source: nt-info
+access:
+  # Newcastle Central, the main station near the start, and Newcastle International Airport.
+  # Coordinates from OSM; distances by pipeline/access.py
+  - kind: station
+    name: Newcastle Central
+    lat: 54.96907
+    lon: -1.61711
+    source: osm
+  - kind: airport
+    name: Newcastle International Airport (NCL)
+    lat: 55.03842
+    lon: -1.6964
+    source: osm
+animals:
+  # Cattle (the Countryside Code, HSE) and ticks (NHS). Levels ours
+  list:
+    - kind: cattle
+      name: "Cattle"
+      level: moderate
+      basis: "The path crosses fields where cattle graze; the Health and Safety Executive names cows with calves and walkers with dogs as the two most common factors in incidents between cattle and the public."
+      do:
+        - "Give livestock plenty of space: their behaviour can be unpredictable, especially when they are with their young"
+        - "Keep your dog on a lead around livestock"
+        - "Let your dog off the lead if you feel threatened by livestock: releasing it makes it easier for you both to reach safety"
+        - "Follow the farmer's directions when animals are being moved or gathered"
+      dont:
+        - "Risk getting hurt protecting your dog"
+        - "Feed livestock"
+      source: countryside-code
+    - kind: tick
+      name: "Ticks (Lyme disease)"
+      level: low
+      basis: "Ticks that can carry Lyme disease live all over the UK, in woods and long grass; the NHS names grassy and wooded areas in southern England and the Scottish Highlands as high-risk areas."
+      do:
+        - "Cover your skin while walking and tuck your trousers into your socks"
+        - "Use insect repellent on your clothes and skin; products containing DEET are best"
+        - "Stay on clear paths whenever possible"
+        - "Wear light-coloured clothing so ticks are easier to see and brush off"
+        - "Remove a tick with fine-tipped tweezers or a tick-removal tool: grasp it as close to the skin as possible, pull slowly upwards, then clean the bite"
+        - "Get an urgent GP appointment or call NHS 111 if, within 3 months of a bite, you feel unwell with flu-like symptoms or a round or oval rash appears"
+      dont:
+        - "Squeeze or crush the tick when you remove it"
+      source: nhs-lyme
+tags: [roman-history, world-heritage, national-park, moorland, national-trail]
+notes:
+  - >-
+    The trail follows Hadrian's Wall, part of the Frontiers of the Roman Empire World Heritage Site,
+    from the Roman fort of Segedunum at Wallsend along the Tyne through Newcastle, over farmland
+    beside the Military Road to Chollerford, along the crags of the Whin Sill past Housesteads to
+    Steel Rigg and Birdoswald, down to Carlisle and along the Eden and the Solway estuary to
+    Bowness-on-Solway. The Pennine Way joins it near Greenhead.
+  - >-
+    Tides: between Dykesfield and Drumburgh and between Port Carlisle and Bowness-on-Solway the trail
+    lies at sea level and can flood at high tide; gov.uk asks walkers to check the tide times.
+    Tree line: none recorded, the trail stays below 345 m.
+  - >-
+    Map line: the National Trail's GPX (2013, a route drawn from Bowness) guides the OSM matcher,
+    cut at the section ends; 137.5 km against the sections' 136 km. Sections 4 and 6 are 94 %
+    matched: near Newtown, west of Walton (stage 4), and along the Eden west of Carlisle near
+    Grinsdale (stage 6), the GPX and OSM's paths part for up to 320 m over about a kilometre; the map
+    follows OSM. Highest point 338 m (terrain model) against Windshield Crags' 345 m.
+  - >-
+    Data check (2026-11-03): gov.uk's and National Trails' figures against English Wikipedia: length
+    84 miles (135 km) against 84 miles, a National Trail since 2003, highest point Whinshields Crags
+    345 m, Wallsend to Bowness-on-Solway: all agree. Wikipedia gives no section figures. No deviation
+    over 10 %.
+dataCheck:
+  # working rule 2: English Wikipedia
+  date: 2026-11-03
+  against: [wikipedia]
+  deviations: []
+sources:
+  - id: govuk
+    title: "Natural England (gov.uk): Hadrian's Wall Path National Trail (length, days, the six sections with miles and km, season, waymarking, tides)"
+    url: https://www.gov.uk/government/publications/visit-a-national-trail-in-england/hadrians-wall-path-national-trail
+    licence: Open Government Licence v3.0
+    retrieved: 2026-11-03
+  - id: nt
+    title: "National Trails: Hadrian's Wall Path route description and the official GPX"
+    url: https://www.nationaltrail.co.uk/en_GB/trails/hadrians-wall-path/route/
+    licence: All rights reserved (facts only)
+    retrieved: 2026-11-03
+  - id: nt-info
+    title: "National Trails: Hadrian's Wall Path trail information (camping, places to stay)"
+    url: https://www.nationaltrail.co.uk/en_GB/trails/hadrians-wall-path/trail-information/
+    licence: All rights reserved (facts only)
+    retrieved: 2026-11-03
+  - id: wikipedia
+    title: "English Wikipedia: Hadrian's Wall Path (designation year; length and highest point for the data check)"
+    url: https://en.wikipedia.org/wiki/Hadrian%27s_Wall_Path
+    licence: CC BY-SA 4.0
+    retrieved: 2026-11-03
+  - id: countryside-code
+    title: "Natural England and Natural Resources Wales: The Countryside Code, advice for countryside visitors (updated 26 May 2023)"
+    url: https://www.gov.uk/government/publications/the-countryside-code/the-countryside-code-advice-for-countryside-visitors
+    licence: Open Government Licence v3.0
+    retrieved: 2026-11-03
+  - id: hse-cattle
+    title: "Health and Safety Executive: Cattle and public access in England and Wales (information sheet)"
+    url: https://www.hse.gov.uk/pubns/ais17ew.pdf
+    licence: © Crown copyright, Open Government Licence (facts only)
+    retrieved: 2026-11-03
+  - id: nhs-lyme
+    title: "NHS: Lyme disease (avoiding tick bites, removing ticks, when to get help)"
+    url: https://www.nhs.uk/conditions/lyme-disease/
+    licence: © NHS, Open Government Licence (facts only)
+    retrieved: 2026-11-03
+  - id: wikimedia
+    title: "Wikimedia: page views of the trail's Wikipedia articles in every language, by people, over twelve months (Wikidata sitelinks, pageview API)"
+    url: https://wikimedia.org/api/rest_v1/
+    licence: CC0 1.0 (pageview data); Wikidata CC0
+    retrieved: 2026-11-03
+    checkOnly: true  # not on the trail page: the page views only rank the home page's popular trails
+  - id: osm
+    title: "OpenStreetMap contributors: paths, water, shops and places to sleep along the trail (Geofabrik extracts), travel hubs"
+    url: https://www.openstreetmap.org/
+    licence: ODbL 1.0
+    retrieved: 2026-11-03
+  - id: copdem
+    title: "Copernicus DEM GLO-30 (30 m terrain model), tiles from AWS Open Data"
+    url: https://registry.opendata.aws/copernicus-dem/
+    licence: "Copernicus WorldDEM-30 licence, free; produced using Copernicus WorldDEM-30 © DLR e.V. 2010-2014 and © Airbus Defence and Space GmbH 2014-2018 provided under COPERNICUS by the European Union and ESA; all rights reserved"
+    retrieved: 2026-11-03
+  - id: worldcover
+    title: "ESA WorldCover 2021: 10 m land cover (via AWS Open Data)"
+    url: https://esa-worldcover.org/
+    licence: "CC BY 4.0; © ESA WorldCover project 2021 / Contains modified Copernicus Sentinel data (2021) processed by ESA WorldCover consortium"
+    retrieved: 2026-11-03
+  - id: era5
+    title: "Open-Meteo open data on AWS: ERA5-Land temperature and ERA5 precipitation, snow and wind, daily 1995–2024 (reanalysis)"
+    url: https://github.com/open-meteo/open-data
+    licence: CC BY 4.0 (Open-Meteo); contains modified Copernicus Climate Change Service information
+    retrieved: 2026-11-03
+  - id: osrm
+    title: "OSRM: road routes on OpenStreetMap data (router.project-osrm.org)"
+    url: https://project-osrm.org/
+    licence: Route data © OpenStreetMap contributors (ODbL)
+    retrieved: 2026-11-03

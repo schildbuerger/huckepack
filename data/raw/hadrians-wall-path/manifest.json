@@ -1,0 +1,66 @@
+{
+  "climate-high.json": {
+    "retrieved": "2026-11-03T15:42:37+00:00",
+    "url": "https://openmeteo.s3.us-west-2.amazonaws.com/data/copernicus_era5_land+copernicus_era5?latitude=55.0&longitude=-2.4&elevation=340"
+  },
+  "climate-low.json": {
+    "retrieved": "2026-11-03T15:39:14+00:00",
+    "url": "https://openmeteo.s3.us-west-2.amazonaws.com/data/copernicus_era5_land+copernicus_era5?latitude=55.0&longitude=-1.6&elevation=0"
+  },
+  "elevation-glo30.json": {
+    "retrieved": "2026-11-03T15:35:40+00:00",
+    "url": "https://copernicus-dem-30m.s3.eu-central-1.amazonaws.com/Copernicus_DSM_COG_10_N54_00_W002_00_DEM/Copernicus_DSM_COG_10_N54_00_W002_00_DEM.tif https://copernicus-dem-30m.s3.eu-central-1.amazonaws.com/Copernicus_DSM_COG_10_N54_00_W003_00_DEM/Copernicus_DSM_COG_10_N54_00_W003_00_DEM.tif https://copernicus-dem-30m.s3.eu-central-1.amazonaws.com/Copernicus_DSM_COG_10_N54_00_W004_00_DEM/Copernicus_DSM_COG_10_N54_00_W004_00_DEM.tif https://copernicus-dem-30m.s3.eu-central-1.amazonaws.com/Copernicus_DSM_COG_10_N55_00_W002_00_DEM/Copernicus_DSM_COG_10_N55_00_W002_00_DEM.tif https://copernicus-dem-30m.s3.eu-central-1.amazonaws.com/Copernicus_DSM_COG_10_N55_00_W003_00_DEM/Copernicus_DSM_COG_10_N55_00_W003_00_DEM.tif"
+  },
+  "landcover.json": {
+    "retrieved": "2026-11-03T15:35:48+00:00",
+    "url": "https://esa-worldcover.s3.eu-central-1.amazonaws.com/v200/2021/map/ESA_WorldCover_10m_2021_v200_\u2026_Map.tif"
+  },
+  "osm-stage-1-main.json": {
+    "retrieved": "2026-11-02T21:21:26Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-2-main.json": {
+    "retrieved": "2026-11-02T21:21:26Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-3-main.json": {
+    "retrieved": "2026-11-02T21:21:26Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-4-main.json": {
+    "retrieved": "2026-11-02T21:21:26Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-5-main.json": {
+    "retrieved": "2026-11-02T21:21:26Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-6-main.json": {
+    "retrieved": "2026-11-02T21:21:26Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-water.json": {
+    "retrieved": "2026-11-02T21:21:26Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-way-tags.json": {
+    "retrieved": "2026-11-02T21:21:26Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osrm-access-newcastle-central.json": {
+    "retrieved": "2026-11-03T15:42:38+00:00",
+    "url": "https://router.project-osrm.org/route/v1/driving/-1.61711,54.96907;-1.531,54.98871?overview=false"
+  },
+  "osrm-access-newcastle-international-airport-ncl.json": {
+    "retrieved": "2026-11-03T15:42:38+00:00",
+    "url": "https://router.project-osrm.org/route/v1/driving/-1.6964,55.03842;-1.531,54.98871?overview=false"
+  },
+  "stage-1-main.gpx": {
+    "retrieved": "2026-11-03T15:33:07+00:00",
+    "url": "https://nationaltrails.s3.eu-west-2.amazonaws.com/uploads/Hadrians_Wall_Path-1.gpx"
+  },
+  "wikimedia.json": {
+    "retrieved": "2026-11-03T15:42:58+00:00",
+    "url": "Q1567583 2025-11..2026-10"
+  }
+}
