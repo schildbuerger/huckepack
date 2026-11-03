@@ -536,4 +536,20 @@ export const SKYLINES: Record<string, Skyline> = {
     ],
     front: [{ d: water(780, 1100, 296), c: LAKE }],
   },
+  "cleveland-way": {
+    view: "The North York Moors and the Yorkshire coast: heather moorland, the cone of Roseberry Topping, a sea cliff with the ruin of Whitby Abbey and the North Sea",
+    ridge: "#4f3f47",
+    ground: "#7f8f5a",
+    shapes: [
+      { d: hills([[0, G], [140, 250], [320, 236], [520, 246], [700, 240], [860, 256], [980, G]]), c: "#9a8a96" },
+      // Roseberry Topping: a cone with a broken, steep western face
+      { d: range([[300, G], [350, 254], [392, 216], [414, 196], [430, 190], [446, 198], [474, 232], [524, 262], [570, G]]), c: "#6f6a5e" },
+      { d: hills([[0, G], [200, 272], [420, 260], [640, 270], [860, 264], [1000, G]]), c: "#7a5f6e" },
+      // the cliff headland at Whitby with the abbey's ruined east end and walls on top
+      { d: range([[900, G], [912, 262], [1000, 252], [1130, 256], [1150, G]]), c: "#8a7a62" },
+      { d: "M1010,254V214H1022V254Z M1030,254V196L1046,176L1062,196V254Z M1070,254V206H1080V254Z M1088,254V228H1112V254Z", c: "#a29b8c" },
+      { d: range([[1380, G], [1400, 270], [1520, 264], [1544, G]]), c: "#6f7f5a" },
+    ],
+    front: [{ d: water(920, 1600, 300), c: SEA }],
+  },
 };

@@ -1,0 +1,231 @@
+name: Cleveland Way
+added: 2026-11-03
+website: https://www.nationaltrail.co.uk/en_GB/trails/cleveland-way/
+wikidata: Q1100806
+managedBy:
+  # a National Trail since 24 May 1969, the second in England and Wales; the National Trail site
+  - name: Natural England and the North York Moors National Park (National Trails)
+    url: https://www.nationaltrail.co.uk/en_GB/trails/cleveland-way/
+trailType: point-to-point
+continents: [Europe]
+countries: [GB]
+regions: [North Yorkshire, Redcar and Cleveland]
+protectedAreas:
+  - North York Moors National Park
+termini:
+  # Helmsley's market square (OSM) and the end where the official GPX ends, at the landward end of
+  # Filey Brigg
+  start:
+    name: Helmsley
+    lat: 54.24617
+    lon: -1.06126
+  end:
+    name: Filey Brigg
+    lat: 54.21853
+    lon: -0.2766
+  source: osm
+established:
+  # "officially opened in 1969 … the second official National Trail" (English Wikipedia)
+  year: 1969
+  source: wikipedia
+waymarking:
+  text: Well signed throughout, with the National Trail acorn
+  source: nt
+length:
+  # "109 mile (175 km)"
+  - km: 175
+    source: nt
+days:
+  min: 9
+  max: 9
+  source: nt
+stages:
+  # the National Trail's nine sections from its route description, one a day for the nine days it
+  # gives. One official GPX for the whole trail (National Trails), cut at each section's `end` from
+  # OSM; it only guides the OSM matcher (kept local). OSM's three relations don't chain on the coast
+  source: nt
+  list:
+    - { number: "1", kind: main, from: "Helmsley", to: "Sutton Bank", km: 16, track: "https://nationaltrails.s3.eu-west-2.amazonaws.com/uploads/Cleveland_Way_Elev.gpx", end: { name: "Sutton Bank", lat: 54.24071, lon: -1.20945 } }
+    - { number: "2", kind: main, from: "Sutton Bank", to: "Osmotherley", km: 18.5, track: "https://nationaltrails.s3.eu-west-2.amazonaws.com/uploads/Cleveland_Way_Elev.gpx", end: { name: "Osmotherley", lat: 54.36849, lon: -1.29937 } }
+    - { number: "3", kind: main, from: "Osmotherley", to: "Clay Bank", km: 18, track: "https://nationaltrails.s3.eu-west-2.amazonaws.com/uploads/Cleveland_Way_Elev.gpx", end: { name: "Clay Bank", lat: 54.42443, lon: -1.11967 } }
+    - { number: "4", kind: main, from: "Clay Bank", to: "Kildale", km: 15, track: "https://nationaltrails.s3.eu-west-2.amazonaws.com/uploads/Cleveland_Way_Elev.gpx", end: { name: "Kildale", lat: 54.47633, lon: -1.06375 } }
+    - { number: "5", kind: main, from: "Kildale", to: "Saltburn", km: 24, track: "https://nationaltrails.s3.eu-west-2.amazonaws.com/uploads/Cleveland_Way_Elev.gpx", end: { name: "Saltburn", lat: 54.58468, lon: -0.97409 } }
+    - { number: "6", kind: main, from: "Saltburn", to: "Sandsend", km: 28, track: "https://nationaltrails.s3.eu-west-2.amazonaws.com/uploads/Cleveland_Way_Elev.gpx", end: { name: "Sandsend", lat: 54.50263, lon: -0.67066 } }
+    - { number: "7", kind: main, from: "Sandsend", to: "Robin Hood's Bay", km: 16.3, track: "https://nationaltrails.s3.eu-west-2.amazonaws.com/uploads/Cleveland_Way_Elev.gpx", end: { name: "Robin Hood's Bay", lat: 54.43322, lon: -0.53447 } }
+    - { number: "8", kind: main, from: "Robin Hood's Bay", to: "Scarborough", km: 19.3, track: "https://nationaltrails.s3.eu-west-2.amazonaws.com/uploads/Cleveland_Way_Elev.gpx", end: { name: "Scalby Mills", lat: 54.30094, lon: -0.41095 } }
+    - { number: "9", kind: main, from: "Scarborough", to: "Filey Brigg", km: 16.7, track: "https://nationaltrails.s3.eu-west-2.amazonaws.com/uploads/Cleveland_Way_Elev.gpx", end: { name: "Filey Brigg", lat: 54.21853, lon: -0.2766 } }
+route:
+  # built by `python -m pipeline.all cleveland-way`: OSM ways matched to the official GPX's pieces
+  source: osm
+  publishable: true
+difficulty:
+  # no grade is published; our estimate from the National Trail's route description
+  estimated:
+    sac: T2
+    basis: >-
+      The National Trail calls the first section "not too strenuous", then follows the Hambleton
+      Hills, the Cleveland Hills' escarpment over open heather moorland with stone-pitched paths
+      against erosion, and the coastal cliff tops from Saltburn to Filey with steep steps into the
+      villages. Mountain hiking on good paths (T2); no exposed passages, but weather on the moor
+      and the cliff edges.
+    source: nt
+season:
+  # "at any time of year"; heather in bloom in late August and early September
+  months: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
+  text: All year; the heather blooms in late August and early September
+  source: nt
+sleeping:
+  # OSM along the route (pipeline/along.py): campsites, hostels, B&Bs and guest houses in the
+  # villages, hotels in the towns
+  types: [campsite, hostel, guesthouse, hotel]
+  source: osm
+wildCamping:
+  # "almost all land in the National Park is privately owned … wild camping is unlawful without
+  # permission from the landowner" (the National Park's Share with care page)
+  status: prohibited
+  rule: >-
+    Almost all land in the North York Moors is privately owned, and wild camping there is unlawful
+    without the landowner's permission; tents on campsites.
+  source: nymnp
+access:
+  # York, the main station of the region; Teesside International and Leeds Bradford airports. No
+  # railway reaches Helmsley. Coordinates from OSM; distances by pipeline/access.py
+  - kind: station
+    name: York
+    lat: 53.9577
+    lon: -1.09373
+    source: osm
+  - kind: airport
+    name: Teesside International Airport (MME)
+    lat: 54.50931
+    lon: -1.42747
+    source: osm
+  - kind: airport
+    name: Leeds Bradford Airport (LBA)
+    lat: 53.8667
+    lon: -1.66014
+    source: osm
+animals:
+  # Cattle (the Countryside Code, HSE) and ticks (NHS). Levels ours
+  list:
+    - kind: cattle
+      name: "Cattle"
+      level: moderate
+      basis: "The Way crosses fields where cattle graze; the Health and Safety Executive names cows with calves and walkers with dogs as the two most common factors in incidents between cattle and the public."
+      do:
+        - "Give livestock plenty of space: their behaviour can be unpredictable, especially when they are with their young"
+        - "Keep your dog on a lead around livestock"
+        - "Let your dog off the lead if you feel threatened by livestock: releasing it makes it easier for you both to reach safety"
+        - "Follow the farmer's directions when animals are being moved or gathered"
+      dont:
+        - "Risk getting hurt protecting your dog"
+        - "Feed livestock"
+      source: countryside-code
+    - kind: tick
+      name: "Ticks (Lyme disease)"
+      level: low
+      basis: "Ticks that can carry Lyme disease live all over the UK, in woods and long grass; the NHS names grassy and wooded areas in southern England and the Scottish Highlands as high-risk areas."
+      do:
+        - "Cover your skin while walking and tuck your trousers into your socks"
+        - "Use insect repellent on your clothes and skin; products containing DEET are best"
+        - "Stay on clear paths whenever possible"
+        - "Wear light-coloured clothing so ticks are easier to see and brush off"
+        - "Remove a tick with fine-tipped tweezers or a tick-removal tool: grasp it as close to the skin as possible, pull slowly upwards, then clean the bite"
+        - "Get an urgent GP appointment or call NHS 111 if, within 3 months of a bite, you feel unwell with flu-like symptoms or a round or oval rash appears"
+      dont:
+        - "Squeeze or crush the tick when you remove it"
+      source: nhs-lyme
+tags: [moorland, coast, cliffs, heather, national-trail]
+notes:
+  - >-
+    The Way climbs from Helmsley past Rievaulx Abbey to the Hambleton Hills escarpment at Sutton
+    Bank, follows the Cleveland Hills over the North York Moors to Kildale and Roseberry Topping,
+    and reaches the coast at Saltburn; from there it follows the cliffs past Staithes, Whitby and
+    Robin Hood's Bay to Scarborough and Filey Brigg.
+  - >-
+    Season: all year (National Trail). Wild camping: not allowed in England without the landowner's
+    permission. Tree line: none recorded, the Way stays below about 460 m.
+  - >-
+    Figures: the nine sections sum to 171.8 km against the stated 175 km (109 miles).
+  - >-
+    Map line: the official GPX's main track (its two spurs left out), every section 98–100 %
+    matched; 166.6 km against the sections' 171.8 km. Section 1 is 12.5 km on the official track
+    against the route description's 10 miles (16 km): the National Trail's own figures differ, the
+    page keeps the description's. Section 8 ends where the Way reaches Scarborough at Scalby Mills
+    (North Bay): 21.1 km against 19.3 km; section 9 runs on through the town to the landward end of
+    Filey Brigg, where the official track ends (17.1 against 16.7 km). No ascent is stated; the page
+    shows the terrain model's estimate (≈).
+  - >-
+    Data check (2026-11-03): the National Trail's sections against English Wikipedia's route table
+    (running miles at each section end): seven within 2 %; Robin Hood's Bay – Scarborough 12 against
+    14.2 miles (18 %) and Scarborough – Filey 10.5 against 12 miles (14 %), recorded in dataCheck; the
+    page keeps the National Trail's figures. Total 109 miles (NT) against 110 (Wikipedia).
+dataCheck:
+  # working rule 2: English Wikipedia's route table
+  date: 2026-11-03
+  against: [wikipedia]
+  deviations:
+    - { figure: "Section 8 length (Robin Hood's Bay – Scarborough)", ours: "19.3 km (12 mi)", theirs: "22.9 km (14.2 mi)", source: wikipedia }
+    - { figure: "Section 9 length (Scarborough – Filey)", ours: "16.7 km (10.5 mi)", theirs: "19.3 km (12 mi)", source: wikipedia }
+sources:
+  - id: nt
+    title: "National Trails: Cleveland Way (overview: length, days, season; route description: the nine sections with distances)"
+    url: https://www.nationaltrail.co.uk/en_GB/trails/cleveland-way/route/
+    licence: All rights reserved (facts only)
+    retrieved: 2026-11-03
+  - id: nymnp
+    title: "North York Moors National Park Authority: Share with care (camping needs the landowner's permission)"
+    url: https://www.northyorkmoors.org.uk/share-with-care
+    licence: All rights reserved (facts only)
+    retrieved: 2026-11-03
+  - id: wikipedia
+    title: "English Wikipedia: Cleveland Way (opening, the route table's running distances; data check)"
+    url: https://en.wikipedia.org/wiki/Cleveland_Way
+    licence: CC BY-SA 4.0
+    retrieved: 2026-11-03
+  - id: countryside-code
+    title: "Natural England and Natural Resources Wales: The Countryside Code, advice for countryside visitors (updated 26 May 2023)"
+    url: https://www.gov.uk/government/publications/the-countryside-code/the-countryside-code-advice-for-countryside-visitors
+    licence: Open Government Licence v3.0
+    retrieved: 2026-11-03
+  - id: hse-cattle
+    title: "Health and Safety Executive: Cattle and public access in England and Wales (information sheet)"
+    url: https://www.hse.gov.uk/pubns/ais17ew.pdf
+    licence: © Crown copyright, Open Government Licence (facts only)
+    retrieved: 2026-11-03
+  - id: nhs-lyme
+    title: "NHS: Lyme disease (avoiding tick bites, removing ticks, when to get help)"
+    url: https://www.nhs.uk/conditions/lyme-disease/
+    licence: © NHS, Open Government Licence (facts only)
+    retrieved: 2026-11-03
+  - id: wikimedia
+    title: "Wikimedia: page views of the trail's Wikipedia articles in every language, by people, over twelve months (Wikidata sitelinks, pageview API)"
+    url: https://wikimedia.org/api/rest_v1/
+    licence: CC0 1.0 (pageview data); Wikidata CC0
+    retrieved: 2026-11-03
+    checkOnly: true  # not on the trail page: the page views only rank the home page's popular trails
+  - id: osm
+    title: "OpenStreetMap contributors: paths, water, shops and places to sleep along the trail (Geofabrik extracts), stage ends, travel hubs"
+    url: https://www.openstreetmap.org/
+    licence: ODbL 1.0
+    retrieved: 2026-11-03
+  - id: copdem
+    title: "Copernicus DEM GLO-30 (30 m terrain model), tiles from AWS Open Data"
+    url: https://registry.opendata.aws/copernicus-dem/
+    licence: "Copernicus WorldDEM-30 licence, free; produced using Copernicus WorldDEM-30 © DLR e.V. 2010-2014 and © Airbus Defence and Space GmbH 2014-2018 provided under COPERNICUS by the European Union and ESA; all rights reserved"
+    retrieved: 2026-11-03
+  - id: worldcover
+    title: "ESA WorldCover 2021: 10 m land cover (via AWS Open Data)"
+    url: https://esa-worldcover.org/
+    licence: "CC BY 4.0; © ESA WorldCover project 2021 / Contains modified Copernicus Sentinel data (2021) processed by ESA WorldCover consortium"
+    retrieved: 2026-11-03
+  - id: era5
+    title: "Open-Meteo open data on AWS: ERA5-Land temperature and ERA5 precipitation, snow and wind, daily 1995–2024 (reanalysis)"
+    url: https://github.com/open-meteo/open-data
+    licence: CC BY 4.0 (Open-Meteo); contains modified Copernicus Climate Change Service information
+    retrieved: 2026-11-03
+  - id: osrm
+    title: "OSRM: road routes on OpenStreetMap data (router.project-osrm.org)"
+    url: https://project-osrm.org/
+    licence: Route data © OpenStreetMap contributors (ODbL)
+    retrieved: 2026-11-03

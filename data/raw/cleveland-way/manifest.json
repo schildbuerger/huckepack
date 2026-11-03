@@ -1,0 +1,94 @@
+{
+  "climate-high.json": {
+    "retrieved": "2026-11-03T06:14:18+00:00",
+    "url": "https://openmeteo.s3.us-west-2.amazonaws.com/data/copernicus_era5_land+copernicus_era5?latitude=54.4&longitude=-1.1&elevation=450"
+  },
+  "climate-low.json": {
+    "retrieved": "2026-11-03T06:10:58+00:00",
+    "url": "https://openmeteo.s3.us-west-2.amazonaws.com/data/copernicus_era5_land+copernicus_era5?latitude=54.5&longitude=-0.6&elevation=0"
+  },
+  "elevation-glo30.json": {
+    "retrieved": "2026-11-03T06:16:23+00:00",
+    "url": "https://copernicus-dem-30m.s3.eu-central-1.amazonaws.com/Copernicus_DSM_COG_10_N54_00_W001_00_DEM/Copernicus_DSM_COG_10_N54_00_W001_00_DEM.tif https://copernicus-dem-30m.s3.eu-central-1.amazonaws.com/Copernicus_DSM_COG_10_N54_00_W002_00_DEM/Copernicus_DSM_COG_10_N54_00_W002_00_DEM.tif"
+  },
+  "landcover.json": {
+    "retrieved": "2026-11-03T06:16:28+00:00",
+    "url": "https://esa-worldcover.s3.eu-central-1.amazonaws.com/v200/2021/map/ESA_WorldCover_10m_2021_v200_\u2026_Map.tif"
+  },
+  "osm-relation-31112.json": {
+    "retrieved": "2026-11-01T21:21:36Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-relation-4087754.json": {
+    "retrieved": "2026-11-01T21:21:36Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-relation-4091304.json": {
+    "retrieved": "2026-11-01T21:21:36Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-1-main.json": {
+    "retrieved": "2026-11-01T21:21:36Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-2-main.json": {
+    "retrieved": "2026-11-01T21:21:36Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-3-main.json": {
+    "retrieved": "2026-11-01T21:21:36Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-4-main.json": {
+    "retrieved": "2026-11-01T21:21:36Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-5-main.json": {
+    "retrieved": "2026-11-01T21:21:36Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-6-main.json": {
+    "retrieved": "2026-11-01T21:21:36Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-7-main.json": {
+    "retrieved": "2026-11-01T21:21:36Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-8-main.json": {
+    "retrieved": "2026-11-01T21:21:36Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-9-main.json": {
+    "retrieved": "2026-11-01T21:21:36Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-water.json": {
+    "retrieved": "2026-11-01T21:21:36Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-way-tags.json": {
+    "retrieved": "2026-11-01T21:21:36Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osrm-access-leeds-bradford-airport-lba.json": {
+    "retrieved": "2026-11-03T06:14:19+00:00",
+    "url": "https://router.project-osrm.org/route/v1/driving/-1.66014,53.8667;-1.06126,54.24617?overview=false"
+  },
+  "osrm-access-teesside-international-airport-mme.json": {
+    "retrieved": "2026-11-03T06:14:18+00:00",
+    "url": "https://router.project-osrm.org/route/v1/driving/-1.42747,54.50931;-1.06126,54.24617?overview=false"
+  },
+  "osrm-access-york.json": {
+    "retrieved": "2026-11-03T06:14:18+00:00",
+    "url": "https://router.project-osrm.org/route/v1/driving/-1.09373,53.9577;-1.06126,54.24617?overview=false"
+  },
+  "stage-1-main.gpx": {
+    "retrieved": "2026-11-03T06:05:46+00:00",
+    "url": "https://nationaltrails.s3.eu-west-2.amazonaws.com/uploads/Cleveland_Way_Elev.gpx"
+  },
+  "wikimedia.json": {
+    "retrieved": "2026-11-03T06:16:33+00:00",
+    "url": "Q1100806 2025-11..2026-10"
+  }
+}
