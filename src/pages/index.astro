@@ -273,8 +273,10 @@ const featuredScript = inlineScript(Astro, `// A random featured trail on each p
     </section>
 
   </div>
-  <!-- each figure twice: the final value for screen readers, and a copy the script below counts up; each
-       a round stamp, turned a little one way or the other (odd, even), like a trail passport's -->
+  <!-- the totals on a band wall to wall in the front ridge's green, so the hero's landscape runs on into
+       it. Each figure twice: the final value for screen readers, and a copy the script below counts up;
+       each a round stamp, turned a little one way or the other (odd, even), like a trail passport's -->
+  <div class="totals-band">
   <dl class="strip totals">
     {[
       ["Trails", totals.trails],
@@ -292,6 +294,7 @@ const featuredScript = inlineScript(Astro, `// A random featured trail on each p
     ))}
   </dl>
   <script is:inline set:html={countScript} />
+  </div>
 
   <!-- the featured trail (2026-11-02; of five previews after public designs, approach D, like a route
        app's): a band wall to wall with soft wave edges, the trail's real route drawn when the band comes into
@@ -964,7 +967,26 @@ const featuredScript = inlineScript(Astro, `// A random featured trail on each p
   .totals {
     justify-items: center;
     gap: 20px 12px;
-    margin-top: 56px;
+  }
+  /* the band under the hero, in the front ridge's colour (#4c6420 by day, #18211a at night, as
+     .hb-ridge.r2), so the ridges run on into it without a seam; fixed colours like the sky's, not the
+     theme's. Stamps in cream: numbers and rings 6.0:1 on the day green, labels 5.2:1; at night 13.7:1
+     and 9.2:1 */
+  .totals-band {
+    --stamp: #f6f3e4;
+    --stamp-label: #dfe6c4;
+    margin: 0 calc(50% - 50vw);
+    padding: 48px 16px 64px;
+    background: #4c6420;
+  }
+  :global(html[data-sky="night"]) .totals-band {
+    --stamp: #ecebdb;
+    --stamp-label: #c3c2b0;
+    background: #18211a;
+  }
+  .totals-band .totals {
+    max-width: 1200px;
+    margin: 0 auto;
   }
   @media (min-width: 720px) {
     .totals {
@@ -1006,7 +1028,7 @@ const featuredScript = inlineScript(Astro, `// A random featured trail on each p
     width: 150px;
     aspect-ratio: 1;
     padding: 22px;
-    border: 3px solid var(--accent-text);
+    border: 3px solid var(--stamp);
     border-radius: 50%;
     text-align: center;
     transform: rotate(-5deg);
@@ -1018,11 +1040,11 @@ const featuredScript = inlineScript(Astro, `// A random featured trail on each p
     content: "";
     position: absolute;
     inset: 6px;
-    border: 1.5px dashed var(--accent-text);
+    border: 1.5px dashed var(--stamp);
     border-radius: 50%;
   }
   .totals dd {
-    color: var(--accent-text);
+    color: var(--stamp);
     font-size: 1.6rem;
   }
   .totals dt {
@@ -1031,7 +1053,7 @@ const featuredScript = inlineScript(Astro, `// A random featured trail on each p
     font-size: 0.8rem;
   }
   .totals dt {
-    color: var(--accent-text);
+    color: var(--stamp-label);
     font-size: 0.66rem;
     font-weight: 700;
     letter-spacing: 0.06em;
