@@ -645,6 +645,27 @@ export const SKYLINES: Record<string, Skyline> = {
       { d: "M1180,276V258Q1180,252 1186,252H1194Q1200,252 1200,258V276Z", c: "#b8ad98" },
     ],
   },
+  "malerweg": {
+    view: "The Elbe Sandstone Mountains as the Romantic painters saw them: the Lilienstein and the Königstein's fortress on their flat-topped table mountains over the Elbe, the Schrammsteine's jagged towers, and the Bastei's stone bridge among sandstone pillars in the woods",
+    ridge: "#4f6a33",
+    ground: "#6f8a3a",
+    shapes: [
+      // the Lilienstein and the Königstein: table mountains with sheer sandstone sides
+      { d: range([[120, G], [150, 250], [170, 206], [182, 196], [300, 196], [314, 208], [336, 252], [370, G]]), c: "#9aa69a" },
+      { d: range([[880, G], [910, 250], [926, 214], [938, 206], [1060, 206], [1072, 216], [1090, 252], [1120, G]]), c: "#9aa69a" },
+      // the fortress walls along the Königstein's top
+      { d: "M944,206V194H984V188H1000V194H1054V206Z", c: "#c9b89a" },
+      // the Schrammsteine: a ridge of jagged sandstone towers
+      { d: range([[1240, G], [1270, 236], [1284, 216], [1292, 228], [1306, 204], [1318, 222], [1330, 210], [1346, 226], [1362, 214], [1380, 240], [1420, G]]), c: "#a89a84" },
+      // wooded slopes down to the Elbe
+      { d: hills([[0, G], [140, 256], [420, 246], [700, 258], [980, 248], [1240, 254], [1600, 246], [1600, G]]), c: FOREST },
+      { d: water(380, 900, 272), c: SEA },
+      // the Bastei: sandstone pillars joined by the arched stone bridge
+      { d: "M500,272V214Q500,206 508,206H520Q528,206 528,214V272Z M560,272V198Q560,190 568,190H580Q588,190 588,198V272Z M620,272V222Q620,214 628,214H638Q646,214 646,222V272Z", c: "#b7a68a" },
+      { d: "M524,214H564V226Q544,214 528,226Z M584,206H624V218Q604,206 588,218Z", c: "#8a7a62" },
+      { d: range([[0, G], [0, 278], [380, 276], [420, 284], [860, 284], [900, 276], [1600, 278], [1600, G]]), c: "#7f9a4a" },
+    ],
+  },
   "pfaelzer-weinsteig": {
     view: "The Haardt edge of the Palatinate Forest: the wooded ridge up to the Kalmit with its stone tower, the Trifels on its sandstone rock, the Hambacher Schloss on its hill and vineyards below",
     ridge: "#4f6a33",

@@ -1,0 +1,233 @@
+name: Malerweg
+added: 2026-11-03
+aliases: [Painters' Way, Malerweg Elbsandsteingebirge, Painters' Way Elbe Sandstone Mountains]
+website: https://www.saechsische-schweiz.de/malerweg
+wikidata: Q1411459
+managedBy:
+  # the Tourismusverband Sächsische Schweiz publishes the route, its eight stages with their GPX
+  # files, and takes reports of faults on the path (malerweg@saechsische-schweiz.de)
+  - name: Tourismusverband Sächsische Schweiz e.V.
+    url: https://www.saechsische-schweiz.de/malerweg
+trailType: loop
+continents: [Europe]
+countries: [DE]
+regions: [Saxony]
+protectedAreas:
+  - Saxon Switzerland National Park
+termini:
+  # the first point of the official stage 1 GPX at the bus turning point in Pirna-Liebethal and the
+  # last of stage 8's at Pirna's market square, about 3 km apart
+  start:
+    name: Pirna-Liebethal
+    lat: 50.99664
+    lon: 13.95902
+  end:
+    name: Pirna
+    lat: 50.96237
+    lon: 13.94236
+  source: tvss
+established:
+  # "Im Jahr 2006 wurde der Malerweg durch die Sächsische Schweiz eröffnet und im Gelände markiert"
+  year: 2006
+  source: tvss-plan
+waymarking:
+  # "Das geschwungene schwarze M auf weißem Grund"; a logo-like letter, not drawn
+  text: A curved black M on white, with signposts giving walking times
+  source: tvss-plan
+length:
+  # "Auf 116 Kilometern" (the planning page); the all-stages tour gives 115.66 km
+  - km: 116
+    source: tvss-plan
+days:
+  # "Acht Tagesetappen: Das ist die offizielle Empfehlung"
+  min: 8
+  max: 8
+  source: tvss-plan
+stages:
+  # the eight official stage pages (length, climbs, time), each with its GPX file, which only guides
+  # the OSM matcher (kept local)
+  source: tvss
+  list:
+    - { number: "1", kind: main, from: Pirna-Liebethal, to: Stadt Wehlen, km: 11.55, ascentM: 110, descentM: 141, minutes: 210, track: "https://www.saechsische-schweiz.de?ndsajax=destination-data-proxy&template=gpx&limit=1&mkt=de&q=globalid%3At_100262876&elevations=true&times=true&no_cache=1" }
+    - { number: "2", kind: main, from: Stadt Wehlen, to: Hohnstein, km: 10.91, ascentM: 499, descentM: 345, minutes: 285, track: "https://www.saechsische-schweiz.de?ndsajax=destination-data-proxy&template=gpx&limit=1&mkt=de&q=globalid%3At_100262877&elevations=true&times=true&no_cache=1" }
+    - { number: "3", kind: main, from: Hohnstein, to: Altendorf, km: 13.96, ascentM: 449, descentM: 440, minutes: 330, track: "https://www.saechsische-schweiz.de?ndsajax=destination-data-proxy&template=gpx&limit=1&mkt=de&q=globalid%3At_100262878&elevations=true&times=true&no_cache=1" }
+    - { number: "4", kind: main, from: Altendorf, to: Neumannmühle, km: 18.35, ascentM: 553, descentM: 662, minutes: 435, track: "https://www.saechsische-schweiz.de?ndsajax=destination-data-proxy&template=gpx&limit=1&mkt=de&q=globalid%3At_100262879&elevations=true&times=true&no_cache=1" }
+    - { number: "5", kind: main, from: Neumannmühle, to: Schmilka, km: 13.65, ascentM: 587, descentM: 676, minutes: 420, track: "https://www.saechsische-schweiz.de?ndsajax=destination-data-proxy&template=gpx&limit=1&mkt=de&q=globalid%3At_100262880&elevations=true&times=true&no_cache=1" }
+    - { number: "6", kind: main, from: Schmilka, to: Kurort Gohrisch, km: 18, ascentM: 667, descentM: 448, minutes: 420, track: "https://www.saechsische-schweiz.de?ndsajax=destination-data-proxy&template=gpx&limit=1&mkt=de&q=globalid%3At_100262881&elevations=true&times=true&no_cache=1", maxBridgeM: 400, maxBridges: 12 }
+    - { number: "7", kind: main, from: Kurort Gohrisch, to: Weißig, km: 16.58, ascentM: 568, descentM: 639, minutes: 375, track: "https://www.saechsische-schweiz.de?ndsajax=destination-data-proxy&template=gpx&limit=1&mkt=de&q=globalid%3At_100262882&elevations=true&times=true&no_cache=1" }
+    - { number: "8", kind: main, from: Weißig, to: Pirna Markt, km: 13.77, ascentM: 256, descentM: 360, minutes: 300, track: "https://www.saechsische-schweiz.de?ndsajax=destination-data-proxy&template=gpx&limit=1&mkt=de&q=globalid%3At_100262883&elevations=true&times=true&no_cache=1" }
+route:
+  # built by `python -m pipeline.all malerweg`: OSM ways matched to the official GPX
+  source: osm
+  publishable: true
+difficulty:
+  # "Schwierigkeitsgrad: leicht bis schwer, Trittsicherheit erforderlich"; no SAC grade. Our
+  # estimate
+  estimated:
+    sac: T2
+    basis: >-
+      The Tourismusverband rates the stages easy to difficult and asks for sure-footedness: narrow
+      paths through gorges, past sandstone towers and over viewpoints, with many steps, ladders and
+      iron rungs on the climbs, and some stretches that are very narrow or fall away steeply. Mountain
+      hiking with steep steps and short exposed bits (T2).
+    source: tvss-plan
+season:
+  # "Das Elbsandsteingebirge und sein schönster Wanderweg bezaubern zu jeder Jahreszeit … und auch
+  # fast immer begehbar"
+  months: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
+  text: Any season
+  source: tvss-plan
+sleeping:
+  # hotels, guesthouses and holiday flats (the Tourismusverband's booking service), and the
+  # campsites it names near each stage end
+  types: [hotel, guesthouse, campsite]
+  source: tvss-faq
+wildCamping:
+  # the Saxon environment ministry, 18 December 2025: in the national park, sleeping out is allowed
+  # only at the 58 approved, marked places, only with climbing, and not from 1 February to 15 June
+  status: restricted
+  rule: >-
+    In the national park, sleeping out is allowed only for climbers at the 58 approved and marked
+    places (Boofen), and not from 1 February to 15 June; hikers use the campsites the Tourismusverband
+    names near each stage.
+  source: smul-boofen
+access:
+  # the nearest major travel hubs: main railway station and international airports (OSM);
+  # distances by pipeline/access.py
+  - kind: station
+    name: Dresden Hauptbahnhof
+    lat: 51.04025
+    lon: 13.73208
+    source: osm
+  - kind: airport
+    name: Dresden Airport (DRS)
+    lat: 51.13429
+    lon: 13.76929
+    source: osm
+  - kind: airport
+    name: Prague Airport (PRG)
+    lat: 50.10257
+    lon: 14.25608
+    source: osm
+animals:
+  # Ticks: the RKI's TBE risk areas (2026: the district of Sächsische Schweiz-Osterzgebirge; the
+  # Tourismusverband says so too) and the federal health agency's advice. Level ours
+  list:
+    - kind: tick
+      name: "Ticks (Lyme disease, tick-borne encephalitis)"
+      level: moderate
+      basis: "Ticks that carry Lyme disease live all over Germany, in forests and meadows; the Robert Koch Institute lists the district of Sächsische Schweiz-Osterzgebirge, where the whole Malerweg lies, as a risk area for tick-borne encephalitis (TBE), against which a vaccine protects."
+      do:
+        - "Wear closed shoes, long sleeves and long trousers, the socks pulled over the trouser legs; light clothes show ticks"
+        - "Use a tick repellent as its maker directs; it protects only for a while, and not fully"
+        - "After the walk, search your body: the hollows of the knees, the groin, the armpits, behind the ears, the head and the hairline"
+        - "Remove a tick as soon as you can: grip it by its head close to the skin with tweezers or a tick card, pull it slowly and straight out, then disinfect the bite"
+        - "See a doctor if a red ring at least 5 cm across spreads around the bite within 3 to 30 days, or fever and aching follow a bite"
+        - "Ask a doctor about the TBE vaccination well before you go: Germany's vaccination committee (STIKO) recommends it for people exposed to ticks in TBE risk areas"
+      dont:
+        - "Treat the tick with oil or cream, or squeeze it: it may release more germs"
+      source: bzga-borreliose
+tags: [sandstone, table-mountains, gorges, national-park]
+notes:
+  - >-
+    The Malerweg follows the route the painters and travellers of the Romantic era took through the
+    Elbe Sandstone Mountains: from the Liebethaler Grund near Pirna by the Uttewalder Grund to Stadt
+    Wehlen, over the Bastei to Rathen and Hohnstein, by the Brand to Altendorf, past the Schrammsteine
+    and the Affensteine to the Lichtenhain waterfall and the Neumannmühle, over the Großer
+    Winterberg to Schmilka, across the Elbe and over the table mountains Papststein and Gohrisch to
+    Königstein and its fortress, and back to Pirna.
+  - >-
+    The trail is nearly a loop: it starts in Pirna-Liebethal and ends at Pirna's market square, about
+    3 km apart. Tree line: none recorded, the Malerweg stays below about 560 m. Dogs are welcome, but
+    many stretches climb steps and ladders (the Tourismusverband).
+  - >-
+    Map line: the official GPX guides the OSM matcher; every stage at least 98 % matched, the map line
+    116.8 km, as the stages sum. Stage 6 crosses the Elbe by the ferry from Schmilka (the
+    matcher bridges 110 m, `maxBridgeM`). The terrain model sums about 4,540 m of climbing against
+    the stages' 3,689 m (treetops in the forest); the page keeps the stated figures. Highest point
+    559 m near the Großer Winterberg.
+  - >-
+    Data check (2026-11-03): the Tourismusverband's figures against German Wikipedia: length 116 km
+    against 112 km (4 %), eight stages, Liebethal to Pirna, the waymark (the Malerweg sign since 2006):
+    agree. Stage lengths: 1 11.55 against 11 km, 4 18.35 against 18, 5 13.65 against 14, 6 18 against
+    17 km agree within 10 %; stages 2 (10.91 against 13 km), 3 (13.96 against 12), 7 (16.58 against
+    15) and 8 (13.77 against 12) differ by 10–16 %, recorded in dataCheck (Wikipedia's stage ends
+    differ slightly, e.g. stage 6 to the Muselweg at Gohrisch). The page keeps the official figures.
+dataCheck:
+  # working rule 2: German Wikipedia's stage list
+  date: 2026-11-03
+  against: [wikipedia]
+  deviations:
+    - { figure: "Stage 2 (Stadt Wehlen – Hohnstein)", ours: "10.91 km", theirs: "13 km", source: wikipedia }
+    - { figure: "Stage 3 (Hohnstein – Altendorf)", ours: "13.96 km", theirs: "12 km", source: wikipedia }
+    - { figure: "Stage 7 (Kurort Gohrisch – Weißig)", ours: "16.58 km", theirs: "15 km", source: wikipedia }
+    - { figure: "Stage 8 (Weißig – Pirna)", ours: "13.77 km", theirs: "12 km", source: wikipedia }
+sources:
+  - id: tvss
+    title: "Tourismusverband Sächsische Schweiz (saechsische-schweiz.de): the eight Malerweg stage pages (length, climbs, time) with their GPX files"
+    url: https://www.saechsische-schweiz.de/malerweg/etappen
+    licence: All rights reserved (facts only)
+    retrieved: 2026-11-03
+  - id: tvss-plan
+    title: "Tourismusverband Sächsische Schweiz: Malerweg planen (length, days, difficulty, waymarking, season, opening)"
+    url: https://www.saechsische-schweiz.de/malerweg/planen
+    licence: All rights reserved (facts only)
+    retrieved: 2026-11-03
+  - id: tvss-faq
+    title: "Tourismusverband Sächsische Schweiz: Malerweg FAQ (places to stay, campsites by stage, ticks)"
+    url: https://www.saechsische-schweiz.de/malerweg/faq
+    licence: All rights reserved (facts only)
+    retrieved: 2026-11-03
+  - id: smul-boofen
+    title: "Sächsisches Staatsministerium für Umwelt und Landwirtschaft: Sachsen verstetigt Regelung zum Freiübernachten im Nationalpark Sächsische Schweiz (press release, 18 December 2025)"
+    url: https://medienservice.sachsen.de/medien/news/1093497
+    licence: © Freistaat Sachsen (facts only)
+    retrieved: 2026-11-03
+  - id: wikipedia
+    title: "German Wikipedia: Malerweg (length, stages; data check)"
+    url: https://de.wikipedia.org/wiki/Malerweg
+    licence: CC BY-SA 4.0
+    retrieved: 2026-11-03
+    checkOnly: true
+  - id: bzga-borreliose
+    title: "Bundeszentrale für gesundheitliche Aufklärung (infektionsschutz.de): Bürgerinformation Borreliose, protection against ticks (as of August 2019)"
+    url: https://infektionsschutz.de/download/2902-Erregersteckbrief-Borreliose.pdf
+    licence: © BZgA (facts only)
+    retrieved: 2026-11-03
+  - id: rki-fsme
+    title: "Robert Koch-Institut: FSME-Risikogebiete in Deutschland, Epidemiologisches Bulletin 9/2026 (as of January 2026)"
+    url: https://www.rki.de/DE/Aktuelles/Publikationen/Epidemiologisches-Bulletin/2026/09_26.pdf
+    licence: © Robert Koch-Institut (facts only)
+    retrieved: 2026-11-03
+    checkOnly: true  # only the tick level's basis: the district is a TBE risk area
+  - id: wikimedia
+    title: "Wikimedia: page views of the trail's Wikipedia articles in every language, by people, over twelve months (Wikidata sitelinks, pageview API)"
+    url: https://wikimedia.org/api/rest_v1/
+    licence: CC0 1.0 (pageview data); Wikidata CC0
+    retrieved: 2026-11-03
+    checkOnly: true  # not on the trail page: the page views only rank the home page's popular trails
+  - id: osm
+    title: "OpenStreetMap contributors: paths, water, shops and places to sleep along the trail (Geofabrik extracts), travel hubs"
+    url: https://www.openstreetmap.org/
+    licence: ODbL 1.0
+    retrieved: 2026-11-03
+  - id: copdem
+    title: "Copernicus DEM GLO-30 (30 m terrain model), tiles from AWS Open Data"
+    url: https://registry.opendata.aws/copernicus-dem/
+    licence: "Copernicus WorldDEM-30 licence, free; produced using Copernicus WorldDEM-30 © DLR e.V. 2010-2014 and © Airbus Defence and Space GmbH 2014-2018 provided under COPERNICUS by the European Union and ESA; all rights reserved"
+    retrieved: 2026-11-03
+  - id: worldcover
+    title: "ESA WorldCover 2021: 10 m land cover (via AWS Open Data)"
+    url: https://esa-worldcover.org/
+    licence: "CC BY 4.0; © ESA WorldCover project 2021 / Contains modified Copernicus Sentinel data (2021) processed by ESA WorldCover consortium"
+    retrieved: 2026-11-03
+  - id: era5
+    title: "Open-Meteo open data on AWS: ERA5-Land temperature and ERA5 precipitation, snow and wind, daily 1995–2024 (reanalysis)"
+    url: https://github.com/open-meteo/open-data
+    licence: CC BY 4.0 (Open-Meteo); contains modified Copernicus Climate Change Service information
+    retrieved: 2026-11-03
+  - id: osrm
+    title: "OSRM: road routes on OpenStreetMap data (router.project-osrm.org)"
+    url: https://project-osrm.org/
+    licence: Route data © OpenStreetMap contributors (ODbL)
+    retrieved: 2026-11-03
