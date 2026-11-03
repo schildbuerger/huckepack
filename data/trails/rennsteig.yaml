@@ -1,0 +1,218 @@
+name: Rennsteig
+added: 2026-11-03
+aliases: [Rennsteig-Wanderweg, Rennsteigwanderweg]
+website: https://www.thueringer-wald.com/rennsteig
+wikidata: Q139056
+managedBy:
+  # the Regionalverbund Thüringer Wald publishes the route, its stages and the hosts along it. In
+  # Thuringia the Rennsteig is a listed cultural monument since 1997; it was a Qualitätsweg of the
+  # Deutscher Wanderverband until the end of 2010 (German Wikipedia)
+  - name: Regionalverbund Thüringer Wald e.V.
+    url: https://www.thueringer-wald.com/rennsteig
+trailType: point-to-point
+continents: [Europe]
+countries: [DE]
+regions: [Thuringia, Bavaria]
+protectedAreas: []
+termini:
+  # the first and last points of the Regionalverbund's tour line: the Werra bank at Hörschel and the
+  # Selbitz bridge at Blankenstein
+  start:
+    name: Hörschel
+    lat: 51.00793
+    lon: 10.22758
+  end:
+    name: Blankenstein
+    lat: 50.4006
+    lon: 11.69946
+  source: rv
+waymarking:
+  # "Viele 'R's weisen Ihnen den Weg. Ob als weißes 'R' an den Bäumen, den historischen Wegweisern
+  # an den Zwieseln oder auf einem Holzschild"
+  text: A white R on trees, the historic signposts and wooden signs
+  source: rv-list
+length:
+  # "Strecke: 169,28km" (the Regionalverbund's tour); "Die 169,3 Kilometer des Rennsteigs"
+  - km: 169.3
+    source: rv
+ascent:
+  # "Aufstieg: 2690m Abstieg: 2439m" (the tour page)
+  - m: 2690
+    source: rv
+descent:
+  - m: 2439
+    source: rv
+days:
+  # "Sportlichen Schrittes … in 5 bis 6 Tagen … Genüssliche Wanderer brauchen in der Regel etwa 8
+  # bis 10 Tage"
+  min: 5
+  max: 10
+  source: rv-list
+stages:
+  # the Regionalverbund's eight stages "für Genießer" (its stage overview), whole km only; no
+  # climbs or times. The tour's line (its schema.org track, one for the whole trail) guides the OSM
+  # matcher, cut at each stage's end (kept local)
+  source: rv
+  list:
+    - { number: "1", kind: main, from: Hörschel, to: Ascherbrück, km: 19, track: "https://www.outdooractive.com/de/route/fernwanderweg/thueringer-wald/fernwanderweg-rennsteig-von-hoerschel-nach-blankenstein-thueringer-wald/2806215/", end: { name: Ascherbrück, lat: 50.89495, lon: 10.34175 } }
+    - { number: "2", kind: main, from: Ascherbrück, to: Ebertswiese, km: 25, track: "https://www.outdooractive.com/de/route/fernwanderweg/thueringer-wald/fernwanderweg-rennsteig-von-hoerschel-nach-blankenstein-thueringer-wald/2806215/", end: { name: Ebertswiese, lat: 50.78069, lon: 10.52881 } }
+    - { number: "3", kind: main, from: Ebertswiese, to: Grenzadler, km: 18, track: "https://www.outdooractive.com/de/route/fernwanderweg/thueringer-wald/fernwanderweg-rennsteig-von-hoerschel-nach-blankenstein-thueringer-wald/2806215/", end: { name: Grenzadler, lat: 50.70558, lon: 10.69408 } }
+    - { number: "4", kind: main, from: Grenzadler, to: Allzunah, km: 20, track: "https://www.outdooractive.com/de/route/fernwanderweg/thueringer-wald/fernwanderweg-rennsteig-von-hoerschel-nach-blankenstein-thueringer-wald/2806215/", end: { name: Allzunah, lat: 50.60523, lon: 10.86243 } }
+    - { number: "5", kind: main, from: Allzunah, to: Friedrichshöhe, km: 24, track: "https://www.outdooractive.com/de/route/fernwanderweg/thueringer-wald/fernwanderweg-rennsteig-von-hoerschel-nach-blankenstein-thueringer-wald/2806215/", end: { name: Friedrichshöhe, lat: 50.47838, lon: 11.01455 } }
+    - { number: "6", kind: main, from: Friedrichshöhe, to: Spechtsbrunn, km: 23, track: "https://www.outdooractive.com/de/route/fernwanderweg/thueringer-wald/fernwanderweg-rennsteig-von-hoerschel-nach-blankenstein-thueringer-wald/2806215/", end: { name: Spechtsbrunn, lat: 50.49377, lon: 11.25575 } }
+    - { number: "7", kind: main, from: Spechtsbrunn, to: Brennersgrün, km: 19, track: "https://www.outdooractive.com/de/route/fernwanderweg/thueringer-wald/fernwanderweg-rennsteig-von-hoerschel-nach-blankenstein-thueringer-wald/2806215/", end: { name: Brennersgrün, lat: 50.43782, lon: 11.46992 } }
+    - { number: "8", kind: main, from: Brennersgrün, to: Blankenstein, km: 21, track: "https://www.outdooractive.com/de/route/fernwanderweg/thueringer-wald/fernwanderweg-rennsteig-von-hoerschel-nach-blankenstein-thueringer-wald/2806215/", end: { name: Blankenstein, lat: 50.4006, lon: 11.69946 } }
+route:
+  # built by `python -m pipeline.all rennsteig`: OSM ways matched to the tour's line
+  source: osm
+  publishable: true
+difficulty:
+  # the tour is rated "schwer" over its whole length; no SAC grade. Our estimate
+  estimated:
+    sac: T1
+    basis: >-
+      A ridge path on forest roads, tracks and paths along the crest of the Thuringian Forest, the
+      Thuringian Slate Mountains and the Frankenwald, well marked throughout; the Regionalverbund
+      names the steep climb of over 550 m on stage 2 up the Großer Inselsberg, otherwise long
+      gentle stretches, and open fields before Blankenstein. Hiking on good paths (T1).
+    source: rv-list
+season:
+  # "Ab April beginnt dann die Thüringer Wanderzeit und endet erst im Oktober"; from mid-November
+  # to the end of March the Rennsteig is a cross-country ski track when snow lies
+  months: [4, 5, 6, 7, 8, 9, 10]
+  text: April to October
+  source: rv-list
+sleeping:
+  # the Regionalverbund's list of hosts up to 2.7 km from the Rennsteig: hotels, guesthouses,
+  # inns, holiday flats, and the Frankenwald trekking site at Rennsteig km 133.6
+  types: [hotel, guesthouse, campsite]
+  source: rv-list
+access:
+  # Eisenach Hauptbahnhof, the nearest main station to Hörschel, and Frankfurt Airport.
+  # Coordinates from OSM; distances by pipeline/access.py
+  - kind: station
+    name: Eisenach Hauptbahnhof
+    lat: 50.9769
+    lon: 10.33199
+    source: osm
+  - kind: airport
+    name: Frankfurt Airport (FRA)
+    lat: 50.02441
+    lon: 8.5552
+    source: osm
+animals:
+  # Ticks: the RKI's TBE risk areas (2026): the districts Schmalkalden-Meiningen, Suhl, Ilm-Kreis,
+  # Hildburghausen, Sonneberg, Saalfeld-Rudolstadt and Saale-Orla-Kreis in Thuringia and Kronach in
+  # Bavaria (95 of 96 Bavarian districts); not the Wartburgkreis and Gotha at the western end. The
+  # federal health agency's advice. Level ours
+  list:
+    - kind: tick
+      name: "Ticks (Lyme disease, tick-borne encephalitis)"
+      level: moderate
+      basis: "Ticks that carry Lyme disease live all over Germany, in forests and meadows; the Robert Koch Institute lists most districts along the Rennsteig, from Schmalkalden-Meiningen and Suhl to the Saale-Orla district and Kronach, as risk areas for tick-borne encephalitis (TBE), against which a vaccine protects."
+      do:
+        - "Wear closed shoes, long sleeves and long trousers, the socks pulled over the trouser legs; light clothes show ticks"
+        - "Use a tick repellent as its maker directs; it protects only for a while, and not fully"
+        - "After the walk, search your body: the hollows of the knees, the groin, the armpits, behind the ears, the head and the hairline"
+        - "Remove a tick as soon as you can: grip it by its head close to the skin with tweezers or a tick card, pull it slowly and straight out, then disinfect the bite"
+        - "See a doctor if a red ring at least 5 cm across spreads around the bite within 3 to 30 days, or fever and aching follow a bite"
+        - "Ask a doctor about the TBE vaccination well before you go: Germany's vaccination committee (STIKO) recommends it for people exposed to ticks in TBE risk areas"
+      dont:
+        - "Treat the tick with oil or cream, or squeeze it: it may release more germs"
+      source: bzga-borreliose
+tags: [forest, ridge, history]
+notes:
+  - >-
+    The Rennsteig follows the crest of the Thuringian Forest from the Werra at Hörschel near
+    Eisenach over the Großer Inselsberg, past Oberhof, the Großer Beerberg (Thuringia's highest
+    summit, just off the path) and Neuhaus am Rennweg, over the Thuringian Slate Mountains and
+    through the northern Frankenwald in Bavaria to the Selbitz at Blankenstein. It is first
+    recorded in 1330 and lined by about 1,300 historic boundary stones (German Wikipedia).
+  - >-
+    Stages: the Regionalverbund also gives a six-stage and a 13-stage division; the record keeps
+    its eight stages "für Genießer". Its tour text describes slightly different stage ends (e.g.
+    stage 2 to the Spießberghaus); the overview's table is the stage source.
+  - >-
+    Wild camping: no current official source states the rule (Thuringia's forest law requires the
+    forest owner's permission to camp outside approved sites, but its current text couldn't be read
+    from an official site); the Regionalverbund notes that sleeping in the shelters is not allowed
+    and names the Frankenwald trekking site at km 133.6. Tree line: none recorded, the Rennsteig
+    stays below about 980 m.
+  - >-
+    Figures: the eight stages sum to 169 km against 169.3 km; the tour page's schema data gives the
+    descent as 2,690 m where its text says 2,439 m (the text is kept).
+  - >-
+    Map line: the Regionalverbund's tour line, cut at the eight stage ends, guides the OSM matcher;
+    every stage 100 % matched and within 5 % of its stated km, 167.7 km against 169.3 km. Highest
+    point 976 m (terrain model) near the Großer Beerberg. The terrain model sums about 4,630 m of
+    climbing against the stated 2,690 m: it measures the treetops along a forest ridge, and the page
+    shows the stated pair.
+  - >-
+    Data check (2026-11-03): the Regionalverbund's figures against German Wikipedia: length 169.3 km
+    against 169.29 km (the Thuringian survey office's measurement), start on the Werra bank at
+    Hörschel and finish at the Selbitz bridge in Blankenstein, the white R as waymark: all agree.
+    Wikipedia gives no stage figures (the historic "Runst" had six stages). No deviation over 10 %.
+dataCheck:
+  # working rule 2: German Wikipedia
+  date: 2026-11-03
+  against: [wikipedia]
+  deviations: []
+sources:
+  - id: rv
+    title: "Regionalverbund Thüringer Wald (thueringer-wald.com, tourismus-thueringer-wald.de): the Rennsteig's stage overview and its tour \"Fernwanderweg Rennsteig von Hörschel nach Blankenstein\" (length, ascent, descent, the line)"
+    url: https://www.tourismus-thueringer-wald.de/wanderroute/rennsteig
+    licence: All rights reserved (facts only)
+    retrieved: 2026-11-03
+  - id: rv-list
+    title: "Regionalverbund Thüringer Wald: Unterkünfte am Rennsteig (hosts, season, days, waymarking; 2023)"
+    url: https://www.thueringer-wald.com/documents/d/thueringer-wald/rennsteigunterkunftsliste2023
+    licence: All rights reserved (facts only)
+    retrieved: 2026-11-03
+  - id: wikipedia
+    title: "German Wikipedia: Rennsteig (length, history, waymark, cultural monument; data check)"
+    url: https://de.wikipedia.org/wiki/Rennsteig
+    licence: CC BY-SA 4.0
+    retrieved: 2026-11-03
+    checkOnly: true
+  - id: bzga-borreliose
+    title: "Bundeszentrale für gesundheitliche Aufklärung (infektionsschutz.de): Bürgerinformation Borreliose, protection against ticks (as of August 2019)"
+    url: https://infektionsschutz.de/download/2902-Erregersteckbrief-Borreliose.pdf
+    licence: © BZgA (facts only)
+    retrieved: 2026-11-03
+  - id: rki-fsme
+    title: "Robert Koch-Institut: FSME-Risikogebiete in Deutschland, Epidemiologisches Bulletin 9/2026 (as of January 2026)"
+    url: https://www.rki.de/DE/Aktuelles/Publikationen/Epidemiologisches-Bulletin/2026/09_26.pdf
+    licence: © Robert Koch-Institut (facts only)
+    retrieved: 2026-11-03
+    checkOnly: true  # only the tick level's basis: the TBE risk districts along the trail
+  - id: wikimedia
+    title: "Wikimedia: page views of the trail's Wikipedia articles in every language, by people, over twelve months (Wikidata sitelinks, pageview API)"
+    url: https://wikimedia.org/api/rest_v1/
+    licence: CC0 1.0 (pageview data); Wikidata CC0
+    retrieved: 2026-11-03
+    checkOnly: true  # not on the trail page: the page views only rank the home page's popular trails
+  - id: osm
+    title: "OpenStreetMap contributors: paths, water, shops and places to sleep along the trail (Geofabrik extracts), stage ends, travel hubs"
+    url: https://www.openstreetmap.org/
+    licence: ODbL 1.0
+    retrieved: 2026-11-03
+  - id: copdem
+    title: "Copernicus DEM GLO-30 (30 m terrain model), tiles from AWS Open Data"
+    url: https://registry.opendata.aws/copernicus-dem/
+    licence: "Copernicus WorldDEM-30 licence, free; produced using Copernicus WorldDEM-30 © DLR e.V. 2010-2014 and © Airbus Defence and Space GmbH 2014-2018 provided under COPERNICUS by the European Union and ESA; all rights reserved"
+    retrieved: 2026-11-03
+  - id: worldcover
+    title: "ESA WorldCover 2021: 10 m land cover (via AWS Open Data)"
+    url: https://esa-worldcover.org/
+    licence: "CC BY 4.0; © ESA WorldCover project 2021 / Contains modified Copernicus Sentinel data (2021) processed by ESA WorldCover consortium"
+    retrieved: 2026-11-03
+  - id: era5
+    title: "Open-Meteo open data on AWS: ERA5-Land temperature and ERA5 precipitation, snow and wind, daily 1995–2024 (reanalysis)"
+    url: https://github.com/open-meteo/open-data
+    licence: CC BY 4.0 (Open-Meteo); contains modified Copernicus Climate Change Service information
+    retrieved: 2026-11-03
+  - id: osrm
+    title: "OSRM: road routes on OpenStreetMap data (router.project-osrm.org)"
+    url: https://project-osrm.org/
+    licence: Route data © OpenStreetMap contributors (ODbL)
+    retrieved: 2026-11-03

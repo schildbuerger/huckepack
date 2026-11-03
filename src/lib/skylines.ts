@@ -623,6 +623,28 @@ export const SKYLINES: Record<string, Skyline> = {
       { d: "M1206,226L1178,198L1182,194L1210,222Z M1206,226L1234,254L1230,258L1202,230Z M1206,226L1234,198L1238,202L1210,230Z M1206,226L1178,254L1174,250L1202,222Z", c: "#e3d6bc" },
     ],
   },
+  "rennsteig": {
+    view: "The Thuringian Forest from the west: the long wooded ridge the Rennsteig follows, the Großer Inselsberg with its masts, the Wartburg on its hill above Eisenach, dark spruce woods, and a historic boundary stone by the path",
+    ridge: "#3f5a33",
+    ground: "#5f7f3a",
+    shapes: [
+      // the crest of the Thuringian Forest, rising to the Großer Inselsberg and on to the Beerberg
+      { d: hills([[0, G], [160, 232], [360, 214], [520, 196], [600, 176], [660, 182], [820, 206], [1040, 196], [1240, 188], [1420, 204], [1600, 214], [1600, G]]), c: FAR },
+      // the Inselsberg's masts
+      { d: tower(596, 178, 30, 4), c: "#d8d2c4" },
+      { d: tower(624, 178, 20, 6), c: "#c9c2b2" },
+      // dark spruce woods on the nearer hills
+      { d: hills([[0, G], [120, 252], [280, 240], [420, 250], [520, 262], [600, G]]), c: FOREST },
+      { d: hills([[900, G], [1000, 246], [1160, 238], [1320, 248], [1460, 256], [1600, 252], [1600, G]]), c: FOREST },
+      // the Wartburg on its wooded hill above Eisenach
+      { d: hills([[620, G], [700, 252], [770, 232], [840, 244], [920, 266], [960, G]]), c: "#4f6a3a" },
+      { d: castle(772, 234, 0.7), c: "#d6c8a8" },
+      { d: castleRoofs(772, 234, 0.7), c: "#6a4a3e" },
+      // a meadow along the path, and a Rennsteig boundary stone
+      { d: range([[0, G], [0, 274], [600, 270], [1000, 276], [1600, 270], [1600, G]]), c: "#7f9a4a" },
+      { d: "M1180,276V258Q1180,252 1186,252H1194Q1200,252 1200,258V276Z", c: "#b8ad98" },
+    ],
+  },
   "pfaelzer-weinsteig": {
     view: "The Haardt edge of the Palatinate Forest: the wooded ridge up to the Kalmit with its stone tower, the Trifels on its sandstone rock, the Hambacher Schloss on its hill and vineyards below",
     ridge: "#4f6a33",

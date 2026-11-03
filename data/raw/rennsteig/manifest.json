@@ -1,0 +1,74 @@
+{
+  "climate-high.json": {
+    "retrieved": "2026-11-03T15:11:49+00:00",
+    "url": "https://openmeteo.s3.us-west-2.amazonaws.com/data/copernicus_era5_land+copernicus_era5?latitude=50.7&longitude=10.7&elevation=980"
+  },
+  "climate-low.json": {
+    "retrieved": "2026-11-03T15:08:23+00:00",
+    "url": "https://openmeteo.s3.us-west-2.amazonaws.com/data/copernicus_era5_land+copernicus_era5?latitude=51.0&longitude=10.2&elevation=200"
+  },
+  "elevation-glo30.json": {
+    "retrieved": "2026-11-03T15:04:37+00:00",
+    "url": "https://copernicus-dem-30m.s3.eu-central-1.amazonaws.com/Copernicus_DSM_COG_10_N50_00_E010_00_DEM/Copernicus_DSM_COG_10_N50_00_E010_00_DEM.tif https://copernicus-dem-30m.s3.eu-central-1.amazonaws.com/Copernicus_DSM_COG_10_N50_00_E011_00_DEM/Copernicus_DSM_COG_10_N50_00_E011_00_DEM.tif https://copernicus-dem-30m.s3.eu-central-1.amazonaws.com/Copernicus_DSM_COG_10_N51_00_E010_00_DEM/Copernicus_DSM_COG_10_N51_00_E010_00_DEM.tif"
+  },
+  "landcover.json": {
+    "retrieved": "2026-11-03T15:04:46+00:00",
+    "url": "https://esa-worldcover.s3.eu-central-1.amazonaws.com/v200/2021/map/ESA_WorldCover_10m_2021_v200_\u2026_Map.tif"
+  },
+  "osm-stage-1-main.json": {
+    "retrieved": "2026-11-02T21:21:26Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-2-main.json": {
+    "retrieved": "2026-11-02T21:21:26Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-3-main.json": {
+    "retrieved": "2026-11-02T21:21:26Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-4-main.json": {
+    "retrieved": "2026-11-02T21:21:26Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-5-main.json": {
+    "retrieved": "2026-11-02T21:21:26Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-6-main.json": {
+    "retrieved": "2026-11-02T21:21:26Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-7-main.json": {
+    "retrieved": "2026-11-02T21:21:26Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-8-main.json": {
+    "retrieved": "2026-11-02T21:21:26Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-water.json": {
+    "retrieved": "2026-11-02T21:21:26Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-way-tags.json": {
+    "retrieved": "2026-11-02T21:21:26Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osrm-access-eisenach-hauptbahnhof.json": {
+    "retrieved": "2026-11-03T15:11:50+00:00",
+    "url": "https://router.project-osrm.org/route/v1/driving/10.33199,50.9769;10.22758,51.00793?overview=false"
+  },
+  "osrm-access-frankfurt-airport-fra.json": {
+    "retrieved": "2026-11-03T15:11:50+00:00",
+    "url": "https://router.project-osrm.org/route/v1/driving/8.5552,50.02441;10.22758,51.00793?overview=false"
+  },
+  "stage-1-main.gpx": {
+    "retrieved": "2026-11-03T14:58:03+00:00",
+    "url": "https://www.outdooractive.com/de/route/fernwanderweg/thueringer-wald/fernwanderweg-rennsteig-von-hoerschel-nach-blankenstein-thueringer-wald/2806215/"
+  },
+  "wikimedia.json": {
+    "retrieved": "2026-11-03T15:11:53+00:00",
+    "url": "Q139056 2025-11..2026-10"
+  }
+}
