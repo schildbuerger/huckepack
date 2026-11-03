@@ -1,0 +1,86 @@
+{
+  "climate-high.json": {
+    "retrieved": "2026-11-03T15:33:19+00:00",
+    "url": "https://openmeteo.s3.us-west-2.amazonaws.com/data/copernicus_era5_land+copernicus_era5?latitude=53.1&longitude=-6.2&elevation=630"
+  },
+  "climate-low.json": {
+    "retrieved": "2026-11-03T15:29:40+00:00",
+    "url": "https://openmeteo.s3.us-west-2.amazonaws.com/data/copernicus_era5_land+copernicus_era5?latitude=52.7&longitude=-6.6&elevation=50"
+  },
+  "elevation-glo30.json": {
+    "retrieved": "2026-11-03T15:25:53+00:00",
+    "url": "https://copernicus-dem-30m.s3.eu-central-1.amazonaws.com/Copernicus_DSM_COG_10_N52_00_W007_00_DEM/Copernicus_DSM_COG_10_N52_00_W007_00_DEM.tif https://copernicus-dem-30m.s3.eu-central-1.amazonaws.com/Copernicus_DSM_COG_10_N53_00_W007_00_DEM/Copernicus_DSM_COG_10_N53_00_W007_00_DEM.tif"
+  },
+  "landcover.json": {
+    "retrieved": "2026-11-03T15:25:56+00:00",
+    "url": "https://esa-worldcover.s3.eu-central-1.amazonaws.com/v200/2021/map/ESA_WorldCover_10m_2021_v200_\u2026_Map.tif"
+  },
+  "osm-stage-1-main.json": {
+    "retrieved": "2026-11-02T21:21:26Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-2-main.json": {
+    "retrieved": "2026-11-02T21:21:26Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-3-main.json": {
+    "retrieved": "2026-11-02T21:21:26Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-4-main.json": {
+    "retrieved": "2026-11-02T21:21:26Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-5-main.json": {
+    "retrieved": "2026-11-02T21:21:26Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-6-main.json": {
+    "retrieved": "2026-11-02T21:21:26Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-water.json": {
+    "retrieved": "2026-11-02T21:21:26Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-way-tags.json": {
+    "retrieved": "2026-11-02T21:21:26Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osrm-access-dublin-airport-dub.json": {
+    "retrieved": "2026-11-03T15:33:20+00:00",
+    "url": "https://router.project-osrm.org/route/v1/driving/-6.24727,53.42829;-6.26839,53.27737?overview=false"
+  },
+  "osrm-access-dublin-heuston.json": {
+    "retrieved": "2026-11-03T15:33:20+00:00",
+    "url": "https://router.project-osrm.org/route/v1/driving/-6.29297,53.3465;-6.26839,53.27737?overview=false"
+  },
+  "stage-1-main.gpx": {
+    "retrieved": "2026-11-03T15:23:10+00:00",
+    "url": "https://visitwicklow.ie/wp-assets/uploads/2021/04/Wicklow-Way-Stage-1-Marlay-Park-to-Knockree-Hostel.gpx"
+  },
+  "stage-2-main.gpx": {
+    "retrieved": "2026-11-03T15:23:10+00:00",
+    "url": "https://visitwicklow.ie/wp-assets/uploads/2021/04/Wicklow-Way-Stage-2-Knockree-to-Oldbridge.gpx"
+  },
+  "stage-3-main.gpx": {
+    "retrieved": "2026-11-03T15:23:10+00:00",
+    "url": "https://visitwicklow.ie/wp-assets/uploads/2021/06/WW113_Wicklow-Way-Stage-3-Oldbridge-to-Glendalough.gpx"
+  },
+  "stage-4-main.gpx": {
+    "retrieved": "2026-11-03T15:23:10+00:00",
+    "url": "https://visitwicklow.ie/wp-assets/uploads/2021/06/WW114_Wicklow-Way-Stage-4-Glendalough-to-Glenmalure.gpx"
+  },
+  "stage-5-main.gpx": {
+    "retrieved": "2026-11-03T15:23:11+00:00",
+    "url": "https://visitwicklow.ie/wp-assets/uploads/2021/06/WW115_Wicklow-Way-Stage-5-Glenmalure-to-Tinahely.gpx"
+  },
+  "stage-6-main.gpx": {
+    "retrieved": "2026-11-03T15:23:21+00:00",
+    "url": "https://visitwicklow.ie/wp-assets/uploads/2021/06/WW116_Wicklow-Way-Stage-6-Tinahely-to-Clonegal.gpx"
+  },
+  "wikimedia.json": {
+    "retrieved": "2026-11-03T15:33:45+00:00",
+    "url": "Q389539 2025-11..2026-10"
+  }
+}

@@ -666,6 +666,27 @@ export const SKYLINES: Record<string, Skyline> = {
       { d: range([[0, G], [0, 278], [380, 276], [420, 284], [860, 284], [900, 276], [1600, 278], [1600, G]]), c: "#7f9a4a" },
     ],
   },
+  "wicklow-way": {
+    view: "Glendalough in the Wicklow Mountains: the monastic round tower among the trees by the lower lake, the upper lake between steep wooded slopes, the rounded granite mountains and heathery moorland behind",
+    ridge: "#4f6a3a",
+    ground: "#6f8a4a",
+    shapes: [
+      // the rounded granite mountains behind the valley
+      { d: hills([[0, G], [140, 226], [340, 206], [520, 196], [700, 214], [900, 200], [1100, 186], [1300, 204], [1600, 222], [1600, G]]), c: "#93a39a" },
+      // heather on the moorland shoulders
+      { d: hills([[0, G], [80, 246], [260, 236], [420, 248], [520, 262], [560, G]]), c: "#8a6f7f" },
+      // the steep wooded sides of the glacial valley
+      { d: hills([[480, G], [560, 238], [700, 226], [820, 248], [880, 266], [900, G]]), c: FOREST },
+      { d: hills([[1120, G], [1180, 250], [1300, 232], [1460, 238], [1600, 250], [1600, G]]), c: FOREST },
+      // the upper lake in the valley floor
+      { d: water(840, 1180, 266), c: SEA },
+      // the round tower with its conical cap, by the trees of the monastic site
+      { d: "M330,272V196Q330,192 336,192H344Q350,192 350,196V272Z", c: "#b8ad98" },
+      { d: "M328,194L340,166L352,194Z", c: "#6f665a" },
+      { d: hills([[200, G], [240, 262], [300, 256], [380, 262], [420, G]]), c: "#4f6a3a" },
+      { d: range([[0, G], [0, 276], [600, 272], [840, 280], [1180, 280], [1600, 274], [1600, G]]), c: "#7f9a4a" },
+    ],
+  },
   "pfaelzer-weinsteig": {
     view: "The Haardt edge of the Palatinate Forest: the wooded ridge up to the Kalmit with its stone tower, the Trifels on its sandstone rock, the Hambacher Schloss on its hill and vineyards below",
     ridge: "#4f6a33",

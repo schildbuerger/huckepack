@@ -1,0 +1,201 @@
+name: Wicklow Way
+added: 2026-11-03
+localName: Slí Cualann Nua
+aliases: [The Wicklow Way]
+website: https://visitwicklow.ie/the-wicklow-way/
+wikidata: Q389539
+managedBy:
+  # a National Waymarked Trail (Sport Ireland's National Trails Office); "Trail Management: Wicklow
+  # County Tourism" (Sport Ireland's trail page)
+  - name: Wicklow County Tourism (National Waymarked Trail, Sport Ireland)
+    url: https://visitwicklow.ie/the-wicklow-way/
+trailType: point-to-point
+continents: [Europe]
+countries: [IE]
+regions: [County Dublin, County Wicklow, County Carlow]
+protectedAreas:
+  - Wicklow Mountains National Park
+termini:
+  # the first point of Visit Wicklow's stage 1 GPX at Marlay Park and the last of stage 6's in
+  # Clonegal
+  start:
+    name: Marlay Park
+    lat: 53.27737
+    lon: -6.26839
+  end:
+    name: Clonegal
+    lat: 52.69548
+    lon: -6.64847
+  source: vw
+established:
+  # "The first section opened in 1980 … and the trail was fully completed in 1982" (English
+  # Wikipedia)
+  year: 1982
+  source: wikipedia
+waymarking:
+  # "Waymarking: Yellow arrow on black background" (Sport Ireland). The National Waymarked Ways'
+  # walker logo is the operator's design, not drawn
+  text: Yellow arrows on a black background
+  source: si
+length:
+  # "Length 128.1 km" (Sport Ireland); Visit Wicklow's six stages sum to 128.7 km
+  - km: 128.1
+    source: si
+days:
+  # "Time 6 days" (Sport Ireland)
+  min: 6
+  max: 6
+  source: si
+stages:
+  # Visit Wicklow's six stage pages (distance, estimated walking time), each with its GPX file, which
+  # only guides the OSM matcher (kept local); no climbs or heights
+  source: vw
+  list:
+    - { number: "1", kind: main, from: Marlay Park, to: Knockree, km: 19.8, minutes: 420, track: "https://visitwicklow.ie/wp-assets/uploads/2021/04/Wicklow-Way-Stage-1-Marlay-Park-to-Knockree-Hostel.gpx" }
+    - { number: "2", kind: main, from: Knockree, to: Oldbridge, km: 20.4, minutes: 480, track: "https://visitwicklow.ie/wp-assets/uploads/2021/04/Wicklow-Way-Stage-2-Knockree-to-Oldbridge.gpx" }
+    - { number: "3", kind: main, from: Oldbridge, to: Glendalough, km: 9.4, minutes: 180, track: "https://visitwicklow.ie/wp-assets/uploads/2021/06/WW113_Wicklow-Way-Stage-3-Oldbridge-to-Glendalough.gpx" }
+    - { number: "4", kind: main, from: Glendalough, to: Glenmalure, km: 13.9, minutes: 300, track: "https://visitwicklow.ie/wp-assets/uploads/2021/06/WW114_Wicklow-Way-Stage-4-Glendalough-to-Glenmalure.gpx" }
+    - { number: "5", kind: main, from: Glenmalure, to: Tinahely, km: 32.8, minutes: 480, track: "https://visitwicklow.ie/wp-assets/uploads/2021/06/WW115_Wicklow-Way-Stage-5-Glenmalure-to-Tinahely.gpx" }
+    - { number: "6", kind: main, from: Tinahely, to: Clonegal, km: 32.4, minutes: 480, track: "https://visitwicklow.ie/wp-assets/uploads/2021/06/WW116_Wicklow-Way-Stage-6-Tinahely-to-Clonegal.gpx" }
+route:
+  # built by `python -m pipeline.all wicklow-way`: OSM ways matched to Visit Wicklow's GPX
+  source: osm
+  publishable: true
+difficulty:
+  # Sport Ireland and Visit Wicklow grade it Strenuous; no SAC grade. Our estimate
+  estimated:
+    sac: T2
+    basis: >-
+      Forestry tracks, quiet roads, boreens and mountain paths through open moorland, some wet and
+      muddy; the northern half crosses the high, heathery ridges of the Dublin and Wicklow
+      Mountains, the southern half gentler conifer-covered foothills; apart from some short steep
+      sections no significant climbs (Sport Ireland). Mountain hiking on clear paths (T2).
+    source: si
+season:
+  # "Season: Any" (English Wikipedia's infobox); Sport Ireland and Visit Wicklow name none
+  months: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
+  text: Any season
+  source: wikipedia
+sleeping:
+  # "Hostel on the route: Knockree Hostel" (Sport Ireland), which notes that most other places to
+  # stay are off the route; the rest comes from OSM
+  types: [hostel]
+  source: si
+access:
+  # Dublin Heuston, the city's main railway station, and Dublin Airport. Coordinates from OSM;
+  # distances by pipeline/access.py
+  - kind: station
+    name: Dublin Heuston
+    lat: 53.3465
+    lon: -6.29297
+    source: osm
+  - kind: airport
+    name: Dublin Airport (DUB)
+    lat: 53.42829
+    lon: -6.24727
+    source: osm
+animals:
+  # Ticks (HSE Health Protection Surveillance Centre). Level ours. No Irish official source found
+  # for cattle on walking routes (2026-11-03), so none listed
+  list:
+    - kind: tick
+      name: "Ticks (Lyme disease)"
+      level: low
+      basis: "Ticks are active across Ireland from spring to autumn; the HPSC names walking paths bordered by long grass, fields and vegetation near lakes and seaside beaches among the places they are most likely."
+      do:
+        - "Cover exposed skin with long trousers tucked into socks or boots, long sleeves and closed shoes or boots"
+        - "Use a repellent containing at least 20 % DEET, picaridin or IR3535 on exposed skin"
+        - "Check your skin and clothing every 3 to 4 hours in tick areas, and do a full-body check after you get in"
+        - "Grip an attached tick as close to the skin as possible with fine-tipped tweezers or a tick removal tool and pull steadily away from the skin, then wash the bite and apply antiseptic"
+        - "See your GP if a rash, especially a spreading bull's-eye rash, or flu-like symptoms follow a tick bite, and tell them about the bite"
+      dont:
+        - "Twist or crush the tick when you remove it"
+        - "Use a lit cigarette, a match head, alcohol or petroleum jelly to remove a tick"
+      source: hpsc-lyme
+tags: [mountains, moorland, lakes, forest, national-park, national-waymarked-trail]
+notes:
+  - >-
+    The Way leaves Marlay Park in Dublin's southern suburbs for the Dublin Mountains, crosses Glencree
+    to Knockree, passes above Lough Tay and Lough Dan to Oldbridge, goes by the monastic site and the
+    lakes of Glendalough to Glenmalure, then through conifer-covered foothills by Tinahely and
+    Shillelagh into County Carlow at Clonegal.
+  - >-
+    Season: any (English Wikipedia; Sport Ireland and Visit Wicklow name none). Wild camping: no
+    official source found (2026-11-03), so none recorded. Dogs are not allowed on the Way (Sport
+    Ireland). Tree line: none recorded, the Way stays below about 630 m.
+  - >-
+    Reroute: since August 2024 a signed diversion near Drumgoff, in Glenmalure (stage 4–5), follows
+    the Clohernagh brook "until further notice" because of forestry works (Sport Ireland's notice);
+    the map follows the official GPX.
+  - >-
+    Figures: Visit Wicklow's six stages sum to 128.7 km against Sport Ireland's 128.1 km. Sport
+    Ireland states an ascent of 3,220 m (its text "about 2820 m") but no descent, so the page
+    estimates the pair from the terrain model; its stage pages give times, no climbs.
+  - >-
+    Map line: Visit Wicklow's GPX guides the OSM matcher; every stage 100 % matched, 127.7 km
+    against the stages' 128.7 km. Highest point 629 m (terrain model) on White Hill, against
+    Wikipedia's 630 m. OSM maps few taps south of Glenmalure (38 km without drinking water).
+  - >-
+    Data check (2026-11-03): Sport Ireland's and Visit Wicklow's figures against English Wikipedia
+    (whose infobox cites the Irish Sports Council's former trail page): length 128.1 km against
+    131 km (2 %), 6 days against "typically completed in 5–7 days", ascent 3,220 m against 3,320 m
+    (3 %, not shown: no descent is stated), highest point White Hill 630 m against 629 m on the
+    terrain model, Marlay Park to Clonegal, the designation: all agree. Wikipedia gives no stage
+    figures. No deviation over 10 %.
+dataCheck:
+  # working rule 2: English Wikipedia (its infobox cites the Irish Sports Council's former trail page)
+  date: 2026-11-03
+  against: [wikipedia]
+  deviations: []
+sources:
+  - id: vw
+    title: "Visit Wicklow (Wicklow County Tourism): the Wicklow Way and its six stage pages (distance, estimated walking time, grade) with their GPX files"
+    url: https://visitwicklow.ie/the-wicklow-way/
+    licence: All rights reserved (facts only)
+    retrieved: 2026-11-03
+  - id: si
+    title: "Sport Ireland (National Trails Office): Wicklow Way, National Waymarked Trail (grade, length, days, waymarking, trail management, the 2024 reroute notice)"
+    url: https://www.sportireland.ie/outdoors/walking/trails/wicklow-way
+    licence: All rights reserved (facts only)
+    retrieved: 2026-11-03
+  - id: wikipedia
+    title: "English Wikipedia: Wicklow Way (opening, season; length, ascent and highest point for the data check)"
+    url: https://en.wikipedia.org/wiki/Wicklow_Way
+    licence: CC BY-SA 4.0
+    retrieved: 2026-11-03
+  - id: hpsc-lyme
+    title: "HSE Health Protection Surveillance Centre: Lyme disease (where ticks are found, avoiding bites, removing ticks, when to see a GP)"
+    url: https://www.hpsc.ie/a-z/vectorborne/lymedisease/
+    licence: © HSE Health Protection Surveillance Centre (facts only)
+    retrieved: 2026-11-03
+  - id: wikimedia
+    title: "Wikimedia: page views of the trail's Wikipedia articles in every language, by people, over twelve months (Wikidata sitelinks, pageview API)"
+    url: https://wikimedia.org/api/rest_v1/
+    licence: CC0 1.0 (pageview data); Wikidata CC0
+    retrieved: 2026-11-03
+    checkOnly: true  # not on the trail page: the page views only rank the home page's popular trails
+  - id: osm
+    title: "OpenStreetMap contributors: paths, water, shops and places to sleep along the trail (Geofabrik extracts), travel hubs"
+    url: https://www.openstreetmap.org/
+    licence: ODbL 1.0
+    retrieved: 2026-11-03
+  - id: copdem
+    title: "Copernicus DEM GLO-30 (30 m terrain model), tiles from AWS Open Data"
+    url: https://registry.opendata.aws/copernicus-dem/
+    licence: "Copernicus WorldDEM-30 licence, free; produced using Copernicus WorldDEM-30 © DLR e.V. 2010-2014 and © Airbus Defence and Space GmbH 2014-2018 provided under COPERNICUS by the European Union and ESA; all rights reserved"
+    retrieved: 2026-11-03
+  - id: worldcover
+    title: "ESA WorldCover 2021: 10 m land cover (via AWS Open Data)"
+    url: https://esa-worldcover.org/
+    licence: "CC BY 4.0; © ESA WorldCover project 2021 / Contains modified Copernicus Sentinel data (2021) processed by ESA WorldCover consortium"
+    retrieved: 2026-11-03
+  - id: era5
+    title: "Open-Meteo open data on AWS: ERA5-Land temperature and ERA5 precipitation, snow and wind, daily 1995–2024 (reanalysis)"
+    url: https://github.com/open-meteo/open-data
+    licence: CC BY 4.0 (Open-Meteo); contains modified Copernicus Climate Change Service information
+    retrieved: 2026-11-03
+  - id: osrm
+    title: "OSRM: road routes on OpenStreetMap data (router.project-osrm.org)"
+    url: https://project-osrm.org/
+    licence: Route data © OpenStreetMap contributors (ODbL)
+    retrieved: 2026-11-03
