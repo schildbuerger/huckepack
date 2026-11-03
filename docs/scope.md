@@ -154,6 +154,28 @@
   times only), the distances are our own, measured on the OSM map line
   between the stage ends, under their own source (`huckepack-measured`, "no
   source publishes them"), so the page says they are ours (2026-11-02).
+- **Trails without stages (2026-11-03):** where the official source defines no
+  stages at all, because hikers choose their own camps or nights (the
+  Wonderland Trail's 21 designated camps, the John Muir Trail), the trail is
+  still published, without a stages section. This applies only to trails with
+  no stages by design. A trail whose official stages exist but aren't openly
+  published (the GR 10, the GR 65) keeps the rule above. The rules:
+  - **Official days required:** a stage-less trail is published only when an
+    official source suggests its days; no guessed days.
+  - **Averages per day** come from the length (and the ascent and descent)
+    over the suggested days. Where the length and the days come from
+    different sources the averages still show, and their popover names both.
+    A range of days gives a range ("11–17 km a day", from the most and the
+    fewest days), never a midpoint no source states.
+  - **Effort** is rated from an average day at the fewest suggested days: the
+    length, ascent and descent divided evenly, timed by DIN 33466, marked as
+    an estimate (≈). It's the hardest plan a source suggests, so it doesn't
+    understate the day.
+  - **The page says why:** the Days key figure's popover reads "No official
+    stages: hikers choose their own camps", with the days' source.
+  - **Kilometres, not stage numbers:** charts and tooltips that name a stage
+    elsewhere give the kilometre along the route instead; the chart axes
+    show kilometre marks only.
 - **Sleeping (issue #113, 2026-11-01):** beds have their own lanes in the
   Sleeping section (one per category, approach B of three previews); the
   rest is "Water & Supply". A category counts as available where the
