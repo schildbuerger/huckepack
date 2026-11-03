@@ -34,10 +34,19 @@ try {
 );
 // the address search engines and link previews should use (no query string, always with a slash)
 const canonical = new URL(Astro.url.pathname.replace(/\/?$/, "/"), Astro.site);
-// the site's name for search results (schema.org WebSite), on the home page
+// the site's name for search results (schema.org WebSite), on the home page, published by huckepack
+// itself as an Organization with its logo (issue #187: the logo search engines show for the brand;
+// the cairn on cream, 512 px). No person is named: the operator's details stay out of the repository
+const home = new URL("/", Astro.site).href;
 const siteLd =
   Astro.url.pathname === "/" &&
-  JSON.stringify({ "@context": "https://schema.org", "@type": "WebSite", name: "huckepack", url: new URL("/", Astro.site).href });
+  JSON.stringify({
+    "@context": "https://schema.org",
+    "@graph": [
+      { "@type": "Organization", "@id": `${home}#organization`, name: "huckepack", url: home, logo: new URL("/icon-512.png", Astro.site).href },
+      { "@type": "WebSite", "@id": `${home}#website`, name: "huckepack", url: home, publisher: { "@id": `${home}#organization` } },
+    ],
+  });
 ---
 
 <!doctype html>
