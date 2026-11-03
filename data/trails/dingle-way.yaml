@@ -1,0 +1,196 @@
+name: Dingle Way
+added: 2026-11-03
+localName: Slí Chorca Dhuibhne
+aliases: [Dingle Way Long Distance Walk]
+website: https://thedingleway.ie/
+wikidata: Q5278223
+managedBy:
+  # a National Waymarked Trail (Sport Ireland's National Trails Office), managed by the Dingle Way
+  # Committee and Kerry County Council (English Wikipedia; the committee's own site)
+  - name: Dingle Way Committee and Kerry County Council (National Waymarked Trail, Sport Ireland)
+    url: https://thedingleway.ie/
+trailType: loop
+continents: [Europe]
+countries: [IE]
+regions: [County Kerry]
+termini:
+  # a loop from and back to the Kerry County Museum in Tralee, where the committee's section 1
+  # starts (OSM)
+  start:
+    name: Tralee
+    lat: 52.26672
+    lon: -9.70596
+  end:
+    name: Tralee
+    lat: 52.26672
+    lon: -9.70596
+  source: osm
+waymarking:
+  # "following the waymarkers"; "Yellow waymarkers give way to white arrows along this stretch to
+  # help in case of mist or fog at the top" (section 6). The National Waymarked Ways' walker logo
+  # is the operator's design, not drawn
+  text: Yellow waymarkers throughout; white arrows over the pass below Mount Brandon, for mist
+  source: dw
+length:
+  # "Scenic 176 km Hiking Trail" (the route overview's title); the eight sections sum to 178 km
+  - km: 176
+    source: dw
+stages:
+  # the committee's eight sections, each page's fact file (distance, ascent, time); no descent is
+  # given. No official GPX: each section cuts the OSM relation "The Dingle Way" (21664) at its end
+  # (OSM)
+  source: dw
+  list:
+    - { number: "1", kind: main, from: Tralee, to: Camp, km: 18, ascentM: 200, minutes: 300, maxMinutes: 420, end: { name: Camp, lat: 52.21665, lon: -9.9004 } }
+    - { number: "2", kind: main, from: Camp, to: Annascaul, km: 17, ascentM: 235, minutes: 240, maxMinutes: 360, end: { name: Annascaul, lat: 52.15109, lon: -10.05547 } }
+    - { number: "3", kind: main, from: Annascaul, to: Dingle, km: 23, ascentM: 150, minutes: 300, maxMinutes: 420, end: { name: Dingle, lat: 52.14078, lon: -10.26871 } }
+    - { number: "4", kind: main, from: Dingle, to: Dunquin, km: 20, ascentM: 370, minutes: 300, maxMinutes: 420, end: { name: Dunquin, lat: 52.13365, lon: -10.45399 } }
+    - { number: "5", kind: main, from: Dunquin, to: Feothanach, km: 20, ascentM: 125, minutes: 300, maxMinutes: 420, end: { name: Feothanach, lat: 52.21262, lon: -10.3496 } }
+    - { number: "6", kind: main, from: Feothanach, to: Cloghane, km: 24, ascentM: 655, minutes: 360, maxMinutes: 420, end: { name: Cloghane, lat: 52.23491, lon: -10.18225 } }
+    - { number: "7", kind: main, from: Cloghane, to: Castlegregory, km: 29, ascentM: 50, minutes: 420, maxMinutes: 540, end: { name: Castlegregory, lat: 52.25563, lon: -10.02158 } }
+    - { number: "8", kind: main, from: Castlegregory, to: Tralee, km: 27, ascentM: 300, minutes: 390, maxMinutes: 510, end: { name: Tralee, lat: 52.26672, lon: -9.70596 } }
+route:
+  # built by `python -m pipeline.all dingle-way`: OSM ways matched to the relation's pieces between
+  # the section ends
+  source: osm
+  publishable: true
+  relation: 21664
+difficulty:
+  # the committee grades its sections Easy, Moderate or Difficult; no SAC grade. Our estimate
+  estimated:
+    sac: T2
+    basis: >-
+      Mostly minor roads, boreens, field edges and long beaches; the committee calls section 6 "the
+      most challenging part of the Dingle Way", over the pass below Mount Brandon on a mountain path
+      with white arrows for mist, and advises another way to Cloghane in poor visibility. Beaches can
+      be cut off by high tides. Mountain hiking on clear paths (T2), no exposed passages.
+    source: dw
+season:
+  # "Season: Any" (English Wikipedia's infobox); the committee's site names no season
+  months: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
+  text: Any season
+  source: wikipedia
+sleeping:
+  # "bed and breakfasts, … glamping and camping, self catering or luxury hotels" (the committee's
+  # accommodation list); hostels at Dunquin and Cloghane (sections 5 and 6)
+  types: [guesthouse, hostel, campsite, hotel]
+  source: dw
+access:
+  # Tralee's railway station (trains from Dublin Heuston and Cork) and the airports the committee
+  # names: Kerry Airport near Tralee and Shannon. Coordinates from OSM; distances by
+  # pipeline/access.py
+  - kind: station
+    name: Tralee Casement
+    lat: 52.27102
+    lon: -9.69916
+    source: osm
+  - kind: airport
+    name: Kerry Airport (KIR)
+    lat: 52.18091
+    lon: -9.52578
+    source: osm
+  - kind: airport
+    name: Shannon Airport (SNN)
+    lat: 52.69868
+    lon: -8.92155
+    source: osm
+animals:
+  # Ticks (HSE Health Protection Surveillance Centre). Level ours. No Irish official source found
+  # for cattle on walking routes (2026-11-03), so none listed
+  list:
+    - kind: tick
+      name: "Ticks (Lyme disease)"
+      level: low
+      basis: "Ticks are active across Ireland from spring to autumn; the HPSC names walking paths bordered by long grass, fields and vegetation near lakes and seaside beaches among the places they are most likely."
+      do:
+        - "Cover exposed skin with long trousers tucked into socks or boots, long sleeves and closed shoes or boots"
+        - "Use a repellent containing at least 20 % DEET, picaridin or IR3535 on exposed skin"
+        - "Check your skin and clothing every 3 to 4 hours in tick areas, and do a full-body check after you get in"
+        - "Grip an attached tick as close to the skin as possible with fine-tipped tweezers or a tick removal tool and pull steadily away from the skin, then wash the bite and apply antiseptic"
+        - "See your GP if a rash, especially a spreading bull's-eye rash, or flu-like symptoms follow a tick bite, and tell them about the bite"
+      dont:
+        - "Twist or crush the tick when you remove it"
+        - "Use a lit cigarette, a match head, alcohol or petroleum jelly to remove a tick"
+      source: hpsc-lyme
+tags: [coast, beaches, cliffs, mountains, national-waymarked-trail]
+notes:
+  - >-
+    The Way leaves Tralee along the old ship canal to Blennerville, crosses the Slieve Mish
+    Mountains' northern flank to Camp, passes Inch Strand to Annascaul, Dingle and Ventry, rounds
+    Slea Head on cliff paths to Dunquin, follows the coast to Feothanach, climbs to the pass below
+    Mount Brandon (its highest point, about 640 m) and descends to Cloghane, follows Fermoyle Strand
+    to Castlegregory and returns along Tralee Bay, retracing the outward route from Camp to Tralee.
+  - >-
+    Season: any (English Wikipedia; the committee names none). Wild camping: no official source found
+    for Ireland (2026-11-03): most land is private and the Way crosses farmland by the landowners'
+    permission, so none is recorded. Tree line: none recorded, the Way stays below about 640 m.
+  - >-
+    Figures: the eight sections sum to 178 km against the stated 176 km; section ascents sum to
+    2,085 m; no descent is given, so the page shows the terrain model's estimate (≈) for the pair.
+  - >-
+    Map line: OSM's relation (21664) is one closed loop of 181 km, cut at the section ends; every
+    section 100 % matched, 180.3 km against the sections' 178 km. Section 1 ends where the Way passes
+    above Camp (section 2 starts "from the intersection south of Camp"), not in the village, which the
+    return along Tralee Bay passes nearer. Sections 4 (Dingle – Dunquin, 23.9 km against 20 km) and 8
+    (Castlegregory – Tralee, 29.9 against 27 km) measure longer on the map line than the committee
+    states; section 7 shorter (26.8 against 29 km). Highest point 651 m (terrain model) against
+    Wikipedia's 640 m.
+  - >-
+    Data check (2026-11-03): the committee's figures against English Wikipedia (whose infobox cites
+    the Irish Sports Council's former trail page): length 176 km against 162 km (8 %), eight days
+    against eight sections, highest point 640 m against 651 m on the terrain model, Tralee as start
+    and finish, the designation and management: all agree. Ascent: the sections' 2,085 m against 2,590 m
+    (24 %), recorded in dataCheck; the page keeps the committee's section figures.
+dataCheck:
+  # working rule 2: English Wikipedia (its infobox cites the Irish Sports Council's trail page)
+  date: 2026-11-03
+  against: [wikipedia]
+  deviations:
+    - { figure: "Total ascent (sum of the sections)", ours: "2,085 m", theirs: "2,590 m", source: wikipedia }
+sources:
+  - id: dw
+    title: "The Dingle Way (Cosán Slí Chorcha Dhuibhne committee): route overview and the eight section pages' fact files (distance, ascent, time, grade), getting here, accommodation"
+    url: https://thedingleway.ie/the-dingle-way-walking-route-guide-sections-overview.html
+    licence: All rights reserved (facts only)
+    retrieved: 2026-11-03
+  - id: wikipedia
+    title: "English Wikipedia: Dingle Way (designation, management, season; length, ascent and days for the data check)"
+    url: https://en.wikipedia.org/wiki/Dingle_Way
+    licence: CC BY-SA 4.0
+    retrieved: 2026-11-03
+  - id: hpsc-lyme
+    title: "HSE Health Protection Surveillance Centre: Lyme disease (where ticks are found, avoiding bites, removing ticks, when to see a GP)"
+    url: https://www.hpsc.ie/a-z/vectorborne/lymedisease/
+    licence: © HSE Health Protection Surveillance Centre (facts only)
+    retrieved: 2026-11-03
+  - id: wikimedia
+    title: "Wikimedia: page views of the trail's Wikipedia articles in every language, by people, over twelve months (Wikidata sitelinks, pageview API)"
+    url: https://wikimedia.org/api/rest_v1/
+    licence: CC0 1.0 (pageview data); Wikidata CC0
+    retrieved: 2026-11-03
+    checkOnly: true  # not on the trail page: the page views only rank the home page's popular trails
+  - id: osm
+    title: "OpenStreetMap contributors: paths, water, shops and places to sleep along the trail (Geofabrik extracts), section ends, travel hubs"
+    url: https://www.openstreetmap.org/
+    licence: ODbL 1.0
+    retrieved: 2026-11-03
+  - id: copdem
+    title: "Copernicus DEM GLO-30 (30 m terrain model), tiles from AWS Open Data"
+    url: https://registry.opendata.aws/copernicus-dem/
+    licence: "Copernicus WorldDEM-30 licence, free; produced using Copernicus WorldDEM-30 © DLR e.V. 2010-2014 and © Airbus Defence and Space GmbH 2014-2018 provided under COPERNICUS by the European Union and ESA; all rights reserved"
+    retrieved: 2026-11-03
+  - id: worldcover
+    title: "ESA WorldCover 2021: 10 m land cover (via AWS Open Data)"
+    url: https://esa-worldcover.org/
+    licence: "CC BY 4.0; © ESA WorldCover project 2021 / Contains modified Copernicus Sentinel data (2021) processed by ESA WorldCover consortium"
+    retrieved: 2026-11-03
+  - id: era5
+    title: "Open-Meteo open data on AWS: ERA5-Land temperature and ERA5 precipitation, snow and wind, daily 1995–2024 (reanalysis)"
+    url: https://github.com/open-meteo/open-data
+    licence: CC BY 4.0 (Open-Meteo); contains modified Copernicus Climate Change Service information
+    retrieved: 2026-11-03
+  - id: osrm
+    title: "OSRM: road routes on OpenStreetMap data (router.project-osrm.org)"
+    url: https://project-osrm.org/
+    licence: Route data © OpenStreetMap contributors (ODbL)
+    retrieved: 2026-11-03

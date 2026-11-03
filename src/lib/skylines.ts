@@ -552,4 +552,25 @@ export const SKYLINES: Record<string, Skyline> = {
     ],
     front: [{ d: water(920, 1600, 300), c: SEA }],
   },
+  "dingle-way": {
+    view: "The Dingle Peninsula from Slea Head: the Blasket Islands in the Atlantic, the cliffs and the Three Sisters along the coast, the Brandon massif behind, green fields with a stone beehive hut",
+    ridge: "#3f5a3a",
+    ground: "#6f9a4a",
+    shapes: [
+      // the Brandon massif, its long ridge rising to Mount Brandon's summit
+      { d: range([[820, G], [900, 236], [1010, 214], [1110, 188], [1180, 172], [1230, 180], [1330, 206], [1440, 222], [1600, 236], [1600, G]]), c: "#93a3ad" },
+      // the Three Sisters: three steep humps on the coast
+      { d: hills([[700, G], [740, 240], [790, 198], [826, 236], [866, 204], [900, 238], [940, 212], [990, 250], [1040, G]]), c: "#7a8f84" },
+      // the Blaskets: Tearaght's peak, the Great Blasket's long back, Inishtooskert low
+      { d: range([[40, G], [62, 250], [74, 244], [92, 262], [104, G]]), c: "#6f7f86" },
+      { d: hills([[140, G], [200, 252], [290, 234], [380, 244], [450, 262], [490, G]]), c: "#728a7c" },
+      { d: hills([[520, G], [560, 264], [610, 258], [670, G]]), c: "#7f9384" },
+      { d: water(0, 860, 278), c: SEA },
+      // Slea Head's cliff falling to the sea, and the fields behind it
+      { d: range([[700, G], [716, 272], [730, 258], [860, 256], [1000, 262], [1120, 254], [1600, 262], [1600, G]]), c: "#6f9050" },
+      // a clochán, the corbelled stone hut of the peninsula
+      { d: "M1160,266Q1160,240 1178,238Q1196,240 1196,266Z", c: "#a29c8c" },
+      { d: "M1174,266V256H1182V266Z", c: "#4f4a40" },
+    ],
+  },
 };
