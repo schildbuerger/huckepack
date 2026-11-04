@@ -217,6 +217,9 @@ const trail = z
         // a relation with side branches (the W Trek's valleys): each stage is the shortest way over
         // its ways from where it begins to its `end`, instead of a piece of one chained line
         branched: z.boolean().default(false),
+        // with branched: way ends this close (m) count as joined, where the refuges' spurs stop short
+        // of the relation's ways (the Carros de Foc's 7–50 m); the matcher still follows real paths
+        joinM: z.number().positive().optional(),
         // no route relation in OSM (the Whale Trail): the name its ways carry, a regular expression for
         // Overpass; each stage is the shortest way over them to its `end`
         wayName: z.string().optional(),

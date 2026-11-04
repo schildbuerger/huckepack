@@ -1,0 +1,207 @@
+name: Carros de Foc
+added: 2026-11-04
+aliases: [Carros de Fuego, Chariots of Fire trek, Carros de foc (travessa)]
+website: https://www.carrosdefoc.com/en/
+wikidata: Q11912624
+managedBy:
+  # a hut circuit run by its refuges (docs/scope.md: counts as official with its own website): the
+  # crossing's reservation centre and pass, Trekking Carros de Foc S.L. in Vielha
+  - name: Carros de Foc (the nine refuges of the national park)
+    url: https://www.carrosdefoc.com/en/
+trailType: loop
+continents: [Europe]
+countries: [ES]
+regions: [Catalonia]
+protectedAreas:
+  - Aigüestortes i Estany de Sant Maurici National Park
+termini:
+  # a circuit you may start "at any of the refuges and taking the direction you prefer"; the record
+  # starts and ends at the Refugi de la Restanca, the first of Catalan Wikipedia's list (OSM)
+  start:
+    name: Refugi de la Restanca
+    lat: 42.63471
+    lon: 0.85465
+  end:
+    name: Refugi de la Restanca
+    lat: 42.63471
+    lon: 0.85465
+  source: cdf
+established:
+  # "No va ser fins a l'any 2000 que es va institucionalitzar"
+  year: 2000
+  source: wikipedia-ca
+waymarking:
+  # "The itinerary has no special marking": stretches of the GR 11's red and white, yellow wooden
+  # posts, and mostly cairns; "Using a map is an essential requirement"
+  text: No marking of its own; GR 11 red-and-white in places, yellow posts and cairns; carry a map
+  source: cdf
+length:
+  # "Distance: 65 km" (carrosdefoc.com; Catalan Wikipedia and OSM say 55 km)
+  - km: 65
+    source: cdf
+days:
+  # "we will need between 5 and 7 days"
+  min: 5
+  max: 7
+  source: cdf
+treeLine:
+  # the park's environmental declaration: "Els prats alpins … constitueixen el límit superior del
+  # bosc i es situen, aproximadament, entre els 2.300 i 2.400 metres d'altitud" (mountain pine below)
+  m: 2400
+  fromM: 2300
+  source: oapn-decl
+stages:
+  # the organiser connects nine refuges but publishes no legs between them ("starting at any of the
+  # refuges and taking the direction you prefer"); the legs are our own, measured on the OSM map line
+  # of the route relation "Carros de Foc" (546940), each the shortest way over it from refuge to
+  # refuge, in Catalan Wikipedia's order of the refuges (decided 2026-11-04, as the GR 20's)
+  source: huckepack-measured
+  list:
+    - { number: "1", kind: main, from: Refugi de la Restanca, to: Refugi Ventosa i Calvell, km: 6.0, end: { name: Refugi Ventosa i Calvell, lat: 42.60531, lon: 0.87739 } }
+    - { number: "2", kind: main, from: Refugi Ventosa i Calvell, to: Refugi d'Estany Llong, km: 8.7, end: { name: Refugi d'Estany Llong, lat: 42.57259, lon: 0.94237 } }
+    - { number: "3", kind: main, from: Refugi d'Estany Llong, to: Refugi Colomina, km: 11.3, end: { name: Refugi Colomina, lat: 42.51948, lon: 1.00129 } }
+    - { number: "4", kind: main, from: Refugi Colomina, to: Refugi Josep Maria Blanc, km: 6.7, end: { name: Refugi Josep Maria Blanc, lat: 42.54569, lon: 1.04406 } }
+    - { number: "5", kind: main, from: Refugi Josep Maria Blanc, to: Refugi Ernest Mallafré, km: 8.8, end: { name: Refugi Ernest Mallafré, lat: 42.57882, lon: 1.00911 } }
+    - { number: "6", kind: main, from: Refugi Ernest Mallafré, to: Refugi d'Amitges, km: 5.0, end: { name: Refugi d'Amitges, lat: 42.59667, lon: 0.98461 } }
+    - { number: "7", kind: main, from: Refugi d'Amitges, to: Refugi de Saboredo, km: 5.2, end: { name: Refugi de Saboredo, lat: 42.62107, lon: 0.96338 } }
+    - { number: "8", kind: main, from: Refugi de Saboredo, to: Refugi de Colomèrs, km: 5.5, end: { name: Refugi de Colomèrs, lat: 42.62425, lon: 0.92065 } }
+    - { number: "9", kind: main, from: Refugi de Colomèrs, to: Refugi de la Restanca, km: 7.4, end: { name: Refugi de la Restanca, lat: 42.63471, lon: 0.85465 } }
+route:
+  # built by `python -m pipeline.all carros-de-foc`: OSM ways matched to the route relation, each
+  # leg the shortest way over it between two refuges (the refuges sit on its approach branches)
+  source: osm
+  publishable: true
+  relation: 546940
+  branched: true
+  # the refuges' spurs end 7–50 m short of the relation's other ways
+  joinM: 60
+difficulty:
+  # no grade is published; our estimate from the organiser's description
+  estimated:
+    sac: T4
+    basis: >-
+      carrosdefoc.com calls it "a high-mountain route" on "granite blocks, landslides, and paths",
+      without marking of its own, where "using a map is an essential requirement", crossing
+      passes up to the Coll de Contraix (2,745 m) with 9,200 m of climbing; "in bad weather
+      conditions it can get really complicated". Pathless boulder fields and steep scree passes:
+      demanding alpine hiking (T4).
+    source: cdf
+sleeping:
+  # "connecting the 9 mountain refuges"; a booking is required for the pass
+  types: [hut]
+  source: cdf
+wildCamping:
+  # the FAQ: "Is it possible to camp or do bivouac? The National Parks specifically forbids any of
+  # these two options"
+  status: prohibited
+  rule: >-
+    The national park forbids both camping and bivouacking; you sleep in the refuges, booked in
+    advance through the crossing's reservation centre.
+  source: cdf
+access:
+  # La Pobla de Segur, the railhead of the line from Lleida, and Toulouse airport (Barcelona's is
+  # over 300 km by road). Coordinates from OSM; distances by pipeline/access.py
+  - kind: station
+    name: La Pobla de Segur
+    lat: 42.24
+    lon: 0.96616
+    source: osm
+  - kind: airport
+    name: Toulouse–Blagnac Airport (TLS)
+    lat: 43.62996
+    lon: 1.36362
+    source: osm
+tags: [pyrenees, huts, lakes, national-park, alpine, loop]
+notes:
+  - >-
+    A circuit through the Aigüestortes i Estany de Sant Maurici National Park, joining its nine
+    guarded refuges (Restanca, Ventosa i Calvell, Estany Llong, Colomina, Josep Maria Blanc,
+    Ernest Mallafré, Amitges, Saboredo, Colomèrs) over high passes among hundreds of lakes. It grew
+    from the refuge keepers' visits to each other and became an organised crossing in 2000, with a
+    pass stamped at every refuge.
+  - >-
+    Season: the organiser states none; the refuges are guarded in summer (their bookings and
+    phone hours run June to September), and the high passes hold snow into early summer. No season
+    is recorded until an official source gives one.
+  - >-
+    Water: "you can always find water in the refuges"; streams on the way can be fouled by grazing
+    livestock in summer (carrosdefoc.com).
+  - >-
+    Climbing: carrosdefoc.com's "Total elevation gain: 9200 m" is the Spanish "desnivel acumulado",
+    up and down together (Catalan Wikipedia: "9200 m de desnivell acumulat"); the terrain model
+    gives about 4,410 m up on the map line, so the record states no ascent and the page estimates it.
+  - >-
+    Map line (2026-11-04, Geofabrik extract cataluna): OSM's relation 546940 ("Carros de Foc",
+    tagged 55 km), each leg the shortest way over its ways between two refuges, the refuges' spurs
+    joined where they end 7–50 m short of the other ways (`joinM`); every leg 100 % matched. The
+    nine legs measure 64.6 km (the organiser: 65 km), the main line 61.9 km. Highest point 2,724 m
+    on the terrain model at the Coll de Contraix (2,745 m stated), lowest 1,878 m at the Ernest
+    Mallafré refuge. Resupply: no shop on the route; the refuges serve meals and picnics.
+  - >-
+    Wildlife: the park's declaration names the asp viper (Vipera aspis) up to 2,300 m, but no
+    official advice for hikers was found (2026-11-04), so none is listed.
+  - >-
+    Data check (2026-11-04): carrosdefoc.com against Catalan Wikipedia (Carros de foc (travessa)):
+    the nine refuges and their order agree, as do the 9,200 m of accumulated climbing, the highest
+    point (Collet de Contraix, 2,745 m) and the refuges' heights (1,900–2,400 m). Differ: Catalan
+    Wikipedia and OSM give 55 km against the organiser's 65 km (15 %; our nine measured legs sum
+    to 64.6 km, the organiser's figure is kept) and "normalment … de 4 a 6 dies" against 5–7 days.
+    The leg distances are our own measurements, so no source checks them.
+dataCheck:
+  # working rule 2: Catalan Wikipedia
+  date: 2026-11-04
+  against: [wikipedia-ca]
+  deviations:
+    - { figure: length, ours: "65 km", theirs: "55 km", source: wikipedia-ca }
+sources:
+  - id: cdf
+    title: "Carros de Foc (carrosdefoc.com, Trekking Carros de Foc S.L. and the refuges): the crossing (65 km, 9,200 m, 5–7 days), refuges and FAQ"
+    url: https://www.carrosdefoc.com/en/carros-de-foc-2/
+    licence: All rights reserved (facts only)
+    retrieved: 2026-11-04
+  - id: huckepack-measured
+    title: "huckepack: leg distances between the refuges measured on our OpenStreetMap map line (no source publishes them)"
+    url: https://www.openstreetmap.org/relation/546940
+    licence: ODbL 1.0 (measured on OpenStreetMap data)
+    retrieved: 2026-11-04
+  - id: wikipedia-ca
+    title: "Catalan Wikipedia: Carros de foc (travessa) (history, the nine refuges, 55 km; data check)"
+    url: https://ca.wikipedia.org/wiki/Carros_de_foc_(travessa)
+    licence: CC BY-SA 4.0
+    retrieved: 2026-11-04
+  - id: oapn-decl
+    title: "Parc Nacional d'Aigüestortes i Estany de Sant Maurici: Declaració ambiental 2007 (vegetation zones, upper forest limit)"
+    url: https://www.miteco.gob.es/content/dam/miteco/es/parques-nacionales-oapn/red-parques-nacionales/parques-nacionales/aig_declaracion_amb_cat_tcm30-59528.pdf
+    licence: © Organismo Autónomo Parques Nacionales / Generalitat de Catalunya (facts only)
+    retrieved: 2026-11-04
+  - id: wikimedia
+    title: "Wikimedia: page views of the trail's Wikipedia articles in every language, by people, over twelve months (Wikidata sitelinks, pageview API)"
+    url: https://wikimedia.org/api/rest_v1/
+    licence: CC0 1.0 (pageview data); Wikidata CC0
+    retrieved: 2026-11-04
+    checkOnly: true  # not on the trail page: the page views only rank the home page's popular trails
+  - id: osm
+    title: "OpenStreetMap contributors: paths, water, shops and places to sleep along the trail (Geofabrik extracts), travel hubs"
+    url: https://www.openstreetmap.org/relation/546940
+    licence: ODbL 1.0
+    retrieved: 2026-11-04
+  - id: copdem
+    title: "Copernicus DEM GLO-30 (30 m terrain model), tiles from AWS Open Data"
+    url: https://registry.opendata.aws/copernicus-dem/
+    licence: "Copernicus WorldDEM-30 licence, free; produced using Copernicus WorldDEM-30 © DLR e.V. 2010-2014 and © Airbus Defence and Space GmbH 2014-2018 provided under COPERNICUS by the European Union and ESA; all rights reserved"
+    retrieved: 2026-11-04
+  - id: worldcover
+    title: "ESA WorldCover 2021: 10 m land cover (via AWS Open Data)"
+    url: https://esa-worldcover.org/
+    licence: "CC BY 4.0; © ESA WorldCover project 2021 / Contains modified Copernicus Sentinel data (2021) processed by ESA WorldCover consortium"
+    retrieved: 2026-11-04
+  - id: era5
+    title: "Open-Meteo open data on AWS: ERA5-Land temperature and ERA5 precipitation, snow and wind, daily 1995–2024 (reanalysis)"
+    url: https://github.com/open-meteo/open-data
+    licence: CC BY 4.0 (Open-Meteo); contains modified Copernicus Climate Change Service information
+    retrieved: 2026-11-04
+  - id: osrm
+    title: "OSRM: road routes on OpenStreetMap data (router.project-osrm.org)"
+    url: https://project-osrm.org/
+    licence: Route data © OpenStreetMap contributors (ODbL)
+    retrieved: 2026-11-04

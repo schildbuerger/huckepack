@@ -241,7 +241,7 @@ def relation_piece(elements, alternatives, start, a, b):
 NAMED_JOIN_M = 250
 
 
-def relation_path(elements, a, b, join_m=0):
+def relation_path(elements, a, b, join_m=0, to_nodes=False):
     """The shortest way from the point nearest a to the one nearest b over the relation's ways
     (lon, lat). For a railway line, whose double tracks and junctions a chain can't follow, and for
     ways with side branches. join_m: way ends this close count as joined where OSM's ways don't share
@@ -256,13 +256,16 @@ def relation_path(elements, a, b, join_m=0):
             graph.setdefault(q, []).append((p, d))
     if join_m:
         ends = list({p for g in ways for p in (g[0], g[-1])})
-        xy = [proj.xy(*p) for p in ends]
+        # to_nodes: a way end also joins any point of another way this close (a refuge's spur that
+        # stops beside the middle of a way: the Carros de Foc), not just another way's end
+        targets = list(graph) if to_nodes else ends
+        xy = {p: proj.xy(*p) for p in targets + ends}
         for i, p in enumerate(ends):
-            for j in range(i + 1, len(ends)):
-                d = math.dist(xy[i], xy[j])
+            for q in (targets if to_nodes else ends[i + 1 :]):
+                d = math.dist(xy[p], xy[q])
                 if 0 < d <= join_m:
-                    graph[p].append((ends[j], d))
-                    graph[ends[j]].append((p, d))
+                    graph[p].append((q, d))
+                    graph[q].append((p, d))
     near = lambda t: min(graph, key=lambda p: math.dist(proj.xy(*p), proj.xy(*t)))
     source, target = near(a), near(b)
     dist, prev, todo = {source: 0.0}, {}, [(0.0, source)]
@@ -416,14 +419,14 @@ def build(slug, refresh=False):
             begin = to
         return out
 
-    def shortest_guides(elements, join_m=0):
+    def shortest_guides(elements, join_m=0, to_nodes=False):
         # each stage the shortest way over the ways from where it begins (as in the loop below: the
         # previous main stage's end, or a variant's after a variant) to its end
         out, previous, last = {}, (start["lon"], start["lat"]), None
         for s in stages:
             begin = last[1] if s["kind"] != "main" and last and last[0] != "main" else previous
             to = (s["end"]["lon"], s["end"]["lat"])
-            out[(s["number"], s["kind"])] = relation_path(elements, begin, to, join_m)
+            out[(s["number"], s["kind"])] = relation_path(elements, begin, to, join_m, to_nodes)
             if s["kind"] == "main":
                 previous = to
             last = (s["kind"], to)
@@ -444,7 +447,7 @@ def build(slug, refresh=False):
         )
         if trail["route"].get("branched"):
             # a relation with side branches (the W Trek's valleys), which no chain follows
-            guides = shortest_guides(json.loads(data)["elements"])
+            guides = shortest_guides(json.loads(data)["elements"], trail["route"].get("joinM", 0), True)
         else:
             line = relation_line(json.loads(data), trail["route"].get("alternatives", []), (start["lon"], start["lat"]))
             if len(stages) > 2 and nearest_index(line, stages[0]["end"]) > nearest_index(line, stages[-2]["end"]):

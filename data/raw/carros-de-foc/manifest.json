@@ -1,0 +1,82 @@
+{
+  "climate-high.json": {
+    "retrieved": "2026-11-04T18:14:06+00:00",
+    "url": "https://openmeteo.s3.us-west-2.amazonaws.com/data/copernicus_era5_land+copernicus_era5?latitude=42.6&longitude=0.9&elevation=2720"
+  },
+  "climate-low.json": {
+    "retrieved": "2026-11-04T18:10:32+00:00",
+    "url": "https://openmeteo.s3.us-west-2.amazonaws.com/data/copernicus_era5_land+copernicus_era5?latitude=42.6&longitude=1.0&elevation=1880"
+  },
+  "elevation-glo30.json": {
+    "retrieved": "2026-11-04T18:06:43+00:00",
+    "url": "https://copernicus-dem-30m.s3.eu-central-1.amazonaws.com/Copernicus_DSM_COG_10_N42_00_E000_00_DEM/Copernicus_DSM_COG_10_N42_00_E000_00_DEM.tif https://copernicus-dem-30m.s3.eu-central-1.amazonaws.com/Copernicus_DSM_COG_10_N42_00_E001_00_DEM/Copernicus_DSM_COG_10_N42_00_E001_00_DEM.tif"
+  },
+  "landcover.json": {
+    "retrieved": "2026-11-04T18:06:43+00:00",
+    "url": "https://esa-worldcover.s3.eu-central-1.amazonaws.com/v200/2021/map/ESA_WorldCover_10m_2021_v200_\u2026_Map.tif"
+  },
+  "osm-relation.json": {
+    "retrieved": "2026-11-03T21:24:23Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-1-main.json": {
+    "retrieved": "2026-11-03T21:24:23Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-2-main.json": {
+    "retrieved": "2026-11-03T21:24:23Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-3-main.json": {
+    "retrieved": "2026-11-03T21:24:23Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-4-main.json": {
+    "retrieved": "2026-11-03T21:24:23Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-5-main.json": {
+    "retrieved": "2026-11-03T21:24:23Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-6-main.json": {
+    "retrieved": "2026-11-03T21:24:23Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-7-main.json": {
+    "retrieved": "2026-11-03T21:24:23Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-8-main.json": {
+    "retrieved": "2026-11-03T21:24:23Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-9-main.json": {
+    "retrieved": "2026-11-03T21:24:23Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-water.json": {
+    "retrieved": "2026-11-03T21:24:23Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-way-tags.json": {
+    "retrieved": "2026-11-03T21:24:23Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osrm-access-barcelona-el-prat-airport-bcn.json": {
+    "retrieved": "2026-11-04T18:14:06+00:00",
+    "url": "https://router.project-osrm.org/route/v1/driving/2.08269,41.29686;0.85465,42.63471?overview=false"
+  },
+  "osrm-access-la-pobla-de-segur.json": {
+    "retrieved": "2026-11-04T18:14:06+00:00",
+    "url": "https://router.project-osrm.org/route/v1/driving/0.96616,42.24;0.85465,42.63471?overview=false"
+  },
+  "osrm-access-toulouse-blagnac-airport-tls.json": {
+    "retrieved": "2026-11-04T18:14:06+00:00",
+    "url": "https://router.project-osrm.org/route/v1/driving/1.36362,43.62996;0.85465,42.63471?overview=false"
+  },
+  "wikimedia.json": {
+    "retrieved": "2026-11-04T18:14:07+00:00",
+    "url": "Q11912624 2025-11..2026-10"
+  }
+}
