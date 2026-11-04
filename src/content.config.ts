@@ -83,6 +83,10 @@ const stage = z.object({
   track: z.url().optional(), // the stage's GPX track; pipeline/routes.py builds the map line from it
   // without a track: where the stage ends, to split the route's OSM relation (route.relation)
   end: z.object({ lat: z.number(), lon: z.number() }).optional(),
+  // with `end` on a relation: points the stage passes, where the source's route takes one of the
+  // relation's alternative ways (the Alta Via 1's stages 4 and 6); pipeline/routes.py then follows
+  // the shortest way over all the relation's ways through them
+  via: z.array(z.object({ lat: z.number(), lon: z.number() })).optional(),
   // or the stage's own OSM hiking relation (a section of a superroute): chained from where the
   // previous stage ended, it guides the matcher like a track
   // (several in a row, e.g. an OSM section and the start of the next, as a list; with `end` the

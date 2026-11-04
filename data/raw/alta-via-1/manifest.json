@@ -1,0 +1,94 @@
+{
+  "climate-high.json": {
+    "retrieved": "2026-11-04T17:53:54+00:00",
+    "url": "https://openmeteo.s3.us-west-2.amazonaws.com/data/copernicus_era5_land+copernicus_era5?latitude=46.5&longitude=12.0&elevation=2720"
+  },
+  "climate-low.json": {
+    "retrieved": "2026-11-04T17:08:09+00:00",
+    "url": "https://openmeteo.s3.us-west-2.amazonaws.com/data/copernicus_era5_land+copernicus_era5?latitude=46.2&longitude=12.2&elevation=700"
+  },
+  "elevation-glo30.json": {
+    "retrieved": "2026-11-04T17:50:11+00:00",
+    "url": "https://copernicus-dem-30m.s3.eu-central-1.amazonaws.com/Copernicus_DSM_COG_10_N46_00_E012_00_DEM/Copernicus_DSM_COG_10_N46_00_E012_00_DEM.tif"
+  },
+  "landcover.json": {
+    "retrieved": "2026-11-04T17:50:12+00:00",
+    "url": "https://esa-worldcover.s3.eu-central-1.amazonaws.com/v200/2021/map/ESA_WorldCover_10m_2021_v200_\u2026_Map.tif"
+  },
+  "osm-relation-177743.json": {
+    "retrieved": "2026-10-28T21:21:02Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-1-main.json": {
+    "retrieved": "2026-10-28T21:21:02Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-10-main.json": {
+    "retrieved": "2026-10-28T21:21:02Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-11-main.json": {
+    "retrieved": "2026-10-28T21:21:02Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-12-main.json": {
+    "retrieved": "2026-10-28T21:21:02Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-2-main.json": {
+    "retrieved": "2026-10-28T21:21:02Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-3-main.json": {
+    "retrieved": "2026-10-28T21:21:02Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-4-main.json": {
+    "retrieved": "2026-10-28T21:21:02Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-5-main.json": {
+    "retrieved": "2026-10-28T21:21:02Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-6-main.json": {
+    "retrieved": "2026-10-28T21:21:02Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-7-main.json": {
+    "retrieved": "2026-10-28T21:21:02Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-8-main.json": {
+    "retrieved": "2026-10-28T21:21:02Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-9-main.json": {
+    "retrieved": "2026-10-28T21:21:02Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-water.json": {
+    "retrieved": "2026-10-28T21:21:02Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-way-tags.json": {
+    "retrieved": "2026-10-28T21:21:02Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osrm-access-belluno.json": {
+    "retrieved": "2026-11-04T17:11:37+00:00",
+    "url": "https://router.project-osrm.org/route/v1/driving/12.20988,46.14145;12.08502,46.69935?overview=false"
+  },
+  "osrm-access-toblach-dobbiaco.json": {
+    "retrieved": "2026-11-04T17:11:36+00:00",
+    "url": "https://router.project-osrm.org/route/v1/driving/12.22546,46.7248;12.08502,46.69935?overview=false"
+  },
+  "osrm-access-venice-marco-polo-airport-vce.json": {
+    "retrieved": "2026-11-04T17:11:37+00:00",
+    "url": "https://router.project-osrm.org/route/v1/driving/12.33896,45.49706;12.08502,46.69935?overview=false"
+  },
+  "wikimedia.json": {
+    "retrieved": "2026-11-04T17:11:39+00:00",
+    "url": "Q1236280 2025-11..2026-10"
+  }
+}

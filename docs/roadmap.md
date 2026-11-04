@@ -93,6 +93,8 @@ stage list for Tirol's line), the
 Cumbria Way (official status), the Peaks of the Balkans and the Camino Primitivo (waiting), and the
 John Muir and Wonderland Trails (waiting for stage-less pages, #204).
 
+
+Added on 2026-11-04: the **Alta Via 1** (#158, Lago di Braies to Case Bortòt above Belluno in the Province of Belluno's twelve stages from its official guide; stages 3, 4 and 6 follow OSM's excursion and alternative ways through `via` points).
 | # | Trail | Region | Length (approx.) | Why |
 |---|---|---|---|---|
 | 1 | Pacific Crest Trail | USA | 4,265 km | Most-hiked long trail; public US agency data; completion lists |

@@ -1,0 +1,243 @@
+name: Alta Via 1
+added: 2026-11-04
+localName: Alta Via delle Dolomiti n. 1
+aliases: [AV1, Alta Via 1 Dolomiti, Dolomite High Route 1, Dolomiten-Höhenweg Nr. 1, Alta Via n.1]
+website: https://www.visitdolomitibellunesi.com/en/what-to-do/hiking/alte-vie/alta-via-number-1
+wikidata: Q1236280
+managedBy:
+  # the Province of Belluno's tourism department published the official guide (2005, reprinted
+  # 2007, with Dolomiti Turismo); today the province's destination body, the Fondazione DMO
+  # Dolomiti Bellunesi, publishes the route ("125 km, 12 stages") and hosts the guide. No website
+  # of the route's own (#158: dolomiti.org's former stage page now redirects)
+  - name: Fondazione DMO Dolomiti Bellunesi (the Province of Belluno's destination body)
+    url: https://www.visitdolomitibellunesi.com/en/what-to-do/hiking/alte-vie/alta-via-number-1
+trailType: point-to-point
+continents: [Europe]
+countries: [IT]
+regions: [Trentino-South Tyrol, Veneto]
+protectedAreas:
+  - Fanes-Sennes-Braies Nature Park
+  - Ampezzo Dolomites Nature Park
+  - Dolomiti Bellunesi National Park
+termini:
+  # the guide's start at Lago di Braies and the end of its last stage at Case Bortòt above Belluno
+  # (coordinates from OSM)
+  start:
+    name: Lago di Braies
+    lat: 46.69935
+    lon: 12.08502
+  end:
+    name: Case Bortòt (Belluno)
+    lat: 46.18207
+    lon: 12.19519
+  source: prov-bl
+established:
+  # "Piero Rossi propose nel 1969 questa superba traversata"
+  year: 1969
+  source: prov-bl
+waymarking:
+  # "triangolo di vernice rossa con all'interno il numero dell'Alta Via (in questo caso la 1)" and
+  # the red-white-red CAI marks with the path number on the white band
+  text: The red-white-red CAI marks with the path number, and red triangles with a 1
+  symbol: cai
+  source: prov-bl
+length:
+  # the guide's data sheet: "Lunghezza del percorso: circa 125 chilometri"; the board's page "125 km";
+  # the twelve stages add up to 125 km
+  - km: 125
+    approx: true
+    source: prov-bl
+days:
+  # "Giorni di percorrenza: 12"
+  min: 12
+  max: 12
+  source: prov-bl
+treeLine:
+  # "In Südtirol schwankt die natürliche Waldgrenze nämlich aktuell zwischen 1900 und 2200 Metern";
+  # the route crosses from South Tyrol into the neighbouring Belluno Dolomites
+  m: 2200
+  fromM: 1900
+  source: stol
+stages:
+  # the Province of Belluno's guide (Alta Via delle Dolomiti n. 1, 2005, reprinted 2007): twelve
+  # stages, each with its climb and descent, "circa" length and net time. All on OSM's route
+  # relation 177743 (Lago di Braies to Belluno), cut at the stage ends: huts and Palafavèra (OSM);
+  # stages 4 and 6 take the relation's alternative ways the guide walks (`via`: by Forcella
+  # Travenanzes, under the Tofana di Rozes on path 404 to the Valon de Tofana, back on 403 and 412
+  # and up 440 by the Cinque Torri; round the Pelmo by Rifugio Venezia), where OSM's main line
+  # shortcuts past Passo Falzarego and Passo Staulanza; stage 3 climbs from Forcella Lagazuoi to the
+  # hut on the summit, which OSM tags as an excursion.
+  # The last stage's figures end at Case Bortòt ("ore 5 fino a Case Bortòt, ore 7 fino a Belluno")
+  source: prov-bl
+  list:
+    - { number: "1", kind: main, from: Lago di Braies, to: Rifugio Biella, km: 6, ascentM: 900, descentM: 60, minutes: 210, relation: 177743, end: { name: Rifugio Biella, lat: 46.66565, lon: 12.08458 } }
+    - { number: "2", kind: main, from: Rifugio Biella, to: Rifugio Fanes, km: 14, ascentM: 565, descentM: 830, minutes: 270, relation: 177743, end: { name: Rifugio Fanes, lat: 46.6122, lon: 12.01421 } }
+    - { number: "3", kind: main, from: Rifugio Fanes, to: Rifugio Lagazuoi, km: 11, ascentM: 1070, descentM: 375, minutes: 300, relation: 177743, via: [{ lat: 46.5305, lon: 12.0131 }], end: { name: Rifugio Lagazuoi, lat: 46.52774, lon: 12.00813 } }
+    - { number: "4", kind: main, from: Rifugio Lagazuoi, to: Rifugio Nuvolau, km: 15, ascentM: 635, descentM: 810, minutes: 330, relation: 177743, via: [{ lat: 46.5342, lon: 12.0319 }, { lat: 46.5332, lon: 12.0685 }, { lat: 46.5157, lon: 12.0665 }, { lat: 46.506, lon: 12.0437 }], end: { name: Rifugio Nuvolau, lat: 46.49526, lon: 12.04571 } }
+    - { number: "5", kind: main, from: Rifugio Nuvolau, to: Rifugio Città di Fiume, km: 11, ascentM: 260, descentM: 915, minutes: 270, relation: 177743, end: { name: Rifugio Città di Fiume, lat: 46.43691, lon: 12.1226 } }
+    - { number: "6", kind: main, from: Rifugio Città di Fiume, to: Palafavèra, km: 12, ascentM: 580, descentM: 990, minutes: 330, relation: 177743, via: [{ lat: 46.41555, lon: 12.15654 }], end: { name: Palafavèra, lat: 46.40259, lon: 12.10139 } }
+    - { number: "7", kind: main, from: Palafavèra, to: Rifugio Vazzoler, km: 14, ascentM: 850, descentM: 650, minutes: 360, relation: 177743, end: { name: Rifugio Vazzoler, lat: 46.35411, lon: 12.03103 } }
+    - { number: "8", kind: main, from: Rifugio Vazzoler, to: Rifugio Carestiato, km: 8, ascentM: 550, descentM: 430, minutes: 240, relation: 177743, end: { name: Rifugio Carestiato, lat: 46.32141, lon: 12.07046 } }
+    - { number: "9", kind: main, from: Rifugio Carestiato, to: Rifugio Sommariva al Pramperét, km: 13, ascentM: 450, descentM: 430, minutes: 300, relation: 177743, end: { name: Rifugio Sommariva al Pramperét, lat: 46.28898, lon: 12.16366 } }
+    - { number: "10", kind: main, from: Rifugio Sommariva al Pramperét, to: Rifugio Pian de Fontana, km: 6, ascentM: 540, descentM: 760, minutes: 180, relation: 177743, end: { name: Rifugio Pian de Fontana, lat: 46.26195, lon: 12.1759 } }
+    - { number: "11", kind: main, from: Rifugio Pian de Fontana, to: Bivacco del Màrmol, km: 6, ascentM: 830, descentM: 195, minutes: 240, relation: 177743, end: { name: Bivacco del Màrmol, lat: 46.23103, lon: 12.19068 } }
+    - { number: "12", kind: main, from: Bivacco del Màrmol, to: Case Bortòt, km: 9, ascentM: 100, descentM: 1570, minutes: 300, relation: 177743, end: { name: Case Bortòt, lat: 46.18207, lon: 12.19519 } }
+route:
+  # built by `python -m pipeline.all alta-via-1`: OSM ways of route relation 177743, cut at the stage ends
+  source: osm
+  publishable: true
+difficulty:
+  # the guide: "Difficoltà: EE e EEA, breve tratto di A in zona Màrmol"; stage 11 "EE e brevi
+  # tratti di EEA al Màrmol (I e II grado)", stage 5 EEA on the descent from the Nuvolau
+  cai:
+    grade: EEA
+    source: prov-bl
+season:
+  # "Periodo consigliato: da fine giugno a fine settembre"; the huts open about 20 June to 20
+  # September
+  months: [6, 7, 8, 9]
+  text: Late June to late September, while the huts are open
+  source: prov-bl
+sleeping:
+  # "Rifugi sul percorso principale: 15; Bivacchi sul percorso principale: 1"
+  types: [hut]
+  source: prov-bl
+wildCamping:
+  # the Ampezzo Dolomites Nature Park's rules: "a quote più alte esistono bivacchi fissi e rifugi
+  # alpini attrezzati per il pernottamento, perciò non si può campeggiare con tende e camper"
+  status: prohibited
+  rule: >-
+    No tents: in the Ampezzo Dolomites Nature Park camping with tents is not allowed, as there are
+    huts and fixed bivouacs for the night; sleep in the huts along the route.
+  source: ampezzo-park
+access:
+  # Toblach-Dobbiaco station (buses to Lago di Braies), Belluno station at the end, and Venice Marco
+  # Polo Airport. Coordinates from OSM; distances by pipeline/access.py
+  - kind: station
+    name: Toblach-Dobbiaco
+    lat: 46.7248
+    lon: 12.22546
+    source: osm
+  - kind: station
+    name: Belluno
+    lat: 46.14145
+    lon: 12.20988
+    source: osm
+  - kind: airport
+    name: Venice Marco Polo Airport (VCE)
+    lat: 45.49706
+    lon: 12.33896
+    source: osm
+tags: [dolomites, huts, alpine, world-war-i, national-park, nature-park]
+notes:
+  - >-
+    The route runs south from Lago di Braies in the Puster Valley through the Fanes plateau, over
+    the Lagazuoi (2,752 m, its highest point) and past the Cinque Torri, the Croda da Lago, the
+    Pelmo and the Civetta, then through the Moiazza and the Prampèr-Mezzodì group into the Dolomiti
+    Bellunesi National Park and down from the Schiara to Belluno. Proposed by Piero Rossi in 1969.
+  - >-
+    End: the guide gives Belluno as the arrival ("Luogo di arrivo: Belluno") but its last stage's
+    figures (about 9 km, 100 m up, 1,570 m down, 5 h) end at Case Bortòt, the road head 2 hours
+    above the town ("ore 7 fino a Belluno", 1,900 m down), and its 125 km total counts them so. The
+    record ends at Case Bortòt with the official figures; OSM's relation runs on into Belluno.
+  - >-
+    Source age: the guide is the Province's 2005 edition (reprinted 2007), still hosted by the
+    destination body, whose page today gives the same 125 km, 12 stages and 7,300 m. Variants
+    (the Castelletto gallery, the Croda da Lago, the Schiara via ferrata) are left out. Highest
+    point Rifugio Lagazuoi 2,752 m, lowest Belluno 389 m (Case Bortòt 568 m) in the guide.
+  - >-
+    Wildlife: no official source on the route's animals was found (2026-11-04), so none is listed.
+    Camping: the Ampezzo park forbids tents; English Wikipedia says camping is forbidden along the
+    whole route, without an official source for the national park's rule (said to be article 20 of
+    its regulation), so the page states only the Ampezzo park's rule.
+  - >-
+    Map line (2026-11-04, Geofabrik extract nord-est): OSM's relation 177743 cut at the stage ends,
+    every stage 100 % matched, 122.2 km against the guide's 125 km. Stages 3, 4 and 6 follow the
+    relation's excursion and alternative ways the guide walks (`via`). Stage lengths on the map
+    line within 10 % of the guide's "circa" figures except stage 2 (12.9 against 14 km), stage 5
+    (13.2 against 11 km) and stage 12 (7.7 against 9 km). Highest point 2,722 m on the terrain
+    model at Rifugio Lagazuoi (2,752 m in the guide), lowest 698 m at Case Bortòt (568 m in the
+    guide). The terrain model's ascent (about 9,360 m) runs far above the guide's 7,330 m stage
+    sum (about 7,300 m stated): the page shows the guide's stage climbs.
+  - >-
+    Resupply: OSM maps three shops along the route, none in the first 67.6 km (Lago di Braies to
+    the Cinque Torri); the huts serve meals and sell some food, as everywhere on the route.
+  - >-
+    Data check (2026-11-04): the Province's guide against English Wikipedia (Alta Via 1) and the
+    DMO Dolomiti Bellunesi's page. Agree: 125 km (both), 12 stages and 7,300 m of climbing (the
+    DMO), the start at Lago di Braies, the twelve stage ends and the stage times and climbs
+    (Wikipedia's itinerary gives the same 3.5, 4.5, 5, 5.5 h … and 900, 565, 1,070, 635 m …),
+    the highest point Lagazuoi 2,752 m, the season late June to September (Wikipedia: "late June
+    to mid September"). Differ: Wikipedia says 7–12 days (the guide 12), ends in Belluno (the
+    guide's figures at Case Bortòt, see End) and calls the waymarks "dark blue triangles with an
+    inset number one" (the guide: red triangles); Wikipedia's lowest point is La Pissa 448 m, on
+    another way down. No deviation over 10 % between the sources; the map line's stage lengths
+    and the terrain model's ascent against the guide are listed in dataCheck.
+dataCheck:
+  # working rule 2: English Wikipedia and the destination body's page
+  date: 2026-11-04
+  against: [wikipedia, dmo-bl]
+  deviations:
+    - { figure: "Stage 2 length (map line)", ours: "14 km", theirs: "12.9 km on the OSM map line", source: osm }
+    - { figure: "Stage 5 length (map line)", ours: "11 km", theirs: "13.2 km on the OSM map line", source: osm }
+    - { figure: "Stage 12 length (map line)", ours: "9 km", theirs: "7.7 km on the OSM map line", source: osm }
+    - { figure: "Ascent (terrain model)", ours: "7,330 m (stage sum)", theirs: "about 9,360 m (terrain model)", source: copdem }
+sources:
+  - id: prov-bl
+    title: "Provincia di Belluno, Settore Turismo: Alta Via delle Dolomiti n. 1, dal Lago di Bràies a Belluno (official guide by Italo Zandonella Callegher, 2005, reprint 2007; data sheet and twelve stages with climbs, lengths and times), hosted by the Fondazione DMO Dolomiti Bellunesi"
+    url: https://visitdolomitibellunesi.com/imports/documenti-brochures/alta-via-n-1-4513d842-de1b-4e5f-822b-3641ebea8996/documents-1-trn-a7db5f21-84b6-4915-9936-36624761a644-file.pdf
+    licence: © Amministrazione Provinciale Belluno (facts only)
+    retrieved: 2026-11-04
+  - id: dmo-bl
+    title: "Fondazione DMO Dolomiti Bellunesi (visitdolomitibellunesi.com): Alta Via Number 1 (\"125 km, 12 stages and 7,300 metres of elevation gain from Braies to Belluno\")"
+    url: https://www.visitdolomitibellunesi.com/en/what-to-do/hiking/alte-vie/alta-via-number-1
+    licence: All rights reserved (facts only)
+    retrieved: 2026-11-04
+    checkOnly: true
+  - id: ampezzo-park
+    title: "Parco Naturale delle Dolomiti d'Ampezzo: Regolamento del Parco Naturale (rules for visitors, 2024)"
+    url: https://cortina.dolomiti.org/wp-content/uploads/2024/07/Regolamento-Parco-Naturale-1.pdf
+    licence: All rights reserved (facts only)
+    retrieved: 2026-11-04
+  - id: stol
+    title: "stol.it: Als der Schlern noch komplett bewaldet war, 12 October 2023 (natural tree line in South Tyrol)"
+    url: https://www.stol.it/artikel/chronik/als-der-schlern-noch-komplett-bewaldet-war
+    licence: All rights reserved (facts only)
+    retrieved: 2026-11-04
+  - id: wikipedia
+    title: "English Wikipedia: Alta Via 1 (length, stages, season, waymarks; data check)"
+    url: https://en.wikipedia.org/wiki/Alta_Via_1
+    licence: CC BY-SA 4.0
+    retrieved: 2026-11-04
+    checkOnly: true
+  - id: wikimedia
+    title: "Wikimedia: page views of the trail's Wikipedia articles in every language, by people, over twelve months (Wikidata sitelinks, pageview API)"
+    url: https://wikimedia.org/api/rest_v1/
+    licence: CC0 1.0 (pageview data); Wikidata CC0
+    retrieved: 2026-11-04
+    checkOnly: true  # not on the trail page: the page views only rank the home page's popular trails
+  - id: osm
+    title: "OpenStreetMap contributors: paths, water, shops and places to sleep along the trail (Geofabrik extracts), travel hubs"
+    url: https://www.openstreetmap.org/relation/177743
+    licence: ODbL 1.0
+    retrieved: 2026-11-04
+  - id: copdem
+    title: "Copernicus DEM GLO-30 (30 m terrain model), tiles from AWS Open Data"
+    url: https://registry.opendata.aws/copernicus-dem/
+    licence: "Copernicus WorldDEM-30 licence, free; produced using Copernicus WorldDEM-30 © DLR e.V. 2010-2014 and © Airbus Defence and Space GmbH 2014-2018 provided under COPERNICUS by the European Union and ESA; all rights reserved"
+    retrieved: 2026-11-04
+  - id: worldcover
+    title: "ESA WorldCover 2021: 10 m land cover (via AWS Open Data)"
+    url: https://esa-worldcover.org/
+    licence: "CC BY 4.0; © ESA WorldCover project 2021 / Contains modified Copernicus Sentinel data (2021) processed by ESA WorldCover consortium"
+    retrieved: 2026-11-04
+  - id: era5
+    title: "Open-Meteo open data on AWS: ERA5-Land temperature and ERA5 precipitation, snow and wind, daily 1995–2024 (reanalysis)"
+    url: https://github.com/open-meteo/open-data
+    licence: CC BY 4.0 (Open-Meteo); contains modified Copernicus Climate Change Service information
+    retrieved: 2026-11-04
+  - id: osrm
+    title: "OSRM: road routes on OpenStreetMap data (router.project-osrm.org)"
+    url: https://project-osrm.org/
+    licence: Route data © OpenStreetMap contributors (ODbL)
+    retrieved: 2026-11-04

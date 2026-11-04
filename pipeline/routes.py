@@ -468,7 +468,16 @@ def build(slug, refresh=False):
             # variant, from where that one ended; cut at the stage's `end` when it has one
             elements = relation_elements(stage_relations(stage))
             begin = last[1] if stage["kind"] != "main" and last and last[0] != "main" else previous_end
-            if stage.get("end"):
+            if stage.get("end") and stage.get("via"):
+                # a stage that follows some of the relation's alternative ways (the Alta Via 1's
+                # stages 4 and 6, which OSM's main line shortcuts): the shortest way over all the
+                # relation's ways from where it begins through its `via` points to its `end`
+                points = [begin, *[(p["lon"], p["lat"]) for p in stage["via"]], (stage["end"]["lon"], stage["end"]["lat"])]
+                track = []
+                for a, b in zip(points, points[1:]):
+                    leg = relation_path(elements, a, b)
+                    track += leg if not track else leg[1:]
+            elif stage.get("end"):
                 # a stage that is only part of its relations: the piece from where it begins to its `end`
                 track = relation_piece(elements, stage.get("alternatives", []), (start["lon"], start["lat"]), begin, (stage["end"]["lon"], stage["end"]["lat"]))
             else:
