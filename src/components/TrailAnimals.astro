@@ -156,7 +156,7 @@ const TW_GROUND = 262; // where it rolls in the band, in front of where large an
                     tabindex="0"
                     role="button"
                     aria-haspopup="dialog"
-                    aria-label={`${a.name}, ${word} danger: what to do`}
+                    aria-label={`${shortName(a.name)} ${word} danger: ${shortName(a.name) === a.name ? "" : `${a.name}, `}what to do`}
                     data-pick={i}
                   >
                     <rect class="hit" x={p.x - 6} y={p.y - 8} width={p.w + 12} height={p.h + 14} rx="10" />
@@ -165,8 +165,9 @@ const TW_GROUND = 262; // where it rolls in the band, in front of where large an
                     <path class="leader" d={`M${p.hx} ${LABEL_Y + 24} V${p.hy - 6}`} />
                     <circle class="leader-dot" cx={p.hx} cy={p.hy - 6} r="2.4" />
                     <image class="animal" href={silhouette(p.kind).url} x={p.x} y={p.y} width={p.w} height={p.h} preserveAspectRatio="xMidYMax meet" />
+                    <!-- the name begins with these words (the name, then the level), so a space ends this one -->
                     <text class="label-name" x={p.hx} y={LABEL_Y}>
-                      {shortName(a.name)}
+                      {`${shortName(a.name)} `}
                     </text>
                     <g class="label-level" transform={`translate(${p.hx - lw / 2} ${LABEL_Y + 9})`}>
                       {meter(LEVELS[a.level].n).map((on, k) => (
