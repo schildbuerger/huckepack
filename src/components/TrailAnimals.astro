@@ -7,7 +7,9 @@
 // section's heading and the (i) sit in the band's sky, in line with the page's content. A click or tap
 // on one opens a dialog in the middle of the screen with why the level, and what to do and not to do in
 // the official source's words; Esc, Close or a click beside it closes it. On phones the band scrolls
-// sideways.
+// sideways. Where a trail lists none (issue #206), the section still shows: the empty band with a
+// tumbleweed blowing through, which opens a note saying whether the official source names no dangers
+// or no official source was found.
 import Explain from "./Explain.astro";
 import { backdrop, SCENE_W, SCENE_H, BLEED, TOP, place, silhouette, credit, type AnimalKind } from "../lib/animal-art";
 
@@ -42,11 +44,78 @@ const spots = place(sorted.map((a) => a.kind));
 const LABEL_Y = 30;
 const shortName = (name: string) => name.replace(/\s*\(.*\)\s*$/, "");
 const what = plants.length ? (animals.length ? "Animals and plants" : "Plants") : "Animals";
+
+// Nothing listed (issue #206): the section still shows, with a tumbleweed rolling through; a click on it
+// opens the note, which says whether the official source names no dangers or none was found
+const empty = sorted.length === 0;
+const note = none
+  ? { title: "No known dangers", text: none.text, src: `Source: ${sourceName(none.source)}.` }
+  : {
+      title: "Nothing found",
+      text: "We found no official source on dangerous animals or plants along this trail, so none is listed. That doesn't mean there are none: ask locally before you go.",
+      src: "Only official sources count here; none covered this trail's wildlife when we checked.",
+    };
+// the tumbleweed: loops of dry stems round its middle, a few twigs sticking out, drawn once at the
+// origin with radius TW_R (fixed seed, so every build draws the same one)
+const TW_R = 17;
+const seed = (() => {
+  let v = 11;
+  return () => (v = (v * 16807) % 2147483647) / 2147483647;
+})();
+const loop = () =>
+  `<ellipse cx="${((seed() - 0.5) * TW_R * 0.5).toFixed(1)}" cy="${((seed() - 0.5) * TW_R * 0.5).toFixed(1)}" rx="${(TW_R * (0.5 + seed() * 0.45)).toFixed(1)}" ry="${(TW_R * (0.25 + seed() * 0.45)).toFixed(1)}" transform="rotate(${(seed() * 180).toFixed(0)})"/>`;
+const twig = () => {
+  const a = seed() * Math.PI * 2;
+  const [r0, r1] = [TW_R * 0.7, TW_R * (1.05 + seed() * 0.25)];
+  return `M${(Math.cos(a) * r0).toFixed(1)} ${(Math.sin(a) * r0).toFixed(1)}L${(Math.cos(a) * r1).toFixed(1)} ${(Math.sin(a) * r1).toFixed(1)}`;
+};
+const weed = [
+  `<circle class="tw-body" r="${TW_R * 0.82}"/>`,
+  `<g class="tw-back">${Array.from({ length: 8 }, loop).join("")}</g>`,
+  `<g class="tw-front">${Array.from({ length: 7 }, loop).join("")}<path d="${Array.from({ length: 9 }, twig).join("")}"/></g>`,
+].join("");
+const TW_GROUND = 262; // where it rolls in the band, in front of where large animals would stand
 ---
 
 {
-  (sorted.length > 0 || none) && (
-    <section id="animals" class:list={{ band: sorted.length > 0 }}>
+  empty && (
+    <section id="animals" class="band tw-empty" data-tw>
+      <div class="band-head">
+        <h2>Wildlife</h2>
+      </div>
+      <figure class="wild tw-band">
+        <div class="scroll">
+          <svg class="scene" viewBox={`${-BLEED} ${-TOP} ${SCENE_W + 2 * BLEED} ${SCENE_H + TOP}`} preserveAspectRatio="xMidYMax slice">
+            <g aria-hidden="true" set:html={backdrop(slug)} />
+            <ellipse class="tw-shadow" cx="450" cy={TW_GROUND + 1} rx={TW_R} ry="3.5" />
+            <g class="tw-puffs" aria-hidden="true" />
+            <g class="tw-weed" data-ground={TW_GROUND} data-r={TW_R} role="button" tabindex="0" aria-haspopup="dialog" aria-label={`Wildlife: ${note.title}. What this means`}>
+              <circle class="hit" r={TW_R + 12} />
+              <g class="tw-spin" set:html={weed} />
+            </g>
+          </svg>
+        </div>
+      </figure>
+      <dialog class="an-dialog tw-dialog" aria-labelledby="tw-d-title">
+        <div class="d-head">
+          <svg class="d-art" viewBox={`${-TW_R * 1.4} ${-TW_R * 1.4} ${TW_R * 2.8} ${TW_R * 2.8}`} aria-hidden="true" set:html={weed} />
+          <div>
+            <h3 id="tw-d-title">{note.title}</h3>
+            <p class="an-level">No dangerous animals or plants listed</p>
+          </div>
+          <button type="button" class="d-close" aria-label="Close">✕</button>
+        </div>
+        <div class="d-body">
+          <p class="d-basis">{note.text}</p>
+          <p class="d-src">{note.src} Tumbleweed: drawn by us.</p>
+        </div>
+      </dialog>
+    </section>
+  )
+}
+{
+  !empty && (
+    <section id="animals" class="band">
       <div class="band-head">
         <h2>Wildlife</h2>
         {sorted.length > 0 && (
@@ -65,7 +134,6 @@ const what = plants.length ? (animals.length ? "Animals and plants" : "Plants") 
           </div>
         )}
       </div>
-      {none && !sorted.length && <p class="an-none">{none.text} <span class="muted">({sourceName(none.source)})</span></p>}
 
       {sorted.length > 0 && (
         <figure class="wild" data-wild>
@@ -156,6 +224,141 @@ const what = plants.length ? (animals.length ? "Animals and plants" : "Plants") 
 }
 
 <script>
+  // The tumbleweed (issue #206): blown through the band in hops, in the scene's own units, one frame at
+  // a time while the section is on screen: the wind gusts, it rolls and hops, bounces on landing with a
+  // puff of dust, leaves the band and comes back a few seconds later. A click, tap, Enter or Space
+  // makes it hop and opens the note; visitors who prefer reduced motion see it resting in the middle
+  for (const sec of document.querySelectorAll<HTMLElement>("[data-tw]")) {
+    const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const dialog = sec.querySelector<HTMLDialogElement>(".tw-dialog")!;
+    const host = sec.querySelector<HTMLElement>(".tw-band")!;
+    const svg = host.querySelector<SVGSVGElement>("svg")!;
+    const weed = svg.querySelector<SVGGElement>(".tw-weed")!;
+    const spin = weed.querySelector<SVGGElement>(".tw-spin")!;
+    const shadow = svg.querySelector<SVGEllipseElement>(".tw-shadow")!;
+    const puffs = svg.querySelector<SVGGElement>(".tw-puffs")!;
+    const GROUND = Number(weed.dataset.ground);
+    const R = Number(weed.dataset.r);
+    const G = 760;
+    const rand = (a: number, b: number) => a + Math.random() * (b - a);
+
+    // the part of the drawing on screen, in its own units (the band crops it at the sides)
+    const bounds = () => {
+      const r = host.querySelector(".scroll")!.getBoundingClientRect();
+      const m = svg.getScreenCTM()!.inverse();
+      return [new DOMPoint(r.left, r.top).matrixTransform(m).x, new DOMPoint(r.right, r.top).matrixTransform(m).x];
+    };
+    let [lo, hi] = bounds();
+    let x = reduce ? (lo + hi) / 2 : lo - R * 3;
+    let y = 0; // height above the ground
+    let vx = 0;
+    let vy = 0;
+    let rot = 0;
+    let wait = 0; // off screen until it comes back
+    let still = rand(0.2, 0.8); // time on the ground before the next hop
+    let t = 0;
+
+    const puff = (strength: number) => {
+      for (const side of [-1, 1]) {
+        const c = document.createElementNS("http://www.w3.org/2000/svg", "circle");
+        c.setAttribute("class", "tw-puff");
+        c.setAttribute("cx", String(x + side * R * 0.7));
+        c.setAttribute("cy", String(GROUND - 2));
+        c.setAttribute("r", "3");
+        puffs.append(c);
+        c.animate(
+          [
+            { transform: "translate(0, 0) scale(1)", opacity: 0.5 },
+            { transform: `translate(${side * 10}px, -4px) scale(${1.6 + strength})`, opacity: 0 },
+          ],
+          { duration: 520, easing: "ease-out" },
+        ).onfinish = () => c.remove();
+      }
+    };
+    const hop = (v: number) => {
+      vy = v;
+      still = rand(0.15, 0.9);
+    };
+    const render = () => {
+      weed.setAttribute("transform", `translate(${x.toFixed(1)} ${(GROUND - R - y).toFixed(1)})`);
+      spin.setAttribute("transform", `rotate(${rot.toFixed(1)})`);
+      const lift = Math.min(0.6, y / 160);
+      shadow.setAttribute("cx", x.toFixed(1));
+      shadow.setAttribute("rx", (R * 0.95 * (1 - lift)).toFixed(1));
+      shadow.style.opacity = String(0.22 * (1 - lift));
+    };
+    const step = (dt: number) => {
+      if (wait > 0) {
+        if ((wait -= dt) <= 0) {
+          [lo, hi] = bounds();
+          x = lo - R * 3;
+          y = vy = 0;
+        }
+        return;
+      }
+      const wind = 82 * (1 + 0.45 * Math.sin(t * 0.8) + 0.25 * Math.sin(t * 2.3 + 1));
+      vx += (wind - vx) * Math.min(1, dt * 1.2);
+      if (y === 0 && vy === 0 && (still -= dt) <= 0) hop(Math.random() < 0.12 ? rand(300, 360) : rand(90, 200));
+      // in the air: gravity, a bounce on landing (with dust), then rolling until the next hop
+      if (y > 0 || vy > 0) {
+        vy -= G * dt;
+        y += vy * dt;
+        if (y <= 0) {
+          y = 0;
+          if (vy < -90) puff(Math.min(1, -vy / 400));
+          vy = vy < -130 ? -vy * 0.42 : 0;
+        }
+      }
+      x += vx * dt;
+      rot += ((vx * dt) / R) * (180 / Math.PI);
+      if (x > hi + R * 3) wait = rand(1.5, 4.5);
+    };
+
+    let raf = 0;
+    let last = 0;
+    const frame = (now: number) => {
+      const dt = Math.min(0.05, (now - last) / 1000);
+      last = now;
+      t += dt;
+      step(dt);
+      render();
+      raf = requestAnimationFrame(frame);
+    };
+    new IntersectionObserver(([en]) => {
+      cancelAnimationFrame(raf);
+      if (!en.isIntersecting || reduce) return;
+      last = performance.now();
+      raf = requestAnimationFrame(frame);
+    }).observe(host);
+    addEventListener("resize", () => {
+      [lo, hi] = bounds();
+      if (reduce) {
+        x = (lo + hi) / 2;
+        render();
+      }
+    });
+    render();
+
+    const open = () => {
+      if (!reduce && y === 0) hop(260);
+      dialog.showModal();
+      dialog.addEventListener("close", () => weed.focus({ preventScroll: true }), { once: true });
+    };
+    weed.addEventListener("click", open);
+    weed.addEventListener("keydown", (e) => {
+      if (e.key === "Enter" || e.key === " ") {
+        e.preventDefault();
+        open();
+      }
+    });
+    dialog.querySelector(".d-close")!.addEventListener("click", () => dialog.close());
+    dialog.addEventListener("click", (e) => {
+      if (e.target === dialog) dialog.close();
+    });
+  }
+</script>
+
+<script>
   // a click, tap, Enter or Space on an animal or plant opens its dialog; Esc, Close or a click on the
   // backdrop closes it, and the focus returns to it. On phones the band scrolls sideways; it starts
   // centred on the scene
@@ -235,9 +438,6 @@ const what = plants.length ? (animals.length ? "Animals and plants" : "Plants") 
   }
   .band .chart-info :global(.term.icon) {
     color: #2b3026;
-  }
-  .an-none {
-    margin: 0;
   }
   /* levels: the status colours (Base.astro), soft for fills */
   .lv-low {
@@ -511,5 +711,55 @@ const what = plants.length ? (animals.length ? "Animals and plants" : "Plants") 
   .an-dont li::before {
     content: "✕";
     color: var(--poor);
+  }
+
+  .tw-band {
+    position: relative;
+  }
+  /* the tumbleweed: dry stems in two straw tones round a faint body, flat colours */
+  .tw-weed {
+    cursor: pointer;
+    outline: none;
+  }
+  .tw-weed .hit {
+    fill: transparent;
+  }
+  .tw-weed:focus-visible .hit {
+    stroke: #2b3026;
+    stroke-width: 2;
+    stroke-dasharray: 6 4;
+  }
+  .tw-spin :global(.tw-body) {
+    fill: #d9bf86;
+    fill-opacity: 0.45;
+  }
+  .tw-spin :global(.tw-back),
+  .d-art :global(.tw-back) {
+    fill: none;
+    stroke: #9a7742;
+    stroke-width: 1.4;
+  }
+  .tw-spin :global(.tw-front),
+  .d-art :global(.tw-front) {
+    fill: none;
+    stroke: #c39a58;
+    stroke-width: 1.8;
+    stroke-linecap: round;
+  }
+  .d-art :global(.tw-body) {
+    fill: #d9bf86;
+    fill-opacity: 0.45;
+  }
+  .tw-weed:hover :global(.tw-front) {
+    stroke: #a87d3c;
+  }
+  .tw-shadow {
+    fill: #2b3026;
+    opacity: 0.22;
+  }
+  .tw-puffs :global(.tw-puff) {
+    fill: #b9a57e;
+    transform-box: fill-box;
+    transform-origin: center;
   }
 </style>

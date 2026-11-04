@@ -620,7 +620,8 @@ const nav = [
   { id: "landscape", label: "Landscape", show: Boolean(landcover) },
   { id: "sleeping", label: "Sleeping", show: Boolean(t.sleeping || t.wildCamping) },
   { id: "water", label: along ? "Water & Supply" : "Water", show: Boolean(water) },
-  { id: "animals", label: "Wildlife", show: Boolean(t.animals?.list.length || t.animals?.plants.length || t.animals?.none) },
+  // every trail (issue #206): a tumbleweed where nothing is listed
+  { id: "animals", label: "Wildlife", show: true },
 ].filter((n) => n.show);
 
 // structured data (review #17, the light option): the page is about the trail as a place, with its
