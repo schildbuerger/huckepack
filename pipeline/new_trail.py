@@ -7,7 +7,7 @@ Writes data/trails/<slug>.yaml from the template below: every field the trail pa
 `null` left (the schema in src/content.config.ts accepts no null), so a gap can't slip through:
 fill each field, or delete an optional one the sources don't give (and say why in `notes`). Then
 ~/.venvs/huckepack/bin/python -m pipeline.all <slug>, work through its check, and do the data check (working
-rule 2). Never commit a record that doesn't build.
+rule 2). Never commit a record that doesn't build. The whole path: docs/trail-building.md.
 """
 
 import re
@@ -36,7 +36,8 @@ countries: [null]  # ISO codes, e.g. AT, DE, IT
 regions: []  # first-level regions (states, provinces), from the official site or OSM
 protectedAreas: []  # national parks, nature parks the trail crosses
 termini:
-  # where the official first stage starts and the last ends (coordinates from the GPX or OSM)
+  # where the operator says the trail starts and ends, even when its GPX or stage pages begin later
+  # (docs/trail-building.md, step 4; coordinates from the GPX or OSM)
   start:
     name: null
     lat: null
@@ -53,7 +54,7 @@ waymarking:
   text: null  # how it is marked, in the source's words. A simple painted mark (stripe, flag, diamond) gets `symbol` (src/components/Waymark.astro; add it there if new, `number` for a painted path number); a logo gets none
   source: null
 length:
-  - km: null  # the stated total; approx: true for "about"
+  - km: null  # the stated total; approx: true for "about". Only if it covers the same stretch as the main stages; else delete it and note the operator's figure
     source: null
 days:
   # the suggested days for the whole trail

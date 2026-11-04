@@ -7,7 +7,9 @@ body:
       value: |
         Only official trails: designated or maintained by a government body or a recognised trail
         association. Fill in what you know; links are enough. Unknown fields can stay empty, they
-        get researched when the trail is built (`pipeline/new_trail.py`, then `pipeline/all.py`).
+        get researched when the trail is built (docs/trail-building.md: `pipeline/new_trail.py`, then
+        `pipeline/all.py`). Note any blocker: a bot check or login on the official site, no stage
+        list, no track or OSM relation.
   - type: input
     id: name
     attributes:
