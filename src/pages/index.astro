@@ -5,7 +5,7 @@ import Base from "../layouts/Base.astro";
 import Icon, { type IconName } from "../components/Icon.astro";
 import Explain from "../components/Explain.astro";
 import TripSearch from "../components/TripSearch.astro";
-import { mainStages, stageEstimates, trailClimb, walkingMinutes } from "../lib/trails";
+import { mainStages, stageEstimates, trailClimb } from "../lib/trails";
 import { LEVELS } from "../lib/difficulty";
 import { climateLevel } from "../lib/filters";
 import { rateData } from "../lib/months";
@@ -45,8 +45,8 @@ const usps: { icon: IconName; title: string; text: string }[] = [
   { icon: "badge-check", title: "Every figure checked", text: "Official sources, named and double-checked" },
 ];
 
-// totals for the strip under the hero: the plain counts, then a few for fun, each summed from
-// the same figures the trail pages show
+// the totals on the hero's summit flags (issue #212): trails, countries, kilometres, the climbs as
+// times Everest and the drinking water points, each summed from the same figures the trail pages show
 const EVEREST_M = 8849;
 const sum = (xs: number[]) => xs.reduce((a, b) => a + b, 0);
 const perTrail = entries.map((e, i) => {
@@ -56,24 +56,14 @@ const perTrail = entries.map((e, i) => {
   // climbs as the key figures have them: the stated total or stage sums, else the terrain model's estimate
   const stated = trailClimb(e.data)?.up;
   const climbed = stated ?? sum(main.map((s) => est.get(s.number)?.ascentM ?? 0));
-  // walking time: each main stage's stated time, else DIN 33466 from its climbs (stated or estimated)
-  const minutes = sum(
-    main.map((s) => {
-      const up = s.ascentM ?? est.get(s.number)?.ascentM;
-      const down = s.descentM ?? est.get(s.number)?.descentM;
-      return s.minutes ?? (up !== undefined && down !== undefined ? walkingMinutes(s.km, up, down) : 0);
-    }),
-  );
   const taps = d?.water?.points.filter((p) => p.kind === "drinking").length ?? 0;
-  return { climbed, climbedEst: stated === undefined, minutes, taps };
+  return { climbed, climbedEst: stated === undefined, taps };
 });
 const totals = {
   trails: trails.length,
   countries: new Set(trails.flatMap((t) => t.countries)).size,
   km: Math.round(trails.reduce((sum, t) => sum + (t.compareKm ?? 0), 0)), // measured where the match is good
-  stages: entries.reduce((sum, e) => sum + mainStages(e.data).length, 0),
   climbed: Math.round(sum(perTrail.map((t) => t.climbed)) / 10) * 10,
-  hours: Math.round(sum(perTrail.map((t) => t.minutes)) / 60),
   taps: sum(perTrail.map((t) => t.taps)),
 };
 const everests = (totals.climbed / EVEREST_M).toFixed(1);
@@ -190,12 +180,13 @@ const sources = [
   { name: "tz database (IANA)", what: "Each time zone's main city, to find the trails near you in your browser" },
 ];
 // inline scripts that must run before the first paint, hashed for the Content Security Policy
-const countScript = inlineScript(Astro, `// The totals count up from 0 the first time the strip is on screen (1.2 s, ease-out, all
-// together). Runs right after the strip, before the first paint, so the final numbers never
-// flash first; without JavaScript or with reduced motion they simply stand.
+const countScript = inlineScript(Astro, `// The totals on the summit flags count up from 0 the first time they are on screen (1.2 s,
+// ease-out, all together). Runs right after them, before the first paint, so the final numbers
+// never flash first; without JavaScript or with reduced motion they simply stand.
 (() => {
   if (matchMedia("(prefers-reduced-motion: reduce)").matches || !("IntersectionObserver" in window)) return;
   const strip = document.currentScript.previousElementSibling;
+  if (!strip) return;
   const counts = [...strip.querySelectorAll("[data-count]")];
   // keep each number's final width, so nothing shifts while it counts
   for (const el of counts) {
@@ -207,7 +198,10 @@ const countScript = inlineScript(Astro, `// The totals count up from 0 the first
     const frame = (now) => {
       const t = Math.min((now - start) / 1200, 1);
       const eased = 1 - Math.pow(1 - t, 3);
-      for (const el of counts) el.textContent = Math.round(Number(el.dataset.count) * eased).toLocaleString("en");
+      for (const el of counts) {
+        const dec = Number(el.dataset.dec ?? 0);
+        el.textContent = (Number(el.dataset.count) * eased).toLocaleString("en", { minimumFractionDigits: dec, maximumFractionDigits: dec });
+      }
       if (t < 1) requestAnimationFrame(frame);
     };
     requestAnimationFrame(frame);
@@ -230,6 +224,9 @@ const featuredScript = inlineScript(Astro, `// A random featured trail on each p
   cards.forEach((c, i) => (c.hidden = i !== pick));
 })();`);
 import AboutBand from "../components/AboutBand.astro";
+import HeroStats from "../components/HeroStats.astro";
+import SummitPoles from "../components/SummitPoles.astro";
+import { summitFlags } from "../lib/summit-flags";
 import Explainer from "../components/Explainer.astro";
 ---
 
@@ -252,9 +249,16 @@ import Explainer from "../components/Explainer.astro";
     <span class="hb-sun" aria-hidden="true" data-theme-sun></span>
     <div class="hb-ridges" aria-hidden="true">
       {heroRidges.map((d, i) => (
-        <svg class={`hb-ridge r${i}`} viewBox="0 0 1000 110" preserveAspectRatio="none"><path d={d} /></svg>
+        <>
+          <!-- the summit flags' poles on this ridge, just behind it, so it hides their feet (issue #212) -->
+          <SummitPoles ridge={i} flags={summitFlags(heroRidges)} />
+          <svg class={`hb-ridge r${i}`} viewBox="0 0 1000 110" preserveAspectRatio="none"><path d={d} /></svg>
+        </>
       ))}
     </div>
+    <!-- the totals as small flags on the ridges' summits (issue #212), drifting with their ridges -->
+    <HeroStats totals={{ trails: totals.trails, countries: totals.countries, km: totals.km, everests: Number(everests), taps: totals.taps }} ridges={heroRidges} />
+    <script is:inline set:html={countScript} />
     <section class="hero">
       <p class="label eyebrow">Long-distance trails, in data</p>
       <!-- the second sentence never splits, so the headline wraps between the two -->
@@ -275,29 +279,6 @@ import Explainer from "../components/Explainer.astro";
     </section>
 
   </div>
-  <!-- the totals on a band wall to wall in the front ridge's green, so the hero's landscape runs on into
-       it. Each figure twice: the final value for screen readers, and a copy the script below counts up;
-       each a round stamp, turned a little one way or the other (odd, even), like a trail passport's -->
-  <div class="totals-band">
-  <dl class="strip totals">
-    {[
-      ["Trails", totals.trails],
-      [totals.countries === 1 ? "Country" : "Countries", totals.countries],
-      ["Kilometres documented", totals.km],
-      ["Official stages", totals.stages],
-      [`Metres climbed, ${everests} × Everest`, totals.climbed],
-      ["Hours of walking", totals.hours],
-      ["Drinking water points", totals.taps],
-    ].map(([label, n], i) => (
-      <div class={i % 2 ? "even" : "odd"}>
-        <dt>{label}</dt>
-        <dd><span class="sr-only">{fmt(n as number)}</span><span class="count" aria-hidden="true" data-count={n}>{fmt(n as number)}</span></dd>
-      </div>
-    ))}
-  </dl>
-  <script is:inline set:html={countScript} />
-  </div>
-
   <!-- what huckepack is and why it exists (issue #210): for a first visit, after how much there is and
        before the featured trail; unnumbered, so the sections below keep 01–07 -->
   <AboutBand />
@@ -664,12 +645,13 @@ import Explainer from "../components/Explainer.astro";
   /* the band: wall to wall, under the header, room at its foot for the ridges; the day's sky until the
      script has set the hour (and without JavaScript) */
   /* z-index: the band is its own layer (isolation), and the trip search's panels open out of it over
-     the totals band below, whose turned stamps form layers of their own; the band must sit above them */
+     the bands below; the band must sit above them. Its foot has room for the ridges and the summit
+     flags on them (issue #212) */
   .hero-band {
     position: relative;
     z-index: 3;
     margin: 0 calc(50% - 50vw);
-    padding: 0 16px 150px;
+    padding: 0 16px 190px;
     overflow-x: clip;
     isolation: isolate;
     background: #d9e8e1;
@@ -973,117 +955,21 @@ import Explainer from "../components/Explainer.astro";
     }
   }
 
-  /* totals and sources: grouped by space alone, no rules or hairlines; label first in the markup (dt
-     before dd), value first on screen. Totals: two columns on phones, four from 720 px, one row from
-     1080 px; sources: two columns on phones, three from 1080 px */
+  /* sources: grouped by space alone, no rules or hairlines; label first in the markup (dt before dd),
+     value first on screen; two columns on phones, three from 1080 px */
   .strip {
     display: grid;
     gap: 18px 40px;
     margin: 0;
   }
-  .totals,
   .sources {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
-  .totals {
-    justify-items: center;
-    gap: 20px 12px;
-  }
-  /* the band under the hero, in the front ridge's colour (#4c6420 by day, #18211a at night, as
-     .hb-ridge.r2), so the ridges run on into it without a seam; fixed colours like the sky's, not the
-     theme's. Stamps in cream: numbers and rings 6.0:1 on the day green, labels 5.2:1; at night 13.7:1
-     and 9.2:1 */
-  .totals-band {
-    --stamp: #f6f3e4;
-    --stamp-label: #dfe6c4;
-    margin: 0 calc(50% - 50vw);
-    /* the about band's top wave continues its green (AboutBand.astro) */
-    padding: 48px 16px 56px;
-    background: #4c6420;
-    transition: background-color 0.5s;
-  }
-  :global(html[data-sky="night"]) .totals-band {
-    --stamp: #ecebdb;
-    --stamp-label: #c3c2b0;
-    background: #18211a;
-  }
-  .totals-band .totals {
-    max-width: 1200px;
-    margin: 0 auto;
-  }
-  @media (min-width: 720px) {
-    .totals {
-      grid-template-columns: repeat(4, minmax(0, 1fr));
-    }
-  }
   @media (min-width: 1080px) {
-    .totals {
-      grid-template-columns: none;
-      grid-auto-flow: column;
-      grid-auto-columns: 1fr;
-    }
     .sources {
       grid-template-columns: repeat(3, minmax(0, 1fr));
     }
   }
-  .totals div {
-    display: flex;
-    flex-direction: column;
-  }
-  .totals .count {
-    display: inline-block;
-    font-variant-numeric: tabular-nums;
-  }
-  .totals dd {
-    order: 1;
-    margin: 0;
-    font-family: var(--serif);
-    font-weight: 600;
-    line-height: 1.15;
-  }
-  /* the totals as park stamps (2026-11-02; of five previews, approach C): round, a solid ring and a
-     dashed one inside, in the accent's text colour, each turned a little, so the row reads like the
-     stamps a trail passport collects: a nod to the hero's landscape without being part of it */
-  .totals div {
-    position: relative;
-    justify-content: center;
-    align-items: center;
-    width: 150px;
-    aspect-ratio: 1;
-    padding: 22px;
-    border: 3px solid var(--stamp);
-    border-radius: 50%;
-    text-align: center;
-    transform: rotate(-5deg);
-  }
-  .totals div.even {
-    transform: rotate(4deg);
-  }
-  .totals div::before {
-    content: "";
-    position: absolute;
-    inset: 6px;
-    border: 1.5px dashed var(--stamp);
-    border-radius: 50%;
-  }
-  .totals dd {
-    color: var(--stamp);
-    font-size: 1.6rem;
-  }
-  .totals dt {
-    order: 2;
-    color: var(--muted);
-    font-size: 0.8rem;
-  }
-  .totals dt {
-    color: var(--stamp-label);
-    font-size: 0.66rem;
-    font-weight: 700;
-    letter-spacing: 0.06em;
-    line-height: 1.25;
-    text-transform: uppercase;
-  }
-
   /* sections: grouped by space, not lines: far apart from each other (112 px), close within; each
      headed the same way, a number over a large title, an (i) at the right where the section explains
      itself */
@@ -1095,9 +981,8 @@ import Explainer from "../components/Explainer.astro";
     margin-top: 112px;
   }
   /* the featured band follows the band above it directly (the explainer film, the about band, issue #210,
-     or the totals' green band): its wave edge rises out of it (each keeps room at its foot for it), no
+     the hero's ridges): its wave edge rises out of it (each keeps room at its foot for it), no
      cream gap; the film's component script can stand between them in development, hence ~) */
-  .totals-band + .pair,
   :global(.about) + .pair,
   :global(.explainer) ~ .pair {
     margin-top: 0;

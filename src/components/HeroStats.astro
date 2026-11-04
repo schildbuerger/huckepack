@@ -1,0 +1,153 @@
+---
+// The home page's five totals as small flags on the hero's summits (issue #212; of five landscape
+// versions after stamps and six other metaphors, A, summit flags; of five flag designs, E, the small
+// pennant): each number beside a little red pennant (the world map's flag colour) on a pole planted on a
+// real summit of the hero's ridges, found at build time from their paths; the flags drift with their
+// ridge (the same --px and depth as .hb-ridge in index.astro). They stand as an M (back, middle and
+// front ridges: src/lib/summit-flags.ts); on the band's right half the number is on the pole's left. Here the pennant (the dl's ::after) and the words (.cloth), above all ridges; the
+// poles stand behind their own ridges (SummitPoles.astro), so a pole always meets its ridge.
+interface Props {
+  totals: { trails: number; countries: number; km: number; everests: number; taps: number };
+  ridges: string[]; // the hero ridges' paths, back to front, in a 1000 × 110 box
+}
+import { RIDGE_DEPTHS, RIDGE_HEIGHTS, flagPlace, summitFlags } from "../lib/summit-flags";
+
+const { totals, ridges } = Astro.props;
+const fmt = (n: number, dec = 0) => n.toLocaleString("en", { minimumFractionDigits: dec, maximumFractionDigits: dec });
+type Fig = { n: number; dec?: number; unit?: string; label: string; sr?: string };
+const FIGURES: Fig[] = [
+  { n: totals.trails, label: "Trails" },
+  { n: totals.countries, label: "Countries" },
+  { n: totals.km, label: "Kilometres" },
+  { n: totals.everests, dec: 1, unit: "×", label: "Everest climbed", sr: `${fmt(totals.everests, 1)} times the height of Mount Everest climbed` },
+  { n: totals.taps, label: "Water points", sr: `${fmt(totals.taps)} drinking water points` },
+];
+const value = (f: Fig) =>
+  `<span class="sr-only">${f.sr ?? fmt(f.n, f.dec)}</span><span aria-hidden="true"><span class="count" data-count="${f.n}" data-dec="${f.dec ?? 0}">${fmt(f.n, f.dec)}</span>${f.unit ?? ""}</span>`;
+
+// where the flags stand (src/lib/summit-flags.ts); their poles are SummitPoles.astro, behind the ridges
+const flags = summitFlags(ridges);
+---
+
+<div class="hs" role="group" aria-label="huckepack in numbers">
+  {[0, 1, 2].map((r) => (
+    <div class="layer" style={`height:${RIDGE_HEIGHTS[r]}px;--depth:${RIDGE_DEPTHS[r]}`}>
+      {flags.filter((g) => g.ridge === r).map((g) => (
+        <dl class:list={["flag", { flip: g.flip }]} style={flagPlace(g)}>
+          <div class="cloth">
+            <dt>{FIGURES[g.i].label}</dt>
+            <dd set:html={value(FIGURES[g.i])} />
+          </div>
+        </dl>
+      ))}
+    </div>
+  ))}
+</div>
+
+<style>
+  /* in the hero's foot, over its ridges, under its words: the words in dark green on the day sky and
+     the light ridges (#2f3f12: 10.4:1 on the day sky, 5.3:1 on the back ridge), cream at night */
+  .hs {
+    --ink: #2f3f12;
+    position: absolute;
+    inset: auto 0 0;
+    z-index: 1;
+    pointer-events: none;
+  }
+  :global(html[data-sky="night"]) .hs {
+    --ink: #ecebdb;
+  }
+  .hs :global(.count) {
+    display: inline-block;
+  }
+  /* a layer as wide and as tall as a hero ridge, drifting with it */
+  .layer {
+    position: absolute;
+    left: -3%;
+    bottom: 0;
+    width: 106%;
+    transform: translateX(calc(var(--px, 0) * var(--depth) * 1%));
+    transition: transform 0.4s ease-out;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .layer {
+      transition: none;
+    }
+  }
+
+  /* the flag: a point on its summit; the pennant and the words hang from the pole's top, --flag-h above
+     it (the pole itself: SummitPoles.astro, the same height), on the pole's right (on the band's right
+     half, its left: .flip) */
+  .flag {
+    --flag-h: 44px;
+    position: absolute;
+    width: 0;
+    height: 0;
+    margin: 0;
+  }
+  .flag::after {
+    content: "";
+    position: absolute;
+    left: 2px;
+    top: calc(-1 * var(--flag-h));
+    width: 16px;
+    height: 12px;
+    background: #a63d24;
+    clip-path: polygon(0 0, 100% 50%, 0 100%);
+  }
+  .flag.flip::after {
+    left: auto;
+    right: 2px;
+    clip-path: polygon(100% 0, 0 50%, 100% 100%);
+  }
+  .cloth {
+    position: absolute;
+    left: 24px;
+    top: calc(-1 * var(--flag-h) - 3px);
+    display: flex;
+    flex-direction: column;
+    color: var(--ink);
+    transition: color 0.5s;
+  }
+  .flip .cloth {
+    left: auto;
+    right: 24px;
+    align-items: flex-end;
+  }
+  .cloth dd {
+    order: 1;
+    margin: 0;
+    font-family: var(--serif);
+    font-size: 1.35rem;
+    font-weight: 600;
+    line-height: 1.1;
+    font-variant-numeric: tabular-nums;
+    white-space: nowrap;
+  }
+  .cloth dt {
+    order: 2;
+    font-size: 0.55rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    line-height: 1.2;
+    text-transform: uppercase;
+    white-space: nowrap;
+  }
+
+  /* phones: the number only; the label stays for screen readers */
+  @media (max-width: 719px) {
+    .flag {
+      --flag-h: 30px;
+    }
+    .cloth dd {
+      font-size: 1rem;
+    }
+    .cloth dt {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      overflow: hidden;
+      clip-path: inset(50%);
+    }
+  }
+</style>

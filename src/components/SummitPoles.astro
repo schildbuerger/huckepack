@@ -1,0 +1,58 @@
+---
+// The summit flags' poles on one hero ridge (issue #212): index.astro puts this layer just before the
+// ridge it belongs to, so the ridge (and every ridge in front) is drawn over it. Each pole reaches a few
+// pixels below its summit, and the ridge hides that foot: the pole always meets the ridge, with no gap.
+// The pennants and numbers are in HeroStats.astro, above all ridges. Same size and drift as the ridge.
+import { RIDGE_DEPTHS, RIDGE_HEIGHTS, flagPlace, type SummitFlag } from "../lib/summit-flags";
+
+interface Props {
+  ridge: number;
+  flags: SummitFlag[];
+}
+const { ridge, flags } = Astro.props;
+const mine = flags.filter((f) => f.ridge === ridge);
+---
+
+{mine.length > 0 && (
+  <div class="sp-layer" style={`height:${RIDGE_HEIGHTS[ridge]}px;--depth:${RIDGE_DEPTHS[ridge]}`}>
+    {mine.map((f) => <span class:list={["sp-pole", { flip: f.flip }]} style={flagPlace(f)} />)}
+  </div>
+)}
+
+<style>
+  .sp-layer {
+    position: absolute;
+    left: -3%;
+    bottom: 0;
+    width: 106%;
+    transform: translateX(calc(var(--px, 0) * var(--depth) * 1%));
+    transition: transform 0.4s ease-out;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .sp-layer {
+      transition: none;
+    }
+  }
+  /* from the pennant's top (--flag-h above the summit, as HeroStats) to 6 px under the summit */
+  .sp-pole {
+    --flag-h: 44px;
+    position: absolute;
+    width: 2px;
+    height: calc(var(--flag-h) + 6px);
+    margin-bottom: -6px;
+    background: #3b4f17;
+    transition: background-color 0.5s;
+  }
+  /* on the band's right half the pole stands at the flag's right edge, as in HeroStats */
+  .sp-pole.flip {
+    transform: translateX(-100%);
+  }
+  :global(html[data-sky="night"]) .sp-pole {
+    background: #ecebdb;
+  }
+  @media (max-width: 719px) {
+    .sp-pole {
+      --flag-h: 30px;
+    }
+  }
+</style>
