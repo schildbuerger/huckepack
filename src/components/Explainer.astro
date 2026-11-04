@@ -1,0 +1,370 @@
+---
+// The explainer film (2026-11-04; storyboard B reworked into one panel per feature, hiker C): the film
+// plays in the page's column, on a band wall to wall whose flat layers (sky, meadow, ground) continue the
+// film's edges in the same colours, frame by frame, so the film has no visible edge. A still (the places
+// to sleep, lit) behind a play button; it plays only on a click, loading its player and data then
+// (src/lib/explainer/player.ts, /explainer/film.json): 25 seconds, opening on "For every trail you will
+// find…", seven panels, one centred title each naming the kind of information,
+// pause and replay, optional sound. With reduced motion the still stays, without the button, and the
+// panels are listed as text beneath. Placed after the about band (2026-11-04, of three places, approach
+// A): the about band's colour comes down into the film's sky as a row of flat clouds, and at its foot
+// the ground runs on a little for the featured trail's wave to rise out of.
+import Icon from "./Icon.astro";
+import { filmData } from "../lib/explainer/data";
+import { DURATION, LAYOUTS, OPENING, POSTER_T, backdrop, captions, state } from "../lib/explainer/film";
+
+const d = await filmData();
+const c = captions(d);
+const h = "ex-h";
+const wide = LAYOUTS.wide;
+const S = state(d, wide, POSTER_T);
+const back = backdrop(wide, S, true);
+
+// the clouds: the about band's colour along the top, its edge one smooth line of wide, shallow billows
+// of different sizes, a few small clouds loose below; 2400 wide, cropped at the sides on narrower
+// screens (never stretched)
+const hash = (i: number) => Math.abs((Math.sin(i * 12.9898 + 78.233) * 43758.5453) % 1);
+const r1 = (n: number) => Math.round(n * 10) / 10;
+// three kinds of billow, never the same kind twice in a row: small and shallow, medium, large and deep;
+// each leans its own way (its two control points apart), and the meeting points vary in height
+const KINDS = [
+  { w: [60, 110], h: [14, 24] },
+  { w: [130, 200], h: [30, 44] },
+  { w: [210, 300], h: [52, 68] },
+];
+let edge = "M-80 0 L-80 24";
+const joins: { x: number; open: boolean }[] = []; // where two billows meet; open: neither neighbour hangs deep
+let prevKind = -1, y0 = 24;
+for (let x = -80, i = 0; x < 2480; i++) {
+  let k = Math.floor(hash(i + 7) * 3);
+  if (k === prevKind) k = (k + 1 + Math.floor(hash(i + 8) * 2)) % 3;
+  const K = KINDS[k];
+  const w = K.w[0] + hash(i) * (K.w[1] - K.w[0]);
+  const y1 = 12 + hash(i + 91) * 22;
+  const h = Math.min(K.h[0] + hash(i + 50) * (K.h[1] - K.h[0]), 92 - Math.max(y0, y1));
+  const a = 0.04 + hash(i + 60) * 0.26, b = 0.04 + hash(i + 61) * 0.26; // the lean
+  const x2 = x + w;
+  edge += ` C${r1(x + w * a)} ${r1(y0 + h)} ${r1(x2 - w * b)} ${r1(y1 + h)} ${r1(x2)} ${r1(y1)}`;
+  if (joins.length) joins[joins.length - 1].open &&= k < 2;
+  joins.push({ x: x2, open: k < 2 });
+  x = x2;
+  y0 = y1;
+  prevKind = k;
+}
+edge += " L2480 0Z";
+// a small loose cloud: a flat foot and three soft humps
+const cloud = (x: number, y: number, w: number) => {
+  const h = w * 0.34;
+  return `<path d="M${r1(x - w / 2)} ${r1(y)} C${r1(x - w / 2)} ${r1(y - h * 0.55)} ${r1(x - w * 0.3)} ${r1(y - h * 0.75)} ${r1(x - w * 0.16)} ${r1(y - h * 0.58)} C${r1(x - w * 0.12)} ${r1(y - h * 1.25)} ${r1(x + w * 0.2)} ${r1(y - h * 1.3)} ${r1(x + w * 0.22)} ${r1(y - h * 0.6)} C${r1(x + w * 0.36)} ${r1(y - h * 0.82)} ${r1(x + w / 2)} ${r1(y - h * 0.5)} ${r1(x + w / 2)} ${r1(y)}Z"/>`;
+};
+// under some of the meeting points where neither billow hangs deep, in different sizes and heights
+const loose = joins
+  .filter((j, i) => j.open && j.x > 40 && j.x < 2360 && hash(i + 300) > 0.35)
+  .map((j, i) => cloud(j.x + (hash(i + 310) - 0.5) * 30, 84 + hash(i + 320) * 8, 38 + hash(i + 330) * 62))
+  .join("");
+const clouds = `<rect width="2400" height="96" fill="${S.sky}" data-d="fill:sky"/><g class="ex-cloud"><path d="${edge}"/>${loose}</g>`;
+---
+
+<section class="explainer" data-explainer aria-labelledby={h}>
+  <svg class="ex-clouds" viewBox="0 0 2400 96" preserveAspectRatio="xMidYMin slice" aria-hidden="true" set:html={clouds} />
+  <div class="ex-band">
+  <svg class="ex-backdrop" aria-hidden="true" set:html={back} />
+  <div class="ex-frame">
+    <picture class="ex-poster">
+      <source media="(max-width: 640px)" srcset="/explainer/tall.svg" />
+      <img src="/explainer/wide.svg" alt="" loading="lazy" decoding="async" />
+    </picture>
+    <div class="ex-stage"></div>
+
+    <div class="ex-top">
+      <div class="ex-intro">
+        <h2 id={h}>{OPENING}</h2>
+        <button type="button" class="ex-play" aria-label={`Play the film, ${DURATION} seconds`}>
+          <span class="ex-play-dot"><Icon name="play" size={24} /></span>
+          <span>Play · {DURATION} s</span>
+        </button>
+      </div>
+      <p class="ex-caption" aria-live="polite"></p>
+      <div class="ex-end">
+        <a class="ex-cta" href="/trails/">Explore the trails <span aria-hidden="true">→</span></a>
+      </div>
+    </div>
+
+    <div class="ex-controls">
+      <button type="button" class="ex-pause" aria-label="Pause"><Icon name="pause" size={18} /><Icon name="play" size={18} /></button>
+      <button type="button" class="ex-replay" aria-label="Replay" hidden><Icon name="rotate-ccw" size={18} /></button>
+      <button type="button" class="ex-sound" aria-label="Sound" aria-pressed="false"><Icon name="volume-x" size={18} /><Icon name="volume-2" size={18} /></button>
+    </div>
+  </div>
+  </div>
+  <!-- the ground runs on under the film, for the featured trail's wave to rise out of -->
+  <svg class="ex-foot" aria-hidden="true"><rect width="100%" height="100%" fill={S.front} data-d="fill:front" /></svg>
+
+  <!-- the film in words: read by screen readers, shown with reduced motion; the player reads its titles -->
+  <ol class="ex-transcript">
+    {c.scenes.map((s) => <li><b>{s.head}.</b> <span>{s.text}</span></li>)}
+    <li class="ex-transcript-sources">{c.sources}</li>
+  </ol>
+</section>
+
+<script>
+  for (const root of document.querySelectorAll<HTMLElement>("[data-explainer]")) {
+    // the band's grass lines up with the film's: placed at the film's left edge, at its scale
+    const band = root.querySelector<HTMLElement>(".ex-band")!;
+    const frame = root.querySelector<HTMLElement>(".ex-frame")!;
+    const grass = root.querySelector<SVGGElement>(".ex-bd-ground");
+    const place = () => grass?.setAttribute("transform", `translate(${frame.offsetLeft} 0) scale(${frame.clientWidth / 1600})`);
+    place();
+    new ResizeObserver(place).observe(band);
+    root.querySelector(".ex-play")!.addEventListener("click", async () => {
+      const { play } = await import("../lib/explainer/player");
+      await play(root);
+      root.querySelector<HTMLButtonElement>(".ex-pause")!.focus();
+    });
+  }
+</script>
+
+<style>
+  /* pulled up into the about band's foot, so the two sit closer */
+  .explainer {
+    position: relative;
+    margin: -40px calc(50% - 50vw) 0;
+  }
+  .ex-clouds {
+    display: block;
+    width: 100%;
+    height: 96px;
+  }
+  .ex-clouds :global(.ex-cloud) {
+    fill: var(--bg);
+  }
+  .ex-foot {
+    display: block;
+    width: 100%;
+    height: 48px;
+  }
+  /* the band wall to wall: the film's edge layers, as tall as the film */
+  .ex-band {
+    position: relative;
+  }
+  .ex-backdrop {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+  }
+  /* the film in the page's column */
+  .ex-frame {
+    position: relative;
+    width: min(1200px, 100% - 32px);
+    margin: 0 auto;
+    aspect-ratio: 16 / 7;
+    color: #25261c;
+  }
+  .ex-poster,
+  .ex-poster img,
+  .ex-stage,
+  .ex-stage :global(svg) {
+    position: absolute;
+    inset: 0;
+    display: block;
+    width: 100%;
+    height: 100%;
+  }
+  .ex-stage {
+    display: none;
+  }
+  .playing .ex-stage {
+    display: block;
+  }
+  .playing .ex-poster,
+  .playing .ex-intro {
+    display: none;
+  }
+
+  /* the opening title with the play button and the panel titles centred at the top over the sky; the
+     last title with the way on in the middle of the frame */
+  .ex-top {
+    position: absolute;
+    inset: 0 16px;
+    display: grid;
+    align-content: start;
+    justify-items: center;
+    padding-top: clamp(12px, 2.6%, 36px);
+    text-align: center;
+    pointer-events: none; /* the controls below stay clickable; the title's own links and buttons take clicks */
+  }
+  .night .ex-top {
+    align-content: center;
+    padding: 0 0 4%;
+  }
+  .ex-top > * {
+    pointer-events: auto;
+  }
+  .ex-intro {
+    display: grid;
+    justify-items: center;
+    gap: clamp(20px, 2.4vw, 32px);
+  }
+  .ex-intro h2,
+  .ex-caption {
+    margin: 0;
+    font-family: var(--serif);
+    font-weight: 600;
+    font-size: clamp(22px, 3.2vw, 40px);
+    line-height: 1.15;
+  }
+  .ex-caption {
+    display: none;
+    transition: opacity 0.3s;
+  }
+  .playing .ex-caption {
+    display: block;
+  }
+  .ex-caption.swap {
+    opacity: 0;
+  }
+  .night .ex-caption {
+    color: #ecebdb;
+  }
+  .ex-play {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    padding: 0 20px 0 0;
+    border: 0;
+    border-radius: 999px;
+    background: #5a7526;
+    color: #f9f8f0;
+    font: 600 16px/1 var(--sans);
+    cursor: pointer;
+  }
+  .ex-play-dot {
+    display: grid;
+    place-items: center;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: #4c6420;
+    color: #f9f8f0;
+  }
+  .ex-play-dot :global(svg) {
+    margin-left: 3px;
+  }
+  .ex-play:hover,
+  .ex-play:hover .ex-play-dot {
+    background: #3f5418;
+  }
+  .ex-play:focus-visible,
+  .ex-controls button:focus-visible,
+  .ex-end a:focus-visible {
+    outline: 3px solid currentColor;
+    outline-offset: 3px;
+  }
+  .loading .ex-play {
+    cursor: progress;
+    opacity: 0.7;
+  }
+
+  /* the end card under the last title: one way on, and the sources small */
+  .ex-end {
+    display: none;
+    justify-items: center;
+    gap: 10px;
+    margin-top: clamp(20px, 2.4vw, 32px);
+    color: #c3c2b0;
+  }
+  .night .ex-end {
+    display: grid;
+  }
+  .ex-cta {
+    padding: 10px 20px;
+    border-radius: 999px;
+    background: #b4cb76;
+    color: #18190f;
+    font-weight: 600;
+    text-decoration: none;
+  }
+
+  /* pause / play, replay and sound, bottom right */
+  .ex-controls {
+    position: absolute;
+    right: 16px;
+    bottom: 16px;
+    display: none;
+    gap: 8px;
+  }
+  .playing .ex-controls {
+    display: flex;
+  }
+  .ex-controls button {
+    display: grid;
+    place-items: center;
+    width: 44px;
+    height: 44px;
+    border: 0;
+    border-radius: 50%;
+    background: #f9f8f0e6;
+    color: #25261c;
+    cursor: pointer;
+  }
+  .ex-controls button[hidden] {
+    display: none;
+  }
+  /* each toggle carries both icons; the state shows one */
+  .ex-pause :global(svg:last-child),
+  .ex-pause.paused :global(svg:first-child),
+  .ex-sound :global(svg:last-child),
+  .ex-sound[aria-pressed="true"] :global(svg:first-child) {
+    display: none;
+  }
+  .ex-pause.paused :global(svg:last-child),
+  .ex-sound[aria-pressed="true"] :global(svg:last-child) {
+    display: block;
+  }
+
+  /* the transcript: for screen readers; shown beneath the still with reduced motion */
+  .ex-transcript {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+  }
+
+  @media (max-width: 640px) {
+    .ex-backdrop {
+      display: none;
+    }
+    .ex-frame {
+      width: 100%;
+      aspect-ratio: 10 / 11;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .ex-play {
+      display: none;
+    }
+    .ex-transcript {
+      position: relative;
+      width: auto;
+      height: auto;
+      overflow: visible;
+      clip-path: none;
+      white-space: normal;
+      display: grid;
+      gap: 6px;
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 20px 16px 32px;
+      list-style: none;
+      background: var(--bg);
+    }
+    .ex-transcript-sources {
+      font-size: 13px;
+      color: var(--muted);
+    }
+  }
+</style>

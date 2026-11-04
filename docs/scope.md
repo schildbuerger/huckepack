@@ -349,6 +349,48 @@
   Gradients and textures were ruled out; the more drastic redesigns are kept
   as ideas in the "design exploration" issues (#129–#141).
 
+- **Explainer film (2026-11-04, the user's choices):** right after the about
+  band (of three places, approach A), whose colour comes down into the film's
+  sky as a row of flat clouds; the featured trail's wave rises straight out of
+  the film's ground, which runs on a little under it, and the band's sides
+  carry the film's grass in step with it. A 25-second film on the home page
+  shows what huckepack does on
+  one real trail, the most read one (the popular-trails measure): the Tour du
+  Mont Blanc. Of three storyboards, "one day on the trail" was chosen, then
+  (the same day) told as one panel per kind of information a trail page gives,
+  opening on "For every trail you will find…", each fading over to the next:
+  route, elevation and ground underfoot, climate month by month (the trail
+  page's climate chart simplified: night low to day high at the lowest and
+  highest point, the season shaded), drinking water (a village fountain, its
+  spout running), wildlife to know about (the record's most serious entry, a
+  suckler cow with her calf, drawn and moved in stop motion like the hiker;
+  the user asked for an animal more dangerous than the guard dogs, so suckler
+  cows were added to the record from Vache mère Suisse's rules for hikers),
+  places to sleep (one tent, its lantern lit, the light flickering); then
+  find the trail that suits you (with "Explore the
+  trails" as the way on; this last title sits in the frame's middle, the
+  others, the opening title and play button too, at the top). Each panel has one
+  short centred title naming the kind of information, no questions, no time
+  of day and no figures; the
+  sky still runs from dawn to night in the hero's flat colours. Real data
+  throughout for the route, profile, ground and climate; water and places to
+  sleep are shown as one fountain and one tent.
+  The film plays in the page's column; the band behind it, wall to wall,
+  continues the film's flat edge layers (sky, meadow, ground) in the same
+  colours, frame by frame, so the film has no visible edge. The Mont Blanc
+  massif is the only ridge: the elevation profile is a line in the sky,
+  coloured by the ground underfoot, and water and beds stand on the meadow
+  at the massif's foot. No sources line in the film (they stay in the
+  screen-reader text and on the trail page). The hiker, of three looks the one in
+  the yellow rain jacket (chosen as gender neutral), moves in stop motion
+  (held frames at 8 a second, a slight jitter between frames, a squash on each
+  footfall); the data layers move smoothly. A wall-to-wall band shows a still
+  behind a play button and plays only on a click, loading its player and data
+  then (under ~150 KB); titles are page text, with pause and replay; with
+  reduced motion the still stays and the captions are shown as text. Sound is
+  optional and off by default: footsteps, birds and crickets synthesised in
+  the browser, no recordings. 16:7 on wide screens, 10:11 on phones.
+
 ## What a trail page could show
 
 - Route on a map, with sections or stages

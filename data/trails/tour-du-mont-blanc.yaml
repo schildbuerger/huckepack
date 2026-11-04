@@ -108,8 +108,19 @@ access:
     lon: 6.10798
     source: osm
 animals:
-  # Livestock guard dogs (the Pays du Mont-Blanc's advice). Level ours
+  # Suckler cows (Vache mère Suisse's rules for hikers, with the SPAA) and livestock guard dogs (the Pays
+  # du Mont-Blanc's advice). Levels ours
   list:
+    - kind: cattle
+      name: "Suckler cows on alpine pastures"
+      level: moderate
+      basis: "The tour crosses alpine pastures grazed in summer, in France, Italy and Switzerland; Vache mère Suisse, the Swiss suckler-cow breeders' association, warns that suckler cows protect their calves, and gives hikers three rules to prevent accidents."
+      do:
+        - "Keep your distance: walk round the animals with a wide berth"
+        - "Keep dogs on a short lead"
+      dont:
+        - "Touch calves or cows"
+      source: vms-randonneurs
     - kind: dog
       name: "Livestock guard dogs (patous)"
       level: low
@@ -127,6 +138,11 @@ animals:
       source: pmb-patou
 tags: [alps, mont-blanc, huts, passes, glaciers]
 notes:
+  - >-
+    Wildlife (2026-11-04): suckler cows added from Vache mère Suisse's rules for hikers (keep your
+    distance, don't touch calves or cows, dogs on a short lead), the national guidance for the Swiss
+    stages; a web search found no French or Italian official page on cattle along the tour. Level
+    ours, as for the Adlerweg's cattle.
   - >-
     Stages: English Wikipedia's eleven legs add up to 168 km, 8,917 m up and 9,119 m down (a loop
     should come back even; the article's table is flagged "failed verification": the Cicerone
@@ -162,6 +178,11 @@ dataCheck:
     - { figure: "Stage 9 length", ours: "13 km (Wikipedia)", theirs: "15.7 km (map line)", source: osm }
     - { figure: "Stage 10 length", ours: "8 km (Wikipedia)", theirs: "6.6 km (map line)", source: osm }
 sources:
+  - id: vms-randonneurs
+    title: "Vache mère Suisse (with the SPAA, the Swiss agricultural accident prevention service): “Des randonneurs et du bétail”, rules of conduct for hikers"
+    url: https://www.mutterkuh.ch/services-aux-producteurs/des-randonneurs-et-du-betail.html
+    licence: © Vache mère Suisse (facts only)
+    retrieved: 2026-11-04
   - id: pmb-patou
     title: "Sallanches Mont-Blanc tourist office (Pays du Mont-Blanc): guide to sites open to dogs, “Comment réagir face à un patou ?”"
     url: https://sallanchesmontblanc.com/sites/default/files/Brochure%20Chiens_web.pdf

@@ -230,6 +230,7 @@ const featuredScript = inlineScript(Astro, `// A random featured trail on each p
   cards.forEach((c, i) => (c.hidden = i !== pick));
 })();`);
 import AboutBand from "../components/AboutBand.astro";
+import Explainer from "../components/Explainer.astro";
 ---
 
 <Base
@@ -300,6 +301,10 @@ import AboutBand from "../components/AboutBand.astro";
   <!-- what huckepack is and why it exists (issue #210): for a first visit, after how much there is and
        before the featured trail; unnumbered, so the sections below keep 01–07 -->
   <AboutBand />
+
+  <!-- the explainer film (2026-11-04; of three places, approach A): right after the words on what
+       huckepack is, the film shows it on one trail -->
+  <Explainer />
 
   <!-- the featured trail (2026-11-02; of five previews after public designs, approach D, like a route
        app's): a band wall to wall with soft wave edges, the trail's real route drawn when the band comes into
@@ -421,6 +426,7 @@ import AboutBand from "../components/AboutBand.astro";
     )}
   </div>
 
+
   <!-- the map as its own section (2026-11-02; of three previews, approach A, refined): a band wall to wall
        in the hero's flat style, the whole world in its light green on a calm sea, a small terracotta
        flag at each trail's start; the heading and text on the open sea of the South Pacific, in line
@@ -460,6 +466,7 @@ import AboutBand from "../components/AboutBand.astro";
       </span>
     </a>
   </section>
+
 
 
   <!-- the trails near you (issue #85): the trails nearest the visitor with their direction and distance;
@@ -1087,10 +1094,12 @@ import AboutBand from "../components/AboutBand.astro";
   .pair {
     margin-top: 112px;
   }
-  /* the featured band follows the band above it directly (the about band, issue #210, or the totals'
-     green band): its wave edge rises out of it (each keeps about 96 px at its foot for it), no cream gap */
+  /* the featured band follows the band above it directly (the explainer film, the about band, issue #210,
+     or the totals' green band): its wave edge rises out of it (each keeps room at its foot for it), no
+     cream gap; the film's component script can stand between them in development, hence ~) */
   .totals-band + .pair,
-  :global(.about) + .pair {
+  :global(.about) + .pair,
+  :global(.explainer) ~ .pair {
     margin-top: 0;
   }
   .block-head {
