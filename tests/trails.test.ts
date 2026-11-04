@@ -149,6 +149,13 @@ test("trail titles stay within the limit", () => {
 // No cut-offs (2026-11-03): every broad skyline shape meets the ground gently, never in a wall, also at
 // the box's left and right edges, which stand inside the band (TrailSkyline.astro), so no shape may reach
 // them above the ground either
+test("every trail has a skyline", async () => {
+  const { readdirSync } = await import("node:fs");
+  const slugs = readdirSync(new URL("../data/trails/", import.meta.url)).filter((f) => f.endsWith(".yaml") && !f.includes(" ")).map((f) => f.replace(/\.yaml$/, ""));
+  const missing = slugs.filter((slug) => !SKYLINES[slug]);
+  assert.deepEqual(missing, [], `trails without a skyline in src/lib/skylines.ts: ${missing.join(", ")}`);
+});
+
 test("skyline shapes meet the ground without a cut-off", () => {
   const walls: string[] = [];
   for (const [slug, sky] of Object.entries(SKYLINES)) {

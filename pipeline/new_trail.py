@@ -101,8 +101,25 @@ access:
     lat: null
     lon: null
     source: osm
+animals:
+  # the trail's dangerous animals (and plants that harm on touch: `plants`), each with kind, name,
+  # our level (low, moderate, high), basis, do, dont and an official source (a park, a health or
+  # agriculture authority). No official source found: delete `animals` and add a note starting
+  # "Wildlife" saying what was searched; an official statement that there are none: `none`
+  list:
+    - kind: null  # bear, wolf, big-cat, boar, cattle, dog, monkey, snake, scorpion, spider, tick
+      name: null
+      level: null
+      basis: null
+      do: [null]
+      dont: [null]
+      source: null
 tags: []
 notes:
+  - >-
+    Skyline: to do. Draw the landscape the trail is known for in src/lib/skylines.ts (SKYLINES,
+    keyed by the slug; flat shapes, no cut-offs, checked by tests/trails.test.ts), then delete
+    this note.
   - >-
     Data check ({today}): to do (working rule 2). Compare every figure with a second, independent
     source, record each difference over 10 % in dataCheck.deviations, and give the comparison as

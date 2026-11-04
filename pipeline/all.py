@@ -16,13 +16,14 @@ The check reads the record and the derived data and flags what a person should l
 the mechanical half of working rule 2: stages the OSM match covers poorly, map-line lengths more
 than 10 % off the stated ones (whole route and per stage), stated against estimated ascent,
 long stretches without drinking water, shops or beds, unknown surfaces, far travel hubs, and a missing data
-check or tree line.
+check, tree line, skyline (src/lib/skylines.ts) or wildlife (the record's animals, or a note why none).
 """
 
 import hashlib
 import importlib
 import json
 import math
+import re
 import sys
 from pathlib import Path
 
@@ -160,6 +161,20 @@ def check(slug):
 
     if not trail.get("dataCheck"):
         flags.append("data check: no dataCheck in the record yet (working rule 2)")
+
+    # the page head's skyline and the Wildlife section are part of every trail (2026-11-04)
+    skylines = (ROOT / "src" / "lib" / "skylines.ts").read_text()
+    if not re.search(rf'^\s{{2}}"?{re.escape(slug)}"?: \{{', skylines, re.M):
+        flags.append("skyline: none in src/lib/skylines.ts yet (draw the trail's landscape, keyed by its slug)")
+    else:
+        fine.append("skyline: drawn")
+    animals = trail.get("animals") or {}
+    if animals.get("list") or animals.get("plants") or animals.get("none"):
+        fine.append(f"wildlife: {len(animals.get('list', []))} animals, {len(animals.get('plants', []))} plants" + (" (none, by an official source)" if animals.get("none") else ""))
+    elif any(str(n).startswith("Wildlife") for n in trail.get("notes", [])):
+        fine.append("wildlife: none listed, with a note why")
+    else:
+        flags.append("wildlife: no animals, `none` or note starting \"Wildlife\" (look for official sources: parks, health and agriculture authorities)")
 
     print(f"\n== check: {trail['name']}")
     for line in flags:
