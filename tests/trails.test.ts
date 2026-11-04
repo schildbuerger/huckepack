@@ -184,3 +184,4 @@ test("skyline shapes meet the ground without a cut-off", () => {
   }
   assert.deepEqual(walls, []);
 });
+

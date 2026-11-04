@@ -82,3 +82,11 @@ Ask, in this order:
 
 If the first answer is no, it doesn't belong on huckepack, however nice it looks. If a later
 answer is no, find another way or another source before building it.
+
+## Lines kept for later
+
+Phrases that say what huckepack is in its own voice, kept here until they find their place (the
+user's request, 2026-11-04):
+
+- "We carry the research; you carry the pack." (a play on the name, German for piggyback; first drafted
+  for the home page's "What is huckepack?" band, issue #210, and taken out of it to keep the band short)

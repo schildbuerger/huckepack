@@ -229,6 +229,7 @@ const featuredScript = inlineScript(Astro, `// A random featured trail on each p
   const pick = Math.floor(Math.random() * cards.length);
   cards.forEach((c, i) => (c.hidden = i !== pick));
 })();`);
+import AboutBand from "../components/AboutBand.astro";
 ---
 
 <Base
@@ -295,6 +296,10 @@ const featuredScript = inlineScript(Astro, `// A random featured trail on each p
   </dl>
   <script is:inline set:html={countScript} />
   </div>
+
+  <!-- what huckepack is and why it exists (issue #210): for a first visit, after how much there is and
+       before the featured trail; unnumbered, so the sections below keep 01–07 -->
+  <AboutBand />
 
   <!-- the featured trail (2026-11-02; of five previews after public designs, approach D, like a route
        app's): a band wall to wall with soft wave edges, the trail's real route drawn when the band comes into
@@ -985,7 +990,8 @@ const featuredScript = inlineScript(Astro, `// A random featured trail on each p
     --stamp: #f6f3e4;
     --stamp-label: #dfe6c4;
     margin: 0 calc(50% - 50vw);
-    padding: 48px 16px 96px;
+    /* the about band's top wave continues its green (AboutBand.astro) */
+    padding: 48px 16px 56px;
     background: #4c6420;
     transition: background-color 0.5s;
   }
@@ -1081,9 +1087,10 @@ const featuredScript = inlineScript(Astro, `// A random featured trail on each p
   .pair {
     margin-top: 112px;
   }
-  /* the featured band follows the totals' green band directly: its wave edge rises out of the green
-     (the band keeps 96 px below the stamps for it), no cream gap between */
-  .totals-band + .pair {
+  /* the featured band follows the band above it directly (the about band, issue #210, or the totals'
+     green band): its wave edge rises out of it (each keeps about 96 px at its foot for it), no cream gap */
+  .totals-band + .pair,
+  :global(.about) + .pair {
     margin-top: 0;
   }
   .block-head {
@@ -1856,4 +1863,5 @@ const featuredScript = inlineScript(Astro, `// A random featured trail on each p
   :global(html[data-theme="dark"]) .bird {
     stroke: #a7a78f;
   }
+
 </style>
