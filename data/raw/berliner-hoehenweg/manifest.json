@@ -4,16 +4,24 @@
     "url": "https://openmeteo.s3.us-west-2.amazonaws.com/data/copernicus_era5_land+copernicus_era5?latitude=47.0&longitude=11.8&elevation=3080"
   },
   "climate-low.json": {
-    "retrieved": "2026-11-04T19:57:38+00:00",
-    "url": "https://openmeteo.s3.us-west-2.amazonaws.com/data/copernicus_era5_land+copernicus_era5?latitude=47.0&longitude=11.7&elevation=1780"
+    "retrieved": "2026-11-04T21:49:23+00:00",
+    "url": "https://openmeteo.s3.us-west-2.amazonaws.com/data/copernicus_era5_land+copernicus_era5?latitude=47.2&longitude=11.8&elevation=840"
   },
   "elevation-glo30.json": {
-    "retrieved": "2026-11-04T19:53:51+00:00",
+    "retrieved": "2026-11-04T21:45:45+00:00",
     "url": "https://copernicus-dem-30m.s3.eu-central-1.amazonaws.com/Copernicus_DSM_COG_10_N46_00_E011_00_DEM/Copernicus_DSM_COG_10_N46_00_E011_00_DEM.tif https://copernicus-dem-30m.s3.eu-central-1.amazonaws.com/Copernicus_DSM_COG_10_N47_00_E011_00_DEM/Copernicus_DSM_COG_10_N47_00_E011_00_DEM.tif"
   },
   "landcover.json": {
-    "retrieved": "2026-11-04T19:53:52+00:00",
+    "retrieved": "2026-11-04T21:45:46+00:00",
     "url": "https://esa-worldcover.s3.eu-central-1.amazonaws.com/v200/2021/map/ESA_WorldCover_10m_2021_v200_\u2026_Map.tif"
+  },
+  "osm-relation-11167141.json": {
+    "retrieved": "2026-10-28T21:21:02Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-1-main.json": {
+    "retrieved": "2026-10-28T21:21:02Z",
+    "url": "https://download.geofabrik.de/"
   },
   "osm-stage-2-main.json": {
     "retrieved": "2026-10-28T21:21:02Z",

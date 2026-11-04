@@ -15,46 +15,37 @@ regions: [Tyrol]
 protectedAreas:
   - Zillertal Alps High Mountain Nature Park
 termini:
-  # the first and last points of the whole route's GPX: the Gamshütte above Finkenberg and the
-  # Edelhütte above Mayrhofen (the tour's valley ends, Finkenberg and the Ahornbahn, are approaches)
+  # the tour's "Ausgangspunkt der Wanderung: Tennisanlage Finkenberg" (stage 1 climbs to the
+  # Gamshütte; coordinates where OSM's stage 1 relation starts) and the Edelhütte above Mayrhofen,
+  # where the whole route's GPX ends (the Ahornbahn down to Mayrhofen is not a stage)
   start:
-    name: Gamshütte
-    lat: 47.12983
-    lon: 11.79555
+    name: Finkenberg
+    lat: 47.15393
+    lon: 11.82451
   end:
     name: Edelhütte
     lat: 47.13036
     lon: 11.89746
   source: tw
-length:
-  # "71 Kilometer" (the whole route's tour; its GPX measures 70.6 km from hut to hut)
-  - km: 71
-    source: tw
-ascent:
-  # the whole route's tour: "Höhenmeter Bergauf: 5.300 hm"
-  - m: 5300
-    source: tw
-descent:
-  - m: 5000
-    source: tw
-days:
-  # "sieben Tage"
-  min: 7
-  max: 7
-  source: tw
+# no stated totals: Tirol's "71 Kilometer", 5,300 m up, 5,000 m down and "sieben Tage" are the
+# whole route's GPX from the Gamshütte, without stage 1 from Finkenberg (2026-11-04: the trail
+# starts in Finkenberg, the user's decision), so the page sums the stages (notes)
 treeLine:
   # the BFW's high-subalpine zone in the inner Alps' core (forest growth region 1.1): "2000–2300" m
   m: 2300
   fromM: 2000
   source: bfw
 stages:
-  # Tirol Werbung's stages 2–8 from hut to hut (stage 1 climbs from Finkenberg to the Gamshütte). Its
+  # Tirol Werbung's stages 2–8 from hut to hut; stage 1, the climb from Finkenberg to the Gamshütte
+  # (the tour's starting point), has no Tirol page or track and follows OSM's relation "Berliner
+  # Höhenweg Etappe 1" (11167141, alt name "Zillertaler Runde Etappe 1"). Its
   # stage distances are broken (22.4 km for 2½ h, the same 15.3 km on three stages), so the
   # distances are our own, measured on the OSM map line of the whole route's GPX between the huts
   # (OSM), under huckepack-measured (decided 2026-11-04); the times are Tirol's (stage 5 has no page)
   source: huckepack-measured
   timesSource: tw
   list:
+    - { number: "1", kind: main, from: Finkenberg, to: Gamshütte, km: 7.0, relation: 11167141, end: { name: Gamshütte, lat: 47.12983, lon: 11.79555 } }
     - { number: "2", kind: main, from: Gamshütte, to: Friesenberghaus, km: 14.7, minutes: 570, track: "https://tirol.mapservices.eu/nefos_app/api/gpx/imx_xR7kIE5LaSrqNTM6/de/generate/6117737", end: { name: Friesenberghaus, lat: 47.06764, lon: 11.70207 } }
     - { number: "3", kind: main, from: Friesenberghaus, to: Olpererhütte, km: 4.4, minutes: 150, track: "https://tirol.mapservices.eu/nefos_app/api/gpx/imx_xR7kIE5LaSrqNTM6/de/generate/6117737", end: { name: Olpererhütte, lat: 47.04202, lon: 11.68832 } }
     - { number: "4", kind: main, from: Olpererhütte, to: Furtschaglhaus, km: 10.5, minutes: 240, track: "https://tirol.mapservices.eu/nefos_app/api/gpx/imx_xR7kIE5LaSrqNTM6/de/generate/6117737", end: { name: Furtschaglhaus, lat: 47.00098, lon: 11.74735 } }
@@ -147,11 +138,22 @@ notes:
     has a path down to the valley.
   - >-
     Map line (2026-11-04, Geofabrik extracts austria and nord-est): OSM ways matched to the whole
-    route's GPX, cut at the huts; every stage at least 95 % matched; the measured stages add up to
-    71.5 km (Tirol: 71 km). Highest point 3,082 m on the terrain model at the Schönbichler Horn
-    (3,133 m stated), lowest 1,783 m by the Schlegeis reservoir. The terrain model gives about
-    5,750 m of climbing against Tirol's 5,300 m. Resupply: no shop on the route; every hut serves
+    route's GPX, cut at the huts, and stage 1 to OSM's relation "Berliner Höhenweg Etappe 1"
+    (11167141, 7.0 km); every stage at least 95 % matched; the measured stages add up to 78.6 km,
+    71.6 km from the Gamshütte (Tirol: 71 km). Highest point 3,082 m on the terrain model at the Schönbichler Horn
+    (3,133 m stated), lowest 840 m in Finkenberg (1,783 m by the Schlegeis reservoir above the Gamshütte). The terrain
+    model gives about 5,710 m of climbing from the Gamshütte against Tirol's 5,300 m, and 6,780 m
+    with stage 1. Resupply: no shop on the route; every hut serves
     meals.
+  - >-
+    Stage 1 (2026-11-04, the user's decision): the trail starts in Finkenberg, the tour's
+    "Ausgangspunkt der Wanderung: Tennisanlage Finkenberg", with Tirol's stage numbers 2–8 after it.
+    Tirol publishes no stage 1 page or track, and its totals ("71 Kilometer", 5,300 m up, 5,000 m
+    down, "sieben Tage") are the GPX from the Gamshütte, so the record states no totals and the page
+    sums the stages: 78.6 km in eight days, ascent and descent estimated from the terrain model.
+    Stage 1 against German Wikipedia ("Finkenberg (785 m) – Gamshütte (1916 m) … Aufstieg 1000 m,
+    Gehzeit ca. 3 Stunden"): our estimate ≈1,070 m up (7 %), ≈840 → 1,910 m; no time stated by
+    Tirol, so none shown.
   - >-
     Data check (2026-11-04): Tirol Werbung against German Wikipedia (Berliner Höhenweg). Agree:
     "etwa 70 km" (Tirol 71 km), the huts in this order, the highest point at the Schönbichler Horn
