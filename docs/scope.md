@@ -234,8 +234,12 @@
   landform runs smoothly down to the ground. `range()` gives any broad shape
   (80 units or wider) whose end drops steeper than 2 : 1 a curved foot that
   meets the ground tangentially, as far out as the drop is high; slender
-  shapes (sea stacks, rock pillars, trunks, towers) keep their steep sides. A
-  test checks every skyline (tests/trails.test.ts).
+  shapes (sea stacks, rock pillars, trunks, towers) keep their steep sides.
+  The drawing's left and right edges count too (2026-11-04): the miniature
+  stands inside the band, so no shape may reach them above the ground;
+  shapes that run to an edge are cut back by 1.5 × their height there and
+  ease down to the ground in an S-curve. A test checks every skyline
+  (tests/trails.test.ts).
 - **Ready for hundreds of trails (issue #93, 2026-11-02):** no page carries
   every trail: one cached file of search summaries for the search, map,
   guide, header search and trails near you; the search page's first 24 cards

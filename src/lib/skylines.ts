@@ -3,8 +3,8 @@
 // box with the ground at its foot. Each skyline lists its shapes back to front in flat colours (the far
 // ones lighter and bluer, for depth); the page draws the trail's own elevation profile in front of them
 // in the skyline's `ridge` colour (TrailSkyline.astro), then the `front` shapes (water, a castle by a
-// river), on a strip of `ground` along the band's foot. Every shape meets the ground at both ends, so
-// the drawing flows into the band instead of ending in a cut. Landmarks are simple flat shapes; nothing
+// river), on a strip of `ground` along the band's foot. Every shape meets the ground at both ends, also
+// at the box's left and right edges, so the drawing flows into the band instead of ending in a cut. Landmarks are simple flat shapes; nothing
 // is labelled, so the drawing adds no figure.
 type P = [number, number];
 export interface Shape {
@@ -36,25 +36,62 @@ const foot = (ground: number, top: P, dir: -1 | 1) => {
   const at = Math.min(SKY_W, Math.max(0, top[0] + dir * FOOT * rise));
   return { at, curve: `${top[0] + dir * 0.35 * rise},${G} ` };
 };
+// The box's own edges are no frame: the drawing stands in a band that runs on past them, so a shape
+// that reaches an edge above the ground is cut back by TAPER × its height there (at least EASE_MIN) and
+// eases down to the ground at the edge in an S-curve, level at the top and level at the foot
+export const TAPER = 1.5;
+const EASE_MIN = 40;
+// the outline's height at x, along its points
+const yAt = (pts: P[], x: number) => {
+  const i = pts.findIndex((p) => p[0] >= x);
+  if (i <= 0) return pts[i === 0 ? 0 : pts.length - 1][1];
+  const [a, b] = [pts[i - 1], pts[i]];
+  return Math.round(a[1] + ((b[1] - a[1]) * (x - a[0])) / (b[0] - a[0]));
+};
+// the outline (without its ground points) cut back from the edges it reaches: its points, and where the
+// eased ends start (undefined: no edge there)
+const eased = (top: P[]) => {
+  let pts = top;
+  let left: P | undefined, right: P | undefined;
+  if (pts[0][0] <= 0) {
+    const x = Math.round(Math.max(EASE_MIN, TAPER * (G - pts[0][1])));
+    left = [x, yAt(pts, x)];
+    pts = [left, ...pts.filter((p) => p[0] > x)];
+  }
+  if (pts[pts.length - 1][0] >= SKY_W) {
+    const x = Math.round(SKY_W - Math.max(EASE_MIN, TAPER * (G - pts[pts.length - 1][1])));
+    right = [x, yAt(pts, x)];
+    pts = [...pts.filter((p) => p[0] < x), right];
+  }
+  return { pts, left, right };
+};
+// the S-curves from the ground at the left edge up to `p`, and from `p` down to the ground at the right
+const easeIn = (p: P) => `M0,${G}C${p[0] / 2},${G} ${p[0] / 2},${p[1]} ${pt(p)}`;
+const easeOut = (p: P) => `C${(p[0] + SKY_W) / 2},${p[1]} ${(p[0] + SKY_W) / 2},${G} ${SKY_W},${G}`;
 // a range of mountains through hand-placed points, its ends brought down to the ground
 const range = (pts: P[]) => {
-  const top = pts.slice(1, -1);
+  const { pts: top, left, right } = eased(pts.slice(1, -1));
   const [x0, x1] = [pts[0][0], pts[pts.length - 1][0]];
-  if (Math.abs(x1 - x0) < BROAD) return `M${x0},${G}L${top.map(pt).join("L")}L${x1},${G}Z`;
+  if (!left && !right && Math.abs(x1 - x0) < BROAD) return `M${x0},${G}L${top.map(pt).join("L")}L${x1},${G}Z`;
   const a = foot(x0, top[0], -1);
   const b = foot(x1, top[top.length - 1], 1);
-  const start = a.curve ? `M${a.at},${G}Q${a.curve}${pt(top[0])}` : `M${a.at},${G}L${pt(top[0])}`;
+  const start = left ? easeIn(left) : a.curve ? `M${a.at},${G}Q${a.curve}${pt(top[0])}` : `M${a.at},${G}L${pt(top[0])}`;
   const rest = top.slice(1).map((p) => `L${pt(p)}`).join("");
-  const end = b.curve ? `Q${b.curve}${b.at},${G}` : `L${b.at},${G}`;
+  const end = right ? easeOut(right) : b.curve ? `Q${b.curve}${b.at},${G}` : `L${b.at},${G}`;
   return `${start}${rest}${end}Z`;
 };
 // rounded hills: the same through smooth curves (quadratics through the midpoints)
 const hills = (pts: P[]) => {
-  const p = pts.slice(1, -1);
-  let d = `M${pts[0][0]},${G}`;
-  d += `Q${pt(p[0])} ${(p[0][0] + p[1][0]) / 2},${(p[0][1] + p[1][1]) / 2}`;
-  for (let i = 1; i < p.length - 1; i++) d += `Q${pt(p[i])} ${(p[i][0] + p[i + 1][0]) / 2},${(p[i][1] + p[i + 1][1]) / 2}`;
-  return `${d}Q${pt(p[p.length - 1])} ${pts[pts.length - 1][0]},${G}Z`;
+  const { pts: all, left, right } = eased(pts.slice(1, -1));
+  // the points the curve bends towards (the eased ends are points it passes through)
+  const p = all.slice(left ? 1 : 0, right ? -1 : undefined);
+  const mid = (i: number) => `${(p[i][0] + p[i + 1][0]) / 2},${(p[i][1] + p[i + 1][1]) / 2}`;
+  let d = left ? easeIn(left) : `M${pts[0][0]},${G}`;
+  if (!p.length) return `${d}L${pt(right!)}${easeOut(right!)}Z`;
+  d += `Q${pt(p[0])} ${p.length > 1 ? mid(0) : pt(right ?? [pts[pts.length - 1][0], G])}`;
+  for (let i = 1; i < p.length - 1; i++) d += `Q${pt(p[i])} ${mid(i)}`;
+  if (p.length > 1) d += `Q${pt(p[p.length - 1])} ${right ? pt(right) : `${pts[pts.length - 1][0]},${G}`}`;
+  return right ? `${d}${easeOut(right)}Z` : `${d}Z`;
 };
 // the part of a range above a line: its snowfields and glaciers (a polygon cut by one edge)
 const snowOf = (pts: P[], line: number) => {
@@ -68,7 +105,12 @@ const snowOf = (pts: P[], line: number) => {
   return out.length ? `M${out.map(pt).join("L")}Z` : "";
 };
 // a lake, a river or the sea: a level band whose ends run down to the ground
-const water = (x0: number, x1: number, y: number) => `M${x0},${G}L${x0 + 30},${y}L${x1 - 30},${y}L${x1},${G}Z`;
+const water = (x0: number, x1: number, y: number) => {
+  const run = Math.max(30, G - y);
+  const a = x0 <= 0 ? easeIn([Math.round(Math.max(EASE_MIN, TAPER * (G - y))), y]) : `M${x0},${G}L${x0 + run},${y}`;
+  const b = x1 >= SKY_W ? `L${Math.round(SKY_W - Math.max(EASE_MIN, TAPER * (G - y)))},${y}${easeOut([Math.round(SKY_W - Math.max(EASE_MIN, TAPER * (G - y))), y])}` : `L${x1 - run},${y}L${x1},${G}`;
+  return `${a}${b}Z`;
+};
 // a slim tower (a lookout or transmitter) with its mast
 const tower = (x: number, y: number, h: number, w = 6) =>
   `M${x - w / 2},${y}V${y - h}H${x + w / 2}V${y}Z M${x - 1},${y - h}V${y - h - h * 0.4}H${x + 1}V${y - h}Z`;
@@ -360,8 +402,8 @@ export const SKYLINES: Record<string, Skyline> = {
       { d: range(mitre), c: "#6c7a86" },
       { d: snowOf(mitre, 130), c: SNOW },
       { d: hills([[300, G], [420, 256], [540, 236], [660, 244], [780, 232], [900, 248], [1000, 270], [1120, G]]), c: "#7f9a80" },
-      { d: range([[0, G], [40, 220], [70, 140], [100, 110], [140, 104], [180, 118], [220, 170], [260, 240], [300, G]]), c: "#4f6a52" },
-      { d: waterfall(150, 108, 262), c: "#f4f6f4" },
+      { d: range([[40, G], [80, 220], [110, 140], [140, 110], [180, 104], [220, 118], [260, 170], [300, 240], [340, G]]), c: "#4f6a52" },
+      { d: waterfall(190, 108, 262), c: "#f4f6f4" },
       { d: range([[1100, G], [1160, 220], [1200, 150], [1240, 112], [1280, 100], [1330, 110], [1380, 150], [1420, 200], [1480, 260], [1540, G]]), c: "#4a6450" },
     ],
     front: [{ d: water(480, 1120, 296), c: "#4f7f9a" }],
@@ -745,7 +787,7 @@ export const SKYLINES: Record<string, Skyline> = {
       // the Whin Sill: a ridge with a steep north face, rising and falling
       { d: range([[0, G], [0, 250], [180, 236], [300, 214], [380, 228], [500, 206], [620, 222], [760, 200], [900, 216], [1040, 230], [1200, 212], [1360, 228], [1600, 238], [1600, G]]), c: "#6f8a5a" },
       // the Wall along the crest
-      { d: "M0,250L180,236L300,214L380,228L500,206L620,222L760,200L900,216L1040,230L1200,212L1360,228L1600,238V230L1360,220L1200,204L1040,222L900,208L760,192L620,214L500,198L380,220L300,206L180,228L0,242Z", c: "#b8ad98" },
+      { d: "M105,242L180,236L300,214L380,228L500,206L620,222L760,200L900,216L1040,230L1200,212L1360,228L1477,233V225L1360,220L1200,204L1040,222L900,208L760,192L620,214L500,198L380,220L300,206L180,228L105,234Z", c: "#b8ad98" },
       // a milecastle on the ridge
       { d: "M736,202V188H784V196Z", c: "#a89a84" },
       // a lough below the crags
@@ -769,7 +811,7 @@ export const SKYLINES: Record<string, Skyline> = {
       { d: range([[330, G], [340, 252], [600, 252], [610, G]]), c: "#6f9050" },
       // the dale's fields and a drystone wall over them
       { d: range([[0, G], [0, 270], [600, 266], [1000, 272], [1600, 266], [1600, G]]), c: "#7f9a4a" },
-      { d: "M0,276L400,270L800,274L1200,268L1600,272V275L1200,271L800,277L400,273L0,279Z", c: "#a8a090" },
+      { d: "M90,275L400,270L800,274L1200,268L1505,271V274L1200,271L800,277L400,273L90,278Z", c: "#a8a090" },
     ],
   },
   "great-glen-way": {
@@ -972,7 +1014,7 @@ export const SKYLINES: Record<string, Skyline> = {
       { d: water(380, 960, 276), c: LAKE },
       // a meadow of wild narcissi
       { d: hills([[1300, G], [1360, 276], [1480, 270], [1600, 278], [1600, G]]), c: "#8fb05a" },
-      { d: orchard(1380, 1580, [284, 294], 14, 2.5), c: "#f2d24a" },
+      { d: orchard(1380, 1550, [284, 294], 14, 2.5), c: "#f2d24a" },
     ],
   },
 };

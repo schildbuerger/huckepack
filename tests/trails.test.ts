@@ -146,7 +146,9 @@ test("trail titles stay within the limit", () => {
     assert.ok(trailTitle(name, "1,183", true, [...countries]).length <= TITLE_MAX, name);
 });
 
-// No cut-offs (2026-11-03): every broad skyline shape meets the ground gently, never in a wall
+// No cut-offs (2026-11-03): every broad skyline shape meets the ground gently, never in a wall, also at
+// the box's left and right edges, which stand inside the band (TrailSkyline.astro), so no shape may reach
+// them above the ground either
 test("skyline shapes meet the ground without a cut-off", () => {
   const walls: string[] = [];
   for (const [slug, sky] of Object.entries(SKYLINES)) {
@@ -156,20 +158,23 @@ test("skyline shapes meet the ground without a cut-off", () => {
           // the subpath's points (curves by their end points)
           const pts: [number, number][] = [];
           let cur: [number, number] = [0, 0];
-          for (const [, cmd, args] of sub.matchAll(/([MLHVQZ])([^MLHVQZA]*)/g)) {
+          for (const [, cmd, args] of sub.matchAll(/([MLHVQCZA])([^MLHVQCZA]*)/g)) {
             const a = args.split(/[ ,]+/).filter(Boolean).map(Number);
             if (cmd === "M" || cmd === "L") cur = [a[0], a[1]];
             else if (cmd === "H") cur = [a[0], cur[1]];
             else if (cmd === "V") cur = [cur[0], a[0]];
             else if (cmd === "Q") cur = [a[2], a[3]];
+            else if (cmd === "C") cur = [a[4], a[5]];
+            else if (cmd === "A") cur = [a[5], a[6]];
             else continue;
             pts.push(cur);
           }
+          for (const p of pts) if ((p[0] <= 0 || p[0] >= SKY_W) && p[1] < SKY_H - 4) walls.push(`${slug} ${layer}[${i}] reaches the edge at y=${p[1]}`);
           if (pts.length < 3 || pts[0][1] !== SKY_H) continue;
           const xs = pts.map((p) => p[0]);
           if (Math.max(...xs) - Math.min(...xs) < BROAD) continue; // slender: a stack, a pillar, a trunk
           for (const [g, p] of [[pts[0], pts[1]], [pts[pts.length - 1], pts[pts.length - 2]]]) {
-            if (g[1] !== SKY_H || g[0] <= 0 || g[0] >= SKY_W) continue; // at the band's edge
+            if (g[1] !== SKY_H) continue;
             const rise = SKY_H - p[1];
             if (rise > 12 && Math.abs(p[0] - g[0]) < STEEP * rise) walls.push(`${slug} ${layer}[${i}] at x=${g[0]}`);
           }
