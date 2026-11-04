@@ -1,0 +1,240 @@
+name: Berliner Höhenweg
+added: 2026-11-04
+aliases: [Berliner Hoehenweg, Zillertaler Runde, Berlin High Trail]
+website: https://www.tirol.at/aktivitaeten/sport/wandern/wandertouren/weitwanderung-berliner-hoehenweg
+wikidata: Q821556
+managedBy:
+  # Tirol Werbung and the Mayrhofen tourism board publish the route and its stages; the Alpine Club
+  # sections run the huts
+  - name: Tirol Werbung with the Tourismusverband Mayrhofen-Hippach
+    url: https://www.tirol.at/aktivitaeten/sport/wandern/wandertouren/weitwanderung-berliner-hoehenweg
+trailType: point-to-point
+continents: [Europe]
+countries: [AT]
+regions: [Tyrol]
+protectedAreas:
+  - Zillertal Alps High Mountain Nature Park
+termini:
+  # the first and last points of the whole route's GPX: the Gamshütte above Finkenberg and the
+  # Edelhütte above Mayrhofen (the tour's valley ends, Finkenberg and the Ahornbahn, are approaches)
+  start:
+    name: Gamshütte
+    lat: 47.12983
+    lon: 11.79555
+  end:
+    name: Edelhütte
+    lat: 47.13036
+    lon: 11.89746
+  source: tw
+length:
+  # "71 Kilometer" (the whole route's tour; its GPX measures 70.6 km from hut to hut)
+  - km: 71
+    source: tw
+ascent:
+  # the whole route's tour: "Höhenmeter Bergauf: 5.300 hm"
+  - m: 5300
+    source: tw
+descent:
+  - m: 5000
+    source: tw
+days:
+  # "sieben Tage"
+  min: 7
+  max: 7
+  source: tw
+treeLine:
+  # the BFW's high-subalpine zone in the inner Alps' core (forest growth region 1.1): "2000–2300" m
+  m: 2300
+  fromM: 2000
+  source: bfw
+stages:
+  # Tirol Werbung's stages 2–8 from hut to hut (stage 1 climbs from Finkenberg to the Gamshütte). Its
+  # stage distances are broken (22.4 km for 2½ h, the same 15.3 km on three stages), so the
+  # distances are our own, measured on the OSM map line of the whole route's GPX between the huts
+  # (OSM), under huckepack-measured (decided 2026-11-04); the times are Tirol's (stage 5 has no page)
+  source: huckepack-measured
+  timesSource: tw
+  list:
+    - { number: "2", kind: main, from: Gamshütte, to: Friesenberghaus, km: 14.7, minutes: 570, track: "https://tirol.mapservices.eu/nefos_app/api/gpx/imx_xR7kIE5LaSrqNTM6/de/generate/6117737", end: { name: Friesenberghaus, lat: 47.06764, lon: 11.70207 } }
+    - { number: "3", kind: main, from: Friesenberghaus, to: Olpererhütte, km: 4.4, minutes: 150, track: "https://tirol.mapservices.eu/nefos_app/api/gpx/imx_xR7kIE5LaSrqNTM6/de/generate/6117737", end: { name: Olpererhütte, lat: 47.04202, lon: 11.68832 } }
+    - { number: "4", kind: main, from: Olpererhütte, to: Furtschaglhaus, km: 10.5, minutes: 240, track: "https://tirol.mapservices.eu/nefos_app/api/gpx/imx_xR7kIE5LaSrqNTM6/de/generate/6117737", end: { name: Furtschaglhaus, lat: 47.00098, lon: 11.74735 } }
+    - { number: "5", kind: main, from: Furtschaglhaus, to: Berliner Hütte, km: 8.5, track: "https://tirol.mapservices.eu/nefos_app/api/gpx/imx_xR7kIE5LaSrqNTM6/de/generate/6117737", end: { name: Berliner Hütte, lat: 47.02453, lon: 11.8129 } }
+    - { number: "6", kind: main, from: Berliner Hütte, to: Greizer Hütte, km: 10.7, minutes: 390, track: "https://tirol.mapservices.eu/nefos_app/api/gpx/imx_xR7kIE5LaSrqNTM6/de/generate/6117737", end: { name: Greizer Hütte, lat: 47.04335, lon: 11.88569 } }
+    - { number: "7", kind: main, from: Greizer Hütte, to: Kasseler Hütte, km: 9.6, minutes: 360, track: "https://tirol.mapservices.eu/nefos_app/api/gpx/imx_xR7kIE5LaSrqNTM6/de/generate/6117737", end: { name: Kasseler Hütte, lat: 47.05943, lon: 11.94863 } }
+    - { number: "8", kind: main, from: Kasseler Hütte, to: Edelhütte, km: 13.2, minutes: 540, track: "https://tirol.mapservices.eu/nefos_app/api/gpx/imx_xR7kIE5LaSrqNTM6/de/generate/6117737", end: { name: Edelhütte, lat: 47.13036, lon: 11.89746 } }
+route:
+  # built by `python -m pipeline.all berliner-hoehenweg`: OSM ways matched to the whole route's GPX,
+  # cut at the huts
+  source: osm
+  publishable: true
+difficulty:
+  # Tirol Werbung grades the route "schwierig", technique 5 of 6; our SAC estimate
+  estimated:
+    sac: T4
+    basis: >-
+      Tirol Werbung grades the route "schwierig", with condition and technique each 5 of 6, and
+      calls it "hochalpin, gletschernah, steil und ausgesetzt", for "erfahrene und geübte
+      Bergsteiger", crossing passes up to 3,133 m. Exposed alpine hiking near glaciers (T4).
+    source: tw
+season:
+  # the tour marks June to September as its best months
+  months: [6, 7, 8, 9]
+  text: June to September
+  source: tw
+sleeping:
+  # "Auch die Hütten können sich sehen lassen … Jede Hütte hat Talzugang": eight Alpine Club huts
+  types: [hut]
+  source: tw
+wildCamping:
+  # "In Tirol ist es grundsätzlich verboten, außerhalb von Campingplätzen zu campieren", except for
+  # bivouacking "im hochalpinen Gelände (oberhalb der Waldgrenze)" (oesterreich.gv.at)
+  status: prohibited
+  rule: >-
+    Camping outside campsites is prohibited in Tyrol; a one-off emergency bivouac in high alpine
+    terrain above the tree line is allowed.
+  source: oegv-campen
+access:
+  # Mayrhofen, the Zillertalbahn's terminus below the route, and Innsbruck and Munich airports.
+  # Coordinates from OSM; distances by pipeline/access.py
+  - kind: station
+    name: Mayrhofen
+    lat: 47.16935
+    lon: 11.86237
+    source: osm
+  - kind: airport
+    name: Innsbruck Airport (INN)
+    lat: 47.25973
+    lon: 11.34187
+    source: osm
+  - kind: airport
+    name: Munich Airport (MUC)
+    lat: 48.35396
+    lon: 11.77859
+    source: osm
+animals:
+  # Cattle on the alpine pastures (the Austrian ministry's 10 rules) and ticks (AGES: TBE risk all
+  # over Austria). Levels ours
+  list:
+    - kind: cattle
+      name: "Cattle on alpine pastures"
+      level: moderate
+      basis: "The route crosses alpine pastures where cattle graze in summer; mother cows protect their calves, and dogs make an encounter riskier."
+      do:
+        - "Avoid contact with grazing animals and keep a safe distance; stay calm and don't startle them"
+        - "Stay on the marked paths"
+        - "Keep your dog under control on a short lead; if an animal is about to attack, let the dog off at once"
+        - "If cattle approach: stay calm, don't turn your back on them, step out of their way"
+        - "Use gates where there are any, close them behind you and cross the pasture quickly"
+      dont:
+        - "Feed the animals"
+        - "Let mother cows and dogs meet"
+      source: bml-almen
+    - kind: tick
+      name: "Ticks (tick-borne encephalitis, Lyme disease)"
+      level: low
+      basis: "AGES, Austria's health agency, says the risk of catching tick-borne encephalitis from a tick bite exists all over Austria; on this high route ticks are mostly met on the climbs from the valley."
+      do:
+        - "Get vaccinated against TBE before you go: AGES calls it the best protection, also for travellers to Austria"
+        - "Wear closed clothing that fits well"
+        - "Check your body for ticks after walking through forest, bushes, tall grass or meadows"
+      source: ages-fsme
+tags: [alps, huts, glaciers, zillertal, alpine, nature-park]
+notes:
+  - >-
+    A high route from hut to hut round the head of the Zillertal below the glaciers of the Zillertal
+    Alps: the Gamshütte, Friesenberghaus, Olpererhütte, Furtschaglhaus, Berliner Hütte, Greizer
+    Hütte, Kasseler Hütte and Edelhütte, in the Zillertal Alps High Mountain Nature Park; every hut
+    has a path down to the valley.
+  - >-
+    Map line (2026-11-04, Geofabrik extracts austria and nord-est): OSM ways matched to the whole
+    route's GPX, cut at the huts; every stage at least 95 % matched; the measured stages add up to
+    71.5 km (Tirol: 71 km). Highest point 3,082 m on the terrain model at the Schönbichler Horn
+    (3,133 m stated), lowest 1,783 m by the Schlegeis reservoir. The terrain model gives about
+    5,750 m of climbing against Tirol's 5,300 m. Resupply: no shop on the route; every hut serves
+    meals.
+  - >-
+    Data check (2026-11-04): Tirol Werbung against German Wikipedia (Berliner Höhenweg). Agree:
+    "etwa 70 km" (Tirol 71 km), the huts in this order, the highest point at the Schönbichler Horn
+    (3,133 m, wire ropes), stage 2 "mit 14 km die längste" (our 14.7 km) and the last stage 14 km
+    (our 13.2 km), and the times of stages 2 (9 against 9.5 h), 4 (4 h), 6 (7 against 6.5 h) and 8
+    (9 h). Differ: stage 3 (2 against 2.5 h, 20 %) and stage 7 (5 against 6 h, 17 %); Wikipedia's
+    best time is "Mitte Juli bis Mitte September" (Tirol: June to September; the huts open mid-June
+    to late September, with steep snowfields possible into July). Stage 5 (Furtschaglhaus to the
+    Berliner Hütte over the Schönbichler Horn) has no Tirol stage page; Wikipedia gives 900 m up,
+    1,060 m down and about 6 hours, kept here as a check only.
+dataCheck:
+  # working rule 2: German Wikipedia
+  date: 2026-11-04
+  against: [wikipedia]
+  deviations:
+    - { figure: "Stage 3 time", ours: "2.5 h", theirs: "about 2 h", source: wikipedia }
+    - { figure: "Stage 7 time", ours: "6 h", theirs: "5 h", source: wikipedia }
+    - { figure: season, ours: "June to September", theirs: "mid-July to mid-September", source: wikipedia }
+sources:
+  - id: tw
+    title: "Tirol Werbung (tirol.at): Berliner Höhenweg, the whole route (71 km, 5,300 m up, seven days, grade, best season, GPX) and its stage pages (times)"
+    url: https://www.tirol.at/aktivitaeten/sport/wandern/wandertouren/weitwanderung-berliner-hoehenweg
+    licence: All rights reserved (facts only)
+    retrieved: 2026-11-04
+  - id: huckepack-measured
+    title: "huckepack: stage distances measured on our OpenStreetMap map line between the huts (the official stage distances are broken)"
+    url: https://www.openstreetmap.org/
+    licence: ODbL 1.0 (measured on OpenStreetMap data)
+    retrieved: 2026-11-04
+  - id: wikipedia
+    title: "German Wikipedia: Berliner Höhenweg (stages, times, climbs, best season; data check)"
+    url: https://de.wikipedia.org/wiki/Berliner_Höhenweg
+    licence: CC BY-SA 4.0
+    retrieved: 2026-11-04
+    checkOnly: true
+  - id: bfw
+    title: "BFW (Kilian, Müller, Starlinger): Die forstlichen Wuchsgebiete Österreichs, 1994 (altitude zones per forest growth region; tree line)"
+    url: https://bfw.ac.at/300/pdf/1027.pdf
+    licence: All rights reserved (facts only)
+    retrieved: 2026-11-04
+  - id: oegv-campen
+    title: "oesterreich.gv.at (Austrian government): Campen, Tirol (as of 16 March 2026)"
+    url: https://www.oesterreich.gv.at/de/themen/reisen_und_freizeit/freizeit-in-der-natur/campen/Seite.3390007
+    licence: © Republik Österreich (facts only)
+    retrieved: 2026-11-04
+  - id: bml-almen
+    title: "Austrian Federal Ministry of Agriculture: Sichere Almen, 10 rules for dealing with grazing animals (leaflet)"
+    url: https://www.bmluk.gv.at/dam/jcr:b955ba4b-fd0f-4182-9aac-d12171d6a377/NEU%20BML_Folder_Sichere%20Almen_DE_220727.pdf
+    licence: © BMLUK (facts only)
+    retrieved: 2026-11-04
+  - id: ages-fsme
+    title: "AGES (Austrian Agency for Health and Food Safety): FSME (tick-borne encephalitis)"
+    url: https://www.ages.at/mensch/krankheit/krankheitserreger-von-a-bis-z/fsme
+    licence: © AGES (facts only)
+    retrieved: 2026-11-04
+  - id: wikimedia
+    title: "Wikimedia: page views of the trail's Wikipedia articles in every language, by people, over twelve months (Wikidata sitelinks, pageview API)"
+    url: https://wikimedia.org/api/rest_v1/
+    licence: CC0 1.0 (pageview data); Wikidata CC0
+    retrieved: 2026-11-04
+    checkOnly: true  # not on the trail page: the page views only rank the home page's popular trails
+  - id: osm
+    title: "OpenStreetMap contributors: paths, water, shops and places to sleep along the trail (Geofabrik extracts), travel hubs"
+    url: https://www.openstreetmap.org/
+    licence: ODbL 1.0
+    retrieved: 2026-11-04
+  - id: copdem
+    title: "Copernicus DEM GLO-30 (30 m terrain model), tiles from AWS Open Data"
+    url: https://registry.opendata.aws/copernicus-dem/
+    licence: "Copernicus WorldDEM-30 licence, free; produced using Copernicus WorldDEM-30 © DLR e.V. 2010-2014 and © Airbus Defence and Space GmbH 2014-2018 provided under COPERNICUS by the European Union and ESA; all rights reserved"
+    retrieved: 2026-11-04
+  - id: worldcover
+    title: "ESA WorldCover 2021: 10 m land cover (via AWS Open Data)"
+    url: https://esa-worldcover.org/
+    licence: "CC BY 4.0; © ESA WorldCover project 2021 / Contains modified Copernicus Sentinel data (2021) processed by ESA WorldCover consortium"
+    retrieved: 2026-11-04
+  - id: era5
+    title: "Open-Meteo open data on AWS: ERA5-Land temperature and ERA5 precipitation, snow and wind, daily 1995–2024 (reanalysis)"
+    url: https://github.com/open-meteo/open-data
+    licence: CC BY 4.0 (Open-Meteo); contains modified Copernicus Climate Change Service information
+    retrieved: 2026-11-04
+  - id: osrm
+    title: "OSRM: road routes on OpenStreetMap data (router.project-osrm.org)"
+    url: https://project-osrm.org/
+    licence: Route data © OpenStreetMap contributors (ODbL)
+    retrieved: 2026-11-04

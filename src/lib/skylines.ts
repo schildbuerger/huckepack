@@ -1079,4 +1079,18 @@ export const SKYLINES: Record<string, Skyline> = {
       { d: water(420, 1180, 306), c: "#7fb3c8" },
     ],
   },
+  "berliner-hoehenweg": {
+    view: "The head of the Zillertal: the glaciated main ridge of the Zillertal Alps with the Schönbichler Horn's pass, grey side ridges, and the Schlegeis reservoir below",
+    ridge: "#5f7a3c",
+    ground: MEADOW,
+    shapes: [
+      // the grey side ridges
+      { d: range([[0, G], [80, 248], [160, 206], [230, 178], [290, 188], [350, 160], [410, 176], [490, 200], [570, 226], [650, G]]), c: "#a3abb3" },
+      // the glaciated main ridge (Großer Möseler, Turnerkamp, Schönbichler Horn)
+      { d: range([[560, G], [640, 240], [720, 186], [790, 146], [836, 116], [862, 98], [890, 120], [940, 132], [990, 114], [1030, 100], [1066, 116], [1120, 142], [1190, 170], [1270, 204], [1360, 236], [1460, 262], [1600, 282], [1600, G]]), c: ROCK },
+      { d: snowOf([[560, G], [640, 240], [720, 186], [790, 146], [836, 116], [862, 98], [890, 120], [940, 132], [990, 114], [1030, 100], [1066, 116], [1120, 142], [1190, 170], [1270, 204], [1360, 236], [1460, 262], [1600, 282], [1600, G]], 160), c: SNOW },
+    ],
+    // the Schlegeis reservoir in the valley
+    front: [{ d: water(260, 760, 298), c: "#6fb0c4" }],
+  },
 };

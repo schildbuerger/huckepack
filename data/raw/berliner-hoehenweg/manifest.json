@@ -1,0 +1,74 @@
+{
+  "climate-high.json": {
+    "retrieved": "2026-11-04T20:01:06+00:00",
+    "url": "https://openmeteo.s3.us-west-2.amazonaws.com/data/copernicus_era5_land+copernicus_era5?latitude=47.0&longitude=11.8&elevation=3080"
+  },
+  "climate-low.json": {
+    "retrieved": "2026-11-04T19:57:38+00:00",
+    "url": "https://openmeteo.s3.us-west-2.amazonaws.com/data/copernicus_era5_land+copernicus_era5?latitude=47.0&longitude=11.7&elevation=1780"
+  },
+  "elevation-glo30.json": {
+    "retrieved": "2026-11-04T19:53:51+00:00",
+    "url": "https://copernicus-dem-30m.s3.eu-central-1.amazonaws.com/Copernicus_DSM_COG_10_N46_00_E011_00_DEM/Copernicus_DSM_COG_10_N46_00_E011_00_DEM.tif https://copernicus-dem-30m.s3.eu-central-1.amazonaws.com/Copernicus_DSM_COG_10_N47_00_E011_00_DEM/Copernicus_DSM_COG_10_N47_00_E011_00_DEM.tif"
+  },
+  "landcover.json": {
+    "retrieved": "2026-11-04T19:53:52+00:00",
+    "url": "https://esa-worldcover.s3.eu-central-1.amazonaws.com/v200/2021/map/ESA_WorldCover_10m_2021_v200_\u2026_Map.tif"
+  },
+  "osm-stage-2-main.json": {
+    "retrieved": "2026-10-28T21:21:02Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-3-main.json": {
+    "retrieved": "2026-10-28T21:21:02Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-4-main.json": {
+    "retrieved": "2026-10-28T21:21:02Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-5-main.json": {
+    "retrieved": "2026-10-28T21:21:02Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-6-main.json": {
+    "retrieved": "2026-10-28T21:21:02Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-7-main.json": {
+    "retrieved": "2026-10-28T21:21:02Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-8-main.json": {
+    "retrieved": "2026-10-28T21:21:02Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-water.json": {
+    "retrieved": "2026-10-28T21:21:02Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-way-tags.json": {
+    "retrieved": "2026-10-28T21:21:02Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osrm-access-innsbruck-airport-inn.json": {
+    "retrieved": "2026-11-04T20:01:06+00:00",
+    "url": "https://router.project-osrm.org/route/v1/driving/11.34187,47.25973;11.79555,47.12983?overview=false"
+  },
+  "osrm-access-mayrhofen.json": {
+    "retrieved": "2026-11-04T20:01:06+00:00",
+    "url": "https://router.project-osrm.org/route/v1/driving/11.86237,47.16935;11.79555,47.12983?overview=false"
+  },
+  "osrm-access-munich-airport-muc.json": {
+    "retrieved": "2026-11-04T20:01:06+00:00",
+    "url": "https://router.project-osrm.org/route/v1/driving/11.77859,48.35396;11.79555,47.12983?overview=false"
+  },
+  "stage-2-main.gpx": {
+    "retrieved": "2026-11-04T19:47:49+00:00",
+    "url": "https://tirol.mapservices.eu/nefos_app/api/gpx/imx_xR7kIE5LaSrqNTM6/de/generate/6117737"
+  },
+  "wikimedia.json": {
+    "retrieved": "2026-11-04T20:01:07+00:00",
+    "url": "Q821556 2025-11..2026-10"
+  }
+}
