@@ -13,6 +13,10 @@ trailType: loop
 continents: [Europe]
 countries: [IE]
 regions: [County Kerry]
+protectedAreas:
+  # OSM protected areas containing points of the main route (national parks, nature parks, biosphere
+  # and national nature reserves; 2026-11-04)
+  - Mount Brandon Nature Reserve
 termini:
   # a loop from and back to the Kerry County Museum in Tralee, where the committee's section 1
   # starts (OSM)
@@ -141,6 +145,12 @@ notes:
     against eight sections, highest point 640 m against 651 m on the terrain model, Tralee as start
     and finish, the designation and management: all agree. Ascent: the sections' 2,085 m against 2,590 m
     (24 %), recorded in dataCheck; the page keeps the committee's section figures.
+  - >-
+    Wild camping: no official source found for Ireland (2026-11-03): most land is private and the
+    Way crosses farmland by the landowners' permission.
+  - >-
+    Days: none stated by the Dingle Way committee's pages (2026-11-04; English Wikipedia's eight
+    days are a check only); the page counts one day per section.
 dataCheck:
   # working rule 2: English Wikipedia (its infobox cites the Irish Sports Council's trail page)
   date: 2026-11-03

@@ -11,6 +11,12 @@ trailType: loop
 continents: [Europe]
 countries: [FR, IT, CH]
 regions: [Haute-Savoie, Savoie, Aosta Valley, Valais]
+protectedAreas:
+  # OSM protected areas containing points of the main route (national parks, nature parks, biosphere
+  # and national nature reserves; 2026-11-04)
+  - Réserve naturelle des Aiguilles Rouges
+  - Réserve naturelle des Contamines-Montjoie
+  - Parc naturel régional de la vallée du Trient
 termini:
   # a loop from and back to Les Houches, the usual start in the Chamonix valley (OSM)
   start:

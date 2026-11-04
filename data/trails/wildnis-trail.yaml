@@ -2,6 +2,7 @@ name: Wildnis-Trail
 added: 2026-11-03
 aliases: [Wilderness Trail, Wildnis-Trail Nationalpark Eifel]
 website: https://www.nationalpark-eifel.de/de/nationalpark-erleben/wildnis-trail/
+wikidata: Q2570770  # German Wikipedia's Wildnis-Trail Nationalpark Eifel (found 2026-11-04)
 managedBy:
   # the Eifel National Park's administration (Nationalparkforstamt Eifel) publishes the route, its
   # stages and their GPX files
@@ -133,6 +134,12 @@ notes:
     climbs 477/750 m against 438/691 m (8 %). Eifel Tourismus's stage 4 page is gone; the brochure
     gives 17.7 against 17.8 km (its other stages 24.7, 20.5, 22.4 km, climbs within 15 %, an older
     edition). Termini Höfen and Zerkall agree. No deviation over 10 % against Eifel Tourismus.
+  - >-
+    Days: none stated by the national park (2026-11-04) beyond its four stages; the page counts one
+    day per stage.
+  - >-
+    Waymarking: the park describes none (2026-11-03); an undated brochure without a named publisher
+    (wackerberg.de) mentions signposts with a wildcat pictogram, not used.
 dataCheck:
   # working rule 2: Eifel Tourismus's stage pages (stages 1–3; its stage 4 page is gone), the
   # brochure for stage 4
@@ -140,6 +147,12 @@ dataCheck:
   against: [eifel-tourismus, brochure]
   deviations: []
 sources:
+  - id: wikimedia
+    title: "Wikimedia: page views of the trail's Wikipedia articles in every language, by people, over twelve months (Wikidata sitelinks, pageview API)"
+    url: https://wikimedia.org/api/rest_v1/
+    licence: CC0 1.0 (pageview data); Wikidata CC0
+    retrieved: 2026-11-04
+    checkOnly: true  # not on the trail page: the page views only rank the home page's popular trails
   - id: np
     title: "Nationalpark Eifel (Nationalparkforstamt Eifel): Wildnis-Trail, the four stages (length, climbs, heights) with their GPX files, rules in the national park"
     url: https://www.nationalpark-eifel.de/de/nationalpark-erleben/wildnis-trail/die-vier-etappen/

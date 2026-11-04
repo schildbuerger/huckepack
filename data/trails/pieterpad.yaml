@@ -14,7 +14,11 @@ trailType: point-to-point
 continents: [Europe]
 countries: [NL, DE]
 regions: [Groningen, Drenthe, Overijssel, Gelderland, Limburg, North Rhine-Westphalia]
-protectedAreas: []
+protectedAreas:
+  # OSM protected areas containing points of the main route (national parks, nature parks, biosphere
+  # and national nature reserves; 2026-11-04)
+  - Drentsche Aa National Park
+  - Naturpark Schwalm-Nette
 termini:
   # the first point of the Stichting's stage 1 GPX in Pieterburen, the last of stage 26's on the
   # Sint-Pietersberg
@@ -167,6 +171,10 @@ notes:
     table (whole km): all 26 within 0.6 km (4 %); total 502 against the Stichting's "ruim 500" and
     Dutch Wikipedia's 501 km; termini Pieterburen and Sint-Pietersberg agree (the Stichting,
     Wikipedia); waymarking white-red (both). No deviation over 10 %.
+  - >-
+    Wild camping: no official source states the rule for the route (2026-11-03): in the Netherlands
+    it is set by municipal bylaws and landowners, and the Stichting asks walkers to follow the
+    landowners' rules.
 dataCheck:
   # working rule 2: the Stichting Pieterpad's stage table and Dutch Wikipedia
   date: 2026-11-03

@@ -5,7 +5,9 @@
 Writes data/trails/<slug>.yaml from the template below: every field the trail pages use, each
 `null` with a comment on what belongs there and where it comes from. The build fails on any
 `null` left (the schema in src/content.config.ts accepts no null), so a gap can't slip through:
-fill each field, or delete an optional one the sources don't give (and say why in `notes`). Then
+fill each field, or delete an optional one the sources don't give (season, wild camping, waymarking,
+Wikidata, length, days and protected areas need a note starting with their label then, e.g.
+"Season: none stated by …"; docs/trail-building.md, "What a record needs"). Then
 ~/.venvs/huckepack/bin/python -m pipeline.all <slug>, work through its check, and do the data check (working
 rule 2). Never commit a record that doesn't build. The whole path: docs/trail-building.md.
 """
@@ -19,7 +21,8 @@ ROOT = Path(__file__).resolve().parent.parent
 
 TEMPLATE = """\
 # {name}: created {today} by pipeline/new_trail.py. Fill every null or delete the field (optional
-# ones only, with a note why); every figure names a source id from `sources` below.
+# ones only, with a note why, starting with the field's label: "Season: …"); every figure names a
+# source id from `sources` below.
 name: {name}
 added: {today}  # the day the trail goes on the site (the home page's "Recent trails"); update if it goes live later
 localName: null  # the name in the local language, if it differs; else delete

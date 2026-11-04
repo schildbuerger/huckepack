@@ -13,7 +13,13 @@ trailType: point-to-point
 continents: [Europe]
 countries: [DE]
 regions: [Thuringia, Bavaria]
-protectedAreas: []
+protectedAreas:
+  # OSM protected areas containing points of the main route (national parks, nature parks, biosphere
+  # and national nature reserves; 2026-11-04)
+  - Naturpark Thüringer Wald
+  - Naturpark Thüringer Schiefergebirge/Obere Saale
+  - Naturpark Frankenwald
+  - UNESCO-Biosphärenreservat Thüringer Wald
 termini:
   # the first and last points of the Regionalverbund's tour line: the Werra bank at Hörschel and the
   # Selbitz bridge at Blankenstein

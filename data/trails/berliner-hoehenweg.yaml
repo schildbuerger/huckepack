@@ -35,6 +35,10 @@ treeLine:
   m: 2300
   fromM: 2000
   source: bfw
+waymarking:
+  # the tour: "Gut markiert, aber teils steile und ausgesetzte Passagen"
+  text: Well marked, with steep and exposed passages.
+  source: tw
 stages:
   # Tirol Werbung's stages 2–8 from hut to hut; stage 1, the climb from Finkenberg to the Gamshütte
   # (the tour's starting point), has no Tirol page or track and follows OSM's relation "Berliner
@@ -164,6 +168,12 @@ notes:
     to late September, with steep snowfields possible into July). Stage 5 (Furtschaglhaus to the
     Berliner Hütte over the Schönbichler Horn) has no Tirol stage page; Wikipedia gives 900 m up,
     1,060 m down and about 6 hours, kept here as a check only.
+  - >-
+    Length: no stated total (2026-11-04): Tirol's "71 Kilometer" is its GPX from the Gamshütte,
+    without stage 1 from Finkenberg, so the page sums the stages (78.6 km).
+  - >-
+    Days: none stated for the whole trail (2026-11-04): Tirol's "sieben Tage" start at the
+    Gamshütte; the page counts one day per stage, eight.
 dataCheck:
   # working rule 2: German Wikipedia
   date: 2026-11-04

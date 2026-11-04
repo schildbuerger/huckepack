@@ -26,6 +26,11 @@ termini:
     lat: 33.66843
     lon: 135.89044
   source: osm
+waymarking:
+  # the bureau's tips: "There are numbered signposts along many routes. These are good markers to
+  # pinpoint location."
+  text: Numbered signposts along the routes, useful to pinpoint your location.
+  source: tb-tips
 stages:
   # the bureau's four sections from Takijiri-oji to Kumano Nachi Taisha (decided 2026-11-03: the
   # Nakahechi to Nachi), each page's course data (distance, time, elevation gain and loss). The
@@ -140,6 +145,16 @@ notes:
     Data check (2026-11-03): the bureau's figures against English Wikipedia (Kumano Kodō, Nakahechi):
     Takijiri-oji to Hongu "about 37 km", usually two days (the bureau's 17 + 21 km, 3 %); Hongu to
     Nachi two days via Koguchi on the Kogumotori-goe and Ogumotori-goe: agree. No deviation over 10 %.
+  - >-
+    Days: none stated by the bureau (2026-11-04: "consecutive day treks"; English Wikipedia's two
+    plus two days are a check only); the page counts one day per section.
+  - >-
+    Length: no stated total (2026-11-04): the bureau gives the four sections only (65 km together),
+    so the page sums them.
+  - >-
+    Protected areas: none recorded (2026-11-04): OSM maps no protected area on the route and the
+    bureau names none; the routes' UNESCO World Heritage listing ("Sacred Sites and Pilgrimage
+    Routes in the Kii Mountain Range") is a heritage designation, not a protected area.
 dataCheck:
   # working rule 2: English Wikipedia
   date: 2026-11-03

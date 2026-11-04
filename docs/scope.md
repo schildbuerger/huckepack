@@ -64,6 +64,12 @@
   distances are missing or broken, each stage's length is measured on the
   full OSM match under the `huckepack-measured` source, always, noted in the
   record (decided 2026-11-04).
+- **What a record needs:** three tiers, enforced by the build: required
+  fields; fields filled from a source or explained by a note starting with
+  their label ("Season: none stated by …"): season, wild camping, waymarking,
+  Wikidata, length, days, protected areas; and fields only where they apply
+  (docs/trail-building.md). The 59 gaps on the live trails were researched
+  and filled or explained the same day (decided 2026-11-04).
 - **Unattended runs:** well-known trails with openly published stages, up to
   about 1,000 km, started only when the build fits the time left, with about
   60 minutes per trail before a blocker is documented and the run moves on

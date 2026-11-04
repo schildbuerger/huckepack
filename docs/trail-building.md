@@ -78,6 +78,47 @@ null.
 - **`added`:** the day the trail goes live (the home page's logbook and the search's "Newest
   first").
 
+### What a record needs
+
+Three tiers, enforced by the build (decided 2026-11-04; `src/content.config.ts`, the trail
+schema's superRefine; the skyline by `tests/trails.test.ts`):
+
+- **Required.** The build fails without these:
+  - name, `added`, website, `managedBy`, route type, continents, countries;
+  - `termini`;
+  - `stages`: every main stage with number, from, to, km, and a `track`, or a `relation`
+    and/or `end` (on `route.relation`);
+  - `route`;
+  - `difficulty`: stated, converted from CAI, or our estimate with its `basis`;
+  - `sleeping`;
+  - `access`: at least one hub;
+  - `dataCheck`;
+  - wildlife: `animals`, `animals.none`, or a note starting "Wildlife";
+  - `sources`;
+  - a skyline;
+  - `treeLine` when the route goes above 1,500 m (the pipeline's check).
+- **Required or explained.** Fill these from a source; where none gives one, add a note that
+  starts with the field's label and says what was searched and when:
+  - `season` ("Season: none stated by …");
+  - `wildCamping` ("Wild camping: …");
+  - `waymarking` ("Waymarking: …");
+  - `wikidata` ("Wikidata: …": no article, or an article on something else);
+  - `length` ("Length: …", e.g. a total that covers another stretch);
+  - `days` ("Days: …"; the page then counts one day per main stage);
+  - `protectedAreas` ("Protected areas: …").
+- **Only when they apply:**
+  - `localName` (when it differs), `aliases`, `designation`, `established`;
+  - `permit`, `fees`, `waterPoints`, `refillsUntreated`;
+  - `ascent` and `descent` totals;
+  - a stage's `ascentM`, `descentM`, `minutes`, heights (estimated when missing, ≈), and its
+    `closed`, `via`, `maxBridgeM`;
+  - `stages.transfers`;
+  - `tags`.
+
+Protected areas are national parks, nature and regional parks, biosphere reserves, national
+nature reserves and national scenic areas the route crosses, from the operator or OSM
+(`boundary=national_park`/`protected_area`); not Natura 2000 sites or small local reserves.
+
 ## 5. Pipeline
 
 `~/.venvs/huckepack/bin/python -m pipeline.all <slug>` (outside Claude Code's sandbox: it needs
