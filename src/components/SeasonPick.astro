@@ -17,14 +17,14 @@ const seasonText = text ?? months.map((m) => NAMES[m - 1]).join(", ");
 const run = months.length === 12 ? "All year" : monthsText(months);
 ---
 
-<div class="sp">
-  <dt class="lbl">Season</dt>
-  <dd>
-    <button type="button" class="open" popovertarget="sp-pop" aria-label={`Season: ${seasonText}. Pick your travel months`}>
-      <span class="big run" data-run={run}>{run}</span>
-      <span class="dots" aria-hidden="true">{MONTH_ABBR.map((_, i) => <span class:list={["dot", { in: months.includes(i + 1) }]} data-show={i + 1} />)}</span>
-    </button>
-  </dd>
+<!-- the dt and dd straight in the key figure's div (a dl's item); the picker inside the dd -->
+<dt class="sp-lbl">Season</dt>
+<dd class="sp">
+  <!-- the name starts with the words on screen: "Apr–Sep, the season (April to September). Pick …" -->
+  <button type="button" class="open" popovertarget="sp-pop">
+    <span class="big run" data-run={run}>{run}</span><span class="visually-hidden sr" data-sr={`, the season (${seasonText}). Pick your travel months`}>, the season ({seasonText}). Pick your travel months</span>
+    <span class="dots" aria-hidden="true">{MONTH_ABBR.map((_, i) => <span class:list={["dot", { in: months.includes(i + 1) }]} data-show={i + 1} />)}</span>
+  </button>
 
   <!-- the picker: a popover under the figure, a bottom sheet on phones -->
   <div id="sp-pop" class="pop" popover role="dialog" aria-labelledby="sp-pop-h">
@@ -45,7 +45,7 @@ const run = months.length === 12 ? "All year" : monthsText(months);
       <button type="button" class="done" popovertarget="sp-pop" popovertargetaction="hide">Done</button>
     </div>
   </div>
-</div>
+</dd>
 
 <script>
   import { monthsText, readPick, runBetween } from "../lib/months";
@@ -71,7 +71,9 @@ const run = months.length === 12 ? "All year" : monthsText(months);
         el.classList.toggle("sel", pick.includes(m));
         if (el.hasAttribute("data-m")) el.setAttribute("aria-pressed", String(pick.includes(m)));
       }
-      box.querySelector(".lbl")!.textContent = pick.length ? "Your months" : "Season";
+      document.querySelector(".sp-lbl")!.textContent = pick.length ? "Your months" : "Season";
+      const sr = box.querySelector<HTMLElement>(".sr")!;
+      sr.textContent = pick.length ? ", your travel months. Change them" : sr.dataset.sr!;
       const run = box.querySelector<HTMLElement>(".run")!;
       run.textContent = pick.length ? monthsText(pick) : run.dataset.run!;
     };
@@ -87,12 +89,17 @@ const run = months.length === 12 ? "All year" : monthsText(months);
 
 <style>
   /* the key figure's own parts (the page's styles are scoped to it): the value first, the label under */
-  .sp {
-    display: contents;
-  }
   dd {
     order: 1;
     margin: 0;
+    white-space: nowrap;
+  }
+  .visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip-path: inset(50%);
     white-space: nowrap;
   }
   dt {
