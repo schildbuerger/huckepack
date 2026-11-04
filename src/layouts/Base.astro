@@ -180,6 +180,17 @@ const siteLd =
         rerate(document, pick);
         document.dispatchEvent(new CustomEvent("monthpick", { detail: pick }));
       };
+      // a pick goes along to a trail page (issue #211): links to /trails/<slug>/ get the URL's months
+      // as they are followed (also cards added later and links opened in a new tab); nothing stored
+      const carry = (e: Event) => {
+        const a = (e.target as Element).closest?.<HTMLAnchorElement>("a[href]");
+        const pick = new URLSearchParams(location.search).get("months");
+        if (!a || !pick || a.host !== location.host || !/^\/trails\/(?!map\/|guide\/)[^/]+\/$/.test(a.pathname)) return;
+        const url = new URL(a.href);
+        url.searchParams.set("months", pick);
+        a.href = url.href;
+      };
+      for (const type of ["pointerdown", "focusin", "click"]) document.addEventListener(type, carry, true);
       const replace = history.replaceState.bind(history);
       history.replaceState = (...args: Parameters<History["replaceState"]>) => {
         replace(...args);

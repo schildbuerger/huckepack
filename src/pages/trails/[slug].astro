@@ -10,6 +10,7 @@ import Meter from "../../components/Meter.astro";
 import Waymark from "../../components/Waymark.astro";
 import TrailAnimals from "../../components/TrailAnimals.astro";
 import LeafFall from "../../components/LeafFall.astro";
+import SeasonPick from "../../components/SeasonPick.astro";
 import TrailSkyline from "../../components/TrailSkyline.astro";
 import { SKYLINES } from "../../lib/skylines";
 import { SKY_SCRIPT } from "../../lib/sky";
@@ -819,16 +820,8 @@ const trailLd = JSON.stringify({
       )}
       {t.season && (
         <div>
-          <dt>Season</dt>
-          <dd>
-            <span class="visually-hidden">{t.season.text ?? t.season.months.map(monthName).join(", ")}</span>
-            <!-- the search cards' month strip, in two rows of six -->
-            <span class="season-grid" aria-hidden="true">
-              {MONTHS.map((m, i) => (
-                <span class:list={["month", { in: t.season!.months.includes(i + 1) }]} title={monthName(i + 1)}>{m[0]}</span>
-              ))}
-            </span>
-          </dd>
+          <!-- the season, and a picker for your travel months (issue #211) -->
+          <SeasonPick months={t.season.months} text={t.season.text} />
         </div>
       )}
       {landcover && landMain && (
@@ -3105,26 +3098,6 @@ const trailLd = JSON.stringify({
 
   /* season key figure: twelve month cells in two rows, season months filled (as on the search cards) */
   /* two 14 px rows: as tall as the big numbers beside it, so the labels beneath line up */
-  .season-grid {
-    display: grid;
-    grid-template-columns: repeat(6, 1.25rem);
-    grid-auto-rows: 14px;
-    gap: 3px;
-  }
-  .season-grid .month {
-    border-radius: 3px;
-    background: var(--surface);
-    color: var(--muted);
-    font-size: 0.6rem;
-    font-weight: 600;
-    line-height: 14px;
-    text-align: center;
-  }
-  .season-grid .month.in {
-    background: color-mix(in srgb, var(--text) 72%, var(--bg));
-    color: var(--bg);
-  }
-
   /* sleeping: availability per category */
   .avail {
     grid-template-columns: 1fr;

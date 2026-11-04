@@ -1,0 +1,282 @@
+---
+// The Season key figure with a month picker (issue #211): the season large in words like the other
+// figures, twelve dots under it (off season light, season dark); once you pick months they take the
+// words and their dots turn green and ringed. A tap on the figure opens the picker (a popover under it,
+// a bottom sheet on phones) in the same three states. The pick is the URL's `months`
+// (src/lib/months.ts): Base.astro re-rates the page with it and carries it along links to trail pages.
+// One month, or a second for the run between them; the single month again clears.
+import { MONTH_ABBR, monthsText } from "../lib/months";
+
+interface Props {
+  months: number[]; // the season
+  text?: string; // the record's wording of it
+}
+const { months, text } = Astro.props;
+const NAMES = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+const seasonText = text ?? months.map((m) => NAMES[m - 1]).join(", ");
+const run = months.length === 12 ? "All year" : monthsText(months);
+---
+
+<div class="sp">
+  <dt class="lbl">Season</dt>
+  <dd>
+    <button type="button" class="open" popovertarget="sp-pop" aria-label={`Season: ${seasonText}. Pick your travel months`}>
+      <span class="big run" data-run={run}>{run}</span>
+      <span class="dots" aria-hidden="true">{MONTH_ABBR.map((_, i) => <span class:list={["dot", { in: months.includes(i + 1) }]} data-show={i + 1} />)}</span>
+    </button>
+  </dd>
+
+  <!-- the picker: a popover under the figure, a bottom sheet on phones -->
+  <div id="sp-pop" class="pop" popover role="dialog" aria-labelledby="sp-pop-h">
+    <p class="pop-h" id="sp-pop-h">When are you going?</p>
+    <p class="pop-sub">The page rates its climate for them.</p>
+    <span class="pop-grid" role="group" aria-label="Months">
+      {MONTH_ABBR.map((m, i) => (
+        <button type="button" class:list={["cell", { in: months.includes(i + 1) }]} data-m={i + 1} aria-pressed="false" aria-label={`${NAMES[i]}${months.includes(i + 1) ? ", in season" : ", off season"}`}>{m}</button>
+      ))}
+    </span>
+    <ul class="legend" aria-hidden="true">
+      <li><span class="cell"></span>Off season</li>
+      <li><span class="cell in"></span>Season</li>
+      <li><span class="cell sel"></span>Yours</li>
+    </ul>
+    <div class="pop-actions">
+      <button type="button" class="clear">Clear</button>
+      <button type="button" class="done" popovertarget="sp-pop" popovertargetaction="hide">Done</button>
+    </div>
+  </div>
+</div>
+
+<script>
+  import { monthsText, readPick, runBetween } from "../lib/months";
+
+  for (const box of document.querySelectorAll<HTMLElement>(".sp")) {
+    // the pick: the URL's months, written back with replaceState (Base.astro re-rates on it)
+    const write = (ms: number[]) => {
+      const url = new URL(location.href);
+      if (ms.length) url.searchParams.set("months", ms.join(","));
+      else url.searchParams.delete("months");
+      history.replaceState(history.state, "", url);
+    };
+    const choose = (m: number) => {
+      const pick = readPick(location.search);
+      if (pick.length === 1 && pick[0] === m) write([]);
+      else if (pick.length === 1) write(runBetween(pick[0], m));
+      else write([m]);
+    };
+    const show = () => {
+      const pick = readPick(location.search);
+      for (const el of box.querySelectorAll<Element>("[data-show], [data-m]")) {
+        const m = Number(el.getAttribute("data-show") ?? el.getAttribute("data-m"));
+        el.classList.toggle("sel", pick.includes(m));
+        if (el.hasAttribute("data-m")) el.setAttribute("aria-pressed", String(pick.includes(m)));
+      }
+      box.querySelector(".lbl")!.textContent = pick.length ? "Your months" : "Season";
+      const run = box.querySelector<HTMLElement>(".run")!;
+      run.textContent = pick.length ? monthsText(pick) : run.dataset.run!;
+    };
+    box.addEventListener("click", (e) => {
+      const b = (e.target as Element).closest<HTMLElement>("[data-m]");
+      if (b) choose(Number(b.dataset.m));
+      if ((e.target as Element).closest(".clear")) write([]);
+    });
+    document.addEventListener("monthpick", show);
+    show();
+  }
+</script>
+
+<style>
+  /* the key figure's own parts (the page's styles are scoped to it): the value first, the label under */
+  .sp {
+    display: contents;
+  }
+  dd {
+    order: 1;
+    margin: 0;
+    white-space: nowrap;
+  }
+  dt {
+    order: 2;
+    margin-top: 2px;
+    color: var(--muted);
+    font-size: 0.78rem;
+    white-space: nowrap;
+  }
+
+  /* the figure as a button: no frame, a soft hover, the focus ring */
+  .open {
+    display: flex;
+    flex-direction: column;
+    padding: 2px;
+    margin: -2px;
+    border: 0;
+    border-radius: 6px;
+    background: none;
+    color: inherit;
+    font: inherit;
+    text-align: left;
+    cursor: pointer;
+  }
+  .open:hover {
+    background: var(--surface);
+  }
+  .open:focus-visible,
+  .pop button:focus-visible {
+    outline: 2px solid var(--text);
+    outline-offset: 2px;
+  }
+  .big {
+    font-family: var(--serif);
+    font-size: 1.7rem;
+    font-weight: 600;
+    line-height: 1.15;
+  }
+  .dots {
+    display: flex;
+    gap: 4px;
+    margin-top: 4px;
+  }
+
+  /* three states, the same in the figure and the picker: off season light, season dark, yours green
+     and ringed in the text colour, so it stays apart from the season in both themes */
+  .cell,
+  .dot {
+    --c: var(--surface);
+    --ink: var(--muted);
+  }
+  .in {
+    --c: color-mix(in srgb, var(--text) 72%, var(--bg));
+    --ink: var(--bg);
+  }
+  .sel {
+    --c: var(--accent);
+    --ink: var(--bg);
+  }
+  .dot {
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    background: var(--c);
+    box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--text) 18%, transparent);
+  }
+  .cell {
+    border-radius: 3px;
+    background: var(--c);
+    color: var(--ink);
+    font-weight: 600;
+    text-align: center;
+  }
+  .cell.sel,
+  .dot.sel {
+    box-shadow: 0 0 0 1.5px var(--bg), 0 0 0 3px var(--text);
+  }
+
+  /* the picker: under the figure on wide screens, a bottom sheet with large buttons on phones */
+  .pop {
+    width: 300px;
+    margin: 0;
+    padding: 16px;
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    background: var(--bg);
+    color: var(--text);
+    white-space: normal;
+    position-area: bottom span-left;
+    inset: auto;
+    margin-top: 6px;
+    box-shadow: 0 10px 30px rgb(0 0 0 / 0.15);
+  }
+  .pop-h {
+    margin: 0;
+    font-family: var(--serif);
+    font-size: 1.15rem;
+    font-weight: 700;
+  }
+  .pop-sub {
+    margin: 4px 0 12px;
+    color: var(--muted);
+    font-size: 0.82rem;
+    line-height: 1.4;
+  }
+  .pop-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 7px;
+  }
+  .pop-grid .cell {
+    height: 38px;
+    border: 0;
+    border-radius: 8px;
+    font-family: inherit;
+    font-size: 0.85rem;
+    line-height: 38px;
+    cursor: pointer;
+  }
+  .pop-grid .cell:not(.sel):hover {
+    box-shadow: inset 0 0 0 2px var(--accent);
+  }
+  .legend {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px 12px;
+    margin: 12px 0 0;
+    padding: 0;
+    list-style: none;
+    color: var(--muted);
+    font-size: 0.74rem;
+  }
+  .legend li {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+  }
+  .legend .cell {
+    display: inline-block;
+    width: 12px;
+    height: 12px;
+  }
+  .legend .cell.sel {
+    box-shadow: 0 0 0 1px var(--bg), 0 0 0 2px var(--text);
+  }
+  .pop-actions {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 14px;
+  }
+  .pop-actions button {
+    padding: 8px 16px;
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    background: none;
+    color: var(--text);
+    font: inherit;
+    font-size: 0.85rem;
+    font-weight: 600;
+    cursor: pointer;
+  }
+  .pop-actions .done {
+    border-color: var(--accent);
+    background: var(--accent);
+    color: var(--bg);
+  }
+  @media (max-width: 639px) {
+    .pop {
+      position: fixed;
+      position-area: none;
+      inset: auto 0 0;
+      width: auto;
+      max-width: none;
+      margin: 0;
+      padding: 20px 16px 24px;
+      border-radius: 18px 18px 0 0;
+    }
+    .pop-grid .cell {
+      height: 46px;
+      line-height: 46px;
+      font-size: 0.95rem;
+    }
+  }
+  .pop::backdrop {
+    background: rgb(0 0 0 / 0.25);
+  }
+</style>
