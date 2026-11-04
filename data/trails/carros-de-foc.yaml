@@ -111,6 +111,25 @@ access:
     lat: 43.62996
     lon: 1.36362
     source: osm
+animals:
+  # The asp viper (Spain's National Institute of Toxicology; the park's declaration: up to 2,300 m).
+  # Level ours
+  list:
+    - kind: snake
+      name: "Asp viper"
+      level: low
+      basis: "The asp viper lives in northern Catalonia among rocks and shrubs, in alpine forest, gullies, stone walls and by streams, in the national park up to about 2,300 m. Its venom is the most active of Spain's vipers, but it is fairly docile and usually avoids people."
+      do:
+        - "After a bite, keep the person calm and get them to medical care without running or cycling"
+        - "Keep the bitten limb still, without raising it"
+        - "Take off rings, bracelets and anything tight near the bite"
+        - "Disinfect the wound and cool it moderately"
+      dont:
+        - "Apply a tourniquet"
+        - "Put ice directly on the skin"
+        - "Cut or suck the wound"
+        - "Give alcohol, sedatives or home remedies"
+      source: inct-vipers
 tags: [pyrenees, huts, lakes, national-park, alpine, loop]
 notes:
   - >-
@@ -138,8 +157,10 @@ notes:
     on the terrain model at the Coll de Contraix (2,745 m stated), lowest 1,878 m at the Ernest
     Mallafré refuge. Resupply: no shop on the route; the refuges serve meals and picnics.
   - >-
-    Wildlife: the park's declaration names the asp viper (Vipera aspis) up to 2,300 m, but no
-    official advice for hikers was found (2026-11-04), so none is listed.
+    Wildlife: the asp viper (Vipera aspis), which the park's declaration places up to 2,300 m, with
+    the National Institute of Toxicology's habitat notes and first aid (2026-11-04). Grazing cattle
+    and horses: no official Catalan advice for hikers was found (the Generalitat's repository was
+    unreachable), so none is listed.
   - >-
     Data check (2026-11-04): carrosdefoc.com against Catalan Wikipedia (Carros de foc (travessa)):
     the nine refuges and their order agree, as do the 9,200 m of accumulated climbing, the highest
@@ -173,6 +194,11 @@ sources:
     title: "Parc Nacional d'Aigüestortes i Estany de Sant Maurici: Declaració ambiental 2007 (vegetation zones, upper forest limit)"
     url: https://www.miteco.gob.es/content/dam/miteco/es/parques-nacionales-oapn/red-parques-nacionales/parques-nacionales/aig_declaracion_amb_cat_tcm30-59528.pdf
     licence: © Organismo Autónomo Parques Nacionales / Generalitat de Catalunya (facts only)
+    retrieved: 2026-11-04
+  - id: inct-vipers
+    title: "Instituto Nacional de Toxicología y Ciencias Forenses (Ministerio de Justicia): Intoxicaciones frecuentes por animales venenosos, and Identificación, primeros auxilios y contraindicaciones en caso de una mordedura de serpiente"
+    url: https://www.mjusticia.gob.es/es/institucional/organismos/instituto-nacional/servicios/servicio-informacion/intoxicaciones-frecuentes/animales-venenosos
+    licence: © Ministerio de Justicia (facts only)
     retrieved: 2026-11-04
   - id: wikimedia
     title: "Wikimedia: page views of the trail's Wikipedia articles in every language, by people, over twelve months (Wikidata sitelinks, pageview API)"

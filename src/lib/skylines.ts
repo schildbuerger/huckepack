@@ -1017,4 +1017,37 @@ export const SKYLINES: Record<string, Skyline> = {
       { d: orchard(1380, 1550, [284, 294], 14, 2.5), c: "#f2d24a" },
     ],
   },
+  "alta-via-1": {
+    view: "The Dolomites from the Cinque Torri: the five pale towers in front of the Tofane, the broad block of the Pelmo and the Civetta's wall to the south",
+    ridge: "#6f8a4a",
+    ground: MEADOW,
+    shapes: [
+      // the Tofane behind, to the north
+      { d: range([[0, G], [60, 262], [140, 212], [210, 172], [262, 142], [300, 128], [330, 138], [372, 120], [418, 132], [470, 162], [540, 192], [620, 216], [700, 240], [780, G]]), c: "#b7b9b6" },
+      // the Civetta's long wall, far to the south
+      { d: range([[1220, G], [1290, 248], [1350, 196], [1400, 166], [1432, 152], [1462, 162], [1500, 178], [1550, 210], [1600, 232], [1600, G]]), c: "#b3b1a8" },
+      // the Pelmo: a broad pale block with two tops and the saddle between them
+      { d: range([[800, G], [860, 262], [912, 206], [952, 158], [984, 118], [1006, 102], [1036, 110], [1066, 128], [1096, 106], [1122, 98], [1150, 112], [1190, 152], [1240, 204], [1292, 254], [1340, G]]), c: "#cdc6b6" },
+      // its shaded north face
+      { d: "M1006,102L984,118L952,158L930,190L968,196L1000,150L1018,118Z", c: "#b8b09e" },
+    ],
+    // the Cinque Torri: five slim pale towers on the pasture, in front of the trail's own ridge
+    front: [{ d: pillars([[520, 226], [548, 198], [574, 238], [600, 214], [628, 250]], 18), c: "#d8d0bf" }],
+  },
+  "carros-de-foc": {
+    view: "The twin granite towers of Els Encantats above the Estany de Sant Maurici, in the heart of the Aigüestortes national park",
+    ridge: "#5f7a46",
+    ground: MEADOW,
+    shapes: [
+      // the far grey granite ranges round the lakes
+      { d: range([[0, G], [80, 252], [170, 210], [250, 186], [320, 198], [392, 172], [462, 188], [550, 204], [630, 228], [710, G]]), c: "#a8b1b8" },
+      { d: range([[980, G], [1060, 242], [1140, 204], [1220, 184], [1300, 198], [1380, 176], [1460, 198], [1540, 228], [1600, 246], [1600, G]]), c: "#a8b1b8" },
+      // Els Encantats: two sharp granite towers with a notch between them
+      { d: range([[640, G], [702, 250], [748, 190], [774, 134], [788, 98], [802, 122], [818, 152], [836, 126], [850, 92], [866, 116], [890, 178], [932, 240], [990, G]]), c: "#8f979e" },
+      // mountain pines on the lower slopes
+      { d: hills([[560, G], [640, 290], [740, 276], [840, 284], [940, 274], [1040, 288], [1120, G]]), c: FIR },
+    ],
+    // the Estany de Sant Maurici in front
+    front: [{ d: water(420, 1180, 300), c: LAKE }],
+  },
 };

@@ -128,6 +128,26 @@ access:
     lat: 45.49706
     lon: 12.33896
     source: osm
+animals:
+  # Grazing cattle on the alpine pastures (the Province of Bolzano's sheet with the farmers' union).
+  # Level ours
+  list:
+    - kind: cattle
+      name: "Cattle on alpine pastures"
+      level: moderate
+      basis: "Cows, horses, sheep and goats graze the high pastures in summer. Cows, above all mothers with calves, defend their herd, and a herd that panics can run off uncontrolled; the danger signs are an animal that fixes you and lowers its head."
+      do:
+        - "Keep a safe distance from grazing animals and stay on the marked path"
+        - "Walk round animals standing on the path rather than driving them off"
+        - "Keep a dog on a short lead and away from mother cows and calves"
+        - "If the herd grows restless, leave the pasture quickly"
+        - "If animals come towards you, don't turn your back: walk calmly away"
+        - "Always close the pasture gates behind you"
+      dont:
+        - "Touch, feed or lure the animals"
+        - "Startle them with noise, drones, wild gestures or running"
+        - "Run away from an approaching animal or crouch down"
+      source: bz-alm
 tags: [dolomites, huts, alpine, world-war-i, national-park, nature-park]
 notes:
   - >-
@@ -146,8 +166,9 @@ notes:
     (the Castelletto gallery, the Croda da Lago, the Schiara via ferrata) are left out. Highest
     point Rifugio Lagazuoi 2,752 m, lowest Belluno 389 m (Case Bortòt 568 m) in the guide.
   - >-
-    Wildlife: no official source on the route's animals was found (2026-11-04), so none is listed.
-    Camping: the Ampezzo park forbids tents; English Wikipedia says camping is forbidden along the
+    Wildlife: grazing cattle from the Province of Bolzano's sheet (2026-11-04). Ticks: the
+    official Italian tick pages found were behind bot checks or gone, and a CAI leaflet puts ticks
+    below 1,200 m, under this route, so none is listed. Camping: the Ampezzo park forbids tents; English Wikipedia says camping is forbidden along the
     whole route, without an official source for the national park's rule (said to be article 20 of
     its regulation), so the page states only the Ampezzo park's rule.
   - >-
@@ -198,6 +219,11 @@ sources:
     title: "Parco Naturale delle Dolomiti d'Ampezzo: Regolamento del Parco Naturale (rules for visitors, 2024)"
     url: https://cortina.dolomiti.org/wp-content/uploads/2024/07/Regolamento-Parco-Naturale-1.pdf
     licence: All rights reserved (facts only)
+    retrieved: 2026-11-04
+  - id: bz-alm
+    title: "Autonome Provinz Bozen – Südtirol (Ressort Landwirtschaft) with the Südtiroler Bauernbund and the tourism associations: Die Alm – wo die Tiere zu Hause sind und der Mensch zu Gast ist (10 rules for meeting grazing animals; poster)"
+    url: https://www.valgardena.it/dl/stchristina/pdf/Poster_Regole_alpeggi_DE.pdf
+    licence: © Autonome Provinz Bozen – Südtirol (facts only)
     retrieved: 2026-11-04
   - id: stol
     title: "stol.it: Als der Schlern noch komplett bewaldet war, 12 October 2023 (natural tree line in South Tyrol)"
