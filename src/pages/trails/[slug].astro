@@ -9,6 +9,7 @@ import Breadcrumbs from "../../components/Breadcrumbs.astro";
 import Meter from "../../components/Meter.astro";
 import Waymark from "../../components/Waymark.astro";
 import TrailAnimals from "../../components/TrailAnimals.astro";
+import LeafFall from "../../components/LeafFall.astro";
 import TrailSkyline from "../../components/TrailSkyline.astro";
 import { SKYLINES } from "../../lib/skylines";
 import { SKY_SCRIPT } from "../../lib/sky";
@@ -1873,6 +1874,8 @@ const trailLd = JSON.stringify({
       ))}
     </ol>
   </footer>
+  <!-- falling leaves when the section navigation is used (issue #207) -->
+  <LeafFall />
 </Base>
 
 <script>

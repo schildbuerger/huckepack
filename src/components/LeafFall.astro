@@ -1,0 +1,84 @@
+---
+// Falling leaves (issue #207; of five previews, approach C): a click on a link in the trail page's
+// section navigation lets four leaves drift down the screen while the page scrolls to the section, in
+// the colours of the visitor's season (fresh green with a blossom in spring, deep green in summer,
+// autumn colours, dry brown in winter). Flat colours, small, never in the way (they take no clicks),
+// none for visitors who prefer reduced motion.
+---
+
+<script>
+  const nav = document.querySelector(".onpage");
+  const reduce = matchMedia("(prefers-reduced-motion: reduce)");
+  if (nav) {
+    const SPRING = ["#9cc46a", "#b6d67f", "#f0c4cf"];
+    const SUMMER = ["#4f7d3a", "#6f9a4a", "#3d6a34"];
+    const AUTUMN = ["#c9822b", "#b5542c", "#d8a93a", "#9a6a2a"];
+    const WINTER = ["#8a6a4a", "#a08060", "#6f5a44"];
+    const season = [WINTER, WINTER, SPRING, SPRING, SPRING, SUMMER, SUMMER, SUMMER, AUTUMN, AUTUMN, AUTUMN, WINTER];
+    // three leaf shapes in a 24 × 24 box (an oval leaf, a lobed one, a small round one)
+    const SHAPES = [
+      "M12 2C18 6 19 15 12 22C5 15 6 6 12 2Z",
+      "M12 2l2 4 4-1-1 4 4 2-4 2 1 4-4-1-2 6-2-6-4 1 1-4-4-2 4-2-1-4 4 1z",
+      "M12 4C17 6 18 13 12 20C6 13 7 6 12 4Z",
+    ];
+    const rand = (a: number, b: number) => a + Math.random() * (b - a);
+    const pick = <T,>(xs: T[]) => xs[Math.floor(Math.random() * xs.length)];
+    let falling = 0;
+
+    const leaf = (color: string, size: number) => {
+      const el = document.createElement("div");
+      el.className = "lf-leaf";
+      el.style.width = el.style.height = `${size}px`;
+      el.innerHTML = `<svg viewBox="0 0 24 24" aria-hidden="true"><path d="${pick(SHAPES)}" fill="${color}"/><path d="M12 5V23" stroke="rgb(0 0 0 / 0.22)" stroke-width="1.2" fill="none"/></svg>`;
+      document.body.append(el);
+      falling++;
+      return el;
+    };
+    // a fall from (x0, y0) to y1: swaying side to side, turning and flipping as it goes, fading in and out
+    const fall = (el: HTMLElement, x0: number, y0: number, y1: number, ms: number) => {
+      const [sway, drift, turns, phase, spin] = [rand(18, 40), rand(-40, 40), rand(1.2, 2.2), rand(0, Math.PI * 2), rand(-120, 120)];
+      const frames = Array.from({ length: 17 }, (_, i) => {
+        const p = i / 16;
+        const a = p * Math.PI * 2 * turns + phase;
+        return {
+          transform: `translate(${(x0 + drift * p + sway * Math.sin(a)).toFixed(1)}px, ${(y0 + (y1 - y0) * p).toFixed(1)}px) rotate(${(spin * p + 35 * Math.sin(a + 1.6)).toFixed(1)}deg) scaleX(${(0.55 + 0.45 * Math.cos(a)).toFixed(2)})`,
+          opacity: p < 0.06 ? p / 0.06 : p > 0.86 ? (1 - p) / 0.14 : 1,
+        };
+      });
+      el.animate(frames, { duration: ms, easing: "linear" }).onfinish = () => {
+        el.remove();
+        falling--;
+      };
+    };
+
+    nav.addEventListener("click", (e) => {
+      // a few at a time: a quick run of clicks doesn't fill the screen
+      if (!(e.target as Element).closest("a[href^='#']") || reduce.matches || falling > 6) return;
+      const colors = season[new Date().getMonth()];
+      for (let i = 0; i < 4; i++) {
+        const el = leaf(pick(colors), rand(16, 24));
+        setTimeout(() => fall(el, rand(0.08, 0.92) * innerWidth, -30, innerHeight + 30, rand(5000, 7000)), i * rand(150, 450));
+      }
+    });
+  }
+</script>
+
+<style is:global>
+  /* the leaves: above the page and its sticky navigation, taking no clicks */
+  .lf-leaf {
+    position: fixed;
+    z-index: 20;
+    top: 0;
+    left: 0;
+    pointer-events: none;
+    will-change: transform, opacity;
+  }
+  .lf-leaf svg {
+    display: block;
+    width: 100%;
+    height: 100%;
+  }
+  html[data-theme="dark"] .lf-leaf {
+    filter: brightness(0.85);
+  }
+</style>
