@@ -34,6 +34,8 @@
   };
   const SORTS = {
     name: { label: "Name", value: (t: SearchTrail) => t.name },
+    // newest added first (issue #218; the home page's logbook links here with sort=newest)
+    newest: { label: "Newest first", value: (t: SearchTrail) => -Date.parse(t.added) },
     shortest: { label: "Shortest first", value: (t: SearchTrail) => t.compareKm },
     longest: { label: "Longest first", value: (t: SearchTrail) => (t.compareKm === null ? null : -t.compareKm) },
     days: { label: "Fewest days", value: (t: SearchTrail) => t.days?.[0] ?? null },

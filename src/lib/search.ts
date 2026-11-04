@@ -30,6 +30,8 @@ export function searchSummary(id: string, t: Trail, d?: DerivedData) {
     // the climate level of each month (index 0 = January), empty when not rated; a month pick and
     // the climate filter read it (climateLevel())
     climateByMonth: diff.months.map((m) => m.level as number),
+    // the day the trail was added (YYYY-MM-DD), for the search's "Newest first" sort (issue #218)
+    added: t.added.toISOString().slice(0, 10),
     landscape: d?.landcover?.shares ?? null, // share of each landscape group (src/pages/trails/[slug].astro LAND)
   };
 }
