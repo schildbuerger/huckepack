@@ -121,8 +121,31 @@ access:
     lat: 45.39717
     lon: 10.8859
     source: osm
+animals:
+  # Grazing cattle on the alpine pastures (the Province of Bolzano's sheet with the farmers' union).
+  # Level ours
+  list:
+    - kind: cattle
+      name: "Cattle on alpine pastures"
+      level: moderate
+      basis: "Cows, horses, sheep and goats graze South Tyrol's high pastures in summer. Cows, above all mothers with calves, defend their herd, and a herd that panics can run off uncontrolled; the danger signs are an animal that fixes you and lowers its head."
+      do:
+        - "Keep a safe distance from grazing animals and stay on the marked path"
+        - "Walk round animals standing on the path rather than driving them off"
+        - "Keep a dog on a short lead and away from mother cows and calves"
+        - "If the herd grows restless, leave the pasture quickly"
+        - "If animals come towards you, don't turn your back: walk calmly away"
+        - "Always close the pasture gates behind you"
+      dont:
+        - "Touch, feed or lure the animals"
+        - "Startle them with noise, drones, wild gestures or running"
+        - "Run away from an approaching animal or crouch down"
+      source: bz-alm
 tags: [alpine, loop, nature-park, huts, farms]
 notes:
+  - >-
+    Wildlife (2026-11-04): grazing cattle from the Province of Bolzano's sheet. Ticks: no current
+    official South Tyrolean tick page was reachable (the Province's leaflet is gone), so none is listed.
   - >-
     Name: the official English pages use both "Merano High Mountain Trail" (merano-suedtirol.it)
     and "Alta Via di Merano" (meranerland.org); the German name is Meraner Höhenweg. The record
@@ -185,6 +208,11 @@ dataCheck:
     - { figure: "Stage 4 ascent", ours: "740 m", theirs: "875 m", source: bergwelten }
     - { figure: "Stage 4 descent", ours: "533 m", theirs: "657 m", source: bergwelten }
 sources:
+  - id: bz-alm
+    title: "Autonome Provinz Bozen – Südtirol (Ressort Landwirtschaft) with the Südtiroler Bauernbund and the tourism associations: Die Alm – wo die Tiere zu Hause sind und der Mensch zu Gast ist (10 rules for meeting grazing animals; poster)"
+    url: https://www.valgardena.it/dl/stchristina/pdf/Poster_Regole_alpeggi_DE.pdf
+    licence: © Autonome Provinz Bozen – Südtirol (facts only)
+    retrieved: 2026-11-04
   - id: meranerland
     title: "Merano and environs: Alta Via di Merano, overview and nine stage pages (times, lengths, climbs, GPX)"
     url: https://www.meranerland.org/en/leisure-activities/mountains-and-hiking/alta-via-di-merano

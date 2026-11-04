@@ -355,6 +355,12 @@ const trail = z
     sources: z.array(source).min(1),
   })
   .superRefine((t, ctx) => {
+    // every trail has its Wildlife (2026-11-04): animals or plants from official sources, `none` where
+    // an official source says there are none, or a note starting "Wildlife" saying why nothing is listed
+    const wildlife = t.animals && (t.animals.list.length || t.animals.plants.length || t.animals.none);
+    if (!wildlife && !t.notes.some((n) => n.startsWith("Wildlife"))) {
+      ctx.addIssue({ code: "custom", path: ["animals"], message: 'no wildlife: list animals from an official source, set animals.none, or add a note starting "Wildlife" saying why none is listed' });
+    }
     const ids = new Set(t.sources.map((s) => s.id));
     const refs = [
       t.termini.source,

@@ -104,8 +104,29 @@ access:
     lat: 43.46909
     lon: -1.52287
     source: osm
+animals:
+  # Spain's vipers along the way (the National Institute of Toxicology). Level ours
+  list:
+    - kind: snake
+      name: "Vipers"
+      level: low
+      basis: "Three vipers live along the way: the asp viper in Navarre, La Rioja and north-east Castile and León, Seoane's viper from Navarre to Galicia and León, and Lataste's viper further south, among rocks, scrub, stone walls and stream banks. Their bites need hospital care, but they usually avoid people."
+      do:
+        - "After a bite, keep the person calm and get them to medical care without running or cycling"
+        - "Keep the bitten limb still, without raising it"
+        - "Take off rings, bracelets and anything tight near the bite"
+        - "Disinfect the wound and cool it moderately"
+      dont:
+        - "Apply a tourniquet"
+        - "Put ice directly on the skin"
+        - "Cut or suck the wound"
+        - "Give alcohol, sedatives or home remedies"
+      source: inct-vipers
 tags: [pilgrimage, camino-de-santiago, albergues, unesco]
 notes:
+  - >-
+    Wildlife (2026-11-04): vipers from the National Institute of Toxicology's habitat notes and first
+    aid. Dogs and cattle along the way: no official advice for pilgrims found, so none is listed.
   - >-
     Stages: no official list covers the whole way. Stages 1–30 are English Wikipedia's example
     itinerary from Saint-Jean-Pied-de-Port to Sarria; 31–36 the Xunta's official stages from Sarria
@@ -150,6 +171,11 @@ dataCheck:
     - { figure: "Palas de Rei – Arzúa (stages 33–34)", ours: "29.1 km", theirs: "25.5 km", source: wikipedia }
     - { figure: "Stage 36 length", ours: "20.2 km", theirs: "16.5 km", source: wikipedia }
 sources:
+  - id: inct-vipers
+    title: "Instituto Nacional de Toxicología y Ciencias Forenses (Ministerio de Justicia): Intoxicaciones frecuentes por animales venenosos, and Identificación, primeros auxilios y contraindicaciones en caso de una mordedura de serpiente"
+    url: https://www.mjusticia.gob.es/es/institucional/organismos/instituto-nacional/servicios/servicio-informacion/intoxicaciones-frecuentes/animales-venenosos
+    licence: © Ministerio de Justicia (facts only)
+    retrieved: 2026-11-04
   - id: xunta
     title: "Xunta de Galicia, Camino de Santiago official portal: the Camino Francés in Galicia and its stages with distances"
     url: https://www.caminodesantiago.gal/es/planifica/las-rutas/camino-frances
