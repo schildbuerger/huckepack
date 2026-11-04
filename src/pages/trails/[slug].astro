@@ -2406,14 +2406,22 @@ const trailLd = JSON.stringify({
     font-size: 0.8rem;
   }
 
+  /* the bar: wall to wall like the skyline band (issue #208), its links in the page column, joined to
+     the band above and the key figures below without a gap */
   .onpage {
     position: sticky;
     top: 0;
     z-index: 10;
-    margin: 16px -16px 0;
-    padding: 0 16px;
+    margin: 16px calc(50% - 50vw) 0;
+    padding: 0 max(16px, calc(50vw - 600px));
     background: var(--surface);
     border-bottom: 1px solid var(--line);
+  }
+  :global(.skyline) + .onpage {
+    margin-top: 0;
+  }
+  .onpage + .key {
+    margin-top: 0;
   }
   .onpage ul {
     display: flex;

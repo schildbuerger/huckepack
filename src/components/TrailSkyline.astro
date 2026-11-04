@@ -59,7 +59,8 @@ const ridge = profileRidge(points, routeKm);
     grid-template-columns: minmax(0, 1fr) auto;
     grid-template-rows: auto 1fr;
     column-gap: 32px;
-    margin: 0 calc(50% - 50vw) 28px;
+    /* the section navigation follows right below it (issue #208) */
+    margin: 0 calc(50% - 50vw);
     padding: 0 max(16px, calc(50vw - 600px)) var(--ground-h);
     overflow-x: clip;
     background: #d9e8e1;
