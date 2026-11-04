@@ -1,0 +1,98 @@
+{
+  "climate-high.json": {
+    "retrieved": "2026-11-04T19:22:32+00:00",
+    "url": "https://openmeteo.s3.us-west-2.amazonaws.com/data/copernicus_era5_land+copernicus_era5?latitude=47.0&longitude=11.2&elevation=2870"
+  },
+  "climate-low.json": {
+    "retrieved": "2026-11-04T19:19:04+00:00",
+    "url": "https://openmeteo.s3.us-west-2.amazonaws.com/data/copernicus_era5_land+copernicus_era5?latitude=47.1&longitude=11.2&elevation=2120"
+  },
+  "elevation-glo30.json": {
+    "retrieved": "2026-11-04T19:15:14+00:00",
+    "url": "https://copernicus-dem-30m.s3.eu-central-1.amazonaws.com/Copernicus_DSM_COG_10_N46_00_E011_00_DEM/Copernicus_DSM_COG_10_N46_00_E011_00_DEM.tif https://copernicus-dem-30m.s3.eu-central-1.amazonaws.com/Copernicus_DSM_COG_10_N47_00_E011_00_DEM/Copernicus_DSM_COG_10_N47_00_E011_00_DEM.tif"
+  },
+  "landcover.json": {
+    "retrieved": "2026-11-04T19:15:14+00:00",
+    "url": "https://esa-worldcover.s3.eu-central-1.amazonaws.com/v200/2021/map/ESA_WorldCover_10m_2021_v200_\u2026_Map.tif"
+  },
+  "osm-stage-1-main.json": {
+    "retrieved": "2026-10-28T21:21:02Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-2-main.json": {
+    "retrieved": "2026-10-28T21:21:02Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-3-main.json": {
+    "retrieved": "2026-10-28T21:21:02Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-4-main.json": {
+    "retrieved": "2026-10-28T21:21:02Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-5-main.json": {
+    "retrieved": "2026-10-28T21:21:02Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-6-main.json": {
+    "retrieved": "2026-10-28T21:21:02Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-7-main.json": {
+    "retrieved": "2026-10-28T21:21:02Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-water.json": {
+    "retrieved": "2026-10-28T21:21:02Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-way-tags.json": {
+    "retrieved": "2026-10-28T21:21:02Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osrm-access-innsbruck-airport-inn.json": {
+    "retrieved": "2026-11-04T19:22:32+00:00",
+    "url": "https://router.project-osrm.org/route/v1/driving/11.34187,47.25973;11.27885,47.12662?overview=false"
+  },
+  "osrm-access-innsbruck-hauptbahnhof.json": {
+    "retrieved": "2026-11-04T19:22:32+00:00",
+    "url": "https://router.project-osrm.org/route/v1/driving/11.40109,47.26319;11.27885,47.12662?overview=false"
+  },
+  "osrm-access-munich-airport-muc.json": {
+    "retrieved": "2026-11-04T19:22:33+00:00",
+    "url": "https://router.project-osrm.org/route/v1/driving/11.77859,48.35396;11.27885,47.12662?overview=false"
+  },
+  "stage-1-main.gpx": {
+    "retrieved": "2026-11-04T19:10:08+00:00",
+    "url": "https://tirol.mapservices.eu/nefos_app/api/gpx/imx_xR7kIE5LaSrqNTM6/de/generate/121250002"
+  },
+  "stage-2-main.gpx": {
+    "retrieved": "2026-11-04T19:10:08+00:00",
+    "url": "https://tirol.mapservices.eu/nefos_app/api/gpx/imx_xR7kIE5LaSrqNTM6/de/generate/121250058"
+  },
+  "stage-3-main.gpx": {
+    "retrieved": "2026-11-04T19:10:08+00:00",
+    "url": "https://tirol.mapservices.eu/nefos_app/api/gpx/imx_xR7kIE5LaSrqNTM6/de/generate/121250258"
+  },
+  "stage-4-main.gpx": {
+    "retrieved": "2026-11-04T19:10:09+00:00",
+    "url": "https://tirol.mapservices.eu/nefos_app/api/gpx/imx_xR7kIE5LaSrqNTM6/de/generate/121250398"
+  },
+  "stage-5-main.gpx": {
+    "retrieved": "2026-11-04T19:10:09+00:00",
+    "url": "https://tirol.mapservices.eu/nefos_app/api/gpx/imx_xR7kIE5LaSrqNTM6/de/generate/121250393"
+  },
+  "stage-6-main.gpx": {
+    "retrieved": "2026-11-04T19:10:09+00:00",
+    "url": "https://tirol.mapservices.eu/nefos_app/api/gpx/imx_xR7kIE5LaSrqNTM6/de/generate/121250389"
+  },
+  "stage-7-main.gpx": {
+    "retrieved": "2026-11-04T19:10:09+00:00",
+    "url": "https://tirol.mapservices.eu/nefos_app/api/gpx/imx_xR7kIE5LaSrqNTM6/de/generate/121250385"
+  },
+  "wikimedia.json": {
+    "retrieved": "2026-11-04T19:22:33+00:00",
+    "url": "Q2357997 2025-11..2026-10"
+  }
+}

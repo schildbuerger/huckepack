@@ -1050,4 +1050,16 @@ export const SKYLINES: Record<string, Skyline> = {
     // the Estany de Sant Maurici in front
     front: [{ d: water(420, 1180, 300), c: LAKE }],
   },
+  "stubaier-hoehenweg": {
+    view: "The glaciated head of the Stubai valley from the high route: the Zuckerhütl and the Wilder Freiger with their glaciers, grey ridges and the green high pastures below the huts",
+    ridge: "#5f7a3c",
+    ground: MEADOW,
+    shapes: [
+      // the far grey ridges round the valley
+      { d: range([[0, G], [70, 250], [150, 214], [230, 186], [300, 196], [370, 170], [440, 186], [520, 204], [600, 228], [680, G]]), c: "#a3abb3" },
+      // the Zuckerhütl and the Wilder Freiger, the glaciated main ridge
+      { d: range([[560, G], [640, 246], [720, 192], [790, 150], [840, 118], [868, 96], [892, 118], [940, 136], [1000, 128], [1060, 108], [1092, 112], [1140, 140], [1210, 176], [1300, 214], [1400, 246], [1500, 270], [1600, G]]), c: ROCK },
+      { d: snowOf([[560, G], [640, 246], [720, 192], [790, 150], [840, 118], [868, 96], [892, 118], [940, 136], [1000, 128], [1060, 108], [1092, 112], [1140, 140], [1210, 176], [1300, 214], [1400, 246], [1500, 270], [1600, G]], 168), c: SNOW },
+    ],
+  },
 };

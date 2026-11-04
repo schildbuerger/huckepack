@@ -1,0 +1,225 @@
+name: Stubaier Höhenweg
+added: 2026-11-04
+aliases: [Stubai High Trail, Stubai Hohenweg, Stubaier Hoehenweg]
+website: https://www.tirol.at/aktivitaeten/sport/wandern/wandertouren/stubaier-hoehenweg-variante-1-starkenburger-huette-innsbrucker-huette
+wikidata: Q2357997
+managedBy:
+  # the Stubai tourism board publishes the route and its seven stages (the data source of Tirol
+  # Werbung's pages, "Quelle: TVB Stubai"); the Alpine Club sections run the huts
+  - name: Tourismusverband Stubai Tirol
+    url: https://www.tirol.at/aktivitaeten/sport/wandern/wandertouren/stubaier-hoehenweg-variante-1-starkenburger-huette-innsbrucker-huette
+trailType: point-to-point
+continents: [Europe]
+countries: [AT]
+regions: [Tyrol]
+termini:
+  # the first point of stage 1's GPX at the Starkenburger Hütte and the last of stage 7's at the
+  # Innsbrucker Hütte
+  start:
+    name: Starkenburger Hütte
+    lat: 47.12662
+    lon: 11.27885
+  end:
+    name: Innsbrucker Hütte
+    lat: 47.04331
+    lon: 11.31076
+  source: tw
+waymarking:
+  # the Alpine Club's red-white-red path marks; no symbol of its own is described
+  text: Red-white-red Alpine Club marks
+  symbol: cai
+  source: tw
+treeLine:
+  # the BFW's high-subalpine zone in the inner Alps' core (forest growth region 1.1, the Ötztal and
+  # Stubai Alps): "2000–2300" m
+  m: 2300
+  fromM: 2000
+  source: bfw
+stages:
+  # Tirol Werbung's seven stage pages (data from TVB Stubai: length, time, climb and descent), each
+  # with its GPX, which only guides the OSM matcher (kept local). Variant 1, Starkenburger Hütte to
+  # Innsbrucker Hütte
+  source: tw
+  list:
+    - { number: "1", kind: main, from: Starkenburger Hütte, to: Franz-Senn-Hütte, km: 15.0, ascentM: 690, descentM: 772, minutes: 420, track: "https://tirol.mapservices.eu/nefos_app/api/gpx/imx_xR7kIE5LaSrqNTM6/de/generate/121250002" }
+    - { number: "2", kind: main, from: Franz-Senn-Hütte, to: Neue Regensburger Hütte, km: 9.0, ascentM: 603, descentM: 468, minutes: 240, track: "https://tirol.mapservices.eu/nefos_app/api/gpx/imx_xR7kIE5LaSrqNTM6/de/generate/121250058" }
+    - { number: "3", kind: main, from: Neue Regensburger Hütte, to: Dresdner Hütte, km: 13.0, ascentM: 1033, descentM: 1008, minutes: 420, track: "https://tirol.mapservices.eu/nefos_app/api/gpx/imx_xR7kIE5LaSrqNTM6/de/generate/121250258" }
+    - { number: "4", kind: main, from: Dresdner Hütte, to: Sulzenauhütte, km: 5.0, ascentM: 419, descentM: 534, minutes: 180, track: "https://tirol.mapservices.eu/nefos_app/api/gpx/imx_xR7kIE5LaSrqNTM6/de/generate/121250398" }
+    - { number: "5", kind: main, from: Sulzenauhütte, to: Nürnberger Hütte, km: 4.4, ascentM: 461, descentM: 364, minutes: 240, track: "https://tirol.mapservices.eu/nefos_app/api/gpx/imx_xR7kIE5LaSrqNTM6/de/generate/121250393" }
+    - { number: "6", kind: main, from: Nürnberger Hütte, to: Bremer Hütte, km: 6.0, ascentM: 642, descentM: 516, minutes: 240, track: "https://tirol.mapservices.eu/nefos_app/api/gpx/imx_xR7kIE5LaSrqNTM6/de/generate/121250389" }
+    - { number: "7", kind: main, from: Bremer Hütte, to: Innsbrucker Hütte, km: 9.5, ascentM: 839, descentM: 886, minutes: 420, track: "https://tirol.mapservices.eu/nefos_app/api/gpx/imx_xR7kIE5LaSrqNTM6/de/generate/121250385" }
+route:
+  # built by `python -m pipeline.all stubaier-hoehenweg`: OSM ways matched to the stages' GPX
+  source: osm
+  publishable: true
+difficulty:
+  # no grade on the pages; our estimate from the tourism board's description
+  estimated:
+    sac: T3
+    basis: >-
+      The tourism board asks for "Trittsicherheit, eine entsprechende Grundkondition,
+      Schwindelfreiheit und die richtige Ausrüstung" on a high route between 2,100 and 2,880 m,
+      with climbs of up to 1,033 m a day over passes and scree. Demanding mountain hiking (T3).
+    source: tw
+season:
+  # the stage pages mark June to September as the best months (stage 3)
+  months: [6, 7, 8, 9]
+  text: June to September
+  source: tw
+sleeping:
+  # "Die bestens bewirteten Hütten des Höhenwegs dienen als Stützpunkte": eight Alpine Club huts
+  types: [hut]
+  source: tw
+wildCamping:
+  # "In Tirol ist es grundsätzlich verboten, außerhalb von Campingplätzen zu campieren", except for
+  # bivouacking "im hochalpinen Gelände (oberhalb der Waldgrenze)" (oesterreich.gv.at)
+  status: prohibited
+  rule: >-
+    Camping outside campsites is prohibited in Tyrol; a one-off emergency bivouac in high alpine
+    terrain above the tree line is allowed.
+  source: oegv-campen
+access:
+  # Innsbruck Hauptbahnhof (buses up the Stubai valley), Innsbruck and Munich airports. Coordinates
+  # from OSM; distances by pipeline/access.py
+  - kind: station
+    name: Innsbruck Hauptbahnhof
+    lat: 47.26319
+    lon: 11.40109
+    source: osm
+  - kind: airport
+    name: Innsbruck Airport (INN)
+    lat: 47.25973
+    lon: 11.34187
+    source: osm
+  - kind: airport
+    name: Munich Airport (MUC)
+    lat: 48.35396
+    lon: 11.77859
+    source: osm
+animals:
+  # Cattle on the alpine pastures (the Austrian ministry's 10 rules) and ticks (AGES: TBE risk all
+  # over Austria). Levels ours
+  list:
+    - kind: cattle
+      name: "Cattle on alpine pastures"
+      level: moderate
+      basis: "The route crosses alpine pastures where cattle graze in summer; mother cows protect their calves, and dogs make an encounter riskier."
+      do:
+        - "Avoid contact with grazing animals and keep a safe distance; stay calm and don't startle them"
+        - "Stay on the marked paths"
+        - "Keep your dog under control on a short lead; if an animal is about to attack, let the dog off at once"
+        - "If cattle approach: stay calm, don't turn your back on them, step out of their way"
+        - "At the first sign of unrest, leave the pasture quickly"
+        - "Use gates where there are any, close them behind you and cross the pasture quickly"
+      dont:
+        - "Feed the animals"
+        - "Let mother cows and dogs meet"
+      source: bml-almen
+    - kind: tick
+      name: "Ticks (tick-borne encephalitis, Lyme disease)"
+      level: low
+      basis: "AGES, Austria's health agency, says the risk of catching tick-borne encephalitis from a tick bite exists all over Austria; on this high route ticks are mostly met on the climbs from the valley."
+      do:
+        - "Get vaccinated against TBE before you go: AGES calls it the best protection, also for travellers to Austria"
+        - "Wear closed clothing that fits well"
+        - "Check your body for ticks after walking through forest, bushes, tall grass or meadows"
+      source: ages-fsme
+tags: [alps, huts, glaciers, stubai, alpine]
+notes:
+  - >-
+    A high route round the Stubai valley's head from hut to hut: the Starkenburger, Franz-Senn,
+    Neue Regensburger, Dresdner, Sulzenau, Nürnberger, Bremer and Innsbrucker huts, below the
+    glaciers of the Stubai Alps; every hut has a path down to the valley and its buses.
+  - >-
+    Length and days: Tirol Werbung's whole-route tour (variant 1) gives 79.7 km, 5,871 m up and
+    5,869 m down, "5 Tage", and its text "Die gesamte Tour erfordert 8 Tage"; the seven stage pages
+    add up to 61.9 km, 4,687 m up and 4,548 m down. The figures don't match each other, so the
+    record states no total length or days: the page uses the stage sums and one day per stage.
+  - >-
+    Map line (2026-11-04, Geofabrik extracts austria and nord-est): OSM ways matched to the seven
+    stage tracks, 59.0 km against the stages' 61.9 km. Stage 3 (Neue Regensburger to Dresdner
+    Hütte) is 90 % matched: its track runs up to 246 m from any OSM path in places, where OSM lacks
+    the path; stage 6 measures 5.3 km against the stated 6.0 km. Highest point on the terrain model
+    2,866 m on stage 3 (the tour gives 2,879 m), lowest 2,122 m by the Franz-Senn-Hütte. Resupply: no shop on the route; every hut serves meals.
+  - >-
+    Data check (2026-11-04): Tirol Werbung's stage pages against German Wikipedia (Stubaier
+    Höhenweg). Agree: the eight huts in this order, "etwa 80 km" (Wikipedia, counting an approach
+    stage from Fulpmes or Neustift to the Starkenburger Hütte and a descent from the Innsbrucker
+    Hütte to Neustift, as Tirol's 79.7 km whole-route tour seems to), a route between 2,000 and
+    3,000 m with stretches secured by wire ropes, no glacier crossings, and the hut-to-hut times of
+    stages 2 (4 h) and 7 (7 h). Wikipedia's times are 14–25 % shorter on stages 1 (6 against 7 h),
+    3 (6 against 7 h), 4 (2.5 against 3 h), 5 (3 against 4 h) and 6 (3 against 4 h); the page keeps
+    Tirol's.
+dataCheck:
+  # working rule 2: German Wikipedia
+  date: 2026-11-04
+  against: [wikipedia]
+  deviations:
+    - { figure: "Stage 1 time", ours: "7 h", theirs: "6 h", source: wikipedia }
+    - { figure: "Stage 3 time", ours: "7 h", theirs: "6 h", source: wikipedia }
+    - { figure: "Stage 4 time", ours: "3 h", theirs: "2.5 h (over the Peiljoch)", source: wikipedia }
+    - { figure: "Stage 5 time", ours: "4 h", theirs: "3 h (over the Niederl)", source: wikipedia }
+    - { figure: "Stage 6 time", ours: "4 h", theirs: "3 h", source: wikipedia }
+sources:
+  - id: tw
+    title: "Tirol Werbung (tirol.at), data from TVB Stubai: Stubaier Höhenweg (variant 1) and its seven stage pages (length, time, climb and descent, best season) with their GPX files"
+    url: https://www.tirol.at/aktivitaeten/sport/wandern/wandertouren/stubaier-hoehenweg-variante-1-starkenburger-huette-innsbrucker-huette
+    licence: All rights reserved (facts only)
+    retrieved: 2026-11-04
+  - id: bfw
+    title: "BFW (Kilian, Müller, Starlinger): Die forstlichen Wuchsgebiete Österreichs, 1994 (altitude zones per forest growth region; tree line)"
+    url: https://bfw.ac.at/300/pdf/1027.pdf
+    licence: All rights reserved (facts only)
+    retrieved: 2026-11-04
+  - id: oegv-campen
+    title: "oesterreich.gv.at (Austrian government): Campen, Tirol (as of 16 March 2026)"
+    url: https://www.oesterreich.gv.at/de/themen/reisen_und_freizeit/freizeit-in-der-natur/campen/Seite.3390007
+    licence: © Republik Österreich (facts only)
+    retrieved: 2026-11-04
+  - id: bml-almen
+    title: "Austrian Federal Ministry of Agriculture: Sichere Almen, 10 rules for dealing with grazing animals (leaflet)"
+    url: https://www.bmluk.gv.at/dam/jcr:b955ba4b-fd0f-4182-9aac-d12171d6a377/NEU%20BML_Folder_Sichere%20Almen_DE_220727.pdf
+    licence: © BMLUK (facts only)
+    retrieved: 2026-11-04
+  - id: ages-fsme
+    title: "AGES (Austrian Agency for Health and Food Safety): FSME (tick-borne encephalitis)"
+    url: https://www.ages.at/mensch/krankheit/krankheitserreger-von-a-bis-z/fsme
+    licence: © AGES (facts only)
+    retrieved: 2026-11-04
+  - id: wikipedia
+    title: "German Wikipedia: Stubaier Höhenweg (huts, stages and times, length; data check)"
+    url: https://de.wikipedia.org/wiki/Stubaier_Höhenweg
+    licence: CC BY-SA 4.0
+    retrieved: 2026-11-04
+    checkOnly: true
+  - id: wikimedia
+    title: "Wikimedia: page views of the trail's Wikipedia articles in every language, by people, over twelve months (Wikidata sitelinks, pageview API)"
+    url: https://wikimedia.org/api/rest_v1/
+    licence: CC0 1.0 (pageview data); Wikidata CC0
+    retrieved: 2026-11-04
+    checkOnly: true  # not on the trail page: the page views only rank the home page's popular trails
+  - id: osm
+    title: "OpenStreetMap contributors: paths, water, shops and places to sleep along the trail (Geofabrik extracts), travel hubs"
+    url: https://www.openstreetmap.org/
+    licence: ODbL 1.0
+    retrieved: 2026-11-04
+  - id: copdem
+    title: "Copernicus DEM GLO-30 (30 m terrain model), tiles from AWS Open Data"
+    url: https://registry.opendata.aws/copernicus-dem/
+    licence: "Copernicus WorldDEM-30 licence, free; produced using Copernicus WorldDEM-30 © DLR e.V. 2010-2014 and © Airbus Defence and Space GmbH 2014-2018 provided under COPERNICUS by the European Union and ESA; all rights reserved"
+    retrieved: 2026-11-04
+  - id: worldcover
+    title: "ESA WorldCover 2021: 10 m land cover (via AWS Open Data)"
+    url: https://esa-worldcover.org/
+    licence: "CC BY 4.0; © ESA WorldCover project 2021 / Contains modified Copernicus Sentinel data (2021) processed by ESA WorldCover consortium"
+    retrieved: 2026-11-04
+  - id: era5
+    title: "Open-Meteo open data on AWS: ERA5-Land temperature and ERA5 precipitation, snow and wind, daily 1995–2024 (reanalysis)"
+    url: https://github.com/open-meteo/open-data
+    licence: CC BY 4.0 (Open-Meteo); contains modified Copernicus Climate Change Service information
+    retrieved: 2026-11-04
+  - id: osrm
+    title: "OSRM: road routes on OpenStreetMap data (router.project-osrm.org)"
+    url: https://project-osrm.org/
+    licence: Route data © OpenStreetMap contributors (ODbL)
+    retrieved: 2026-11-04
