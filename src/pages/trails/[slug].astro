@@ -1962,6 +1962,38 @@ const trailLd = JSON.stringify({
     }, { passive: true });
     addEventListener("resize", update);
     update();
+
+    // Sections below the first screen are drawn only once near it, held at an estimated height until
+    // then (issue #95), so a jump to one can end a little off when the sections around it are drawn:
+    // once the jump has settled, the page moves to the section again, at once, until it stays put
+    const land = (el: HTMLElement | null, now = false) => {
+      if (!el) return;
+      let tries = 0;
+      const fix = () => {
+        const off = el.getBoundingClientRect().top - parseFloat(getComputedStyle(el).scrollMarginTop);
+        if (Math.abs(off) < 2 || ++tries > 4) return;
+        scrollBy({ top: off, behavior: "instant" });
+        requestAnimationFrame(() => requestAnimationFrame(fix));
+      };
+      if (now) return requestAnimationFrame(() => requestAnimationFrame(fix));
+      // after the smooth scroll ends (a timer where the browser has no scrollend event)
+      let done = false;
+      const once = () => {
+        if (done) return;
+        done = true;
+        requestAnimationFrame(() => requestAnimationFrame(fix));
+      };
+      addEventListener("scrollend", once, { once: true });
+      setTimeout(once, 1200);
+    };
+    const target = () => (location.hash ? document.getElementById(decodeURIComponent(location.hash.slice(1))) : null);
+    if (location.hash) addEventListener("load", () => land(target(), true), { once: true });
+    addEventListener("hashchange", () => land(target()));
+    // a click on the link of the section already in the address bar fires no hashchange
+    document.addEventListener("click", (e) => {
+      const a = (e.target as Element).closest?.<HTMLAnchorElement>('a[href^="#"]');
+      if (a && a.hash === location.hash) land(document.getElementById(a.hash.slice(1)));
+    });
   }
 
   // Water, food and beds: one tooltip at the pointer, the nearest place in the lane under it (from
@@ -2419,6 +2451,31 @@ const trailLd = JSON.stringify({
   section {
     margin-top: 36px;
     scroll-margin-top: 64px;
+  }
+  /* the sections below the first screen: the browser skips their layout and painting until they come
+     near the screen (issue #95), holding an estimated height for each until then and its real height
+     once it has been drawn (auto) */
+  section:not(#figures, #location) {
+    content-visibility: auto;
+    contain-intrinsic-size: auto var(--est, 640px);
+  }
+  /* the estimates: each section's usual height (measured on the Alpe-Adria Trail and the West Highland
+     Way, 2026-11-04), so the scrollbar barely moves as sections are drawn */
+  #difficulty { --est: 230px; }
+  #climate { --est: 550px; }
+  #stages { --est: 400px; }
+  #terrain { --est: 430px; }
+  #landscape { --est: 230px; }
+  #sleeping { --est: 400px; }
+  #water { --est: 330px; }
+  @media (max-width: 719px) {
+    #difficulty { --est: 600px; }
+    #climate { --est: 615px; }
+    #stages { --est: 680px; }
+    #terrain { --est: 600px; }
+    #landscape { --est: 220px; }
+    #sleeping { --est: 700px; }
+    #water { --est: 420px; }
   }
   /* wide screens: section headings move into a margin column, like a printed guidebook, and
      every section's content starts at the same indent beside its title. Separates the sections

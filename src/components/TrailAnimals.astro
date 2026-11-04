@@ -191,6 +191,9 @@ const what = plants.length ? (animals.length ? "Animals and plants" : "Plants") 
   section {
     margin-top: 36px;
     scroll-margin-top: 64px;
+    /* skipped until near the screen, like the trail page's other lower sections (issue #95) */
+    content-visibility: auto;
+    contain-intrinsic-size: auto 320px;
   }
   /* the band: wall to wall like the page head (TrailSkyline.astro), the heading and the (i) in its sky,
      in line with the page's content column */
