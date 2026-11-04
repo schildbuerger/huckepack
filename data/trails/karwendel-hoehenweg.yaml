@@ -1,0 +1,228 @@
+name: Karwendel Höhenweg
+added: 2026-11-04
+aliases: [Karwendel High Trail, Karwendel-Höhenweg, Karwendelhöhenweg]
+website: https://karwendel-hoehenweg.at/
+managedBy:
+  # the Karwendel Nature Park association publishes the route, its stages and the brochure (the
+  # site's legal notice: "Medieninhaber, Herausgeber: Naturpark Karwendel"); the Alpine Club runs the
+  # five huts
+  - name: Naturpark Karwendel
+    url: https://karwendel-hoehenweg.at/
+trailType: point-to-point
+continents: [Europe]
+countries: [AT]
+regions: [Tyrol]
+protectedAreas:
+  - Karwendel Nature Park
+termini:
+  # the first and last points of the whole route's GPX: Reith bei Seefeld station and Scharnitz
+  start:
+    name: Reith bei Seefeld
+    lat: 47.30106
+    lon: 11.20099
+  end:
+    name: Scharnitz
+    lat: 47.39196
+    lon: 11.26632
+  source: kh
+waymarking:
+  # "markiert und beschildert": the red-white-red Alpine Club marks on black mountain paths
+  text: Marked and signposted mountain paths (red-white-red Alpine Club marks)
+  symbol: cai
+  source: kh
+length:
+  # "um die 70 Kilometer"; the six stages add up to 66.9 km (the whole route's GPX 66.4 km)
+  - km: 70
+    approx: true
+    source: kh
+days:
+  # "Sechs Tage zu Fuß"
+  min: 6
+  max: 6
+  source: kh
+treeLine:
+  # the BFW's high-subalpine zone in the northern intermediate Alps (growth regions 2.1 and 2.2):
+  # "1800–2050 (2150)" m
+  m: 2050
+  fromM: 1800
+  source: bfw
+stages:
+  # karwendel-hoehenweg.at's six stages from Reith to Scharnitz (length, climb and descent, time),
+  # each with its GPX, which only guides the OSM matcher (kept local). Stage 5 as the site gives it,
+  # over the Großer Bettelwurf (its GPX too); without the summit 5.8 km, 300 m up, 600 m down, 2:30 h
+  source: kh
+  list:
+    - { number: "1", kind: main, from: Reith bei Seefeld, to: Nördlinger Hütte, km: 6.5, ascentM: 1130, descentM: 10, minutes: 270, track: "https://karwendel-hoehenweg.at/wp-content/uploads/2021/12/karwendel-hoehenweg-etappe-1-reith-bei-seefeld-noerdlinger-huette.gpx" }
+    - { number: "2", kind: main, from: Nördlinger Hütte, to: Solsteinhaus, km: 6.7, ascentM: 370, descentM: 795, minutes: 240, track: "https://karwendel-hoehenweg.at/wp-content/uploads/2021/12/karwendel-hoehenweg-etappe-2-noerdlinger-huette-solsteinhaus.gpx" }
+    - { number: "3", kind: main, from: Solsteinhaus, to: Pfeishütte, km: 16.5, ascentM: 1550, descentM: 1400, minutes: 540, track: "https://karwendel-hoehenweg.at/wp-content/uploads/2021/11/karwendel-hoehenweg-etappe-3-solsteinhaus-pfeishuette.gpx" }
+    - { number: "4", kind: main, from: Pfeishütte, to: Bettelwurfhütte, km: 8.9, ascentM: 590, descentM: 390, minutes: 270, track: "https://karwendel-hoehenweg.at/wp-content/uploads/2021/12/karwendel-hoehenweg-etappe-4-pfeishuette-bettelwurfhuette.gpx" }
+    - { number: "5", kind: main, from: Bettelwurfhütte, to: Hallerangerhaus, km: 9, ascentM: 800, descentM: 1100, minutes: 360, track: "https://karwendel-hoehenweg.at/wp-content/uploads/2021/12/karwendel-hoehenweg-etappe-5-bettelwurfhuette-hallerangerhaus.gpx" }
+    - { number: "6", kind: main, from: Hallerangerhaus, to: Scharnitz, km: 19.3, ascentM: 30, descentM: 835, minutes: 330, track: "https://karwendel-hoehenweg.at/wp-content/uploads/2021/12/karwendel-hoehenweg-etappe-6-hallerangerhaus-scharnitz.gpx" }
+route:
+  # built by `python -m pipeline.all karwendel-hoehenweg`: OSM ways matched to the stages' GPX
+  source: osm
+  publishable: true
+difficulty:
+  # "ein Bergweg in der Kategorie schwarz" (Tyrol's path grading); our SAC estimate
+  estimated:
+    sac: T4
+    basis: >-
+      The nature park grades the route a black mountain path: "Schwierig, schmal und steil, sehr
+      ausgesetzt, längere versicherte Abschnitte oder Klettersteigpassagen", for "schwindelfreie,
+      trittsichere, alpin erfahrene Bergsteiger", not for beginners or children, with A/B via
+      ferrata passages on the Großer Bettelwurf (stage 5). Exposed alpine hiking (T4).
+    source: kh
+season:
+  # "Die beste Zeit für die Begehung des Karwendel Höhenweges sind die Monate Juli bis September"
+  months: [7, 8, 9]
+  text: July to September
+  source: kh
+sleeping:
+  # "auf fünf ausgezeichneten Hütten zu übernachten", Alpine Club huts
+  types: [hut]
+  source: kh
+wildCamping:
+  # "In Tirol ist es grundsätzlich verboten, außerhalb von Campingplätzen zu campieren", except for
+  # bivouacking "im hochalpinen Gelände (oberhalb der Waldgrenze)" (oesterreich.gv.at)
+  status: prohibited
+  rule: >-
+    Camping outside campsites is prohibited in Tyrol; a one-off emergency bivouac in high alpine
+    terrain above the tree line is allowed.
+  source: oegv-campen
+access:
+  # the stations at both ends (Reith bei Seefeld and Scharnitz, the Karwendelbahn) and Innsbruck
+  # and Munich airports. Coordinates from OSM (Nominatim); distances by pipeline/access.py
+  - kind: station
+    name: Reith bei Seefeld
+    lat: 47.30096
+    lon: 11.20089
+    source: osm
+  - kind: station
+    name: Scharnitz
+    lat: 47.39182
+    lon: 11.26649
+    source: osm
+  - kind: airport
+    name: Innsbruck Airport (INN)
+    lat: 47.25973
+    lon: 11.34187
+    source: osm
+  - kind: airport
+    name: Munich Airport (MUC)
+    lat: 48.35396
+    lon: 11.77859
+    source: osm
+animals:
+  # Cattle on the alpine pastures (the Austrian ministry's 10 rules) and ticks (AGES: TBE risk all
+  # over Austria). Levels ours
+  list:
+    - kind: cattle
+      name: "Cattle on alpine pastures"
+      level: moderate
+      basis: "The route crosses alpine pastures where cattle graze in summer (the Hinterautal, the Halltal); mother cows protect their calves, and dogs make an encounter riskier."
+      do:
+        - "Avoid contact with grazing animals and keep a safe distance; stay calm and don't startle them"
+        - "Stay on the marked paths"
+        - "Keep your dog under control on a short lead; if an animal is about to attack, let the dog off at once"
+        - "If cattle approach: stay calm, don't turn your back on them, step out of their way"
+        - "Use gates where there are any, close them behind you and cross the pasture quickly"
+      dont:
+        - "Feed the animals"
+        - "Let mother cows and dogs meet"
+      source: bml-almen
+    - kind: tick
+      name: "Ticks (tick-borne encephalitis, Lyme disease)"
+      level: moderate
+      basis: "AGES, Austria's health agency, says the risk of catching tick-borne encephalitis from a tick bite exists all over Austria; the forest climbs at both ends of the route are tick country."
+      do:
+        - "Get vaccinated against TBE before you go: AGES calls it the best protection, also for travellers to Austria"
+        - "Wear closed clothing that fits well"
+        - "Check your body for ticks after walking through forest, bushes, tall grass or meadows"
+      source: ages-fsme
+tags: [alps, huts, karwendel, nature-park, alpine, limestone]
+notes:
+  - >-
+    The route crosses the south of the Karwendel range, Austria's largest nature park, from Reith
+    bei Seefeld over the Nördlinger Hütte, the Solsteinhaus, the Pfeishütte (by the Goetheweg high
+    above Innsbruck), the Bettelwurfhütte and the Hallerangerhaus down the Hinterautal to Scharnitz,
+    with views between the Karwendel wilderness and the Inn valley. Walkable both ways.
+  - >-
+    Climbing: the site gives "ca. 9.000 Höhenmeter, davon 4.400 im Aufstieg"; the six stages add up
+    to 4,470 m up and 4,530 m down.
+  - >-
+    Map line (2026-11-04, Geofabrik extracts austria and oberbayern): OSM ways matched to the six
+    stage tracks, every stage at least 95 % matched, 66.3 km against the stages' 66.9 km; stage 2
+    measures 6.0 km against the stated 6.7 km. Highest point 2,707 m on the terrain model on stage 5
+    (the Großer Bettelwurf, 2,726 m), lowest 962 m at Scharnitz. Resupply: no shop between Reith and
+    Scharnitz; the five huts serve meals.
+  - >-
+    Data check (2026-11-04): no Wikipedia article covers the route; the nature park's figures
+    against Tirol Werbung's six stage pages. Agree: all six times (4:30, 4:00, 9:00, 4:30, 6:00,
+    5:30 h), climbs and descents (1,130/10, 370/795, 1,550/1,400, 590/390, 800/1,100, 30/835 m),
+    six days, the highest point on stage 5 (Tirol: 2,726 m, the Großer Bettelwurf). Tirol's stage
+    distances are broken (stage 1 23 km, the whole route 41.9 and 70 km) and were not compared. The
+    two sources are not independent (Tirol's figures seem copied from the park's), so the built page
+    was also checked against the park's stage pages.
+dataCheck:
+  # working rule 2: Tirol Werbung's stage pages, and the built page against the park's
+  date: 2026-11-04
+  against: [tw]
+  pageAgainst: [kh]
+  deviations: []
+sources:
+  - id: kh
+    title: "Naturpark Karwendel (karwendel-hoehenweg.at): the Karwendel Höhenweg, its six stages from Reith to Scharnitz (length, climb and descent, time, GPX), grade, season and huts"
+    url: https://karwendel-hoehenweg.at/etappen/reith-nach-scharnitz/
+    licence: All rights reserved (facts only)
+    retrieved: 2026-11-04
+  - id: tw
+    title: "Tirol Werbung (tirol.at): Karwendel Höhenweg and its six stage pages (times, climbs; data check)"
+    url: https://www.tirol.at/aktivitaeten/sport/wandern/wandertouren/karwendel-hoehenweg
+    licence: All rights reserved (facts only)
+    retrieved: 2026-11-04
+    checkOnly: true
+  - id: bfw
+    title: "BFW (Kilian, Müller, Starlinger): Die forstlichen Wuchsgebiete Österreichs, 1994 (altitude zones per forest growth region; tree line)"
+    url: https://bfw.ac.at/300/pdf/1027.pdf
+    licence: All rights reserved (facts only)
+    retrieved: 2026-11-04
+  - id: oegv-campen
+    title: "oesterreich.gv.at (Austrian government): Campen, Tirol (as of 16 March 2026)"
+    url: https://www.oesterreich.gv.at/de/themen/reisen_und_freizeit/freizeit-in-der-natur/campen/Seite.3390007
+    licence: © Republik Österreich (facts only)
+    retrieved: 2026-11-04
+  - id: bml-almen
+    title: "Austrian Federal Ministry of Agriculture: Sichere Almen, 10 rules for dealing with grazing animals (leaflet)"
+    url: https://www.bmluk.gv.at/dam/jcr:b955ba4b-fd0f-4182-9aac-d12171d6a377/NEU%20BML_Folder_Sichere%20Almen_DE_220727.pdf
+    licence: © BMLUK (facts only)
+    retrieved: 2026-11-04
+  - id: ages-fsme
+    title: "AGES (Austrian Agency for Health and Food Safety): FSME (tick-borne encephalitis)"
+    url: https://www.ages.at/mensch/krankheit/krankheitserreger-von-a-bis-z/fsme
+    licence: © AGES (facts only)
+    retrieved: 2026-11-04
+  - id: osm
+    title: "OpenStreetMap contributors: paths, water, shops and places to sleep along the trail (Geofabrik extracts), travel hubs"
+    url: https://www.openstreetmap.org/
+    licence: ODbL 1.0
+    retrieved: 2026-11-04
+  - id: copdem
+    title: "Copernicus DEM GLO-30 (30 m terrain model), tiles from AWS Open Data"
+    url: https://registry.opendata.aws/copernicus-dem/
+    licence: "Copernicus WorldDEM-30 licence, free; produced using Copernicus WorldDEM-30 © DLR e.V. 2010-2014 and © Airbus Defence and Space GmbH 2014-2018 provided under COPERNICUS by the European Union and ESA; all rights reserved"
+    retrieved: 2026-11-04
+  - id: worldcover
+    title: "ESA WorldCover 2021: 10 m land cover (via AWS Open Data)"
+    url: https://esa-worldcover.org/
+    licence: "CC BY 4.0; © ESA WorldCover project 2021 / Contains modified Copernicus Sentinel data (2021) processed by ESA WorldCover consortium"
+    retrieved: 2026-11-04
+  - id: era5
+    title: "Open-Meteo open data on AWS: ERA5-Land temperature and ERA5 precipitation, snow and wind, daily 1995–2024 (reanalysis)"
+    url: https://github.com/open-meteo/open-data
+    licence: CC BY 4.0 (Open-Meteo); contains modified Copernicus Climate Change Service information
+    retrieved: 2026-11-04
+  - id: osrm
+    title: "OSRM: road routes on OpenStreetMap data (router.project-osrm.org)"
+    url: https://project-osrm.org/
+    licence: Route data © OpenStreetMap contributors (ODbL)
+    retrieved: 2026-11-04

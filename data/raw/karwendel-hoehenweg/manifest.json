@@ -1,0 +1,90 @@
+{
+  "climate-high.json": {
+    "retrieved": "2026-11-04T20:23:09+00:00",
+    "url": "https://openmeteo.s3.us-west-2.amazonaws.com/data/copernicus_era5_land+copernicus_era5?latitude=47.3&longitude=11.5&elevation=2710"
+  },
+  "climate-low.json": {
+    "retrieved": "2026-11-04T20:19:43+00:00",
+    "url": "https://openmeteo.s3.us-west-2.amazonaws.com/data/copernicus_era5_land+copernicus_era5?latitude=47.4&longitude=11.3&elevation=960"
+  },
+  "elevation-glo30.json": {
+    "retrieved": "2026-11-04T20:15:55+00:00",
+    "url": "https://copernicus-dem-30m.s3.eu-central-1.amazonaws.com/Copernicus_DSM_COG_10_N47_00_E011_00_DEM/Copernicus_DSM_COG_10_N47_00_E011_00_DEM.tif"
+  },
+  "landcover.json": {
+    "retrieved": "2026-11-04T20:15:56+00:00",
+    "url": "https://esa-worldcover.s3.eu-central-1.amazonaws.com/v200/2021/map/ESA_WorldCover_10m_2021_v200_\u2026_Map.tif"
+  },
+  "osm-stage-1-main.json": {
+    "retrieved": "2026-10-31T21:23:06Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-2-main.json": {
+    "retrieved": "2026-10-31T21:23:06Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-3-main.json": {
+    "retrieved": "2026-10-31T21:23:06Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-4-main.json": {
+    "retrieved": "2026-10-31T21:23:06Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-5-main.json": {
+    "retrieved": "2026-10-31T21:23:06Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-6-main.json": {
+    "retrieved": "2026-10-31T21:23:06Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-water.json": {
+    "retrieved": "2026-10-31T21:23:06Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-way-tags.json": {
+    "retrieved": "2026-10-31T21:23:06Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osrm-access-innsbruck-airport-inn.json": {
+    "retrieved": "2026-11-04T20:23:10+00:00",
+    "url": "https://router.project-osrm.org/route/v1/driving/11.34187,47.25973;11.20099,47.30106?overview=false"
+  },
+  "osrm-access-munich-airport-muc.json": {
+    "retrieved": "2026-11-04T20:23:10+00:00",
+    "url": "https://router.project-osrm.org/route/v1/driving/11.77859,48.35396;11.20099,47.30106?overview=false"
+  },
+  "osrm-access-reith-bei-seefeld.json": {
+    "retrieved": "2026-11-04T20:23:10+00:00",
+    "url": "https://router.project-osrm.org/route/v1/driving/11.20089,47.30096;11.20099,47.30106?overview=false"
+  },
+  "osrm-access-scharnitz.json": {
+    "retrieved": "2026-11-04T20:23:10+00:00",
+    "url": "https://router.project-osrm.org/route/v1/driving/11.26649,47.39182;11.20099,47.30106?overview=false"
+  },
+  "stage-1-main.gpx": {
+    "retrieved": "2026-11-04T20:11:48+00:00",
+    "url": "https://karwendel-hoehenweg.at/wp-content/uploads/2021/12/karwendel-hoehenweg-etappe-1-reith-bei-seefeld-noerdlinger-huette.gpx"
+  },
+  "stage-2-main.gpx": {
+    "retrieved": "2026-11-04T20:11:48+00:00",
+    "url": "https://karwendel-hoehenweg.at/wp-content/uploads/2021/12/karwendel-hoehenweg-etappe-2-noerdlinger-huette-solsteinhaus.gpx"
+  },
+  "stage-3-main.gpx": {
+    "retrieved": "2026-11-04T20:11:48+00:00",
+    "url": "https://karwendel-hoehenweg.at/wp-content/uploads/2021/11/karwendel-hoehenweg-etappe-3-solsteinhaus-pfeishuette.gpx"
+  },
+  "stage-4-main.gpx": {
+    "retrieved": "2026-11-04T20:11:48+00:00",
+    "url": "https://karwendel-hoehenweg.at/wp-content/uploads/2021/12/karwendel-hoehenweg-etappe-4-pfeishuette-bettelwurfhuette.gpx"
+  },
+  "stage-5-main.gpx": {
+    "retrieved": "2026-11-04T20:11:48+00:00",
+    "url": "https://karwendel-hoehenweg.at/wp-content/uploads/2021/12/karwendel-hoehenweg-etappe-5-bettelwurfhuette-hallerangerhaus.gpx"
+  },
+  "stage-6-main.gpx": {
+    "retrieved": "2026-11-04T20:11:48+00:00",
+    "url": "https://karwendel-hoehenweg.at/wp-content/uploads/2021/12/karwendel-hoehenweg-etappe-6-hallerangerhaus-scharnitz.gpx"
+  }
+}

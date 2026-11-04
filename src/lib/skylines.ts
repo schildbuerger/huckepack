@@ -1093,4 +1093,19 @@ export const SKYLINES: Record<string, Skyline> = {
     // the Schlegeis reservoir in the valley
     front: [{ d: water(260, 760, 298), c: "#6fb0c4" }],
   },
+  "karwendel-hoehenweg": {
+    view: "The Karwendel's grey limestone chains above the Inn valley: the Nordkette's long jagged ridge, the Bettelwurf's massive block, scree fans and mountain pines below",
+    ridge: FOREST,
+    ground: MEADOW,
+    shapes: [
+      // the long jagged ridge of the Nordkette
+      { d: range([[0, G], [60, 252], [120, 214], [170, 190], [200, 176], [222, 186], [250, 168], [280, 176], [310, 160], [340, 172], [380, 164], [420, 182], [470, 200], [540, 226], [620, G]]), c: "#b9bab6" },
+      // the Bettelwurf: a massive pale block with a sharp top
+      { d: range([[700, G], [760, 248], [820, 196], [870, 154], [904, 126], [924, 112], [944, 124], [990, 132], [1040, 120], [1070, 128], [1120, 156], [1180, 192], [1250, 226], [1330, 252], [1400, G]]), c: "#c6c3b8" },
+      // its shaded north face
+      { d: "M924,112L904,126L870,154L846,180L884,186L916,146L934,124Z", c: "#b1ad9f" },
+      // mountain pines and scree at the foot
+      { d: hills([[600, G], [700, 284], [820, 270], [960, 282], [1100, 268], [1240, 284], [1360, G]]), c: FIR },
+    ],
+  },
 };
