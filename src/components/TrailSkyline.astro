@@ -64,6 +64,8 @@ const ridge = profileRidge(points, routeKm);
     padding: 0 max(16px, calc(50vw - 600px)) var(--ground-h);
     overflow-x: clip;
     background: #d9e8e1;
+    /* the sky fades over when the theme switches (Base.astro) */
+    transition: background-color 0.5s;
   }
   :global(html[data-sky="dawn"]) .skyline {
     background: #f2d8c2;
@@ -86,12 +88,17 @@ const ridge = profileRidge(points, routeKm);
     bottom: 0;
     height: var(--ground-h);
     background: var(--ground);
+    transition: background-color 0.5s;
   }
   :global(html[data-sky="night"]) .skyline::after {
     background: color-mix(in srgb, var(--ground) 35%, #1d2733);
   }
 
   /* the breadcrumb and the name, in the sky's colours: dark by day, light at night, whatever the theme */
+  .sk-title :is(h1, .sk-local),
+  .sk-crumbs :global(.crumbs :is(a, li, [aria-current="page"])) {
+    transition: color 0.5s;
+  }
   .sk-crumbs {
     grid-column: 1;
     grid-row: 1;
@@ -191,6 +198,7 @@ const ridge = profileRidge(points, routeKm);
      night sky, so the landscape keeps its shapes and tones but goes dark */
   .sk-shape {
     fill: var(--c);
+    transition: fill 0.5s;
   }
   :global(html[data-sky="night"]) .sk-shape {
     fill: color-mix(in srgb, var(--c) 35%, #1d2733);

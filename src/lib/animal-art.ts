@@ -107,11 +107,12 @@ export const backdrop = (slug: string) => {
   // drawn larger than the scene's width allows, cropped evenly at both sides (the landmarks stay in)
   const k = 0.66;
   const dx = (SCENE_W - SKY_W * k) / 2;
-  const shape = (x: { d: string; c: string }) => `<path d="${x.d}" fill="${x.c}"/>`;
+  // each colour as --c, so the band can sink them into the night sky in dark mode (TrailAnimals.astro)
+  const shape = (x: { d: string; c: string }) => `<path class="bd" d="${x.d}" style="--c:${x.c}"/>`;
   return [
-    `<rect x="${-BLEED}" y="${-TOP}" width="${SCENE_W + 2 * BLEED}" height="${SCENE_H + TOP}" fill="${SKY.day}"/>`,
+    `<rect x="${-BLEED}" y="${-TOP}" width="${SCENE_W + 2 * BLEED}" height="${SCENE_H + TOP}" class="bd-sky" fill="${SKY.day}"/>`,
     `<g transform="translate(${dx} ${SKY_FOOT - SKY_H * k}) scale(${k})">${sky.shapes.map(shape).join("")}${(sky.front ?? []).map(shape).join("")}</g>`,
-    `<rect x="${-BLEED}" y="${SKY_FOOT}" width="${SCENE_W + 2 * BLEED}" height="${SCENE_H - SKY_FOOT}" fill="${sky.ground}"/>`,
+    `<rect x="${-BLEED}" y="${SKY_FOOT}" width="${SCENE_W + 2 * BLEED}" height="${SCENE_H - SKY_FOOT}" class="bd" style="--c:${sky.ground}"/>`,
     `<rect x="${-BLEED}" y="252" width="${SCENE_W + 2 * BLEED}" height="${SCENE_H - 252}" fill="#000" fill-opacity="0.07"/>`,
   ].join("");
 };

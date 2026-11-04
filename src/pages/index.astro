@@ -661,6 +661,8 @@ const featuredScript = inlineScript(Astro, `// A random featured trail on each p
     overflow-x: clip;
     isolation: isolate;
     background: #d9e8e1;
+    /* the sky fades over when the theme switches (Base.astro) */
+    transition: background-color 0.5s;
   }
   .hero-band > .hero {
     position: relative;
@@ -695,7 +697,9 @@ const featuredScript = inlineScript(Astro, `// A random featured trail on each p
     bottom: 0;
     width: 106%;
     transform: translateX(calc(var(--px, 0) * var(--depth) * 1%));
-    transition: transform 0.4s ease-out;
+    transition:
+      transform 0.4s ease-out,
+      fill 0.5s;
   }
   .hb-ridge.r0 {
     --depth: -0.6;
@@ -757,6 +761,9 @@ const featuredScript = inlineScript(Astro, `// A random featured trail on each p
     fill: #ecebdb;
   }
   /* the sky's words: dark by day, light at night, whatever the page's theme */
+  .hero :is(.eyebrow, h1, .usps strong, .guide a, .usp-text, .guide) {
+    transition: color 0.5s;
+  }
   :global(html:not([data-sky="night"])) :is(.eyebrow, .hero h1, .usps strong, .guide a) {
     color: #25261c;
   }
@@ -980,6 +987,7 @@ const featuredScript = inlineScript(Astro, `// A random featured trail on each p
     margin: 0 calc(50% - 50vw);
     padding: 48px 16px 96px;
     background: #4c6420;
+    transition: background-color 0.5s;
   }
   :global(html[data-sky="night"]) .totals-band {
     --stamp: #ecebdb;
@@ -1327,7 +1335,7 @@ const featuredScript = inlineScript(Astro, `// A random featured trail on each p
 
 
   /* the map section: a band wall to wall like the hero's, flat colours fixed like a picture's (the
-     hero's sky is the time of day, this one a sea), the same in both themes */
+     hero's sky is the time of day, this one a sea); a night sea in dark mode (below) */
   .atlas {
     position: relative;
     margin: 112px calc(50% - 50vw) 0;
@@ -1442,7 +1450,8 @@ const featuredScript = inlineScript(Astro, `// A random featured trail on each p
 
   /* the featured trail: a band wall to wall in the canvas colour with soft wave edges, so it flows from
      the stamps above into the popular trails below; the content in the page's column. Fixed colours, so
-     their text colours are fixed too (AA on them); still with reduced motion */
+     their text colours are fixed too (AA on them), with a dark canvas in dark mode (below); still with
+     reduced motion */
   .pair {
     grid-template-columns: minmax(0, 1fr);
   }
@@ -1757,5 +1766,94 @@ const featuredScript = inlineScript(Astro, `// A random featured trail on each p
     .podium a {
       border-radius: 20px;
     }
+  }
+
+  /* dark mode (issue #209): the bands with fixed colours get their own night versions, so a dark page
+     has no bright patches: the featured trail and the popular trails on a dark canvas, the map as a
+     night sea with dark land; the hero and the stamps follow the night sky (dark mode is always night,
+     src/lib/sky.ts) */
+  /* the canvas a step lighter than the page (#18190f), so the band stands apart from the sections
+     around it as the light canvas does by day; its wave edges too (pseudo-elements can't go in :is) */
+  :global(html[data-theme="dark"]) .featured-box,
+  :global(html[data-theme="dark"]) .featured-box::before,
+  :global(html[data-theme="dark"]) .featured-box::after,
+  :global(html[data-theme="dark"]) .podium a {
+    background: #2b3631;
+  }
+  :global(html[data-theme="dark"]) .featured-box {
+    color: #ecebdb;
+    --muted: #a7a78f;
+    --accent-text: #b4cb76;
+  }
+  :global(html[data-theme="dark"]) :is(.featured, .podium a) {
+    color: #ecebdb;
+  }
+  :global(html[data-theme="dark"]) :is(.rs-giant, .pd-giant) {
+    color: #36433d;
+  }
+  :global(html[data-theme="dark"]) :is(.rs-where, .rs-local, .rs-stats dt, .rs-stats dd > span:not(.rate-word), .rs-ground-text, .pd-place, .pd-views) {
+    color: #a7a78f;
+  }
+  /* the route's outline (drawn first, the line then traced over it) a lighter tone than the canvas, as
+     the cream one is by day; the start and finish keep a ring in the canvas colour */
+  :global(html[data-theme="dark"]) .rs-under {
+    stroke: #56655c;
+  }
+  :global(html[data-theme="dark"]) :is(.rs-start, .rs-end) {
+    stroke: #2b3631;
+  }
+  :global(html[data-theme="dark"]) .rs-line {
+    stroke: #b4cb76;
+  }
+  :global(html[data-theme="dark"]) :is(.rs-start, .rs-dot.start) {
+    fill: #b4cb76;
+    background: #b4cb76;
+  }
+  :global(html[data-theme="dark"]) :is(.rs-end, .rs-dot.end) {
+    fill: #ee9c87;
+    background: #ee9c87;
+  }
+  :global(html[data-theme="dark"]) .rs-arrow {
+    color: #ee9c87;
+  }
+  :global(html[data-theme="dark"]) .rs-walker {
+    stroke: #2b3631;
+  }
+  :global(html[data-theme="dark"]) .rs-open {
+    color: #b4cb76;
+  }
+  :global(html[data-theme="dark"]) .atlas {
+    background: #1a2530;
+  }
+  :global(html[data-theme="dark"]) .atlas-link {
+    color: #ecebdb;
+  }
+  :global(html[data-theme="dark"]) .atlas-land {
+    fill: #3b4a33;
+    stroke: #1a2530;
+  }
+  :global(html[data-theme="dark"]) .pole {
+    stroke: #c3c2b0;
+  }
+  :global(html[data-theme="dark"]) .flag {
+    fill: #e07a5a;
+  }
+  :global(html[data-theme="dark"]) .dot {
+    fill: #ecebdb;
+  }
+  :global(html[data-theme="dark"]) .atlas-sub {
+    color: #c3c2b0;
+  }
+  :global(html[data-theme="dark"]) .atlas-open {
+    color: #b4cb76;
+  }
+  :global(html[data-theme="dark"]) .atlas-link:focus-visible {
+    outline-color: #b4cb76;
+  }
+  :global(html[data-theme="dark"]) .puff {
+    fill: #2c3a47;
+  }
+  :global(html[data-theme="dark"]) .bird {
+    stroke: #a7a78f;
   }
 </style>

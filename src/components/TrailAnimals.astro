@@ -404,7 +404,7 @@ const TW_GROUND = 262; // where it rolls in the band, in front of where large an
     position: relative;
     margin-inline: calc(50% - 50vw);
     overflow-x: clip;
-    /* the day sky behind the drawing, should a screen ever be wider than it */
+    /* the day sky behind the drawing, should a screen ever be wider than it (night in dark mode) */
     background: #d9e8e1;
   }
   .band-head {
@@ -473,36 +473,89 @@ const TW_GROUND = 262; // where it rolls in the band, in front of where large an
       height: 320px;
     }
   }
-  /* fixed colours, like a picture (the skylines' rule), a little dimmer in dark mode */
-  :global(html[data-theme="dark"]) .scene {
-    filter: brightness(0.82);
-  }
+  /* fixed colours, like a picture (the skylines' rule); in dark mode the night (issue #209): the night
+     sky, and every colour sunk into it as the skylines' are at night (35 %) */
   .scene :global(.sky) {
-    fill: #dfe9ec;
+    --c: #dfe9ec;
   }
   .scene :global(.far) {
-    fill: #bccad0;
+    --c: #bccad0;
   }
   .scene :global(.snow) {
-    fill: #f4f6f5;
+    --c: #f4f6f5;
   }
   .scene :global(.hills) {
-    fill: #a9c19c;
+    --c: #a9c19c;
   }
   .scene :global(.trees) {
-    fill: #6f9474;
+    --c: #6f9474;
   }
   .scene :global(.meadow) {
-    fill: #9dbb78;
+    --c: #9dbb78;
   }
   .scene :global(.rock) {
-    fill: #a59c88;
+    --c: #a59c88;
   }
   .scene :global(.bush) {
-    fill: #7f9f5c;
+    --c: #7f9f5c;
   }
   .scene :global(.ground) {
-    fill: #8fae66;
+    --c: #8fae66;
+  }
+  .scene :global(:is(.bd, .sky, .far, .snow, .hills, .trees, .meadow, .rock, .bush, .ground)) {
+    fill: var(--c);
+  }
+  :global(html[data-theme="dark"]) .scene :global(:is(.bd, .far, .snow, .hills, .trees, .meadow, .rock, .bush, .ground)) {
+    fill: color-mix(in srgb, var(--c) 35%, #1d2733);
+  }
+  :global(html[data-theme="dark"]) .scene :global(:is(.bd-sky, .sky)) {
+    fill: #1d2733;
+  }
+  :global(html[data-theme="dark"]) .band {
+    background: #1d2733;
+  }
+  /* the night fades in when the theme switches (Base.astro) */
+  .band {
+    transition: background-color 0.5s;
+  }
+  .scene :global(:is(.bd, .bd-sky, .sky, .far, .snow, .hills, .trees, .meadow, .rock, .bush, .ground)) {
+    transition: fill 0.5s;
+  }
+  /* at night the ink is light: the heading, the labels and their leaders, the levels in the dark
+     theme's status colours; the silhouettes keep their dark ink, as by day, a little darker still so
+     they stand out on the night ground */
+  :global(html[data-theme="dark"]) .animal {
+    filter: brightness(0.45);
+  }
+  :global(html[data-theme="dark"]) .pick:hover .animal {
+    filter: brightness(0.15);
+  }
+  :global(html[data-theme="dark"]) .band .band-head h2,
+  :global(html[data-theme="dark"]) .band .chart-info :global(.term.icon) {
+    color: #ecebdb;
+  }
+  :global(html[data-theme="dark"]) :is(.label-name, .leader-dot) {
+    fill: #ecebdb;
+  }
+  :global(html[data-theme="dark"]) .leader {
+    stroke: #ecebdb;
+  }
+  :global(html[data-theme="dark"]) .pick .shadow {
+    fill: #000;
+    opacity: 0.35;
+  }
+  :global(html[data-theme="dark"]) .pick:focus-visible .hit,
+  :global(html[data-theme="dark"]) .tw-weed:focus-visible .hit {
+    stroke: #ecebdb;
+  }
+  :global(html[data-theme="dark"]) .lv-low {
+    --lv-pill: var(--good);
+  }
+  :global(html[data-theme="dark"]) .lv-moderate {
+    --lv-pill: var(--fair);
+  }
+  :global(html[data-theme="dark"]) .lv-high {
+    --lv-pill: var(--poor);
   }
   .pick {
     cursor: pointer;
@@ -609,7 +662,7 @@ const TW_GROUND = 262; // where it rolls in the band, in front of where large an
     object-fit: contain;
   }
   /* the silhouettes are drawn in dark ink; light in dark mode */
-  :global(html[data-theme="dark"]) .d-art {
+  :global(html[data-theme="dark"]) img.d-art {
     filter: invert(0.9);
   }
   .d-head > div {

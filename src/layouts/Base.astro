@@ -113,15 +113,49 @@ const siteLd =
     </footer>
     <script>
       // the easter egg (issue #155): a click on the sun, or the moon at night, in a drawing (the home
-      // page's hero, a trail page's skyline) switches between light and dark and remembers it
+      // page's hero, a trail page's skyline) switches between light and dark and remembers it; the sky
+      // goes with it, night in dark mode and the clock's again in light mode (src/lib/sky.ts)
+      // When the sky changes with it, the sun sets behind the drawing's hills and the moon rises (or the
+      // other way round) while the sky's colours fade over; at once with reduced motion
       document.addEventListener("click", (e) => {
         if (!(e.target as Element).closest?.("[data-theme-sun]")) return;
         const root = document.documentElement;
         const next = root.dataset.theme === "dark" ? "light" : "dark";
-        root.dataset.theme = next;
-        try {
-          localStorage.setItem("theme", next);
-        } catch {}
+        const sky = root.dataset.skyClock ? (next === "dark" ? "night" : root.dataset.skyClock) : root.dataset.sky;
+        const apply = () => {
+          root.dataset.theme = next;
+          if (sky) root.dataset.sky = sky;
+          try {
+            localStorage.setItem("theme", next);
+          } catch {}
+        };
+        const suns = [...document.querySelectorAll<HTMLElement>("[data-theme-sun]")];
+        if (sky === root.dataset.sky || matchMedia("(prefers-reduced-motion: reduce)").matches || !suns.length) return apply();
+        // down past its band's foot, behind the hills drawn over it, cut off a little above the foot so it
+        // never shows in the band below, nor in the hairline a stretched drawing can leave at its lower edge
+        // (the hero's ridges; on a trail page, the top of the ground strip under the drawing); ten steps,
+        // each clipping what has passed that line
+        const path = (el: HTMLElement) => {
+          const band = (el.closest(".hero-band, .skyline") ?? el.offsetParent ?? el) as HTMLElement;
+          const sun = el.getBoundingClientRect();
+          const floor = band.querySelector(".sk-svg") ?? band;
+          const foot = floor.getBoundingClientRect().bottom - 6;
+          const total = foot - sun.top + 10;
+          return Array.from({ length: 11 }, (_, k) => {
+            const d = (total * k) / 10;
+            const below = Math.min(sun.height, Math.max(0, sun.bottom + d - foot));
+            return { transform: `translateY(${d.toFixed(1)}px)`, clipPath: `inset(0 0 ${below.toFixed(1)}px 0)` };
+          });
+        };
+        const sets = suns.map((el) => el.animate(path(el), { duration: 450, easing: "ease-in", fill: "forwards" }));
+        Promise.all(sets.map((a) => a.finished)).then(() => {
+          apply();
+          suns.forEach((el, i) => {
+            sets[i].cancel();
+            // the new sun or moon, measured where it now stands, rises the same way back
+            el.animate(path(el).reverse(), { duration: 650, easing: "cubic-bezier(0.2, 0.8, 0.3, 1)" });
+          });
+        });
       });
     </script>
     <script>
