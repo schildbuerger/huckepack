@@ -1,0 +1,230 @@
+name: Lechweg
+added: 2026-11-04
+aliases: [Lech Trail, Lechweg Weitwanderweg]
+website: https://www.lechweg.com/de/
+wikidata: Q24451203
+managedBy:
+  # the trail's own organisation of the regions along the Lech (Lech-Zürs, Warth-Schröcken, the
+  # Lechtal, the Naturparkregion Reutte and Füssen), lechweg.com
+  - name: Lechweg (the tourism regions along the Lech)
+    url: https://www.lechweg.com/de/
+trailType: point-to-point
+continents: [Europe]
+countries: [AT, DE]
+regions: [Vorarlberg, Tyrol, Bavaria]
+protectedAreas:
+  - Tiroler Lech Nature Park
+termini:
+  # the first point of stage 1's GPX by the Formarinsee and the last of stage 7's at the Lech Falls
+  # in Füssen (lechweg.com)
+  start:
+    name: Formarinsee
+    lat: 47.17065
+    lon: 9.99772
+  end:
+    name: Füssen (Lechfall)
+    lat: 47.5619
+    lon: 10.69541
+  source: lw
+established:
+  # "Der Wanderweg wurde am 15. Juni 2012 eröffnet"
+  year: 2012
+  source: wikipedia
+length:
+  # "Der Lechweg - 125 km von der Quelle bis zum Fall"; the classic stages add up to 124.2 km
+  - km: 125
+    source: lw
+days:
+  # "Klassisch in sieben, gemütlich in acht oder entschleunigend in zehn Wandertagen"
+  min: 7
+  max: 10
+  source: lw
+treeLine:
+  # the BFW's high-subalpine zone in the northern intermediate Alps (growth regions 2.1 and 2.2):
+  # "1800–2050 (2150)" m; the route starts at 1,793 m and stays below it
+  m: 2050
+  fromM: 1800
+  source: bfw
+stages:
+  # lechweg.com's classic variant in seven stages, each with its length and GPX (the GPX only guides
+  # the OSM matcher, kept local). Stages 2 and 3 go by Lechleiten, as the GPX do (14.2 and 16.8 km;
+  # by Warth 10.7 and 21.8 km). No climbs or times are given: the page estimates them
+  source: lw
+  list:
+    - { number: "1", kind: main, from: Formarinsee, to: Lech am Arlberg, km: 14.4, track: "https://www.lechweg.com/fileadmin/user_upload/t2807424_lechweg_-_etappe_1_-.gpx" }
+    - { number: "2", kind: main, from: Lech am Arlberg, to: Lechleiten, km: 14.2, track: "https://www.lechweg.com/fileadmin/user_upload/Lechweg_Klassische_Variante_Etappe_2.gpx" }
+    - { number: "3", kind: main, from: Lechleiten, to: Holzgau, km: 16.8, track: "https://www.lechweg.com/fileadmin/user_upload/Lechweg_Klassische_Variante_Etappe_3.gpx" }
+    - { number: "4", kind: main, from: Holzgau, to: Elbigenalp, km: 13.4, track: "https://www.lechweg.com/fileadmin/user_upload/Lechweg_Klassische_Variante_Etappe_4.gpx" }
+    - { number: "5", kind: main, from: Elbigenalp, to: Stanzach, km: 19.7, track: "https://www.lechweg.com/fileadmin/user_upload/Lechweg_Klassische_Variante_Etappe_5.gpx" }
+    - { number: "6", kind: main, from: Stanzach, to: Wängle, km: 20.9, track: "https://www.lechweg.com/fileadmin/user_upload/Lechweg_Klassische_Variante_Etappe_6.gpx" }
+    - { number: "7", kind: main, from: Wängle, to: Füssen, km: 24.8, track: "https://www.lechweg.com/fileadmin/user_upload/Lechweg_Klassische_Variante_Etappe_7.gpx" }
+route:
+  # built by `python -m pipeline.all lechweg`: OSM ways matched to the stages' GPX
+  source: osm
+  publishable: true
+difficulty:
+  # no grade is published; our estimate from lechweg.com's description
+  estimated:
+    sac: T2
+    basis: >-
+      lechweg.com calls the trail "vom Anspruch her eher moderat", needing "keine alpine Erfahrung",
+      mostly gently downhill along the river with some steeper passages; the first stage runs on a
+      mountain path from 1,793 m by the Formarinsee down to Lech. Mountain hiking on good paths
+      (T2), the difficulty being the daily distance.
+    source: lw
+season:
+  # "Der gesamte Weg kann also nur zwischen Mitte/Ende Juni und Mitte Oktober begangen werden"; from
+  # mid-May a shortened spring variant from Warth/Steeg
+  months: [6, 7, 8, 9, 10]
+  text: Mid or late June to mid-October (from mid-May from Warth or Steeg)
+  source: lw
+sleeping:
+  # the Lechweg partner hosts in every stage town (lechweg.com, "Partnerbetriebe")
+  types: [guesthouse, hotel]
+  source: lw
+wildCamping:
+  # most of the trail runs through Tyrol: "In Tirol ist es grundsätzlich verboten, außerhalb von
+  # Campingplätzen zu campieren", except for bivouacking "im hochalpinen Gelände (oberhalb der
+  # Waldgrenze)" (oesterreich.gv.at)
+  status: prohibited
+  rule: >-
+    Camping outside campsites is prohibited in Tyrol, where most of the trail runs; stay in the
+    stage towns' guesthouses and hotels, or at campsites.
+  source: oegv-campen
+access:
+  # Langen am Arlberg station near the start, Füssen station at the end, and Innsbruck and Munich
+  # airports. Coordinates from OSM (Nominatim); distances by pipeline/access.py
+  - kind: station
+    name: Langen am Arlberg
+    lat: 47.13196
+    lon: 10.11978
+    source: osm
+  - kind: station
+    name: Füssen
+    lat: 47.57027
+    lon: 10.69795
+    source: osm
+  - kind: airport
+    name: Innsbruck Airport (INN)
+    lat: 47.25973
+    lon: 11.34187
+    source: osm
+  - kind: airport
+    name: Munich Airport (MUC)
+    lat: 48.35396
+    lon: 11.77859
+    source: osm
+animals:
+  # Cattle on the alpine pastures (the Austrian ministry's 10 rules) and ticks (AGES: TBE risk all
+  # over Austria). Levels ours
+  list:
+    - kind: cattle
+      name: "Cattle on alpine pastures"
+      level: low
+      basis: "The upper stages cross alpine pastures where cattle graze in summer; mother cows protect their calves, and dogs make an encounter riskier."
+      do:
+        - "Avoid contact with grazing animals and keep a safe distance; stay calm and don't startle them"
+        - "Stay on the marked paths"
+        - "Keep your dog under control on a short lead; if an animal is about to attack, let the dog off at once"
+        - "If cattle approach: stay calm, don't turn your back on them, step out of their way"
+        - "Use gates where there are any, close them behind you and cross the pasture quickly"
+      dont:
+        - "Feed the animals"
+        - "Let mother cows and dogs meet"
+      source: bml-almen
+    - kind: tick
+      name: "Ticks (tick-borne encephalitis, Lyme disease)"
+      level: moderate
+      basis: "AGES, Austria's health agency, says the risk of catching tick-borne encephalitis from a tick bite exists all over Austria, one of the most affected countries in Central Europe; the Lech valley's meadows and riverside woods are tick country."
+      do:
+        - "Get vaccinated against TBE before you go: AGES calls it the best protection, also for travellers to Austria"
+        - "Wear closed clothing that fits well"
+        - "Check your body for ticks after walking through forest, bushes, tall grass or meadows"
+      source: ages-fsme
+tags: [river, alps, lech, nature-park, valley]
+notes:
+  - >-
+    The trail follows the Lech from its source near the Formarinsee in Vorarlberg past Lech am
+    Arlberg and Warth into the Tyrolean Lech valley, through the Tiroler Lech Nature Park, one of
+    the last wild rivers of the northern Alps, past Reutte to the Lech Falls in Füssen (Bavaria).
+  - >-
+    Map line (2026-11-04, Geofabrik extracts austria and schwaben): OSM ways matched to the seven
+    stage tracks, 122.6 km against the stages' 124.2 km; stage 6 (Stanzach to Wängle) is 92 %
+    matched, its track running up to 301 m from any OSM path in places. Highest point 1,870 m on
+    the terrain model at the very start by the Formarinsee (lechweg.com: 1,793 m), lowest 809 m at
+    the Lech Falls. The terrain model gives about 3,710 m of climbing; lechweg.com states none.
+  - >-
+    Data check (2026-11-04): lechweg.com against German Wikipedia (Lechweg). Agree: 125 km from the
+    Formarinsee to the Lech Falls in Füssen, starting at about 1,800 m and ending at about 800 m,
+    the season (Wikipedia: "ab Mai bis Oktober", the first two stages "erst ab Saisonstart Mitte
+    bis Ende Juni"), suitable for less experienced walkers. Wikipedia counts 15 sections walked in
+    six to eight stages (lechweg.com: 7 to 10 days); its sections match the classic stages where
+    they meet: Formarinsee–Lech 14 against 14.4 km, Lech–Warth-Lechleiten 14 against 14.2 km,
+    Lechleiten–Steeg–Holzgau 11 + 5 against 16.8 km. No deviation over 10 %.
+dataCheck:
+  # working rule 2: German Wikipedia
+  date: 2026-11-04
+  against: [wikipedia]
+  deviations: []
+sources:
+  - id: lw
+    title: "Lechweg (lechweg.com): the trail, its variants (the classic seven stages with lengths and GPX), season and partner hosts"
+    url: https://www.lechweg.com/de/weg/etappen-varianten/klassische-variante/
+    licence: All rights reserved (facts only)
+    retrieved: 2026-11-04
+  - id: wikipedia
+    title: "German Wikipedia: Lechweg (opening in 2012, length, sections, season; data check)"
+    url: https://de.wikipedia.org/wiki/Lechweg
+    licence: CC BY-SA 4.0
+    retrieved: 2026-11-04
+  - id: bfw
+    title: "BFW (Kilian, Müller, Starlinger): Die forstlichen Wuchsgebiete Österreichs, 1994 (altitude zones per forest growth region; tree line)"
+    url: https://bfw.ac.at/300/pdf/1027.pdf
+    licence: All rights reserved (facts only)
+    retrieved: 2026-11-04
+  - id: oegv-campen
+    title: "oesterreich.gv.at (Austrian government): Campen, Tirol (as of 16 March 2026)"
+    url: https://www.oesterreich.gv.at/de/themen/reisen_und_freizeit/freizeit-in-der-natur/campen/Seite.3390007
+    licence: © Republik Österreich (facts only)
+    retrieved: 2026-11-04
+  - id: bml-almen
+    title: "Austrian Federal Ministry of Agriculture: Sichere Almen, 10 rules for dealing with grazing animals (leaflet)"
+    url: https://www.bmluk.gv.at/dam/jcr:b955ba4b-fd0f-4182-9aac-d12171d6a377/NEU%20BML_Folder_Sichere%20Almen_DE_220727.pdf
+    licence: © BMLUK (facts only)
+    retrieved: 2026-11-04
+  - id: ages-fsme
+    title: "AGES (Austrian Agency for Health and Food Safety): FSME (tick-borne encephalitis)"
+    url: https://www.ages.at/mensch/krankheit/krankheitserreger-von-a-bis-z/fsme
+    licence: © AGES (facts only)
+    retrieved: 2026-11-04
+  - id: wikimedia
+    title: "Wikimedia: page views of the trail's Wikipedia articles in every language, by people, over twelve months (Wikidata sitelinks, pageview API)"
+    url: https://wikimedia.org/api/rest_v1/
+    licence: CC0 1.0 (pageview data); Wikidata CC0
+    retrieved: 2026-11-04
+    checkOnly: true  # not on the trail page: the page views only rank the home page's popular trails
+  - id: osm
+    title: "OpenStreetMap contributors: paths, water, shops and places to sleep along the trail (Geofabrik extracts), travel hubs"
+    url: https://www.openstreetmap.org/
+    licence: ODbL 1.0
+    retrieved: 2026-11-04
+  - id: copdem
+    title: "Copernicus DEM GLO-30 (30 m terrain model), tiles from AWS Open Data"
+    url: https://registry.opendata.aws/copernicus-dem/
+    licence: "Copernicus WorldDEM-30 licence, free; produced using Copernicus WorldDEM-30 © DLR e.V. 2010-2014 and © Airbus Defence and Space GmbH 2014-2018 provided under COPERNICUS by the European Union and ESA; all rights reserved"
+    retrieved: 2026-11-04
+  - id: worldcover
+    title: "ESA WorldCover 2021: 10 m land cover (via AWS Open Data)"
+    url: https://esa-worldcover.org/
+    licence: "CC BY 4.0; © ESA WorldCover project 2021 / Contains modified Copernicus Sentinel data (2021) processed by ESA WorldCover consortium"
+    retrieved: 2026-11-04
+  - id: era5
+    title: "Open-Meteo open data on AWS: ERA5-Land temperature and ERA5 precipitation, snow and wind, daily 1995–2024 (reanalysis)"
+    url: https://github.com/open-meteo/open-data
+    licence: CC BY 4.0 (Open-Meteo); contains modified Copernicus Climate Change Service information
+    retrieved: 2026-11-04
+  - id: osrm
+    title: "OSRM: road routes on OpenStreetMap data (router.project-osrm.org)"
+    url: https://project-osrm.org/
+    licence: Route data © OpenStreetMap contributors (ODbL)
+    retrieved: 2026-11-04

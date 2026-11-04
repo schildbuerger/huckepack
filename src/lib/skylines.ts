@@ -1062,4 +1062,21 @@ export const SKYLINES: Record<string, Skyline> = {
       { d: snowOf([[560, G], [640, 246], [720, 192], [790, 150], [840, 118], [868, 96], [892, 118], [940, 136], [1000, 128], [1060, 108], [1092, 112], [1140, 140], [1210, 176], [1300, 214], [1400, 246], [1500, 270], [1600, G]], 168), c: SNOW },
     ],
   },
+  lechweg: {
+    view: "The Tyrolean Lech valley: the grey limestone peaks of the Lechtal Alps above forested slopes, the wild Lech braiding over its pale gravel banks",
+    ridge: FOREST,
+    ground: MEADOW,
+    shapes: [
+      // the Lechtal Alps' limestone peaks to the south
+      { d: range([[0, G], [60, 250], [130, 204], [190, 168], [226, 146], [252, 160], [300, 150], [340, 132], [372, 142], [420, 170], [480, 196], [560, 224], [640, G]]), c: "#b1b4b2" },
+      { d: range([[880, G], [960, 240], [1040, 196], [1100, 166], [1140, 150], [1172, 160], [1220, 142], [1262, 128], [1300, 140], [1360, 168], [1440, 202], [1520, 236], [1600, 254], [1600, G]]), c: "#b1b4b2" },
+      // the forested slopes below
+      { d: hills([[300, G], [420, 262], [560, 244], [700, 256], [840, 238], [980, 252], [1120, 240], [1260, 258], [1380, G]]), c: FIR },
+    ],
+    // the river braiding over its gravel banks in front
+    front: [
+      { d: water(360, 1240, 302), c: "#d9d3c2" },
+      { d: water(420, 1180, 306), c: "#7fb3c8" },
+    ],
+  },
 };

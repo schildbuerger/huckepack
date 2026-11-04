@@ -1,0 +1,102 @@
+{
+  "climate-high.json": {
+    "retrieved": "2026-11-04T19:38:56+00:00",
+    "url": "https://openmeteo.s3.us-west-2.amazonaws.com/data/copernicus_era5_land+copernicus_era5?latitude=47.2&longitude=10.0&elevation=1870"
+  },
+  "climate-low.json": {
+    "retrieved": "2026-11-04T19:35:27+00:00",
+    "url": "https://openmeteo.s3.us-west-2.amazonaws.com/data/copernicus_era5_land+copernicus_era5?latitude=47.6&longitude=10.7&elevation=810"
+  },
+  "elevation-glo30.json": {
+    "retrieved": "2026-11-04T19:31:39+00:00",
+    "url": "https://copernicus-dem-30m.s3.eu-central-1.amazonaws.com/Copernicus_DSM_COG_10_N47_00_E009_00_DEM/Copernicus_DSM_COG_10_N47_00_E009_00_DEM.tif https://copernicus-dem-30m.s3.eu-central-1.amazonaws.com/Copernicus_DSM_COG_10_N47_00_E010_00_DEM/Copernicus_DSM_COG_10_N47_00_E010_00_DEM.tif"
+  },
+  "landcover.json": {
+    "retrieved": "2026-11-04T19:31:40+00:00",
+    "url": "https://esa-worldcover.s3.eu-central-1.amazonaws.com/v200/2021/map/ESA_WorldCover_10m_2021_v200_\u2026_Map.tif"
+  },
+  "osm-stage-1-main.json": {
+    "retrieved": "2026-10-31T21:23:06Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-2-main.json": {
+    "retrieved": "2026-10-31T21:23:06Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-3-main.json": {
+    "retrieved": "2026-10-31T21:23:06Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-4-main.json": {
+    "retrieved": "2026-10-31T21:23:06Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-5-main.json": {
+    "retrieved": "2026-10-31T21:23:06Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-6-main.json": {
+    "retrieved": "2026-10-31T21:23:06Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-7-main.json": {
+    "retrieved": "2026-10-31T21:23:06Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-water.json": {
+    "retrieved": "2026-10-31T21:23:06Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-way-tags.json": {
+    "retrieved": "2026-10-31T21:23:06Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osrm-access-f-ssen.json": {
+    "retrieved": "2026-11-04T19:38:56+00:00",
+    "url": "https://router.project-osrm.org/route/v1/driving/10.69795,47.57027;9.99772,47.17065?overview=false"
+  },
+  "osrm-access-innsbruck-airport-inn.json": {
+    "retrieved": "2026-11-04T19:38:56+00:00",
+    "url": "https://router.project-osrm.org/route/v1/driving/11.34187,47.25973;9.99772,47.17065?overview=false"
+  },
+  "osrm-access-langen-am-arlberg.json": {
+    "retrieved": "2026-11-04T19:38:56+00:00",
+    "url": "https://router.project-osrm.org/route/v1/driving/10.11978,47.13196;9.99772,47.17065?overview=false"
+  },
+  "osrm-access-munich-airport-muc.json": {
+    "retrieved": "2026-11-04T19:38:57+00:00",
+    "url": "https://router.project-osrm.org/route/v1/driving/11.77859,48.35396;9.99772,47.17065?overview=false"
+  },
+  "stage-1-main.gpx": {
+    "retrieved": "2026-11-04T19:27:28+00:00",
+    "url": "https://www.lechweg.com/fileadmin/user_upload/t2807424_lechweg_-_etappe_1_-.gpx"
+  },
+  "stage-2-main.gpx": {
+    "retrieved": "2026-11-04T19:27:28+00:00",
+    "url": "https://www.lechweg.com/fileadmin/user_upload/Lechweg_Klassische_Variante_Etappe_2.gpx"
+  },
+  "stage-3-main.gpx": {
+    "retrieved": "2026-11-04T19:27:28+00:00",
+    "url": "https://www.lechweg.com/fileadmin/user_upload/Lechweg_Klassische_Variante_Etappe_3.gpx"
+  },
+  "stage-4-main.gpx": {
+    "retrieved": "2026-11-04T19:27:28+00:00",
+    "url": "https://www.lechweg.com/fileadmin/user_upload/Lechweg_Klassische_Variante_Etappe_4.gpx"
+  },
+  "stage-5-main.gpx": {
+    "retrieved": "2026-11-04T19:27:28+00:00",
+    "url": "https://www.lechweg.com/fileadmin/user_upload/Lechweg_Klassische_Variante_Etappe_5.gpx"
+  },
+  "stage-6-main.gpx": {
+    "retrieved": "2026-11-04T19:27:28+00:00",
+    "url": "https://www.lechweg.com/fileadmin/user_upload/Lechweg_Klassische_Variante_Etappe_6.gpx"
+  },
+  "stage-7-main.gpx": {
+    "retrieved": "2026-11-04T19:27:28+00:00",
+    "url": "https://www.lechweg.com/fileadmin/user_upload/Lechweg_Klassische_Variante_Etappe_7.gpx"
+  },
+  "wikimedia.json": {
+    "retrieved": "2026-11-04T19:38:57+00:00",
+    "url": "Q24451203 2025-11..2026-10"
+  }
+}
