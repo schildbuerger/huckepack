@@ -10,6 +10,13 @@ from ERA5 (0.25°). Days run in local standard time (UTC plus the time zone's wi
 nearest main city in src/lib/timezones.json); snowfall in cm is the water equivalent × 0.7, as
 the API gives it.
 
+Wind over the sea (issue #120): ERA5's 0.25° cells can lie mostly over the sea at a coastal place,
+where the wind is much stronger than on the path. A cell's land share is read from ERA5-Land's own
+grid (0.1°, land only: its sea cells carry no height), as the share of ERA5-Land cells inside it;
+where the place's cell is not mostly land (at most `LAND_MIN` land), wind and gusts come from the
+nearest ERA5 cell within `WIND_REACH` cells that is mostly land (`wind_cell()`). Temperature, precipitation and snow
+keep the place's own cells.
+
 Reads over HTTPS with the OS trust store (truststore) through the pipeline's proxy settings.
 """
 
@@ -43,6 +50,9 @@ VARIABLES = {
     "gust": (ERA5, "wind_gusts_10m"),
 }
 GRID = {LAND: 0.1, ERA5: 0.25}
+WIND = ("u10", "v10", "gust")  # the variables wind_cell() may move off the sea
+LAND_MIN = 0.5  # an ERA5 cell more than this share land counts as land for the wind
+WIND_REACH = 2  # how many ERA5 cells away the wind may be taken from (about 50 km)
 
 
 class _FS(HTTPFileSystem):
@@ -112,6 +122,57 @@ def _cell_height(lat, lon, model=LAND):
     return 0.0 if h < -500 or np.isnan(h) else h
 
 
+_land_grid = None
+
+
+def _land_heights():
+    """ERA5-Land's terrain heights over the whole grid (read once): NaN or below -500 m is sea."""
+    global _land_grid
+    if _land_grid is None:
+        _land_grid = np.asarray(_open(f"{LAND}/static/HSURF.om")[:, :], dtype=float)
+    return _land_grid
+
+
+def land_share(lat, lon):
+    """The share of the ERA5 cell holding the place that is land: its ERA5-Land cells (0.1°) with a
+    height, against all ERA5-Land cells whose centres lie inside it."""
+    iy, ix = _cell(ERA5, lat, lon)
+    half = GRID[ERA5] / 2
+    lat0, lon0 = iy * GRID[ERA5] - 90, ix * GRID[ERA5] - 180
+    step = GRID[LAND]
+    rows = range(math.ceil((lat0 - half + 90) / step - 1e-9), math.floor((lat0 + half + 90) / step - 1e-9) + 1)
+    cols = range(math.ceil((lon0 - half + 180) / step - 1e-9), math.floor((lon0 + half + 180) / step - 1e-9) + 1)
+    grid = _land_heights()
+    block = grid[rows.start : rows.stop][:, [c % grid.shape[1] for c in cols]]
+    return float(np.mean(~np.isnan(block) & (block > -500)))
+
+
+def wind_cell(lat, lon):
+    """Where the place's wind is read: its own ERA5 cell when that is mostly land (more than half),
+    else the centre of
+    the nearest mostly-land ERA5 cell within WIND_REACH cells (by distance on the ground), else its
+    own. Returns (lat, lon, land share, moved)."""
+    own = land_share(lat, lon)
+    if own > LAND_MIN:
+        return lat, lon, own, False
+    iy, ix = _cell(ERA5, lat, lon)
+    best = None
+    for dy in range(-WIND_REACH, WIND_REACH + 1):
+        for dx in range(-WIND_REACH, WIND_REACH + 1):
+            if not (dy or dx):
+                continue
+            clat, clon = (iy + dy) * GRID[ERA5] - 90, (ix + dx) * GRID[ERA5] - 180
+            share = land_share(clat, clon)
+            if share <= LAND_MIN:
+                continue
+            d = math.hypot(clat - lat, (clon - lon) * math.cos(math.radians(lat)))
+            if best is None or d < best[0]:
+                best = (d, clat, clon, share)
+    if best is None:
+        return lat, lon, own, False
+    return round(best[1], 2), round(best[2], 2), best[3], True
+
+
 def _utc_offset_hours(lat, lon):
     """The winter (standard) UTC offset of the time zone whose main city is nearest the place."""
     zones = json.loads((ROOT / "src" / "lib" / "timezones.json").read_text())
@@ -122,15 +183,17 @@ def _utc_offset_hours(lat, lon):
     return ZoneInfo(zone).utcoffset(datetime(2021, 1, 15)).total_seconds() / 3600
 
 
-def hourly(lat, lon, elevation_m, years=(1995, 2024)):
+def hourly(lat, lon, elevation_m, years=(1995, 2024), wind=None):
     """Hourly series for the place from the first local midnight of `years[0]`: the variables of
-    VARIABLES, temperature already moved to the place's height."""
+    VARIABLES, temperature already moved to the place's height; wind and gusts from `wind` (lat,
+    lon) where given (wind_cell(): the place's own cell is mostly sea)."""
     offset = _utc_offset_hours(lat, lon)
     # local standard days: fetch from the first local midnight, in UTC
     start = datetime(years[0], 1, 1, tzinfo=timezone.utc) - timedelta(hours=offset)
     end = datetime(years[1] + 1, 1, 1, tzinfo=timezone.utc) - timedelta(hours=offset)
+    at = lambda k: wind if wind and k in WIND else (lat, lon)
     with ThreadPoolExecutor(max_workers=len(VARIABLES)) as pool:
-        futures = {k: pool.submit(_series, m, v, lat, lon, start, end) for k, (m, v) in VARIABLES.items()}
+        futures = {k: pool.submit(_series, m, v, *at(k), start, end) for k, (m, v) in VARIABLES.items()}
         h = {k: f.result() for k, f in futures.items()}
     if np.isnan(h["t2m"]).mean() > 0.01:
         # ERA5-Land covers land only: a place at the coast (the MacLehose Trail's start) can fall in
@@ -170,6 +233,6 @@ def daily_from_hourly(h, years=(1995, 2024)):
     }
 
 
-def daily(lat, lon, elevation_m, years=(1995, 2024)):
+def daily(lat, lon, elevation_m, years=(1995, 2024), wind=None):
     """The place's daily weather, as the archive API's `daily` block."""
-    return daily_from_hourly(hourly(lat, lon, elevation_m, years), years)
+    return daily_from_hourly(hourly(lat, lon, elevation_m, years, wind), years)

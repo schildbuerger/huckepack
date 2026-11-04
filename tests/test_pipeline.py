@@ -8,7 +8,7 @@ about 71 m and 0.001° of latitude about 111 m.
 import math
 import unittest
 
-from pipeline import along, climate, osm, routes, surface, water
+from pipeline import along, climate, era5_open_data, osm, routes, surface, water
 
 LAT = 50.0
 
@@ -318,6 +318,40 @@ class Climate(unittest.TestCase):
         self.assertEqual((jan["tmax"], jan["tmin"]), (4.0, -2.0))
         self.assertEqual(jan["wetDays"], 10)
         self.assertEqual(jan["frostNights"], 31)
+
+
+class WindOffTheSea(unittest.TestCase):
+    """Issue #120: a place whose ERA5 cell is mostly sea takes its wind from the nearest mostly-land
+    cell. A made-up ERA5-Land grid: land (height 100 m) east of 10.0° E, sea (NaN) west of it."""
+
+    def setUp(self):
+        import numpy as np
+
+        grid = np.full((1801, 3600), np.nan)
+        grid[:, round((10.0 + 180) / 0.1) :] = 100.0
+        self.saved = era5_open_data._land_grid
+        era5_open_data._land_grid = grid
+
+    def tearDown(self):
+        era5_open_data._land_grid = self.saved
+
+    def test_land_share_counts_land_cells_in_the_era5_cell(self):
+        self.assertEqual(era5_open_data.land_share(45.0, 10.5), 1.0)
+        self.assertEqual(era5_open_data.land_share(45.0, 9.0), 0.0)
+        self.assertTrue(0 < era5_open_data.land_share(45.0, 10.0) < 1)
+
+    def test_a_place_over_the_sea_takes_its_wind_from_the_nearest_land_cell(self):
+        lat, lon, share, moved = era5_open_data.wind_cell(45.0, 9.75)
+        self.assertTrue(moved)
+        self.assertGreater(share, era5_open_data.LAND_MIN)
+        self.assertEqual(lat, 45.0)
+        self.assertGreater(lon, 9.75)
+
+    def test_a_place_on_land_keeps_its_own_cell(self):
+        self.assertEqual(era5_open_data.wind_cell(45.0, 11.0), (45.0, 11.0, 1.0, False))
+
+    def test_far_out_at_sea_it_stays(self):
+        self.assertFalse(era5_open_data.wind_cell(45.0, 5.0)[3])
 
 
 class Walkable(unittest.TestCase):

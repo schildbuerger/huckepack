@@ -55,6 +55,13 @@ build and the browser.
   (≥ 40 km/h) hardly occur in it even on the Laugavegur, so the measure is the mean of each day's
   strongest wind, which does separate windy trails (Laugavegur 18–22 km/h up high) from sheltered
   ones (12–17). Gust days (≥ 70 km/h) are in the derived data for a later climate chart.
+  Over land only (issue #120, 2026-11-04): ERA5's 25 km cells can lie mostly over the sea at a
+  coastal point, where the wind is much stronger than on the path; a point whose cell is not mostly
+  land (half or less, counted on ERA5-Land's 10 km land grid) takes its wind and gusts from the
+  nearest mostly-land cell within about 50 km (`wind_cell()` in pipeline/era5_open_data.py; the
+  derived place records `windFrom`). Ten of the 104 places moved (2026-11-04). Where no such cell
+  is in reach, the point keeps its own: the Camí de Cavalls, Menorca being smaller than half a
+  cell, is still rated on its coastal wind.
 - **Thresholds** were set to spread the trails we have and stay meaningful for long ones, and are
   round numbers on purpose. Revisit them when trails with very different climates are added
   (desert, high altitude), and record any change in docs/scope.md.

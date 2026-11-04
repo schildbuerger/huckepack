@@ -59,7 +59,7 @@ export const SCALES = {
     at: [15, 20, 25],
     dir: "up",
     bands: ["under 15 km/h", "15–20 km/h", "20–25 km/h", "25 km/h or more"],
-    from: "mean of the day's strongest wind (hourly mean, 10 m above ground), the windier of both points",
+    from: "mean of the day's strongest wind (hourly mean, 10 m above ground), the windier of both points; over land: a point whose 25 km weather cell is mostly sea takes the nearest mostly-land cell's",
   },
   effort: { label: "Longest day", at: [4, 6, 8], dir: "up", strict: true, bands: ["up to 4 h", "4–6 h", "6–8 h", "more than 8 h"], from: "walking time of the longest main stage, stated or by DIN 33466" },
 } satisfies Record<string, Scale>;

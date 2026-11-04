@@ -13577,7 +13577,13 @@
         "km": 109.0,
         "m": 651,
         "lat": 52.25775,
-        "lon": -10.24955
+        "lon": -10.24955,
+        "windFrom": {
+          "lat": 52.25,
+          "lon": -10.0,
+          "landShare": 0.67,
+          "ownLandShare": 0.5
+        }
       }
     ],
     "months": [
@@ -13600,8 +13606,8 @@
           "snowDays": 2.9,
           "frostNights": 8.9,
           "precipMm": 131,
-          "windKmh": 32.6,
-          "gustDays": 10.4
+          "windKmh": 25.5,
+          "gustDays": 9.1
         },
         "daylightH": 8.2
       },
@@ -13624,8 +13630,8 @@
           "snowDays": 2.5,
           "frostNights": 8.2,
           "precipMm": 110,
-          "windKmh": 33.2,
-          "gustDays": 9.4
+          "windKmh": 26.5,
+          "gustDays": 8.8
         },
         "daylightH": 9.8
       },
@@ -13648,8 +13654,8 @@
           "snowDays": 2.0,
           "frostNights": 7.7,
           "precipMm": 99,
-          "windKmh": 28.6,
-          "gustDays": 6.5
+          "windKmh": 23.3,
+          "gustDays": 6.3
         },
         "daylightH": 11.7
       },
@@ -13672,8 +13678,8 @@
           "snowDays": 0.5,
           "frostNights": 2.8,
           "precipMm": 77,
-          "windKmh": 25.9,
-          "gustDays": 3.4
+          "windKmh": 21.6,
+          "gustDays": 3.6
         },
         "daylightH": 13.8
       },
@@ -13696,8 +13702,8 @@
           "snowDays": 0.0,
           "frostNights": 0.2,
           "precipMm": 86,
-          "windKmh": 25.4,
-          "gustDays": 2.4
+          "windKmh": 21.2,
+          "gustDays": 2.8
         },
         "daylightH": 15.7
       },
@@ -13720,8 +13726,8 @@
           "snowDays": 0.0,
           "frostNights": 0.0,
           "precipMm": 77,
-          "windKmh": 24.4,
-          "gustDays": 1.4
+          "windKmh": 20.4,
+          "gustDays": 1.6
         },
         "daylightH": 16.7
       },
@@ -13744,8 +13750,8 @@
           "snowDays": 0.0,
           "frostNights": 0.0,
           "precipMm": 86,
-          "windKmh": 23.9,
-          "gustDays": 1.0
+          "windKmh": 19.9,
+          "gustDays": 1.1
         },
         "daylightH": 16.3
       },
@@ -13768,7 +13774,7 @@
           "snowDays": 0.0,
           "frostNights": 0.0,
           "precipMm": 101,
-          "windKmh": 24.9,
+          "windKmh": 20.6,
           "gustDays": 1.9
         },
         "daylightH": 14.7
@@ -13792,8 +13798,8 @@
           "snowDays": 0.0,
           "frostNights": 0.0,
           "precipMm": 95,
-          "windKmh": 26.0,
-          "gustDays": 3.3
+          "windKmh": 21.3,
+          "gustDays": 3.0
         },
         "daylightH": 12.6
       },
@@ -13816,8 +13822,8 @@
           "snowDays": 0.0,
           "frostNights": 0.2,
           "precipMm": 139,
-          "windKmh": 29.3,
-          "gustDays": 6.6
+          "windKmh": 23.4,
+          "gustDays": 5.7
         },
         "daylightH": 10.5
       },
@@ -13840,8 +13846,8 @@
           "snowDays": 0.8,
           "frostNights": 2.3,
           "precipMm": 150,
-          "windKmh": 31.0,
-          "gustDays": 7.5
+          "windKmh": 24.3,
+          "gustDays": 6.4
         },
         "daylightH": 8.7
       },
@@ -13864,8 +13870,8 @@
           "snowDays": 2.0,
           "frostNights": 7.0,
           "precipMm": 143,
-          "windKmh": 33.0,
-          "gustDays": 9.8
+          "windKmh": 25.7,
+          "gustDays": 9.0
         },
         "daylightH": 7.7
       }

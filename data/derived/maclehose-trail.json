@@ -9681,7 +9681,7 @@
   "climate": {
     "source": "era5",
     "method": "open-data-2026-10",
-    "retrieved": "2026-10-31T16:47:26+00:00",
+    "retrieved": "2026-10-31T16:50:44+00:00",
     "years": [
       1995,
       2024
@@ -9693,7 +9693,13 @@
         "km": 21.0,
         "m": 2,
         "lat": 22.42205,
-        "lon": 114.35246
+        "lon": 114.35246,
+        "windFrom": {
+          "lat": 22.5,
+          "lon": 114.25,
+          "landShare": 1.0,
+          "ownLandShare": 0.11
+        }
       },
       {
         "id": "high",
@@ -9714,8 +9720,8 @@
           "snowDays": 0.0,
           "frostNights": 0.0,
           "precipMm": 28,
-          "windKmh": 23.4,
-          "gustDays": 0.2
+          "windKmh": 16.9,
+          "gustDays": 0.0
         },
         "high": {
           "tmax": 13.5,
@@ -9738,7 +9744,7 @@
           "snowDays": 0.0,
           "frostNights": 0.0,
           "precipMm": 40,
-          "windKmh": 23.2,
+          "windKmh": 17.2,
           "gustDays": 0.0
         },
         "high": {
@@ -9762,8 +9768,8 @@
           "snowDays": 0.0,
           "frostNights": 0.0,
           "precipMm": 70,
-          "windKmh": 22.7,
-          "gustDays": 0.2
+          "windKmh": 17.7,
+          "gustDays": 0.0
         },
         "high": {
           "tmax": 17.6,
@@ -9786,7 +9792,7 @@
           "snowDays": 0.0,
           "frostNights": 0.0,
           "precipMm": 119,
-          "windKmh": 21.4,
+          "windKmh": 17.3,
           "gustDays": 0.1
         },
         "high": {
@@ -9810,8 +9816,8 @@
           "snowDays": 0.0,
           "frostNights": 0.0,
           "precipMm": 226,
-          "windKmh": 20.3,
-          "gustDays": 0.2
+          "windKmh": 16.1,
+          "gustDays": 0.1
         },
         "high": {
           "tmax": 22.6,
@@ -9834,7 +9840,7 @@
           "snowDays": 0.0,
           "frostNights": 0.0,
           "precipMm": 306,
-          "windKmh": 21.1,
+          "windKmh": 16.7,
           "gustDays": 0.3
         },
         "high": {
@@ -9858,7 +9864,7 @@
           "snowDays": 0.0,
           "frostNights": 0.0,
           "precipMm": 244,
-          "windKmh": 21.0,
+          "windKmh": 16.5,
           "gustDays": 0.6
         },
         "high": {
@@ -9882,8 +9888,8 @@
           "snowDays": 0.0,
           "frostNights": 0.0,
           "precipMm": 312,
-          "windKmh": 19.6,
-          "gustDays": 1.2
+          "windKmh": 15.0,
+          "gustDays": 1.1
         },
         "high": {
           "tmax": 24.6,
@@ -9906,7 +9912,7 @@
           "snowDays": 0.0,
           "frostNights": 0.0,
           "precipMm": 214,
-          "windKmh": 20.4,
+          "windKmh": 15.1,
           "gustDays": 0.9
         },
         "high": {
@@ -9930,7 +9936,7 @@
           "snowDays": 0.0,
           "frostNights": 0.0,
           "precipMm": 93,
-          "windKmh": 22.8,
+          "windKmh": 16.5,
           "gustDays": 0.5
         },
         "high": {
@@ -9954,8 +9960,8 @@
           "snowDays": 0.0,
           "frostNights": 0.0,
           "precipMm": 46,
-          "windKmh": 23.0,
-          "gustDays": 0.1
+          "windKmh": 16.6,
+          "gustDays": 0.0
         },
         "high": {
           "tmax": 18.7,
@@ -9978,8 +9984,8 @@
           "snowDays": 0.0,
           "frostNights": 0.0,
           "precipMm": 29,
-          "windKmh": 24.0,
-          "gustDays": 0.3
+          "windKmh": 17.3,
+          "gustDays": 0.1
         },
         "high": {
           "tmax": 14.4,

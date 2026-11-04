@@ -58,12 +58,6 @@ def cell(point):
     return {"lat": round(point["lat"], 1), "lon": round(point["lon"], 1), "m": int(round(point["m"], -1))}
 
 
-def cell_of_url(url):
-    """The cell a cached download was asked for (older caches asked for the exact point)."""
-    q = dict(part.split("=", 1) for part in url.split("?", 1)[1].split("&"))
-    return cell({"lat": float(q["latitude"]), "lon": float(q["longitude"]), "m": float(q["elevation"])})
-
-
 def daylight_hours(lat, month):
     """Sunrise to sunset on the 15th of the month (standard refraction and sun radius)."""
     day = [15, 46, 74, 105, 135, 166, 196, 227, 258, 288, 319, 349][month - 1]
@@ -73,11 +67,26 @@ def daylight_hours(lat, month):
     return 2 * math.degrees(math.acos(max(-1, min(1, cos_w)))) / 15
 
 
-def fetch(place):
-    """The place's 30 years of daily weather from the open data: (url, download())."""
+def wind_from(place):
+    """Where the place's wind is read (issue #120): None at its own cell, else the mostly-land ERA5
+    cell it was moved to, with the land shares of both."""
+    c = cell(place)
+    lat, lon, share, moved = era5_open_data.wind_cell(c["lat"], c["lon"])
+    if not moved:
+        return None
+    return {"lat": lat, "lon": lon, "landShare": round(share, 2), "ownLandShare": round(era5_open_data.land_share(c["lat"], c["lon"]), 2)}
+
+
+def fetch(place, wind=None):
+    """The place's 30 years of daily weather from the open data: (url, download()); `wind` the
+    cell its wind and gusts come from, where it isn't its own (wind_from())."""
     c = cell(place)
     url = f"{OPEN_DATA}?latitude={c['lat']}&longitude={c['lon']}&elevation={c['m']}"
-    return url, lambda: json.dumps({"daily": era5_open_data.daily(c["lat"], c["lon"], c["m"], YEARS)}).encode()
+    at = None
+    if wind:
+        url += f"&wind={wind['lat']},{wind['lon']}"
+        at = (wind["lat"], wind["lon"])
+    return url, lambda: json.dumps({"daily": era5_open_data.daily(c["lat"], c["lon"], c["m"], YEARS, at)}).encode()
 
 
 def fetch_api(place):
@@ -148,11 +157,16 @@ def build(slug, refresh=False):
     for pid, key, label in PLACES:
         point = elevation[key]
         place = {"id": pid, "label": label, "km": point["km"], "m": point["m"], "lat": point["lat"], "lon": point["lon"]}
-        url, download = fetch(place)
+        wind = wind_from(place)
+        url, download = fetch(place, wind)
+        if wind:
+            place["windFrom"] = wind
+            print(f"  {label.lower()}: its ERA5 cell is {wind['ownLandShare']:.0%} land; wind from {wind['lat']}, {wind['lon']} ({wind['landShare']:.0%} land)")
         name = f"climate-{pid}.json"
         cached = cache.manifest.get(name)
-        if cached and (cell_of_url(cached["url"]) != cell(place) or not cached["url"].startswith(OPEN_DATA)):
-            (cache.dir / name).unlink(missing_ok=True)  # the point moved to another cell, or came from the API
+        if cached and cached["url"] != url:
+            # the point moved to another cell, its wind to another cell, or it came from the API
+            (cache.dir / name).unlink(missing_ok=True)
         try:
             data, fresh = cache.get(name, url, download)
         except QuotaReached as error:
@@ -196,7 +210,10 @@ def pending(slug):
     if not climate or climate.get("method") != METHOD:
         return True
     have = {p["id"]: cell(p) for p in climate["places"]}
-    return any(have.get(pid) != cell(elevation[key]) for pid, key, _ in PLACES)
+    if any(have.get(pid) != cell(elevation[key]) for pid, key, _ in PLACES):
+        return True
+    # a place whose wind cell is mostly sea but was built from it (before issue #120)
+    return any(bool(wind_from(p)) != ("windFrom" in p) for p in climate["places"])
 
 
 def catch_up():
