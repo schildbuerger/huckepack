@@ -1,0 +1,44 @@
+# The monthly freshness check (issue #90, pipeline/freshness.py): every link in the trail records, the
+# stage pages' figures against the records, and sources retrieved more than a year ago. Nothing in the
+# records is changed: each problem becomes an issue labelled bug and freshness (an open one is updated,
+# one closed as not planned stays closed). With the PROJECT_TOKEN secret (a classic token with only the
+# `project` scope; the built-in token can't reach a user's project board) the issue goes into the board's
+# Bugs column, rated by Severity and Frequency. Without it the issues still open, off the board.
+name: Freshness
+
+on:
+  schedule:
+    - cron: "23 4 1 * *" # the 1st of every month, 04:23 UTC
+  workflow_dispatch:
+    inputs:
+      issues:
+        description: "Open or update issues (off: report in the run summary only)"
+        type: boolean
+        default: true
+
+permissions:
+  contents: read
+  issues: write
+
+concurrency:
+  group: freshness
+  cancel-in-progress: false
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      # actions pinned to the commit of their release tag (a moved tag can't change what runs here)
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - uses: actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0 # v7.1.0
+        with:
+          python-version: "3.13"
+          cache: pip
+      - run: pip install PyYAML==6.0.3 truststore==0.10.5
+      - name: Check links, stage figures and retrieval dates
+        env:
+          GH_TOKEN: ${{ github.token }}
+          PROJECT_TOKEN: ${{ secrets.PROJECT_TOKEN }}
+          ISSUES: ${{ github.event_name == 'schedule' || inputs.issues }}
+        run: python -m pipeline.freshness $([ "$ISSUES" = "true" ] && echo --issues)
