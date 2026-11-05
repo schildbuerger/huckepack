@@ -65,6 +65,7 @@ class Records(unittest.TestCase):
         "website": "https://trail.org/",
         "managedBy": [{"name": "Trail Club", "url": "https://club.org/"}],
         "permit": {"url": "https://permits.org/"},
+        "officialGpx": {"url": "https://trail.org/route.gpx", "source": "site"},
         "stages": {"list": [{"number": "1", "track": "https://trail.org/s1"}, {"number": "2", "track": "data/raw/x.gpx"}]},
         "sources": [
             {"id": "site", "url": "https://trail.org/", "retrieved": "2026-10-31"},
@@ -75,8 +76,12 @@ class Records(unittest.TestCase):
 
     def test_every_link_is_collected(self):
         got = [(r["where"], r["hidden"]) for r in f.refs(self.RECORD)]
-        self.assertEqual(got, [("website", False), ("managed by Trail Club", False), ("permit", False), ("stage 1 page", False),
+        self.assertEqual(got, [("website", False), ("managed by Trail Club", False), ("permit", False), ("official GPX", False), ("stage 1 page", False),
                                ("source `site`", False), ("source `old`", False), ("source `views`", True)])
+
+    def test_no_official_gpx_is_no_link(self):
+        record = {**self.RECORD, "officialGpx": {"none": "stage tracks only after login", "source": "site"}}
+        self.assertNotIn("official GPX", [r["where"] for r in f.refs(record)])
 
     def test_sources_older_than_a_year(self):
         old = f.stale(self.RECORD, dt.date(2026, 11, 4))

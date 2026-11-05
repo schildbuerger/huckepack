@@ -139,6 +139,13 @@ const trail = z
     wikidata: z.string().regex(/^Q\d+$/).optional(),
     designation: z.string().optional(),
     managedBy: z.array(z.object({ name: z.string(), url: z.url().optional() })).min(1),
+    // the operator's own GPX download (issue #106): `url` a file anyone can download without a login
+    // (or the operator's page listing the stage files, where there is no whole-route file), shown as a
+    // link in Location; `none` a short reason where the operator offers none ("stage tracks only after
+    // login"), not shown. huckepack links it and never stores or republishes an official GPX
+    officialGpx: z
+      .union([z.object({ url: z.url(), source: sourceRef }), z.object({ none: z.string(), source: sourceRef })])
+      .optional(),
     trailType: z.enum(["point-to-point", "loop", "network"]),
     continents: z.array(z.enum(CONTINENTS)).min(1),
     countries: z.array(z.string().regex(/^[A-Z]{2}$/, "ISO 3166-1 alpha-2 code")).min(1),
@@ -378,6 +385,7 @@ const trail = z
         t.difficulty?.estimated,
         t.waterPoints,
         t.treeLine,
+        t.officialGpx,
         ...(t.stages?.timesSource ? [{ source: t.stages.timesSource }] : []),
         ...(t.stages?.list.flatMap((s) => (s.source ? [{ source: s.source }] : [])) ?? []),
         ...(t.stages?.list.flatMap((s) => (s.closed ? [s.closed] : [])) ?? []),

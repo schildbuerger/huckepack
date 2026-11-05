@@ -73,6 +73,7 @@ def refs(record):
     for body in record.get("managedBy") or []:
         add(body.get("url"), f"managed by {body.get('name')}")
     add((record.get("permit") or {}).get("url"), "permit")
+    add((record.get("officialGpx") or {}).get("url"), "official GPX")
     for s in (record.get("stages") or {}).get("list") or []:
         add(s.get("track"), f"stage {s.get('number')} page")
     for src in record.get("sources") or []:
