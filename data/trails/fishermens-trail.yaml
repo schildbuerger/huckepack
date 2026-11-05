@@ -7,6 +7,10 @@ managedBy:
   # the Associação Rota Vicentina marks and maintains the Rota Vicentina's walking trails (issue #13)
   - name: Associação Rota Vicentina
     url: https://rotavicentina.com/
+officialGpx:
+  # Rota Vicentina's GPX of the whole trail, São Torpes to Lagos (May 2023) (checked 2026-11-05)
+  url: "https://rotavicentina.com/wp-content/uploads/2023/05/tp-s-torpes-a-lagos-2023-05-24.gpx"
+  source: rota-vicentina
 trailType: point-to-point
 continents: [Europe]
 countries: [PT]

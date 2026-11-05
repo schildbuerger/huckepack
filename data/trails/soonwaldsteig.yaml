@@ -7,6 +7,10 @@ managedBy:
   # "© Naturpark Soonwald-Nahe"; the tour portal names the Trägerverein Naturpark Soonwald-Nahe e.V.
   - name: Naturpark Soonwald-Nahe
     url: https://www.soonwaldsteig.de/
+officialGpx:
+  # the operator's GPX of the whole route ("Complete Trail Soonwaldsteig"); each stage has its own file on the same page (checked 2026-11-05)
+  url: "https://www.soonwaldsteig.de/media/7735d9e0-4ba3-4283-9479-9238e8171954/ZyECcg/GPX%20Soonwaldsteig/Gesamtstrecke_gpx"
+  source: gpx
 trailType: point-to-point
 continents: [Europe]
 countries: [DE]
@@ -202,3 +206,8 @@ sources:
     url: https://project-osrm.org/
     licence: Route data © OpenStreetMap contributors (ODbL)
     retrieved: 2026-10-30
+  - id: gpx
+    title: "Soonwaldsteig: GPX tracks (the whole route and each stage)"
+    url: https://www.soonwaldsteig.de/en/service/gpx-tracks
+    licence: All rights reserved (linked, not stored)
+    retrieved: 2026-11-05

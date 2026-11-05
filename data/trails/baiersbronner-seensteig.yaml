@@ -7,6 +7,10 @@ designation: Qualitätsweg Wanderbares Deutschland
 managedBy:
   - name: Baiersbronn Touristik
     url: https://www.baiersbronn.de/
+officialGpx:
+  # Baiersbronn's GPX of the whole route ("Tour herunterladen") (checked 2026-11-05)
+  url: "https://www.baiersbronn.de/?ndsajax=destination-data-proxy&template=gpx&limit=1&mkt=de&q=globalid%3At_100276990&elevations=true&times=true&no_cache=1"
+  source: bb
 trailType: loop
 continents: [Europe]
 countries: [DE]

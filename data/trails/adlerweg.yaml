@@ -6,6 +6,10 @@ managedBy:
   # Tirol Werbung publishes the Adlerweg, its 33 stage pages with their GPX files and the stamp pass
   - name: Tirol Werbung
     url: https://www.tirol.at/aktivitaeten/sport/wandern/weitwanderwege/anspruchsvolle-weitwanderwege/adlerweg
+officialGpx:
+  # Tirol Werbung's GPX of the whole route ("Adlerweg Gesamtverlauf.gpx") (checked 2026-11-05)
+  url: "https://tirol.mapservices.eu/nefos_app/api/gpx/imx_xR7kIE5LaSrqNTM6/de/generate/76152747"
+  source: tw
 trailType: point-to-point
 continents: [Europe]
 countries: [AT]

@@ -9,6 +9,10 @@ managedBy:
   # trail's upkeep, signage and publications
   - name: Regione Emilia-Romagna, with the parks' managing bodies
     url: https://ambiente.regione.emilia-romagna.it/en/parchi-natura2000/protected-areas/the-alta-via-dei-parchi
+officialGpx:
+  # the Region's page with a GPX for each stage (2025); no whole-route file found (checked 2026-11-05)
+  url: "https://ambiente.regione.emilia-romagna.it/en/parchi-natura2000/protected-areas/the-alta-via-dei-parchi/stages"
+  source: rer
 trailType: point-to-point
 continents: [Europe]
 countries: [IT]

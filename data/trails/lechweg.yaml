@@ -8,6 +8,10 @@ managedBy:
   # Lechtal, the Naturparkregion Reutte and Füssen), lechweg.com
   - name: Lechweg (the tourism regions along the Lech)
     url: https://www.lechweg.com/de/
+officialGpx:
+  # the operator's page with a GPX for each stage of the classic variant; no whole-route file found (checked 2026-11-05)
+  url: "https://www.lechweg.com/de/weg/etappen-varianten/klassische-variante/"
+  source: lw
 trailType: point-to-point
 continents: [Europe]
 countries: [AT, DE]

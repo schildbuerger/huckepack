@@ -11,6 +11,10 @@ managedBy:
     url: https://www.slovenia.info/
   - name: PromoTurismoFVG (Friuli Venezia Giulia)
     url: https://www.turismofvg.it/
+officialGpx:
+  # the operator's GPX of the whole route ("GPS route", May 2023) (checked 2026-11-05)
+  url: "https://www.alpe-adria-trail.com/user_upload_AAT/user_upload/Service/alpe-adria-trail-gesamtverlauf-202305.gpx"
+  source: gpx
 trailType: point-to-point
 continents: [Europe]
 countries: [AT, SI, IT]
@@ -312,3 +316,8 @@ sources:
     licence: CC BY-SA 4.0
     retrieved: 2026-10-30
     checkOnly: true
+  - id: gpx
+    title: "Alpe-Adria-Trail: the trail (the whole-route GPX, linked as GPS route)"
+    url: https://www.alpe-adria-trail.com/en/the-trail/
+    licence: All rights reserved (linked, not stored)
+    retrieved: 2026-11-05

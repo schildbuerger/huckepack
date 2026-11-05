@@ -9,6 +9,10 @@ managedBy:
     url: https://www.sachsenforst.de/
   - name: Lesy České republiky
     url: https://lesycr.cz/
+officialGpx:
+  # Sachsenforst's GPX of the whole route ("Gesamtroute als GPX-Download", 2026) (checked 2026-11-05)
+  url: "https://nationalpark-saechsische-schweiz.de/uploads/images/Forststeig/GPX-Tracks-Forststeig/Forststeig_Stand_2026.gpx"
+  source: sachsenforst
 trailType: point-to-point
 continents: [Europe]
 countries: [DE, CZ]
