@@ -1,0 +1,119 @@
+{
+  "climate-high.json": {
+    "retrieved": "2026-11-05T16:56:12+00:00",
+    "url": "https://openmeteo.s3.us-west-2.amazonaws.com/data/copernicus_era5_land+copernicus_era5?latitude=52.8&longitude=0.6&elevation=90"
+  },
+  "climate-low.json": {
+    "retrieved": "2026-11-05T16:52:46+00:00",
+    "url": "https://openmeteo.s3.us-west-2.amazonaws.com/data/copernicus_era5_land+copernicus_era5?latitude=53.0&longitude=0.8&elevation=0"
+  },
+  "elevation-glo30.json": {
+    "retrieved": "2026-11-05T16:49:04+00:00",
+    "url": "https://copernicus-dem-30m.s3.eu-central-1.amazonaws.com/Copernicus_DSM_COG_10_N52_00_E000_00_DEM/Copernicus_DSM_COG_10_N52_00_E000_00_DEM.tif https://copernicus-dem-30m.s3.eu-central-1.amazonaws.com/Copernicus_DSM_COG_10_N52_00_E001_00_DEM/Copernicus_DSM_COG_10_N52_00_E001_00_DEM.tif"
+  },
+  "landcover.json": {
+    "retrieved": "2026-11-05T16:49:05+00:00",
+    "url": "https://esa-worldcover.s3.eu-central-1.amazonaws.com/v200/2021/map/ESA_WorldCover_10m_2021_v200_\u2026_Map.tif"
+  },
+  "osm-relation-77959.json": {
+    "retrieved": "2026-11-03T21:24:23Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-1-main.json": {
+    "key": "44ad2969a746",
+    "retrieved": "2026-11-03T21:24:23Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-10-main.json": {
+    "key": "93cce1f962b5",
+    "retrieved": "2026-11-03T21:24:23Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-11-main.json": {
+    "key": "de58cfb6650f",
+    "retrieved": "2026-11-03T21:24:23Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-12-main.json": {
+    "key": "d90ddc849e8d",
+    "retrieved": "2026-11-03T21:24:23Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-13-main.json": {
+    "key": "f6ea9adc921d",
+    "retrieved": "2026-11-03T21:24:23Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-2-main.json": {
+    "key": "7aaabbe14f7f",
+    "retrieved": "2026-11-03T21:24:23Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-3-main.json": {
+    "key": "c65ac1d6d6cb",
+    "retrieved": "2026-11-03T21:24:23Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-4-main.json": {
+    "key": "e5b070e6789f",
+    "retrieved": "2026-11-03T21:24:23Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-5-main.json": {
+    "key": "b612aa0de172",
+    "retrieved": "2026-11-03T21:24:23Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-6-main.json": {
+    "key": "82eff2f92335",
+    "retrieved": "2026-11-03T21:24:23Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-7-main.json": {
+    "key": "301f2c5aaf11",
+    "retrieved": "2026-11-03T21:24:23Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-8-main.json": {
+    "key": "642aec5986b0",
+    "retrieved": "2026-11-03T21:24:23Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-9-main.json": {
+    "key": "f86ae91a581f",
+    "retrieved": "2026-11-03T21:24:23Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-water.json": {
+    "retrieved": "2026-11-03T21:24:23Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-way-tags.json": {
+    "retrieved": "2026-11-03T21:24:23Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osrm-access-great-yarmouth.json": {
+    "retrieved": "2026-11-05T16:56:12+00:00",
+    "url": "https://router.project-osrm.org/route/v1/driving/1.72069,52.61192;0.85484,52.39054?overview=false"
+  },
+  "osrm-access-norwich-airport-nwi.json": {
+    "retrieved": "2026-11-05T16:56:12+00:00",
+    "url": "https://router.project-osrm.org/route/v1/driving/1.28189,52.67518;0.85484,52.39054?overview=false"
+  },
+  "osrm-access-norwich.json": {
+    "retrieved": "2026-11-05T16:56:12+00:00",
+    "url": "https://router.project-osrm.org/route/v1/driving/1.30769,52.62631;0.85484,52.39054?overview=false"
+  },
+  "osrm-access-thetford.json": {
+    "retrieved": "2026-11-05T16:56:12+00:00",
+    "url": "https://router.project-osrm.org/route/v1/driving/0.74528,52.41916;0.85484,52.39054?overview=false"
+  },
+  "stage-1-main.gpx": {
+    "retrieved": "2026-11-05T16:47:09+00:00",
+    "url": "https://nationaltrails.s3.eu-west-2.amazonaws.com/uploads/Peddars_Way_and_Norfolk_Coast_Path_Elev.gpx"
+  },
+  "wikimedia.json": {
+    "retrieved": "2026-11-05T16:56:13+00:00",
+    "url": "Q7051001 2025-11..2026-10"
+  }
+}

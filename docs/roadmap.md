@@ -109,6 +109,7 @@ And the **Paparoa Track** (#232, 55 km over the Paparoa Range from the Smoke-ho 
 And the **Rakiura Track** (#233, the 32 km circuit on Stewart Island/Rakiura, DOC's three legs from Lee Bay to Fern Gully; OSM maps it at about 27 km, noted).
 And the **Lake Waikaremoana Great Walk** (#234, 46 km from Onepoto to Hopuruahine in Te Urewera, cared for by Ngāi Tūhoe; DOC's seven legs over the OSM relation).
 And the **Overland Track** (#235, the first trail in Australia: 65 km from Ronny Creek to Narcissus in Tasmania's six days, each on its OSM section relation, the walk along Lake St Clair as the way out; Overland Track Pass and fees).
+And the **Peddars Way and Norfolk Coast Path** (#238, Knettishall Heath north along the Roman road to Holme next the Sea, then east along the coast to Hopton-on-Sea, the National Trail's sections in 13 stages; the official GPX guides the Peddars Way, the OSM relation the coast, and Happisburgh to Sea Palling, which the section lists leave out, is measured on the map line).
 | # | Trail | Region | Length (approx.) | Why |
 |---|---|---|---|---|
 | 1 | Pacific Crest Trail | USA | 4,265 km | Most-hiked long trail; public US agency data; completion lists |

@@ -1,0 +1,265 @@
+name: Peddars Way and Norfolk Coast Path
+added: 2026-11-05
+aliases: [Peddars Way, Norfolk Coast Path, Peddars Way and Norfolk Coast Path National Trail]
+website: https://www.nationaltrail.co.uk/en_GB/trails/peddars-way-and-norfolk-coast-path/
+wikidata: Q7051001
+managedBy:
+  # a National Trail (Natural England), through the Norfolk Coast National Landscape (National Trails, GOV.UK)
+  - name: Natural England and Norfolk County Council (National Trails)
+    url: https://www.nationaltrail.co.uk/en_GB/trails/peddars-way-and-norfolk-coast-path/
+officialGpx:
+  # National Trails' GPX (the Peddars Way and the coast path from Hunstanton to Cromer), its "GPX
+  # Downloads" on the trail information page (checked 2026-11-05)
+  url: https://www.nationaltrail.co.uk/en_GB/trails/peddars-way-and-norfolk-coast-path/trail-information/
+  by: National Trails
+  source: nt-info
+trailType: point-to-point
+continents: [Europe]
+countries: [GB]
+regions: [Suffolk, Norfolk]
+protectedAreas:
+  - Norfolk Coast National Landscape
+termini:
+  # the Peddars Way's start at Knettishall Heath Country Park (the start of National Trails' GPX)
+  # and the coast path's end at Hopton-on-Sea by the Suffolk border (GOV.UK)
+  start:
+    name: Knettishall Heath
+    lat: 52.39054
+    lon: 0.85484
+  end:
+    name: Hopton-on-Sea
+    lat: 52.53936
+    lon: 1.72891
+  source: govuk
+waymarking:
+  text: The National Trail acorn, or the trail's name, on stiles, gates and signposts; on the coast also signs for the King Charles III England Coast Path
+  source: govuk
+stages:
+  # the National Trail's sections (Route Description, the same on GOV.UK), north along the Peddars Way
+  # and east along the coast, the way most walkers go (National Trails). Neither list has a section
+  # from Happisburgh to Sea Palling (the coast path's 2014 extension): stage 11 is measured on our
+  # map line. Stages 1–4 follow National Trails' GPX (its first track, the Peddars Way), cut at each
+  # section's `end` (it only guides the OSM matcher, kept local); stages 5–13 follow the OSM
+  # relation of the Norfolk Coast Path (77959), cut at their ends
+  source: nt
+  list:
+    - { number: "1", kind: main, from: Knettishall Heath, to: Little Cressingham, km: 23.3, track: "https://nationaltrails.s3.eu-west-2.amazonaws.com/uploads/Peddars_Way_and_Norfolk_Coast_Path_Elev.gpx", end: { name: Little Cressingham, lat: 52.56547, lon: 0.76298 } }
+    - { number: "2", kind: main, from: Little Cressingham, to: Castle Acre, km: 18.8, track: "https://nationaltrails.s3.eu-west-2.amazonaws.com/uploads/Peddars_Way_and_Norfolk_Coast_Path_Elev.gpx", end: { name: Castle Acre, lat: 52.70369, lon: 0.68805 } }
+    - { number: "3", kind: main, from: Castle Acre, to: Sedgeford and Fring, km: 22.4, track: "https://nationaltrails.s3.eu-west-2.amazonaws.com/uploads/Peddars_Way_and_Norfolk_Coast_Path_Elev.gpx", end: { name: Sedgeford and Fring, lat: 52.8900, lon: 0.5660 } }
+    - { number: "4", kind: main, from: Sedgeford, to: Holme next the Sea, km: 14.3, track: "https://nationaltrails.s3.eu-west-2.amazonaws.com/uploads/Peddars_Way_and_Norfolk_Coast_Path_Elev.gpx", end: { name: Holme next the Sea, lat: 52.96608, lon: 0.52444 } }
+    - { number: "5", kind: main, from: Holme next the Sea, to: Burnham Overy Staithe, km: 25.9, relation: 77959, end: { name: Burnham Overy Staithe, lat: 52.96463, lon: 0.74379 } }
+    - { number: "6", kind: main, from: Burnham Overy Staithe, to: Stiffkey, km: 15.8, relation: 77959, end: { name: Stiffkey, lat: 52.95728, lon: 0.93484 } }
+    - { number: "7", kind: main, from: Stiffkey, to: Weybourne, km: 20.1, relation: 77959, end: { name: Weybourne, lat: 52.94866, lon: 1.14277 } }
+    - { number: "8", kind: main, from: Weybourne, to: Cromer, km: 13.8, relation: 77959, end: { name: Cromer, lat: 52.93251, lon: 1.30044 } }
+    - { number: "9", kind: main, from: Cromer, to: Mundesley, km: 12.5, relation: 77959, end: { name: Mundesley, lat: 52.87809, lon: 1.43626 } }
+    - { number: "10", kind: main, from: Mundesley, to: Happisburgh, km: 9.5, relation: 77959, end: { name: Happisburgh, lat: 52.82326, lon: 1.53005 } }
+    - { number: "11", kind: main, from: Happisburgh, to: Sea Palling, km: 6.9, relation: 77959, end: { name: Sea Palling, lat: 52.78806, lon: 1.60178 }, source: huckepack-measured }
+    - { number: "12", kind: main, from: Sea Palling, to: Caister-on-Sea (North Beach), km: 17, relation: 77959, end: { name: Caister-on-Sea (North Beach), lat: 52.6600, lon: 1.7330 } }
+    - { number: "13", kind: main, from: Caister-on-Sea (North Beach), to: Hopton-on-Sea, km: 16, relation: 77959, end: { name: Hopton-on-Sea, lat: 52.53936, lon: 1.72891 } }
+route:
+  # built by `python -m pipeline.all peddars-way-and-norfolk-coast-path`: OSM ways matched to the
+  # official GPX's pieces (stages 1–4) and to the OSM relation's pieces (5–13)
+  source: osm
+  publishable: true
+difficulty:
+  estimated:
+    sac: T1
+    basis: >-
+      National Trails calls it one of the more gentle National Trails, "generally flat or with only
+      gentle gradients"; sandy tracks along a Roman road, then beaches, dunes, shingle banks,
+      saltmarsh and low cliffs, with steps but no stiles; the beach sections near Cromer and
+      Mundesley depend on the tide. Hiking on good paths (T1).
+    source: nt-info
+season:
+  # "The trail is open all year"; some winter flooding on the Peddars Way near Thorpe Woodlands
+  months: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
+  text: All year; some flooding on the Peddars Way near Thorpe Woodlands in winter (an alternative route is signed)
+  source: govuk
+sleeping:
+  # National Trails: "many campsites to suit all types of taste and budgets … It is possible to walk
+  # the Trail using campsites"; B&Bs, inns, hostels and hotels in the villages and coastal towns
+  types: [campsite, hostel, guesthouse, hotel]
+  source: nt-info
+wildCamping:
+  status: restricted
+  rule: >-
+    There are normally no rights to wild camp in England: ask the landowner's permission, or use
+    the campsites along the trail.
+  source: nt-info
+access:
+  # Thetford and Harling Road near the start, Great Yarmouth near the end, Norwich in between, and
+  # Norwich Airport. Coordinates from OSM; distances by pipeline/access.py
+  - kind: station
+    name: Thetford
+    lat: 52.41916
+    lon: 0.74528
+    source: osm
+  - kind: station
+    name: Norwich
+    lat: 52.62631
+    lon: 1.30769
+    source: osm
+  - kind: station
+    name: Great Yarmouth
+    lat: 52.61192
+    lon: 1.72069
+    source: osm
+  - kind: airport
+    name: Norwich Airport (NWI)
+    lat: 52.67518
+    lon: 1.28189
+    source: osm
+animals:
+  # Cattle (the Countryside Code, HSE) and ticks (NHS). Levels ours
+  list:
+    - kind: cattle
+      name: "Cattle"
+      level: moderate
+      basis: "The trail crosses farmland, heath and grazing marshes where cattle graze; the Health and Safety Executive names cows with calves and walkers with dogs as the two most common factors in incidents between cattle and the public."
+      do:
+        - "Give livestock plenty of space: their behaviour can be unpredictable, especially when they are with their young"
+        - "Keep your dog on a lead around livestock"
+        - "Let your dog off the lead if you feel threatened by livestock: releasing it makes it easier for you both to reach safety"
+        - "Follow the farmer's directions when animals are being moved or gathered"
+      dont:
+        - "Risk getting hurt protecting your dog"
+        - "Feed livestock"
+      source: countryside-code
+    - kind: tick
+      name: "Ticks (Lyme disease)"
+      level: low
+      basis: "Ticks that can carry Lyme disease live all over the UK, in woods and long grass, as on the Brecks' heaths and forest edges along the Peddars Way."
+      do:
+        - "Cover your skin while walking and tuck your trousers into your socks"
+        - "Use insect repellent on your clothes and skin; products containing DEET are best"
+        - "Stay on clear paths whenever possible"
+        - "Wear light-coloured clothing so ticks are easier to see and brush off"
+        - "Remove a tick with fine-tipped tweezers or a tick-removal tool: grasp it as close to the skin as possible, pull slowly upwards, then clean the bite"
+        - "Get an urgent GP appointment or call NHS 111 if, within 3 months of a bite, you feel unwell with flu-like symptoms or a round or oval rash appears"
+      dont:
+        - "Squeeze or crush the tick when you remove it"
+      source: nhs-lyme
+tags: [national-trail, roman-road, coast, saltmarsh, beaches, heathland]
+notes:
+  - >-
+    Length: none in the record. The figures National Trails and GOV.UK state cover other stretches:
+    "158 miles (254km) combined" (the Peddars Way's 74 km and the whole coast path's 180 km from
+    the Lincolnshire border), the Route Description's "129.5 miles (208 Km)" (the trail before its
+    extensions east of Cromer), and English Wikipedia's 133 miles (214 km). The page sums the
+    stages: north along the Peddars Way, then east along the coast to Hopton-on-Sea.
+  - >-
+    Days: none in the record. GOV.UK's "Peddars Way – around 4 days, Norfolk Coast Path – around
+    10 days, both trails – around 14 days in total" includes the coast path's westward arm to the
+    Lincolnshire border (48.4 km), which this route leaves out, and National Trails' "about 4 days
+    to walk the Peddars Way, and about another 7 if you head east" stops short of the extensions
+    to Hopton-on-Sea; the page counts one day per stage (13).
+  - >-
+    Stages: the sections as National Trails and GOV.UK list them. The coast path's westward arm
+    from Holme next the Sea through Hunstanton and King's Lynn to the Lincolnshire border (30.1
+    miles, 48.4 km, part of the King Charles III England Coast Path) is not in the record; stage 5's
+    25.9 km is "Holme next the Sea (and Hunstanton) to Burnham Overy Staithe". Neither list has a
+    section from Happisburgh to Sea Palling, though the coast path runs on between them (extended
+    to Sea Palling in December 2014, English Wikipedia): stage 11's length is measured on our map
+    line (huckepack-measured). Stage numbers are ours, in the order of the lists.
+  - >-
+    Map line (2026-11-05): the Suffolk and Norfolk Geofabrik extracts (2026-11-03); every stage at
+    least 95 % matched (stage 10, Mundesley to Happisburgh, 95 %: the path along the eroding cliffs
+    near Bacton and Walcott is mapped up to 160 m from the relation's line); three short gaps of
+    17–30 m between OSM ways bridged on stage 1. The main route measures 206.1 km on the map line
+    against 218.9 km for the stated sections. Stages more than 10 % off the map line: 4 (10.0 km
+    against 14.3 km) and 5 (21.6 km against 25.9 km) both count the 4 km between Holme next the Sea
+    and Hunstanton ("Sedgeford to Holme/Hunstanton", "Holme next the Sea (and Hunstanton) to
+    Burnham Overy Staithe"; National Trails' GPX measures Hunstanton to Holme at 4.0 km, so 10.0 +
+    4.0 and 21.6 + 4.0 match), while the map line runs from the Peddars Way's end at Holme; 8,
+    Weybourne to Cromer (11.6 km against 13.8 km), measures 11.7 km on National Trails' own GPX
+    too, and the record keeps the official figure; 11 is our own measure (6.9 km). Highest point
+    93 m (terrain model, on the Peddars Way in the Brecks at km 50), lowest 0 m on the beaches.
+    Water: 19 drinking-water points in OSM; the longest stretch without, 32.3 km (km 42–74, Castle
+    Acre to Sedgeford along the Peddars Way's remote northern part), where the trail passes no
+    village. Resupply: 108 shops, the longest stretch without 34.3 km from the start.
+  - >-
+    Data check (2026-11-05, working rule 2): against English Wikipedia (Peddars Way, Norfolk Coast
+    Path). Peddars Way 74 km (Wikipedia) against our map line from Knettishall Heath to Holme, 74.7
+    km (stages 1–4; stated 78.8 km including the way to Hunstanton); the coast path Hunstanton to
+    Hopton-on-Sea 133.5 km (Wikipedia) against our map line from Holme, 131.7 km, plus 4.0 km from
+    Hunstanton (135.7 km, 2 % apart); the start at Knettishall Heath and the end at Hopton-on-Sea
+    agree; the season (all year) agrees; the waymarks (acorn discs, signposts) agree; the 2014 and
+    2016 extensions to Sea Palling and Hopton-on-Sea explain the missing Happisburgh–Sea Palling
+    section in the older lists. GOV.UK repeats National Trails' sections (both Natural England's),
+    so it is no independent check of them. No figure differs by more than 10 %.
+  - >-
+    Tree line: none; the route stays below 100 m (English Wikipedia: Beeston Bump, 63 m, the coast
+    path's highest point).
+dataCheck:
+  # working rule 2: English Wikipedia
+  date: 2026-11-05
+  against: [wikipedia-en]
+  deviations: []
+sources:
+  - id: countryside-code
+    title: "Natural England and Natural Resources Wales: The Countryside Code, advice for countryside visitors (updated 26 May 2023)"
+    url: https://www.gov.uk/government/publications/the-countryside-code/the-countryside-code-advice-for-countryside-visitors
+    licence: Open Government Licence v3.0
+    retrieved: 2026-11-05
+  - id: nhs-lyme
+    title: "NHS: Lyme disease (avoiding tick bites, removing ticks, when to get help)"
+    url: https://www.nhs.uk/conditions/lyme-disease/
+    licence: © NHS, Open Government Licence (facts only)
+    retrieved: 2026-11-05
+  - id: nt
+    title: "National Trails: Peddars Way and Norfolk Coast Path, Route Description (the sections with their distances)"
+    url: https://www.nationaltrail.co.uk/en_GB/trails/peddars-way-and-norfolk-coast-path/route/
+    licence: © National Trails (facts only)
+    retrieved: 2026-11-05
+  - id: nt-info
+    title: "National Trails: Peddars Way and Norfolk Coast Path trail information & map (days, difficulty, camping, direction, the GPX Downloads)"
+    url: https://www.nationaltrail.co.uk/en_GB/trails/peddars-way-and-norfolk-coast-path/trail-information/
+    licence: All rights reserved (facts only; the GPX linked, not stored)
+    retrieved: 2026-11-05
+  - id: govuk
+    title: "Natural England (GOV.UK): Peddars Way and Norfolk Coast Path National Trail (start and end, season, waymarking, days, sections)"
+    url: https://www.gov.uk/government/publications/visit-a-national-trail-in-england/peddars-way-and-norfolk-coast-path-national-trail
+    licence: Open Government Licence v3.0
+    retrieved: 2026-11-05
+  - id: huckepack-measured
+    title: "our OpenStreetMap map line: the length of the stretch from Happisburgh to Sea Palling, which the official section lists leave out (huckepack, measured)"
+    url: https://www.openstreetmap.org/
+    licence: ODbL 1.0 (measured on OpenStreetMap data)
+    retrieved: 2026-11-05
+  - id: wikipedia-en
+    title: "Wikipedia (en): Norfolk Coast Path and Peddars Way (lengths, extensions, highest point; data check)"
+    url: https://en.wikipedia.org/wiki/Norfolk_Coast_Path
+    licence: CC BY-SA 4.0
+    retrieved: 2026-11-05
+    checkOnly: true  # only for the data check
+  - id: wikimedia
+    title: "Wikimedia: page views of the trail's Wikipedia articles in every language, by people, over twelve months (Wikidata sitelinks, pageview API)"
+    url: https://wikimedia.org/api/rest_v1/
+    licence: CC0 1.0 (pageview data); Wikidata CC0
+    retrieved: 2026-11-05
+    checkOnly: true  # not on the trail page: the page views only rank the home page's popular trails
+  - id: osm
+    title: "OpenStreetMap contributors: paths, water, shops and places to sleep along the trail (Geofabrik extracts), travel hubs"
+    url: https://www.openstreetmap.org/
+    licence: ODbL 1.0
+    retrieved: 2026-11-05
+  - id: copdem
+    title: "Copernicus DEM GLO-30 (30 m terrain model), tiles from AWS Open Data"
+    url: https://registry.opendata.aws/copernicus-dem/
+    licence: "Copernicus WorldDEM-30 licence, free; produced using Copernicus WorldDEM-30 © DLR e.V. 2010-2014 and © Airbus Defence and Space GmbH 2014-2018 provided under COPERNICUS by the European Union and ESA; all rights reserved"
+    retrieved: 2026-11-05
+  - id: worldcover
+    title: "ESA WorldCover 2021: 10 m land cover (via AWS Open Data)"
+    url: https://esa-worldcover.org/
+    licence: "CC BY 4.0; © ESA WorldCover project 2021 / Contains modified Copernicus Sentinel data (2021) processed by ESA WorldCover consortium"
+    retrieved: 2026-11-05
+  - id: era5
+    title: "Open-Meteo open data on AWS: ERA5-Land temperature and ERA5 precipitation, snow and wind, daily 1995–2024 (reanalysis)"
+    url: https://github.com/open-meteo/open-data
+    licence: CC BY 4.0 (Open-Meteo); contains modified Copernicus Climate Change Service information
+    retrieved: 2026-11-05
+  - id: osrm
+    title: "OSRM: road routes on OpenStreetMap data (router.project-osrm.org)"
+    url: https://project-osrm.org/
+    licence: Route data © OpenStreetMap contributors (ODbL)
+    retrieved: 2026-11-05

@@ -993,6 +993,33 @@ export const SKYLINES: Record<string, Skyline> = {
       { d: hills([[480, G], [620, 254], [800, 232], [940, 260], [1040, G]]), c: "#7f9a54" },
     ],
   },
+  "peddars-way-and-norfolk-coast-path": {
+    view: "North Norfolk's big sky: Thetford Forest's pines in the Brecks by the Roman road, Cley's brick windmill over the saltmarsh, sand dunes, and Happisburgh's striped lighthouse above the low cliffs by the North Sea",
+    ridge: "#93a86a",
+    ground: "#a3ad72",
+    shapes: [
+      // the low, wooded Cromer Ridge far behind the coast
+      { d: hills([[380, G], [560, 266], [760, 258], [960, 266], [1100, G]]), c: "#a9b7a0" },
+      // the North Sea along the right half
+      { d: water(820, 1600, 282), c: SEA },
+      // the Brecks: Thetford Forest's dark pine belt behind the heath by the Roman road
+      { d: hills([[0, G], [90, 270], [260, 262], [420, 270], [520, G]]), c: "#3d5636" },
+      { d: hills([[0, G], [140, 288], [320, 284], [470, 290], [560, G]]), c: "#9c9a62" },
+      // the saltmarsh, with its creeks
+      { d: hills([[480, G], [600, 286], [900, 284], [1080, 288], [1160, G]]), c: "#8f9c5c" },
+      { d: "M640,292Q700,288 760,292Q820,296 880,292L884,295Q820,299 760,295Q700,291 644,295Z", c: "#6f9fc0" },
+      // Cley windmill: a tapering brick tower, a white cap and four sails
+      { d: "M590,286L596,226H616L622,286Z", c: "#8a5a3c" },
+      { d: "M592,226A14,11 0 0 1 620,226Z", c: "#eeeae0" },
+      { d: "M606,222L640,188L644,192L610,226Z M606,222L572,188L568,192L602,226Z M606,222L572,256L568,252L602,218Z M606,222L640,256L644,252L610,218Z", c: "#e4ded0" },
+      // sand dunes along the shore
+      { d: hills([[1040, G], [1120, 280], [1200, 276], [1300, 282], [1380, G]]), c: "#d9c48e" },
+      // Happisburgh lighthouse: white, with three red bands, on the low cliff
+      { d: range([[1380, G], [1420, 278], [1560, 276], [1600, 280], [1600, G]]), c: "#b89a6a" },
+      { d: lighthouse(1490, 277, 64), c: "#f2f0ea" },
+      { d: "M1485.1,262L1484.6,252H1495.4L1494.9,262Z M1484.1,242L1483.6,232H1496.4L1495.9,242Z M1483.1,222L1482.8,214H1497.2L1496.9,222Z M1485,213V207H1495V213Z", c: "#c0392b" },
+    ],
+  },
   "overland-track": {
     view: "Cradle Mountain: its jagged dolerite crown of columns over Dove Lake, buttongrass plains and a stand of pencil pines in front",
     ridge: "#8a8a5a",
