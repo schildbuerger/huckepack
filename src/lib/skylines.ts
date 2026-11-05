@@ -993,6 +993,27 @@ export const SKYLINES: Record<string, Skyline> = {
       { d: hills([[480, G], [620, 254], [800, 232], [940, 260], [1040, G]]), c: "#7f9a54" },
     ],
   },
+  "fife-coastal-path": {
+    view: "The Firth of Forth with the red Forth Bridge, the East Neuk's fishing villages of red-roofed houses round a harbour, and St Andrews' ruined cathedral towers by the sea",
+    ridge: "#8fa868",
+    ground: "#9ab866",
+    shapes: [
+      // the Lomond Hills far inland
+      { d: hills([[500, G], [640, 254], [760, 238], [860, 250], [980, 240], [1100, 258], [1200, G]]), c: "#a7b4a2" },
+      // the Firth of Forth and the North Sea along the whole coast
+      { d: water(0, 1600, 280), c: SEA },
+      // the Forth Bridge: three red cantilevers, each a triangular frame over an arch, on their piers
+      { d: "M74,274L140,234L206,274Z M88,272Q140,249.2 192,272L140,243Z M224,274L290,234L356,274Z M238,272Q290,249.2 342,272L290,243Z M374,274L440,234L506,274Z M388,272Q440,249.2 492,272L440,243Z M60,274H520V278H60Z M134,274V292H146V274Z M284,274V292H296V274Z M434,274V292H446V274Z", c: "#b0412e" },
+      // the coast: fields and a low headland
+      { d: hills([[480, G], [600, 286], [800, 278], [980, 286], [1080, G]]), c: "#8fa868" },
+      // an East Neuk village: white houses with red pantile roofs round the harbour
+      { d: "M700,290V276H716V290Z M720,290V272H738V290Z M742,290V278H756V290Z M760,290V274H776V290Z", c: "#f0ebe0" },
+      { d: "M698,276L708,266L718,276Z M718,272L729,261L740,272Z M740,278L749,269L758,278Z M758,274L768,264L778,274Z", c: "#b65a3c" },
+      // St Andrews: the ruined cathedral's two tall gable towers and St Rule's tower, on its headland
+      { d: range([[1180, G], [1240, 280], [1420, 276], [1500, 282], [1560, G]]), c: "#8a8a6a" },
+      { d: "M1300,280V232L1308,222L1316,232V280Z M1360,280V230L1368,220L1376,230V280Z M1400,280V238H1414V280Z M1316,280V262H1360V280Z", c: "#b8a48a" },
+    ],
+  },
   "st-cuthberts-way": {
     view: "From the Eildon Hills' three summits over Melrose Abbey's ruin and the Cheviot foothills to Lindisfarne Castle on its rock above the tidal sands",
     ridge: "#7f9a54",
