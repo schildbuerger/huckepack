@@ -6,6 +6,7 @@
 // ours. Flat colours only.
 
 import { SKYLINES, SKY_W, SKY_H } from "./skylines";
+import { withDetail } from "./skyline-detail";
 import { SKY } from "./sky";
 
 export type AnimalKind = "bear" | "wolf" | "big-cat" | "boar" | "cattle" | "dog" | "monkey" | "snake" | "scorpion" | "spider" | "tick" | "hogweed";
@@ -111,7 +112,7 @@ export const backdrop = (slug: string) => {
   const shape = (x: { d: string; c: string }) => `<path class="bd" d="${x.d}" style="--c:${x.c}"/>`;
   return [
     `<rect x="${-BLEED}" y="${-TOP}" width="${SCENE_W + 2 * BLEED}" height="${SCENE_H + TOP}" class="bd-sky" fill="${SKY.day}"/>`,
-    `<g transform="translate(${dx} ${SKY_FOOT - SKY_H * k}) scale(${k})">${sky.shapes.map(shape).join("")}${(sky.front ?? []).map(shape).join("")}</g>`,
+    `<g transform="translate(${dx} ${SKY_FOOT - SKY_H * k}) scale(${k})">${withDetail(sky).map(shape).join("")}</g>`,
     `<rect x="${-BLEED}" y="${SKY_FOOT}" width="${SCENE_W + 2 * BLEED}" height="${SCENE_H - SKY_FOOT}" class="bd" style="--c:${sky.ground}"/>`,
     `<rect x="${-BLEED}" y="252" width="${SCENE_W + 2 * BLEED}" height="${SCENE_H - 252}" fill="#000" fill-opacity="0.07"/>`,
   ].join("");

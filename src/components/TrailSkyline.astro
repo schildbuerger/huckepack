@@ -5,8 +5,10 @@
 // lower right the mountains the trail is known for, drawn by hand (src/lib/skylines.ts) and seen from far
 // away, with the trail's own elevation profile as the nearest ridge. The drawing has no cut edges: the
 // massif slopes down and the ridge tapers into the ground, which runs across the band's foot. Flat colours
-// and shapes only; the drawing is decorative (aria-hidden), the name is the page's h1.
+// and shapes only, shaded and detailed (src/lib/skyline-detail.ts); the drawing is decorative (aria-hidden), the name is the page's h1.
 import { SKYLINES, SKY_W, SKY_H, SKY_TOP, profileRidge } from "../lib/skylines";
+// the drawing's detail: shadow faces, shaded snow, tree crowns, glints (src/lib/skyline-detail.ts)
+import { withDetail } from "../lib/skyline-detail";
 
 interface Props {
   slug: string;
@@ -36,11 +38,7 @@ const ridge = profileRidge(points, routeKm);
       <div class="sk-scene" aria-hidden="true">
         <span class="sk-sun" data-theme-sun />
         <svg class="sk-svg" viewBox={`0 ${SKY_TOP} ${SKY_W} ${SKY_H - SKY_TOP}`} preserveAspectRatio="xMidYMax meet">
-          {sky.shapes.map((s) => (
-            <path class="sk-shape" d={s.d} style={`--c: ${s.c}`} />
-          ))}
-          <path class="sk-shape" d={ridge} style={`--c: ${sky.ridge}`} />
-          {(sky.front ?? []).map((s) => (
+          {withDetail(sky, ridge).map((s) => (
             <path class="sk-shape" d={s.d} style={`--c: ${s.c}`} />
           ))}
         </svg>

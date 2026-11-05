@@ -20,6 +20,11 @@ export interface Skyline {
 }
 
 const G = 320; // the ground
+// what each drawn outline was made from (its helper and points), so src/lib/skyline-detail.ts can add
+// flat shading and small details to it without touching the drawings
+export type ShapeMeta = { kind: "range" | "hills" | "snow" | "water"; pts?: P[]; line?: number; x0?: number; x1?: number; y?: number };
+export const SHAPE_META = new Map<string, ShapeMeta>();
+const reg = (d: string, m: ShapeMeta) => (SHAPE_META.set(d, m), d);
 const pt = (p: P) => `${p[0]},${p[1]}`;
 // No cut-offs (2026-11-03): a broad shape (BROAD units or wider) never meets the ground in a wall.
 // Where its end drops steeper than 2 : 1 (run under STEEP × rise; a cliff, a headland), `range` gives
@@ -69,7 +74,8 @@ const eased = (top: P[]) => {
 const easeIn = (p: P) => `M0,${G}C${p[0] / 2},${G} ${p[0] / 2},${p[1]} ${pt(p)}`;
 const easeOut = (p: P) => `C${(p[0] + SKY_W) / 2},${p[1]} ${(p[0] + SKY_W) / 2},${G} ${SKY_W},${G}`;
 // a range of mountains through hand-placed points, its ends brought down to the ground
-const range = (pts: P[]) => {
+const range = (pts: P[]) => reg(rangeD(pts), { kind: "range", pts });
+const rangeD = (pts: P[]) => {
   const { pts: top, left, right } = eased(pts.slice(1, -1));
   const [x0, x1] = [pts[0][0], pts[pts.length - 1][0]];
   if (!left && !right && Math.abs(x1 - x0) < BROAD) return `M${x0},${G}L${top.map(pt).join("L")}L${x1},${G}Z`;
@@ -81,7 +87,8 @@ const range = (pts: P[]) => {
   return `${start}${rest}${end}Z`;
 };
 // rounded hills: the same through smooth curves (quadratics through the midpoints)
-const hills = (pts: P[]) => {
+const hills = (pts: P[]) => reg(hillsD(pts), { kind: "hills", pts });
+const hillsD = (pts: P[]) => {
   const { pts: all, left, right } = eased(pts.slice(1, -1));
   // the points the curve bends towards (the eased ends are points it passes through)
   const p = all.slice(left ? 1 : 0, right ? -1 : undefined);
@@ -102,14 +109,14 @@ const snowOf = (pts: P[], line: number) => {
     if (a[1] <= line) out.push(a);
     if (a[1] <= line !== b[1] <= line) out.push([Math.round(a[0] + ((b[0] - a[0]) * (line - a[1])) / (b[1] - a[1])), line]);
   });
-  return out.length ? `M${out.map(pt).join("L")}Z` : "";
+  return out.length ? reg(`M${out.map(pt).join("L")}Z`, { kind: "snow", pts, line }) : "";
 };
 // a lake, a river or the sea: a level band whose ends run down to the ground
 const water = (x0: number, x1: number, y: number) => {
   const run = Math.max(30, G - y);
   const a = x0 <= 0 ? easeIn([Math.round(Math.max(EASE_MIN, TAPER * (G - y))), y]) : `M${x0},${G}L${x0 + run},${y}`;
   const b = x1 >= SKY_W ? `L${Math.round(SKY_W - Math.max(EASE_MIN, TAPER * (G - y)))},${y}${easeOut([Math.round(SKY_W - Math.max(EASE_MIN, TAPER * (G - y))), y])}` : `L${x1 - run},${y}L${x1},${G}`;
-  return `${a}${b}Z`;
+  return reg(`${a}${b}Z`, { kind: "water", x0, x1, y });
 };
 // a slim tower (a lookout or transmitter) with its mast
 const tower = (x: number, y: number, h: number, w = 6) =>

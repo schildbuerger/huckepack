@@ -8,6 +8,7 @@ import { readFileSync } from "node:fs";
 import opentype from "opentype.js";
 import sharp from "sharp";
 import { SKYLINES, SKY_W, SKY_H, profileRidge } from "./skylines";
+import { withDetail } from "./skyline-detail";
 import { SKY } from "./sky";
 
 export const OG = { width: 1200, height: 630 };
@@ -178,7 +179,7 @@ export function skylineShapes(slug: string, profile: OgTrail["profile"], x0: num
   const sky = SKYLINES[slug];
   if (!sky || !profile) return "";
   const s = width / SKY_W;
-  const shapes = [...sky.shapes, { d: profileRidge(profile.points, profile.routeKm), c: sky.ridge }, ...(sky.front ?? [])];
+  const shapes = withDetail(sky, profileRidge(profile.points, profile.routeKm));
   return `<g transform="translate(${r1(x0)} ${r1(foot - SKY_H * s)}) scale(${s})">${shapes.map((p) => `<path d="${p.d}" fill="${p.c}"/>`).join("")}</g>`;
 }
 
