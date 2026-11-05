@@ -1,0 +1,229 @@
+name: Yorkshire Wolds Way
+added: 2026-11-05
+aliases: [Yorkshire Wolds Way National Trail, Wolds Way]
+website: https://www.nationaltrail.co.uk/en_GB/trails/yorkshire-wolds-way/
+wikidata: Q2600857
+managedBy:
+  # a National Trail (Natural England) (National Trails, GOV.UK)
+  - name: Natural England (National Trails)
+    url: https://www.nationaltrail.co.uk/en_GB/trails/yorkshire-wolds-way/
+officialGpx:
+  # National Trails' GPX for the whole trail, its "Download Walking GPX" link (checked 2026-11-05)
+  url: https://www.nationaltrail.co.uk/en_GB/trails/yorkshire-wolds-way/trail-information/
+  by: National Trails
+  source: nt-info
+trailType: point-to-point
+continents: [Europe]
+countries: [GB]
+regions: [East Riding of Yorkshire, North Yorkshire]
+termini:
+  # the ends of National Trails' GPX: Hessle Haven on the Humber foreshore, the official start ("for
+  # historic reasons the official start is a short distance back at Hessle Haven"), and Filey Brigg,
+  # where the Cleveland Way begins
+  start:
+    name: Hessle
+    lat: 53.71731
+    lon: -0.43464
+  end:
+    name: Filey Brigg
+    lat: 54.21902
+    lon: -0.27673
+  source: nt
+waymarking:
+  text: The National Trail acorn, or the trail's name, on gates and signposts
+  source: govuk
+length:
+  # "The Trail is 79 mile (127 km) long" (the route page says "just under 80 mile (129 Km)")
+  - km: 127
+    source: nt-info
+days:
+  # "The official guide book recommends a 5 or 6 day walk"
+  min: 5
+  max: 6
+  source: nt-info
+stages:
+  # the National Trail's six sections (Route Description), by Goodmanham where section 2 offers
+  # Market Weighton too. One official GPX (its first track the route by Goodmanham, its second the
+  # branch to Market Weighton), cut at each section's `end`, placed on the GPX; it only guides the OSM
+  # matcher (kept local)
+  source: nt
+  list:
+    - { number: "1", kind: main, from: Hessle, to: South Cave, km: 21, track: "https://nationaltrails.s3.eu-west-2.amazonaws.com/uploads/Yorkshire_Wolds_Way_Elev.gpx", end: { name: South Cave, lat: 53.77384, lon: -0.59076 } }
+    - { number: "2", kind: main, from: South Cave, to: Goodmanham, km: 19, track: "https://nationaltrails.s3.eu-west-2.amazonaws.com/uploads/Yorkshire_Wolds_Way_Elev.gpx", end: { name: Goodmanham, lat: 53.87713, lon: -0.64511 } }
+    - { number: "3", kind: main, from: Goodmanham, to: Millington, km: 13.5, track: "https://nationaltrails.s3.eu-west-2.amazonaws.com/uploads/Yorkshire_Wolds_Way_Elev.gpx", end: { name: Millington, lat: 53.9513, lon: -0.7265 } }
+    - { number: "4", kind: main, from: Millington, to: Thixendale, km: 19, track: "https://nationaltrails.s3.eu-west-2.amazonaws.com/uploads/Yorkshire_Wolds_Way_Elev.gpx", end: { name: Thixendale, lat: 54.03919, lon: -0.71618 } }
+    - { number: "5", kind: main, from: Thixendale, to: Sherburn, km: 30, track: "https://nationaltrails.s3.eu-west-2.amazonaws.com/uploads/Yorkshire_Wolds_Way_Elev.gpx", end: { name: Sherburn, lat: 54.17047, lon: -0.53233 } }
+    - { number: "6", kind: main, from: Sherburn, to: Filey Brigg, km: 28, track: "https://nationaltrails.s3.eu-west-2.amazonaws.com/uploads/Yorkshire_Wolds_Way_Elev.gpx", end: { name: Filey Brigg, lat: 54.21902, lon: -0.27673 } }
+route:
+  # built by `python -m pipeline.all yorkshire-wolds-way`: OSM ways matched to the official GPX's pieces
+  source: osm
+  publishable: true
+difficulty:
+  estimated:
+    sac: T1
+    basis: >-
+      National Trails: "With a few short exceptions there are no 'serious' hills along the Way. This is
+      a gentle, subtle route suitable for almost all abilities"; field paths, tracks and dry valleys
+      in chalk country, no stiles. Hiking on good paths (T1).
+    source: nt-info
+season:
+  # "The trail is open all year"
+  months: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
+  text: All year
+  source: govuk
+sleeping:
+  # National Trails: campsites along the trail (interactive map, accommodation guide); B&Bs, inns
+  # and hotels in the villages and towns (OSM along the route, pipeline/along.py)
+  types: [campsite, guesthouse, hotel]
+  source: nt-info
+wildCamping:
+  status: restricted
+  rule: >-
+    There are normally no rights for National Trail users to wild camp in England: ask the
+    landowner's permission, or use the campsites along the trail.
+  source: nt-info
+access:
+  # Hessle station by the start; Humberside the nearest airport, Leeds Bradford the nearest larger
+  # one. Coordinates from OSM; distances by pipeline/access.py
+  - kind: station
+    name: Hessle
+    lat: 53.71737
+    lon: -0.4421
+    source: osm
+  - kind: airport
+    name: Humberside Airport (HUY)
+    lat: 53.5714
+    lon: -0.35346
+    source: osm
+  - kind: airport
+    name: Leeds Bradford Airport (LBA)
+    lat: 53.86665
+    lon: -1.65678
+    source: osm
+animals:
+  # Cattle (the Countryside Code, HSE) and ticks (NHS). Levels ours
+  list:
+    - kind: cattle
+      name: "Cattle"
+      level: moderate
+      basis: "The Way crosses the Wolds' fields and dales where cattle graze; the Health and Safety Executive names cows with calves and walkers with dogs as the two most common factors in incidents between cattle and the public."
+      do:
+        - "Give livestock plenty of space: their behaviour can be unpredictable, especially when they are with their young"
+        - "Keep your dog on a lead around livestock"
+        - "Let your dog off the lead if you feel threatened by livestock: releasing it makes it easier for you both to reach safety"
+        - "Follow the farmer's directions when animals are being moved or gathered"
+      dont:
+        - "Risk getting hurt protecting your dog"
+        - "Feed livestock"
+      source: countryside-code
+    - kind: tick
+      name: "Ticks (Lyme disease)"
+      level: low
+      basis: "Ticks that can carry Lyme disease live all over the UK, in woods and long grass; the NHS names grassy and wooded areas in southern England and the Scottish Highlands as high-risk areas."
+      do:
+        - "Cover your skin while walking and tuck your trousers into your socks"
+        - "Use insect repellent on your clothes and skin; products containing DEET are best"
+        - "Stay on clear paths whenever possible"
+        - "Wear light-coloured clothing so ticks are easier to see and brush off"
+        - "Remove a tick with fine-tipped tweezers or a tick-removal tool: grasp it as close to the skin as possible, pull slowly upwards, then clean the bite"
+        - "Get an urgent GP appointment or call NHS 111 if, within 3 months of a bite, you feel unwell with flu-like symptoms or a round or oval rash appears"
+      dont:
+        - "Squeeze or crush the tick when you remove it"
+      source: nhs-lyme
+tags: [national-trail, chalk-wolds, dry-valleys, humber, coast]
+notes:
+  - >-
+    Stages: the National Trail's six sections add up to 130.5 km in their rounded miles (stated
+    127 km on the information page and GOV.UK, "just under 80 mile (129 Km)" on the route page).
+    Section 2 ends at Goodmanham or Market Weighton; the record follows the branch by Goodmanham, the
+    GPX's main track. The sections give no climbs; the highest point is "700ft (215m)" beyond
+    Thixendale (National Trails).
+  - >-
+    Route (pipeline, 2026-11-05, Geofabrik extracts): National Trails' GPX (its first track, by
+    Goodmanham), cut at each section's end; every section matches at least 97 %. The map line is
+    123.6 km against the sections' 130.5 km and the stated 127 km; the GPX itself is 124.3 km.
+    Section 6, Sherburn to Filey Brigg, is 24.6 km on the map line and on the GPX against the stated
+    "17 miles (28 Km)"; the record keeps the stated figure. Highest point on the map line 218 m (km
+    72, beyond Thixendale; stated 215 m).
+  - >-
+    Water and beds: (2026-11-05, within 500 m) OSM has only 3 drinking water points near the route
+    (longest stretch without one 52.3 km, km 70–122) and 5 places to sleep (none for 68.8 km, km
+    53–122). National Trails' route description names accommodation and pubs in Thixendale,
+    Fridaythorpe and Sherburn, and its accommodation guide lists more; walkers refill in the
+    villages' pubs, cafés and shops.
+  - >-
+    Data check (2026-11-05). Second sources: Natural England's GOV.UK page (79 miles, 127 km;
+    around 6 days; open all year) and English Wikipedia (79 miles, 127 km; opened 2 October 1982).
+    Length, days and season agree; the sections are National Trails' own, with no second source.
+  - >-
+    Protected areas: none. The Yorkshire Wolds are no National Landscape, and neither National
+    Trails nor GOV.UK names a national park or nature park on the way (2026-11-05); Rifle Butts
+    Quarry is a small local reserve.
+dataCheck:
+  # working rule 2: GOV.UK (Natural England), English Wikipedia
+  date: 2026-11-05
+  against: [govuk, wikipedia-en]
+  deviations: []
+sources:
+  - id: countryside-code
+    title: "Natural England and Natural Resources Wales: The Countryside Code, advice for countryside visitors (updated 26 May 2023)"
+    url: https://www.gov.uk/government/publications/the-countryside-code/the-countryside-code-advice-for-countryside-visitors
+    licence: Open Government Licence v3.0
+    retrieved: 2026-11-05
+  - id: nhs-lyme
+    title: "NHS: Lyme disease (avoiding tick bites, removing ticks, when to get help)"
+    url: https://www.nhs.uk/conditions/lyme-disease/
+    licence: © NHS, Open Government Licence (facts only)
+    retrieved: 2026-11-05
+  - id: nt
+    title: "National Trails: Yorkshire Wolds Way, Route Description (the sections with their distances, start, highest point)"
+    url: https://www.nationaltrail.co.uk/en_GB/trails/yorkshire-wolds-way/route/
+    licence: © National Trails (facts only)
+    retrieved: 2026-11-05
+  - id: nt-info
+    title: "National Trails: Yorkshire Wolds Way trail information & map (length, days, difficulty, camping, the Download Walking GPX link)"
+    url: https://www.nationaltrail.co.uk/en_GB/trails/yorkshire-wolds-way/trail-information/
+    licence: All rights reserved (facts only; the GPX linked, not stored)
+    retrieved: 2026-11-05
+  - id: govuk
+    title: "Natural England (GOV.UK): Yorkshire Wolds Way National Trail (length, days, season, waymarking)"
+    url: https://www.gov.uk/government/publications/visit-a-national-trail-in-england/yorkshire-wolds-way-national-trail
+    licence: Open Government Licence v3.0
+    retrieved: 2026-11-05
+  - id: wikipedia-en
+    title: "Wikipedia (en): Yorkshire Wolds Way (length, opened 2 October 1982; data check)"
+    url: https://en.wikipedia.org/wiki/Yorkshire_Wolds_Way
+    licence: CC BY-SA 4.0
+    retrieved: 2026-11-05
+    checkOnly: true  # only for the data check
+  - id: wikimedia
+    title: "Wikimedia: page views of the trail's Wikipedia articles in every language, by people, over twelve months (Wikidata sitelinks, pageview API)"
+    url: https://wikimedia.org/api/rest_v1/
+    licence: CC0 1.0 (pageview data); Wikidata CC0
+    retrieved: 2026-11-05
+    checkOnly: true  # not on the trail page: the page views only rank the home page's popular trails
+  - id: osm
+    title: "OpenStreetMap contributors: paths, water, shops and places to sleep along the trail (Geofabrik extracts), travel hubs"
+    url: https://www.openstreetmap.org/
+    licence: ODbL 1.0
+    retrieved: 2026-11-05
+  - id: copdem
+    title: "Copernicus DEM GLO-30 (30 m terrain model), tiles from AWS Open Data"
+    url: https://registry.opendata.aws/copernicus-dem/
+    licence: "Copernicus WorldDEM-30 licence, free; produced using Copernicus WorldDEM-30 © DLR e.V. 2010-2014 and © Airbus Defence and Space GmbH 2014-2018 provided under COPERNICUS by the European Union and ESA; all rights reserved"
+    retrieved: 2026-11-05
+  - id: worldcover
+    title: "ESA WorldCover 2021: 10 m land cover (via AWS Open Data)"
+    url: https://esa-worldcover.org/
+    licence: "CC BY 4.0; © ESA WorldCover project 2021 / Contains modified Copernicus Sentinel data (2021) processed by ESA WorldCover consortium"
+    retrieved: 2026-11-05
+  - id: era5
+    title: "Open-Meteo open data on AWS: ERA5-Land temperature and ERA5 precipitation, snow and wind, daily 1995–2024 (reanalysis)"
+    url: https://github.com/open-meteo/open-data
+    licence: CC BY 4.0 (Open-Meteo); contains modified Copernicus Climate Change Service information
+    retrieved: 2026-11-05
+  - id: osrm
+    title: "OSRM: road routes on OpenStreetMap data (router.project-osrm.org)"
+    url: https://project-osrm.org/
+    licence: Route data © OpenStreetMap contributors (ODbL)
+    retrieved: 2026-11-05

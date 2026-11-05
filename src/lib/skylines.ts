@@ -954,6 +954,21 @@ export const SKYLINES: Record<string, Skyline> = {
       { d: range([[0, G], [0, 284], [300, 278], [600, 284], [720, 292], [780, G]]), c: "#e0c99a" },
     ],
   },
+  "yorkshire-wolds-way": {
+    view: "The Yorkshire Wolds: smooth chalk hills folded into a deep dry valley, and Filey Brigg running out as a low rocky finger into the North Sea",
+    ridge: MEADOW,
+    ground: "#9ab866",
+    shapes: [
+      // the far wolds
+      { d: hills([[0, G], [200, 248], [460, 236], [700, 246], [900, 240], [1040, G]]), c: "#a7b98a" },
+      { d: water(960, 1600, 266), c: SEA },
+      // Filey Brigg: a long, low headland ending in a rocky reef
+      { d: range([[1000, G], [1040, 262], [1200, 258], [1380, 262], [1470, 266], [1500, G]]), c: "#8a7a64" },
+      // the two sides of a dry valley in front, its smooth floor between them
+      { d: hills([[0, G], [100, 262], [300, 236], [430, 252], [520, G]]), c: "#8fa868" },
+      { d: hills([[480, G], [620, 254], [800, 232], [940, 260], [1040, G]]), c: "#7f9a54" },
+    ],
+  },
   "the-ridgeway": {
     view: "The open Berkshire Downs on The Ridgeway: Whitehorse Hill with the Uffington White Horse cut into its chalk, and a clump of beeches by the old track",
     ridge: MEADOW,

@@ -1,0 +1,70 @@
+{
+  "climate-high.json": {
+    "retrieved": "2026-11-05T08:57:02+00:00",
+    "url": "https://openmeteo.s3.us-west-2.amazonaws.com/data/copernicus_era5_land+copernicus_era5?latitude=54.1&longitude=-0.7&elevation=220"
+  },
+  "climate-low.json": {
+    "retrieved": "2026-11-05T08:53:31+00:00",
+    "url": "https://openmeteo.s3.us-west-2.amazonaws.com/data/copernicus_era5_land+copernicus_era5?latitude=53.7&longitude=-0.5&elevation=0"
+  },
+  "elevation-glo30.json": {
+    "retrieved": "2026-11-05T08:49:37+00:00",
+    "url": "https://copernicus-dem-30m.s3.eu-central-1.amazonaws.com/Copernicus_DSM_COG_10_N53_00_W001_00_DEM/Copernicus_DSM_COG_10_N53_00_W001_00_DEM.tif https://copernicus-dem-30m.s3.eu-central-1.amazonaws.com/Copernicus_DSM_COG_10_N54_00_W001_00_DEM/Copernicus_DSM_COG_10_N54_00_W001_00_DEM.tif"
+  },
+  "landcover.json": {
+    "retrieved": "2026-11-05T08:49:38+00:00",
+    "url": "https://esa-worldcover.s3.eu-central-1.amazonaws.com/v200/2021/map/ESA_WorldCover_10m_2021_v200_\u2026_Map.tif"
+  },
+  "osm-stage-1-main.json": {
+    "retrieved": "2026-10-31T21:23:06Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-2-main.json": {
+    "retrieved": "2026-10-31T21:23:06Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-3-main.json": {
+    "retrieved": "2026-10-31T21:23:06Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-4-main.json": {
+    "retrieved": "2026-10-31T21:23:06Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-5-main.json": {
+    "retrieved": "2026-10-31T21:23:06Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-6-main.json": {
+    "retrieved": "2026-10-31T21:23:06Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-water.json": {
+    "retrieved": "2026-10-31T21:23:06Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-way-tags.json": {
+    "retrieved": "2026-10-31T21:23:06Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osrm-access-hessle.json": {
+    "retrieved": "2026-11-05T08:57:02+00:00",
+    "url": "https://router.project-osrm.org/route/v1/driving/-0.4421,53.71737;-0.43464,53.71731?overview=false"
+  },
+  "osrm-access-humberside-airport-huy.json": {
+    "retrieved": "2026-11-05T08:57:02+00:00",
+    "url": "https://router.project-osrm.org/route/v1/driving/-0.35346,53.5714;-0.43464,53.71731?overview=false"
+  },
+  "osrm-access-leeds-bradford-airport-lba.json": {
+    "retrieved": "2026-11-05T08:57:02+00:00",
+    "url": "https://router.project-osrm.org/route/v1/driving/-1.65678,53.86665;-0.43464,53.71731?overview=false"
+  },
+  "stage-1-main.gpx": {
+    "retrieved": "2026-11-05T08:48:59+00:00",
+    "url": "https://nationaltrails.s3.eu-west-2.amazonaws.com/uploads/Yorkshire_Wolds_Way_Elev.gpx"
+  },
+  "wikimedia.json": {
+    "retrieved": "2026-11-05T08:57:03+00:00",
+    "url": "Q2600857 2025-11..2026-10"
+  }
+}
