@@ -42,6 +42,15 @@
   (a park, a tourism board, Wikipedia's infobox); where a thorough search finds none, every month
   for now (source `huckepack-season`, naming what was searched), so the trail can be picked in
   every month of the search's When filter until a source gives one. The build requires it.
+- **Photos per trail** (decided 2026-11-05, after the research of the same day and five previews:
+  the mosaic picked): up to eight photos from Wikimedia Commons, found through the trail's Wikidata
+  item (its photo, P18, and its Commons category, P373, with the subcategories named after it), only
+  public domain, CC0, CC BY or CC BY-SA, no restriction tagged, a named author; a photo with a camera
+  position within 1 km of the map line, placed at its kilometre, and spread along the route. Served
+  as our own resized WebP copies (no hotlinking, no new host); each credited in the gallery (author,
+  licence, linked to its file page) and the authors under the mosaic and in the Sources. A hand check
+  drops a file through data/reference/photo-exclude.yaml. Not Unsplash or Pexels (keyword-tagged,
+  nothing proves a photo shows the trail). A trail without usable photos keeps its page as before.
 - **Logbook** (issue #80): the recently added trails as hut stamps, grey until
   pointed at, then in their ink, in one band with the heading and the link to
   all trails (decided 2026-11-05, of five previews: hut book, hut stamps,
@@ -468,29 +477,4 @@
 - **First trail:** see the ranking in [roadmap.md](roadmap.md).
 - **Language:** English only?
 - **Licence** for the code and for the derived data.
-- **Photos per trail** (researched 2026-11-05, nothing built): free photos
-  are possible without paying or breaking a licence, from Wikimedia Commons
-  (sources in [data-sources.md](data-sources.md), Photos). The plan, if we go
-  ahead: the trail's Wikidata item (60 of 66 records have one) names a photo
-  (P18, "image") and a Commons category (P373); take only public domain, CC0,
-  CC BY or CC BY-SA files (no NC or ND, none with a personality-rights
-  warning, the uploader the author), checked once by hand like any source,
-  since Wikimedia doesn't warrant a file's licence. The pipeline downloads a
-  resized copy (WebP) and the site serves it itself: Commons allows
-  hotlinking but advises against it, and a copy of our own adds no host to
-  the privacy policy or the CSP and keeps pages fast. Each photo is a source
-  in the record (author, licence, file page, retrieved) with a credit line
-  under it ("Photo: <author>, CC BY-SA 4.0, Wikimedia Commons", linked);
-  resizing keeps the licence, a crop of a BY-SA photo stays BY-SA (the page
-  doesn't). Not Unsplash or Pexels: keyword-tagged, so nothing proves a photo
-  shows the trail, and Unsplash's API terms require hotlinking from its
-  servers and a download call per pick. Not tourism boards' press photos
-  unless one carries an open licence (usually editorial use only, time-limited).
-  Open: whether a photo answers a planning question at all (the mission's
-  checklist; candidates are beside the skyline in the page head, "what the
-  landscape looks like", and the featured trail's card), and where it goes:
-  a bigger design change, so a preview with three approaches first (working
-  rule 1). A trail without a suitable photo keeps its page as now, like
-  skylines and waymarks. Hosts the pipeline would need: commons.wikimedia.org,
-  upload.wikimedia.org, www.wikidata.org (blocked in the cloud sandbox on
-  2026-11-05, so coverage wasn't counted).
+

@@ -22,6 +22,7 @@ import { n1, stripPaths } from "../../lib/svg";
 import { difficulty, levelText, DIFFICULTY_FACTS, DIMENSION_TEXT, LEVELS, SCALES, type Level } from "../../lib/difficulty";
 import { monthsText, rateData } from "../../lib/months";
 import { existsSync } from "node:fs";
+import TrailPhotos, { type Photo } from "../../components/TrailPhotos.astro";
 import { ownGpx } from "../../lib/gpx";
 import {
   countryName,
@@ -58,6 +59,10 @@ const t = trail.data;
 const derived = (await getEntry("derived", trail.id))?.data;
 // our own GPX where the operator offers none (src/lib/gpx.ts)
 const own = ownGpx(trail.id, t.officialGpx);
+// the trail's photos from Wikimedia Commons (pipeline/photos.py), under the key figures
+const photoFiles = import.meta.glob<{ default: { category: string | null; photos: Photo[] } }>("../../../data/photos/*.json", { eager: true });
+const photoData = photoFiles[`../../../data/photos/${trail.id}.json`]?.default;
+const photos = photoData?.photos ?? [];
 // the page's head on a handcrafted skyline in miniature (issue #142), where the trail has one and an
 // elevation profile; its sky follows the visitor's clock, set before the first paint (src/lib/sky.ts)
 const skyline = Boolean(SKYLINES[trail.id] && derived?.elevation);
@@ -857,6 +862,8 @@ const trailLd = JSON.stringify({
       )}
     </dl>
   </section>
+
+  {photos.length > 0 && <TrailPhotos photos={photos} trailName={t.name} />}
 
   <!-- location and map in one section (from 900 px side by side: the facts left, the map right
        and as tall as they are); #map still leads to the map -->
@@ -1890,6 +1897,14 @@ const trailLd = JSON.stringify({
           {s.note && <span> · {s.note}</span>}
         </li>
       ))}
+      {photos.length > 0 && (
+        <li>
+          <a href={photoData?.category ? `https://commons.wikimedia.org/wiki/Category:${encodeURIComponent(photoData.category.replaceAll(" ", "_"))}` : photos[0].page}>
+            Wikimedia Commons: photos by {[...new Set(photos.map((p) => p.author))].join(", ")}
+          </a>{" "}
+          · {[...new Set(photos.map((p) => p.licence))].join(", ")}, each named in the gallery
+        </li>
+      )}
     </ol>
   </footer>
   <!-- falling leaves when the section navigation is used (issue #207) -->

@@ -425,3 +425,38 @@ class CacheKeys(unittest.TestCase):
             self.assertEqual(cache.get("w.json", "u", fetch(b"d"), key="k3"), ("c", False))
             self.assertEqual(cache.manifest["w.json"]["key"], "k3")
             self.assertEqual(calls, [b"a", b"c"])
+
+
+class Photos(unittest.TestCase):
+    """pipeline/photos.py: which Commons files count as a trail's photos, and how they are credited."""
+
+    def file(self, **kw):
+        base = {"title": "File:Path above the valley.jpg", "w": 4000, "h": 3000, "mime": "image/jpeg", "licence": "CC BY-SA 4.0",
+                "restrictions": "", "author": "Rémih", "name": "", "lat": "", "lon": ""}
+        return {**base, **kw}
+
+    def test_open_licences_only(self):
+        from pipeline import photos
+
+        for ok in ("CC BY-SA 4.0", "CC BY 2.0", "CC0", "Public domain"):
+            self.assertTrue(photos.usable(self.file(licence=ok)), ok)
+        for no in ("CC BY-NC-SA 2.0", "CC BY-ND 4.0", "GFDL", ""):
+            self.assertFalse(photos.usable(self.file(licence=no)), no)
+
+    def test_photos_not_signs_people_or_small(self):
+        from pipeline import photos
+
+        self.assertFalse(photos.usable(self.file(title="File:Wegweiser am Westweg.jpg")))
+        self.assertFalse(photos.usable(self.file(title="File:Bus at the station.jpg")))
+        self.assertFalse(photos.usable(self.file(restrictions="personality")))
+        self.assertFalse(photos.usable(self.file(author="")))
+        self.assertFalse(photos.usable(self.file(w=1000, h=750)))
+        self.assertFalse(photos.usable(self.file(w=3000, h=4000)))  # portrait
+
+    def test_caption_and_author(self):
+        from pipeline import photos
+
+        self.assertEqual(photos.caption(self.file(title="File:Tré-le-Champ @ Chamonix (51482715057).jpg")), "Tré-le-Champ, Chamonix")
+        self.assertEqual(photos.caption(self.file(name="Le Grandes Jorasses - Vallone del Maratrà - August 8, 2016")), "Le Grandes Jorasses - Vallone del Maratrà")
+        self.assertEqual(photos.author(self.file(author="Own work Rémih")), "Rémih")
+        self.assertEqual(photos.author(self.file(author="Guilhem Vellut from Annecy, France")), "Guilhem Vellut")

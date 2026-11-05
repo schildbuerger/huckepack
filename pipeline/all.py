@@ -5,7 +5,7 @@
     ~/.venvs/huckepack/bin/python -m pipeline.all <slug> --from water     # resume at a step after a failure
     ~/.venvs/huckepack/bin/python -m pipeline.all <slug> --check          # only the check
 
-Steps: routes, water, along, surface, elevation, landcover, climate, access, popularity (each also runs on its own,
+Steps: routes, water, along, surface, elevation, landcover, climate, access, popularity, photos (each also runs on its own,
 pipeline/<step>.py). The caches in data/raw/<slug>/ make a second run fast. When the map line
 changes, the caches that depend on it (water, shops and beds, way tags, heights, land cover) are dropped, so no
 step keeps answering for the old route (the climate step checks its own cache against the grid
@@ -29,7 +29,7 @@ from pathlib import Path
 import yaml
 
 ROOT = Path(__file__).resolve().parent.parent
-STEPS = ["routes", "water", "along", "surface", "elevation", "landcover", "climate", "access", "popularity"]
+STEPS = ["routes", "water", "along", "surface", "elevation", "landcover", "climate", "access", "popularity", "photos"]
 OFF = 0.10  # working rule 2: more than 10 % apart needs a look
 DRY_KM = 25  # a longer stretch without drinking water: check OSM, or add the record's waterPoints
 NO_SHOP_KM = 60  # a longer stretch without a shop: check OSM, and say so in the notes (carry food)

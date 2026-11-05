@@ -1,0 +1,154 @@
+---
+// A trail's photos under the key figures (2026-11-05; of five previews, approach B, the mosaic): one
+// large photo and up to four small ones in a block of the content column's width, "Show all n photos"
+// on it, every photo opening the gallery (PhotoGallery.astro). Fewer photos, fewer tiles: one fills
+// the block, two share it, three or four stack the small ones beside the large one. The photos come
+// from Wikimedia Commons (pipeline/photos.py, data/photos/<slug>.json); a credit line under the
+// mosaic names their authors, and the gallery each photo's author and licence, linked to its file page.
+import PhotoGallery from "./PhotoGallery.astro";
+
+export interface Photo {
+  src: string;
+  thumb: string;
+  w: number;
+  h: number;
+  caption: string;
+  author: string;
+  licence: string;
+  licenceUrl: string | null;
+  page: string;
+  km: number | null;
+}
+interface Props {
+  photos: Photo[];
+  trailName: string;
+}
+const { photos, trailName } = Astro.props;
+const shown = photos.slice(0, 5);
+const authors = [...new Set(photos.map((p) => p.author))];
+const authorText = authors.length > 1 ? `${authors.slice(0, -1).join(", ")} and ${authors.at(-1)}` : authors[0];
+---
+
+<div class="tp" data-count={Math.min(shown.length, 5)}>
+  <h2 class="sr-only">Photos</h2>
+  <div class="tp-grid">
+    {shown.map((p, i) => (
+      <button type="button" class:list={["tp-tile", { big: i === 0 }]} data-photo={i} aria-label={`Open photo ${i + 1} of ${photos.length}: ${p.caption}`}>
+        <img src={i === 0 ? p.src : p.thumb} alt="" width={p.w} height={p.h} loading={i === 0 ? "eager" : "lazy"} decoding="async" />
+      </button>
+    ))}
+    {photos.length > 1 && (
+      <button type="button" class="tp-all" data-photo="0">Show all {photos.length} photos</button>
+    )}
+  </div>
+  <p class="tp-credit">Photos from Wikimedia Commons by {authorText}; each photo's licence in the gallery</p>
+</div>
+<PhotoGallery photos={photos} trailName={trailName} />
+
+<style>
+  .tp {
+    margin-top: 24px;
+  }
+  .tp-grid {
+    position: relative;
+    display: grid;
+    gap: 8px;
+    height: 368px;
+    overflow: hidden;
+    border-radius: 12px;
+  }
+  /* one large photo, the small ones beside it */
+  .tp[data-count="1"] .tp-grid {
+    grid-template-columns: 1fr;
+  }
+  .tp[data-count="2"] .tp-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+  .tp[data-count="3"] .tp-grid {
+    grid-template-columns: 2fr 1fr;
+    grid-template-rows: 1fr 1fr;
+  }
+  .tp[data-count="4"] .tp-grid {
+    grid-template-columns: 2fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr;
+  }
+  .tp[data-count="5"] .tp-grid {
+    grid-template-columns: 2fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+  }
+  .tp[data-count="3"] .big,
+  .tp[data-count="5"] .big {
+    grid-row: span 2;
+  }
+  .tp[data-count="4"] .big {
+    grid-row: span 3;
+  }
+  .tp-tile {
+    min-height: 0;
+    padding: 0;
+    overflow: hidden;
+    border: 0;
+    background: var(--surface);
+    cursor: zoom-in;
+  }
+  .tp-tile img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: filter 0.2s;
+  }
+  .tp-tile:hover img {
+    filter: brightness(0.88);
+  }
+  .tp-tile:focus-visible,
+  .tp-all:focus-visible {
+    outline: 3px solid var(--accent);
+    outline-offset: -3px;
+  }
+  .tp-all {
+    position: absolute;
+    right: 14px;
+    bottom: 14px;
+    min-height: 36px;
+    padding: 7px 14px;
+    border: 1px solid #25261c;
+    border-radius: 8px;
+    background: #fdfbf4;
+    color: #25261c;
+    font: 600 0.85rem var(--sans);
+    cursor: pointer;
+  }
+  .tp-credit {
+    margin: 8px 0 0;
+    color: var(--muted);
+    font-size: 0.75rem;
+  }
+  /* phones: the large photo across the top, two small ones under it */
+  @media (max-width: 639px) {
+    .tp-grid {
+      height: auto;
+    }
+    .tp[data-count] .tp-grid {
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: 210px 110px;
+    }
+    .tp[data-count="1"] .tp-grid {
+      grid-template-columns: 1fr;
+      grid-template-rows: 230px;
+    }
+    .tp[data-count="2"] .tp-grid {
+      grid-template-rows: 160px;
+    }
+    .tp[data-count] .big {
+      grid-column: 1 / -1;
+      grid-row: auto;
+    }
+    .tp[data-count="2"] .big {
+      grid-column: auto;
+    }
+    .tp-tile:nth-of-type(n + 4) {
+      display: none;
+    }
+  }
+</style>

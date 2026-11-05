@@ -41,7 +41,7 @@ source before using it, and record the result here.
 
 ## Photos
 
-Researched 2026-11-05, none in use (docs/scope.md, Open questions).
+Researched 2026-11-05; Wikimedia Commons in use since the same day (pipeline/photos.py, docs/scope.md).
 
 | Source | What | Licence | Notes |
 |---|---|---|---|

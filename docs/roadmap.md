@@ -139,4 +139,4 @@ Track, European long-distance path E1.
 2. ~~Climate along the route by month~~ (done: climate by month and daylight; steepest sections from the elevation profile)
 3. Comparison page across trails (length, ascent, season, duration)
 4. Resupply and water along the route
-5. Photos per trail from Wikimedia Commons (researched 2026-11-05, open: docs/scope.md, Open questions)
+5. ~~Photos per trail from Wikimedia Commons~~ (done 2026-11-05: the mosaic under the key figures and a gallery)
