@@ -954,6 +954,23 @@ export const SKYLINES: Record<string, Skyline> = {
       { d: range([[0, G], [0, 284], [300, 278], [600, 284], [720, 292], [780, G]]), c: "#e0c99a" },
     ],
   },
+  "glyndwrs-way": {
+    view: "Mid-Wales on Glyndŵr's Way: rounded moorland hills over dark conifer plantations, and Lake Vyrnwy with the turreted straining tower standing in its water",
+    ridge: "#6f8a4a",
+    ground: "#8aa858",
+    shapes: [
+      // the far hills of the Cambrian Mountains
+      { d: hills([[0, G], [180, 236], [420, 222], [660, 234], [900, 218], [1160, 230], [1400, 220], [1600, 228], [1600, G]]), c: "#9aa69a" },
+      // moorland in front, brown with bracken and heather
+      { d: hills([[0, G], [140, 252], [360, 240], [560, 256], [700, G]]), c: "#9a8a6a" },
+      // a conifer plantation on the next hill
+      { d: hills([[620, G], [720, 250], [900, 238], [1060, 252], [1140, G]]), c: FIR },
+      // Lake Vyrnwy and its straining tower with a pointed roof
+      { d: water(1100, 1600, 272), c: LAKE },
+      { d: tower(1340, 272, 34, 14), c: "#8a8a7a" },
+      { d: "M1331,238L1340,220L1349,238Z", c: "#5f6a5a" },
+    ],
+  },
   "yorkshire-wolds-way": {
     view: "The Yorkshire Wolds: smooth chalk hills folded into a deep dry valley, and Filey Brigg running out as a low rocky finger into the North Sea",
     ridge: MEADOW,
