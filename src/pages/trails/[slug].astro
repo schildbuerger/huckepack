@@ -228,6 +228,8 @@ const LOC_FACTS = [
   { key: "protected", show: t.protectedAreas.length > 0, wide: true },
   { key: "managed", show: true, wide: t.managedBy.map((m) => m.name).join(", ").length > 40 },
   { key: "waymark", show: Boolean(t.waymarking), wide: false },
+  // the GPX track, last (2026-11-05): the operator's page that offers it, else our own tracing
+  { key: "gpx", show: Boolean((t.officialGpx && "url" in t.officialGpx) || own), wide: false },
 ].filter((f) => f.show);
 let locCol = 0;
 LOC_FACTS.forEach((f, i) => {
@@ -939,6 +941,13 @@ const trailLd = JSON.stringify({
                 {t.managedBy.map((m) => m.name).join(", ")}
                 {/* the official GPX link already leads to the operator's site: then no second link (2026-11-05) */}
                 {!(t.officialGpx && "url" in t.officialGpx) && <a class="site-link" href={t.website}>Official website</a>}
+              </dd>
+            </>
+          )}
+          {f.key === "gpx" && (
+            <>
+              <dt>GPX</dt>
+              <dd>
                 {t.officialGpx && "url" in t.officialGpx && (
                   <>
                     <a class="site-link" href={t.officialGpx.url}>Official GPX track</a>
