@@ -1,0 +1,90 @@
+---
+// All trails A–Z (issue #178): every trail as a plain link, grouped by country, so every trail page has a
+// link in the HTML that search engines follow (the search page renders only its first cards and loads
+// the rest by script; the home page links a few). Linked from the footer on every page. No script.
+import { getCollection } from "astro:content";
+import Base from "../../../layouts/Base.astro";
+import Breadcrumbs from "../../../components/Breadcrumbs.astro";
+import { countryName, trailLength } from "../../../lib/trails";
+
+const trails = await getCollection("trails");
+const byCountry = new Map<string, { slug: string; name: string; km: number | null }[]>();
+for (const t of trails) {
+  const km = trailLength(t.data)?.value ?? null;
+  for (const c of t.data.countries) {
+    const name = countryName(c);
+    if (!byCountry.has(name)) byCountry.set(name, []);
+    byCountry.get(name)!.push({ slug: t.id, name: t.data.name, km });
+  }
+}
+const groups = [...byCountry.entries()]
+  .sort(([a], [b]) => a.localeCompare(b, "en"))
+  .map(([country, list]) => ({ country, list: list.sort((a, b) => a.name.localeCompare(b.name, "en")) }));
+const fmt = (km: number) => (km >= 100 ? Math.round(km) : Math.round(km * 10) / 10).toLocaleString("en");
+---
+
+<Base
+  title={`All ${trails.length} long-distance trails, A–Z by country · huckepack`}
+  description={`Every official long-distance trail on huckepack, ${trails.length} in ${groups.length} countries, by country and name, each with its length.`}
+>
+  <Breadcrumbs trail={[{ label: "Trails", href: "/trails/" }]} current="All trails A–Z" />
+  <h1>All trails A–Z</h1>
+  <p class="lede">{trails.length} official long-distance trails in {groups.length} countries. A trail that crosses borders is listed under each of its countries.</p>
+  <div class="groups">
+    {
+      groups.map((g) => (
+        <section>
+          <h2>{g.country}</h2>
+          <ul>
+            {g.list.map((t) => (
+              <li>
+                <a href={`/trails/${t.slug}/`}>{t.name}</a>
+                {t.km !== null && <span class="km">{fmt(t.km)} km</span>}
+              </li>
+            ))}
+          </ul>
+        </section>
+      ))
+    }
+  </div>
+</Base>
+
+<style>
+  h1 {
+    margin: 0 0 8px;
+  }
+  .lede {
+    margin: 0 0 32px;
+    color: var(--muted);
+  }
+  /* the countries in columns, each kept whole */
+  .groups {
+    columns: 3 240px;
+    column-gap: 48px;
+  }
+  section {
+    break-inside: avoid;
+    margin: 0 0 28px;
+  }
+  h2 {
+    margin: 0 0 8px;
+    font-size: 1.1rem;
+  }
+  ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+  li {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 4px 0;
+    border-bottom: 1px solid var(--line);
+  }
+  .km {
+    color: var(--muted);
+    white-space: nowrap;
+    font-variant-numeric: tabular-nums;
+  }
+</style>
