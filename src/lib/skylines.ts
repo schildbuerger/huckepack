@@ -993,6 +993,25 @@ export const SKYLINES: Record<string, Skyline> = {
       { d: hills([[480, G], [620, 254], [800, 232], [940, 260], [1040, G]]), c: "#7f9a54" },
     ],
   },
+  "arran-coastal-way": {
+    view: "The Isle of Arran from the sea: Goat Fell and the jagged granite ridges of the north, Lochranza Castle on its spit in the bay, and Holy Isle's dome off Lamlash",
+    ridge: "#7f9a54",
+    ground: "#c9b88a",
+    shapes: [
+      // the northern granite peaks, Goat Fell the highest, with their jagged ridges
+      { d: range([[60, G], [160, 250], [260, 196], [330, 170], [372, 150], [400, 136], [420, 128], [446, 146], [480, 160], [520, 150], [548, 162], [590, 158], [620, 176], [680, 168], [720, 186], [800, 214], [900, 248], [980, G]]), c: "#7a7e82" },
+      // the Firth of Clyde all along the shore
+      { d: water(0, 1600, 282), c: SEA },
+      // Lochranza Castle on its spit
+      { d: range([[620, G], [660, 284], [760, 282], [800, G]]), c: "#a8b878" },
+      { d: castle(710, 284, 0.6), c: "#8a7a6a" },
+      // Holy Isle off Lamlash: a steep green dome in the sea
+      { d: hills([[1220, G], [1300, 252], [1380, 236], [1460, 252], [1540, G]]), c: "#5f7a4a" },
+      // the green southern shore with the coast path
+      { d: hills([[0, G], [140, 288], [420, 286], [560, G]]), c: "#8fa868" },
+      { d: hills([[880, G], [980, 286], [1120, 284], [1220, G]]), c: "#8fa868" },
+    ],
+  },
   "cateran-trail": {
     view: "Glenshee's rounded hills over heather moor, a birch wood in the glen, and a Cateran waymark post",
     ridge: "#7f8a50",

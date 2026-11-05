@@ -1,0 +1,217 @@
+name: Arran Coastal Way
+added: 2026-11-05
+website: https://www.coastalway.co.uk/
+wikidata: Q4795830
+managedBy:
+  # the Arran Access Trust (a board of voluntary directors with land owners, access users, Forestry
+  # Commission, National Trust, NatureScot and North Ayrshire Council); one of Scotland's Great Trails
+  - name: Arran Access Trust
+    url: https://www.coastalway.co.uk/about-us/arran-access-trust/
+officialGpx:
+  none: the site's section pages link WalkHighlands for maps and GPS waypoints, and offer no GPX of their own (checked 2026-11-05)
+  source: acw-sections
+trailType: loop
+continents: [Europe]
+countries: [GB]
+regions: [Scotland]
+termini:
+  # a circular route round the Isle of Arran; its sections start and end in Brodick, where the ferry arrives
+  start:
+    name: Brodick
+    lat: 55.57752
+    lon: -5.15069
+  end:
+    name: Brodick
+    lat: 55.57752
+    lon: -5.15069
+  source: acw-route
+waymarking:
+  text: Yellow waymarkers on the main route, red on the alternative routes
+  source: acw-route
+length:
+  # "a challenging and rewarding 65-mile / 105 kilometre circular route around the beautiful Isle of Arran"
+  - km: 105
+    source: acw
+stages:
+  # the site's eight sections round the island from Brodick, each with the distance on its own page
+  # (the route table gives other figures for five of them, see notes). No GPX: each section is the
+  # shortest way over the OSM relation "Arran Coastal Way" (4640636) to its end (`branched`)
+  source: acw-sections
+  list:
+    - { number: "1", kind: main, from: Brodick, to: Sannox, km: 12, end: { name: Sannox, lat: 55.65949, lon: -5.15248 } }
+    - { number: "2", kind: main, from: Sannox, to: Lochranza, km: 14.5, end: { name: Lochranza, lat: 55.70459, lon: -5.29515 } }
+    - { number: "3", kind: main, from: Lochranza, to: Imachar, km: 14.5, end: { name: Imachar, lat: 55.61136, lon: -5.39097 } }
+    - { number: "4", kind: main, from: Imachar, to: Blackwaterfoot, km: 14.5, end: { name: Blackwaterfoot, lat: 55.50183, lon: -5.33253 } }
+    - { number: "5", kind: main, from: Blackwaterfoot, to: Lagg, km: 12, end: { name: Lagg, lat: 55.44593, lon: -5.23434 } }
+    - { number: "6", kind: main, from: Lagg, to: Whiting Bay, km: 16, end: { name: Whiting Bay, lat: 55.48983, lon: -5.09494 } }
+    - { number: "7", kind: main, from: Whiting Bay, to: Lamlash, km: 10, end: { name: Lamlash, lat: 55.53349, lon: -5.12846 } }
+    - { number: "8", kind: main, from: Lamlash, to: Brodick, km: 8, end: { name: Brodick, lat: 55.57752, lon: -5.15069 } }
+route:
+  # built by `python -m pipeline.all arran-coastal-way`: OSM ways matched to the shortest way over
+  # the relation between the sections' ends
+  source: osm
+  publishable: true
+  relation: 4640636
+  branched: true
+difficulty:
+  estimated:
+    sac: T2
+    basis: >-
+      Footpaths, forest tracks, quiet roads and beaches, with boulder fields that need minor
+      scrambling (An Scriodan between Sannox and Lochranza; the boulders by Bennan Head and Black Cave
+      between Lagg and Kildonan, "the challenge of the boulder field should not be underestimated"),
+      and stretches impassable at high tide with signed diversions. Mountain hiking with some easy
+      scrambling over boulders (T2).
+    source: acw-sections
+sleeping:
+  # the section pages list hotels, B&Bs and a caravan and camping site in the villages
+  types: [hotel, guesthouse, campsite]
+  source: acw-sections
+access:
+  # Ardrossan Harbour, the station by the ferry to Brodick, and Glasgow Prestwick Airport. Coordinates
+  # from OSM; distances by pipeline/access.py
+  - kind: station
+    name: Ardrossan Harbour (ferry to Brodick)
+    lat: 55.63951
+    lon: -4.82025
+    source: osm
+  - kind: airport
+    name: Glasgow Prestwick Airport (PIK)
+    lat: 55.50231
+    lon: -4.5776
+    source: osm
+animals:
+  # cattle (HSE with the Scottish Outdoor Access Code) and ticks (NHS). Levels ours
+  list:
+    - kind: cattle
+      name: "Cattle"
+      level: moderate
+      basis: "The Way crosses farmland and shore grazing where cattle graze (the site warns of stretches 'cattle trampled after rain'); the Health and Safety Executive names cows with calves and walkers with dogs as the two most common factors in incidents between cattle and the public in Scotland."
+      do:
+        - "Be aware of potentially dangerous farm animals, and keep a safe distance when passing through an area with livestock"
+        - "Consider using an alternative route around a field with cattle"
+      dont:
+        - "Take dogs into fields where there are young animals"
+      source: hse-cattle-scotland
+    - kind: tick
+      name: "Ticks (Lyme disease)"
+      level: low
+      basis: "Ticks that can carry Lyme disease live all over the UK, in woods and long grass."
+      do:
+        - "Cover your skin while walking and tuck your trousers into your socks"
+        - "Use insect repellent on your clothes and skin; products containing DEET are best"
+        - "Stay on clear paths whenever possible"
+        - "Wear light-coloured clothing so ticks are easier to see and brush off"
+        - "Remove a tick with fine-tipped tweezers or a tick-removal tool: grasp it as close to the skin as possible, pull slowly upwards, then clean the bite"
+        - "Get an urgent GP appointment or call NHS 111 if, within 3 months of a bite, you feel unwell with flu-like symptoms or a round or oval rash appears"
+      dont:
+        - "Squeeze or crush the tick when you remove it"
+      source: nhs-lyme
+tags: [island, coast, beaches, boulders, castles, tidal-sections, loop]
+notes:
+  - >-
+    Stages: the distances from each section's own page. The route table on the site's Route page
+    gives other figures for five main-route sections: Sannox to Lochranza 15.5 km (page 14.5),
+    Imachar to Blackwaterfoot 16 km (14.5), Blackwaterfoot to Lagg 11 km (12), Lagg to Whiting Bay
+    15 km (16), Whiting Bay to Lamlash 9 km (10). The alternative routes (red waymarkers: over Goat
+    Fell, the coast at Sliddery, round Dippen Head) are not in the record.
+  - >-
+    Days: none stated as a number; the site calls the route "perfect for a week long walking
+    holiday" (searched 2026-11-05). The page counts one day per section (8).
+  - >-
+    Season: none stated by the site (searched 2026-11-05).
+  - >-
+    Wild camping: the site states no camping rule; it points to the Scottish Outdoor Access Code
+    for access rights (searched 2026-11-05).
+  - >-
+    Protected areas: none named by the site for the route (it names the South Arran Marine
+    Protected Area offshore).
+  - >-
+    Tree line: none; a coastal route (the Goat Fell alternative, 874 m, is not in the record).
+  - >-
+    Map line (2026-11-05): the Scotland Geofabrik extract (2026-10-31); each section the shortest way
+    over the OSM relation to its end, every section 100 % matched. The loop measures 103.0 km on the
+    map line against the sections' 101.5 km (stated 105 km). Sections more than 10 % off the map
+    line: 2, Sannox to Lochranza (16.3 km against 14.5 km; the route table's 15.5 km is closer), 4,
+    Imachar to Blackwaterfoot (16.4 km against 14.5 km; the table's 16 km agrees), 7 and 8, Whiting
+    Bay to Lamlash and Lamlash to Brodick (6.8 and 9.5 km against 10 and 8 km; together 16.3 km
+    against 18 km, the split in Lamlash placed at the village's centre on OSM's line, and the
+    shortest way between Whiting Bay and Lamlash by the shore). The record keeps the section pages'
+    figures. Highest point 224 m (terrain model, at km 81 in the forest above Whiting Bay and
+    Lamlash), lowest 0 m on the shore. Resupply: the longest stretch without a shop in OSM, 49.2 km,
+    runs from Blackwaterfoot round the south to Whiting Bay.
+  - >-
+    Data check (2026-11-05, working rule 2): against English Wikipedia (Arran Coastal Way). Length
+    107 km (from NatureScot's Great Trails listing) against the site's 105 km (2 % apart) and our map
+    line's 103.0 km; circular, started and finished in Brodick by the ferry terminal, agrees; the
+    Arran Access Trust as manager agrees; one of Scotland's Great Trails since June 2017 agrees.
+    Wikipedia gives no section distances; its waymarks "featuring a gannet" add to the site's
+    yellow and red waymarkers. No figure differs by more than 10 %.
+dataCheck:
+  # working rule 2: English Wikipedia
+  date: 2026-11-05
+  against: [wikipedia-en]
+  deviations: []
+sources:
+  - id: acw
+    title: "Arran Coastal Way: home page (length, one of Scotland's Great Trails)"
+    url: https://www.coastalway.co.uk/
+    licence: © Arran Coastal Way (facts only)
+    retrieved: 2026-11-05
+  - id: acw-route
+    title: "Arran Coastal Way: The Route (route choices, waymarkers, the route table)"
+    url: https://www.coastalway.co.uk/route/
+    licence: © Arran Coastal Way (facts only)
+    retrieved: 2026-11-05
+  - id: acw-sections
+    title: "Arran Coastal Way: the eight section pages, Brodick to Sannox … Lamlash to Brodick (distance, terrain, tides, places to stay)"
+    url: https://www.coastalway.co.uk/route/brodick-sannox/
+    licence: © Arran Coastal Way (facts only)
+    retrieved: 2026-11-05
+  - id: hse-cattle-scotland
+    title: "Health and Safety Executive: Cattle and public access in Scotland (information sheet AIS17S, with the Scottish Outdoor Access Code's advice)"
+    url: https://www.outdooraccess-scotland.scot/sites/default/files/2018-09/HSE%20Information%20sheet%20No%2017S%28rev1%29%20-%20Cattle%20and%20public%20access%20in%20Scotland%20-%20Advice.pdf
+    licence: © Crown copyright, Open Government Licence (facts only)
+    retrieved: 2026-11-05
+  - id: nhs-lyme
+    title: "NHS: Lyme disease (avoiding tick bites, removing ticks, when to get help)"
+    url: https://www.nhs.uk/conditions/lyme-disease/
+    licence: © NHS, Open Government Licence (facts only)
+    retrieved: 2026-11-05
+  - id: wikipedia-en
+    title: "Wikipedia (en): Arran Coastal Way (length, start and finish, waymarks, opening, manager; data check)"
+    url: https://en.wikipedia.org/wiki/Arran_Coastal_Way
+    licence: CC BY-SA 4.0
+    retrieved: 2026-11-05
+    checkOnly: true  # only for the data check
+  - id: wikimedia
+    title: "Wikimedia: page views of the trail's Wikipedia articles in every language, by people, over twelve months (Wikidata sitelinks, pageview API)"
+    url: https://wikimedia.org/api/rest_v1/
+    licence: CC0 1.0 (pageview data); Wikidata CC0
+    retrieved: 2026-11-05
+    checkOnly: true  # not on the trail page: the page views only rank the home page's popular trails
+  - id: osm
+    title: "OpenStreetMap contributors: paths, water, shops and places to sleep along the trail (Geofabrik extracts), travel hubs"
+    url: https://www.openstreetmap.org/
+    licence: ODbL 1.0
+    retrieved: 2026-11-05
+  - id: copdem
+    title: "Copernicus DEM GLO-30 (30 m terrain model), tiles from AWS Open Data"
+    url: https://registry.opendata.aws/copernicus-dem/
+    licence: "Copernicus WorldDEM-30 licence, free; produced using Copernicus WorldDEM-30 © DLR e.V. 2010-2014 and © Airbus Defence and Space GmbH 2014-2018 provided under COPERNICUS by the European Union and ESA; all rights reserved"
+    retrieved: 2026-11-05
+  - id: worldcover
+    title: "ESA WorldCover 2021: 10 m land cover (via AWS Open Data)"
+    url: https://esa-worldcover.org/
+    licence: "CC BY 4.0; © ESA WorldCover project 2021 / Contains modified Copernicus Sentinel data (2021) processed by ESA WorldCover consortium"
+    retrieved: 2026-11-05
+  - id: era5
+    title: "Open-Meteo open data on AWS: ERA5-Land temperature and ERA5 precipitation, snow and wind, daily 1995–2024 (reanalysis)"
+    url: https://github.com/open-meteo/open-data
+    licence: CC BY 4.0 (Open-Meteo); contains modified Copernicus Climate Change Service information
+    retrieved: 2026-11-05
+  - id: osrm
+    title: "OSRM: road routes on OpenStreetMap data (router.project-osrm.org)"
+    url: https://project-osrm.org/
+    licence: Route data © OpenStreetMap contributors (ODbL)
+    retrieved: 2026-11-05

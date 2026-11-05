@@ -1,0 +1,86 @@
+{
+  "climate-high.json": {
+    "retrieved": "2026-11-05T18:40:31+00:00",
+    "url": "https://openmeteo.s3.us-west-2.amazonaws.com/data/copernicus_era5_land+copernicus_era5?latitude=55.5&longitude=-5.1&elevation=220&wind=55.5,-5.25"
+  },
+  "climate-low.json": {
+    "retrieved": "2026-11-05T18:34:24+00:00",
+    "url": "https://openmeteo.s3.us-west-2.amazonaws.com/data/copernicus_era5_land+copernicus_era5?latitude=55.6&longitude=-5.2&elevation=0"
+  },
+  "elevation-glo30.json": {
+    "retrieved": "2026-11-05T18:30:35+00:00",
+    "url": "https://copernicus-dem-30m.s3.eu-central-1.amazonaws.com/Copernicus_DSM_COG_10_N55_00_W006_00_DEM/Copernicus_DSM_COG_10_N55_00_W006_00_DEM.tif"
+  },
+  "landcover.json": {
+    "retrieved": "2026-11-05T18:30:35+00:00",
+    "url": "https://esa-worldcover.s3.eu-central-1.amazonaws.com/v200/2021/map/ESA_WorldCover_10m_2021_v200_\u2026_Map.tif"
+  },
+  "osm-relation.json": {
+    "retrieved": "2026-10-31T21:23:06Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-1-main.json": {
+    "key": "7729ca9227a1",
+    "retrieved": "2026-10-31T21:23:06Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-2-main.json": {
+    "key": "b43486949cbd",
+    "retrieved": "2026-10-31T21:23:06Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-3-main.json": {
+    "key": "a5c6205b6537",
+    "retrieved": "2026-10-31T21:23:06Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-4-main.json": {
+    "key": "eec3d255aa7f",
+    "retrieved": "2026-10-31T21:23:06Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-5-main.json": {
+    "key": "c62f3baed396",
+    "retrieved": "2026-10-31T21:23:06Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-6-main.json": {
+    "key": "aaf254488af6",
+    "retrieved": "2026-10-31T21:23:06Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-7-main.json": {
+    "key": "d4db68cf329e",
+    "retrieved": "2026-10-31T21:23:06Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-8-main.json": {
+    "key": "9f346dce275b",
+    "retrieved": "2026-10-31T21:23:06Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-water.json": {
+    "retrieved": "2026-10-31T21:23:06Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-way-tags.json": {
+    "retrieved": "2026-10-31T21:23:06Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osrm-access-ardrossan-harbour-ferry-to-brodick.json": {
+    "retrieved": "2026-11-05T18:40:31+00:00",
+    "url": "https://router.project-osrm.org/route/v1/driving/-4.82025,55.63951;-5.15069,55.57752?overview=false"
+  },
+  "osrm-access-glasgow-airport-gla.json": {
+    "retrieved": "2026-11-05T18:40:31+00:00",
+    "url": "https://router.project-osrm.org/route/v1/driving/-4.4357,55.87056;-5.15069,55.57752?overview=false"
+  },
+  "osrm-access-glasgow-prestwick-airport-pik.json": {
+    "retrieved": "2026-11-05T18:40:31+00:00",
+    "url": "https://router.project-osrm.org/route/v1/driving/-4.5776,55.50231;-5.15069,55.57752?overview=false"
+  },
+  "wikimedia.json": {
+    "retrieved": "2026-11-05T18:40:32+00:00",
+    "url": "Q4795830 2025-11..2026-10"
+  }
+}
