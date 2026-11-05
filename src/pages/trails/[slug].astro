@@ -22,7 +22,7 @@ import { n1, stripPaths } from "../../lib/svg";
 import { difficulty, levelText, DIFFICULTY_FACTS, DIMENSION_TEXT, LEVELS, SCALES, type Level } from "../../lib/difficulty";
 import { monthsText, rateData } from "../../lib/months";
 import { existsSync } from "node:fs";
-import { joinLabels, ownGpx } from "../../lib/gpx";
+import { ownGpx } from "../../lib/gpx";
 import {
   countryName,
   monthName,
@@ -58,7 +58,6 @@ const t = trail.data;
 const derived = (await getEntry("derived", trail.id))?.data;
 // our own GPX where the operator offers none (src/lib/gpx.ts)
 const own = ownGpx(trail.id, t.officialGpx);
-const osmDate = (d: string) => new Date(d).toLocaleDateString("en-GB", { day: "numeric", month: "long", year: "numeric", timeZone: "UTC" });
 // the page's head on a handcrafted skyline in miniature (issue #142), where the trail has one and an
 // elevation profile; its sky follows the visitor's clock, set before the first paint (src/lib/sky.ts)
 const skyline = Boolean(SKYLINES[trail.id] && derived?.elevation);
@@ -948,10 +947,7 @@ const trailLd = JSON.stringify({
                 {own && (
                   <>
                     <a class="site-link" href={`/gpx/${trail.id}.gpx`} download>GPX track</a>
-                    <span class="gpx-note">
-                      Our tracing from OpenStreetMap{own.osmDate && ` (data of ${osmDate(own.osmDate)})`}, not an official
-                      track{own.leftOut.length > 0 && `; without stage${own.leftOut.length > 1 ? "s" : ""} ${joinLabels(own.leftOut)}, where OpenStreetMap differs from the trail`}
-                    </span>
+                    <span class="gpx-note">Our tracing from OpenStreetMap</span>
                   </>
                 )}
               </dd>
