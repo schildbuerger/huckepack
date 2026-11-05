@@ -1,0 +1,170 @@
+name: Heaphy Track
+added: 2026-11-05
+aliases: [Heaphy Track Great Walk, Heaphy]
+website: https://www.doc.govt.nz/parks-and-recreation/places-to-go/nelson-tasman/places/kahurangi-national-park/things-to-do/tracks/heaphy-track/
+wikidata: Q1592359
+managedBy:
+  # one of New Zealand's Great Walks; DOC runs its six huts and nine campsites
+  - name: Department of Conservation (Te Papa Atawhai)
+    url: https://www.doc.govt.nz/
+trailType: point-to-point
+continents: [Oceania]
+countries: [NZ]
+regions: [Tasman, West Coast]
+protectedAreas:
+  - Kahurangi National Park
+termini:
+  # the road end near Brown Hut in the Aorere valley, and the Kōhaihai road end north of Karamea,
+  # south of the Kōhaihai River (OSM: the open ends of the track relation)
+  start:
+    name: Brown Hut
+    lat: -40.84779
+    lon: 172.44918
+  end:
+    name: Kōhaihai
+    lat: -41.10901
+    lon: 172.1029
+  source: osm
+waymarking:
+  text: Well marked and signposted
+  source: doc
+length:
+  # "78.4 km one way"
+  - km: 78.4
+    source: doc
+days:
+  # "4-6 days" walking
+  min: 4
+  max: 6
+  source: doc
+stages:
+  # DOC's six legs between the huts and road ends, with distance and walking time, from Brown Hut
+  # (it can be walked either way); the OSM relation (GW09, 1385145) guides the matcher, each leg the
+  # shortest way over it between the legs' ends. Lewis Hut lies on leg 5 ("via Lewis Shelter")
+  source: doc
+  list:
+    - { number: "1", kind: main, from: Brown Hut, to: Perry Saddle Hut, km: 17.5, minutes: 300, end: { name: Perry Saddle Hut, lat: -40.90089, lon: 172.40286 } }
+    - { number: "2", kind: main, from: Perry Saddle Hut, to: Gouland Downs Hut, km: 7, minutes: 120, end: { name: Gouland Downs Hut, lat: -40.89057, lon: 172.35327 } }
+    - { number: "3", kind: main, from: Gouland Downs Hut, to: Saxon Hut, km: 5.4, minutes: 90, end: { name: Saxon Hut, lat: -40.8862, lon: 172.30822 } }
+    - { number: "4", kind: main, from: Saxon Hut, to: James Mackay Hut, km: 11.8, minutes: 180, end: { name: James Mackay Hut, lat: -40.88604, lon: 172.21721 } }
+    - { number: "5", kind: main, from: James Mackay Hut, to: Heaphy Hut, km: 20.5, minutes: 360, end: { name: Heaphy Hut, lat: -40.98676, lon: 172.11085 } }
+    - { number: "6", kind: main, from: Heaphy Hut, to: Kōhaihai, km: 16.2, minutes: 300, end: { name: Kōhaihai, lat: -41.10901, lon: 172.1029 } }
+route:
+  # built by `python -m pipeline.all heaphy-track`: OSM ways matched to the shortest way over the
+  # relation between the legs' ends
+  source: osm
+  publishable: true
+  relation: 1385145
+  branched: true
+difficulty:
+  estimated:
+    sac: T2
+    basis: >-
+      DOC grades the track intermediate: a graded climb on a former road survey line to Perry Saddle
+      (Flanagans Corner, 915 m, the highest point), open tussock downs that are easy to lose in mist,
+      and the coast through nīkau palms; "well marked and signposted, but some sections may be steep
+      and rough", with steep drops near Flanagans Corner and a flood-prone stretch on Mackay Downs.
+      Mountain hiking on a good track (T2).
+    source: doc
+season:
+  # DOC: open all year, huts and campsites "must be booked well in advance all year round"; mountain
+  # bikes share the track from 1 May to 30 November
+  months: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
+  text: All year, booked all year round; shared with mountain bikers from 1 May to 30 November
+  source: doc
+sleeping:
+  # DOC's six huts and nine campsites, booked in advance all year
+  types: [hut, campsite]
+  source: doc
+wildCamping:
+  status: restricted
+  rule: Camping only at the nine DOC campsites along the track, booked in advance all year round.
+  source: doc
+refillsUntreated:
+  # DOC on the huts and campsites: tap water, not treated (issue #119)
+  text: DOC's huts and campsites have tap water that is not treated; boil it before use.
+  source: doc
+access:
+  # shuttles from Collingwood and Takaka to Brown Hut, from Karamea to Kōhaihai; Nelson the nearest
+  # airport. Coordinates from OSM; distances by pipeline/access.py
+  - kind: bus
+    name: Collingwood
+    lat: -40.67725
+    lon: 172.68266
+    source: osm
+  - kind: airport
+    name: Nelson Airport (NSN)
+    lat: -41.29685
+    lon: 173.2254
+    source: osm
+tags: [great-walk, kahurangi, national-park, tussock-downs, nikau-palms]
+notes:
+  - >-
+    Wildlife (2026-11-05): none listed. New Zealand has no dangerous land animals; sandflies are a
+    nuisance, not a danger. No DOC statement on dangerous animals was found.
+  - >-
+    Stages: DOC's six legs add up to 78.4 km (stated 78.4 km); DOC gives no ascent or descent. The
+    track reopened as a through route with a new bridge across the Heaphy River.
+  - >-
+    Route (pipeline, 2026-11-05, Geofabrik extracts): each leg is the shortest way over OSM's
+    relation (GW09, 1385145) between its ends; every leg matches 100 %. The map line is 72.0 km
+    against DOC's 78.4 km: every leg comes out 3–10 % shorter than DOC's figure (leg 5, James Mackay
+    Hut to Heaphy Hut, 18.4 against 20.5 km), so DOC's distances likely run long rather than OSM
+    missing a stretch. Highest point on the map line 931 m (km 14, near Flanagans Corner; DOC
+    915 m), lowest at sea level on the coast.
+  - >-
+    Water and food: OSM maps no drinking water and no shop on or near the track. DOC's huts and
+    campsites have tap water, "not treated, boil before use" (`refillsUntreated`); walkers carry all
+    their food for the 4 to 6 days.
+  - >-
+    Data check (2026-11-05). Second source: English Wikipedia (78.4 km, usually four or five days,
+    Kahurangi National Park, from the Aorere valley to Kōhaihai north of Karamea). Length, days, park
+    and ends agree; the legs and times are DOC's own.
+dataCheck:
+  # working rule 2: English Wikipedia
+  date: 2026-11-05
+  against: [wikipedia-en]
+  deviations: []
+sources:
+  - id: doc
+    title: "Department of Conservation: Heaphy Track (length, days, legs with distance and time, huts, campsites, waymarking, highest point)"
+    url: https://www.doc.govt.nz/parks-and-recreation/places-to-go/nelson-tasman/places/kahurangi-national-park/things-to-do/tracks/heaphy-track/
+    licence: © Crown copyright, DOC (facts only)
+    retrieved: 2026-11-05
+  - id: wikipedia-en
+    title: "Wikipedia (en): Heaphy Track (length, days, ends; data check)"
+    url: https://en.wikipedia.org/wiki/Heaphy_Track
+    licence: CC BY-SA 4.0
+    retrieved: 2026-11-05
+    checkOnly: true  # only for the data check
+  - id: wikimedia
+    title: "Wikimedia: page views of the trail's Wikipedia articles in every language, by people, over twelve months (Wikidata sitelinks, pageview API)"
+    url: https://wikimedia.org/api/rest_v1/
+    licence: CC0 1.0 (pageview data); Wikidata CC0
+    retrieved: 2026-11-05
+    checkOnly: true  # not on the trail page: the page views only rank the home page's popular trails
+  - id: osm
+    title: "OpenStreetMap contributors: paths, water, shops and places to sleep along the trail (Geofabrik extracts), stage ends, travel hubs"
+    url: https://www.openstreetmap.org/
+    licence: ODbL 1.0
+    retrieved: 2026-11-05
+  - id: copdem
+    title: "Copernicus DEM GLO-30 (30 m terrain model), tiles from AWS Open Data"
+    url: https://registry.opendata.aws/copernicus-dem/
+    licence: "Copernicus WorldDEM-30 licence, free; produced using Copernicus WorldDEM-30 © DLR e.V. 2010-2014 and © Airbus Defence and Space GmbH 2014-2018 provided under COPERNICUS by the European Union and ESA; all rights reserved"
+    retrieved: 2026-11-05
+  - id: worldcover
+    title: "ESA WorldCover 2021: 10 m land cover (via AWS Open Data)"
+    url: https://esa-worldcover.org/
+    licence: "CC BY 4.0; © ESA WorldCover project 2021 / Contains modified Copernicus Sentinel data (2021) processed by ESA WorldCover consortium"
+    retrieved: 2026-11-05
+  - id: era5
+    title: "Open-Meteo open data on AWS: ERA5-Land temperature and ERA5 precipitation, snow and wind, daily 1995–2024 (reanalysis)"
+    url: https://github.com/open-meteo/open-data
+    licence: CC BY 4.0 (Open-Meteo); contains modified Copernicus Climate Change Service information
+    retrieved: 2026-11-05
+  - id: osrm
+    title: "OSRM: road routes on OpenStreetMap data (router.project-osrm.org)"
+    url: https://project-osrm.org/
+    licence: Route data © OpenStreetMap contributors (ODbL)
+    retrieved: 2026-11-05

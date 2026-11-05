@@ -986,6 +986,24 @@ export const SKYLINES: Record<string, Skyline> = {
       { d: hills([[480, G], [620, 254], [800, 232], [940, 260], [1040, G]]), c: "#7f9a54" },
     ],
   },
+  "heaphy-track": {
+    view: "The Heaphy Track: golden tussock downs above the beech forest, and nīkau palms on the West Coast where the Tasman Sea breaks on the beach",
+    ridge: "#8a9a5a",
+    ground: "#45663a",
+    shapes: [
+      // the Gouland Downs: rolling tussock above the forest
+      { d: hills([[0, G], [160, 228], [400, 214], [640, 226], [860, 218], [1000, 238], [1080, G]]), c: "#b8a46a" },
+      { d: hills([[0, G], [140, 258], [420, 246], [700, 256], [960, 250], [1060, G]]), c: FOREST },
+      // the Tasman Sea
+      { d: water(980, 1600, 262), c: SEA },
+      // the beach, and nīkau palms on it: slender trunks with a crown of fronds
+      { d: hills([[1100, G], [1180, 288], [1400, 284], [1600, 288], [1600, G]]), c: "#d9c49a" },
+      { d: "M1210,292L1214,236H1218L1222,292Z M1330,290L1333,244H1337L1340,290Z M1450,292L1453,232H1457L1460,292Z", c: "#6a5a44" },
+      { d: "M1216,238C1196,230 1186,226 1176,230C1194,224 1206,222 1216,230C1222,214 1232,208 1246,206C1236,216 1228,224 1218,236C1236,228 1250,230 1258,236C1244,236 1230,236 1216,238Z", c: "#4f6a3a" },
+      { d: "M1335,246C1317,240 1308,236 1298,240C1314,234 1326,232 1335,240C1340,226 1350,220 1362,218C1354,228 1346,234 1337,244C1353,238 1366,240 1374,246C1360,246 1348,246 1335,246Z", c: "#4f6a3a" },
+      { d: "M1455,234C1435,226 1425,222 1415,226C1433,220 1445,218 1455,226C1461,210 1471,204 1485,202C1475,212 1467,220 1457,232C1475,224 1489,226 1497,232C1483,232 1469,232 1455,234Z", c: "#4f6a3a" },
+    ],
+  },
   "routeburn-track": {
     view: "From the Hollyford Face on the Routeburn Track: the jagged, snow-streaked Darran Mountains across the valley, and Lake Mackenzie below in its basin of beech forest and tussock",
     ridge: "#8a9a5a",
