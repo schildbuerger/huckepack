@@ -81,6 +81,11 @@
   (decided 2026-11-05). The link goes to the operator's page that offers the
   file, never to the file itself: we don't route walkers around the
   operator's website (decided 2026-11-05).
+- **Our own GPX:** only where the operator offers none, the page offers our
+  tracing from OpenStreetMap as a GPX (ODbL, with the notice and the OSM
+  data's date in the file), leaving out stages under 95 % matched, where OSM
+  differs from the trail. Each GPX link carries a note on its source: the
+  provider, or our own tracing (decided 2026-11-05).
 - **Measured length:** where every main stage's OSM match covers at least
   95 % of its official track, the length of our map line (the full match) is
   the comparable length: the search sorts by it and the home page sums it, so

@@ -156,9 +156,11 @@ const trail = z
     // whole-route file, else one per stage) for anyone to download without a login, never the file
     // itself, so walkers get it from the operator's site (decided 2026-11-05); it must be the url of
     // its `source`. Shown as a link in Location; `none` a short reason where the operator offers none
-    // ("stage tracks only after login"), not shown. huckepack never stores or republishes an official GPX
+    // ("stage tracks only after login"), not shown. `by` names the provider for the link's note
+    // ("Offered by National Trails"). huckepack never stores or republishes an official GPX; where
+    // there is none, the page offers our own tracing instead (src/lib/gpx.ts)
     officialGpx: z
-      .union([z.object({ url: z.url(), source: sourceRef }), z.object({ none: z.string(), source: sourceRef })])
+      .union([z.object({ url: z.url(), by: z.string(), source: sourceRef }), z.object({ none: z.string(), source: sourceRef })])
       .optional(),
     trailType: z.enum(["point-to-point", "loop", "network"]),
     continents: z.array(z.enum(CONTINENTS)).min(1),

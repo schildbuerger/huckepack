@@ -113,8 +113,11 @@ schema's superRefine; the skyline by `tests/trails.test.ts`):
   - `officialGpx`: the operator's page that offers a GPX anyone can download without a login
     (the whole route, else one per stage). The link goes to that page, never to the file, so
     walkers get it from the operator's site (decided 2026-11-05); the page is also its source
-    (the build checks they match). `none` with a reason where the operator plainly offers none
-    ("stage tracks only after login"). Never stored;
+    (the build checks they match), and `by`, the provider named in the link's note ("Offered by
+    National Trails"). `none` with a reason where the operator plainly offers none ("stage
+    tracks only after login"). Never stored. Where there is no `url`, the page offers our own
+    GPX instead, traced from OSM (`data/derived/lines/<slug>.json`, from `pipeline.routes`),
+    without the stages under 95 % matched;
   - `ascent` and `descent` totals;
   - a stage's `ascentM`, `descentM`, `minutes`, heights (estimated when missing, ≈), and its
     `closed`, `via`, `maxBridgeM`;

@@ -16,7 +16,9 @@ ways around it (both cached in data/raw/<slug>/, with manifest.json recording wh
 retrieved), match the track to the ways (pipeline/osm.py) and write
 public/routes/<slug>.geojson: one LineString of OSM geometry per stage, simplified to about
 10 m and rounded to 5 decimals, with the stage's number, kind, from and to and how well the
-match covers the track. Prints a report; stages that cover less than 95% of their track need
+match covers the track; and data/derived/lines/<slug>.json, the same walked stages simplified
+to only about 2 m (no detours or transfers) with the OSM data's date, from which the site builds
+its own GPX where the operator offers none (src/pages/gpx/[slug].gpx.ts). Prints a report; stages that cover less than 95% of their track need
 a look (OSM may be missing a path there).
 """
 
@@ -44,6 +46,7 @@ truststore.inject_into_ssl()
 
 ROOT = Path(__file__).resolve().parent.parent
 TOLERANCE_M = 10
+GPX_TOLERANCE_M = 2  # the downloadable line: below GPS accuracy, keeps switchbacks
 MAX_RELATION_GAP_M = 1000  # a longer jump between relation ways ends the chained line
 USER_AGENT = "huckepack-pipeline (personal project)"
 
@@ -457,7 +460,7 @@ def build(slug, refresh=False):
             guides = {(s["number"], s["kind"]): piece for s, piece in zip(stages, split_at(line, stages))}
     if not stages:
         raise SystemExit(f"{slug}: no stage has a track (or an end point and a route.relation)")
-    features, stage_ways, measured = [], [], []
+    features, stage_ways, measured, walked = [], [], [], []
     print(f"{'stage':<12} {'stated':>7} {'track':>7} {'osm':>7} {'covered':>8} {'max off':>8}")
     previous_end = (start["lon"], start["lat"])
     last = None  # the stage before, so a run of variants chains from one to the next
@@ -537,6 +540,13 @@ def build(slug, refresh=False):
         )
         stage_ways.append({"number": stage["number"], "kind": stage["kind"], "ways": report["ways"]})
         measured.append({"number": stage["number"], "kind": stage["kind"], "km": round(report["km"], 2), "covered": round(report["covered"], 3)})
+        walked.append(
+            {
+                **{k: stage[k] for k in ("number", "kind", "from", "to")},
+                "covered": round(report["covered"], 3),
+                "lines": [[[round(x, 5), round(y, 5)] for x, y in simplify(line, GPX_TOLERANCE_M)] for line in lines],
+            }
+        )
         for n, line in enumerate(lines, 1):
             features.append(
                 {
@@ -576,6 +586,12 @@ def build(slug, refresh=False):
     out = ROOT / "public" / "routes" / f"{slug}.geojson"
     out.parent.mkdir(parents=True, exist_ok=True)
     out.write_text(json.dumps({"type": "FeatureCollection", "features": features}, separators=(",", ":")) + "\n")
+    # the walked stages in more detail for the site's own GPX, with the OSM data's date (the newest
+    # of the OSM downloads this line came from)
+    osm_dates = [v["retrieved"][:10] for k, v in cache.manifest.items() if k.startswith("osm-") and k not in ("osm-water.json", "osm-along.json")]
+    lines_out = ROOT / "data" / "derived" / "lines" / f"{slug}.json"
+    lines_out.parent.mkdir(parents=True, exist_ok=True)
+    lines_out.write_text(json.dumps({"osmDate": max(osm_dates) if osm_dates else None, "stages": walked}, separators=(",", ":")) + "\n")
     # which OSM ways each stage uses (for pipeline/surface.py), in data/derived/<slug>.json
     derived = ROOT / "data" / "derived" / f"{slug}.json"
     existing = json.loads(derived.read_text()) if derived.exists() else {}

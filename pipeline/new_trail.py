@@ -36,6 +36,7 @@ managedBy:
 officialGpx:  # the operator's page offering a public GPX download (the page, never the file; also its source); delete if there is none,
   # or replace url with `none: <reason>` where the operator plainly offers none
   url: null
+  by: null  # the provider, for the link's note ("Offered by National Trails")
   source: null
 trailType: null  # point-to-point, loop or network
 continents: [null]  # Europe, Asia, Africa, North America, South America, Oceania
