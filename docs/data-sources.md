@@ -41,16 +41,22 @@ source before using it, and record the result here.
 
 ## Photos
 
-Researched 2026-11-05; Wikimedia Commons in use since the same day (pipeline/photos.py, docs/scope.md).
+Researched 2026-11-05, again the same evening (free to use, and as easy to reach as possible). In use:
+Wikimedia Commons by Wikidata and category (pipeline/photos.py, docs/scope.md).
 
-| Source | What | Licence | Notes |
-|---|---|---|---|
-| Wikimedia Commons (via Wikidata P18 and P373) | Photos of a trail, found through its Wikidata item | Per file: take only public domain, CC0, CC BY, CC BY-SA | Best candidate. Self-host a resized copy (hotlinking is allowed but discouraged); credit author and licence with a link to the file page; Wikimedia doesn't warrant licences, check each file ([reuse guide](https://commons.wikimedia.org/wiki/Commons:Reusing_content_outside_Wikimedia)) |
-| Geograph Britain and Ireland | Geolocated photos of every grid square | CC BY-SA 2.0, every photo | Good for UK and Irish trails; has an image API; many photos are already on Commons ([re-use](https://www.geograph.org.uk/faq3.php?q=re-use)) |
-| Panoramax | Street-level imagery, also along paths | CC BY-SA 4.0 on most instances, Etalab 2.0 on IGN's | Shows the path itself, not a hero view; STAC API, metacatalogue api.panoramax.xyz ([OSM wiki](https://wiki.openstreetmap.org/wiki/Panoramax)) |
-| Unsplash | Stock photos | Unsplash License; API terms require hotlinking, a download call per pick and credit links | Not suitable: keyword-tagged (no proof a photo shows the trail), adds a third-party host ([API guidelines](https://help.unsplash.com/api-guidelines/unsplash-api-guidelines)) |
-| Pexels | Stock photos | Pexels License, no credit required | Not suitable: keyword-tagged, as Unsplash |
-| Tourism boards' press photos | Official photos | Usually editorial use only, time-limited | Only where a photo carries an explicit open licence |
+| Source | What | Licence | Access | Fit |
+|---|---|---|---|---|
+| Wikimedia Commons, by category (in use) | Photos in the trail's Commons category (Wikidata P373) and P18 | Per file; we take only public domain, CC0, CC BY, CC BY-SA | Open API, no key; a User-Agent naming us | In use: 61 of 79 trails |
+| Wikimedia Commons, by location | Every geotagged file near the route (`list=geosearch`, `gsnamespace=6`, radius up to 10 km, up to 500 per call), whatever its category: Geograph's and Panoramio's copies too | As above | Same API, no key | Best next step: same rules, same credits, no new host or account; fills trails without a category (31 files within 1 km of one point on the Pfälzer Weinsteig) |
+| Flickr | The largest pool; `flickr.photos.search` filters by licence ids and `bbox` or `lat`/`lon`/`radius` (up to 32 km), with owner, geo and size URLs as extras | Per photo; open ones only | API key required (non-commercial or commercial key; Flickr's API terms); photos for commercial use must carry a CC licence that allows it | Good second source for trails Commons leaves short; needs a key and a check of which key fits huckepack |
+| Openverse (WordPress) | One search across Flickr, Commons, Geograph, Europeana and others (about 45 sources), filtered by licence | Per item | Anonymous use allowed with tight limits; registering (OAuth, free) unlocks the standard limit | Handy for finding, but no location search: by keyword only, so nothing proves a photo shows the trail |
+| Geograph Britain and Ireland | Geolocated photos of every grid square, over 7.9 million | CC BY-SA 2.0, every photo | Free API key; syndicator search by location and radius (up to 20 km); no scraping, bulk use through data.geograph.org.uk dumps | UK and Ireland only; the API gives 640 px (larger sizes only where the photographer allowed them, through the photo page); many are already on Commons, so Commons by location covers much of it |
+| Official open photos (e.g. New Zealand's DOC) | Operators that publish photos openly | DOC: CC BY 4.0, "Source: Department of Conservation (NZ)"; images marked © excluded | Per operator (their site, their Flickr account) | Official photos of exactly our trails; check operator by operator |
+| Europeana | Cultural heritage collections, `reusability=open` (public domain, CC0, CC BY, CC BY-SA) | Per item's rights statement | Free API key, one per application | Mostly archive and museum images, rarely today's trail; for history at most |
+| Panoramax | Street-level imagery, also on paths | Mixed by instance (CC BY-SA 4.0 on most, Etalab 2.0 on IGN's) | Open STAC API, `/api/search` | Shows the path, not the view: a different feature ("the ground here") |
+| Mapillary (Meta) | Street-level imagery | CC BY-SA, some datasets otherwise | Access token; terms say images are CC BY-SA, reuse of API downloads less clear | As Panoramax, with a token and less clear terms |
+| Unsplash, Pexels, Pixabay | Stock photos | Their own licences (free use) | API keys; Unsplash requires hotlinking and a download call per pick; Pixabay forbids permanent hotlinking and asks to cache 24 hours; Pexels asks for a link back | Not suitable: keyword-tagged, so nothing proves a photo shows the trail |
+| Tourism boards' press photos | Official photos | Usually editorial use only, time-limited | By request | Only where a photo carries an explicit open licence |
 
 ## Methods
 
