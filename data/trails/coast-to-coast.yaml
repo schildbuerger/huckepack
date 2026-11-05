@@ -8,6 +8,10 @@ managedBy:
   # from Natural England
   - name: Natural England and the Coast to Coast trail partnership (National Trails)
     url: https://www.nationaltrail.co.uk/en_GB/trails/coast-to-coast/
+officialGpx:
+  # National Trails' GPX for the whole trail, a public download (checked 2026-11-05: a gpx file)
+  url: https://nationaltrails.s3.eu-west-2.amazonaws.com/uploads/2026/03/Coast_to_Coast_Elev.gpx
+  source: nt
 trailType: point-to-point
 continents: [Europe]
 countries: [GB]
