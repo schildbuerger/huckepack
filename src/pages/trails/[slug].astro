@@ -937,7 +937,8 @@ const trailLd = JSON.stringify({
               <dt>Managed by</dt>
               <dd>
                 {t.managedBy.map((m) => m.name).join(", ")}
-                <a class="site-link" href={t.website}>Official website</a>
+                {/* the official GPX link already leads to the operator's site: then no second link (2026-11-05) */}
+                {!(t.officialGpx && "url" in t.officialGpx) && <a class="site-link" href={t.website}>Official website</a>}
                 {t.officialGpx && "url" in t.officialGpx && (
                   <>
                     <a class="site-link" href={t.officialGpx.url}>Official GPX track</a>
