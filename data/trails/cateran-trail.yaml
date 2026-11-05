@@ -64,6 +64,11 @@ difficulty:
       Glenshee; fully waymarked, but the Trust warns not to walk it without a map or guidebook.
       Mountain hiking on clear paths and tracks (T2).
     source: pkct
+season:
+  # English Wikipedia's infobox: "Season: All year" (the Trust names none)
+  months: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
+  text: All year
+  source: wikipedia-en
 sleeping:
   # the Trust names no places to stay; hotels, guest houses and hostels in the villages from OSM
   # (pipeline/along.py)
@@ -118,8 +123,7 @@ animals:
 tags: [glens, moorland, drove-roads, loop]
 notes:
   - >-
-    Season: none stated by the Trust (searched 2026-11-05); it warns of livestock unfenced in fields
-    from April to January.
+    Season: all year, from English Wikipedia's infobox (2026-11-05); the Trust names none.
   - >-
     Wild camping: the Trust states no camping rule; Scotland's access rights (the Scottish Outdoor
     Access Code) apply (searched 2026-11-05).
@@ -165,11 +169,10 @@ sources:
     licence: © NHS, Open Government Licence (facts only)
     retrieved: 2026-11-05
   - id: wikipedia-en
-    title: "Wikipedia (en): Cateran Trail (length, stages, days, highest and lowest point, ascent; data check)"
+    title: "Wikipedia (en): Cateran Trail (length, stages, days, highest and lowest point, ascent, season; data check)"
     url: https://en.wikipedia.org/wiki/Cateran_Trail
     licence: CC BY-SA 4.0
     retrieved: 2026-11-05
-    checkOnly: true  # only for the data check
   - id: wikimedia
     title: "Wikimedia: page views of the trail's Wikipedia articles in every language, by people, over twelve months (Wikidata sitelinks, pageview API)"
     url: https://wikimedia.org/api/rest_v1/

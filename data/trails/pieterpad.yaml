@@ -98,6 +98,11 @@ difficulty:
       farmland, heath, forest and the low hills of Salland, Montferland and South Limburg; there
       are no mountain passages. Hiking on good paths (T1).
     source: sp
+season:
+  # English Wikipedia's infobox: "Season: All year" (the Stichting and Wandelnet name none)
+  months: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
+  text: All year
+  source: wikipedia-en
 sleeping:
   # the Stichting's list of places to stay along the route: hotels, B&Bs, holiday homes and
   # campsites, each with its stages
@@ -147,9 +152,10 @@ notes:
     by ferry to Millingen, past Groesbeek and along the Maas through Limburg to the Sint-Pietersberg
     at Maastricht. It touches Germany at Hoch-Elten, Zyfflich and the Selfkant (Isenbruch, Millen).
   - >-
-    Season: none published (the Stichting, Wandelnet), so none recorded. Wild camping: no official
-    source states the rule for the route (in the Netherlands it is set by municipal bylaws and
-    landowners; the Stichting asks walkers to follow the landowners' rules), so none recorded.
+    Season: all year, from English Wikipedia's infobox (2026-11-05; Italian and Catalan Wikipedia agree); the Stichting Pieterpad and Wandelnet name none.
+  - >-
+    Wild camping: no official source states the rule for the route (in the Netherlands it is set by municipal bylaws and landowners; the Stichting asks walkers to follow the landowners' rules), so none recorded.
+  - >-
     Tree line: none recorded, the trail stays below about 200 m.
   - >-
     Figures: Wandelnet states 502 km (part 1 239 km, part 2 263 km; its text also says 257 km),
@@ -181,6 +187,11 @@ dataCheck:
   against: [sp, wikipedia]
   deviations: []
 sources:
+  - id: wikipedia-en
+    title: "Wikipedia (en): Pieterpad (season)"
+    url: https://en.wikipedia.org/wiki/Pieterpad
+    licence: CC BY-SA 4.0
+    retrieved: 2026-11-05
   - id: wn
     title: "Wandelnet: Pieterpad (LAW 9), its two parts and 26 stage pages (Pieterpad 1 and 2, etappe 01–13) with each stage's length"
     url: https://www.wandelnet.nl/pieterpad

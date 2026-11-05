@@ -75,6 +75,11 @@ difficulty:
       Eildon Hills; the last section crosses tidal sands to Holy Island, only in the safe crossing
       times. Mountain hiking on clear paths in the hills (T2).
     source: scw-walking
+season:
+  # English Wikipedia's infobox: "Season: All year" (the St Cuthbert's Way site names none)
+  months: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
+  text: All year
+  source: wikipedia-en
 sleeping:
   # "Overnight accommodation is available at numerous places on or near St. Cuthbert's Way":
   # hotels, inns, B&Bs, listed by village; camping in England on established campsites
@@ -143,9 +148,7 @@ animals:
 tags: [pilgrimage, abbeys, roman-road, cheviot-hills, tidal-crossing, border]
 notes:
   - >-
-    Season: none stated on the St Cuthbert's Way site (route, planning, FAQs, itineraries pages;
-    searched 2026-11-05). The Holy Island crossing is cut off twice a day by the tide: the causeway
-    and the Pilgrims' Path only in the safe crossing times, allowing 2 hours.
+    Season: all year, from English Wikipedia's infobox (2026-11-05); the St Cuthbert's Way site names none.
   - >-
     Tree line: none; the route's highest point is Wideopen Hill, 400 m (the site).
   - >-
@@ -213,11 +216,10 @@ sources:
     licence: © St Cuthbert's Way steering group (facts only)
     retrieved: 2026-11-05
   - id: wikipedia-en
-    title: "Wikipedia (en): St Cuthbert's Way (length, route, opening, wild camping; data check)"
+    title: "Wikipedia (en): St Cuthbert's Way (length, route, opening, wild camping, season; data check)"
     url: https://en.wikipedia.org/wiki/St_Cuthbert%27s_Way
     licence: CC BY-SA 4.0
     retrieved: 2026-11-05
-    checkOnly: true  # only for the data check
   - id: wikimedia
     title: "Wikimedia: page views of the trail's Wikipedia articles in every language, by people, over twelve months (Wikidata sitelinks, pageview API)"
     url: https://wikimedia.org/api/rest_v1/

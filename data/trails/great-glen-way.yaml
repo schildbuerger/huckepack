@@ -68,6 +68,11 @@ difficulty:
       routes over open hillside to 434 m; some stretches follow the A82 on pavements. Hiking on good
       paths (T1).
     source: ggw
+season:
+  # English Wikipedia's infobox: "Season: All year" (the Great Glen Way's site names none)
+  months: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
+  text: All year
+  source: wikipedia
 sleeping:
   # the Great Glen Way's accommodation directory (B&Bs, guest houses, a hotel, a hostel) and the
   # formal campsites it names at Fort William, Gairlochy, Invergarry, Fort Augustus, Drumnadrochit,
@@ -140,8 +145,7 @@ notes:
     Abriachan Forest 375 m against 381 m on the terrain model: all agree. Wikipedia's 1,835 m of
     ascent is the high routes' figure (Scotland's Great Trails), not shown. No deviation over 10 %.
   - >-
-    Season: none stated by the Great Glen Way's site (2026-11-03); midges are worst from June to
-    September.
+    Season: all year, from English Wikipedia's infobox (2026-11-05); the Great Glen Way's site names none. Midges are worst from June to September.
   - >-
     Waymarking: not recorded (2026-11-04): greatglenway.com now answers 403 Forbidden to the
     checker, and the pages read when the trail was built (2026-11-03) didn't describe the marks.

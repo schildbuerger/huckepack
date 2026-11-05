@@ -61,6 +61,11 @@ difficulty:
       training area, and good paths to the Sloy hydro road; "rarely rising above 250 metres". Mountain
       hiking on tracks and paths, partly faint (T2).
     source: tlw
+season:
+  # no season published (searched 2026-11-05): every month, the rule for trails without one
+  months: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
+  text: "No season published; every month for now"
+  source: huckepack-season
 sleeping:
   # "There are a number of hotels, B&Bs, hostels and other lodgings"
   types: [hotel, guesthouse, hostel]
@@ -120,7 +125,7 @@ animals:
 tags: [lochs, highland-boundary-fault, glens, forest-tracks]
 notes:
   - >-
-    Season: none stated by the site (searched 2026-11-05).
+    Season: none published (the official website's pages and FAQ, Wikipedia; searched 2026-11-05); every month is recorded for now, by the rule for trails without a published season.
   - >-
     Ascent: the site gives "Total ascent is approximately 1,500 metres" and each stage's ascent
     (about 400, 200, 490 and 411 m) but no descents, so the page estimates both from the terrain
@@ -152,6 +157,11 @@ dataCheck:
   against: [wikipedia-en]
   deviations: []
 sources:
+  - id: huckepack-season
+    title: "huckepack: no season published by the operator or a second source (the official website's pages and FAQ, Wikipedia); every month for now, until one is found"
+    url: https://github.com/schildbuerger/huckepack/blob/main/docs/trail-building.md
+    licence: huckepack's own rule (decided 2026-11-05)
+    retrieved: 2026-11-05
   - id: tlw
     title: "Three Lochs Way: official website, home page (length, days, total ascent, height)"
     url: https://www.threelochsway.co.uk/

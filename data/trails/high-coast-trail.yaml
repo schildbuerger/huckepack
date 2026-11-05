@@ -69,6 +69,11 @@ difficulty:
       easier stages on gravel roads; it advises steering clear of the Slåttdalsskrevan gorge because of
       rockfall. Mountain hiking on clear paths (T2).
     source: hk
+season:
+  # no season published (searched 2026-11-05): every month, the rule for trails without one
+  months: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
+  text: "No season published; every month for now"
+  source: huckepack-season
 sleeping:
   # "inom varje etapp finns minst en möjlighet till övernattning under tak": timbered cabins, B&Bs,
   # hotels and campsites along the stages (hogakusten.com's stage pages)
@@ -133,13 +138,18 @@ notes:
     gives 128.6 km in thirteen stages (5 %) and names Region Västernorrland as trail authority; its
     stage division is older. No deviation over 10 %.
   - >-
-    Season: none stated by hogakusten.com (2026-11-03).
+    Season: none published (hogakusten.com in English and Swedish, Wikipedia in five languages; searched 2026-11-05); every month is recorded for now, by the rule for trails without a published season. Lövvik's shop opens from mid-June to mid-August (hogakusten.com).
 dataCheck:
   # working rule 2: English and Swedish Wikipedia
   date: 2026-11-03
   against: [wikipedia]
   deviations: []
 sources:
+  - id: huckepack-season
+    title: "huckepack: no season published by the operator or a second source (hogakusten.com in English and Swedish, Wikipedia in five languages); every month for now, until one is found"
+    url: https://github.com/schildbuerger/huckepack/blob/main/docs/trail-building.md
+    licence: huckepack's own rule (decided 2026-11-05)
+    retrieved: 2026-11-05
   - id: hk
     title: "Höga Kusten Destinationsutveckling (hogakusten.com): Höga Kusten-leden and its nine stage pages (length, grade, time, places to stay, rules)"
     url: https://www.hogakusten.com/hogakustenleden

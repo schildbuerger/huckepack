@@ -69,9 +69,8 @@ const source = z.object({
 
 // fields filled where a source gives them, else explained by a note starting with the label
 // (docs/trail-building.md, "What a record needs"); checked in the trail schema's superRefine
-type TrailIn = { [k: string]: unknown; length: unknown[]; days?: unknown; season?: unknown; wildCamping?: unknown; waymarking?: unknown; wikidata?: unknown; protectedAreas: unknown[] };
+type TrailIn = { [k: string]: unknown; length: unknown[]; days?: unknown; wildCamping?: unknown; waymarking?: unknown; wikidata?: unknown; protectedAreas: unknown[] };
 const EXPLAINED: [string, string, (t: TrailIn) => boolean][] = [
-  ["season", "Season", (t) => !!t.season],
   ["wildCamping", "Wild camping", (t) => !!t.wildCamping],
   ["waymarking", "Waymarking", (t) => !!t.waymarking],
   ["wikidata", "Wikidata", (t) => !!t.wikidata],
@@ -263,13 +262,14 @@ const trail = z
       })
       .optional(),
 
-    season: z
-      .object({
-        months: z.array(z.number().int().min(1).max(12)).min(1),
-        text: z.string().optional(), // the source's own wording, e.g. "spring and autumn"
-        source: sourceRef,
-      })
-      .optional(),
+    // required (2026-11-05, the user's rule): from the operator, else a second source; where none
+    // publishes one after a thorough search, every month for now, with the `huckepack-season` source
+    // naming what was searched (docs/trail-building.md)
+    season: z.object({
+      months: z.array(z.number().int().min(1).max(12)).min(1),
+      text: z.string().optional(), // the source's own wording, e.g. "spring and autumn"
+      source: sourceRef,
+    }),
 
     sleeping: z
       .object({

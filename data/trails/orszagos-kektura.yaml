@@ -136,6 +136,11 @@ difficulty:
       and Zemplén hills, and long flat stretches on field roads and tarmac in the west; no secured
       or exposed passages. Mountain hiking on mostly good paths (T2).
     source: kektura
+season:
+  # no season published (searched 2026-11-05): every month, the rule for trails without one
+  months: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
+  text: "No season published; every month for now"
+  source: huckepack-season
 sleeping:
   # OSM along the route (pipeline/along.py): tourist houses and self-catering huts (kulcsosház),
   # campsites, hostels, guest houses and hotels in the towns
@@ -233,14 +238,18 @@ notes:
     Days: none stated by the MTSZ (2026-11-04) beyond its 59 day stages; the page counts one day per
     stage.
   - >-
-    Season: none stated by the MTSZ (kektura.hu, 2026-11-04); the route is walked all year, and the
-    site posts temporary closures of stretches for driven hunts in late autumn and winter.
+    Season: none published (kektura.hu, Wikipedia in six languages; searched 2026-11-05); every month is recorded for now, by the rule for trails without a published season. The MTSZ posts temporary closures of stretches for driven hunts in late autumn and winter.
 dataCheck:
   # working rule 2: English Wikipedia
   date: 2026-11-01
   against: [wikipedia-en]
   deviations: []
 sources:
+  - id: huckepack-season
+    title: "huckepack: no season published by the operator or a second source (kektura.hu, Wikipedia in six languages); every month for now, until one is found"
+    url: https://github.com/schildbuerger/huckepack/blob/main/docs/trail-building.md
+    licence: huckepack's own rule (decided 2026-11-05)
+    retrieved: 2026-11-05
   - id: hu-kullancs
     title: "Kormányhivatalok (Hungarian government offices): Lakossági tájékoztató a kullancsokról (public information on ticks, May 2025)"
     url: https://kormanyhivatalok.hu/sites/default/files/2025-05/-lakossagi-tajekoztato-a-kullancsokrol.docx

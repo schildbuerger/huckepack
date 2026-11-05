@@ -38,6 +38,10 @@
   the printed summit panorama was picked, without its degree scale and without
   sideways scrolling, the names linking to the trails and colouring their
   drawing when pointed at). On phones a list under the drawing links them.
+- **Every trail has a season** (decided 2026-11-05): the operator's, else a second source's
+  (a park, a tourism board, Wikipedia's infobox); where a thorough search finds none, every month
+  for now (source `huckepack-season`, naming what was searched), so the trail can be picked in
+  every month of the search's When filter until a source gives one. The build requires it.
 - **Logbook** (issue #80): the recently added trails as hut stamps, grey until
   pointed at, then in their ink, in one band with the heading and the link to
   all trails (decided 2026-11-05, of five previews: hut book, hut stamps,

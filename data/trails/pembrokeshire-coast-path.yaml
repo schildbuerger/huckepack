@@ -87,6 +87,11 @@ difficulty:
       sheer cliffs close by, while some stretches are gentle, on tracks and roads; two tidal crossings
       need low water. Hiking with steep sections and drops near the path (T2).
     source: nt
+season:
+  # "The Pembrokeshire Coast Path has something to offer all the year round" (National Trails, trail information)
+  months: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
+  text: "Something to offer all the year round; many prefer the cooler spring or autumn, or even exhilarating winter days"
+  source: nt-info
 sleeping:
   # "There are plenty of campsites along the Trail" (National Trails); the rest comes from OSM
   types: [campsite]
@@ -158,7 +163,8 @@ notes:
     312 km; walkers cover between 270 and 300 km (National Trails). The map follows the National
     Trail's GPX.
   - >-
-    Season: National Trails recommends spring or autumn but names no months, so none is recorded.
+    Season: all year (National Trails' FAQ, 2026-11-05); it adds that many prefer spring or autumn, and that the coastal sections get very muddy in winter.
+  - >-
     Tree line: none recorded, the path stays below 175 m.
   - >-
     Map line: the National Trail's GPX guides the OSM matcher; every stage at least 96 % matched,

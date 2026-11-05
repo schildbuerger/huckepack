@@ -5,9 +5,10 @@
 Writes data/trails/<slug>.yaml from the template below: every field the trail pages use, each
 `null` with a comment on what belongs there and where it comes from. The build fails on any
 `null` left (the schema in src/content.config.ts accepts no null), so a gap can't slip through:
-fill each field, or delete an optional one the sources don't give (season, wild camping, waymarking,
+fill each field, or delete an optional one the sources don't give (wild camping, waymarking,
 Wikidata, length, days and protected areas need a note starting with their label then, e.g.
-"Season: none stated by …"; docs/trail-building.md, "What a record needs"). Then
+"Wild camping: none stated by …"; docs/trail-building.md, "What a record needs"). The season is
+required: where no source publishes one, every month with the `huckepack-season` source. Then
 ~/.venvs/huckepack/bin/python -m pipeline.all <slug>, work through its check, and do the data check (working
 rule 2). Never commit a record that doesn't build. The whole path: docs/trail-building.md.
 """
@@ -92,6 +93,9 @@ difficulty:
     basis: null
     source: null
 season:
+  # required: the operator's season, else a second source's (a tourism board, a park, Wikipedia);
+  # where none publishes one after a thorough search, every month [1, …, 12] with text "No season
+  # published; every month for now" and source huckepack-season (its entry names what was searched)
   months: [null]  # the months the source recommends
   text: null
   source: null

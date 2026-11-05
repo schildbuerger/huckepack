@@ -60,6 +60,11 @@ difficulty:
       that it "can be impassable at high tide (twice a day) in some places", with high-tide
       diversions, and that cliffs can slump and edges crumble. Hiking on good paths (T1).
     source: fcct-safe
+season:
+  # English Wikipedia's infobox: "Season: All year" (the Trust names none)
+  months: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
+  text: All year
+  source: wikipedia-en
 sleeping:
   # the Trust's page names no places to stay: hotels, guest houses, hostels and campsites along the
   # coast from OSM (pipeline/along.py)
@@ -118,8 +123,7 @@ animals:
 tags: [coast, beaches, castles, fishing-villages, tidal-sections]
 notes:
   - >-
-    Season: none stated by the Trust (the path's page, section pages, Plan Your Trip, Stay Safe;
-    searched 2026-11-05).
+    Season: all year, from English Wikipedia's infobox (2026-11-05); the Trust names none.
   - >-
     Days: none stated by the Trust; the page counts one day per section (8). English Wikipedia: "usually
     takes between one week and 10 days".
@@ -171,7 +175,6 @@ sources:
     url: https://en.wikipedia.org/wiki/Fife_Coastal_Path
     licence: CC BY-SA 4.0
     retrieved: 2026-11-05
-    checkOnly: true  # only for the data check
   - id: wikimedia
     title: "Wikimedia: page views of the trail's Wikipedia articles in every language, by people, over twelve months (Wikidata sitelinks, pageview API)"
     url: https://wikimedia.org/api/rest_v1/

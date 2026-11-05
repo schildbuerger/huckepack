@@ -102,9 +102,14 @@ schema's superRefine; the skyline by `tests/trails.test.ts`):
   - `sources`;
   - a skyline;
   - `treeLine` when the route goes above 1,500 m (the pipeline's check).
+  - `season` (decided 2026-11-05): research it thoroughly: the operator's pages (also rendered
+    in a browser where the text comes by script, and FAQs, booking and hut pages), then a second
+    source (a park, a tourism board, Wikipedia's infobox in the trail's languages). Where none
+    publishes one, record every month for now, text "No season published; every month for now",
+    with a `huckepack-season` source whose title names what was searched, and a "Season:" note
+    saying the same. Replace it as soon as a source gives a season.
 - **Required or explained.** Fill these from a source; where none gives one, add a note that
   starts with the field's label and says what was searched and when:
-  - `season` ("Season: none stated by …");
   - `wildCamping` ("Wild camping: …");
   - `waymarking` ("Waymarking: …");
   - `wikidata` ("Wikidata: …": no article, or an article on something else);

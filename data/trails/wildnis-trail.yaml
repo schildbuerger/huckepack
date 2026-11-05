@@ -66,6 +66,11 @@ difficulty:
       and an "abenteuerliche Höhenpfad", otherwise forest roads and meadow paths. Eifel Tourismus
       rates the stages moderate. Hiking on good paths with steep sections (T2); no exposed passages.
     source: np
+season:
+  # German Wikipedia's infobox: "Jahreszeit: ganzjährig" (the park names none)
+  months: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
+  text: Ganzjährig (all year)
+  source: wikipedia-de
 sleeping:
   # the park names guest houses, hotels and holiday flats at each stage town; camping only on
   # campsites outside the park
@@ -121,10 +126,11 @@ notes:
     Safety: around Vogelsang, a military training area until 2005, leaving the marked paths is
     forbidden because of unexploded ordnance (the park). Dogs on a lead in the whole park.
   - >-
-    Season: none published (the park, Eifel Tourismus), so none recorded. Waymarking: the park
-    describes none; an undated brochure without a named publisher (wackerberg.de) mentions
-    signposts with a wildcat pictogram, not used. Tree line: none recorded, the trail stays below
-    about 630 m.
+    Season: all year, from German Wikipedia's infobox ("ganzjährig"; English Wikipedia "Year round", 2026-11-05); the national park and Eifel Tourismus name none.
+  - >-
+    Waymarking: the park describes none; an undated brochure without a named publisher (wackerberg.de) mentions signposts with a wildcat pictogram, not used.
+  - >-
+    Tree line: none recorded, the trail stays below about 630 m.
   - >-
     Figures: the stages sum to 84.0 km against the stated 85 km, and to 1,802 m up and 2,220 m
     down against the stated 1,891 and 2,251 m. No stage times are published; the page estimates
@@ -152,6 +158,11 @@ dataCheck:
   against: [eifel-tourismus, brochure]
   deviations: []
 sources:
+  - id: wikipedia-de
+    title: "Wikipedia (de): Wildnis-Trail Nationalpark Eifel (season)"
+    url: https://de.wikipedia.org/wiki/Wildnis-Trail_Nationalpark_Eifel
+    licence: CC BY-SA 4.0
+    retrieved: 2026-11-05
   - id: wikimedia
     title: "Wikimedia: page views of the trail's Wikipedia articles in every language, by people, over twelve months (Wikidata sitelinks, pageview API)"
     url: https://wikimedia.org/api/rest_v1/

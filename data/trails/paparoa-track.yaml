@@ -64,6 +64,11 @@ difficulty:
       any time of year, then down through karst and rainforest along the Pororari River, on a wide
       track shared with mountain bikers. Mountain hiking on a good track over exposed tops (T2).
     source: doc
+season:
+  # DOC books the huts in every month and advises walkers in winter to check for snow and ice
+  months: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
+  text: "Walked all year; in winter check for snow and ice before you go"
+  source: doc
 sleeping:
   # DOC's three Great Walk huts (Ces Clark, Moonlight Tops, Pororari), booked in advance; no
   # campsites
@@ -98,9 +103,7 @@ notes:
     Wildlife (2026-11-05): none listed. New Zealand has no dangerous land animals; sandflies are a
     nuisance, not a danger. No DOC statement on dangerous animals was found.
   - >-
-    Season: DOC states none (2026-11-05): the huts are booked and charged in every month, and the
-    page advises walkers in winter to check for snow and ice; weather is changeable all year, with
-    about 6,000 mm of rain a year.
+    Season: all year (DOC, 2026-11-05): the huts are booked and charged in every month, and DOC advises walkers in winter to check for snow and ice and allow extra time. English Wikipedia's infobox gives "Summer to autumn"; the record follows DOC.
   - >-
     Stages: DOC's four walking legs add up to 55.1 km (stated 55 km); DOC gives no ascent or descent.
     Mountain bikers ride it in two days (56.2 km, to the Waikori Road car park). The Pike29 Memorial

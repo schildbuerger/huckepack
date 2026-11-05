@@ -62,6 +62,11 @@ difficulty:
       and over limestone hills, then beaches and rocky coast where freak waves and rip currents are
       the danger. Mountain hiking on good paths (T2).
     source: capenature
+season:
+  # no season published (searched 2026-11-05): every month, the rule for trails without one
+  months: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
+  text: "No season published; every month for now"
+  source: huckepack-season
 sleeping:
   # five Whale Trail huts, "each fully equipped hut sleeps up to 12 people"; luggage carried between
   # them (porterage, extra cost)
@@ -127,9 +132,11 @@ notes:
     from hut to hut (porterage, extra cost), so many hikers carry only a day pack. Southern right
     whales are in the bay from June to November.
   - >-
-    Season: CapeNature names none; the trail is walked all year. None recorded. Wild camping: no
-    source found; hikers stay in the huts, and fires in the veld are prohibited. Tree line: none
-    recorded, the trail stays below 611 m.
+    Season: none published (CapeNature's Whale Trail page, Wikipedia; searched 2026-11-05); every month is recorded for now, by the rule for trails without a published season.
+  - >-
+    Wild camping: no source found; hikers stay in the huts, and fires in the veld are prohibited.
+  - >-
+    Tree line: none recorded, the trail stays below 611 m.
   - >-
     Water: besides the huts' taps, "the only water point on the trail is approximately 10.5 km from
     the 1st hut"; walk with at least 2 litres a day. Children under 8 are not allowed.
@@ -163,6 +170,11 @@ dataCheck:
     - { figure: "Ascent", ours: "≈ 1,650 m (terrain model)", theirs: "1,169 m (GPS track)", source: sahikes }
     - { figure: "Stage 3 length", ours: "8.5 km", theirs: "7.1 km (map line, along the beach)", source: osm }
 sources:
+  - id: huckepack-season
+    title: "huckepack: no season published by the operator or a second source (CapeNature's Whale Trail page, Wikipedia); every month for now, until one is found"
+    url: https://github.com/schildbuerger/huckepack/blob/main/docs/trail-building.md
+    licence: huckepack's own rule (decided 2026-11-05)
+    retrieved: 2026-11-05
   - id: capetown-snakes
     title: "City of Cape Town: care with snakes and scorpions (first aid for snake bites and scorpion stings)"
     url: https://www.capetown.gov.za/Explore%20and%20enjoy/visitor-safety/general-safety-awareness/care-with-snakes-and-scorpions

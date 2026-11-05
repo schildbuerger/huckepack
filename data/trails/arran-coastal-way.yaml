@@ -63,6 +63,11 @@ difficulty:
       and stretches impassable at high tide with signed diversions. Mountain hiking with some easy
       scrambling over boulders (T2).
     source: acw-sections
+season:
+  # no season published (searched 2026-11-05): every month, the rule for trails without one
+  months: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
+  text: "No season published; every month for now"
+  source: huckepack-season
 sleeping:
   # the section pages list hotels, B&Bs and a caravan and camping site in the villages
   types: [hotel, guesthouse, campsite]
@@ -119,7 +124,7 @@ notes:
     Days: none stated as a number; the site calls the route "perfect for a week long walking
     holiday" (searched 2026-11-05). The page counts one day per section (8).
   - >-
-    Season: none stated by the site (searched 2026-11-05).
+    Season: none published (the site's home, route, section and planning pages, Wikipedia; searched 2026-11-05); every month is recorded for now, by the rule for trails without a published season.
   - >-
     Wild camping: the site states no camping rule; it points to the Scottish Outdoor Access Code
     for access rights (searched 2026-11-05).
@@ -153,6 +158,11 @@ dataCheck:
   against: [wikipedia-en]
   deviations: []
 sources:
+  - id: huckepack-season
+    title: "huckepack: no season published by the operator or a second source (the site's home, route, section and planning pages, Wikipedia); every month for now, until one is found"
+    url: https://github.com/schildbuerger/huckepack/blob/main/docs/trail-building.md
+    licence: huckepack's own rule (decided 2026-11-05)
+    retrieved: 2026-11-05
   - id: acw
     title: "Arran Coastal Way: home page (length, one of Scotland's Great Trails)"
     url: https://www.coastalway.co.uk/

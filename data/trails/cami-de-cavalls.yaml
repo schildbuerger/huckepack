@@ -80,6 +80,11 @@ difficulty:
       section point is 118 m. Mountain hiking on mostly good paths with some rough, exposed ground
       (T2).
     source: cime
+season:
+  # no season published (searched 2026-11-05): every month, the rule for trails without one
+  months: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
+  text: "No season published; every month for now"
+  source: huckepack-season
 sleeping:
   # OSM along the route (pipeline/along.py): a few campsites and hostels, guest houses and hotels in
   # the resorts and towns
@@ -144,8 +149,7 @@ notes:
     "about four thousand" (11 %); the terrain model estimates about 3,460 m, close to the
     council's.
   - >-
-    Season: none stated by the island council (2026-11-01); Turespaña and Catalan Wikipedia name
-    none either.
+    Season: none published (the island council's site, Turespaña, Wikipedia in five languages; searched 2026-11-05); every month is recorded for now, by the rule for trails without a published season.
   - >-
     Days: none stated by the island council (2026-11-01); the page counts one day per section.
 dataCheck:
@@ -155,6 +159,11 @@ dataCheck:
   deviations:
     - { figure: "Ascent", ours: "3,548 m (sum of the 20 sections)", theirs: "about 4,000 m", source: wikipedia-ca }
 sources:
+  - id: huckepack-season
+    title: "huckepack: no season published by the operator or a second source (the island council's site, Turespaña, Wikipedia in five languages); every month for now, until one is found"
+    url: https://github.com/schildbuerger/huckepack/blob/main/docs/trail-building.md
+    licence: huckepack's own rule (decided 2026-11-05)
+    retrieved: 2026-11-05
   - id: cime
     title: "Consell Insular de Menorca: Camí de Cavalls, its 20 sections (distance, ascent and descent, highest and lowest point, GPX)"
     url: https://www.camidecavalls.com/
