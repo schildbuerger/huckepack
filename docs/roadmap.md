@@ -100,6 +100,7 @@ And **The Ridgeway** (#221, 139 km from Overton Hill near Avebury to Ivinghoe Be
 And the **Yorkshire Wolds Way** (#222, 127 km from Hessle on the Humber to Filey Brigg in the National Trail's six sections, by Goodmanham; its one GPX cut at each section's end).
 And **Glyndŵr's Way** (#223, 217 km from Knighton to Welshpool through mid-Wales by Machynlleth in the National Trail's nine sections; its 2022 GPX guides eight, section 6 the OSM relation).
 And the **Thames Path** (#224, 298 km from Thames Head near Kemble to the Woolwich Foot Tunnel in the National Trail's 15 sections, by the south bank in London; its 2024 GPX guides fourteen, section 9 the OSM relation).
+And the **North Downs Way** (#225, Farnham to Dover in the National Trail's 15 sections: 1–13 by Canterbury the main route, 216 km, 14–15 by Folkestone variants; its 2025 GPX and the Canterbury loop's OSM relation).
 | # | Trail | Region | Length (approx.) | Why |
 |---|---|---|---|---|
 | 1 | Pacific Crest Trail | USA | 4,265 km | Most-hiked long trail; public US agency data; completion lists |

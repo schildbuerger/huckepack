@@ -986,6 +986,22 @@ export const SKYLINES: Record<string, Skyline> = {
       { d: hills([[480, G], [620, 254], [800, 232], [940, 260], [1040, G]]), c: "#7f9a54" },
     ],
   },
+  "north-downs-way": {
+    view: "The North Downs: the wooded chalk scarp with the pilgrims' chapel of St Martha's on its hill, and the White Cliffs of Dover over the sea at the end",
+    ridge: MEADOW,
+    ground: "#8fb05a",
+    shapes: [
+      // the long scarp of the Downs, wooded along its brow
+      { d: hills([[0, G], [160, 244], [420, 232], [700, 240], [960, 230], [1100, 250], [1180, G]]), c: "#7f9a54" },
+      // St Martha's on its hill: a small church with a squat tower
+      { d: "M330,236V224H352V216H362V224H372V236Z", c: "#c9b48a" },
+      { d: water(1060, 1600, 268), c: SEA },
+      // the White Cliffs: a white chalk wall with green turf on top
+      { d: range([[1140, G], [1152, 236], [1260, 228], [1400, 232], [1520, 224], [1600, 226], [1600, G]]), c: "#ece8dc" },
+      // the near down in front
+      { d: hills([[0, G], [200, 268], [480, 256], [760, 270], [900, G]]), c: "#9ab866" },
+    ],
+  },
   "thames-path": {
     view: "The Thames at Oxford: the dreaming spires and the Radcliffe Camera's dome beyond the water meadows, the river in front with a willow on its bank",
     ridge: MEADOW,

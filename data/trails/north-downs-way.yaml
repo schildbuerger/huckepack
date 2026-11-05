@@ -1,0 +1,245 @@
+name: North Downs Way
+added: 2026-11-05
+aliases: [North Downs Way National Trail, NDW]
+website: https://www.nationaltrail.co.uk/en_GB/trails/north-downs-way/
+wikidata: Q2000593
+managedBy:
+  # a National Trail (Natural England) (National Trails, GOV.UK)
+  - name: Natural England (National Trails)
+    url: https://www.nationaltrail.co.uk/en_GB/trails/north-downs-way/
+officialGpx:
+  # National Trails' GPX for the whole trail, its download link on the trail information page
+  # (checked 2026-11-05)
+  url: https://www.nationaltrail.co.uk/en_GB/trails/north-downs-way/trail-information/
+  by: National Trails
+  source: nt-info
+trailType: point-to-point
+continents: [Europe]
+countries: [GB]
+regions: [Surrey, Kent]
+protectedAreas:
+  # GOV.UK: "The trail passes through 2 National Landscapes: the Surrey Hills and the Kent Downs"
+  - Surrey Hills National Landscape
+  - Kent Downs National Landscape
+termini:
+  # the ends of National Trails' GPX: Farnham by the station, and Dover
+  start:
+    name: Farnham
+    lat: 51.21285
+    lon: -0.79379
+  end:
+    name: Dover
+    lat: 51.12515
+    lon: 1.31367
+  source: nt
+waymarking:
+  text: The National Trail acorn, or the trail's name, on gates and signposts
+  source: govuk
+stages:
+  # the National Trail's 15 sections (Route Description): 1–13 from Farnham by Canterbury to Dover,
+  # the main route (the old Pilgrims' Way to Canterbury; GOV.UK: "from Farnham in Surrey to
+  # Canterbury and then the White Cliffs of Dover"); 14 and 15 the direct way from Wye by Folkestone,
+  # variants. One official GPX (April 2025; its first track Farnham to Dover by Folkestone, its
+  # second the Canterbury loop from Boughton Lees), cut at each section's `end`; it only guides the
+  # OSM matcher (kept local). Sections 10–13 follow the OSM relation of the Canterbury loop
+  # (4078375), as the pipeline reads a GPX's first track only. Listed with the variants after
+  # section 9, where they leave the main route
+  source: nt
+  list:
+    - { number: "1", kind: main, from: Farnham, to: Guildford, km: 17.7, track: "https://nationaltrails.s3.eu-west-2.amazonaws.com/uploads/2025/04/North_Downs_Way_Elev.gpx", end: { name: Guildford, lat: 51.22537, lon: -0.57097 } }
+    - { number: "2", kind: main, from: Guildford, to: Dorking, km: 21, track: "https://nationaltrails.s3.eu-west-2.amazonaws.com/uploads/2025/04/North_Downs_Way_Elev.gpx", end: { name: Dorking, lat: 51.24399, lon: -0.34107 } }
+    - { number: "3", kind: main, from: Dorking, to: Merstham, km: 16, track: "https://nationaltrails.s3.eu-west-2.amazonaws.com/uploads/2025/04/North_Downs_Way_Elev.gpx", end: { name: Merstham, lat: 51.26504, lon: -0.15299 } }
+    - { number: "4", kind: main, from: Merstham, to: Oxted, km: 12.8, track: "https://nationaltrails.s3.eu-west-2.amazonaws.com/uploads/2025/04/North_Downs_Way_Elev.gpx", end: { name: Oxted, lat: 51.2712, lon: -0.00899 } }
+    - { number: "5", kind: main, from: Oxted, to: Otford, km: 18.9, track: "https://nationaltrails.s3.eu-west-2.amazonaws.com/uploads/2025/04/North_Downs_Way_Elev.gpx", end: { name: Otford, lat: 51.3129, lon: 0.18612 } }
+    - { number: "6", kind: main, from: Otford, to: Cuxton, km: 24.1, track: "https://nationaltrails.s3.eu-west-2.amazonaws.com/uploads/2025/04/North_Downs_Way_Elev.gpx", end: { name: Cuxton, lat: 51.37921, lon: 0.46512 } }
+    - { number: "7", kind: main, from: Cuxton, to: Detling, km: 20.1, track: "https://nationaltrails.s3.eu-west-2.amazonaws.com/uploads/2025/04/North_Downs_Way_Elev.gpx", end: { name: Detling, lat: 51.29821, lon: 0.58205 } }
+    - { number: "8", kind: main, from: Detling, to: Lenham, km: 14.9, track: "https://nationaltrails.s3.eu-west-2.amazonaws.com/uploads/2025/04/North_Downs_Way_Elev.gpx", end: { name: Lenham, lat: 51.24483, lon: 0.71459 } }
+    - { number: "9", kind: main, from: Lenham, to: Wye, km: 17.9, track: "https://nationaltrails.s3.eu-west-2.amazonaws.com/uploads/2025/04/North_Downs_Way_Elev.gpx", end: { name: Wye, lat: 51.18294, lon: 0.937 } }
+    - { number: "14", kind: variant, from: Wye, to: Folkestone, km: 24.4, track: "https://nationaltrails.s3.eu-west-2.amazonaws.com/uploads/2025/04/North_Downs_Way_Elev.gpx", end: { name: Folkestone, lat: 51.09668, lon: 1.19251 } }
+    - { number: "15", kind: variant, from: Folkestone, to: Dover, km: 13.5, track: "https://nationaltrails.s3.eu-west-2.amazonaws.com/uploads/2025/04/North_Downs_Way_Elev.gpx", end: { name: Dover, lat: 51.12357, lon: 1.31269 } }
+    - { number: "10", kind: main, from: Wye, to: Chilham, km: 11, relation: 4078375, end: { name: Chilham, lat: 51.24428, lon: 0.96218 } }
+    - { number: "11", kind: main, from: Chilham, to: Canterbury, km: 11.6, relation: 4078375, end: { name: Canterbury, lat: 51.27911, lon: 1.08146 } }
+    - { number: "12", kind: main, from: Canterbury, to: Shepherdswell, km: 16.7, relation: 4078375, end: { name: Shepherdswell, lat: 51.1854, lon: 1.23591 } }
+    - { number: "13", kind: main, from: Shepherdswell, to: Dover, km: 13.7, relation: 4078375, end: { name: Dover, lat: 51.12515, lon: 1.31367 } }
+route:
+  # built by `python -m pipeline.all north-downs-way`: OSM ways matched to the official GPX's pieces
+  # and the Canterbury loop's relation
+  source: osm
+  publishable: true
+difficulty:
+  estimated:
+    sac: T1
+    basis: >-
+      National Trails: much of the trail on relatively level ground along the scarp of the North
+      Downs, with steep ascents and descents in places (Guildford to Reigate: St Martha's, Albury
+      Down, White Down, Box Hill, Colley Hill); well signed, no exposed ground. Hiking on good
+      paths (T1).
+    source: nt-info
+season:
+  # "The trail is open all year. Some sections can become muddy in wet weather"
+  months: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
+  text: All year; some sections muddy in wet weather
+  source: govuk
+sleeping:
+  # National Trails: "plenty of campsites along the trail", camping barns; B&Bs, inns and hotels in
+  # the towns and villages (OSM along the route, pipeline/along.py)
+  types: [campsite, guesthouse, hotel]
+  source: nt-info
+wildCamping:
+  status: restricted
+  rule: >-
+    There are normally no rights for National Trail users to wild camp in England: ask the
+    landowner's permission (some farmers and pub owners allow it), or use the campsites along the
+    trail.
+  source: nt-info
+access:
+  # Farnham station by the start; Heathrow and Gatwick the nearest airports. Coordinates from OSM;
+  # distances by pipeline/access.py
+  - kind: station
+    name: Farnham
+    lat: 51.21171
+    lon: -0.79179
+    source: osm
+  - kind: airport
+    name: London Heathrow Airport (LHR)
+    lat: 51.46774
+    lon: -0.45878
+    source: osm
+  - kind: airport
+    name: London Gatwick Airport (LGW)
+    lat: 51.15408
+    lon: -0.18232
+    source: osm
+animals:
+  # Cattle (the Countryside Code, HSE) and ticks (NHS). Levels ours
+  list:
+    - kind: cattle
+      name: "Cattle"
+      level: moderate
+      basis: "The Way crosses downland and fields where cattle graze; the Health and Safety Executive names cows with calves and walkers with dogs as the two most common factors in incidents between cattle and the public."
+      do:
+        - "Give livestock plenty of space: their behaviour can be unpredictable, especially when they are with their young"
+        - "Keep your dog on a lead around livestock"
+        - "Let your dog off the lead if you feel threatened by livestock: releasing it makes it easier for you both to reach safety"
+        - "Follow the farmer's directions when animals are being moved or gathered"
+      dont:
+        - "Risk getting hurt protecting your dog"
+        - "Feed livestock"
+      source: countryside-code
+    - kind: tick
+      name: "Ticks (Lyme disease)"
+      level: low
+      basis: "Ticks that can carry Lyme disease live all over the UK, in woods and long grass; the NHS names grassy and wooded areas in southern England and the Scottish Highlands as high-risk areas."
+      do:
+        - "Cover your skin while walking and tuck your trousers into your socks"
+        - "Use insect repellent on your clothes and skin; products containing DEET are best"
+        - "Stay on clear paths whenever possible"
+        - "Wear light-coloured clothing so ticks are easier to see and brush off"
+        - "Remove a tick with fine-tipped tweezers or a tick-removal tool: grasp it as close to the skin as possible, pull slowly upwards, then clean the bite"
+        - "Get an urgent GP appointment or call NHS 111 if, within 3 months of a bite, you feel unwell with flu-like symptoms or a round or oval rash appears"
+      dont:
+        - "Squeeze or crush the tick when you remove it"
+      source: nhs-lyme
+tags: [national-trail, chalk-downs, pilgrims-way, canterbury, white-cliffs]
+notes:
+  - >-
+    Stages: sections 1–13 by Canterbury add up to 216.4 km; by Folkestone (sections 1–9, 14 and 15)
+    the trail is 201.3 km. Section 10 is "Wye to Chilham", but the loop leaves the direct way at
+    Boughton Lees, before Wye ("you'll need to leave the track after Boughton Lees").
+  - >-
+    Route (pipeline, 2026-11-05, Geofabrik extracts): National Trails' GPX (April 2025, its first
+    track) guides sections 1–9, 14 and 15, the Canterbury loop's OSM relation (4078375) sections
+    10–13; every section matches at least 98 %. By Canterbury the map line is 214.0 km against the
+    sections' 216.4 km. Several towns lie beside the trail, so our section ends (placed where the
+    trail passes nearest) and National Trails' differ: sections 2 and 3 split at Dorking (18.8 and
+    18.1 km against 21 and 16; together 36.9 against 37), 6 and 7 at Cuxton (26.7 and 18.5 against
+    24.1 and 20.1), 8 and 9 at Lenham (13.4 and 18.6 against 14.9 and 17.9), 14 and 15 at
+    Folkestone (27.2 and 10.4 against 24.4 and 13.5; together 37.6 against 37.9). Section 10 is
+    8.0 km on the map line: it starts where the loop leaves the direct way at Boughton Lees, not at
+    Wye (stated 11 km). Highest point 272 m (km 69, Botley Hill), lowest at sea level by the Medway.
+  - >-
+    Water and beds: (2026-11-05, within 500 m) OSM has 20 drinking water points near the route (none
+    for 52.8 km, km 58–111, Oxted to Cuxton) and no place to sleep for 44.9 km (km 58–103); the
+    villages below the scarp have pubs and B&Bs off the trail, and National Trails' map shows water
+    points and accommodation.
+  - >-
+    Data check (2026-11-05). Second sources: Natural England's GOV.UK page (153 miles, 246 km;
+    around 12 days; open all year; the Surrey Hills and Kent Downs National Landscapes) and English
+    Wikipedia (Farnham to Dover past Guildford, Dorking, Merstham, Otford and Rochester; opened
+    1978). Ends, season and protected areas agree; the stated length and days cover both branches
+    (see Length and Days).
+  - >-
+    Length: National Trails and GOV.UK state 153 miles (246 km), a figure that matches neither way
+    to Dover (216.4 km by Canterbury, 201.3 km by Folkestone; all 15 sections together are 254.3
+    km), so the record leaves it out and the page sums the sections (2026-11-05).
+  - >-
+    Days: National Trails' "twelve days" (13 miles a day) and GOV.UK's "around 12 days" are for
+    the 246 km, so the record leaves them out and the page counts one day per main section.
+dataCheck:
+  # working rule 2: GOV.UK (Natural England), English Wikipedia
+  date: 2026-11-05
+  against: [govuk, wikipedia-en]
+  deviations: []
+sources:
+  - id: countryside-code
+    title: "Natural England and Natural Resources Wales: The Countryside Code, advice for countryside visitors (updated 26 May 2023)"
+    url: https://www.gov.uk/government/publications/the-countryside-code/the-countryside-code-advice-for-countryside-visitors
+    licence: Open Government Licence v3.0
+    retrieved: 2026-11-05
+  - id: nhs-lyme
+    title: "NHS: Lyme disease (avoiding tick bites, removing ticks, when to get help)"
+    url: https://www.nhs.uk/conditions/lyme-disease/
+    licence: © NHS, Open Government Licence (facts only)
+    retrieved: 2026-11-05
+  - id: nt
+    title: "National Trails: North Downs Way, Route Description (the 15 sections with their distances, the Canterbury loop)"
+    url: https://www.nationaltrail.co.uk/en_GB/trails/north-downs-way/route/
+    licence: © National Trails (facts only)
+    retrieved: 2026-11-05
+  - id: nt-info
+    title: "National Trails: North Downs Way trail information & map (length, days, difficulty, season, camping, the GPX download)"
+    url: https://www.nationaltrail.co.uk/en_GB/trails/north-downs-way/trail-information/
+    licence: All rights reserved (facts only; the GPX linked, not stored)
+    retrieved: 2026-11-05
+  - id: govuk
+    title: "Natural England (GOV.UK): North Downs Way National Trail (length, days, season, waymarking, National Landscapes)"
+    url: https://www.gov.uk/government/publications/visit-a-national-trail-in-england/north-downs-way-national-trail
+    licence: Open Government Licence v3.0
+    retrieved: 2026-11-05
+  - id: wikipedia-en
+    title: "Wikipedia (en): North Downs Way (opened 1978; data check)"
+    url: https://en.wikipedia.org/wiki/North_Downs_Way
+    licence: CC BY-SA 4.0
+    retrieved: 2026-11-05
+    checkOnly: true  # only for the data check
+  - id: wikimedia
+    title: "Wikimedia: page views of the trail's Wikipedia articles in every language, by people, over twelve months (Wikidata sitelinks, pageview API)"
+    url: https://wikimedia.org/api/rest_v1/
+    licence: CC0 1.0 (pageview data); Wikidata CC0
+    retrieved: 2026-11-05
+    checkOnly: true  # not on the trail page: the page views only rank the home page's popular trails
+  - id: osm
+    title: "OpenStreetMap contributors: paths, water, shops and places to sleep along the trail (Geofabrik extracts), travel hubs"
+    url: https://www.openstreetmap.org/
+    licence: ODbL 1.0
+    retrieved: 2026-11-05
+  - id: copdem
+    title: "Copernicus DEM GLO-30 (30 m terrain model), tiles from AWS Open Data"
+    url: https://registry.opendata.aws/copernicus-dem/
+    licence: "Copernicus WorldDEM-30 licence, free; produced using Copernicus WorldDEM-30 © DLR e.V. 2010-2014 and © Airbus Defence and Space GmbH 2014-2018 provided under COPERNICUS by the European Union and ESA; all rights reserved"
+    retrieved: 2026-11-05
+  - id: worldcover
+    title: "ESA WorldCover 2021: 10 m land cover (via AWS Open Data)"
+    url: https://esa-worldcover.org/
+    licence: "CC BY 4.0; © ESA WorldCover project 2021 / Contains modified Copernicus Sentinel data (2021) processed by ESA WorldCover consortium"
+    retrieved: 2026-11-05
+  - id: era5
+    title: "Open-Meteo open data on AWS: ERA5-Land temperature and ERA5 precipitation, snow and wind, daily 1995–2024 (reanalysis)"
+    url: https://github.com/open-meteo/open-data
+    licence: CC BY 4.0 (Open-Meteo); contains modified Copernicus Climate Change Service information
+    retrieved: 2026-11-05
+  - id: osrm
+    title: "OSRM: road routes on OpenStreetMap data (router.project-osrm.org)"
+    url: https://project-osrm.org/
+    licence: Route data © OpenStreetMap contributors (ODbL)
+    retrieved: 2026-11-05
