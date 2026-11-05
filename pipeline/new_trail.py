@@ -33,6 +33,10 @@ managedBy:
   # who designates or maintains the trail (ground rule: official trails only)
   - name: null
     url: null
+officialGpx:  # the operator's own public GPX download, linked on the page (never stored); delete if there is none,
+  # or replace url with `none: <reason>` where the operator plainly offers none
+  url: null
+  source: null
 trailType: null  # point-to-point, loop or network
 continents: [null]  # Europe, Asia, Africa, North America, South America, Oceania
 countries: [null]  # ISO codes, e.g. AT, DE, IT

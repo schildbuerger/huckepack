@@ -44,7 +44,8 @@ playbook follows. When a rule here changes, date it.
   derived (measured on the map line, estimated from the terrain model), marked as such. Never
   mix sources in one figure.
 - **Licences:** official GPX tracks are copyrighted: they guide the matcher, stay in the
-  git-ignored cache and are never committed or published; only the OSM map line goes out.
+  git-ignored cache and are never committed or published; only the OSM map line goes out. The
+  page may link the operator's download (`officialGpx`).
 - **Wildlife and tree line:** official sources only (park, health or agriculture authority;
   forest service, `data/reference/tree-lines.yaml`).
 
@@ -109,6 +110,10 @@ schema's superRefine; the skyline by `tests/trails.test.ts`):
 - **Only when they apply:**
   - `localName` (when it differs), `aliases`, `designation`, `established`;
   - `permit`, `fees`, `waterPoints`, `refillsUntreated`;
+  - `officialGpx`: the operator's own public GPX download (a file anyone can download without
+    a login, the whole route if there is one, else the page listing the stage files), with the
+    page that offers it as its source; `none` with a reason where the operator plainly offers
+    none ("stage tracks only after login"). Linked, never stored;
   - `ascent` and `descent` totals;
   - a stage's `ascentM`, `descentM`, `minutes`, heights (estimated when missing, ≈), and its
     `closed`, `via`, `maxBridgeM`;

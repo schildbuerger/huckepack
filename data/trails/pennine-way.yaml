@@ -8,9 +8,9 @@ managedBy:
   - name: Natural England (National Trail)
     url: https://www.gov.uk/government/publications/visit-a-national-trail-in-england/pennine-way-national-trail
 officialGpx:
-  # National Trails' GPX for the whole trail, a public download (checked 2026-11-05: a gpx file)
+  # National Trails' GPX for the whole trail, its "Download Walking GPX" link (checked 2026-11-05)
   url: https://nationaltrails.s3.eu-west-2.amazonaws.com/uploads/Pennine-Way-elev-1.gpx
-  source: nt
+  source: nt-info
 trailType: point-to-point
 continents: [Europe]
 countries: [GB]
@@ -191,7 +191,7 @@ sources:
     licence: All rights reserved (facts only)
     retrieved: 2026-11-03
   - id: nt-info
-    title: "National Trails: Pennine Way trail information (camping, places to stay)"
+    title: "National Trails: Pennine Way trail information (camping, places to stay, the Download Walking GPX link)"
     url: https://www.nationaltrail.co.uk/en_GB/trails/pennine-way/trail-information/
     licence: All rights reserved (facts only)
     retrieved: 2026-11-03

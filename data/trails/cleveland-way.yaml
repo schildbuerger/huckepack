@@ -7,9 +7,9 @@ managedBy:
   - name: Natural England and the North York Moors National Park (National Trails)
     url: https://www.nationaltrail.co.uk/en_GB/trails/cleveland-way/
 officialGpx:
-  # National Trails' GPX for the whole trail, a public download (checked 2026-11-05: a gpx file)
+  # National Trails' GPX for the whole trail, its "Download Walking GPX" link (checked 2026-11-05)
   url: https://nationaltrails.s3.eu-west-2.amazonaws.com/uploads/Cleveland_Way_Elev.gpx
-  source: nt
+  source: nt-gpx
 trailType: point-to-point
 continents: [Europe]
 countries: [GB]
@@ -177,6 +177,11 @@ sources:
     url: https://www.nationaltrail.co.uk/en_GB/trails/cleveland-way/route/
     licence: All rights reserved (facts only)
     retrieved: 2026-11-03
+  - id: nt-gpx
+    title: "National Trails: Cleveland Way trail information & map (the Download Walking GPX link)"
+    url: https://www.nationaltrail.co.uk/en_GB/trails/cleveland-way/trail-information/
+    licence: All rights reserved (linked, not stored)
+    retrieved: 2026-11-05
   - id: nymnp
     title: "North York Moors National Park Authority: Share with care (camping needs the landowner's permission)"
     url: https://www.northyorkmoors.org.uk/share-with-care

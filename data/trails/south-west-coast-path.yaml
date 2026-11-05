@@ -10,6 +10,10 @@ managedBy:
     url: https://www.nationaltrail.co.uk/en_GB/trails/south-west-coast-path/
   - name: South West Coast Path Association
     url: https://www.southwestcoastpath.org.uk/
+officialGpx:
+  # National Trails' GPX for the whole trail, its "Download Walking GPX" link (checked 2026-11-05)
+  url: https://nationaltrails.s3.eu-west-2.amazonaws.com/uploads/2026/04/South_West_Coast_Path_Elev.gpx
+  source: nt-info
 trailType: point-to-point
 continents: [Europe]
 countries: [GB]
@@ -269,7 +273,7 @@ sources:
     licence: All rights reserved (facts only)
     retrieved: 2026-11-03
   - id: nt-info
-    title: "National Trails: South West Coast Path map and information (camping, places to stay, waymarking)"
+    title: "National Trails: South West Coast Path map and information (camping, places to stay, waymarking, the Download Walking GPX link)"
     url: https://www.nationaltrail.co.uk/en_GB/trails/south-west-coast-path/trail-information/
     licence: All rights reserved (facts only)
     retrieved: 2026-11-03

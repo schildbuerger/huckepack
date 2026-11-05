@@ -8,9 +8,9 @@ managedBy:
   - name: Natural England and the Cotswold Way trail partnership (National Trails)
     url: https://www.nationaltrail.co.uk/en_GB/trails/cotswold-way/
 officialGpx:
-  # National Trails' GPX for the whole trail, a public download (checked 2026-11-05: a gpx file)
+  # National Trails' GPX for the whole trail, its "Download Walking GPX" link (checked 2026-11-05)
   url: https://nationaltrails.s3.eu-west-2.amazonaws.com/uploads/Cotswold-Way-2019.gpx
-  source: nt
+  source: nt-gpx
 trailType: point-to-point
 continents: [Europe]
 countries: [GB]
@@ -209,6 +209,11 @@ sources:
     url: https://www.nationaltrail.co.uk/en_GB/trails/cotswold-way/route/
     licence: © National Trails (facts only)
     retrieved: 2026-11-01
+  - id: nt-gpx
+    title: "National Trails: Cotswold Way trail information & map (the Download Walking GPX link)"
+    url: https://www.nationaltrail.co.uk/en_GB/trails/cotswold-way/trail-information/
+    licence: All rights reserved (linked, not stored)
+    retrieved: 2026-11-05
   - id: govuk
     title: "Natural England (GOV.UK): Visit a National Trail in England, Cotswold Way (days, highest point)"
     url: https://www.gov.uk/government/publications/visit-a-national-trail-in-england/cotswold-way-national-trail

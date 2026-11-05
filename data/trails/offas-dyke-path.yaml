@@ -10,9 +10,9 @@ managedBy:
   - name: Natural Resources Wales, Natural England and the Offa's Dyke Path trail partnership (National Trails)
     url: https://www.nationaltrail.co.uk/en_GB/trails/offas-dyke-path/
 officialGpx:
-  # National Trails' GPX for the whole trail, a public download (checked 2026-11-05: a gpx file)
+  # National Trails' GPX for the whole trail, its "Download Walking GPX" link (checked 2026-11-05)
   url: https://nationaltrails.s3.eu-west-2.amazonaws.com/uploads/ODP_loops_elev.gpx
-  source: nt
+  source: nt-gpx
 trailType: point-to-point
 continents: [Europe]
 countries: [GB]
@@ -211,6 +211,11 @@ sources:
     url: https://www.nationaltrail.co.uk/en_GB/trails/offas-dyke-path/route/
     licence: © National Trails (facts only)
     retrieved: 2026-11-01
+  - id: nt-gpx
+    title: "National Trails: Offa's Dyke Path trail information & map (the Download Walking GPX link)"
+    url: https://www.nationaltrail.co.uk/en_GB/trails/offas-dyke-path/trail-information/
+    licence: All rights reserved (linked, not stored)
+    retrieved: 2026-11-05
   - id: wikipedia-en
     title: "Wikipedia (en): Offa's Dyke Path (length, days, highest point, opening; data check)"
     url: https://en.wikipedia.org/wiki/Offa%27s_Dyke_Path

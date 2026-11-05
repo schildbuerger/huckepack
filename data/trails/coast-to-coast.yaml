@@ -9,9 +9,9 @@ managedBy:
   - name: Natural England and the Coast to Coast trail partnership (National Trails)
     url: https://www.nationaltrail.co.uk/en_GB/trails/coast-to-coast/
 officialGpx:
-  # National Trails' GPX for the whole trail, a public download (checked 2026-11-05: a gpx file)
+  # National Trails' GPX for the whole trail, its "Download Walking GPX" link (checked 2026-11-05)
   url: https://nationaltrails.s3.eu-west-2.amazonaws.com/uploads/2026/03/Coast_to_Coast_Elev.gpx
-  source: nt
+  source: nt-gpx
 trailType: point-to-point
 continents: [Europe]
 countries: [GB]
@@ -200,6 +200,11 @@ sources:
     url: https://www.nationaltrail.co.uk/en_GB/trails/coast-to-coast/
     licence: © National Trails (facts only)
     retrieved: 2026-10-31
+  - id: nt-gpx
+    title: "National Trails: Coast to Coast trail information & map (the Download Walking GPX link)"
+    url: https://www.nationaltrail.co.uk/en_GB/trails/coast-to-coast/trail-information/
+    licence: All rights reserved (linked, not stored)
+    retrieved: 2026-11-05
   - id: wikipedia-de
     title: "Wikipedia (de): Coast to Coast Walk (stages along the National Trail route, highest point, terrain)"
     url: https://de.wikipedia.org/wiki/Coast_to_Coast_Walk
