@@ -986,6 +986,25 @@ export const SKYLINES: Record<string, Skyline> = {
       { d: hills([[480, G], [620, 254], [800, 232], [940, 260], [1040, G]]), c: "#7f9a54" },
     ],
   },
+  "thames-path": {
+    view: "The Thames at Oxford: the dreaming spires and the Radcliffe Camera's dome beyond the water meadows, the river in front with a willow on its bank",
+    ridge: MEADOW,
+    ground: "#8fb05a",
+    shapes: [
+      // the low hills round the city
+      { d: hills([[0, G], [240, 254], [560, 246], [900, 252], [1240, 244], [1600, 250], [1600, G]]), c: "#a7b98a" },
+      // Oxford: college roofs, spires and the Radcliffe Camera's dome
+      { d: "M560,268V256H600V250H660V258H720V252H780V262H820V268Z", c: "#c9b48a" },
+      { d: "M604,250L612,206L620,250Z", c: "#b8a27a" },
+      { d: "M690,258L697,222L704,258Z", c: "#b8a27a" },
+      { d: dome(650, 250, 18), c: "#a89270" },
+      { d: "M648,232H652V226H648Z", c: "#a89270" },
+      // the river in front, and a willow on the near bank
+      { d: water(0, 1600, 286), c: LAKE },
+      { d: dome(1180, 282, 30), c: "#7f9a54" },
+      { d: "M1176,282H1184V292H1176Z", c: "#6a5a44" },
+    ],
+  },
   "the-ridgeway": {
     view: "The open Berkshire Downs on The Ridgeway: Whitehorse Hill with the Uffington White Horse cut into its chalk, and a clump of beeches by the old track",
     ridge: MEADOW,
