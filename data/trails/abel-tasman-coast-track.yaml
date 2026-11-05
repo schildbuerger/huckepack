@@ -1,0 +1,185 @@
+name: Abel Tasman Coast Track
+added: 2026-11-05
+aliases: [Abel Tasman Coast Track Great Walk, Abel Tasman Coastal Track, Abel Tasman Track]
+website: https://www.doc.govt.nz/parks-and-recreation/places-to-go/nelson-tasman/places/abel-tasman-national-park/things-to-do/tracks/abel-tasman-coast-track/
+wikidata: Q318501
+managedBy:
+  # one of New Zealand's Great Walks; DOC runs its four huts and 18 campsites
+  - name: Department of Conservation (Te Papa Atawhai)
+    url: https://www.doc.govt.nz/
+trailType: point-to-point
+continents: [Oceania]
+countries: [NZ]
+regions: [Tasman]
+protectedAreas:
+  - Abel Tasman National Park
+termini:
+  # the causeway at Mārahau, and the Wainui car park on Wainui Inlet (OSM: the open ends of the track
+  # relation)
+  start:
+    name: Mārahau
+    lat: -40.99613
+    lon: 173.00505
+  end:
+    name: Wainui
+    lat: -40.80954
+    lon: 172.95627
+  source: osm
+waymarking:
+  text: Well marked and signposted
+  source: doc
+length:
+  # "60 km one way"
+  - km: 60
+    source: doc
+days:
+  # "3–5 days one way"
+  min: 3
+  max: 5
+  source: doc
+stages:
+  # DOC's six legs from Mārahau to Wainui, with distance and time (it can be walked either way);
+  # Anchorage to Bark Bay across Torrent Bay estuary at low tide, the shortest way over OSM's
+  # relation (the all-tide track around it is 11.5 km, 4 hr);
+  # the OSM relation (GW04, 5987159) guides the matcher, each leg the shortest way over it between
+  # the legs' ends
+  source: doc
+  list:
+    - { number: "1", kind: main, from: Mārahau, to: Anchorage, km: 12.4, minutes: 240, end: { name: Anchorage Hut, lat: -40.95692, lon: 173.05764 } }
+    - { number: "2", kind: main, from: Anchorage, to: Bark Bay, km: 8.4, minutes: 180, end: { name: Bark Bay Hut, lat: -40.9161, lon: 173.04858 } }
+    - { number: "3", kind: main, from: Bark Bay, to: Awaroa, km: 13.5, minutes: 270, end: { name: Awaroa Hut, lat: -40.86526, lon: 173.01757 } }
+    - { number: "4", kind: main, from: Awaroa, to: Tōtaranui, km: 7.1, minutes: 140, end: { name: Tōtaranui, lat: -40.82249, lon: 173.00506 } }
+    - { number: "5", kind: main, from: Tōtaranui, to: Whariwharangi Bay, km: 9.8, minutes: 195, end: { name: Whariwharangi Hut, lat: -40.78902, lon: 172.97435 } }
+    - { number: "6", kind: main, from: Whariwharangi Bay, to: Wainui, km: 5.7, minutes: 120, end: { name: Wainui, lat: -40.80954, lon: 172.95627 } }
+route:
+  # built by `python -m pipeline.all abel-tasman-coast-track`: OSM ways matched to the shortest way
+  # over the relation between the legs' ends (the relation also holds the spurs to the bays and
+  # campsites, and the tidal crossings' alternatives)
+  source: osm
+  publishable: true
+  relation: 5987159
+  branched: true
+difficulty:
+  estimated:
+    sac: T1
+    basis: >-
+      DOC grades the track intermediate: "well marked and signposted, but some sections may be steep
+      and rough and the track could be muddy", through coastal forest and over beaches, with one
+      compulsory tidal crossing at Awaroa Inlet (only from 1 hr 30 min before to 2 hr after low tide,
+      in daylight) and optional ones at Torrent Bay and Bark Bay. Hiking on a good track (T1); the
+      tides set the days.
+    source: doc
+season:
+  # DOC: huts and campsites "must be booked in advance year round"; English Wikipedia: "open
+  # throughout the year"
+  months: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
+  text: All year, booked year round; the Awaroa Inlet crossing only near low tide
+  source: doc
+sleeping:
+  # DOC's four huts and 18 campsites, booked in advance all year
+  types: [hut, campsite]
+  source: doc
+wildCamping:
+  status: restricted
+  rule: >-
+    Camping only at the DOC campsites along the track, booked in advance year round (Mosquito Bay
+    only by boat).
+  source: doc
+refillsUntreated:
+  # DOC: "Water at the huts and campsites is not treated, boil before use" (issue #119)
+  text: Water at DOC's huts and campsites is not treated; boil it before use.
+  source: doc
+fees:
+  # DOC's fees per person and night, 1 October to 30 April (the 2026/27 season; lower in winter), in
+  # New Zealand dollars
+  - { name: "Hut (international visitor, adult)", amount: 84, currency: NZD, per: per person and night, year: 2026, note: "NZ visitors $55; 1 October to 30 April", source: doc }
+  - { name: "Campsite (international visitor, adult)", amount: 31, currency: NZD, per: per person and night, year: 2026, note: "NZ visitors $21; 1 October to 30 April", source: doc }
+access:
+  # shuttles from Motueka and Nelson to Mārahau, and water taxis along the coast; Nelson the nearest
+  # airport. Coordinates from OSM; distances by pipeline/access.py
+  - kind: bus
+    name: Motueka
+    lat: -41.11249
+    lon: 173.00949
+    source: osm
+  - kind: airport
+    name: Nelson Airport (NSN)
+    lat: -41.29685
+    lon: 173.2254
+    source: osm
+tags: [great-walk, abel-tasman, national-park, beaches, tidal-crossing]
+notes:
+  - >-
+    Wildlife (2026-11-05): none listed. New Zealand has no dangerous land animals; fur seals on the
+    rocks are best left alone, but DOC names no danger from animals.
+  - >-
+    Stages: DOC's six legs add up to 56.9 km with the low-tide crossing of Torrent Bay, 60.0 km with
+    the all-tide track around it (stated 60 km); DOC gives no ascent or descent. From
+    Whariwharangi Bay walkers can instead return to Tōtaranui over Gibbs Hill (9 km, 3 hr) for the
+    water taxi; that option isn't in the record.
+  - >-
+    Tides: Awaroa Inlet "can only be crossed within 1 hour 30 minutes before and 2 hours after low
+    tide", in daylight; Torrent Bay estuary within 2 hours either side of low tide, with an all-tide
+    track around it (11.5 km instead of the record's 8.4 km on leg 2); Bark Bay estuary likewise, with a 10-minute all-tide track.
+    Check the tide tables before booking (DOC).
+  - >-
+    Route (pipeline, 2026-11-05, Geofabrik extracts): each leg is the shortest way over OSM's
+    relation (GW04, 5987159) between its ends, which takes the tidal crossings; every leg matches
+    100 %. The map line is 54.4 km against DOC's 56.9 km with the low-tide crossing. Highest point
+    197 m (km 52, the saddle above Wainui Inlet).
+  - >-
+    Water and food: OSM maps no drinking water and no shop along the track; DOC's huts and campsites
+    have water, "not treated, boil before use" (`refillsUntreated`). Water taxis call at the main
+    bays.
+  - >-
+    Data check (2026-11-05). Second source: English Wikipedia (60 km from Mārahau in the south to
+    Wainui in the north, open throughout the year). Length, ends and season agree; the legs, times
+    and tides are DOC's own.
+dataCheck:
+  # working rule 2: English Wikipedia
+  date: 2026-11-05
+  against: [wikipedia-en]
+  deviations: []
+sources:
+  - id: doc
+    title: "Department of Conservation: Abel Tasman Coast Track (length, days, legs with distance and time, tides, huts, campsites, fees, water)"
+    url: https://www.doc.govt.nz/parks-and-recreation/places-to-go/nelson-tasman/places/abel-tasman-national-park/things-to-do/tracks/abel-tasman-coast-track/
+    licence: © Crown copyright, DOC (facts only)
+    retrieved: 2026-11-05
+  - id: wikipedia-en
+    title: "Wikipedia (en): Abel Tasman Coast Track (length, ends, open all year; data check)"
+    url: https://en.wikipedia.org/wiki/Abel_Tasman_Coast_Track
+    licence: CC BY-SA 4.0
+    retrieved: 2026-11-05
+    checkOnly: true  # only for the data check
+  - id: wikimedia
+    title: "Wikimedia: page views of the trail's Wikipedia articles in every language, by people, over twelve months (Wikidata sitelinks, pageview API)"
+    url: https://wikimedia.org/api/rest_v1/
+    licence: CC0 1.0 (pageview data); Wikidata CC0
+    retrieved: 2026-11-05
+    checkOnly: true  # not on the trail page: the page views only rank the home page's popular trails
+  - id: osm
+    title: "OpenStreetMap contributors: paths, water, shops and places to sleep along the trail (Geofabrik extracts), stage ends, travel hubs"
+    url: https://www.openstreetmap.org/
+    licence: ODbL 1.0
+    retrieved: 2026-11-05
+  - id: copdem
+    title: "Copernicus DEM GLO-30 (30 m terrain model), tiles from AWS Open Data"
+    url: https://registry.opendata.aws/copernicus-dem/
+    licence: "Copernicus WorldDEM-30 licence, free; produced using Copernicus WorldDEM-30 © DLR e.V. 2010-2014 and © Airbus Defence and Space GmbH 2014-2018 provided under COPERNICUS by the European Union and ESA; all rights reserved"
+    retrieved: 2026-11-05
+  - id: worldcover
+    title: "ESA WorldCover 2021: 10 m land cover (via AWS Open Data)"
+    url: https://esa-worldcover.org/
+    licence: "CC BY 4.0; © ESA WorldCover project 2021 / Contains modified Copernicus Sentinel data (2021) processed by ESA WorldCover consortium"
+    retrieved: 2026-11-05
+  - id: era5
+    title: "Open-Meteo open data on AWS: ERA5-Land temperature and ERA5 precipitation, snow and wind, daily 1995–2024 (reanalysis)"
+    url: https://github.com/open-meteo/open-data
+    licence: CC BY 4.0 (Open-Meteo); contains modified Copernicus Climate Change Service information
+    retrieved: 2026-11-05
+  - id: osrm
+    title: "OSRM: road routes on OpenStreetMap data (router.project-osrm.org)"
+    url: https://project-osrm.org/
+    licence: Route data © OpenStreetMap contributors (ODbL)
+    retrieved: 2026-11-05

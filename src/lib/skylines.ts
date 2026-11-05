@@ -986,6 +986,23 @@ export const SKYLINES: Record<string, Skyline> = {
       { d: hills([[480, G], [620, 254], [800, 232], [940, 260], [1040, G]]), c: "#7f9a54" },
     ],
   },
+  "abel-tasman-coast-track": {
+    view: "The Abel Tasman coast: forested granite headlands between golden beaches, and Split Apple Rock in the turquoise bay",
+    ridge: "#6f8a4a",
+    ground: "#d9c49a",
+    shapes: [
+      // the bush-clad hills behind the coast
+      { d: hills([[0, G], [200, 236], [460, 224], [740, 238], [1000, 226], [1260, 240], [1600, 230], [1600, G]]), c: "#5f7a44" },
+      { d: water(0, 1600, 268), c: "#5fa8b8" },
+      // two forested headlands reaching into the bay
+      { d: hills([[0, G], [60, 262], [240, 248], [380, 262], [440, G]]), c: FOREST },
+      { d: hills([[1180, G], [1260, 258], [1440, 246], [1560, 260], [1600, G]]), c: FOREST },
+      // Split Apple Rock: a round granite boulder cleft in two
+      { d: "M800,282C800,262 812,254 822,254L824,282Z M828,282L830,254C840,254 852,262 852,282Z", c: "#c9b48a" },
+      // the golden beach in front
+      { d: hills([[300, G], [460, 290], [800, 286], [1120, 290], [1260, G]]), c: "#e3cf9a" },
+    ],
+  },
   "heaphy-track": {
     view: "The Heaphy Track: golden tussock downs above the beech forest, and nīkau palms on the West Coast where the Tasman Sea breaks on the beach",
     ridge: "#8a9a5a",

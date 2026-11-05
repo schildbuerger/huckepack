@@ -104,6 +104,7 @@ And the **North Downs Way** (#225, Farnham to Dover in the National Trail's 15 s
 And the **Kepler Track** (#228, a 60 km loop from Te Anau in Fiordland, DOC's six legs between huts and road ends; each the shortest way over the OSM relation, `branched`).
 And the **Routeburn Track** (#229, 33 km from the Routeburn Shelter to The Divide over Harris Saddle, DOC's four legs; each the shortest way over the OSM relation).
 And the **Heaphy Track** (#230, 78.4 km from Brown Hut to Kōhaihai through Kahurangi National Park, DOC's six legs; each the shortest way over the OSM relation).
+And the **Abel Tasman Coast Track** (#231, 60 km from Mārahau to Wainui, DOC's six legs with the tidal crossings; each the shortest way over the OSM relation).
 | # | Trail | Region | Length (approx.) | Why |
 |---|---|---|---|---|
 | 1 | Pacific Crest Trail | USA | 4,265 km | Most-hiked long trail; public US agency data; completion lists |
