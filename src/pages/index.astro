@@ -131,6 +131,29 @@ const monthYear = (ym: string) => new Date(`${ym}-01T00:00:00Z`).toLocaleDateStr
 const figureLine = (t: (typeof trails)[number]) =>
   [t.lengthKm !== null && `${fmt(t.lengthKm)} km`, t.days && `${days(t.days)} days`].filter(Boolean).join(" · ");
 const rateOf = (t: (typeof trails)[number]) => rateData(t.terrainLevel, t.effortLevel, t.climateByMonth, t.season);
+// the logbook's stamps: each recent trail's profile (80 × 28, on its own height range), the day it was
+// added, its length; a name too long for the rim is cut short there (the full name is under the stamp)
+const logEntries = recent.map((t, n) => {
+  const prof = t.profile ?? [];
+  const lo = prof.length ? Math.min(...prof.map((p) => p[1])) : 0;
+  const hi = prof.length ? Math.max(...prof.map((p) => p[1]), lo + 300) : 1;
+  const total = prof.at(-1)?.[0] || 1;
+  const spark = prof.length ? `M0,28L${prof.map(([k, m]) => `${((k / total) * 80).toFixed(1)},${(28 - ((m - lo) / (hi - lo)) * 26).toFixed(1)}`).join("L")}L80,28Z` : "";
+  const added = addedOf.get(t.slug)!;
+  return {
+    t,
+    n,
+    spark,
+    rim: t.name.length > 22 ? `${t.name.slice(0, 21)}…` : t.name,
+    stamp: added.toLocaleDateString("en-GB", { day: "numeric", month: "short", year: "numeric", timeZone: "UTC" }).toUpperCase(),
+    date: addedShort(t.slug),
+    km: t.lengthKm !== null ? `${fmt(t.lengthKm)} KM` : "",
+  };
+});
+// the stamps' inks, by day and (lighter, for the dark band) at night; a slight tilt each, as stamped by hand
+const INKS = ["#4f6820", "#a63d24", "#2f5d7c", "#6b4e8a", "#3f4a2c", "#8a5a1f"];
+const INKS_DARK = ["#b4cb76", "#e08a6e", "#86b4d4", "#b9a2d6", "#a9bf80", "#d9a45e"];
+const TILTS = [-6, 4, -3, 7, -5, 2];
 
 // the map section (issue #33): the whole world with a flag at each trail's start, drawn at build time
 // (src/lib/world-outline.ts), so the home page loads no map library; it links to /trails/map/
@@ -689,26 +712,39 @@ import Explainer from "../components/Explainer.astro";
     </ul>
   </section>
 
-  <!-- recent trails (issue #80) as a logbook: a table like a hut book, the newest entry first, one line each -->
-  <section class="block">
-    <div class="block-head"><h2 id="log-h">Logbook · recently added</h2></div>
-    <div class="log-wrap">
-      <table class="log" aria-labelledby="log-h">
-        <thead><tr><th scope="col">Added</th><th scope="col">Trail</th><th scope="col">Length</th><th scope="col">Days</th><th scope="col">Rated</th></tr></thead>
-        <tbody>
-          {recent.map((t) => (
-            <tr>
-              <td class="log-date">{addedShort(t.slug)}</td>
-              <td><a href={`/trails/${t.slug}/`}>{t.name}</a> <span class="log-where">{t.countries.join(", ")}</span></td>
-              <td class="log-num">{t.lengthKm !== null ? `${fmt(t.lengthKm)} km` : "–"}</td>
-              <td class="log-num">{days(t.days) ?? "–"}</td>
-              <td>{difficultyWord(t) ? <span data-rate={rateOf(t)}><span class="rate-word">{difficultyWord(t)}</span></span> : "–"}</td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
+  <!-- recent trails (issue #80) as a logbook of hut stamps (2026-11-05; of five previews, approach B): one
+       band wall to wall with its heading and the link to all trails; each new trail a round stamp, its name
+       round the rim, its countries at the foot, its profile in the middle and the day it was added across
+       it, grey until pointed at, then in its own ink -->
+  <section class="block logbook" aria-labelledby="log-h">
+    <div class="lb-inner">
+      <div class="block-head"><h2 id="log-h">Logbook · recently added</h2></div>
+      <ol class="lb-grid">
+        {logEntries.map((x) => (
+          <li>
+            <a href={`/trails/${x.t.slug}/`} style={`--ink:${INKS[x.n % INKS.length]};--ink-dark:${INKS_DARK[x.n % INKS_DARK.length]};--tilt:${TILTS[x.n % TILTS.length]}deg`}>
+              <svg class="lb-stamp" viewBox="0 0 180 180" aria-hidden="true">
+                <defs>
+                  <path id={`lb-top-${x.n}`} d="M22,90 A68,68 0 0 1 158,90" />
+                  <path id={`lb-bot-${x.n}`} d="M14,90 A76,76 0 0 0 166,90" />
+                </defs>
+                <circle cx="90" cy="90" r="84" class="lb-ring" />
+                <circle cx="90" cy="90" r="56" class="lb-ring2" />
+                <text class="lb-rim"><textPath href={`#lb-top-${x.n}`} startOffset="50%">{x.rim}</textPath></text>
+                <text class="lb-place"><textPath href={`#lb-bot-${x.n}`} startOffset="50%">★ {x.t.countries.join(" · ")} ★</textPath></text>
+                <path transform="translate(50,58)" d={x.spark} class="lb-ink" />
+                <rect x="34" y="88" width="112" height="22" class="lb-ink" />
+                <text x="90" y="104" class="lb-date">{x.stamp}</text>
+                <text x="90" y="128" class="lb-km">{x.km}</text>
+              </svg>
+              <span class="lb-name">{x.t.name}</span>
+              <span class="sr-only">, added {x.date}</span>
+            </a>
+          </li>
+        ))}
+      </ol>
+      <p class="log-all"><a href="/trails/?sort=newest">All {trails.length} trails, newest first →</a></p>
     </div>
-    <p class="log-all"><a href="/trails/?sort=newest">All {trails.length} trails, newest first →</a></p>
   </section>
 
   <section class="block">
@@ -926,9 +962,8 @@ import Explainer from "../components/Explainer.astro";
     padding: 88px 0 72px;
     text-align: center;
   }
-  /* the page's one small label: uppercase, spaced, small (the eyebrow, table heads, "From …") */
-  .label,
-  .log th {
+  /* the page's one small label: uppercase, spaced, small (the eyebrow, "From …") */
+  .label {
     font-size: 0.72rem;
     font-weight: 600;
     letter-spacing: 0.08em;
@@ -1437,62 +1472,125 @@ import Explainer from "../components/Explainer.astro";
     font-size: 0.85rem;
   }
 
-  /* the logbook (issue #80): a table like a hut book, one line per entry, rows apart by space, the whole
-     row opens the trail */
-  .log-wrap {
-    overflow-x: auto;
+  /* the logbook (issue #80; 2026-11-05, hut stamps): one band wall to wall, its heading and the link to
+     all trails inside; six stamps spread across the column, each grey until pointed at, then in its ink */
+  .logbook {
+    --lb-bg: #f1ece0;
+    --lb-off: #a9a493;
+    margin-inline: calc(50% - 50vw);
+    padding: 56px 16px 44px;
+    background: var(--lb-bg);
   }
-  .log {
-    width: 100%;
-    border-collapse: separate;
-    border-spacing: 0 10px;
-    font-size: 0.9rem;
+  :global(html[data-theme="dark"]) .logbook {
+    --lb-bg: #2b3029;
+    --lb-off: #6f7366;
   }
-  .log th {
-    padding: 0 16px 0 0;
-    color: var(--muted);
-    text-align: left;
+  .lb-inner {
+    max-width: 1200px;
+    margin: 0 auto;
   }
-  .log td {
-    padding: 0 16px 0 0;
-    vertical-align: baseline;
-    white-space: nowrap;
+  .lb-grid {
+    display: grid;
+    grid-template-columns: repeat(6, minmax(0, 1fr));
+    gap: 28px 16px;
+    margin: 8px 0 0;
+    padding: 0;
+    list-style: none;
   }
-  .log tr {
-    position: relative;
+  @media (max-width: 959px) {
+    .lb-grid {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
   }
-  .log a {
-    font-family: var(--serif);
-    font-size: 1rem;
-    font-weight: 600;
+  @media (max-width: 539px) {
+    .lb-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+  .lb-grid a {
+    --c: var(--lb-off);
+    display: grid;
+    justify-items: center;
+    gap: 10px;
     color: var(--text);
+    text-align: center;
     text-decoration: none;
   }
-  .log a::after {
-    content: "";
-    position: absolute;
-    inset: 0;
+  .lb-grid a:hover,
+  .lb-grid a:focus-visible {
+    --c: var(--ink);
+    outline: none;
   }
-  .log tbody tr:hover {
-    background: var(--surface);
+  :global(html[data-theme="dark"]) .lb-grid a:hover,
+  :global(html[data-theme="dark"]) .lb-grid a:focus-visible {
+    --c: var(--ink-dark);
   }
-  .log tbody tr:hover a {
+  .lb-stamp {
+    width: min(168px, 100%);
+    height: auto;
+    transform: rotate(var(--tilt));
+    transition: transform 0.25s;
+  }
+  .lb-grid a:hover .lb-stamp,
+  .lb-grid a:focus-visible .lb-stamp {
+    transform: rotate(0deg) scale(1.06);
+  }
+  .lb-ring,
+  .lb-ring2 {
+    fill: none;
+    stroke: var(--c);
+    transition: stroke 0.25s;
+  }
+  .lb-ring {
+    stroke-width: 4;
+  }
+  .lb-ring2 {
+    stroke-width: 1.3;
+    stroke-dasharray: 3 3;
+  }
+  .lb-ink {
+    fill: var(--c);
+    transition: fill 0.25s;
+  }
+  .lb-rim,
+  .lb-place,
+  .lb-km {
+    fill: var(--c);
+    text-anchor: middle;
+    text-transform: uppercase;
+    transition: fill 0.25s;
+  }
+  .lb-rim {
+    font: 700 12.5px var(--sans);
+    letter-spacing: 0.08em;
+  }
+  .lb-place {
+    font: 600 9px var(--sans);
+    letter-spacing: 0.12em;
+  }
+  .lb-km {
+    font: 700 10px var(--sans);
+    letter-spacing: 0.1em;
+  }
+  .lb-date {
+    fill: var(--lb-bg);
+    font: 700 11px ui-monospace, monospace;
+    letter-spacing: 0.08em;
+    text-anchor: middle;
+  }
+  .lb-name {
+    font: 600 1rem var(--serif);
+    line-height: 1.3;
+  }
+  .lb-grid a:hover .lb-name,
+  .lb-grid a:focus-visible .lb-name {
     color: var(--accent-text);
-  }
-  .log-date,
-  .log-num {
-    font-variant-numeric: tabular-nums;
-  }
-  .log-date {
-    color: var(--muted);
-  }
-  .log-where {
-    margin-left: 6px;
-    color: var(--muted);
-    font-size: 0.8rem;
+    text-decoration: underline;
+    text-underline-offset: 3px;
   }
   .log-all {
-    margin: 12px 0 0;
+    margin: 32px 0 0;
+    text-align: center;
   }
 
 

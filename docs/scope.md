@@ -38,6 +38,10 @@
   the printed summit panorama was picked, without its degree scale and without
   sideways scrolling, the names linking to the trails and colouring their
   drawing when pointed at). On phones a list under the drawing links them.
+- **Logbook** (issue #80): the recently added trails as hut stamps, grey until
+  pointed at, then in their ink, in one band with the heading and the link to
+  all trails (decided 2026-11-05, of five previews: hut book, hut stamps,
+  postcards, a walk along the trail, an arrivals board).
 - **Waymarks** (issue #82): every simple painted waymark a source describes
   (stripes, flags, diamonds, painted numbers) is redrawn as SVG on the trail
   page. Complex or protected logos are left out: the waymark's text stands
