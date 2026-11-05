@@ -109,6 +109,8 @@ const stage = z.object({
   // the longest gap between OSM ways the matcher may bridge on this stage (default 100 m), where
   // OSM still maps a crossing as under construction; the record's notes say where and why
   maxBridgeM: z.number().int().positive().optional(),
+  // a branched relation's way ends this close to another way count as joined for this stage only (route.joinM for every stage)
+  joinM: z.number().positive().optional(),
   // how many gaps the matcher may bridge on this stage (default 6), where small unconnected bits of
   // OSM near the track use up the bridges before a long one (the Pieterpad's ferries over the Rhine)
   maxBridges: z.number().int().positive().optional(),

@@ -458,5 +458,41 @@ class Photos(unittest.TestCase):
 
         self.assertEqual(photos.caption(self.file(title="File:Tré-le-Champ @ Chamonix (51482715057).jpg")), "Tré-le-Champ, Chamonix")
         self.assertEqual(photos.caption(self.file(name="Le Grandes Jorasses - Vallone del Maratrà - August 8, 2016")), "Le Grandes Jorasses - Vallone del Maratrà")
+        self.assertEqual(photos.caption(self.file(title="File:St Blane's Hill - geograph.org.uk - 8350.jpg")), "St Blane's Hill")
+        self.assertEqual(photos.caption(self.file(title="File:Neustadt an der Weinstraße - panoramio.jpg")), "Neustadt an der Weinstraße")
         self.assertEqual(photos.author(self.file(author="Own work Rémih")), "Rémih")
         self.assertEqual(photos.author(self.file(author="Guilhem Vellut from Annecy, France")), "Guilhem Vellut")
+
+    def test_found_by_location_only_scenery(self):
+        from pipeline import photos
+
+        self.assertEqual(photos.scenic(self.file(categories="Images from Wiki Loves Earth 2016 in Germany|Kropsburg|Naturpark Pfälzerwald")), 2)
+        self.assertEqual(photos.scenic(self.file(title="File:Weinberge bei Deidesheim.jpg", categories="Deidesheim")), 1)
+        self.assertEqual(photos.scenic(self.file(title="File:Toyota Aygo sideview.jpg", categories="2018 Toyota automobiles")), 0)
+        self.assertEqual(photos.scenic(self.file(title="File:Larix on the trail.jpg", categories="Larix decidua")), 0)  # a species
+        self.assertEqual(photos.scenic(self.file(title="File:IMG 2041.jpg", categories="Deidesheim")), 0)  # nothing says scenery
+        self.assertEqual(photos.scenic(self.file(categories="Interiors of churches in Germany|Hiking")), 0)
+        self.assertEqual(photos.scenic(self.file(title="File:Mapillary (osmplus org) 1.jpg", categories="Valleys")), 0)
+        self.assertEqual(photos.scenic(self.file(w=4000, h=2000, categories="Valleys")), 0)  # 2:1, a 360° sphere
+
+    def test_line_places_within_reach(self):
+        from pipeline import photos
+
+        # 10 km due east along the equator; points only at the ends, the line fills in between
+        route = [((0.0, 0.0), 0.0), ((0.0899, 0.0), 10.0)]
+        line = photos.Line(route)
+        off, km = line.nearest((0.045, 0.002))  # mid-way, about 220 m north
+        self.assertAlmostEqual(km, 5.0, delta=0.15)
+        self.assertLess(off, 0.25)
+        self.assertEqual(photos.place(self.file(lon="0.045", lat="0.002"), line, 0.5), round(km, 1))
+        self.assertIs(photos.place(self.file(lon="0.045", lat="0.006"), line, 0.5), False)  # 670 m off
+        self.assertIsNone(photos.place(self.file(), line, 0.5))  # no position
+        self.assertEqual(photos.samples(route, 2.5), [(0.0, 0.0), (0.0899, 0.0)])
+
+    def test_spread_fills_the_gaps(self):
+        from pipeline import photos
+
+        cands = [self.file(title=f"File:{k}.jpg", km=k, author=a, rank=1) for k, a in ((1, "A"), (2, "A"), (3, "A"), (55, "B"), (90, "C"))]
+        got = photos.spread(cands, [10], 3, 100)
+        self.assertEqual([c["km"] for c in got], [90, 55, 1])  # farthest from km 10 first
+        self.assertEqual(len(photos.spread(cands[:3], [], 3, 100)), 2)  # two by one author at most

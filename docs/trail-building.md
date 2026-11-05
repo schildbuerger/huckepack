@@ -143,7 +143,9 @@ nature reserves and national scenic areas the route crosses, from the operator o
 many hosts). Work through every flag of its check; each one is either fixed or explained in a
 note:
 
-- a stage under 95 % matched (missing OSM path, or a turnaround; `via` points, `joinM`); where
+- a stage under 95 % matched (missing OSM path, or a turnaround; `via` points, `joinM`; a relation in
+  pieces: a stage's own `joinM` and `via` points, so the other stages can't shortcut over the bridge,
+  2026-11-06, the West Island Way); where
   the GPX is out of date, the stage can follow the OSM relation (`relation`) instead: its cached
   ways are fetched again for the new guide (2026-11-05);
 - a stage more than 10 % off the map line;

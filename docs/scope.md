@@ -51,6 +51,13 @@
   licence, linked to its file page) and the authors under the mosaic and in the Sources. A hand check
   drops a file through data/reference/photo-exclude.yaml. Not Unsplash or Pexels (keyword-tagged,
   nothing proves a photo shows the trail). A trail without usable photos keeps its page as before.
+  Commons by location (the user's request of 2026-11-05, "photos close to the trail"): where the
+  category leaves fewer than eight, a geosearch along the map line (a point every 2.5 km, 1.5 km
+  round each) fills the gaps with photos whose position lies within 500 m of the line (stricter than
+  a category photo's 1 km) and whose Commons categories say landscape, view, nature, castle and the
+  like, never vehicles, interiors, people, events or a species close up (`scenic()`); quality marks
+  and Wiki Loves Earth rank higher, at most two by one author. Same licence rules, credits and hand
+  check; data/photos/<slug>.json names how each was found (`found`: category or location).
 - **Logbook** (issue #80): the recently added trails as hut stamps, grey until
   pointed at, then in their ink, in one band with the heading and the link to
   all trails (decided 2026-11-05, of five previews: hut book, hut stamps,

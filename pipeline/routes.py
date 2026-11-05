@@ -437,12 +437,20 @@ def build(slug, refresh=False):
 
     def shortest_guides(elements, join_m=0, to_nodes=False):
         # each stage the shortest way over the ways from where it begins (as in the loop below: the
-        # previous main stage's end, or a variant's after a variant) to its end
+        # previous main stage's end, or a variant's after a variant) to its end, through its `via`
+        # points where it has them (a circuit back to where it began, the West Island Way's stage 1,
+        # 2026-11-06; or a way the shortest one would leave out); a stage's own `joinM` bridges gaps in
+        # the relation for that stage only (where a larger one for every stage would open shortcuts)
         out, previous, last = {}, (start["lon"], start["lat"]), None
         for s in stages:
             begin = last[1] if s["kind"] != "main" and last and last[0] != "main" else previous
             to = (s["end"]["lon"], s["end"]["lat"])
-            out[(s["number"], s["kind"])] = relation_path(elements, begin, to, join_m, to_nodes)
+            points = [begin, *[(v["lon"], v["lat"]) for v in s.get("via", [])], to]
+            line = []
+            for a, b in zip(points, points[1:]):
+                leg = relation_path(elements, a, b, s.get("joinM", join_m), to_nodes)
+                line += leg if not line else leg[1:]
+            out[(s["number"], s["kind"])] = line
             if s["kind"] == "main":
                 previous = to
             last = (s["kind"], to)
