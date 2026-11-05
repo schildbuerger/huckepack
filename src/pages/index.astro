@@ -455,6 +455,10 @@ import Explainer from "../components/Explainer.astro";
   <div class="map-band">
     <div class="map-band-inner">
       <section class="near" hidden>
+        <!-- the panorama, wall to wall, its heading in the sky: drawn by the script below for the ten
+             nearest, the drawings and the names linking to their trails (on phones the list under it does) -->
+        <div class="near-pano" data-near-pano>
+        <div class="near-head" data-near-head>
         <div class="block-head">
           <h2>Trails near you</h2>
           <Explain id="near-info" icon term="About this list" title="Trails near you">
@@ -466,9 +470,9 @@ import Explainer from "../components/Explainer.astro";
           </Explain>
         </div>
         <p class="label near-from">From <span data-near-from></span></p>
-        <!-- the panorama, wall to wall: drawn by the script below for the ten nearest, the names linking to
-             their trails (on phones the list under it does) -->
-        <div class="near-pano" data-near-pano></div>
+        </div>
+        <div class="near-draw" data-near-draw></div>
+        </div>
         <!-- one row as a template, filled for the ten nearest from /trails/search.json (issue #93), so the
              page doesn't list every trail; shown on phones, where the panorama's names would be too small -->
         <ol class="trail-list near-list" data-near-list>
@@ -543,6 +547,8 @@ import Explainer from "../components/Explainer.astro";
       // slanted type on a leader line links to it and, pointed at, shows the drawing in its own colours.
       // Drawn at the band's width in pixels (redrawn when it changes), so the type keeps its size.
       const pano = section.querySelector<HTMLElement>("[data-near-pano]")!;
+      const drawEl = pano.querySelector<HTMLElement>("[data-near-draw]")!;
+      const head = pano.querySelector<HTMLElement>("[data-near-head]")!;
       type Art = { shapes: { d: string; c: string }[]; top: number };
       const arts = new Map<string, Art>();
       await Promise.all(
@@ -573,12 +579,15 @@ import Explainer from "../components/Explainer.astro";
         const W = Math.round(pano.clientWidth);
         if (!W) return;
         const f = Math.min(1, Math.max(0.45, W / 1400)); // drawings' scale on narrower screens
+        // the heading in the sky (its box in the band), kept clear of the names
+        const pr = pano.getBoundingClientRect(), hr = head.getBoundingClientRect();
+        const hb = { x0: hr.left - pr.left - 10, x1: hr.right - pr.left + 10, y1: hr.bottom - pr.top + 10 };
         // phones show no names over the drawing (the list under it links the trails), so less sky
-        const HZ = W < 760 ? Math.round(110 * f + 40) : Math.round(110 + 140 * f), H = HZ + Math.round(84 * f);
+        let HZ = W < 760 ? Math.round(hb.y1 + 30 + 60 * f) : Math.round(150 + 140 * f);
         const x0 = Math.round(150 * f), xw = W - 2 * x0;
         const items = near.map((x, i) => {
           const s = n1 > n0 ? (nearness(x.d) - n0) / (n1 - n0) : 1;
-          return { ...x, i, s, x: x0 + ((rel[i] - from) / (to - from)) * xw, base: HZ + (6 + 40 * s) * f };
+          return { ...x, i, s, x: x0 + ((rel[i] - from) / (to - from)) * xw, base: (6 + 40 * s) * f };
         });
         // trails in nearly the same direction step aside a little, so each drawing stays visible
         const byX = [...items].sort((a, b) => a.x - b.x);
@@ -586,6 +595,19 @@ import Explainer from "../components/Explainer.astro";
         for (let k = 1; k < byX.length; k++) if (byX[k].x - byX[k - 1].x < gap) byX[k].x = byX[k - 1].x + gap;
         const shift = Math.min(0, W - x0 - byX[byX.length - 1].x);
         for (const it of items) it.x += shift;
+        // a drawing's top above the horizon, and its name's length; where a name would rise under the
+        // heading, the horizon moves down until it fits below it
+        const SIN = Math.sin(28 * rad), COS = Math.cos(28 * rad);
+        const rise = (it: (typeof items)[number]) => {
+          const w = (260 + 320 * it.s) * f;
+          return it.base - (320 - (arts.get(it.t.slug)?.top ?? 220)) * (w / 1600) * 2.1;
+        };
+        const lenOf = (it: (typeof items)[number]) => (it.t.name.length + 9) * 6.4;
+        if (W >= 760)
+          for (const it of items)
+            if (it.x < hb.x1 && it.x + lenOf(it) * COS > hb.x0) HZ = Math.max(HZ, Math.round(hb.y1 + 14 + lenOf(it) * SIN + 10 - rise(it)));
+        const H = HZ + Math.round(84 * f);
+        for (const it of items) it.base += HZ;
 
         const far = ["--pano-f0", "--pano-f1"].map((v, l) => {
           const r = rndOf(11 + l * 7), y0 = HZ - 26 * f + l * 12 * f, step = (46 + l * 20) * f;
@@ -600,22 +622,22 @@ import Explainer from "../components/Explainer.astro";
           tops.set(it.i, it.base - (320 - (a?.top ?? 220)) * ky);
           const tone = `var(${TONES[Math.min(4, Math.round(it.s * 4))]})`;
           const shapes = a?.shapes ?? [{ d: `M0,320L800,${a?.top ?? 220}L1600,320Z`, c: "#7f9a54" }];
-          return `<g class="pano-art" data-i="${it.i}" transform="translate(${f1(it.x - w / 2)},${f1(it.base - 320 * ky)}) scale(${k.toFixed(4)},${ky.toFixed(4)})">${shapes.map((p) => `<path d="${p.d}" style="--o:${p.c};--t:color-mix(in oklab, ${p.c} 22%, ${tone})"/>`).join("")}</g>`;
+          return `<a href="/trails/${it.t.slug}/" class="pano-art-link" data-i="${it.i}" tabindex="-1" aria-hidden="true"><g class="pano-art" data-i="${it.i}" transform="translate(${f1(it.x - w / 2)},${f1(it.base - 320 * ky)}) scale(${k.toFixed(4)},${ky.toFixed(4)})">${shapes.map((p) => `<path d="${p.d}" style="--o:${p.c};--t:color-mix(in oklab, ${p.c} 22%, ${tone})"/>`).join("")}</g></a>`;
         }).join("");
 
         // the names, slanted: each starts above its summit, moved up or down until its line clears every
         // name to its left by 22 px across the slant and stays inside the band
-        const SIN = Math.sin(28 * rad), COS = Math.cos(28 * rad);
         const placed: { x: number; y: number; len: number }[] = [];
         const tyOf = new Map<number, number>();
         for (const it of [...items].sort((a, b) => a.x - b.x)) {
-          const len = (it.t.name.length + 9) * 6.4, top = tops.get(it.i)!;
+          const len = lenOf(it), top = tops.get(it.i)!;
           const lowest = top - 10, base = Math.min(top - 24, HZ + 10);
           const clash = (y: number) => placed.some((q) => {
             const dx = it.x - q.x, dy = y - q.y, across = Math.abs(dx * SIN + dy * COS), along = dx * COS - dy * SIN;
             return across < 22 && along > -len && along < q.len;
           });
-          const bad = (y: number) => clash(y) || y - len * SIN < 6 || y > lowest || it.x + len * COS > W - 4;
+          const underHead = (y: number) => it.x < hb.x1 && it.x + len * COS > hb.x0 && y - len * SIN < hb.y1;
+          const bad = (y: number) => clash(y) || underHead(y) || y - len * SIN < 6 || y > lowest || it.x + len * COS > W - 4;
           let y = base;
           for (let k = 1; bad(y) && k < 60; k++) y = base + (k % 2 ? -1 : 1) * Math.ceil(k / 2) * 8;
           tyOf.set(it.i, y);
@@ -630,9 +652,10 @@ import Explainer from "../components/Explainer.astro";
           const dist = roundDistance(it.d).toLocaleString("en");
           return `<a href="/trails/${it.t.slug}/" class="pano-name" data-i="${it.i}" aria-label="${esc(it.t.name)} ≈ ${dist} km, to the ${POINT(it.b)}"><text transform="translate(${f1(it.x + 3)},${f1(ty - 4)}) rotate(-28)">${esc(it.t.name)} <tspan class="pano-km">≈ ${dist} km</tspan></text></a>`;
         }).join("");
-        pano.innerHTML = `<svg class="pano-svg" viewBox="0 0 ${W} ${H}" width="${W}" height="${H}" role="group" aria-label="The ten trails nearest ${esc(city)}, drawn on the horizon in their direction"><rect width="${W}" height="${H}" class="pano-sky"/>${far}${art}<rect y="${f1(HZ + 50 * f)}" width="${W}" height="${f1(H - HZ - 50 * f)}" class="pano-ground"/><g class="pano-labels">${leads}${names}</g></svg>`;
-        for (const a of pano.querySelectorAll<SVGAElement>(".pano-name")) {
-          const on = (v: boolean) => pano.querySelectorAll(`.pano-art[data-i="${a.dataset.i}"], .pano-lead[data-i="${a.dataset.i}"]`).forEach((el) => el.classList.toggle("on", v));
+        drawEl.innerHTML = `<svg class="pano-svg" viewBox="0 0 ${W} ${H}" width="${W}" height="${H}" role="group" aria-label="The ten trails nearest ${esc(city)}, drawn on the horizon in their direction"><rect width="${W}" height="${H}" class="pano-sky"/>${far}${art}<rect y="${f1(HZ + 50 * f)}" width="${W}" height="${f1(H - HZ - 50 * f)}" class="pano-ground"/><g class="pano-labels">${leads}${names}</g></svg>`;
+        // a name or a drawing pointed at marks both, and the leader between them
+        for (const a of drawEl.querySelectorAll<SVGAElement>(".pano-name, .pano-art-link")) {
+          const on = (v: boolean) => drawEl.querySelectorAll(`[data-i="${a.dataset.i}"]`).forEach((el) => el.classList.toggle("on", v));
           a.addEventListener("pointerenter", () => on(true));
           a.addEventListener("pointerleave", () => on(false));
           a.addEventListener("focus", () => on(true));
@@ -651,7 +674,7 @@ import Explainer from "../components/Explainer.astro";
     }
   </script>
 
-  <section class="block">
+  <section class="block after-near">
     <div class="block-head"><h2>On every trail page</h2></div>
     <ul class="features">
       {features.map((f) => (
@@ -1213,8 +1236,13 @@ import Explainer from "../components/Explainer.astro";
 
   /* the map, and beside it the trails near you where they are shown, in the 1200 px column like the
      row above */
+  /* the trails near you's panorama follows the map band directly, wall to wall (2026-11-05) */
   .map-band {
-    margin-top: 112px;
+    margin-top: 0;
+  }
+  /* and the next section follows the panorama with only its heading's own room */
+  .map-band:has(.near:not([hidden])) ~ .after-near {
+    margin-top: 56px;
   }
   .map-band-inner {
     display: grid;
@@ -1248,7 +1276,28 @@ import Explainer from "../components/Explainer.astro";
     --pano-ink: #25303a;
     --pano-km: #5c6f7e;
     --pano-lead: #455d70;
-    margin: 16px calc(50% - 50vw) 0;
+    position: relative;
+    margin: 0 calc(50% - 50vw);
+    background: var(--pano-sky);
+  }
+  /* the heading in the panorama's sky, in line with the content column */
+  .near-head {
+    position: absolute;
+    top: 40px;
+    left: max(16px, calc(50vw - 600px));
+    z-index: 1;
+    width: max-content;
+    max-width: calc(100% - 32px);
+  }
+  .near-head .block-head {
+    justify-content: flex-start;
+    margin-bottom: 12px;
+  }
+  .near-head .near-from {
+    margin: 0;
+  }
+  :global(:root[data-theme="dark"]) .near-head {
+    color: var(--pano-ink);
   }
   :global(:root[data-theme="dark"]) .near-pano {
     --pano-sky: #1f262d;
@@ -1279,6 +1328,9 @@ import Explainer from "../components/Explainer.astro";
     fill: var(--t);
     transition: fill 0.25s;
   }
+  .near-pano :global(.pano-art-link:focus) {
+    outline: none;
+  }
   .near-pano :global(.pano-art.on path) {
     fill: var(--o);
   }
@@ -1305,6 +1357,10 @@ import Explainer from "../components/Explainer.astro";
     fill: var(--pano-km);
     font: 400 11px var(--sans);
   }
+  .near-pano :global(.pano-art-link) {
+    cursor: pointer;
+  }
+  .near-pano :global(.pano-name.on text),
   .near-pano :global(.pano-name:hover text),
   .near-pano :global(.pano-name:focus-visible text) {
     fill: var(--accent-text);
