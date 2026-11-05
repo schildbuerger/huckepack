@@ -1009,6 +1009,24 @@ export const SKYLINES: Record<string, Skyline> = {
       { d: hills([[1100, G], [1240, 266], [1420, 258], [1600, 270], [1600, G]]), c: "#4f6a3a" },
     ],
   },
+  "west-island-way": {
+    view: "From Bute's south end over the Sound of Bute to Arran's granite peaks, St Blane's roofless chapel on its green knoll, and the island's low moorland hills",
+    ridge: "#7f9a54",
+    ground: "#8fa868",
+    shapes: [
+      // Arran's northern peaks, far across the Sound of Bute
+      { d: range([[700, G], [780, 242], [860, 204], [920, 190], [950, 178], [980, 186], [1020, 174], [1060, 188], [1120, 204], [1200, 232], [1300, 258], [1400, G]]), c: "#9aa2ae" },
+      // the Sound of Bute and the Firth of Clyde
+      { d: water(0, 1600, 282), c: SEA },
+      // Bute's moorland hills, olive and brown
+      { d: hills([[0, G], [120, 252], [300, 234], [460, 250], [620, 272], [720, G]]), c: "#8a8a5a" },
+      // the green knoll by Kilchattan Bay with St Blane's Chapel, roofless: its nave's gable and the lower chancel
+      { d: hills([[1160, G], [1300, 268], [1440, 262], [1600, 270], [1600, G]]), c: "#6f8a4a" },
+      { d: "M1340,268V248L1352,238L1364,248V268Z", c: "#8a8478" },
+      { d: "M1364,268V254H1392V268Z", c: "#8a8478" },
+      { d: "M1349,268V256A3,3 0 0 1 1355,256V268Z", c: "#6f8a4a" },
+    ],
+  },
   "arran-coastal-way": {
     view: "The Isle of Arran from the sea: Goat Fell and the jagged granite ridges of the north, Lochranza Castle on its spit in the bay, and Holy Isle's dome off Lamlash",
     ridge: "#7f9a54",

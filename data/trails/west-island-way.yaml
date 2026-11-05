@@ -1,0 +1,221 @@
+name: West Island Way
+added: 2026-11-06
+website: https://www.westislandway.co.uk/
+wikidata: Q7985567
+managedBy:
+  # "Bute's 'West Island Way' and footpaths are maintained by the volunteers of the Bute Conservation
+  # Trust" (the official website); one of Scotland's Great Trails
+  - name: Bute Conservation Trust
+    url: https://www.westislandway.co.uk/
+officialGpx:
+  none: the site offers route notes to print and recommends the Discover Bute map, with no GPX to download (checked 2026-11-05)
+  source: wiw-stages
+trailType: point-to-point
+continents: [Europe]
+countries: [GB]
+regions: [Scotland]
+termini:
+  # "We recommend starting in the south (at Kilchattan Bay) and finishing in the north (at Port
+  # Bannatyne)"; stage 1 is a circuit from Kilchattan Bay, stage 4 ends at Port Bannatyne
+  start:
+    name: Kilchattan Bay
+    lat: 55.7504
+    lon: -5.02409
+  end:
+    name: Port Bannatyne
+    lat: 55.8603
+    lon: -5.08253
+  source: wiw-about
+established:
+  # "Opened in September 2000, this long-distance waymarked path – the first on a Scottish island"
+  year: 2000
+  source: wiw
+waymarking:
+  text: Frequent fingerposts and waymarkers; on the high moorland of stage 4 additional fingerposts and waymarkers
+  source: wiw
+length:
+  # "The 30-mile (48 km) route divides naturally into four stages"
+  - km: 48
+    source: wiw-about
+days:
+  # "easily walked over two full days (or four half-days)"
+  min: 2
+  max: 4
+  source: wiw-about
+stages:
+  # the site's four stage pages with their distance. No GPX: each stage is the shortest way over the OSM
+  # relation "West Island Way" (1756633) to its end (`branched`); stage 1, a circuit, through `via`
+  # points at Glencallum Bay and by St Blane's, stage 4 through one on the high moorland (not the
+  # A886). OSM's relation leaves gaps: the east coast path starts 850 m from the rest (the road
+  # through Kilchattan Bay isn't a member) and the moorland ways stop 160 and 220 m short of the
+  # others, so those two stages join way ends that close (`joinM`) for their guide; the matcher then
+  # follows the real roads and paths
+  source: wiw-stages
+  list:
+    - { number: "1", kind: main, from: Kilchattan Bay, to: Kilchattan Bay (circular), km: 8, joinM: 900, via: [{ lat: 55.72965, lon: -5.00754 }, { lat: 55.73792, lon: -5.03552 }], end: { name: Kilchattan Bay, lat: 55.7504, lon: -5.02409 } }
+    - { number: "2", kind: main, from: Kilchattan Bay, to: Port Bannatyne, km: 18.5, end: { name: Port Bannatyne, lat: 55.8603, lon: -5.08253 } }
+    - { number: "3", kind: main, from: Port Bannatyne, to: Rhubodach, km: 13.75, end: { name: Rhubodach, lat: 55.92118, lon: -5.15869 } }
+    - { number: "4", kind: main, from: Rhubodach, to: Port Bannatyne, km: 8.5, joinM: 250, via: [{ lat: 55.88044, lon: -5.11495 }], end: { name: Port Bannatyne, lat: 55.8603, lon: -5.08253 } }
+route:
+  # built by `python -m pipeline.all west-island-way`: OSM ways matched to the shortest way over the
+  # relation between the stages' ends
+  source: osm
+  publishable: true
+  relation: 1756633
+  branched: true
+difficulty:
+  estimated:
+    sac: T2
+    basis: >-
+      "Well waymarked and generally suitable for inexperienced walkers, although some sections are
+      strenuous and the terrain can be rough in places"; stage 1 "fairly strenuous", stage 4's high
+      moorland "rough and steep", its path in places "unclear without an obvious path on the ground",
+      boggy in winter and after rain. Mountain hiking on paths, partly faint (T2).
+    source: wiw-about
+season:
+  # no season published (searched 2026-11-05): every month, the rule for trails without one
+  months: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
+  text: "No season published; every month for now"
+  source: huckepack-season
+sleeping:
+  # the site's "Where to Stay" leads to Visit Bute: self-catering homes, apartments and flats
+  types: [guesthouse]
+  source: visitbute-stay
+access:
+  # Wemyss Bay, the station on the pier for the ferry to Rothesay. Coordinates from OSM; distances
+  # by pipeline/access.py. Glasgow Airport left out: OSRM routes it round by the Colintraive ferry
+  # (152 km against 39 km straight), as for Arran's airport
+  - kind: station
+    name: Wemyss Bay (ferry to Rothesay)
+    lat: 55.87602
+    lon: -4.88934
+    source: osm
+animals:
+  # ticks (NHS). The site lists no livestock or other risk; level ours
+  list:
+    - kind: tick
+      name: "Ticks (Lyme disease)"
+      level: low
+      basis: "Ticks that can carry Lyme disease live all over the UK, in woods and long grass."
+      do:
+        - "Cover your skin while walking and tuck your trousers into your socks"
+        - "Use insect repellent on your clothes and skin; products containing DEET are best"
+        - "Stay on clear paths whenever possible"
+        - "Wear light-coloured clothing so ticks are easier to see and brush off"
+        - "Remove a tick with fine-tipped tweezers or a tick-removal tool: grasp it as close to the skin as possible, pull slowly upwards, then clean the bite"
+        - "Get an urgent GP appointment or call NHS 111 if, within 3 months of a bite, you feel unwell with flu-like symptoms or a round or oval rash appears"
+      dont:
+        - "Squeeze or crush the tick when you remove it"
+      source: nhs-lyme
+tags: [island, coast, moorland, forest-tracks]
+notes:
+  - >-
+    Season: none published (the official website's pages, Wikipedia; searched 2026-11-05); every
+    month is recorded for now, by the rule for trails without a published season. The site warns
+    that stage 4's moorland "can be boggy underfoot in places, especially in the winter".
+  - >-
+    Wild camping: the site says nothing about camping, so the record has no rule (the Scottish
+    Outdoor Access Code applies on Bute as anywhere in Scotland).
+  - >-
+    Stages: stage 3 has an optional diversion by the Balnakailly Loop (+3 km, 2 miles), and stage 4
+    a low-level alternative by Rhubodach Cottage and the A886 verge (5 miles) for bad weather; the
+    map follows the main ways. Safety notice (2026-11-05): tree-felling in Shalunt Wood on stage 4.
+  - >-
+    Tree line: none; the route stays low on the island.
+  - >-
+    Protected areas: the site names none the route crosses.
+  - >-
+    Map line (2026-11-06): the Scotland Geofabrik extract (2026-10-31); each stage the shortest way
+    over the OSM relation 1756633 to its end. OSM's relation is in three pieces (the east coast path
+    south of Kilchattan Bay starts 850 m from the rest, the road through the village not a member; the
+    moorland ways of stage 4 stop 160 m short of Port Bannatyne and 220 m short of Rhubodach), so
+    stages 1 and 4 join way ends that close for their guide (`joinM`). Stage 1 reads 67 % matched only
+    because its guide crosses the village gap in a straight line: the matched line follows the road
+    through Kilchattan Bay and closes the circuit by Glencallum Bay and St Blane's (checked on a
+    drawing); stages 2–4 are 98–100 % matched. The route measures 50.5 km on the map line against the
+    stated 48 km (the stages add up to 48.75 km). Stage 3 measures 15.2 km against 13.75 km (+11 %)
+    and stage 4 9.8 km against 8.5 km (+15 %): the map line runs to Rhubodach's ferry slip and back
+    up to the moorland path, and stage 4 starts and ends on the relation's ways in the villages; the
+    record keeps the site's figures. Highest point and ascent from the terrain model (about 1,160 m
+    up); the site gives neither. Water: OSM maps no drinking water along the Way (longest stretch
+    28.1 km, from Port Bannatyne round the north and back); shops and beds in Kilchattan Bay,
+    Rothesay and Port Bannatyne. Travel hub: Wemyss Bay, 24.8 km by road and ferry.
+  - >-
+    Data check (2026-11-06, working rule 2): against English Wikipedia (West Island Way). Length
+    about 48 km (30 mi) agrees; Kilchattan Bay to Port Bannatyne agrees; two fairly lengthy days or
+    four shorter ones agrees (2–4 days); opened in September 2000, the first waymarked long-distance
+    route on a Scottish island, agrees. Wikipedia gives no stage distances or ascent. No figure
+    differs by more than 10 %.
+dataCheck:
+  # working rule 2: English Wikipedia
+  date: 2026-11-06
+  against: [wikipedia-en]
+  deviations: []
+sources:
+  - id: huckepack-season
+    title: "huckepack: no season published by the operator or a second source (the official website's pages, Wikipedia); every month for now, until one is found"
+    url: https://github.com/schildbuerger/huckepack/blob/main/docs/trail-building.md
+    licence: huckepack's own rule (decided 2026-11-05)
+    retrieved: 2026-11-05
+  - id: wiw
+    title: "The West Island Way: official website, home page (opened 2000, waymarking, stages)"
+    url: https://www.westislandway.co.uk/
+    licence: © Bute Conservation Trust (facts only)
+    retrieved: 2026-11-05
+  - id: wiw-about
+    title: "The West Island Way: About (distance, days, direction, difficulty, the low-level alternative)"
+    url: https://www.westislandway.co.uk/about/
+    licence: © Bute Conservation Trust (facts only)
+    retrieved: 2026-11-05
+  - id: wiw-stages
+    title: "The West Island Way: the four stage pages, Kilchattan Bay Circular … Rhubodach to Port Bannatyne (distance, terrain)"
+    url: https://www.westislandway.co.uk/stage-one-kilchattan-bay-circular/
+    licence: © Bute Conservation Trust (facts only)
+    retrieved: 2026-11-05
+  - id: visitbute-stay
+    title: "Visit Bute: Staying over (self-catering homes, apartments, flats), linked as the Way's \"Where to Stay\""
+    url: https://www.visitbute.com/staying-over
+    licence: © Visit Bute (facts only)
+    retrieved: 2026-11-05
+  - id: nhs-lyme
+    title: "NHS: Lyme disease (avoiding tick bites, removing ticks, when to get help)"
+    url: https://www.nhs.uk/conditions/lyme-disease/
+    licence: © NHS, Open Government Licence (facts only)
+    retrieved: 2026-11-05
+  - id: wikipedia-en
+    title: "Wikipedia (en): West Island Way (length, ends, days; data check)"
+    url: https://en.wikipedia.org/wiki/West_Island_Way
+    licence: CC BY-SA 4.0
+    retrieved: 2026-11-05
+    checkOnly: true  # only for the data check
+  - id: wikimedia
+    title: "Wikimedia: page views of the trail's Wikipedia articles in every language, by people, over twelve months (Wikidata sitelinks, pageview API)"
+    url: https://wikimedia.org/api/rest_v1/
+    licence: CC0 1.0 (pageview data); Wikidata CC0
+    retrieved: 2026-11-05
+    checkOnly: true  # not on the trail page: the page views only rank the home page's popular trails
+  - id: osm
+    title: "OpenStreetMap contributors: paths, water, shops and places to sleep along the trail (Geofabrik extracts), travel hubs"
+    url: https://www.openstreetmap.org/
+    licence: ODbL 1.0
+    retrieved: 2026-11-05
+  - id: copdem
+    title: "Copernicus DEM GLO-30 (30 m terrain model), tiles from AWS Open Data"
+    url: https://registry.opendata.aws/copernicus-dem/
+    licence: "Copernicus WorldDEM-30 licence, free; produced using Copernicus WorldDEM-30 © DLR e.V. 2010-2014 and © Airbus Defence and Space GmbH 2014-2018 provided under COPERNICUS by the European Union and ESA; all rights reserved"
+    retrieved: 2026-11-05
+  - id: worldcover
+    title: "ESA WorldCover 2021: 10 m land cover (via AWS Open Data)"
+    url: https://esa-worldcover.org/
+    licence: "CC BY 4.0; © ESA WorldCover project 2021 / Contains modified Copernicus Sentinel data (2021) processed by ESA WorldCover consortium"
+    retrieved: 2026-11-05
+  - id: era5
+    title: "Open-Meteo open data on AWS: ERA5-Land temperature and ERA5 precipitation, snow and wind, daily 1995–2024 (reanalysis)"
+    url: https://github.com/open-meteo/open-data
+    licence: CC BY 4.0 (Open-Meteo); contains modified Copernicus Climate Change Service information
+    retrieved: 2026-11-05
+  - id: osrm
+    title: "OSRM: road routes on OpenStreetMap data (router.project-osrm.org)"
+    url: https://project-osrm.org/
+    licence: Route data © OpenStreetMap contributors (ODbL)
+    retrieved: 2026-11-05

@@ -115,6 +115,7 @@ And the **Fife Coastal Path** (#241, about 188 km from Kincardine round the Fife
 And the **Cateran Trail** (#242, the 103 km loop through Perthshire and the Angus glens from Blairgowrie in the Perth and Kinross Countryside Trust's five stages; each the shortest way over the OSM relation).
 And the **Arran Coastal Way** (#243, the 105 km loop round the Isle of Arran from Brodick in the Arran Access Trust's eight sections; each the shortest way over the OSM relation).
 And the **Three Lochs Way** (#244, 55 km from Balloch on Loch Lomond over the Highland Boundary Fault to Inveruglas in the Helensburgh & District Access Trust's four stages; each the shortest way over the OSM relation).
+Added on 2026-11-06: the **West Island Way** (#245, 48 km on the Isle of Bute from Kilchattan Bay to Port Bannatyne in the Bute Conservation Trust's four stages: a circuit from Kilchattan Bay, then north by Rothesay, round the north end to Rhubodach and back over the high moorland; the shortest way over the OSM relation through `via` points, stages 1 and 4 bridging the relation's gaps with their own `joinM`).
 | # | Trail | Region | Length (approx.) | Why |
 |---|---|---|---|---|
 | 1 | Pacific Crest Trail | USA | 4,265 km | Most-hiked long trail; public US agency data; completion lists |

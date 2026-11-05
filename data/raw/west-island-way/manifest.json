@@ -1,0 +1,72 @@
+{
+  "climate-high.json": {
+    "retrieved": "2026-11-05T23:02:13+00:00",
+    "url": "https://openmeteo.s3.us-west-2.amazonaws.com/data/copernicus_era5_land+copernicus_era5?latitude=55.9&longitude=-5.1&elevation=260"
+  },
+  "climate-low.json": {
+    "retrieved": "2026-11-05T22:58:52+00:00",
+    "url": "https://openmeteo.s3.us-west-2.amazonaws.com/data/copernicus_era5_land+copernicus_era5?latitude=55.9&longitude=-5.1&elevation=0"
+  },
+  "commons-geo.json": {
+    "key": "with categories, 50.8 km, every 2.5 km, 1500 m, within 0.5 km",
+    "retrieved": "2026-11-05T23:06:45+00:00",
+    "url": "Commons geosearch along the route"
+  },
+  "commons.json": {
+    "key": "Q7985567",
+    "retrieved": "2026-11-05T23:02:16+00:00",
+    "url": "Q7985567 P18 P373"
+  },
+  "elevation-glo30.json": {
+    "retrieved": "2026-11-05T22:55:15+00:00",
+    "url": "https://copernicus-dem-30m.s3.eu-central-1.amazonaws.com/Copernicus_DSM_COG_10_N55_00_W006_00_DEM/Copernicus_DSM_COG_10_N55_00_W006_00_DEM.tif"
+  },
+  "landcover.json": {
+    "retrieved": "2026-11-05T22:55:15+00:00",
+    "url": "https://esa-worldcover.s3.eu-central-1.amazonaws.com/v200/2021/map/ESA_WorldCover_10m_2021_v200_\u2026_Map.tif"
+  },
+  "osm-relation.json": {
+    "retrieved": "2026-10-31T21:23:06Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-1-main.json": {
+    "key": "d03281b130a8",
+    "retrieved": "2026-10-31T21:23:06Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-2-main.json": {
+    "key": "fed3d3b82d9a",
+    "retrieved": "2026-10-31T21:23:06Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-3-main.json": {
+    "key": "3b50c23d0f71",
+    "retrieved": "2026-10-31T21:23:06Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-4-main.json": {
+    "key": "e1d77436ccf8",
+    "retrieved": "2026-10-31T21:23:06Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-water.json": {
+    "retrieved": "2026-10-31T21:23:06Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-way-tags.json": {
+    "retrieved": "2026-10-31T21:23:06Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osrm-access-glasgow-airport-gla.json": {
+    "retrieved": "2026-11-05T23:02:13+00:00",
+    "url": "https://router.project-osrm.org/route/v1/driving/-4.4357,55.87056;-5.02409,55.7504?overview=false"
+  },
+  "osrm-access-wemyss-bay-ferry-to-rothesay.json": {
+    "retrieved": "2026-11-05T23:02:13+00:00",
+    "url": "https://router.project-osrm.org/route/v1/driving/-4.88934,55.87602;-5.02409,55.7504?overview=false"
+  },
+  "wikimedia.json": {
+    "retrieved": "2026-11-05T23:02:14+00:00",
+    "url": "Q7985567 2025-11..2026-10"
+  }
+}
