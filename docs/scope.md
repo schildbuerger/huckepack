@@ -468,3 +468,29 @@
 - **First trail:** see the ranking in [roadmap.md](roadmap.md).
 - **Language:** English only?
 - **Licence** for the code and for the derived data.
+- **Photos per trail** (researched 2026-11-05, nothing built): free photos
+  are possible without paying or breaking a licence, from Wikimedia Commons
+  (sources in [data-sources.md](data-sources.md), Photos). The plan, if we go
+  ahead: the trail's Wikidata item (60 of 66 records have one) names a photo
+  (P18, "image") and a Commons category (P373); take only public domain, CC0,
+  CC BY or CC BY-SA files (no NC or ND, none with a personality-rights
+  warning, the uploader the author), checked once by hand like any source,
+  since Wikimedia doesn't warrant a file's licence. The pipeline downloads a
+  resized copy (WebP) and the site serves it itself: Commons allows
+  hotlinking but advises against it, and a copy of our own adds no host to
+  the privacy policy or the CSP and keeps pages fast. Each photo is a source
+  in the record (author, licence, file page, retrieved) with a credit line
+  under it ("Photo: <author>, CC BY-SA 4.0, Wikimedia Commons", linked);
+  resizing keeps the licence, a crop of a BY-SA photo stays BY-SA (the page
+  doesn't). Not Unsplash or Pexels: keyword-tagged, so nothing proves a photo
+  shows the trail, and Unsplash's API terms require hotlinking from its
+  servers and a download call per pick. Not tourism boards' press photos
+  unless one carries an open licence (usually editorial use only, time-limited).
+  Open: whether a photo answers a planning question at all (the mission's
+  checklist; candidates are beside the skyline in the page head, "what the
+  landscape looks like", and the featured trail's card), and where it goes:
+  a bigger design change, so a preview with three approaches first (working
+  rule 1). A trail without a suitable photo keeps its page as now, like
+  skylines and waymarks. Hosts the pipeline would need: commons.wikimedia.org,
+  upload.wikimedia.org, www.wikidata.org (blocked in the cloud sandbox on
+  2026-11-05, so coverage wasn't counted).

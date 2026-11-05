@@ -39,6 +39,19 @@ source before using it, and record the result here.
 |---|---|---|---|
 | PhyloPic | Silhouettes of the animals and plants in the Wildlife section (issue #156), one a kind in `src/assets/animals/` | CC0 1.0, except the giant hogweed (Lizzie Harper, CC BY 4.0) | Each maker and licence named in the section (`credit()` in `src/lib/animal-art.ts`); check a new silhouette's licence and species on PhyloPic before adding it (a "wolf" there was a coyote) |
 
+## Photos
+
+Researched 2026-11-05, none in use (docs/scope.md, Open questions).
+
+| Source | What | Licence | Notes |
+|---|---|---|---|
+| Wikimedia Commons (via Wikidata P18 and P373) | Photos of a trail, found through its Wikidata item | Per file: take only public domain, CC0, CC BY, CC BY-SA | Best candidate. Self-host a resized copy (hotlinking is allowed but discouraged); credit author and licence with a link to the file page; Wikimedia doesn't warrant licences, check each file ([reuse guide](https://commons.wikimedia.org/wiki/Commons:Reusing_content_outside_Wikimedia)) |
+| Geograph Britain and Ireland | Geolocated photos of every grid square | CC BY-SA 2.0, every photo | Good for UK and Irish trails; has an image API; many photos are already on Commons ([re-use](https://www.geograph.org.uk/faq3.php?q=re-use)) |
+| Panoramax | Street-level imagery, also along paths | CC BY-SA 4.0 on most instances, Etalab 2.0 on IGN's | Shows the path itself, not a hero view; STAC API, metacatalogue api.panoramax.xyz ([OSM wiki](https://wiki.openstreetmap.org/wiki/Panoramax)) |
+| Unsplash | Stock photos | Unsplash License; API terms require hotlinking, a download call per pick and credit links | Not suitable: keyword-tagged (no proof a photo shows the trail), adds a third-party host ([API guidelines](https://help.unsplash.com/api-guidelines/unsplash-api-guidelines)) |
+| Pexels | Stock photos | Pexels License, no credit required | Not suitable: keyword-tagged, as Unsplash |
+| Tourism boards' press photos | Official photos | Usually editorial use only, time-limited | Only where a photo carries an explicit open licence |
+
 ## Methods
 
 | Method | What | Notes |
