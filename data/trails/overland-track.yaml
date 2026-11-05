@@ -1,0 +1,198 @@
+name: Overland Track
+added: 2026-11-05
+aliases: [The Overland Track, Cradle Mountain Overland Track]
+website: https://parks.tas.gov.au/explore-our-parks/cradle-mountain/overland-track
+wikidata: Q491216
+managedBy:
+  # "Australia's premier alpine walk", run by the Tasmania Parks and Wildlife Service (a division of
+  # the Department of Natural Resources and Environment Tasmania)
+  - name: Tasmania Parks and Wildlife Service
+    url: https://parks.tas.gov.au/
+trailType: point-to-point
+continents: [Oceania]
+countries: [AU]
+regions: [Tasmania]
+protectedAreas:
+  - Cradle Mountain–Lake St Clair National Park
+  - Tasmanian Wilderness World Heritage Area
+termini:
+  # Ronny Creek in Cradle Valley, where walkers sign in, and Narcissus Hut at the head of Lake St
+  # Clair, where most take the ferry (OSM: the ends of the section relations 1 and 5)
+  start:
+    name: Ronny Creek
+    lat: -41.63894
+    lon: 145.94311
+  end:
+    name: Narcissus
+    lat: -42.01244
+    lon: 146.1017
+  source: osm
+length:
+  # "6 days one way, 65km one way"; the walk notes: "the 65 km from Ronny Creek to Narcissus"
+  - km: 65
+    source: pws
+days:
+  # "6 days one way"; "Most walkers complete the track in six days"
+  min: 6
+  max: 6
+  source: pws
+stages:
+  # the walk notes' six days from Ronny Creek to Narcissus, with distance and time, and the walk
+  # along Lake St Clair to the visitor centre (17.5 km, instead of the ferry) as the way out. Each
+  # follows its OSM section relation (superroute 1673569); section 5 runs from Kia Ora to Narcissus
+  # and is cut at Bert Nichols Hut
+  source: pws-notes
+  list:
+    - { number: "1", kind: main, from: Ronny Creek, to: Waterfall Valley, km: 10.7, minutes: 240, maxMinutes: 360, relation: 7765187, end: { name: Waterfall Valley Hut, lat: -41.71532, lon: 145.94845 } }
+    - { number: "2", kind: main, from: Waterfall Valley, to: Lake Windermere, km: 7.8, minutes: 150, maxMinutes: 210, relation: 7765186, end: { name: Windermere Hut, lat: -41.77148, lon: 145.95649 } }
+    - { number: "3", kind: main, from: Lake Windermere, to: Pelion, km: 16.8, minutes: 300, maxMinutes: 420, relation: 7765185, end: { name: New Pelion Hut, lat: -41.83054, lon: 146.04652 } }
+    - { number: "4", kind: main, from: Pelion, to: Kia Ora, km: 8.6, minutes: 180, maxMinutes: 240, relation: 7765184, end: { name: Kia Ora Hut, lat: -41.8921, lon: 146.08159 } }
+    - { number: "5", kind: main, from: Kia Ora, to: Windy Ridge (Bert Nichols Hut), km: 9.6, minutes: 210, maxMinutes: 270, relation: 7765183, end: { name: Bert Nichols Hut, lat: -41.93209, lon: 146.08891 } }
+    - { number: "6", kind: main, from: Windy Ridge (Bert Nichols Hut), to: Narcissus, km: 9, minutes: 180, maxMinutes: 240, relation: 7765183, end: { name: Narcissus Hut, lat: -42.01244, lon: 146.1017 } }
+    - { number: "7", kind: approach, from: Narcissus, to: Lake St Clair Visitor Centre, km: 17.5, relation: 7765182, end: { name: Lake St Clair Visitor Centre, lat: -42.11673, lon: 146.17298 } }
+route:
+  # built by `python -m pipeline.all overland-track`: OSM ways matched to each stage's section
+  # relation
+  source: osm
+  publishable: true
+difficulty:
+  # PWS: "Grade 4: Bushwalking experience recommended. Tracks may be long, rough and very steep.
+  # Directional signage may be limited"
+  estimated:
+    sac: T3
+    basis: >-
+      PWS grades it 4 of 5 ("tracks may be long, rough and very steep") and calls it "a serious walk
+      for well prepared, fit walkers with experience in remote alpine areas": almost half the track
+      is above 1,000 m on exposed plateaus, with a "very steep, short ascent to Marions Lookout" and
+      the exposed Pelion Gap, where severe cold, wet and wind can come at any time of year. Demanding
+      mountain hiking on long, rough tracks in remote alpine country (T3).
+    source: pws
+season:
+  # the booking season, 1 October to 31 May (summer); from 1 June to 23 September (winter) walkers
+  # register instead, for experienced, well-equipped walkers only
+  months: [10, 11, 12, 1, 2, 3, 4, 5]
+  text: Booking season, 1 October to 31 May; winter walks (June to September) by registration, for experienced walkers
+  source: pws
+permit:
+  # "Overland Track Pass Fees apply from 1 October - 31 May inclusive"; it includes park entry
+  required: true
+  name: Overland Track Pass
+  issuedBy: Tasmania Parks and Wildlife Service
+  how: Book a departure date online for the summer season (1 October to 31 May); the pass includes park entry and the shuttle bus. In winter a park pass and registration are needed instead.
+  url: https://parks.tas.gov.au/explore-our-parks/cradle-mountain/overland-track
+  source: pws
+fees:
+  # the Overland Track Pass, 1 October to 31 May, in Australian dollars ("reviewed annually in line
+  # with CPI")
+  - { name: "Overland Track Pass, adult", amount: 312, currency: AUD, per: per person and walk, year: 2026, note: "children and concession $272; includes park entry", source: pws }
+sleeping:
+  # the walk notes: a public hut with tent platforms at each overnight site (Waterfall Valley,
+  # Windermere, Pelion, Kia Ora, Bert Nichols, Narcissus)
+  types: [hut, campsite]
+  source: pws-notes
+wildCamping:
+  status: restricted
+  rule: >-
+    Walkers stay at the overnight sites, in the public huts or on the tent platforms beside them;
+    camping is not permitted around Lake Windermere.
+  source: pws-notes
+refillsUntreated:
+  # the walk notes: "Rainwater tanks ... are provided at each of the main huts. Please note, water
+  # from rainwater tanks needs to be boiled or treated prior to drinking" (issue #119)
+  text: The huts' rainwater tanks need their water boiled or treated before drinking.
+  source: pws-notes
+access:
+  # the shuttle bus from the Cradle Mountain Visitor Centre to Ronny Creek; Launceston the nearest
+  # airport. Coordinates from OSM; distances by pipeline/access.py
+  - kind: bus
+    name: Cradle Mountain Visitor Centre
+    lat: -41.58346
+    lon: 145.93691
+    source: osm
+  - kind: airport
+    name: Launceston Airport (LST)
+    lat: -41.54344
+    lon: 147.21163
+    source: osm
+tags: [alpine, tasmania, national-park, world-heritage, cradle-mountain]
+notes:
+  - >-
+    Wildlife (2026-11-05): none listed. Parks Tasmania's Overland Track pages name no dangerous
+    animals (only currawongs that raid packs left at the Cradle Mountain junction); its wildlife
+    and safety pages could not be read at the addresses tried, so Tasmania's snakes are not listed
+    from an official source.
+  - >-
+    Stages: the walk notes' six days add up to 62.5 km (stated 65 km); PWS gives no ascent or
+    descent. The walk usually ends at Narcissus with a booked ferry across Lake St Clair; the 17.5 km
+    walk along the lake is the record's way out. Side trips (Cradle Mountain, Barn Bluff, Mount
+    Ossa 1,617 m, Tasmania's highest) are not in the stages.
+  - >-
+    Route (pipeline, 2026-11-05, Geofabrik extracts): each stage follows its OSM section relation
+    (section 5 cut at Bert Nichols Hut); every stage matches 100 %. The map line is 59.4 km from
+    Ronny Creek to Narcissus against the walk notes' 62.5 km and the stated 65 km; day 3, Lake
+    Windermere to Pelion, is 15.0 km against 16.8 km. Highest point on the map line 1,271 m (km 4,
+    the plateau beyond Marions Lookout), lowest 730 m (km 28, by the Forth River valley below Pelion).
+  - >-
+    Water and food: the huts have rainwater tanks (boil or treat it, `refillsUntreated`); there is no
+    shop between Ronny Creek and Lake St Clair, so walkers carry all their food (PWS: "carry your own
+    equipment and food for the entire journey").
+  - >-
+    Data check (2026-11-05). Second source: English Wikipedia (officially 65 km from Cradle Mountain
+    to Lake St Clair, 82 km with the walk along the lake; numbers limited in the warmer months).
+    Length and the permit season agree; the days and times are PWS's own.
+  - >-
+    Waymarking: PWS says only that "directional signage may be limited" (2026-11-05), so no marks
+    are recorded.
+dataCheck:
+  # working rule 2: English Wikipedia
+  date: 2026-11-05
+  against: [wikipedia-en]
+  deviations: []
+sources:
+  - id: pws
+    title: "Tasmania Parks and Wildlife Service: Overland Track (length, days, grade, fees, seasons, ferry)"
+    url: https://parks.tas.gov.au/explore-our-parks/cradle-mountain/overland-track
+    licence: © State of Tasmania (facts only)
+    retrieved: 2026-11-05
+  - id: pws-notes
+    title: "Tasmania Parks and Wildlife Service: Overland Track walk notes (the days with distance and time, huts, tent platforms, water)"
+    url: https://parks.tas.gov.au/explore-our-parks/cradle-mountain/overland-track/overland-track-walk-notes
+    licence: © State of Tasmania (facts only)
+    retrieved: 2026-11-05
+  - id: wikipedia-en
+    title: "Wikipedia (en): Overland Track (65 km officially, 82 km with Lake St Clair; data check)"
+    url: https://en.wikipedia.org/wiki/Overland_Track
+    licence: CC BY-SA 4.0
+    retrieved: 2026-11-05
+    checkOnly: true  # only for the data check
+  - id: wikimedia
+    title: "Wikimedia: page views of the trail's Wikipedia articles in every language, by people, over twelve months (Wikidata sitelinks, pageview API)"
+    url: https://wikimedia.org/api/rest_v1/
+    licence: CC0 1.0 (pageview data); Wikidata CC0
+    retrieved: 2026-11-05
+    checkOnly: true  # not on the trail page: the page views only rank the home page's popular trails
+  - id: osm
+    title: "OpenStreetMap contributors: paths, water, shops and places to sleep along the trail (Geofabrik extracts), stage ends, travel hubs"
+    url: https://www.openstreetmap.org/
+    licence: ODbL 1.0
+    retrieved: 2026-11-05
+  - id: copdem
+    title: "Copernicus DEM GLO-30 (30 m terrain model), tiles from AWS Open Data"
+    url: https://registry.opendata.aws/copernicus-dem/
+    licence: "Copernicus WorldDEM-30 licence, free; produced using Copernicus WorldDEM-30 © DLR e.V. 2010-2014 and © Airbus Defence and Space GmbH 2014-2018 provided under COPERNICUS by the European Union and ESA; all rights reserved"
+    retrieved: 2026-11-05
+  - id: worldcover
+    title: "ESA WorldCover 2021: 10 m land cover (via AWS Open Data)"
+    url: https://esa-worldcover.org/
+    licence: "CC BY 4.0; © ESA WorldCover project 2021 / Contains modified Copernicus Sentinel data (2021) processed by ESA WorldCover consortium"
+    retrieved: 2026-11-05
+  - id: era5
+    title: "Open-Meteo open data on AWS: ERA5-Land temperature and ERA5 precipitation, snow and wind, daily 1995–2024 (reanalysis)"
+    url: https://github.com/open-meteo/open-data
+    licence: CC BY 4.0 (Open-Meteo); contains modified Copernicus Climate Change Service information
+    retrieved: 2026-11-05
+  - id: osrm
+    title: "OSRM: road routes on OpenStreetMap data (router.project-osrm.org)"
+    url: https://project-osrm.org/
+    licence: Route data © OpenStreetMap contributors (ODbL)
+    retrieved: 2026-11-05

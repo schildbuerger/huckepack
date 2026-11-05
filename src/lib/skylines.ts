@@ -986,6 +986,22 @@ export const SKYLINES: Record<string, Skyline> = {
       { d: hills([[480, G], [620, 254], [800, 232], [940, 260], [1040, G]]), c: "#7f9a54" },
     ],
   },
+  "overland-track": {
+    view: "Cradle Mountain: its jagged dolerite crown of columns over Dove Lake, buttongrass plains and a stand of pencil pines in front",
+    ridge: "#8a8a5a",
+    ground: "#a89a5a",
+    shapes: [
+      // the far ranges of the plateau
+      { d: hills([[600, G], [800, 236], [1100, 226], [1400, 234], [1600, 228], [1600, G]]), c: "#8e9aa6" },
+      // Cradle Mountain: a dark dolerite massif with a toothed, columned crown
+      { d: range([[100, G], [180, 250], [260, 214], [300, 196], [320, 188], [336, 196], [352, 176], [372, 186], [392, 170], [414, 182], [440, 178], [470, 192], [520, 206], [600, 226], [700, 254], [780, G]]), c: "#5f6670" },
+      { d: water(150, 900, 270), c: "#4f7a90" },
+      // buttongrass plains in front, golden
+      { d: hills([[0, G], [200, 280], [600, 272], [1000, 280], [1400, 274], [1600, 278], [1600, G]]), c: "#b8a46a" },
+      // pencil pines: slender dark cones
+      { d: "M1180,282L1190,238L1200,282Z M1206,282L1214,248L1222,282Z M1226,282L1238,232L1250,282Z", c: "#3d5a3a" },
+    ],
+  },
   "lake-waikaremoana": {
     view: "Lake Waikaremoana in Te Urewera: the sheer sandstone face of Panekire Bluff rising from the forest above the lake, and forested ridges folding away beyond the water",
     ridge: "#6f8a4a",
