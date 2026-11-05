@@ -1,0 +1,179 @@
+name: Lake Waikaremoana Great Walk
+added: 2026-11-05
+aliases: [Lake Waikaremoana Track, Waikaremoana Track]
+website: https://www.doc.govt.nz/parks-and-recreation/places-to-go/east-coast/places/te-urewera/things-to-do/tracks/lake-waikaremoana-great-walk/
+wikidata: Q1585662
+managedBy:
+  # Te Urewera is a legal person, "spoken for and governed by a board"; "Care for Te Urewera,
+  # including the tracks and facilities, is carried out by Te Uru Taumatua – Ngāi Tūhoe's
+  # operational entity"; DOC publishes the Great Walk and takes the bookings
+  - name: Te Urewera Board and Te Uru Taumatua (Ngāi Tūhoe)
+    url: https://www.ngaituhoe.iwi.nz/
+  - name: Department of Conservation (Te Papa Atawhai)
+    url: https://www.doc.govt.nz/
+trailType: point-to-point
+continents: [Oceania]
+countries: [NZ]
+regions: [Hawke's Bay, Te Urewera]
+protectedAreas:
+  - Te Urewera (a legal entity since 2014, formerly Te Urewera National Park)
+termini:
+  # Onepoto at the lake's south-east, and Hopuruahine Landing at its north (OSM: the open ends of
+  # the track relation)
+  start:
+    name: Onepoto
+    lat: -38.79998
+    lon: 177.12085
+  end:
+    name: Hopuruahine Landing
+    lat: -38.70083
+    lon: 177.06562
+  source: osm
+length:
+  # "46 km one way"
+  - km: 46
+    source: doc
+days:
+  # "3 - 4 days"
+  min: 3
+  max: 4
+  source: doc
+stages:
+  # DOC's seven legs between the road ends, huts and campsites, with distance and time; the OSM
+  # relation (GW01, 5987155) guides the matcher, each leg the shortest way over it between the legs'
+  # ends
+  source: doc
+  list:
+    - { number: "1", kind: main, from: Onepoto, to: Panekire Hut, km: 8.8, minutes: 240, maxMinutes: 360, end: { name: Panekire Hut, lat: -38.81249, lon: 177.05176 } }
+    - { number: "2", kind: main, from: Panekire Hut, to: Waiopaoa Hut, km: 7.6, minutes: 180, maxMinutes: 240, end: { name: Waiopaoa Hut, lat: -38.80899, lon: 176.99398 } }
+    - { number: "3", kind: main, from: Waiopaoa Hut, to: Korokoro Campsite, km: 3.6, minutes: 90, end: { name: Korokoro Campsite, lat: -38.79368, lon: 176.9864 } }
+    - { number: "4", kind: main, from: Korokoro Campsite, to: Maraunui Campsite, km: 6.8, minutes: 150, end: { name: Maraunui Campsite, lat: -38.76849, lon: 176.9881 } }
+    - { number: "5", kind: main, from: Maraunui Campsite, to: Marauiti Hut, km: 1.7, minutes: 30, end: { name: Marauiti Hut, lat: -38.76756, lon: 176.99581 } }
+    - { number: "6", kind: main, from: Marauiti Hut, to: Waiharuru Hut, km: 6.2, minutes: 120, end: { name: Waiharuru Hut, lat: -38.74362, lon: 177.0326 } }
+    - { number: "7", kind: main, from: Waiharuru Hut, to: Hopuruahine Landing, km: 9.5, minutes: 270, end: { name: Hopuruahine Landing, lat: -38.70083, lon: 177.06562 } }
+route:
+  # built by `python -m pipeline.all lake-waikaremoana`: OSM ways matched to the shortest way over
+  # the relation between the legs' ends
+  source: osm
+  publishable: true
+  relation: 5987155
+  branched: true
+difficulty:
+  estimated:
+    sac: T2
+    basis: >-
+      DOC grades the track intermediate, "more of a backcountry, off the beaten track experience": a
+      long climb onto Panekire Bluff (Panekire Hut on the range), a steep descent off the range, then
+      forest and lake shore with side trips such as Korokoro Falls. Mountain hiking on a good track
+      with a steep range crossing (T2).
+    source: doc
+season:
+  # DOC: huts and campsites are booked "all year round"; the water taxi runs only from October to
+  # April
+  months: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
+  text: All year, booked all year round; water taxis only from October to April
+  source: doc
+sleeping:
+  # four huts and five campsites, booked in advance; the Waikaremoana Holiday Park before or after
+  types: [hut, campsite]
+  source: doc
+wildCamping:
+  status: restricted
+  rule: Camping on the track is only permitted at the designated campsites, booked in advance.
+  source: doc
+refillsUntreated:
+  # DOC on the huts and campsites: "water from tap - not treated, boil before use" (issue #119)
+  text: Water at the huts and campsites is from a tap and not treated; boil it before use.
+  source: doc
+access:
+  # Wairoa the nearest town with buses, on the road to Onepoto; Gisborne and Napier the nearest
+  # airports. Coordinates from OSM; distances by pipeline/access.py
+  - kind: bus
+    name: Wairoa
+    lat: -39.03939
+    lon: 177.42714
+    source: osm
+  - kind: airport
+    name: Gisborne Airport (GIS)
+    lat: -38.66391
+    lon: 177.97945
+    source: osm
+  - kind: airport
+    name: Hawke's Bay Airport (NPE)
+    lat: -39.46957
+    lon: 176.86789
+    source: osm
+tags: [great-walk, te-urewera, ngai-tuhoe, lake, panekire-bluff]
+notes:
+  - >-
+    Wildlife (2026-11-05): none listed. New Zealand has no dangerous land animals. No DOC statement
+    on dangerous animals was found.
+  - >-
+    Stages: DOC's seven legs add up to 44.2 km (stated 46 km; English Wikipedia 44 km); DOC gives no
+    ascent or descent. The ends are about 30 km apart by road, so walkers book transport.
+  - >-
+    Route (pipeline, 2026-11-05, Geofabrik extracts): each leg is the shortest way over OSM's
+    relation (GW01, 5987155) between its ends; every leg matches 100 %. The map line is 46.1 km
+    (stated 46 km; the legs add up to 44.2 km). The legs split differently from DOC's at the bays:
+    5 and 6 (Maraunui Campsite to Marauiti Hut to Waiharuru Hut) come out 0.8 and 5.4 km against 1.7
+    and 6.2 km, and 7 runs 11.9 km against 9.5 km, as OSM's track continues past Hopuruahine Landing
+    to the road by the Hopuruahine Stream. Highest point 1,183 m (km 9, Panekire Bluff), lowest 582 m
+    by the lake.
+  - >-
+    Water and food: OSM maps no drinking water and no shop along the track; the huts and campsites
+    have tap water, "not treated, boil before use" (`refillsUntreated`). Walkers carry all their
+    food.
+  - >-
+    Data check (2026-11-05). Second source: English Wikipedia (44 km along the southern and western
+    shores of Lake Waikaremoana, a Great Walk in the former Te Urewera National Park). Length (within
+    5 %) and setting agree; the legs and times are DOC's own.
+  - >-
+    Waymarking: DOC's track page doesn't describe the marks (2026-11-05), so none is recorded.
+dataCheck:
+  # working rule 2: English Wikipedia
+  date: 2026-11-05
+  against: [wikipedia-en]
+  deviations: []
+sources:
+  - id: doc
+    title: "Department of Conservation: Lake Waikaremoana Great Walk (length, days, legs with distance and time, huts, campsites, water, Te Urewera's governance)"
+    url: https://www.doc.govt.nz/parks-and-recreation/places-to-go/east-coast/places/te-urewera/things-to-do/tracks/lake-waikaremoana-great-walk/
+    licence: © Crown copyright, DOC (facts only)
+    retrieved: 2026-11-05
+  - id: wikipedia-en
+    title: "Wikipedia (en): Lake Waikaremoana Great Walk (length, the former Te Urewera National Park; data check)"
+    url: https://en.wikipedia.org/wiki/Lake_Waikaremoana_Great_Walk
+    licence: CC BY-SA 4.0
+    retrieved: 2026-11-05
+    checkOnly: true  # only for the data check
+  - id: wikimedia
+    title: "Wikimedia: page views of the trail's Wikipedia articles in every language, by people, over twelve months (Wikidata sitelinks, pageview API)"
+    url: https://wikimedia.org/api/rest_v1/
+    licence: CC0 1.0 (pageview data); Wikidata CC0
+    retrieved: 2026-11-05
+    checkOnly: true  # not on the trail page: the page views only rank the home page's popular trails
+  - id: osm
+    title: "OpenStreetMap contributors: paths, water, shops and places to sleep along the trail (Geofabrik extracts), stage ends, travel hubs"
+    url: https://www.openstreetmap.org/
+    licence: ODbL 1.0
+    retrieved: 2026-11-05
+  - id: copdem
+    title: "Copernicus DEM GLO-30 (30 m terrain model), tiles from AWS Open Data"
+    url: https://registry.opendata.aws/copernicus-dem/
+    licence: "Copernicus WorldDEM-30 licence, free; produced using Copernicus WorldDEM-30 © DLR e.V. 2010-2014 and © Airbus Defence and Space GmbH 2014-2018 provided under COPERNICUS by the European Union and ESA; all rights reserved"
+    retrieved: 2026-11-05
+  - id: worldcover
+    title: "ESA WorldCover 2021: 10 m land cover (via AWS Open Data)"
+    url: https://esa-worldcover.org/
+    licence: "CC BY 4.0; © ESA WorldCover project 2021 / Contains modified Copernicus Sentinel data (2021) processed by ESA WorldCover consortium"
+    retrieved: 2026-11-05
+  - id: era5
+    title: "Open-Meteo open data on AWS: ERA5-Land temperature and ERA5 precipitation, snow and wind, daily 1995–2024 (reanalysis)"
+    url: https://github.com/open-meteo/open-data
+    licence: CC BY 4.0 (Open-Meteo); contains modified Copernicus Climate Change Service information
+    retrieved: 2026-11-05
+  - id: osrm
+    title: "OSRM: road routes on OpenStreetMap data (router.project-osrm.org)"
+    url: https://project-osrm.org/
+    licence: Route data © OpenStreetMap contributors (ODbL)
+    retrieved: 2026-11-05

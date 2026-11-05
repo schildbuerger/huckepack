@@ -986,6 +986,21 @@ export const SKYLINES: Record<string, Skyline> = {
       { d: hills([[480, G], [620, 254], [800, 232], [940, 260], [1040, G]]), c: "#7f9a54" },
     ],
   },
+  "lake-waikaremoana": {
+    view: "Lake Waikaremoana in Te Urewera: the sheer sandstone face of Panekire Bluff rising from the forest above the lake, and forested ridges folding away beyond the water",
+    ridge: "#6f8a4a",
+    ground: "#45663a",
+    shapes: [
+      // forested ridges beyond the lake
+      { d: hills([[600, G], [760, 240], [980, 228], [1200, 238], [1400, 226], [1600, 236], [1600, G]]), c: "#7d9481" },
+      // Panekire Bluff: a long range ending in a sheer bluff over the lake
+      { d: range([[0, G], [60, 214], [300, 200], [520, 206], [600, 212], [640, 250], [680, G]]), c: "#a89a84" },
+      { d: hills([[0, G], [100, 250], [360, 240], [600, 252], [700, G]]), c: FOREST },
+      { d: water(560, 1600, 266), c: LAKE },
+      // the near shore in forest
+      { d: hills([[1100, G], [1260, 276], [1460, 268], [1600, 274], [1600, G]]), c: FOREST },
+    ],
+  },
   "rakiura-track": {
     view: "Stewart Island/Rakiura: Mount Anglem/Hananui over bush-covered hills, a sandy bay on Foveaux Strait, and a Rakiura tokoeka/kiwi on the beach",
     ridge: "#6f8a4a",

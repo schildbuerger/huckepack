@@ -1,0 +1,81 @@
+{
+  "climate-high.json": {
+    "retrieved": "2026-11-05T12:20:14+00:00",
+    "url": "https://openmeteo.s3.us-west-2.amazonaws.com/data/copernicus_era5_land+copernicus_era5?latitude=-38.8&longitude=177.1&elevation=1180"
+  },
+  "climate-low.json": {
+    "retrieved": "2026-11-05T12:16:40+00:00",
+    "url": "https://openmeteo.s3.us-west-2.amazonaws.com/data/copernicus_era5_land+copernicus_era5?latitude=-38.7&longitude=177.1&elevation=580"
+  },
+  "elevation-glo30.json": {
+    "retrieved": "2026-11-05T12:12:42+00:00",
+    "url": "https://copernicus-dem-30m.s3.eu-central-1.amazonaws.com/Copernicus_DSM_COG_10_S39_00_E176_00_DEM/Copernicus_DSM_COG_10_S39_00_E176_00_DEM.tif https://copernicus-dem-30m.s3.eu-central-1.amazonaws.com/Copernicus_DSM_COG_10_S39_00_E177_00_DEM/Copernicus_DSM_COG_10_S39_00_E177_00_DEM.tif"
+  },
+  "landcover.json": {
+    "retrieved": "2026-11-05T12:12:44+00:00",
+    "url": "https://esa-worldcover.s3.eu-central-1.amazonaws.com/v200/2021/map/ESA_WorldCover_10m_2021_v200_\u2026_Map.tif"
+  },
+  "osm-relation.json": {
+    "retrieved": "2026-10-31T21:23:06Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-1-main.json": {
+    "key": "322ef8f24ddb",
+    "retrieved": "2026-10-31T21:23:06Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-2-main.json": {
+    "key": "65e280bf1404",
+    "retrieved": "2026-10-31T21:23:06Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-3-main.json": {
+    "key": "46efd2876715",
+    "retrieved": "2026-10-31T21:23:06Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-4-main.json": {
+    "key": "4da37d1b4ceb",
+    "retrieved": "2026-10-31T21:23:06Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-5-main.json": {
+    "key": "c809c890b4a2",
+    "retrieved": "2026-10-31T21:23:06Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-6-main.json": {
+    "key": "3c16ffebd8f0",
+    "retrieved": "2026-10-31T21:23:06Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-7-main.json": {
+    "key": "bc8ad970b6b2",
+    "retrieved": "2026-10-31T21:23:06Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-water.json": {
+    "retrieved": "2026-10-31T21:23:06Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-way-tags.json": {
+    "retrieved": "2026-10-31T21:23:06Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osrm-access-gisborne-airport-gis.json": {
+    "retrieved": "2026-11-05T12:20:14+00:00",
+    "url": "https://router.project-osrm.org/route/v1/driving/177.97945,-38.66391;177.12085,-38.79998?overview=false"
+  },
+  "osrm-access-hawke-s-bay-airport-npe.json": {
+    "retrieved": "2026-11-05T12:20:14+00:00",
+    "url": "https://router.project-osrm.org/route/v1/driving/176.86789,-39.46957;177.12085,-38.79998?overview=false"
+  },
+  "osrm-access-wairoa.json": {
+    "retrieved": "2026-11-05T12:20:14+00:00",
+    "url": "https://router.project-osrm.org/route/v1/driving/177.42714,-39.03939;177.12085,-38.79998?overview=false"
+  },
+  "wikimedia.json": {
+    "retrieved": "2026-11-05T12:20:15+00:00",
+    "url": "Q1585662 2025-11..2026-10"
+  }
+}
