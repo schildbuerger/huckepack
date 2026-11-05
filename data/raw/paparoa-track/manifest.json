@@ -1,0 +1,62 @@
+{
+  "climate-high.json": {
+    "retrieved": "2026-11-05T11:50:56+00:00",
+    "url": "https://openmeteo.s3.us-west-2.amazonaws.com/data/copernicus_era5_land+copernicus_era5?latitude=-42.3&longitude=171.4&elevation=1140"
+  },
+  "climate-low.json": {
+    "retrieved": "2026-11-05T11:47:29+00:00",
+    "url": "https://openmeteo.s3.us-west-2.amazonaws.com/data/copernicus_era5_land+copernicus_era5?latitude=-42.1&longitude=171.3&elevation=10&wind=-42.0,171.5"
+  },
+  "elevation-glo30.json": {
+    "retrieved": "2026-11-05T11:43:42+00:00",
+    "url": "https://copernicus-dem-30m.s3.eu-central-1.amazonaws.com/Copernicus_DSM_COG_10_S43_00_E171_00_DEM/Copernicus_DSM_COG_10_S43_00_E171_00_DEM.tif"
+  },
+  "landcover.json": {
+    "retrieved": "2026-11-05T11:43:43+00:00",
+    "url": "https://esa-worldcover.s3.eu-central-1.amazonaws.com/v200/2021/map/ESA_WorldCover_10m_2021_v200_\u2026_Map.tif"
+  },
+  "osm-relation.json": {
+    "retrieved": "2026-10-31T21:23:06Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-1-main.json": {
+    "key": "da833e24a582",
+    "retrieved": "2026-10-31T21:23:06Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-2-main.json": {
+    "key": "2ef432d2f3e6",
+    "retrieved": "2026-10-31T21:23:06Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-3-main.json": {
+    "key": "d3d981e896bd",
+    "retrieved": "2026-10-31T21:23:06Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-4-main.json": {
+    "key": "55ff21d6ad86",
+    "retrieved": "2026-10-31T21:23:06Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-water.json": {
+    "retrieved": "2026-10-31T21:23:06Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-way-tags.json": {
+    "retrieved": "2026-10-31T21:23:06Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osrm-access-greymouth.json": {
+    "retrieved": "2026-11-05T11:50:56+00:00",
+    "url": "https://router.project-osrm.org/route/v1/driving/171.20799,-42.44995;171.39819,-42.3375?overview=false"
+  },
+  "osrm-access-hokitika-airport-hkk.json": {
+    "retrieved": "2026-11-05T11:50:56+00:00",
+    "url": "https://router.project-osrm.org/route/v1/driving/170.98583,-42.71319;171.39819,-42.3375?overview=false"
+  },
+  "wikimedia.json": {
+    "retrieved": "2026-11-05T11:50:57+00:00",
+    "url": "Q60761090 2025-11..2026-10"
+  }
+}

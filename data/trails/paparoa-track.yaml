@@ -1,0 +1,168 @@
+name: Paparoa Track
+added: 2026-11-05
+aliases: [Paparoa Track Great Walk, Paparoa Track and Pike29 Memorial Track]
+website: https://www.doc.govt.nz/parks-and-recreation/places-to-go/west-coast/places/paparoa-national-park/things-to-do/tracks/paparoa-track/
+wikidata: Q60761090
+managedBy:
+  # New Zealand's tenth Great Walk, opened in 2019/2020 as a memorial to the 29 miners of the Pike
+  # River Mine; DOC runs its three huts
+  - name: Department of Conservation (Te Papa Atawhai)
+    url: https://www.doc.govt.nz/
+trailType: point-to-point
+continents: [Oceania]
+countries: [NZ]
+regions: [West Coast]
+protectedAreas:
+  - Paparoa National Park
+termini:
+  # the Smoke-ho car park above Blackball, and the Pororari River car park near Punakaiki (OSM: the
+  # open ends of the track relation)
+  start:
+    name: Smoke-ho car park
+    lat: -42.3375
+    lon: 171.39819
+  end:
+    name: Pororari River car park
+    lat: -42.10699
+    lon: 171.33981
+  source: osm
+waymarking:
+  text: Well marked
+  source: doc
+length:
+  # "55 km one way" walking
+  - km: 55
+    source: doc
+days:
+  # "3 days one way" walking
+  min: 3
+  max: 3
+  source: doc
+stages:
+  # DOC's four walking legs between the car parks and huts, with distance and time; the OSM relation
+  # (10462885) guides the matcher, each leg the shortest way over it between the legs' ends. The
+  # last leg to the Pororari River car park (17.1 km to the Waikori Road car park instead)
+  source: doc
+  list:
+    - { number: "1", kind: main, from: Smoke-ho car park, to: Ces Clark Hut, km: 10.3, minutes: 240, maxMinutes: 300, end: { name: Ces Clark Hut, lat: -42.29378, lon: 171.39189 } }
+    - { number: "2", kind: main, from: Ces Clark Hut, to: Moonlight Tops Hut, km: 9.7, minutes: 180, end: { name: Moonlight Tops Hut, lat: -42.24152, lon: 171.40542 } }
+    - { number: "3", kind: main, from: Moonlight Tops Hut, to: Pororari Hut, km: 19.1, minutes: 300, maxMinutes: 420, end: { name: Pororari Hut, lat: -42.17075, lon: 171.42482 } }
+    - { number: "4", kind: main, from: Pororari Hut, to: Pororari River car park, km: 16, minutes: 240, maxMinutes: 300, end: { name: Pororari River car park, lat: -42.10699, lon: 171.33981 } }
+route:
+  # built by `python -m pipeline.all paparoa-track`: OSM ways matched to the shortest way over the
+  # relation between the legs' ends (the relation also holds the branch to Waikori Road)
+  source: osm
+  publishable: true
+  relation: 10462885
+  branched: true
+difficulty:
+  estimated:
+    sac: T2
+    basis: >-
+      DOC grades the track intermediate: a climb through forest to the Paparoa Range, a long ridge
+      across exposed alpine tops where heavy rain, snow, ice, fog and strong winds are possible at
+      any time of year, then down through karst and rainforest along the Pororari River, on a wide
+      track shared with mountain bikers. Mountain hiking on a good track over exposed tops (T2).
+    source: doc
+sleeping:
+  # DOC's three Great Walk huts (Ces Clark, Moonlight Tops, Pororari), booked in advance; no
+  # campsites
+  types: [hut]
+  source: doc
+wildCamping:
+  status: restricted
+  rule: >-
+    There are no campsites on the track: walkers stay in the three booked huts, and camping at the
+    Smoke-ho car park is not permitted.
+  source: doc
+fees:
+  # DOC's hut fees per person and night, 1 October to 30 April (lower in winter), in New Zealand
+  # dollars; the other huts' tables differ
+  - { name: "Moonlight Tops Hut (international visitor, adult)", amount: 117, currency: NZD, per: per person and night, year: 2026, note: "NZ visitors $78; 1 October to 30 April", source: doc }
+access:
+  # Greymouth (bus and train) to the south, Blackball the village below the start; Hokitika the
+  # nearest airport. Coordinates from OSM; distances by pipeline/access.py
+  - kind: bus
+    name: Greymouth
+    lat: -42.44995
+    lon: 171.20799
+    source: osm
+  - kind: airport
+    name: Hokitika Airport (HKK)
+    lat: -42.71319
+    lon: 170.98583
+    source: osm
+tags: [great-walk, paparoa, national-park, karst, pike29]
+notes:
+  - >-
+    Wildlife (2026-11-05): none listed. New Zealand has no dangerous land animals; sandflies are a
+    nuisance, not a danger. No DOC statement on dangerous animals was found.
+  - >-
+    Season: DOC states none (2026-11-05): the huts are booked and charged in every month, and the
+    page advises walkers in winter to check for snow and ice; weather is changeable all year, with
+    about 6,000 mm of rain a year.
+  - >-
+    Stages: DOC's four walking legs add up to 55.1 km (stated 55 km); DOC gives no ascent or descent.
+    Mountain bikers ride it in two days (56.2 km, to the Waikori Road car park). The Pike29 Memorial
+    Track joins from the Pike River side.
+  - >-
+    Route (pipeline, 2026-11-05, Geofabrik extracts): each leg is the shortest way over OSM's
+    relation (10462885) between its ends; every leg matches 100 %. The map line is 50.0 km against
+    DOC's 55.1 km, every leg shorter than DOC's figure (leg 3, Moonlight Tops Hut to Pororari Hut,
+    17.1 against 19.1 km, 11 %), so DOC's distances likely run long. Highest point on the map line
+    1,137 m (km 14, on the tops beyond Ces Clark Hut), lowest by the sea at Punakaiki.
+  - >-
+    Water and food: OSM maps no drinking water and no shop along the track; DOC's huts have a water
+    supply. Walkers carry all their food.
+  - >-
+    Data check (2026-11-05). Second source: English Wikipedia (55.7 km, shared with mountain bikers,
+    Paparoa National Park, fully open since 1 March 2020, a memorial to the 29 miners of the Pike
+    River Mine). Length (1 % apart), park and history agree; the legs and times are DOC's own.
+dataCheck:
+  # working rule 2: English Wikipedia
+  date: 2026-11-05
+  against: [wikipedia-en]
+  deviations: []
+sources:
+  - id: doc
+    title: "Department of Conservation: Paparoa Track (length, days, legs with distance and time, huts, fees, weather, waymarking)"
+    url: https://www.doc.govt.nz/parks-and-recreation/places-to-go/west-coast/places/paparoa-national-park/things-to-do/tracks/paparoa-track/
+    licence: © Crown copyright, DOC (facts only)
+    retrieved: 2026-11-05
+  - id: wikipedia-en
+    title: "Wikipedia (en): Paparoa Track (length, opened 2020; data check)"
+    url: https://en.wikipedia.org/wiki/Paparoa_Track
+    licence: CC BY-SA 4.0
+    retrieved: 2026-11-05
+    checkOnly: true  # only for the data check
+  - id: wikimedia
+    title: "Wikimedia: page views of the trail's Wikipedia articles in every language, by people, over twelve months (Wikidata sitelinks, pageview API)"
+    url: https://wikimedia.org/api/rest_v1/
+    licence: CC0 1.0 (pageview data); Wikidata CC0
+    retrieved: 2026-11-05
+    checkOnly: true  # not on the trail page: the page views only rank the home page's popular trails
+  - id: osm
+    title: "OpenStreetMap contributors: paths, water, shops and places to sleep along the trail (Geofabrik extracts), stage ends, travel hubs"
+    url: https://www.openstreetmap.org/
+    licence: ODbL 1.0
+    retrieved: 2026-11-05
+  - id: copdem
+    title: "Copernicus DEM GLO-30 (30 m terrain model), tiles from AWS Open Data"
+    url: https://registry.opendata.aws/copernicus-dem/
+    licence: "Copernicus WorldDEM-30 licence, free; produced using Copernicus WorldDEM-30 © DLR e.V. 2010-2014 and © Airbus Defence and Space GmbH 2014-2018 provided under COPERNICUS by the European Union and ESA; all rights reserved"
+    retrieved: 2026-11-05
+  - id: worldcover
+    title: "ESA WorldCover 2021: 10 m land cover (via AWS Open Data)"
+    url: https://esa-worldcover.org/
+    licence: "CC BY 4.0; © ESA WorldCover project 2021 / Contains modified Copernicus Sentinel data (2021) processed by ESA WorldCover consortium"
+    retrieved: 2026-11-05
+  - id: era5
+    title: "Open-Meteo open data on AWS: ERA5-Land temperature and ERA5 precipitation, snow and wind, daily 1995–2024 (reanalysis)"
+    url: https://github.com/open-meteo/open-data
+    licence: CC BY 4.0 (Open-Meteo); contains modified Copernicus Climate Change Service information
+    retrieved: 2026-11-05
+  - id: osrm
+    title: "OSRM: road routes on OpenStreetMap data (router.project-osrm.org)"
+    url: https://project-osrm.org/
+    licence: Route data © OpenStreetMap contributors (ODbL)
+    retrieved: 2026-11-05

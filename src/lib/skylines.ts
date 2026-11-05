@@ -986,6 +986,21 @@ export const SKYLINES: Record<string, Skyline> = {
       { d: hills([[480, G], [620, 254], [800, 232], [940, 260], [1040, G]]), c: "#7f9a54" },
     ],
   },
+  "paparoa-track": {
+    view: "The Paparoa Range: the long tussock ridge of the tops above rainforest, and the white limestone bluffs of the Pororari gorge with nīkau below",
+    ridge: "#8a9a5a",
+    ground: "#45663a",
+    shapes: [
+      // the Paparoa Range: a long ridge of exposed tops
+      { d: range([[0, G], [100, 236], [260, 208], [420, 198], [580, 206], [760, 194], [920, 212], [1080, 230], [1200, G]]), c: "#9aa69a" },
+      { d: hills([[0, G], [140, 236], [400, 222], [700, 230], [980, 220], [1140, 240], [1240, G]]), c: "#b8a46a" },
+      // rainforest below the tops
+      { d: hills([[0, G], [200, 262], [520, 250], [860, 262], [1200, 248], [1600, 258], [1600, G]]), c: FOREST },
+      // the limestone bluffs of the Pororari gorge
+      { d: range([[1180, G], [1190, 240], [1230, 232], [1260, 236], [1270, G]]), c: "#d6d0c2" },
+      { d: range([[1380, G], [1390, 236], [1440, 228], [1480, 234], [1490, G]]), c: "#d6d0c2" },
+    ],
+  },
   "abel-tasman-coast-track": {
     view: "The Abel Tasman coast: forested granite headlands between golden beaches, and Split Apple Rock in the turquoise bay",
     ridge: "#6f8a4a",
