@@ -986,6 +986,21 @@ export const SKYLINES: Record<string, Skyline> = {
       { d: hills([[480, G], [620, 254], [800, 232], [940, 260], [1040, G]]), c: "#7f9a54" },
     ],
   },
+  "routeburn-track": {
+    view: "From the Hollyford Face on the Routeburn Track: the jagged, snow-streaked Darran Mountains across the valley, and Lake Mackenzie below in its basin of beech forest and tussock",
+    ridge: "#8a9a5a",
+    ground: "#45663a",
+    shapes: [
+      // the Darran Mountains: steep, jagged peaks with snow in their gullies
+      { d: range([[0, G], [80, 230], [180, 176], [240, 192], [320, 150], [400, 184], [480, 160], [560, 196], [660, 174], [760, 212], [860, 236], [940, G]]), c: ROCK },
+      { d: snowOf([[0, G], [80, 230], [180, 176], [240, 192], [320, 150], [400, 184], [480, 160], [560, 196], [660, 174], [760, 212], [860, 236], [940, G]], 182), c: SNOW },
+      // tussock slopes of the near side
+      { d: hills([[700, G], [860, 236], [1060, 214], [1260, 226], [1460, 216], [1600, 224], [1600, G]]), c: "#b8a46a" },
+      // Lake Mackenzie in beech forest
+      { d: hills([[0, G], [200, 268], [520, 258], [860, 266], [1200, 254], [1600, 262], [1600, G]]), c: FOREST },
+      { d: water(980, 1260, 272), c: LAKE },
+    ],
+  },
   "kepler-track": {
     view: "Fiordland on the Kepler Track: the tussock ridge rising to Mount Luxmore above the beech forest, with snow on the far Murchison Mountains, and Lake Te Anau below",
     ridge: "#8a9a5a",

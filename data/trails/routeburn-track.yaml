@@ -1,0 +1,171 @@
+name: Routeburn Track
+added: 2026-11-05
+aliases: [Routeburn Track Great Walk, Routeburn]
+website: https://www.doc.govt.nz/parks-and-recreation/places-to-go/fiordland/places/fiordland-national-park/things-to-do/tracks/routeburn-track/
+wikidata: Q2170592
+managedBy:
+  # one of New Zealand's Great Walks; DOC runs the three huts and two campsites
+  - name: Department of Conservation (Te Papa Atawhai)
+    url: https://www.doc.govt.nz/
+trailType: point-to-point
+continents: [Oceania]
+countries: [NZ]
+regions: [Otago, Southland, Fiordland]
+protectedAreas:
+  - Mount Aspiring National Park
+  - Fiordland National Park
+  - Te Wāhipounamu (UNESCO World Heritage)
+termini:
+  # Routeburn Shelter at the road end above Glenorchy, and The Divide on the Milford Highway (OSM)
+  start:
+    name: Routeburn Shelter
+    lat: -44.71884
+    lon: 168.27869
+  end:
+    name: The Divide
+    lat: -44.82487
+    lon: 168.11757
+  source: osm
+length:
+  # "33 km one way"
+  - km: 33
+    source: doc
+days:
+  # "2-4 days"; "Most walkers take 3 days/2 nights usually staying at Routeburn Falls and Lake
+  # Mackenzie Huts"
+  min: 2
+  max: 4
+  source: doc
+stages:
+  # DOC's four legs between the huts and road ends, with distance and time, from the Routeburn
+  # Shelter (it can be walked either way); the OSM relation (GW06, 1385139) guides the matcher,
+  # each leg the shortest way over it between the legs' ends
+  source: doc
+  list:
+    - { number: "1", kind: main, from: Routeburn Shelter, to: Routeburn Flats Hut, km: 7.5, minutes: 90, maxMinutes: 150, end: { name: Routeburn Flats Hut, lat: -44.72559, lon: 168.21534 } }
+    - { number: "2", kind: main, from: Routeburn Flats Hut, to: Routeburn Falls Hut, km: 2.3, minutes: 60, maxMinutes: 90, end: { name: Routeburn Falls Hut, lat: -44.72594, lon: 168.19932 } }
+    - { number: "3", kind: main, from: Routeburn Falls Hut, to: Lake Mackenzie Hut, km: 11.3, minutes: 270, maxMinutes: 360, end: { name: Lake Mackenzie Hut, lat: -44.76765, lon: 168.17356 } }
+    - { number: "4", kind: main, from: Lake Mackenzie Hut, to: The Divide, km: 12, minutes: 240, maxMinutes: 330, end: { name: The Divide, lat: -44.82487, lon: 168.11757 } }
+route:
+  # built by `python -m pipeline.all routeburn-track`: OSM ways matched to the shortest way over the
+  # relation between the legs' ends (the relation also holds spurs to huts and side trips)
+  source: osm
+  publishable: true
+  relation: 1385139
+  branched: true
+difficulty:
+  estimated:
+    sac: T2
+    basis: >-
+      DOC grades the track intermediate in the Great Walks season: river flats and beech forest, then
+      up through tussock to Harris Saddle/Tarahaka Whakatipu (1,255 m, the highest point) and along
+      the exposed Hollyford Face, with rock-fall no-stopping zones, on a formed track. Outside the
+      season advanced and expert, with ice, snow and avalanche risk. Mountain hiking on a good track
+      over an alpine pass (T2).
+    source: doc
+season:
+  # the Great Walks season, 1 November 2026 to 30 April 2027: "Best time to walk the track"
+  months: [11, 12, 1, 2, 3, 4]
+  text: Great Walks season, 1 November to 30 April
+  source: doc
+sleeping:
+  # DOC's three huts (bunks, a ranger in residence) and two campsites (Routeburn Flats, Lake
+  # Mackenzie), all booked in advance in the Great Walks season
+  types: [hut, campsite]
+  source: doc
+wildCamping:
+  status: restricted
+  rule: >-
+    Camping only at the two DOC campsites (Routeburn Flats and Lake Mackenzie), booked in advance in
+    the Great Walks season; Harris Saddle Shelter is for day use only.
+  source: doc
+refillsUntreated:
+  # DOC on each hut and campsite: "water from tap - not treated, boil before use" (issue #119)
+  text: DOC's huts and campsites have tap water that is not treated; boil it before use.
+  source: doc
+access:
+  # shuttles from Glenorchy and Queenstown to the Routeburn Shelter, and from The Divide to Te Anau;
+  # Queenstown the nearest international airport. Coordinates from OSM; distances by
+  # pipeline/access.py
+  - kind: bus
+    name: Glenorchy
+    lat: -44.84975
+    lon: 168.3852
+    source: osm
+  - kind: airport
+    name: Queenstown Airport (ZQN)
+    lat: -45.0193
+    lon: 168.74344
+    source: osm
+tags: [great-walk, fiordland, mount-aspiring, national-park, alpine-pass]
+notes:
+  - >-
+    Wildlife (2026-11-05): none listed. New Zealand has no dangerous land animals; sandflies and keas
+    are nuisances, not dangers. No DOC statement on dangerous animals was found.
+  - >-
+    Stages: DOC's four legs add up to 33.1 km (stated 33 km); DOC gives no ascent or descent. Most
+    walkers take three days, staying at Routeburn Falls and Lake Mackenzie Huts; Lake Howden Hut on
+    the last leg was destroyed by a storm in February 2020.
+  - >-
+    Route (pipeline, 2026-11-05, Geofabrik extracts): each leg is the shortest way over OSM's
+    relation (GW06, 1385139) between its ends; every leg matches 100 %. The map line is
+    30.6 km against DOC's 33 km. Highest point on the map line 1,306 m (km 12; the terrain model
+    runs above DOC's 1,255 m for Harris Saddle, likely on the bluffs beside the track), lowest 471 m
+    at the Routeburn Shelter.
+  - >-
+    Water: OSM maps no drinking water near the route. DOC's huts and campsites have tap water, "not
+    treated, boil before use"; `refillsUntreated` counts them as any water, not clean water.
+  - >-
+    Data check (2026-11-05). Second source: English Wikipedia (32 km, either direction, three DOC
+    huts and the Harris Saddle shelter, across Mount Aspiring and Fiordland National Parks). Huts,
+    parks and ends agree; the length is 3 % under DOC's 33 km; the legs and times are DOC's own.
+  - >-
+    Waymarking: DOC's track page doesn't describe the marks (2026-11-05), so none is recorded.
+dataCheck:
+  # working rule 2: English Wikipedia
+  date: 2026-11-05
+  against: [wikipedia-en]
+  deviations: []
+sources:
+  - id: doc
+    title: "Department of Conservation: Routeburn Track (length, days, legs with distance and time, season, huts, campsites, highest point)"
+    url: https://www.doc.govt.nz/parks-and-recreation/places-to-go/fiordland/places/fiordland-national-park/things-to-do/tracks/routeburn-track/
+    licence: © Crown copyright, DOC (facts only)
+    retrieved: 2026-11-05
+  - id: wikipedia-en
+    title: "Wikipedia (en): Routeburn Track (length, huts, national parks; data check)"
+    url: https://en.wikipedia.org/wiki/Routeburn_Track
+    licence: CC BY-SA 4.0
+    retrieved: 2026-11-05
+    checkOnly: true  # only for the data check
+  - id: wikimedia
+    title: "Wikimedia: page views of the trail's Wikipedia articles in every language, by people, over twelve months (Wikidata sitelinks, pageview API)"
+    url: https://wikimedia.org/api/rest_v1/
+    licence: CC0 1.0 (pageview data); Wikidata CC0
+    retrieved: 2026-11-05
+    checkOnly: true  # not on the trail page: the page views only rank the home page's popular trails
+  - id: osm
+    title: "OpenStreetMap contributors: paths, water, shops and places to sleep along the trail (Geofabrik extracts), stage ends, travel hubs"
+    url: https://www.openstreetmap.org/
+    licence: ODbL 1.0
+    retrieved: 2026-11-05
+  - id: copdem
+    title: "Copernicus DEM GLO-30 (30 m terrain model), tiles from AWS Open Data"
+    url: https://registry.opendata.aws/copernicus-dem/
+    licence: "Copernicus WorldDEM-30 licence, free; produced using Copernicus WorldDEM-30 © DLR e.V. 2010-2014 and © Airbus Defence and Space GmbH 2014-2018 provided under COPERNICUS by the European Union and ESA; all rights reserved"
+    retrieved: 2026-11-05
+  - id: worldcover
+    title: "ESA WorldCover 2021: 10 m land cover (via AWS Open Data)"
+    url: https://esa-worldcover.org/
+    licence: "CC BY 4.0; © ESA WorldCover project 2021 / Contains modified Copernicus Sentinel data (2021) processed by ESA WorldCover consortium"
+    retrieved: 2026-11-05
+  - id: era5
+    title: "Open-Meteo open data on AWS: ERA5-Land temperature and ERA5 precipitation, snow and wind, daily 1995–2024 (reanalysis)"
+    url: https://github.com/open-meteo/open-data
+    licence: CC BY 4.0 (Open-Meteo); contains modified Copernicus Climate Change Service information
+    retrieved: 2026-11-05
+  - id: osrm
+    title: "OSRM: road routes on OpenStreetMap data (router.project-osrm.org)"
+    url: https://project-osrm.org/
+    licence: Route data © OpenStreetMap contributors (ODbL)
+    retrieved: 2026-11-05
