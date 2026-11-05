@@ -5,6 +5,11 @@
   // filter buttons show one or two each), `idPrefix` keeps ids apart where a page shows them twice.
   // Options that would leave no trail with the other filters are disabled (one that is on never
   // is, so it can be undone); sliders mark those stops and won't move onto them.
+  // Each kind of option has its control (2026-11-05, the search's redesign): the months a compact grid
+  // of toggles; places, landscapes and kinds of bed checkbox lists, each option with the number of
+  // trails it gives with the other filters; ranges sliders with their value in words; one choice of a
+  // few a segmented control. `collapsible` (the search page): every group folds, its current choice
+  // shown in its header while folded; the first four start open, and any group in use.
   import type { SearchTrail } from "../lib/search";
   import { SLEEPING_CATEGORIES, WATER_LEVELS } from "../lib/trails";
   import {
@@ -26,6 +31,14 @@
     shopText,
     bedText,
     daysText,
+    daysOn,
+    terrainOn,
+    climateOn,
+    effortOn,
+    naturalOn,
+    waterOn,
+    shopOn,
+    bedOn,
     levelText,
     matches,
     naturalText,
@@ -44,7 +57,8 @@
     filters = $bindable(),
     groups,
     idPrefix = "",
-  }: { trails: SearchTrail[]; filters: Filters; groups?: Group[]; idPrefix?: string } = $props();
+    collapsible = false,
+  }: { trails: SearchTrail[]; filters: Filters; groups?: Group[]; idPrefix?: string; collapsible?: boolean } = $props();
 
   const show = (g: Group) => !groups || groups.includes(g);
   const LEVEL_STOPS = LEVEL_WORDS;
@@ -75,9 +89,61 @@
   let terrainLive = $derived(levelLive("terrain", filters.terrainMin, filters.terrainMax));
   let climateLive = $derived(levelLive("climate", filters.climateMin, filters.climateMax));
   let effortLive = $derived(levelLive("effort", filters.effortMin, filters.effortMax));
+
+  // the number of trails an option gives with the other filters: alone in its own group where the
+  // group's options add up (months, places, landscapes), added to the others where they all must hold
+  // (kinds of bed)
+  const countFor = (set: Partial<Filters>) => (trails.length ? countWith(set) : null);
+
+  // folding (collapsible): which groups are open, and each group's choice in words for its header
+  const inUse: Record<Group, () => boolean> = {
+    when: () => filters.months.length > 0,
+    where: () => filters.where.length > 0,
+    days: () => daysOn(filters),
+    hard: () => terrainOn(filters) || climateOn(filters) || effortOn(filters),
+    land: () => filters.land.length > 0,
+    ground: () => naturalOn(filters),
+    sleep: () => filters.sleep.length > 0 || bedOn(filters),
+    wild: () => filters.wild !== "",
+    water: () => waterOn(filters) || shopOn(filters),
+  };
+  let open = $state<Record<string, boolean>>({});
+  // a continent's countries: folded under it until opened, or while one of them is picked
+  let openPlaces = $state<Record<string, boolean>>({});
+  const placeOpen = (p: { continent: string; countries: string[] }) => openPlaces[p.continent] ?? p.countries.some((c) => filters.where.includes(c));
+  const isOpen = (g: Group) => !collapsible || (open[g] ?? (["when", "where", "days", "hard"].includes(g) || inUse[g]()));
+  const fold = (g: Group) => (open[g] = !isOpen(g));
+  const said = (xs: string[], none: string) => (xs.length ? xs.join(", ") : none);
+  const summary: Record<Group, () => string> = {
+    when: () => said([...filters.months].sort((a, b) => a - b).map((m) => MONTHS[m - 1]), "Any time"),
+    where: () => said(filters.where, "Anywhere"),
+    days: () => daysText(filters),
+    hard: () =>
+      said(
+        [
+          terrainOn(filters) && `Terrain ${levelText(filters.terrainMin, filters.terrainMax).toLowerCase()}`,
+          climateOn(filters) && `climate ${levelText(filters.climateMin, filters.climateMax).toLowerCase()}`,
+          effortOn(filters) && `effort ${levelText(filters.effortMin, filters.effortMax).toLowerCase()}`,
+        ].filter(Boolean) as string[],
+        "Any",
+      ),
+    land: () => said(filters.land.map((id) => LANDSCAPES.find((l) => l.id === id)?.label ?? id), "Any"),
+    ground: () => naturalText(filters),
+    sleep: () => said([...filters.sleep.map((id) => sleepingOptions.find((c) => c.id === id)?.label ?? id), ...(bedOn(filters) ? [`a bed ${bedText(filters).toLowerCase()}`] : [])], "Any"),
+    wild: () => (filters.wild === "" ? "Any" : filters.wild === "some" ? "Possible" : "Allowed"),
+    water: () => said([...(waterOn(filters) ? [`water ${waterText(filters).toLowerCase()}`] : []), ...(shopOn(filters) ? [`a shop ${shopText(filters).toLowerCase()}`] : [])], "Any"),
+  };
 </script>
 
-<div class="panel">
+{#snippet foldButton(g: Group)}
+  {#if collapsible}
+    <button type="button" class="fold" aria-expanded={isOpen(g)} aria-controls={`${idPrefix}body-${g}`} onclick={() => fold(g)}>
+      <span class="fold-sum" class:set={inUse[g]()}>{summary[g]()}</span><span class="chev" aria-hidden="true">▾</span>
+    </button>
+  {/if}
+{/snippet}
+
+<div class="panel" class:collapsible>
     <!-- groups, not fieldsets: a legend can't hold the explanation popover -->
     {#if show("when")}
     <div class="group" role="group" aria-labelledby={`${idPrefix}g-when`}>
@@ -88,12 +154,15 @@
             <dt>Season</dt><dd>What the trail's managers recommend; outside it, huts and services may be closed or snow may block the way</dd>
           </dl>
         </Explain>
+        {@render foldButton("when")}
       </div>
+      <div class="body" id={`${idPrefix}body-when`} hidden={!isOpen("when")}>
       <div class="months">
         {#each MONTHS as m, i}
           {@const off = dead(filters.months.includes(i + 1), { months: [i + 1] })}
           <button type="button" class="chip" aria-pressed={filters.months.includes(i + 1)} disabled={off} title={off ? NONE : undefined} onclick={() => (filters.months = toggle(filters.months, i + 1))}>{m}</button>
         {/each}
+      </div>
       </div>
     </div>
     {/if}
@@ -107,32 +176,42 @@
             <dt>Continents</dt><dd>Include all their countries; picking one of their countries narrows the choice to it</dd>
           </dl>
         </Explain>
+        {@render foldButton("where")}
       </div>
-      <!-- a continent, its countries beneath; countries a chosen continent covers show as included -->
+      <div class="body" id={`${idPrefix}body-where`} hidden={!isOpen("where")}>
+      <!-- a continent, its countries beneath, each a checkbox with the number of trails it gives; countries a
+           chosen continent covers show as included -->
       {#each places as p}
         {@const off = dead(filters.where.includes(p.continent), { where: [p.continent] })}
         <div class="place">
-          <button type="button" class="chip" aria-pressed={filters.where.includes(p.continent)} disabled={off} title={off ? NONE : undefined} onclick={() => (filters.where = toggleWhere(filters.where, p.continent, places))}>
-            {p.continent}
-          </button>
-          <div class="chips countries">
+          <div class="cont">
+            <button type="button" class="opt" role="checkbox" aria-checked={filters.where.includes(p.continent)} disabled={off} title={off ? NONE : undefined} onclick={() => (filters.where = toggleWhere(filters.where, p.continent, places))}>
+              <span class="box" aria-hidden="true"></span><span class="opt-l">{p.continent}</span><span class="opt-n">{countFor({ where: [p.continent] })}</span>
+            </button>
+            <button type="button" class="cont-fold" aria-expanded={placeOpen(p)} aria-controls={`${idPrefix}c-${p.continent.replace(/\W+/g, "-")}`} aria-label={`${placeOpen(p) ? "Hide" : "Show"} the countries of ${p.continent}`} onclick={() => (openPlaces[p.continent] = !placeOpen(p))}>
+              <span class="chev" aria-hidden="true">▾</span>
+            </button>
+          </div>
+          <div class="countries" id={`${idPrefix}c-${p.continent.replace(/\W+/g, "-")}`} hidden={!placeOpen(p)}>
             {#each p.countries as c}
               {@const off = dead(filters.where.includes(c), { where: [c] })}
               <button
                 type="button"
-                class="chip"
+                class="opt"
+                role="checkbox"
                 class:included={filters.where.includes(p.continent)}
-                aria-pressed={filters.where.includes(c)}
+                aria-checked={filters.where.includes(c)}
                 disabled={off}
                 title={off ? NONE : undefined}
                 onclick={() => (filters.where = toggleWhere(filters.where, c, places))}
               >
-                {c}
+                <span class="box" aria-hidden="true"></span><span class="opt-l">{c}</span><span class="opt-n">{countFor({ where: [c] })}</span>
               </button>
             {/each}
           </div>
         </div>
       {/each}
+      </div>
     </div>
     {/if}
 
@@ -146,8 +225,11 @@
           </dl>
         </Explain>
         <span class="value">{daysText(filters)}</span>
+        {@render foldButton("days")}
       </div>
+      <div class="body" id={`${idPrefix}body-days`} hidden={!isOpen("days")}>
       <Range stops={DAY_STOPS} bind:lo={filters.dayLo} bind:hi={filters.dayHi} live={dayHiLive} liveLo={dayLoLive} label="Walking days" ticks={[0, 6, 9, 12, DAYS_ALL]} />
+      </div>
     </div>
     {/if}
 
@@ -172,7 +254,9 @@
             </dd>
           </dl>
         </Explain>
+        {@render foldButton("hard")}
       </div>
+      <div class="body" id={`${idPrefix}body-hard`} hidden={!isOpen("hard")}>
       <div class="sub">
         <span>Terrain</span><span class="value">{levelText(filters.terrainMin, filters.terrainMax)}</span>
       </div>
@@ -185,6 +269,7 @@
         <span>Effort, longest day</span><span class="value">{levelText(filters.effortMin, filters.effortMax)}</span>
       </div>
       <Range stops={LEVEL_STOPS} bind:lo={filters.effortMin} bind:hi={filters.effortMax} live={effortLive.hi} liveLo={effortLive.lo} label="Effort, longest day" ticks={[0, LEVEL_TOP]} />
+      </div>
     </div>
     {/if}
     {#if show("land")}
@@ -196,12 +281,17 @@
             <dt>Source</dt><dd>ESA WorldCover satellite land cover</dd>
           </dl>
         </Explain>
+        {@render foldButton("land")}
       </div>
-      <div class="chips">
+      <div class="body" id={`${idPrefix}body-land`} hidden={!isOpen("land")}>
+      <div class="opts">
         {#each LANDSCAPES as l}
           {@const off = dead(filters.land.includes(l.id), { land: [l.id] })}
-          <button type="button" class="chip" aria-pressed={filters.land.includes(l.id)} disabled={off} title={off ? NONE : undefined} onclick={() => (filters.land = toggle(filters.land, l.id))}>{l.label}</button>
+          <button type="button" class="opt" role="checkbox" aria-checked={filters.land.includes(l.id)} disabled={off} title={off ? NONE : undefined} onclick={() => (filters.land = toggle(filters.land, l.id))}>
+            <span class="box" aria-hidden="true"></span><span class="opt-l">{l.label}</span><span class="opt-n">{countFor({ land: [l.id] })}</span>
+          </button>
         {/each}
+      </div>
       </div>
     </div>
     {/if}
@@ -222,8 +312,11 @@
           </ul>
         </Explain>
         <span class="value">{naturalText(filters)}</span>
+        {@render foldButton("ground")}
       </div>
+      <div class="body" id={`${idPrefix}body-ground`} hidden={!isOpen("ground")}>
       <Range stops={NATURAL_STOPS} bind:hi={filters.naturalMin} live={naturalLive} off={0} fill="above" label="Share of natural ground, at least" ticks={[0, 5, 9]} />
+      </div>
     </div>
     {/if}
     {#if show("sleep")}
@@ -235,11 +328,15 @@
             {#each sleepingOptions as c}<dt>{c.label}</dt><dd>{c.hint}</dd>{/each}
           </dl>
         </Explain>
+        {@render foldButton("sleep")}
       </div>
-      <div class="chips">
+      <div class="body" id={`${idPrefix}body-sleep`} hidden={!isOpen("sleep")}>
+      <div class="opts">
         {#each sleepingOptions as c}
           {@const off = dead(filters.sleep.includes(c.id), { sleep: toggle(filters.sleep, c.id) })}
-          <button type="button" class="chip" aria-pressed={filters.sleep.includes(c.id)} disabled={off} title={off ? NONE : undefined} onclick={() => (filters.sleep = toggle(filters.sleep, c.id))}>{c.label}</button>
+          <button type="button" class="opt" role="checkbox" aria-checked={filters.sleep.includes(c.id)} disabled={off} title={off ? NONE : undefined} onclick={() => (filters.sleep = toggle(filters.sleep, c.id))}>
+            <span class="box" aria-hidden="true"></span><span class="opt-l">{c.label}</span><span class="opt-n">{countFor({ sleep: filters.sleep.includes(c.id) ? filters.sleep : [...filters.sleep, c.id] })}</span>
+          </button>
         {/each}
       </div>
       <!-- issue #97: the longest stretch of the main route without a hut, campsite, hostel or guest house -->
@@ -253,6 +350,7 @@
         <span class="value">{bedText(filters)}</span>
       </div>
       <Range stops={BED_STOPS} bind:hi={filters.bedMax} live={bedLive} off={BED_KM.length} label="Longest stretch without a bed, at most" ticks={[0, BED_KM.length]} />
+      </div>
     </div>
     {/if}
 
@@ -266,11 +364,14 @@
             <dt>Exact rule</dt><dd>On each trail page</dd>
           </dl>
         </Explain>
+        {@render foldButton("wild")}
       </div>
+      <div class="body" id={`${idPrefix}body-wild`} hidden={!isOpen("wild")}>
       <div class="segmented" role="radiogroup" aria-labelledby={`${idPrefix}g-wild`}>
         <button type="button" role="radio" aria-checked={filters.wild === ""} disabled={dead(filters.wild === "", { wild: "" })} title={dead(filters.wild === "", { wild: "" }) ? NONE : undefined} onclick={() => (filters.wild = "")}>Any</button>
         <button type="button" role="radio" aria-checked={filters.wild === "some"} disabled={dead(filters.wild === "some", { wild: "some" })} title={dead(filters.wild === "some", { wild: "some" }) ? NONE : undefined} onclick={() => (filters.wild = "some")}>Possible</button>
         <button type="button" role="radio" aria-checked={filters.wild === "allowed"} disabled={dead(filters.wild === "allowed", { wild: "allowed" })} title={dead(filters.wild === "allowed", { wild: "allowed" }) ? NONE : undefined} onclick={() => (filters.wild = "allowed")}>Allowed</button>
+      </div>
       </div>
     </div>
     {/if}
@@ -292,7 +393,9 @@
           </dl>
         </Explain>
         <span class="value">{waterText(filters)}</span>
+        {@render foldButton("water")}
       </div>
+      <div class="body" id={`${idPrefix}body-water`} hidden={!isOpen("water")}>
       <Range stops={WATER_STOPS} bind:hi={filters.waterMax} live={waterLive} off={WATER_KM.length} label="Longest stretch without water, at most" ticks={[0, 3, WATER_KM.length]} />
       <!-- issue #119: springs count too for hikers who filter or treat their water -->
       <div class="segmented" role="radiogroup" aria-label="Which water counts">
@@ -311,6 +414,7 @@
         <span class="value">{shopText(filters)}</span>
       </div>
       <Range stops={SHOP_STOPS} bind:hi={filters.shopMax} live={shopLive} off={SHOP_KM.length} label="Longest stretch without a shop, at most" ticks={[0, SHOP_KM.length]} />
+      </div>
     </div>
     {/if}
 
@@ -346,16 +450,6 @@
     display: flex;
     flex-wrap: wrap;
     gap: 6px;
-  }
-  .place + .place {
-    margin-top: 10px;
-  }
-  .countries {
-    margin: 6px 0 0 14px;
-  }
-  .chip.included {
-    border-color: color-mix(in srgb, var(--accent) 45%, var(--line));
-    background: var(--accent-soft);
   }
   .months {
     display: grid;
@@ -459,6 +553,155 @@
     height: 6px;
     border-radius: 2px;
   }
+  /* checkbox lists: a box, the label, and the number of trails the option gives */
+  .opts {
+    display: grid;
+    gap: 2px;
+  }
+  .opt {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+    min-height: 32px;
+    padding: 4px 6px;
+    border: 0;
+    border-radius: 6px;
+    background: none;
+    color: var(--text);
+    font: 400 0.88rem var(--sans);
+    text-align: left;
+    cursor: pointer;
+  }
+  .opt:hover:not(:disabled) {
+    background: var(--surface);
+  }
+  .opt:disabled {
+    opacity: 0.45;
+    cursor: not-allowed;
+  }
+  .box {
+    flex: none;
+    position: relative;
+    width: 16px;
+    height: 16px;
+    border: 1.5px solid var(--muted);
+    border-radius: 4px;
+    background: var(--bg);
+  }
+  .opt[aria-checked="true"] .box {
+    border-color: var(--accent);
+    background: var(--accent);
+  }
+  .opt[aria-checked="true"] .box::after {
+    content: "";
+    position: absolute;
+    left: 4px;
+    top: 0;
+    width: 5px;
+    height: 9px;
+    border: solid var(--bg);
+    border-width: 0 2px 2px 0;
+    transform: rotate(45deg);
+  }
+  .opt.included .box {
+    border-color: var(--accent);
+    background: var(--accent-soft);
+  }
+  .opt-l {
+    flex: 1;
+  }
+  .opt-n {
+    color: var(--muted);
+    font-size: 0.78rem;
+    font-variant-numeric: tabular-nums;
+  }
+  .cont {
+    display: flex;
+    align-items: center;
+  }
+  .cont .opt {
+    font-weight: 600;
+  }
+  .cont-fold {
+    flex: none;
+    display: grid;
+    place-items: center;
+    width: 28px;
+    height: 28px;
+    padding: 0;
+    border: 0;
+    border-radius: 6px;
+    background: none;
+    color: var(--muted);
+    cursor: pointer;
+  }
+  .cont-fold:hover {
+    background: var(--surface);
+  }
+  .cont-fold[aria-expanded="true"] .chev {
+    transform: rotate(180deg);
+  }
+  .cont-fold:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+  }
+  .place + .place {
+    margin-top: 6px;
+  }
+  .countries:not([hidden]) {
+    display: grid;
+    gap: 2px;
+    margin: 2px 0 0 18px;
+  }
+  /* folding groups (collapsible): the header's button with the group's choice in words */
+  .collapsible .legend {
+    margin-bottom: 0;
+  }
+  .collapsible .legend > .value {
+    display: none;
+  }
+  .collapsible .body:not([hidden]) {
+    margin-top: 10px;
+  }
+  .fold {
+    display: inline-flex;
+    flex: 1;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 6px;
+    min-width: 0;
+    min-height: 28px;
+    padding: 0;
+    border: 0;
+    background: none;
+    color: var(--muted);
+    font: 400 0.8rem var(--sans);
+    text-align: right;
+    cursor: pointer;
+  }
+  .fold-sum {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  .fold-sum.set {
+    color: var(--accent-text);
+    font-weight: 600;
+  }
+  .chev {
+    transition: transform 0.15s ease;
+  }
+  .fold[aria-expanded="true"] .chev {
+    transform: rotate(180deg);
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .chev {
+      transition: none;
+    }
+  }
+  .opt:focus-visible,
+  .fold:focus-visible,
   .chip:focus-visible,
   .segmented button:focus-visible {
     outline: 2px solid var(--accent);

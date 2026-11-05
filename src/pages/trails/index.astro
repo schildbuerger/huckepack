@@ -20,8 +20,8 @@ const eleRange = eleRangeOf(trails);
   <Breadcrumbs current="Trails" />
   <h1>Trails</h1>
   <p class="lede muted">
-    Narrow the list down by when you can go, how long and how hard, and how you want to sleep. Every card shows the
-    season, the elevation profile on one scale for all trails, and the ground underfoot.
+    Narrow the list down by when you can go, how long and how hard, and how you want to sleep, then compare the trails
+    side by side: click a column's heading to sort. Every profile is drawn on one scale for all trails.
   </p>
   <TrailList client:load total={trails.length} more={trails.length > CARDS_IN_PAGE}>
     <TrailCards trails={trails.slice(0, CARDS_IN_PAGE)} eleRange={eleRange} />

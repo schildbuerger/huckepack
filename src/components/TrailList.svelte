@@ -1,7 +1,8 @@
 <script lang="ts">
   // The trail search: filters grouped by planning question, in the order a hiker decides (when,
   // where, how long, how hard, what it looks like, the ground, sleeping, wild camping, water)
-  // beside a list of result cards. Everything runs in the browser
+  // beside a compare table of the results (2026-11-05, approach C of five previews): a header row
+  // whose columns sort, above the rows (TrailCards.astro) on the same grid. Everything runs in the browser
   // on the summaries built at build time; the filters live in the URL, so a search can be shared.
   import { onMount } from "svelte";
   import { SLEEPING_CATEGORIES } from "../lib/trails";
@@ -50,6 +51,22 @@
     natural: { label: "Most natural ground", value: (t: SearchTrail) => (t.surface ? -t.surface.natural : null) },
   } as const;
   type SortKey = keyof typeof SORTS;
+  // the table's columns: each header sorts by one of the orders (Length toggles shortest/longest)
+  const COLUMNS: { label: string; sorts: SortKey[]; num?: boolean; title?: string }[] = [
+    { label: "Trail", sorts: ["name"] },
+    { label: "Length", sorts: ["shortest", "longest"], num: true },
+    { label: "Days", sorts: ["days"], num: true },
+    { label: "Ascent", sorts: ["flattest"], num: true, title: "Sorts by the least climbing per km" },
+    { label: "Difficulty", sorts: ["easiest"] },
+    { label: "Season", sorts: [] },
+    { label: "Profile and ground", sorts: ["natural"], title: "Sorts by the most natural ground" },
+  ];
+  const sortColumn = (c: (typeof COLUMNS)[number]) => {
+    if (!c.sorts.length) return;
+    sort = c.sorts.length > 1 && sort === c.sorts[0] ? c.sorts[1] : c.sorts[0];
+  };
+  const ariaSort = (c: (typeof COLUMNS)[number]) =>
+    !c.sorts.includes(sort) ? "none" : sort === "longest" || sort === "natural" ? "descending" : "ascending";
 
   // filter state (src/lib/filters.ts; sliders hold stop indexes), each filter a URL parameter;
   // the controls are FilterPanel.svelte, shared with the trail map
@@ -138,7 +155,7 @@
       <button type="button" class="close" onclick={() => (filtersOpen = false)}>Show {trails.length ? shown.length : total} {(trails.length ? shown.length : total) === 1 ? "trail" : "trails"}</button>
     </div>
 
-    <FilterPanel {trails} bind:filters />
+    <FilterPanel {trails} bind:filters collapsible />
   </aside>
 
   <div class="results">
@@ -168,7 +185,21 @@
       </ul>
     {/if}
 
-    <!-- the cards, plain HTML from TrailCards.astro: only hidden and ordered here (issue #86) -->
+    <!-- the table's header: each column sorts (the rows below share its grid, --cols) -->
+    <div class="thead">
+      {#each COLUMNS as c}
+        <span class="th" class:num={c.num}>
+          {#if c.sorts.length}
+            <button type="button" class:on={c.sorts.includes(sort)} aria-pressed={c.sorts.includes(sort)} title={c.title} onclick={() => sortColumn(c)}>
+              {c.label}<span class="sr-only">{c.sorts.includes(sort) ? `, sorted ${ariaSort(c)}` : ", sort by this"}</span><span class="arrow" aria-hidden="true">{!c.sorts.includes(sort) ? "↕" : ariaSort(c) === "descending" ? "↓" : "↑"}</span>
+            </button>
+          {:else}
+            <span class="th-plain">{c.label}</span>
+          {/if}
+        </span>
+      {/each}
+    </div>
+    <!-- the rows, plain HTML from TrailCards.astro: only hidden and ordered here (issue #86) -->
     <div class="cards-host" bind:this={cardsHost}>{@render children?.()}</div>
     {#if trails.length && !shown.length}
       <div class="empty">
@@ -180,6 +211,71 @@
 </div>
 
 <style>
+  /* the compare table's columns, shared by the header here and the rows (TrailCards.astro) */
+  .results {
+    --cols: minmax(220px, 3fr) 60px 44px 70px 112px 80px minmax(100px, 1.1fr);
+    --col-gap: 14px;
+  }
+  .thead {
+    position: sticky;
+    top: 0;
+    z-index: 3;
+    display: grid;
+    grid-template-columns: var(--cols);
+    column-gap: var(--col-gap);
+    align-items: end;
+    margin-top: 16px;
+    padding: 6px 8px;
+    border-bottom: 2px solid var(--text);
+    background: var(--bg);
+  }
+  .th {
+    min-width: 0;
+  }
+  .th.num {
+    text-align: right;
+  }
+  .th button,
+  .th-plain {
+    display: inline-flex;
+    align-items: center;
+    gap: 3px;
+    min-height: 28px;
+    padding: 0;
+    border: 0;
+    background: none;
+    color: var(--muted);
+    font: 600 0.78rem var(--sans);
+    text-align: inherit;
+    cursor: pointer;
+  }
+  .th-plain {
+    cursor: default;
+  }
+  .th button:hover,
+  .th button.on {
+    color: var(--text);
+  }
+  .th button:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+  }
+  .arrow {
+    color: var(--muted);
+    font-size: 0.75rem;
+    opacity: 0.6;
+  }
+  .th button.on .arrow {
+    opacity: 1;
+    color: var(--accent-text);
+  }
+  /* phones: no header row (the rows fold into cards and label their figures); the sort menu instead */
+  @media (max-width: 759px) {
+    .thead {
+      display: none;
+    }
+  }
+
   /* minmax(0, …): the column never grows past the screen to fit the bar above the results */
   .layout {
     display: grid;
