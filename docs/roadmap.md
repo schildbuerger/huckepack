@@ -106,6 +106,7 @@ And the **Routeburn Track** (#229, 33 km from the Routeburn Shelter to The Divid
 And the **Heaphy Track** (#230, 78.4 km from Brown Hut to Kōhaihai through Kahurangi National Park, DOC's six legs; each the shortest way over the OSM relation).
 And the **Abel Tasman Coast Track** (#231, 60 km from Mārahau to Wainui, DOC's six legs with the tidal crossings; each the shortest way over the OSM relation).
 And the **Paparoa Track** (#232, 55 km over the Paparoa Range from the Smoke-ho car park to the Pororari River, DOC's four walking legs; each the shortest way over the OSM relation).
+And the **Rakiura Track** (#233, the 32 km circuit on Stewart Island/Rakiura, DOC's three legs from Lee Bay to Fern Gully; OSM maps it at about 27 km, noted).
 | # | Trail | Region | Length (approx.) | Why |
 |---|---|---|---|---|
 | 1 | Pacific Crest Trail | USA | 4,265 km | Most-hiked long trail; public US agency data; completion lists |

@@ -986,6 +986,22 @@ export const SKYLINES: Record<string, Skyline> = {
       { d: hills([[480, G], [620, 254], [800, 232], [940, 260], [1040, G]]), c: "#7f9a54" },
     ],
   },
+  "rakiura-track": {
+    view: "Stewart Island/Rakiura: Mount Anglem/Hananui over bush-covered hills, a sandy bay on Foveaux Strait, and a Rakiura tokoeka/kiwi on the beach",
+    ridge: "#6f8a4a",
+    ground: "#d9c49a",
+    shapes: [
+      // Mount Anglem/Hananui behind the bush
+      { d: hills([[200, G], [420, 222], [560, 206], [700, 218], [900, 240], [1000, G]]), c: "#7d9481" },
+      // the bush-covered hills of the island
+      { d: hills([[0, G], [160, 248], [420, 236], [700, 246], [960, 238], [1180, 252], [1300, G]]), c: FOREST },
+      { d: water(1100, 1600, 270), c: SEA },
+      // the sandy bay in front
+      { d: hills([[600, G], [800, 288], [1100, 284], [1400, 290], [1600, 288], [1600, G]]), c: "#e3cf9a" },
+      // a kiwi: round body, long beak, short legs
+      { d: "M1000,282C1000,270 1012,264 1024,266C1034,268 1040,274 1040,280C1040,284 1036,286 1028,286H1008C1002,286 1000,284 1000,282Z M1000,276L982,282L1000,279Z M1014,286V292H1016V286Z M1026,286V292H1028V286Z", c: "#6a5440" },
+    ],
+  },
   "paparoa-track": {
     view: "The Paparoa Range: the long tussock ridge of the tops above rainforest, and the white limestone bluffs of the Pororari gorge with nīkau below",
     ridge: "#8a9a5a",

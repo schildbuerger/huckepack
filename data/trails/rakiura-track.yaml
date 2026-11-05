@@ -1,0 +1,156 @@
+name: Rakiura Track
+added: 2026-11-05
+aliases: [Rakiura Track Great Walk, Stewart Island Great Walk]
+website: https://www.doc.govt.nz/parks-and-recreation/places-to-go/southland/places/stewart-island-rakiura/rakiura-national-park/things-to-do/rakiura-track/
+wikidata: Q2129081
+managedBy:
+  # one of New Zealand's Great Walks; DOC runs its two huts and three campsites. Parts cross Māori
+  # land, "access is courtesy of the owners"
+  - name: Department of Conservation (Te Papa Atawhai)
+    url: https://www.doc.govt.nz/
+trailType: loop
+continents: [Oceania]
+countries: [NZ]
+regions: [Southland, Stewart Island/Rakiura]
+protectedAreas:
+  - Rakiura National Park
+termini:
+  # Lee Bay, 5 km north of Oban, and the Fern Gully car park, 2 km west of it: the circuit closes on
+  # Oban's roads (OSM)
+  start:
+    name: Lee Bay
+    lat: -46.86792
+    lon: 168.12549
+  end:
+    name: Fern Gully car park
+    lat: -46.88999
+    lon: 168.09596
+  source: osm
+length:
+  # "32 km loop", Lee Bay to Fern Gully
+  - km: 32
+    source: doc
+days:
+  # "3 days"
+  min: 3
+  max: 3
+  source: doc
+stages:
+  # DOC's three legs of the circuit, Lee Bay to the Fern Gully car park, with distance and time (it
+  # can be walked either way); the OSM relation (1385146) guides the matcher, each leg the shortest
+  # way over it between the legs' ends. The 5 km road from Oban to Lee Bay (1 hr 30 min) is in a note
+  source: doc
+  list:
+    - { number: "1", kind: main, from: Lee Bay, to: Port William Hut, km: 8, minutes: 180, maxMinutes: 240, end: { name: Port William Hut, lat: -46.83578, lon: 168.08711 } }
+    - { number: "2", kind: main, from: Port William Hut, to: North Arm Hut, km: 13, minutes: 360, end: { name: North Arm Hut, lat: -46.883, lon: 168.01844 } }
+    - { number: "3", kind: main, from: North Arm Hut, to: Fern Gully car park, km: 11, minutes: 240, maxMinutes: 270, end: { name: Fern Gully car park, lat: -46.88999, lon: 168.09596 } }
+route:
+  # built by `python -m pipeline.all rakiura-track`: OSM ways matched to the shortest way over the
+  # relation between the legs' ends (the relation runs from Oban and back)
+  source: osm
+  publishable: true
+  relation: 1385146
+  branched: true
+difficulty:
+  estimated:
+    sac: T1
+    basis: >-
+      DOC grades the track intermediate: open coast, beaches and forested interior on old logging
+      tramlines and along Paterson Inlet, low throughout, but in long rain "the mud goes above boot
+      height" for up to 500 m at a time. Hiking on a good but muddy track (T1).
+    source: doc
+sleeping:
+  # DOC's two huts (Port William, North Arm) and three campsites (Maori Beach, Port William, North
+  # Arm), all booked in advance
+  types: [hut, campsite]
+  source: doc
+wildCamping:
+  status: restricted
+  rule: Camping is only allowed at the three designated DOC campsites, booked in advance.
+  source: doc
+fees:
+  # DOC's fees per person and night, 1 October to 30 April (lower in winter), in New Zealand dollars
+  - { name: "Hut (international visitor, adult)", amount: 66, currency: NZD, per: per person and night, year: 2026, note: "NZ visitors $44; 1 October to 30 April", source: doc }
+  - { name: "Campsite (international visitor, adult)", amount: 28, currency: NZD, per: per person and night, year: 2026, note: "NZ visitors $19; 1 October to 30 April", source: doc }
+access:
+  # Oban, the island's only town, is reached by a 20-minute flight from Invercargill or a one-hour
+  # ferry from Bluff. Coordinates from OSM; distances by pipeline/access.py
+  - kind: airport
+    name: Invercargill Airport (IVC)
+    lat: -46.41532
+    lon: 168.31782
+    source: osm
+tags: [great-walk, stewart-island, national-park, beaches, kiwi]
+notes:
+  - >-
+    Wildlife (2026-11-05): none listed. New Zealand has no dangerous land animals; the Rakiura
+    tokoeka/kiwi is a sight, not a danger. No DOC statement on dangerous animals was found.
+  - >-
+    Season: DOC states none (2026-11-05): huts and campsites are booked with fees for every month
+    (lower from May to September), and the track is muddy in long rain at any time.
+  - >-
+    Stages: DOC's three legs add up to 32 km (stated 32 km loop); DOC gives no ascent or descent.
+    From Oban add 5 km (1 hr 30 min) on the road to Lee Bay, and about 2 km back from Fern Gully.
+    Access to North Arm Hut by boat depends on the tides.
+  - >-
+    Route (pipeline, 2026-11-05, Geofabrik extracts): each leg is the shortest way over OSM's
+    relation (GW09, 1385146) between its ends; every leg matches 100 %. The map line is 26.3 km
+    against DOC's 32 km (18 % short): each leg comes out about 15 % under DOC's figure (7.1, 10.9 and
+    9.5 km against 8, 13 and 11), and the whole relation, Oban's roads included, is only 34.8 km, so
+    OSM maps the circuit at about 27 km and DOC's distances run long, as on the Heaphy and Paparoa
+    Tracks. The page keeps DOC's figures. Highest point 193 m (km 11, the interior between Port
+    William and North Arm).
+  - >-
+    Data check (2026-11-05). Second source: English Wikipedia (32 km circular, Lee Bay to Fern Gully,
+    usually three days, most often anticlockwise from Lee Bay). Length, ends and days agree with
+    DOC; the map line doesn't (see Route).
+  - >-
+    Waymarking: DOC's track page doesn't describe the marks (2026-11-05), so none is recorded.
+dataCheck:
+  # working rule 2: English Wikipedia
+  date: 2026-11-05
+  against: [wikipedia-en]
+  deviations: []
+sources:
+  - id: doc
+    title: "Department of Conservation: Rakiura Track (length, days, legs with distance and time, huts, campsites, fees, mud)"
+    url: https://www.doc.govt.nz/parks-and-recreation/places-to-go/southland/places/stewart-island-rakiura/rakiura-national-park/things-to-do/rakiura-track/
+    licence: © Crown copyright, DOC (facts only)
+    retrieved: 2026-11-05
+  - id: wikipedia-en
+    title: "Wikipedia (en): Rakiura Track (length, ends, days; data check)"
+    url: https://en.wikipedia.org/wiki/Rakiura_Track
+    licence: CC BY-SA 4.0
+    retrieved: 2026-11-05
+    checkOnly: true  # only for the data check
+  - id: wikimedia
+    title: "Wikimedia: page views of the trail's Wikipedia articles in every language, by people, over twelve months (Wikidata sitelinks, pageview API)"
+    url: https://wikimedia.org/api/rest_v1/
+    licence: CC0 1.0 (pageview data); Wikidata CC0
+    retrieved: 2026-11-05
+    checkOnly: true  # not on the trail page: the page views only rank the home page's popular trails
+  - id: osm
+    title: "OpenStreetMap contributors: paths, water, shops and places to sleep along the trail (Geofabrik extracts), stage ends, travel hubs"
+    url: https://www.openstreetmap.org/
+    licence: ODbL 1.0
+    retrieved: 2026-11-05
+  - id: copdem
+    title: "Copernicus DEM GLO-30 (30 m terrain model), tiles from AWS Open Data"
+    url: https://registry.opendata.aws/copernicus-dem/
+    licence: "Copernicus WorldDEM-30 licence, free; produced using Copernicus WorldDEM-30 © DLR e.V. 2010-2014 and © Airbus Defence and Space GmbH 2014-2018 provided under COPERNICUS by the European Union and ESA; all rights reserved"
+    retrieved: 2026-11-05
+  - id: worldcover
+    title: "ESA WorldCover 2021: 10 m land cover (via AWS Open Data)"
+    url: https://esa-worldcover.org/
+    licence: "CC BY 4.0; © ESA WorldCover project 2021 / Contains modified Copernicus Sentinel data (2021) processed by ESA WorldCover consortium"
+    retrieved: 2026-11-05
+  - id: era5
+    title: "Open-Meteo open data on AWS: ERA5-Land temperature and ERA5 precipitation, snow and wind, daily 1995–2024 (reanalysis)"
+    url: https://github.com/open-meteo/open-data
+    licence: CC BY 4.0 (Open-Meteo); contains modified Copernicus Climate Change Service information
+    retrieved: 2026-11-05
+  - id: osrm
+    title: "OSRM: road routes on OpenStreetMap data (router.project-osrm.org)"
+    url: https://project-osrm.org/
+    licence: Route data © OpenStreetMap contributors (ODbL)
+    retrieved: 2026-11-05

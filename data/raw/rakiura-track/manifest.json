@@ -1,0 +1,53 @@
+{
+  "climate-high.json": {
+    "retrieved": "2026-11-05T12:07:07+00:00",
+    "url": "https://openmeteo.s3.us-west-2.amazonaws.com/data/copernicus_era5_land+copernicus_era5?latitude=-46.9&longitude=168.1&elevation=190"
+  },
+  "climate-low.json": {
+    "retrieved": "2026-11-05T12:01:51+00:00",
+    "url": "https://openmeteo.s3.us-west-2.amazonaws.com/data/copernicus_era5_land+copernicus_era5?latitude=-46.9&longitude=168.1&elevation=0"
+  },
+  "elevation-glo30.json": {
+    "retrieved": "2026-11-05T11:56:20+00:00",
+    "url": "https://copernicus-dem-30m.s3.eu-central-1.amazonaws.com/Copernicus_DSM_COG_10_S47_00_E168_00_DEM/Copernicus_DSM_COG_10_S47_00_E168_00_DEM.tif"
+  },
+  "landcover.json": {
+    "retrieved": "2026-11-05T11:56:20+00:00",
+    "url": "https://esa-worldcover.s3.eu-central-1.amazonaws.com/v200/2021/map/ESA_WorldCover_10m_2021_v200_\u2026_Map.tif"
+  },
+  "osm-relation.json": {
+    "retrieved": "2026-10-31T21:23:06Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-1-main.json": {
+    "key": "4dba8f9b6689",
+    "retrieved": "2026-10-31T21:23:06Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-2-main.json": {
+    "key": "c944421b5def",
+    "retrieved": "2026-10-31T21:23:06Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-3-main.json": {
+    "key": "d5898a88e8d1",
+    "retrieved": "2026-10-31T21:23:06Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-water.json": {
+    "retrieved": "2026-10-31T21:23:06Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-way-tags.json": {
+    "retrieved": "2026-10-31T21:23:06Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osrm-access-invercargill-airport-ivc.json": {
+    "retrieved": "2026-11-05T12:07:07+00:00",
+    "url": "https://router.project-osrm.org/route/v1/driving/168.31782,-46.41532;168.12549,-46.86792?overview=false"
+  },
+  "wikimedia.json": {
+    "retrieved": "2026-11-05T12:07:08+00:00",
+    "url": "Q2129081 2025-11..2026-10"
+  }
+}

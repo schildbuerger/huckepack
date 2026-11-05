@@ -1,0 +1,2143 @@
+{
+  "routeWays": [
+    {
+      "number": "1",
+      "kind": "main",
+      "ways": [
+        [
+          40949930,
+          579.1
+        ],
+        [
+          167143331,
+          108.7
+        ],
+        [
+          293216560,
+          1175.5
+        ],
+        [
+          722461219,
+          23.8
+        ],
+        [
+          722461220,
+          3890.0
+        ],
+        [
+          167143330,
+          60.9
+        ],
+        [
+          167143333,
+          1223.5
+        ]
+      ]
+    },
+    {
+      "number": "2",
+      "kind": "main",
+      "ways": [
+        [
+          167143332,
+          1459.8
+        ],
+        [
+          722456885,
+          7.8
+        ],
+        [
+          722456884,
+          1410.5
+        ],
+        [
+          722459205,
+          12.9
+        ],
+        [
+          722459204,
+          6290.3
+        ],
+        [
+          1347737851,
+          6.3
+        ],
+        [
+          1347737852,
+          57.8
+        ],
+        [
+          1347737853,
+          6.2
+        ],
+        [
+          1347737850,
+          1650.1
+        ]
+      ]
+    },
+    {
+      "number": "3",
+      "kind": "main",
+      "ways": [
+        [
+          1347913748,
+          2220.8
+        ],
+        [
+          1347913749,
+          7.1
+        ],
+        [
+          167142839,
+          3964.9
+        ],
+        [
+          1347913751,
+          8.2
+        ],
+        [
+          1347913752,
+          402.8
+        ],
+        [
+          1347913753,
+          24.4
+        ],
+        [
+          1347913750,
+          532.8
+        ],
+        [
+          83640750,
+          1055.5
+        ],
+        [
+          167141903,
+          1316.0
+        ]
+      ]
+    }
+  ],
+  "measured": {
+    "source": "osm",
+    "km": 27.5,
+    "minCovered": 1.0,
+    "stages": [
+      {
+        "number": "1",
+        "kind": "main",
+        "km": 7.06,
+        "covered": 1.0
+      },
+      {
+        "number": "2",
+        "kind": "main",
+        "km": 10.9,
+        "covered": 1.0
+      },
+      {
+        "number": "3",
+        "kind": "main",
+        "km": 9.53,
+        "covered": 1.0
+      }
+    ]
+  },
+  "water": {
+    "source": "osm",
+    "extraSources": [],
+    "retrieved": "2026-10-31T21:23:06Z",
+    "withinM": 500,
+    "routeKm": 26.3,
+    "stageStarts": [
+      {
+        "number": "1",
+        "km": 0.0
+      },
+      {
+        "number": "2",
+        "km": 6.8
+      },
+      {
+        "number": "3",
+        "km": 17.1
+      }
+    ],
+    "longestGapKm": {
+      "drinking": {
+        "km": 26.3,
+        "fromKm": 0.0,
+        "toKm": 26.3
+      },
+      "any": {
+        "km": 26.3,
+        "fromKm": 0.0,
+        "toKm": 26.3
+      }
+    },
+    "stages": [
+      {
+        "number": "1",
+        "kind": "main",
+        "drinking": 0,
+        "springs": 0
+      },
+      {
+        "number": "2",
+        "kind": "main",
+        "drinking": 0,
+        "springs": 0
+      },
+      {
+        "number": "3",
+        "kind": "main",
+        "drinking": 0,
+        "springs": 0
+      }
+    ],
+    "points": []
+  },
+  "along": {
+    "source": "osm",
+    "retrieved": "2026-10-31T21:23:06Z",
+    "withinM": 1000,
+    "stageEndM": 3000,
+    "routeKm": 26.3,
+    "resupply": {
+      "points": [
+        {
+          "lat": -46.897526,
+          "lon": 168.128218,
+          "group": "resupply",
+          "kind": "supermarket",
+          "name": "Four Square",
+          "osm": "way/228365510",
+          "stage": "3",
+          "stageKind": "main",
+          "km": 26.3,
+          "offM": 2478
+        }
+      ],
+      "longestGapKm": {
+        "km": 26.3,
+        "fromKm": 0.0,
+        "toKm": 26.3
+      }
+    },
+    "beds": {
+      "points": [
+        {
+          "lat": -46.857042,
+          "lon": 168.088194,
+          "group": "beds",
+          "kind": "campsite",
+          "name": "Māori Beach Campsite",
+          "drinkingWater": "untreated",
+          "osm": "node/3877596882",
+          "stage": "1",
+          "stageKind": "main",
+          "km": 4.8,
+          "offM": 59
+        },
+        {
+          "lat": -46.836733,
+          "lon": 168.083971,
+          "group": "beds",
+          "kind": "campsite",
+          "name": "Port William Campsite",
+          "drinkingWater": "untreated",
+          "osm": "node/1785454563",
+          "stage": "1",
+          "stageKind": "main",
+          "km": 6.8,
+          "offM": 1212
+        },
+        {
+          "lat": -46.835788,
+          "lon": 168.087087,
+          "group": "beds",
+          "kind": "hut",
+          "name": "Port William Hut",
+          "drinkingWater": "untreated",
+          "osm": "way/520870899",
+          "stage": "1",
+          "stageKind": "main",
+          "km": 6.8,
+          "offM": 1418
+        },
+        {
+          "lat": -46.884062,
+          "lon": 168.018357,
+          "group": "beds",
+          "kind": "campsite",
+          "name": "North Arm Campsite",
+          "drinkingWater": "untreated",
+          "osm": "node/3877598385",
+          "stage": "3",
+          "stageKind": "main",
+          "km": 17.1,
+          "offM": 58
+        },
+        {
+          "lat": -46.883322,
+          "lon": 168.019195,
+          "group": "beds",
+          "kind": "hut",
+          "name": null,
+          "osm": "node/6341438928",
+          "stage": "2",
+          "stageKind": "main",
+          "km": 17.1,
+          "offM": 69
+        },
+        {
+          "lat": -46.882993,
+          "lon": 168.018485,
+          "group": "beds",
+          "kind": "hut",
+          "name": "North Arm Hut",
+          "drinkingWater": "untreated",
+          "osm": "way/520870902",
+          "stage": "2",
+          "stageKind": "main",
+          "km": 17.1,
+          "offM": 116
+        },
+        {
+          "lat": -46.898252,
+          "lon": 168.032544,
+          "group": "beds",
+          "kind": "campsite",
+          "name": "Sawdust Bay Campsite",
+          "osm": "node/2124769058",
+          "stage": "3",
+          "stageKind": "main",
+          "km": 19.8,
+          "offM": 20
+        },
+        {
+          "lat": -46.898863,
+          "lon": 168.126336,
+          "group": "beds",
+          "kind": "hostel",
+          "name": "Bunkers Backpackers BBH",
+          "osm": "node/5179046321",
+          "stage": "3",
+          "stageKind": "main",
+          "km": 26.3,
+          "offM": 2350
+        },
+        {
+          "lat": -46.899536,
+          "lon": 168.126735,
+          "group": "beds",
+          "kind": "hostel",
+          "name": "Stewart Island Backpackers",
+          "osm": "node/5251291459",
+          "stage": "3",
+          "stageKind": "main",
+          "km": 26.3,
+          "offM": 2391
+        },
+        {
+          "lat": -46.901976,
+          "lon": 168.122328,
+          "group": "beds",
+          "kind": "guesthouse",
+          "name": "Glendaruel",
+          "osm": "node/5332280921",
+          "stage": "3",
+          "stageKind": "main",
+          "km": 26.3,
+          "offM": 2130
+        },
+        {
+          "lat": -46.893005,
+          "lon": 168.107967,
+          "group": "beds",
+          "kind": "campsite",
+          "name": "Allan's Base Camp",
+          "osm": "node/7173766685",
+          "stage": "3",
+          "stageKind": "main",
+          "km": 26.3,
+          "offM": 991
+        },
+        {
+          "lat": -46.899542,
+          "lon": 168.121192,
+          "group": "beds",
+          "kind": "hostel",
+          "name": "Hilltop Backpacker",
+          "osm": "way/228641611",
+          "stage": "3",
+          "stageKind": "main",
+          "km": 26.3,
+          "offM": 1977
+        },
+        {
+          "lat": -46.902083,
+          "lon": 168.123928,
+          "group": "beds",
+          "kind": "guesthouse",
+          "name": "Observation Rock Lodge",
+          "osm": "way/228655773",
+          "stage": "3",
+          "stageKind": "main",
+          "km": 26.3,
+          "offM": 2249
+        },
+        {
+          "lat": -46.900175,
+          "lon": 168.128522,
+          "group": "beds",
+          "kind": "guesthouse",
+          "name": "Latt47",
+          "osm": "way/228655783",
+          "stage": "3",
+          "stageKind": "main",
+          "km": 26.3,
+          "offM": 2537
+        },
+        {
+          "lat": -46.899587,
+          "lon": 168.126443,
+          "group": "beds",
+          "kind": "campsite",
+          "name": "Stewart Island Backpackers",
+          "drinkingWater": "yes",
+          "osm": "way/1198883115",
+          "stage": "3",
+          "stageKind": "main",
+          "km": 26.3,
+          "offM": 2370
+        },
+        {
+          "lat": -46.900961,
+          "lon": 168.129608,
+          "group": "beds",
+          "kind": "guesthouse",
+          "name": "A Grand View",
+          "osm": "way/1243630314",
+          "stage": "3",
+          "stageKind": "main",
+          "km": 26.3,
+          "offM": 2636
+        },
+        {
+          "lat": -46.895732,
+          "lon": 168.125791,
+          "group": "beds",
+          "kind": "guesthouse",
+          "name": "Anglem House",
+          "osm": "way/1263664339",
+          "stage": "3",
+          "stageKind": "main",
+          "km": 26.3,
+          "offM": 2287
+        },
+        {
+          "lat": -46.897718,
+          "lon": 168.122895,
+          "group": "beds",
+          "kind": "guesthouse",
+          "name": "Kowhai Lane",
+          "osm": "way/1265748798",
+          "stage": "3",
+          "stageKind": "main",
+          "km": 26.3,
+          "offM": 2076
+        },
+        {
+          "lat": -46.897713,
+          "lon": 168.120935,
+          "group": "beds",
+          "kind": "guesthouse",
+          "name": "Oban Lodge",
+          "osm": "way/1265748835",
+          "stage": "3",
+          "stageKind": "main",
+          "km": 26.3,
+          "offM": 1927
+        }
+      ],
+      "longestGapKm": {
+        "km": 10.3,
+        "fromKm": 6.8,
+        "toKm": 17.1
+      },
+      "byGroup": {
+        "huts": 3,
+        "camping": 6,
+        "hostels": 3,
+        "rooms": 7
+      }
+    },
+    "water": {
+      "withinM": 500,
+      "promoted": [],
+      "refills": [
+        {
+          "kind": "campsite",
+          "name": "Māori Beach Campsite",
+          "stage": "1",
+          "km": 4.8,
+          "osm": "node/3877596882"
+        },
+        {
+          "kind": "campsite",
+          "name": "North Arm Campsite",
+          "stage": "3",
+          "km": 17.1,
+          "osm": "node/3877598385"
+        },
+        {
+          "kind": "hut",
+          "name": null,
+          "stage": "2",
+          "km": 17.1,
+          "osm": "node/6341438928"
+        },
+        {
+          "kind": "hut",
+          "name": "North Arm Hut",
+          "stage": "2",
+          "km": 17.1,
+          "osm": "way/520870902"
+        },
+        {
+          "kind": "campsite",
+          "name": "Sawdust Bay Campsite",
+          "stage": "3",
+          "km": 19.8,
+          "osm": "node/2124769058"
+        }
+      ],
+      "longestGapKm": {
+        "drinking": {
+          "km": 26.3,
+          "fromKm": 0.0,
+          "toKm": 26.3
+        },
+        "treatment": {
+          "km": 26.3,
+          "fromKm": 0.0,
+          "toKm": 26.3
+        },
+        "clean": {
+          "km": 12.3,
+          "fromKm": 4.8,
+          "toKm": 17.1
+        },
+        "refill": {
+          "km": 12.3,
+          "fromKm": 4.8,
+          "toKm": 17.1
+        }
+      },
+      "refillsUntreated": false
+    }
+  },
+  "surface": {
+    "source": "osm",
+    "retrieved": "2026-10-31T21:23:06Z",
+    "routeKm": 26.3,
+    "totals": {
+      "paved": {
+        "km": 0.6,
+        "share": 0.021
+      },
+      "gravel": {
+        "km": 1.3,
+        "share": 0.048
+      },
+      "natural": {
+        "km": 24.5,
+        "share": 0.931
+      },
+      "unknown": {
+        "km": 0.0,
+        "share": 0.0
+      }
+    },
+    "inferredShare": 0.979,
+    "runs": [
+      {
+        "category": "paved",
+        "fromKm": 0.0,
+        "toKm": 0.56,
+        "stage": "1"
+      },
+      {
+        "category": "natural",
+        "fromKm": 0.56,
+        "toKm": 25.08,
+        "stage": "1"
+      },
+      {
+        "category": "gravel",
+        "fromKm": 25.08,
+        "toKm": 26.35,
+        "stage": "3"
+      }
+    ]
+  },
+  "elevation": {
+    "source": "copdem",
+    "retrieved": "2026-11-05T11:56:20+00:00",
+    "spacingM": 100,
+    "routeKm": 26.3,
+    "stageStarts": [
+      {
+        "number": "1",
+        "km": 0.0
+      },
+      {
+        "number": "2",
+        "km": 6.81
+      },
+      {
+        "number": "3",
+        "km": 17.13
+      }
+    ],
+    "highest": {
+      "km": 11.2,
+      "m": 193,
+      "lat": -46.86457,
+      "lon": 168.06015
+    },
+    "lowest": {
+      "km": 4.8,
+      "m": 0,
+      "lat": -46.85648,
+      "lon": 168.08852
+    },
+    "points": [
+      [
+        0.0,
+        26
+      ],
+      [
+        0.1,
+        35
+      ],
+      [
+        0.2,
+        44
+      ],
+      [
+        0.3,
+        46
+      ],
+      [
+        0.4,
+        35
+      ],
+      [
+        0.5,
+        20
+      ],
+      [
+        0.6,
+        6
+      ],
+      [
+        0.7,
+        7
+      ],
+      [
+        0.8,
+        10
+      ],
+      [
+        0.9,
+        11
+      ],
+      [
+        1.0,
+        10
+      ],
+      [
+        1.1,
+        16
+      ],
+      [
+        1.2,
+        19
+      ],
+      [
+        1.3,
+        22
+      ],
+      [
+        1.4,
+        21
+      ],
+      [
+        1.5,
+        22
+      ],
+      [
+        1.6,
+        29
+      ],
+      [
+        1.7,
+        35
+      ],
+      [
+        1.8,
+        1
+      ],
+      [
+        1.9,
+        18
+      ],
+      [
+        2.0,
+        33
+      ],
+      [
+        2.1,
+        34
+      ],
+      [
+        2.2,
+        45
+      ],
+      [
+        2.3,
+        50
+      ],
+      [
+        2.4,
+        62
+      ],
+      [
+        2.5,
+        68
+      ],
+      [
+        2.6,
+        78
+      ],
+      [
+        2.7,
+        83
+      ],
+      [
+        2.8,
+        77
+      ],
+      [
+        2.9,
+        71
+      ],
+      [
+        3.0,
+        68
+      ],
+      [
+        3.1,
+        63
+      ],
+      [
+        3.2,
+        62
+      ],
+      [
+        3.3,
+        52
+      ],
+      [
+        3.4,
+        47
+      ],
+      [
+        3.5,
+        45
+      ],
+      [
+        3.6,
+        37
+      ],
+      [
+        3.7,
+        30
+      ],
+      [
+        3.8,
+        20
+      ],
+      [
+        3.9,
+        23
+      ],
+      [
+        4.0,
+        32
+      ],
+      [
+        4.1,
+        40
+      ],
+      [
+        4.2,
+        21
+      ],
+      [
+        4.3,
+        22
+      ],
+      [
+        4.4,
+        37
+      ],
+      [
+        4.5,
+        43
+      ],
+      [
+        4.6,
+        31
+      ],
+      [
+        4.7,
+        7
+      ],
+      [
+        4.8,
+        0
+      ],
+      [
+        4.9,
+        0
+      ],
+      [
+        5.0,
+        1
+      ],
+      [
+        5.1,
+        1
+      ],
+      [
+        5.2,
+        3
+      ],
+      [
+        5.3,
+        0
+      ],
+      [
+        5.4,
+        1
+      ],
+      [
+        5.5,
+        0
+      ],
+      [
+        5.6,
+        1
+      ],
+      [
+        5.7,
+        1
+      ],
+      [
+        5.8,
+        1
+      ],
+      [
+        5.9,
+        35
+      ],
+      [
+        6.0,
+        59
+      ],
+      [
+        6.1,
+        82
+      ],
+      [
+        6.2,
+        99
+      ],
+      [
+        6.3,
+        98
+      ],
+      [
+        6.4,
+        95
+      ],
+      [
+        6.5,
+        106
+      ],
+      [
+        6.6,
+        117
+      ],
+      [
+        6.7,
+        122
+      ],
+      [
+        6.8,
+        129
+      ],
+      [
+        6.9,
+        144
+      ],
+      [
+        7.0,
+        156
+      ],
+      [
+        7.1,
+        174
+      ],
+      [
+        7.2,
+        174
+      ],
+      [
+        7.3,
+        165
+      ],
+      [
+        7.4,
+        170
+      ],
+      [
+        7.5,
+        166
+      ],
+      [
+        7.6,
+        142
+      ],
+      [
+        7.7,
+        129
+      ],
+      [
+        7.8,
+        105
+      ],
+      [
+        7.9,
+        80
+      ],
+      [
+        8.0,
+        59
+      ],
+      [
+        8.1,
+        42
+      ],
+      [
+        8.2,
+        30
+      ],
+      [
+        8.3,
+        37
+      ],
+      [
+        8.4,
+        36
+      ],
+      [
+        8.5,
+        45
+      ],
+      [
+        8.6,
+        46
+      ],
+      [
+        8.7,
+        45
+      ],
+      [
+        8.8,
+        54
+      ],
+      [
+        8.9,
+        31
+      ],
+      [
+        9.0,
+        41
+      ],
+      [
+        9.1,
+        50
+      ],
+      [
+        9.2,
+        55
+      ],
+      [
+        9.3,
+        61
+      ],
+      [
+        9.4,
+        56
+      ],
+      [
+        9.5,
+        43
+      ],
+      [
+        9.6,
+        46
+      ],
+      [
+        9.7,
+        75
+      ],
+      [
+        9.8,
+        104
+      ],
+      [
+        9.9,
+        125
+      ],
+      [
+        10.0,
+        137
+      ],
+      [
+        10.1,
+        138
+      ],
+      [
+        10.2,
+        156
+      ],
+      [
+        10.3,
+        170
+      ],
+      [
+        10.4,
+        177
+      ],
+      [
+        10.5,
+        176
+      ],
+      [
+        10.6,
+        165
+      ],
+      [
+        10.7,
+        154
+      ],
+      [
+        10.8,
+        168
+      ],
+      [
+        10.9,
+        178
+      ],
+      [
+        11.0,
+        182
+      ],
+      [
+        11.1,
+        192
+      ],
+      [
+        11.2,
+        193
+      ],
+      [
+        11.3,
+        191
+      ],
+      [
+        11.4,
+        182
+      ],
+      [
+        11.5,
+        179
+      ],
+      [
+        11.6,
+        164
+      ],
+      [
+        11.7,
+        160
+      ],
+      [
+        11.8,
+        160
+      ],
+      [
+        11.9,
+        168
+      ],
+      [
+        12.0,
+        168
+      ],
+      [
+        12.1,
+        161
+      ],
+      [
+        12.2,
+        156
+      ],
+      [
+        12.3,
+        139
+      ],
+      [
+        12.4,
+        131
+      ],
+      [
+        12.5,
+        126
+      ],
+      [
+        12.6,
+        145
+      ],
+      [
+        12.7,
+        141
+      ],
+      [
+        12.8,
+        130
+      ],
+      [
+        12.9,
+        133
+      ],
+      [
+        13.0,
+        132
+      ],
+      [
+        13.1,
+        115
+      ],
+      [
+        13.2,
+        118
+      ],
+      [
+        13.3,
+        119
+      ],
+      [
+        13.4,
+        129
+      ],
+      [
+        13.5,
+        115
+      ],
+      [
+        13.6,
+        98
+      ],
+      [
+        13.7,
+        106
+      ],
+      [
+        13.8,
+        111
+      ],
+      [
+        13.9,
+        114
+      ],
+      [
+        14.0,
+        102
+      ],
+      [
+        14.1,
+        84
+      ],
+      [
+        14.2,
+        68
+      ],
+      [
+        14.3,
+        70
+      ],
+      [
+        14.4,
+        54
+      ],
+      [
+        14.5,
+        52
+      ],
+      [
+        14.6,
+        56
+      ],
+      [
+        14.7,
+        66
+      ],
+      [
+        14.8,
+        79
+      ],
+      [
+        14.9,
+        62
+      ],
+      [
+        15.0,
+        48
+      ],
+      [
+        15.1,
+        54
+      ],
+      [
+        15.2,
+        32
+      ],
+      [
+        15.3,
+        29
+      ],
+      [
+        15.4,
+        25
+      ],
+      [
+        15.5,
+        25
+      ],
+      [
+        15.6,
+        29
+      ],
+      [
+        15.7,
+        41
+      ],
+      [
+        15.8,
+        50
+      ],
+      [
+        15.9,
+        45
+      ],
+      [
+        16.0,
+        46
+      ],
+      [
+        16.1,
+        51
+      ],
+      [
+        16.2,
+        38
+      ],
+      [
+        16.3,
+        41
+      ],
+      [
+        16.4,
+        47
+      ],
+      [
+        16.5,
+        45
+      ],
+      [
+        16.6,
+        52
+      ],
+      [
+        16.7,
+        47
+      ],
+      [
+        16.8,
+        47
+      ],
+      [
+        16.9,
+        51
+      ],
+      [
+        17.0,
+        64
+      ],
+      [
+        17.1,
+        44
+      ],
+      [
+        17.2,
+        48
+      ],
+      [
+        17.3,
+        55
+      ],
+      [
+        17.4,
+        56
+      ],
+      [
+        17.5,
+        57
+      ],
+      [
+        17.6,
+        53
+      ],
+      [
+        17.7,
+        53
+      ],
+      [
+        17.8,
+        38
+      ],
+      [
+        17.9,
+        14
+      ],
+      [
+        18.0,
+        5
+      ],
+      [
+        18.1,
+        10
+      ],
+      [
+        18.2,
+        32
+      ],
+      [
+        18.3,
+        43
+      ],
+      [
+        18.4,
+        49
+      ],
+      [
+        18.5,
+        55
+      ],
+      [
+        18.6,
+        52
+      ],
+      [
+        18.7,
+        47
+      ],
+      [
+        18.8,
+        42
+      ],
+      [
+        18.9,
+        43
+      ],
+      [
+        19.0,
+        33
+      ],
+      [
+        19.1,
+        23
+      ],
+      [
+        19.2,
+        16
+      ],
+      [
+        19.3,
+        9
+      ],
+      [
+        19.4,
+        13
+      ],
+      [
+        19.5,
+        18
+      ],
+      [
+        19.6,
+        10
+      ],
+      [
+        19.7,
+        15
+      ],
+      [
+        19.8,
+        9
+      ],
+      [
+        19.9,
+        19
+      ],
+      [
+        20.0,
+        30
+      ],
+      [
+        20.1,
+        40
+      ],
+      [
+        20.2,
+        46
+      ],
+      [
+        20.3,
+        41
+      ],
+      [
+        20.4,
+        46
+      ],
+      [
+        20.5,
+        38
+      ],
+      [
+        20.6,
+        24
+      ],
+      [
+        20.7,
+        18
+      ],
+      [
+        20.8,
+        24
+      ],
+      [
+        20.9,
+        22
+      ],
+      [
+        21.0,
+        10
+      ],
+      [
+        21.1,
+        10
+      ],
+      [
+        21.2,
+        15
+      ],
+      [
+        21.3,
+        28
+      ],
+      [
+        21.4,
+        18
+      ],
+      [
+        21.5,
+        25
+      ],
+      [
+        21.6,
+        35
+      ],
+      [
+        21.7,
+        44
+      ],
+      [
+        21.8,
+        41
+      ],
+      [
+        21.9,
+        42
+      ],
+      [
+        22.0,
+        38
+      ],
+      [
+        22.1,
+        28
+      ],
+      [
+        22.2,
+        37
+      ],
+      [
+        22.3,
+        36
+      ],
+      [
+        22.4,
+        36
+      ],
+      [
+        22.5,
+        36
+      ],
+      [
+        22.6,
+        34
+      ],
+      [
+        22.7,
+        44
+      ],
+      [
+        22.8,
+        42
+      ],
+      [
+        22.9,
+        40
+      ],
+      [
+        23.0,
+        30
+      ],
+      [
+        23.1,
+        18
+      ],
+      [
+        23.2,
+        9
+      ],
+      [
+        23.3,
+        21
+      ],
+      [
+        23.4,
+        33
+      ],
+      [
+        23.5,
+        17
+      ],
+      [
+        23.6,
+        30
+      ],
+      [
+        23.7,
+        28
+      ],
+      [
+        23.8,
+        34
+      ],
+      [
+        23.9,
+        29
+      ],
+      [
+        24.0,
+        23
+      ],
+      [
+        24.1,
+        32
+      ],
+      [
+        24.2,
+        42
+      ],
+      [
+        24.3,
+        52
+      ],
+      [
+        24.4,
+        53
+      ],
+      [
+        24.5,
+        56
+      ],
+      [
+        24.6,
+        58
+      ],
+      [
+        24.7,
+        63
+      ],
+      [
+        24.8,
+        71
+      ],
+      [
+        24.9,
+        74
+      ],
+      [
+        25.0,
+        87
+      ],
+      [
+        25.1,
+        93
+      ],
+      [
+        25.2,
+        93
+      ],
+      [
+        25.3,
+        90
+      ],
+      [
+        25.4,
+        90
+      ],
+      [
+        25.5,
+        89
+      ],
+      [
+        25.6,
+        96
+      ],
+      [
+        25.7,
+        102
+      ],
+      [
+        25.8,
+        100
+      ],
+      [
+        25.9,
+        98
+      ],
+      [
+        26.0,
+        99
+      ],
+      [
+        26.1,
+        99
+      ],
+      [
+        26.2,
+        99
+      ],
+      [
+        26.3,
+        104
+      ],
+      [
+        26.35,
+        102
+      ]
+    ]
+  },
+  "landcover": {
+    "source": "worldcover",
+    "retrieved": "2026-11-05T11:56:20+00:00",
+    "spacingM": 100,
+    "routeKm": 26.3,
+    "stageStarts": [
+      {
+        "number": "1",
+        "km": 0.0
+      },
+      {
+        "number": "2",
+        "km": 6.81
+      },
+      {
+        "number": "3",
+        "km": 17.13
+      }
+    ],
+    "shares": {
+      "forest": 0.947,
+      "open": 0.023,
+      "moss": 0.0,
+      "bare": 0.026,
+      "water": 0.004,
+      "farm": 0.0
+    },
+    "runs": [
+      {
+        "group": "forest",
+        "fromKm": 0.0,
+        "toKm": 0.55
+      },
+      {
+        "group": "open",
+        "fromKm": 0.55,
+        "toKm": 0.65
+      },
+      {
+        "group": "forest",
+        "fromKm": 0.65,
+        "toKm": 1.75
+      },
+      {
+        "group": "open",
+        "fromKm": 1.75,
+        "toKm": 1.85
+      },
+      {
+        "group": "forest",
+        "fromKm": 1.85,
+        "toKm": 4.65
+      },
+      {
+        "group": "bare",
+        "fromKm": 4.65,
+        "toKm": 5.15
+      },
+      {
+        "group": "open",
+        "fromKm": 5.15,
+        "toKm": 5.25
+      },
+      {
+        "group": "bare",
+        "fromKm": 5.25,
+        "toKm": 5.45
+      },
+      {
+        "group": "open",
+        "fromKm": 5.45,
+        "toKm": 5.65
+      },
+      {
+        "group": "forest",
+        "fromKm": 5.65,
+        "toKm": 5.75
+      },
+      {
+        "group": "water",
+        "fromKm": 5.75,
+        "toKm": 5.85
+      },
+      {
+        "group": "forest",
+        "fromKm": 5.85,
+        "toKm": 17.95
+      },
+      {
+        "group": "open",
+        "fromKm": 17.95,
+        "toKm": 18.05
+      },
+      {
+        "group": "forest",
+        "fromKm": 18.05,
+        "toKm": 26.35
+      }
+    ],
+    "highestForest": {
+      "km": 11.2,
+      "m": 193
+    }
+  },
+  "climate": {
+    "source": "era5",
+    "method": "open-data-2026-10",
+    "retrieved": "2026-11-05T12:01:51+00:00",
+    "years": [
+      1995,
+      2024
+    ],
+    "places": [
+      {
+        "id": "low",
+        "label": "Lowest point",
+        "km": 4.8,
+        "m": 0,
+        "lat": -46.85648,
+        "lon": 168.08852
+      },
+      {
+        "id": "high",
+        "label": "Highest point",
+        "km": 11.2,
+        "m": 193,
+        "lat": -46.86457,
+        "lon": 168.06015
+      }
+    ],
+    "months": [
+      {
+        "month": 1,
+        "low": {
+          "tmax": 17.5,
+          "tmin": 10.4,
+          "wetDays": 16.0,
+          "snowDays": 0.0,
+          "frostNights": 0.0,
+          "precipMm": 114,
+          "windKmh": 24.5,
+          "gustDays": 10.6
+        },
+        "high": {
+          "tmax": 16.2,
+          "tmin": 9.2,
+          "wetDays": 16.0,
+          "snowDays": 0.0,
+          "frostNights": 0.0,
+          "precipMm": 114,
+          "windKmh": 24.5,
+          "gustDays": 10.6
+        },
+        "daylightH": 15.5
+      },
+      {
+        "month": 2,
+        "low": {
+          "tmax": 17.6,
+          "tmin": 10.6,
+          "wetDays": 14.0,
+          "snowDays": 0.0,
+          "frostNights": 0.0,
+          "precipMm": 97,
+          "windKmh": 23.2,
+          "gustDays": 8.1
+        },
+        "high": {
+          "tmax": 16.3,
+          "tmin": 9.3,
+          "wetDays": 14.0,
+          "snowDays": 0.0,
+          "frostNights": 0.0,
+          "precipMm": 97,
+          "windKmh": 23.2,
+          "gustDays": 8.1
+        },
+        "daylightH": 14.1
+      },
+      {
+        "month": 3,
+        "low": {
+          "tmax": 16.2,
+          "tmin": 9.8,
+          "wetDays": 15.3,
+          "snowDays": 0.0,
+          "frostNights": 0.0,
+          "precipMm": 110,
+          "windKmh": 23.4,
+          "gustDays": 9.1
+        },
+        "high": {
+          "tmax": 14.9,
+          "tmin": 8.5,
+          "wetDays": 15.3,
+          "snowDays": 0.0,
+          "frostNights": 0.0,
+          "precipMm": 110,
+          "windKmh": 23.4,
+          "gustDays": 9.1
+        },
+        "daylightH": 12.6
+      },
+      {
+        "month": 4,
+        "low": {
+          "tmax": 14.1,
+          "tmin": 8.6,
+          "wetDays": 15.1,
+          "snowDays": 0.0,
+          "frostNights": 0.0,
+          "precipMm": 100,
+          "windKmh": 24.0,
+          "gustDays": 8.9
+        },
+        "high": {
+          "tmax": 12.9,
+          "tmin": 7.3,
+          "wetDays": 15.1,
+          "snowDays": 0.0,
+          "frostNights": 0.0,
+          "precipMm": 100,
+          "windKmh": 24.0,
+          "gustDays": 8.9
+        },
+        "daylightH": 10.8
+      },
+      {
+        "month": 5,
+        "low": {
+          "tmax": 12.2,
+          "tmin": 7.5,
+          "wetDays": 16.5,
+          "snowDays": 0.0,
+          "frostNights": 0.0,
+          "precipMm": 112,
+          "windKmh": 24.4,
+          "gustDays": 9.4
+        },
+        "high": {
+          "tmax": 10.9,
+          "tmin": 6.3,
+          "wetDays": 16.5,
+          "snowDays": 0.0,
+          "frostNights": 0.1,
+          "precipMm": 112,
+          "windKmh": 24.4,
+          "gustDays": 9.4
+        },
+        "daylightH": 9.3
+      },
+      {
+        "month": 6,
+        "low": {
+          "tmax": 10.2,
+          "tmin": 5.8,
+          "wetDays": 15.2,
+          "snowDays": 0.0,
+          "frostNights": 0.0,
+          "precipMm": 93,
+          "windKmh": 23.1,
+          "gustDays": 7.6
+        },
+        "high": {
+          "tmax": 9.0,
+          "tmin": 4.5,
+          "wetDays": 15.2,
+          "snowDays": 0.0,
+          "frostNights": 0.4,
+          "precipMm": 93,
+          "windKmh": 23.1,
+          "gustDays": 7.6
+        },
+        "daylightH": 8.5
+      },
+      {
+        "month": 7,
+        "low": {
+          "tmax": 9.8,
+          "tmin": 5.3,
+          "wetDays": 15.4,
+          "snowDays": 0.0,
+          "frostNights": 0.0,
+          "precipMm": 93,
+          "windKmh": 22.5,
+          "gustDays": 7.3
+        },
+        "high": {
+          "tmax": 8.5,
+          "tmin": 4.1,
+          "wetDays": 15.4,
+          "snowDays": 0.0,
+          "frostNights": 1.0,
+          "precipMm": 93,
+          "windKmh": 22.5,
+          "gustDays": 7.3
+        },
+        "daylightH": 8.9
+      },
+      {
+        "month": 8,
+        "low": {
+          "tmax": 10.7,
+          "tmin": 5.7,
+          "wetDays": 16.3,
+          "snowDays": 0.0,
+          "frostNights": 0.0,
+          "precipMm": 93,
+          "windKmh": 22.8,
+          "gustDays": 7.4
+        },
+        "high": {
+          "tmax": 9.5,
+          "tmin": 4.4,
+          "wetDays": 16.3,
+          "snowDays": 0.1,
+          "frostNights": 0.5,
+          "precipMm": 93,
+          "windKmh": 22.8,
+          "gustDays": 7.4
+        },
+        "daylightH": 10.2
+      },
+      {
+        "month": 9,
+        "low": {
+          "tmax": 12.2,
+          "tmin": 6.4,
+          "wetDays": 17.8,
+          "snowDays": 0.0,
+          "frostNights": 0.0,
+          "precipMm": 122,
+          "windKmh": 25.7,
+          "gustDays": 10.8
+        },
+        "high": {
+          "tmax": 10.9,
+          "tmin": 5.2,
+          "wetDays": 17.8,
+          "snowDays": 0.0,
+          "frostNights": 0.1,
+          "precipMm": 122,
+          "windKmh": 25.7,
+          "gustDays": 10.8
+        },
+        "daylightH": 11.8
+      },
+      {
+        "month": 10,
+        "low": {
+          "tmax": 13.1,
+          "tmin": 7.1,
+          "wetDays": 20.2,
+          "snowDays": 0.0,
+          "frostNights": 0.0,
+          "precipMm": 133,
+          "windKmh": 26.5,
+          "gustDays": 12.5
+        },
+        "high": {
+          "tmax": 11.9,
+          "tmin": 5.8,
+          "wetDays": 20.2,
+          "snowDays": 0.0,
+          "frostNights": 0.0,
+          "precipMm": 133,
+          "windKmh": 26.5,
+          "gustDays": 12.5
+        },
+        "daylightH": 13.6
+      },
+      {
+        "month": 11,
+        "low": {
+          "tmax": 14.5,
+          "tmin": 7.9,
+          "wetDays": 18.8,
+          "snowDays": 0.0,
+          "frostNights": 0.0,
+          "precipMm": 125,
+          "windKmh": 25.5,
+          "gustDays": 11.4
+        },
+        "high": {
+          "tmax": 13.2,
+          "tmin": 6.7,
+          "wetDays": 18.8,
+          "snowDays": 0.0,
+          "frostNights": 0.0,
+          "precipMm": 125,
+          "windKmh": 25.5,
+          "gustDays": 11.4
+        },
+        "daylightH": 15.1
+      },
+      {
+        "month": 12,
+        "low": {
+          "tmax": 16.5,
+          "tmin": 9.5,
+          "wetDays": 18.6,
+          "snowDays": 0.0,
+          "frostNights": 0.0,
+          "precipMm": 127,
+          "windKmh": 23.8,
+          "gustDays": 9.3
+        },
+        "high": {
+          "tmax": 15.3,
+          "tmin": 8.3,
+          "wetDays": 18.6,
+          "snowDays": 0.0,
+          "frostNights": 0.0,
+          "precipMm": 127,
+          "windKmh": 23.8,
+          "gustDays": 9.3
+        },
+        "daylightH": 15.9
+      }
+    ]
+  },
+  "access": {
+    "source": "osrm",
+    "retrieved": "2026-11-05T12:07:07+00:00",
+    "hubs": [
+      {
+        "name": "Invercargill Airport (IVC)",
+        "roadKm": 73.0,
+        "driveMin": 504,
+        "straightKm": 52.4
+      }
+    ]
+  },
+  "popularity": {
+    "source": "wikimedia",
+    "retrieved": "2026-11-05T12:07:08+00:00",
+    "wikidata": "Q2129081",
+    "from": "2025-11",
+    "to": "2026-10",
+    "views": 1504,
+    "articles": [
+      {
+        "project": "de.wikipedia",
+        "title": "Rakiura Track",
+        "views": 328
+      },
+      {
+        "project": "en.wikipedia",
+        "title": "Rakiura Track",
+        "views": 1088
+      },
+      {
+        "project": "nn.wikipedia",
+        "title": "Rakiura Track",
+        "views": 55
+      },
+      {
+        "project": "no.wikipedia",
+        "title": "Rakiura Track",
+        "views": 33
+      }
+    ]
+  }
+}
