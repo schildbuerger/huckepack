@@ -986,6 +986,21 @@ export const SKYLINES: Record<string, Skyline> = {
       { d: hills([[480, G], [620, 254], [800, 232], [940, 260], [1040, G]]), c: "#7f9a54" },
     ],
   },
+  "kepler-track": {
+    view: "Fiordland on the Kepler Track: the tussock ridge rising to Mount Luxmore above the beech forest, with snow on the far Murchison Mountains, and Lake Te Anau below",
+    ridge: "#8a9a5a",
+    ground: "#45663a",
+    shapes: [
+      // the far Murchison Mountains, snow on their tops
+      { d: range([[0, G], [120, 214], [260, 196], [380, 208], [520, 188], [660, 204], [780, 226], [860, G]]), c: "#8e9aa6" },
+      { d: snowOf([[0, G], [120, 214], [260, 196], [380, 208], [520, 188], [660, 204], [780, 226], [860, G]], 206), c: SNOW },
+      { d: water(0, 1000, 262), c: LAKE },
+      // the tussock ridge to Mount Luxmore, golden above the bushline
+      { d: range([[700, G], [820, 230], [980, 196], [1080, 178], [1160, 186], [1300, 206], [1460, 220], [1600, 230], [1600, G]]), c: "#b8a46a" },
+      // beech forest below the bushline
+      { d: hills([[620, G], [760, 262], [960, 244], [1200, 250], [1420, 244], [1600, 252], [1600, G]]), c: FOREST },
+    ],
+  },
   "north-downs-way": {
     view: "The North Downs: the wooded chalk scarp with the pilgrims' chapel of St Martha's on its hill, and the White Cliffs of Dover over the sea at the end",
     ridge: MEADOW,

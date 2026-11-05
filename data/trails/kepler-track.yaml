@@ -1,0 +1,173 @@
+name: Kepler Track
+added: 2026-11-05
+aliases: [Kepler Track Great Walk]
+website: https://www.doc.govt.nz/parks-and-recreation/places-to-go/fiordland/places/fiordland-national-park/things-to-do/tracks/kepler-track/
+wikidata: Q846931
+managedBy:
+  # one of New Zealand's Great Walks; DOC runs the three huts and two campsites
+  - name: Department of Conservation (Te Papa Atawhai)
+    url: https://www.doc.govt.nz/
+trailType: loop
+continents: [Oceania]
+countries: [NZ]
+regions: [Southland, Fiordland]
+protectedAreas:
+  - Fiordland National Park
+  - Te Wāhipounamu (UNESCO World Heritage)
+termini:
+  # the Lake Te Anau control gates, where the loop starts and ends, 400 m from the Kepler Track car
+  # park (OSM: where the relation's loop meets the path from the car park and Te Anau)
+  start:
+    name: Control gates (Kepler Track car park)
+    lat: -45.44079
+    lon: 167.68651
+  end:
+    name: Control gates (Kepler Track car park)
+    lat: -45.44079
+    lon: 167.68651
+  source: osm
+length:
+  # "60 km loop"
+  - km: 60
+    source: doc
+days:
+  # "3-4 days"; "Most walkers take 4 days/3 nights"
+  min: 3
+  max: 4
+  source: doc
+stages:
+  # DOC's six legs between the huts, campsites and road ends, with distance and time; the OSM
+  # relation (1385141) guides the matcher, cut at each leg's end. Walked anticlockwise as DOC
+  # describes it, by Luxmore Hut first
+  source: doc
+  list:
+    - { number: "1", kind: main, from: Kepler Track car park, to: Brod Bay, km: 5.6, minutes: 90, end: { name: Brod Bay, lat: -45.4008, lon: 167.67314 } }
+    - { number: "2", kind: main, from: Brod Bay, to: Luxmore Hut, km: 8.2, minutes: 210, maxMinutes: 270, end: { name: Luxmore Hut, lat: -45.38531, lon: 167.61924 } }
+    - { number: "3", kind: main, from: Luxmore Hut, to: Iris Burn Hut, km: 14.6, minutes: 300, maxMinutes: 360, end: { name: Iris Burn Hut, lat: -45.39904, lon: 167.50948 } }
+    - { number: "4", kind: main, from: Iris Burn Hut, to: Moturau Hut, km: 16.2, minutes: 300, maxMinutes: 360, end: { name: Moturau Hut, lat: -45.48172, lon: 167.61071 } }
+    - { number: "5", kind: main, from: Moturau Hut, to: Rainbow Reach, km: 6, minutes: 90, maxMinutes: 120, end: { name: Rainbow Reach, lat: -45.49075, lon: 167.66307 } }
+    - { number: "6", kind: main, from: Rainbow Reach, to: Kepler Track car park, km: 9.5, minutes: 150, maxMinutes: 210, end: { name: Control gates, lat: -45.44079, lon: 167.68651 } }
+route:
+  # built by `python -m pipeline.all kepler-track`: OSM ways matched to the shortest way over the
+  # relation between the legs' ends. The relation is a loop with a spur from Te Anau along the Lake 2
+  # Lake Trail, which no chain from the control gates follows
+  source: osm
+  publishable: true
+  relation: 1385141
+  branched: true
+difficulty:
+  estimated:
+    sac: T2
+    basis: >-
+      DOC grades the track intermediate in the Great Walks season: lake-shore forest, then "a
+      challenging climb under impressive limestone bluffs" above the bushline to Luxmore Hut and an
+      alpine ridge below Mount Luxmore (the summit side trip 1,472 m), down to Iris Burn on a formed,
+      well-built track. Outside the season advanced and expert, with ice and snow. Mountain hiking
+      on a good track over an alpine ridge (T2).
+    source: doc
+season:
+  # the Great Walks season, 27 October 2026 to 30 April 2027: "Best time to walk the track"
+  months: [11, 12, 1, 2, 3, 4]
+  text: Great Walks season, late October to 30 April
+  source: doc
+sleeping:
+  # DOC's three huts (bunks, a ranger in residence) and two campsites (Brod Bay, Iris Burn), all
+  # booked in advance in the Great Walks season
+  types: [hut, campsite]
+  source: doc
+wildCamping:
+  status: restricted
+  rule: >-
+    Camping only at the two DOC campsites (Brod Bay and Iris Burn), booked in advance in the Great
+    Walks season; camping or staying overnight in the shelters at Forest Burn and Hanging Valley is
+    not permitted.
+  source: doc
+refillsUntreated:
+  # DOC on each hut and campsite: "water from tap - not treated, boil before use" (issue #119)
+  text: DOC's huts and campsites have tap water that is not treated; boil it before use. Fill bottles at Luxmore Hut, as the alpine section has no reliable water until Iris Burn Hut.
+  source: doc
+access:
+  # Te Anau, 5 km away, has buses and shuttles to the car park and Rainbow Reach; Queenstown the
+  # nearest international airport. Coordinates from OSM; distances by pipeline/access.py
+  - kind: bus
+    name: Te Anau
+    lat: -45.41449
+    lon: 167.71749
+    source: osm
+  - kind: airport
+    name: Queenstown Airport (ZQN)
+    lat: -45.0193
+    lon: 168.74344
+    source: osm
+tags: [great-walk, fiordland, national-park, alpine-ridge, lakes]
+notes:
+  - >-
+    Wildlife (2026-11-05): none listed. New Zealand has no dangerous land animals; sandflies and keas
+    are nuisances, not dangers. No DOC statement on dangerous animals was found.
+  - >-
+    Stages: DOC's six legs add up to 60.1 km (stated 60 km); DOC gives no ascent or descent. Most
+    walkers take four days with nights at the three huts; the legs to Brod Bay and from Rainbow
+    Reach are short walks to and from the road.
+  - >-
+    Route (pipeline, 2026-11-05, Geofabrik extracts): each leg is the shortest way over OSM's
+    relation (GW08, 1385141) between its ends; every leg matches 100 %. The map line is 56.6 km
+    against DOC's 60 km; it starts and ends at the control gates, 400 m from the car park DOC counts
+    from. Highest point on the map line 1,400 m (km 16, on the ridge below Mount Luxmore; the summit
+    side trip reaches 1,472 m), lowest 185 m by Lake Manapouri.
+  - >-
+    Water: OSM maps one drinking water point near the route. DOC's huts and campsites have tap water,
+    "not treated, boil before use"; `refillsUntreated` counts them as any water, not clean water.
+    DOC: no reliable water on the alpine section from Luxmore Hut to Iris Burn Hut.
+  - >-
+    Data check (2026-11-05). Second source: English Wikipedia (60 km circular, three to four days,
+    administered by DOC). Length, days and shape agree; the legs and times are DOC's own.
+  - >-
+    Waymarking: DOC's track page doesn't describe the marks (2026-11-05), so none is recorded.
+dataCheck:
+  # working rule 2: English Wikipedia
+  date: 2026-11-05
+  against: [wikipedia-en]
+  deviations: []
+sources:
+  - id: doc
+    title: "Department of Conservation: Kepler Track (length, days, legs with distance and time, season, huts, campsites, water)"
+    url: https://www.doc.govt.nz/parks-and-recreation/places-to-go/fiordland/places/fiordland-national-park/things-to-do/tracks/kepler-track/
+    licence: © Crown copyright, DOC (facts only)
+    retrieved: 2026-11-05
+  - id: wikipedia-en
+    title: "Wikipedia (en): Kepler Track (length, days; data check)"
+    url: https://en.wikipedia.org/wiki/Kepler_Track
+    licence: CC BY-SA 4.0
+    retrieved: 2026-11-05
+    checkOnly: true  # only for the data check
+  - id: wikimedia
+    title: "Wikimedia: page views of the trail's Wikipedia articles in every language, by people, over twelve months (Wikidata sitelinks, pageview API)"
+    url: https://wikimedia.org/api/rest_v1/
+    licence: CC0 1.0 (pageview data); Wikidata CC0
+    retrieved: 2026-11-05
+    checkOnly: true  # not on the trail page: the page views only rank the home page's popular trails
+  - id: osm
+    title: "OpenStreetMap contributors: paths, water, shops and places to sleep along the trail (Geofabrik extracts), stage ends, travel hubs"
+    url: https://www.openstreetmap.org/
+    licence: ODbL 1.0
+    retrieved: 2026-11-05
+  - id: copdem
+    title: "Copernicus DEM GLO-30 (30 m terrain model), tiles from AWS Open Data"
+    url: https://registry.opendata.aws/copernicus-dem/
+    licence: "Copernicus WorldDEM-30 licence, free; produced using Copernicus WorldDEM-30 © DLR e.V. 2010-2014 and © Airbus Defence and Space GmbH 2014-2018 provided under COPERNICUS by the European Union and ESA; all rights reserved"
+    retrieved: 2026-11-05
+  - id: worldcover
+    title: "ESA WorldCover 2021: 10 m land cover (via AWS Open Data)"
+    url: https://esa-worldcover.org/
+    licence: "CC BY 4.0; © ESA WorldCover project 2021 / Contains modified Copernicus Sentinel data (2021) processed by ESA WorldCover consortium"
+    retrieved: 2026-11-05
+  - id: era5
+    title: "Open-Meteo open data on AWS: ERA5-Land temperature and ERA5 precipitation, snow and wind, daily 1995–2024 (reanalysis)"
+    url: https://github.com/open-meteo/open-data
+    licence: CC BY 4.0 (Open-Meteo); contains modified Copernicus Climate Change Service information
+    retrieved: 2026-11-05
+  - id: osrm
+    title: "OSRM: road routes on OpenStreetMap data (router.project-osrm.org)"
+    url: https://project-osrm.org/
+    licence: Route data © OpenStreetMap contributors (ODbL)
+    retrieved: 2026-11-05
