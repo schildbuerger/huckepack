@@ -33,6 +33,11 @@
 - **Trails near you** (issue #85): by the browser's time zone only (its main
   city from the tz database), worked out in the browser; no location
   permission, no IP lookup, nothing sent or stored (decided 2026-10-30).
+  Shown as a panorama of the ten nearest (decided 2026-11-05, after three
+  rounds of previews: five designs, five playful compasses, five panoramas;
+  the printed summit panorama was picked, without its degree scale and without
+  sideways scrolling, the names linking to the trails and colouring their
+  drawing when pointed at). On phones a list under the drawing links them.
 - **Waymarks** (issue #82): every simple painted waymark a source describes
   (stripes, flags, diamonds, painted numbers) is redrawn as SVG on the trail
   page. Complex or protected logos are left out: the waymark's text stands

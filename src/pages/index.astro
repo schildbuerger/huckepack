@@ -466,9 +466,12 @@ import Explainer from "../components/Explainer.astro";
           </Explain>
         </div>
         <p class="label near-from">From <span data-near-from></span></p>
-        <!-- one row as a template, filled for the six nearest from /trails/search.json (issue #93), so the
-             page doesn't list every trail -->
-        <ol class="trail-list" data-near-list>
+        <!-- the panorama, wall to wall: drawn by the script below for the ten nearest, the names linking to
+             their trails (on phones the list under it does) -->
+        <div class="near-pano" data-near-pano></div>
+        <!-- one row as a template, filled for the ten nearest from /trails/search.json (issue #93), so the
+             page doesn't list every trail; shown on phones, where the panorama's names would be too small -->
+        <ol class="trail-list near-list" data-near-list>
           <li data-near-row hidden>
             <a href="/trails/">
               <span class="tl-mark"><span class="tl-arrow" data-arrow>↑</span></span>
@@ -488,7 +491,7 @@ import Explainer from "../components/Explainer.astro";
     // great-circle distance, with the compass direction to it. Worked out here; nothing is sent or stored.
     import { kmBetween, roundDistance } from "../lib/geo";
     import { loadTrails } from "../lib/search-data";
-    const NEARBY = 6;
+    const NEARBY = 10;
     const section = document.querySelector<HTMLElement>(".near")!;
     const zones: Record<string, [number, number]> = JSON.parse(document.getElementById("zones")!.textContent!);
     const zone = Intl.DateTimeFormat().resolvedOptions().timeZone;
@@ -532,6 +535,116 @@ import Explainer from "../components/Explainer.astro";
         row.hidden = false;
         list.append(row); // nearest first
       }
+
+      // The panorama (2026-11-05; of rounds of previews, approach D of the panoramas, like a printed summit
+      // panorama): the horizon seen from the city, turned so the trails' directions run across the band
+      // from left to right, each trail drawn at its bearing as its own skyline (/trails/skylines/<slug>.json,
+      // as on its page), the nearer the bigger and the lower, in blue-grey tones by distance; its name in
+      // slanted type on a leader line links to it and, pointed at, shows the drawing in its own colours.
+      // Drawn at the band's width in pixels (redrawn when it changes), so the type keeps its size.
+      const pano = section.querySelector<HTMLElement>("[data-near-pano]")!;
+      type Art = { shapes: { d: string; c: string }[]; top: number };
+      const arts = new Map<string, Art>();
+      await Promise.all(
+        near.map(({ t }) =>
+          fetch(`/trails/skylines/${t.slug}.json`)
+            .then((r) => (r.ok ? r.json() : null))
+            .then((a: Art | null) => a && arts.set(t.slug, a))
+            .catch(() => {}),
+        ),
+      );
+      const esc = (x: string) => x.replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" })[c]!);
+      const f1 = (n: number) => n.toFixed(1);
+      // the stretch of horizon the trails lie in: their bearings round the middle one, with room either side
+      const sx = near.reduce((a, x) => a + Math.sin(x.b * rad), 0), cx = near.reduce((a, x) => a + Math.cos(x.b * rad), 0);
+      const mid = Math.atan2(sx, cx) / rad;
+      const rel = near.map((x) => ((x.b - mid + 540) % 360) - 180);
+      const lo = Math.min(...rel), hi = Math.max(...rel);
+      const pad = Math.max(14, (100 - (hi - lo)) / 2);
+      const [from, to] = [lo - pad, hi + pad];
+      const maxD = Math.max(...near.map((x) => x.d)) * 1.12;
+      const nearness = (d: number) => 1 - Math.sqrt(d / maxD);
+      const n0 = Math.min(...near.map((x) => nearness(x.d))), n1 = Math.max(...near.map((x) => nearness(x.d)));
+      const TONES = ["--pano-t0", "--pano-t1", "--pano-t2", "--pano-t3", "--pano-t4"];
+      // a fixed sequence of "random" numbers, so the far hills look the same on every visit
+      const rndOf = (seed: number) => () => ((seed = (seed * 9301 + 49297) % 233280) / 233280);
+
+      const draw = () => {
+        const W = Math.round(pano.clientWidth);
+        if (!W) return;
+        const f = Math.min(1, Math.max(0.45, W / 1400)); // drawings' scale on narrower screens
+        // phones show no names over the drawing (the list under it links the trails), so less sky
+        const HZ = W < 760 ? Math.round(110 * f + 40) : Math.round(110 + 140 * f), H = HZ + Math.round(84 * f);
+        const x0 = Math.round(150 * f), xw = W - 2 * x0;
+        const items = near.map((x, i) => {
+          const s = n1 > n0 ? (nearness(x.d) - n0) / (n1 - n0) : 1;
+          return { ...x, i, s, x: x0 + ((rel[i] - from) / (to - from)) * xw, base: HZ + (6 + 40 * s) * f };
+        });
+        // trails in nearly the same direction step aside a little, so each drawing stays visible
+        const byX = [...items].sort((a, b) => a.x - b.x);
+        const gap = 70 * f;
+        for (let k = 1; k < byX.length; k++) if (byX[k].x - byX[k - 1].x < gap) byX[k].x = byX[k - 1].x + gap;
+        const shift = Math.min(0, W - x0 - byX[byX.length - 1].x);
+        for (const it of items) it.x += shift;
+
+        const far = ["--pano-f0", "--pano-f1"].map((v, l) => {
+          const r = rndOf(11 + l * 7), y0 = HZ - 26 * f + l * 12 * f, step = (46 + l * 20) * f;
+          let d = `M0,${H}V${f1(y0)}`;
+          for (let x = 0; x <= W + step; x += step) d += `Q${f1(x + step / 2)},${f1(y0 - (8 + r() * 26) * 0.6 * f * (1 - l * 0.2))} ${f1(x + step)},${f1(y0 - r() * 8 * f)}`;
+          return `<path d="${d}V${H}Z" style="fill:var(${v})"/>`;
+        }).join("");
+        const tops = new Map<number, number>();
+        const art = [...items].sort((a, b) => a.s - b.s).map((it) => {
+          const a = arts.get(it.t.slug);
+          const w = (260 + 320 * it.s) * f, k = w / 1600, ky = k * 2.1;
+          tops.set(it.i, it.base - (320 - (a?.top ?? 220)) * ky);
+          const tone = `var(${TONES[Math.min(4, Math.round(it.s * 4))]})`;
+          const shapes = a?.shapes ?? [{ d: `M0,320L800,${a?.top ?? 220}L1600,320Z`, c: "#7f9a54" }];
+          return `<g class="pano-art" data-i="${it.i}" transform="translate(${f1(it.x - w / 2)},${f1(it.base - 320 * ky)}) scale(${k.toFixed(4)},${ky.toFixed(4)})">${shapes.map((p) => `<path d="${p.d}" style="--o:${p.c};--t:color-mix(in oklab, ${p.c} 22%, ${tone})"/>`).join("")}</g>`;
+        }).join("");
+
+        // the names, slanted: each starts above its summit, moved up or down until its line clears every
+        // name to its left by 22 px across the slant and stays inside the band
+        const SIN = Math.sin(28 * rad), COS = Math.cos(28 * rad);
+        const placed: { x: number; y: number; len: number }[] = [];
+        const tyOf = new Map<number, number>();
+        for (const it of [...items].sort((a, b) => a.x - b.x)) {
+          const len = (it.t.name.length + 9) * 6.4, top = tops.get(it.i)!;
+          const lowest = top - 10, base = Math.min(top - 24, HZ + 10);
+          const clash = (y: number) => placed.some((q) => {
+            const dx = it.x - q.x, dy = y - q.y, across = Math.abs(dx * SIN + dy * COS), along = dx * COS - dy * SIN;
+            return across < 22 && along > -len && along < q.len;
+          });
+          const bad = (y: number) => clash(y) || y - len * SIN < 6 || y > lowest || it.x + len * COS > W - 4;
+          let y = base;
+          for (let k = 1; bad(y) && k < 60; k++) y = base + (k % 2 ? -1 : 1) * Math.ceil(k / 2) * 8;
+          tyOf.set(it.i, y);
+          placed.push({ x: it.x, y, len });
+        }
+        const POINT = (b: number) => WORDS[Math.round(b / 45) % 8];
+        // the leader lines first, then the names over them (with a halo in the sky's colour, so a line
+        // passing behind a neighbour's name doesn't cross it out)
+        const leads = items.map((it) => `<path class="pano-lead" data-i="${it.i}" d="M${f1(it.x)},${f1(tops.get(it.i)! - 3)}V${f1(tyOf.get(it.i)!)}"/><circle class="pano-dot" cx="${f1(it.x)}" cy="${f1(tops.get(it.i)! - 3)}" r="2.4"/>`).join("");
+        const names = items.map((it) => {
+          const ty = tyOf.get(it.i)!;
+          const dist = roundDistance(it.d).toLocaleString("en");
+          return `<a href="/trails/${it.t.slug}/" class="pano-name" data-i="${it.i}" aria-label="${esc(it.t.name)} ≈ ${dist} km, to the ${POINT(it.b)}"><text transform="translate(${f1(it.x + 3)},${f1(ty - 4)}) rotate(-28)">${esc(it.t.name)} <tspan class="pano-km">≈ ${dist} km</tspan></text></a>`;
+        }).join("");
+        pano.innerHTML = `<svg class="pano-svg" viewBox="0 0 ${W} ${H}" width="${W}" height="${H}" role="group" aria-label="The ten trails nearest ${esc(city)}, drawn on the horizon in their direction"><rect width="${W}" height="${H}" class="pano-sky"/>${far}${art}<rect y="${f1(HZ + 50 * f)}" width="${W}" height="${f1(H - HZ - 50 * f)}" class="pano-ground"/><g class="pano-labels">${leads}${names}</g></svg>`;
+        for (const a of pano.querySelectorAll<SVGAElement>(".pano-name")) {
+          const on = (v: boolean) => pano.querySelectorAll(`.pano-art[data-i="${a.dataset.i}"], .pano-lead[data-i="${a.dataset.i}"]`).forEach((el) => el.classList.toggle("on", v));
+          a.addEventListener("pointerenter", () => on(true));
+          a.addEventListener("pointerleave", () => on(false));
+          a.addEventListener("focus", () => on(true));
+          a.addEventListener("blur", () => on(false));
+        }
+      };
+      let drawnW = 0;
+      new ResizeObserver(() => {
+        if (Math.abs(pano.clientWidth - drawnW) < 2) return;
+        drawnW = pano.clientWidth;
+        draw();
+      }).observe(pano);
       section.querySelector<HTMLElement>("[data-near-city]")!.textContent = city;
       section.querySelector<HTMLElement>("[data-near-from]")!.textContent = city;
       section.hidden = false;
@@ -1110,12 +1223,6 @@ import Explainer from "../components/Explainer.astro";
     max-width: 1200px;
     margin: 0 auto;
   }
-  @media (min-width: 960px) {
-    .map-band-inner:has(> .near:not([hidden])) {
-      grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr);
-      gap: 48px;
-    }
-  }
   /* trails near you: the list's starting point, as a label */
   .near[hidden] {
     display: none;
@@ -1123,6 +1230,104 @@ import Explainer from "../components/Explainer.astro";
   .near-from {
     margin: -6px 0 4px;
     color: var(--muted);
+  }
+  /* the panorama (2026-11-05): wall to wall, in fixed colours like a printed summit panorama (paper,
+     blue-grey land by distance), a night version in dark mode; a name pointed at shows its trail's
+     drawing in the drawing's own colours. On phones the names would be too small: the list under it
+     links the trails instead */
+  .near-pano {
+    --pano-sky: #f3f1ea;
+    --pano-ground: #e9e6dc;
+    --pano-f0: #e0e6ea;
+    --pano-f1: #d2dbe1;
+    --pano-t0: #c9d4dc;
+    --pano-t1: #a9b9c6;
+    --pano-t2: #8197a8;
+    --pano-t3: #5f7789;
+    --pano-t4: #455d70;
+    --pano-ink: #25303a;
+    --pano-km: #5c6f7e;
+    --pano-lead: #455d70;
+    margin: 16px calc(50% - 50vw) 0;
+  }
+  :global(:root[data-theme="dark"]) .near-pano {
+    --pano-sky: #1f262d;
+    --pano-ground: #262e35;
+    --pano-f0: #29323b;
+    --pano-f1: #2f3944;
+    --pano-t0: #36434f;
+    --pano-t1: #415163;
+    --pano-t2: #506477;
+    --pano-t3: #627a8f;
+    --pano-t4: #7891a6;
+    --pano-ink: #e6e9ec;
+    --pano-km: #a8b5c0;
+    --pano-lead: #a8b5c0;
+  }
+  .near-pano :global(.pano-svg) {
+    display: block;
+    max-width: 100%;
+    height: auto;
+  }
+  .near-pano :global(.pano-sky) {
+    fill: var(--pano-sky);
+  }
+  .near-pano :global(.pano-ground) {
+    fill: var(--pano-ground);
+  }
+  .near-pano :global(.pano-art path) {
+    fill: var(--t);
+    transition: fill 0.25s;
+  }
+  .near-pano :global(.pano-art.on path) {
+    fill: var(--o);
+  }
+  .near-pano :global(.pano-lead) {
+    stroke: var(--pano-lead);
+    stroke-width: 0.8;
+  }
+  .near-pano :global(.pano-dot) {
+    fill: var(--pano-lead);
+  }
+  .near-pano :global(.pano-name text) {
+    fill: var(--pano-ink);
+    font: italic 600 13px var(--serif);
+    paint-order: stroke;
+    stroke: var(--pano-sky);
+    stroke-width: 4px;
+    stroke-linejoin: round;
+  }
+  .near-pano :global(.pano-lead.on) {
+    stroke: var(--accent-text);
+    stroke-width: 1.5;
+  }
+  .near-pano :global(.pano-km) {
+    fill: var(--pano-km);
+    font: 400 11px var(--sans);
+  }
+  .near-pano :global(.pano-name:hover text),
+  .near-pano :global(.pano-name:focus-visible text) {
+    fill: var(--accent-text);
+    text-decoration: underline;
+  }
+  .near-pano :global(.pano-name:focus) {
+    outline: none;
+  }
+  .near-pano :global(.pano-name:focus-visible .pano-dot) {
+    r: 4;
+  }
+  .near-list {
+    margin-top: 20px;
+  }
+  @media (min-width: 760px) {
+    .near-list {
+      display: none;
+    }
+  }
+  @media (max-width: 759px) {
+    .near-pano :global(.pano-labels) {
+      display: none;
+    }
   }
 
   /* features */
