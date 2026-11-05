@@ -2396,9 +2396,13 @@ const trailLd = JSON.stringify({
     font-style: italic;
     text-align: center;
   }
+  /* stacked links ("Official website", "Official GPX track"): each a 24px-tall tap target, only as
+     wide as its words (WCAG target size) */
   .site-link {
     display: block;
-    margin-top: 2px;
+    width: fit-content;
+    min-height: 24px;
+    line-height: 24px;
     font-size: 0.8rem;
   }
 
