@@ -47,6 +47,10 @@ truststore.inject_into_ssl()
 
 ROOT = Path(__file__).resolve().parent.parent
 TOLERANCE_M = 10
+# caches that depend on the map line, dropped whenever it changes (also when this step runs on its
+# own, not only within pipeline.all; not the climate downloads: pipeline/climate.py keeps them while
+# the places stay in their grid cells)
+ROUTE_CACHES = ["osm-water.json", "osm-along.json", "osm-way-tags.json", "elevation-glo30.json", "landcover.json"]
 GPX_TOLERANCE_M = 2  # the downloadable line: below GPS accuracy, keeps switchbacks
 MAX_RELATION_GAP_M = 1000  # a longer jump between relation ways ends the chained line
 USER_AGENT = "huckepack-pipeline (personal project)"
@@ -596,7 +600,14 @@ def build(slug, refresh=False):
         print(f"{'  transfer':<12} {leg['by']:>7} {leg['start']['name']} to {leg['end']['name']}")
     out = ROOT / "public" / "routes" / f"{slug}.geojson"
     out.parent.mkdir(parents=True, exist_ok=True)
-    out.write_text(json.dumps({"type": "FeatureCollection", "features": features}, separators=(",", ":")) + "\n")
+    text = json.dumps({"type": "FeatureCollection", "features": features}, separators=(",", ":")) + "\n"
+    if out.exists() and out.read_text() != text:
+        dropped = [n for n in ROUTE_CACHES if (cache.dir / n).exists()]
+        for name in dropped:
+            (cache.dir / name).unlink()
+        if dropped:
+            print(f"  the map line changed: dropped {', '.join(dropped)}")
+    out.write_text(text)
     # the walked stages in more detail for the site's own GPX, with the OSM data's date (the newest
     # of the OSM downloads this line came from)
     osm_dates = [v["retrieved"][:10] for k, v in cache.manifest.items() if k.startswith("osm-") and k not in ("osm-water.json", "osm-along.json")]

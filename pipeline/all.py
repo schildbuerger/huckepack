@@ -19,7 +19,6 @@ long stretches without drinking water, shops or beds, unknown surfaces, far trav
 check, tree line, skyline (src/lib/skylines.ts) or wildlife (the record's animals, or a note why none).
 """
 
-import hashlib
 import importlib
 import json
 import math
@@ -31,9 +30,6 @@ import yaml
 
 ROOT = Path(__file__).resolve().parent.parent
 STEPS = ["routes", "water", "along", "surface", "elevation", "landcover", "climate", "access", "popularity"]
-# caches that depend on the map line, dropped when it changes
-# (not the climate downloads: pipeline/climate.py keeps them while the places stay in their grid cells)
-ROUTE_CACHES = ["osm-water.json", "osm-along.json", "osm-way-tags.json", "elevation-glo30.json", "landcover.json"]
 OFF = 0.10  # working rule 2: more than 10 % apart needs a look
 DRY_KM = 25  # a longer stretch without drinking water: check OSM, or add the record's waterPoints
 NO_SHOP_KM = 60  # a longer stretch without a shop: check OSM, and say so in the notes (carry food)
@@ -43,27 +39,15 @@ HUB_KM = 300
 TREE_LINE_FROM_M = 1500  # a trail this high may cross a tree line: the record should say
 
 
-def _hash(path):
-    return hashlib.sha256(path.read_bytes()).hexdigest() if path.exists() else None
-
-
 def run(slug, refresh=False, start="routes"):
-    route = ROOT / "public" / "routes" / f"{slug}.geojson"
     for step in STEPS[STEPS.index(start) :]:
         print(f"\n== {step}")
-        before = _hash(route) if step == "routes" else None
         try:
             importlib.import_module(f"pipeline.{step}").build(slug, refresh=refresh)
         except (Exception, SystemExit) as error:
             print(f"\n{step} failed: {error}")
             print(f"resume with: ~/.venvs/huckepack/bin/python -m pipeline.all {slug} --from {step}")
             raise SystemExit(1)
-        if step == "routes" and before is not None and _hash(route) != before:
-            dropped = [n for n in ROUTE_CACHES if (ROOT / "data" / "raw" / slug / n).exists()]
-            for name in dropped:
-                (ROOT / "data" / "raw" / slug / name).unlink()
-            if dropped:
-                print(f"  the map line changed: dropped {', '.join(dropped)}")
 
 
 def _line_km(coords):
