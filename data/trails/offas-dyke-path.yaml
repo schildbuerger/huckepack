@@ -9,6 +9,10 @@ managedBy:
   # a trail partnership looks after it
   - name: Natural Resources Wales, Natural England and the Offa's Dyke Path trail partnership (National Trails)
     url: https://www.nationaltrail.co.uk/en_GB/trails/offas-dyke-path/
+officialGpx:
+  # National Trails' GPX for the whole trail, a public download (checked 2026-11-05: a gpx file)
+  url: https://nationaltrails.s3.eu-west-2.amazonaws.com/uploads/ODP_loops_elev.gpx
+  source: nt
 trailType: point-to-point
 continents: [Europe]
 countries: [GB]
