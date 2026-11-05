@@ -10,7 +10,7 @@ managedBy:
     url: https://www.saechsische-schweiz.de/malerweg
 officialGpx:
   # the Tourismusverband's GPX of all stages ("Malerweg (alle Etappen / offizielle Version)", linked as "GPX Download" from the Malerweg planning page) (checked 2026-11-05)
-  url: "https://www.saechsische-schweiz.de/?ndsajax=destination-data-proxy&template=gpx&limit=1&mkt=de&q=globalid%3At_100261541&elevations=true&times=true&no_cache=1"
+  url: https://www.saechsische-schweiz.de/wanderungen/malerweg-alle-etappen-offizielle-version
   source: gpx
 trailType: loop
 continents: [Europe]

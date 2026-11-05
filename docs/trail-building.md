@@ -45,7 +45,7 @@ playbook follows. When a rule here changes, date it.
   mix sources in one figure.
 - **Licences:** official GPX tracks are copyrighted: they guide the matcher, stay in the
   git-ignored cache and are never committed or published; only the OSM map line goes out. The
-  page may link the operator's download (`officialGpx`).
+  page may link the operator's page that offers it (`officialGpx`), never the file.
 - **Wildlife and tree line:** official sources only (park, health or agriculture authority;
   forest service, `data/reference/tree-lines.yaml`).
 
@@ -110,10 +110,11 @@ schema's superRefine; the skyline by `tests/trails.test.ts`):
 - **Only when they apply:**
   - `localName` (when it differs), `aliases`, `designation`, `established`;
   - `permit`, `fees`, `waterPoints`, `refillsUntreated`;
-  - `officialGpx`: the operator's own public GPX download (a file anyone can download without
-    a login, the whole route if there is one, else the page listing the stage files), with the
-    page that offers it as its source; `none` with a reason where the operator plainly offers
-    none ("stage tracks only after login"). Linked, never stored;
+  - `officialGpx`: the operator's page that offers a GPX anyone can download without a login
+    (the whole route, else one per stage). The link goes to that page, never to the file, so
+    walkers get it from the operator's site (decided 2026-11-05); the page is also its source
+    (the build checks they match). `none` with a reason where the operator plainly offers none
+    ("stage tracks only after login"). Never stored;
   - `ascent` and `descent` totals;
   - a stage's `ascentM`, `descentM`, `minutes`, heights (estimated when missing, ≈), and its
     `closed`, `via`, `maxBridgeM`;

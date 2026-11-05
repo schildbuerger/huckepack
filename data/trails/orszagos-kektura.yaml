@@ -9,7 +9,7 @@ managedBy:
     url: https://www.kektura.hu/
 officialGpx:
   # the page listing the Kéktúra's GPX files (the whole route, with or without the stamping points, and each section). Not the file itself: its name carries the date and changes with each update, and on 2026-11-05 the track-only link gave 404 while the track with stamping points worked (checked 2026-11-05)
-  url: "https://www.kektura.hu/okt-szakaszok"
+  url: https://www.kektura.hu/okt-szakaszok
   source: kektura
 trailType: point-to-point
 continents: [Europe]

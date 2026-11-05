@@ -78,7 +78,9 @@
   (`officialGpx`, issue #106); huckepack never offers a download of its own
   line and never stores an official GPX. Optional: filled where the operator
   offers a public download, `none` with a reason where it plainly doesn't
-  (decided 2026-11-05).
+  (decided 2026-11-05). The link goes to the operator's page that offers the
+  file, never to the file itself: we don't route walkers around the
+  operator's website (decided 2026-11-05).
 - **Measured length:** where every main stage's OSM match covers at least
   95 % of its official track, the length of our map line (the full match) is
   the comparable length: the search sorts by it and the home page sums it, so

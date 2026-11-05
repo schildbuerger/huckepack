@@ -152,10 +152,11 @@ const trail = z
     wikidata: z.string().regex(/^Q\d+$/).optional(),
     designation: z.string().optional(),
     managedBy: z.array(z.object({ name: z.string(), url: z.url().optional() })).min(1),
-    // the operator's own GPX download (issue #106): `url` a file anyone can download without a login
-    // (or the operator's page listing the stage files, where there is no whole-route file), shown as a
-    // link in Location; `none` a short reason where the operator offers none ("stage tracks only after
-    // login"), not shown. huckepack links it and never stores or republishes an official GPX
+    // the operator's own GPX download (issue #106): `url` the operator's page that offers the file (a
+    // whole-route file, else one per stage) for anyone to download without a login, never the file
+    // itself, so walkers get it from the operator's site (decided 2026-11-05); it must be the url of
+    // its `source`. Shown as a link in Location; `none` a short reason where the operator offers none
+    // ("stage tracks only after login"), not shown. huckepack never stores or republishes an official GPX
     officialGpx: z
       .union([z.object({ url: z.url(), source: sourceRef }), z.object({ none: z.string(), source: sourceRef })])
       .optional(),
@@ -430,6 +431,11 @@ const trail = z
     ];
     for (const ref of refs) {
       if (!ids.has(ref)) ctx.addIssue({ code: "custom", message: `unknown source id "${ref}"` });
+    }
+    // the official GPX link goes to the operator's page, never to the file (decided 2026-11-05)
+    const gpx = t.officialGpx;
+    if (gpx && "url" in gpx && t.sources.find((s) => s.id === gpx.source)?.url !== gpx.url) {
+      ctx.addIssue({ code: "custom", path: ["officialGpx", "url"], message: "the operator's page that offers the GPX, the same url as its source, never the file" });
     }
   });
 
