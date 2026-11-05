@@ -48,7 +48,9 @@
 
   const show = (g: Group) => !groups || groups.includes(g);
   const LEVEL_STOPS = LEVEL_WORDS;
-  const places = placesOf(trails);
+  // the continents and countries of the trails, once they have loaded (/trails/search.json comes after
+  // the first render, so a constant stayed empty and the Where filter showed no places)
+  let places = $derived(placesOf(trails));
   const sleepingOptions = SLEEPING_CATEGORIES.filter((c) => c.id !== "wild-camping");
   const toggle = <T,>(list: T[], value: T) => (list.includes(value) ? list.filter((x) => x !== value) : [...list, value]);
 
