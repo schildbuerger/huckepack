@@ -1,0 +1,74 @@
+{
+  "climate-high.json": {
+    "retrieved": "2026-11-05T08:33:26+00:00",
+    "url": "https://openmeteo.s3.us-west-2.amazonaws.com/data/copernicus_era5_land+copernicus_era5?latitude=51.5&longitude=-1.7&elevation=280"
+  },
+  "climate-low.json": {
+    "retrieved": "2026-11-05T08:29:54+00:00",
+    "url": "https://openmeteo.s3.us-west-2.amazonaws.com/data/copernicus_era5_land+copernicus_era5?latitude=51.6&longitude=-1.1&elevation=40"
+  },
+  "elevation-glo30.json": {
+    "retrieved": "2026-11-05T08:26:09+00:00",
+    "url": "https://copernicus-dem-30m.s3.eu-central-1.amazonaws.com/Copernicus_DSM_COG_10_N51_00_W001_00_DEM/Copernicus_DSM_COG_10_N51_00_W001_00_DEM.tif https://copernicus-dem-30m.s3.eu-central-1.amazonaws.com/Copernicus_DSM_COG_10_N51_00_W002_00_DEM/Copernicus_DSM_COG_10_N51_00_W002_00_DEM.tif"
+  },
+  "landcover.json": {
+    "retrieved": "2026-11-05T08:26:10+00:00",
+    "url": "https://esa-worldcover.s3.eu-central-1.amazonaws.com/v200/2021/map/ESA_WorldCover_10m_2021_v200_\u2026_Map.tif"
+  },
+  "osm-relation-8879.json": {
+    "retrieved": "2026-11-03T21:24:23Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-1-main.json": {
+    "retrieved": "2026-11-03T21:24:23Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-2-main.json": {
+    "retrieved": "2026-11-03T21:24:23Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-3-main.json": {
+    "retrieved": "2026-11-03T21:24:23Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-4-main.json": {
+    "retrieved": "2026-11-03T21:24:23Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-5-main.json": {
+    "retrieved": "2026-11-03T21:24:23Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-6-main.json": {
+    "retrieved": "2026-11-03T21:24:23Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-water.json": {
+    "retrieved": "2026-11-03T21:24:23Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-way-tags.json": {
+    "retrieved": "2026-11-03T21:24:23Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osrm-access-bristol-airport-brs.json": {
+    "retrieved": "2026-11-05T08:33:27+00:00",
+    "url": "https://router.project-osrm.org/route/v1/driving/-2.71862,51.38297;-1.83057,51.41158?overview=false"
+  },
+  "osrm-access-london-heathrow-airport-lhr.json": {
+    "retrieved": "2026-11-05T08:33:27+00:00",
+    "url": "https://router.project-osrm.org/route/v1/driving/-0.45878,51.46774;-1.83057,51.41158?overview=false"
+  },
+  "osrm-access-swindon.json": {
+    "retrieved": "2026-11-05T08:33:27+00:00",
+    "url": "https://router.project-osrm.org/route/v1/driving/-1.78529,51.5657;-1.83057,51.41158?overview=false"
+  },
+  "stage-1-main.gpx": {
+    "retrieved": "2026-11-05T07:57:35+00:00",
+    "url": "https://nationaltrails.s3.eu-west-2.amazonaws.com/uploads/The_Ridgeway.gpx"
+  },
+  "wikimedia.json": {
+    "retrieved": "2026-11-05T08:33:29+00:00",
+    "url": "Q590196 2025-11..2026-10"
+  }
+}

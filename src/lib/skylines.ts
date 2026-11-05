@@ -954,6 +954,24 @@ export const SKYLINES: Record<string, Skyline> = {
       { d: range([[0, G], [0, 284], [300, 278], [600, 284], [720, 292], [780, G]]), c: "#e0c99a" },
     ],
   },
+  "the-ridgeway": {
+    view: "The open Berkshire Downs on The Ridgeway: Whitehorse Hill with the Uffington White Horse cut into its chalk, and a clump of beeches by the old track",
+    ridge: MEADOW,
+    ground: "#9ab866",
+    shapes: [
+      // the far downs
+      { d: hills([[0, G], [220, 250], [520, 240], [820, 252], [1120, 236], [1400, 248], [1600, 242], [1600, G]]), c: "#a7b98a" },
+      // Whitehorse Hill, its steep scarp to the left
+      { d: hills([[380, G], [470, 262], [600, 226], [780, 220], [940, 236], [1080, G]]), c: "#8fa868" },
+      // the White Horse: a slender galloping figure of chalk lines on the scarp
+      { d: "M520,252C540,246 566,244 590,246C604,247 612,242 622,236L628,238C620,246 612,252 598,254C578,256 552,256 536,258L540,266L534,266L530,258L522,266L516,266Z", c: "#f4f1ea" },
+      // a clump of beeches on the near down
+      { d: dome(1250, 262, 26), c: "#4f6a3a" },
+      { d: dome(1290, 262, 20), c: "#5f7a44" },
+      // the near down in front
+      { d: hills([[1000, G], [1120, 270], [1300, 262], [1480, 268], [1600, 264], [1600, G]]), c: "#7f9a54" },
+    ],
+  },
   "south-downs-way": {
     view: "The bare, rolling chalk downs of the South Downs, ending in the white cliffs of the Seven Sisters over the sea",
     ridge: MEADOW,
