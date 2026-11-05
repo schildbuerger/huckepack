@@ -23,6 +23,7 @@ a look (OSM may be missing a path there).
 """
 
 import functools
+import hashlib
 import heapq
 import http.client
 import json
@@ -61,10 +62,18 @@ class Cache:
         self.manifest_path = self.dir / "manifest.json"
         self.manifest = json.loads(self.manifest_path.read_text()) if self.manifest_path.exists() else {}
 
-    def get(self, name, url, download):
-        """Cached file `name`, calling download() -> bytes when missing or refreshing."""
+    def get(self, name, url, download, key=None):
+        """Cached file `name`, calling download() -> bytes when missing or refreshing. With `key` (what
+        the download depends on, e.g. a stage's guide line), a cache made for another key is fetched
+        again: a stage switched from its GPX to an OSM relation once kept the ways around the old
+        GPX and failed to connect (the Ridgeway's and Glyndŵr's Way's, 2026-11-05). A cache from
+        before keys were kept takes the key on first use."""
         path = self.dir / name
-        if self.refresh or not path.exists():
+        entry = self.manifest.get(name, {})
+        if key is not None and path.exists() and not self.refresh and entry.get("key") is None and entry:
+            entry["key"] = key
+            self.manifest_path.write_text(json.dumps(self.manifest, indent=2, sort_keys=True) + "\n")
+        if self.refresh or not path.exists() or (key is not None and entry.get("key") not in (None, key)):
             body = download()
             path.write_bytes(body)
             # when the data carry their own date (OSM from an extract: the extract's), that one
@@ -73,7 +82,7 @@ class Cache:
                 retrieved = json.loads(body).get("retrieved") or retrieved
             except (ValueError, AttributeError):
                 pass
-            self.manifest[name] = {"url": url, "retrieved": retrieved}
+            self.manifest[name] = {"url": url, "retrieved": retrieved, **({"key": key} if key is not None else {})}
             self.manifest_path.write_text(json.dumps(self.manifest, indent=2, sort_keys=True) + "\n")
             return path.read_text(), True
         return path.read_text(), False
@@ -507,7 +516,9 @@ def build(slug, refresh=False):
         def download_ways():
             return json.dumps(osm.fetch_ways(track, osm_src()), separators=(",", ":")).encode()
 
-        ways, fetched = cache.get(f"osm-stage-{label}.json", osm.source_label(), download_ways)
+        # keyed by the guide line, so a changed guide (GPX to relation, a moved `end`) fetches anew
+        guide_key = hashlib.sha1(json.dumps([[round(x, 4), round(y, 4)] for x, y in track]).encode()).hexdigest()[:12]
+        ways, fetched = cache.get(f"osm-stage-{label}.json", osm.source_label(), download_ways, key=guide_key)
         if fetched and osm.SOURCE == "overpass":
             time.sleep(5)  # be polite to the public Overpass server
         # a ride inside the stage (a transfer with `stage`: the Adlerweg's Rofanseilbahn down to

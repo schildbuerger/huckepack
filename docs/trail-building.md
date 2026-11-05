@@ -134,7 +134,9 @@ nature reserves and national scenic areas the route crosses, from the operator o
 many hosts). Work through every flag of its check; each one is either fixed or explained in a
 note:
 
-- a stage under 95 % matched (missing OSM path, or a turnaround; `via` points, `joinM`);
+- a stage under 95 % matched (missing OSM path, or a turnaround; `via` points, `joinM`); where
+  the GPX is out of date, the stage can follow the OSM relation (`relation`) instead: its cached
+  ways are fetched again for the new guide (2026-11-05);
 - a stage more than 10 % off the map line;
 - stated against terrain-model ascent;
 - a dry stretch, unknown surface, hubs too far away;

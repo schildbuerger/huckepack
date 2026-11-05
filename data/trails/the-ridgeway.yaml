@@ -48,15 +48,14 @@ stages:
   # the National Trail's six sections (Route Description, the same on GOV.UK). One official GPX (a
   # route of 2013 from Overton Hill to Ivinghoe Beacon), cut at each section's `end`, placed on the
   # GPX; it only guides the OSM matcher (kept local). Section 5 follows the OSM relation (8879, the
-  # National Trail) instead: along the GPX the OSM ways don't connect, and the relation bridges a
-  # 386 m gap near Princes Risborough (maxBridgeM 400)
+  # National Trail) instead: along the 2013 GPX the OSM ways don't connect
   source: nt
   list:
     - { number: "1", kind: main, from: Overton Hill, to: Ogbourne St George, km: 14.8, track: "https://nationaltrails.s3.eu-west-2.amazonaws.com/uploads/The_Ridgeway.gpx", end: { name: Ogbourne St George, lat: 51.46592, lon: -1.7219 } }
     - { number: "2", kind: main, from: Ogbourne St George, to: Sparsholt Firs, km: 25.6, track: "https://nationaltrails.s3.eu-west-2.amazonaws.com/uploads/The_Ridgeway.gpx", end: { name: Sparsholt Firs, lat: 51.56375, lon: -1.50571 } }
     - { number: "3", kind: main, from: Sparsholt Firs, to: Streatley, km: 27.9, track: "https://nationaltrails.s3.eu-west-2.amazonaws.com/uploads/The_Ridgeway.gpx", end: { name: Streatley, lat: 51.52272, lon: -1.14875 } }
     - { number: "4", kind: main, from: Streatley, to: Watlington, km: 24.6, track: "https://nationaltrails.s3.eu-west-2.amazonaws.com/uploads/The_Ridgeway.gpx", end: { name: Watlington, lat: 51.64074, lon: -0.99204 } }
-    - { number: "5", kind: main, from: Watlington, to: Wendover, km: 27.2, relation: 8879, maxBridgeM: 400, end: { name: Wendover, lat: 51.76285, lon: -0.74143 } }
+    - { number: "5", kind: main, from: Watlington, to: Wendover, km: 27.2, relation: 8879, end: { name: Wendover, lat: 51.76285, lon: -0.74143 } }
     - { number: "6", kind: main, from: Wendover, to: Ivinghoe Beacon, km: 18.8, track: "https://nationaltrails.s3.eu-west-2.amazonaws.com/uploads/The_Ridgeway.gpx", end: { name: Ivinghoe Beacon, lat: 51.84214, lon: -0.6084 } }
 route:
   # built by `python -m pipeline.all the-ridgeway`: OSM ways matched to the official GPX's pieces
@@ -141,8 +140,9 @@ notes:
   - >-
     Route (pipeline, 2026-11-05, Geofabrik extracts): National Trails' GPX (a route of 2013) guides
     sections 1–4 and 6, section 5 the OSM relation (8879): along the 2013 GPX the OSM ways between
-    Watlington and Wendover don't connect, and on the relation the extract has no way for 386 m near
-    Princes Risborough (about 51.712, -0.834), bridged straight. Every section matches at least 96 %;
+    Watlington and Wendover don't connect; on the relation section 5 matches fully (corrected the
+    same day: a first run kept the ways cached around the GPX and bridged a 386 m gap that isn't
+    there). Every section matches at least 96 %;
     the map line is 138.1 km against the sections' 138.9 km. Highest point on the map line 276 m
     (km 23, the Marlborough Downs), lowest 41 m (km 73, by the Thames at Streatley).
   - >-

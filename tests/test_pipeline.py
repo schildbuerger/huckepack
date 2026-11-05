@@ -401,3 +401,27 @@ class WaterTiers(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+class CacheKeys(unittest.TestCase):
+    """A cached download made for another key (a stage's old guide line) is fetched again."""
+
+    def test_key_change_fetches_again(self):
+        import tempfile
+        from pathlib import Path
+        from pipeline import routes
+
+        with tempfile.TemporaryDirectory() as tmp:
+            cache = routes.Cache.__new__(routes.Cache)
+            cache.dir, cache.refresh = Path(tmp), False
+            cache.manifest_path, cache.manifest = Path(tmp) / "manifest.json", {}
+            calls = []
+            fetch = lambda body: (lambda: calls.append(body) or body)
+            self.assertEqual(cache.get("w.json", "u", fetch(b"a"), key="k1"), ("a", True))
+            self.assertEqual(cache.get("w.json", "u", fetch(b"b"), key="k1"), ("a", False))
+            self.assertEqual(cache.get("w.json", "u", fetch(b"c"), key="k2"), ("c", True))
+            # a cache from before keys were kept takes the key without fetching
+            del cache.manifest["w.json"]["key"]
+            self.assertEqual(cache.get("w.json", "u", fetch(b"d"), key="k3"), ("c", False))
+            self.assertEqual(cache.manifest["w.json"]["key"], "k3")
+            self.assertEqual(calls, [b"a", b"c"])
