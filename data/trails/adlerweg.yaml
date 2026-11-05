@@ -25,10 +25,20 @@ termini:
     lat: 47.13036
     lon: 10.21044
   source: tw
+waymarking:
+  # the whole-route tour: "Alle Etappen sind klar markiert und angeschrieben"; the Adlerweg logo is
+  # the operator's design, not drawn
+  text: All stages clearly marked and signposted.
+  source: tw
 length:
   # "426 Kilometer und 30.000 Höhenmeter auf 33 Tagesetappen"; the stages sum to 424.4 km
   - km: 426
     source: tw
+days:
+  # the whole-route tour: "Dauer: 33 Tage" (found 2026-11-04)
+  min: 33
+  max: 33
+  source: tw
 stages:
   # Tirol Werbung's 33 stage pages (length, time, climb and descent, grade), each with its GPX,
   # which only guides the OSM matcher (kept local): 24 across North Tyrol and 9 in East Tyrol, which
@@ -210,6 +220,9 @@ notes:
     East Tyrol 94.5 km in 9 stages against 93 km in 9 (2 %); St. Johann in Tirol to St. Christoph am
     Arlberg: agree. The stated 30,000 m of climbing against the stages' 29,958 m. No deviation over
     10 %.
+  - >-
+    Wikidata: no item of its own (2026-11-04): German Wikipedia covers the Adlerweg only in its list
+    "Weitwanderwege in Österreich".
 dataCheck:
   # working rule 2: German Wikipedia
   date: 2026-11-03

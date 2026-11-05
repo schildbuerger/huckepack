@@ -11,6 +11,10 @@ trailType: point-to-point
 continents: [Europe]
 countries: [DE]
 regions: [Saarland, Rheinland-Pfalz]
+protectedAreas:
+  # OSM protected areas containing points of the main route (national parks, nature parks, biosphere
+  # and national nature reserves; 2026-11-04)
+  - Naturpark Saar-Hunsrück
 termini:
   # the first and last points of the official stage tracks: the Dreiländerblick above Perl, the
   # Deutsches Eck in Koblenz

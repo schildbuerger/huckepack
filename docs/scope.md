@@ -49,6 +49,31 @@
   mixes sources), else the stage sums, else the terrain model's estimate (≈).
   No measured ascent for comparing: the terrain model measures treetops and
   reads 15–60 % high in forests (decided 2026-10-30).
+- **Building a trail:** docs/trail-building.md is the one checklist from
+  picking a trail to going live; rules for building trails go there, dated
+  (decided 2026-11-04).
+- **The operator's start and stages:** a trail starts and ends where its
+  operator says, even when the operator's GPX or stage pages begin later; a
+  climb the operator counts is a main stage, a way in it doesn't count an
+  approach, never dropped (decided 2026-11-04, the Berliner Höhenweg's stage 1
+  from Finkenberg).
+- **Totals for another stretch:** stated totals that cover a different
+  stretch than the main stages stay out of the record; the page sums the
+  stages and the operator's figures go in a note (decided 2026-11-04).
+- **Measured stage distances:** where the operator names the stages but its
+  distances are missing or broken, each stage's length is measured on the
+  full OSM match under the `huckepack-measured` source, always, noted in the
+  record (decided 2026-11-04).
+- **What a record needs:** three tiers, enforced by the build: required
+  fields; fields filled from a source or explained by a note starting with
+  their label ("Season: none stated by …"): season, wild camping, waymarking,
+  Wikidata, length, days, protected areas; and fields only where they apply
+  (docs/trail-building.md). The 59 gaps on the live trails were researched
+  and filled or explained the same day (decided 2026-11-04).
+- **Unattended runs:** well-known trails with openly published stages, up to
+  about 1,000 km, started only when the build fits the time left, with about
+  60 minutes per trail before a blocker is documented and the run moves on
+  (decided 2026-11-04).
 - **Measured length:** where every main stage's OSM match covers at least
   95 % of its official track, the length of our map line (the full match) is
   the comparable length: the search sorts by it and the home page sums it, so
@@ -68,8 +93,8 @@
 - **Provenance:** every page names its sources, their licences and when the
   data was retrieved. Where sources disagree (length is the usual case), the
   page says so.
-- **Repository:** local git repository for now; if it moves to GitHub, a
-  private repository like healthviz.
+- **Repository:** public on GitHub (`schildbuerger/huckepack`); everything on
+  `main` goes live.
 - **Stack:** a static site generated from a trail database; no server.
   - A Python pipeline (`pipeline/`) downloads and processes source data
     (OSM, elevation, climate), cached in `data/raw/`.

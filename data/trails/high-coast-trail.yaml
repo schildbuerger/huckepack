@@ -35,6 +35,11 @@ length:
   # "135 km" (hogakusten.com); the nine stages sum to 139.8 km
   - km: 135
     source: hk
+days:
+  # hogakusten.com: "Tidsåtgång 7-9 dagar" (found 2026-11-04)
+  min: 7
+  max: 9
+  source: hk
 stages:
   # hogakusten.com's nine stage pages, each headed with length, grade and time. No official GPX:
   # OSM maps the trail as seven section relations (the older division, superroute 1730468); stages
@@ -127,6 +132,8 @@ notes:
     Hornöberget to Örnsköldsvik in nine sections, orange waymarks: all agree. Swedish Wikipedia
     gives 128.6 km in thirteen stages (5 %) and names Region Västernorrland as trail authority; its
     stage division is older. No deviation over 10 %.
+  - >-
+    Season: none stated by hogakusten.com (2026-11-03).
 dataCheck:
   # working rule 2: English and Swedish Wikipedia
   date: 2026-11-03

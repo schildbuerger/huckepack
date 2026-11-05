@@ -13,6 +13,11 @@ trailType: point-to-point
 continents: [Europe]
 countries: [FR, ES]
 regions: [Nouvelle-Aquitaine, Navarre, La Rioja, Castile and León, Galicia]
+protectedAreas:
+  # OSM protected areas containing points of the main route (national parks, nature parks, biosphere
+  # and national nature reserves; 2026-11-04)
+  - Ancares Leoneses Biosphere Reserve
+  - Reserva da Biosfera Ribeira Sacra e Serras do Oribio e Courel
 termini:
   # Saint-Jean-Pied-de-Port, where English Wikipedia's itinerary starts, and the cathedral of
   # Santiago (OSM)
@@ -160,6 +165,15 @@ notes:
     stated figures stand. Total: 769 km against the Xunta's 775 km from Roncesvalles plus about
     25 km from Saint-Jean (4 %); days: 36 against Gronze's 33 (9 %). Highest point: 1,510 m on the
     terrain model against Wikipedia's about 1,515 m.
+  - >-
+    Season: no official source names one (2026-11-03): the way is walked all year and the Xunta's
+    albergues stay open.
+  - >-
+    Wild camping: no official source found for the route (2026-11-03); the rules differ by region
+    and municipality in Spain.
+  - >-
+    Waymarking: no official description of the marks found (2026-11-03) in the Xunta's pages read
+    for this record.
 dataCheck:
   # working rule 2: Gronze's stages; the OSM map line for the stage splits; the Xunta for the total
   date: 2026-11-02

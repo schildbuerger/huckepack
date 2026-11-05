@@ -12,6 +12,11 @@ trailType: point-to-point
 continents: [Europe]
 countries: [AT]
 regions: [Tyrol]
+protectedAreas:
+  # OSM protected areas containing points of the main route (national parks, nature parks, biosphere
+  # and national nature reserves; 2026-11-04)
+  - Ruhegebiet Stubaier Alpen
+  - Ruhegebiet Kalkkögel
 termini:
   # the first point of stage 1's GPX at the Starkenburger Hütte and the last of stage 7's at the
   # Innsbrucker Hütte
@@ -150,6 +155,9 @@ notes:
     stages 2 (4 h) and 7 (7 h). Wikipedia's times are 14–25 % shorter on stages 1 (6 against 7 h),
     3 (6 against 7 h), 4 (2.5 against 3 h), 5 (3 against 4 h) and 6 (3 against 4 h); the page keeps
     Tirol's.
+  - >-
+    Days: none recorded (2026-11-04): Tirol Werbung's tour says both "5 Tage" and "Die gesamte Tour
+    erfordert 8 Tage", so the page counts one day per stage.
 dataCheck:
   # working rule 2: German Wikipedia
   date: 2026-11-04

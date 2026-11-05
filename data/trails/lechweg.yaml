@@ -30,6 +30,15 @@ established:
   # "Der Wanderweg wurde am 15. Juni 2012 eröffnet"
   year: 2012
   source: wikipedia
+waymarking:
+  # lechweg.com: "Ein weißes »L« auf anthrazit-farbigem Grund weist Ihnen den Weg. Du findest es an
+  # den Wegweisern sowie auf Bäumen und Felsen … nicht mehr als 250 Meter"; "In den Hochlagen
+  # (Formarinsee - Lech) wird das „L“ zum größten Teil durch die weiß-rot-weiße Markierung ersetzt"
+  text: >-
+    A white L on an anthracite square, on signposts, trees and rocks, at most 250 m apart; from the
+    Formarinsee to Lech mostly the white-red-white mark instead.
+  symbol: white-l-on-anthracite
+  source: lw-weg
 length:
   # "Der Lechweg - 125 km von der Quelle bis zum Fall"; the classic stages add up to 124.2 km
   - km: 125
@@ -167,6 +176,11 @@ dataCheck:
   against: [wikipedia]
   deviations: []
 sources:
+  - id: lw-weg
+    title: "Lechweg: Der Weg (waymarking and signposts)"
+    url: https://www.lechweg.com/de/weg/
+    licence: All rights reserved (facts only)
+    retrieved: 2026-11-04
   - id: lw
     title: "Lechweg (lechweg.com): the trail, its variants (the classic seven stages with lengths and GPX), season and partner hosts"
     url: https://www.lechweg.com/de/weg/etappen-varianten/klassische-variante/

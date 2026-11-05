@@ -46,7 +46,7 @@ export const SLEEPING_TYPES = [
 ] as const;
 
 // the simple painted marks src/components/Waymark.astro draws (WAYMARKS there)
-const waymark = z.enum(["cai", "yellow-vertical-stripe", "red-diamond", "white-h-on-black", "white-x-on-black", "white-w-on-green", "white-red-stripes", "blue-stripe-on-white"]);
+const waymark = z.enum(["cai", "yellow-vertical-stripe", "red-diamond", "white-h-on-black", "white-x-on-black", "white-w-on-green", "white-l-on-anthracite", "white-red-stripes", "blue-stripe-on-white"]);
 
 const point = z.object({
   name: z.string(),
@@ -66,6 +66,19 @@ const source = z.object({
   // (dataCheck), or for a figure shown elsewhere (the page views ranking the home page's popular trails)
   checkOnly: z.boolean().default(false),
 });
+
+// fields filled where a source gives them, else explained by a note starting with the label
+// (docs/trail-building.md, "What a record needs"); checked in the trail schema's superRefine
+type TrailIn = { [k: string]: unknown; length: unknown[]; days?: unknown; season?: unknown; wildCamping?: unknown; waymarking?: unknown; wikidata?: unknown; protectedAreas: unknown[] };
+const EXPLAINED: [string, string, (t: TrailIn) => boolean][] = [
+  ["season", "Season", (t) => !!t.season],
+  ["wildCamping", "Wild camping", (t) => !!t.wildCamping],
+  ["waymarking", "Waymarking", (t) => !!t.waymarking],
+  ["wikidata", "Wikidata", (t) => !!t.wikidata],
+  ["length", "Length", (t) => t.length.length > 0],
+  ["days", "Days", (t) => !!t.days],
+  ["protectedAreas", "Protected areas", (t) => t.protectedAreas.length > 0],
+];
 
 const stage = z.object({
   number: z.string(), // "1", "2", … as the source numbers them; "0" for an approach
@@ -367,6 +380,23 @@ const trail = z
     const wildlife = t.animals && (t.animals.list.length || t.animals.plants.length || t.animals.none);
     if (!wildlife && !t.notes.some((n) => n.startsWith("Wildlife"))) {
       ctx.addIssue({ code: "custom", path: ["animals"], message: 'no wildlife: list animals from an official source, set animals.none, or add a note starting "Wildlife" saying why none is listed' });
+    }
+    // the record's tiers (docs/trail-building.md, "What a record needs", 2026-11-04): required fields,
+    // and fields filled where a source gives them, else explained by a note starting with their label
+    for (const [field, present] of [
+      ["stages", !!t.stages],
+      ["route", !!t.route],
+      ["difficulty", !!t.difficulty],
+      ["sleeping", !!t.sleeping],
+      ["access", t.access.length > 0],
+      ["dataCheck", !!t.dataCheck],
+    ] as const) {
+      if (!present) ctx.addIssue({ code: "custom", path: [field], message: `required: ${field} (docs/trail-building.md)` });
+    }
+    for (const [field, label, present] of EXPLAINED.map(([f, l, has]) => [f, l, has(t)] as const)) {
+      if (!present && !t.notes.some((n) => n.startsWith(label))) {
+        ctx.addIssue({ code: "custom", path: [field], message: `no ${field}: fill it from a source, or add a note starting "${label}" saying what was searched (docs/trail-building.md)` });
+      }
     }
     const ids = new Set(t.sources.map((s) => s.id));
     const refs = [

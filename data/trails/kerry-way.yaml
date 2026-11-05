@@ -41,6 +41,11 @@ length:
   # "215 Kilometres · 9 Sections" (the committee's home page); the stage pages sum to 202.4 km
   - km: 215
     source: kw
+days:
+  # Sport Ireland: "Time 9 days" (found 2026-11-04)
+  min: 9
+  max: 9
+  source: si
 stages:
   # the committee's nine stage pages, each with length, hours, grade, ascent and the grid references
   # of start and finish (Irish Grid, converted to the `end` points); no descent is given. Stage 3 via
@@ -153,6 +158,8 @@ notes:
     model; a loop from Killarney; the designation and management: all agree. Ascent: the stages'
     6,075 m against 5,310 m (Sport Ireland, Wikipedia; 14 %), recorded in dataCheck; the page keeps
     the committee's stage figures.
+  - >-
+    Wild camping: no official source found for Ireland (2026-11-03).
 dataCheck:
   # working rule 2: Sport Ireland's trail page and English Wikipedia (whose infobox cites the Irish
   # Sports Council's former trail page)

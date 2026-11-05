@@ -2,6 +2,7 @@ name: Alta Via dei Parchi
 added: 2026-11-03
 aliases: [AVP, Alta Via dei Parchi Emilia-Romagna]
 website: https://ambiente.regione.emilia-romagna.it/en/parchi-natura2000/protected-areas/the-alta-via-dei-parchi
+wikidata: Q131757783  # Dutch Wikipedia's Alta Via dei Parchi (found 2026-11-04)
 managedBy:
   # the Regione Emilia-Romagna (Protected Areas, Forestry and Mountains Development Department)
   # "approved and funded the interventions proposed by the managing bodies of the Parks" for the
@@ -87,6 +88,19 @@ treeLine:
   m: 1800
   fromM: 1700
   source: magnani-treeline
+sleeping:
+  # the Region's image manual: the "posti tappa" along the route stamp the walkers' notebook, its
+  # examples a CAI hut ("Capanna sociale CAI Passo della Calla") and a hostel ("Ostello Il Carbonile");
+  # stages end at refuges (Rifugio Biancaneve al Fumaiolo). Campsites come in from OSM where mapped
+  types: [hut, hostel]
+  source: rer-manual
+waymarking:
+  # the manual's "segnaletica orizzontale": painted marks on stones and tree trunks, white and black,
+  # with the logo stencilled on a white ground; a logo, so no symbol is drawn
+  text: >-
+    Painted marks on stones and tree trunks in white and black, with the Alta Via dei Parchi logo on
+    a white ground, at junctions and every 200–300 m; signposts with the logo.
+  source: rer-manual
 wildCamping:
   # the Region: bivouacking in protected areas was allowed only during the Covid emergency; now
   # municipalities may designate temporary rest areas for tents; otherwise campsites or authorised
@@ -131,6 +145,11 @@ notes:
     stage list (27 stages, Berceto to the Eremo Madonna del Faggio: agree) and totals: length within
     4 %, but the terrain-model ascent of about 25,230 m is 16 % under the Region's "more than
     30,000 m of elevation gain" (a 30 m terrain model smooths the many short climbs on the ridge).
+  - >-
+    Season: none stated by the Region (its stage, camping and image-manual pages, rechecked
+    2026-11-04).
+  - >-
+    Days: none stated by the Region (2026-11-04); the page counts one day per stage.
 dataCheck:
   # working rule 2: no second source gives stage figures (no Wikipedia article); the built page is
   # checked against the Region's stage list and totals
@@ -140,6 +159,17 @@ dataCheck:
   deviations:
     - { figure: ascent, ours: "about 25,230 m (terrain model)", theirs: "more than 30,000 m", source: rer }
 sources:
+  - id: rer-manual
+    title: "Regione Emilia-Romagna: Alta Via dei Parchi, manuale di immagine coordinata (logo, signposts, painted waymarks, stage points)"
+    url: https://ambiente.regione.emilia-romagna.it/en/parchi-natura2000/protected-areas/the-alta-via-dei-parchi/allegati-alta-via-dei-parchi/avp_impaginatocorretto.pdf/@@download/file
+    licence: All rights reserved (facts only)
+    retrieved: 2026-11-04
+  - id: wikimedia
+    title: "Wikimedia: page views of the trail's Wikipedia articles in every language, by people, over twelve months (Wikidata sitelinks, pageview API)"
+    url: https://wikimedia.org/api/rest_v1/
+    licence: CC0 1.0 (pageview data); Wikidata CC0
+    retrieved: 2026-11-04
+    checkOnly: true  # not on the trail page: the page views only rank the home page's popular trails
   - id: rer
     title: "Regione Emilia-Romagna: The Alta Via dei Parchi and its 27 stages (about 500 km, more than 30,000 m of elevation gain)"
     url: https://ambiente.regione.emilia-romagna.it/en/parchi-natura2000/protected-areas/the-alta-via-dei-parchi/stages
