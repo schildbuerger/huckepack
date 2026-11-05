@@ -993,6 +993,24 @@ export const SKYLINES: Record<string, Skyline> = {
       { d: hills([[480, G], [620, 254], [800, 232], [940, 260], [1040, G]]), c: "#7f9a54" },
     ],
   },
+  "cateran-trail": {
+    view: "Glenshee's rounded hills over heather moor, a birch wood in the glen, and a Cateran waymark post",
+    ridge: "#7f8a50",
+    ground: "#8a9a5a",
+    shapes: [
+      // the Glenshee hills, far and rounded
+      { d: hills([[160, G], [300, 214], [460, 168], [600, 186], [760, 150], [900, 174], [1060, 158], [1220, 196], [1400, 220], [1560, G]]), c: "#9aa0a8" },
+      // heather moor, purple-brown, in front of them
+      { d: hills([[0, G], [160, 256], [400, 226], [640, 244], [900, 218], [1160, 240], [1400, 230], [1600, 250], [1600, G]]), c: "#8a6a7a" },
+      // a birch wood down in the glen
+      { d: hills([[600, G], [700, 262], [820, 252], [940, 264], [1010, G]]), c: "#3f5a34" },
+      // a Cateran waymark post with its red heart in a green ring
+      { d: "M1300,300V258H1310V300Z", c: "#7a5a3c" },
+      { d: "M1305,262m-9,0a9,9 0 1 0 18,0a9,9 0 1 0 -18,0", c: "#3f7a3a" },
+      { d: "M1305,262m-6.5,0a6.5,6.5 0 1 0 13,0a6.5,6.5 0 1 0 -13,0", c: "#f4f1ea" },
+      { d: "M1305,266L1301,261.5A2.3,2.3 0 0 1 1305,259A2.3,2.3 0 0 1 1309,261.5Z", c: "#c0392b" },
+    ],
+  },
   "fife-coastal-path": {
     view: "The Firth of Forth with the red Forth Bridge, the East Neuk's fishing villages of red-roofed houses round a harbour, and St Andrews' ruined cathedral towers by the sea",
     ridge: "#8fa868",

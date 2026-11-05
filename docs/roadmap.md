@@ -112,6 +112,7 @@ And the **Overland Track** (#235, the first trail in Australia: 65 km from Ronny
 And the **Peddars Way and Norfolk Coast Path** (#238, Knettishall Heath north along the Roman road to Holme next the Sea, then east along the coast to Hopton-on-Sea, the National Trail's sections in 13 stages; the official GPX guides the Peddars Way, the OSM relation the coast, and Happisburgh to Sea Palling, which the section lists leave out, is measured on the map line).
 And **St Cuthbert's Way** (#240, 100 km from Melrose Abbey over the Eildon and Cheviot Hills to Holy Island across the tidal sands, the site's five sections; its GPX guides the Scottish part, the OSM relation the English one).
 And the **Fife Coastal Path** (#241, about 188 km from Kincardine round the Fife coast to Newburgh in the Fife Coast and Countryside Trust's eight sections; no GPX, the OSM relation cut at the sections' ends).
+And the **Cateran Trail** (#242, the 103 km loop through Perthshire and the Angus glens from Blairgowrie in the Perth and Kinross Countryside Trust's five stages; each the shortest way over the OSM relation).
 | # | Trail | Region | Length (approx.) | Why |
 |---|---|---|---|---|
 | 1 | Pacific Crest Trail | USA | 4,265 km | Most-hiked long trail; public US agency data; completion lists |

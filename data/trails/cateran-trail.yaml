@@ -1,0 +1,203 @@
+name: Cateran Trail
+added: 2026-11-05
+website: https://www.pkct.org/cateran-trail
+wikidata: Q5051894
+managedBy:
+  # waymarked and maintained by the Perth and Kinross Countryside Trust; one of Scotland's Great Trails
+  - name: Perth and Kinross Countryside Trust
+    url: https://www.pkct.org/cateran-trail
+officialGpx:
+  none: the Trust links the route on Komoot, whose GPX download needs a login (checked 2026-11-05)
+  source: pkct
+trailType: loop
+continents: [Europe]
+countries: [GB]
+regions: [Scotland]
+termini:
+  # a circle with "no official beginning or end"; the Trust's stage 1 starts in Blairgowrie, where
+  # stage 5 ends
+  start:
+    name: Blairgowrie
+    lat: 56.59036
+    lon: -3.3409
+  end:
+    name: Blairgowrie
+    lat: 56.59036
+    lon: -3.3409
+  source: pkct
+waymarking:
+  text: Fully waymarked
+  source: pkct
+length:
+  # "a fully waymarked, 64-mile / 103 km route"
+  - km: 103
+    source: pkct
+days:
+  # "can be comfortably walked in five days"
+  min: 5
+  max: 5
+  source: pkct
+stages:
+  # the Trust's five stages, clockwise from Blairgowrie. No public GPX: each stage is the shortest
+  # way over the OSM relation "Cateran Trail" (1756395) to its end (`branched`); stage 5 comes back
+  # over stage 1's stretch from the junction near Bridge of Cally to Blairgowrie
+  source: pkct
+  list:
+    - { number: "1", kind: main, from: Blairgowrie, to: Kirkmichael, km: 24.9, end: { name: Kirkmichael, lat: 56.72301, lon: -3.50503 } }
+    - { number: "2", kind: main, from: Kirkmichael, to: Spittal of Glenshee, km: 13.7, end: { name: Spittal of Glenshee, lat: 56.81289, lon: -3.46068 } }
+    - { number: "3", kind: main, from: Spittal of Glenshee, to: Kirkton of Glenisla, km: 23.5, end: { name: Kirkton of Glenisla, lat: 56.72965, lon: -3.28391 } }
+    - { number: "4", kind: main, from: Kirkton of Glenisla, to: Alyth, km: 17.4, end: { name: Alyth, lat: 56.62255, lon: -3.23026 } }
+    - { number: "5", kind: main, from: Alyth, to: Blairgowrie, km: 24.1, end: { name: Blairgowrie, lat: 56.59036, lon: -3.3409 } }
+route:
+  # built by `python -m pipeline.all cateran-trail`: OSM ways matched to the shortest way over the
+  # relation between the stages' ends
+  source: osm
+  publishable: true
+  relation: 1756395
+  branched: true
+difficulty:
+  estimated:
+    sac: T2
+    basis: >-
+      Old drove roads and ancient tracks "across a varied terrain of farmland, forests and moors",
+      with an upland stage over moorland to the Trail's highest point between Strathardle and
+      Glenshee; fully waymarked, but the Trust warns not to walk it without a map or guidebook.
+      Mountain hiking on clear paths and tracks (T2).
+    source: pkct
+sleeping:
+  # the Trust names no places to stay; hotels, guest houses and hostels in the villages from OSM
+  # (pipeline/along.py)
+  types: [hotel, guesthouse, hostel]
+  source: osm
+access:
+  # Perth and Dundee, the nearest main stations, and Edinburgh Airport. Coordinates from OSM;
+  # distances by pipeline/access.py
+  - kind: station
+    name: Perth
+    lat: 56.39211
+    lon: -3.43957
+    source: osm
+  - kind: station
+    name: Dundee
+    lat: 56.45766
+    lon: -2.96961
+    source: osm
+  - kind: airport
+    name: Edinburgh Airport (EDI)
+    lat: 55.95026
+    lon: -3.35939
+    source: osm
+animals:
+  # cattle and sheep with young (the Trust's warning), ticks (NHS). Levels ours
+  list:
+    - kind: cattle
+      name: "Cattle (livestock with young)"
+      level: moderate
+      basis: "From April to January livestock may be unfenced in fields along the Trail; the Trust warns that parent animals can be aggressive when protecting their young."
+      do:
+        - "Keep as far away from livestock as possible"
+        - "Keep dogs on a short lead or under control"
+        - "Leave any gate as you found it"
+      dont:
+        - "Separate parents from their young"
+      source: pkct
+    - kind: tick
+      name: "Ticks (Lyme disease)"
+      level: low
+      basis: "Ticks that can carry Lyme disease live all over the UK, in woods and long grass."
+      do:
+        - "Cover your skin while walking and tuck your trousers into your socks"
+        - "Use insect repellent on your clothes and skin; products containing DEET are best"
+        - "Stay on clear paths whenever possible"
+        - "Wear light-coloured clothing so ticks are easier to see and brush off"
+        - "Remove a tick with fine-tipped tweezers or a tick-removal tool: grasp it as close to the skin as possible, pull slowly upwards, then clean the bite"
+        - "Get an urgent GP appointment or call NHS 111 if, within 3 months of a bite, you feel unwell with flu-like symptoms or a round or oval rash appears"
+      dont:
+        - "Squeeze or crush the tick when you remove it"
+      source: nhs-lyme
+tags: [glens, moorland, drove-roads, loop]
+notes:
+  - >-
+    Season: none stated by the Trust (searched 2026-11-05); it warns of livestock unfenced in fields
+    from April to January.
+  - >-
+    Wild camping: the Trust states no camping rule; Scotland's access rights (the Scottish Outdoor
+    Access Code) apply (searched 2026-11-05).
+  - >-
+    Protected areas: none named by the Trust.
+  - >-
+    Tree line: none; the Trail's highest point, between Strathardle and Glenshee, is about 650 m
+    (English Wikipedia: 653 m).
+  - >-
+    Map line (2026-11-05): the Scotland Geofabrik extract (2026-10-31); each stage the shortest way
+    over the OSM relation to its end, every stage 100 % matched. The loop measures 104.9 km on the
+    map line against the stated 103 km (stages 103.6 km). Stage 5, Alyth to Blairgowrie by Bridge of
+    Cally, measures 26.5 km against the Trust's 24.1 km (10 % more), along the relation's ways over
+    the Hill of Alyth and Bamff; the record keeps the Trust's figure. Highest point 647 m (terrain
+    model, at km 35 between Strathardle and Glenshee), lowest 63 m in Blairgowrie. Water: OSM maps no
+    drinking water within 500 m of the route; the villages (Kirkmichael, Spittal of Glenshee,
+    Kirkton of Glenisla, Alyth, Bridge of Cally) are the places to refill. Beds: the longest stretch
+    without one in OSM, 31.8 km, runs from Spittal of Glenshee over to Kirkton of Glenisla.
+    Resupply: the longest stretch without a shop is 53.9 km, from Kirkmichael to Alyth.
+  - >-
+    Data check (2026-11-05, working rule 2): against English Wikipedia (Cateran Trail). Length 103
+    km agrees; the five stages from Blairgowrie by Kirkmichael, Spittal of Glenshee, Kirkton of
+    Glenisla and Alyth agree, and stage 1's 24.9 km agrees; "4 or 5 days" fits the Trust's five;
+    the Trust as the one who established, waymarked and maintains it agrees; the highest point 653 m
+    and lowest 59 m agree with our terrain model's 647 m and 63 m; Wikipedia's ascent of 2,470 m
+    against the terrain model's estimate of about 2,700 m (9 % apart; not a record figure); its
+    season "All year" has no counterpart from the Trust. No figure in the record differs by more
+    than 10 %.
+dataCheck:
+  # working rule 2: English Wikipedia
+  date: 2026-11-05
+  against: [wikipedia-en]
+  deviations: []
+sources:
+  - id: pkct
+    title: "Perth and Kinross Countryside Trust: Cateran Trail (length, days, the five stages with their distances, waymarking, livestock warning)"
+    url: https://www.pkct.org/cateran-trail
+    licence: © Perth and Kinross Countryside Trust (facts only)
+    retrieved: 2026-11-05
+  - id: nhs-lyme
+    title: "NHS: Lyme disease (avoiding tick bites, removing ticks, when to get help)"
+    url: https://www.nhs.uk/conditions/lyme-disease/
+    licence: © NHS, Open Government Licence (facts only)
+    retrieved: 2026-11-05
+  - id: wikipedia-en
+    title: "Wikipedia (en): Cateran Trail (length, stages, days, highest and lowest point, ascent; data check)"
+    url: https://en.wikipedia.org/wiki/Cateran_Trail
+    licence: CC BY-SA 4.0
+    retrieved: 2026-11-05
+    checkOnly: true  # only for the data check
+  - id: wikimedia
+    title: "Wikimedia: page views of the trail's Wikipedia articles in every language, by people, over twelve months (Wikidata sitelinks, pageview API)"
+    url: https://wikimedia.org/api/rest_v1/
+    licence: CC0 1.0 (pageview data); Wikidata CC0
+    retrieved: 2026-11-05
+    checkOnly: true  # not on the trail page: the page views only rank the home page's popular trails
+  - id: osm
+    title: "OpenStreetMap contributors: paths, water, shops and places to sleep along the trail (Geofabrik extracts), travel hubs"
+    url: https://www.openstreetmap.org/
+    licence: ODbL 1.0
+    retrieved: 2026-11-05
+  - id: copdem
+    title: "Copernicus DEM GLO-30 (30 m terrain model), tiles from AWS Open Data"
+    url: https://registry.opendata.aws/copernicus-dem/
+    licence: "Copernicus WorldDEM-30 licence, free; produced using Copernicus WorldDEM-30 © DLR e.V. 2010-2014 and © Airbus Defence and Space GmbH 2014-2018 provided under COPERNICUS by the European Union and ESA; all rights reserved"
+    retrieved: 2026-11-05
+  - id: worldcover
+    title: "ESA WorldCover 2021: 10 m land cover (via AWS Open Data)"
+    url: https://esa-worldcover.org/
+    licence: "CC BY 4.0; © ESA WorldCover project 2021 / Contains modified Copernicus Sentinel data (2021) processed by ESA WorldCover consortium"
+    retrieved: 2026-11-05
+  - id: era5
+    title: "Open-Meteo open data on AWS: ERA5-Land temperature and ERA5 precipitation, snow and wind, daily 1995–2024 (reanalysis)"
+    url: https://github.com/open-meteo/open-data
+    licence: CC BY 4.0 (Open-Meteo); contains modified Copernicus Climate Change Service information
+    retrieved: 2026-11-05
+  - id: osrm
+    title: "OSRM: road routes on OpenStreetMap data (router.project-osrm.org)"
+    url: https://project-osrm.org/
+    licence: Route data © OpenStreetMap contributors (ODbL)
+    retrieved: 2026-11-05

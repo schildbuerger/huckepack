@@ -1,0 +1,71 @@
+{
+  "climate-high.json": {
+    "retrieved": "2026-11-05T18:22:09+00:00",
+    "url": "https://openmeteo.s3.us-west-2.amazonaws.com/data/copernicus_era5_land+copernicus_era5?latitude=56.8&longitude=-3.5&elevation=650"
+  },
+  "climate-low.json": {
+    "retrieved": "2026-11-05T18:18:33+00:00",
+    "url": "https://openmeteo.s3.us-west-2.amazonaws.com/data/copernicus_era5_land+copernicus_era5?latitude=56.6&longitude=-3.3&elevation=60"
+  },
+  "elevation-glo30.json": {
+    "retrieved": "2026-11-05T18:14:36+00:00",
+    "url": "https://copernicus-dem-30m.s3.eu-central-1.amazonaws.com/Copernicus_DSM_COG_10_N56_00_W004_00_DEM/Copernicus_DSM_COG_10_N56_00_W004_00_DEM.tif"
+  },
+  "landcover.json": {
+    "retrieved": "2026-11-05T18:14:37+00:00",
+    "url": "https://esa-worldcover.s3.eu-central-1.amazonaws.com/v200/2021/map/ESA_WorldCover_10m_2021_v200_\u2026_Map.tif"
+  },
+  "osm-relation.json": {
+    "retrieved": "2026-10-31T21:23:06Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-1-main.json": {
+    "key": "a987545b935c",
+    "retrieved": "2026-10-31T21:23:06Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-2-main.json": {
+    "key": "29130df97ddc",
+    "retrieved": "2026-10-31T21:23:06Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-3-main.json": {
+    "key": "c1645e092a96",
+    "retrieved": "2026-10-31T21:23:06Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-4-main.json": {
+    "key": "746cf7adb0c2",
+    "retrieved": "2026-10-31T21:23:06Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-5-main.json": {
+    "key": "9c0a1cfc14d6",
+    "retrieved": "2026-10-31T21:23:06Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-water.json": {
+    "retrieved": "2026-10-31T21:23:06Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-way-tags.json": {
+    "retrieved": "2026-10-31T21:23:06Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osrm-access-dundee.json": {
+    "retrieved": "2026-11-05T18:22:10+00:00",
+    "url": "https://router.project-osrm.org/route/v1/driving/-2.96961,56.45766;-3.3409,56.59036?overview=false"
+  },
+  "osrm-access-edinburgh-airport-edi.json": {
+    "retrieved": "2026-11-05T18:22:10+00:00",
+    "url": "https://router.project-osrm.org/route/v1/driving/-3.35939,55.95026;-3.3409,56.59036?overview=false"
+  },
+  "osrm-access-perth.json": {
+    "retrieved": "2026-11-05T18:22:10+00:00",
+    "url": "https://router.project-osrm.org/route/v1/driving/-3.43957,56.39211;-3.3409,56.59036?overview=false"
+  },
+  "wikimedia.json": {
+    "retrieved": "2026-11-05T18:22:11+00:00",
+    "url": "Q5051894 2025-11..2026-10"
+  }
+}
