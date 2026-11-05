@@ -993,6 +993,29 @@ export const SKYLINES: Record<string, Skyline> = {
       { d: hills([[480, G], [620, 254], [800, 232], [940, 260], [1040, G]]), c: "#7f9a54" },
     ],
   },
+  "st-cuthberts-way": {
+    view: "From the Eildon Hills' three summits over Melrose Abbey's ruin and the Cheviot foothills to Lindisfarne Castle on its rock above the tidal sands",
+    ridge: "#7f9a54",
+    ground: "#8fa868",
+    shapes: [
+      // the Cheviot Hills far behind, rounded and heather-brown
+      { d: hills([[380, G], [520, 252], [700, 232], [880, 240], [1040, 230], [1180, 252], [1280, G]]), c: "#a59a8a" },
+      // the Eildon Hills: three rounded summits, the middle one highest
+      { d: range([[0, G], [60, 268], [130, 218], [170, 196], [200, 206], [240, 186], [276, 170], [312, 186], [350, 204], [384, 194], [420, 206], [470, 238], [540, 270], [600, G]]), c: "#7a8a5a" },
+      // Melrose Abbey: the roofless nave with its tall pointed east window, and a gable
+      { d: "M560,296V262L572,244L584,262V296Z M596,296V258H660V296Z M666,296V236L682,214L698,236V296Z", c: "#a9785e" },
+      { d: "M674,290V250L682,240L690,250V290Z", c: "#d8c8b0" },
+      // the foothills and fields of the Borders
+      { d: hills([[480, G], [640, 282], [860, 272], [1060, 282], [1200, G]]), c: "#8fa868" },
+      // the tidal sands and the sea, the causeway's posts across them
+      { d: water(1100, 1600, 286), c: "#c9c08e" },
+      { d: water(1300, 1600, 280), c: SEA },
+      { d: "M1150,290V280H1153V290Z M1190,290V281H1193V290Z M1230,290V282H1233V290Z M1270,290V283H1273V290Z", c: "#5f4a36" },
+      // Lindisfarne Castle on Beblowe Crag
+      { d: range([[1360, G], [1400, 270], [1440, 250], [1470, 246], [1510, 256], [1560, 278], [1600, G]]), c: "#6f6a5e" },
+      { d: castle(1470, 248, 0.9), c: "#c8b89a" },
+    ],
+  },
   "peddars-way-and-norfolk-coast-path": {
     view: "North Norfolk's big sky: Thetford Forest's pines in the Brecks by the Roman road, Cley's brick windmill over the saltmarsh, sand dunes, and Happisburgh's striped lighthouse above the low cliffs by the North Sea",
     ridge: "#93a86a",

@@ -1,0 +1,251 @@
+name: St Cuthbert's Way
+added: 2026-11-05
+aliases: [Saint Cuthbert's Way, St. Cuthbert's Way]
+website: https://www.stcuthbertsway.info/
+wikidata: Q7592918
+managedBy:
+  # "maintained by Scottish Borders Council, Northumberland National Park Authority and
+  # Northumberland County Council" (the site's FAQs); one of Scotland's Great Trails
+  - name: Scottish Borders Council, Northumberland National Park Authority and Northumberland County Council
+    url: https://www.stcuthbertsway.info/
+officialGpx:
+  # the site's "Download GPX file" (Melrose to Kirk Yetholm, the Scottish part), on Walking the
+  # Routes (checked 2026-11-05)
+  url: https://www.stcuthbertsway.info/planning-your-walk/walking-the-routes/
+  by: St Cuthbert's Way
+  source: scw-walking
+trailType: point-to-point
+continents: [Europe]
+countries: [GB]
+regions: [Scotland, England]
+protectedAreas:
+  - Northumberland National Park
+  - Northumberland Coast National Landscape
+termini:
+  # "starts at the gates of the magnificent 12th century Melrose Abbey" (the GPX's start) and ends
+  # on Lindisfarne (Holy Island), across the tidal sands
+  start:
+    name: Melrose Abbey
+    lat: 55.59861
+    lon: -2.71896
+  end:
+    name: Holy Island (Lindisfarne)
+    lat: 55.67102
+    lon: -1.80101
+  source: scw-melrose
+established:
+  # "St. Cuthbert's Way was officially opened in summer 1996"
+  year: 1996
+  source: scw-faqs
+waymarking:
+  text: Signed and waymarked throughout in both directions with the St Cuthbert's Cross symbol
+  source: scw-walking
+length:
+  # "St. Cuthbert's Way offers 62.5 miles (100km) of fantastic, varied walking"
+  - km: 100
+    source: scw-route
+days:
+  # "Most people walk the long distance route over four or five days"
+  min: 4
+  max: 5
+  source: scw-faqs
+stages:
+  # the site's five sections, west to east, with its distances and times. Sections 1–2 follow the
+  # site's GPX (Melrose to Kirk Yetholm, the Scottish part; it only guides the OSM matcher, kept
+  # local), cut at each section's `end`; sections 3–5 follow the OSM relation of the English part
+  # (4515120, Kirk Yetholm to Lindisfarne), cut at their ends
+  source: scw-route
+  list:
+    - { number: "1", kind: main, from: Melrose, to: Harestanes, km: 24, minutes: 360, maxMinutes: 480, track: "https://www.stcuthbertsway.info/wp-content/uploads/gpx/StCuthberts_Way.gpx", end: { name: Harestanes, lat: 55.52834, lon: -2.58219 } }
+    - { number: "2", kind: main, from: Harestanes, to: Kirk Yetholm, km: 28, minutes: 360, maxMinutes: 420, track: "https://www.stcuthbertsway.info/wp-content/uploads/gpx/StCuthberts_Way.gpx", end: { name: Kirk Yetholm, lat: 55.54674, lon: -2.27457 } }
+    - { number: "3", kind: main, from: Kirk Yetholm, to: Wooler, km: 19.2, minutes: 360, maxMinutes: 420, relation: 4515120, end: { name: Wooler, lat: 55.54585, lon: -2.01476 } }
+    - { number: "4", kind: main, from: Wooler, to: Fenwick, km: 19, minutes: 240, relation: 4515120, end: { name: Fenwick, lat: 55.6542, lon: -1.89637 } }
+    - { number: "5", kind: main, from: Fenwick, to: Holy Island, km: 10, minutes: 240, relation: 4515120, end: { name: Holy Island, lat: 55.67102, lon: -1.80101 } }
+route:
+  # built by `python -m pipeline.all st-cuthberts-way`: OSM ways matched to the GPX's pieces
+  # (sections 1–2) and to the OSM relation's pieces (3–5)
+  source: osm
+  publishable: true
+difficulty:
+  estimated:
+    sac: T2
+    basis: >-
+      Riverside paths, Roman roads, farm tracks and lanes, with "more strenuous stretches on the
+      Cheviot Hills between Morebattle and Wooler" (to Wideopen Hill, 400 m) and the climb over the
+      Eildon Hills; the last section crosses tidal sands to Holy Island, only in the safe crossing
+      times. Mountain hiking on clear paths in the hills (T2).
+    source: scw-walking
+sleeping:
+  # "Overnight accommodation is available at numerous places on or near St. Cuthbert's Way":
+  # hotels, inns, B&Bs, listed by village; camping in England on established campsites
+  types: [hotel, guesthouse, campsite]
+  source: scw-stay
+wildCamping:
+  status: restricted
+  rule: >-
+    Camping in England is restricted to established campsites, and is strictly prohibited on Holy
+    Island; in Scotland (Melrose to the border) the Scottish Outdoor Access Code applies.
+  source: scw-stay
+access:
+  # Tweedbank (the Borders Railway, near Melrose), Berwick-upon-Tweed (near the end), and the
+  # airports the site names, Edinburgh and Newcastle. Coordinates from OSM; distances by
+  # pipeline/access.py
+  - kind: station
+    name: Tweedbank
+    lat: 55.60586
+    lon: -2.759
+    source: osm
+  - kind: station
+    name: Berwick-upon-Tweed
+    lat: 55.77406
+    lon: -2.0108
+    source: osm
+  - kind: airport
+    name: Edinburgh Airport (EDI)
+    lat: 55.95026
+    lon: -3.35939
+    source: osm
+  - kind: airport
+    name: Newcastle International Airport (NCL)
+    lat: 55.03842
+    lon: -1.6964
+    source: osm
+animals:
+  # Cattle (the Countryside Code, HSE) and ticks (NHS). Levels ours
+  list:
+    - kind: cattle
+      name: "Cattle"
+      level: moderate
+      basis: "The Way crosses farmland and the Cheviot foothills where cattle graze; the Health and Safety Executive names cows with calves and walkers with dogs as the two most common factors in incidents between cattle and the public."
+      do:
+        - "Give livestock plenty of space: their behaviour can be unpredictable, especially when they are with their young"
+        - "Keep your dog on a lead around livestock"
+        - "Let your dog off the lead if you feel threatened by livestock: releasing it makes it easier for you both to reach safety"
+        - "Follow the farmer's directions when animals are being moved or gathered"
+      dont:
+        - "Risk getting hurt protecting your dog"
+        - "Feed livestock"
+      source: countryside-code
+    - kind: tick
+      name: "Ticks (Lyme disease)"
+      level: low
+      basis: "Ticks that can carry Lyme disease live all over the UK, in woods and long grass."
+      do:
+        - "Cover your skin while walking and tuck your trousers into your socks"
+        - "Use insect repellent on your clothes and skin; products containing DEET are best"
+        - "Stay on clear paths whenever possible"
+        - "Wear light-coloured clothing so ticks are easier to see and brush off"
+        - "Remove a tick with fine-tipped tweezers or a tick-removal tool: grasp it as close to the skin as possible, pull slowly upwards, then clean the bite"
+        - "Get an urgent GP appointment or call NHS 111 if, within 3 months of a bite, you feel unwell with flu-like symptoms or a round or oval rash appears"
+      dont:
+        - "Squeeze or crush the tick when you remove it"
+      source: nhs-lyme
+tags: [pilgrimage, abbeys, roman-road, cheviot-hills, tidal-crossing, border]
+notes:
+  - >-
+    Season: none stated on the St Cuthbert's Way site (route, planning, FAQs, itineraries pages;
+    searched 2026-11-05). The Holy Island crossing is cut off twice a day by the tide: the causeway
+    and the Pilgrims' Path only in the safe crossing times, allowing 2 hours.
+  - >-
+    Tree line: none; the route's highest point is Wideopen Hill, 400 m (the site).
+  - >-
+    Map line (2026-11-05): the Scotland, England and Northumberland Geofabrik extracts; every stage
+    at least 95 % matched (section 1, 99 %: OSM's path over the Eildon Hills runs up to 100 m from
+    the GPX's line). The main route measures 100.7 km on the map line against the stated 100 km
+    (sections 100.2 km). Sections more than 10 % off the map line: 1, Melrose to Harestanes (21.3
+    km against 24 km; the site's own GPX measures 21.5 km, so the stated figure likely counts the
+    way into the Harestanes visitor centre, "only just off this section"); 3, Kirk Yetholm to Wooler
+    (21.1 km against 19.2 km, along OSM's relation into Wooler's centre); 5, Fenwick to Holy Island
+    (8.9 km against 10 km, to the village by the causeway's line rather than over the Pilgrims'
+    Path). The record keeps the site's figures. Highest point 364 m (terrain model, at km 45 on
+    Wideopen Hill, which the site gives as 400 m), lowest 0 m on the sands. Water: OSM maps only one
+    drinking-water point and one spring along the Way; the villages (St Boswells, Morebattle, Kirk
+    Yetholm, Wooler, Fenwick) are the places to refill. Beds: the longest stretch without one in
+    OSM, 38.5 km (km 12–51), runs from St Boswells over the hills to Kirk Yetholm, past Jedburgh
+    (off the route) and Morebattle, whose inn the site lists.
+  - >-
+    Data check (2026-11-05, working rule 2): against English Wikipedia (St Cuthbert's Way). Length
+    100 km (62 mi) agrees with the site's 62.5 miles (100 km); Melrose (Abbey) to Lindisfarne (Holy
+    Island) agrees; opened in summer 1996 agrees; the steering group (Scottish Borders Council,
+    Northumberland County Council, Northumberland National Park) agrees; wild camping "permitted (if
+    carried out responsibly) in Scotland, but not in England" agrees with the site's camping rule;
+    Wideopen Hill as the highest point agrees. Section distances, times and days: Wikipedia gives
+    none. No figure differs by more than 10 %.
+dataCheck:
+  # working rule 2: English Wikipedia
+  date: 2026-11-05
+  against: [wikipedia-en]
+  deviations: []
+sources:
+  - id: countryside-code
+    title: "Natural England and Natural Resources Wales: The Countryside Code, advice for countryside visitors (updated 26 May 2023)"
+    url: https://www.gov.uk/government/publications/the-countryside-code/the-countryside-code-advice-for-countryside-visitors
+    licence: Open Government Licence v3.0
+    retrieved: 2026-11-05
+  - id: nhs-lyme
+    title: "NHS: Lyme disease (avoiding tick bites, removing ticks, when to get help)"
+    url: https://www.nhs.uk/conditions/lyme-disease/
+    licence: © NHS, Open Government Licence (facts only)
+    retrieved: 2026-11-05
+  - id: scw-route
+    title: "St Cuthbert's Way: Long Distance Route and its five section pages (length, sections, distances and times)"
+    url: https://www.stcuthbertsway.info/long-distance-route/
+    licence: © St Cuthbert's Way steering group (facts only)
+    retrieved: 2026-11-05
+  - id: scw-melrose
+    title: "St Cuthbert's Way: Melrose to Harestanes (the start at Melrose Abbey)"
+    url: https://www.stcuthbertsway.info/long-distance-route/melrose-to-harestanes/
+    licence: © St Cuthbert's Way steering group (facts only)
+    retrieved: 2026-11-05
+  - id: scw-faqs
+    title: "St Cuthbert's Way: FAQs (days, opened 1996, who manages it)"
+    url: https://www.stcuthbertsway.info/faqs/
+    licence: © St Cuthbert's Way steering group (facts only)
+    retrieved: 2026-11-05
+  - id: scw-walking
+    title: "St Cuthbert's Way: Walking the Routes (waymarking, terrain, the GPX download)"
+    url: https://www.stcuthbertsway.info/planning-your-walk/walking-the-routes/
+    licence: © St Cuthbert's Way steering group (facts only; the GPX linked, not stored)
+    retrieved: 2026-11-05
+  - id: scw-stay
+    title: "St Cuthbert's Way: Accommodation (places to stay along the route, camping rules in England)"
+    url: https://www.stcuthbertsway.info/placegroups/accommodation/
+    licence: © St Cuthbert's Way steering group (facts only)
+    retrieved: 2026-11-05
+  - id: wikipedia-en
+    title: "Wikipedia (en): St Cuthbert's Way (length, route, opening, wild camping; data check)"
+    url: https://en.wikipedia.org/wiki/St_Cuthbert%27s_Way
+    licence: CC BY-SA 4.0
+    retrieved: 2026-11-05
+    checkOnly: true  # only for the data check
+  - id: wikimedia
+    title: "Wikimedia: page views of the trail's Wikipedia articles in every language, by people, over twelve months (Wikidata sitelinks, pageview API)"
+    url: https://wikimedia.org/api/rest_v1/
+    licence: CC0 1.0 (pageview data); Wikidata CC0
+    retrieved: 2026-11-05
+    checkOnly: true  # not on the trail page: the page views only rank the home page's popular trails
+  - id: osm
+    title: "OpenStreetMap contributors: paths, water, shops and places to sleep along the trail (Geofabrik extracts), travel hubs"
+    url: https://www.openstreetmap.org/
+    licence: ODbL 1.0
+    retrieved: 2026-11-05
+  - id: copdem
+    title: "Copernicus DEM GLO-30 (30 m terrain model), tiles from AWS Open Data"
+    url: https://registry.opendata.aws/copernicus-dem/
+    licence: "Copernicus WorldDEM-30 licence, free; produced using Copernicus WorldDEM-30 © DLR e.V. 2010-2014 and © Airbus Defence and Space GmbH 2014-2018 provided under COPERNICUS by the European Union and ESA; all rights reserved"
+    retrieved: 2026-11-05
+  - id: worldcover
+    title: "ESA WorldCover 2021: 10 m land cover (via AWS Open Data)"
+    url: https://esa-worldcover.org/
+    licence: "CC BY 4.0; © ESA WorldCover project 2021 / Contains modified Copernicus Sentinel data (2021) processed by ESA WorldCover consortium"
+    retrieved: 2026-11-05
+  - id: era5
+    title: "Open-Meteo open data on AWS: ERA5-Land temperature and ERA5 precipitation, snow and wind, daily 1995–2024 (reanalysis)"
+    url: https://github.com/open-meteo/open-data
+    licence: CC BY 4.0 (Open-Meteo); contains modified Copernicus Climate Change Service information
+    retrieved: 2026-11-05
+  - id: osrm
+    title: "OSRM: road routes on OpenStreetMap data (router.project-osrm.org)"
+    url: https://project-osrm.org/
+    licence: Route data © OpenStreetMap contributors (ODbL)
+    retrieved: 2026-11-05

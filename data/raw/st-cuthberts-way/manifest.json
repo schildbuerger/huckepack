@@ -1,0 +1,79 @@
+{
+  "climate-high.json": {
+    "retrieved": "2026-11-05T17:52:08+00:00",
+    "url": "https://openmeteo.s3.us-west-2.amazonaws.com/data/copernicus_era5_land+copernicus_era5?latitude=55.5&longitude=-2.3&elevation=360"
+  },
+  "climate-low.json": {
+    "retrieved": "2026-11-05T17:48:35+00:00",
+    "url": "https://openmeteo.s3.us-west-2.amazonaws.com/data/copernicus_era5_land+copernicus_era5?latitude=55.7&longitude=-1.9&elevation=0"
+  },
+  "elevation-glo30.json": {
+    "retrieved": "2026-11-05T17:19:30+00:00",
+    "url": "https://copernicus-dem-30m.s3.eu-central-1.amazonaws.com/Copernicus_DSM_COG_10_N55_00_W002_00_DEM/Copernicus_DSM_COG_10_N55_00_W002_00_DEM.tif https://copernicus-dem-30m.s3.eu-central-1.amazonaws.com/Copernicus_DSM_COG_10_N55_00_W003_00_DEM/Copernicus_DSM_COG_10_N55_00_W003_00_DEM.tif"
+  },
+  "landcover.json": {
+    "retrieved": "2026-11-05T17:42:02+00:00",
+    "url": "https://esa-worldcover.s3.eu-central-1.amazonaws.com/v200/2021/map/ESA_WorldCover_10m_2021_v200_\u2026_Map.tif"
+  },
+  "osm-relation-4515120.json": {
+    "retrieved": "2026-10-31T21:23:06Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-1-main.json": {
+    "key": "2e2403be7910",
+    "retrieved": "2026-10-31T21:23:06Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-2-main.json": {
+    "key": "05e1df0d8d72",
+    "retrieved": "2026-10-31T21:23:06Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-3-main.json": {
+    "key": "12ea9ef4ee2b",
+    "retrieved": "2026-10-31T21:23:06Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-4-main.json": {
+    "key": "93fad5729a63",
+    "retrieved": "2026-10-31T21:23:06Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-5-main.json": {
+    "key": "fc852e67fe0d",
+    "retrieved": "2026-10-31T21:23:06Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-water.json": {
+    "retrieved": "2026-10-31T21:23:06Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-way-tags.json": {
+    "retrieved": "2026-10-31T21:23:06Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osrm-access-berwick-upon-tweed.json": {
+    "retrieved": "2026-11-05T17:52:08+00:00",
+    "url": "https://router.project-osrm.org/route/v1/driving/-2.0108,55.77406;-2.71896,55.59861?overview=false"
+  },
+  "osrm-access-edinburgh-airport-edi.json": {
+    "retrieved": "2026-11-05T17:52:09+00:00",
+    "url": "https://router.project-osrm.org/route/v1/driving/-3.35939,55.95026;-2.71896,55.59861?overview=false"
+  },
+  "osrm-access-newcastle-international-airport-ncl.json": {
+    "retrieved": "2026-11-05T17:52:09+00:00",
+    "url": "https://router.project-osrm.org/route/v1/driving/-1.6964,55.03842;-2.71896,55.59861?overview=false"
+  },
+  "osrm-access-tweedbank.json": {
+    "retrieved": "2026-11-05T17:52:08+00:00",
+    "url": "https://router.project-osrm.org/route/v1/driving/-2.759,55.60586;-2.71896,55.59861?overview=false"
+  },
+  "stage-1-main.gpx": {
+    "retrieved": "2026-11-05T17:03:26+00:00",
+    "url": "https://www.stcuthbertsway.info/wp-content/uploads/gpx/StCuthberts_Way.gpx"
+  },
+  "wikimedia.json": {
+    "retrieved": "2026-11-05T17:52:09+00:00",
+    "url": "Q7592918 2025-11..2026-10"
+  }
+}
