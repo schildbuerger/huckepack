@@ -993,6 +993,22 @@ export const SKYLINES: Record<string, Skyline> = {
       { d: hills([[480, G], [620, 254], [800, 232], [940, 260], [1040, G]]), c: "#7f9a54" },
     ],
   },
+  "three-lochs-way": {
+    view: "From the Highland Boundary Fault over Loch Lomond and Loch Long to the Arrochar Alps, The Cobbler's three rocky prongs among them",
+    ridge: "#7f9a54",
+    ground: "#8fa868",
+    shapes: [
+      // the Arrochar Alps, far and blue-grey
+      { d: range([[620, G], [720, 236], [820, 196], [900, 176], [960, 190], [1040, 170], [1120, 186], [1220, 210], [1340, 240], [1440, G]]), c: "#8e98a4" },
+      // The Cobbler (Ben Arthur): a ridge with three rocky prongs
+      { d: range([[360, G], [440, 250], [520, 210], [560, 186], [580, 166], [592, 176], [612, 158], [626, 150], [640, 162], [666, 156], [680, 170], [720, 190], [800, 226], [900, 262], [980, G]]), c: "#6f6a64" },
+      // the lochs, bright between the hills
+      { d: water(0, 1600, 282), c: LAKE },
+      // the forested slopes above the shore
+      { d: hills([[0, G], [120, 270], [300, 256], [460, 272], [560, G]]), c: "#3f5a34" },
+      { d: hills([[1100, G], [1240, 266], [1420, 258], [1600, 270], [1600, G]]), c: "#4f6a3a" },
+    ],
+  },
   "arran-coastal-way": {
     view: "The Isle of Arran from the sea: Goat Fell and the jagged granite ridges of the north, Lochranza Castle on its spit in the bay, and Holy Isle's dome off Lamlash",
     ridge: "#7f9a54",

@@ -1,0 +1,66 @@
+{
+  "climate-high.json": {
+    "retrieved": "2026-11-05T18:59:52+00:00",
+    "url": "https://openmeteo.s3.us-west-2.amazonaws.com/data/copernicus_era5_land+copernicus_era5?latitude=56.0&longitude=-4.7&elevation=270"
+  },
+  "climate-low.json": {
+    "retrieved": "2026-11-05T18:53:35+00:00",
+    "url": "https://openmeteo.s3.us-west-2.amazonaws.com/data/copernicus_era5_land+copernicus_era5?latitude=56.0&longitude=-4.7&elevation=0"
+  },
+  "elevation-glo30.json": {
+    "retrieved": "2026-11-05T18:47:04+00:00",
+    "url": "https://copernicus-dem-30m.s3.eu-central-1.amazonaws.com/Copernicus_DSM_COG_10_N55_00_W005_00_DEM/Copernicus_DSM_COG_10_N55_00_W005_00_DEM.tif https://copernicus-dem-30m.s3.eu-central-1.amazonaws.com/Copernicus_DSM_COG_10_N56_00_W005_00_DEM/Copernicus_DSM_COG_10_N56_00_W005_00_DEM.tif"
+  },
+  "landcover.json": {
+    "retrieved": "2026-11-05T18:47:05+00:00",
+    "url": "https://esa-worldcover.s3.eu-central-1.amazonaws.com/v200/2021/map/ESA_WorldCover_10m_2021_v200_\u2026_Map.tif"
+  },
+  "osm-relation.json": {
+    "retrieved": "2026-10-31T21:23:06Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-1-main.json": {
+    "key": "250a451e27c1",
+    "retrieved": "2026-10-31T21:23:06Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-2-main.json": {
+    "key": "9eade45ec8e7",
+    "retrieved": "2026-10-31T21:23:06Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-3-main.json": {
+    "key": "175380a6a2e6",
+    "retrieved": "2026-10-31T21:23:06Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-4-main.json": {
+    "key": "b659b863ee38",
+    "retrieved": "2026-10-31T21:23:06Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-water.json": {
+    "retrieved": "2026-10-31T21:23:06Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-way-tags.json": {
+    "retrieved": "2026-10-31T21:23:06Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osrm-access-arrochar-and-tarbet.json": {
+    "retrieved": "2026-11-05T18:59:52+00:00",
+    "url": "https://router.project-osrm.org/route/v1/driving/-4.72312,56.2033;-4.58328,56.00236?overview=false"
+  },
+  "osrm-access-balloch.json": {
+    "retrieved": "2026-11-05T18:59:52+00:00",
+    "url": "https://router.project-osrm.org/route/v1/driving/-4.58328,56.00236;-4.58328,56.00236?overview=false"
+  },
+  "osrm-access-glasgow-airport-gla.json": {
+    "retrieved": "2026-11-05T18:59:53+00:00",
+    "url": "https://router.project-osrm.org/route/v1/driving/-4.4357,55.87056;-4.58328,56.00236?overview=false"
+  },
+  "wikimedia.json": {
+    "retrieved": "2026-11-05T18:59:53+00:00",
+    "url": "Q60745168 2025-11..2026-10"
+  }
+}

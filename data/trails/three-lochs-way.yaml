@@ -1,0 +1,216 @@
+name: Three Lochs Way
+added: 2026-11-05
+website: https://www.threelochsway.co.uk/
+wikidata: Q60745168
+managedBy:
+  # the Helensburgh & District Access Trust (its official website); one of Scotland's Great Trails
+  - name: Helensburgh & District Access Trust
+    url: https://www.threelochsway.co.uk/
+officialGpx:
+  none: the stage pages show an interactive map, with no GPX to download (checked 2026-11-05)
+  source: tlw-stages
+trailType: point-to-point
+continents: [Europe]
+countries: [GB]
+regions: [Scotland]
+termini:
+  # stage 1 starts at Balloch railway station by Loch Lomond, stage 4 ends at the Inveruglas car park
+  start:
+    name: Balloch
+    lat: 56.00236
+    lon: -4.58328
+  end:
+    name: Inveruglas
+    lat: 56.24851
+    lon: -4.71277
+  source: tlw-stages
+waymarking:
+  text: Three Lochs Way signs, finger posts and waymarkers (Helensburgh and District Access Trust's sign posts through the military training area)
+  source: tlw-stages
+length:
+  # "the route is 55 kilometres (34 miles)"
+  - km: 55
+    source: tlw
+days:
+  # "can be walked in 3 to 4 days"
+  min: 3
+  max: 4
+  source: tlw
+stages:
+  # the site's four stages with their distance (their ascents are in the notes). No GPX: each stage is the shortest way
+  # over the OSM relation "Three Lochs Way" (1756632) to its end (`branched`)
+  source: tlw-stages
+  list:
+    - { number: "1", kind: main, from: Balloch, to: Helensburgh (The Hill House), km: 14.5, end: { name: Helensburgh (The Hill House), lat: 56.01244, lon: -4.73077 } }
+    - { number: "2", kind: main, from: Helensburgh (The Hill House), to: Garelochhead, km: 10.5, end: { name: Garelochhead, lat: 56.08023, lon: -4.82536 } }
+    - { number: "3", kind: main, from: Garelochhead, to: Arrochar and Tarbet, km: 20.5, end: { name: Arrochar and Tarbet, lat: 56.2033, lon: -4.72312 } }
+    - { number: "4", kind: main, from: Arrochar and Tarbet, to: Inveruglas, km: 9.5, end: { name: Inveruglas, lat: 56.24851, lon: -4.71277 } }
+route:
+  # built by `python -m pipeline.all three-lochs-way`: OSM ways matched to the shortest way over the
+  # relation between the stages' ends
+  source: osm
+  publishable: true
+  relation: 1756632
+  branched: true
+difficulty:
+  estimated:
+    sac: T2
+    basis: >-
+      Minor roads, a historic right of way, forest roads, footpaths and "informal trods" over the
+      Killoeter and Ben Bouie upland, remote forestry roads and landrover tracks through a military
+      training area, and good paths to the Sloy hydro road; "rarely rising above 250 metres". Mountain
+      hiking on tracks and paths, partly faint (T2).
+    source: tlw
+sleeping:
+  # "There are a number of hotels, B&Bs, hostels and other lodgings"
+  types: [hotel, guesthouse, hostel]
+  source: tlw-faq
+wildCamping:
+  status: restricted
+  rule: >-
+    Camping is possible at a few suitable sites away from the main path and from houses and gardens,
+    leaving nothing behind and lighting no fires; never on the Defence Estate between Garelochhead
+    and Glen Douglas, an active military training area.
+  source: tlw-faq
+access:
+  # Balloch at the start and Arrochar and Tarbet near the end (the West Highland Line), and
+  # Glasgow Airport. Coordinates from OSM; distances by pipeline/access.py
+  - kind: station
+    name: Balloch
+    lat: 56.00236
+    lon: -4.58328
+    source: osm
+  - kind: station
+    name: Arrochar and Tarbet
+    lat: 56.2033
+    lon: -4.72312
+    source: osm
+  - kind: airport
+    name: Glasgow Airport (GLA)
+    lat: 55.87056
+    lon: -4.4357
+    source: osm
+animals:
+  # cattle (HSE with the Scottish Outdoor Access Code) and ticks (NHS). Levels ours
+  list:
+    - kind: cattle
+      name: "Cattle"
+      level: moderate
+      basis: "The Way crosses areas with livestock, most notably the moorland north of Helensburgh and Glen Fruin (the site's FAQ); the Health and Safety Executive names cows with calves and walkers with dogs as the two most common factors in incidents between cattle and the public in Scotland."
+      do:
+        - "Be aware of potentially dangerous farm animals, and keep a safe distance when passing through an area with livestock"
+        - "Consider using an alternative route around a field with cattle"
+      dont:
+        - "Take dogs into fields where there are young animals"
+      source: hse-cattle-scotland
+    - kind: tick
+      name: "Ticks (Lyme disease)"
+      level: low
+      basis: "Ticks that can carry Lyme disease live all over the UK, in woods and long grass."
+      do:
+        - "Cover your skin while walking and tuck your trousers into your socks"
+        - "Use insect repellent on your clothes and skin; products containing DEET are best"
+        - "Stay on clear paths whenever possible"
+        - "Wear light-coloured clothing so ticks are easier to see and brush off"
+        - "Remove a tick with fine-tipped tweezers or a tick-removal tool: grasp it as close to the skin as possible, pull slowly upwards, then clean the bite"
+        - "Get an urgent GP appointment or call NHS 111 if, within 3 months of a bite, you feel unwell with flu-like symptoms or a round or oval rash appears"
+      dont:
+        - "Squeeze or crush the tick when you remove it"
+      source: nhs-lyme
+tags: [lochs, highland-boundary-fault, glens, forest-tracks]
+notes:
+  - >-
+    Season: none stated by the site (searched 2026-11-05).
+  - >-
+    Ascent: the site gives "Total ascent is approximately 1,500 metres" and each stage's ascent
+    (about 400, 200, 490 and 411 m) but no descents, so the page estimates both from the terrain
+    model (about 1,400 m up, 1,430 m down).
+  - >-
+    Protected areas: the site says the Way links communities "fringing Scotland's first national
+    park" (Loch Lomond and The Trossachs) but names no protected area the route crosses.
+  - >-
+    Tree line: none; the route rarely rises above 250 m (the site).
+  - >-
+    Map line (2026-11-05): the Scotland Geofabrik extract (2026-10-31); each stage the shortest way
+    over the OSM relation to its end, every stage 100 % matched. The route measures 53.2 km on the
+    map line against the stated 55 km. Stages 2 and 3 split differently: the site's stage 2 ends at
+    "the MOD Training Area at Garelochhead" and stage 3 begins at the southern end of the Yankee Road
+    (grid reference 261899), while our split is at Garelochhead station, so stage 2 measures 13.1 km
+    against 10.5 km and stage 3 17.3 km against 20.5 km; together 30.4 km against 31 km. The record
+    keeps the site's figures. Ascent: stated about 1,500 m, the terrain model about 1,440 m. Highest
+    point 271 m (terrain model, at km 6 on the upland above Balloch; "rarely rising above 250
+    metres"), lowest 4 m. Water and beds: the longest stretch without either in OSM, 27.1 km, runs
+    from Helensburgh through Glen Fruin and the training area towards Arrochar.
+  - >-
+    Data check (2026-11-05, working rule 2): against English Wikipedia (Three Lochs Way). Length 55
+    km (34 mi) agrees; Balloch to Inveruglas agrees; the Helensburgh & District Access Trust, which
+    began promoting the route in 2010, agrees; one of Scotland's Great Trails agrees. Wikipedia gives
+    no stage distances, days or ascent. No figure differs by more than 10 %.
+dataCheck:
+  # working rule 2: English Wikipedia
+  date: 2026-11-05
+  against: [wikipedia-en]
+  deviations: []
+sources:
+  - id: tlw
+    title: "Three Lochs Way: official website, home page (length, days, total ascent, height)"
+    url: https://www.threelochsway.co.uk/
+    licence: © Helensburgh & District Access Trust (facts only)
+    retrieved: 2026-11-05
+  - id: tlw-stages
+    title: "Three Lochs Way: the four stage pages, Balloch to Helensburgh … Arrochar to Inveruglas (distance, ascent, directions, signs)"
+    url: https://www.threelochsway.co.uk/balloch-to-helensburgh
+    licence: © Helensburgh & District Access Trust (facts only)
+    retrieved: 2026-11-05
+  - id: tlw-faq
+    title: "Three Lochs Way: FAQ (camping, lodging, dogs and livestock)"
+    url: https://www.threelochsway.co.uk/faq
+    licence: © Helensburgh & District Access Trust (facts only)
+    retrieved: 2026-11-05
+  - id: hse-cattle-scotland
+    title: "Health and Safety Executive: Cattle and public access in Scotland (information sheet AIS17S, with the Scottish Outdoor Access Code's advice)"
+    url: https://www.outdooraccess-scotland.scot/sites/default/files/2018-09/HSE%20Information%20sheet%20No%2017S%28rev1%29%20-%20Cattle%20and%20public%20access%20in%20Scotland%20-%20Advice.pdf
+    licence: © Crown copyright, Open Government Licence (facts only)
+    retrieved: 2026-11-05
+  - id: nhs-lyme
+    title: "NHS: Lyme disease (avoiding tick bites, removing ticks, when to get help)"
+    url: https://www.nhs.uk/conditions/lyme-disease/
+    licence: © NHS, Open Government Licence (facts only)
+    retrieved: 2026-11-05
+  - id: wikipedia-en
+    title: "Wikipedia (en): Three Lochs Way (length, ends, the Trust; data check)"
+    url: https://en.wikipedia.org/wiki/Three_Lochs_Way
+    licence: CC BY-SA 4.0
+    retrieved: 2026-11-05
+    checkOnly: true  # only for the data check
+  - id: wikimedia
+    title: "Wikimedia: page views of the trail's Wikipedia articles in every language, by people, over twelve months (Wikidata sitelinks, pageview API)"
+    url: https://wikimedia.org/api/rest_v1/
+    licence: CC0 1.0 (pageview data); Wikidata CC0
+    retrieved: 2026-11-05
+    checkOnly: true  # not on the trail page: the page views only rank the home page's popular trails
+  - id: osm
+    title: "OpenStreetMap contributors: paths, water, shops and places to sleep along the trail (Geofabrik extracts), travel hubs"
+    url: https://www.openstreetmap.org/
+    licence: ODbL 1.0
+    retrieved: 2026-11-05
+  - id: copdem
+    title: "Copernicus DEM GLO-30 (30 m terrain model), tiles from AWS Open Data"
+    url: https://registry.opendata.aws/copernicus-dem/
+    licence: "Copernicus WorldDEM-30 licence, free; produced using Copernicus WorldDEM-30 © DLR e.V. 2010-2014 and © Airbus Defence and Space GmbH 2014-2018 provided under COPERNICUS by the European Union and ESA; all rights reserved"
+    retrieved: 2026-11-05
+  - id: worldcover
+    title: "ESA WorldCover 2021: 10 m land cover (via AWS Open Data)"
+    url: https://esa-worldcover.org/
+    licence: "CC BY 4.0; © ESA WorldCover project 2021 / Contains modified Copernicus Sentinel data (2021) processed by ESA WorldCover consortium"
+    retrieved: 2026-11-05
+  - id: era5
+    title: "Open-Meteo open data on AWS: ERA5-Land temperature and ERA5 precipitation, snow and wind, daily 1995–2024 (reanalysis)"
+    url: https://github.com/open-meteo/open-data
+    licence: CC BY 4.0 (Open-Meteo); contains modified Copernicus Climate Change Service information
+    retrieved: 2026-11-05
+  - id: osrm
+    title: "OSRM: road routes on OpenStreetMap data (router.project-osrm.org)"
+    url: https://project-osrm.org/
+    licence: Route data © OpenStreetMap contributors (ODbL)
+    retrieved: 2026-11-05

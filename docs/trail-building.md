@@ -73,6 +73,10 @@ null.
   from the full OSM match (`pipeline.all`'s report) under the `huckepack-measured` source. Say
   why in the stages' comment and the data check. Keep the operator's times, climbs and heights
   where they are usable.
+- **Ascent without descent** (2026-11-05, the Three Lochs Way): an `ascent` total or stage
+  `ascentM` values without their descents leave the page with no Ascent key figure and no Effort
+  rating, since it needs the pair; put such figures in a note ("Ascent: …") and let the page
+  estimate both from the terrain model.
 - **Broken figures:** a stage figure is broken when the same value repeats across different
   stages, the pace is outside about 1–6 km/h, or it disagrees with the operator's own track by
   more than 25 %. Note it and use the next source in order.
