@@ -1,0 +1,244 @@
+name: South Downs Way
+added: 2026-11-05
+aliases: [South Downs Way National Trail, SDW]
+website: https://www.nationaltrail.co.uk/en_GB/trails/south-downs-way/
+wikidata: Q1382726
+managedBy:
+  # a National Trail (Natural England), through the South Downs National Park (National Trails, GOV.UK)
+  - name: Natural England and the South Downs National Park Authority (National Trails)
+    url: https://www.nationaltrail.co.uk/en_GB/trails/south-downs-way/
+officialGpx:
+  # National Trails' GPX for the whole trail, its "Download Walking GPX" link (checked 2026-11-05)
+  url: https://www.nationaltrail.co.uk/en_GB/trails/south-downs-way/trail-information/
+  by: National Trails
+  source: nt-info
+trailType: point-to-point
+continents: [Europe]
+countries: [GB]
+regions: [Hampshire, West Sussex, East Sussex]
+protectedAreas:
+  - South Downs National Park
+termini:
+  # the ends of National Trails' GPX: Winchester's city centre by the River Itchen, and the trail's
+  # eastern end at the foot of Beachy Head in Eastbourne
+  start:
+    name: Winchester
+    lat: 51.06091
+    lon: -1.30796
+  end:
+    name: Eastbourne
+    lat: 50.75188
+    lon: 0.26718
+  source: nt-info
+waymarking:
+  text: The National Trail acorn, or the trail's name, on gates and signposts
+  source: govuk
+length:
+  # "The 100 miles (160 Km) long South Downs Way National Trail"
+  - km: 160
+    source: nt
+ascent:
+  # "There's about 12,600ft (3800m) of climb as well as the 100 miles (160km) of distance"
+  - m: 3800
+    source: nt-info
+days:
+  # "Most people take 8 or 9 days to walk the whole 100 miles (160km)"
+  min: 8
+  max: 9
+  source: nt-info
+stages:
+  # the National Trail's sections (Route Description, the same on GOV.UK), west to east; from
+  # Alfriston the walkers' route by the Seven Sisters (16.9 km) is the main stage, the bridleway by
+  # Jevington (13.7 km) is in a note. One official GPX (its first track the walking route from
+  # Winchester to Eastbourne), cut at each section's `end`, placed on the GPX; it only guides the
+  # OSM matcher (kept local)
+  source: nt
+  list:
+    - { number: "1", kind: main, from: Winchester, to: Beacon Hill, km: 17.7, track: "https://nationaltrails.s3.eu-west-2.amazonaws.com/uploads/South_Downs_Way_Elev.gpx", end: { name: Beacon Hill, lat: 51.00112, lon: -1.1486 } }
+    - { number: "2", kind: main, from: Beacon Hill, to: Old Winchester Hill, km: 7.2, track: "https://nationaltrails.s3.eu-west-2.amazonaws.com/uploads/South_Downs_Way_Elev.gpx", end: { name: Old Winchester Hill, lat: 50.97984, lon: -1.08621 } }
+    - { number: "3", kind: main, from: Old Winchester Hill, to: Buriton, km: 19.3, track: "https://nationaltrails.s3.eu-west-2.amazonaws.com/uploads/South_Downs_Way_Elev.gpx", end: { name: Buriton, lat: 50.97052, lon: -0.95043 } }
+    - { number: "4", kind: main, from: Buriton, to: Cocking Hill, km: 16.1, track: "https://nationaltrails.s3.eu-west-2.amazonaws.com/uploads/South_Downs_Way_Elev.gpx", end: { name: Cocking Hill, lat: 50.9428, lon: -0.75541 } }
+    - { number: "5", kind: main, from: Cocking Hill, to: Amberley, km: 19.3, track: "https://nationaltrails.s3.eu-west-2.amazonaws.com/uploads/South_Downs_Way_Elev.gpx", end: { name: Amberley, lat: 50.90036, lon: -0.53964 } }
+    - { number: "6", kind: main, from: Amberley, to: River Adur, km: 20.9, track: "https://nationaltrails.s3.eu-west-2.amazonaws.com/uploads/South_Downs_Way_Elev.gpx", end: { name: River Adur, lat: 50.87175, lon: -0.3062 } }
+    - { number: "7", kind: main, from: River Adur, to: River Ouse, km: 33.8, track: "https://nationaltrails.s3.eu-west-2.amazonaws.com/uploads/South_Downs_Way_Elev.gpx", end: { name: River Ouse, lat: 50.83139, lon: 0.03043 } }
+    - { number: "8", kind: main, from: River Ouse, to: Alfriston, km: 11.3, track: "https://nationaltrails.s3.eu-west-2.amazonaws.com/uploads/South_Downs_Way_Elev.gpx", end: { name: Alfriston, lat: 50.80803, lon: 0.15656 } }
+    - { number: "9", kind: main, from: Alfriston, to: Eastbourne, km: 16.9, track: "https://nationaltrails.s3.eu-west-2.amazonaws.com/uploads/South_Downs_Way_Elev.gpx", end: { name: Eastbourne, lat: 50.75188, lon: 0.26718 } }
+route:
+  # built by `python -m pipeline.all south-downs-way`: OSM ways matched to the official GPX's pieces
+  source: osm
+  publishable: true
+difficulty:
+  estimated:
+    sac: T1
+    basis: >-
+      Chalk tracks, droveways and field paths along the South Downs ridge, open to walkers, cyclists
+      and horse riders; GOV.UK names several steep sections (Cuckmere Haven to Beachy Head, Amberley
+      Mount, either side of Chanctonbury Ring, Butser Hill, Beacon Hill near Exton), but no rocky
+      or exposed ground. Hiking on good paths (T1).
+    source: govuk
+season:
+  # "The trail is open all year"; busy at weekends and in school holidays from May to September
+  months: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
+  text: All year; busy at weekends and in school holidays from May to September
+  source: govuk
+sleeping:
+  # National Trails: "plenty of campsites along the Trail"; B&Bs, pubs, hostels and hotels mostly in
+  # the villages below the ridge (OSM along the route, pipeline/along.py)
+  types: [campsite, hostel, guesthouse, hotel]
+  source: nt-info
+wildCamping:
+  status: restricted
+  rule: >-
+    There are normally no rights for National Trail users to wild camp in England: ask the
+    landowner's permission, or use the campsites along the trail.
+  source: nt-info
+access:
+  # Winchester station near the start; Southampton the nearest airport, Heathrow the nearest
+  # intercontinental one. Coordinates from OSM; distances by pipeline/access.py
+  - kind: station
+    name: Winchester
+    lat: 51.06722
+    lon: -1.31974
+    source: osm
+  - kind: airport
+    name: Southampton Airport (SOU)
+    lat: 50.95192
+    lon: -1.3561
+    source: osm
+  - kind: airport
+    name: London Heathrow Airport (LHR)
+    lat: 51.46774
+    lon: -0.45878
+    source: osm
+animals:
+  # Cattle (the Countryside Code, HSE) and ticks (NHS). Levels ours
+  list:
+    - kind: cattle
+      name: "Cattle"
+      level: moderate
+      basis: "The Way crosses downland and fields where cattle graze; the Health and Safety Executive names cows with calves and walkers with dogs as the two most common factors in incidents between cattle and the public."
+      do:
+        - "Give livestock plenty of space: their behaviour can be unpredictable, especially when they are with their young"
+        - "Keep your dog on a lead around livestock"
+        - "Let your dog off the lead if you feel threatened by livestock: releasing it makes it easier for you both to reach safety"
+        - "Follow the farmer's directions when animals are being moved or gathered"
+      dont:
+        - "Risk getting hurt protecting your dog"
+        - "Feed livestock"
+      source: countryside-code
+    - kind: tick
+      name: "Ticks (Lyme disease)"
+      level: low
+      basis: "Ticks that can carry Lyme disease live all over the UK, in woods and long grass; the NHS names grassy and wooded areas in southern England and the Scottish Highlands as high-risk areas."
+      do:
+        - "Cover your skin while walking and tuck your trousers into your socks"
+        - "Use insect repellent on your clothes and skin; products containing DEET are best"
+        - "Stay on clear paths whenever possible"
+        - "Wear light-coloured clothing so ticks are easier to see and brush off"
+        - "Remove a tick with fine-tipped tweezers or a tick-removal tool: grasp it as close to the skin as possible, pull slowly upwards, then clean the bite"
+        - "Get an urgent GP appointment or call NHS 111 if, within 3 months of a bite, you feel unwell with flu-like symptoms or a round or oval rash appears"
+      dont:
+        - "Squeeze or crush the tick when you remove it"
+      source: nhs-lyme
+tags: [national-trail, chalk-downs, national-park, sea-cliffs, hill-forts]
+notes:
+  - >-
+    Stages: the National Trail's nine sections by the Seven Sisters add up to 162.5 km (stated 160
+    km, 100 miles). From Alfriston a second route runs by Jevington to Eastbourne (13.7 km), the
+    one horse riders and cyclists must take; walkers may take either. After Beacon Hill the trail
+    splits near Exton into a walkers' path and a bridleway. Neither alternative is in the record.
+    The sections give no climbs; the trail's total climb is National Trails' "about 3800m".
+  - >-
+    Route (pipeline, 2026-11-05, Geofabrik extracts): National Trails' GPX (its first track, the
+    walking route by the Seven Sisters; the file also holds riders' loops at Winchester and Exton,
+    a walkers' loop and the Jevington route), cut at each section's end. Every section matches at
+    least 96 % except section 6, Amberley to the River Adur (94 %), most likely where the trail
+    crosses the A24 near Washington (GOV.UK: "the safer route to the north uses a bridge"). The map
+    line is 161.0 km against the sections' 162.5 km.
+  - >-
+    Sections 3 and 4 split at Buriton: 16.9 and 17.4 km on the map line against the stated 19.3 and
+    16.1 km (section 3 more than 10 % apart); together they agree (34.3 against 35.4 km), so
+    National Trails counts Buriton's end of the section further on, likely down in the village,
+    which lies just off the trail.
+  - >-
+    Ascent: National Trails' "about 3800m" against the terrain model's ≈ 4,050 m (6 %) and English
+    Wikipedia's 4,150 m. Highest point on the map line 245 m at km 35.6 (Butser Hill); GOV.UK gives
+    Butser Hill as the highest point at 270 m, its summit just off the trail.
+  - >-
+    Water: (2026-11-05, within 500 m) OSM has 28 drinking water points near the route (National
+    Trails' map has water taps along the trail too); the longest stretch without one is 21.1 km
+    (km 37–58, Buriton to Cocking Hill). Most pubs, cafés and shops are off the trail, in the
+    villages below the ridge (National Trails).
+  - >-
+    Data check (2026-11-05). Second sources: Natural England's GOV.UK page (100 miles, 160 km;
+    around 8 or 9 days; open all year; the same sections and distances; Butser Hill the highest
+    point at 270 m) and English Wikipedia (160 km; about 4,150 m of ascent). Length, days, season
+    and sections agree; the ascent is 9 % above the stated 3,800 m, within 10 %.
+dataCheck:
+  # working rule 2: GOV.UK (Natural England), English Wikipedia
+  date: 2026-11-05
+  against: [govuk, wikipedia-en]
+  deviations: []
+sources:
+  - id: countryside-code
+    title: "Natural England and Natural Resources Wales: The Countryside Code, advice for countryside visitors (updated 26 May 2023)"
+    url: https://www.gov.uk/government/publications/the-countryside-code/the-countryside-code-advice-for-countryside-visitors
+    licence: Open Government Licence v3.0
+    retrieved: 2026-11-05
+  - id: nhs-lyme
+    title: "NHS: Lyme disease (avoiding tick bites, removing ticks, when to get help)"
+    url: https://www.nhs.uk/conditions/lyme-disease/
+    licence: © NHS, Open Government Licence (facts only)
+    retrieved: 2026-11-05
+  - id: nt
+    title: "National Trails: South Downs Way, home page and Route Description (length, the sections with their distances)"
+    url: https://www.nationaltrail.co.uk/en_GB/trails/south-downs-way/route/
+    licence: © National Trails (facts only)
+    retrieved: 2026-11-05
+  - id: nt-info
+    title: "National Trails: South Downs Way trail information & map (days, climb, camping, the Download Walking GPX link)"
+    url: https://www.nationaltrail.co.uk/en_GB/trails/south-downs-way/trail-information/
+    licence: All rights reserved (facts only; the GPX linked, not stored)
+    retrieved: 2026-11-05
+  - id: govuk
+    title: "Natural England (GOV.UK): South Downs Way National Trail (season, waymarking, days, sections, steep sections, highest point)"
+    url: https://www.gov.uk/government/publications/visit-a-national-trail-in-england/south-downs-way-national-trail
+    licence: Open Government Licence v3.0
+    retrieved: 2026-11-05
+  - id: wikipedia-en
+    title: "Wikipedia (en): South Downs Way (length, ascent; data check)"
+    url: https://en.wikipedia.org/wiki/South_Downs_Way
+    licence: CC BY-SA 4.0
+    retrieved: 2026-11-05
+    checkOnly: true  # only for the data check
+  - id: wikimedia
+    title: "Wikimedia: page views of the trail's Wikipedia articles in every language, by people, over twelve months (Wikidata sitelinks, pageview API)"
+    url: https://wikimedia.org/api/rest_v1/
+    licence: CC0 1.0 (pageview data); Wikidata CC0
+    retrieved: 2026-11-05
+    checkOnly: true  # not on the trail page: the page views only rank the home page's popular trails
+  - id: osm
+    title: "OpenStreetMap contributors: paths, water, shops and places to sleep along the trail (Geofabrik extracts), travel hubs"
+    url: https://www.openstreetmap.org/
+    licence: ODbL 1.0
+    retrieved: 2026-11-05
+  - id: copdem
+    title: "Copernicus DEM GLO-30 (30 m terrain model), tiles from AWS Open Data"
+    url: https://registry.opendata.aws/copernicus-dem/
+    licence: "Copernicus WorldDEM-30 licence, free; produced using Copernicus WorldDEM-30 © DLR e.V. 2010-2014 and © Airbus Defence and Space GmbH 2014-2018 provided under COPERNICUS by the European Union and ESA; all rights reserved"
+    retrieved: 2026-11-05
+  - id: worldcover
+    title: "ESA WorldCover 2021: 10 m land cover (via AWS Open Data)"
+    url: https://esa-worldcover.org/
+    licence: "CC BY 4.0; © ESA WorldCover project 2021 / Contains modified Copernicus Sentinel data (2021) processed by ESA WorldCover consortium"
+    retrieved: 2026-11-05
+  - id: era5
+    title: "Open-Meteo open data on AWS: ERA5-Land temperature and ERA5 precipitation, snow and wind, daily 1995–2024 (reanalysis)"
+    url: https://github.com/open-meteo/open-data
+    licence: CC BY 4.0 (Open-Meteo); contains modified Copernicus Climate Change Service information
+    retrieved: 2026-11-05
+  - id: osrm
+    title: "OSRM: road routes on OpenStreetMap data (router.project-osrm.org)"
+    url: https://project-osrm.org/
+    licence: Route data © OpenStreetMap contributors (ODbL)
+    retrieved: 2026-11-05

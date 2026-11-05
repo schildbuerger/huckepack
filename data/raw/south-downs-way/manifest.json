@@ -1,0 +1,82 @@
+{
+  "climate-high.json": {
+    "retrieved": "2026-11-05T07:52:36+00:00",
+    "url": "https://openmeteo.s3.us-west-2.amazonaws.com/data/copernicus_era5_land+copernicus_era5?latitude=51.0&longitude=-1.0&elevation=240"
+  },
+  "climate-low.json": {
+    "retrieved": "2026-11-05T07:49:07+00:00",
+    "url": "https://openmeteo.s3.us-west-2.amazonaws.com/data/copernicus_era5_land+copernicus_era5?latitude=50.9&longitude=-0.6&elevation=0"
+  },
+  "elevation-glo30.json": {
+    "retrieved": "2026-11-05T07:45:16+00:00",
+    "url": "https://copernicus-dem-30m.s3.eu-central-1.amazonaws.com/Copernicus_DSM_COG_10_N50_00_E000_00_DEM/Copernicus_DSM_COG_10_N50_00_E000_00_DEM.tif https://copernicus-dem-30m.s3.eu-central-1.amazonaws.com/Copernicus_DSM_COG_10_N50_00_W001_00_DEM/Copernicus_DSM_COG_10_N50_00_W001_00_DEM.tif https://copernicus-dem-30m.s3.eu-central-1.amazonaws.com/Copernicus_DSM_COG_10_N50_00_W002_00_DEM/Copernicus_DSM_COG_10_N50_00_W002_00_DEM.tif https://copernicus-dem-30m.s3.eu-central-1.amazonaws.com/Copernicus_DSM_COG_10_N51_00_W002_00_DEM/Copernicus_DSM_COG_10_N51_00_W002_00_DEM.tif"
+  },
+  "landcover.json": {
+    "retrieved": "2026-11-05T07:45:18+00:00",
+    "url": "https://esa-worldcover.s3.eu-central-1.amazonaws.com/v200/2021/map/ESA_WorldCover_10m_2021_v200_\u2026_Map.tif"
+  },
+  "osm-stage-1-main.json": {
+    "retrieved": "2026-11-03T21:24:23Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-2-main.json": {
+    "retrieved": "2026-11-03T21:24:23Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-3-main.json": {
+    "retrieved": "2026-11-03T21:24:23Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-4-main.json": {
+    "retrieved": "2026-11-03T21:24:23Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-5-main.json": {
+    "retrieved": "2026-11-03T21:24:23Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-6-main.json": {
+    "retrieved": "2026-11-03T21:24:23Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-7-main.json": {
+    "retrieved": "2026-11-03T21:24:23Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-8-main.json": {
+    "retrieved": "2026-11-03T21:24:23Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-9-main.json": {
+    "retrieved": "2026-11-03T21:24:23Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-water.json": {
+    "retrieved": "2026-11-03T21:24:23Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-way-tags.json": {
+    "retrieved": "2026-11-03T21:24:23Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osrm-access-london-heathrow-airport-lhr.json": {
+    "retrieved": "2026-11-05T07:53:23+00:00",
+    "url": "https://router.project-osrm.org/route/v1/driving/-0.45878,51.46774;-1.30796,51.06091?overview=false"
+  },
+  "osrm-access-southampton-airport-sou.json": {
+    "retrieved": "2026-11-05T07:52:37+00:00",
+    "url": "https://router.project-osrm.org/route/v1/driving/-1.3561,50.95192;-1.30796,51.06091?overview=false"
+  },
+  "osrm-access-winchester.json": {
+    "retrieved": "2026-11-05T07:52:36+00:00",
+    "url": "https://router.project-osrm.org/route/v1/driving/-1.31974,51.06722;-1.30796,51.06091?overview=false"
+  },
+  "stage-1-main.gpx": {
+    "retrieved": "2026-11-05T07:43:33+00:00",
+    "url": "https://nationaltrails.s3.eu-west-2.amazonaws.com/uploads/South_Downs_Way_Elev.gpx"
+  },
+  "wikimedia.json": {
+    "retrieved": "2026-11-05T07:52:38+00:00",
+    "url": "Q1382726 2025-11..2026-10"
+  }
+}

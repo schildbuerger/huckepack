@@ -954,6 +954,20 @@ export const SKYLINES: Record<string, Skyline> = {
       { d: range([[0, G], [0, 284], [300, 278], [600, 284], [720, 292], [780, G]]), c: "#e0c99a" },
     ],
   },
+  "south-downs-way": {
+    view: "The bare, rolling chalk downs of the South Downs, ending in the white cliffs of the Seven Sisters over the sea",
+    ridge: MEADOW,
+    ground: "#8fb05a",
+    shapes: [
+      // the far downs, smooth and treeless
+      { d: hills([[0, G], [200, 252], [450, 238], [700, 248], [930, 234], [1100, 252], [1220, G]]), c: "#a7b98a" },
+      { d: water(980, 1600, 264), c: SEA },
+      // the Seven Sisters: a white chalk wall over the sea, its top rising and dipping seven times
+      { d: range([[1060, G], [1072, 238], [1110, 230], [1150, 240], [1190, 228], [1230, 238], [1270, 226], [1310, 236], [1350, 224], [1390, 234], [1430, 222], [1470, 232], [1510, 220], [1600, 214], [1600, G]]), c: "#ece8dc" },
+      // the near down in front
+      { d: hills([[0, G], [140, 266], [380, 250], [620, 268], [780, G]]), c: "#7f9a54" },
+    ],
+  },
   "south-west-coast-path": {
     view: "St Michael's Mount in Mount's Bay: the tidal island with its castle above the woods, the Cornish cliffs of the far shore, and the beach at Marazion in front",
     ridge: "#4f6a3a",
