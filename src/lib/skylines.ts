@@ -1989,6 +1989,48 @@ export const SKYLINES: Record<string, Skyline> = {
       { d: "M128,248a24,13 0 1 1 48,0a24,13 0 1 1 -48,0Z M152,232a22,12 0 1 1 44,0a22,12 0 1 1 -44,0Z M110,238a16,9 0 1 1 32,0a16,9 0 1 1 -32,0Z", c: "#2f4a2c" },
     ],
   },
+  "dobson-trail": {
+    view: "Albert County's hills from the Dobson Trail: the Caledonia Highlands rolling away blue towards Fundy, the Kent Hills ridge with its wind turbines, Hayward Pinnacle's rocky knob over the mixed woods, and a beaver pond with its lodge in front",
+    ridge: "#3f5a34",
+    ground: "#6f6a4a",
+    shapes: [
+      // the Caledonia Highlands, far and blue, rolling towards the bay
+      { d: hills([[0, G], [160, 236], [420, 222], [700, 238], [980, 216], [1260, 230], [1600, 220], [1600, G]]), c: "#a9bcc4" },
+      // the Kent Hills' wind turbines: slim masts on the crest (their feet behind the ridge), three blades each
+      {
+        d: ([[430, 206, 0], [560, 200, 40], [690, 197, 80], [820, 198, 20], [950, 204, 60]] as const)
+          .map(([x, y, a]) => {
+            const h = 44;
+            const hub = y - h;
+            const blades = [a, a + 120, a + 240]
+              .map((deg) => {
+                const r = (deg * Math.PI) / 180;
+                const tx = x + 26 * Math.cos(r);
+                const ty = hub + 26 * Math.sin(r);
+                const nx = 1.6 * Math.sin(r);
+                const ny = -1.6 * Math.cos(r);
+                return `M${(x + nx).toFixed(1)},${(hub + ny).toFixed(1)}L${tx.toFixed(1)},${ty.toFixed(1)}L${(x - nx).toFixed(1)},${(hub - ny).toFixed(1)}Z`;
+              })
+              .join(" ");
+            return `M${x - 1.6},${y + 40}L${x - 1},${hub}H${x + 1}L${x + 1.6},${y + 40}Z ${blades}`;
+          })
+          .join(" "),
+        c: "#a3aeae",
+      },
+      // the Kent Hills ridge in front of their feet, long and level, blue-green with distance
+      { d: hills([[180, G], [300, 216], [520, 196], [760, 192], [980, 200], [1140, 222], [1280, G]]), c: "#8ea592" },
+      // Hayward Pinnacle: a steep wooded knob with a bare rock face, over the nearer hills
+      { d: range([[1040, G], [1120, 262], [1200, 214], [1250, 184], [1290, 176], [1330, 196], [1400, 236], [1500, 262], [1600, 270], [1600, G]]), c: "#55704a" },
+      { d: "M1262,240L1272,196L1290,180L1304,190L1298,232L1284,262Z", c: "#9a958a" },
+      // the near mixed woods, darker spruce
+      { d: hills([[0, G], [120, 268], [240, 262], [360, 276], [560, 268], [760, 284], [900, G]]), c: FIR },
+    ],
+    front: [
+      // a beaver pond in the woods, with its lodge of sticks
+      { d: water(40, 420, 300), c: "#5f8ea6" },
+      { d: "M250,304C258,286 284,280 300,284C314,288 322,296 326,304Z", c: "#6b5440" },
+    ],
+  },
   "superior-hiking-trail": {
     view: "Minnesota's North Shore: the Sawtooth ridges above Lake Superior, birch and spruce on the rocky slopes, a waterfall dropping towards the lake and the lake's long horizon",
     ridge: "#3f5a34",

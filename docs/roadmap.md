@@ -139,6 +139,8 @@ And the **Juan de Fuca Marine Trail** (British Columbia: BC Parks' 47 km along t
 And the **Tahoe Rim Trail** (California and Nevada: the Tahoe Rim Trail Association's 165-mile loop round Lake Tahoe from Tahoe City, in its eight segments trailhead to trailhead, over granite ridges, the Desolation Wilderness and the Carson Range up to Relay Peak at 3,151 m; over the OSM relation cut at the trailheads).
 
 And the **Sunshine Coast Trail** (British Columbia: the qathet Parks and Wilderness Society's 180 km from Sarah Point in Desolation Sound to Saltery Bay, in its three sections (12–13 days) between free huts, Canada's longest hut-to-hut trail, over Tin Hat Mountain and Mount Troubridge; over the trail's OSM relation with `via` points on the society's line; 2026-11-06).
+
+And the **Dobson Trail** (New Brunswick: the Fundy Hiking Trails Association's sister trail to the Fundy Footpath, about 58 km through Albert County's forests and ridges from Riverview's Pine Glen Road to the northern boundary of Fundy National Park, 3–4 days between established campsites, no stages by design; over the OSM relation; 2026-11-06).
 | # | Trail | Region | Length (approx.) | Why |
 |---|---|---|---|---|
 | 1 | Pacific Crest Trail | USA | 4,265 km | Most-hiked long trail; public US agency data; completion lists |
