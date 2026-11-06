@@ -143,6 +143,20 @@ And the **Sunshine Coast Trail** (British Columbia: the qathet Parks and Wildern
 And the **Rockwall Trail** (British Columbia: Parks Canada's 54.1 km along the Rockwall in Kootenay National Park from the Paint Pots to Floe Lake, without stages by design (3–5 days between five backcountry campgrounds on a permit), over three alpine passes up to Numa Pass at 2,336 m below the limestone cliff and its hanging glaciers; over the OSM relation; 2026-11-06).
 
 And the **Dobson Trail** (New Brunswick: the Fundy Hiking Trails Association's sister trail to the Fundy Footpath, about 58 km through Albert County's forests and ridges from Riverview's Pine Glen Road to the northern boundary of Fundy National Park, 3–4 days between established campsites, no stages by design; over the OSM relation; 2026-11-06).
+
+And the **Timberline Trail** (Oregon: the Forest Service's 41.5-mile (66.8 km) loop round Mount Hood from Timberline Lodge, Trail #600 with the Pacific Crest Trail on the south-west side, 3–4 days without stages at or near the tree line, through the Mount Hood Wilderness with unbridged glacial river fords, July to October; over the OSM relation as one segment; 2026-11-06).
+| # | Trail | Region | Length (approx.) | Why |
+|---|---|---|---|---|
+| 1 | Pacific Crest Trail | USA | 4,265 km | Most-hiked long trail; public US agency data; completion lists |
+| 2 | Appalachian Trail | USA | 3,500 km | Most-hiked long trail; NPS data |
+| 3 | Te Araroa | New Zealand | 3,000 km | Popular abroad; DOC open data |
+| 4 | ~~Camino de Santiago (Camino Francés)~~ (added) | Spain | 780 km | Most-walked long route; pilgrim office statistics |
+| 5 | ~~GR 20~~ (added) | Corsica, France | 180 km | Best-known European thru-hike |
+| 6 | Continental Divide Trail | USA | 5,000 km | Completes the Triple Crown |
+| 7 | ~~Kungsleden~~ (added) | Sweden | 440 km | Well-known Nordic trail |
+| 8 | ~~West Highland Way~~ (added) | Scotland | 154 km | Popular, well documented |
+| 9 | Lycian Way (set aside 2026-11-02, #121) | Turkey | 760 km | Well-known Mediterranean route; no open stage data, and OSM's route measures 441 km |
+| 10 | Israel National Trail | Israel | 1,000 km | Popular desert-to-sea route |
 | # | Trail | Region | Length (approx.) | Why |
 |---|---|---|---|---|
 | 1 | Pacific Crest Trail | USA | 4,265 km | Most-hiked long trail; public US agency data; completion lists |

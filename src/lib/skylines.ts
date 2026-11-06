@@ -2054,6 +2054,28 @@ export const SKYLINES: Record<string, Skyline> = {
       { d: "M250,304C258,286 284,280 300,284C314,288 322,296 326,304Z", c: "#6b5440" },
     ],
   },
+  "timberline-trail": {
+    view: "Mount Hood from the meadows at the tree line: the lone, steep cone of the volcano with its glaciers, pale Cascade foothills far behind, dark fir forest in the canyons and alpine meadows in front",
+    ridge: "#4a5e3e",
+    ground: "#a8b878",
+    shapes: [
+      // the Cascade foothills far behind, pale with distance
+      { d: hills([[0, G], [120, 262], [300, 252], [460, 264], [620, G]]), c: "#b4c0cc" },
+      { d: hills([[1000, G], [1160, 258], [1340, 248], [1500, 256], [1600, 262], [1600, G]]), c: "#b4c0cc" },
+      // Mount Hood: a steep, slightly lopsided cone, its glaciers reaching far down
+      { d: range(hood), c: "#a3adba" },
+      { d: snowOf(hood, 188), c: SNOW },
+      // the glaciers' tongues reaching down the canyons below the snowfields
+      { d: "M652,188L700,188L690,212L676,226L664,206Z M738,188L792,188L780,234L764,246L752,214Z M836,188L900,188L892,220L876,240L858,212Z M944,188L994,188L982,208L964,222Z", c: SNOW },
+      // the canyons' forested ridges either side
+      { d: range([[0, G], [90, 262], [200, 246], [300, 256], [420, 272], [540, G]]), c: "#5e7062" },
+      { d: range([[1080, G], [1200, 270], [1320, 252], [1430, 244], [1520, 254], [1600, 262], [1600, G]]), c: "#5e7062" },
+      // fir forest along the canyons
+      { d: hills([[0, G], [160, 280], [380, 288], [600, 284], [900, 292], [1180, 280], [1600, 286], [1600, G]]), c: FIR },
+      // the alpine meadows at the tree line
+      { d: hills([[420, G], [600, 296], [820, 290], [1020, 296], [1220, G]]), c: "#8faa5e" },
+    ],
+  },
   "superior-hiking-trail": {
     view: "Minnesota's North Shore: the Sawtooth ridges above Lake Superior, birch and spruce on the rocky slopes, a waterfall dropping towards the lake and the lake's long horizon",
     ridge: "#3f5a34",
