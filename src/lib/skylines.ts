@@ -2325,6 +2325,55 @@ export const SKYLINES: Record<string, Skyline> = {
       },
     ],
   },
+  "arizona-trail": {
+    view: "Arizona from the Coconino Plateau: the San Francisco Peaks far off with late snow, the Mogollon Rim's level escarpment topped by ponderosa pines, the Grand Canyon's layered buttes in red and cream below the long North Rim, and saguaros on the Sonoran desert floor in front",
+    ridge: "#7a6a3c",
+    ground: "#c9a878",
+    shapes: [
+      // the San Francisco Peaks: a broad old volcano, pale with distance, snow lingering on top
+      { d: range([[0, G], [60, 236], [140, 186], [210, 140], [260, 108], [296, 86], [320, 76], [344, 82], [366, 70], [390, 80], [430, 104], [490, 140], [560, 176], [650, 212], [740, 246], [820, G]]), c: "#b7b4c8" },
+      { d: snowOf([[0, G], [60, 236], [140, 186], [210, 140], [260, 108], [296, 86], [320, 76], [344, 82], [366, 70], [390, 80], [430, 104], [490, 140], [560, 176], [650, 212], [740, 246], [820, G]], 104), c: SNOW },
+      // the North Rim across the canyon: one long level line, rosy with distance
+      { d: hills([[640, G], [720, 138], [880, 124], [1060, 120], [1240, 126], [1420, 118], [1600, 126], [1600, G]]), c: "#dcbfae" },
+      // a far butte in the canyon, lighter with distance, its cream cap
+      { d: range([[1220, G], [1280, 232], [1320, 196], [1348, 166], [1364, 148], [1376, 140], [1448, 138], [1460, 150], [1484, 176], [1520, 212], [1560, 250], [1600, G]]), c: "#c98a6e" },
+      { d: "M1372,143L1376,140H1448L1452,145Z", c: "#ead8ba" },
+      { d: "M1352,166L1360,156H1468L1476,166Z", c: "#a85e48" },
+      // the Mogollon Rim: a long level escarpment on the left, pale cliffs under its forest
+      { d: range([[0, G], [50, 250], [100, 206], [140, 186], [380, 180], [560, 184], [640, 194], [700, 230], [770, G]]), c: "#b8946c" },
+      // ponderosa pines along the rim's edge
+      {
+        d: ([150, 174, 198, 224, 248, 274, 300, 326, 352, 378, 404, 430, 456, 482, 508, 534, 560, 586, 610] as const)
+          .map((x, i) => { const h = 20 + ((i * 7) % 11); const y = x < 380 ? 182 : 186; return `M${x - 8},${y}L${x},${y - h}L${x + 8},${y}Z`; })
+          .join(" "),
+        c: "#4d6340",
+      },
+      { d: hills([[0, G], [60, 230], [180, 212], [360, 220], [520, 212], [660, 226], [790, G]]), c: "#4d6340" },
+      // a near butte in the canyon: the Redwall's red, the Coconino sandstone's pale band and the
+      // Kaibab limestone's cream cap
+      { d: range([[780, G], [850, 262], [910, 222], [950, 190], [976, 164], [992, 144], [1004, 132], [1094, 130], [1106, 144], [1122, 164], [1150, 190], [1194, 222], [1252, 262], [1320, G]]), c: "#b4553c" },
+      { d: "M992,144L1004,132H1094L1106,144Z", c: "#ead8ba" },
+      { d: "M970,172L978,162H1124L1132,172Z", c: "#e3c49a" },
+      { d: "M935,202L950,190H1150L1166,202Z", c: "#9a4632" },
+      // the desert floor, low and sandy
+      { d: hills([[0, G], [120, 262], [360, 256], [640, 266], [900, 258], [1180, 266], [1440, 256], [1600, 264], [1600, G]]), c: "#d0b183" },
+    ],
+    front: [
+      // saguaros: tall trunks with upturned arms
+      {
+        d: ([[120, 176, 1], [214, 214, 0], [1300, 170, 2], [1430, 206, 1], [1520, 190, 2]] as const)
+          .map(([x, top, arms]) => {
+            const trunk = `M${x - 6},306V${top + 6}A6,6 0 0 1 ${x + 6},${top + 6}V306Z`;
+            const a = top + 50;
+            const right = `M${x + 5},${a}H${x + 18}V${a - 32}A5,5 0 0 0 ${x + 8},${a - 32}V${a - 9}H${x + 5}Z`;
+            const left = `M${x - 5},${a + 14}H${x - 18}V${a - 20}A5,5 0 0 1 ${x - 8},${a - 20}V${a + 5}H${x - 5}Z`;
+            return trunk + (arms >= 1 ? right : "") + (arms === 2 ? left : "");
+          })
+          .join(" "),
+        c: "#5c7a46",
+      },
+    ],
+  },
   "superior-hiking-trail": {
     view: "Minnesota's North Shore: the Sawtooth ridges above Lake Superior, birch and spruce on the rocky slopes, a waterfall dropping towards the lake and the lake's long horizon",
     ridge: "#3f5a34",

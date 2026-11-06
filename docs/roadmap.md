@@ -162,6 +162,8 @@ And the **Benton MacKaye Trail** (Georgia, Tennessee and North Carolina: the Ben
 
 And the **Coastal Hiking Trail** (Ontario: Parks Canada's 58.7 km in Pukaskwa National Park along Lake Superior's wild shore from Hattie Cove to the North Swallow River, one way with a boat shuttle or out and back, part of the Trans Canada Trail, without stages by design between twelve backcountry campsites booked on the permit (5–7 days by Superior Country), marked only by rock cairns, over granite headlands, cobble beaches and the White River Suspension Bridge, May 15 to October 14; over the OSM relation; 2026-11-06).
 
+And the **Arizona National Scenic Trail** (Arizona: the Arizona Trail Association's 800 miles (1,287 km) with the Forest Service from the Mexican border at Coronado National Memorial over the sky islands, through the Sonoran Desert, the Superstitions and the Mazatzals to the Mogollon Rim, past the San Francisco Peaks and across the Grand Canyon to the Kaibab Plateau and Stateline on the Utah border, in the association's 43 passages (the Flagstaff Urban Route and the Pusch Ridge Wilderness Bypass as variants), 43–60 days, best in spring and autumn; passage 38 in the canyon closed since the August 2026 floods; over the passages' tracks; 2026-11-07).
+
 | # | Trail | Region | Length (approx.) | Why |
 |---|---|---|---|---|
 | 1 | Pacific Crest Trail | USA | 4,265 km | Most-hiked long trail; public US agency data; completion lists |
