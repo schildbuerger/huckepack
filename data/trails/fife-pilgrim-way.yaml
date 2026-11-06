@@ -1,0 +1,196 @@
+name: Fife Pilgrim Way
+added: 2026-11-06
+website: https://fifecoastandcountrysidetrust.co.uk/walks/fife-pilgrim-way/
+wikidata: Q65044883
+managedBy:
+  # the Fife Coast and Countryside Trust, which also runs the Fife Coastal Path
+  - name: Fife Coast and Countryside Trust
+    url: https://fifecoastandcountrysidetrust.co.uk/
+trailType: point-to-point
+continents: [Europe]
+countries: [GB]
+regions: [Scotland]
+termini:
+  # the first section starts in Culross (another from North Queensferry), the last ends at St Andrews
+  # Cathedral (coordinates from OSM)
+  start:
+    name: Culross
+    lat: 56.05566
+    lon: -3.62837
+  end:
+    name: St Andrews
+    lat: 56.34007
+    lon: -2.78783
+  source: fpw-sections
+established:
+  # "The path launched on 5 July 2019" (Wikipedia)
+  year: 2019
+  source: wikipedia-en
+length:
+  # "We've divided the trail [of 64 miles in total] into seven sections": both starting branches
+  # together; the main route from Culross is the six sections' 89.3 km
+  - km: 89.3
+    source: fpw-sections
+stages:
+  # the Trust's sections with "Path Length" and "Estimated Time", Culross to St Andrews; the OSM
+  # relation (7776868) guides the matcher, each section the shortest way over it to its end
+  source: fpw-sections
+  list:
+    - { number: "1", kind: main, from: Culross, to: Dunfermline, km: 13.5, minutes: 270, end: { name: Dunfermline, lat: 56.06991, lon: -3.46356 } }
+    - { number: "2", kind: main, from: Dunfermline, to: Lochore Meadows, km: 17.5, minutes: 330, end: { name: Lochore Meadows, lat: 56.14874, lon: -3.34513 } }
+    - { number: "3", kind: main, from: Lochore Meadows, to: Kinglassie, km: 8.5, minutes: 180, end: { name: Kinglassie, lat: 56.17363, lon: -3.24282 } }
+    - { number: "4", kind: main, from: Kinglassie, to: Markinch, km: 13, minutes: 240, end: { name: Markinch, lat: 56.20041, lon: -3.1308 } }
+    - { number: "5", kind: main, from: Markinch, to: Ceres, km: 21.5, minutes: 420, end: { name: Ceres, lat: 56.29244, lon: -2.97049 } }
+    - { number: "6", kind: main, from: Ceres, to: St Andrews, km: 15.3, minutes: 240, end: { name: St Andrews, lat: 56.34007, lon: -2.78783 } }
+route:
+  # built by `python -m pipeline.all fife-pilgrim-way`: OSM ways matched to the shortest way over the
+  # relation between the sections' ends
+  source: osm
+  publishable: true
+  relation: 7776868
+  branched: true
+difficulty:
+  estimated:
+    sac: T1
+    basis: >-
+      Flat, well-made paths at first, then "unmade paths and some rough terrain as it crosses
+      agricultural land" (the first section), over Fife's farmland, old mining country and the Lomond
+      foothills to St Andrews. Hiking on paths and tracks (T1).
+    source: fpw-sections
+season:
+  # no season published (searched 2026-11-06): every month, the rule for trails without one
+  months: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
+  text: "No season published; every month for now"
+  source: huckepack-season
+sleeping:
+  # the Trust's pages name no places to stay: the kinds OSM maps along the Way (pipeline/along.py),
+  # as for the Fife Coastal Path
+  types: [hotel, guesthouse]
+  source: osm
+access:
+  # Dunfermline City station at the end of the first section, and Edinburgh Airport. Coordinates from OSM; distances by pipeline/access.py
+  - kind: station
+    name: Dunfermline City
+    lat: 56.06811
+    lon: -3.45236
+    source: osm
+  - kind: airport
+    name: Edinburgh Airport (EDI)
+    lat: 55.95026
+    lon: -3.35939
+    source: osm
+animals:
+  # the Trust's Stay Safe page (cattle and other farm animals, ticks). Levels ours
+  list:
+    - kind: cattle
+      name: "Cattle"
+      level: moderate
+      basis: "The Way crosses fields and farmland with animals; the Trust warns that some animals, particularly cows with calves, can react aggressively towards people."
+      do:
+        - "Before entering a field, check to see what alternatives there are"
+        - "If you are in a field of farm animals, keep a safe distance and watch them carefully"
+        - "With a dog, follow the guidance on dogs in the Scottish Outdoor Access Code"
+      dont:
+        - "Walk among cows with calves"
+      source: fcct-safe
+    - kind: tick
+      name: "Ticks (Lyme disease)"
+      level: low
+      basis: "Lyme disease is transmitted by infected ticks, picked up by brushing through tall vegetation like bracken (the Trust)."
+      do:
+        - "Wear long-sleeved shirts and leave no gap between footwear and trousers"
+        - "Use insect repellent"
+        - "Remove a tick with a proper tick-removal tool, or seek medical advice"
+        - "Watch for a red circular rash (a 'bull's eye') anywhere on the body, a common symptom of Lyme disease"
+      dont:
+        - "Squeeze, twist or crush the tick with your fingers"
+        - "Use a lit cigarette end, a match head or essential oils to force the tick out"
+      source: fcct-safe
+tags: [pilgrimage, abbeys, farmland, st-andrews]
+notes:
+  - >-
+    Days: the Trust gives no number of days; the page counts one day per section.
+  - >-
+    Stages: the seven sections include a second start, North Queensferry to Dunfermline (13.5 km, 4.5
+    h), which joins at Dunfermline; it is not drawn. The main route from Culross adds up to 89.3 km;
+    with the North Queensferry branch the Trust's 64 miles (103 km).
+  - >-
+    Season: none published (the Trust's pages, Wikipedia; searched 2026-11-06); every month is recorded
+    for now, by the rule for trails without a published season.
+  - >-
+    Wild camping: the Trust's pages give no rule; the Scottish Outdoor Access Code applies.
+  - >-
+    Waymarking: the Trust's section pages don't describe the marks (searched 2026-11-06).
+  - >-
+    Protected areas: the Trust names none along the Way.
+  - >-
+    Tree line: none; the Way stays low.
+  - >-
+    Map line (2026-11-06): the Scotland Geofabrik extract (2026-10-31); each section the shortest way
+    over OSM's relation (7776868) to its end, every section at least 99 % matched. The route measures
+    88.2 km against the sections' 89.3 km. Ascent from the terrain model, about 1,440 m (the Trust gives
+    none). Beds: OSM maps no place to sleep for 54.3 km between Dunfermline and Markinch (km 20.8–75.1);
+    the Way's towns have hotels and guest houses off the route.
+  - >-
+    Data check (2026-11-06, working rule 2): against English Wikipedia (Fife Pilgrim Way). Culross and
+    North Queensferry to St Andrews agrees; launched on 5 July 2019. Wikipedia gives no length or
+    sections, so the built page was also checked against the Trust's section pages: the six main
+    sections' 13.5, 17.5, 8.5, 13, 21.5 and 15.3 km and times agree. No figure differs by more than 10 %.
+dataCheck:
+  # working rule 2: English Wikipedia, and the built page against the Trust's sections
+  date: 2026-11-06
+  against: [wikipedia-en]
+  pageAgainst: [fpw-sections]
+  deviations: []
+sources:
+  - id: huckepack-season
+    title: "huckepack: no season published by the operator or a second source (the Trust's pages, Wikipedia); every month for now, until one is found"
+    url: https://github.com/schildbuerger/huckepack/blob/main/docs/trail-building.md
+    licence: huckepack's own rule (decided 2026-11-05)
+    retrieved: 2026-11-06
+  - id: fpw-sections
+    title: "Fife Coast and Countryside Trust: Fife Pilgrim Way, the seven sections with path length and estimated time"
+    url: https://fifecoastandcountrysidetrust.co.uk/walks/fife-pilgrim-way/
+    licence: © Fife Coast and Countryside Trust (facts only)
+    retrieved: 2026-11-06
+  - id: fcct-safe
+    title: "Fife Coast and Countryside Trust: Stay Safe in the Countryside (tides, cliffs, livestock, Lyme disease)"
+    url: https://fifecoastandcountrysidetrust.co.uk/plan-your-trip/stay-safe/
+    licence: © Fife Coast and Countryside Trust (facts only)
+    retrieved: 2026-11-05
+  - id: wikipedia-en
+    title: "Wikipedia (en): Fife Pilgrim Way (launched 2019; ends for the data check)"
+    url: https://en.wikipedia.org/wiki/Fife_Pilgrim_Way
+    licence: CC BY-SA 4.0
+    retrieved: 2026-11-06
+  - id: wikimedia
+    title: "Wikimedia: page views of the trail's Wikipedia articles in every language, by people, over twelve months (Wikidata sitelinks, pageview API)"
+    url: https://wikimedia.org/api/rest_v1/
+    licence: CC0 1.0 (pageview data); Wikidata CC0
+    retrieved: 2026-11-06
+    checkOnly: true  # not on the trail page: the page views only rank the home page's popular trails
+  - id: osm
+    title: "OpenStreetMap contributors: paths, water, shops and places to sleep along the trail (Geofabrik extracts), travel hubs"
+    url: https://www.openstreetmap.org/
+    licence: ODbL 1.0
+    retrieved: 2026-11-06
+  - id: copdem
+    title: "Copernicus DEM GLO-30 (30 m terrain model), tiles from AWS Open Data"
+    url: https://registry.opendata.aws/copernicus-dem/
+    licence: "Copernicus WorldDEM-30 licence, free; produced using Copernicus WorldDEM-30 © DLR e.V. 2010-2014 and © Airbus Defence and Space GmbH 2014-2018 provided under COPERNICUS by the European Union and ESA; all rights reserved"
+    retrieved: 2026-11-06
+  - id: worldcover
+    title: "ESA WorldCover 2021: 10 m land cover (via AWS Open Data)"
+    url: https://esa-worldcover.org/
+    licence: "CC BY 4.0; © ESA WorldCover project 2021 / Contains modified Copernicus Sentinel data (2021) processed by ESA WorldCover consortium"
+    retrieved: 2026-11-06
+  - id: era5
+    title: "Open-Meteo open data on AWS: ERA5-Land temperature and ERA5 precipitation, snow and wind, daily 1995–2024 (reanalysis)"
+    url: https://github.com/open-meteo/open-data
+    licence: CC BY 4.0 (Open-Meteo); contains modified Copernicus Climate Change Service information
+    retrieved: 2026-11-06
+  - id: osrm
+    title: "OSRM: road routes on OpenStreetMap data (router.project-osrm.org)"
+    url: https://project-osrm.org/
+    licence: Route data © OpenStreetMap contributors (ODbL)
+    retrieved: 2026-11-06

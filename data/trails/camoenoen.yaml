@@ -1,0 +1,183 @@
+name: Camønoen
+added: 2026-11-06
+aliases: [Camonoen, The Camønoen]
+website: https://museerne.dk/pages/camonoen
+wikidata: Q131913425
+managedBy:
+  # the route's site is published by Museum Sydøstdanmark (Møns Museum); established in 2016 by
+  # Vordingborg Municipality with local partners (Wikipedia)
+  - name: Museum Sydøstdanmark
+    url: https://museerne.dk/pages/camonoen
+  - name: Vordingborg Kommune
+    url: https://museerne.dk/pages/camonoen
+trailType: loop
+continents: [Europe]
+countries: [DK]
+regions: [Zealand]
+protectedAreas: [UNESCO Biosphere Reserve Møn]
+termini:
+  # the loop begins and ends at Møns Museum in Stege (coordinates from OSM)
+  start:
+    name: Stege (Møns Museum)
+    lat: 54.98713
+    lon: 12.28906
+  end:
+    name: Stege (Møns Museum)
+    lat: 54.98713
+    lon: 12.28906
+  source: cam-stages
+waymarking:
+  text: "\"Ruten er tydeligt markeret med Camønoens symbol\""
+  source: cam-faq
+established:
+  # "Ruten blev officielt åbnet i juni 2016" (Wikipedia)
+  year: 2016
+  source: wikipedia-da
+length:
+  # "12 meget forskellige etaper, der tilsammen udgør 175 kilometers vandreglæde" (with the round trip
+  # to Farø and the two shortcuts)
+  - km: 175
+    source: cam-stages
+stages:
+  # the site's stages round the loop from Møns Museum; the Surf stage (a round trip to Farø) and the two
+  # shortcuts (Genvejen ved Borre, ved Elmelunde) are not drawn. The OSM relation (2839163) guides the
+  # matcher, each stage the shortest way over it to its end
+  source: cam-stages
+  list:
+    - { number: "1", kind: main, from: Møns Museum, to: Nyord, km: 15, end: { name: Nyord, lat: 55.04724, lon: 12.2065 } }
+    - { number: "2", kind: main, from: Nyord, to: Pension Elmehøj, km: 19.5, end: { name: Pension Elmehøj, lat: 54.9951, lon: 12.39913 } }
+    - { number: "3", kind: main, from: Pension Elmehøj, to: Villa Huno, km: 16.6, end: { name: Villa Huno, lat: 54.98218, lon: 12.52425 } }
+    - { number: "4", kind: main, from: Villa Huno, to: Klintholm Havn, km: 12.7, end: { name: Klintholm Havn, lat: 54.95402, lon: 12.46909 } }
+    - { number: "5", kind: main, from: Klintholm Havn, to: Hårbølle Havn, km: 38.1, end: { name: Hårbølle Havn, lat: 54.88952, lon: 12.13886 } }
+    - { number: "6", kind: main, from: Hårbølle Havn, to: Bogø Mølle, km: 10.3, end: { name: Bogø Mølle, lat: 54.91901, lon: 12.05017 } }
+    - { number: "7", kind: main, from: Bogø Mølle, to: Camping Mønbroen, km: 27.3, end: { name: Camping Mønbroen, lat: 54.98644, lon: 12.17303 } }
+    - { number: "8", kind: main, from: Camping Mønbroen, to: Nygammelsø, km: 8.8, end: { name: Nygammelsø, lat: 54.93876, lon: 12.23079 } }
+    - { number: "9", kind: main, from: Nygammelsø, to: Møns Museum, km: 10.9, end: { name: Møns Museum, lat: 54.98713, lon: 12.28906 } }
+route:
+  # built by `python -m pipeline.all camoenoen`: OSM ways matched to the shortest way over the relation
+  # between the stages' ends
+  source: osm
+  publishable: true
+  relation: 2839163
+  branched: true
+difficulty:
+  estimated:
+    sac: T1
+    basis: >-
+      The stages are graded "Let" to "Let til middel", the Klint stage "kuperet terræn" with stairs on
+      Møns Klint; otherwise flat coast, meadows, forest and village roads. Hiking on paths and tracks
+      (T1).
+    source: cam-stages
+season:
+  # "Kan jeg gå Camønoen hele året? Ja – men vær opmærksom på, at nogle overnatningssteder kun har
+  # åbent i sommerhalvåret"
+  months: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
+  text: All year; some places to stay open only in the summer half-year
+  source: cam-faq
+sleeping:
+  # B&Bs, glamping and hotels, free shelters ("Hårbølle Shelter, Shelterpladsen MØNHYTTEN") and tent
+  # sites along the stages
+  types: [guesthouse, hotel, bivouac, campsite]
+  source: cam-sleep
+wildCamping:
+  status: restricted
+  rule: >-
+    "Teltning er kun tilladt på pladser, der udtrykkeligt tillader det": tents only at sites that allow
+    them, such as MØNHYTTEN; several free shelters along the route, first come first served.
+  source: cam-sleep
+access:
+  # Vordingborg station (trains to Copenhagen; buses to Møn) and Copenhagen Airport. Coordinates from
+  # OSM; distances by pipeline/access.py
+  - kind: station
+    name: Vordingborg
+    lat: 55.0126
+    lon: 11.90025
+    source: osm
+  - kind: airport
+    name: Copenhagen Airport (CPH)
+    lat: 55.60913
+    lon: 12.65098
+    source: osm
+tags: [island, cliffs, coast, biosphere-reserve]
+notes:
+  - >-
+    Stages: the site's 12 stages include the Surf stage (Bogø Mølle to Farø and back, 8.7 km) and two
+    shortcuts (by Borre, 7 km; by Elmelunde, 5 km), not drawn. The nine stages round the loop add up to
+    159.2 km; with the others the site's 175 km.
+  - >-
+    Nygammelsø: OSM names no such place, so the end of stage 8 is placed on the relation 8.8 km from
+    Camping Mønbroen, the site's distance; stages 8 and 9 together match the site's 19.7 km.
+  - >-
+    Days: the site gives no number of days; the page counts one day per stage.
+  - >-
+    Wildlife (2026-11-06): none listed; the site names no dangerous animals, and no Danish authority's
+    advice was gathered for the route.
+  - >-
+    Tree line: none; Møns Klint reaches about 140 m.
+  - >-
+    Map line (2026-11-06): the Denmark Geofabrik extract (2026-11-04); each stage the shortest way over
+    OSM's relation (2839163) to its end, every stage 100 % matched. The loop measures 148.6 km against
+    the nine stages' 159.2 km (7 % under); stage 1 (Stege to Nyord) 12.3 km against 15 km, as the
+    shortest way skips the relation's loop on Nyord. Ascent from the terrain model, about 1,500 m.
+  - >-
+    Data check (2026-11-06, working rule 2): against Danish Wikipedia (Camønoen). About 175 km through
+    Møn, Bogø and Nyord agrees; opened in June 2016 by Vordingborg Municipality with local partners;
+    Wikipedia counts 10 stages (the site 12 with the round trip to Farø and the shortcuts; the record
+    draws 9 round the loop). No figure differs by more than 10 %.
+dataCheck:
+  # working rule 2: Danish Wikipedia
+  date: 2026-11-06
+  against: [wikipedia-da]
+  deviations: []
+sources:
+  - id: cam-stages
+    title: "Museum Sydøstdanmark: Camønoen, Ruter & Etaper (the stages with length, from–to and difficulty; 175 km)"
+    url: https://museerne.dk/pages/camoenoen-ruter-etaper
+    licence: © Museum Sydøstdanmark (facts only)
+    retrieved: 2026-11-06
+  - id: cam-faq
+    title: "Museum Sydøstdanmark: Camønoen, Planlæg din tur (FAQ: all year, waymarking)"
+    url: https://museerne.dk/pages/camoenoen-planlaeg-din-tur
+    licence: © Museum Sydøstdanmark (facts only)
+    retrieved: 2026-11-06
+  - id: cam-sleep
+    title: "Museum Sydøstdanmark: Camønoen, Overnatning (B&Bs, hotels, shelters, tent sites; camping rules)"
+    url: https://museerne.dk/pages/camoenoen-overnatning
+    licence: © Museum Sydøstdanmark (facts only)
+    retrieved: 2026-11-06
+  - id: wikipedia-da
+    title: "Wikipedia (da): Camønoen (about 175 km, opened 2016; data check)"
+    url: https://da.wikipedia.org/wiki/Cam%C3%B8noen
+    licence: CC BY-SA 4.0
+    retrieved: 2026-11-06
+  - id: wikimedia
+    title: "Wikimedia: page views of the trail's Wikipedia articles in every language, by people, over twelve months (Wikidata sitelinks, pageview API)"
+    url: https://wikimedia.org/api/rest_v1/
+    licence: CC0 1.0 (pageview data); Wikidata CC0
+    retrieved: 2026-11-06
+    checkOnly: true  # not on the trail page: the page views only rank the home page's popular trails
+  - id: osm
+    title: "OpenStreetMap contributors: paths, water, shops and places to sleep along the trail (Geofabrik extracts), travel hubs"
+    url: https://www.openstreetmap.org/
+    licence: ODbL 1.0
+    retrieved: 2026-11-06
+  - id: copdem
+    title: "Copernicus DEM GLO-30 (30 m terrain model), tiles from AWS Open Data"
+    url: https://registry.opendata.aws/copernicus-dem/
+    licence: "Copernicus WorldDEM-30 licence, free; produced using Copernicus WorldDEM-30 © DLR e.V. 2010-2014 and © Airbus Defence and Space GmbH 2014-2018 provided under COPERNICUS by the European Union and ESA; all rights reserved"
+    retrieved: 2026-11-06
+  - id: worldcover
+    title: "ESA WorldCover 2021: 10 m land cover (via AWS Open Data)"
+    url: https://esa-worldcover.org/
+    licence: "CC BY 4.0; © ESA WorldCover project 2021 / Contains modified Copernicus Sentinel data (2021) processed by ESA WorldCover consortium"
+    retrieved: 2026-11-06
+  - id: era5
+    title: "Open-Meteo open data on AWS: ERA5-Land temperature and ERA5 precipitation, snow and wind, daily 1995–2024 (reanalysis)"
+    url: https://github.com/open-meteo/open-data
+    licence: CC BY 4.0 (Open-Meteo); contains modified Copernicus Climate Change Service information
+    retrieved: 2026-11-06
+  - id: osrm
+    title: "OSRM: road routes on OpenStreetMap data (router.project-osrm.org)"
+    url: https://project-osrm.org/
+    licence: Route data © OpenStreetMap contributors (ODbL)
+    retrieved: 2026-11-06

@@ -1,0 +1,112 @@
+{
+  "climate-high.json": {
+    "retrieved": "2026-11-06T02:26:51+00:00",
+    "url": "https://openmeteo.s3.us-west-2.amazonaws.com/data/copernicus_era5_land+copernicus_era5?latitude=50.1&longitude=5.9&elevation=520"
+  },
+  "climate-low.json": {
+    "retrieved": "2026-11-06T02:23:29+00:00",
+    "url": "https://openmeteo.s3.us-west-2.amazonaws.com/data/copernicus_era5_land+copernicus_era5?latitude=49.8&longitude=6.1&elevation=200"
+  },
+  "commons-geo.json": {
+    "key": "with categories, 154.7 km, every 2.5 km, 1500 m, within 0.5 km",
+    "retrieved": "2026-11-06T02:31:26+00:00",
+    "url": "Commons geosearch along the route"
+  },
+  "commons.json": {
+    "key": "Q3057851",
+    "retrieved": "2026-11-06T02:26:54+00:00",
+    "url": "Q3057851 P18 P373"
+  },
+  "elevation-glo30.json": {
+    "retrieved": "2026-11-06T02:19:48+00:00",
+    "url": "https://copernicus-dem-30m.s3.eu-central-1.amazonaws.com/Copernicus_DSM_COG_10_N49_00_E005_00_DEM/Copernicus_DSM_COG_10_N49_00_E005_00_DEM.tif https://copernicus-dem-30m.s3.eu-central-1.amazonaws.com/Copernicus_DSM_COG_10_N49_00_E006_00_DEM/Copernicus_DSM_COG_10_N49_00_E006_00_DEM.tif https://copernicus-dem-30m.s3.eu-central-1.amazonaws.com/Copernicus_DSM_COG_10_N50_00_E005_00_DEM/Copernicus_DSM_COG_10_N50_00_E005_00_DEM.tif https://copernicus-dem-30m.s3.eu-central-1.amazonaws.com/Copernicus_DSM_COG_10_N50_00_E006_00_DEM/Copernicus_DSM_COG_10_N50_00_E006_00_DEM.tif"
+  },
+  "landcover.json": {
+    "retrieved": "2026-11-06T02:19:49+00:00",
+    "url": "https://esa-worldcover.s3.eu-central-1.amazonaws.com/v200/2021/map/ESA_WorldCover_10m_2021_v200_\u2026_Map.tif"
+  },
+  "osm-relation-5437763.json": {
+    "retrieved": "2026-10-31T21:23:06Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-relation-7356823.json": {
+    "retrieved": "2026-10-31T21:23:06Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-relation-7356824.json": {
+    "retrieved": "2026-10-31T21:23:06Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-relation-7356825.json": {
+    "retrieved": "2026-10-31T21:23:06Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-relation-7356826.json": {
+    "retrieved": "2026-10-31T21:23:06Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-relation-7356827.json": {
+    "retrieved": "2026-10-31T21:23:06Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-1-main.json": {
+    "key": "64afcfa3c5be",
+    "retrieved": "2026-10-31T21:23:06Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-2-main.json": {
+    "key": "7bc260ac68e5",
+    "retrieved": "2026-10-31T21:23:06Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-3-main.json": {
+    "key": "616c0aa2b829",
+    "retrieved": "2026-10-31T21:23:06Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-4-main.json": {
+    "key": "28e144c2c32d",
+    "retrieved": "2026-10-31T21:23:06Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-5-main.json": {
+    "key": "e391fccd4b6b",
+    "retrieved": "2026-10-31T21:23:06Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-6-main.json": {
+    "key": "9f4d1e06c7db",
+    "retrieved": "2026-10-31T21:23:06Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-7-main.json": {
+    "key": "4816e928586b",
+    "retrieved": "2026-10-31T21:23:06Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-8-main.json": {
+    "key": "26a0c6599e39",
+    "retrieved": "2026-10-31T21:23:06Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-water.json": {
+    "retrieved": "2026-10-31T21:23:06Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-way-tags.json": {
+    "retrieved": "2026-10-31T21:23:06Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osrm-access-ettelbruck.json": {
+    "retrieved": "2026-11-06T02:26:51+00:00",
+    "url": "https://router.project-osrm.org/route/v1/driving/6.10686,49.84778;6.10686,49.84778?overview=false"
+  },
+  "osrm-access-luxembourg-airport-lux.json": {
+    "retrieved": "2026-11-06T02:26:51+00:00",
+    "url": "https://router.project-osrm.org/route/v1/driving/6.21625,49.63479;6.10686,49.84778?overview=false"
+  },
+  "wikimedia.json": {
+    "retrieved": "2026-11-06T02:26:52+00:00",
+    "url": "Q3057851 2025-11..2026-10"
+  }
+}

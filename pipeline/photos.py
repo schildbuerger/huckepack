@@ -50,11 +50,11 @@ GEO_RADIUS_M = 1500
 GEO_NEAR_KM = 0.5
 OPEN = re.compile(r"^(CC0|Public domain|PD|CC BY(-SA)? \d(\.\d)?)", re.I)
 NOT_PHOTO = re.compile(
-    r"\b(map|karte|carte|mappa|mapa|logo|plan|sign|signpost|fingerpost|waymarker|wegmarke\w*|\w*schild|\w*tafel|info\w*|wegweiser|panneau|marker|\w*markierung\w*|waymark|"
+    r"\b(map|karte|carte|mappa|mapa|logo|plan|sign|signpost|finger ?posts?|waymarker|wegmarke\w*|\w*schild|\w*tafel|info\w*|wegweiser|panneau|marker|\w*markierung\w*|waymark|"
     r"stamp|stempel|leaflet|flyer|profile|profil|elevation|diagram|schema|scheme|poster|plaque|tafel|"
     r"bus|irisbus|gare|bahnhof|station|train|tram|truck|lkw|car park|parking|parkplatz|interior|innenraum|"
     r"\w*grenzstein\w*|boundary stones?|mile ?stones?|meilenstein\w*|flowers?|blumen|bl[üu]ten?|butterfl\w+|insects?|birds?|"
-    r"caravans?|snails?|memorials?)\b|\([A-Z][a-z]+ [a-z]{3,}[^)]*\)",
+    r"caravans?|snails?|memorials?|subways?|underpass\w*|fly ?tipping|rubbish|litter)\b|\([A-Z][a-z]+ [a-z]{3,}[^)]*\)",
     re.I,
 )
 
@@ -83,7 +83,7 @@ NOT_LANDSCAPE = re.compile(
     r"squirrels?|hares?|rabbits?|fox(es)?|lizards?|snakes?|frogs?|toads?|beetles?|spiders?|fungi|mushrooms?|food|dishes|meals|coats of arms|documents|"
     r"signs?|information boards?|info ?points?|plaques?|graves?|tombstones?|grabsteine?|cemeter\w*|\w*friedh[öo]f\w*|sculptures?|"
     r"ships?|steamers?|ferr(y|ies)|paddle|iss\d{3}|views? of earth|astronauts?|from space|satellite|"
-    r"hotels?|leaf|leaves|foliage|foglia|foglie|bl[äa]tter|laub|piazza|plaza|marktplatz|market squares?|streets?|"
+    r"hotels?|municipal|town halls?|leaf|leaves|foliage|foglia|foglie|bl[äa]tter|laub|piazza|plaza|marktplatz|market squares?|streets?|"
     r"museums?|exhibitions?|events?|festivals?|concerts?|sports?|football|races?|marathons?|demonstrations?|"
     r"weddings?|construction|baustellen?|shops?|restaurants?|bars|pubs|house numbers?|doors?|windows?|details?|"
     r"close-ups?|macro|night|nachts?|fireworks|christmas|weihnacht\w*|carnival|fasching|fastnacht)\b",

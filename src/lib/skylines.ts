@@ -1209,6 +1209,75 @@ export const SKYLINES: Record<string, Skyline> = {
       { d: water(260, 520, 314), c: LAKE },
     ],
   },
+  "fife-pilgrim-way": {
+    view: "Fife's farmland under the twin Lomond Hills, and the pilgrims' goal: St Andrews Cathedral's ruined east gable with its two slender turrets beside St Rule's square tower",
+    ridge: "#7f9a54",
+    ground: MEADOW,
+    shapes: [
+      // the Lomond Hills, East and West Lomond, far to the west
+      { d: hills([[0, G], [140, 236], [240, 214], [320, 232], [420, 206], [520, 236], [700, 262], [820, G]]), c: "#9aa4a8" },
+      // the farmland, rolling
+      { d: hills([[0, G], [200, 272], [520, 264], [860, 276], [1200, 266], [1600, 274], [1600, G]]), c: "#a8b878" },
+      // St Rule's Tower, tall and square
+      { d: "M1160,300V200H1186V300Z", c: "#b8a48a" },
+      // the cathedral's east gable: two turrets with a pointed gable between, a tall window opening
+      { d: "M1240,300V214H1250V196L1254,188L1258,196V214H1310V196L1314,188L1318,196V214H1328V300H1296V262A12,18 0 0 0 1272,262V300Z M1250,214L1284,184L1318,214Z", c: "#b8a48a" },
+    ],
+  },
+  camoenoen: {
+    view: "Møns Klint: white chalk cliffs falling sheer into the turquoise Baltic under a beech forest, and Nyord's low meadows with their small church across the water",
+    ridge: "#5d7a3a",
+    ground: MEADOW,
+    shapes: [
+      // the Baltic, turquoise below the chalk
+      { d: water(0, 1600, 282), c: "#5fa8b0" },
+      // Nyord's low meadows and church, far across the water
+      { d: hills([[80, 284], [200, 276], [400, 274], [520, 284]]), c: "#a8b878" },
+      { d: "M300,276V266H318V276Z M302,266L309,258L316,266Z", c: "#f0ece0" },
+      // Møns Klint: the white chalk cliff, ribbed, under the beech forest
+      { d: range([[760, G], [820, 250], [900, 214], [1100, 206], [1300, 212], [1460, 222], [1600, 226], [1600, G]]), c: "#f2f0e8" },
+      { d: "M890,216C930,198 1000,190 1080,190C1180,188 1300,194 1400,204C1450,208 1490,214 1510,220C1400,214 1300,212 1100,208C1000,208 930,212 890,216Z", c: "#3f5a34" },
+      { d: "M960,230L966,280H970L964,230Z M1060,224L1068,284H1072L1064,224Z M1180,222L1186,284H1190L1184,222Z M1300,226L1306,282H1310L1304,226Z", c: "#d8d4c8" },
+    ],
+  },
+  escapardenne: {
+    view: "The Ardennes' forested slate valleys: Bourscheid's castle ruins on their spur above the Sûre's loop, and Clervaux's white castle with the abbey's towers in the valley beyond",
+    ridge: "#3f5a34",
+    ground: MEADOW,
+    shapes: [
+      // the plateaus of the Éislek, far and level
+      { d: hills([[0, G], [240, 226], [620, 218], [1000, 224], [1380, 216], [1600, 222], [1600, G]]), c: "#9aa4a0" },
+      // the forested valley sides
+      { d: hills([[0, G], [140, 250], [320, 236], [460, 248], [560, 280], [640, G]]), c: "#3f5a34" },
+      { d: hills([[1020, G], [1120, 264], [1260, 240], [1420, 236], [1600, 246], [1600, G]]), c: "#3f5a34" },
+      // Bourscheid: the castle ruins on their spur
+      { d: range([[620, G], [700, 270], [780, 246], [860, 250], [940, 278], [1000, G]]), c: "#5a6a48" },
+      { d: "M748,248V226H758V232H776V222H788V248Z M800,250V236H816V250Z", c: "#a89a86" },
+      // Clervaux: the white castle and a church's twin towers
+      { d: "M1180,244V226H1240V244Z M1186,226V214H1198V226Z", c: "#f0ece0" },
+      { d: "M1300,240V206L1306,196L1312,206V240Z M1320,240V206L1326,196L1332,206V240Z M1296,240V222H1336V240Z", c: "#d8cbb0" },
+    ],
+    front: [
+      // the Sûre in its loop
+      { d: water(500, 1100, 302), c: LAKE },
+    ],
+  },
+  albsteig: {
+    view: "The Swabian Jura's escarpment, the Albtrauf: a long wooded edge with white limestone cliffs, and Burg Hohenzollern on its conical hill in front of it",
+    ridge: "#3f5a34",
+    ground: MEADOW,
+    shapes: [
+      // the Albtrauf: a long, level-topped wooded escarpment
+      { d: range([[0, G], [100, 220], [400, 210], [760, 206], [1100, 212], [1420, 208], [1600, 214], [1600, G]]), c: "#4f6a3a" },
+      // white limestone cliffs along its edge
+      { d: "M280,214L300,212L306,236L284,240Z M640,208L668,207L672,232L644,234Z M1180,212L1206,211L1210,238L1184,238Z", c: "#e8e4d8" },
+      // the foreland's fields
+      { d: hills([[0, G], [260, 276], [620, 270], [980, 280], [1300, 272], [1600, 278], [1600, G]]), c: "#a8b878" },
+      // the Hohenzollern: a wooded cone with the castle's towers on top
+      { d: hills([[680, G], [780, 252], [840, 222], [880, 214], [920, 222], [980, 252], [1080, G]]), c: "#3f5a34" },
+      { d: "M846,216V196H858V190H866V196H892V188H900V196H914V216Z M868,190V176L872,170L876,176V190Z", c: "#a89a86" },
+    ],
+  },
   "arran-coastal-way": {
     view: "The Isle of Arran from the sea: Goat Fell and the jagged granite ridges of the north, Lochranza Castle on its spit in the bay, and Holy Isle's dome off Lamlash",
     ridge: "#7f9a54",
