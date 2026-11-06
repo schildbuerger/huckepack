@@ -490,9 +490,14 @@ def build(slug, refresh=False):
 
         data, _ = cache.get("osm-relation.json", osm.source_label(), merged)
         if len(stages) == 1 and stages[0].get("whole"):
-            # a trail without stages: the relation's whole chained line guides its one segment, never
-            # cut (a loop's finish is its start, where a cut would leave nothing)
-            guides = {("1", "main"): relation_line(json.loads(data), trail["route"].get("alternatives", []), (start["lon"], start["lat"]))}
+            # a trail without stages: the relation's chained line guides its one segment; a loop's is
+            # never cut (its finish is its start, where a cut would leave nothing), a one-way trail's
+            # ends at the point nearest its finish (the Lost Coast Trail's relation runs on south into
+            # the Sinkyone, past the BLM's Black Sands Beach)
+            line = relation_line(json.loads(data), trail["route"].get("alternatives", []), (start["lon"], start["lat"]))
+            if (start["lon"], start["lat"]) != (end["lon"], end["lat"]):
+                line = split_at(line, stages)[0]
+            guides = {("1", "main"): line}
         elif trail["route"].get("branched"):
             # a relation with side branches (the W Trek's valleys), which no chain follows
             guides = shortest_guides(json.loads(data)["elements"], trail["route"].get("joinM", 0), True)

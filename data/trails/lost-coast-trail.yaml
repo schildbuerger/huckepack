@@ -1,0 +1,186 @@
+name: Lost Coast Trail
+added: 2026-11-06
+website: https://www.blm.gov/visit/lost-coast-trail
+managedBy:
+  # the Bureau of Land Management's Arcata Field Office, in the King Range National Conservation Area
+  - name: Bureau of Land Management, King Range National Conservation Area
+    url: https://www.blm.gov/programs/national-conservation-lands/california/king-range-national-conservation-area
+officialGpx:
+  none: the BLM's pages offer maps and tide information and no GPX to download (checked 2026-11-06)
+  source: blm
+trailType: point-to-point
+continents: [North America]
+countries: [US]
+regions: [California]
+protectedAreas: [King Range National Conservation Area]
+termini:
+  # the northern section, "from Mattole to Black Sands Beach" (coordinates from OSM: the Mattole
+  # campground and the beach at Shelter Cove)
+  start:
+    name: Mattole
+    lat: 40.28979
+    lon: -124.35561
+  end:
+    name: Black Sands Beach
+    lat: 40.0547
+    lon: -124.07924
+  source: blm
+length:
+  # "The northern section of the Lost Coast Trail, from Mattole to Black Sands Beach, is 24.6 miles"
+  - km: 39.6
+    source: blm
+days:
+  # "It is recommended to allow at least three days to accomplish this hike"
+  min: 3
+  max: 3
+  source: blm
+stages:
+  # no stages by design (issue #204; docs/scope.md, "Trails without stages"): hikers camp where the
+  # permit allows along the beach, planning round the tides
+  source: blm
+  none: true
+route:
+  # built by `python -m pipeline.all lost-coast-trail`: OSM ways matched to the trail's OSM relation
+  # (6125620), chained from Mattole and cut at Black Sands Beach (the relation runs on south into the
+  # Sinkyone), one segment
+  source: osm
+  publishable: true
+  relation: 6125620
+difficulty:
+  # the BLM: "moderately level with difficult terrain"; three stretches impassable at high tide
+  estimated:
+    sac: T2
+    basis: >-
+      The BLM calls the northern section moderately level with difficult terrain: most of it on sand,
+      cobbles and boulders along the beach, with three stretches (near Punta Gorda, Sea Lion Gulch to
+      Randall Creek, Miller Flat to Gitchell Creek) impassable at high tide, so the walk has to be
+      planned round the tide tables. Rough coastal walking without climbing difficulty (T2).
+    source: blm
+season:
+  # no season published for the trail; permits are required year-round
+  months: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
+  text: No season published; every month for now
+  source: huckepack-season
+sleeping:
+  types: [campsite]
+  source: blm
+wildCamping:
+  status: allowed
+  rule: >-
+    Camping is allowed with a wilderness permit north of Telegraph Creek; none at the Black Sands
+    Beach trailhead; avoid the private property along the trail.
+  source: blm
+refillsUntreated:
+  text: Water sources are plentiful along the beach; filter all water.
+  source: blm
+permit:
+  # permits under a quota, year-round for overnight use
+  required: true
+  name: King Range Wilderness permit
+  issuedBy: Bureau of Land Management
+  how: >-
+    Book on Recreation.gov (a 3-month rolling window under a quota), after checking the tides for
+    your dates; a few walk-up permits for up to three hikers are sold at the King Range Visitor Center.
+  url: https://www.recreation.gov/permits/72192
+  source: blm-kr
+access:
+  # Humboldt County's airport near Eureka; no public transport to the trailheads. Coordinates from
+  # OSM; distances by pipeline/access.py
+  - kind: airport
+    name: California Redwood Coast–Humboldt County Airport (ACV)
+    lat: 40.97636
+    lon: -124.10843
+    source: osm
+animals:
+  # the King Range NCA: "Backpackers are required to carry one hard-sided bear resistant canister";
+  # level ours
+  list:
+    - kind: bear
+      name: Black bear
+      level: low
+      basis: Bears live in the King Range; backpackers must carry a hard-sided bear-resistant canister, and fines apply without one.
+      do:
+        - Carry a hard-sided bear-resistant canister (rentals at the King Range Visitor Center)
+        - Store all food, trash and toiletries in it for the whole trip
+      source: blm-kr
+tags: [coast, beach, tides, wilderness]
+notes:
+  - >-
+    Stages: none by design; the BLM gives the northern section as 24.6 miles and recommends at least
+    three days. Plan each day round the tides: near Punta Gorda, from Sea Lion Gulch to Randall Creek
+    and from Miller Flat to Gitchell Creek the beach is impassable at high tide.
+  - >-
+    Wildlife: keep at least 150 feet from the elephant seals (a growing colony at Punta Gorda) and
+    other animals, and keep dogs leashed (the BLM).
+  - >-
+    The southern section (Hidden Valley to Needle Rock, 9 miles, in the Sinkyone Wilderness State Park,
+    with its own rules) is a separate walk and not part of this record.
+  - >-
+    Season: the BLM publishes no season for the trail (searched 2026-11-06: the Lost Coast Trail and
+    King Range pages); permits are required year-round; every month for now.
+  - >-
+    Wikidata: an item exists (Q67193992) without any statements or links, so it isn't linked; no
+    English Wikipedia article.
+  - >-
+    Waymarking: the BLM's pages describe no waymarks; much of the route is beach.
+  - >-
+    Tree line: none; a coastal route.
+  - >-
+    Map line (2026-11-06): the Northern California Geofabrik extract; OSM's Lost Coast Trail relation
+    (6125620), chained from Mattole and cut at Black Sands Beach, one segment, 100 % matched. It
+    measures 39.0 km against the BLM's 24.6 miles (39.6 km, −2 %). The terrain model gives about 460 m
+    of climbing. Water: OSM maps no drinking water; the BLM says water sources are plentiful along the
+    beach, to be filtered. Surfaces: most of the route is beach, inferred from the way type. No shops.
+  - >-
+    Data check (2026-11-06, working rule 2): no independent second source found (no Wikipedia
+    article; the Wikidata item is empty), so the built page was checked against the BLM's pages
+    figure by figure: 24.6 miles from Mattole to Black Sands Beach, at least three days, the three
+    tidal stretches, camping north of Telegraph Creek with a permit, bear canisters required, all as
+    the source; the OSM map line agrees on the length within 2 %.
+dataCheck:
+  # working rule 2: no second source; the built page against the BLM's pages
+  date: 2026-11-06
+  against: []
+  pageAgainst: [blm, blm-kr]
+  deviations: []
+sources:
+  - id: blm
+    title: "Bureau of Land Management: Lost Coast Trail (length, days, tides, camping, water)"
+    url: https://www.blm.gov/visit/lost-coast-trail
+    licence: US federal government work (public domain)
+    retrieved: 2026-11-06
+  - id: blm-kr
+    title: "Bureau of Land Management: King Range National Conservation Area (wilderness permits, bear canisters)"
+    url: https://www.blm.gov/programs/national-conservation-lands/california/king-range-national-conservation-area
+    licence: US federal government work (public domain)
+    retrieved: 2026-11-06
+  - id: huckepack-season
+    title: "huckepack: no season published by the BLM (the Lost Coast Trail and King Range pages, 2026-11-06); every month for now, until one is found"
+    url: https://github.com/schildbuerger/huckepack/blob/main/docs/trail-building.md
+    licence: CC BY 4.0
+    retrieved: 2026-11-06
+  - id: osm
+    title: "OpenStreetMap contributors: the Lost Coast Trail relation (6125620), paths, water, shops and places to sleep along the trail (Geofabrik extract), travel hubs"
+    url: https://www.openstreetmap.org/relation/6125620
+    licence: ODbL 1.0
+    retrieved: 2026-11-06
+  - id: copdem
+    title: "Copernicus DEM GLO-30 (30 m terrain model), tiles from AWS Open Data"
+    url: https://registry.opendata.aws/copernicus-dem/
+    licence: "Copernicus WorldDEM-30 licence, free; produced using Copernicus WorldDEM-30 © DLR e.V. 2010-2014 and © Airbus Defence and Space GmbH 2014-2018 provided under COPERNICUS by the European Union and ESA; all rights reserved"
+    retrieved: 2026-11-06
+  - id: worldcover
+    title: "ESA WorldCover 2021: 10 m land cover (via AWS Open Data)"
+    url: https://esa-worldcover.org/
+    licence: "CC BY 4.0; © ESA WorldCover project 2021 / Contains modified Copernicus Sentinel data (2021) processed by ESA WorldCover consortium"
+    retrieved: 2026-11-06
+  - id: era5
+    title: "Open-Meteo open data on AWS: ERA5-Land temperature and ERA5 precipitation, snow and wind, daily 1995–2024 (reanalysis)"
+    url: https://github.com/open-meteo/open-data
+    licence: CC BY 4.0 (Open-Meteo); contains modified Copernicus Climate Change Service information
+    retrieved: 2026-11-06
+  - id: osrm
+    title: "OSRM: road routes on OpenStreetMap data (router.project-osrm.org)"
+    url: https://project-osrm.org/
+    licence: Route data © OpenStreetMap contributors (ODbL)
+    retrieved: 2026-11-06

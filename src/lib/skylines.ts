@@ -1857,4 +1857,27 @@ export const SKYLINES: Record<string, Skyline> = {
       { d: "M1262,240l40-10l30,6l-36,10z M1272,226l34-8l22,6l-30,8z M1280,214l24-6l16,4l-22,6z", c: "#2f4a2c" },
     ],
   },
+  "lost-coast-trail": {
+    view: "California's Lost Coast: the King Range rising straight out of the Pacific, grassy and forested slopes over a dark sand beach, sea stacks in the surf and the old Punta Gorda lighthouse",
+    ridge: "#5a6a4a",
+    ground: "#4a463e",
+    shapes: [
+      // the King Range, steep from the sea
+      { d: range([[560, G], [640, 250], [740, 200], [840, 164], [920, 146], [980, 152], [1060, 176], [1180, 198], [1320, 214], [1460, 232], [1600, 240], [1600, G]]), c: "#7b8a6a" },
+      // grassy coastal slopes with dark forest in the gullies
+      { d: hills([[700, G], [820, 250], [980, 236], [1140, 248], [1320, 242], [1480, 254], [1600, 250], [1600, G]]), c: "#a8a46a" },
+      { d: "M900,246L930,236L960,250L940,268Z M1180,248L1206,240L1232,252L1212,270Z M1400,250L1424,244L1448,256L1428,272Z", c: "#3f5a34" },
+      // the sea
+      { d: water(0, 1600, 286), c: "#3f7898" },
+    ],
+    front: [
+      // sea stacks in the surf
+      { d: "M120,300L132,262L150,256L162,270L170,300Z M240,300L248,280L262,276L270,300Z", c: "#3a3a36" },
+      // the Punta Gorda lighthouse: a squat white tower
+      { d: "M640,296L644,268H662L666,296Z", c: "#eeeee6" },
+      { d: "M642,268L653,256L664,268Z", c: "#b8432e" },
+      // driftwood on the dark sand
+      { d: "M900,304L980,298L984,302L904,308Z M1100,306L1150,302L1152,305L1102,309Z", c: "#b8ab90" },
+    ],
+  },
 };

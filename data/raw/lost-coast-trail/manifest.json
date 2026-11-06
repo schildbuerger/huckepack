@@ -1,0 +1,49 @@
+{
+  "climate-high.json": {
+    "retrieved": "2026-11-06T15:14:25+00:00",
+    "url": "https://openmeteo.s3.us-west-2.amazonaws.com/data/copernicus_era5_land+copernicus_era5?latitude=40.2&longitude=-124.3&elevation=40"
+  },
+  "climate-low.json": {
+    "retrieved": "2026-11-06T15:09:07+00:00",
+    "url": "https://openmeteo.s3.us-west-2.amazonaws.com/data/copernicus_era5_land+copernicus_era5?latitude=40.3&longitude=-124.4&elevation=0&wind=40.25,-124.25"
+  },
+  "commons-geo.json": {
+    "key": "with categories, 39.3 km, every 2.5 km, 1500 m, within 0.5 km",
+    "retrieved": "2026-11-06T15:15:24+00:00",
+    "url": "Commons geosearch along the route"
+  },
+  "commons.json": {
+    "key": "none",
+    "retrieved": "2026-11-06T15:14:25+00:00",
+    "url": "None P18 P373"
+  },
+  "elevation-glo30.json": {
+    "retrieved": "2026-11-06T15:03:34+00:00",
+    "url": "https://copernicus-dem-30m.s3.eu-central-1.amazonaws.com/Copernicus_DSM_COG_10_N40_00_W125_00_DEM/Copernicus_DSM_COG_10_N40_00_W125_00_DEM.tif"
+  },
+  "landcover.json": {
+    "retrieved": "2026-11-06T15:03:35+00:00",
+    "url": "https://esa-worldcover.s3.eu-central-1.amazonaws.com/v200/2021/map/ESA_WorldCover_10m_2021_v200_\u2026_Map.tif"
+  },
+  "osm-relation.json": {
+    "retrieved": "2026-11-05T21:23:02Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-1-main.json": {
+    "key": "45b105e77f12",
+    "retrieved": "2026-11-05T21:23:02Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-water.json": {
+    "retrieved": "2026-11-05T21:23:02Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-way-tags.json": {
+    "retrieved": "2026-11-05T21:23:02Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osrm-access-california-redwood-coast-humboldt-county-airport-acv.json": {
+    "retrieved": "2026-11-06T15:14:25+00:00",
+    "url": "https://router.project-osrm.org/route/v1/driving/-124.10843,40.97636;-124.35561,40.28979?overview=false"
+  }
+}
