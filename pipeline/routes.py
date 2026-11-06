@@ -93,16 +93,24 @@ class Cache:
 
 
 def unzipped_gpx(body):
-    """A download as GPX: a zip archive (St Oswald's Way's section files) gives its first .gpx file;
-    anything else is passed on as it came."""
+    """A download as GPX: a zip archive (St Oswald's Way's section files) gives its first .gpx file,
+    else its first .kml (a KMZ is a zip too, also one inside a zip: the Caminho de Cora Coralina's
+    download, read by track_points); anything else is passed on as it came."""
     if body[:2] != b"PK":
         return body
     import io
     import zipfile
 
     with zipfile.ZipFile(io.BytesIO(body)) as z:
-        name = next(n for n in z.namelist() if n.lower().endswith(".gpx") and not n.startswith("__MACOSX"))
-        return z.read(name)
+        names = [n for n in z.namelist() if not n.startswith("__MACOSX")]
+        for ext in (".gpx", ".kml"):
+            name = next((n for n in names if n.lower().endswith(ext)), None)
+            if name:
+                return z.read(name)
+        inner = next((n for n in names if n.lower().endswith((".kmz", ".zip"))), None)
+        if inner:
+            return unzipped_gpx(z.read(inner))
+        raise ValueError("a zip without a GPX, KML or KMZ in it")
 
 
 def http_get(url):
@@ -127,6 +135,11 @@ def track_points(gpx):
     neusta tour pages (sauerland-waldroute.de) carry the map's line as an HTML-escaped
     "polyline": "lon,lat lon,lat …"."""
     points = []
+    # a KML (from a KMZ download): its line strings in document order, "lon,lat[,height]" each
+    if "<kml" in gpx[:2000]:
+        for coords in re.findall(r"<LineString>.*?<coordinates>(.*?)</coordinates>", gpx, re.S):
+            points += [(float(v.split(",")[0]), float(v.split(",")[1])) for v in coords.split()]
+        return points
     # a GPX with several tracks (the Coast to Coast's: the main route, then two alternatives) is
     # read as its first track, the main route
     first = re.search(r"<trk>.*?</trk>", gpx, re.S) if gpx.count("<trk>") > 1 else None

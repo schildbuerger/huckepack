@@ -550,6 +550,27 @@ class ZippedGpx(unittest.TestCase):
         self.assertEqual(unzipped_gpx(buf.getvalue()), b"<gpx>1</gpx>")
         self.assertEqual(unzipped_gpx(b"<gpx>2</gpx>"), b"<gpx>2</gpx>")
 
+    def test_kmz_in_a_zip_and_its_line(self):
+        # the Caminho de Cora Coralina's download: a zip holding a KMZ holding doc.kml
+        import io
+        import zipfile
+
+        from pipeline.routes import track_points, unzipped_gpx
+
+        kml = b"""<?xml version="1.0"?><kml xmlns="http://www.opengis.net/kml/2.2"><Document>
+<Placemark><name>Town</name><Point><coordinates>-48.8,-15.9,0</coordinates></Point></Placemark>
+<Placemark><LineString><coordinates>-48.80,-15.92,700 -48.81,-15.93,710
+-48.82,-15.94,720</coordinates></LineString></Placemark></Document></kml>"""
+        kmz = io.BytesIO()
+        with zipfile.ZipFile(kmz, "w") as z:
+            z.writestr("doc.kml", kml)
+        outer = io.BytesIO()
+        with zipfile.ZipFile(outer, "w") as z:
+            z.writestr("route.kmz", kmz.getvalue())
+        body = unzipped_gpx(outer.getvalue())
+        self.assertEqual(body, kml)
+        self.assertEqual(track_points(body.decode()), [(-48.8, -15.92), (-48.81, -15.93), (-48.82, -15.94)])
+
 
 class Extracts(unittest.TestCase):
     def test_region_copy_not_a_longer_namesake(self):
