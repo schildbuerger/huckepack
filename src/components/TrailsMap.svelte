@@ -52,7 +52,8 @@
   // `preview`: the static world outline (src/lib/world-outline.ts) shown until the map starts
   let { children, preview }: { children?: import("svelte").Snippet; preview?: import("svelte").Snippet } = $props();
   // the trails' summaries from /trails/search.json, not the page's HTML (issue #93)
-  let trails = $state<Trail[]>([]);
+  // raw: replaced whole, so no deep proxy over every trail (as TrailList)
+  let trails = $state.raw<Trail[]>([]);
   const trailsIn = typeof window === "undefined" ? Promise.resolve() : loadTrails().then((t) => (trails = t as Trail[]));
 
   const fmt = (n: number) => n.toLocaleString("en");

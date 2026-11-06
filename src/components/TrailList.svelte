@@ -27,7 +27,9 @@
   // `page`: the page this HTML is (src/layouts/TrailsListing.astro), the list's page until a filter, a
   // sort or another page size starts it again at 1
   let { total = 0, more = false, page: firstPage = 1, children }: { total?: number; more?: boolean; page?: number; children?: import("svelte").Snippet } = $props();
-  let trails = $state<SearchTrail[]>([]);
+  // raw: replaced whole, never changed in place, so no deep proxy over every trail's figures (the
+  // filter panel reads them for each option's count; the proxy made that the page's slowest work)
+  let trails = $state.raw<SearchTrail[]>([]);
   let cardsIn = $state(0); // how many times cards were added, so the order is applied to them too
   // every card is in the page (its own, and /trails/cards.html's): until then the pager's links load
   // their pages as plain links, so a click never shows an empty page
@@ -106,9 +108,19 @@
     ready = true;
     // back and forward between pages: each page is its own address, so load it
     addEventListener("popstate", () => location.reload());
-    loadTrails().then(async (t) => {
+    loadTrails().then((t) => {
       trails = t;
-      if (!more) return void (cardsReady = true);
+      if (!more) cardsReady = true;
+    });
+  });
+
+  // every other trail's card (/trails/cards.html), fetched only when the list needs more than this
+  // page's own (a filter, a sort, another page or page size; or the pointer reaching the pager), so a
+  // plain visit doesn't download and lay out every card (the page's performance, 2026-11-06)
+  let cardsLoading: Promise<void> | null = null;
+  function loadCards() {
+    if (!more || cardsLoading) return;
+    cardsLoading = (async () => {
       const html = await fetch("/trails/cards.html").then((r) => (r.ok ? r.text() : ""));
       const list = cardsHost?.querySelector<HTMLElement>("ol.cards");
       const extra = new DOMParser().parseFromString(html, "text/html").querySelector("ol.cards");
@@ -119,7 +131,10 @@
         cardsIn++;
         cardsReady = true;
       }
-    });
+    })();
+  }
+  $effect(() => {
+    if (trails.length && (active.length > 0 || sort !== "name" || per !== PER_PAGE || page !== firstPage)) loadCards();
   });
 
   // keep the URL in step with the filters (replace, not push: the back button leaves the page)
@@ -282,7 +297,7 @@
     <!-- the pager: plain links to each page's own address (crawlers follow them; the browser pages in
          place, keeping the filters), shown while there's more than one page -->
     {#if pages > 1}
-      <nav class="pager" aria-label="Pages of trails">
+      <nav class="pager" aria-label="Pages of trails" onpointerenter={loadCards} onfocusin={loadCards}>
         <p class="range">{firstShown}–{lastShown} of {trails.length ? shown.length : total}</p>
         <ol>
           <li class="step">

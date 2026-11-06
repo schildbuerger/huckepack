@@ -69,7 +69,15 @@
   const toggle = <T,>(list: T[], value: T) => (list.includes(value) ? list.filter((x) => x !== value) : [...list, value]);
 
   const NONE = "No trail matches this with your other filters";
-  const countWith = (set: Partial<Filters>) => trails.filter((t) => matches(t, { ...filters, ...set })).length;
+  // the filters as a plain object, copied once per change: spreading the reactive proxy for each of the
+  // ~40 counts over every trail was most of the page's start-up time (2026-11-06)
+  let plain = $derived($state.snapshot(filters) as Filters);
+  const countWith = (set: Partial<Filters>) => {
+    const f = { ...plain, ...set };
+    let n = 0;
+    for (const t of trails) if (matches(t, f)) n++;
+    return n;
+  };
   // months, places and landscapes combine (any of them), so pass each one alone: adding one to a
   // choice can't leave fewer trails, and one with no trail of its own would look live
   const dead = (on: boolean, set: Partial<Filters>) => !on && countWith(set) === 0;

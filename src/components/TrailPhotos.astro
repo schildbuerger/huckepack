@@ -34,7 +34,7 @@ const authorText = authors.length > 1 ? `${authors.slice(0, -1).join(", ")} and 
   <div class="tp-grid">
     {shown.map((p, i) => (
       <button type="button" class:list={["tp-tile", { big: i === 0 }]} data-photo={i} aria-label={`Open photo ${i + 1} of ${photos.length}: ${p.caption}`}>
-        <img src={i === 0 ? p.src : p.thumb} alt="" width={p.w} height={p.h} loading={i === 0 ? "eager" : "lazy"} decoding="async" />
+        <img src={i === 0 ? p.src : p.thumb} alt="" width={p.w} height={p.h} loading={i === 0 ? "eager" : "lazy"} fetchpriority={i === 0 ? "high" : undefined} decoding={i === 0 ? "sync" : "async"} />
       </button>
     ))}
     {photos.length > 1 && (

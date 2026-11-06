@@ -1,5 +1,6 @@
 # Lighthouse on five page types in light and dark mode (issue #91): accessibility, best practices
-# and SEO must stay at 100 (scripts/lighthouse-check.mjs); performance is reported, not enforced.
+# and SEO must stay at 100, performance at least 90 (scripts/lighthouse-check.mjs; enforced since
+# 2026-11-06).
 name: Quality
 
 on:
