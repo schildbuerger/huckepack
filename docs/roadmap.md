@@ -147,6 +147,8 @@ And the **Dobson Trail** (New Brunswick: the Fundy Hiking Trails Association's s
 And the **Timberline Trail** (Oregon: the Forest Service's 41.5-mile (66.8 km) loop round Mount Hood from Timberline Lodge, Trail #600 with the Pacific Crest Trail on the south-west side, 3–4 days without stages at or near the tree line, through the Mount Hood Wilderness with unbridged glacial river fords, July to October; over the OSM relation as one segment; 2026-11-06).
 
 And the **Laurel Highlands Hiking Trail** (Pennsylvania: Laurel Ridge State Park's 70 miles (112.7 km) along the forested Laurel Ridge from the Youghiogheny River at Ohiopyle to the Conemaugh Gorge near Johnstown, in nine legs between DCNR's eight reserved shelter areas, yellow-blazed with stone mileage posts every mile; over the OSM relation; 2026-11-06).
+
+And the **Ozark Highlands Trail** (Arkansas: the Ozark Highlands Trail Association's 207 miles (333 km) of continuous built trail from Lake Fort Smith State Park across the Boston Mountains and down the Buffalo River to AR-14 at Dillard's Ferry, with the Forest Service, in 17 legs between the association's major trailheads by its mile markers, white-blazed, best from October into early June; the separate Sylamore and Norfork Lake pieces beyond the unbuilt Lower Buffalo Wilderness gap left out; over the OSM relation; 2026-11-06).
 | # | Trail | Region | Length (approx.) | Why |
 |---|---|---|---|---|
 | 1 | Pacific Crest Trail | USA | 4,265 km | Most-hiked long trail; public US agency data; completion lists |

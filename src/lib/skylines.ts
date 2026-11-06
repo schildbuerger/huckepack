@@ -2102,6 +2102,28 @@ export const SKYLINES: Record<string, Skyline> = {
       { d: "M1192,294a4,4 0 1 0 8,0a4,4 0 1 0 -8,0Z M1208,290a4,4 0 1 0 8,0a4,4 0 1 0 -8,0Z M1222,296a4,4 0 1 0 8,0a4,4 0 1 0 -8,0Z M1238,295a4,4 0 1 0 8,0a4,4 0 1 0 -8,0Z M1252,298a4,4 0 1 0 8,0a4,4 0 1 0 -8,0Z", c: "#f2d4dc" },
     ],
   },
+  "ozark-highlands-trail": {
+    view: "Arkansas's Boston Mountains: rounded forested ridges one behind the other with deep hollows between, a tan sandstone bluff over a hollow, and a creek's waterfall over a sandstone ledge, as at Hurricane Creek and Haw Creek Falls",
+    ridge: "#4a5f36",
+    ground: "#9c8462",
+    shapes: [
+      // the far Boston Mountains: long flat-topped ridges, blue with distance
+      { d: hills([[0, G], [120, 222], [360, 204], [600, 214], [820, 198], [1080, 206], [1340, 196], [1520, 214], [1600, G]]), c: "#a4b4b0" },
+      // a nearer row of rounded ridges with hollows between
+      { d: hills([[0, G], [90, 250], [260, 228], [420, 252], [560, 236], [700, 256], [880, 232], [1060, 246], [1240, 230], [1420, 250], [1600, G]]), c: FAR },
+      // a tan sandstone bluff over a hollow on the left, wooded on top
+      { d: range([[120, G], [180, 262], [240, 244], [300, 240], [370, 242], [384, 276], [400, G]]), c: "#b49a72" },
+      { d: hills([[150, G], [190, 252], [260, 238], [330, 236], [376, 240], [400, G]]), c: FOREST },
+      // the near wooded ridges on the right, darker
+      { d: hills([[820, G], [960, 270], [1160, 258], [1360, 268], [1600, G]]), c: FIR },
+    ],
+    front: [
+      // a waterfall over a sandstone ledge into a pool, as at Hurricane Creek and Haw Creek Falls
+      { d: "M560,306L566,280L640,276L652,306Z", c: "#8a7456" },
+      { d: waterfall(604, 278, 304, 10), c: "#e8f0f2" },
+      { d: water(520, 760, 306), c: "#5f8ea6" },
+    ],
+  },
   "superior-hiking-trail": {
     view: "Minnesota's North Shore: the Sawtooth ridges above Lake Superior, birch and spruce on the rocky slopes, a waterfall dropping towards the lake and the lake's long horizon",
     ridge: "#3f5a34",
