@@ -18,24 +18,153 @@ const eleRange = eleRangeOf(trails);
   description={`${trails.length} official long-distance hiking trails, to filter by month, region, walking days, difficulty, landscape, ground underfoot, where to sleep and water on the way.`}
 >
   <Breadcrumbs current="Trails" />
-  <h1>Trails</h1>
-  <p class="lede muted">
-    Narrow the list down by when you can go, how long and how hard, and how you want to sleep, then compare the trails
-    side by side: click a column's heading to sort. Every profile is drawn on one scale for all trails.
-  </p>
+  <!-- the title band (2026-11-06, of eleven previews, K "Footpath under clouds"): low, so the results
+       start high; a dotted footpath from the title to the count, a walker heading along it while
+       clouds drift the same way above -->
+  <header class="band">
+    <div class="sky" aria-hidden="true"><span class="cloud c1"></span><span class="cloud c2"></span><span class="cloud c3"></span></div>
+    <h1>Trails</h1>
+    <div class="path" aria-hidden="true"><span class="walker"></span></div>
+    <p class="count"><strong>{trails.length}</strong> trails to walk</p>
+    <p class="lede">Filter by when, how long and how hard, then compare the trails side by side.</p>
+  </header>
   <TrailList client:load total={trails.length} more={trails.length > CARDS_IN_PAGE}>
     <TrailCards trails={trails.slice(0, CARDS_IN_PAGE)} eleRange={eleRange} />
   </TrailList>
 </Base>
 
 <style>
+  .band {
+    position: relative;
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    align-items: center;
+    gap: 4px 18px;
+    margin: 0 0 26px;
+    padding-top: 26px;
+  }
+  .band h1,
+  .path,
+  .count,
+  .lede {
+    position: relative;
+  }
   h1 {
-    margin-top: 8px;
-    text-align: center;
+    margin: 0;
   }
   .lede {
-    max-width: 62ch;
-    margin: 0 auto 32px;
-    text-align: center;
+    grid-column: 1 / -1;
+    margin: 0;
+    color: var(--muted);
+    font-size: 0.95rem;
+  }
+  /* a strip of sky above the path: flat clouds drifting left to right across the band */
+  .sky {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    height: 52px;
+    overflow: hidden;
+  }
+  .cloud {
+    position: absolute;
+    left: 0;
+    width: 70px;
+    height: 18px;
+    border-radius: 999px;
+    background: var(--line);
+    animation: drift 60s linear infinite;
+  }
+  .cloud::before {
+    content: "";
+    position: absolute;
+    left: 16px;
+    top: -11px;
+    width: 32px;
+    height: 26px;
+    border-radius: 50%;
+    background: inherit;
+  }
+  .c1 {
+    top: 14px;
+    animation-delay: -12s;
+  }
+  .c2 {
+    top: 6px;
+    scale: 0.7;
+    animation-duration: 85s;
+    animation-delay: -55s;
+  }
+  .c3 {
+    top: 22px;
+    scale: 0.85;
+    animation-duration: 70s;
+    animation-delay: -38s;
+  }
+  @keyframes drift {
+    from {
+      transform: translateX(-90px);
+    }
+    to {
+      transform: translateX(min(1240px, 100vw));
+    }
+  }
+  /* the footpath, and the walker who sets off at the title, walks to the count and starts again */
+  .path {
+    height: 2px;
+    border-top: 3px dotted var(--accent);
+    opacity: 0.85;
+  }
+  .walker {
+    position: absolute;
+    top: -8px;
+    left: 0;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: var(--poor);
+    box-shadow: 0 0 0 3px var(--bg);
+    animation: walk 24s linear infinite;
+  }
+  @keyframes walk {
+    0% {
+      left: 0;
+      opacity: 0;
+    }
+    4%,
+    94% {
+      opacity: 1;
+    }
+    100% {
+      left: calc(100% - 12px);
+      opacity: 0;
+    }
+  }
+  .count {
+    margin: 0;
+    font: 15px var(--sans);
+  }
+  .count strong {
+    font: 600 1.6rem var(--serif);
+    color: var(--accent-text);
+  }
+  /* phones: the title and the count share a line, the path gives way */
+  @media (max-width: 759px) {
+    .band {
+      grid-template-columns: auto 1fr;
+    }
+    .path {
+      display: none;
+    }
+    .count {
+      justify-self: end;
+    }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .cloud,
+    .walker {
+      animation: none;
+    }
   }
 </style>
