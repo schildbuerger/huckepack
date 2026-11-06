@@ -236,6 +236,13 @@ one agent per trail, each in its own git worktree, and one integrator.
   branches into main (the shared files merge by hand where they meet), rewrites the route
   expectations once, runs the checks and the full build (section 8), pushes the batch and removes
   the worktrees.
+- **Lessons from the first batch (2026-11-06):** git splits the conflict badly where several
+  branches add a block at the same place (it took the Juan de Fuca skyline's closing lines as shared
+  with the next block): rebuild `skylines.ts`, the roadmap and the photo exclusions from main's
+  version plus each branch's own block, never by resolving the markers. Brief each agent that
+  stages are the operator's (one split the Sunshine Coast Trail by hut kilometres itself and was
+  sent back to use the society's sections). A deploy that times out on Pages is fixed by a fresh run
+  (`gh workflow run deploy.yml`), not by re-running its failed job, which reuses the upload.
 
 ## 9. After
 
