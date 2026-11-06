@@ -1816,4 +1816,25 @@ export const SKYLINES: Record<string, Skyline> = {
       { d: hills([[0, G], [140, 286], [360, 292], [520, 300], [1160, 300], [1320, 288], [1600, 284], [1600, G]]), c: "#3f5a34" },
     ],
   },
+  "long-trail": {
+    view: "Vermont's Green Mountains: ridge behind forested ridge in fading blues, Mount Mansfield's long bare summit ridge with its Chin, maple and spruce forest, and a three-sided lean-to by the trail",
+    ridge: "#3f5a34",
+    ground: "#b9b07a",
+    shapes: [
+      // far ridges, pale blue
+      { d: hills([[0, G], [120, 248], [320, 232], [520, 244], [760, 236], [1000, 246], [1240, 232], [1460, 242], [1600, 238], [1600, G]]), c: "#b7c4cf" },
+      // Mount Mansfield: a long ridge, bare rock on top, the Chin its high point
+      { d: range([[420, G], [520, 252], [620, 220], [700, 206], [760, 196], [800, 200], [860, 192], [900, 184], [930, 188], [980, 204], [1060, 224], [1160, 252], [1260, G]]), c: "#7d8d8a" },
+      { d: "M700,206L760,196L800,200L860,192L900,184L930,188L960,198L900,198L860,204L800,208L760,206Z", c: "#a8a49a" },
+      // nearer ridges, forested
+      { d: hills([[0, G], [160, 262], [360, 254], [520, 268], [700, 258], [900, 272], [1100, 260], [1320, 266], [1600, 256], [1600, G]]), c: "#5f7a5a" },
+      { d: hills([[0, G], [220, 280], [480, 286], [760, 278], [1040, 288], [1300, 280], [1600, 286], [1600, G]]), c: FIR },
+    ],
+    front: [
+      // a lean-to: a three-sided shelter with its roof sloping back
+      { d: "M1230,300L1236,276L1300,268L1306,300Z", c: "#7a5a3a" },
+      { d: "M1226,278L1300,262L1312,270L1238,284Z", c: "#5a4030" },
+      { d: "M1242,300L1246,284L1294,278L1296,300Z", c: "#2f2a22" },
+    ],
+  },
 };
