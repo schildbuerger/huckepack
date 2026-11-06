@@ -60,8 +60,13 @@ def check(slug):
     trail = yaml.safe_load((ROOT / "data" / "trails" / f"{slug}.yaml").read_text())
     derived = json.loads((ROOT / "data" / "derived" / f"{slug}.json").read_text())
     route = json.loads((ROOT / "public" / "routes" / f"{slug}.geojson").read_text())
-    stages = trail.get("stages", {}).get("list", [])
+    from pipeline import osm
+
+    # a trail without stages (stages.none, issue #204): its one internal segment over the whole
+    # route, checked against the stated length instead of stage lengths
+    stages = [s for s in osm.stage_list(trail) if not s.get("whole")]
     main = [s for s in stages if s["kind"] == "main"]
+    whole = bool((trail.get("stages") or {}).get("none"))
     flags, fine = [], []
 
     def off(a, b):
@@ -69,7 +74,10 @@ def check(slug):
 
     # the OSM match, per stage
     poor = [f"{f['properties']['number']} ({f['properties']['covered']:.0%})" for f in route["features"] if f["properties"].get("covered", 1) < 0.95 and "part" not in f["properties"]]
-    (flags if poor else fine).append(f"route: stages under 95 % matched: {', '.join(poor)} (OSM may lack a path; note it)" if poor else "route: every stage at least 95 % matched")
+    if whole:
+        (flags if poor else fine).append("route: the whole route under 95 % matched (OSM may lack a path; note it)" if poor else "route: the whole route at least 95 % matched")
+    else:
+        (flags if poor else fine).append(f"route: stages under 95 % matched: {', '.join(poor)} (OSM may lack a path; note it)" if poor else "route: every stage at least 95 % matched")
 
     # lengths: per stage (map line against stated) and the whole main route
     by_stage = {}  # a stage in parts (rides between them) adds them up
@@ -82,9 +90,10 @@ def check(slug):
         for s in stages
         if (s["number"], s["kind"]) in by_stage and off(by_stage[(s["number"], s["kind"])], s["km"])
     ]
-    (flags if long_off else fine).append(
-        f"stage lengths more than 10 % off the map line: {', '.join(long_off)}" if long_off else "stage lengths within 10 % of the map line"
-    )
+    if not whole:
+        (flags if long_off else fine).append(
+            f"stage lengths more than 10 % off the map line: {', '.join(long_off)}" if long_off else "stage lengths within 10 % of the map line"
+        )
     stated = sum(s["km"] for s in main) if main else (trail["length"][0]["km"] if trail.get("length") else None)
     map_km = (derived.get("elevation") or derived.get("water") or {}).get("routeKm")
     if stated and map_km:
@@ -97,6 +106,8 @@ def check(slug):
         pts = elevation["points"]
         model = sum(max(0, b[1] - a[1]) for a, b in zip(pts, pts[1:]))
         up = sum(s["ascentM"] for s in main) if main and all("ascentM" in s for s in main) else None
+        if whole and trail.get("ascent"):
+            up = trail["ascent"][0]["m"]  # a trail without stages: its stated total
         if up:
             msg = f"ascent: stated {up:,} m, terrain model about {round(model, -1):,.0f} m"
             (flags if off(model, up) else fine).append(msg + (" (the model runs high in forests; check the stated figure)" if off(model, up) else ""))

@@ -167,6 +167,20 @@ def stage_order(number):
     return float(re.sub(r"[^\d.]", "", number) or 0)
 
 
+def stage_list(trail):
+    """The record's stages. A trail without stages by design (stages.none, issue #204) is one
+    internal segment over the whole route: main stage "1", marked `whole`, from the start to the
+    finish (a loop's finish is its start), guided by route.track or the route's relation."""
+    stages = trail.get("stages") or {}
+    if not stages.get("none"):
+        return stages.get("list") or []
+    termini = trail["termini"]
+    segment = {"number": "1", "kind": "main", "whole": True, "from": termini["start"]["name"], "to": termini["end"]["name"], "end": termini["end"]}
+    if (trail.get("route") or {}).get("track"):
+        segment["track"] = trail["route"]["track"]
+    return [segment]
+
+
 def source_label():
     """What the caches' manifest records as where OSM data came from."""
     return OVERPASS if SOURCE == "overpass" else "https://download.geofabrik.de/"

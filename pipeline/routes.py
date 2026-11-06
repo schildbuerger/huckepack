@@ -353,7 +353,8 @@ def split_at(line, stages):
 
 def build(slug, refresh=False):
     trail = yaml.safe_load((ROOT / "data" / "trails" / f"{slug}.yaml").read_text())
-    all_stages = trail.get("stages", {}).get("list", [])
+    # a trail without stages by design: one internal segment over the whole route (osm.stage_list)
+    all_stages = osm.stage_list(trail)
     stages = [s for s in all_stages if s.get("track") or s.get("relation")]
     cache = Cache(slug, refresh)
     guides = {}
@@ -488,7 +489,11 @@ def build(slug, refresh=False):
             return json.dumps({**parts[0], "elements": [e for p in parts for e in p["elements"]]}, separators=(",", ":")).encode()
 
         data, _ = cache.get("osm-relation.json", osm.source_label(), merged)
-        if trail["route"].get("branched"):
+        if len(stages) == 1 and stages[0].get("whole"):
+            # a trail without stages: the relation's whole chained line guides its one segment, never
+            # cut (a loop's finish is its start, where a cut would leave nothing)
+            guides = {("1", "main"): relation_line(json.loads(data), trail["route"].get("alternatives", []), (start["lon"], start["lat"]))}
+        elif trail["route"].get("branched"):
             # a relation with side branches (the W Trek's valleys), which no chain follows
             guides = shortest_guides(json.loads(data)["elements"], trail["route"].get("joinM", 0), True)
         else:
@@ -530,7 +535,7 @@ def build(slug, refresh=False):
                 track = relation_chain(elements, stage.get("alternatives", []), begin)
         else:
             track = track_of(stage)
-            if stage.get("end"):
+            if stage.get("end") and not stage.get("whole"):
                 # a track for the whole trail (one GPX, the Coast to Coast's): the stage is its piece
                 # from where the previous main stage ended to the point nearest the stage's `end`
                 begin = last[1] if stage["kind"] != "main" and last and last[0] != "main" else previous_end
@@ -576,7 +581,8 @@ def build(slug, refresh=False):
             previous_end = track[-1]
         last = (stage["kind"], track[-1])
         print(
-            f"{label:<12} {stage['km']:>6.1f}k {report['track_km']:>6.1f}k {report['km']:>6.1f}k"
+            # a trail without stages: its one segment states no length of its own
+            f"{label:<12} {f'{stage['km']:.1f}k' if 'km' in stage else '–':>7} {report['track_km']:>6.1f}k {report['km']:>6.1f}k"
             f" {report['covered']:>7.0%} {report['max_off_m']:>7.0f}m"
             + ("   <- check" if report["covered"] < 0.95 else "")
         )

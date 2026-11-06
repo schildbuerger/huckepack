@@ -32,6 +32,8 @@
     detours = [],
     transfers = [],
     stages = 0,
+    noStages = false,
+    loop = false,
     others = [],
     placesUrl = null,
     placeCounts = {},
@@ -45,6 +47,8 @@
     detours?: ("foot" | "train" | "bus")[]; // how the route's detours go, for the legend
     transfers?: ("boat" | "bus" | "train" | "cable car" | "funicular")[]; // the legs that aren't walked (stages.transfers), for the legend
     stages?: number; // the number of main stages, for the legend's stage keys
+    noStages?: boolean; // a trail without stages (issue #204): the start unnumbered
+    loop?: boolean; // a trail without stages that ends where it began: one marker for start and finish
     others?: ("approach" | "variant")[]; // the other kinds of stage on the map, so the legend lists only those
     placesUrl?: string | null; // the trail's places (src/pages/places/[slug].json.ts), loaded when a layer is switched on
     placeCounts?: Partial<Record<PlaceGroup, number>>; // how many of each, for the layer switches
@@ -419,9 +423,9 @@
           map.addImage("finish-flag", g.getImageData(0, 0, 48, 48), { pixelRatio: 2 });
           map.addSource("stage-stops", {
             type: "geojson",
-            data: fc(main.map((f: any, i: number) => pt(f.geometry.coordinates[0], { number: f.properties.number, first: i === 0 }))),
+            data: fc(main.map((f: any, i: number) => pt(f.geometry.coordinates[0], { number: noStages ? "" : f.properties.number, first: i === 0 }))),
           } as any);
-          map.addSource("finish", { type: "geojson", data: fc([pt((route?.features ?? []).filter((f: any) => f.properties.kind === "main").at(-1).geometry.coordinates.at(-1), {})]) } as any);
+          if (!loop) map.addSource("finish", { type: "geojson", data: fc([pt((route?.features ?? []).filter((f: any) => f.properties.kind === "main").at(-1).geometry.coordinates.at(-1), {})]) } as any);
           map.addLayer({
             id: "stage-stops",
             type: "circle",
@@ -440,7 +444,7 @@
             layout: { "text-field": ["get", "number"], "text-font": ["Noto Sans Regular"], "text-size": 11, "text-allow-overlap": true, "text-ignore-placement": true },
             paint: { "text-color": ["case", ["get", "first"], paper, ink] },
           });
-          map.addLayer({
+          if (!loop) map.addLayer({
             id: "finish",
             type: "symbol",
             source: "finish",
@@ -545,9 +549,9 @@
   {#if transfers.some((t) => t !== "boat")}<li><span class="key ride"></span> By {transfers.filter((t) => t !== "boat").join(" or ")}</li>{/if}
   {#if routeUrl && stages > 0}
     <!-- the map's markers (issue #153): the start as stop 1, the other stage starts, the finish's flag -->
-    <li><span class="key stop first" aria-hidden="true">1</span> Start</li>
+    <li><span class="key stop first" aria-hidden="true">{noStages ? "" : 1}</span> {loop ? "Start and finish" : "Start"}</li>
     {#if stages > 1}<li><span class="key stop" aria-hidden="true">2</span> Stage start</li>{/if}
-    <li><span class="key flag" aria-hidden="true">{@html FLAG}</span> Finish</li>
+    {#if !loop}<li><span class="key flag" aria-hidden="true">{@html FLAG}</span> Finish</li>{/if}
   {:else}
     <li><span class="key dot start"></span> {start.name}</li>
     <li><span class="key dot end"></span> {end.name}</li>

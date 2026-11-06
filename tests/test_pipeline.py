@@ -468,6 +468,14 @@ class Photos(unittest.TestCase):
         self.assertEqual(photos.caption(self.file(title="File:St Blane's Hill - geograph.org.uk - 8350.jpg")), "St Blane's Hill")
         self.assertEqual(photos.caption(self.file(title="File:Neustadt an der Weinstraße - panoramio.jpg")), "Neustadt an der Weinstraße")
         self.assertEqual(photos.caption(self.file(title="File:2013 03 09 Queen Charlotte Track 15km (4).JPG")), "Queen Charlotte Track 15km")
+        self.assertEqual(photos.caption(self.file(name="Wonderland Trail at the Nisqually River 360")), "Wonderland Trail at the Nisqually River 360")
+
+    def test_spheres_unusable_also_in_the_category(self):
+        from pipeline import photos
+
+        sphere = self.file(title="File:Wonderland Trail at the Nisqually River 360 (dc21).jpg", categories="360° panoramas|Wonderland Trail")
+        self.assertFalse(photos.usable(sphere))
+        self.assertFalse(photos.usable(self.file(w=5760, h=2880)))  # equirectangular
         self.assertEqual(photos.author(self.file(author="Own work Rémih")), "Rémih")
         self.assertEqual(photos.author(self.file(author="Guilhem Vellut from Annecy, France")), "Guilhem Vellut")
 
@@ -548,3 +556,24 @@ class Extracts(unittest.TestCase):
                 (Path(d) / name).write_bytes(b"")
             with mock.patch.object(osmlocal, "EXTRACTS_DIR", Path(d)):
                 self.assertEqual(osmlocal.extract("sachsen", "unused").name, "sachsen-261031.osm.pbf")
+
+
+class StagelessTrails(unittest.TestCase):
+    # issue #204: a trail without stages by design is one internal segment over the whole route
+    TERMINI = {"start": {"name": "Longmire", "lat": 46.75, "lon": -121.81}, "end": {"name": "Longmire", "lat": 46.75, "lon": -121.81}}
+
+    def test_one_segment_to_the_finish(self):
+        trail = {"termini": self.TERMINI, "stages": {"none": True, "source": "nps"}, "route": {"relation": 1}}
+        (segment,) = osm.stage_list(trail)
+        self.assertEqual((segment["number"], segment["kind"], segment["whole"]), ("1", "main", True))
+        self.assertEqual(segment["end"]["name"], "Longmire")
+        self.assertNotIn("track", segment)
+
+    def test_whole_route_track(self):
+        trail = {"termini": self.TERMINI, "stages": {"none": True, "source": "nps"}, "route": {"track": "https://example.org/w.gpx"}}
+        self.assertEqual(osm.stage_list(trail)[0]["track"], "https://example.org/w.gpx")
+
+    def test_stages_unchanged(self):
+        stages = [{"number": "1", "kind": "main", "km": 10}]
+        self.assertEqual(osm.stage_list({"stages": {"list": stages}}), stages)
+        self.assertEqual(osm.stage_list({}), [])

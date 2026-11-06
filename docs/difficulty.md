@@ -30,6 +30,12 @@ How hard a trail is, rated the same way for every trail (issue #16). The rule li
 | Climate | Wind | < 15 km/h | 15–20 | 20–25 | ≥ 25 | mean of each day's strongest wind (hourly mean, 10 m), the windier of both points |
 | Effort | Longest day | ≤ 4 h | 4–6 h | 6–8 h | > 8 h | walking time of the longest main stage (stated; a range counts its upper end; else DIN 33466) |
 
+**Effort without stages (issue #204, 2026-11-06).** A trail with no stages by design
+(`stages.none`, the Wonderland Trail) is rated by an **average day** instead of the longest: its
+length, ascent and descent divided evenly over the fewest suggested days, timed by DIN 33466 and
+marked ≈. It's the hardest plan a source suggests, so it doesn't understate the day. Its Terrain
+climb is the stated ascent over the stated length (else the terrain model's, ≈).
+
 **Climate by month (issue #114, 2026-11-01).** Each month is rated on its own. Without a month
 picked, a trail's climate rating is its **best run of at least two consecutive season months**
 (the record's `season.months`, all months if none; across the new year too): of every such run,

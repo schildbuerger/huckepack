@@ -76,6 +76,7 @@ def refs(record):
     add((record.get("officialGpx") or {}).get("url"), "official GPX")
     for s in (record.get("stages") or {}).get("list") or []:
         add(s.get("track"), f"stage {s.get('number')} page")
+    add((record.get("route") or {}).get("track"), "route track")  # a trail without stages (issue #204)
     for src in record.get("sources") or []:
         add(src.get("url"), f"source `{src.get('id')}`", bool(src.get("checkOnly")))
     return out

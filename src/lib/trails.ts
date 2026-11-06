@@ -96,6 +96,51 @@ export function perStage(t: Trail, d?: DerivedData) {
   return { km: Math.round((totals.km.value / n) * 10) / 10, ascentM, stages: n, source: totals.km.source };
 }
 
+// Trails without stages by design (stages.none, issue #204; docs/scope.md "Trails without stages"):
+// hikers choose their own camps, so the page has no stages section and names kilometres, not stages.
+export const noStages = (t: Trail) => Boolean(t.stages?.none);
+
+// The whole main route's ascent and descent from the terrain model (the climbs and drops between the
+// 100 m samples, to 10 m), for a trail without stages whose source states none.
+export function routeEstimate(d?: DerivedData) {
+  const pts = d?.elevation?.points;
+  if (!pts?.length) return undefined;
+  const to10 = (m: number) => Math.round(m / 10) * 10;
+  const steps = pts.slice(1).map((p, k) => p[1] - pts[k][1]);
+  return {
+    ascentM: to10(steps.filter((x) => x > 0).reduce((a, x) => a + x, 0)),
+    descentM: to10(-steps.filter((x) => x < 0).reduce((a, x) => a + x, 0)),
+    source: d!.elevation!.source,
+  };
+}
+
+// Averages per day for a trail without stages (issue #204): the length, ascent and descent over the
+// suggested days. A range of days gives a range (`min` from the most days, `max` from the fewest),
+// never a midpoint; the length and the days may come from different sources, both named. Climbs are
+// the stated pair, else the terrain model's estimate (`est`). Undefined for trails with stages.
+export function perDay(t: Trail, d?: DerivedData) {
+  if (!noStages(t) || !t.days) return undefined;
+  const length = trailLength(t) ?? ((m) => (m ? { ...m, how: "measured on the map line", approx: false } : null))(measuredLength(d));
+  if (!length) return undefined;
+  const { min, max } = t.days;
+  const stated = trailClimb(t);
+  const est = stated ? undefined : routeEstimate(d);
+  const up = stated?.up ?? est?.ascentM;
+  const down = stated?.down ?? est?.descentM;
+  const to10 = (m: number) => Math.round(m / 10) * 10;
+  const range = (total: number, round: (x: number) => number) => ({ min: round(total / max), max: round(total / min) });
+  return {
+    km: range(length.value, (x) => Math.round(x * 10) / 10),
+    ascentM: up !== undefined ? range(up, to10) : undefined,
+    descentM: down !== undefined ? range(down, to10) : undefined,
+    est: !stated,
+    days: { min, max },
+    lengthSource: length.source,
+    climbSource: stated?.source ?? est?.source,
+    daysSource: t.days.source,
+  };
+}
+
 // CAI grades mapped to the SAC scale for filtering. The scales overlap rather than match;
 // E covers SAC T2 to T3, and the lower bound is used.
 const CAI_TO_SAC = { T: "T1", E: "T2", EE: "T3", EEA: "T4" } as const;

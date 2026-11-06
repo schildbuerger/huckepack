@@ -1,0 +1,229 @@
+name: Wonderland Trail
+added: 2026-11-06
+website: https://www.nps.gov/mora/planyourvisit/the-wonderland-trail.htm
+wikidata: Q3498361
+managedBy:
+  # the National Park Service runs the park, its wilderness camps and the permits
+  - name: National Park Service, Mount Rainier National Park
+    url: https://www.nps.gov/mora/
+officialGpx:
+  none: the park's pages offer the Wonderland Trail profile map and the Wilderness Trip Planner as PDFs, with no GPX to download (checked 2026-11-06)
+  source: nps
+trailType: loop
+continents: [North America]
+countries: [US]
+regions: [Washington]
+protectedAreas: [Mount Rainier National Park]
+termini:
+  # a loop round Mount Rainier; the park lists its camps "hiking from Longmire in a clockwise
+  # direction", so the record starts and ends at Longmire (coordinates from OSM). Sunrise and Mowich
+  # Lake are other common starts
+  start:
+    name: Longmire
+    lat: 46.74954
+    lon: -121.81254
+  end:
+    name: Longmire
+    lat: 46.74954
+    lon: -121.81254
+  source: nps
+length:
+  # "about 93 miles (150 km) long and encircles Mount Rainier"
+  - km: 150
+    approx: true
+    source: nps
+ascent:
+  # "about 27,000 feet (8,230 m) of elevation gain and 27,000 feet (8,230 m) of elevation loss"
+  - m: 8230
+    source: nps
+descent:
+  - m: 8230
+    source: nps
+days:
+  # the trip planner: "Allow 10 to 14 days to hike the entire trail, depending on your hiking pace"
+  min: 10
+  max: 14
+  source: nps-planner
+stages:
+  # no stages by design (issue #204; docs/scope.md, "Trails without stages"): hikers plan their own
+  # nights between the 18 trailside wilderness camps and 3 non-wilderness camps, which their permit
+  # names, from any start
+  source: nps
+  none: true
+route:
+  # built by `python -m pipeline.all wonderland-trail`: OSM ways matched to the trail's OSM relation,
+  # the whole loop as one segment
+  source: osm
+  publishable: true
+  relation: 4111743
+difficulty:
+  # NPS: "a strenuous hike"; the planner: "A daily hike of 7 to 10 miles is recommended to compensate
+  # for the ruggedness of the trail. Daily elevation gains and losses of over 3,500 feet are common"
+  estimated:
+    sac: T2
+    basis: >-
+      The National Park Service calls it a strenuous hike over many ridges, with daily climbs and
+      descents of over 1,000 m, through forest and valleys into alpine and subalpine country, on a
+      built trail between designated camps. Mountain hiking on a maintained trail (T2); before mid- to
+      late July snow makes it a winter route that needs navigation, ice-axe skills and the fording of
+      glacial rivers, which the record's season leaves out.
+    source: nps
+season:
+  # "typically mostly snow-free from mid-July to October … In an average snow year it is not
+  # advisable to hike the Wonderland Trail until mid- to late July"
+  months: [7, 8, 9]
+  text: Mid-July to September, when the trail is mostly free of snow
+  source: nps
+permit:
+  # "A wilderness permit is required for all overnight camping in the park"; full-circuit hikers
+  # camp in designated camps only
+  required: true
+  name: Wilderness permit
+  issuedBy: National Park Service, Mount Rainier National Park
+  how: >-
+    Reserve an itinerary on Recreation.gov (about two thirds of summer permits, with an optional
+    early-access lottery for the Wonderland Trail), or ask at a wilderness information centre up to
+    one day before the start for the rest, first come, first served. The permit names a designated
+    camp for each night.
+  url: https://www.nps.gov/mora/planyourvisit/wilderness-permit.htm
+  source: nps-permit
+fees:
+  # the permit page: "Confirmed reservations cost $6 (Recreation.gov fee) + $12 per person per night
+  # (up to 13 consecutive nights/14 days)"; the fees page: a standard entrance pass $15–30
+  - { name: "Wilderness permit reservation", amount: 6, currency: USD, per: per reservation, year: 2026, note: "the Recreation.gov fee", source: nps-permit }
+  - { name: "Wilderness permit", amount: 12, currency: USD, per: per person and night, year: 2026, note: "up to 13 consecutive nights", source: nps-permit }
+  - { name: "Park entrance, standard pass", amount: 30, currency: USD, per: per vehicle, year: 2026, note: "standard passes $15–30; annual pass $55; no cash", source: nps-fees }
+sleeping:
+  # "eighteen trailside wilderness camps and three non-wilderness camps"; "There is no wilderness or
+  # non-wilderness camping at Longmire"
+  types: [campsite]
+  source: nps
+wildCamping:
+  status: prohibited
+  rule: >-
+    Hikers doing the complete Wonderland Trail camp in designated camps only, named on their
+    wilderness permit; the cross-country zones are not open to them. No fires, pets or bicycles in the
+    backcountry.
+  source: nps
+access:
+  # Seattle–Tacoma International Airport; no public transport to Longmire. Coordinates from OSM;
+  # distances by pipeline/access.py
+  - kind: airport
+    name: Seattle–Tacoma International Airport (SEA)
+    lat: 47.44757
+    lon: -122.30802
+    source: osm
+animals:
+  # NPS wildlife safety: "Among the largest and most feared are the black bear and the mountain lion.
+  # Though you are not likely to see them …"; no brown or grizzly bears in the park. Levels ours
+  list:
+    - kind: bear
+      name: Black bear
+      level: moderate
+      basis: Black bears live everywhere in the park, even on the trails; you are not likely to see one, and attacks are rare.
+      do:
+        - Keep at least 300 feet (about 90 m) away and never approach cubs
+        - Never feed a bear or leave food unsecured
+        - "Near a bear: do not run; back away slowly and talk loudly"
+        - If it charges and stops, back away while talking; if it keeps coming, shout and throw rocks or sticks
+        - If it attacks and you have food, move away from the food; if you have none, fight back hard
+      source: nps-wildlife
+    - kind: big-cat
+      name: Mountain lion (cougar)
+      level: low
+      basis: Mountain lions usually avoid confrontation and are rarely seen.
+      do:
+        - Give it plenty of space to get away and never approach kittens
+        - Do not run or turn your back; pick up small children and stand together
+        - Make yourself look large, wave your arms, yell and throw things
+        - Back away slowly while facing it
+        - If attacked, fight back and protect your head and neck
+      source: nps-wildlife
+tags: [volcano, glaciers, loop, wilderness-camps]
+notes:
+  - >-
+    Waymarking: the park's pages describe no waymarks; it is a maintained National Park trail with
+    trail signs at junctions (not documented further).
+  - >-
+    Tree line: not added; no official source for the region's tree line was found yet. The route
+    climbs into subalpine and alpine country.
+  - >-
+    Stages: none by design. The National Park Service lists the 21 camps clockwise from Longmire:
+    Pyramid Creek, Devil's Dream, South Puyallup River, Klapatche Park, North Puyallup River, Golden
+    Lakes, South Mowich River, Mowich Lake Campground, Ipsut Creek Campground, Carbon River, Dick
+    Creek, Mystic Camp, Granite Creek, Sunrise Camp, White River Campground, Summerland, Indian Bar
+    and the camps on the way back to Longmire; the trip planner gives the camps 2 to 8 miles apart and
+    recommends 7 to 10 miles a day.
+  - >-
+    Food caches: hikers can cache food at ranger stations along the trail (the trip planner's
+    "Caching Your Food"), not yet shown on the page. OSM maps one shop near the trail, so the page
+    shows the whole loop without resupply: carry food or cache it.
+  - >-
+    Map line (2026-11-06): the Washington Geofabrik extract (2026-11-05); OSM's Wonderland Trail
+    relation (4111743), chained from Longmire round the loop as one segment, 100 % matched. It
+    measures 136.1 km against the park's "about 93 miles (150 km)" (−9 %); the record keeps the
+    park's figure. The terrain model gives about 7,990 m of climbing against the park's 8,230 m.
+dataCheck:
+  # working rule 2: English Wikipedia as the second source
+  date: 2026-11-06
+  against: [wikipedia]
+  pageAgainst: [nps, nps-planner]
+  deviations:
+    - { figure: ascent, ours: "8,230 m (NPS)", theirs: "6,700 m", source: wikipedia }
+sources:
+  - id: nps
+    title: "National Park Service: The Wonderland Trail (length, climbs, season, camps, rules)"
+    url: https://www.nps.gov/mora/planyourvisit/the-wonderland-trail.htm
+    licence: US federal government work (public domain)
+    retrieved: 2026-11-06
+  - id: nps-planner
+    title: "National Park Service: Wonderland Trail trip planner (PDF, days, daily distances, camps, food caches)"
+    url: https://www.nps.gov/mora/planyourvisit/upload/Wonderland-Trail-7-26_508.pdf
+    licence: US federal government work (public domain)
+    retrieved: 2026-11-06
+  - id: nps-permit
+    title: "National Park Service: Mount Rainier wilderness permits (reservations, lottery, fees)"
+    url: https://www.nps.gov/mora/planyourvisit/wilderness-permit.htm
+    licence: US federal government work (public domain)
+    retrieved: 2026-11-06
+  - id: nps-fees
+    title: "National Park Service: Mount Rainier fees and passes"
+    url: https://www.nps.gov/mora/planyourvisit/fees.htm
+    licence: US federal government work (public domain)
+    retrieved: 2026-11-06
+  - id: nps-wildlife
+    title: "National Park Service: Mount Rainier wildlife safety (black bears, mountain lions)"
+    url: https://www.nps.gov/mora/planyourvisit/wildlife.htm
+    licence: US federal government work (public domain)
+    retrieved: 2026-11-06
+  - id: wikipedia
+    title: "Wikipedia (en): Wonderland Trail"
+    url: https://en.wikipedia.org/wiki/Wonderland_Trail
+    licence: CC BY-SA 4.0
+    retrieved: 2026-11-06
+    checkOnly: true
+  - id: osm
+    title: "OpenStreetMap contributors: paths, water, shops and places to sleep along the trail (Geofabrik extracts), travel hubs"
+    url: https://www.openstreetmap.org/
+    licence: ODbL 1.0
+    retrieved: 2026-11-06
+  - id: copdem
+    title: "Copernicus DEM GLO-30 (30 m terrain model), tiles from AWS Open Data"
+    url: https://registry.opendata.aws/copernicus-dem/
+    licence: "Copernicus WorldDEM-30 licence, free; produced using Copernicus WorldDEM-30 © DLR e.V. 2010-2014 and © Airbus Defence and Space GmbH 2014-2018 provided under COPERNICUS by the European Union and ESA; all rights reserved"
+    retrieved: 2026-11-06
+  - id: worldcover
+    title: "ESA WorldCover 2021: 10 m land cover (via AWS Open Data)"
+    url: https://esa-worldcover.org/
+    licence: "CC BY 4.0; © ESA WorldCover project 2021 / Contains modified Copernicus Sentinel data (2021) processed by ESA WorldCover consortium"
+    retrieved: 2026-11-06
+  - id: era5
+    title: "Open-Meteo open data on AWS: ERA5-Land temperature and ERA5 precipitation, snow and wind, daily 1995–2024 (reanalysis)"
+    url: https://github.com/open-meteo/open-data
+    licence: CC BY 4.0 (Open-Meteo); contains modified Copernicus Climate Change Service information
+    retrieved: 2026-11-06
+  - id: osrm
+    title: "OSRM: road routes on OpenStreetMap data (router.project-osrm.org)"
+    url: https://project-osrm.org/
+    licence: Route data © OpenStreetMap contributors (ODbL)
+    retrieved: 2026-11-06

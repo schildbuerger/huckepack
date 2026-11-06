@@ -19,7 +19,7 @@ import { ogAlt } from "../../lib/og-image";
 import { ogTrail } from "../../lib/og-trail";
 import { routePreviewSvg } from "../../lib/route-preview";
 import { n1, stripPaths } from "../../lib/svg";
-import { difficulty, levelText, DIFFICULTY_FACTS, DIMENSION_TEXT, LEVELS, SCALES, type Level } from "../../lib/difficulty";
+import { difficulty, levelText, DIFFICULTY_FACTS, DIMENSION_TEXT, EFFORT_NO_STAGES, NO_STAGES_SCALES, LEVELS, SCALES, type Level } from "../../lib/difficulty";
 import { monthsText, rateData } from "../../lib/months";
 import { existsSync } from "node:fs";
 import TrailPhotos, { type Photo } from "../../components/TrailPhotos.astro";
@@ -28,6 +28,8 @@ import {
   countryName,
   monthName,
   perStage,
+  perDay,
+  noStages,
   trailDays,
   sacGrade,
   mainStages,
@@ -91,6 +93,19 @@ const lengthHow = length ? (length.how === "stated total" ? "the stated length" 
 const lengthSrc = length ? sources[length.source].title.split(":")[0] : "";
 const days = trailDays(t);
 const daily = perStage(t, derived);
+// a trail without stages by design (issue #204): no stages section, kilometres instead of stage
+// numbers, averages per day from the suggested days (perDay)
+const stageless = noStages(t);
+const dayAvg = perDay(t, derived);
+// a stage that names itself where a stage would be named: none on a trail without stages
+const onStage = (n: string | undefined) => (stageless || !n ? "" : `, stage ${n}`);
+// a measure's name; Effort on a trail without stages is an average day, not the longest (issue #204)
+const scaleLabel = (id: keyof typeof SCALES) => (stageless && NO_STAGES_SCALES[id]?.label) || SCALES[id].label;
+const scaleFrom = (id: keyof typeof SCALES) => (stageless && NO_STAGES_SCALES[id]?.from) || SCALES[id].from;
+// where places off the trail still count (pipeline/along.py): near each stage's end; on a trail
+// without stages its one segment ends at the finish
+const stageEnds = stageless ? (t.termini.start.lat === t.termini.end.lat && t.termini.start.lon === t.termini.end.lon ? "the start and finish" : "the finish") : "a stage's end";
+const isLoop = t.termini.start.lat === t.termini.end.lat && t.termini.start.lon === t.termini.end.lon;
 const sac = sacGrade(t);
 // difficulty in three dimensions (src/lib/difficulty.ts); the key figure names the hardest level
 const diff = difficulty(t, derived);
@@ -118,14 +133,14 @@ const pageTitle = trailTitle(t.name, length ? Math.round(length.value).toLocaleS
 const pageDescription = [
   `${t.name}, ${where}:`,
   [
-    lengthText && (t.stages ? `${lengthText} in ${mainStages(t).length} stages` : lengthText),
+    lengthText && (t.stages && !stageless ? `${lengthText} in ${mainStages(t).length} stages` : lengthText),
     t.days && `${t.days.min === t.days.max ? t.days.min : `${t.days.min}–${t.days.max}`} days`,
     diff.dims.length > 0 && `rated ${LEVELS[diffTop - 1].toLowerCase()}`,
     seasonRun && `best ${monthName(seasonRun[0])} to ${monthName(seasonRun[1])}`,
   ]
     .filter(Boolean)
     .join(", ") + ".",
-  "Stages, terrain, climate, water and beds from official and open data.",
+  stageless ? "Terrain, climate, water and camps from official and open data." : "Stages, terrain, climate, water and beds from official and open data.",
 ].join(" ");
 // stage heights and times: the published figure, else our estimate (marked ≈ on the page)
 const estimates = stageEstimates(t, derived);
@@ -432,7 +447,7 @@ const terrainData =
     ? jsonBlock({
         total: elevation.routeKm,
         points: elevation.points,
-        bars: grad.bars.map((b) => [b.fromKm, b.toKm, b.grade, b.stage]),
+        bars: grad.bars.map((b) => [b.fromKm, b.toKm, b.grade, stageless ? "" : b.stage]),
         runs: (surface?.runs ?? []).map((r) => [r.fromKm, r.toKm, r.category]),
       })
     : null;
@@ -473,6 +488,7 @@ const inSeason = climate ? climate.months.filter((m) => seasonMonths.length === 
 // With many stages (issue #25) every other stage gets a shaded band, and only every k-th stage a
 // label (k = 1, 2, 5 or 10, the smallest that keeps labels 34 units apart; first and last always)
 const stageTicks = (starts: { number: string; km: number }[], total: number, at = (km: number) => xAt(km, total)) => {
+  if (stageless) return kmTicks(total, at);
   const many = starts.length >= MANY_STAGES;
   const span = at(total) - at(0);
   const k = many ? ([1, 2, 5, 10].find((n) => (span / starts.length) * n >= 34) ?? 10) : 1;
@@ -490,6 +506,18 @@ const stageTicks = (starts: { number: string; km: number }[], total: number, at 
   });
 };
 
+// a trail without stages (issue #204): kilometre marks instead of stage ticks, at a round step that
+// gives at most 8 marks, none crowding the end's own label
+function kmTicks(total: number, at: (km: number) => number) {
+  const step = [5, 10, 20, 25, 50, 100, 200].find((k) => total / k <= 8) ?? 500;
+  const out = [];
+  for (let k = step; k <= total - step * 0.4; k += step) {
+    const x = at(k);
+    out.push({ x, end: x, mid: n1(x), band: false, label: `${k}` as string | null });
+  }
+  return out;
+}
+
 // water strip chart: the main route on the map line's kilometres
 const onRoute = water?.points.filter((p) => p.km !== null) ?? [];
 const chartSummary =
@@ -501,7 +529,7 @@ const waterTotals = water && {
 };
 // the stage(s) of the longest dry stretch, from the water points at either end of it
 const gapStages = (() => {
-  if (!water) return "";
+  if (!water || stageless) return "";
   const g = drinkGap!;
   const at = (km: number) => [...water.stageStarts].reverse().find((st) => st.km <= km + 0.05)?.number;
   const [a, b] = [at(g.fromKm), at(Math.max(g.fromKm, g.toKm - 0.1))];
@@ -627,7 +655,7 @@ const nav = [
   { id: "location", label: "Location", show: true },
   { id: "difficulty", label: "Difficulty", show: diff.dims.length > 0 },
   { id: "climate", label: "Climate", show: Boolean(climate) },
-  { id: "stages", label: "Stages", show: Boolean(t.stages) },
+  { id: "stages", label: "Stages", show: Boolean(t.stages) && !stageless },
   { id: "terrain", label: "Terrain", show: Boolean(elevation && grad) },
   { id: "landscape", label: "Landscape", show: Boolean(landcover) },
   { id: "sleeping", label: "Sleeping", show: Boolean(t.sleeping || t.wildCamping) },
@@ -705,7 +733,7 @@ const trailLd = JSON.stringify({
                   </>
                 ) : derived?.measured && (
                   <>
-                    <dt>Map line</dt><dd>Not used: only {Math.round(derived.measured.minCovered * 100)} % matched on its weakest stage</dd>
+                    <dt>Map line</dt><dd>Not used: only {Math.round(derived.measured.minCovered * 100)} % matched{stageless ? "" : " on its weakest stage"}</dd>
                     <dt>Search</dt><dd>Compares this trail by the stated length</dd>
                   </>
                 )}
@@ -765,7 +793,7 @@ const trailLd = JSON.stringify({
                     <Meter level={d.level} />
                     <strong data-dim-text={d.id}>{d.label}: {levelText(d)}</strong>
                     <span>
-                      {SCALES[d.by.id].label}: {d.by.estimate && "≈ "}{d.by.text}{d.by.where && ` (${d.by.where})`}
+                      {scaleLabel(d.by.id)}: {d.by.estimate && "≈ "}{d.by.text}{d.by.where && ` (${d.by.where})`}
                     </span>
                   </li>
                 ))}
@@ -793,7 +821,14 @@ const trailLd = JSON.stringify({
       {days && (
         <div>
           <dt>
-            {days.perStage ? (
+            {stageless ? (
+              <Explain id="days-info" term="Suggested">
+                <dl class="pop-facts">
+                  <dt>No stages</dt><dd>No official stages: hikers choose their own camps</dd>
+                  <dt>Source</dt><dd>{sourceShort(days.source)}</dd>
+                </dl>
+              </Explain>
+            ) : days.perStage ? (
               <Explain id="days-info" term="Days">
                 <dl class="pop-facts">
                   <dt>This trail</dt><dd>{days.min} days, one per main stage</dd>
@@ -805,6 +840,31 @@ const trailLd = JSON.stringify({
             )}
           </dt>
           <dd><span class="big">{range(days.min, days.max)}</span><span class="unit">days</span></dd>
+        </div>
+      )}
+      {dayAvg && (
+        <div>
+          <dt>
+            <Explain id="per-day-info" term="Per day">
+              <dl class="pop-facts">
+                <dt>How</dt><dd>The length{dayAvg.ascentM ? " and the ascent" : ""} over the suggested {range(dayAvg.days.min, dayAvg.days.max)} days{dayAvg.days.min !== dayAvg.days.max ? ": from the most days to the fewest" : ""}</dd>
+                {dayAvg.lengthSource === dayAvg.daysSource ? (
+                  <><dt>Source</dt><dd>{sourceShort(dayAvg.daysSource)}</dd></>
+                ) : (
+                  <><dt>Length</dt><dd>{sourceShort(dayAvg.lengthSource)}</dd><dt>Days</dt><dd>{sourceShort(dayAvg.daysSource)}</dd></>
+                )}
+                {dayAvg.ascentM && dayAvg.est && <><dt>Ascent</dt><dd>The terrain model's estimate (≈): no source states the climbs</dd></>}
+              </dl>
+            </Explain>
+          </dt>
+          <dd>
+            <span class="big">{range(dayAvg.km.min, dayAvg.km.max)}</span><span class="unit">km</span>
+            {dayAvg.ascentM && (
+              <span class="unit">
+                · {dayAvg.est && <span aria-hidden="true">≈ </span>}{dayAvg.est && <span class="sr-only">about </span>}{dayAvg.ascentM.min === dayAvg.ascentM.max ? fmt(dayAvg.ascentM.min) : `${fmt(dayAvg.ascentM.min)}–${fmt(dayAvg.ascentM.max)}`} m ↑
+              </span>
+            )}
+          </dd>
         </div>
       )}
       {daily && (
@@ -993,7 +1053,9 @@ const trailLd = JSON.stringify({
         routeAttribution={routeAttribution}
         detours={detourModes}
         transfers={transferModes}
-        stages={mainView.length}
+        stages={stageless ? 1 : mainView.length}
+        noStages={stageless}
+        loop={stageless && isLoop}
         others={[...new Set(stageView.filter((s) => s.kind !== "main").map((s) => s.kind as "approach" | "variant"))]}
         placesUrl={derived?.water ? `/places/${trail.id}.json` : null}
         placeCounts={{
@@ -1023,13 +1085,13 @@ const trailLd = JSON.stringify({
               <Explain id={`about-${d.id}`} term={d.label}>
                 <dl class="pop-facts">
                   <dt>Rates</dt><dd>{DIMENSION_TEXT[d.id].question}</dd>
-                  <dt>How</dt><dd>{DIMENSION_TEXT[d.id].points.join(" ")}</dd>
+                  <dt>How</dt><dd>{(stageless && d.id === "effort" ? EFFORT_NO_STAGES : DIMENSION_TEXT[d.id]).points.join(" ")}</dd>
                   <dt>Level</dt><dd>The hardest measure sets it</dd>
                   {d.measures.map((m) => (
                     <>
-                      <dt>{SCALES[m.id].label}</dt>
+                      <dt>{scaleLabel(m.id)}</dt>
                       <dd>
-                        <span class="pop-note">{SCALES[m.id].from}</span>
+                        <span class="pop-note">{scaleFrom(m.id)}</span>
                         <ol class="pop-scale">
                           {SCALES[m.id].bands.map((b, i) =>
                             b !== "–" && (
@@ -1076,7 +1138,7 @@ const trailLd = JSON.stringify({
                         <a slot="foot" href="https://www.sac-cas.ch/en/ausbildung-und-sicherheit/tourenplanung/grading-systems/">The scale at the Swiss Alpine Club</a>
                       </Explain>
                     ) : (
-                      SCALES[m.id].label
+                      scaleLabel(m.id)
                     )}
                     {m.where && <span class="muted where"> · {m.where}</span>}
                   </span>
@@ -1233,7 +1295,7 @@ const trailLd = JSON.stringify({
     </section>
   )}
 
-  {t.stages && (
+  {t.stages && !stageless && (
     <section id="stages">
       <h2>Stages</h2>
       <!-- a compact table with bars for distance and ascent (issue #25, for every trail since
@@ -1358,8 +1420,8 @@ const trailLd = JSON.stringify({
           <dt>
               <Explain id="grade-info" term="Steepest climb · descent" title="Gradient">
                 <dl class="pop-facts">
-                  <dt>Steepest climb</dt><dd>{grad.climb.grade}{"\u00a0"}% ({degrees(grad.climb.grade)}°), {grad.climb.changeM} m up over 500 m, stage {grad.climb.stage}</dd>
-                  <dt>Steepest descent</dt><dd>{signed(grad.descent.grade)}{"\u00a0"}% ({degrees(grad.descent.grade)}°), {Math.abs(grad.descent.changeM)} m down over 500 m, stage {grad.descent.stage}</dd>
+                  <dt>Steepest climb</dt><dd>{grad.climb.grade}{"\u00a0"}% ({degrees(grad.climb.grade)}°), {grad.climb.changeM} m up over 500 m{onStage(grad.climb.stage)}</dd>
+                  <dt>Steepest descent</dt><dd>{signed(grad.descent.grade)}{"\u00a0"}% ({degrees(grad.descent.grade)}°), {Math.abs(grad.descent.changeM)} m down over 500 m{onStage(grad.descent.stage)}</dd>
                   <dt>Gradient</dt><dd>Height per distance: 20 % is 20 m up per 100 m forward; 100 % is 45°, not 90°</dd>
                   <dt>Keep in mind</dt><dd>Averages over 500 m from a 30 m terrain model: steps and ladders within them are steeper</dd>
                 </dl>
@@ -1427,7 +1489,7 @@ const trailLd = JSON.stringify({
           <svg
             viewBox={`0 0 ${CHART.width} ${surface ? 236 : 222}`}
             role="img"
-            aria-label={`Elevation along the main route, ${elevation.routeKm} km: highest ${fmt(elevation.highest.m)} m at km ${elevation.highest.km.toFixed(1)}, lowest ${fmt(elevation.lowest.m)} m. Steepest climb ${grad.climb.grade} % on stage ${grad.climb.stage}, steepest descent ${grad.descent.grade} % on stage ${grad.descent.stage}; ${grad.steepUpKm} km climb and ${grad.steepDownKm} km descend at ${STEEP_PERCENT} % or more.${treeLineText ? ` The route climbs above the tree line, ${treeLineText.replace("≈ ", "about ")}.` : ""}${surface ? ` Ground: ${surfaceRows.map((c) => `${c.label.toLowerCase()} ${pct(surface.totals[c.id].share)}`).join(", ")}.` : ""}`}
+            aria-label={`Elevation along the main route, ${elevation.routeKm} km: highest ${fmt(elevation.highest.m)} m at km ${elevation.highest.km.toFixed(1)}, lowest ${fmt(elevation.lowest.m)} m. Steepest climb ${grad.climb.grade} %${stageless ? "" : ` on stage ${grad.climb.stage}`}, steepest descent ${grad.descent.grade} %${stageless ? "" : ` on stage ${grad.descent.stage}`}; ${grad.steepUpKm} km climb and ${grad.steepDownKm} km descend at ${STEEP_PERCENT} % or more.${treeLineText ? ` The route climbs above the tree line, ${treeLineText.replace("≈ ", "about ")}.` : ""}${surface ? ` Ground: ${surfaceRows.map((c) => `${c.label.toLowerCase()} ${pct(surface.totals[c.id].share)}`).join(", ")}.` : ""}`}
           >
             {stageTicks(elevation.stageStarts, elevation.routeKm).map(
               (tk) => tk.band && <rect class="stage-band" x={tk.x} y={TERRAIN.top - 8} width={n1(tk.end - tk.x)} height={TERRAIN.bottom - TERRAIN.top + 8} />,
@@ -1557,7 +1619,7 @@ const trailLd = JSON.stringify({
             x1: LANE_X1,
             lanes: landRows.map((g) => g.label),
             runs: landcover.runs.map((r) => [r.fromKm, r.toKm, landRows.findIndex((g) => g.id === r.group)]),
-            stages: landcover.stageStarts.map((st) => [st.number, st.km]),
+            stages: stageless ? [] : landcover.stageStarts.map((st) => [st.number, st.km]),
           })}
         />
         <figcaption class="chart-info">
@@ -1587,7 +1649,7 @@ const trailLd = JSON.stringify({
                   {c.id !== "wild-camping" && (
                     <>
                       <dt>Available</dt>
-                      <dd>Where the trail's own source lists it{along && `, or where OpenStreetMap maps ${OSM_SLEEP_MIN} or more within ${along.withinM / 1000} km of the trail or ${along.stageEndM / 1000} km of a stage's end`}</dd>
+                      <dd>Where the trail's own source lists it{along && `, or where OpenStreetMap maps ${OSM_SLEEP_MIN} or more within ${along.withinM / 1000} km of the trail or ${along.stageEndM / 1000} km of ${stageEnds}`}</dd>
                     </>
                   )}
                 </dl>
@@ -1657,7 +1719,7 @@ const trailLd = JSON.stringify({
               x0: LANE_X0,
               x1: LANE_X1,
               height: bedsAxis + 40,
-              lanes: bedRows.map((r) => r.points.map((p) => [p.km, p.what, p.name ?? "", p.stage, p.link ?? ""])),
+              lanes: bedRows.map((r) => r.points.map((p) => [p.km, p.what, p.name ?? "", stageless ? "" : p.stage, p.link ?? ""])),
               labels: bedRows.map((r) => r.label),
             })}
           />
@@ -1666,7 +1728,7 @@ const trailLd = JSON.stringify({
             <Explain id="about-beds-chart" term="About this chart" title="Places to sleep along the route" icon>
               <dl class="pop-facts">
                 <dt>Ticks</dt><dd>One per place to sleep: {bedRows.map((r) => `${r.count} ${BED_WORDS[r.id]}`).join(", ")}</dd>
-                <dt>Counted</dt><dd>Within {along.withinM / 1000} km of the trail or {along.stageEndM / 1000} km of a stage's end (stage towns often lie off the trail); no hotels or day shelters</dd>
+                <dt>Counted</dt><dd>Within {along.withinM / 1000} km of the trail{stageless ? "" : ` or ${along.stageEndM / 1000} km of a stage's end (stage towns often lie off the trail)`}; no hotels or day shelters</dd>
                 <dt>Shaded</dt><dd>The longest stretch without any, km {bedGap.fromKm}–{bedGap.toKm}</dd>
                 <dt>Source</dt><dd>OpenStreetMap: it may miss places or list closed ones, so book or check locally</dd>
               </dl>
@@ -1760,7 +1822,7 @@ const trailLd = JSON.stringify({
                 <Explain id="about-shops" term="Longest without a shop" title="Shops">
                   <dl class="pop-facts">
                     <dt>This trail</dt><dd>{along.resupply.longestGapKm.km} km without a shop, km {along.resupply.longestGapKm.fromKm}–{along.resupply.longestGapKm.toKm}</dd>
-                    <dt>Counted</dt><dd>{along.resupply.points.length} supermarkets, convenience and general stores and petrol station shops, within {along.withinM / 1000} km of the trail or {along.stageEndM / 1000} km of a stage's end</dd>
+                    <dt>Counted</dt><dd>{along.resupply.points.length} supermarkets, convenience and general stores and petrol station shops, within {along.withinM / 1000} km of the trail or {along.stageEndM / 1000} km of {stageEnds}</dd>
                     <dt>Keep in mind</dt><dd>Small village shops are often missing in OpenStreetMap, and opening hours vary: check before relying on one</dd>
                   </dl>
                 </Explain>
@@ -1859,7 +1921,7 @@ const trailLd = JSON.stringify({
               step: LANE.step,
               height: supplyAxis + 40,
               gap: GROUP_GAP,
-              lanes: supplyLanes.map((l) => l.points.map((p) => [p.km, p.what, p.name ?? "", p.stage, p.link ?? ""])),
+              lanes: supplyLanes.map((l) => l.points.map((p) => [p.km, p.what, p.name ?? "", stageless ? "" : p.stage, p.link ?? ""])),
               labels: supplyLanes.map((l) => l.label),
               parent: supplyLanes.map((l) => l.parent ?? -1), // the group a row folds into (issue #119), -1: none
             })}
@@ -1871,7 +1933,7 @@ const trailLd = JSON.stringify({
                 <dt>Ticks</dt><dd>One per place along the main route</dd>
                 <dt>Counted</dt>
                 <dd>
-                  Drinking water and springs within {water.withinM} m{tiers && `; refills at huts, hostels, guest houses and campsites within ${tiers.withinM} m`}{along && `; shops within ${along.withinM / 1000} km, or ${along.stageEndM / 1000} km of a stage's end`}
+                  Drinking water and springs within {water.withinM} m{tiers && `; refills at huts, hostels, guest houses and campsites within ${tiers.withinM} m`}{along && `; shops within ${along.withinM / 1000} km, or ${along.stageEndM / 1000} km of ${stageEnds}`}
                 </dd>
                 <dt>Shaded</dt><dd>Each lane's longest stretch without{tiers && ". \"Water\" counts every kind and opens into one lane per kind, each with its own"}</dd>
                 <dt>Source</dt><dd>OpenStreetMap{waterExtra.length > 0 && `, water also from ${waterExtra.join(", ")}`}: it may miss places or list ones that have closed or run dry, so check locally</dd>
@@ -2142,7 +2204,7 @@ const trailLd = JSON.stringify({
       cursor.setAttribute("x2", String(x));
       cursor.setAttribute("visibility", "visible");
       tip.querySelector("strong")!.textContent = near[1];
-      tip.querySelector("span")!.textContent = `${near[2] ? `${near[2]} · ` : ""}km ${near[0]} · stage ${near[3]}`;
+      tip.querySelector("span")!.textContent = `${near[2] ? `${near[2]} · ` : ""}km ${near[0]}${near[3] ? ` · stage ${near[3]}` : ""}`;
       current = { p: near, x };
       tip.querySelector(".osm-link")?.remove();
       if (near[4]) tip.append(outLink(near));
@@ -2207,7 +2269,7 @@ const trailLd = JSON.stringify({
         for (const p of data.lanes[i]) {
           const li = document.createElement("li");
           const cell = (cls: string, text: string) => Object.assign(document.createElement("span"), { className: cls, textContent: text });
-          li.append(cell("pl-km", `km ${p[0]}`), cell("pl-what", p[2] ? `${p[1]}: ${p[2]}` : p[1]), cell("pl-stage", `stage ${p[3]}`));
+          li.append(cell("pl-km", `km ${p[0]}`), cell("pl-what", p[2] ? `${p[1]}: ${p[2]}` : p[1]), cell("pl-stage", p[3] ? `stage ${p[3]}` : ""));
           if (p[4]) li.append(outLink(p, p[4].startsWith("http") ? "Source ↗" : "OpenStreetMap ↗"));
           li.addEventListener("pointerenter", () => {
             const x = X0 + (p[0] / data.total) * (X1 - X0);
@@ -2282,7 +2344,7 @@ const trailLd = JSON.stringify({
       dot.setAttribute("cy", String(y));
       dot.setAttribute("visibility", "visible");
       tip.querySelector("strong")!.textContent = `${m.toLocaleString("en")} m${bar ? ` · ${bar.grade > 0 ? "+" : bar.grade < 0 ? "−" : ""}${Math.abs(Math.round(bar.grade))} %` : ""}`;
-      tip.querySelector("span")!.textContent = `km ${pkm.toFixed(1)}${bar ? ` · stage ${bar.stage}` : ""}${run ? ` · ${GROUND[run.category] ?? run.category}` : ""}`;
+      tip.querySelector("span")!.textContent = `km ${pkm.toFixed(1)}${bar?.stage ? ` · stage ${bar.stage}` : ""}${run ? ` · ${GROUND[run.category] ?? run.category}` : ""}`;
       tip.hidden = false;
       const fbox = figure.getBoundingClientRect();
       const half = tip.offsetWidth / 2;

@@ -92,7 +92,10 @@ schema's superRefine; the skyline by `tests/trails.test.ts`):
   - name, `added`, website, `managedBy`, route type, continents, countries;
   - `termini`;
   - `stages`: every main stage with number, from, to, km, and a `track`, or a `relation`
-    and/or `end` (on `route.relation`);
+    and/or `end` (on `route.relation`); or, for a trail with no stages by design (hikers choose
+    their own camps, docs/scope.md "Trails without stages"), `stages: { none: true, source }` with
+    official `days`, and the whole route guided by `route.relation` or one GPX in `route.track`
+    (issue #204, the Wonderland Trail);
   - `route`;
   - `difficulty`: stated, converted from CAI, or our estimate with its `basis`;
   - `sleeping`;

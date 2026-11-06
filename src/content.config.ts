@@ -208,11 +208,15 @@ const trail = z
     // `stage`, a ride inside that main stage (the Adlerweg's cable cars, decided 2026-11-03): its
     // official track runs along the lift, which pipeline/routes.py cuts out, so the stage's map line
     // is the walked pieces on either side; the stated figures stay the source's
+    // `none`: the trail has no stages by design, hikers choose their own camps (the Wonderland Trail;
+    // docs/scope.md, "Trails without stages", issue #204): no list, `source` says so, and the record
+    // needs official `days`. The pipeline then matches the whole route as one internal segment
     stages: z
       .object({
         source: sourceRef,
+        none: z.literal(true).optional(),
         timesSource: sourceRef.optional(),
-        list: z.array(stage).min(1),
+        list: z.array(stage).default([]),
         transfers: z
           .array(
             z.object({
@@ -247,6 +251,9 @@ const trail = z
         // no route relation in OSM (the Whale Trail): the name its ways carry, a regular expression for
         // Overpass; each stage is the shortest way over them to its `end`
         wayName: z.string().optional(),
+        // a trail without stages (stages.none): one GPX of the whole route, a URL as a stage's `track`,
+        // guiding its one internal segment where OSM has no relation
+        track: z.url().optional(),
       })
       .optional(),
 
@@ -397,6 +404,13 @@ const trail = z
       ["dataCheck", !!t.dataCheck],
     ] as const) {
       if (!present) ctx.addIssue({ code: "custom", path: [field], message: `required: ${field} (docs/trail-building.md)` });
+    }
+    // stages by design or none by design, never silently missing (issue #204)
+    if (t.stages?.none) {
+      if (t.stages.list.length) ctx.addIssue({ code: "custom", path: ["stages", "list"], message: "stages.none: a trail without stages lists none" });
+      if (!t.days) ctx.addIssue({ code: "custom", path: ["days"], message: "stages.none: a trail without stages needs official days (docs/scope.md)" });
+    } else if (t.stages && !t.stages.list.length) {
+      ctx.addIssue({ code: "custom", path: ["stages", "list"], message: "no stages listed: list them, or set stages.none where the trail has none by design" });
     }
     for (const [field, label, present] of EXPLAINED.map(([f, l, has]) => [f, l, has(t)] as const)) {
       if (!present && !t.notes.some((n) => n.startsWith(label))) {

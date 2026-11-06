@@ -1,0 +1,48 @@
+{
+  "climate-high.json": {
+    "retrieved": "2026-11-06T07:22:29+00:00",
+    "url": "https://openmeteo.s3.us-west-2.amazonaws.com/data/copernicus_era5_land+copernicus_era5?latitude=46.9&longitude=-121.6&elevation=2070"
+  },
+  "climate-low.json": {
+    "retrieved": "2026-11-06T07:19:07+00:00",
+    "url": "https://openmeteo.s3.us-west-2.amazonaws.com/data/copernicus_era5_land+copernicus_era5?latitude=47.0&longitude=-121.8&elevation=760"
+  },
+  "commons.json": {
+    "key": "Q3498361",
+    "retrieved": "2026-11-06T07:23:05+00:00",
+    "url": "Q3498361 P18 P373"
+  },
+  "elevation-glo30.json": {
+    "retrieved": "2026-11-06T07:15:24+00:00",
+    "url": "https://copernicus-dem-30m.s3.eu-central-1.amazonaws.com/Copernicus_DSM_COG_10_N46_00_W122_00_DEM/Copernicus_DSM_COG_10_N46_00_W122_00_DEM.tif"
+  },
+  "landcover.json": {
+    "retrieved": "2026-11-06T07:15:26+00:00",
+    "url": "https://esa-worldcover.s3.eu-central-1.amazonaws.com/v200/2021/map/ESA_WorldCover_10m_2021_v200_\u2026_Map.tif"
+  },
+  "osm-relation.json": {
+    "retrieved": "2026-11-05T21:23:02Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-1-main.json": {
+    "key": "fb73e0d2a906",
+    "retrieved": "2026-11-05T21:23:02Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-water.json": {
+    "retrieved": "2026-11-05T21:23:02Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-way-tags.json": {
+    "retrieved": "2026-11-05T21:23:02Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osrm-access-seattle-tacoma-international-airport-sea.json": {
+    "retrieved": "2026-11-06T07:22:29+00:00",
+    "url": "https://router.project-osrm.org/route/v1/driving/-122.30802,47.44757;-121.81254,46.74954?overview=false"
+  },
+  "wikimedia.json": {
+    "retrieved": "2026-11-06T07:22:30+00:00",
+    "url": "Q3498361 2025-11..2026-10"
+  }
+}

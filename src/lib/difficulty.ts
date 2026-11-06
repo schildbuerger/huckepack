@@ -10,8 +10,8 @@
 //            more months, or for the months picked (src/lib/months.ts, issue #114)
 //   Effort   the longest day's walking time
 import type { CollectionEntry } from "astro:content";
-import { gradients, mainStages, sacGrade, stageEstimates, stageTotals, walkingMinutes, STEEP_PERCENT } from "./trails";
-import { climateFor, monthsText } from "./months";
+import { gradients, mainStages, noStages, perDay, sacGrade, stageEstimates, stageTotals, trailClimb, trailLength, walkingMinutes, STEEP_PERCENT } from "./trails.ts";
+import { climateFor, monthsText } from "./months.ts";
 
 type Trail = CollectionEntry<"trails">["data"];
 type DerivedData = CollectionEntry<"derived">["data"];
@@ -120,8 +120,18 @@ export function difficulty(t: Trail, d?: DerivedData) {
     const km = totals?.km.value ?? e.routeKm;
     const est = main.length > 0 && main.every((s) => estimates.get(s.number)?.ascentM !== undefined);
     const up = totals?.ascentM?.value ?? (est ? main.reduce((a, s) => a + estimates.get(s.number)!.ascentM!, 0) : undefined);
-    if (up !== undefined)
+    const whole = noStages(t) ? { climb: trailClimb(t), length: trailLength(t) } : undefined;
+    if (whole?.climb && whole.length)
+      // a trail without stages: the stated climbs over the stated length (issue #204)
+      terrain.push(measure("climb", whole.climb.up / whole.length.value, `${round(whole.climb.up / whole.length.value)} m per km`, whole.climb.source));
+    else if (up !== undefined)
       terrain.push(measure("climb", up / km, `${round(up / km)} m per km`, totals?.ascentM?.source ?? e.source, { estimate: !totals?.ascentM }));
+    else if (whole) {
+      // no stated climbs: the terrain model's over the map line (≈)
+      const pts = e.points;
+      const rise = pts.slice(1).reduce((a, p, k) => a + Math.max(0, p[1] - pts[k][1]), 0);
+      terrain.push(measure("climb", rise / e.routeKm, `${round(rise / e.routeKm)} m per km`, e.source, { estimate: true }));
+    }
     const g = gradients(e.points, e.stageStarts, e.spacingM);
     const steep = ((g.steepUpKm + g.steepDownKm) / e.routeKm) * 100;
     terrain.push(measure("steep", steep, `${round(steep)} % of the way`, e.source));
@@ -176,6 +186,15 @@ export function difficulty(t: Trail, d?: DerivedData) {
     const top = stageDays.reduce((a, b) => (b.value > a.value ? b : a));
     dims.push({ id: "effort", label: "Effort", level: top.level, by: top, measures: [top] });
   }
+  // a trail without stages (issue #204): an average day at the fewest suggested days, its length
+  // and climbs divided evenly, timed by DIN 33466; always an estimate, the hardest plan a source suggests
+  const day = perDay(t, d);
+  if (day?.ascentM && day.descentM) {
+    const minutes = walkingMinutes(day.km.max, day.ascentM.max, day.descentM.max);
+    const text = `${Math.floor(minutes / 60)} h${minutes % 60 ? ` ${String(minutes % 60).padStart(2, "0")}` : ""}`;
+    const top = measure("effort", minutes / 60, text, day.daysSource, { where: `an average day over ${day.days.min} days`, estimate: true });
+    dims.push({ id: "effort", label: "Effort", level: top.level, by: top, measures: [top] });
+  }
 
   return { dims, months, season };
 }
@@ -213,6 +232,18 @@ export const DIMENSION_TEXT: Record<Dimension["id"], { question: string; how: st
     how: "Rated by the longest main stage; a time range counts its upper end.",
     points: ["Rated by the longest main stage; a time range counts its upper end."],
   },
+};
+
+// Effort on a trail without stages (issue #204): the wording where the page explains it
+export const EFFORT_NO_STAGES = {
+  label: "Average day",
+  from: "walking time of an average day at the fewest suggested days (length and climbs divided evenly), by DIN 33466",
+  points: ["No official stages: rated by an average day at the fewest suggested days, the hardest plan a source suggests."],
+};
+// the measures' wording on a trail without stages, where it differs from SCALES
+export const NO_STAGES_SCALES: Partial<Record<MeasureId, { label?: string; from: string }>> = {
+  climb: { from: "the stated ascent over the stated length (else the terrain model's over the map line)" },
+  effort: { label: EFFORT_NO_STAGES.label, from: EFFORT_NO_STAGES.from },
 };
 
 // the trail page's Difficulty info box: DIFFICULTY_NOTE as fact rows

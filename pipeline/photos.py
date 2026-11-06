@@ -212,6 +212,9 @@ def usable(f):
         and f["author"]
         and f["w"] >= 1200 and f["w"] >= 1.2 * f["h"]
         and not NOT_PHOTO.search(f["title"].replace("_", " "))
+        # a 360° sphere, also among the category's photos (the Wonderland Trail's NPS spheres)
+        and not SPHERE.search(f["title"].replace("_", " ") + " | " + (f.get("categories") or ""))
+        and f["w"] != 2 * f["h"]
     )
 
 
@@ -223,7 +226,8 @@ def caption(f):
     name = re.sub(r"\s*-\s*(geograph\.org\.uk\s*-\s*\d+|panoramio(\s*\(\d+\))?)$", "", name, flags=re.I)  # copies from Geograph and Panoramio
     name = re.sub(r"\s+-\s+\w+ \d{1,2}, \d{4}$", "", name)  # " - August 8, 2016"
     name = re.sub(r"\s+\d{4}-\d{2}-\d{2}.*$", "", name)
-    name = re.sub(r"\s*\d{1,2}$", "", name).replace("_", " ").replace(" @ ", ", ")
+    # a trailing count, never the end of a longer number ("Nisqually River 360")
+    name = re.sub(r"\s*(?<!\d)\d{1,2}$", "", name).replace("_", " ").replace(" @ ", ", ")
     return re.sub(r"[\s\-–,]+$", "", name)[:90]
 
 

@@ -3,7 +3,8 @@
 // `npm test` (Node's test runner; Node strips the types itself).
 import { test } from "node:test";
 import assert from "node:assert/strict";
-import { barMetres, gradients, sleepingCategories, trailClimb, trailLength, walkingMinutes, stageTotals, STEEP_PERCENT } from "../src/lib/trails.ts";
+import { barMetres, gradients, noStages, perDay, routeEstimate, sleepingCategories, trailClimb, trailLength, trailDays, walkingMinutes, stageTotals, STEEP_PERCENT } from "../src/lib/trails.ts";
+import { difficulty } from "../src/lib/difficulty.ts";
 import { mergeRuns, stripPaths, n1 } from "../src/lib/svg.ts";
 import { kmBetween, roundDistance } from "../src/lib/geo.ts";
 import { bestRun, climateFor, monthsText, readPick, runBetween } from "../src/lib/months.ts";
@@ -192,3 +193,54 @@ test("skyline shapes meet the ground without a cut-off", () => {
   assert.deepEqual(walls, []);
 });
 
+
+// a trail without stages by design (issue #204): the Wonderland Trail's shape, 150 km over 10–14 days
+const stageless = (over: Record<string, unknown> = {}) =>
+  trail({
+    stages: { source: "nps", none: true, list: [] },
+    length: [{ km: 150, source: "nps" }],
+    ascent: [{ m: 8230, source: "nps" }],
+    descent: [{ m: 8230, source: "nps" }],
+    days: { min: 10, max: 14, source: "planner" },
+    ...over,
+  });
+
+test("no stages: the stated totals and the suggested days, never stage sums", () => {
+  const t = stageless();
+  assert.equal(noStages(t), true);
+  assert.equal(noStages(trail()), false);
+  assert.equal(trailLength(t)!.value, 150);
+  assert.equal(trailClimb(t)!.up, 8230);
+  assert.deepEqual(trailDays(t), { min: 10, max: 14, source: "planner", perStage: false });
+  assert.equal(stageTotals(t), undefined);
+});
+
+test("no stages: averages per day as a range from the most and the fewest days", () => {
+  const day = perDay(stageless())!;
+  assert.deepEqual(day.km, { min: 10.7, max: 15 });
+  assert.deepEqual(day.ascentM, { min: 590, max: 820 });
+  assert.equal(day.est, false);
+  // the length and the days from different sources: both named
+  assert.deepEqual([day.lengthSource, day.daysSource], ["nps", "planner"]);
+  // one number of days: no range
+  assert.deepEqual(perDay(stageless({ days: { min: 12, max: 12, source: "planner" } }))!.km, { min: 12.5, max: 12.5 });
+  // trails with stages keep their averages per stage
+  assert.equal(perDay(trail()), undefined);
+});
+
+test("no stages: climbs from the terrain model where none are stated", () => {
+  const d = { elevation: { source: "glo30", points: [[0, 100], [0.1, 150], [0.2, 120], [0.3, 200]] } } as any;
+  assert.deepEqual(routeEstimate(d), { ascentM: 130, descentM: 30, source: "glo30" });
+  const day = perDay(stageless({ ascent: [], descent: [] }), d)!;
+  assert.equal(day.est, true);
+  assert.deepEqual(day.ascentM, { min: 10, max: 10 });
+});
+
+test("no stages: Effort from an average day at the fewest days, an estimate", () => {
+  const effort = difficulty(stageless()).dims.find((x) => x.id === "effort")!;
+  // 15 km, 823 m up and down: 3.75 h flat, 4.39 h climbing, so 4.39 + 1.875 h, to 15 minutes
+  assert.equal(effort.by.text, "6 h 15");
+  assert.equal(effort.by.estimate, true);
+  assert.equal(effort.by.where, "an average day over 10 days");
+  assert.equal(effort.by.source, "planner");
+});
