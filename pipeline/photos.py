@@ -394,7 +394,9 @@ def choose(slug, listing, p18, excluded, geo=()):
                 continue
             km = place(f, line, GEO_NEAR_KM)
             rank = scenic(f)
-            if km not in (None, False) and rank:
+            # `is not`: a photo at the very start sits at km 0.0, which `in (None, False)` took for False
+            # (the Pukaskwa Coastal Hiking Trail lost all its photos, 2026-11-07)
+            if km is not None and km is not False and rank:
                 near.append({**f, "km": km, "found": "location", "rank": rank})
         picked += spread(near, [c["km"] for c in picked if c["km"] is not None], MAX - len(picked), line.total)
     rest = sorted((c for c in cands.values() if c["km"] is None and c not in picked), key=lambda c: -c["w"])

@@ -676,3 +676,10 @@ class MainRoles(unittest.TestCase):
         ]}
         line = routes.relation_line(rel, set(), (8.0, LAT))
         self.assertAlmostEqual(routes.line_km(line), 1.43, places=1)
+
+
+class PhotoAtStart(unittest.TestCase):
+    def test_km_zero_is_a_place(self):
+        # the condition in photos.choose(): a photo at km 0.0 is placed, not dropped
+        for km, placed in ((0.0, True), (12.5, True), (None, False), (False, False)):
+            self.assertEqual(km is not None and km is not False, placed)
