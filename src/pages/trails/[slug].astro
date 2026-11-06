@@ -453,6 +453,9 @@ const terrainData =
     : null;
 const MONTHS = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
 const MONTH_NAMES = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+// a climate panel's label sits on a chip of the page's background, so it reads over the season's
+// shading (the label rows lie inside the band when the season starts early in the year)
+const chipW = (text: string) => text.length * 6.3 + 12;
 const CLIM = { x0: 52, x1: 992, tTop: 30, tBottom: 210, wTop: 252, wBottom: 312, dTop: 348, months: 398, height: 406 };
 const colW = (CLIM.x1 - CLIM.x0) / 12;
 const colX = (m: number) => CLIM.x0 + (m - 1) * colW;
@@ -1200,7 +1203,7 @@ const trailLd = JSON.stringify({
             </g>
           ))}
 
-          <text class="panel-label" x="8" y={CLIM.tTop - 12}>Day high and night low</text>
+          <g class="panel-label-chip"><rect x="2" y={CLIM.tTop - 12 - 15} width={chipW("Day high and night low")} height="21" rx="4" /><text class="panel-label" x="8" y={CLIM.tTop - 12}>Day high and night low</text></g>
           {tempGrid.map((c) => (
             <g>
               <line class={c === 0 ? "zero" : "grid"} x1={CLIM.x0} x2={CLIM.x1} y1={yTemp(c)} y2={yTemp(c)} />
@@ -1214,7 +1217,7 @@ const trailLd = JSON.stringify({
             </g>
           ))}
 
-          <text class="panel-label" x="8" y={CLIM.wTop - 12}>Wet days, at the highest point</text>
+          <g class="panel-label-chip"><rect x="2" y={CLIM.wTop - 12 - 15} width={chipW("Wet days, at the highest point")} height="21" rx="4" /><text class="panel-label" x="8" y={CLIM.wTop - 12}>Wet days, at the highest point</text></g>
           {Array.from({ length: wetMax / 5 + 1 }, (_, i) => i * 5).map((d) => (
             <g>
               <line class={d === 0 ? "base" : "grid"} x1={CLIM.x0} x2={CLIM.x1} y1={yWet(d)} y2={yWet(d)} />
@@ -1230,7 +1233,7 @@ const trailLd = JSON.stringify({
             </g>
           ))}
 
-          <text class="panel-label" x="8" y={CLIM.dTop - 12}>Daylight</text>
+          <g class="panel-label-chip"><rect x="2" y={CLIM.dTop - 12 - 15} width={chipW("Daylight")} height="21" rx="4" /><text class="panel-label" x="8" y={CLIM.dTop - 12}>Daylight</text></g>
           {climate.months.map((m) => (
             <g>
               <rect class="day-track" x={colX(m.month) + 8} y={CLIM.dTop + 8} width={colW - 16} height="8" rx="4" />
@@ -2437,8 +2440,9 @@ const trailLd = JSON.stringify({
       const m = months.find((x) => x.month === Number(hit.dataset.month))!;
       tip.querySelector("strong")!.textContent = MONTH_NAMES[m.month - 1];
       tip.querySelector("span")!.textContent = [
-        `Lowest point: ${c(m.low.tmax)} °C by day, ${c(m.low.tmin)} °C at night`,
-        `Highest point: ${c(m.high.tmax)} °C by day, ${c(m.high.tmin)} °C at night`,
+        // by day and by night first, each with both points (as the chart's "Day high and night low")
+        `Day high: ${c(m.low.tmax)} °C at the lowest point, ${c(m.high.tmax)} °C at the highest`,
+        `Night low: ${c(m.low.tmin)} °C at the lowest point, ${c(m.high.tmin)} °C at the highest`,
         `Highest point: ${Math.round(m.high.wetDays)} wet days, ${Math.round(m.high.snowDays)} with snow, ${Math.round(m.high.frostNights)} frost nights`,
         `${m.daylightH.toFixed(1)} h of daylight`,
       ].join("\n");
@@ -3028,6 +3032,10 @@ const trailLd = JSON.stringify({
     list-style: none;
     border-top: 1px solid var(--text);
     border-bottom: 1px solid var(--line);
+  }
+  /* the key figures follow the section nav's own rule: no second, dark one on top */
+  .strip.key-figs {
+    border-top: 0;
   }
   .strip > * {
     padding: 14px 16px 14px 0;
@@ -3965,6 +3973,9 @@ const trailLd = JSON.stringify({
   .panel-label {
     fill: var(--text);
     font: 600 12px var(--sans);
+  }
+  .panel-label-chip rect {
+    fill: var(--bg);
   }
   .climate .grid {
     stroke: var(--line);
