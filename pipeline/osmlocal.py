@@ -14,6 +14,7 @@ A trail without GPX tracks (route relations only) first has its relations' ways 
 geometry then defines the corridor.
 """
 
+import fcntl
 import gzip
 import http.client
 import json
@@ -82,7 +83,9 @@ def _index():
     path = OSM_DIR / "geofabrik-index.json"
     if not path.exists() or time.time() - path.stat().st_mtime > MAX_AGE_DAYS * 86400:
         OSM_DIR.mkdir(parents=True, exist_ok=True)
-        path.write_bytes(_get(INDEX_URL).read())
+        tmp = path.with_suffix(f".{os.getpid()}.tmp")
+        tmp.write_bytes(_get(INDEX_URL).read())
+        tmp.replace(path)  # whole or not at all, should two runs fetch it at once
     return json.loads(path.read_text())["features"]
 
 
@@ -133,7 +136,16 @@ def regions_for(points):
 
 def extract(region, url, refresh=False):
     """The region's extract on disk, downloaded when missing (or, refreshing, when older than
-    MAX_AGE_DAYS). Geofabrik redirects "-latest" to a dated file; that date names the copy."""
+    MAX_AGE_DAYS). Geofabrik redirects "-latest" to a dated file; that date names the copy. Runs
+    for several trails at once share the folder (2026-11-06): one region is fetched by one of
+    them at a time, under a lock, and the others then find it there."""
+    EXTRACTS_DIR.mkdir(parents=True, exist_ok=True)
+    with open(EXTRACTS_DIR / f".{region.replace('/', '_')}.lock", "w") as lock:
+        fcntl.flock(lock, fcntl.LOCK_EX)
+        return _extract(region, url, refresh)
+
+
+def _extract(region, url, refresh):
     folder = EXTRACTS_DIR
     folder.mkdir(parents=True, exist_ok=True)
     stem = region.replace("/", "_")
