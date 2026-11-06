@@ -1,0 +1,234 @@
+name: O Circuit
+added: 2026-11-06
+localName: Circuito O
+aliases: [Paine Circuit, Torres del Paine Circuit, Full Circuit]
+website: https://www.conaf.cl/parques/parque-nacional-torres-del-paine/
+managedBy:
+  - name: CONAF (Corporación Nacional Forestal), Torres del Paine National Park
+    url: https://www.conaf.cl/parques/parque-nacional-torres-del-paine/
+officialGpx:
+  none: CONAF's park page lists the trails with length and time and offers no GPX to download (checked 2026-11-06)
+  source: conaf
+trailType: loop
+continents: [South America]
+countries: [CL]
+regions: [Magallanes]
+protectedAreas:
+  - Torres del Paine National Park
+termini:
+  # the circuit round the Paine massif, walked anticlockwise from Hotel Las Torres (as Las Torres'
+  # itinerary: Serón first, the W last), back to Hotel Las Torres (OSM)
+  start:
+    name: Hotel Las Torres
+    lat: -50.97316
+    lon: -72.87498
+  end:
+    name: Hotel Las Torres
+    lat: -50.97316
+    lon: -72.87498
+  source: osm
+waymarking:
+  text: Clearly marked paths
+  source: wikipedia
+days:
+  # Las Torres' O Circuit programme: "8 days / 7 nights"
+  min: 8
+  max: 8
+  source: lastorres
+stages:
+  # CONAF's trails round the massif, leg by leg ("Senderos habilitados": length and time each),
+  # anticlockwise from Hotel Las Torres: the back of the circuit (Serón, Dickson, Los Perros, the
+  # John Gardner pass to Grey) and then the W back to Las Torres; the valleys to the Mirador Base
+  # Torres and the Mirador Británico are variants, walked out and back (one way here). Stage ends
+  # from OSM
+  source: conaf
+  list:
+    - { number: "V1", kind: variant, from: Hotel Las Torres, to: Mirador Base Torres, km: 9.4, minutes: 270, end: { lat: -50.94267, lon: -72.94966 } }
+    - { number: "1", kind: main, from: Hotel Las Torres, to: Serón, km: 13, minutes: 240, end: { name: Campamento Serón, lat: -50.86585, lon: -72.89283 } }
+    - { number: "2", kind: main, from: Serón, to: Dickson, km: 18, minutes: 360, end: { name: Refugio Dickson, lat: -50.87943, lon: -73.07476 } }
+    - { number: "3", kind: main, from: Dickson, to: Los Perros, km: 11.8, minutes: 270, end: { name: Campamento Los Perros, lat: -50.9323, lon: -73.1343 } }
+    - { number: "4", kind: main, from: Los Perros, to: Paso, km: 8, minutes: 360, end: { name: Campamento Paso, lat: -50.95808, lon: -73.2003 } }
+    - { number: "5", kind: main, from: Paso, to: Grey, km: 7, minutes: 300, end: { name: Refugio Grey, lat: -51.00822, lon: -73.17605 } }
+    - { number: "6", kind: main, from: Grey, to: Paine Grande, km: 11, minutes: 210, end: { name: Paine Grande, lat: -51.07265, lon: -73.09378 } }
+    - { number: "7", kind: main, from: Paine Grande, to: Italiano, km: 7.5, minutes: 150, end: { name: Italiano, lat: -51.02692, lon: -73.04043 } }
+    - { number: "V2", kind: variant, from: Italiano, to: Mirador Británico, km: 5.4, minutes: 180, end: { lat: -50.98268, lon: -73.05375 } }
+    - { number: "8", kind: main, from: Italiano, to: Los Cuernos, km: 5, minutes: 150, end: { name: Los Cuernos, lat: -51.02385, lon: -72.98537 } }
+    - { number: "9", kind: main, from: Los Cuernos, to: Hotel Las Torres, km: 11.6, minutes: 270, end: { name: Hotel Las Torres, lat: -50.97316, lon: -72.87498 } }
+route:
+  # built by `python -m pipeline.all o-circuit`: OSM ways matched to the shortest way over OSM's two
+  # hiking relations, "Circuito O" (7705906) and "La Ruta del W" (2203617, for the valleys), each
+  # stage to its end
+  source: osm
+  publishable: true
+  relation: [7705906, 2203617]
+  branched: true
+difficulty:
+  # no SAC grade is published; our estimate from CONAF's own ratings
+  estimated:
+    sac: T3
+    basis: >-
+      CONAF rates most legs "media" (moderate) and Los Perros – Paso and Paso – Grey over the John
+      Gardner pass "exigente" (demanding), six and five hours for 8 and 7 km, with steep, rocky and
+      muddy ground and exposed weather on the pass; the back of the circuit is closed in winter.
+      Marked mountain paths, steep and rough over the pass (T3).
+    source: conaf
+season:
+  # CONAF: snow May to September, and the back of the circuit (Serón to Grey) "dificultad de
+  # caminata invernal: cerrado", closed in winter
+  months: [10, 11, 12, 1, 2, 3, 4]
+  text: October to April; the back of the circuit (Serón to Grey) is closed in winter
+  source: conaf
+sleeping:
+  # the concessions' refugios and campsites (CONAF: "servicios concesionados de alojamiento, zonas
+  # para acampar"), booked before entering the park
+  types: [hut, campsite]
+  source: conaf
+wildCamping:
+  status: prohibited
+  rule: >-
+    Camping only at the authorised, signposted campsites, booked before entering the park; no
+    stoves outside their cooking areas and no fires anywhere in the park.
+  source: conaf
+permit:
+  # CONAF's ticket sales for its parks; every night must also be booked before entering the park
+  required: true
+  name: Park entry ticket
+  issuedBy: CONAF
+  how: >-
+    Bought online before the visit, as a day or a multi-day entry; national and foreign visitors
+    pay different prices and buy their tickets separately. Every night's campsite or refugio is
+    booked with its concession before entering the park.
+  url: https://www.pasesparques.cl/es/torres-del-paine-300/parque-nacional-torres-del-paine-3412
+  source: conaf-pases
+fees:
+  # CONAF's prices as sold on 2026-11-02, in Chilean pesos; children up to 12 free
+  - { name: "Park entry, more than one day, foreign visitors", amount: 48500, currency: CLP, per: per adult, year: 2026, source: conaf-pases }
+  - { name: "Park entry, more than one day, Chilean residents", amount: 14200, currency: CLP, per: per adult, year: 2026, source: conaf-pases }
+access:
+  # Puerto Natales' bus station (the park buses to Laguna Amarga and Hotel Las Torres) and Punta
+  # Arenas' international airport. Coordinates from OSM; distances by pipeline/access.py
+  - kind: bus
+    name: Rodoviario Puerto Natales
+    lat: -51.7287
+    lon: -72.488
+    source: osm
+  - kind: airport
+    name: Punta Arenas Airport (PUQ)
+    lat: -53.005
+    lon: -70.8445
+    source: osm
+animals:
+  # CONAF's leaflet for Torres del Paine, "Cómo reaccionar ante la presencia de un puma": the hours of
+  # greatest risk are dawn, dusk and night; the advice translated. Level ours
+  list:
+    - kind: big-cat
+      name: Puma
+      level: moderate
+      basis: Pumas live round the Paine massif and are seen by hikers; most keep away, and the risk is greatest at dawn, dusk and night.
+      do:
+        - Let the animal go its way
+        - Stay calm and standing, and keep it in sight
+        - "If it is aggressive, look bigger: wave your arms, raise your jacket, make noise, shout"
+        - If it stays aggressive, throw stones and sticks
+        - Tell CONAF's staff about an aggressive puma
+      dont:
+        - Run, or turn your back on it
+        - Walk at dawn, dusk or night, or at least not alone
+        - Follow or corner it, above all with cubs or while it feeds
+      source: conaf-puma
+tags: [mountains, glaciers, lakes, huts, national-park, mountain-pass]
+notes:
+  - >-
+    Stages: CONAF publishes the circuit leg by leg, not by day. The main stages are its legs round
+    the massif from Hotel Las Torres: Serón, Dickson, Los Perros, the John Gardner pass to the Paso
+    campsite and down to Grey, then Paine Grande, Italiano, Los Cuernos and back to Hotel Las Torres
+    (the W walked from its western end). The valleys to the Mirador Base Torres (CONAF's three
+    legs, 5 + 3 + 1.4 km) and the Mirador Británico are variants, walked out and back, shown one way.
+    Las Torres' 8-day programme sleeps at Serón, Dickson, Los Perros, Grey, Paine Grande, Francés or
+    Cuernos and the Central sector, and walks to Base Torres on the last day.
+  - >-
+    Length: the main legs add up to 92.9 km; with both valleys out and back, 122.5 km, against
+    Wikipedia's 81 miles (130 km). Not recorded as a stated total.
+  - >-
+    Tree line: none recorded. The route's highest point is the John Gardner pass, 1,178 m on the
+    terrain model, under the height where the tree line matters for these pages.
+  - >-
+    Map line (2026-11-06): the Chile Geofabrik extract; OSM's relations Circuito O and La Ruta del W,
+    each stage the shortest way over them to its end, every stage 100 % matched. The main route
+    measures 90.6 km against CONAF's 92.9 km (−2 %); stage 1 (Hotel Las Torres – Serón) 14.4 km
+    against 13 km (+11 %) and stage 8 (Italiano – Los Cuernos) 4.5 km against 5 km, as on the W;
+    CONAF's figures stand (in `dataCheck`). The terrain model gives about 3,300 m of climbing over
+    the main route, from 37 m at Lago Pehoé to 1,178 m at the pass. Water: 37 drinking water points,
+    the longest dry stretch 17.9 km (Serón to Dickson); OSM maps four places to buy food on the
+    way, the longest stretch without one 53.5 km.
+  - >-
+    Data check (2026-11-06, working rule 2): CONAF's legs against Las Torres' 8-day itinerary (the
+    same nights: Serón, Dickson, Los Perros, Grey, Paine Grande, Francés or Cuernos, Central) and
+    Wikipedia: days 8 (Las Torres) within Wikipedia's 7 to 9; length 92.9 km main legs, 122.5 km
+    with both valleys out and back, against Wikipedia's 81 miles (130 km, −6 %); camping only at
+    the signposted sites and no fires (CONAF and Wikipedia agree); the back of the circuit closed in
+    winter (CONAF). The two stage lengths above differ from the OSM map line by more than 10 % (in
+    `dataCheck`).
+  - >-
+    Wikidata: no item for the O Circuit (searched 2026-11-06): Wikidata has the national park, not
+    the trek.
+  - >-
+    Access: Punta Arenas is the nearest international airport; Puerto Natales' airfield has seasonal
+    domestic flights only.
+dataCheck:
+  # working rule 2: Las Torres' itinerary and Wikipedia for days and length; the OSM map line
+  date: 2026-11-06
+  against: [lastorres, wikipedia]
+  deviations:
+    - { figure: "Stage 1 length", ours: "13 km", theirs: "14.4 km (map line)", source: osm }
+sources:
+  - id: conaf-puma
+    title: "CONAF: Parque Nacional Torres del Paine, cómo reaccionar ante la presencia de un puma (leaflet)"
+    url: https://parquetorresdelpaine.cl/wp-content/uploads/2022/03/Folleto-puma-1.pdf
+    licence: © CONAF (facts only)
+    retrieved: 2026-11-02
+  - id: conaf
+    title: "CONAF: Parque Nacional Torres del Paine, its trails (length, time, difficulty, winter closures), services and rules"
+    url: https://www.conaf.cl/parques/parque-nacional-torres-del-paine/
+    licence: © CONAF (facts only)
+    retrieved: 2026-11-06
+  - id: conaf-pases
+    title: "CONAF, Pases Parques: Parque Nacional Torres del Paine, entry tickets and prices"
+    url: https://www.pasesparques.cl/es/torres-del-paine-300/parque-nacional-torres-del-paine-3412
+    licence: © CONAF (facts only)
+    retrieved: 2026-11-02
+  - id: lastorres
+    title: "Las Torres Patagonia: the O Circuit, 8 days / 7 nights, its itinerary"
+    url: https://lastorres.com/en/hikking-circuits/o-circuit-8d-7n/
+    licence: © Las Torres Patagonia (facts only)
+    retrieved: 2026-11-06
+  - id: wikipedia
+    title: "Wikipedia (en): Torres del Paine National Park (the O's days and length; waymarking and camping rules)"
+    url: https://en.wikipedia.org/wiki/Torres_del_Paine_National_Park
+    licence: CC BY-SA 4.0
+    retrieved: 2026-11-06
+  - id: osm
+    title: "OpenStreetMap contributors: the hiking relations Circuito O (7705906) and La Ruta del W (2203617), paths, water, shops and places to sleep along the way (Geofabrik extract), refugios and campsites, travel hubs"
+    url: https://www.openstreetmap.org/relation/7705906
+    licence: ODbL 1.0
+    retrieved: 2026-11-06
+  - id: copdem
+    title: "Copernicus DEM GLO-30 (30 m terrain model), tiles from AWS Open Data"
+    url: https://registry.opendata.aws/copernicus-dem/
+    licence: "Copernicus WorldDEM-30 licence, free; produced using Copernicus WorldDEM-30 © DLR e.V. 2010-2014 and © Airbus Defence and Space GmbH 2014-2018 provided under COPERNICUS by the European Union and ESA; all rights reserved"
+    retrieved: 2026-11-06
+  - id: worldcover
+    title: "ESA WorldCover 2021: 10 m land cover (via AWS Open Data)"
+    url: https://esa-worldcover.org/
+    licence: "CC BY 4.0; © ESA WorldCover project 2021 / Contains modified Copernicus Sentinel data (2021) processed by ESA WorldCover consortium"
+    retrieved: 2026-11-06
+  - id: era5
+    title: "Open-Meteo open data on AWS: ERA5-Land temperature and ERA5 precipitation, snow and wind, daily 1995–2024 (reanalysis)"
+    url: https://github.com/open-meteo/open-data
+    licence: CC BY 4.0 (Open-Meteo); contains modified Copernicus Climate Change Service information
+    retrieved: 2026-11-06
+  - id: osrm
+    title: "OSRM: road routes on OpenStreetMap data (router.project-osrm.org)"
+    url: https://project-osrm.org/
+    licence: Route data © OpenStreetMap contributors (ODbL)
+    retrieved: 2026-11-06

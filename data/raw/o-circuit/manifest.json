@@ -1,0 +1,103 @@
+{
+  "climate-high.json": {
+    "retrieved": "2026-11-06T13:35:11+00:00",
+    "url": "https://openmeteo.s3.us-west-2.amazonaws.com/data/copernicus_era5_land+copernicus_era5?latitude=-50.9&longitude=-73.2&elevation=1180"
+  },
+  "climate-low.json": {
+    "retrieved": "2026-11-06T13:31:35+00:00",
+    "url": "https://openmeteo.s3.us-west-2.amazonaws.com/data/copernicus_era5_land+copernicus_era5?latitude=-51.1&longitude=-73.1&elevation=40"
+  },
+  "commons-geo.json": {
+    "key": "with categories, 92.3 km, every 2.5 km, 1500 m, within 0.5 km",
+    "retrieved": "2026-11-06T13:36:59+00:00",
+    "url": "Commons geosearch along the route"
+  },
+  "commons.json": {
+    "key": "none",
+    "retrieved": "2026-11-06T13:35:11+00:00",
+    "url": "None P18 P373"
+  },
+  "elevation-glo30.json": {
+    "retrieved": "2026-11-06T13:27:40+00:00",
+    "url": "https://copernicus-dem-30m.s3.eu-central-1.amazonaws.com/Copernicus_DSM_COG_10_S51_00_W073_00_DEM/Copernicus_DSM_COG_10_S51_00_W073_00_DEM.tif https://copernicus-dem-30m.s3.eu-central-1.amazonaws.com/Copernicus_DSM_COG_10_S51_00_W074_00_DEM/Copernicus_DSM_COG_10_S51_00_W074_00_DEM.tif https://copernicus-dem-30m.s3.eu-central-1.amazonaws.com/Copernicus_DSM_COG_10_S52_00_W073_00_DEM/Copernicus_DSM_COG_10_S52_00_W073_00_DEM.tif https://copernicus-dem-30m.s3.eu-central-1.amazonaws.com/Copernicus_DSM_COG_10_S52_00_W074_00_DEM/Copernicus_DSM_COG_10_S52_00_W074_00_DEM.tif"
+  },
+  "landcover.json": {
+    "retrieved": "2026-11-06T13:27:42+00:00",
+    "url": "https://esa-worldcover.s3.eu-central-1.amazonaws.com/v200/2021/map/ESA_WorldCover_10m_2021_v200_\u2026_Map.tif"
+  },
+  "osm-relation.json": {
+    "retrieved": "2026-11-04T21:21:03Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-1-main.json": {
+    "key": "e519edf87a63",
+    "retrieved": "2026-11-04T21:21:03Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-2-main.json": {
+    "key": "e76e9ea6062b",
+    "retrieved": "2026-11-04T21:21:03Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-3-main.json": {
+    "key": "f0cbea349efe",
+    "retrieved": "2026-11-04T21:21:03Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-4-main.json": {
+    "key": "2bb7f6359121",
+    "retrieved": "2026-11-04T21:21:03Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-5-main.json": {
+    "key": "5072e788fa90",
+    "retrieved": "2026-11-04T21:21:03Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-6-main.json": {
+    "key": "2b443ea72531",
+    "retrieved": "2026-11-04T21:21:03Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-7-main.json": {
+    "key": "c6a21c4fe377",
+    "retrieved": "2026-11-04T21:21:03Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-8-main.json": {
+    "key": "a0dd89946da0",
+    "retrieved": "2026-11-04T21:21:03Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-9-main.json": {
+    "key": "d5f39dbfc967",
+    "retrieved": "2026-11-04T21:21:03Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-V1-variant.json": {
+    "key": "cdda0efed83d",
+    "retrieved": "2026-11-04T21:21:03Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-V2-variant.json": {
+    "key": "b13e108028a1",
+    "retrieved": "2026-11-04T21:21:03Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-water.json": {
+    "retrieved": "2026-11-04T21:21:03Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-way-tags.json": {
+    "retrieved": "2026-11-04T21:21:03Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osrm-access-punta-arenas-airport-puq.json": {
+    "retrieved": "2026-11-06T13:35:11+00:00",
+    "url": "https://router.project-osrm.org/route/v1/driving/-70.8445,-53.005;-72.87498,-50.97316?overview=false"
+  },
+  "osrm-access-rodoviario-puerto-natales.json": {
+    "retrieved": "2026-11-06T13:35:11+00:00",
+    "url": "https://router.project-osrm.org/route/v1/driving/-72.488,-51.7287;-72.87498,-50.97316?overview=false"
+  }
+}
