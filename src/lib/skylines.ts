@@ -1989,6 +1989,29 @@ export const SKYLINES: Record<string, Skyline> = {
       { d: "M128,248a24,13 0 1 1 48,0a24,13 0 1 1 -48,0Z M152,232a22,12 0 1 1 44,0a22,12 0 1 1 -44,0Z M110,238a16,9 0 1 1 32,0a16,9 0 1 1 -32,0Z", c: "#2f4a2c" },
     ],
   },
+  "rockwall-trail": {
+    view: "The Rockwall from the meadows below Numa Pass: one long grey limestone cliff with hanging glaciers on its ledges and a meltwater fall, pale peaks behind, dark firs, alpine meadows and the turquoise water of Floe Lake at its foot",
+    ridge: "#6b8a45",
+    ground: MEADOW,
+    shapes: [
+      // the pale peaks of the Vermilion Range behind
+      { d: range([[0, G], [60, 252], [130, 214], [190, 190], [236, 176], [270, 186], [320, 200], [400, 222], [480, 246], [560, G]]), c: "#b8c2cc" },
+      { d: range([[1240, G], [1320, 236], [1390, 196], [1440, 172], [1476, 162], [1510, 176], [1560, 196], [1600, 210], [1600, G]]), c: "#b8c2cc" },
+      // the Rockwall: one long limestone cliff, its crest almost level, its face sheer
+      { d: range([[200, G], [290, 250], [340, 180], [366, 130], [384, 104], [400, 96], [420, 108], [470, 112], [520, 100], [548, 86], [572, 104], [640, 108], [700, 96], [730, 80], [752, 96], [820, 102], [880, 92], [916, 76], [940, 92], [1000, 98], [1060, 90], [1090, 78], [1112, 96], [1160, 104], [1200, 124], [1250, 176], [1310, 232], [1400, G]]), c: "#a9a69c" },
+      // hanging glaciers on its ledges
+      { d: "M582,105L638,108L630,128L608,144L590,126Z M760,97L818,102L808,124L786,140L768,120Z M950,94L1000,98L992,118L974,134L958,114Z", c: SNOW },
+      // a meltwater fall from the middle glacier
+      { d: waterfall(786, 138, 214, 3), c: "#e6eef2" },
+      // the dark firs on the slopes below the wall
+      { d: hills([[120, G], [260, 274], [420, 262], [600, 272], [800, 258], [1000, 270], [1200, 260], [1400, 276], [1560, G]]), c: FIR },
+      // the alpine meadows of the passes
+      { d: hills([[0, G], [140, 292], [340, 284], [560, 296], [700, G]]), c: "#9cbb64" },
+      { d: hills([[1000, G], [1160, 290], [1360, 282], [1600, 292], [1600, G]]), c: "#9cbb64" },
+    ],
+    // Floe Lake's turquoise water at the foot of the wall
+    front: [{ d: water(560, 1080, 300), c: "#5fb4b8" }],
+  },
   "superior-hiking-trail": {
     view: "Minnesota's North Shore: the Sawtooth ridges above Lake Superior, birch and spruce on the rocky slopes, a waterfall dropping towards the lake and the lake's long horizon",
     ridge: "#3f5a34",

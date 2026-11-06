@@ -1,0 +1,251 @@
+name: Rockwall Trail
+added: 2026-11-06
+aliases: [The Rockwall]
+website: https://parks.canada.ca/pn-np/bc/kootenay/activ/arrierepays-backcountry
+managedBy:
+  # Parks Canada runs the national park, its backcountry campgrounds and the permits
+  - name: Parks Canada, Kootenay National Park
+    url: https://parks.canada.ca/pn-np/bc/kootenay
+officialGpx:
+  none: Parks Canada's pages offer a printable backcountry map (PDF) and a table of campground distances, with no GPX to download (checked 2026-11-06)
+  source: pc-backcountry
+trailType: point-to-point
+continents: [North America]
+countries: [CA]
+regions: [British Columbia]
+protectedAreas: [Kootenay National Park]
+termini:
+  # Parks Canada lists the trailheads "from north to south: Paint Pots parking lot … Floe Lake
+  # parking lot", and its distance table and elevation chart run from the north trailhead to the
+  # south one; its climbing figures (3,405 m up, 3,500 m down) are for that direction. Most hikers
+  # walk it the other way, from Floe Lake (coordinates from OSM: the Rockwall Trail relation's end
+  # near the Paint Pots parking lot, the Floe Lake trailhead node)
+  start:
+    name: Paint Pots trailhead
+    lat: 51.16999
+    lon: -116.14752
+  end:
+    name: Floe Lake trailhead
+    lat: 51.08135
+    lon: -116.05462
+  source: pc-backcountry
+length:
+  # the multi-day trails table: "The Rockwall 54.1 km" (one way); the trail description: "a 54 km
+  # (34 mile) superlative-laden feast"
+  - km: 54.1
+    source: pc-backcountry
+ascent:
+  # "Elevation gain 3,405 m | Elevation loss: 3,500 m", for a one-way hike from north to south
+  - m: 3405
+    source: pc-backcountry
+descent:
+  - m: 3500
+    source: pc-backcountry
+days:
+  # "Estimated time … 3-5 days"
+  min: 3
+  max: 5
+  source: pc-backcountry
+treeLine:
+  # the same page: "Trails above tree line (2,000 m) may be exposed to avalanche hazard at any time
+  # of the year"
+  m: 2000
+  source: pc-backcountry
+stages:
+  # no stages by design (issue #204; docs/scope.md, "Trails without stages"): Parks Canada publishes
+  # the trail as one route of 3 to 5 days with a maximum of five backcountry campgrounds, which each
+  # hiker's permit names; its table gives the distances between the campgrounds, not stages
+  source: pc-backcountry
+  none: true
+route:
+  # built by `python -m pipeline.all rockwall-trail`: OSM ways matched to the Rockwall Trail relation
+  # (16227288, operator Parks Canada, from Floe Lake to Paint Pots), the whole route as one segment
+  source: osm
+  publishable: true
+  relation: 16227288
+difficulty:
+  # Parks Canada rates it "Difficult": "Suitable only for those with trail experience. Long, steep
+  # sections with frequent obstacles. Major elevation gain or loss."
+  estimated:
+    sac: T3
+    basis: >-
+      Parks Canada rates the Rockwall difficult: long, steep sections with frequent obstacles and
+      major elevation gain and loss, over three alpine passes between 2,230 and 2,336 m, with snow
+      possible in any month and the high sections snowbound until early to mid-July. A maintained
+      backcountry trail, steep and rough over the passes but without scrambling (T3).
+    source: pc-backcountry
+season:
+  # "Recommended time of year to hike this trail: Mid-July to early October … The higher sections of
+  # the trail are snowbound until early to mid-July … Autumn snowfalls may make hiking difficult in
+  # late September/October"
+  months: [7, 8, 9]
+  text: Mid-July to early October; the high sections are snowbound until early to mid-July, and autumn snow can make late September and October difficult
+  source: pc-backcountry
+permit:
+  # "A backcountry permit is mandatory for anyone planning an overnight trip into the backcountry of
+  # Kootenay National Park"; "Hikers also require a valid national park entry pass"
+  required: true
+  name: Backcountry permit and park entry pass
+  issuedBy: Parks Canada, Kootenay National Park
+  how: >-
+    Reserve the backcountry campgrounds in advance through the Parks Canada Reservation Service
+    (needed for most sites in July, August and September; a non-refundable reservation fee applies);
+    the permit names a designated campground for each night. Carry a copy and a valid national park
+    entry pass.
+  url: https://parks.canada.ca/pn-np/bc/kootenay/activ/arrierepays-backcountry/reservations
+  source: pc-backcountry
+sleeping:
+  # "There are five backcountry campgrounds in Kootenay National Park along the Rockwall Trail"
+  # (Helmet-Ochre Junction, Helmet Falls, Tumbling Creek, Numa Creek, Floe Lake), each with tent
+  # pads, dry toilets, picnic tables and food storage
+  types: [campsite]
+  source: pc-backcountry
+wildCamping:
+  status: prohibited
+  rule: >-
+    Camp only in the designated backcountry campgrounds named on your permit, on the tent pads;
+    random camping is not permitted anywhere in Kootenay National Park in summer. No campfires in the
+    backcountry.
+  source: pc-backcountry
+access:
+  # Calgary International Airport; no railway or scheduled bus to the trailheads on Highway 93 South.
+  # Coordinates from OSM; distances by pipeline/access.py
+  - kind: airport
+    name: Calgary International Airport (YYC)
+    lat: 51.12226
+    lon: -114.01354
+    source: osm
+animals:
+  # Kootenay National Park: "home to wildlife including elk, wolves, cougars, grizzly bears and black
+  # bears"; Parks Canada's "Bears and people" for the mountain national parks ("home to both grizzly
+  # and black bears"), quoted here. Levels ours
+  list:
+    - kind: bear
+      name: Grizzly bear and black bear
+      level: moderate
+      basis: Both grizzly and black bears live in Kootenay National Park and can be met anywhere, on busy trails or in the remote backcountry; the trail crosses avalanche slopes, meadows and creeks where Parks Canada asks hikers to be extra bear aware.
+      do:
+        - Carry bear spray, easily accessible, and know how to use it
+        - Make noise; call out, clap hands, sing or talk loudly, especially near streams, dense vegetation and berry patches
+        - Hike in a tight group of four or more and never let children wander
+        - "If you see a bear: stop and remain calm, speak to the bear calmly and firmly, back away slowly"
+        - "If a defensive bear makes contact: play dead, lying on your stomach with your hands crossed behind your neck"
+        - "If a bear stalks you or attacks at night: use your bear spray and fight back"
+        - Stay at least 100 m away from bears and other carnivores
+      dont:
+        - Run away
+        - Drop your pack; it may provide protection
+        - Wear ear buds on the trail
+        - Feed wildlife
+      source: pc-bears
+tags: [mountains, alpine-passes, glaciers, wilderness-camps]
+notes:
+  - >-
+    Stages: none by design. Parks Canada publishes the Rockwall as one route of 3 to 5 days with up
+    to five backcountry campgrounds, north to south: Helmet-Ochre Junction (5.8 km from Paint Pots),
+    Helmet Falls (14.2 km), Tumbling Creek (26.5 km), Numa Creek (34.4 km) and Floe Lake (43.6 km;
+    10.5 km before the Floe Lake trailhead). The record keeps them as the campgrounds they are, not
+    as stages.
+  - >-
+    Direction: Parks Canada lists the trailheads north to south and gives its distance table,
+    elevation chart and climbs (3,405 m up, 3,500 m down) from the Paint Pots trailhead (1,434 m) to
+    the Floe Lake trailhead (1,337 m), so the record starts at Paint Pots. Kootenay Rockies Tourism
+    says most hikers start at Floe Lake and finish at Paint Pots; the climbs then swap.
+  - >-
+    Access trails: four trails from Highway 93 South reach the Rockwall (Helmet Creek and Tumbling
+    Creek from the Paint Pots trailhead, Numa Creek from the Numa Falls trailhead, Floe Lake). Parks
+    Canada lists the Numa Creek trail as closed until further notice after a bridge washout (checked
+    2026-11-06); the through route is not affected.
+  - >-
+    Waymarking: Parks Canada's pages describe no waymarks; a maintained national park trail with
+    signs at junctions (not documented further).
+  - >-
+    Wikidata: no item for the trail (searched 2026-11-06: "Rockwall Trail" finds none; Q22454831 is
+    the Rockwall cliff itself), and no Wikipedia article.
+  - >-
+    Season: Parks Canada's "Mid-July to early October", recorded as July to September, since autumn
+    snow can make late September and October difficult; Kootenay Rockies Tourism says early or mid
+    July to mid-September. Parks Canada books Floe Lake campground only from July 10.
+  - >-
+    Tree line: 2,000 m, Parks Canada's own figure for Kootenay National Park's backcountry ("Trails
+    above tree line (2,000 m)"). The three passes (Rockwall 2,230 m, Tumbling 2,233 m, Numa
+    2,336 m) and Floe Lake campground (2,030 m) lie above it.
+  - >-
+    Wildlife: Kootenay National Park also lists elk, wolves and cougars; Parks Canada's Kootenay
+    pages give only the general rules for them (stay 30 m from elk, deer and moose, 100 m from bears
+    and other carnivores), so only bears, with their own advice page, are listed.
+  - >-
+    Map line (2026-11-06): the Kootenay Geofabrik extract (kootenay-admreg, 2026-11-05); OSM's
+    Rockwall Trail relation (16227288), chained from the Paint Pots end as one segment, 100 % matched.
+    It measures 52.0 km against Parks Canada's 54.1 km (−4 %). The terrain model's highest point is
+    2,335 m at km 39.5 (Numa Pass, 2,336 m in Parks Canada's chart) and its lowest 1,322 m at km 51.5
+    (the Floe Lake trailhead, 1,337 m). Five campgrounds in OSM, the longest stretch without one
+    11.4 km; no shop on the way: carry all food.
+  - >-
+    Ascent: Parks Canada states 3,405 m up and 3,500 m down; the terrain model sums about 2,640 m up
+    (−22 %), and the heights in Parks Canada's own chart (trailheads, campgrounds and passes) add up
+    to about 1,920 m without the ups and downs between them. The record keeps Parks Canada's figures.
+  - >-
+    Data check (2026-11-06, working rule 2): Parks Canada against Kootenay Rockies Tourism's Rockwall
+    page: length 54.1 km against "a commanding 55-km journey" (+2 %); the campground distances (10.5,
+    9.2, 7.9, 12.3, 8.4 and 5.8 km) and heights (trailheads 1,434 and 1,337 m, campgrounds 1,515,
+    1,770, 1,893, 1,549 and 2,030 m, Rockwall Pass 2,230 m, Tumbling Pass 2,233 m, Numa Pass 2,336 m)
+    the same in both; days 3–5 against "a 4-to-5-day backpacking excursion" (the minimum 25 % apart;
+    the page keeps Parks Canada's); season mid-July to early October against early or mid July to
+    mid-September (both note snow until early to mid-July and Floe Lake bookings from July 10);
+    designated campgrounds with tent pads and food lockers, a maximum stay of three nights and groups
+    of up to 10 in both; bears in both. Termini: both name Floe Lake and Paint Pots as the ends. No
+    second source gives the climbs, the rating or the tree line; those were checked on the page
+    against Parks Canada's own page.
+  - >-
+    Water: Parks Canada asks hikers to boil, filter or chemically treat all water; creeks run by
+    every campground.
+dataCheck:
+  # working rule 2: Kootenay Rockies Tourism (the regional tourism board) as the second source
+  date: 2026-11-06
+  against: [kootenay-rockies]
+  pageAgainst: [pc-backcountry]
+  deviations:
+    - { figure: days, ours: "3–5 days (Parks Canada)", theirs: "4–5 days", source: kootenay-rockies }
+sources:
+  - id: pc-backcountry
+    title: "Parks Canada: Kootenay National Park backpacking (the Rockwall 54.1 km, 3–5 days, 3,405 m up and 3,500 m down, rating, season, campground distances and elevations, tree line, permits, camping rules)"
+    url: https://parks.canada.ca/pn-np/bc/kootenay/activ/arrierepays-backcountry
+    licence: © His Majesty the King in Right of Canada, Parks Canada (facts only)
+    retrieved: 2026-11-06
+  - id: pc-bears
+    title: "Parks Canada: Safe travel in bear country, bears in the mountain national parks; Kootenay National Park's wildlife"
+    url: https://parks.canada.ca/pn-np/mtn/ours-bears/securite-safety/ours-humains-bears-people
+    licence: © His Majesty the King in Right of Canada, Parks Canada (facts only)
+    retrieved: 2026-11-06
+  - id: kootenay-rockies
+    title: "Kootenay Rockies Tourism: Hiking the Rockwall Trail in Kootenay National Park (55 km, 4–5 days, campgrounds, season)"
+    url: https://www.kootenayrockies.com/hiking-the-rockwall-trail-in-kootenay-national-park/
+    licence: All rights reserved (facts only)
+    retrieved: 2026-11-06
+    checkOnly: true
+  - id: osm
+    title: "OpenStreetMap contributors: the Rockwall Trail relation (16227288), paths, water, shops and places to sleep along the trail (Geofabrik extract), travel hubs"
+    url: https://www.openstreetmap.org/relation/16227288
+    licence: ODbL 1.0
+    retrieved: 2026-11-06
+  - id: copdem
+    title: "Copernicus DEM GLO-30 (30 m terrain model), tiles from AWS Open Data"
+    url: https://registry.opendata.aws/copernicus-dem/
+    licence: "Copernicus WorldDEM-30 licence, free; produced using Copernicus WorldDEM-30 © DLR e.V. 2010-2014 and © Airbus Defence and Space GmbH 2014-2018 provided under COPERNICUS by the European Union and ESA; all rights reserved"
+    retrieved: 2026-11-06
+  - id: worldcover
+    title: "ESA WorldCover 2021: 10 m land cover (via AWS Open Data)"
+    url: https://esa-worldcover.org/
+    licence: "CC BY 4.0; © ESA WorldCover project 2021 / Contains modified Copernicus Sentinel data (2021) processed by ESA WorldCover consortium"
+    retrieved: 2026-11-06
+  - id: era5
+    title: "Open-Meteo open data on AWS: ERA5-Land temperature and ERA5 precipitation, snow and wind, daily 1995–2024 (reanalysis)"
+    url: https://github.com/open-meteo/open-data
+    licence: CC BY 4.0 (Open-Meteo); contains modified Copernicus Climate Change Service information
+    retrieved: 2026-11-06
+  - id: osrm
+    title: "OSRM: road routes on OpenStreetMap data (router.project-osrm.org)"
+    url: https://project-osrm.org/
+    licence: Route data © OpenStreetMap contributors (ODbL)
+    retrieved: 2026-11-06
