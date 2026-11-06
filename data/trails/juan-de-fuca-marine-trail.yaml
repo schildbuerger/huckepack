@@ -1,0 +1,250 @@
+name: Juan de Fuca Marine Trail
+added: 2026-11-06
+website: https://bcparks.ca/juan-de-fuca-park/
+wikidata: Q6301269
+managedBy:
+  - name: BC Parks, Juan de Fuca Park
+    url: https://bcparks.ca/juan-de-fuca-park/
+officialGpx:
+  none: BC Parks offers a trail map as a PDF and backcountry permits, no GPX to download (checked 2026-11-06)
+  source: bcp-park
+trailType: point-to-point
+continents: [North America]
+countries: [CA]
+regions: [British Columbia]
+protectedAreas: [Juan de Fuca Provincial Park]
+termini:
+  # the brochure's distance reference table: China Beach km 0, Botanical km 47; "It extends from China
+  # Beach, just west of the community of Jordan River, to Botanical Beach near Port Renfrew".
+  # Coordinates: OSM's kilometre posts 0 (Juan de Fuca East trailhead by the China Beach day-use
+  # area) and 47 (Botanical Beach trailhead)
+  start:
+    name: Juan de Fuca East trailhead, China Beach
+    lat: 48.43778
+    lon: -124.09146
+  end:
+    name: Botanical Beach trailhead
+    lat: 48.53283
+    lon: -124.44393
+  source: bcp-map
+established:
+  # "created as an enduring reminder of the 1994 Victoria Commonwealth Games"
+  year: 1994
+  source: bcp-park
+waymarking:
+  # the brochure: kilometre markers; "Watch for orange balls as you hike, they mark an exit from the
+  # beach to the trail"
+  text: Kilometre markers along the trail; orange balls mark the exits from the beach to the trail
+  source: bcp-map
+length:
+  # "The Juan de Fuca Marine Trail follows 47 km of remote coastline"
+  - km: 47
+    source: bcp-park
+stages:
+  # no day stages published: BC Parks names four trailheads ("Day-hiking and multi-day trips can
+  # begin at any of these trailheads") and gives their kilometre markers in the brochure's distance
+  # reference table (China Beach 0, Sombrio 29, Parkinson 37, Botanical 47, "rounded to the nearest
+  # kilometre"); the stages are the sections between the trailheads, not days. Ends at OSM's
+  # kilometre posts 29 and 37
+  source: bcp-map
+  list:
+    - { number: "1", kind: main, from: China Beach (Juan de Fuca East trailhead), to: Sombrio Beach trailhead, km: 29, end: { name: Sombrio Beach, lat: 48.50093, lon: -124.30259 } }
+    - { number: "2", kind: main, from: Sombrio Beach trailhead, to: Parkinson Creek trailhead, km: 8, end: { name: Parkinson Creek trailhead, lat: 48.51157, lon: -124.36910 } }
+    - { number: "3", kind: main, from: Parkinson Creek trailhead, to: Botanical Beach trailhead, km: 10, end: { name: Botanical Beach trailhead, lat: 48.53283, lon: -124.44393 } }
+route:
+  # built by `python -m pipeline.all juan-de-fuca-marine-trail`: OSM ways matched to the trail's
+  # relation (7518802, China Beach to Botanical Beach), cut at the stage ends
+  source: osm
+  publishable: true
+  relation: 7518802
+difficulty:
+  # BC Parks: "a rugged trail designed for use by experienced backcountry hikers"; the brochure grades
+  # its sections Easy, Moderate, Difficult and Most Difficult
+  estimated:
+    sac: T3
+    basis: >-
+      BC Parks calls it a rugged trail for experienced backcountry hikers: uneven ground, slippery
+      mud, steep slopes and embankments, difficult creek crossings, ladders between Mystic Beach and
+      Bear Beach, beaches cut off at high tide; its map grades the sections from Easy to Most
+      Difficult (Bear Beach to Chin Beach). A rough wilderness coastal path with ladders and no
+      scrambling (T3).
+    source: bcp-park
+season:
+  # "The Juan De Fuca Marine Trail and the campgrounds along the trail are open all year";
+  # backcountry operating season "Year-round"
+  months: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
+  text: Open all year, with the campgrounds along the trail
+  source: bcp-park
+sleeping:
+  # backcountry campgrounds at Mystic Beach, Bear Beach, Chin Beach, Sombrio Beach, Little Kuitsche
+  # Creek and Payzant Creek, with food caches; tent pads at West Sombrio and in the forest camps
+  types: [campsite]
+  source: bcp-park
+wildCamping:
+  status: prohibited
+  rule: >-
+    Camp only at the designated campgrounds (on the beach at Mystic, Bear and Chin Beach, on the tent
+    pads at West Sombrio Beach, Little Kuitsche Creek and Payzant Creek), with a backcountry permit
+    paid in advance online or in cash at a trailhead.
+  source: bcp-park
+permit:
+  required: true
+  name: Backcountry camping permit
+  issuedBy: BC Parks
+  how: >-
+    Buy the permit in advance at camping.bcparks.ca (it doesn't reserve a site), or pay in cash at the
+    self-registration box at any trailhead.
+  url: https://bcparks.ca/reservations/backcountry-camping/permit-registration/
+  source: bcp-park
+fees:
+  # BC Parks' backcountry camping fees, in Canadian dollars, as listed on 2026-11-06
+  - { name: "Backcountry camping, adult (16+)", amount: 10, currency: CAD, per: per person and night, year: 2026, note: "youth 6–15 $5, children under 6 free", source: bcp-park }
+  - { name: "Non-resident fee, adult (16+)", amount: 20, currency: CAD, per: per person and trip, year: 2026, note: "visitors who do not live in B.C., since 2026", source: bcp-park }
+access:
+  # no passenger railway on southern Vancouver Island; coordinates from OSM; distances by
+  # pipeline/access.py
+  - kind: airport
+    name: Victoria International Airport (YYJ)
+    lat: 48.64630
+    lon: -123.42171
+    source: osm
+animals:
+  # the park: "Juan de Fuca Park is prime bear and cougar habitat. On trails, make noise, to prevent
+  # unexpected encounters"; what to do from BC Parks' wildlife safety page. Levels ours
+  list:
+    - kind: bear
+      name: Black bear
+      level: moderate
+      basis: BC Parks calls the park prime bear habitat and provides bear-proof food caches at every campground along the trail.
+      do:
+        - Make noise on trails, to prevent unexpected encounters
+        - Store all potential attractants in a bear-proof cache
+        - If you see a bear, stop where you are and stay calm
+        - If the bear has noticed you but is not reacting to your presence, speak softly and back away slowly
+        - If the bear charges, stand your ground and discharge your bear spray when they are within spraying range
+        - If the bear knocks you down, roll onto your stomach and lie still; if the attack continues or seems predatory, fight back
+      dont:
+        - Never run away
+        - Never leave any food, garbage or other potential attractants in your tent
+        - Never feed wild animals
+      source: bcp-wildlife
+    - kind: big-cat
+      name: Cougar
+      level: low
+      basis: BC Parks calls the park prime cougar habitat; cougar encounters are extremely rare but can be deadly, with children particularly at risk.
+      do:
+        - Pick up children immediately
+        - Keep the cougar in view, and back away slowly, making yourself look as large as possible
+        - If the cougar shows intense interest or follows you, respond aggressively; maintain eye contact, show your teeth, and make loud noises
+        - If the cougar attacks, fight back
+      dont:
+        - Never turn your back on one and never run away
+        - Avoid travelling at dawn and dusk, and do not hike at night
+      source: bcp-wildlife
+tags: [coast, tides, forest, wilderness-camps]
+notes:
+  - >-
+    Stages: BC Parks publishes no day stages; hikers choose among six backcountry campgrounds (Mystic
+    Beach km 2, Bear Beach km 9, Chin Beach km 21, Sombrio Beach km 27, Little Kuitsche Creek km 33,
+    Payzant Creek km 40). The record's stages are the three sections between the four trailheads
+    the park names, with the kilometre markers of the brochure's distance reference table (29, 8 and
+    10 km, rounded to the kilometre).
+  - >-
+    Days: BC Parks publishes no number of days ("designed for challenging day or multi-day hikes");
+    the page counts one day per section. The Encyclopedia of British Columbia says 3–4 days.
+  - >-
+    Season: open all year (BC Parks); storms damage the trail every winter, and it was closed in
+    2024–2025 (the government's release of 17 April 2025): check the park's advisories.
+  - >-
+    Tree line: none; the route stays below 200 m (the terrain model's highest point, 198 m, see the
+    Map line note).
+  - >-
+    Map line (2026-11-06): the Vancouver Island Geofabrik extract (island-admreg); the trail's OSM
+    relation (7518802, 420 ways, one stray way left out) chained from China Beach and cut at OSM's
+    kilometre posts 29 and 37 (the posts' positions come from Juan de Fuca Search and Rescue); every
+    stage 100 % matched. The map line measures 38.5 km against the stated 47 km (−18 %): stage 1
+    23.9 km against 29 km, stage 2 6.0 km against 8 km, stage 3 8.6 km against 10 km. The relation
+    is mapped in detail (a node every 14 m on average, 41 km in all), and the shortfall is even
+    along the route, so it is the method: BC Parks' kilometre markers are field measurements of a
+    trail that winds up and down every gully, which a map line cuts short. The record keeps BC
+    Parks' figures. The terrain model (a surface model, treetops in this forest) puts the highest
+    point at 198 m above Chin Beach and estimates about 1,960 m of climbing; BC Parks states none.
+    Water: OSM maps no drinking water and none of the many creeks as springs, so the Water chart
+    shows none; the creeks the brochure's map shows are the water, to be treated. No shop along the
+    trail (Port Renfrew lies a few kilometres beyond Botanical Beach): carry all food. Places to
+    sleep: 13 campsites in OSM, the longest stretch without one 8.0 km.
+  - >-
+    Data check (2026-11-06, working rule 2): BC Parks' park page and trail map against the
+    Encyclopedia of British Columbia (KnowBC) and the BC government's release of 10 May 2023: length
+    47 km in all three; termini China Beach (near Jordan River) and Botanical Beach (near Port
+    Renfrew) in BC Parks and the encyclopedia; days: BC Parks publishes none, the encyclopedia says
+    3–4 and the page counts 3 (one per section); campgrounds: BC Parks' six (Mystic, Bear, Chin,
+    Sombrio, Little Kuitsche, Payzant) agree with the release's tent platforms at five of them plus
+    Sombrio; camping only at designated campgrounds with a permit is BC Parks' alone. The sections'
+    kilometres (29, 8, 10) and the season (all year) are BC Parks' only; neither second source
+    gives them. No figure differs by more than 10 %.
+dataCheck:
+  # working rule 2: the Encyclopedia of British Columbia as the independent second source; the BC
+  # government's news release for the length and campgrounds
+  date: 2026-11-06
+  against: [knowbc, bcgov-2023]
+  deviations: []
+sources:
+  - id: bcp-park
+    title: "BC Parks: Juan de Fuca Park (the Juan de Fuca Marine Trail, 47 km, trailheads, tides, backcountry camping, permits and fees, safety)"
+    url: https://bcparks.ca/juan-de-fuca-park/
+    licence: © Province of British Columbia (facts only)
+    retrieved: 2026-11-06
+  - id: bcp-map
+    title: "BC Parks: Juan de Fuca Marine Trail map (distance reference table, beach cut-offs, sections by difficulty)"
+    url: https://nrs.objectstore.gov.bc.ca/kuwyyf/juan_de_fuca_brochure_acb8364968.pdf
+    licence: © Province of British Columbia (facts only)
+    retrieved: 2026-11-06
+  - id: bcp-wildlife
+    title: "BC Parks: Wildlife safety (bears, wolves, cougars)"
+    url: https://bcparks.ca/plan-your-trip/visit-responsibly/wildlife-safety/
+    licence: © Province of British Columbia (facts only)
+    retrieved: 2026-11-06
+  - id: bcgov-2023
+    title: "BC Gov News: Upgrades made to Juan de Fuca Marine Trail (10 May 2023; the 47-kilometre trail, tent platforms at five backcountry campgrounds)"
+    url: https://news.gov.bc.ca/releases/2023ENV0032-000696
+    licence: © Province of British Columbia (facts only)
+    retrieved: 2026-11-06
+    checkOnly: true
+  - id: knowbc
+    title: "Encyclopedia of British Columbia (Harbour Publishing, KnowBC): Juan de Fuca Marine Trail (47 km, China Beach to Botanical Beach, 3–4 days)"
+    url: https://www.knowbc.com/limited/Books/Encyclopedia-of-BC/J/Juan-de-Fuca-Marine-Trail
+    licence: © Harbour Publishing (facts only)
+    retrieved: 2026-11-06
+    checkOnly: true
+  - id: osm
+    title: "OpenStreetMap contributors: the Juan de Fuca Marine Trail relation (7518802) and its kilometre posts, paths, water, shops and places to sleep along the trail (Geofabrik extract), travel hubs"
+    url: https://www.openstreetmap.org/relation/7518802
+    licence: ODbL 1.0
+    retrieved: 2026-11-06
+  - id: copdem
+    title: "Copernicus DEM GLO-30 (30 m terrain model), tiles from AWS Open Data"
+    url: https://registry.opendata.aws/copernicus-dem/
+    licence: "Copernicus WorldDEM-30 licence, free; produced using Copernicus WorldDEM-30 © DLR e.V. 2010-2014 and © Airbus Defence and Space GmbH 2014-2018 provided under COPERNICUS by the European Union and ESA; all rights reserved"
+    retrieved: 2026-11-06
+  - id: worldcover
+    title: "ESA WorldCover 2021: 10 m land cover (via AWS Open Data)"
+    url: https://esa-worldcover.org/
+    licence: "CC BY 4.0; © ESA WorldCover project 2021 / Contains modified Copernicus Sentinel data (2021) processed by ESA WorldCover consortium"
+    retrieved: 2026-11-06
+  - id: era5
+    title: "Open-Meteo open data on AWS: ERA5-Land temperature and ERA5 precipitation, snow and wind, daily 1995–2024 (reanalysis)"
+    url: https://github.com/open-meteo/open-data
+    licence: CC BY 4.0 (Open-Meteo); contains modified Copernicus Climate Change Service information
+    retrieved: 2026-11-06
+  - id: osrm
+    title: "OSRM: road routes on OpenStreetMap data (router.project-osrm.org)"
+    url: https://project-osrm.org/
+    licence: Route data © OpenStreetMap contributors (ODbL)
+    retrieved: 2026-11-06
+  - id: wikimedia
+    title: "Wikimedia: page views of the trail's Wikipedia articles in every language, by people, over twelve months (Wikidata sitelinks, pageview API)"
+    url: https://wikimedia.org/api/rest_v1/
+    licence: CC0 1.0 (pageview data); Wikidata CC0
+    retrieved: 2026-11-06
+    checkOnly: true  # not on the trail page: the page views only rank the home page's popular trails

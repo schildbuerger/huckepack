@@ -1,0 +1,58 @@
+{
+  "climate-high.json": {
+    "retrieved": "2026-11-06T20:31:17+00:00",
+    "url": "https://openmeteo.s3.us-west-2.amazonaws.com/data/copernicus_era5_land+copernicus_era5?latitude=48.5&longitude=-124.3&elevation=200&wind=48.5,-124.0"
+  },
+  "climate-low.json": {
+    "retrieved": "2026-11-06T20:31:17+00:00",
+    "url": "https://openmeteo.s3.us-west-2.amazonaws.com/data/copernicus_era5_land+copernicus_era5?latitude=48.5&longitude=-124.3&elevation=0&wind=48.5,-124.0"
+  },
+  "commons.json": {
+    "key": "Q6301269",
+    "retrieved": "2026-11-06T20:29:58+00:00",
+    "url": "Q6301269 P18 P373"
+  },
+  "elevation-glo30.json": {
+    "retrieved": "2026-11-06T20:30:00+00:00",
+    "url": "https://copernicus-dem-30m.s3.eu-central-1.amazonaws.com/Copernicus_DSM_COG_10_N48_00_W125_00_DEM/Copernicus_DSM_COG_10_N48_00_W125_00_DEM.tif"
+  },
+  "landcover.json": {
+    "retrieved": "2026-11-06T20:30:01+00:00",
+    "url": "https://esa-worldcover.s3.eu-central-1.amazonaws.com/v200/2021/map/ESA_WorldCover_10m_2021_v200_\u2026_Map.tif"
+  },
+  "osm-relation.json": {
+    "retrieved": "2026-11-05T21:23:02Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-1-main.json": {
+    "key": "bfd084811d5c",
+    "retrieved": "2026-11-05T21:23:02Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-2-main.json": {
+    "key": "647d5bad5c3f",
+    "retrieved": "2026-11-05T21:23:02Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-3-main.json": {
+    "key": "bbb127cee901",
+    "retrieved": "2026-11-05T21:23:02Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-water.json": {
+    "retrieved": "2026-11-05T21:23:02Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-way-tags.json": {
+    "retrieved": "2026-11-05T21:23:02Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osrm-access-victoria-international-airport-yyj.json": {
+    "retrieved": "2026-11-06T20:31:17+00:00",
+    "url": "https://router.project-osrm.org/route/v1/driving/-123.42171,48.6463;-124.09146,48.43778?overview=false"
+  },
+  "wikimedia.json": {
+    "retrieved": "2026-11-06T20:31:18+00:00",
+    "url": "Q6301269 2025-11..2026-10"
+  }
+}

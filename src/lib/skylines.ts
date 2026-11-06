@@ -1909,6 +1909,32 @@ export const SKYLINES: Record<string, Skyline> = {
       { d: "M500,304V288H526V304Z", c: "#5a2a20" },
     ],
   },
+  "juan-de-fuca-marine-trail": {
+    view: "Vancouver Island's south-west coast from the trail: dark spruce headlands, Mystic Beach's waterfall dropping off a sandstone cliff onto the sand, the Strait of Juan de Fuca with the snowy Olympic Mountains across it, and Botanical Beach's sandstone shelves with their tide pools",
+    ridge: "#2f4a34",
+    ground: "#c9b58c",
+    shapes: [
+      // the Olympic Mountains across the strait, blue with distance, snow on their tops
+      { d: range([[600, G], [680, 262], [760, 236], [830, 212], [880, 196], [910, 176], [930, 162], [950, 172], [980, 190], [1020, 176], [1060, 158], [1085, 146], [1110, 160], [1150, 184], [1190, 170], [1230, 156], [1260, 168], [1300, 192], [1350, 186], [1400, 204], [1470, 220], [1540, 236], [1600, 244], [1600, G]]), c: "#a9b9c6" },
+      { d: snowOf([[600, G], [680, 262], [760, 236], [830, 212], [880, 196], [910, 176], [930, 162], [950, 172], [980, 190], [1020, 176], [1060, 158], [1085, 146], [1110, 160], [1150, 184], [1190, 170], [1230, 156], [1260, 168], [1300, 192], [1350, 186], [1400, 204], [1470, 220], [1540, 236], [1600, 244], [1600, G]], 180), c: "#eef1f2" },
+      // the strait
+      { d: water(0, 1600, 266), c: "#4f86a8" },
+      // a far headland down the coast, green-blue with distance
+      { d: hills([[480, G], [540, 270], [620, 256], [720, 262], [800, 274], [860, G]]), c: "#5f7c6c" },
+      // the near headland: dark spruce and cedar to the sea
+      { d: range([[0, G], [0, 176], [80, 166], [170, 172], [250, 186], [310, 204], [345, 214], [365, G]]), c: "#33503a" },
+      // tall spruce on it, each a narrow spire
+      { d: ([[40, 156], [82, 152], [124, 155], [170, 158], [214, 166], [256, 174], [298, 190]] as P[]).map(([x, y]) => `M${x - 12},${G}L${x},${y}L${x + 12},${G}Z`).join(" "), c: "#2a4430" },
+      // its sandstone cliff, with Mystic Beach's waterfall pouring off the top onto the sand
+      { d: "M330,320L334,232L352,214L384,218L396,262L400,320Z", c: "#a58c66" },
+      { d: waterfall(374, 222, 300, 6), c: "#f2f4f0" },
+    ],
+    front: [
+      // Botanical Beach: flat sandstone shelves running into the sea, dark tide pools on them
+      { d: "M940,320L980,306L1120,302L1300,304L1420,300L1500,320Z", c: "#a8946e" },
+      { d: "M1040,309a22,3 0 1 0 44,0a22,3 0 1 0 -44,0Z M1180,307a30,3 0 1 0 60,0a30,3 0 1 0 -60,0Z M1330,306a18,2.5 0 1 0 36,0a18,2.5 0 1 0 -36,0Z", c: "#3f7898" },
+    ],
+  },
   "superior-hiking-trail": {
     view: "Minnesota's North Shore: the Sawtooth ridges above Lake Superior, birch and spruce on the rocky slopes, a waterfall dropping towards the lake and the lake's long horizon",
     ridge: "#3f5a34",
