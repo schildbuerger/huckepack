@@ -158,6 +158,8 @@ And the **Ouachita National Recreation Trail** (Arkansas and Oklahoma: the Fores
 
 And the **Foothills Trail** (South Carolina and North Carolina: the Foothills Trail Conservancy's 77 miles (123.9 km) along the Blue Ridge Escarpment from Table Rock State Park over Sassafras Mountain, South Carolina's highest point, past Lake Jocassee's gorges, Whitewater Falls and the Chattooga River to Oconee State Park, with SC State Parks, Duke Energy and the Forest Service, in the conservancy's thirteen sections between its access points A1 to A14, white-blazed, 5–10 days, best in spring and autumn; over the OSM relation; 2026-11-06).
 
+And the **Rideau Trail** (Ontario: the Rideau Trail Association's roughly 325 km from Kingston City Hall to the Ottawa Locks below Parliament Hill, kept by its volunteer clubs since 1971, over the Frontenac Arch's granite and lakes, through Frontenac and Murphys Point Provincial Parks and past the Rideau Canal's lockstations, Perth, Smiths Falls and Merrickville, in the association's nineteen numbered maps, orange triangles, 9–16 days, much of it on private land with designated campsites only; over the three OSM section relations; 2026-11-07).
+
 | # | Trail | Region | Length (approx.) | Why |
 |---|---|---|---|---|
 | 1 | Pacific Crest Trail | USA | 4,265 km | Most-hiked long trail; public US agency data; completion lists |
