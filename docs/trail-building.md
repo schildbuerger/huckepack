@@ -213,6 +213,30 @@ A trail is done only with all of these (decided 2026-11-04):
    the runs are watched in the background while the next trail is built; a red run stops the
    next push until it is fixed.
 
+## 8b. Several trails at once
+
+Tried 2026-11-06 (the Juan de Fuca Marine Trail, the Tahoe Rim Trail and the Sunshine Coast Trail):
+one agent per trail, each in its own git worktree, and one integrator.
+
+- **Worktrees outside the synced folder:** `scripts/trail-worktree.sh <slug>` checks out branch
+  `trail/<slug>` from main into `~/.cache/huckepack/worktrees/<slug>` (Proton Drive would copy
+  files there as they change) and links the project's `node_modules`; `--remove` takes it away.
+- **Each agent:** steps 1–7 for its trail in its worktree only, its own dev-server and Chrome
+  ports (4331, 4332, … and 9341, 9342, …), and a local commit on its branch; it never pushes,
+  merges or stashes, doesn't run the full build and doesn't touch `tests/route_expectations.json`.
+  Shared files get one block each: its skyline before `"superior-hiking-trail"` in
+  `src/lib/skylines.ts`, its photo exclusions at the end of `data/reference/photo-exclude.yaml`,
+  its roadmap paragraph.
+- **Shared downloads:** the Geofabrik extracts and terrain tiles in `~/.cache/huckepack/` are
+  shared; one region is downloaded by one run at a time (a lock per region in
+  `pipeline/osmlocal.py`). Keep to two or three agents: they share one address for Nominatim (one
+  request a second) and Wikimedia (one request at a time).
+- **The integrator** reads each agent's report (data-check table, the check's flags, screenshots
+  of the skyline by day and night, the photos kept), sends back what needs fixing, then merges the
+  branches into main (the shared files merge by hand where they meet), rewrites the route
+  expectations once, runs the checks and the full build (section 8), pushes the batch and removes
+  the worktrees.
+
 ## 9. After
 
 - A later fix to a live trail follows the same checks and the same data check for what changed;
