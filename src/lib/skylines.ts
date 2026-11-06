@@ -2102,6 +2102,28 @@ export const SKYLINES: Record<string, Skyline> = {
       { d: "M1192,294a4,4 0 1 0 8,0a4,4 0 1 0 -8,0Z M1208,290a4,4 0 1 0 8,0a4,4 0 1 0 -8,0Z M1222,296a4,4 0 1 0 8,0a4,4 0 1 0 -8,0Z M1238,295a4,4 0 1 0 8,0a4,4 0 1 0 -8,0Z M1252,298a4,4 0 1 0 8,0a4,4 0 1 0 -8,0Z", c: "#f2d4dc" },
     ],
   },
+  "northville-placid-trail": {
+    view: "The Adirondacks from a lake on the trail: the High Peaks pale blue on the horizon, Blue Mountain's rounded dome with its fire tower, ridge behind forested ridge, a long lake and dark spruce on its shore",
+    ridge: "#3f5a34",
+    ground: "#9a8a68",
+    shapes: [
+      // the High Peaks far off, pale blue
+      { d: range([[0, G], [90, 236], [220, 206], [300, 186], [350, 170], [380, 162], [410, 172], [470, 188], [540, 178], [600, 164], [640, 158], [680, 170], [760, 196], [860, 214], [980, 224], [1100, 232], [1240, 226], [1380, 236], [1520, 230], [1600, 238], [1600, G]]), c: "#b4c3cf" },
+      // Blue Mountain: a broad forested dome, its fire tower on the summit
+      { d: range([[820, G], [900, 262], [980, 226], [1040, 198], [1090, 182], [1130, 178], [1170, 184], [1220, 202], [1290, 232], [1380, 262], [1460, G]]), c: "#6f8a7e" },
+      { d: tower(1130, 182, 16, 6), c: "#5a4a3a" },
+      // nearer forested ridges
+      { d: hills([[0, G], [140, 246], [320, 236], [500, 250], [660, 244], [820, 258], [1000, 252], [1200, 260], [1400, 248], [1600, 256], [1600, G]]), c: FAR },
+      // the dark spruce shores on either side
+      { d: hills([[0, G], [100, 268], [240, 262], [380, 280], [520, G]]), c: FIR },
+      { d: hills([[1180, G], [1320, 276], [1460, 264], [1600, 270], [1600, G]]), c: FIR },
+    ],
+    front: [
+      // a long lake in front, still, and spruce spires on its shores
+      { d: water(360, 1280, 280), c: "#6f9fc0" },
+      { d: "M318,300L334,244L350,300Z M348,300L366,230L384,300Z M1262,300L1278,238L1294,300Z M1292,300L1306,252L1320,300Z", c: "#2f4a2c" },
+    ],
+  },
   "superior-hiking-trail": {
     view: "Minnesota's North Shore: the Sawtooth ridges above Lake Superior, birch and spruce on the rocky slopes, a waterfall dropping towards the lake and the lake's long horizon",
     ridge: "#3f5a34",
