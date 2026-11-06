@@ -2706,6 +2706,11 @@ const trailLd = JSON.stringify({
   }
   /* stages (issue #25, every trail): a compact table, one line per stage, with small bars under the
      distance and the ascent so long and hard days stand out; rows after the first few fold away */
+  /* the section's opening rule in text colour, like every other section's first block */
+  .stage-table {
+    border-top: 1px solid var(--text);
+    padding-top: 12px;
+  }
   .stage-table table {
     width: 100%;
     border-collapse: collapse;
