@@ -2242,6 +2242,45 @@ export const SKYLINES: Record<string, Skyline> = {
       { d: "M1160,252a18,10 0 1 1 36,0a18,10 0 1 1 -36,0Z M1166,238a12,7 0 1 1 24,0a12,7 0 1 1 -24,0Z M1190,242a18,10 0 1 1 36,0a18,10 0 1 1 -36,0Z M1196,228a12,7 0 1 1 24,0a12,7 0 1 1 -24,0Z", c: "#2f4a2c" },
     ],
   },
+  "benton-mackaye-trail": {
+    view: "The southern Appalachians from a Blue Ridge summit on the Benton MacKaye Trail: layer behind layer of long blue ridges fading into the Smokies' haze, Mount Sterling's fire tower on a far crest, mist in the valleys, and in front the Toccoa River under its swinging suspension bridge between wooded banks",
+    ridge: "#3f5a3c",
+    ground: "#8f8064",
+    shapes: [
+      // the farthest ridges of the Smokies, palest in the haze
+      { d: hills([[0, G], [90, 190], [220, 168], [360, 186], [500, 160], [640, 180], [800, 154], [960, 176], [1120, 150], [1280, 172], [1440, 158], [1600, G]]), c: "#ccd8e2" },
+      // the next layer: Mount Sterling's broad crest with its fire tower, and a long ridge on the left
+      { d: range([[700, G], [800, 252], [900, 222], [980, 204], [1040, 194], [1090, 190], [1140, 196], [1210, 212], [1300, 234], [1400, 262], [1500, G]]), c: "#b2c4d4" },
+      { d: tower(1090, 191, 12, 5), c: "#8a9cae" },
+      { d: hills([[0, G], [90, 226], [240, 208], [400, 218], [540, 204], [700, 222], [820, 240], [960, G]]), c: "#b2c4d4" },
+      // haze lying in the valleys between the layers
+      { d: hills([[0, G], [120, 236], [400, 232], [800, 236], [1200, 232], [1600, G]]), c: "#dfe7ee" },
+      // nearer blue ridges, one behind the other
+      { d: hills([[0, G], [120, 236], [280, 214], [440, 236], [600, 210], [780, 232], [960, 212], [1140, 234], [1320, 208], [1480, 228], [1600, G]]), c: "#93abc0" },
+      { d: hills([[0, G], [150, 258], [330, 238], [520, 256], [700, 236], [900, 258], [1100, 240], [1300, 256], [1480, 242], [1600, G]]), c: "#7792a8" },
+      // the wooded banks of the Toccoa River, darker and greener
+      { d: hills([[0, G], [100, 276], [260, 268], [430, 282], [560, G]]), c: "#4f6b58" },
+      { d: hills([[1080, G], [1220, 280], [1400, 266], [1540, 276], [1600, G]]), c: "#4f6b58" },
+    ],
+    front: [
+      // the Toccoa River, and its swinging bridge: two towers, the cables sagging between them, the
+      // hangers and the deck
+      { d: water(480, 1160, 300), c: "#5f8ea6" },
+      { d: "M606,304V256H614V304Z M1026,304V256H1034V304Z", c: "#5a4a3a" },
+      { d: "M610,258Q820,296 1030,258L1030,261Q820,299 610,261Z", c: "#3a3530" },
+      {
+        d: [670, 730, 790, 850, 910, 970]
+          .map((x) => {
+            const t = (x - 610) / 420;
+            const top = Math.round(259.5 + 76 * t * (1 - t));
+            return `M${x - 1},${top}V291H${x + 1}V${top}Z`;
+          })
+          .join(" "),
+        c: "#3a3530",
+      },
+      { d: "M560,290Q820,298 1080,290L1080,294Q820,302 560,294Z", c: "#6a5440" },
+    ],
+  },
   "superior-hiking-trail": {
     view: "Minnesota's North Shore: the Sawtooth ridges above Lake Superior, birch and spruce on the rocky slopes, a waterfall dropping towards the lake and the lake's long horizon",
     ridge: "#3f5a34",

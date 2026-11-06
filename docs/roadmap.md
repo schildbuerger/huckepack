@@ -158,6 +158,8 @@ And the **Ouachita National Recreation Trail** (Arkansas and Oklahoma: the Fores
 
 And the **Foothills Trail** (South Carolina and North Carolina: the Foothills Trail Conservancy's 77 miles (123.9 km) along the Blue Ridge Escarpment from Table Rock State Park over Sassafras Mountain, South Carolina's highest point, past Lake Jocassee's gorges, Whitewater Falls and the Chattooga River to Oconee State Park, with SC State Parks, Duke Energy and the Forest Service, in the conservancy's thirteen sections between its access points A1 to A14, white-blazed, 5–10 days, best in spring and autumn; over the OSM relation; 2026-11-06).
 
+And the **Benton MacKaye Trail** (Georgia, Tennessee and North Carolina: the Benton MacKaye Trail Association's 287.6 miles (463 km) from Springer Mountain, where it shares the Appalachian Trail's start, along the Blue Ridge's western crest over the Toccoa River's swinging bridge, through the Cohutta and Big Frog wildernesses and over the Ocoee and Hiwassee rivers to Fontana Dam and across the Great Smoky Mountains National Park to Big Creek, with the Forest Service and the park, in the association's 25 sections, white-diamond blazed, open year-round, a park permit for the 93 miles in the Smokies; over the trail's OSM relation; 2026-11-06).
+
 | # | Trail | Region | Length (approx.) | Why |
 |---|---|---|---|---|
 | 1 | Pacific Crest Trail | USA | 4,265 km | Most-hiked long trail; public US agency data; completion lists |
