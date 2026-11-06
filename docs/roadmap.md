@@ -145,6 +145,8 @@ And the **Rockwall Trail** (British Columbia: Parks Canada's 54.1 km along the R
 And the **Dobson Trail** (New Brunswick: the Fundy Hiking Trails Association's sister trail to the Fundy Footpath, about 58 km through Albert County's forests and ridges from Riverview's Pine Glen Road to the northern boundary of Fundy National Park, 3–4 days between established campsites, no stages by design; over the OSM relation; 2026-11-06).
 
 And the **Timberline Trail** (Oregon: the Forest Service's 41.5-mile (66.8 km) loop round Mount Hood from Timberline Lodge, Trail #600 with the Pacific Crest Trail on the south-west side, 3–4 days without stages at or near the tree line, through the Mount Hood Wilderness with unbridged glacial river fords, July to October; over the OSM relation as one segment; 2026-11-06).
+
+And the **Colorado Trail** (Colorado: the Colorado Trail Foundation's and the Forest Service's 486 miles (782 km) from Waterton Canyon near Denver to Durango in its 28 segments on the Collegiate East route (the Collegiate West alternative noted), 4–6 weeks at an average elevation over 3,100 m, through six wilderness areas and up to 4,045 m below Coney Summit in the San Juans, July to September; over the three OSM relations of its superroute; 2026-11-06).
 | # | Trail | Region | Length (approx.) | Why |
 |---|---|---|---|---|
 | 1 | Pacific Crest Trail | USA | 4,265 km | Most-hiked long trail; public US agency data; completion lists |
