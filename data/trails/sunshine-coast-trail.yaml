@@ -37,29 +37,27 @@ length:
   # "The Sunshine Coast Trail is a 180-kilometre back country hiking experience"
   - km: 180
     source: sct-home
+days:
+  # the society's multi-day routes that cover the whole trail: "Sarah Point to Shingle Mill – 3 days",
+  # "Powell River to Lang Bay – 6 days", "Lang Bay to Saltery Bay – 3 or 4 days"; together 12–13
+  min: 12
+  max: 13
+  source: sct-routes
 stages:
-  # the society's huts with their kilometre ("Hut At-A-Glance"), north to south as the trail is meant
-  # to be walked; each stage from one hut to the next one the society's multi-day routes stay at,
-  # its distance the difference of the two kilometres (the last to the 180 km total). Not the
-  # society's days, which it gives only per section (see the "Stages" note). No GPX: each stage is
-  # the shortest way over the OSM relation to its end (`branched`: its 210 ways all connect, but
-  # with spurs and alternatives no single chain follows); hut coordinates from OSM. `via` points
-  # keep stages on the society's line where a shorter branch exists: stage 4 round the north end of
-  # Inland Lake past Anthony Island Hut, stage 6 down Tin Hat's East Ridge and Pipes Canyon, stage 10
-  # over Mount Troubridge's summit, stage 11 by Fairview Bay Hut and the shore
-  source: sct-huts
+  # the society's three multi-day routes that together run the whole trail, north to south as it is
+  # meant to be walked; each one stage, though the society splits them into days (3, 6, 3–4). The
+  # society gives no kilometres for them (only for its huts, see the "Stages" note), so the distances
+  # are measured on our OSM map line. No GPX: each stage is the shortest way over the OSM relation
+  # (`branched`: its 210 ways all connect, but with spurs and alternatives no single chain follows)
+  # through `via` points at the huts the society's routes stay at, and where its line takes a longer
+  # branch (Inland Lake's north end, Tin Hat's East Ridge and Pipes Canyon, Mount Troubridge's summit,
+  # Fairview Bay and the shore); hut coordinates from OSM; the Shingle Mill and Lang Bay at the
+  # nearest point of the relation
+  source: huckepack-measured
   list:
-    - { number: "1", kind: main, from: Sarah Point, to: Manzanita Hut, km: 16, end: { name: Manzanita Hut, lat: 50.00249, lon: -124.7401 } }
-    - { number: "2", kind: main, from: Manzanita Hut, to: Rieveley Pond Hut, km: 17, end: { name: Rieveley Pond Hut, lat: 49.9491, lon: -124.62088 } }
-    - { number: "3", kind: main, from: Rieveley Pond Hut, to: Inland Lake West Hut, km: 32, end: { name: Inland Lake West Hut, lat: 49.93581, lon: -124.49754 } }
-    - { number: "4", kind: main, from: Inland Lake West Hut, to: Confederation Lake Hut, km: 9, via: [{ lat: 49.9551, lon: -124.5012 }, { lat: 49.94417, lon: -124.49034 }], end: { name: Confederation Lake Hut, lat: 49.97579, lon: -124.45572 } }
-    - { number: "5", kind: main, from: Confederation Lake Hut, to: Tin Hat Hut, km: 16, end: { name: Tin Hat Hut, lat: 49.98123, lon: -124.37989 } }
-    - { number: "6", kind: main, from: Tin Hat Hut, to: Elk Lake Hut, km: 20, via: [{ lat: 49.9455, lon: -124.3563 }], end: { name: Elk Lake Hut, lat: 49.89864, lon: -124.37252 } }
-    - { number: "7", kind: main, from: Elk Lake Hut, to: Walt Hill Hut, km: 12, end: { name: Walt Hill Hut, lat: 49.85612, lon: -124.32773 } }
-    - { number: "8", kind: main, from: Walt Hill Hut, to: Golden Stanley Hut, km: 23, end: { name: Golden Stanley Hut, lat: 49.81553, lon: -124.26209 } }
-    - { number: "9", kind: main, from: Golden Stanley Hut, to: Troubridge Hut, km: 13, end: { name: Troubridge Hut, lat: 49.81218, lon: -124.17743 } }
-    - { number: "10", kind: main, from: Troubridge Hut, to: Rainy Day Lake Hut, km: 11, via: [{ lat: 49.81236, lon: -124.16855 }], end: { name: Rainy Day Lake Hut, lat: 49.79944, lon: -124.13977 } }
-    - { number: "11", kind: main, from: Rainy Day Lake Hut, to: Saltery Bay trailhead, km: 11, via: [{ lat: 49.79013, lon: -124.12195 }, { lat: 49.78, lon: -124.1606 }], end: { name: Saltery Bay trailhead, lat: 49.78399, lon: -124.17492 } }
+    - { number: "1", kind: main, from: Sarah Point, to: Shingle Mill (Powell River), km: 46.6, via: [{ lat: 50.00249, lon: -124.7401 }, { lat: 49.9491, lon: -124.62088 }], end: { name: Shingle Mill, lat: 49.88522, lon: -124.5451 } }
+    - { number: "2", kind: main, from: Shingle Mill (Powell River), to: Lang Bay, km: 83.8, via: [{ lat: 49.93581, lon: -124.49754 }, { lat: 49.9551, lon: -124.5012 }, { lat: 49.94417, lon: -124.49034 }, { lat: 49.97579, lon: -124.45572 }, { lat: 49.98123, lon: -124.37989 }, { lat: 49.9455, lon: -124.3563 }, { lat: 49.89864, lon: -124.37252 }, { lat: 49.85612, lon: -124.32773 }], end: { name: Lang Bay, lat: 49.79087, lon: -124.32929 } }
+    - { number: "3", kind: main, from: Lang Bay, to: Saltery Bay trailhead, km: 35.5, via: [{ lat: 49.81553, lon: -124.26209 }, { lat: 49.81218, lon: -124.17743 }, { lat: 49.81236, lon: -124.16855 }, { lat: 49.79944, lon: -124.13977 }, { lat: 49.79013, lon: -124.12195 }, { lat: 49.78, lon: -124.1606 }], end: { name: Saltery Bay trailhead, lat: 49.78399, lon: -124.17492 } }
 route:
   # built by `python -m pipeline.all sunshine-coast-trail`: OSM ways matched to the shortest way
   # over the Sunshine Coast Trail relation (7406716) between the stages' ends
@@ -151,20 +149,19 @@ animals:
 tags: [coast, forest, mountains, lakes, huts]
 notes:
   - >-
-    Stages: the society publishes no day-by-day plan for the whole trail, but each hut's kilometre
-    (Sarah Point Hut 0.0, Bliss Portage 8.2, Manzanita 16, Rieveley Pond 33, Inland Lake West 65,
-    Anthony Island 67, Confederation Lake 74, Fiddlehead Landing 81, Tin Hat 90, Elk Lake 110, Walt
-    Hill 122, Golden Stanley 145, Troubridge 158, Rainy Day Lake 169, Fairview Bay 173) and its
-    multi-day routes' nights (Manzanita, Rieveley Pond, Inland Lake, Confederation Lake, Tin Hat, Elk
-    Lake, Walt Hill, Troubridge, Rainy Day Lake). The stages run between those huts, with Golden
-    Stanley between Walt Hill and Troubridge, their lengths the differences of the kilometres; the
-    last stage, past Fairview Bay, to the stated 180 km. Stage 3 (32 km) is two days on the society's
-    routes, which break at the Shingle Mill in Powell River ("Sarah Point to Shingle Mill – 3 days",
-    "Powell River to Lang Bay – 6 days"); no kilometre is published for it.
+    Stages: the society's three multi-day routes that together run the whole trail ("Sarah Point to
+    Shingle Mill – 3 days", "Powell River to Lang Bay – 6 days", the walk starting at the Shingle Mill,
+    "Lang Bay to Saltery Bay – 3 or 4 days"), each one stage though the society splits it into days.
+    It gives no kilometres for them, so their lengths are measured on our OSM map line
+    (huckepack-measured). The society's huts with their kilometres: Sarah Point 0.0, Bliss Portage 8.2,
+    Manzanita 16, Rieveley Pond 33 (section 1, nights at Manzanita and Rieveley Pond); Inland Lake
+    West 65, Anthony Island 67, Confederation Lake 74, Fiddlehead Landing 81, Tin Hat 90, Elk Lake 110,
+    Walt Hill 122 (section 2, nights at Inland Lake, Confederation Lake, Tin Hat, Elk Lake, Walt Hill);
+    Golden Stanley 145, Troubridge 158, Rainy Day Lake 169, Fairview Bay 173 (section 3, nights at
+    Troubridge, Rainy Day Lake or Fairview Bay).
   - >-
-    Days: the society gives days per section only (Sarah Point to Shingle Mill 3, Powell River to
-    Lang Bay 6, Lang Bay to Saltery Bay 3 or 4), together 12–13 days; Sunshine Coast Tourism gives
-    none. No total for the whole trail is published, so the page counts one day per stage.
+    Days: the sum of the society's three sections, 3 + 6 + (3 or 4) = 12–13 days; it states no total
+    for the whole trail, and neither does Sunshine Coast Tourism.
   - >-
     Fees: the huts are free, except the two on Inland Lake managed by BC Parks, which "require a
     modest user fee" (no amount published on the society's page).
@@ -184,48 +181,45 @@ notes:
   - >-
     Map line (2026-11-06): the Geofabrik extract of British Columbia's Vancouver Island region (which
     takes in the qathet region); the Sunshine Coast Trail relation (7406716, 210 ways, 196 km with its
-    spurs and alternatives, all connected), each stage the shortest way over it to the next hut,
-    `via` points where the society's line takes a longer branch (Inland Lake's north end and Anthony
-    Island, Tin Hat's East Ridge and Pipes Canyon, Mount Troubridge's summit, Fairview Bay); every
-    stage 100 % matched. The map line measures 160.9 km against the stated 180 km (−11 %; the
-    guidebook's kilometres in Wikipedia end at 178 km, the society's own trail runners' table gives
-    176 km, and the society warns that "distances between some kilometre markers have been stretched
-    or shortened" by re-routes). Stages more than 10 % off: 4 12.2 km against 9 km (from Inland Lake
-    West Hut round the lake's north end to Anthony Island and up to Confederation Lake; the
-    guidebook's kilometres give 10.1 km), 5 13.1 against 16, 8 18.9 against 23, 9 10.8 against 13,
-    10 7.2 against 11 and 11 8.5 against 11; the OSM line follows the relation's ways and is
-    shorter on the long switchbacking climbs. The record keeps the society's figures. Highest point
-    1,289 m on Mount Troubridge by the terrain model (the society: 1,300 m), lowest 2 m at Saltery
-    Bay; about 8,490 m of climbing by the terrain model. Water: only 9 drinking water points in OSM,
-    all near Powell River, the longest stretch without one 107.7 km, but the society: "access to
-    water along most of the trail via creeks and lakes, except some high mountain summits" (treat
-    it; refillsUntreated). Resupply: 3 shops in OSM, all in Powell River around km 45; none on the
-    trail after it (the society names the shuttle's resupply service and a store at Lang Bay, off
-    the line): carry food for the southern 115 km.
+    spurs and alternatives, all connected), each section the shortest way over it through the huts
+    the society's routes stay at and `via` points where its line takes a longer branch (Inland Lake's
+    north end and Anthony Island, Tin Hat's East Ridge and Pipes Canyon, Mount Troubridge's summit,
+    Fairview Bay); every stage 100 % matched. The sections measure 46.6, 83.8 and 35.5 km, together
+    165.9 km (the map line, without the short out-and-back to Inland Lake West Hut, 160.8 km) against
+    the stated 180 km (−8 %; the guidebook's kilometres in Wikipedia end at 178 km, the society's own
+    trail runners' table gives 176 km, and the society warns that "distances between some kilometre
+    markers have been stretched or shortened" by re-routes). Highest point 1,285 m on Mount
+    Troubridge by the terrain model (the society: 1,300 m), lowest at sea level at Saltery Bay; about
+    8,470 m of climbing by the terrain model. Water: only 9 drinking water points in OSM, all near
+    Powell River, the longest stretch without one 107.6 km, but the society: "access to water along
+    most of the trail via creeks and lakes, except some high mountain summits" (treat it;
+    refillsUntreated). Resupply: shops in OSM in Powell River (km 45) and the Lang Bay store just off
+    the trail at the end of section 2 (km 127), 81 km apart: carry food for section 2 (the society
+    also names the shuttle's resupply service).
   - >-
     Data check (2026-11-06, working rule 2): the society's site against Sunshine Coast Tourism and
     the guidebook's kilometres as Wikipedia lists them. Length 180 km in all three ("over 180km";
     Wikipedia's table ends at 178 km). Termini Sarah Point in Desolation Sound and Saltery Bay in
-    all. Hut kilometres agree within 1.4 km (Manzanita 16/16, Rieveley Pond 33/33.5, Inland Lake
-    West 65/64, Confederation Lake 74/74.1, Tin Hat 90/89.3, Elk Lake 110/109.3, Walt Hill
-    122/123.4, Golden Stanley 145/144.9, Troubridge 158/157.6, Rainy Day Lake 169/169), so stages
-    1–3, 5, 6, 8–10 agree within 10 %; stage 4 (9 against 10.1 km, −11 %), stage 7 (12 against
-    14.1 km, −15 %) and stage 11 (11 against 9 km to the guidebook's 178 km, +22 %) differ more,
-    from the rounded hut kilometres and the 180 km total. Huts: 14 free ones (the society; one more
-    planned) against 15 (Sunshine Coast Tourism) and 16 public huts including the two BC Parks huts
-    on Inland Lake (Wikipedia). Highest point: Mount Troubridge 1,300 m (the society) against
-    1,304 m (Wikipedia). Season: the society's driest months, May to September, against Sunshine
-    Coast Tourism's "accessible year around" thanks to the winterized higher huts; the record keeps
-    the society's. Days: none published for the whole trail in any. Camping: huts first come, first
-    served, with tent sites near them, in both. Difficulty and waymarking: the society's only.
+    all. Sections, our measured lengths against the guidebook's kilometres (Shingle Mill at the start
+    of the Mowat Bay Trail, km 50.6; Lang Bay at the end of the Eagle River Trail, km 136.9): section
+    1 46.6 against 50.6 km (−8 %), section 2 83.8 against 86.3 km (−3 %), section 3 35.5 against
+    41.1 km (−14 %, the OSM line shorter on the climb over Mount Troubridge). Hut kilometres agree
+    within 1.4 km (Manzanita 16/16, Rieveley Pond 33/33.5, Inland Lake West 65/64, Confederation
+    Lake 74/74.1, Tin Hat 90/89.3, Elk Lake 110/109.3, Walt Hill 122/123.4, Golden Stanley
+    145/144.9, Troubridge 158/157.6, Rainy Day Lake 169/169). Days: 12–13 from the society's
+    sections; no second source gives days. Huts: 14 free ones (the society; one more planned) against
+    15 (Sunshine Coast Tourism) and 16 public huts including the two BC Parks huts on Inland Lake
+    (Wikipedia). Highest point: Mount Troubridge 1,300 m (the society) against 1,304 m (Wikipedia).
+    Season: the society's driest months, May to September, against Sunshine Coast Tourism's
+    "accessible year around" thanks to the winterized higher huts; the record keeps the society's.
+    Camping: huts first come, first served, with tent sites near them, in both. Difficulty and
+    waymarking: the society's only.
 dataCheck:
   # working rule 2: Sunshine Coast Tourism and Wikipedia's table of the guidebook's kilometres
   date: 2026-11-06
   against: [sc-tourism, wikipedia-sct]
   deviations:
-    - { figure: "Stage 4 length (Inland Lake West Hut to Confederation Lake Hut)", ours: "9 km", theirs: "10.1 km", source: wikipedia-sct }
-    - { figure: "Stage 7 length (Elk Lake Hut to Walt Hill Hut)", ours: "12 km", theirs: "14.1 km", source: wikipedia-sct }
-    - { figure: "Stage 11 length (Rainy Day Lake Hut to Saltery Bay)", ours: "11 km", theirs: "9 km", source: wikipedia-sct }
+    - { figure: "Stage 3 length (Lang Bay to Saltery Bay)", ours: "35.5 km (measured)", theirs: "41.1 km (guidebook km 136.9 to 178)", source: wikipedia-sct }
 sources:
   - id: sct-home
     title: "qathet Parks and Wilderness Society: Sunshine Coast Trail (180 km from Sarah Point in Desolation Sound to Saltery Bay, 14 huts)"
@@ -279,6 +273,11 @@ sources:
     licence: CC BY-SA 4.0
     retrieved: 2026-11-06
     checkOnly: true
+  - id: huckepack-measured
+    title: "huckepack: section distances measured on our OpenStreetMap map line (the society publishes none for its sections)"
+    url: https://www.openstreetmap.org/relation/7406716
+    licence: ODbL 1.0 (measured on OpenStreetMap data)
+    retrieved: 2026-11-06
   - id: osm
     title: "OpenStreetMap contributors: the Sunshine Coast Trail relation (7406716), paths, huts, water, shops and places to sleep along the trail (Geofabrik extract), travel hubs"
     url: https://www.openstreetmap.org/relation/7406716
