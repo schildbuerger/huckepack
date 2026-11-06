@@ -404,7 +404,7 @@ def build(slug, refresh=False):
             detours = [s["closed"] for s in all_stages if s.get("closed")]
             detour_points = [(c["at"]["lon"], c["at"]["lat"]) for c in detours]
             detour_points += [(p["lon"], p["lat"]) for c in detours for leg in c.get("detour", []) for p in [leg["to"], *leg.get("via", [])]]
-            relation_ids = ([relation] if relation else []) + [r for s in all_stages for r in stage_relations(s)]
+            relation_ids = (relation if isinstance(relation, list) else [relation] if relation else []) + [r for s in all_stages for r in stage_relations(s)]
             relation_ids += [leg["relation"] for c in detours for leg in c.get("detour", []) if leg.get("relation")]
             tracks += [(p["lon"], p["lat"]) for w in named_ways for p in w["geometry"]]
             src = osm.source(slug, tracks + detour_points + (coarse if tracks else []), relation_ids, coarse, refresh)
@@ -480,9 +480,14 @@ def build(slug, refresh=False):
     elif not stages and relation:
         # no GPX: the OSM relation, split at the stage ends, guides the matcher
         stages = [s for s in all_stages if s.get("end")]
-        data, _ = cache.get(
-            "osm-relation.json", osm.source_label(), lambda: json.dumps(osm_src().relation(relation, children=False), separators=(",", ":")).encode()
-        )
+        # several relations, one per section (the Kammweg's three): their members merged into one
+        ids = relation if isinstance(relation, list) else [relation]
+
+        def merged():
+            parts = [osm_src().relation(r, children=False) for r in ids]
+            return json.dumps({**parts[0], "elements": [e for p in parts for e in p["elements"]]}, separators=(",", ":")).encode()
+
+        data, _ = cache.get("osm-relation.json", osm.source_label(), merged)
         if trail["route"].get("branched"):
             # a relation with side branches (the W Trek's valleys), which no chain follows
             guides = shortest_guides(json.loads(data)["elements"], trail["route"].get("joinM", 0), True)

@@ -236,7 +236,7 @@ const trail = z
         publishable: z.boolean(),
         // the trail's OSM hiking relation, to guide the map line when there are no GPX tracks;
         // `alternatives`: ways with role "alternative" to use, where the main members leave a gap
-        relation: z.number().int().optional(),
+        relation: z.union([z.number().int(), z.array(z.number().int()).min(1)]).optional(),
         alternatives: z.array(z.number().int()).default([]),
         // a relation with side branches (the W Trek's valleys): each stage is the shortest way over
         // its ways from where it begins to its `end`, instead of a piece of one chained line

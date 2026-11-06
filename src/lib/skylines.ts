@@ -1300,6 +1300,24 @@ export const SKYLINES: Record<string, Skyline> = {
       { d: water(440, 1120, 302), c: LAKE },
     ],
   },
+  kammweg: {
+    view: "The Ore Mountains' long ridge: the Fichtelberg with its summit tower, spruce forest along the crest, and Seiffen's round baroque church with its lantern dome below",
+    ridge: "#3f5a34",
+    ground: MEADOW,
+    shapes: [
+      // the ridge and the Fichtelberg's broad summit
+      { d: hills([[0, G], [220, 236], [480, 226], [700, 206], [860, 200], [1020, 212], [1300, 230], [1600, 228], [1600, G]]), c: "#7f948a" },
+      { d: "M846,202V180H856V172H868V180H876V202Z M858,172V160H866V172Z", c: "#d8d4c8" },
+      // the forested slopes in front
+      { d: hills([[0, G], [160, 266], [420, 258], [640, 270], [760, G]]), c: "#3f5a34" },
+      { d: hills([[1100, G], [1240, 264], [1440, 256], [1600, 262], [1600, G]]), c: "#3f5a34" },
+      { d: "M113,300L115.8,287.0L113,287.0L120,262L127,287.0L124.2,287.0L127,300Z M139,300L141.8,291.0L139,291.0L146,270L153,291.0L150.2,291.0L153,300Z M165,300L167.8,285.0L165,285.0L172,258L179,285.0L176.2,285.0L179,300Z M1273,300L1275.8,288.0L1273,288.0L1280,264L1287,288.0L1284.2,288.0L1287,300Z M1299,300L1301.8,284.0L1299,284.0L1306,256L1313,284.0L1310.2,284.0L1313,300Z M1327,300L1329.8,290.0L1327,290.0L1334,268L1341,290.0L1338.2,290.0L1341,300Z M1355,300L1357.8,286.0L1355,286.0L1362,260L1369,286.0L1366.2,286.0L1369,300Z", c: "#2f4a34" },
+      // Seiffen church: a round nave, its roof and lantern
+      { d: hills([[860, G], [940, 282], [1060, 280], [1140, G]]), c: "#8fa868" },
+      { d: "M968,284V260A32,8 0 0 1 1032,260V284Z", c: "#f0ece0" },
+      { d: "M966,262Q1000,232 1034,262Z M994,244V230H1006V244Z M992,230Q1000,218 1008,230Z", c: "#5a6a7a" },
+    ],
+  },
   "arran-coastal-way": {
     view: "The Isle of Arran from the sea: Goat Fell and the jagged granite ridges of the north, Lochranza Castle on its spit in the bay, and Holy Isle's dome off Lamlash",
     ridge: "#7f9a54",

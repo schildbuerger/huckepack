@@ -532,3 +532,19 @@ class ZippedGpx(unittest.TestCase):
             z.writestr("section-1.gpx", b"<gpx>1</gpx>")
         self.assertEqual(unzipped_gpx(buf.getvalue()), b"<gpx>1</gpx>")
         self.assertEqual(unzipped_gpx(b"<gpx>2</gpx>"), b"<gpx>2</gpx>")
+
+
+class Extracts(unittest.TestCase):
+    def test_region_copy_not_a_longer_namesake(self):
+        # "sachsen-*" also matches sachsen-anhalt's copy; only the region's own dated files count
+        import tempfile
+        from pathlib import Path
+        from unittest import mock
+
+        from pipeline import osmlocal
+
+        with tempfile.TemporaryDirectory() as d:
+            for name in ("sachsen-anhalt-261101.osm.pbf", "sachsen-261031.osm.pbf"):
+                (Path(d) / name).write_bytes(b"")
+            with mock.patch.object(osmlocal, "EXTRACTS_DIR", Path(d)):
+                self.assertEqual(osmlocal.extract("sachsen", "unused").name, "sachsen-261031.osm.pbf")

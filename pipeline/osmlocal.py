@@ -19,6 +19,7 @@ import http.client
 import json
 import math
 import os
+import re
 import time
 import urllib.request
 from datetime import datetime, timezone
@@ -132,7 +133,8 @@ def extract(region, url, refresh=False):
     folder = EXTRACTS_DIR
     folder.mkdir(parents=True, exist_ok=True)
     stem = region.replace("/", "_")
-    have = sorted(folder.glob(f"{stem}-*.osm.pbf"))
+    # only the region's own dated copies: "sachsen-*" also matches sachsen-anhalt (the Kammweg, 2026-11-06)
+    have = sorted(p for p in folder.glob(f"{stem}-*.osm.pbf") if re.fullmatch(rf"{re.escape(stem)}-\d{{6}}\.osm\.pbf", p.name))
     if have and not (refresh and time.time() - have[-1].stat().st_mtime > MAX_AGE_DAYS * 86400):
         return have[-1]
     with _get(url) as response:

@@ -124,6 +124,7 @@ And **Camønoen** (#257, the first trail in Denmark: the 175 km loop round Møn,
 And the **Escapardenne** (#258, 159 km from Ettelbruck in Luxembourg by the Lee Trail and the Éislek Trail to La Roche-en-Ardenne in Belgium, eight stages on their OSM relations).
 And the **Albsteig (HW1)** (#259, 360 km along the Swabian Jura's escarpment from Donauwörth to Tuttlingen in Schwäbische Alb Tourismus's 16 stages over the OSM relation of the Albverein's HW 1).
 And the **Altmühltal-Panoramaweg** (#260, about 200 km along the Altmühl from Gunzenhausen to Kelheim in the Naturpark's 15 stages, their distances measured on the OSM relation, which the site doesn't publish).
+And the **Kammweg Erzgebirge–Vogtland** (#246, 287 km along the ridge of the Ore Mountains and the Vogtland from Geising to Blankenstein in Erzgebirge Tourismus's 17 stages over OSM's three relations of the trail).
 | # | Trail | Region | Length (approx.) | Why |
 |---|---|---|---|---|
 | 1 | Pacific Crest Trail | USA | 4,265 km | Most-hiked long trail; public US agency data; completion lists |
