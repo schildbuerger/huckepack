@@ -1,0 +1,299 @@
+name: Northville–Placid Trail
+added: 2026-11-06
+aliases: [NPT, Northville–Lake Placid Trail, Northville-Placid Trail]
+website: https://nptrail.org/
+wikidata: Q7059877
+managedBy:
+  # the trail lies on the Adirondack Forest Preserve, which the DEC oversees ("Today the DEC has
+  # oversight of the trail"); ADK, which laid it out in 1922–24, maintains it with the DEC through
+  # its volunteers and its Northville–Placid Trail Chapter (history page). DEC's own trail page
+  # (dec.ny.gov/places/northville-placid-trail) answers with a Cloudflare challenge (2026-11-06),
+  # so it is left out
+  - name: New York State Department of Environmental Conservation
+    url: https://dec.ny.gov/things-to-do/hiking/adirondack-backcountry
+  - name: Adirondack Mountain Club, Northville–Placid Trail Chapter
+    url: https://nptrail.org/
+officialGpx:
+  # the chapter's GPX download page: one GPX of the whole trail, no login (checked 2026-11-06)
+  url: https://nptrail.org/gpx-file-download/
+  by: the NPT Chapter of the Adirondack Mountain Club
+  source: npt-gpx
+trailType: point-to-point
+continents: [North America]
+countries: [US]
+regions: [New York]
+protectedAreas: [Adirondack Park, Silver Lake Wilderness, West Canada Lake Wilderness, Blue Ridge Wilderness, High Peaks Wilderness]
+termini:
+  # "running from the southern terminus located in Waterfront Park in the Town of Northville, NY, to
+  # the northern terminus at the corner of Averyville Road and Old Military Road in Lake Placid, NY"
+  # (coordinates from OSM, on the trail's relation: the arch on South Main Street, and the corner
+  # where Averyville Lane meets Old Military Road and Station Street)
+  start:
+    name: Northville
+    lat: 43.22561
+    lon: -74.17176
+  end:
+    name: Lake Placid
+    lat: 44.27234
+    lon: -73.99569
+  source: npt-plan
+established:
+  # "The N-P Trail began in 1922 … The N-P Trail was completed in 1924"
+  year: 1924
+  source: npt-history
+waymarking:
+  text: >-
+    Blue trail markers of three kinds (one bearing the NPT name, one labelled "DEC Trail Marker" and
+    one "DEC Foot Trail"), blue for a north–south route.
+  source: npt-characteristics
+length:
+  # "The Northville–Placid Trail is approximately 136 miles long", Northville to the corner of
+  # Averyville Road and Old Military Road, road walks included
+  - km: 219
+    approx: true
+    source: npt-plan
+days:
+  # the FAQ: "7 days is tough and means lots of 15+ mile days, 10 days gives more time …, lots of
+  # folks think 12 days is ideal, and 14 days lets you really soak up all the trail has to offer"
+  min: 7
+  max: 14
+  source: npt-faq
+stages:
+  # the chapter's ten sections with its mile log (Section Descriptions and Mileages, the 2015
+  # mileage chart), each section's own miles; stage ends on the OSM relation at the points the log
+  # names. Section 10 ends at the Old Military Road crossing (mile 137.78), the northern terminus the
+  # Plan Your Hike page names; the log runs on 0.58 miles to the Lake Placid train station
+  source: npt-sections
+  list:
+    - { number: "1", kind: main, from: Northville, to: Benson Road, km: 19.8, end: { lat: 43.24768, lon: -74.31212 } }
+    - { number: "2", kind: main, from: Benson Road, to: Whitehouse, km: 34.6, end: { lat: 43.37267, lon: -74.43572 } }
+    - { number: "3", kind: main, from: Whitehouse, to: Piseco (Cold Stream), km: 14.8, end: { lat: 43.45908, lon: -74.5221 } }
+    - { number: "4", kind: main, from: Piseco (Cold Stream), to: West Canada Lakes, km: 24.2, end: { lat: 43.59387, lon: -74.62512 } }
+    - { number: "5", kind: main, from: West Canada Lakes, to: Wakely Dam, km: 26.0, end: { lat: 43.72644, lon: -74.47473 } }
+    - { number: "6", kind: main, from: Wakely Dam, to: Lake Durant (NY 28/30), km: 19.65, end: { lat: 43.83869, lon: -74.3846 } }
+    - { number: "7", kind: main, from: Lake Durant (NY 28/30), to: Long Lake (NY 28N), km: 22.45, end: { lat: 43.97603, lon: -74.39255 } }
+    - { number: "8", kind: main, from: Long Lake (NY 28N), to: Shattuck Clearing, km: 20.1, end: { lat: 44.08699, lon: -74.2648 } }
+    - { number: "9", kind: main, from: Shattuck Clearing, to: Duck Hole, km: 19.05, end: { lat: 44.14203, lon: -74.10635 } }
+    - { number: "10", kind: main, from: Duck Hole, to: Lake Placid, km: 21.0, end: { lat: 44.27234, lon: -73.99569 } }
+route:
+  # built by `python -m pipeline.all northville-placid-trail`: OSM ways matched to the trail's OSM
+  # relation (4286650, operator NYSDEC), cut at the sections' ends
+  source: osm
+  publishable: true
+  relation: 4286650
+difficulty:
+  estimated:
+    sac: T2
+    basis: >-
+      The chapter calls the trail rarely flat but with little elevation gain or loss: rolling terrain,
+      the biggest climb about 1,000 feet over a mile south of Long Lake, the highest point 3,008 feet.
+      Its distinguishing feature is mud; expect beaver floods, washed-out bridges, relocations and
+      fords such as West Stony Creek, likely impassable at high water. A remote wilderness trail
+      without exposed passages (T2).
+    source: npt-faq
+season:
+  # the FAQ: "Mud and even snow dominate May, blackflies can be really bad May and June. July and
+  # August are warm/hot, good swimming weather. September/October tend to be drier trail with
+  # pleasant days and cool/cold nights. Not many folks try thru hikes after Thanksgiving"
+  months: [7, 8, 9, 10]
+  text: July to October; mud and even snow in May and black flies in May and June, July and August warm, September and October drier with cool to cold nights
+  source: npt-faq
+sleeping:
+  # the mile log lists lean-tos (first come, first served) and tent sites along the whole trail,
+  # and the Lake Durant state campground
+  types: [bivouac, campsite]
+  source: npt-sections
+wildCamping:
+  status: allowed
+  rule: >-
+    Backcountry camping is allowed on Forest Preserve land, but not within 150 feet of any road,
+    trail, spring, stream, pond or other water except where a "Camp Here" disk marks a site; groups
+    of 10 or more or stays over three nights in one place need a Forest Ranger's permit, and lean-tos
+    must be shared.
+  source: dec-camping
+access:
+  # Albany International Airport; Amsterdam station (Amtrak), about 30 km from Northville.
+  # Coordinates from OSM; distances by pipeline/access.py
+  - kind: airport
+    name: Albany International Airport (ALB)
+    lat: 42.74817
+    lon: -73.79862
+    source: osm
+  - kind: station
+    name: Amsterdam station
+    lat: 42.95367
+    lon: -74.21956
+    source: osm
+animals:
+  # DEC's Adirondack Backcountry page (seasonal notices). Level ours
+  list:
+    - kind: bear
+      name: Black bear
+      level: moderate
+      basis: Half or more of New York's black bears live in the Adirondacks; DEC encourages bear-resistant canisters throughout the Adirondack backcountry.
+      do:
+        - Use bear-resistant canisters to store all food, food garbage, toiletries, and other items with a scent
+        - Store canisters a minimum of 100ft from tents, lean-tos and cooking sites and keep them closed whenever they are not being accessed
+      source: dec-backcountry
+    - kind: tick
+      name: Ticks
+      level: low
+      basis: DEC's Adirondack backcountry notices warn of ticks and say how to prevent their bites.
+      do:
+        - Wear light-colored clothing with a tight weave to spot ticks easily
+        - Wear enclosed shoes, long pants and a long-sleeved shirt; tuck pant legs into socks or boots and shirt into pants
+        - Check clothes and any exposed skin frequently for ticks while outdoors
+        - Stay on cleared, well-traveled trails and walk in the center of trails
+      dont:
+        - Avoid dense woods and bushy areas
+      source: dec-backcountry
+tags: [forest, lakes, wilderness]
+notes:
+  - >-
+    Stages: the chapter's ten sections with their own miles from its mile log (12.32, 21.51, 9.19,
+    15.05, 16.16, 12.21, 13.95, 12.49, 11.84 and 13.07 miles = 137.79 miles, 221.8 km). Section 10
+    in the log ends at the Lake Placid train station (13.66 miles, the original terminus); the record
+    ends it at the Old Military Road crossing (mile 137.78), the northern terminus the Plan Your Hike
+    page names, so the stages and termini agree. The FAQ counts an official thru-hike to the
+    Averyville Road trailhead (mile 136.63), where the footpath ends. The log heads section 7
+    "Wakely Dam to Long Lake", a slip for Lake Durant to Long Lake (section 6 ends at Lake Durant).
+    The log dates from 2015; the site says its information is current as of January 2026.
+  - >-
+    Length: the Plan Your Hike page's "approximately 136 miles" (219 km), road walks through
+    Northville, Piseco, at Wakely Dam and on Tarbell Road included; the sections sum to 137.79 miles.
+  - >-
+    Managed by: DEC's own Northville–Placid Trail page (dec.ny.gov/places/northville-placid-trail)
+    and its Adirondack Forest Preserve page answer with a Cloudflare challenge (2026-11-06), so they
+    are left out; DEC's Adirondack Backcountry and State Land Camping Rules pages answer and are used.
+  - >-
+    Bear canisters: DEC requires them for overnight users in the Eastern High Peaks Wilderness
+    (1 April to 30 November) and encourages them throughout the Adirondack backcountry; the trail's
+    northern sections cross the High Peaks Wilderness west of the Eastern zone. The chapter's food
+    hangs page suggests a canister, an Ursack or a two-tree hang.
+  - >-
+    Tree line: not added; the trail's highest point is 3,008 feet (917 m, the chapter), far below
+    any tree line in the Adirondacks.
+  - >-
+    Effort: the page rates Effort Hard from section 2 (Benson Road to Whitehouse, 21.51 miles, about
+    10¾ hours by DIN 33466); the chapter's sections run trailhead to trailhead and are not days
+    (its FAQ suggests 7 to 14 days, with lean-tos and campsites along every section).
+  - >-
+    Map line (2026-11-06): the New York Geofabrik extract (2026-11-05); OSM's Northville-Placid
+    Trail relation (4286650, operator NYSDEC), chained from Northville and cut at the ten section
+    ends, every section 100 % matched and within 4 % of the chapter's miles. It measures 216.9 km
+    against the chapter's "approximately 136 miles" (219 km, −1.0 %) and its sections' 137.79 miles
+    (221.7 km, −2.2 %). Highest point 931 m at km 151.9 on the ridge east of Blue Mountain (the
+    chapter: 3,008 feet, 917 m, +1.5 %), lowest 231 m at Northville. The terrain model gives about
+    5,150 m of climbing; none is stated (the FAQ: "little elevation gain or loss over its length").
+  - >-
+    Water: OSM maps one drinking water point and one spring near the trail; with the refills at
+    places to sleep the longest stretch without clean water is 31.1 km (km 42.6–73.7, from
+    beyond Silver Lake past Whitehouse and Piseco to Fall Stream). The chapter's FAQ: "Water is everywhere … no water should be
+    considered safe to drink without treatment", and DEC says to boil, treat or filter drinking water.
+  - >-
+    Resupply: OSM maps 9 shops near the trail, the longest stretch without one 153.6 km (km 2.9–156.5,
+    Northville to Long Lake). The chapter names Casey's Corner on NY 8 (limited resupply) and the
+    Piseco post office on the trail, Lake Durant campground and the Blue Mountain Lake post office
+    near it, and Long Lake (town and post office about 1.5–3 miles off the trail) as the last.
+  - >-
+    Beds: OSM maps 35 places to sleep near the trail (33 camping), the longest stretch without one
+    31.1 km (km 42.6–73.7); OSM's lean-tos aren't counted (shelters are left out), and the chapter's
+    log lists lean-tos there (Silver Lake, Mud Lake, Hamilton Lake Stream) and tent sites.
+  - >-
+    Data check (2026-11-06): against English Wikipedia. Length 136 miles (219 km) against its
+    infobox's 138.6 miles (223.1 km, +1.9 %) and its lead's 138 miles; termini (Waterfront Park in
+    Northville, Averyville Road in Lake Placid), DEC's maintenance and the difficulty (its "Easy to
+    Moderate", our T2) agree; it dates the layout to 1922–23, the chapter the completion to 1924.
+    Its season "Any" differs from the chapter's July to October (recorded as a deviation; the page
+    keeps the chapter's). It gives no sections, days, camping rules or highest point; the ten
+    sections' miles, the days, season and camping rules on the built page were checked one by one
+    against the chapter's and DEC's pages and agree. Tree line: not reached (917 m).
+  - >-
+    Preflight (2026-11-06): no blocker; the relation chains into one line of 219.8 of 220.8 km from
+    the start. DEC's dec.ny.gov/places/… pages answer with a Cloudflare challenge and are left out.
+dataCheck:
+  # working rule 2: English Wikipedia as the second source; the sections, days, season and camping
+  # rules only on the chapter's and DEC's pages, so the built page was checked against them
+  date: 2026-11-06
+  against: [wikipedia]
+  pageAgainst: [npt-sections, npt-faq, npt-plan, dec-camping]
+  deviations:
+    - { figure: season, ours: "July to October (the chapter's FAQ)", theirs: "Any", source: wikipedia }
+sources:
+  - id: npt-plan
+    title: "Northville–Placid Trail Chapter of ADK: Plan Your Hike (length, termini)"
+    url: https://nptrail.org/trip-planning/
+    licence: All rights reserved (facts only)
+    retrieved: 2026-11-06
+  - id: npt-sections
+    title: "Northville–Placid Trail Chapter of ADK: Section Descriptions and Mileages (ten sections, mile log, lean-tos and campsites)"
+    url: https://nptrail.org/trip-planning/section-descriptions-and-mileages/
+    licence: All rights reserved (facts only)
+    retrieved: 2026-11-06
+  - id: npt-faq
+    title: "Northville–Placid Trail Chapter of ADK: Frequently Asked Questions (best time of year, days, terrain, water)"
+    url: https://nptrail.org/frequently-asked-questions/
+    licence: All rights reserved (facts only)
+    retrieved: 2026-11-06
+  - id: npt-characteristics
+    title: "Northville–Placid Trail Chapter of ADK: NPT Characteristics (highest point, trail markers)"
+    url: https://nptrail.org/trip-planning/npt-characteristics/
+    licence: All rights reserved (facts only)
+    retrieved: 2026-11-06
+  - id: npt-history
+    title: "Northville–Placid Trail Chapter of ADK: Northville-Placid Trail History"
+    url: https://nptrail.org/npt-history-2/
+    licence: All rights reserved (facts only)
+    retrieved: 2026-11-06
+  - id: npt-gpx
+    title: "Northville–Placid Trail Chapter of ADK: GPX Download (the whole trail)"
+    url: https://nptrail.org/gpx-file-download/
+    licence: All rights reserved (facts only)
+    retrieved: 2026-11-06
+  - id: dec-camping
+    title: "New York State DEC: State Land Camping Rules (backcountry camping, 150-foot rule, lean-tos)"
+    url: https://dec.ny.gov/things-to-do/camping/state-land-rules
+    licence: New York State government work (facts only)
+    retrieved: 2026-11-06
+  - id: dec-backcountry
+    title: "New York State DEC: Adirondack Backcountry (seasonal notices: bear canisters, ticks)"
+    url: https://dec.ny.gov/things-to-do/hiking/adirondack-backcountry
+    licence: New York State government work (facts only)
+    retrieved: 2026-11-06
+  - id: wikipedia
+    title: "Wikipedia (en): Northville–Placid Trail"
+    url: https://en.wikipedia.org/wiki/Northville%E2%80%93Placid_Trail
+    licence: CC BY-SA 4.0
+    retrieved: 2026-11-06
+    checkOnly: true
+  - id: wikimedia
+    title: "Wikimedia: page views of the trail's Wikipedia articles in every language, by people, over twelve months (Wikidata sitelinks, pageview API)"
+    url: https://wikimedia.org/api/rest_v1/
+    licence: CC0 1.0 (pageview data); Wikidata CC0
+    retrieved: 2026-11-06
+    checkOnly: true
+  - id: osm
+    title: "OpenStreetMap contributors: paths, water, shops and places to sleep along the trail (Geofabrik extracts), travel hubs"
+    url: https://www.openstreetmap.org/
+    licence: ODbL 1.0
+    retrieved: 2026-11-06
+  - id: copdem
+    title: "Copernicus DEM GLO-30 (30 m terrain model), tiles from AWS Open Data"
+    url: https://registry.opendata.aws/copernicus-dem/
+    licence: "Copernicus WorldDEM-30 licence, free; produced using Copernicus WorldDEM-30 © DLR e.V. 2010-2014 and © Airbus Defence and Space GmbH 2014-2018 provided under COPERNICUS by the European Union and ESA; all rights reserved"
+    retrieved: 2026-11-06
+  - id: worldcover
+    title: "ESA WorldCover 2021: 10 m land cover (via AWS Open Data)"
+    url: https://esa-worldcover.org/
+    licence: "CC BY 4.0; © ESA WorldCover project 2021 / Contains modified Copernicus Sentinel data (2021) processed by ESA WorldCover consortium"
+    retrieved: 2026-11-06
+  - id: era5
+    title: "Open-Meteo open data on AWS: ERA5-Land temperature and ERA5 precipitation, snow and wind, daily 1995–2024 (reanalysis)"
+    url: https://github.com/open-meteo/open-data
+    licence: CC BY 4.0 (Open-Meteo); contains modified Copernicus Climate Change Service information
+    retrieved: 2026-11-06
+  - id: osrm
+    title: "OSRM: road routes on OpenStreetMap data (router.project-osrm.org)"
+    url: https://project-osrm.org/
+    licence: Route data © OpenStreetMap contributors (ODbL)
+    retrieved: 2026-11-06

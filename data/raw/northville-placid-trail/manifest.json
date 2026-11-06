@@ -1,0 +1,102 @@
+{
+  "climate-high.json": {
+    "retrieved": "2026-11-06T22:16:22+00:00",
+    "url": "https://openmeteo.s3.us-west-2.amazonaws.com/data/copernicus_era5_land+copernicus_era5?latitude=43.9&longitude=-74.4&elevation=930"
+  },
+  "climate-low.json": {
+    "retrieved": "2026-11-06T22:16:22+00:00",
+    "url": "https://openmeteo.s3.us-west-2.amazonaws.com/data/copernicus_era5_land+copernicus_era5?latitude=43.2&longitude=-74.2&elevation=230"
+  },
+  "commons-geo.json": {
+    "key": "with categories, 219.8 km, every 2.5 km, 1500 m, within 0.5 km",
+    "retrieved": "2026-11-06T22:17:42+00:00",
+    "url": "Commons geosearch along the route"
+  },
+  "commons.json": {
+    "key": "Q7059877",
+    "retrieved": "2026-11-06T22:14:34+00:00",
+    "url": "Q7059877 P18 P373"
+  },
+  "elevation-glo30.json": {
+    "retrieved": "2026-11-06T22:15:24+00:00",
+    "url": "https://copernicus-dem-30m.s3.eu-central-1.amazonaws.com/Copernicus_DSM_COG_10_N43_00_W075_00_DEM/Copernicus_DSM_COG_10_N43_00_W075_00_DEM.tif https://copernicus-dem-30m.s3.eu-central-1.amazonaws.com/Copernicus_DSM_COG_10_N44_00_W074_00_DEM/Copernicus_DSM_COG_10_N44_00_W074_00_DEM.tif https://copernicus-dem-30m.s3.eu-central-1.amazonaws.com/Copernicus_DSM_COG_10_N44_00_W075_00_DEM/Copernicus_DSM_COG_10_N44_00_W075_00_DEM.tif"
+  },
+  "landcover.json": {
+    "retrieved": "2026-11-06T22:15:26+00:00",
+    "url": "https://esa-worldcover.s3.eu-central-1.amazonaws.com/v200/2021/map/ESA_WorldCover_10m_2021_v200_\u2026_Map.tif"
+  },
+  "osm-relation.json": {
+    "retrieved": "2026-11-05T21:23:02Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-1-main.json": {
+    "key": "e45d25d18bc9",
+    "retrieved": "2026-11-05T21:23:02Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-10-main.json": {
+    "key": "0c7e4548f627",
+    "retrieved": "2026-11-05T21:23:02Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-2-main.json": {
+    "key": "84d795aeb5bd",
+    "retrieved": "2026-11-05T21:23:02Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-3-main.json": {
+    "key": "7a5c89703fb3",
+    "retrieved": "2026-11-05T21:23:02Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-4-main.json": {
+    "key": "f7f614801371",
+    "retrieved": "2026-11-05T21:23:02Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-5-main.json": {
+    "key": "416233c7b50d",
+    "retrieved": "2026-11-05T21:23:02Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-6-main.json": {
+    "key": "e5e9ecd40c18",
+    "retrieved": "2026-11-05T21:23:02Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-7-main.json": {
+    "key": "80351d1c33f2",
+    "retrieved": "2026-11-05T21:23:02Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-8-main.json": {
+    "key": "ce174eacc310",
+    "retrieved": "2026-11-05T21:23:02Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-9-main.json": {
+    "key": "56cf0a066be7",
+    "retrieved": "2026-11-05T21:23:02Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-water.json": {
+    "retrieved": "2026-11-05T21:23:02Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-way-tags.json": {
+    "retrieved": "2026-11-05T21:23:02Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osrm-access-albany-international-airport-alb.json": {
+    "retrieved": "2026-11-06T22:16:22+00:00",
+    "url": "https://router.project-osrm.org/route/v1/driving/-73.79862,42.74817;-74.17176,43.22561?overview=false"
+  },
+  "osrm-access-amsterdam-station.json": {
+    "retrieved": "2026-11-06T22:16:23+00:00",
+    "url": "https://router.project-osrm.org/route/v1/driving/-74.21956,42.95367;-74.17176,43.22561?overview=false"
+  },
+  "wikimedia.json": {
+    "retrieved": "2026-11-06T22:16:23+00:00",
+    "url": "Q7059877 2025-11..2026-10"
+  }
+}

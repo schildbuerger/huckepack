@@ -143,6 +143,9 @@ And the **Sunshine Coast Trail** (British Columbia: the qathet Parks and Wildern
 And the **Rockwall Trail** (British Columbia: Parks Canada's 54.1 km along the Rockwall in Kootenay National Park from the Paint Pots to Floe Lake, without stages by design (3–5 days between five backcountry campgrounds on a permit), over three alpine passes up to Numa Pass at 2,336 m below the limestone cliff and its hanging glaciers; over the OSM relation; 2026-11-06).
 
 And the **Dobson Trail** (New Brunswick: the Fundy Hiking Trails Association's sister trail to the Fundy Footpath, about 58 km through Albert County's forests and ridges from Riverview's Pine Glen Road to the northern boundary of Fundy National Park, 3–4 days between established campsites, no stages by design; over the OSM relation; 2026-11-06).
+
+And the **Northville–Placid Trail** (New York: the Adirondack Mountain Club's first trail, about 136 miles (219 km) through the Adirondack Park from Northville to Lake Placid, overseen by the NYS DEC and kept by ADK's NPT Chapter, in the chapter's ten sections (7–14 days) between lean-tos, past Spruce Lake, the West Canada Lakes, Long Lake and the Cold River; over the trail's OSM relation; 2026-11-06).
+
 | # | Trail | Region | Length (approx.) | Why |
 |---|---|---|---|---|
 | 1 | Pacific Crest Trail | USA | 4,265 km | Most-hiked long trail; public US agency data; completion lists |
