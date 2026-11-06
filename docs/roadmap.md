@@ -133,6 +133,9 @@ And the **Lost Coast Trail** (California: the BLM's northern section, 24.6 miles
 And the **Superior Hiking Trail** (Minnesota: the association's about 300 miles along the ridges above Lake Superior from the Wisconsin border to the 270-degree Overlook, 2–4 weeks between 94 campsites, without stages, over the OSM relation).
 
 And the **Fundy Footpath** (New Brunswick: the Fundy Hiking Trails Association's 64.3 km along the Bay of Fundy from Fundy National Park's visitor centre in Alma to Big Salmon River, in its three sections, at least four days between backcountry campsites, tidal crossings; over the footpath's and the Trans Canada Trail's OSM relations; 2026-11-06, the first trail built with the faster pipeline: preflight, parallel climate and photos).
+
+And the **Sunshine Coast Trail** (British Columbia: the qathet Parks and Wilderness Society's 180 km from Sarah Point in Desolation Sound to Saltery Bay, in eleven stages between its free huts, Canada's longest hut-to-hut trail, over Tin Hat Mountain and Mount Troubridge; over the trail's OSM relation with `via` points on the society's line; 2026-11-06).
+
 | # | Trail | Region | Length (approx.) | Why |
 |---|---|---|---|---|
 | 1 | Pacific Crest Trail | USA | 4,265 km | Most-hiked long trail; public US agency data; completion lists |

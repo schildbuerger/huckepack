@@ -1909,6 +1909,35 @@ export const SKYLINES: Record<string, Skyline> = {
       { d: "M500,304V288H526V304Z", c: "#5a2a20" },
     ],
   },
+  "sunshine-coast-trail": {
+    view: "From a bluff above Desolation Sound: Vancouver Island's mountains pale across the Strait of Georgia, low islands in the sea, the forested Coast Mountains rising to Tin Hat Mountain with its hut on the summit, and an arbutus leaning out from the rocks",
+    ridge: "#3f5a34",
+    ground: "#8a7c66",
+    shapes: [
+      // Vancouver Island's mountains, pale across the strait
+      { d: range([[0, G], [80, 250], [180, 228], [260, 214], [330, 222], [420, 206], [500, 216], [600, 232], [700, 244], [820, 262], [920, G]]), c: "#b7c4cf" },
+      // the Coast Mountains behind, a last snowfield on the high peaks
+      { d: range([[700, G], [800, 226], [880, 196], [930, 178], [960, 186], [1010, 160], [1050, 176], [1120, 150], [1160, 168], [1230, 156], [1290, 172], [1360, 164], [1430, 190], [1520, 200], [1600, 214], [1600, G]]), c: "#9fb0bc" },
+      { d: snowOf([[700, G], [800, 226], [880, 196], [930, 178], [960, 186], [1010, 160], [1050, 176], [1120, 150], [1160, 168], [1230, 156], [1290, 172], [1360, 164], [1430, 190], [1520, 200], [1600, 214], [1600, G]], 168), c: SNOW },
+      // Tin Hat Mountain: forested slopes up to its rounded summit
+      { d: range([[800, G], [860, 256], [940, 212], [1000, 172], [1024, 152], [1046, 146], [1076, 146], [1096, 156], [1150, 194], [1240, 232], [1340, 256], [1440, G]]), c: "#55704a" },
+      // the hut on the summit
+      { d: "M1050,147V136L1061,129L1072,136V147Z", c: "#7a5a3a" },
+      { d: "M1046,137L1061,126L1076,137L1074,139L1061,130L1048,139Z", c: "#4a3a2c" },
+      // the near ridge, dark fir and cedar
+      { d: hills([[600, G], [720, 272], [880, 262], [1040, 272], [1220, 258], [1400, 268], [1600, 260], [1600, G]]), c: FIR },
+    ],
+    front: [
+      // the Strait of Georgia, with Savary and Hernando islands low in the sea
+      { d: water(0, 820, 290), c: "#5a8fb0" },
+      { d: hills([[300, G], [340, 288], [440, 282], [540, 290], [580, G]]), c: FAR },
+      { d: hills([[600, G], [630, 290], [690, 286], [740, G]]), c: FAR },
+      // a rocky bluff on the shore with an arbutus leaning out over the sea: red bark, a dark crown
+      { d: hills([[40, G], [100, 296], [220, 290], [320, 302], [380, G]]), c: "#7d7a70" },
+      { d: "M196,296C192,276 182,258 166,244L172,240C190,254 202,274 206,296Z", c: "#a34a2e" },
+      { d: "M128,248a24,13 0 1 1 48,0a24,13 0 1 1 -48,0Z M152,232a22,12 0 1 1 44,0a22,12 0 1 1 -44,0Z M110,238a16,9 0 1 1 32,0a16,9 0 1 1 -32,0Z", c: "#2f4a2c" },
+    ],
+  },
   "superior-hiking-trail": {
     view: "Minnesota's North Shore: the Sawtooth ridges above Lake Superior, birch and spruce on the rocky slopes, a waterfall dropping towards the lake and the lake's long horizon",
     ridge: "#3f5a34",
