@@ -50,7 +50,7 @@ GEO_RADIUS_M = 1500
 GEO_NEAR_KM = 0.5
 OPEN = re.compile(r"^(CC0|Public domain|PD|CC BY(-SA)? \d(\.\d)?)", re.I)
 NOT_PHOTO = re.compile(
-    r"\b(map|karte|carte|mappa|mapa|logo|plan|sign|signpost|fingerpost|waymarker|schild|wegweiser|panneau|marker|markierung|waymark|"
+    r"\b(map|karte|carte|mappa|mapa|logo|plan|sign|signpost|fingerpost|waymarker|wegmarke\w*|\w*schild|\w*tafel|info\w*|wegweiser|panneau|marker|\w*markierung\w*|waymark|"
     r"stamp|stempel|leaflet|flyer|profile|profil|elevation|diagram|schema|scheme|poster|plaque|tafel|"
     r"bus|irisbus|gare|bahnhof|station|train|tram|truck|lkw|car park|parking|parkplatz|interior|innenraum)\b",
     re.I,
@@ -79,7 +79,9 @@ NOT_LANDSCAPE = re.compile(
     r"crows?|ravens?|rooks?|jackdaws?|robins?|swans?|geese|goose|herons?|eagles?|buzzards?|owls?|puffins?|gannets?|"
     r"oystercatchers?|curlews?|deer|stags?|seals?|otters?|sheep|lambs?|cows?|cattle|horses?|ponies|pony|dogs?|cats?|"
     r"squirrels?|hares?|rabbits?|fox(es)?|lizards?|snakes?|frogs?|toads?|beetles?|spiders?|fungi|mushrooms?|food|dishes|meals|coats of arms|documents|"
-    r"signs?|information boards?|plaques?|graves?|tombstones?|grabsteine?|cemeter\w*|friedh[öo]f\w*|sculptures?|"
+    r"signs?|information boards?|info ?points?|plaques?|graves?|tombstones?|grabsteine?|cemeter\w*|\w*friedh[öo]f\w*|sculptures?|"
+    r"ships?|steamers?|ferr(y|ies)|paddle|iss\d{3}|views? of earth|astronauts?|from space|satellite|"
+    r"hotels?|leaf|leaves|foliage|foglia|foglie|bl[äa]tter|laub|piazza|plaza|marktplatz|market squares?|streets?|"
     r"museums?|exhibitions?|events?|festivals?|concerts?|sports?|football|races?|marathons?|demonstrations?|"
     r"weddings?|construction|baustellen?|shops?|restaurants?|bars|pubs|house numbers?|doors?|windows?|details?|"
     r"close-ups?|macro|night|nachts?|fireworks|christmas|weihnacht\w*|carnival|fasching|fastnacht)\b",
@@ -196,7 +198,7 @@ def caption(f):
     name = re.sub(r"\s+-\s+\w+ \d{1,2}, \d{4}$", "", name)  # " - August 8, 2016"
     name = re.sub(r"\s+\d{4}-\d{2}-\d{2}.*$", "", name)
     name = re.sub(r"\s*\d{1,2}$", "", name).replace("_", " ").replace(" @ ", ", ")
-    return name[:90]
+    return re.sub(r"[\s\-–,]+$", "", name)[:90]
 
 
 def author(f):
@@ -308,7 +310,8 @@ def spread(cands, taken_km, room, total):
 
 def choose(slug, listing, p18, excluded, geo=()):
     """The trail's photos: the P18 photo, the category's (spread along the route), and where they leave
-    room, photos taken close to the trail (`geo`, from nearby()), spread into the gaps."""
+    room, photos taken close to the trail (`geo`, from nearby()), spread into the gaps; unplaced photos
+    from the category last."""
     route = route_points(slug)
     line = Line(route)
     main_titles = set(listing["main"])
@@ -329,8 +332,8 @@ def choose(slug, listing, p18, excluded, geo=()):
         placed = [placed[round(i * (len(placed) - 1) / max(1, room - 1))] for i in range(room)]
         placed = list({c["title"]: c for c in placed}.values())
     picked += placed[:room]
-    rest = sorted((c for c in cands.values() if c["km"] is None and c not in picked), key=lambda c: -c["w"])
-    picked += rest[: MAX - len(picked)]
+    # photos placed close to the trail come before unplaced ones from its category (2026-11-06: a
+    # category without positions is often signs and boards, the Alpe-Adria-Trail's)
     if len(picked) < MAX:
         have = {c["title"] for c in picked} | set(cands)
         near = []
@@ -342,6 +345,8 @@ def choose(slug, listing, p18, excluded, geo=()):
             if km not in (None, False) and rank:
                 near.append({**f, "km": km, "found": "location", "rank": rank})
         picked += spread(near, [c["km"] for c in picked if c["km"] is not None], MAX - len(picked), line.total)
+    rest = sorted((c for c in cands.values() if c["km"] is None and c not in picked), key=lambda c: -c["w"])
+    picked += rest[: MAX - len(picked)]
     # route order, the trail's own photo (P18) first
     order = lambda c: (c["km"] is None, c["km"] or 0)
     if picked and p18 and picked[0]["title"] == "File:" + p18:
@@ -384,7 +389,7 @@ def build(slug, refresh=False):
     route = route_points(slug)
     # Commons by location only where the trail's own photos leave room: a geosearch takes a request
     # every 2.5 km of trail
-    if route and len(choose(slug, listing, listing.get("p18"), excluded)) < MAX:
+    if route and sum(1 for c in choose(slug, listing, listing.get("p18"), excluded) if c["km"] is not None or c["title"] == "File:" + str(listing.get("p18"))) < MAX:
         line = Line(route)
         geo_key = f"with categories, {line.total:.1f} km, every {GEO_STEP_KM} km, {GEO_RADIUS_M} m, within {GEO_NEAR_KM} km"
         body, _ = cache.get("commons-geo.json", "Commons geosearch along the route",

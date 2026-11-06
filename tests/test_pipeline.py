@@ -448,6 +448,8 @@ class Photos(unittest.TestCase):
 
         self.assertFalse(photos.usable(self.file(title="File:Wegweiser am Westweg.jpg")))
         self.assertFalse(photos.usable(self.file(title="File:Bus at the station.jpg")))
+        self.assertFalse(photos.usable(self.file(title="File:Infotafel Alpe Adria Trail.jpg")))
+        self.assertFalse(photos.usable(self.file(title="File:Infoschild Mallnitz.jpg")))
         self.assertFalse(photos.usable(self.file(restrictions="personality")))
         self.assertFalse(photos.usable(self.file(author="")))
         self.assertFalse(photos.usable(self.file(w=1000, h=750)))
@@ -474,6 +476,8 @@ class Photos(unittest.TestCase):
         self.assertEqual(photos.scenic(self.file(categories="Interiors of churches in Germany|Hiking")), 0)
         self.assertEqual(photos.scenic(self.file(title="File:Mapillary (osmplus org) 1.jpg", categories="Valleys")), 0)
         self.assertEqual(photos.scenic(self.file(w=4000, h=2000, categories="Valleys")), 0)  # 2:1, a 360° sphere
+        self.assertEqual(photos.scenic(self.file(title="File:ISS067-E-21033 - View of Earth.jpg", categories="Lakes")), 0)  # from space
+        self.assertEqual(photos.scenic(self.file(title="File:Kriegerfriedhof Nasswand.jpg", categories="Forests")), 0)
 
     def test_line_places_within_reach(self):
         from pipeline import photos
