@@ -1278,6 +1278,28 @@ export const SKYLINES: Record<string, Skyline> = {
       { d: "M846,216V196H858V190H866V196H892V188H900V196H914V216Z M868,190V176L872,170L876,176V190Z", c: "#a89a86" },
     ],
   },
+  "altmuehltal-panoramaweg": {
+    view: "The Altmühl valley: the river below wooded slopes, the white limestone towers of the Twelve Apostles at Solnhofen, juniper on the dry heath, and Prunn Castle high on its cliff",
+    ridge: "#5d7a3a",
+    ground: MEADOW,
+    shapes: [
+      // the valley's far rims, level
+      { d: hills([[0, G], [260, 230], [640, 222], [1000, 228], [1360, 220], [1600, 226], [1600, G]]), c: "#9aa4a0" },
+      // the wooded slope with Prunn Castle on its limestone cliff
+      { d: range([[0, G], [100, 238], [260, 222], [380, 226], [460, 250], [560, G]]), c: "#4f6a3a" },
+      { d: "M300,226L318,224L326,262L304,266Z", c: "#e8e4d8" },
+      { d: "M296,224V206H314V198H322V206H336V224Z M314,198V188L318,182L322,188V198Z", c: "#c9b8a0" },
+      // the Twelve Apostles: slender white limestone towers
+      { d: pillars([[680, 250], [704, 236], [728, 252], [752, 240], [776, 256]], 14), c: "#ece8dc" },
+      // the dry heath with junipers
+      { d: hills([[1060, G], [1160, 270], [1300, 260], [1440, 268], [1600, 264], [1600, G]]), c: "#b8b080" },
+      { d: "M1174,320C1174,294.0 1178,276 1180,268C1182,276 1186,294.0 1186,320Z M1194,320C1194,298.0 1198,284 1200,276C1202,284 1206,298.0 1206,320Z M1230,320C1230,293.0 1234,274 1236,266C1238,274 1242,293.0 1242,320Z M1294,320C1294,296.0 1298,280 1300,272C1302,280 1306,296.0 1306,320Z M1324,320C1324,292.0 1328,272 1330,264C1332,272 1336,292.0 1336,320Z", c: "#2f4a34" },
+    ],
+    front: [
+      // the Altmühl
+      { d: water(440, 1120, 302), c: LAKE },
+    ],
+  },
   "arran-coastal-way": {
     view: "The Isle of Arran from the sea: Goat Fell and the jagged granite ridges of the north, Lochranza Castle on its spit in the bay, and Holy Isle's dome off Lamlash",
     ridge: "#7f9a54",

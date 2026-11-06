@@ -122,6 +122,8 @@ And the **Queen Charlotte Track** (#251, 73.5 km in the Marlborough Sounds from 
 And the **Two Moors Way** (#254, 102 miles from Ivybridge over Dartmoor, Mid Devon and Exmoor to Lynmouth in the Association's one-day sections over the OSM relation). And the **Wye Valley Walk** (#253, 136 miles along the Wye from the Hafren Forest to Chepstow in the Partnership's 17 sections, each with time and ascent, over the OSM relation). And the **Fife Pilgrim Way** (#256, Culross to St Andrews in the Fife Coast and Countryside Trust's sections over the OSM relation).
 And **Camønoen** (#257, the first trail in Denmark: the 175 km loop round Møn, Bogø and Nyord from Stege, the stages round the loop over the OSM relation).
 And the **Escapardenne** (#258, 159 km from Ettelbruck in Luxembourg by the Lee Trail and the Éislek Trail to La Roche-en-Ardenne in Belgium, eight stages on their OSM relations).
+And the **Albsteig (HW1)** (#259, 360 km along the Swabian Jura's escarpment from Donauwörth to Tuttlingen in Schwäbische Alb Tourismus's 16 stages over the OSM relation of the Albverein's HW 1).
+And the **Altmühltal-Panoramaweg** (#260, about 200 km along the Altmühl from Gunzenhausen to Kelheim in the Naturpark's 15 stages, their distances measured on the OSM relation, which the site doesn't publish).
 | # | Trail | Region | Length (approx.) | Why |
 |---|---|---|---|---|
 | 1 | Pacific Crest Trail | USA | 4,265 km | Most-hiked long trail; public US agency data; completion lists |
