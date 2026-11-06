@@ -2146,6 +2146,46 @@ export const SKYLINES: Record<string, Skyline> = {
       { d: water(520, 760, 306), c: "#5f8ea6" },
     ],
   },
+  "colorado-trail": {
+    view: "The San Juan Mountains from a tundra pass on the Colorado Trail: pale ranges of fourteeners far off, a broad grey peak above the tree line with late snowfields, the jagged Grenadier spires on the right, dark Engelmann spruce up to the tree line, an alpine tarn and a stand of golden aspen with white trunks in front",
+    ridge: "#5c7444",
+    ground: "#9aa66a",
+    shapes: [
+      // the far ranges, pale with distance, a last snow on their crests
+      { d: range([[0, G], [50, 236], [140, 212], [220, 194], [280, 180], [330, 192], [400, 174], [450, 186], [520, 204], [600, 218], [700, 226], [800, 214], [880, 198], [940, 188], [1000, 202], [1080, 220], [1180, 210], [1280, 196], [1340, 186], [1400, 200], [1480, 216], [1560, 224], [1600, 230], [1600, G]]), c: "#b3bfcc" },
+      { d: snowOf([[0, G], [50, 236], [140, 212], [220, 194], [280, 180], [330, 192], [400, 174], [450, 186], [520, 204], [600, 218], [700, 226], [800, 214], [880, 198], [940, 188], [1000, 202], [1080, 220], [1180, 210], [1280, 196], [1340, 186], [1400, 200], [1480, 216], [1560, 224], [1600, 230], [1600, G]], 190), c: SNOW },
+      // a broad fourteener of grey rock, its snowfields lingering in the gullies
+      { d: range([[160, G], [260, 262], [360, 212], [440, 170], [500, 138], [540, 114], [566, 102], [590, 110], [630, 130], [690, 152], [760, 180], [840, 216], [930, 258], [1020, G]]), c: "#9c9a94" },
+      { d: snowOf([[160, G], [260, 262], [360, 212], [440, 170], [500, 138], [540, 114], [566, 102], [590, 110], [630, 130], [690, 152], [760, 180], [840, 216], [930, 258], [1020, G]], 138), c: SNOW },
+      { d: "M520,152L534,140L540,176L530,200Z M604,140L622,148L616,186L606,210L600,176Z M664,170L680,172L674,198Z", c: SNOW },
+      // the Grenadiers: jagged quartzite spires on the right
+      { d: range([[1020, G], [1100, 244], [1150, 200], [1180, 156], [1198, 122], [1212, 142], [1232, 172], [1252, 132], [1268, 104], [1284, 126], [1302, 162], [1324, 140], [1342, 116], [1358, 140], [1392, 182], [1440, 214], [1520, 246], [1600, 260], [1600, G]]), c: "#8f8b88" },
+      { d: snowOf([[1020, G], [1100, 244], [1150, 200], [1180, 156], [1198, 122], [1212, 142], [1232, 172], [1252, 132], [1268, 104], [1284, 126], [1302, 162], [1324, 140], [1342, 116], [1358, 140], [1392, 182], [1440, 214], [1520, 246], [1600, 260], [1600, G]], 132), c: SNOW },
+      // the alpine tundra above the tree line
+      { d: hills([[0, G], [100, 250], [300, 258], [520, 252], [760, 262], [980, 256], [1200, 250], [1400, 260], [1600, 254], [1600, G]]), c: "#93a46c" },
+      // Engelmann spruce and subalpine fir up to the tree line
+      { d: hills([[0, G], [120, 276], [300, 266], [520, 280], [700, 270], [900, 282], [1100, 268], [1320, 278], [1600, 270], [1600, G]]), c: FIR },
+    ],
+    front: [
+      // an alpine tarn below the pass
+      { d: water(1000, 1400, 302), c: "#5f93b4" },
+      // a stand of aspen: white trunks with dark knots, golden crowns (one still green)
+      {
+        d: ([[96, 236], [124, 222], [154, 230], [186, 214], [214, 232]] as const)
+          .map(([x, top]) => `M${x - 2.4},304L${x - 1.4},${top}H${x + 1.4}L${x + 2.4},304Z`)
+          .join(" "),
+        c: "#eeebe2",
+      },
+      { d: "M94,262h5v3h-5Z M122,252h5v3h-5Z M152,270h5v3h-5Z M184,244h5v3h-5Z M184,276h5v3h-5Z M212,262h5v3h-5Z", c: "#3a3a36" },
+      {
+        d: ([[96, 222, 13, 22], [124, 206, 14, 24], [186, 198, 15, 26], [214, 218, 12, 20]] as const)
+          .map(([cx, cy, rx, ry]) => `M${cx - rx},${cy}a${rx},${ry} 0 1 1 ${2 * rx},0a${rx},${ry} 0 1 1 ${-2 * rx},0Z`)
+          .join(" "),
+        c: "#e2b43a",
+      },
+      { d: "M141,216a13,22 0 1 1 26,0a13,22 0 1 1 -26,0Z", c: "#9cbc4e" },
+    ],
+  },
   "superior-hiking-trail": {
     view: "Minnesota's North Shore: the Sawtooth ridges above Lake Superior, birch and spruce on the rocky slopes, a waterfall dropping towards the lake and the lake's long horizon",
     ridge: "#3f5a34",

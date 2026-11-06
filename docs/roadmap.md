@@ -152,6 +152,8 @@ And the **Northville–Placid Trail** (New York: the Adirondack Mountain Club's 
 
 And the **Ozark Highlands Trail** (Arkansas: the Ozark Highlands Trail Association's 207 miles (333 km) of continuous built trail from Lake Fort Smith State Park across the Boston Mountains and down the Buffalo River to AR-14 at Dillard's Ferry, with the Forest Service, in 17 legs between the association's major trailheads by its mile markers, white-blazed, best from October into early June; the separate Sylamore and Norfork Lake pieces beyond the unbuilt Lower Buffalo Wilderness gap left out; over the OSM relation; 2026-11-06).
 
+And the **Colorado Trail** (Colorado: the Colorado Trail Foundation's and the Forest Service's 486 miles (782 km) from Waterton Canyon near Denver to Durango in its 28 segments on the Collegiate East route (the Collegiate West alternative noted), 4–6 weeks at an average elevation over 3,100 m, through six wilderness areas and up to 4,045 m below Coney Summit in the San Juans, July to September; over the three OSM relations of its superroute; 2026-11-06).
+
 | # | Trail | Region | Length (approx.) | Why |
 |---|---|---|---|---|
 | 1 | Pacific Crest Trail | USA | 4,265 km | Most-hiked long trail; public US agency data; completion lists |
