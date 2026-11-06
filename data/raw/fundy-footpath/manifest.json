@@ -1,0 +1,71 @@
+{
+  "climate-high.json": {
+    "retrieved": "2026-11-06T20:05:58+00:00",
+    "url": "https://openmeteo.s3.us-west-2.amazonaws.com/data/copernicus_era5_land+copernicus_era5?latitude=45.5&longitude=-65.3&elevation=240"
+  },
+  "climate-low.json": {
+    "retrieved": "2026-11-06T20:05:58+00:00",
+    "url": "https://openmeteo.s3.us-west-2.amazonaws.com/data/copernicus_era5_land+copernicus_era5?latitude=45.5&longitude=-65.1&elevation=0&wind=45.5,-65.25"
+  },
+  "commons-geo.json": {
+    "key": "with categories, 59.9 km, every 2.5 km, 1500 m, within 0.5 km",
+    "retrieved": "2026-11-06T20:05:32+00:00",
+    "url": "Commons geosearch along the route"
+  },
+  "commons.json": {
+    "key": "Q17511128",
+    "retrieved": "2026-11-06T20:04:36+00:00",
+    "url": "Q17511128 P18 P373"
+  },
+  "elevation-glo30.json": {
+    "retrieved": "2026-11-06T20:04:39+00:00",
+    "url": "https://copernicus-dem-30m.s3.eu-central-1.amazonaws.com/Copernicus_DSM_COG_10_N45_00_W065_00_DEM/Copernicus_DSM_COG_10_N45_00_W065_00_DEM.tif https://copernicus-dem-30m.s3.eu-central-1.amazonaws.com/Copernicus_DSM_COG_10_N45_00_W066_00_DEM/Copernicus_DSM_COG_10_N45_00_W066_00_DEM.tif"
+  },
+  "landcover.json": {
+    "retrieved": "2026-11-06T20:04:40+00:00",
+    "url": "https://esa-worldcover.s3.eu-central-1.amazonaws.com/v200/2021/map/ESA_WorldCover_10m_2021_v200_\u2026_Map.tif"
+  },
+  "osm-relation.json": {
+    "retrieved": "2026-11-05T21:23:02Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-1-main.json": {
+    "key": "6d9d939f3e96",
+    "retrieved": "2026-11-05T21:23:02Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-2-main.json": {
+    "key": "0eb6b89fb934",
+    "retrieved": "2026-11-05T21:23:02Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-3-main.json": {
+    "key": "30ffa5726ecd",
+    "retrieved": "2026-11-05T21:23:02Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-water.json": {
+    "retrieved": "2026-11-05T21:23:02Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-way-tags.json": {
+    "retrieved": "2026-11-05T21:23:02Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osrm-access-greater-moncton-rom-o-leblanc-international-airport-yqm.json": {
+    "retrieved": "2026-11-06T20:05:58+00:00",
+    "url": "https://router.project-osrm.org/route/v1/driving/-64.68833,46.11615;-64.95088,45.59557?overview=false"
+  },
+  "osrm-access-moncton-station-via-rail.json": {
+    "retrieved": "2026-11-06T20:05:58+00:00",
+    "url": "https://router.project-osrm.org/route/v1/driving/-64.78612,46.08335;-64.95088,45.59557?overview=false"
+  },
+  "osrm-access-saint-john-airport-ysj.json": {
+    "retrieved": "2026-11-06T20:05:58+00:00",
+    "url": "https://router.project-osrm.org/route/v1/driving/-65.89028,45.32912;-64.95088,45.59557?overview=false"
+  },
+  "wikimedia.json": {
+    "retrieved": "2026-11-06T20:05:59+00:00",
+    "url": "Q17511128 2025-11..2026-10"
+  }
+}

@@ -1880,6 +1880,35 @@ export const SKYLINES: Record<string, Skyline> = {
       { d: "M900,304L980,298L984,302L904,308Z M1100,306L1150,302L1152,305L1102,309Z", c: "#b8ab90" },
     ],
   },
+  "fundy-footpath": {
+    view: "The Bay of Fundy from the footpath: steep spruce-covered headlands ending in red sandstone cliffs, the bay's wide tidal flats at low water, Nova Scotia's low shore across the bay, a flowerpot rock with trees on top and Point Wolfe's red covered bridge at the shore",
+    ridge: "#3f5a34",
+    ground: "#8a6a58",
+    shapes: [
+      // Nova Scotia's shore, low and blue across the bay
+      { d: hills([[0, G], [140, 268], [460, 262], [800, 270], [1000, G]]), c: "#a6b8c2" },
+      // the bay
+      { d: water(0, 1600, 280), c: "#5f8ea6" },
+      // the far headland: steep to the bay, rolling inland
+      { d: range([[560, G], [600, 236], [650, 176], [740, 146], [860, 154], [960, 136], [1080, 152], [1200, 142], [1340, 160], [1480, 150], [1600, 164], [1600, G]]), c: "#55704a" },
+      // its red sandstone cliff where it meets the bay
+      { d: "M590,320L606,262L630,216L652,186L668,196L664,250L658,320Z", c: "#a3533a" },
+      // the near headland, darker spruce
+      { d: range([[800, G], [840, 252], [900, 214], [1000, 200], [1120, 214], [1240, 204], [1400, 222], [1600, 216], [1600, G]]), c: FIR },
+      { d: "M826,320L838,276L858,240L880,226L888,262L878,320Z", c: "#94482f" },
+    ],
+    front: [
+      // the tidal flats at low water, wet sand in front of the bay
+      { d: water(0, 620, 298), c: "#b9a68a" },
+      // a flowerpot rock: a sea stack with spruce on its top
+      { d: "M280,304L286,262L302,254L318,262L324,304Z", c: "#9a4e36" },
+      { d: "M282,262L292,236L300,254L308,232L322,260Z", c: "#2f4a2c" },
+      // Point Wolfe's covered bridge at the shore, red with a grey roof
+      { d: "M470,304V278H556V304Z", c: "#a33a2a" },
+      { d: "M462,280L476,264H550L564,280Z", c: "#5b5650" },
+      { d: "M500,304V288H526V304Z", c: "#5a2a20" },
+    ],
+  },
   "superior-hiking-trail": {
     view: "Minnesota's North Shore: the Sawtooth ridges above Lake Superior, birch and spruce on the rocky slopes, a waterfall dropping towards the lake and the lake's long horizon",
     ridge: "#3f5a34",

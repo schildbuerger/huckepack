@@ -660,3 +660,17 @@ class FasterBuilds(unittest.TestCase):
         for lon, lat in [(8.0, 50.0), (-122.3, 46.8), (170.5, -45.1), (-70.9, -51.0)]:
             c = osmlocal._cell(lon, lat)
             self.assertEqual(osmlocal._cell(*osmlocal._cell_centres([c])[0]), c)
+
+
+class MainRoles(unittest.TestCase):
+    def test_route_role_counts_as_the_main_line(self):
+        # the Fundy Footpath's ways carry the role "route" (2026-11-06)
+        def w(id_, a, b):
+            return {"type": "way", "id": id_, "geometry": [{"lon": a, "lat": LAT}, {"lon": b, "lat": LAT}]}
+
+        rel = {"elements": [
+            {"type": "relation", "id": 1, "members": [{"type": "way", "ref": 10, "role": "route"}, {"type": "way", "ref": 11, "role": "main"}, {"type": "way", "ref": 12, "role": "alternative"}]},
+            w(10, 8.000, 8.010), w(11, 8.010, 8.020), w(12, 8.020, 8.030),
+        ]}
+        line = routes.relation_line(rel, set(), (8.0, LAT))
+        self.assertAlmostEqual(routes.line_km(line), 1.43, places=1)

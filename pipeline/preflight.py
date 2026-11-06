@@ -33,7 +33,7 @@ import yaml
 
 from pipeline import osm
 from pipeline.freshness import _failure, _iri
-from pipeline.routes import line_km, relation_line, stage_relations
+from pipeline.routes import MAIN_ROLES, line_km, relation_line, stage_relations
 
 truststore.inject_into_ssl()
 
@@ -112,7 +112,7 @@ def check_relation(rids, start=None, stated_km=None):
         elements += relation_elements(rid)
     rels = [e for e in elements if e["type"] == "relation"]
     ways = {e["id"]: e for e in elements if e["type"] == "way"}
-    main = [ways[m["ref"]]["geometry"] for r in rels for m in r["members"] if m["type"] == "way" and m["ref"] in ways and m.get("role", "") == ""]
+    main = [ways[m["ref"]]["geometry"] for r in rels for m in r["members"] if m["type"] == "way" and m["ref"] in ways and m.get("role", "") in MAIN_ROLES]
     if not main:
         return False, [f"relation {', '.join(map(str, rids))}: no ways without a role (only alternatives or excursions?)"]
     total = sum(line_km([(p["lon"], p["lat"]) for p in g]) for g in main)

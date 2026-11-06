@@ -1,0 +1,227 @@
+name: Fundy Footpath
+added: 2026-11-06
+website: https://fundyhikingtrails.com/fhta-new-fundy-footpath/
+wikidata: Q17511128
+managedBy:
+  - name: Fundy Hiking Trails Association
+    url: https://fundyhikingtrails.com/
+officialGpx:
+  none: The association sells a printed trail guide with topographic maps; no GPX to download (checked 2026-11-06)
+  source: fhta-footpath
+trailType: point-to-point
+continents: [North America]
+countries: [CA]
+regions: [New Brunswick]
+protectedAreas: [Fundy National Park, Fundy Trail Provincial Park]
+termini:
+  # "The Fundy Footpath runs from Fundy National Park (FNP) in Alma to Fundy Trail Provincial Park
+  # near St. Martins (or vice versa)", east to west first: from the national park's visitor centre
+  # in Alma to the Big Salmon River Interpretive Centre (coordinates from OSM)
+  start:
+    name: Fundy National Park Visitor Centre, Alma
+    lat: 45.59557
+    lon: -64.95088
+  end:
+    name: Big Salmon River Interpretive Centre
+    lat: 45.42142
+    lon: -65.40432
+  source: fhta-safety
+length:
+  # "The Fundy Footpath spans 64.3 km of rugged coastal terrain"
+  - km: 64.3
+    source: fhta-safety
+days:
+  # "Recommended minimum: 4 days" (Parks Canada: "a minimum of 4 days"); no maximum published, so the
+  # minimum stands for both (a "Days" note says so)
+  min: 4
+  max: 4
+  source: fhta-safety
+stages:
+  # the association's three sections, hiking east to west ("Recommended Travel Time"); not days
+  # (at least four days); numbered in the guide's order
+  source: fhta-safety
+  list:
+    - { number: "1", kind: main, from: Fundy National Park Visitor Centre, to: Goose River (national park boundary), km: 21.3, end: { name: Goose River, lat: 45.53311, lon: -65.09765 } }
+    - { number: "2", kind: main, from: Goose River, to: Little Salmon River, km: 25.8, end: { name: Little Salmon River, lat: 45.47931, lon: -65.28180 } }
+    - { number: "3", kind: main, from: Little Salmon River, to: Big Salmon River Interpretive Centre, km: 17.2, end: { name: Big Salmon River Interpretive Centre, lat: 45.42142, lon: -65.40432 } }
+route:
+  # built by `python -m pipeline.all fundy-footpath`: OSM ways matched to the Fundy Footpath relation
+  # (4077806, Goose River to Big Salmon River; its ways carry the role "route") and the Trans Canada
+  # Trail's Fundy relation (11593655), which takes in the national park's trails from Alma, merged;
+  # each stage the shortest way over them to its end
+  source: osm
+  publishable: true
+  relation: [4077806, 11593655]
+  branched: true
+difficulty:
+  # the association: "one of the most strenuous hikes in Atlantic Canada"
+  estimated:
+    sac: T3
+    basis: >-
+      The association calls it one of the most strenuous hikes in Atlantic Canada: relentless climbs
+      from sea level to 300 m and back, repeated over the whole route, river and tidal crossings that
+      can become impassable at high tide, sporadic phone coverage. A rough coastal wilderness path,
+      steep but without scrambling (T3).
+    source: fhta-safety
+season:
+  # Parks Canada's backcountry: "Operating Season: Victoria Day weekend in May until the end of October"
+  months: [5, 6, 7, 8, 9, 10]
+  text: Victoria Day weekend in May to the end of October (the national park's backcountry season)
+  source: pc-backcountry
+waymarking:
+  # Parks Canada: "All trails located in the park are blazed and contain standard blue hiker tags"
+  text: Blue hiker tags at eye level on trees in the national park
+  source: pc-backcountry
+sleeping:
+  # "Established locations include Seely Beach, Cradle Brook, Little Salmon River, Wolf Brook, Goose
+  # Creek and Goose River"; Parks Canada's backcountry sites at Goose River
+  types: [campsite]
+  source: fhta-faq
+wildCamping:
+  status: restricted
+  rule: >-
+    Camp at the established sites (Seely Beach, Cradle Brook, Little Salmon River, Wolf Brook, Goose
+    Creek, Goose River); in Fundy National Park only at the reserved backcountry site.
+  source: fhta-faq
+permit:
+  required: true
+  name: Backcountry campsite reservation and park entry
+  issuedBy: Parks Canada and New Brunswick's provincial parks
+  how: >-
+    Reserve Fundy National Park's backcountry campsites in advance and check in at the visitor centre
+    before setting out; pay the entrance fee at Fundy National Park and Fundy Trail Provincial Park.
+  url: https://reservation.pc.gc.ca/
+  source: fhta-safety
+access:
+  # coordinates from OSM; distances by pipeline/access.py
+  - kind: station
+    name: Moncton station (VIA Rail)
+    lat: 46.08335
+    lon: -64.78612
+    source: osm
+  - kind: airport
+    name: Greater Moncton Roméo LeBlanc International Airport (YQM)
+    lat: 46.11615
+    lon: -64.68833
+    source: osm
+  - kind: airport
+    name: Saint John Airport (YSJ)
+    lat: 45.32912
+    lon: -65.89028
+    source: osm
+animals:
+  # Fundy National Park: "home to many animals including black bear, coyote, moose, and deer"; the
+  # backcountry guide: "Black bears live in Fundy National Park and are occasionally seen on the
+  # trails"; what to do from Parks Canada's black bear advice. Level ours
+  list:
+    - kind: bear
+      name: Black bear
+      level: low
+      basis: Black bears live in Fundy National Park and are occasionally seen on the trails; Parks Canada asks hikers to be prepared for an encounter.
+      do:
+        - Stay calm and talk calmly to the bear
+        - Keep children close and stay together as a group
+        - Move away sideways or back away, keeping an eye on the bear
+        - Keep your backpack on
+        - If it makes contact in defence, lie flat on your stomach, hands behind your neck, and stay quiet; if the attack goes on, fight back
+      dont:
+        - Approach a bear
+        - Run or turn your back on it
+        - Surround it when hiking in a group
+        - Play dead if the bear is hunting you rather than defending itself
+      source: pc-bears
+tags: [coast, tides, forest, wilderness-camps]
+notes:
+  - >-
+    Stages: the association's three sections (FNP Visitors Centre to FNP boundary 21.3 km, FNP boundary
+    to Little Salmon River 25.8 km, Little Salmon River to Big Salmon River Interpretive Centre
+    17.2 km), east to west as the guide lists them first; they are not days (at least four).
+  - >-
+    Days: both sources give a minimum of four days and no maximum ("always prepare for one additional
+    day"); the record gives 4–4.
+  - >-
+    Season: Parks Canada's backcountry season in Fundy National Park, Victoria Day weekend in May to
+    the end of October; the association publishes none for the footpath itself.
+  - >-
+    Wild camping: the association lists established campsites; Parks Canada's backcountry sites must
+    be reserved and are not to be used without a reservation.
+  - >-
+    Tree line: none; the route stays below 240 m (the terrain model; the association says "from sea
+    level to 300 metres").
+  - >-
+    Map line (2026-11-06): the New Brunswick Geofabrik extract; the Fundy Footpath relation (4077806,
+    its nine ways with the role "route", which the pipeline now reads as the main line) and the Trans
+    Canada Trail's Fundy relation (11593655) merged, each stage the shortest way over them to its end;
+    every stage 100 % matched. The map line measures 58.7 km against the stated 64.3 km (−9 %): stage
+    1 21.3 km (as stated), stage 2 22.9 km against 25.8 km (−11 %, the footpath's OSM line between
+    Goose River and the Little Salmon River; the association's figure likely counts the side trails
+    down to the campsites and the tidal detours), stage 3 15.8 km against 17.2 km (−8 %). The record
+    keeps the association's figures. The terrain model gives about 3,120 m of climbing between sea
+    level and 237 m. Water: 8 drinking water points in OSM, the longest dry stretch 19.4 km (rivers
+    and brooks all along; Parks Canada: treat it). One shop in Alma at the start: carry all food.
+  - >-
+    Data check (2026-11-06, working rule 2): the association's safety guide against Parks Canada's
+    backcountry planning guide: length 64.3 km in both; the three sections 21.3, 25.8 and 17.2 km in
+    both, with the same ends (the national park's visitor centre near Alma, Goose River, the Little
+    Salmon River, Big Salmon River); at least four days in both; black bears in both; backcountry
+    campsites to reserve in both. The season (May to October) and the waymarking (blue hiker tags)
+    are Parks Canada's only.
+  - >-
+    Website: the OSM relation's website, fundyfootpath.info, has expired (checked 2026-11-06); the
+    association's site is under redesign, its old footpath pages answer 404.
+dataCheck:
+  # working rule 2: Parks Canada's backcountry planning guide as the second source
+  date: 2026-11-06
+  against: [pc-backcountry]
+  deviations: []
+sources:
+  - id: fhta-footpath
+    title: "Fundy Hiking Trails Association: The Fundy Footpath (64.3 km with the park approaches, four or more days, tidal crossings)"
+    url: https://fundyhikingtrails.com/fhta-new-fundy-footpath/
+    licence: © Fundy Hiking Trails Association (facts only)
+    retrieved: 2026-11-06
+  - id: fhta-safety
+    title: "Fundy Hiking Trails Association: General Hiking Safety Guide (Fundy Footpath 64.3 km, three sections, at least 4 days, permits, tides, dangers)"
+    url: https://fundyhikingtrails.com/wp-content/uploads/2026/03/Safety-Guide.pdf
+    licence: © Fundy Hiking Trails Association (facts only)
+    retrieved: 2026-11-06
+  - id: fhta-faq
+    title: "Fundy Hiking Trails Association: Fundy Footpath FAQ (campsites, tides, water, parks and access)"
+    url: https://fundyhikingtrails.com/?page_id=1500
+    licence: © Fundy Hiking Trails Association (facts only)
+    retrieved: 2026-11-06
+  - id: pc-backcountry
+    title: "Parks Canada: Fundy National Park backcountry planning guide 2023 (the Fundy Footpath's three sections and 64.3 km, operating season, reservations, trail markers, bears)"
+    url: https://pcweb2.azureedge.net/-/media/pn-np/nb/fundy/WET4/pdf/2023-fundy-backcountry-planning-guide.pdf
+    licence: © His Majesty the King in Right of Canada, Parks Canada (facts only)
+    retrieved: 2026-11-06
+  - id: pc-bears
+    title: "Parks Canada: How to react if you encounter a black bear (Forillon National Park); Fundy National Park: wildlife safety"
+    url: https://parks.canada.ca/pn-np/qc/forillon/securite-safety/faune-wildlife/rencontre-ours-bear-encounter1
+    licence: © His Majesty the King in Right of Canada, Parks Canada (facts only)
+    retrieved: 2026-11-06
+  - id: osm
+    title: "OpenStreetMap contributors: the Fundy Footpath relation (4077806) and the Trans Canada Trail's Fundy relation (11593655), paths, water, shops and places to sleep along the trail (Geofabrik extract), travel hubs"
+    url: https://www.openstreetmap.org/relation/4077806
+    licence: ODbL 1.0
+    retrieved: 2026-11-06
+  - id: copdem
+    title: "Copernicus DEM GLO-30 (30 m terrain model), tiles from AWS Open Data"
+    url: https://registry.opendata.aws/copernicus-dem/
+    licence: "Copernicus WorldDEM-30 licence, free; produced using Copernicus WorldDEM-30 © DLR e.V. 2010-2014 and © Airbus Defence and Space GmbH 2014-2018 provided under COPERNICUS by the European Union and ESA; all rights reserved"
+    retrieved: 2026-11-06
+  - id: worldcover
+    title: "ESA WorldCover 2021: 10 m land cover (via AWS Open Data)"
+    url: https://esa-worldcover.org/
+    licence: "CC BY 4.0; © ESA WorldCover project 2021 / Contains modified Copernicus Sentinel data (2021) processed by ESA WorldCover consortium"
+    retrieved: 2026-11-06
+  - id: era5
+    title: "Open-Meteo open data on AWS: ERA5-Land temperature and ERA5 precipitation, snow and wind, daily 1995–2024 (reanalysis)"
+    url: https://github.com/open-meteo/open-data
+    licence: CC BY 4.0 (Open-Meteo); contains modified Copernicus Climate Change Service information
+    retrieved: 2026-11-06
+  - id: osrm
+    title: "OSRM: road routes on OpenStreetMap data (router.project-osrm.org)"
+    url: https://project-osrm.org/
+    licence: Route data © OpenStreetMap contributors (ODbL)
+    retrieved: 2026-11-06

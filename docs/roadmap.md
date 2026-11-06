@@ -131,6 +131,8 @@ And the **Long Trail** (Vermont, USA: the Green Mountain Club's 272 miles from t
 And the **La Cloche Silhouette Trail** (Killarney Provincial Park, Ontario: Ontario Parks' 80 km loop over the white quartzite ridges, 7–10 days between reserved backcountry campsites, without stages, over the OSM relation).
 And the **Lost Coast Trail** (California: the BLM's northern section, 24.6 miles of beach from Mattole to Black Sands Beach in the King Range, at least three days planned round the tides, without stages, over the OSM relation cut at its finish).
 And the **Superior Hiking Trail** (Minnesota: the association's about 300 miles along the ridges above Lake Superior from the Wisconsin border to the 270-degree Overlook, 2–4 weeks between 94 campsites, without stages, over the OSM relation).
+
+And the **Fundy Footpath** (New Brunswick: the Fundy Hiking Trails Association's 64.3 km along the Bay of Fundy from Fundy National Park's visitor centre in Alma to Big Salmon River, in its three sections, at least four days between backcountry campsites, tidal crossings; over the footpath's and the Trans Canada Trail's OSM relations; 2026-11-06, the first trail built with the faster pipeline: preflight, parallel climate and photos).
 | # | Trail | Region | Length (approx.) | Why |
 |---|---|---|---|---|
 | 1 | Pacific Crest Trail | USA | 4,265 km | Most-hiked long trail; public US agency data; completion lists |

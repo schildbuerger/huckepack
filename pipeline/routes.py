@@ -53,6 +53,9 @@ TOLERANCE_M = 10
 # the places stay in their grid cells)
 ROUTE_CACHES = ["osm-water.json", "osm-along.json", "osm-way-tags.json", "elevation-glo30.json", "landcover.json"]
 GPX_TOLERANCE_M = 2  # the downloadable line: below GPS accuracy, keeps switchbacks
+# a relation member's role for the route itself: none, as OSM's hiking relations mostly have it, or
+# "main" / "route", which some mappers write (the Fundy Footpath's nine ways, 2026-11-06)
+MAIN_ROLES = ("", "main", "route")
 MAX_RELATION_GAP_M = 1000  # a longer jump between relation ways ends the chained line
 USER_AGENT = "huckepack-pipeline (personal project)"
 
@@ -218,7 +221,7 @@ def relation_line(relation, alternatives, start, from_open_end=False):
         ways[m["ref"]]["geometry"]
         for rel in (e for e in elements if e["type"] == "relation")
         for m in rel["members"]
-        if m["type"] == "way" and m["ref"] in ways and (m.get("role", "") == "" or m["ref"] in alternatives)
+        if m["type"] == "way" and m["ref"] in ways and (m.get("role", "") in MAIN_ROLES or m["ref"] in alternatives)
     ]
     proj = osm.Projection(start[1])
     xy = lambda p: proj.xy(p["lon"], p["lat"])
