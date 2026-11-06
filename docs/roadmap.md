@@ -135,6 +135,8 @@ And the **Superior Hiking Trail** (Minnesota: the association's about 300 miles 
 And the **Fundy Footpath** (New Brunswick: the Fundy Hiking Trails Association's 64.3 km along the Bay of Fundy from Fundy National Park's visitor centre in Alma to Big Salmon River, in its three sections, at least four days between backcountry campsites, tidal crossings; over the footpath's and the Trans Canada Trail's OSM relations; 2026-11-06, the first trail built with the faster pipeline: preflight, parallel climate and photos).
 
 And the **Juan de Fuca Marine Trail** (British Columbia: BC Parks' 47 km along the Strait of Juan de Fuca on Vancouver Island from China Beach to Botanical Beach, in the three sections between its four trailheads, open all year, six backcountry campgrounds with a permit, beaches cut off at high tide; over the OSM relation; 2026-11-06).
+
+And the **Tahoe Rim Trail** (California and Nevada: the Tahoe Rim Trail Association's 165-mile loop round Lake Tahoe from Tahoe City, in its eight segments trailhead to trailhead, over granite ridges, the Desolation Wilderness and the Carson Range up to Relay Peak at 3,151 m; over the OSM relation cut at the trailheads).
 | # | Trail | Region | Length (approx.) | Why |
 |---|---|---|---|---|
 | 1 | Pacific Crest Trail | USA | 4,265 km | Most-hiked long trail; public US agency data; completion lists |
