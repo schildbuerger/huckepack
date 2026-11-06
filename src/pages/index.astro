@@ -116,14 +116,24 @@ const routeShape = (slug: string) => {
 };
 
 
-// popular trails (issue #84): the three whose Wikipedia articles people viewed most in twelve months,
-// all languages summed (pipeline/popularity.py, Wikimedia); trails without an article aren't ranked
+// popular trails (issue #84; in season since 2026-11-06): among the trails whose season takes in the
+// current month, the three whose Wikipedia articles people viewed most in twelve months, all languages
+// summed (pipeline/popularity.py, Wikimedia); trails without an article or a season aren't ranked. The
+// site is built only on a push, so the month is the visitor's: the page carries each month's three
+// (cards shared between months once), each card knowing its rank per month (data-ranks), and the
+// script below shows the current month's; without it, the build month's show
 const POPULAR = 3;
-const popular = featuredAll
+const MONTHS_LONG = Array.from({ length: 12 }, (_, i) => new Date(Date.UTC(2000, i, 1)).toLocaleDateString("en-GB", { month: "long", timeZone: "UTC" }));
+const rankedAll = featuredAll
   .map((f, i) => ({ ...f, views: derivedAll[i]?.popularity?.views ?? null }))
-  .filter((f) => f.views !== null)
-  .sort((a, b) => b.views! - a.views!)
-  .slice(0, POPULAR);
+  .filter((f) => f.views !== null && f.t.season?.length)
+  .sort((a, b) => b.views! - a.views!);
+const topByMonth = Array.from({ length: 12 }, (_, i) => rankedAll.filter((f) => f.t.season!.includes(i + 1)).slice(0, POPULAR));
+const buildMonth = new Date().getUTCMonth() + 1;
+// every trail that is among some month's three, with its rank per month; the build month's first, in rank order
+const popular = [...new Set(topByMonth.flat())]
+  .map((f) => ({ ...f, ranks: Object.fromEntries(topByMonth.flatMap((top, i) => (top.includes(f) ? [[i + 1, top.indexOf(f) + 1]] : []))) as Record<number, number> }))
+  .sort((a, b) => (a.ranks[buildMonth] ?? 9) - (b.ranks[buildMonth] ?? 9));
 const viewsWindow = derivedAll.find((d) => d?.popularity)?.popularity;
 const monthYear = (ym: string) => new Date(`${ym}-01T00:00:00Z`).toLocaleDateString("en-GB", { month: "long", year: "numeric", timeZone: "UTC" });
 // trails near you (issue #85): a script finds the six whose start or finish is nearest to the place the
@@ -386,10 +396,11 @@ import Explainer from "../components/Explainer.astro";
     {popular.length > 0 && (
       <section aria-labelledby="popular-h">
         <div class="block-head">
-          <h2 id="popular-h">Popular trails</h2>
+          <h2 id="popular-h">Popular in <span data-popular-month>{MONTHS_LONG[buildMonth - 1]}</span></h2>
           {viewsWindow && (
             <Explain id="popular-info" icon term="About this list" title="Popular trails">
               <dl class="pop-facts">
+                <dt>Which trails</dt><dd>Those whose season takes in this month, so each is a good one to walk now</dd>
                 <dt>Ranked by</dt><dd>Reads of the trail's Wikipedia articles, in every language, {monthYear(viewsWindow.from)} to {monthYear(viewsWindow.to)} (Wikimedia's page view data)</dd>
                 <dt>Keep in mind</dt><dd>It measures interest in a trail, not how many hike it; a trail without an article isn't ranked</dd>
               </dl>
@@ -399,13 +410,14 @@ import Explainer from "../components/Explainer.astro";
         <!-- the three most read as a podium of routes (2026-11-02), in the featured band's style: a small card
              each with the route drawn as it comes into view, the rank as a giant number behind, the figures
              and the article's reads; on wide screens the first in the middle -->
-        <ol class="podium">
-          {popular.map(({ t, views }, rank) => {
+        <ol class="podium" data-popular>
+          {popular.map(({ t, views, ranks }) => {
             const route = routeShape(t.slug);
+            const rank = ranks[buildMonth];
             return (
-              <li class={`pd-${rank + 1}`}>
+              <li class={rank ? `pd-${rank}` : undefined} hidden={!rank} data-ranks={JSON.stringify(ranks)}>
                 <a href={`/trails/${t.slug}/`} data-draw>
-                  <span class="pd-giant" aria-hidden="true">{rank + 1}</span>
+                  <span class="pd-giant" aria-hidden="true">{rank}</span>
                   {route && (
                     <svg class="pd-route" viewBox="0 0 200 140" aria-hidden="true">
                       <path class="rs-under" d={route.d} />
@@ -421,11 +433,32 @@ import Explainer from "../components/Explainer.astro";
                     <span class="pd-views">{fmt(views!)} article reads</span>
                   </span>
                 </a>
-                <span class="sr-only">Rank {rank + 1}</span>
+                <span class="sr-only pd-rank">Rank {rank}</span>
               </li>
             );
           })}
         </ol>
+        <script>
+          // the visitor's month: its three, in rank order (the podium places them by their pd- class)
+          {
+            const month = new Date().getMonth() + 1;
+            const list = document.querySelector<HTMLElement>("[data-popular]");
+            const label = document.querySelector<HTMLElement>("[data-popular-month]");
+            if (list && label) {
+              label.textContent = new Date(2000, month - 1, 1).toLocaleDateString("en-GB", { month: "long" });
+              const items = [...list.querySelectorAll<HTMLLIElement>("li[data-ranks]")];
+              const rankOf = (li: HTMLLIElement) => (JSON.parse(li.dataset.ranks!) as Record<string, number>)[month] ?? 0;
+              for (const li of items.sort((a, b) => (rankOf(a) || 9) - (rankOf(b) || 9))) {
+                const r = rankOf(li);
+                li.hidden = !r;
+                li.className = r ? `pd-${r}` : "";
+                li.querySelector(".pd-giant")!.textContent = r ? String(r) : "";
+                li.querySelector(".pd-rank")!.textContent = r ? `Rank ${r}` : "";
+                list.append(li);
+              }
+            }
+          }
+        </script>
       </section>
     )}
   </div>
@@ -1942,6 +1975,10 @@ import Explainer from "../components/Explainer.astro";
   }
   .podium li {
     display: grid;
+  }
+  /* the other months' trails (the script shows the visitor's month's three) */
+  .podium li[hidden] {
+    display: none;
   }
   .podium a {
     height: 100%;
