@@ -274,24 +274,9 @@ import Explainer from "../components/Explainer.astro";
   <!-- the hero on a band wall to wall: a sky by the hour, the sun or the moon, stars at night, and three
        ridges of real trails in front, drifting with the pointer -->
   <div class="hero-band">
-    <!-- no viewBox: each star's place is a share of the sky (percentages), its radius in pixels, so the
-         stars stay round dots whatever the band's shape (a stretched viewBox drew them as ellipses) -->
-    <svg class="hb-stars" aria-hidden="true">
-      {stars.map(([x, y, r]) => <circle cx={`${x / 10}%`} cy={`${+(y / 3.8).toFixed(1)}%`} r={r} />)}
-    </svg>
-    <span class="hb-sun" aria-hidden="true" data-theme-sun></span>
-    <div class="hb-ridges" aria-hidden="true">
-      {heroRidges.map((d, i) => (
-        <>
-          <!-- the summit flags' poles on this ridge, just behind it, so it hides their feet (issue #212) -->
-          <SummitPoles ridge={i} flags={summitFlags(heroRidges)} />
-          <svg class={`hb-ridge r${i}`} viewBox="0 0 1000 110" preserveAspectRatio="none"><path d={d} /></svg>
-        </>
-      ))}
-    </div>
-    <!-- the totals as small flags on the ridges' summits (issue #212), drifting with their ridges -->
-    <HeroStats totals={{ trails: totals.trails, countries: totals.countries, km: totals.km, everests: Number(everests), taps: totals.taps }} ridges={heroRidges} />
-    <script is:inline set:html={countScript} />
+    <!-- the text first, the drawing after it: Chrome paints a page still loading, and a band holding
+         only its drawing so far would be short, its ridges and flags jumping down once the text came in
+         (a layout shift of 0.18 in Lighthouse); the drawing sits behind by z-index, not by order -->
     <section class="hero">
       <p class="label eyebrow">Long-distance trails, in data</p>
       <!-- the second sentence never splits, so the headline wraps between the two -->
@@ -310,6 +295,24 @@ import Explainer from "../components/Explainer.astro";
       <TripSearch trails={trails} />
       <p class="guide">Not sure yet? <a href="/trails/guide/">Help me choose <span aria-hidden="true">→</span></a></p>
     </section>
+    <!-- no viewBox: each star's place is a share of the sky (percentages), its radius in pixels, so the
+         stars stay round dots whatever the band's shape (a stretched viewBox drew them as ellipses) -->
+    <svg class="hb-stars" aria-hidden="true">
+      {stars.map(([x, y, r]) => <circle cx={`${x / 10}%`} cy={`${+(y / 3.8).toFixed(1)}%`} r={r} />)}
+    </svg>
+    <span class="hb-sun" aria-hidden="true" data-theme-sun></span>
+    <div class="hb-ridges" aria-hidden="true">
+      {heroRidges.map((d, i) => (
+        <>
+          <!-- the summit flags' poles on this ridge, just behind it, so it hides their feet (issue #212) -->
+          <SummitPoles ridge={i} flags={summitFlags(heroRidges)} />
+          <svg class={`hb-ridge r${i}`} viewBox="0 0 1000 110" preserveAspectRatio="none"><path d={d} /></svg>
+        </>
+      ))}
+    </div>
+    <!-- the totals as small flags on the ridges' summits (issue #212), drifting with their ridges -->
+    <HeroStats totals={{ trails: totals.trails, countries: totals.countries, km: totals.km, everests: Number(everests), taps: totals.taps }} ridges={heroRidges} />
+    <script is:inline set:html={countScript} />
 
   </div>
   <!-- what huckepack is and why it exists (issue #210): for a first visit, after how much there is and
