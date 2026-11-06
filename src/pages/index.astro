@@ -1786,7 +1786,7 @@ import Explainer from "../components/Explainer.astro";
   }
   .rs-under {
     fill: none;
-    stroke: #ffffff;
+    stroke: #f9f8f0;
     stroke-width: 10;
     stroke-linecap: round;
     stroke-linejoin: round;
@@ -2054,10 +2054,10 @@ import Explainer from "../components/Explainer.astro";
   :global(html[data-theme="dark"]) :is(.rs-where, .rs-local, .rs-stats dt, .rs-stats dd > span:not(.rate-word), .rs-ground-text, .pd-place, .pd-views) {
     color: #a7a78f;
   }
-  /* the route's outline (drawn first, the line then traced over it) a lighter tone than the canvas, as
-     the cream one is by day; the start and finish keep a ring in the canvas colour */
+  /* the route's outline (drawn first, the line then traced over it): the same cream as by day (decided
+     2026-11-06); the start and finish keep a ring in the canvas colour */
   :global(html[data-theme="dark"]) .rs-under {
-    stroke: #8a9a90;
+    stroke: #f9f8f0; /* the same cream outline as by day */
   }
   :global(html[data-theme="dark"]) :is(.rs-start, .rs-end) {
     stroke: #2b3631;
