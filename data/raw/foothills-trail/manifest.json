@@ -1,0 +1,121 @@
+{
+  "climate-high.json": {
+    "retrieved": "2026-11-06T22:59:28+00:00",
+    "url": "https://openmeteo.s3.us-west-2.amazonaws.com/data/copernicus_era5_land+copernicus_era5?latitude=35.1&longitude=-82.8&elevation=1090"
+  },
+  "climate-low.json": {
+    "retrieved": "2026-11-06T22:59:28+00:00",
+    "url": "https://openmeteo.s3.us-west-2.amazonaws.com/data/copernicus_era5_land+copernicus_era5?latitude=35.1&longitude=-82.9&elevation=360"
+  },
+  "commons-geo.json": {
+    "key": "with categories, 115.8 km, every 2.5 km, 1500 m, within 0.5 km",
+    "retrieved": "2026-11-06T22:59:17+00:00",
+    "url": "Commons geosearch along the route"
+  },
+  "commons.json": {
+    "key": "Q5466514",
+    "retrieved": "2026-11-06T22:57:59+00:00",
+    "url": "Q5466514 P18 P373"
+  },
+  "elevation-glo30.json": {
+    "retrieved": "2026-11-06T22:58:34+00:00",
+    "url": "https://copernicus-dem-30m.s3.eu-central-1.amazonaws.com/Copernicus_DSM_COG_10_N34_00_W084_00_DEM/Copernicus_DSM_COG_10_N34_00_W084_00_DEM.tif https://copernicus-dem-30m.s3.eu-central-1.amazonaws.com/Copernicus_DSM_COG_10_N35_00_W083_00_DEM/Copernicus_DSM_COG_10_N35_00_W083_00_DEM.tif https://copernicus-dem-30m.s3.eu-central-1.amazonaws.com/Copernicus_DSM_COG_10_N35_00_W084_00_DEM/Copernicus_DSM_COG_10_N35_00_W084_00_DEM.tif"
+  },
+  "landcover.json": {
+    "retrieved": "2026-11-06T22:58:35+00:00",
+    "url": "https://esa-worldcover.s3.eu-central-1.amazonaws.com/v200/2021/map/ESA_WorldCover_10m_2021_v200_\u2026_Map.tif"
+  },
+  "osm-relation.json": {
+    "retrieved": "2026-11-05T21:23:02Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-1-main.json": {
+    "key": "b1ac9ee0af5c",
+    "retrieved": "2026-11-05T21:23:02Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-10-main.json": {
+    "key": "fdec1c74b58f",
+    "retrieved": "2026-11-05T21:23:02Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-11-main.json": {
+    "key": "c616e1e03313",
+    "retrieved": "2026-11-05T21:23:02Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-12-main.json": {
+    "key": "9632859f6c00",
+    "retrieved": "2026-11-05T21:23:02Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-13-main.json": {
+    "key": "3014b7b2df76",
+    "retrieved": "2026-11-05T21:23:02Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-2-main.json": {
+    "key": "fa9cfc94168a",
+    "retrieved": "2026-11-05T21:23:02Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-3-main.json": {
+    "key": "35ab710a7ff6",
+    "retrieved": "2026-11-05T21:23:02Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-4-main.json": {
+    "key": "a8e36749abbf",
+    "retrieved": "2026-11-05T21:23:02Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-5-main.json": {
+    "key": "b7ec2806054c",
+    "retrieved": "2026-11-05T21:23:02Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-6-main.json": {
+    "key": "3372e6203af4",
+    "retrieved": "2026-11-05T21:23:02Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-7-main.json": {
+    "key": "1da2073c9334",
+    "retrieved": "2026-11-05T21:23:02Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-8-main.json": {
+    "key": "95d38786888a",
+    "retrieved": "2026-11-05T21:23:02Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-9-main.json": {
+    "key": "11056969e651",
+    "retrieved": "2026-11-05T21:23:02Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-water.json": {
+    "retrieved": "2026-11-05T21:23:02Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-way-tags.json": {
+    "retrieved": "2026-11-05T21:23:02Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osrm-access-asheville-regional-airport-avl.json": {
+    "retrieved": "2026-11-06T22:59:29+00:00",
+    "url": "https://router.project-osrm.org/route/v1/driving/-82.54088,35.43642;-82.7004,35.03205?overview=false"
+  },
+  "osrm-access-greenville-spartanburg-international-airport-gsp.json": {
+    "retrieved": "2026-11-06T22:59:28+00:00",
+    "url": "https://router.project-osrm.org/route/v1/driving/-82.21723,34.89545;-82.7004,35.03205?overview=false"
+  },
+  "osrm-access-greenville-station-amtrak.json": {
+    "retrieved": "2026-11-06T22:59:29+00:00",
+    "url": "https://router.project-osrm.org/route/v1/driving/-82.41379,34.85847;-82.7004,35.03205?overview=false"
+  },
+  "wikimedia.json": {
+    "retrieved": "2026-11-06T22:59:29+00:00",
+    "url": "Q5466514 2025-11..2026-10"
+  }
+}
