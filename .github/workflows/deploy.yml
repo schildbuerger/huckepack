@@ -55,3 +55,7 @@ jobs:
     steps:
       - id: deployment
         uses: actions/deploy-pages@368f82528645a54fb793d4d04e342629a3f51346 # v5.0.1
+        with:
+          # 30 minutes instead of the default 10: with the trails' photos, Pages once took longer to sync
+          # the files and the deploy timed out (2026-11-06)
+          timeout: 1800000
