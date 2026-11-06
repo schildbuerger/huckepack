@@ -1,0 +1,347 @@
+name: Benton MacKaye Trail
+added: 2026-11-06
+aliases: [BMT]
+website: https://bmta.org/
+wikidata: Q2896765
+managedBy:
+  # the association builds and maintains the trail with volunteers (Discover the Trail: "BMTA
+  # volunteers remove downed trees, clear overgrowth vegetation and repair the trail's tread");
+  # "Approximately 95% of the route is on public lands managed by either the USFS or the NPS"
+  - name: Benton MacKaye Trail Association
+    url: https://bmta.org/
+  - name: USDA Forest Service (Chattahoochee, Cherokee and Nantahala National Forests)
+    url: https://www.fs.usda.gov/
+  - name: National Park Service, Great Smoky Mountains National Park
+    url: https://www.nps.gov/grsm/
+officialGpx:
+  none: the association points to onX's Hiking Project maps and the FarOut app and sells its maps, guides and data book; it offers no GPX download (checked 2026-11-06)
+  source: bmta-discover
+trailType: point-to-point
+continents: [North America]
+countries: [US]
+regions: [Georgia, Tennessee, North Carolina]
+protectedAreas: [Cohutta Wilderness, Big Frog Wilderness, Great Smoky Mountains National Park]
+termini:
+  # Discover the Trail: "The BMT shares its start on Springer Mountain with its elder sibling, the
+  # Appalachian Trail" and descends "to Big Creek — the trail's northern terminus" (Big Creek
+  # Campground, N35° 45.570 W83° 6.350 in the access points table); coordinates on OSM's relation
+  start:
+    name: Springer Mountain
+    lat: 34.62677
+    lon: -84.19388
+  end:
+    name: Big Creek
+    lat: 35.75956
+    lon: -83.10590
+  source: bmta-discover
+waymarking:
+  # Discover the Trail, "The Blaze"
+  text: The official blaze is a white diamond, 5″ across by 7″ tall; none are permitted in Wilderness.
+  source: bmta-discover
+length:
+  # Discover the Trail, Vital Trail Information: "Current official length is 287.6" (miles; 81.8 in
+  # Georgia and 205.8 in Tennessee / North Carolina)
+  - km: 462.8
+    source: bmta-discover
+ascent:
+  # Vital Trail Information: "Ascent: 54,682′ Descent: -56,808′"
+  - m: 16667
+    source: bmta-discover
+descent:
+  - m: 17315
+    source: bmta-discover
+stages:
+  # the association's 25 numbered sections (its Section Hiker's Tracking Log, sections 1–25 with
+  # their sub-sections a–e, trailhead to trailhead, with cumulative miles); each section's miles
+  # are the sum of its sub-sections, converted at 1.609344 km a mile. Ends on OSM's relation at the
+  # trailheads' coordinates in the association's access points table, where it has one (notes)
+  source: bmta-discover
+  list:
+    - { number: "1", kind: main, from: Springer Mountain, to: Three Forks, km: 9.7, end: { lat: 34.66332, lon: -84.18434 } }
+    - { number: "2", kind: main, from: Three Forks, to: GA Hwy 60 (southern crossing), km: 20.0, end: { lat: 34.76616, lon: -84.16428 } }
+    - { number: "3", kind: main, from: GA Hwy 60 (southern crossing), to: Skeenah Gap, km: 9.0, end: { lat: 34.80614, lon: -84.14078 } }
+    - { number: "4", kind: main, from: Skeenah Gap, to: Wilscot Gap (GA Hwy 60), km: 8.5, end: { lat: 34.80794, lon: -84.18773 } }
+    - { number: "5", kind: main, from: Wilscot Gap (GA Hwy 60), to: Shallowford Bridge, km: 12.1, end: { lat: 34.78350, lon: -84.25932 } }
+    - { number: "6", kind: main, from: Shallowford Bridge, to: Weaver Creek Road, km: 15.6, end: { lat: 34.81831, lon: -84.33968 } }
+    - { number: "7", kind: main, from: Weaver Creek Road, to: Bushy Head Gap, km: 14.0, end: { lat: 34.84964, lon: -84.41742 } }
+    - { number: "8", kind: main, from: Bushy Head Gap, to: Dyer Gap, km: 20.0, end: { lat: 34.86773, lon: -84.51550 } }
+    - { number: "9", kind: main, from: Dyer Gap, to: Watson Gap, km: 7.2, end: { lat: 34.90591, lon: -84.51308 } }
+    - { number: "10", kind: main, from: Watson Gap, to: Double Spring Gap (GA/TN line), km: 13.7, end: { lat: 34.98883, lon: -84.51945 } }
+    - { number: "11", kind: main, from: Double Spring Gap (GA/TN line), to: US Hwy 64 (Thunder Rock), km: 17.9, end: { lat: 35.07585, lon: -84.48429 } }
+    - { number: "12", kind: main, from: US Hwy 64 (Thunder Rock), to: Trestle (FS 173, Hiwassee River), km: 27.5, end: { lat: 35.18701, lon: -84.49612 } }
+    - { number: "13", kind: main, from: Trestle (FS 173, Hiwassee River), to: FS 22B (Coker Creek), km: 18.0, end: { lat: 35.17908, lon: -84.39185 } }
+    - { number: "14", kind: main, from: FS 22B (Coker Creek), to: Unicoi Gap (TN/NC line), km: 14.0, end: { lat: 35.22530, lon: -84.28999 } }
+    - { number: "15", kind: main, from: Unicoi Gap (TN/NC line), to: Sandy Gap, km: 13.5, end: { lat: 35.25525, lon: -84.20298 } }
+    - { number: "16", kind: main, from: Sandy Gap, to: Tellico River Road (FS 210), km: 23.2, end: { lat: 35.26592, lon: -84.12131 } }
+    - { number: "17", kind: main, from: Tellico River Road (FS 210), to: Beech Gap (Cherohala Skyway), km: 19.3, end: { lat: 35.34848, lon: -84.03766 } }
+    - { number: "18", kind: main, from: Beech Gap (Cherohala Skyway), to: Tapoco Lodge, km: 24.1, end: { lat: 35.44348, lon: -83.93861 } }
+    - { number: "19", kind: main, from: Tapoco Lodge, to: Fontana Dam (north end), km: 23.8, end: { lat: 35.46045, lon: -83.81108 } }
+    - { number: "20", kind: main, from: Fontana Dam (north end), to: Eagle Creek Trail, km: 10.9, end: { lat: 35.48767, lon: -83.77405 } }
+    - { number: "21", kind: main, from: Eagle Creek Trail, to: Campsite 98 (Chambers Creek), km: 30.9, end: { lat: 35.44895, lon: -83.60940 } }
+    - { number: "22", kind: main, from: Campsite 98 (Chambers Creek), to: Noland Divide Trail junction (Upper Sassafras Gap), km: 30.4, end: { lat: 35.53233, lon: -83.45421 } }
+    - { number: "23", kind: main, from: Noland Divide Trail junction (Upper Sassafras Gap), to: Smokemont Campground, km: 26.7, end: { lat: 35.55291, lon: -83.31008 } }
+    - { number: "24", kind: main, from: Smokemont Campground, to: Straight Fork Road, km: 24.0, end: { lat: 35.62132, lon: -83.21113 } }
+    - { number: "25", kind: main, from: Straight Fork Road, to: Big Creek, km: 26.7, end: { lat: 35.75956, lon: -83.10590 } }
+route:
+  # built by `python -m pipeline.all benton-mackaye-trail`: OSM ways matched to the trail's OSM
+  # relation (1675439), chained from Springer Mountain and cut at the 25 section ends
+  source: osm
+  publishable: true
+  relation: 1675439
+difficulty:
+  estimated:
+    sac: T2
+    basis: >-
+      The association calls it a backcountry hiking trail whose "Difficulty is similar to that of
+      the AT": it travels the high ridges of the southern Appalachians and descends to cross seven
+      rivers and numerous creeks, with an average grade of 6 % and at most 22 %, several creek
+      crossings but no deep-water fords, and about 15 miles of road walks. Mountain hiking on a
+      maintained footpath without exposed passages (T2).
+    source: bmta-discover
+season:
+  # Vital Trail Information: "The BMT is generally open year-round, but hikers should be prepared
+  # for extreme weather, especially in the higher elevations"; the overview: "the BMT is a visual
+  # treat any time of the year"
+  months: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
+  text: Generally open year-round; be prepared for extreme weather, especially in the higher elevations
+  source: bmta-discover
+permit:
+  # the Great Smoky Mountains National Park's backcountry camping page; the association's Vital
+  # Trail Information: "The Great Smoky Mountains National Park requires a permit and advance
+  # reservations for all backcountry camping in the park"
+  required: true
+  name: Backcountry camping permit (Great Smoky Mountains National Park only)
+  issuedBy: National Park Service
+  how: >-
+    Only for the 93 miles in Great Smoky Mountains National Park: reserve a backcountry permit in
+    advance on Recreation.gov (since 30 April 2026) for each night at a designated campsite or
+    shelter, $8 per person and night plus a $6 permit fee. The national forests need none.
+  url: https://www.nps.gov/grsm/planyourvisit/backcountry-camping.htm
+  source: nps-backcountry
+sleeping:
+  # Vital Trail Information: "predominantly a tent/tarp/hammock trail", a BMT shelter at mile 50.3
+  # and the AT's Fontana Hilton and Laurel Gap shelters; the resupply list: campgrounds (Skeenah
+  # Creek, Thunder Rock), bunkhouses, hostels, B&Bs and lodges near the trail
+  types: [campsite, bivouac, hostel, guesthouse]
+  source: bmta-thru
+wildCamping:
+  # the park's rule; outside it the association calls the BMT "predominantly a tent/tarp/hammock
+  # trail" through the national forests (notes)
+  status: restricted
+  rule: >-
+    In Great Smoky Mountains National Park camping is permitted only at designated backcountry
+    campsites and shelters, with a permit and advance reservation; at most 3 consecutive nights at
+    one campsite, and fires only in the fire rings there.
+  source: nps-backcountry
+access:
+  # Hartsfield–Jackson Atlanta International Airport and Gainesville's Amtrak station (the
+  # Crescent) for the Springer Mountain start. Coordinates from OSM; distances by pipeline/access.py
+  - kind: airport
+    name: Hartsfield–Jackson Atlanta International Airport (ATL)
+    lat: 33.63740
+    lon: -84.42982
+    source: osm
+  - kind: station
+    name: Gainesville (Amtrak)
+    lat: 34.28875
+    lon: -83.81962
+    source: osm
+animals:
+  # Great Smoky Mountains National Park's black bear page (the association links the park's and the
+  # Forest Service's recommendations); level ours
+  list:
+    - kind: bear
+      name: Black bear
+      level: moderate
+      basis: >-
+        The Smokies are bear country: the park reports an average of 339 negative human-bear
+        encounters a year over the last ten years, with bear activity especially high from May to
+        August; attacks are extremely rare. The association says bears live along the whole trail.
+      do:
+        - If the bear changes its behavior in response to your presence, slowly back away while facing the bear
+        - If a bear approaches or follows you, change your direction. If it continues to follow, stand your ground
+        - If the bear gets closer, shout and act aggressively to scare it off
+        - Use bear spray only if necessary and the bear is within 20 yards
+        - If the bear attacks you and it's not interested in your food, fight back with everything you have
+      dont:
+        - Never approach the bear or allow it to come closer to you
+        - Never run or turn your back
+        - Do not play dead
+        - Never leave food behind
+      source: nps-bears
+tags: [mountains, forest, rivers, waterfalls, wilderness]
+notes:
+  - >-
+    Stages: the association's 25 numbered sections from its Section Hiker's Tracking Log (sections
+    1–11 in Georgia, 12–19 in Tennessee and North Carolina, 20–25 in the Smokies), each the sum of
+    its sub-sections' miles: 6.0, 12.4, 5.6, 5.3, 7.5, 9.7, 8.7, 12.4, 4.5, 8.5, 11.1, 17.1, 11.2,
+    8.7, 8.4, 14.4, 12.0, 15.0, 14.8, 6.8, 19.2, 18.9, 16.6, 14.9 and 16.6 = 286.3 miles (460.8 km),
+    against the stated official length of 287.6 miles (the access points table's mileage, a
+    slightly different count: Big Creek at mile 287.6, US 64 at 91.3 against the log's 91.7).
+  - >-
+    Stage ends: on OSM's relation at the trailheads' coordinates in the association's access points
+    table (all within 110 m of the line); where the table has none, at the named point on OSM's
+    line: Weaver Creek Road (end of section 6) at the ford where the trail meets the road, Double
+    Spring Gap (10) where the line reaches the Georgia–Tennessee line, the trestle on FS 173 (12) at
+    the Ellis Creek Road junction by the Hiwassee River bridge, the Eagle Creek Trail junction (20)
+    at the way junction just past the Eagle Creek crossing, Campsite 98 (21) at the spur junction
+    at Chambers Creek, and the Noland Divide Trail junction (22) at Upper Sassafras Gap, which OSM
+    names. These six are placed within about 1 km by the association's mileage.
+  - >-
+    Termini: the association names Big Creek as the northern terminus (mile 287.6, Big Creek
+    Campground); OSM's relation runs 2.3 km on towards Davenport Gap, where the BMT "connects to
+    the AT at 288", and is cut at Big Creek.
+  - >-
+    Ascent: the association's Vital Trail Information gives "Ascent: 54,682′ Descent: -56,808′"
+    (16,667 and 17,315 m) and, in the same block, "High: 5,779′ Low: 755′", apparently from a GPS
+    track, beside the summit heights it names (highest 5,843 ft at Mount Sterling, lowest 765 ft at
+    the Hiwassee River at Reliance).
+  - >-
+    Days: the association gives no days for a thru-hike (its Thru-Hikers Guide is sold), so the
+    page counts one day per section.
+  - >-
+    Season: the association: "generally open year-round, but hikers should be prepared for extreme
+    weather, especially in the higher elevations"; it names spring wildflowers, fall colours and
+    winter views; recorded as every month.
+  - >-
+    Wild camping: outside Great Smoky Mountains National Park the trail runs through the
+    Chattahoochee, Cherokee and Nantahala National Forests, where the association calls it
+    "predominantly a tent/tarp/hammock trail" (the Forest Service's dispersed camping rules apply);
+    the record's rule is the park's, the strictest on the trail.
+  - >-
+    Protected areas: the association names the Cohutta and Big Frog Wilderness areas and the Great
+    Smoky Mountains National Park; "Nearly half the route is on land managed as Wilderness", and
+    English Wikipedia counts seven wilderness areas, not named there.
+  - >-
+    Waymarking: the white diamond blaze (5″ × 7″) is not drawn (Waymark.astro has the Westweg's red
+    diamond on white, no white diamond on bark yet).
+  - >-
+    Tree line: not added; the southern Appalachians have no alpine tree line within the trail's
+    reach. The highest point, Mount Sterling (5,843 ft, 1,781 m), is forested to its summit, with a
+    fire tower for the view.
+  - >-
+    Wildlife: only the black bear is listed, from the park's black bear page; the association
+    names the Forest Service's and the park's bear recommendations. No official (park or health
+    authority) page with advice for the trail's snakes or ticks was found in the time (searched
+    2026-11-06: the park's nature pages); the association warns of poison ivy in the Cherokee
+    National Forest.
+  - >-
+    Preflight (2026-11-06): the association's page answers 200; the OSM relation 1675439 chains
+    452.1 km from Springer Mountain in one line (100 %).
+  - >-
+    Map line (2026-11-06): the Georgia, Tennessee and North Carolina Geofabrik extracts
+    (2026-11-05); OSM's relation 1675439, chained from Springer Mountain and cut at the 25 section
+    ends, every stage at least 95 % matched. It measures 440.8 km against the association's 287.6
+    miles (462.8 km, −4.8 %) and its sections' 286.3 miles (460.8 km). Highest point 1,780 m at km
+    430 (Mount Sterling; the association: 5,843 ft, 1,781 m), lowest 227 m at km 169 (the Hiwassee
+    River at Reliance; the association: 765 ft, 233 m). The terrain model gives about 19,820 m of
+    climbing against the stated 54,682 ft (16,667 m, +19 %): the route is 99 % forest, and the
+    surface model reads the treetops; the page shows the stated pair.
+  - >-
+    Stage lengths on the map line: section 9 (Dyer Gap to Watson Gap) 6.4 km against 4.5 miles
+    (7.2 km, −11 %), section 16 (Sandy Gap to Tellico River Road) 17.5 km against 14.4 miles (23.2
+    km, −25 %) and section 17 (Tellico River Road to Beech Gap) 23.7 km against 12.0 miles (19.3 km,
+    +23 %), section 20 (Fontana Dam to the Eagle Creek Trail) 9.1 km against 6.8 miles (10.9 km,
+    −17 %). Sections 16 and 17 together agree (41.2 km against 42.5 km): the association's own
+    coordinates for the Tellico River Road trailhead (Pheasant Fields, mile 150.8 in its table) lie
+    on OSM's line about 5 km before its log's mileage would put them; the record keeps the
+    association's coordinates and miles. Section 20's end is placed by mileage (the "Stage ends"
+    note), section 9's ends are the association's trailheads.
+  - >-
+    Water (map line): OSM maps 2 drinking water points near the trail; with refills at campgrounds
+    the longest stretch without clean water is 71.2 km (km 162–233, Hiwassee River to Tellico
+    River). The association: water is "Generally, not a problem in the Appalachians, though there
+    are a few stretches where water is limited"; the trail crosses seven rivers and numerous
+    creeks, to be treated, and the stream at GA 60's southern crossing (mile 17.9) is not potable.
+    No waterPoints are added (no coordinates published).
+  - >-
+    Resupply (map line): OSM maps 4 shops near the trail, the longest stretch without one 152.8 km
+    (km 288 to Big Creek, through the Smokies); the association's Thru-Hikers Guide lists resupply
+    off the trail (Blue Ridge and Cherry Log, Ducktown, Reliance, Coker Creek, Tellico Plains,
+    Fontana Village) and mail drops.
+  - >-
+    Beds (map line): OSM maps 69 places to sleep near the trail, the longest stretch without one
+    71.2 km (km 162–233); outside the Smokies the BMT is "predominantly a tent/tarp/hammock trail",
+    in the park at designated backcountry campsites.
+  - >-
+    Data check (2026-11-06): against English Wikipedia. Termini (Springer Mountain, sharing the AT's
+    start, and Big Creek in the Smokies), the white diamond blaze 5″ × 7″, the association as
+    builder and maintainer, the highest point (Mount Sterling, 5,843 ft) and the lowest (765 ft at
+    the Hiwassee River) agree; its length "nearly 300 miles (480 km)" against the official 287.6
+    miles (462.8 km) is within 4 %. It gives no sections, ascent, season, days, camping rules or
+    difficulty; the 25 sections' miles, length, ascent and descent, season, waymarking and termini
+    on the built page were checked one by one against the association's Discover the Trail page,
+    the permit and the camping rule against the park's backcountry page, and agree. Derived against
+    stated: the map line is 4.8 % under the stated length, the highest point 1 m under, the lowest
+    6 m under, the terrain model's climbing 19 % over the stated ascent (forest, treetops); four
+    sections are more than 10 % off on the map line (the "Stage lengths" note).
+dataCheck:
+  # working rule 2: English Wikipedia as the second source; the sections only on the association's
+  # pages, so the built page was checked against them
+  date: 2026-11-06
+  against: [wikipedia]
+  pageAgainst: [bmta-discover, nps-backcountry]
+  deviations:
+    - { figure: stage 9 length, ours: "7.2 km (4.5 miles)", theirs: "6.4 km on the map line", source: osm }
+    - { figure: stage 16 length, ours: "23.2 km (14.4 miles)", theirs: "17.5 km on the map line", source: osm }
+    - { figure: stage 17 length, ours: "19.3 km (12.0 miles)", theirs: "23.7 km on the map line", source: osm }
+    - { figure: stage 20 length, ours: "10.9 km (6.8 miles)", theirs: "9.1 km on the map line", source: osm }
+    - { figure: ascent, ours: "16,667 m (54,682 ft)", theirs: "about 19,820 m from the terrain model", source: copdem }
+sources:
+  - id: bmta-discover
+    title: "Benton MacKaye Trail Association: Discover the Trail (overview, Vital Trail Information with the 287.6-mile official length, ascent and descent, access points and trailheads, Section Hiker's Tracking Log with the 25 sections)"
+    url: https://bmta.org/discover-the-trail/
+    licence: All rights reserved (facts only)
+    retrieved: 2026-11-06
+  - id: bmta-thru
+    title: "Benton MacKaye Trail Association: Thru-Hikers Guide (resupply strategy, services and lodging by mile)"
+    url: https://bmta.org/thru-hikers-guide/
+    licence: All rights reserved (facts only)
+    retrieved: 2026-11-06
+  - id: nps-backcountry
+    title: "National Park Service, Great Smoky Mountains National Park: Backcountry Camping (permits, designated campsites and shelters, regulations)"
+    url: https://www.nps.gov/grsm/planyourvisit/backcountry-camping.htm
+    licence: US federal government work (public domain)
+    retrieved: 2026-11-06
+  - id: nps-bears
+    title: "National Park Service, Great Smoky Mountains National Park: Black Bears"
+    url: https://www.nps.gov/grsm/learn/nature/black-bears.htm
+    licence: US federal government work (public domain)
+    retrieved: 2026-11-06
+  - id: wikipedia
+    title: "Wikipedia (en): Benton MacKaye Trail"
+    url: https://en.wikipedia.org/wiki/Benton_MacKaye_Trail
+    licence: CC BY-SA 4.0
+    retrieved: 2026-11-06
+    checkOnly: true
+  - id: wikimedia
+    title: "Wikimedia: page views of the trail's Wikipedia articles in every language, by people, over twelve months (Wikidata sitelinks, pageview API)"
+    url: https://wikimedia.org/api/rest_v1/
+    licence: CC0 1.0 (pageview data); Wikidata CC0
+    retrieved: 2026-11-06
+    checkOnly: true  # not on the trail page: the page views only rank the home page's popular trails
+  - id: osm
+    title: "OpenStreetMap contributors: paths, water, shops and places to sleep along the trail (Geofabrik extracts), travel hubs"
+    url: https://www.openstreetmap.org/
+    licence: ODbL 1.0
+    retrieved: 2026-11-06
+  - id: copdem
+    title: "Copernicus DEM GLO-30 (30 m terrain model), tiles from AWS Open Data"
+    url: https://registry.opendata.aws/copernicus-dem/
+    licence: "Copernicus WorldDEM-30 licence, free; produced using Copernicus WorldDEM-30 © DLR e.V. 2010-2014 and © Airbus Defence and Space GmbH 2014-2018 provided under COPERNICUS by the European Union and ESA; all rights reserved"
+    retrieved: 2026-11-06
+  - id: worldcover
+    title: "ESA WorldCover 2021: 10 m land cover (via AWS Open Data)"
+    url: https://esa-worldcover.org/
+    licence: "CC BY 4.0; © ESA WorldCover project 2021 / Contains modified Copernicus Sentinel data (2021) processed by ESA WorldCover consortium"
+    retrieved: 2026-11-06
+  - id: era5
+    title: "Open-Meteo open data on AWS: ERA5-Land temperature and ERA5 precipitation, snow and wind, daily 1995–2024 (reanalysis)"
+    url: https://github.com/open-meteo/open-data
+    licence: CC BY 4.0 (Open-Meteo); contains modified Copernicus Climate Change Service information
+    retrieved: 2026-11-06
+  - id: osrm
+    title: "OSRM: road routes on OpenStreetMap data (router.project-osrm.org)"
+    url: https://project-osrm.org/
+    licence: Route data © OpenStreetMap contributors (ODbL)
+    retrieved: 2026-11-06

@@ -154,6 +154,8 @@ And the **Ozark Highlands Trail** (Arkansas: the Ozark Highlands Trail Associati
 
 And the **Colorado Trail** (Colorado: the Colorado Trail Foundation's and the Forest Service's 486 miles (782 km) from Waterton Canyon near Denver to Durango in its 28 segments on the Collegiate East route (the Collegiate West alternative noted), 4–6 weeks at an average elevation over 3,100 m, through six wilderness areas and up to 4,045 m below Coney Summit in the San Juans, July to September; over the three OSM relations of its superroute; 2026-11-06).
 
+And the **Benton MacKaye Trail** (Georgia, Tennessee and North Carolina: the Benton MacKaye Trail Association's 287.6 miles (463 km) from Springer Mountain, where it shares the Appalachian Trail's start, along the Blue Ridge's western crest over the Toccoa River's swinging bridge, through the Cohutta and Big Frog wildernesses and over the Ocoee and Hiwassee rivers to Fontana Dam and across the Great Smoky Mountains National Park to Big Creek, with the Forest Service and the park, in the association's 25 sections, white-diamond blazed, open year-round, a park permit for the 93 miles in the Smokies; over the trail's OSM relation; 2026-11-06).
+
 | # | Trail | Region | Length (approx.) | Why |
 |---|---|---|---|---|
 | 1 | Pacific Crest Trail | USA | 4,265 km | Most-hiked long trail; public US agency data; completion lists |
