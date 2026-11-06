@@ -130,6 +130,7 @@ And the **O Circuit** (Torres del Paine, Chile: CONAF's nine legs round the Pain
 And the **Long Trail** (Vermont, USA: the Green Mountain Club's 272 miles from the Massachusetts line to Canada, the second trail without stages, 20–30 days between 70 shelters and campsites, over the OSM relation as one segment).
 And the **La Cloche Silhouette Trail** (Killarney Provincial Park, Ontario: Ontario Parks' 80 km loop over the white quartzite ridges, 7–10 days between reserved backcountry campsites, without stages, over the OSM relation).
 And the **Lost Coast Trail** (California: the BLM's northern section, 24.6 miles of beach from Mattole to Black Sands Beach in the King Range, at least three days planned round the tides, without stages, over the OSM relation cut at its finish).
+And the **Superior Hiking Trail** (Minnesota: the association's about 300 miles along the ridges above Lake Superior from the Wisconsin border to the 270-degree Overlook, 2–4 weeks between 94 campsites, without stages, over the OSM relation).
 | # | Trail | Region | Length (approx.) | Why |
 |---|---|---|---|---|
 | 1 | Pacific Crest Trail | USA | 4,265 km | Most-hiked long trail; public US agency data; completion lists |

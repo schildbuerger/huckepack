@@ -1,0 +1,185 @@
+name: Superior Hiking Trail
+added: 2026-11-06
+aliases: [SHT]
+website: https://superiorhiking.org/
+wikidata: Q7643535
+managedBy:
+  - name: Superior Hiking Trail Association
+    url: https://superiorhiking.org/
+officialGpx:
+  none: the association sells its guidebook, maps and databook (also digital) and offers no GPX to download (checked 2026-11-06)
+  source: sht-faq
+trailType: point-to-point
+continents: [North America]
+countries: [US]
+regions: [Minnesota]
+termini:
+  # the association: from the southern terminus northbound (NOBO, the full trail) to "the terminus
+  # located at the 270-degree Overlook near the Canadian border". Coordinates: the OSM relation's ends,
+  # at the Minnesota–Wisconsin border and the overlook
+  start:
+    name: Southern terminus (Minnesota–Wisconsin border)
+    lat: 46.60761
+    lon: -92.29246
+  end:
+    name: Northern terminus (270-degree Overlook)
+    lat: 47.99913
+    lon: -89.93545
+  source: sht-thru
+length:
+  # "Backpacking the Trail's entire 300 miles"; "about 300 miles (not including spur trails)"
+  - km: 482.8
+    approx: true
+    source: sht-thru
+days:
+  # "Full thru-hikes generally take 2-4 weeks"
+  min: 14
+  max: 28
+  source: sht-thru
+stages:
+  # no stages by design (issue #204; docs/scope.md, "Trails without stages"): hikers choose among 94
+  # campsites, first come and shared; the association's 50 sections run trailhead to trailhead, for
+  # planning, not as days
+  source: sht-thru
+  none: true
+route:
+  # built by `python -m pipeline.all superior-hiking-trail`: OSM ways matched to the trail's OSM
+  # relation (1612587), chained from the southern terminus, one segment
+  source: osm
+  publishable: true
+  relation: 1612587
+difficulty:
+  estimated:
+    sac: T2
+    basis: >-
+      The association calls a thru-hike very challenging, physically and mentally; the trail follows
+      the rocky ridges above Lake Superior through forest, up and down many short climbs between about
+      180 and 560 m (Wikipedia), on a footpath for hikers only. Mountain hiking on rocky and rooty
+      ground, without exposed passages (T2).
+    source: sht-thru
+season:
+  # no season published; the thru-hiking page mentions late-season hikers avoiding early winter in the north
+  months: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
+  text: No season published; every month for now
+  source: huckepack-season
+sleeping:
+  # "Plan to stay in one of the 94 SHT campsites along the trail"; fee-for-use campgrounds near the
+  # trail in Duluth
+  types: [campsite]
+  source: sht-thru
+wildCamping:
+  status: prohibited
+  rule: >-
+    Camping in undesignated areas (stealth or dispersed camping) is strictly prohibited along the whole
+    trail; stay at the 94 SHT campsites (no reservations, fees or permits; shared), or in Duluth, which
+    has none, at the fee-for-use campgrounds near the trail. No campfires in Duluth.
+  source: sht-thru
+access:
+  # Duluth's airport, near the southern half. Coordinates from OSM; distances by pipeline/access.py
+  - kind: airport
+    name: Duluth International Airport (DLH)
+    lat: 46.84189
+    lon: -92.20298
+    source: osm
+animals:
+  # the association's FAQ: "Keeping a clean campsite and hanging food at night will help to prevent
+  # bears and rodents from becoming a problem". Level ours
+  list:
+    - kind: bear
+      name: Black bear
+      level: low
+      basis: Black bears live along the trail; the association's advice is about keeping them away from camp.
+      do:
+        - Keep a clean campsite and pack out all trash
+        - Hang your food at night
+      dont:
+        - Put trash in the fire pit or the latrine
+      source: sht-faq
+tags: [lake, ridges, forest, waterfalls, thru-hike]
+notes:
+  - >-
+    Stages: none by design. The association gives about 300 miles and 2–4 weeks; its 50 sections in
+    six parts run from trailhead to trailhead (50.2, 57.1, 53.03, 51.2, 53.2 and 54.2 miles, together
+    318.9 miles), for planning, not days. Hikers resupply in small towns off the trail.
+  - >-
+    Protected areas: none recorded; the association's thru-hiking, sections and FAQ pages name none
+    (searched 2026-11-06); parts of the trail cross private land with the landowners' permission.
+  - >-
+    Season: the association publishes no season (searched 2026-11-06: the thru-hiking, planning and
+    FAQ pages); every month for now.
+  - >-
+    Waymarking: the association's pages describe no waymark; OSM tags the route with blue stripes.
+  - >-
+    Tree line: none; the route stays below 568 m (the terrain model; Wikipedia gives 557 m).
+  - >-
+    Map line (2026-11-06): the Minnesota and Wisconsin Geofabrik extracts; OSM's Superior Hiking Trail
+    relation (1612587), chained from the southern terminus, one segment, 100 % matched; 16 short ways
+    (1.4 km, spurs) left out. It measures 476.7 km on OSM's full geometry and 464.9 km on the map line,
+    against the association's about 300 miles (482.8 km, −4 %). The terrain model gives about 11,750 m
+    of climbing, between 181 and 568 m. Water: 13 drinking water points in OSM, the longest dry stretch
+    26.6 km (km 12.3–38.9, through Duluth); streams and lakes along the trail aren't counted. Resupply:
+    the longest stretch without a mapped shop is 155.8 km, in the north (km 309–465); the association:
+    supplies can be picked up in small towns off the trail.
+  - >-
+    Data check (2026-11-06, working rule 2): the association against English Wikipedia: length about
+    300 miles against 310 miles (+3 %; the association's sections add up to 318.9 miles); from the
+    Minnesota–Wisconsin border to the Canadian border in both; 94 fee-free campsites in both; lowest and
+    highest point 183 and 557 m (Wikipedia) against the terrain model's 181 and 568 m. Wikipedia gives
+    no days or season; the page was checked against the association's pages for those.
+dataCheck:
+  # working rule 2: English Wikipedia as the second source; the OSM map line
+  date: 2026-11-06
+  against: [wikipedia]
+  pageAgainst: [sht-thru, sht-faq, sht-sections]
+  deviations: []
+sources:
+  - id: sht-thru
+    title: "Superior Hiking Trail Association: Thru-hiking (length, termini, weeks, campsites, camping rules, resupply)"
+    url: https://superiorhiking.org/thru-hiking/
+    licence: © Superior Hiking Trail Association (facts only)
+    retrieved: 2026-11-06
+  - id: sht-faq
+    title: "Superior Hiking Trail Association: FAQs (campsites, fees and permits, bears, publications)"
+    url: https://superiorhiking.org/faqs/
+    licence: © Superior Hiking Trail Association (facts only)
+    retrieved: 2026-11-06
+  - id: sht-sections
+    title: "Superior Hiking Trail Association: Trail Sections (six parts, 50 sections, their mileage)"
+    url: https://superiorhiking.org/trail-sections/
+    licence: © Superior Hiking Trail Association (facts only)
+    retrieved: 2026-11-06
+  - id: huckepack-season
+    title: "huckepack: no season published by the association (the thru-hiking, planning and FAQ pages, 2026-11-06); every month for now, until one is found"
+    url: https://github.com/schildbuerger/huckepack/blob/main/docs/trail-building.md
+    licence: CC BY 4.0
+    retrieved: 2026-11-06
+  - id: wikipedia
+    title: "Wikipedia (en): Superior Hiking Trail"
+    url: https://en.wikipedia.org/wiki/Superior_Hiking_Trail
+    licence: CC BY-SA 4.0
+    retrieved: 2026-11-06
+  - id: osm
+    title: "OpenStreetMap contributors: the Superior Hiking Trail relation (1612587), paths, water, shops and places to sleep along the trail (Geofabrik extract), travel hubs"
+    url: https://www.openstreetmap.org/relation/1612587
+    licence: ODbL 1.0
+    retrieved: 2026-11-06
+  - id: copdem
+    title: "Copernicus DEM GLO-30 (30 m terrain model), tiles from AWS Open Data"
+    url: https://registry.opendata.aws/copernicus-dem/
+    licence: "Copernicus WorldDEM-30 licence, free; produced using Copernicus WorldDEM-30 © DLR e.V. 2010-2014 and © Airbus Defence and Space GmbH 2014-2018 provided under COPERNICUS by the European Union and ESA; all rights reserved"
+    retrieved: 2026-11-06
+  - id: worldcover
+    title: "ESA WorldCover 2021: 10 m land cover (via AWS Open Data)"
+    url: https://esa-worldcover.org/
+    licence: "CC BY 4.0; © ESA WorldCover project 2021 / Contains modified Copernicus Sentinel data (2021) processed by ESA WorldCover consortium"
+    retrieved: 2026-11-06
+  - id: era5
+    title: "Open-Meteo open data on AWS: ERA5-Land temperature and ERA5 precipitation, snow and wind, daily 1995–2024 (reanalysis)"
+    url: https://github.com/open-meteo/open-data
+    licence: CC BY 4.0 (Open-Meteo); contains modified Copernicus Climate Change Service information
+    retrieved: 2026-11-06
+  - id: osrm
+    title: "OSRM: road routes on OpenStreetMap data (router.project-osrm.org)"
+    url: https://project-osrm.org/
+    licence: Route data © OpenStreetMap contributors (ODbL)
+    retrieved: 2026-11-06

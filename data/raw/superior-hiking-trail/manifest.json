@@ -1,0 +1,53 @@
+{
+  "climate-high.json": {
+    "retrieved": "2026-11-06T15:42:35+00:00",
+    "url": "https://openmeteo.s3.us-west-2.amazonaws.com/data/copernicus_era5_land+copernicus_era5?latitude=47.9&longitude=-89.9&elevation=570"
+  },
+  "climate-low.json": {
+    "retrieved": "2026-11-06T15:38:59+00:00",
+    "url": "https://openmeteo.s3.us-west-2.amazonaws.com/data/copernicus_era5_land+copernicus_era5?latitude=46.8&longitude=-92.1&elevation=180"
+  },
+  "commons-geo.json": {
+    "key": "with categories, 474.2 km, every 2.5 km, 1500 m, within 0.5 km",
+    "retrieved": "2026-11-06T15:54:39+00:00",
+    "url": "Commons geosearch along the route"
+  },
+  "commons.json": {
+    "key": "Q7643535",
+    "retrieved": "2026-11-06T15:42:42+00:00",
+    "url": "Q7643535 P18 P373"
+  },
+  "elevation-glo30.json": {
+    "retrieved": "2026-11-06T15:35:00+00:00",
+    "url": "https://copernicus-dem-30m.s3.eu-central-1.amazonaws.com/Copernicus_DSM_COG_10_N46_00_W092_00_DEM/Copernicus_DSM_COG_10_N46_00_W092_00_DEM.tif https://copernicus-dem-30m.s3.eu-central-1.amazonaws.com/Copernicus_DSM_COG_10_N46_00_W093_00_DEM/Copernicus_DSM_COG_10_N46_00_W093_00_DEM.tif https://copernicus-dem-30m.s3.eu-central-1.amazonaws.com/Copernicus_DSM_COG_10_N47_00_W090_00_DEM/Copernicus_DSM_COG_10_N47_00_W090_00_DEM.tif https://copernicus-dem-30m.s3.eu-central-1.amazonaws.com/Copernicus_DSM_COG_10_N47_00_W091_00_DEM/Copernicus_DSM_COG_10_N47_00_W091_00_DEM.tif https://copernicus-dem-30m.s3.eu-central-1.amazonaws.com/Copernicus_DSM_COG_10_N47_00_W092_00_DEM/Copernicus_DSM_COG_10_N47_00_W092_00_DEM.tif"
+  },
+  "landcover.json": {
+    "retrieved": "2026-11-06T15:35:04+00:00",
+    "url": "https://esa-worldcover.s3.eu-central-1.amazonaws.com/v200/2021/map/ESA_WorldCover_10m_2021_v200_\u2026_Map.tif"
+  },
+  "osm-relation.json": {
+    "retrieved": "2026-11-05T21:23:02Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-1-main.json": {
+    "key": "a56b8a842fc6",
+    "retrieved": "2026-11-05T21:23:02Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-water.json": {
+    "retrieved": "2026-11-05T21:23:02Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-way-tags.json": {
+    "retrieved": "2026-11-05T21:23:02Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osrm-access-duluth-international-airport-dlh.json": {
+    "retrieved": "2026-11-06T15:42:35+00:00",
+    "url": "https://router.project-osrm.org/route/v1/driving/-92.20298,46.84189;-92.29246,46.60761?overview=false"
+  },
+  "wikimedia.json": {
+    "retrieved": "2026-11-06T15:42:35+00:00",
+    "url": "Q7643535 2025-11..2026-10"
+  }
+}

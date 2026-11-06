@@ -1880,4 +1880,25 @@ export const SKYLINES: Record<string, Skyline> = {
       { d: "M900,304L980,298L984,302L904,308Z M1100,306L1150,302L1152,305L1102,309Z", c: "#b8ab90" },
     ],
   },
+  "superior-hiking-trail": {
+    view: "Minnesota's North Shore: the Sawtooth ridges above Lake Superior, birch and spruce on the rocky slopes, a waterfall dropping towards the lake and the lake's long horizon",
+    ridge: "#3f5a34",
+    ground: "#a89878",
+    shapes: [
+      // Lake Superior, wide to the horizon on the right
+      { d: water(700, 1600, 262), c: "#4f86a8" },
+      // the Sawtooth ridges: steep on the lake side, gentle behind
+      { d: range([[0, G], [80, 250], [200, 216], [260, 206], [330, 230], [420, 214], [490, 206], [560, 232], [660, 222], [740, 246], [820, G]]), c: "#5f7358" },
+      { d: hills([[0, G], [160, 264], [380, 256], [600, 268], [780, 276], [900, G]]), c: FIR },
+      // a rocky point into the lake
+      { d: hills([[1180, G], [1260, 280], [1360, 276], [1440, G]]), c: "#7a7068" },
+    ],
+    front: [
+      // a waterfall over dark rock, and birches beside it
+      { d: "M560,300L572,262H612L620,300Z", c: "#4a4440" },
+      { d: waterfall(592, 264, 300, 8), c: "#e8f0f2" },
+      { d: "M680,300L682,250L686,250L686,300Z M712,300L713,258L717,258L717,300Z", c: "#eeeee6" },
+      { d: "M666,262a20,14 0 1 0 40,0a20,14 0 1 0 -40,0Z M700,268a18,12 0 1 0 34,0a18,12 0 1 0 -34,0Z", c: "#8faa5e" },
+    ],
+  },
 };
