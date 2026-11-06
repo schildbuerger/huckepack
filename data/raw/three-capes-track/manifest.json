@@ -1,0 +1,68 @@
+{
+  "climate-high.json": {
+    "retrieved": "2026-11-05T23:30:42+00:00",
+    "url": "https://openmeteo.s3.us-west-2.amazonaws.com/data/copernicus_era5_land+copernicus_era5?latitude=-43.2&longitude=148.0&elevation=490&wind=-42.75,147.75"
+  },
+  "climate-low.json": {
+    "retrieved": "2026-11-05T23:25:04+00:00",
+    "url": "https://openmeteo.s3.us-west-2.amazonaws.com/data/copernicus_era5_land+copernicus_era5?latitude=-43.1&longitude=148.0&elevation=0&wind=-42.75,147.75"
+  },
+  "commons-geo.json": {
+    "key": "with categories, 43.3 km, every 2.5 km, 1500 m, within 0.5 km",
+    "retrieved": "2026-11-05T23:31:38+00:00",
+    "url": "Commons geosearch along the route"
+  },
+  "commons.json": {
+    "key": "none",
+    "retrieved": "2026-11-05T23:30:42+00:00",
+    "url": "None P18 P373"
+  },
+  "elevation-glo30.json": {
+    "retrieved": "2026-11-05T23:19:07+00:00",
+    "url": "https://copernicus-dem-30m.s3.eu-central-1.amazonaws.com/Copernicus_DSM_COG_10_S44_00_E147_00_DEM/Copernicus_DSM_COG_10_S44_00_E147_00_DEM.tif https://copernicus-dem-30m.s3.eu-central-1.amazonaws.com/Copernicus_DSM_COG_10_S44_00_E148_00_DEM/Copernicus_DSM_COG_10_S44_00_E148_00_DEM.tif"
+  },
+  "landcover.json": {
+    "retrieved": "2026-11-05T23:19:07+00:00",
+    "url": "https://esa-worldcover.s3.eu-central-1.amazonaws.com/v200/2021/map/ESA_WorldCover_10m_2021_v200_\u2026_Map.tif"
+  },
+  "osm-named-ways.json": {
+    "retrieved": "2026-11-05T23:18:19+00:00",
+    "url": "https://overpass-api.de/api/interpreter"
+  },
+  "osm-stage-1-main.json": {
+    "key": "57f5e8c7541f",
+    "retrieved": "2026-11-04T21:21:03Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-2-main.json": {
+    "key": "67e411d8b91a",
+    "retrieved": "2026-11-04T21:21:03Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-3-main.json": {
+    "key": "6d94415e09c4",
+    "retrieved": "2026-11-04T21:21:03Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-4-main.json": {
+    "key": "2f151145dcbe",
+    "retrieved": "2026-11-04T21:21:03Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-water.json": {
+    "retrieved": "2026-11-04T21:21:03Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-way-tags.json": {
+    "retrieved": "2026-11-04T21:21:03Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osrm-access-hobart-airport-hba.json": {
+    "retrieved": "2026-11-05T23:30:42+00:00",
+    "url": "https://router.project-osrm.org/route/v1/driving/147.51145,-42.83592;147.89085,-43.13886?overview=false"
+  },
+  "osrm-access-port-arthur-historic-site-check-in-boat-and-bus.json": {
+    "retrieved": "2026-11-05T23:30:42+00:00",
+    "url": "https://router.project-osrm.org/route/v1/driving/147.85052,-43.14741;147.89085,-43.13886?overview=false"
+  }
+}

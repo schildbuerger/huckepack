@@ -1,0 +1,219 @@
+name: Heidschnuckenweg
+added: 2026-11-06
+website: https://www.heidschnuckenweg.de/
+wikidata: Q1594442
+managedBy:
+  # the Lüneburger Heide GmbH, the region's tourism board, with its partners; one of the Top Trails
+  # of Germany and a Qualitätswanderweg of the German Hiking Association
+  - name: Lüneburger Heide GmbH
+    url: https://www.heidschnuckenweg.de/
+officialGpx:
+  # "Laden Sie sich hier die GPS-Daten des Heidschnuckenwegs kostenlos herunter. Entweder für den
+  # ganzen Wanderweg, oder für jeden Teilabschnitt einzeln"
+  url: https://www.heidschnuckenweg.de/karte_und_gps_daten
+  by: Lüneburger Heide GmbH
+  source: hsw-gps
+trailType: point-to-point
+continents: [Europe]
+countries: [DE]
+regions: [Hamburg, Lower Saxony]
+protectedAreas: [Lüneburger Heide Nature Reserve, Südheide Nature Park]
+termini:
+  # stage 1 starts in Hamburg-Fischbek, stage 13 ends in Celle (coordinates from the stages' GPX)
+  start:
+    name: Hamburg-Fischbek
+    lat: 53.46664
+    lon: 9.83183
+  end:
+    name: Celle
+    lat: 52.62395
+    lon: 10.07936
+  source: hsw-stages
+established:
+  # "Der 2012 eingeweihte Weg" (German Wikipedia; the site gives no year)
+  year: 2012
+  source: wikipedia-de
+waymarking:
+  text: Signposted throughout ("unverlaufbar - dank durchgängiger Beschilderung"); feeder paths from the stations marked with a yellow H on a black square
+  source: hsw-anreise
+stages:
+  # the site's 13 stages and two variants, each with its distance in its title and its own GPX (the
+  # operator's, free to download; it guides the matcher and stays in the git-ignored cache)
+  source: hsw-stages
+  list:
+    - { number: "1", kind: main, from: "Hamburg-Fischbek", to: "Buchholz i.d. Nordheide", km: 26, track: "https://www.heidschnuckenweg.de/api/gpx?siteKey=heidschnuckenweg&id=t_100268827&filename=heidschnuckenweg-etappe-1-hamburg-fischbek-buchholz-i-d-nordheide-26-km.gpx" }
+    - { number: "2", kind: main, from: "Buchholz i.d. Nordheide", to: "Handeloh", km: 15, track: "https://www.heidschnuckenweg.de/api/gpx?siteKey=heidschnuckenweg&id=t_100268828&filename=heidschnuckenweg-etappe-2-buchholz-i-d-nordheide-handeloh-15-km.gpx" }
+    - { number: "3", kind: main, from: "Handeloh", to: "Undeloh", km: 17, track: "https://www.heidschnuckenweg.de/api/gpx?siteKey=heidschnuckenweg&id=t_100268829&filename=heidschnuckenweg-etappe-3-handeloh-undeloh-17-km.gpx" }
+    - { number: "4", kind: main, from: "Undeloh", to: "Niederhaverbeck", km: 14, track: "https://www.heidschnuckenweg.de/api/gpx?siteKey=heidschnuckenweg&id=t_100268830&filename=heidschnuckenweg-etappe-4-undeloh-niederhaverbeck-14-km.gpx" }
+    - { number: "5", kind: main, from: "Niederhaverbeck", to: "Bispingen", km: 17, track: "https://www.heidschnuckenweg.de/api/gpx?siteKey=heidschnuckenweg&id=t_100268831&filename=heidschnuckenweg-etappe-5-niederhaverbeck-bispingen-17-km.gpx" }
+    - { number: "5", kind: variant, from: "Niederhaverbeck", to: "Behringen (by Schneverdingen)", km: 21, track: "https://www.heidschnuckenweg.de/api/gpx?siteKey=heidschnuckenweg&id=t_100268832&filename=heidschnuckenweg-variante-zu-etappe-5-niederhaverbeck-schneverdingen-behringen-21-km.gpx" }
+    - { number: "6", kind: main, from: "Bispingen", to: "Soltau", km: 23, track: "https://www.heidschnuckenweg.de/api/gpx?siteKey=heidschnuckenweg&id=t_100268833&filename=heidschnuckenweg-etappe-6-bispingen-soltau-23-km.gpx" }
+    - { number: "7", kind: main, from: "Soltau", to: "Wietzendorf", km: 21, track: "https://www.heidschnuckenweg.de/api/gpx?siteKey=heidschnuckenweg&id=t_100268834&filename=heidschnuckenweg-etappe-7-soltau-wietzendorf-21-km.gpx" }
+    - { number: "8", kind: main, from: "Wietzendorf", to: "Müden (Örtze)", km: 14, track: "https://www.heidschnuckenweg.de/api/gpx?siteKey=heidschnuckenweg&id=t_100268835&filename=heidschnuckenweg-etappe-8-wietzendorf-mueden-oertze-14-km.gpx" }
+    - { number: "9", kind: main, from: "Müden (Örtze)", to: "Faßberg", km: 7, track: "https://www.heidschnuckenweg.de/api/gpx?siteKey=heidschnuckenweg&id=t_100268836&filename=heidschnuckenweg-etappe-9-mueden-oertze-fassberg-7-km.gpx" }
+    - { number: "10", kind: main, from: "Faßberg", to: "Oberoher Heide", km: 19, track: "https://www.heidschnuckenweg.de/api/gpx?siteKey=heidschnuckenweg&id=t_100268837&filename=heidschnuckenweg-etappe-10-fassberg-oberoher-heide-19-km.gpx" }
+    - { number: "11", kind: variant, from: "Müden (Örtze)", to: "Weesen", km: 12, track: "https://www.heidschnuckenweg.de/api/gpx?siteKey=heidschnuckenweg&id=t_100269000&filename=heidschnuckenweg-variante-zu-etappe-11-mueden-oertze-weesen-12-km.gpx" }
+    - { number: "11", kind: main, from: "Oberoher Heide", to: "Weesen", km: 12, track: "https://www.heidschnuckenweg.de/api/gpx?siteKey=heidschnuckenweg&id=t_100268838&filename=heidschnuckenweg-etappe-11-oberoher-heide-weesen-12-km.gpx" }
+    - { number: "12", kind: main, from: "Weesen", to: "Dehningshof", km: 13, track: "https://www.heidschnuckenweg.de/api/gpx?siteKey=heidschnuckenweg&id=t_100268839&filename=heidschnuckenweg-etappe-12-weesen-dehningshof-13-km.gpx" }
+    - { number: "13", kind: main, from: "Dehningshof", to: "Residenzstadt Celle", km: 27, track: "https://www.heidschnuckenweg.de/api/gpx?siteKey=heidschnuckenweg&id=t_100268840&filename=heidschnuckenweg-etappe-13-dehningshof-residenzstadt-celle-27-km.gpx" }
+route:
+  # built by : OSM ways matched to the stages' tracks
+  source: osm
+  publishable: true
+difficulty:
+  estimated:
+    sac: T1
+    basis: >-
+      "Die höchste Erhebung des Heidschnuckenwegs beträgt 169 Meter. Der Weg ist damit auch für
+      ungeübte Wanderer gut zu bewältigen": sandy heath tracks, forest paths and river meadows in
+      the lowlands. Hiking on paths (T1).
+    source: hsw-char
+season:
+  # "zu jeder Jahreszeit anders und zu jeder Jahreszeit schön" (every season different, every
+  # season beautiful): the site describes walking in spring, summer, autumn and winter
+  months: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
+  text: Every season, "different at every season and beautiful at every season"
+  source: hsw-char
+sleeping:
+  # the site's lodging search: hotels, guest houses (Pension, Gasthaus, private rooms, holiday flats)
+  # and campsites
+  types: [hotel, guesthouse, campsite]
+  source: hsw-unterkunft
+access:
+  # Hamburg Hbf (the S3 to Fischbek), Celle (ICE and IC at the finish) and Hamburg Airport.
+  # Coordinates from OSM; distances by pipeline/access.py
+  - kind: station
+    name: Hamburg Hauptbahnhof
+    lat: 53.55302
+    lon: 10.00661
+    source: osm
+  - kind: station
+    name: Celle
+    lat: 52.62142
+    lon: 10.06216
+    source: osm
+  - kind: airport
+    name: Hamburg Airport (HAM)
+    lat: 53.63041
+    lon: 9.98823
+    source: osm
+animals:
+  # ticks: Lyme disease all over Germany (the federal health agency's advice); the trail's districts
+  # (Harburg, Heidekreis, Celle) are no TBE risk areas. Level ours
+  list:
+    - kind: tick
+      name: "Ticks (Lyme disease)"
+      level: low
+      basis: "Ticks that carry Lyme disease live all over Germany, in forests and meadows; about one tick bite in 100 leads to the illness, which antibiotics treat well when caught early."
+      do:
+        - "Wear closed shoes, long sleeves and long trousers, the socks pulled over the trouser legs; light clothes show ticks"
+        - "Use a tick repellent as its maker directs; it protects only for a while, and not fully"
+        - "After the walk, search your body: the hollows of the knees, the groin, the armpits, behind the ears, the head and the hairline"
+        - "Remove a tick as soon as you can: grip it by its head close to the skin with tweezers or a tick card, pull it slowly and straight out, then disinfect the bite"
+        - "See a doctor if a red ring at least 5 cm across spreads around the bite within 3 to 30 days, or fever and aching follow a bite"
+      dont:
+        - "Treat the tick with oil or cream, or squeeze it: it may release more germs"
+      source: bzga-borreliose
+tags: [heath, heidschnucken, juniper, rivers]
+notes:
+  - >-
+    Days: the site suggests no number of days for the whole trail (searched 2026-11-06); the page
+    counts one day per stage (13).
+  - >-
+    Length: the site states no total; the 13 main stages add up to 225 km (the variants 21 and 12
+    km).
+  - >-
+    Wild camping: the site gives no rule; Lower Saxony's forest law doesn't allow tents in the
+    woods, and the Lüneburger Heide nature reserve forbids camping (not recorded without the
+    operator's words).
+  - >-
+    Tree line: none; the highest point is 169 m (the site).
+  - >-
+    Map line (2026-11-06): the Hamburg and Niedersachsen Geofabrik extracts (2026-11-04 and
+    2026-10-31), each stage matched to its own GPX from the site. Every stage at least 96 % matched
+    but stage 9 (88 %): its GPX is coarse (130 points over 7 km) and cuts corners, up to 262 m off near
+    52.881, 10.122. The main route measures 222.0 km against the stages' 225 km; the variant to stage
+    11 (Müden–Weesen) 10.7 km against 12 km. Ascent from the terrain model, about 3,440 m (the site
+    gives none; it measures treetops in the forests). Water: OSM maps 15 drinking water points, none
+    in the last 59 km from Weesen to Celle; the site offers a list of drinking water points as a PDF
+    ("Trinkwasserstellen am Heidschnuckenweg"), not yet added. Celle station is at the finish (118 km
+    by road from the start).
+  - >-
+    Data check (2026-11-06, working rule 2): against German Wikipedia (Heidschnuckenweg). Length 223
+    km against the stages' 225 km (1 % apart); Hamburg-Neugraben-Fischbek to Celle agrees; a
+    Qualitätsweg Wanderbares Deutschland agrees; Wikipedia names the Verein Naturparkregion
+    Lüneburger Heide e. V. as the trail's carer, the site is published by the Lüneburger Heide GmbH and
+    its partners. Wikipedia gives no stage distances. No figure differs by more than 10 %.
+dataCheck:
+  # working rule 2: German Wikipedia
+  date: 2026-11-06
+  against: [wikipedia-de]
+  deviations: []
+sources:
+  - id: hsw-stages
+    title: "Heidschnuckenweg: Etappen, the 13 stages and two variants with their distance and GPX"
+    url: https://www.heidschnuckenweg.de/etappen
+    licence: © Lüneburger Heide GmbH (facts only)
+    retrieved: 2026-11-06
+  - id: hsw-char
+    title: "Heidschnuckenweg: Einzigartiger Heidschnuckenweg (Top Trail, highest point 169 m, every season)"
+    url: https://www.heidschnuckenweg.de/charakteristik
+    licence: © Lüneburger Heide GmbH (facts only)
+    retrieved: 2026-11-06
+  - id: hsw-gps
+    title: "Heidschnuckenweg: Karte und GPS-Daten (the GPX of the whole trail and of each stage, free)"
+    url: https://www.heidschnuckenweg.de/karte_und_gps_daten
+    licence: © Lüneburger Heide GmbH (facts only)
+    retrieved: 2026-11-06
+  - id: hsw-anreise
+    title: "Heidschnuckenweg: Anreise zum Wanderweg (stations, feeder paths, signposting)"
+    url: https://www.heidschnuckenweg.de/anreise
+    licence: © Lüneburger Heide GmbH (facts only)
+    retrieved: 2026-11-06
+  - id: hsw-unterkunft
+    title: "Heidschnuckenweg: Unterkünfte (lodging search by kind)"
+    url: https://www.heidschnuckenweg.de/unterkunft
+    licence: © Lüneburger Heide GmbH (facts only)
+    retrieved: 2026-11-06
+  - id: bzga-borreliose
+    title: "Bundeszentrale für gesundheitliche Aufklärung (infektionsschutz.de): Bürgerinformation Borreliose, protection against ticks (as of August 2019)"
+    url: https://infektionsschutz.de/download/2902-Erregersteckbrief-Borreliose.pdf
+    licence: © BZgA (facts only)
+    retrieved: 2026-11-06
+  - id: wikipedia-de
+    title: "Wikipedia (de): Heidschnuckenweg (length, ends, opened 2012, Qualitätsweg; data check)"
+    url: https://de.wikipedia.org/wiki/Heidschnuckenweg
+    licence: CC BY-SA 4.0
+    retrieved: 2026-11-06
+    checkOnly: true  # only for the data check
+  - id: wikimedia
+    title: "Wikimedia: page views of the trail's Wikipedia articles in every language, by people, over twelve months (Wikidata sitelinks, pageview API)"
+    url: https://wikimedia.org/api/rest_v1/
+    licence: CC0 1.0 (pageview data); Wikidata CC0
+    retrieved: 2026-11-06
+    checkOnly: true  # not on the trail page: the page views only rank the home page's popular trails
+  - id: osm
+    title: "OpenStreetMap contributors: paths, water, shops and places to sleep along the trail (Geofabrik extracts), travel hubs"
+    url: https://www.openstreetmap.org/
+    licence: ODbL 1.0
+    retrieved: 2026-11-06
+  - id: copdem
+    title: "Copernicus DEM GLO-30 (30 m terrain model), tiles from AWS Open Data"
+    url: https://registry.opendata.aws/copernicus-dem/
+    licence: "Copernicus WorldDEM-30 licence, free; produced using Copernicus WorldDEM-30 © DLR e.V. 2010-2014 and © Airbus Defence and Space GmbH 2014-2018 provided under COPERNICUS by the European Union and ESA; all rights reserved"
+    retrieved: 2026-11-06
+  - id: worldcover
+    title: "ESA WorldCover 2021: 10 m land cover (via AWS Open Data)"
+    url: https://esa-worldcover.org/
+    licence: "CC BY 4.0; © ESA WorldCover project 2021 / Contains modified Copernicus Sentinel data (2021) processed by ESA WorldCover consortium"
+    retrieved: 2026-11-06
+  - id: era5
+    title: "Open-Meteo open data on AWS: ERA5-Land temperature and ERA5 precipitation, snow and wind, daily 1995–2024 (reanalysis)"
+    url: https://github.com/open-meteo/open-data
+    licence: CC BY 4.0 (Open-Meteo); contains modified Copernicus Climate Change Service information
+    retrieved: 2026-11-06
+  - id: osrm
+    title: "OSRM: road routes on OpenStreetMap data (router.project-osrm.org)"
+    url: https://project-osrm.org/
+    licence: Route data © OpenStreetMap contributors (ODbL)
+    retrieved: 2026-11-06

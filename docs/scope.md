@@ -58,6 +58,10 @@
   like, never vehicles, interiors, people, events or a species close up (`scenic()`); quality marks
   and Wiki Loves Earth rank higher, at most two by one author. Same licence rules, credits and hand
   check; data/photos/<slug>.json names how each was found (`found`: category or location).
+  Photos placed on the route come first, unplaced ones from the category last (2026-11-06,
+  after the hand check found a category of signs and boards); the hand check of the first 22
+  trails added rules against animals, ships, hotels, town squares, leaves, space photos and
+  360° spheres.
 - **Logbook** (issue #80): the recently added trails as hut stamps, grey until
   pointed at, then in their ink, in one band with the heading and the link to
   all trails (decided 2026-11-05, of five previews: hut book, hut stamps,

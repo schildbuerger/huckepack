@@ -351,6 +351,7 @@ def build(slug, refresh=False):
     named, named_ways = trail.get("route", {}).get("wayName"), []
     if named:
         pts = [(start["lon"], start["lat"]), (end["lon"], end["lat"])] + [(s["end"]["lon"], s["end"]["lat"]) for s in all_stages if s.get("end")]
+        pts += [(v["lon"], v["lat"]) for s in all_stages for v in s.get("via", [])]  # capes out and back (the Three Capes Track)
         box = (min(p[1] for p in pts) - 0.03, min(p[0] for p in pts) - 0.03, max(p[1] for p in pts) + 0.03, max(p[0] for p in pts) + 0.03)
         query = f'[out:json][timeout:120];way["name"~"{named}"]({box[0]:.5f},{box[1]:.5f},{box[2]:.5f},{box[3]:.5f});out geom;'
         data, _ = cache.get("osm-named-ways.json", osm.OVERPASS, lambda: json.dumps(osm.fetch(query), separators=(",", ":")).encode())

@@ -1,0 +1,187 @@
+{
+  "climate-high.json": {
+    "retrieved": "2026-11-05T23:35:49+00:00",
+    "url": "https://openmeteo.s3.us-west-2.amazonaws.com/data/copernicus_era5_land+copernicus_era5?latitude=53.2&longitude=9.9&elevation=180"
+  },
+  "climate-low.json": {
+    "retrieved": "2026-11-05T23:32:31+00:00",
+    "url": "https://openmeteo.s3.us-west-2.amazonaws.com/data/copernicus_era5_land+copernicus_era5?latitude=53.5&longitude=9.8&elevation=30"
+  },
+  "commons-geo.json": {
+    "key": "with categories, 223.5 km, every 2.5 km, 1500 m, within 0.5 km",
+    "retrieved": "2026-11-05T23:59:42+00:00",
+    "url": "Commons geosearch along the route"
+  },
+  "commons.json": {
+    "key": "Q1594442",
+    "retrieved": "2026-11-05T23:35:52+00:00",
+    "url": "Q1594442 P18 P373"
+  },
+  "elevation-glo30.json": {
+    "retrieved": "2026-11-05T23:28:54+00:00",
+    "url": "https://copernicus-dem-30m.s3.eu-central-1.amazonaws.com/Copernicus_DSM_COG_10_N52_00_E009_00_DEM/Copernicus_DSM_COG_10_N52_00_E009_00_DEM.tif https://copernicus-dem-30m.s3.eu-central-1.amazonaws.com/Copernicus_DSM_COG_10_N52_00_E010_00_DEM/Copernicus_DSM_COG_10_N52_00_E010_00_DEM.tif https://copernicus-dem-30m.s3.eu-central-1.amazonaws.com/Copernicus_DSM_COG_10_N53_00_E009_00_DEM/Copernicus_DSM_COG_10_N53_00_E009_00_DEM.tif https://copernicus-dem-30m.s3.eu-central-1.amazonaws.com/Copernicus_DSM_COG_10_N53_00_E010_00_DEM/Copernicus_DSM_COG_10_N53_00_E010_00_DEM.tif"
+  },
+  "landcover.json": {
+    "retrieved": "2026-11-05T23:28:55+00:00",
+    "url": "https://esa-worldcover.s3.eu-central-1.amazonaws.com/v200/2021/map/ESA_WorldCover_10m_2021_v200_\u2026_Map.tif"
+  },
+  "osm-stage-1-main.json": {
+    "key": "8946b5fa60a1",
+    "retrieved": "2026-10-31T21:23:06Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-10-main.json": {
+    "key": "43e0c1199899",
+    "retrieved": "2026-10-31T21:23:06Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-11-main.json": {
+    "key": "07a9191116d7",
+    "retrieved": "2026-10-31T21:23:06Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-11-variant.json": {
+    "key": "5c450fe1eedf",
+    "retrieved": "2026-10-31T21:23:06Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-12-main.json": {
+    "key": "4a08cfb1f1c0",
+    "retrieved": "2026-10-31T21:23:06Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-13-main.json": {
+    "key": "247778dba220",
+    "retrieved": "2026-10-31T21:23:06Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-2-main.json": {
+    "key": "d1abdd5d9db4",
+    "retrieved": "2026-10-31T21:23:06Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-3-main.json": {
+    "key": "5465fdc0e12a",
+    "retrieved": "2026-10-31T21:23:06Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-4-main.json": {
+    "key": "ed098f85489a",
+    "retrieved": "2026-10-31T21:23:06Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-5-main.json": {
+    "key": "98361f2880d3",
+    "retrieved": "2026-10-31T21:23:06Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-5-variant.json": {
+    "key": "f30fd49f7ce3",
+    "retrieved": "2026-10-31T21:23:06Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-6-main.json": {
+    "key": "c6adbfd7e859",
+    "retrieved": "2026-10-31T21:23:06Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-7-main.json": {
+    "key": "5225ae46df55",
+    "retrieved": "2026-10-31T21:23:06Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-8-main.json": {
+    "key": "7cf41530ad5d",
+    "retrieved": "2026-10-31T21:23:06Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-9-main.json": {
+    "key": "0d5c8114aeaf",
+    "retrieved": "2026-10-31T21:23:06Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-water.json": {
+    "retrieved": "2026-10-31T21:23:06Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-way-tags.json": {
+    "retrieved": "2026-10-31T21:23:06Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osrm-access-celle.json": {
+    "retrieved": "2026-11-05T23:35:49+00:00",
+    "url": "https://router.project-osrm.org/route/v1/driving/10.06216,52.62142;9.83183,53.46664?overview=false"
+  },
+  "osrm-access-hamburg-airport-ham.json": {
+    "retrieved": "2026-11-05T23:35:50+00:00",
+    "url": "https://router.project-osrm.org/route/v1/driving/9.98823,53.63041;9.83183,53.46664?overview=false"
+  },
+  "osrm-access-hamburg-hauptbahnhof.json": {
+    "retrieved": "2026-11-05T23:35:49+00:00",
+    "url": "https://router.project-osrm.org/route/v1/driving/10.00661,53.55302;9.83183,53.46664?overview=false"
+  },
+  "stage-1-main.gpx": {
+    "retrieved": "2026-11-05T23:24:58+00:00",
+    "url": "https://www.heidschnuckenweg.de/api/gpx?siteKey=heidschnuckenweg&id=t_100268827&filename=heidschnuckenweg-etappe-1-hamburg-fischbek-buchholz-i-d-nordheide-26-km.gpx"
+  },
+  "stage-10-main.gpx": {
+    "retrieved": "2026-11-05T23:24:59+00:00",
+    "url": "https://www.heidschnuckenweg.de/api/gpx?siteKey=heidschnuckenweg&id=t_100268837&filename=heidschnuckenweg-etappe-10-fassberg-oberoher-heide-19-km.gpx"
+  },
+  "stage-11-main.gpx": {
+    "retrieved": "2026-11-05T23:24:59+00:00",
+    "url": "https://www.heidschnuckenweg.de/api/gpx?siteKey=heidschnuckenweg&id=t_100268838&filename=heidschnuckenweg-etappe-11-oberoher-heide-weesen-12-km.gpx"
+  },
+  "stage-11-variant.gpx": {
+    "retrieved": "2026-11-05T23:24:59+00:00",
+    "url": "https://www.heidschnuckenweg.de/api/gpx?siteKey=heidschnuckenweg&id=t_100269000&filename=heidschnuckenweg-variante-zu-etappe-11-mueden-oertze-weesen-12-km.gpx"
+  },
+  "stage-12-main.gpx": {
+    "retrieved": "2026-11-05T23:24:59+00:00",
+    "url": "https://www.heidschnuckenweg.de/api/gpx?siteKey=heidschnuckenweg&id=t_100268839&filename=heidschnuckenweg-etappe-12-weesen-dehningshof-13-km.gpx"
+  },
+  "stage-13-main.gpx": {
+    "retrieved": "2026-11-05T23:25:00+00:00",
+    "url": "https://www.heidschnuckenweg.de/api/gpx?siteKey=heidschnuckenweg&id=t_100268840&filename=heidschnuckenweg-etappe-13-dehningshof-residenzstadt-celle-27-km.gpx"
+  },
+  "stage-2-main.gpx": {
+    "retrieved": "2026-11-05T23:24:58+00:00",
+    "url": "https://www.heidschnuckenweg.de/api/gpx?siteKey=heidschnuckenweg&id=t_100268828&filename=heidschnuckenweg-etappe-2-buchholz-i-d-nordheide-handeloh-15-km.gpx"
+  },
+  "stage-3-main.gpx": {
+    "retrieved": "2026-11-05T23:24:58+00:00",
+    "url": "https://www.heidschnuckenweg.de/api/gpx?siteKey=heidschnuckenweg&id=t_100268829&filename=heidschnuckenweg-etappe-3-handeloh-undeloh-17-km.gpx"
+  },
+  "stage-4-main.gpx": {
+    "retrieved": "2026-11-05T23:24:58+00:00",
+    "url": "https://www.heidschnuckenweg.de/api/gpx?siteKey=heidschnuckenweg&id=t_100268830&filename=heidschnuckenweg-etappe-4-undeloh-niederhaverbeck-14-km.gpx"
+  },
+  "stage-5-main.gpx": {
+    "retrieved": "2026-11-05T23:24:58+00:00",
+    "url": "https://www.heidschnuckenweg.de/api/gpx?siteKey=heidschnuckenweg&id=t_100268831&filename=heidschnuckenweg-etappe-5-niederhaverbeck-bispingen-17-km.gpx"
+  },
+  "stage-5-variant.gpx": {
+    "retrieved": "2026-11-05T23:24:59+00:00",
+    "url": "https://www.heidschnuckenweg.de/api/gpx?siteKey=heidschnuckenweg&id=t_100268832&filename=heidschnuckenweg-variante-zu-etappe-5-niederhaverbeck-schneverdingen-behringen-21-km.gpx"
+  },
+  "stage-6-main.gpx": {
+    "retrieved": "2026-11-05T23:24:59+00:00",
+    "url": "https://www.heidschnuckenweg.de/api/gpx?siteKey=heidschnuckenweg&id=t_100268833&filename=heidschnuckenweg-etappe-6-bispingen-soltau-23-km.gpx"
+  },
+  "stage-7-main.gpx": {
+    "retrieved": "2026-11-05T23:24:59+00:00",
+    "url": "https://www.heidschnuckenweg.de/api/gpx?siteKey=heidschnuckenweg&id=t_100268834&filename=heidschnuckenweg-etappe-7-soltau-wietzendorf-21-km.gpx"
+  },
+  "stage-8-main.gpx": {
+    "retrieved": "2026-11-05T23:24:59+00:00",
+    "url": "https://www.heidschnuckenweg.de/api/gpx?siteKey=heidschnuckenweg&id=t_100268835&filename=heidschnuckenweg-etappe-8-wietzendorf-mueden-oertze-14-km.gpx"
+  },
+  "stage-9-main.gpx": {
+    "retrieved": "2026-11-05T23:24:59+00:00",
+    "url": "https://www.heidschnuckenweg.de/api/gpx?siteKey=heidschnuckenweg&id=t_100268836&filename=heidschnuckenweg-etappe-9-mueden-oertze-fassberg-7-km.gpx"
+  },
+  "wikimedia.json": {
+    "retrieved": "2026-11-05T23:35:50+00:00",
+    "url": "Q1594442 2025-11..2026-10"
+  }
+}

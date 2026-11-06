@@ -1027,6 +1027,68 @@ export const SKYLINES: Record<string, Skyline> = {
       { d: "M1349,268V256A3,3 0 0 1 1355,256V268Z", c: "#6f8a4a" },
     ],
   },
+  "three-capes-track": {
+    view: "From the Tasman Peninsula's sea cliffs: Cape Pillar's dark dolerite falling sheer into the Tasman Sea, the Totem Pole and other sea stacks below it, Tasman Island with its lighthouse offshore, and eucalypt forest",
+    ridge: "#5f7a44",
+    ground: "#6f8a4a",
+    shapes: [
+      // Tasman Island offshore, flat-topped, with its lighthouse
+      { d: range([[1020, G], [1060, 252], [1090, 234], [1240, 228], [1270, 246], [1310, G]]), c: "#8e98a4" },
+      { d: lighthouse(1170, 231, 24), c: "#f4f1ea" },
+      // the Tasman Sea
+      { d: water(0, 1600, 282), c: SEA },
+      // Cape Pillar: a high dolerite plateau ending in sheer cliffs
+      { d: range([[0, G], [160, 196], [300, 180], [420, 172], [520, 180], [548, 236], [566, G]]), c: "#5a5650" },
+      // the Totem Pole, slender, and broader sea stacks off the cape
+      { d: pillars([[640, 238], [668, 216], [694, 246]], 16), c: "#4f4a44" },
+      { d: pillars([[780, 214]], 8), c: "#4f4a44" },
+      // eucalypt forest on the slopes towards Fortescue Bay
+      { d: hills([[1280, G], [1400, 268], [1500, 258], [1600, 266], [1600, G]]), c: "#3f5a34" },
+    ],
+  },
+  heidschnuckenweg: {
+    view: "The Lüneburg Heath in bloom: purple heather rolling to the Wilseder Berg, dark juniper cones, a thatched heath farmhouse among birches, and a flock of Heidschnucken, the moorland sheep that keep the heath open",
+    ridge: "#7a5a7a",
+    ground: "#8a6a5a",
+    shapes: [
+      // the Wilseder Berg, the heath's highest hill, far and soft
+      { d: hills([[200, G], [420, 250], [640, 236], [860, 252], [1100, G]]), c: "#a8a8b8" },
+      // the heather in bloom, rolling
+      { d: hills([[0, G], [160, 270], [420, 262], [700, 274], [980, 264], [1260, 276], [1600, 266], [1600, G]]), c: "#9a6a9a" },
+      // birches round a thatched heath farmhouse: the steep reed roof over a low brick wall
+      { d: hills([[1080, G], [1140, 250], [1200, 244], [1260, 256], [1300, G]]), c: "#6f8a4a" },
+      { d: "M1155,320V286H1225V320Z", c: "#8a4a3a" },
+      { d: "M1145,288L1190,250L1235,288Z", c: "#a08a5a" },
+      // juniper bushes, dark and pointed
+      { d: "M293,320C293,291.0 298,270 300,262C302,270 307,291.0 307,320Z M311,320C311,297.0 316,282 318,274C320,282 325,297.0 325,320Z M683,320C683,289.0 688,266 690,258C692,266 697,289.0 697,320Z M705,320C705,295.0 710,278 712,270C714,278 719,295.0 719,320Z M1003,320C1003,293.0 1008,274 1010,266C1012,274 1017,293.0 1017,320Z M1373,320C1373,288.0 1378,264 1380,256C1382,264 1387,288.0 1387,320Z M1395,320C1395,295.0 1400,278 1402,270C1404,278 1409,295.0 1409,320Z M1417,320C1417,291.0 1422,270 1424,262C1426,270 1431,291.0 1431,320Z", c: "#2f4a34" },
+      // a flock of Heidschnucken: grey fleece, black heads and legs
+      { d: "M836,299V304H837V299Z M843,299V304H844V299Z M862,303V308H863V303Z M869,303V308H870V303Z M888,297V302H889V297Z M895,297V302H896V297Z M910,305V310H911V305Z M917,305V310H918V305Z M940,301V306H941V301Z M947,301V306H948V301Z", c: "#2a2a2a" },
+      { d: "M833,296a7,4.5 0 1 0 14,0a7,4.5 0 1 0 -14,0Z M846,293a2.6,2.2 0 1 0 5.2,0a2.6,2.2 0 1 0 -5.2,0Z M859,300a7,4.5 0 1 0 14,0a7,4.5 0 1 0 -14,0Z M872,297a2.6,2.2 0 1 0 5.2,0a2.6,2.2 0 1 0 -5.2,0Z M885,294a7,4.5 0 1 0 14,0a7,4.5 0 1 0 -14,0Z M898,291a2.6,2.2 0 1 0 5.2,0a2.6,2.2 0 1 0 -5.2,0Z M907,302a7,4.5 0 1 0 14,0a7,4.5 0 1 0 -14,0Z M920,299a2.6,2.2 0 1 0 5.2,0a2.6,2.2 0 1 0 -5.2,0Z M937,298a7,4.5 0 1 0 14,0a7,4.5 0 1 0 -14,0Z M950,295a2.6,2.2 0 1 0 5.2,0a2.6,2.2 0 1 0 -5.2,0Z", c: "#b8b0a4" },
+    ],
+  },
+  rheinburgenweg: {
+    view: "The Rhine gorge: steep slate slopes on both banks, a castle on its crag, the Loreley's cliff with vineyards in terraces, and in the river the white Pfalzgrafenstein toll castle and a barge",
+    ridge: "#5d7a3a",
+    ground: MEADOW,
+    shapes: [
+      // the plateaus above the gorge, far and level
+      { d: hills([[0, G], [200, 228], [600, 220], [1000, 224], [1400, 218], [1600, 226], [1600, G]]), c: "#9aa4a0" },
+      // the left bank: a wooded slate slope with a castle on its crag
+      { d: range([[0, G], [140, 206], [300, 198], [420, 214], [540, 270], [620, G]]), c: "#5f6a4a" },
+      { d: castle(300, 199, 0.8), c: "#d8cbb0" },
+      { d: castleRoofs(300, 199, 0.8), c: "#5a4a4a" },
+      // the right bank: the Loreley's slate cliff, vineyards in terraces on its slope
+      { d: range([[880, G], [980, 270], [1060, 222], [1140, 202], [1300, 196], [1460, 206], [1600, 212], [1600, G]]), c: "#6a6658" },
+      { d: orchard(1180, 1520, [226, 240, 254], 14, 3), c: "#5d7a2f" },
+    ],
+    front: [
+      // the Rhine, a barge and the Pfalzgrafenstein on its island
+      { d: water(440, 1100, 300), c: LAKE },
+      { d: "M600,300H676L670,306H606Z M612,300V294H630V300Z", c: "#3a3a40" },
+      { d: "M770,304V284H806V304Z M780,284V272H796V284Z", c: "#f0ece0" },
+      { d: "M778,272L788,262L798,272Z M768,284L788,276L808,284Z", c: "#5a4a4a" },
+    ],
+  },
   "arran-coastal-way": {
     view: "The Isle of Arran from the sea: Goat Fell and the jagged granite ridges of the north, Lochranza Castle on its spit in the bay, and Holy Isle's dome off Lamlash",
     ridge: "#7f9a54",

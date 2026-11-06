@@ -1,0 +1,199 @@
+name: Three Capes Track
+added: 2026-11-06
+aliases: [Three Capes Walk, 3CT]
+website: https://parks.tas.gov.au/explore-our-parks/tasman-national-park/three-capes-track
+managedBy:
+  # built and run by the Tasmania Parks and Wildlife Service, which takes the bookings
+  - name: Tasmania Parks and Wildlife Service
+    url: https://parks.tas.gov.au/
+officialGpx:
+  none: the park's pages offer an interactive map and the printed "Encounters on the Edge" guidebook, with no GPX to download (checked 2026-11-06)
+  source: tct
+trailType: point-to-point
+continents: [Oceania]
+countries: [AU]
+regions: [Tasmania]
+protectedAreas: [Tasman National Park]
+termini:
+  # the track begins at Denmans Cove, reached by boat from the Port Arthur Historic Site, and ends at
+  # Fortescue Bay, from where a bus returns to Port Arthur ("Port Arthur Historic Site is your start
+  # and end point"; coordinates from OSM)
+  start:
+    name: Denmans Cove
+    lat: -43.13886
+    lon: 147.89085
+  end:
+    name: Fortescue Bay
+    lat: -43.14217
+    lon: 147.96738
+  source: tct-notes
+waymarking:
+  text: A built track to a "dry-boot standard" of timber boardwalk, gravel and stone steps, wide enough for two people side by side, with story seats along the way
+  source: tct
+length:
+  # "4 day, 3 night hut based experience, 48km"
+  - km: 48
+    source: tct
+days:
+  # "Over four days and three nights"; one night in each of the three cabins is required
+  min: 4
+  max: 4
+  source: tct
+stages:
+  # the walk notes' four days. No GPX and no OSM route relation: each day is the shortest way over
+  # the OSM ways named "Three Capes Track", "Three Capes Walk", "Cape Pillar Track" and "Cape Hauy
+  # Track" (`route.wayName`) to its end, day 3 out to Cape Pillar (The Blade) and back, day 4 out to
+  # Cape Hauy and back (`via` points)
+  source: tct-notes
+  list:
+    - { number: "1", kind: main, from: Denmans Cove, to: Surveyors cabin, km: 4, minutes: 90, maxMinutes: 120, end: { name: Surveyors Cabin, lat: -43.16836, lon: 147.89946 } }
+    - { number: "2", kind: main, from: Surveyors cabin, to: Munro cabin, km: 11, minutes: 240, maxMinutes: 270, end: { name: Munro Cabin, lat: -43.19928, lon: 147.96523 } }
+    - { number: "3", kind: main, from: Munro cabin, to: Retakunna cabin (by Cape Pillar), km: 19, minutes: 360, via: [{ lat: -43.22531, lon: 148.00138 }], end: { name: Retakunna Cabin, lat: -43.1802, lon: 147.94993 } }
+    - { number: "4", kind: main, from: Retakunna cabin, to: Fortescue Bay (by Cape Hauy), km: 14, minutes: 360, maxMinutes: 420, via: [{ lat: -43.13888, lon: 148.0051 }], end: { name: Fortescue Bay, lat: -43.14217, lon: 147.96738 } }
+route:
+  # built by `python -m pipeline.all three-capes-track`: OSM ways matched to the shortest way over the
+  # named ways between the days' ends
+  source: osm
+  publishable: true
+  wayName: "^(Three Capes Track|Three Capes Walk|Cape Pillar Track|Cape Hauy Track)$"
+difficulty:
+  # PWS: "Grade 3: Some bushwalking experience recommended. Tracks may have short steep hill
+  # sections, a rough surface and many steps"
+  estimated:
+    sac: T2
+    basis: >-
+      PWS grades it 3 of 5 ("tracks may have short steep hill sections, a rough surface and many
+      steps") and built it "as an achievable experience for a wide range of ages and abilities", to a
+      dry-boot standard of boardwalk, gravel and stone steps; the climbs to Arthur's Peak and Mount
+      Fortescue and The Blade at Cape Pillar above sea cliffs. Mountain hiking on a built track (T2).
+    source: tct
+season:
+  # open all year but for a 14-day closure each April for maintenance and fuel reduction burns
+  months: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
+  text: All year, except a 14-day closure each April for maintenance
+  source: tct
+permit:
+  # "Bookings are essential", up to 48 walkers a day
+  required: true
+  name: Three Capes Track booking
+  issuedBy: Tasmania Parks and Wildlife Service
+  how: Book a departure date online; up to 48 walkers start each day. The fee includes the cabins, the boat from Port Arthur, the bus back from Fortescue Bay and park entry.
+  url: https://parks.tas.gov.au/explore-our-parks/tasman-national-park/three-capes-track
+  source: tct
+fees:
+  # the standard rates in Australian dollars ("reviewed annually in line with CPI")
+  - { name: "Three Capes Track, adult", amount: 650, currency: AUD, per: per person and walk, year: 2026, note: "concession and child $515; includes three nights in the cabins, the boat, the bus and park entry", source: tct }
+sleeping:
+  # three cabins with sleeping quarters: Surveyors, Munro and Retakunna
+  types: [hut]
+  source: tct
+wildCamping:
+  status: prohibited
+  rule: >-
+    Walkers stay one night in each of the three overnight cabins (Surveyors, Munro, Retakunna); the
+    track is a fuel stove only area at all times.
+  source: tct-notes
+refillsUntreated:
+  # the FAQ: "Rainwater is available from tanks at each cabin. We recommend you carry two litres per
+  # day and treat the water before using it"
+  text: The cabins' rainwater tanks need their water treated before use; carry two litres a day.
+  source: tct-faq
+access:
+  # the Port Arthur Historic Site, where walkers check in and the boat and bus leave, and Hobart
+  # Airport. Coordinates from OSM; distances by pipeline/access.py
+  - kind: bus
+    name: Port Arthur Historic Site (check-in, boat and bus)
+    lat: -43.14741
+    lon: 147.85052
+    source: osm
+  - kind: airport
+    name: Hobart Airport (HBA)
+    lat: -42.83592
+    lon: 147.51145
+    source: osm
+tags: [sea-cliffs, capes, cabins, boardwalk]
+notes:
+  - >-
+    Wildlife (2026-11-06): none listed. Parks Tasmania's Three Capes Track pages (the track, walk
+    notes, plan your trip, FAQ) name no dangerous animals; as for the Overland Track, Tasmania's
+    snakes are not listed without an official source covering the track.
+  - >-
+    Wikidata and Wikipedia: no item or article for the track (searched 2026-11-06), so no Commons
+    category, P18 or page views.
+  - >-
+    Tree line: none; the route stays below about 500 m on the coast.
+  - >-
+    Season: open every month; the closure dates published are 13–26 April 2026, 5–18 April 2027, 24
+    April – 7 May 2028 and 9–22 April 2029. Fees: a winter promotion of $485 for departures 1 July
+    to 31 August 2026.
+  - >-
+    Getting there: the booking includes Pennicott Wilderness Journeys' boat from the Port Arthur
+    Historic Site to Denmans Cove (up to 75 minutes, then a short wade ashore) and the bus from
+    Fortescue Bay back to Port Arthur (30 minutes); neither is drawn as part of the trail.
+  - >-
+    Stages: days 3 and 4 include out-and-back walks to Cape Pillar (packs left at Munro) and Cape
+    Hauy; their distances include both ways.
+  - >-
+    Map line (2026-11-06): the Tasmania Geofabrik extract (2026-11-04); OSM has no route relation, so
+    each day is the shortest way over the ways named "Three Capes Track", "Three Capes Walk", "Cape
+    Pillar Track" and "Cape Hauy Track" (Overpass), through The Blade on day 3 and Cape Hauy on day 4.
+    Days 1, 2 and 4 are 100 % matched; day 3 88 %. On the map line the route measures 42.1 km
+    against the stated 48 km (−12 %): day 3 15.3 km against 19 km and day 4 12.6 km against 14 km,
+    while days 1 and 2 agree (4.0 and 10.9 km). The walk notes count the out-and-back walks to Cape
+    Pillar and Cape Hauy in full, and may include the cabins' side paths and the walk out to the
+    tip beyond The Blade; OSM's named ways end at The Blade. The record keeps the park's figures.
+    Water: OSM maps four drinking water points; the cabins' tanks (to treat) are the water on the
+    way. No shops on the track.
+  - >-
+    Data check (2026-11-06, working rule 2): no second independent source found (no Wikipedia
+    article; Tourism Tasmania's Three Capes pages answer 404), so the built page was checked against
+    the park's pages figure by figure: length 48 km, four days, the days' 4, 11, 19 and 14 km with
+    1.5–2, 4–4.5, 6 and 6–7 hours, Denmans Cove to Fortescue Bay, Grade 3, the fees and the April
+    closure all agree with the source.
+dataCheck:
+  # working rule 2: no second source; the built page against the park's pages
+  date: 2026-11-06
+  against: []
+  pageAgainst: [tct, tct-notes, tct-faq]
+  deviations: []
+sources:
+  - id: tct
+    title: "Tasmania Parks and Wildlife Service: Three Capes Track (length, days, grade, fees, bookings, closures)"
+    url: https://parks.tas.gov.au/explore-our-parks/tasman-national-park/three-capes-track
+    licence: © State of Tasmania (facts only)
+    retrieved: 2026-11-06
+  - id: tct-notes
+    title: "Tasmania Parks and Wildlife Service: Three Capes Track walk notes (the four days with distance and time, the cabins)"
+    url: https://parks.tas.gov.au/explore-our-parks/tasman-national-park/three-capes-track/walk-notes
+    licence: © State of Tasmania (facts only)
+    retrieved: 2026-11-06
+  - id: tct-faq
+    title: "Tasmania Parks and Wildlife Service: Three Capes Track, frequently asked questions (water, cabins)"
+    url: https://parks.tas.gov.au/explore-our-parks/tasman-national-park/three-capes-track/frequently-asked-questions
+    licence: © State of Tasmania (facts only)
+    retrieved: 2026-11-06
+  - id: osm
+    title: "OpenStreetMap contributors: paths, water, shops and places to sleep along the trail (Geofabrik extracts), travel hubs"
+    url: https://www.openstreetmap.org/
+    licence: ODbL 1.0
+    retrieved: 2026-11-06
+  - id: copdem
+    title: "Copernicus DEM GLO-30 (30 m terrain model), tiles from AWS Open Data"
+    url: https://registry.opendata.aws/copernicus-dem/
+    licence: "Copernicus WorldDEM-30 licence, free; produced using Copernicus WorldDEM-30 © DLR e.V. 2010-2014 and © Airbus Defence and Space GmbH 2014-2018 provided under COPERNICUS by the European Union and ESA; all rights reserved"
+    retrieved: 2026-11-06
+  - id: worldcover
+    title: "ESA WorldCover 2021: 10 m land cover (via AWS Open Data)"
+    url: https://esa-worldcover.org/
+    licence: "CC BY 4.0; © ESA WorldCover project 2021 / Contains modified Copernicus Sentinel data (2021) processed by ESA WorldCover consortium"
+    retrieved: 2026-11-06
+  - id: era5
+    title: "Open-Meteo open data on AWS: ERA5-Land temperature and ERA5 precipitation, snow and wind, daily 1995–2024 (reanalysis)"
+    url: https://github.com/open-meteo/open-data
+    licence: CC BY 4.0 (Open-Meteo); contains modified Copernicus Climate Change Service information
+    retrieved: 2026-11-06
+  - id: osrm
+    title: "OSRM: road routes on OpenStreetMap data (router.project-osrm.org)"
+    url: https://project-osrm.org/
+    licence: Route data © OpenStreetMap contributors (ODbL)
+    retrieved: 2026-11-06
