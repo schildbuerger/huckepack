@@ -18,7 +18,7 @@ import { inlineScript } from "../../lib/inline-script";
 import { ogAlt } from "../../lib/og-image";
 import { ogTrail } from "../../lib/og-trail";
 import { routePreviewSvg } from "../../lib/route-preview";
-import { n1, stripPaths } from "../../lib/svg";
+import { n1, rectsPath, simplify, stripPaths } from "../../lib/svg";
 import { difficulty, levelText, DIFFICULTY_FACTS, DIMENSION_TEXT, EFFORT_NO_STAGES, NO_STAGES_SCALES, LEVELS, SCALES, type Level } from "../../lib/difficulty";
 import { monthsText, rateData } from "../../lib/months";
 import { existsSync } from "node:fs";
@@ -390,50 +390,72 @@ const peak = (() => {
   const left = x < CHART.x0 + 60;
   return { x, left, anchor: left ? "start" : x > CHART.x1 - 40 ? "end" : "middle" };
 })();
-const profileLine =
-  elevation?.points.map(([km, m], i) => `${i ? "L" : "M"}${xAt(km, elevation.routeKm).toFixed(1)},${yAt(m).toFixed(1)}`).join("") ?? "";
-// the area under the profile in the gradient bars' 200 m slices, each with two fills: its gradient
-// on a smooth diverging ramp (the profile's tint at 0 %, the steep colour at ±RAMP_MAX %; climbs
-// warm, descents violet) and the ground at its middle
+// the profile thinned to what shows at the chart's scale (a long trail has thousands of samples on
+// about 1000 units): the line, and the same outline closed along the baseline, which clips the slices
+const profilePts = elevation ? simplify(elevation.points.map(([km, m]) => [xAt(km, elevation.routeKm), yAt(m)] as [number, number])) : [];
+const profileLine = profilePts.length ? `M${profilePts.map(([x, y]) => `${n1(x)},${n1(y)}`).join(" ").replace(" ", "L")}` : "";
+// the outline is drawn once: closed well below the baseline and outward, it clips the slices, and the
+// line is the same outline clipped to the profile's own width and height, where only its top shows
+const profileArea = profilePts.length
+  ? `M${n1(profilePts[0][0] - 30)},${TERRAIN.bottom + 60}L${profileLine.slice(1)}L${n1(profilePts.at(-1)![0] + 30)},${TERRAIN.bottom + 60}z`
+  : "";
+const profileBox = profilePts.length ? { x: profilePts[0][0], width: n1(profilePts.at(-1)![0] - profilePts[0][0]) } : null;
+// the area under the profile in the gradient bars' slices, filled by gradient on a smooth diverging
+// ramp (the profile's tint at 0 %, the steep colour at ±RAMP_MAX %; climbs warm, descents violet)
 const RAMP_MAX = 30;
-// a slice's colour: up or down (the class) and how far along the ramp (`--p`); the colour mix itself
-// is in the CSS (.slice), so each slice carries only those two
-const ramp = (g: number) => ({ dir: g >= 0 ? "up" : "down", p: Math.round((Math.min(Math.abs(g), RAMP_MAX) / RAMP_MAX) * 100) });
-// neighbouring bars of the same colour are drawn as one polygon
-const sliceRuns =
-  grad?.bars.reduce<{ fromKm: number; toKm: number; dir: string; p: number }[]>((runs, b) => {
-    const { dir, p } = ramp(b.grade);
-    const last = runs.at(-1);
-    if (last && last.dir === dir && last.p === p && last.toKm >= b.fromKm) last.toKm = b.toKm;
-    else runs.push({ fromKm: b.fromKm, toKm: b.toKm, dir, p });
-    return runs;
-  }, []) ?? [];
-const terrainSlices =
-  elevation && grad
-    ? sliceRuns.map((r) => {
-        const top = elevation.points
-          .filter(([km]) => km >= r.fromKm && km <= r.toKm)
-          .map(([km, m]) => `${xAt(km, elevation.routeKm).toFixed(1)},${yAt(m).toFixed(1)}`)
-          .join(" ");
-        return {
-          d: `M${xAt(r.fromKm, elevation.routeKm).toFixed(1)},${TERRAIN.bottom} ${top} ${xAt(r.toKm, elevation.routeKm).toFixed(1)},${TERRAIN.bottom}z`,
-          dir: r.dir,
-          p: r.p,
-        };
-      })
-    : [];
-// the slices of one colour drawn as one path (a subpath each): the same picture in far less markup
+// a slice's colour: up or down (the class) and how far along the ramp (`--p`, in steps of RAMP_STEP
+// %, so neighbours of one colour join); the colour mix itself is in the CSS (.slice)
+const RAMP_STEP = 10;
+// bars narrower than half a unit (long trails: 3,000 bars on 1000 units) are drawn per half-unit
+// column: up or down by the column's balance, as steep as its bars on average
+const COL = 0.5;
+const sliceRuns: { x0: number; x1: number; dir: string; p: number }[] = [];
+if (elevation && grad) {
+  const total = elevation.routeKm;
+  const xs = (km: number) => xAt(km, total);
+  const add = (x0: number, x1: number, signed: number, steep: number) => {
+    const dir = signed >= 0 ? "up" : "down";
+    const p = Math.round((Math.min(steep, RAMP_MAX) / RAMP_MAX) * (100 / RAMP_STEP)) * RAMP_STEP;
+    const last = sliceRuns.at(-1);
+    if (last && last.dir === dir && last.p === p && x0 - last.x1 < 0.05) last.x1 = x1;
+    else sliceRuns.push({ x0, x1, dir, p });
+  };
+  let col: { i: number; x0: number; x1: number; signed: number; steep: number; w: number } | null = null;
+  const flush = () => col && add(col.x0, col.x1, col.signed, col.steep / col.w);
+  for (const b of grad.bars) {
+    const x0 = xs(b.fromKm);
+    const x1 = xs(b.toKm);
+    const w = Math.max(x1 - x0, 1e-6);
+    if (w >= COL) {
+      flush();
+      col = null;
+      add(x0, x1, b.grade, Math.abs(b.grade));
+      continue;
+    }
+    const i = Math.floor((x0 + x1) / 2 / COL);
+    if (!col || col.i !== i || x0 - col.x1 > 0.05) {
+      flush();
+      col = { i, x0, x1, signed: 0, steep: 0, w: 0 };
+    }
+    col.x1 = x1;
+    col.signed += b.grade * w;
+    col.steep += Math.abs(b.grade) * w;
+    col.w += w;
+  }
+  flush();
+}
+// the slices of one colour as one path of rectangles, clipped to the area under the profile
 const slicePaths = [
-  ...terrainSlices
-    .reduce((m, sl) => {
-      const key = `${sl.dir} ${sl.p}`;
-      m.set(key, (m.get(key) ?? "") + sl.d);
+  ...sliceRuns
+    .reduce((m, r) => {
+      const key = `${r.dir} ${r.p}`;
+      m.set(key, [...(m.get(key) ?? []), [r.x0, Math.max(r.x1 - r.x0, 0.1)]]);
       return m;
-    }, new Map<string, string>())
+    }, new Map<string, [number, number][]>())
     .entries(),
-].map(([key, d]) => {
+].map(([key, rects]) => {
   const [dir, p] = key.split(" ");
-  return { dir, style: `--p: ${p}%`, d };
+  return { dir, style: `--p: ${p}%`, d: rectsPath(rects, TERRAIN.top - 8, TERRAIN.bottom - TERRAIN.top + 8) };
 });
 const degrees = (g: number) => Math.round((Math.atan(Math.abs(g) / 100) * 180) / Math.PI);
 
@@ -442,10 +464,15 @@ const climate = derived?.climate;
 // chart data for the hover scripts: one JSON block per chart (issue #12 of the 2026-10-30 review),
 // compact tuples instead of HTML-escaped attributes; "<" escaped so the data can't close the script
 const jsonBlock = (data: unknown) => JSON.stringify(data).replace(/</g, "\\u003c");
+// the profile's samples, bars and runs are large on long trails: they go in a "chart-heavy" block,
+// which the build moves into the trail's charts.json (src/integrations/chart-files.mjs)
+const terrainMeta =
+  elevation && grad && eleRange
+    ? jsonBlock({ total: elevation.routeKm, ey: [eleRange.min, eleRange.max, TERRAIN.top, TERRAIN.bottom] })
+    : null;
 const terrainData =
   elevation && grad
     ? jsonBlock({
-        total: elevation.routeKm,
         points: elevation.points,
         bars: grad.bars.map((b) => [b.fromKm, b.toKm, b.grade, stageless ? "" : b.stage]),
         runs: (surface?.runs ?? []).map((r) => [r.fromKm, r.toKm, r.category]),
@@ -1487,7 +1514,8 @@ const trailLd = JSON.stringify({
         <figure
           class="chart terrain-chart"
         >
-          <script is:inline type="application/json" class="chart-data" set:html={terrainData} />
+          <script is:inline type="application/json" class="chart-data" set:html={terrainMeta} />
+          <script is:inline type="application/json" class="chart-heavy" set:html={terrainData} />
           <div class="chart-scroll">
           <svg
             viewBox={`0 0 ${CHART.width} ${surface ? 236 : 222}`}
@@ -1498,8 +1526,11 @@ const trailLd = JSON.stringify({
               (tk) => tk.band && <rect class="stage-band" x={tk.x} y={TERRAIN.top - 8} width={n1(tk.end - tk.x)} height={TERRAIN.bottom - TERRAIN.top + 8} />,
             )}
             {eleGrid.map((m) => <line class="grid" x1={CHART.x0} x2={CHART.x1} y1={yAt(m)} y2={yAt(m)} />)}
-            {slicePaths.map((sl) => <path class={`slice ${sl.dir}`} d={sl.d} style={sl.style} />)}
-            <path class="line" d={profileLine} />
+            <defs><path id="terrain-outline" d={profileArea} /></defs>
+            <clipPath id="terrain-area"><use href="#terrain-outline" /></clipPath>
+            <clipPath id="terrain-top"><rect x={profileBox?.x} y="0" width={profileBox?.width} height={TERRAIN.bottom} /></clipPath>
+            <g clip-path="url(#terrain-area)">{slicePaths.map((sl) => <path class={`slice ${sl.dir}`} d={sl.d} style={sl.style} />)}</g>
+            <use class="line" href="#terrain-outline" clip-path="url(#terrain-top)" />
             <!-- height labels over the profile (with a halo), so a steep start doesn't hide them; one
                  that would meet the peak label at the left edge gives way -->
             {eleGrid
@@ -1621,9 +1652,14 @@ const trailLd = JSON.stringify({
             x0: LANE_X0,
             x1: LANE_X1,
             lanes: landRows.map((g) => g.label),
-            runs: landcover.runs.map((r) => [r.fromKm, r.toKm, landRows.findIndex((g) => g.id === r.group)]),
             stages: stageless ? [] : landcover.stageStarts.map((st) => [st.number, st.km]),
           })}
+        />
+        <script
+          is:inline
+          type="application/json"
+          class="chart-heavy"
+          set:html={jsonBlock({ runs: landcover.runs.map((r) => [r.fromKm, r.toKm, landRows.findIndex((g) => g.id === r.group)]) })}
         />
         <figcaption class="chart-info">
           <Explain id="about-landscape-chart" term="About this chart" title="Landscape along the route" icon>
@@ -1722,9 +1758,15 @@ const trailLd = JSON.stringify({
               x0: LANE_X0,
               x1: LANE_X1,
               height: bedsAxis + 40,
-              lanes: bedRows.map((r) => r.points.map((p) => [p.km, p.what, p.name ?? "", stageless ? "" : p.stage, p.link ?? ""])),
+              sizes: bedRows.map((r) => r.points.length),
               labels: bedRows.map((r) => r.label),
             })}
+          />
+          <script
+            is:inline
+            type="application/json"
+            class="chart-heavy"
+            set:html={jsonBlock({ lanes: bedRows.map((r) => r.points.map((p) => [p.km, p.what, p.name ?? "", stageless ? "" : p.stage, p.link ?? ""])) })}
           />
           <div class="tip" role="status" hidden><strong></strong><span></span></div>
           <figcaption class="chart-info">
@@ -1924,10 +1966,16 @@ const trailLd = JSON.stringify({
               step: LANE.step,
               height: supplyAxis + 40,
               gap: GROUP_GAP,
-              lanes: supplyLanes.map((l) => l.points.map((p) => [p.km, p.what, p.name ?? "", stageless ? "" : p.stage, p.link ?? ""])),
+              sizes: supplyLanes.map((l) => l.points.length),
               labels: supplyLanes.map((l) => l.label),
               parent: supplyLanes.map((l) => l.parent ?? -1), // the group a row folds into (issue #119), -1: none
             })}
+          />
+          <script
+            is:inline
+            type="application/json"
+            class="chart-heavy"
+            set:html={jsonBlock({ lanes: supplyLanes.map((l) => l.points.map((p) => [p.km, p.what, p.name ?? "", stageless ? "" : p.stage, p.link ?? ""])) })}
           />
           <div class="tip" role="status" hidden><strong></strong><span></span></div>
           <figcaption class="chart-info">
@@ -2098,6 +2146,26 @@ const trailLd = JSON.stringify({
     });
   }
 
+  // Chart data too large for the page (the terrain profile's samples, every place in the lanes) sits
+  // in a "chart-heavy" block, which the build empties into the trail's charts.json
+  // (src/integrations/chart-files.mjs): fetched once, on the first approach to any such chart; in
+  // dev the block still holds it
+  const chartFiles = new Map<string, Promise<unknown[]>>();
+  function heavyData<T>(figure: HTMLElement): () => Promise<T> {
+    const el = figure.querySelector<HTMLElement>(".chart-heavy")!;
+    let data: Promise<T> | undefined;
+    return () => {
+      const src = el.dataset.src;
+      if (!src) return (data ??= Promise.resolve(JSON.parse(el.textContent!) as T));
+      if (!chartFiles.has(src)) chartFiles.set(src, fetch(src).then((r) => r.json()));
+      return (data ??= chartFiles.get(src)!.then((all) => all[Number(el.dataset.i)] as T));
+    };
+  }
+  // start loading as the pointer, a finger or the focus comes near the chart
+  const loadOnApproach = (el: HTMLElement, load: () => Promise<unknown>) => {
+    for (const type of ["pointerenter", "touchstart", "focusin"]) el.addEventListener(type, () => void load(), { once: true, passive: true });
+  };
+
   // Water, food and beds: one tooltip at the pointer, the nearest place in the lane under it (from
   // the chart's data, not an element per place: long trails have hundreds of beds).
   for (const figure of document.querySelectorAll<HTMLElement>(".waterline")) {
@@ -2112,7 +2180,7 @@ const trailLd = JSON.stringify({
       mid?: number; // a lane's middle below its top (13, the supply bands; 8, the slim beds lanes)
       x0?: number;
       x1?: number;
-      lanes: [number, string, string, string, string][][]; // km, what, name, stage, link (issue #118)
+      sizes: number[]; // places per row (the places themselves load with the chart-heavy block)
       labels?: string[]; // each row's label
       parent?: number[]; // the group row each row folds into, -1 for none (issue #119)
       gap?: number; // more room before each top-level row (issue #119)
@@ -2123,7 +2191,11 @@ const trailLd = JSON.stringify({
     // issue #118 (of three previews, approach A): every place links to its OSM object, or to its own
     // source's page: in the tooltip, which stays open while the pointer moves into it and is pinned by
     // a click or tap; for the keyboard and screen readers, a list of every place under the chart
-    type Place = [number, string, string, string, string];
+    type Place = [number, string, string, string, string]; // km, what, name, stage, link (issue #118)
+    const load = heavyData<{ lanes: Place[][] }>(figure);
+    let lanes: Place[][] | null = null;
+    const ready = () => load().then((h) => (lanes = h.lanes));
+    loadOnApproach(figure, ready);
     const KINDS: Record<string, string> = { n: "node", w: "way", r: "relation" };
     const href = (v: string) => (v.startsWith("http") ? v : `https://www.openstreetmap.org/${KINDS[v[0]]}/${v.slice(1)}`);
     const linkText = (v: string) => (v.startsWith("http") ? "View its source ↗" : "View on OpenStreetMap ↗");
@@ -2136,14 +2208,14 @@ const trailLd = JSON.stringify({
     let current: { p: Place; x: number } | null = null;
     // groups (Water, Shops) fold their kinds away (shut on load; without this script every row
     // shows): the visible rows move up, the axis follows and the drawing gets shorter
-    const parents = data.parent ?? data.lanes.map(() => -1);
+    const parents = data.parent ?? data.sizes.map(() => -1);
     const toggles = [...figure.querySelectorAll<HTMLButtonElement>(".tier-toggle")];
     const open = new Set<number>();
     let height = data.height;
-    let visible = data.lanes.map((_, i) => i);
+    let visible = data.sizes.map((_, i) => i);
     // a visible row's top: one step per row above it, plus the group gap before each top-level row
     const rowTop = (rows: number[], k: number) => data.top + k * data.step + (data.gap ?? 0) * rows.slice(1, k + 1).filter((i) => parents[i] < 0).length;
-    const all = data.lanes.map((_, i) => i);
+    const all = data.sizes.map((_, i) => i);
     const layout = () => {
       visible = all.filter((i) => parents[i] < 0 || open.has(parents[i]));
       for (const g of svg.querySelectorAll<SVGGElement>("g.row")) {
@@ -2181,6 +2253,7 @@ const trailLd = JSON.stringify({
     // the rows on screen, top to bottom
     const shown = () => visible;
     const show = (clientX: number, clientY: number) => {
+      if (!lanes) return void ready();
       const box = svg.getBoundingClientRect();
       const vx = ((clientX - box.left) / box.width) * 1000;
       const vy = ((clientY - box.top) / box.height) * height;
@@ -2197,7 +2270,7 @@ const trailLd = JSON.stringify({
       }
       const km = ((vx - X0) / (X1 - X0)) * data.total;
       // the nearest place within about 12 units (1.2 % of the route)
-      const near = data.lanes[lane].reduce<Place | null>(
+      const near = lanes[lane].reduce<Place | null>(
         (best, p) => (Math.abs(p[0] - km) < (best ? Math.abs(best[0] - km) : (12 / (X1 - X0)) * data.total) ? p : best),
         null,
       );
@@ -2233,8 +2306,9 @@ const trailLd = JSON.stringify({
     });
     tip.addEventListener("pointerenter", () => clearTimeout(leaving));
     tip.addEventListener("pointerleave", () => !pinned && hide());
-    svg.addEventListener("click", (e) => {
+    svg.addEventListener("click", async (e) => {
       e.stopPropagation();
+      await ready();
       pinned = false;
       show(e.clientX, e.clientY);
       if (current && !tip.hidden) pinned = true;
@@ -2254,22 +2328,22 @@ const trailLd = JSON.stringify({
     // row (the rows that hold places themselves, not the groups), each with its km, stage and link; its
     // button shows when focused, and the list is built when first opened (some trails have hundreds of
     // places); pointing at a row marks its place on the chart
-    const leaves = data.lanes.map((_, i) => i).filter((i) => !parents.includes(i) && data.lanes[i].length);
-    const count = leaves.reduce((n, i) => n + data.lanes[i].length, 0);
+    const leaves = data.sizes.map((_, i) => i).filter((i) => !parents.includes(i) && data.sizes[i]);
+    const count = leaves.reduce((n, i) => n + data.sizes[i], 0);
     const list = Object.assign(document.createElement("div"), { className: "place-list" });
     const listToggle = Object.assign(document.createElement("button"), { type: "button", className: "pl-toggle", textContent: `List all ${count} places` });
     listToggle.setAttribute("aria-expanded", "false");
     const listBody = Object.assign(document.createElement("div"), { className: "pl-body", hidden: true });
-    listToggle.addEventListener("click", () => {
-      if (!listBody.childElementCount) fill();
+    listToggle.addEventListener("click", async () => {
+      if (!listBody.childElementCount) fill(await ready());
       listBody.hidden = !listBody.hidden;
       listToggle.setAttribute("aria-expanded", String(!listBody.hidden));
     });
-    const fill = () => {
+    const fill = (lanes: Place[][]) => {
       for (const i of leaves) {
-        const h = Object.assign(document.createElement("p"), { className: "pl-lane", textContent: `${data.labels?.[i] ?? ""} · ${data.lanes[i].length}` });
+        const h = Object.assign(document.createElement("p"), { className: "pl-lane", textContent: `${data.labels?.[i] ?? ""} · ${lanes[i].length}` });
         const ol = Object.assign(document.createElement("ol"), { className: "pl-rows" });
-        for (const p of data.lanes[i]) {
+        for (const p of lanes[i]) {
           const li = document.createElement("li");
           const cell = (cls: string, text: string) => Object.assign(document.createElement("span"), { className: cls, textContent: text });
           li.append(cell("pl-km", `km ${p[0]}`), cell("pl-what", p[2] ? `${p[1]}: ${p[2]}` : p[1]), cell("pl-stage", p[3] ? `stage ${p[3]}` : ""));
@@ -2317,27 +2391,39 @@ const trailLd = JSON.stringify({
     const tip = figure.querySelector<HTMLElement>(".tip")!;
     const cursor = figure.querySelector<SVGLineElement>(".cursor")!;
     const dot = figure.querySelector<SVGCircleElement>(".cursor-dot")!;
-    const line = figure.querySelector<SVGPathElement>(".line")!;
-    const data: {
-      total: number;
+    const { total, ey }: { total: number; ey: [number, number, number, number] } = JSON.parse(figure.querySelector(".chart-data")!.textContent!);
+    // the plotted height (the page's yAt): the elevation range min to max on the chart's top to bottom
+    const yOf = (m: number) => ey[3] - ((m - ey[0]) / (ey[1] - ey[0])) * (ey[3] - ey[2]);
+    type Heavy = {
       points: [number, number][];
       bars: [number, number, number, string][]; // fromKm, toKm, grade, stage
       runs: [number, number, string][]; // fromKm, toKm, category
-    } = JSON.parse(figure.querySelector(".chart-data")!.textContent!);
-    const { points, total } = data;
-    const bars = data.bars.map(([fromKm, toKm, grade, stage]) => ({ fromKm, toKm, grade, stage }));
-    const runs = data.runs.map(([fromKm, toKm, category]) => ({ fromKm, toKm, category }));
+    };
+    const load = heavyData<Heavy>(figure);
+    let points: Heavy["points"] = [];
+    let bars: { fromKm: number; toKm: number; grade: number; stage: string }[] = [];
+    let runs: { fromKm: number; toKm: number; category: string }[] = [];
+    let loaded = false;
+    const ready = () =>
+      load().then((h) => {
+        if (loaded) return;
+        points = h.points;
+        bars = h.bars.map(([fromKm, toKm, grade, stage]) => ({ fromKm, toKm, grade, stage }));
+        runs = h.runs.map(([fromKm, toKm, category]) => ({ fromKm, toKm, category }));
+        loaded = true;
+      });
+    loadOnApproach(figure, ready);
     const GROUND: Record<string, string> = { natural: "natural ground", gravel: "gravel", paved: "paved", unknown: "unknown surface" };
     const X0 = 8;
     const X1 = 992;
     const show = (clientX: number) => {
+      if (!loaded) return void ready();
       const box = svg.getBoundingClientRect();
       const vx = Math.min(Math.max(((clientX - box.left) / box.width) * 1000, X0), X1);
       const km = ((vx - X0) / (X1 - X0)) * total;
       const idx = points.reduce((best, p, i) => (Math.abs(p[0] - km) < Math.abs(points[best][0] - km) ? i : best), 0);
       const [pkm, m] = points[idx];
-      // y of the plotted point: read it off the path at the same index
-      const y = Number(line.getAttribute("d")!.split(/[ML]/).filter(Boolean)[idx].split(",")[1]);
+      const y = yOf(m);
       const bar = bars.find((b) => pkm >= b.fromKm && pkm <= b.toKm);
       const run = runs.find((r) => pkm >= r.fromKm && pkm <= r.toKm);
       cursor.setAttribute("x1", String(vx));
@@ -2362,8 +2448,9 @@ const trailLd = JSON.stringify({
     };
     svg.addEventListener("pointermove", (e) => show(e.clientX));
     svg.addEventListener("pointerleave", (e) => e.pointerType === "mouse" && hide());
-    svg.addEventListener("click", (e) => {
+    svg.addEventListener("click", async (e) => {
       e.stopPropagation();
+      await ready();
       show(e.clientX);
     });
     document.addEventListener("click", hide);
@@ -2381,15 +2468,19 @@ const trailLd = JSON.stringify({
       x0: number;
       x1: number;
       lanes: string[];
-      runs: [number, number, number][]; // fromKm, toKm, lane
       stages: [string, number][]; // number, start km
     } = JSON.parse(figure.querySelector(".chart-data")!.textContent!);
+    const load = heavyData<{ runs: [number, number, number][] }>(figure); // fromKm, toKm, lane
+    let runs: [number, number, number][] | null = null;
+    const ready = () => load().then((h) => (runs = h.runs));
+    loadOnApproach(figure, ready);
     const height = svg.viewBox.baseVal.height;
     const show = (clientX: number) => {
+      if (!runs) return void ready();
       const box = svg.getBoundingClientRect();
       const vx = Math.min(Math.max(((clientX - box.left) / box.width) * 1000, data.x0), data.x1);
       const km = ((vx - data.x0) / (data.x1 - data.x0)) * data.total;
-      const run = data.runs.find(([from, to]) => km >= from && km <= to);
+      const run = runs.find(([from, to]) => km >= from && km <= to);
       if (!run) return;
       const stage = data.stages.filter(([, start]) => start <= km).at(-1)?.[0];
       cursor.setAttribute("x1", String(vx));
@@ -2410,8 +2501,9 @@ const trailLd = JSON.stringify({
     };
     svg.addEventListener("pointermove", (e) => show(e.clientX));
     svg.addEventListener("pointerleave", (e) => e.pointerType === "mouse" && hide());
-    svg.addEventListener("click", (e) => {
+    svg.addEventListener("click", async (e) => {
       e.stopPropagation();
+      await ready();
       show(e.clientX);
     });
     document.addEventListener("click", hide);

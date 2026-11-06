@@ -1,7 +1,8 @@
 // Lighthouse on five page types in light and dark mode against a built site served locally
 // (issue #91): accessibility, best practices and SEO must score 100, and performance at least
-// PERFORMANCE_MIN (enforced since 2026-11-06; it varies ±5 between runs, so not 100). Usage:
-// node scripts/lighthouse-check.mjs http://localhost:4321
+// PERFORMANCE_MIN (enforced since 2026-11-06; every page scores 100 served compressed, as GitHub
+// Pages does, by scripts/serve-dist.mjs; the bar leaves room for a slow runner). Usage:
+// node scripts/serve-dist.mjs 4321 & node scripts/lighthouse-check.mjs http://localhost:4321
 // Needs Chrome (CHROME_PATH) and lighthouse (npx). Exits 1 if a category is below its bar.
 import { execFileSync } from "node:child_process";
 import { readFileSync, mkdtempSync } from "node:fs";
@@ -12,7 +13,7 @@ const base = process.argv[2] ?? "http://localhost:4321";
 const PAGES = ["/", "/trails/", "/trails/guide/", "/trails/alpe-adria-trail/", "/trails/map/"];
 const SCHEMES = { light: 1, dark: 0 };
 const REQUIRED = ["accessibility", "best-practices", "seo"];
-const PERFORMANCE_MIN = 90;
+const PERFORMANCE_MIN = 95;
 const dir = mkdtempSync(join(tmpdir(), "lh-"));
 let failed = false;
 for (const page of PAGES) {

@@ -5,6 +5,8 @@
 // the block, two share it, three or four stack the small ones beside the large one. The photos come
 // from Wikimedia Commons (pipeline/photos.py, data/photos/<slug>.json); a credit line under the
 // mosaic names their authors, and the gallery each photo's author and licence, linked to its file page.
+import { existsSync } from "node:fs";
+import { join } from "node:path";
 import PhotoGallery from "./PhotoGallery.astro";
 
 export interface Photo {
@@ -26,15 +28,31 @@ interface Props {
 const { photos, trailName } = Astro.props;
 const shown = photos.slice(0, 5);
 const authors = [...new Set(photos.map((p) => p.author))];
+// the large tile takes the 800 px copy (NN-m.webp, scripts/photos-webp.mjs) where it is enough: the
+// tile is at most 1200 px wide alone, 600–800 px beside the small ones; the full 1,280 px stays for
+// wide screens with one or two photos, high-density screens and the gallery
+const count = Math.min(shown.length, 5);
+const medium = shown[0] && shown[0].src.replace(/\.webp$/, "-m.webp");
+const hasMedium = medium && existsSync(join(process.cwd(), "public", medium));
+const bigSrcset = hasMedium ? `${shown[0].thumb} 480w, ${medium} 800w, ${shown[0].src} 1280w` : undefined;
+const bigSizes = hasMedium
+  ? count === 1
+    ? "(min-width: 1232px) 1200px, 100vw"
+    : count === 2
+      ? "(min-width: 1232px) 596px, (min-width: 640px) 50vw, 100vw"
+      : count === 5
+        ? "(min-width: 1232px) 600px, (min-width: 640px) 50vw, 100vw"
+        : "(min-width: 1232px) 795px, (min-width: 640px) 66vw, 100vw"
+  : undefined;
 const authorText = authors.length > 1 ? `${authors.slice(0, -1).join(", ")} and ${authors.at(-1)}` : authors[0];
 ---
 
-<div class="tp" data-count={Math.min(shown.length, 5)}>
+<div class="tp" data-count={count}>
   <h2 class="sr-only">Photos</h2>
   <div class="tp-grid">
     {shown.map((p, i) => (
       <button type="button" class:list={["tp-tile", { big: i === 0 }]} data-photo={i} aria-label={`Open photo ${i + 1} of ${photos.length}: ${p.caption}`}>
-        <img src={i === 0 ? p.src : p.thumb} alt="" width={p.w} height={p.h} loading={i === 0 ? "eager" : "lazy"} fetchpriority={i === 0 ? "high" : undefined} decoding={i === 0 ? "sync" : "async"} />
+        <img src={i === 0 ? p.src : p.thumb} srcset={i === 0 ? bigSrcset : undefined} sizes={i === 0 ? bigSizes : undefined} alt="" width={p.w} height={p.h} loading={i === 0 ? "eager" : "lazy"} fetchpriority={i === 0 ? "high" : undefined} decoding={i === 0 ? "sync" : "async"} />
       </button>
     ))}
     {photos.length > 1 && (

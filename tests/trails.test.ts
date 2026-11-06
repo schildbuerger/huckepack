@@ -5,7 +5,7 @@ import { test } from "node:test";
 import assert from "node:assert/strict";
 import { barMetres, gradients, noStages, perDay, routeEstimate, sleepingCategories, trailClimb, trailLength, trailDays, walkingMinutes, stageTotals, STEEP_PERCENT } from "../src/lib/trails.ts";
 import { difficulty } from "../src/lib/difficulty.ts";
-import { mergeRuns, stripPaths, n1 } from "../src/lib/svg.ts";
+import { mergeRuns, rectsPath, simplify, stripPaths, n1 } from "../src/lib/svg.ts";
 import { kmBetween, roundDistance } from "../src/lib/geo.ts";
 import { bestRun, climateFor, monthsText, readPick, runBetween } from "../src/lib/months.ts";
 import { SKYLINES, SKY_W, SKY_H, BROAD, STEEP } from "../src/lib/skylines.ts";
@@ -104,6 +104,14 @@ test("strip paths: one path per category, neighbouring runs joined", () => {
   );
   assert.equal(paths[0].d, "M0 0h200v10h-200z");
   assert.equal(n1(1.26), 1.3);
+  // later rectangles move from the one before, without leading zeros
+  assert.equal(rectsPath([[10, 0.6], [12.5, 2], [11.2, 0.4]], 5, 10), "M10 5h.6v10h-.6zm2.5 0h2v10h-2zm-1.3 0h.4v10h-.4z");
+});
+
+test("simplify keeps the shape and drops what doesn't show", () => {
+  const line: [number, number][] = Array.from({ length: 101 }, (_, i) => [i, i === 50 ? 20 : 0.05 * (i % 2)]);
+  const out = simplify(line, 0.2);
+  assert.deepEqual(out, [[0, 0], [49, 0.05], [50, 20], [51, 0.05], [100, 0]]);
 });
 
 test("distances on the globe", () => {

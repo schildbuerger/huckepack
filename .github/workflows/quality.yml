@@ -1,6 +1,6 @@
 # Lighthouse on five page types in light and dark mode (issue #91): accessibility, best practices
-# and SEO must stay at 100, performance at least 90 (scripts/lighthouse-check.mjs; enforced since
-# 2026-11-06).
+# and SEO must stay at 100, performance at least 95 (scripts/lighthouse-check.mjs; enforced since
+# 2026-11-06). The build is served as GitHub Pages serves it, compressed (scripts/serve-dist.mjs).
 name: Quality
 
 on:
@@ -26,6 +26,6 @@ jobs:
       - run: npm run build
       - name: Serve the build and check it
         run: |
-          python3 -m http.server 4321 --directory dist >/dev/null 2>&1 &
+          node scripts/serve-dist.mjs 4321 >/dev/null 2>&1 &
           sleep 2
           CHROME_PATH="$(command -v google-chrome || command -v chromium)" node scripts/lighthouse-check.mjs http://localhost:4321
