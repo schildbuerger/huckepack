@@ -154,6 +154,8 @@ And the **Ozark Highlands Trail** (Arkansas: the Ozark Highlands Trail Associati
 
 And the **Colorado Trail** (Colorado: the Colorado Trail Foundation's and the Forest Service's 486 miles (782 km) from Waterton Canyon near Denver to Durango in its 28 segments on the Collegiate East route (the Collegiate West alternative noted), 4–6 weeks at an average elevation over 3,100 m, through six wilderness areas and up to 4,045 m below Coney Summit in the San Juans, July to September; over the three OSM relations of its superroute; 2026-11-06).
 
+And the **Ouachita National Recreation Trail** (Arkansas and Oklahoma: the Forest Service's longest trail in the Ouachita National Forest, 223 miles (358.9 km) along the Ouachitas' east–west ridges from Talimena State Park to Pinnacle Mountain State Park near Little Rock, the last 32 miles on Arkansas State Parks' and other lands, kept by the Friends of the Ouachita Trail in their ten sections with 23 shelters, blue-blazed, past Queen Wilhelmina State Park and Lake Sylvia, best from late autumn to early spring; over the OSM relation; 2026-11-06).
+
 | # | Trail | Region | Length (approx.) | Why |
 |---|---|---|---|---|
 | 1 | Pacific Crest Trail | USA | 4,265 km | Most-hiked long trail; public US agency data; completion lists |

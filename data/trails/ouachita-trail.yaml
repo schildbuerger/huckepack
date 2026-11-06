@@ -1,0 +1,294 @@
+name: Ouachita National Recreation Trail
+added: 2026-11-06
+aliases: [Ouachita Trail, OT]
+website: https://www.fs.usda.gov/r08/ouachita/recreation/trails/ouachita-national-recreation-trail
+wikidata: Q7110142
+designation: National Recreation Trail
+managedBy:
+  # the Forest Service: "This is the longest trail in the Ouachita National Forest spanning 192
+  # miles"; "An additional 32 miles of trail, located on private and other public lands, extends to
+  # Pinnacle Mountain State Park"; "maintained by a non-profit group, Friends of the Ouachita Trail
+  # (FoOT)". The Encyclopedia of Arkansas: "The thirty miles east of the national forest are
+  # administered by Pinnacle Mountain State Park"
+  - name: USDA Forest Service, Ouachita National Forest
+    url: https://www.fs.usda.gov/r08/ouachita
+  - name: Arkansas State Parks, Pinnacle Mountain State Park
+    url: https://www.arkansasstateparks.com/parks/pinnacle-mountain-state-park
+  - name: Friends of the Ouachita Trail
+    url: https://www.friendsoftheouachita.org/
+officialGpx:
+  none: neither the Forest Service nor the Friends of the Ouachita Trail offer a GPX download; the Friends point to the FarOut app and to maps by hiking clubs (checked 2026-11-06)
+  source: foot-maps
+trailType: point-to-point
+continents: [North America]
+countries: [US]
+regions: [Oklahoma, Arkansas]
+protectedAreas: [Ouachita National Forest, Upper Kiamichi River Wilderness, Flatside Wilderness, Talimena State Park, Queen Wilhelmina State Park, Pinnacle Mountain State Park]
+termini:
+  # the Forest Service: "In the west, the trail begins at Talimena State Park on Highway 271 near
+  # Talihina, Oklahoma"; the Friends' sections run from "Talimena SP" (mile 0.0) to "PMSP {END}"
+  # (mile 223.0). Coordinates: the ends of OSM's relation 3838499
+  start:
+    name: Talimena State Park
+    lat: 34.7835
+    lon: -94.95153
+  end:
+    name: Pinnacle Mountain State Park
+    lat: 34.84457
+    lon: -92.46367
+  source: foot-reports
+established:
+  # "the Ouachita Trail was constructed between 1971 and 1981. It was certified by the National
+  # Recreation Trails Program in 1978"
+  year: 1981
+  source: eoa
+waymarking:
+  # "Today, the trail is in good shape and well marked with the traditional blue trail blazes"
+  text: Well marked with the traditional blue trail blazes.
+  source: eoa
+length:
+  # the Friends' brochure: "The Ouachita National Recreation Trail - 223 Miles"; their sections run
+  # from mile 0.0 to 223.0
+  - km: 358.9
+    source: foot
+stages:
+  # the Friends' ten sections from their trail condition report (Sect 1–10, begin and end mile
+  # markers; ends at the trailheads named there); the same ten sections as the guide the Friends
+  # call official (Tim Ernst's Ouachita Trail Guide). Section ends on OSM's relation where the
+  # trail meets the road or trailhead named
+  source: foot-reports
+  list:
+    - { number: "1", kind: main, from: Talimena State Park, to: Winding Stair Trailhead, km: 38.1, end: { lat: 34.71474, lon: -94.67971 } }
+    - { number: "2", kind: main, from: Winding Stair Trailhead, to: Queen Wilhelmina State Park Lodge, km: 44.9, end: { lat: 34.68369, lon: -94.36869 } }
+    - { number: "3", kind: main, from: Queen Wilhelmina State Park Lodge, to: Foran Gap (Highway 71), km: 26.6, end: { lat: 34.682, lon: -94.18063 } }
+    - { number: "4", kind: main, from: Foran Gap (Highway 71), to: Big Brushy Campground, km: 42.5, end: { lat: 34.68486, lon: -93.80473 } }
+    - { number: "5", kind: main, from: Big Brushy Campground, to: Highway 27 Trailhead, km: 43.8, end: { lat: 34.75856, lon: -93.49341 } }
+    - { number: "6", kind: main, from: Highway 27 Trailhead, to: Highway 298 Trailhead, km: 27.5, end: { lat: 34.68927, lon: -93.3426 } }
+    - { number: "7", kind: main, from: Highway 298 Trailhead, to: Highway 7 Trailhead, km: 34.8, end: { lat: 34.77396, lon: -93.08501 } }
+    - { number: "8", kind: main, from: Highway 7 Trailhead, to: Forest Road 152, km: 43.5, end: { lat: 34.85757, lon: -92.81779 } }
+    - { number: "9", kind: main, from: Forest Road 152, to: Highway 10, km: 23.5, end: { lat: 34.87238, lon: -92.65349 } }
+    - { number: "10", kind: main, from: Highway 10, to: Pinnacle Mountain State Park, km: 33.8, end: { lat: 34.84457, lon: -92.46367 } }
+route:
+  # built by `python -m pipeline.all ouachita-trail`: OSM ways matched to the trail's OSM relation
+  # (3838499, operator Friends of the Ouachita Trail), cut at the sections' ends
+  source: osm
+  publishable: true
+  relation: 3838499
+difficulty:
+  estimated:
+    sac: T2
+    basis: >-
+      The Friends describe "a challenging wilderness-type trail with mountains, rocks, creeks, rivers,
+      uneven tread and various obstacles", a single-track footpath over long forested ridges between
+      about 180 and 800 m (the Forest Service: 600 to 2,600 feet in the national forest), with river
+      crossings and no exposed passages. Mountain hiking on a maintained trail (T2).
+    source: foot-reports
+season:
+  # Wikipedia (en): "the best times to hike the trail are the early spring and late autumn; winter
+  # months are often warm enough, also. In July to September, the weather tends to be too hot to
+  # hike comfortably, and water access points tend to dry up." Neither the Forest Service nor the
+  # Friends publish a season (searched 2026-11-06)
+  months: [10, 11, 12, 1, 2, 3, 4]
+  text: Late autumn to early spring; winter is often mild enough, while July to September tends to be too hot and water sources dry up
+  source: wikipedia
+sleeping:
+  # the Friends' 23 trail shelters (three-sided, unstaffed); Forest Service and state park
+  # campgrounds on the way (Winding Stair, Big Brushy, Lake Sylvia; Talimena and Queen Wilhelmina
+  # State Parks)
+  types: [bivouac, campsite]
+  source: foot-shelters
+wildCamping:
+  status: restricted
+  rule: >-
+    Dispersed camping is allowed anywhere in the Ouachita National Forest outside developed
+    campgrounds, at least 100 feet from streams, but typically not near campgrounds, picnic areas
+    or trailheads; campfires are allowed unless fire restrictions are in force. The last 32 miles
+    to Pinnacle Mountain run on private and other public lands.
+  source: usfs-camping
+access:
+  # Fort Smith Regional Airport, the nearest airport with airline flights to the western start;
+  # Clinton National Airport and Little Rock Union Station (Amtrak's Texas Eagle), near the eastern
+  # end. Coordinates from OSM; distances by pipeline/access.py
+  - kind: airport
+    name: Fort Smith Regional Airport (FSM)
+    lat: 35.33925
+    lon: -94.35698
+    source: osm
+  - kind: airport
+    name: Bill and Hillary Clinton National Airport (LIT)
+    lat: 34.73077
+    lon: -92.22377
+    source: osm
+  - kind: station
+    name: Little Rock Union Station
+    lat: 34.75038
+    lon: -92.28722
+    source: osm
+animals:
+  # the Ouachita National Forest's alert "Be Bear Aware in the National Forests in Arkansas &
+  # Oklahoma!" (9 October 2025); level ours
+  list:
+    - kind: bear
+      name: Black bear
+      level: low
+      basis: The Forest Service says the national forests in Arkansas and Oklahoma are bear country and asks dispersed campers to camp accordingly; it requires no bear-proof food storage.
+      do:
+        - Stay alert, do not wear headphones, and cautiously approach any blind corners on trails
+        - Remain calm; group together and pick up small children
+        - Continue to face the bear and back away slowly, speaking calmly
+        - If the bear continues to approach, try to scare it away by making yourself as large and imposing as possible by stretching your arms overhead and making loud noises
+      dont:
+        - If you see a bear, do not run
+      source: usfs-bears
+tags: [forest, mountains, wilderness]
+notes:
+  - >-
+    Stages: the Friends of the Ouachita Trail's ten sections from their trail condition report (the
+    "Trail Reports" sheet on their home page), with its mile markers (0.0, 23.7, 51.6, 68.1, 94.5,
+    121.7, 138.8, 160.4, 187.4, 202.0 and 223.0), converted to km. The Forest Service, which runs the
+    trail, publishes no sections; the Friends maintain it for the Forest Service and Arkansas State
+    Parks, and their sections are those of the guide they call the trail's official guide (Tim
+    Ernst's Ouachita Trail Guide, ten sections).
+  - >-
+    Length: the Friends' 223 miles (358.9 km), the stretch of their sections. The Forest Service
+    gives 192 miles in the national forest plus "an additional 32 miles" to Pinnacle Mountain State
+    Park (224 miles together).
+  - >-
+    Days: no source gives days for the whole trail; the page counts one day per section, though
+    several sections run over 40 km.
+  - >-
+    Season: neither the Forest Service nor the Friends publish one (searched 2026-11-06); the record
+    takes English Wikipedia's (late autumn to early spring). The Ouachita Mountain Hikers, a club
+    the Friends link to, hike sections of the trail each month from October to May.
+  - >-
+    Waymarking: blue paint blazes; like the Long Trail's and the Laurel Highlands' blazes, no mark
+    is drawn. The trail's sign, a yellow triangle with the letters OT, is a logo and isn't redrawn.
+  - >-
+    Tree line: not added; the route stays under 900 m in the Ouachita Mountains' forest.
+  - >-
+    Wildlife: only the black bear has official advice (the Forest Service's alert). Ticks and
+    venomous snakes (copperheads, rattlesnakes) live in the region too, but no Forest Service or
+    state page for the trail gives advice to quote (searched 2026-11-06), so they are not listed.
+  - >-
+    Map line (2026-11-06): the Oklahoma and Arkansas Geofabrik extracts (2026-11-05); OSM's relation
+    3838499, chained from Talimena State Park and cut at the ten section ends, every section 100 %
+    matched. It measures 347.2 km against the Friends' 223 miles (358.9 km, −3.3 %); sections within
+    10 % (section 1 35.1 against 38.1 km, −8 %; section 4 44.6 against 42.5 km, +5 %). Highest point
+    811 m at km 72.7 (Rich Mountain near the state line; Wikipedia: 2,610 ft, 796 m; the Forest
+    Service: up to 2,600 feet), lowest 80 m at km 343.5 near Pinnacle Mountain (Wikipedia: 270 ft,
+    82 m). The terrain model gives about 10,510 m of climbing; none is stated.
+  - >-
+    Water: OSM maps no drinking water within 500 m of the trail, only 6 springs, so the check's
+    longest stretch without drinking water is the whole trail (312.7 km without water or a refill,
+    km 34.5–347.2). The trail runs along streams and past campgrounds (Winding Stair, Big Brushy,
+    Lake Sylvia), and the Friends keep a water sources guide (a download); the Forest Service says
+    streams "will usually be dry in the late summer and early fall. Carry water or a water
+    filtration device with you." No tap is added: none of the sources names one on the trail.
+  - >-
+    Resupply: OSM maps no shop within 1 km of the trail or 3 km of a section end; the trail keeps to
+    the national forest's ridges, and the towns (Talihina, Mena, Jessieville, Perryville) lie
+    several miles off it by road.
+  - >-
+    Beds: OSM maps 3 places to sleep (campsites near the western end), the longest stretch without
+    one 312.7 km. The Friends' 23 shelters (8 to 24 km apart) and dispersed camping in the
+    national forest cover the rest; OSM's shelters are not counted (CLAUDE.md).
+  - >-
+    Travel hubs: Clinton National Airport and Little Rock Union Station lie near the eastern end, about
+    300 km by road from the western start; Fort Smith Regional Airport is added as the nearest
+    airport with airline flights to the start, though not an international one.
+  - >-
+    Photos: only 2 usable photos from Commons (no category for the trail; both from the Talimena
+    Scenic Drive's overlooks on section 1), both checked by eye.
+  - >-
+    Data check (2026-11-06): against English Wikipedia and the CALS Encyclopedia of Arkansas. Length
+    223 miles agrees with Wikipedia (223 miles, 0 %) and the Encyclopedia ("approximately 225-mile",
+    +0.9 %); the Forest Service's 192 + 32 miles make 224. Termini (Talimena State Park, Pinnacle
+    Mountain State Park), the 177 miles in Arkansas and 46 in Oklahoma, the blue blazes, the
+    building from 1971 to 1981 and the two wilderness areas agree in both. Highest point: the terrain
+    model's 811 m against Wikipedia's 2,610 ft (796 m, +1.9 %); lowest 80 m against 270 ft (82 m).
+    Season: the record takes Wikipedia's; its infobox says "Year-round", and the Ouachita Mountain
+    Hikers' October to May agrees with late autumn to early spring. Camping: the Encyclopedia says
+    camping is allowed along the trail "except in the designated wilderness areas", while the Forest
+    Service's dispersed camping rules name no such exception; the record keeps the Forest Service's.
+    Sections: no second source gives them; the ten sections on the built page were checked one by
+    one against the Friends' condition report (ends, mile markers, km), and the Friends' shelter
+    mile markers fall in the sections as named. No days, difficulty or ascent are published.
+dataCheck:
+  # working rule 2: English Wikipedia and the Encyclopedia of Arkansas as second sources; the
+  # sections only in the Friends' report, so the built page was checked against it
+  date: 2026-11-06
+  against: [wikipedia, eoa]
+  pageAgainst: [foot-reports, foot-shelters, usfs-camping]
+  deviations:
+    - { figure: wild camping, ours: "Dispersed camping anywhere in the national forest outside developed sites (Forest Service)", theirs: "Camping allowed along the trail except in the designated wilderness areas", source: eoa }
+sources:
+  - id: usfs-ot
+    title: "USDA Forest Service, Ouachita National Forest: Ouachita National Recreation Trail (192 miles in the national forest, plus 32 miles to Pinnacle Mountain State Park; elevations 600 to 2,600 feet)"
+    url: https://www.fs.usda.gov/r08/ouachita/recreation/trails/ouachita-national-recreation-trail
+    licence: US federal government work (public domain)
+    retrieved: 2026-11-06
+  - id: foot-reports
+    title: "Friends of the Ouachita Trail: Ouachita Trail condition report (ten sections with begin and end mile markers, 0.0 to 223.0)"
+    url: https://docs.google.com/spreadsheets/d/1_3_u_8gtQSoiFSgzVAf3uGwPMj_nqQ25/edit?usp=sharing
+    licence: All rights reserved (facts only)
+    retrieved: 2026-11-06
+  - id: foot
+    title: "Friends of the Ouachita Trail: brochure (The Ouachita National Recreation Trail, 223 miles)"
+    url: https://www.friendsoftheouachita.org/wp-content/uploads/2025/05/FoOT-brochure-V11-05-26-25.pdf
+    licence: All rights reserved (facts only)
+    retrieved: 2026-11-06
+  - id: foot-shelters
+    title: "Friends of the Ouachita Trail: Trail Shelters (23 shelters with mile markers)"
+    url: https://www.friendsoftheouachita.org/hiker-info/trail-shelters/
+    licence: All rights reserved (facts only)
+    retrieved: 2026-11-06
+  - id: foot-maps
+    title: "Friends of the Ouachita Trail: Maps and Trail Guide"
+    url: https://www.friendsoftheouachita.org/hiker-info/maps-and-trail-guide/
+    licence: All rights reserved (facts only)
+    retrieved: 2026-11-06
+  - id: usfs-camping
+    title: "USDA Forest Service, Ouachita National Forest: Camping and Cabins (dispersed camping guidelines, campfires)"
+    url: https://www.fs.usda.gov/r08/ouachita/recreation/camping-cabins
+    licence: US federal government work (public domain)
+    retrieved: 2026-11-06
+  - id: usfs-bears
+    title: "USDA Forest Service, Ouachita National Forest: Be Bear Aware in the National Forests in Arkansas & Oklahoma! (alert, 9 October 2025)"
+    url: https://www.fs.usda.gov/r08/ouachita/alerts/be-bear-aware-national-forests-arkansas-oklahoma
+    licence: US federal government work (public domain)
+    retrieved: 2026-11-06
+  - id: eoa
+    title: "CALS Encyclopedia of Arkansas: Ouachita National Recreation Trail (history, blue blazes, camping)"
+    url: https://encyclopediaofarkansas.net/entries/ouachita-national-recreation-trail-3705/
+    licence: All rights reserved (facts only)
+    retrieved: 2026-11-06
+  - id: wikipedia
+    title: "Wikipedia (en): Ouachita National Recreation Trail"
+    url: https://en.wikipedia.org/wiki/Ouachita_National_Recreation_Trail
+    licence: CC BY-SA 4.0
+    retrieved: 2026-11-06
+  - id: osm
+    title: "OpenStreetMap contributors: paths, water, shops and places to sleep along the trail (Geofabrik extracts), travel hubs"
+    url: https://www.openstreetmap.org/
+    licence: ODbL 1.0
+    retrieved: 2026-11-06
+  - id: copdem
+    title: "Copernicus DEM GLO-30 (30 m terrain model), tiles from AWS Open Data"
+    url: https://registry.opendata.aws/copernicus-dem/
+    licence: "Copernicus WorldDEM-30 licence, free; produced using Copernicus WorldDEM-30 © DLR e.V. 2010-2014 and © Airbus Defence and Space GmbH 2014-2018 provided under COPERNICUS by the European Union and ESA; all rights reserved"
+    retrieved: 2026-11-06
+  - id: worldcover
+    title: "ESA WorldCover 2021: 10 m land cover (via AWS Open Data)"
+    url: https://esa-worldcover.org/
+    licence: "CC BY 4.0; © ESA WorldCover project 2021 / Contains modified Copernicus Sentinel data (2021) processed by ESA WorldCover consortium"
+    retrieved: 2026-11-06
+  - id: era5
+    title: "Open-Meteo open data on AWS: ERA5-Land temperature and ERA5 precipitation, snow and wind, daily 1995–2024 (reanalysis)"
+    url: https://github.com/open-meteo/open-data
+    licence: CC BY 4.0 (Open-Meteo); contains modified Copernicus Climate Change Service information
+    retrieved: 2026-11-06
+  - id: osrm
+    title: "OSRM: road routes on OpenStreetMap data (router.project-osrm.org)"
+    url: https://project-osrm.org/
+    licence: Route data © OpenStreetMap contributors (ODbL)
+    retrieved: 2026-11-06
