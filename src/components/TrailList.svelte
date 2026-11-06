@@ -628,10 +628,11 @@
     color: var(--bg);
     font-weight: 600;
   }
+  /* inactive Previous/Next and the gap: the muted text colour, without fading it further (opacity
+     brought it to 2.5:1, below the 4.5:1 Lighthouse's contrast check needs) */
   .pager .off,
   .pager .gap {
     color: var(--muted);
-    opacity: 0.6;
   }
   .pager .step a,
   .pager .step .off {
