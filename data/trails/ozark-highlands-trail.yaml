@@ -1,0 +1,313 @@
+name: Ozark Highlands Trail
+added: 2026-11-06
+aliases: [OHT]
+designation: National Recreation Trail
+website: https://ozarkhighlandstrail.com/trail/
+wikidata: Q7116493
+managedBy:
+  # the association builds and maintains the trail (FAQ: "The Boston Mountains, Buffalo River, and
+  # Sylamore segments are maintained by OHTA volunteers"); the land is the Ozark–St. Francis
+  # National Forests', Lake Fort Smith State Park's and the Buffalo National River's (NPS)
+  - name: Ozark Highlands Trail Association
+    url: https://ozarkhighlandstrail.com/
+  - name: USDA Forest Service, Ozark–St. Francis National Forests
+    url: https://www.fs.usda.gov/r08/ozark-stfrancis/recreation/trails/ozark-highlands-trail
+officialGpx:
+  none: the association shows a GPS track on its trail page "for illustrative purposes only" and sells its maps and a FarOut guide; no GPX to download (checked 2026-11-06)
+  source: ohta-trail
+trailType: point-to-point
+continents: [North America]
+countries: [US]
+regions: [Arkansas]
+protectedAreas: [Lake Fort Smith State Park, Hurricane Creek Wilderness, Buffalo National River]
+termini:
+  # the FAQ: "Continuous built trail is in place from Lake Fort Smith State Park to AR-14, or 207
+  # miles"; the trail page's trailheads: Lake Ft Smith (mile 0) 35.694624, -94.11849 and Dillard's
+  # Ferry – AR-14 (mile 206.4) 36.0652, -92.5783. The Sylamore and Norfork Lake segments beyond the
+  # unbuilt Lower Buffalo Wilderness gap are left out (notes)
+  start:
+    name: Lake Fort Smith State Park
+    lat: 35.69462
+    lon: -94.11849
+  end:
+    name: Dillard's Ferry (AR-14)
+    lat: 36.0652
+    lon: -92.5783
+  source: ohta-trail
+established:
+  # the home page: "The OHT was dedicated as a National Recreation Trail in 1989"; the trail page:
+  # the Boston Mountains segment was "completed in 1989"
+  year: 1989
+  source: ohta
+waymarking:
+  # the trail page
+  text: >-
+    Blazed with 2″×6″ white markers, vertical and nailed to a tree near eye level; mile markers are
+    12″ carsonite posts fixed horizontally to a tree. On the Buffalo River's shared stretch,
+    hiker-only trail is blazed white and the equestrian trail yellow.
+  source: ohta-trail
+length:
+  # the FAQ: "Continuous built trail is in place from Lake Fort Smith State Park to AR-14, or 207
+  # miles" (the trail page: "The longest continuous piece is 207 miles")
+  - km: 333
+    source: ohta-faq
+stages:
+  # the association's major trailheads with their mile markers (trail page: the Boston Mountains
+  # segment's ten, the Buffalo River segment's nine), trailhead to trailhead from west to east;
+  # each stage's km is the difference of the mile markers. Ends at the trailheads' coordinates
+  source: ohta-trail
+  list:
+    - { number: "1", kind: main, from: Lake Fort Smith State Park, to: White Rock Mountain, km: 28.0, end: { lat: 35.68953, lon: -93.95447 } }
+    - { number: "2", kind: main, from: White Rock Mountain, to: Cherry Bend, km: 28.8, end: { lat: 35.74332, lon: -93.81155 } }
+    - { number: "3", kind: main, from: Cherry Bend, to: Lick Branch, km: 31.9, end: { lat: 35.71000, lon: -93.66157 } }
+    - { number: "4", kind: main, from: Lick Branch, to: Arbaugh Road, km: 23.8, end: { lat: 35.75765, lon: -93.52795 } }
+    - { number: "5", kind: main, from: Arbaugh Road, to: Ozone Campground, km: 23.8, end: { lat: 35.67298, lon: -93.45078 } }
+    - { number: "6", kind: main, from: Ozone Campground, to: Fort Douglas (Big Piney Creek), km: 30.7, end: { lat: 35.67795, lon: -93.23807 } }
+    - { number: "7", kind: main, from: Fort Douglas (Big Piney Creek), to: Fairview Campground, km: 32.2, end: { lat: 35.73875, lon: -93.09376 } }
+    - { number: "8", kind: main, from: Fairview Campground, to: Richland Creek Campground, km: 31.2, end: { lat: 35.7964, lon: -92.9303 } }
+    - { number: "9", kind: main, from: Richland Creek Campground, to: Woolum ford, km: 33.5, end: { lat: 35.97194, lon: -92.88621 } }
+    - { number: "10", kind: main, from: Woolum ford, to: Dave Manes Bluff, km: 6.4, end: { lat: 35.95727, lon: -92.85430 } }
+    - { number: "11", kind: main, from: Dave Manes Bluff, to: Tyler Bend (Collier Homestead), km: 13.8, end: { lat: 35.9754, lon: -92.7654 } }
+    - { number: "12", kind: main, from: Tyler Bend (Collier Homestead), to: Grinders Ferry (US-65), km: 3.2, end: { lat: 35.9843, lon: -92.7443 } }
+    - { number: "13", kind: main, from: Grinders Ferry (US-65), to: Zack Ridge Road, km: 9.8, end: { lat: 35.9908, lon: -92.6958 } }
+    - { number: "14", kind: main, from: Zack Ridge Road, to: Red Bluff Road, km: 7.2, end: { lat: 36.0162, lon: -92.6571 } }
+    - { number: "15", kind: main, from: Red Bluff Road, to: South Maumee Road, km: 9.7, end: { lat: 36.0234, lon: -92.6169 } }
+    - { number: "16", kind: main, from: South Maumee Road, to: Spring Creek Road, km: 8.5, end: { lat: 36.0286, lon: -92.5798 } }
+    - { number: "17", kind: main, from: Spring Creek Road, to: Dillard's Ferry (AR-14), km: 9.5, end: { lat: 36.0652, lon: -92.5783 } }
+route:
+  # built by `python -m pipeline.all ozark-highlands-trail`: OSM ways matched to the trail's OSM
+  # relation (10868744, operator The Ozark Highlands Trail Association), chained from Lake Fort
+  # Smith and cut near the trailheads
+  source: osm
+  publishable: true
+  relation: 10868744
+difficulty:
+  estimated:
+    sac: T2
+    basis: >-
+      The association calls it the "most rugged and scenic terrain in the region": a built
+      single-track footpath over the Boston Mountains' ridges and hollows, with many creek
+      crossings, bluff tops and a ford of the Buffalo River at Woolum that "can be too high to
+      cross after big rains", without exposed passages. Hiking in hilly terrain on a maintained
+      trail (T2).
+    source: ohta-trail
+season:
+  # the FAQ: "The best hiking season begins in October and runs into early June. Winter is
+  # especially great for hiking … The summer months of July, August, and into September are the
+  # least favorite times to hike"; the trail page: "Fall through Spring are the peak seasons"
+  months: [10, 11, 12, 1, 2, 3, 4, 5]
+  text: October into early June, winter especially; the summer months are the least favourite, hot and humid, with little water and the trail unmaintained
+  source: ohta-faq
+sleeping:
+  # the FAQ: public campgrounds at Lake Ft. Smith State Park, White Rock Mountain, Ozone, Haw Creek
+  # Falls, Fairview, Richland Creek, Woolum, Tyler Bend and others; rental cabins at White Rock
+  # Mountain
+  types: [campsite, guesthouse]
+  source: ohta-faq
+wildCamping:
+  status: allowed
+  rule: >-
+    Camping is generally allowed anywhere along the trail at least 200 feet from and out of sight of
+    the trail and any water source; no permits are needed. Campfires are allowed, but no new fire
+    rings.
+  source: ohta-faq
+access:
+  # Northwest Arkansas National Airport (XNA) for the west end; Little Rock's airport for the east;
+  # no passenger railway near the trail. Coordinates from OSM; distances by pipeline/access.py
+  - kind: airport
+    name: Northwest Arkansas National Airport (XNA)
+    lat: 36.27981
+    lon: -94.30259
+    source: osm
+  - kind: airport
+    name: Bill and Hillary Clinton National Airport, Little Rock (LIT)
+    lat: 34.73077
+    lon: -92.22377
+    source: osm
+animals:
+  # the Ozark–St. Francis National Forests' alert "Be Bear Aware in the National Forests in Arkansas
+  # & Oklahoma!"; level ours
+  list:
+    - kind: bear
+      name: Black bear
+      level: low
+      basis: >-
+        The national forests in Arkansas are bear country; the association reports an expanding
+        population of mostly small, shy black bears and about a dozen sightings a year, most around
+        White Rock Mountain and Horn Mountain.
+      do:
+        - Let someone know where you are going and when you plan to return
+        - Stay alert, do not wear headphones, and cautiously approach any blind corners on trails
+        - Remain calm. Group together and pick up small children
+        - Continue to face the bear and back away slowly, speaking calmly
+        - If the bear continues to approach, try to scare it away by making yourself as large and imposing as possible by stretching your arms overhead and making loud noises
+      dont:
+        - If you see a bear, DO NOT RUN
+      source: usfs-bears
+tags: [forest, waterfalls, river, wilderness]
+notes:
+  - >-
+    Extent: the association's trail runs (when complete) about 325 miles to the Missouri line in four
+    segments: Boston Mountains (164 miles, Lake Fort Smith to Woolum), Buffalo River (43 miles, to
+    AR-14 at Dillard's Ferry), Sylamore (32 miles) and Norfork Lake (72 miles). About 14–15 miles
+    through the Lower Buffalo Wilderness (a bushwhack route) and 18 miles near Norfork Lake are not
+    built. The record covers the continuous built trail, Lake Fort Smith to AR-14 (the FAQ's 207
+    miles); the home page's "270 miles" and the trail page's "290 miles" count the separate
+    Sylamore and Norfork pieces too, the Forest Service's "about 230 miles built as of 2017" an
+    older state, Arkansas State Parks' "240-mile" and Wikipedia's 254 miles other stretches.
+  - >-
+    Stages: the association publishes segments (164 and 43 miles here) and its major trailheads with
+    their mile markers, no day stages; the record takes every major trailhead it lists, in order,
+    as a stage end, with the mile markers' differences (17.4 to 20.8 miles in the Boston Mountains,
+    2.0 to 8.6 miles along the Buffalo River, where the trailheads lie closer). The mile markers were
+    recalculated and replaced in 2016–17.
+  - >-
+    Days: the FAQ gives "10 to 14 days for the 164-mile Boston Mountains segment", which covers
+    another stretch; no days for the 207 miles, so the page counts one day per stage.
+  - >-
+    Fort Douglas: the Forest Service closed the Ft. Douglas trailhead (end of stage 6) during the
+    ARDOT Highway 123 Big Piney Creek bridge reconstruction (alert from 28 September 2026); hikers
+    park at Haw Creek Falls Campground instead. The trail itself stays open.
+  - >-
+    Water: the Forest Service's trail page: "Not for drinking - except at campgrounds along the
+    trail"; the FAQ: "In the drier months (July – September) the water can be hard to find", treat
+    all water.
+  - >-
+    Resupply: the FAQ: "There are currently no grocery stores located within a reasonable hiking
+    distance from the trail"; post offices at Ozone and Pelsor (within two miles) take resupply
+    packages.
+  - >-
+    Waymarking: the white 2″×6″ vertical blaze is not drawn (no such mark in Waymark.astro yet).
+  - >-
+    Wildlife: the association's FAQ names rattlesnakes, copperheads and water moccasins ("There has
+    never been a reported incident of a hiker getting snake bit on the OHT") and advises bear
+    bagging or a bear-proof container; no official (park or health authority) page with advice for
+    the trail's snakes or ticks was found (searched 2026-11-06), so only the Forest Service's black
+    bear advice is listed.
+  - >-
+    Tree line: not added; the route stays below 800 m in the Boston Mountains' deciduous forest.
+  - >-
+    Map line (2026-11-06): the Arkansas Geofabrik extract (2026-11-05); OSM's Ozark Highlands Trail
+    relation (10868744), chained from Lake Fort Smith and cut near the association's trailheads,
+    every stage 100 % matched and within 10 % of its mile-marker distance (the Boston Mountains
+    stages 3–7 % short on the map line). It measures 313.8 km against the association's 207 miles
+    (333 km, −5.8 %). Highest point 721 m at km 62 (the terrain model, in forest, so treetops
+    included), lowest 167 m at Dillard's Ferry on the Buffalo River; none stated. The terrain model
+    gives about 10,450 m of climbing; none is stated.
+  - >-
+    Water (map line): OSM maps 4 drinking water points and 4 springs near the trail; with refills at
+    campgrounds the longest stretch without clean water is 98.9 km (km 29–128, White Rock Mountain to
+    Ozone). Creeks are crossed often outside July–September (the FAQ), but the Forest Service says
+    only the campgrounds' water is for drinking; the record adds no water points.
+  - >-
+    Resupply (map line): OSM maps 2 stores, White Rock General Store (km 24) and Hankins General
+    Store near Fairview (km 186, 1.8 km off), the longest stretch without one 161.6 km; as the FAQ
+    says, there are no grocery stores within reasonable hiking distance, with post offices at Ozone
+    and Pelsor for mailed resupply.
+  - >-
+    Beds (map line): OSM maps 24 campgrounds near the trail, the longest stretch without one 98.9 km
+    (White Rock Mountain to Ozone); camping is allowed anywhere along the trail away from it and the
+    water (wildCamping).
+  - >-
+    Data check (2026-11-06): against the National Park Service's Buffalo River Trail pages, the
+    Forest Service's trail page and Arkansas State Parks' Lake Fort Smith page. Woolum to Dillards
+    Ferry: NPS "a little more than 42 miles" against the association's 42.4 miles (stages 10–17,
+    68.3 km), agrees; Woolum to Tyler Bend: NPS "a little more than 11 miles" (about 17.7 km) against
+    the association's 12.6 miles (stages 10–11, 20.2 km, +14 %), recorded as a deviation (the
+    association's mile markers were recalculated in 2016–17; the page keeps them). Termini: the
+    Forest Service and Arkansas State Parks name Lake Fort Smith State Park as the western start,
+    NPS Dillards Ferry as the Buffalo River Trail's end; agree. Season: the Forest Service gives
+    "Year-round" use, the association too ("the trail is open all year") with its best season
+    October into early June; consistent. Water, foot travel only and the association's role agree
+    with the Forest Service's page. No second source gives the 207 miles of this stretch (the
+    Forest Service's "about 230 miles built as of 2017", Arkansas State Parks' "240-mile" and
+    Wikipedia's 254 miles count other stretches; the map line measures 313.8 km, −5.8 %), days,
+    stage distances in the Boston Mountains, difficulty or camping rules; those were checked on
+    the built page against the association's trail page and FAQ, figure by figure, and agree.
+  - >-
+    Preflight (2026-11-06): the association's and the Forest Service's pages answer 200; the OSM
+    relation 10868744 chains 319.1 km from Lake Fort Smith to Dillard's Ferry, and its 49.7 km left
+    over are the separate Sylamore section's ways (beyond the unbuilt gap) and the 4.4 km OHT High
+    Water Bypass (role alternative), not a break in the record's stretch; the preflight's BLOCKER
+    line is that, not a blocker.
+dataCheck:
+  date: 2026-11-06
+  against: [nps-brt, usfs-oht, asp-lfs]
+  pageAgainst: [ohta-trail, ohta-faq]
+  deviations:
+    - { figure: "stages 10–11 (Woolum to Tyler Bend)", ours: "12.6 miles (20.2 km)", theirs: "a little more than 11 miles (about 17.7 km)", source: nps-brt }
+sources:
+  - id: ohta
+    title: "Ozark Highlands Trail Association: home page (National Recreation Trail, 1989)"
+    url: https://ozarkhighlandstrail.com/
+    licence: All rights reserved (facts only)
+    retrieved: 2026-11-06
+  - id: ohta-trail
+    title: "Ozark Highlands Trail Association: The Trail (segments, major trailheads with mile markers and coordinates, waymarking, maps)"
+    url: https://ozarkhighlandstrail.com/trail/
+    licence: All rights reserved (facts only)
+    retrieved: 2026-11-06
+  - id: ohta-faq
+    title: "Ozark Highlands Trail Association: FAQ (207 miles of continuous trail, season, camping, campgrounds, water, resupply)"
+    url: https://ozarkhighlandstrail.com/faq/
+    licence: All rights reserved (facts only)
+    retrieved: 2026-11-06
+  - id: usfs-oht
+    title: "USDA Forest Service, Ozark–St. Francis National Forests: Ozark Highlands Trail"
+    url: https://www.fs.usda.gov/r08/ozark-stfrancis/recreation/trails/ozark-highlands-trail
+    licence: US federal government work (public domain)
+    retrieved: 2026-11-06
+  - id: usfs-bears
+    title: "USDA Forest Service, Ozark–St. Francis National Forests: Be Bear Aware in the National Forests in Arkansas & Oklahoma! (9 October 2025)"
+    url: https://www.fs.usda.gov/r08/ozark-stfrancis/alerts/be-bear-aware-national-forests-arkansas-oklahoma
+    licence: US federal government work (public domain)
+    retrieved: 2026-11-06
+  - id: nps-brt
+    title: "National Park Service, Buffalo National River: Hike the Buffalo River Trail – Woolum to Dillards Ferry (and Woolum to Tyler Bend, nps.gov/thingstodo/hike-the-buffalo-river-trail-woolum-to-tyler-bend.htm)"
+    url: https://www.nps.gov/thingstodo/hike-the-buffalo-river-trail-woolum-to-dillards-ferry.htm
+    licence: US federal government work (public domain)
+    retrieved: 2026-11-06
+    checkOnly: true
+  - id: asp-lfs
+    title: "Arkansas State Parks: Lake Fort Smith State Park (western terminus of the Ozark Highlands Trail)"
+    url: https://www.arkansas.com/state-parks/explore/parks/lake-fort-smith-state-park
+    licence: All rights reserved (facts only)
+    retrieved: 2026-11-06
+    checkOnly: true
+  - id: wikipedia
+    title: "Wikipedia (en): Ozark Highlands Trail"
+    url: https://en.wikipedia.org/wiki/Ozark_Highlands_Trail
+    licence: CC BY-SA 4.0
+    retrieved: 2026-11-06
+    checkOnly: true
+  - id: wikimedia
+    title: "Wikimedia: page views of the trail's Wikipedia articles in every language, by people, over twelve months (Wikidata sitelinks, pageview API)"
+    url: https://wikimedia.org/api/rest_v1/
+    licence: CC0 1.0 (pageview data); Wikidata CC0
+    retrieved: 2026-11-06
+    checkOnly: true  # not on the trail page: the page views only rank the home page's popular trails
+  - id: osm
+    title: "OpenStreetMap contributors: paths, water, shops and places to sleep along the trail (Geofabrik extracts), travel hubs"
+    url: https://www.openstreetmap.org/
+    licence: ODbL 1.0
+    retrieved: 2026-11-06
+  - id: copdem
+    title: "Copernicus DEM GLO-30 (30 m terrain model), tiles from AWS Open Data"
+    url: https://registry.opendata.aws/copernicus-dem/
+    licence: "Copernicus WorldDEM-30 licence, free; produced using Copernicus WorldDEM-30 © DLR e.V. 2010-2014 and © Airbus Defence and Space GmbH 2014-2018 provided under COPERNICUS by the European Union and ESA; all rights reserved"
+    retrieved: 2026-11-06
+  - id: worldcover
+    title: "ESA WorldCover 2021: 10 m land cover (via AWS Open Data)"
+    url: https://esa-worldcover.org/
+    licence: "CC BY 4.0; © ESA WorldCover project 2021 / Contains modified Copernicus Sentinel data (2021) processed by ESA WorldCover consortium"
+    retrieved: 2026-11-06
+  - id: era5
+    title: "Open-Meteo open data on AWS: ERA5-Land temperature and ERA5 precipitation, snow and wind, daily 1995–2024 (reanalysis)"
+    url: https://github.com/open-meteo/open-data
+    licence: CC BY 4.0 (Open-Meteo); contains modified Copernicus Climate Change Service information
+    retrieved: 2026-11-06
+  - id: osrm
+    title: "OSRM: road routes on OpenStreetMap data (router.project-osrm.org)"
+    url: https://project-osrm.org/
+    licence: Route data © OpenStreetMap contributors (ODbL)
+    retrieved: 2026-11-06
