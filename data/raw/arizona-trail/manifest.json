@@ -1,0 +1,439 @@
+{
+  "climate-high.json": {
+    "retrieved": "2026-11-06T23:34:02+00:00",
+    "url": "https://openmeteo.s3.us-west-2.amazonaws.com/data/copernicus_era5_land+copernicus_era5?latitude=36.3&longitude=-112.1&elevation=2790"
+  },
+  "climate-low.json": {
+    "retrieved": "2026-11-06T23:34:02+00:00",
+    "url": "https://openmeteo.s3.us-west-2.amazonaws.com/data/copernicus_era5_land+copernicus_era5?latitude=33.1&longitude=-111.1&elevation=510"
+  },
+  "commons.json": {
+    "key": "Q4791456",
+    "retrieved": "2026-11-06T23:32:01+00:00",
+    "url": "Q4791456 P18 P373"
+  },
+  "elevation-glo30.json": {
+    "retrieved": "2026-11-06T23:33:03+00:00",
+    "url": "https://copernicus-dem-30m.s3.eu-central-1.amazonaws.com/Copernicus_DSM_COG_10_N31_00_W111_00_DEM/Copernicus_DSM_COG_10_N31_00_W111_00_DEM.tif https://copernicus-dem-30m.s3.eu-central-1.amazonaws.com/Copernicus_DSM_COG_10_N32_00_W111_00_DEM/Copernicus_DSM_COG_10_N32_00_W111_00_DEM.tif https://copernicus-dem-30m.s3.eu-central-1.amazonaws.com/Copernicus_DSM_COG_10_N33_00_W111_00_DEM/Copernicus_DSM_COG_10_N33_00_W111_00_DEM.tif https://copernicus-dem-30m.s3.eu-central-1.amazonaws.com/Copernicus_DSM_COG_10_N33_00_W112_00_DEM/Copernicus_DSM_COG_10_N33_00_W112_00_DEM.tif https://copernicus-dem-30m.s3.eu-central-1.amazonaws.com/Copernicus_DSM_COG_10_N34_00_W112_00_DEM/Copernicus_DSM_COG_10_N34_00_W112_00_DEM.tif https://copernicus-dem-30m.s3.eu-central-1.amazonaws.com/Copernicus_DSM_COG_10_N35_00_W112_00_DEM/Copernicus_DSM_COG_10_N35_00_W112_00_DEM.tif https://copernicus-dem-30m.s3.eu-central-1.amazonaws.com/Copernicus_DSM_COG_10_N35_00_W113_00_DEM/Copernicus_DSM_COG_10_N35_00_W113_00_DEM.tif https://copernicus-dem-30m.s3.eu-central-1.amazonaws.com/Copernicus_DSM_COG_10_N36_00_W113_00_DEM/Copernicus_DSM_COG_10_N36_00_W113_00_DEM.tif https://copernicus-dem-30m.s3.eu-central-1.amazonaws.com/Copernicus_DSM_COG_10_N37_00_W113_00_DEM/Copernicus_DSM_COG_10_N37_00_W113_00_DEM.tif"
+  },
+  "landcover.json": {
+    "retrieved": "2026-11-06T23:33:10+00:00",
+    "url": "https://esa-worldcover.s3.eu-central-1.amazonaws.com/v200/2021/map/ESA_WorldCover_10m_2021_v200_\u2026_Map.tif"
+  },
+  "osm-stage-1-main.json": {
+    "key": "65b9386ea26c",
+    "retrieved": "2026-11-04T21:21:03Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-10-main.json": {
+    "key": "2be412bf9561",
+    "retrieved": "2026-11-04T21:21:03Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-11-main.json": {
+    "key": "f836572b5340",
+    "retrieved": "2026-11-04T21:21:03Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-11e-variant.json": {
+    "key": "580defe119c5",
+    "retrieved": "2026-11-04T21:21:03Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-12-main.json": {
+    "key": "577ad546d799",
+    "retrieved": "2026-11-04T21:21:03Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-13-main.json": {
+    "key": "4f2a4d4a4ced",
+    "retrieved": "2026-11-04T21:21:03Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-14-main.json": {
+    "key": "f61d2772dfe9",
+    "retrieved": "2026-11-04T21:21:03Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-15-main.json": {
+    "key": "95ccd30fe59c",
+    "retrieved": "2026-11-04T21:21:03Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-16-main.json": {
+    "key": "47c6813a602f",
+    "retrieved": "2026-11-04T21:21:03Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-17-main.json": {
+    "key": "449ec5babd9d",
+    "retrieved": "2026-11-04T21:21:03Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-18-main.json": {
+    "key": "22e797ef862f",
+    "retrieved": "2026-11-04T21:21:03Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-19-main.json": {
+    "key": "df6c5d24e4bd",
+    "retrieved": "2026-11-04T21:21:03Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-2-main.json": {
+    "key": "585e9ea4a617",
+    "retrieved": "2026-11-04T21:21:03Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-20-main.json": {
+    "key": "99711f68eeeb",
+    "retrieved": "2026-11-04T21:21:03Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-21-main.json": {
+    "key": "4e6f24f1ba94",
+    "retrieved": "2026-11-04T21:21:03Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-22-main.json": {
+    "key": "3d4baab9960a",
+    "retrieved": "2026-11-04T21:21:03Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-23-main.json": {
+    "key": "2ac486af350a",
+    "retrieved": "2026-11-04T21:21:03Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-24-main.json": {
+    "key": "d4fedb58e518",
+    "retrieved": "2026-11-04T21:21:03Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-25-main.json": {
+    "key": "502dba5fe4d7",
+    "retrieved": "2026-11-04T21:21:03Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-26-main.json": {
+    "key": "85435c115e01",
+    "retrieved": "2026-11-04T21:21:03Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-27-main.json": {
+    "key": "d2a8728e1487",
+    "retrieved": "2026-11-04T21:21:03Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-28-main.json": {
+    "key": "e2596e40a935",
+    "retrieved": "2026-11-04T21:21:03Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-29-main.json": {
+    "key": "a16fca66125a",
+    "retrieved": "2026-11-04T21:21:03Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-3-main.json": {
+    "key": "d1e772904fff",
+    "retrieved": "2026-11-04T21:21:03Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-30-main.json": {
+    "key": "d52f820bc141",
+    "retrieved": "2026-11-04T21:21:03Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-31-main.json": {
+    "key": "ae64b680f3dd",
+    "retrieved": "2026-11-04T21:21:03Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-32-main.json": {
+    "key": "6c0872fe300e",
+    "retrieved": "2026-11-04T21:21:03Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-33-variant.json": {
+    "key": "0ec96b6214a8",
+    "retrieved": "2026-11-04T21:21:03Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-34-main.json": {
+    "key": "545f33f9d97a",
+    "retrieved": "2026-11-04T21:21:03Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-35-main.json": {
+    "key": "e14facbd5367",
+    "retrieved": "2026-11-04T21:21:03Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-36-main.json": {
+    "key": "9fbfde516ea1",
+    "retrieved": "2026-11-04T21:21:03Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-37-main.json": {
+    "key": "253362e55d1b",
+    "retrieved": "2026-11-04T21:21:03Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-38-main.json": {
+    "key": "19046e88f8ef",
+    "retrieved": "2026-11-04T21:21:03Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-39-main.json": {
+    "key": "00ed48eb7a9c",
+    "retrieved": "2026-11-04T21:21:03Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-4-main.json": {
+    "key": "2aaedce81655",
+    "retrieved": "2026-11-04T21:21:03Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-40-main.json": {
+    "key": "d94f256ec09f",
+    "retrieved": "2026-11-04T21:21:03Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-41-main.json": {
+    "key": "cac784b91f80",
+    "retrieved": "2026-11-04T21:21:03Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-42-main.json": {
+    "key": "c6a0f1fb9ead",
+    "retrieved": "2026-11-04T21:21:03Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-43-main.json": {
+    "key": "e3324e68ad02",
+    "retrieved": "2026-11-04T21:21:03Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-5-main.json": {
+    "key": "087f10164749",
+    "retrieved": "2026-11-04T21:21:03Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-6-main.json": {
+    "key": "6f3e1b24f3bb",
+    "retrieved": "2026-11-04T21:21:03Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-7-main.json": {
+    "key": "42599c2d3099",
+    "retrieved": "2026-11-04T21:21:03Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-8-main.json": {
+    "key": "1287ef79b109",
+    "retrieved": "2026-11-04T21:21:03Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-9-main.json": {
+    "key": "f6512722b123",
+    "retrieved": "2026-11-04T21:21:03Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-water.json": {
+    "retrieved": "2026-11-04T21:21:03Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-way-tags.json": {
+    "retrieved": "2026-11-04T21:21:03Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osrm-access-tucson-international-airport-tus.json": {
+    "retrieved": "2026-11-06T23:34:03+00:00",
+    "url": "https://router.project-osrm.org/route/v1/driving/-110.93721,32.12023;-110.28276,31.33367?overview=false"
+  },
+  "osrm-access-tucson-station-amtrak.json": {
+    "retrieved": "2026-11-06T23:34:03+00:00",
+    "url": "https://router.project-osrm.org/route/v1/driving/-110.96671,32.22312;-110.28276,31.33367?overview=false"
+  },
+  "stage-1-main.gpx": {
+    "retrieved": "2026-11-06T23:22:33+00:00",
+    "url": "https://aztrailmedia.s3.us-west-1.amazonaws.com/wp-content/uploads/2025/03/pass-01.gpx"
+  },
+  "stage-10-main.gpx": {
+    "retrieved": "2026-11-06T23:22:44+00:00",
+    "url": "https://aztrailmedia.s3.us-west-1.amazonaws.com/wp-content/uploads/2025/03/pass-10.gpx"
+  },
+  "stage-11-main.gpx": {
+    "retrieved": "2026-11-06T23:22:45+00:00",
+    "url": "https://aztrailmedia.s3.us-west-1.amazonaws.com/wp-content/uploads/2025/03/pass-11.gpx"
+  },
+  "stage-11e-variant.gpx": {
+    "retrieved": "2026-11-06T23:22:46+00:00",
+    "url": "https://aztrailmedia.s3.us-west-1.amazonaws.com/wp-content/uploads/2025/03/pass-11e.gpx"
+  },
+  "stage-12-main.gpx": {
+    "retrieved": "2026-11-06T23:22:47+00:00",
+    "url": "https://aztrailmedia.s3.us-west-1.amazonaws.com/wp-content/uploads/2025/03/pass-12.gpx"
+  },
+  "stage-13-main.gpx": {
+    "retrieved": "2026-11-06T23:22:48+00:00",
+    "url": "https://aztrailmedia.s3.us-west-1.amazonaws.com/wp-content/uploads/2025/03/pass-13.gpx"
+  },
+  "stage-14-main.gpx": {
+    "retrieved": "2026-11-06T23:22:49+00:00",
+    "url": "https://aztrailmedia.s3.us-west-1.amazonaws.com/wp-content/uploads/2025/03/pass-14.gpx"
+  },
+  "stage-15-main.gpx": {
+    "retrieved": "2026-11-06T23:22:51+00:00",
+    "url": "https://aztrailmedia.s3.us-west-1.amazonaws.com/wp-content/uploads/2025/03/pass-15.gpx"
+  },
+  "stage-16-main.gpx": {
+    "retrieved": "2026-11-06T23:22:52+00:00",
+    "url": "https://aztrailmedia.s3.us-west-1.amazonaws.com/wp-content/uploads/2025/03/pass-16.gpx"
+  },
+  "stage-17-main.gpx": {
+    "retrieved": "2026-11-06T23:22:53+00:00",
+    "url": "https://aztrailmedia.s3.us-west-1.amazonaws.com/wp-content/uploads/2025/03/pass-17.gpx"
+  },
+  "stage-18-main.gpx": {
+    "retrieved": "2026-11-06T23:22:54+00:00",
+    "url": "https://aztrailmedia.s3.us-west-1.amazonaws.com/wp-content/uploads/2025/03/pass-18.gpx"
+  },
+  "stage-19-main.gpx": {
+    "retrieved": "2026-11-06T23:22:55+00:00",
+    "url": "https://aztrailmedia.s3.us-west-1.amazonaws.com/wp-content/uploads/2025/03/pass-19.gpx"
+  },
+  "stage-2-main.gpx": {
+    "retrieved": "2026-11-06T23:22:34+00:00",
+    "url": "https://aztrailmedia.s3.us-west-1.amazonaws.com/wp-content/uploads/2025/03/pass-02-1.gpx"
+  },
+  "stage-20-main.gpx": {
+    "retrieved": "2026-11-06T23:22:57+00:00",
+    "url": "https://aztrailmedia.s3.us-west-1.amazonaws.com/wp-content/uploads/2025/03/pass-20.gpx"
+  },
+  "stage-21-main.gpx": {
+    "retrieved": "2026-11-06T23:22:58+00:00",
+    "url": "https://aztrailmedia.s3.us-west-1.amazonaws.com/wp-content/uploads/2025/03/pass-21.gpx"
+  },
+  "stage-22-main.gpx": {
+    "retrieved": "2026-11-06T23:22:59+00:00",
+    "url": "https://aztrailmedia.s3.us-west-1.amazonaws.com/wp-content/uploads/2025/03/pass-22.gpx"
+  },
+  "stage-23-main.gpx": {
+    "retrieved": "2026-11-06T23:23:00+00:00",
+    "url": "https://aztrailmedia.s3.us-west-1.amazonaws.com/wp-content/uploads/2025/03/pass-23.gpx"
+  },
+  "stage-24-main.gpx": {
+    "retrieved": "2026-11-06T23:23:01+00:00",
+    "url": "https://aztrailmedia.s3.us-west-1.amazonaws.com/wp-content/uploads/2025/03/pass-24.gpx"
+  },
+  "stage-25-main.gpx": {
+    "retrieved": "2026-11-06T23:23:02+00:00",
+    "url": "https://aztrailmedia.s3.us-west-1.amazonaws.com/wp-content/uploads/2025/03/pass-25.gpx"
+  },
+  "stage-26-main.gpx": {
+    "retrieved": "2026-11-06T23:23:03+00:00",
+    "url": "https://aztrailmedia.s3.us-west-1.amazonaws.com/wp-content/uploads/2025/03/pass-26.gpx"
+  },
+  "stage-27-main.gpx": {
+    "retrieved": "2026-11-06T23:23:05+00:00",
+    "url": "https://aztrailmedia.s3.us-west-1.amazonaws.com/wp-content/uploads/2025/03/pass-27.gpx"
+  },
+  "stage-28-main.gpx": {
+    "retrieved": "2026-11-06T23:23:06+00:00",
+    "url": "https://aztrailmedia.s3.us-west-1.amazonaws.com/wp-content/uploads/2025/03/pass-28.gpx"
+  },
+  "stage-29-main.gpx": {
+    "retrieved": "2026-11-06T23:23:07+00:00",
+    "url": "https://aztrailmedia.s3.us-west-1.amazonaws.com/wp-content/uploads/2025/03/pass-29.gpx"
+  },
+  "stage-3-main.gpx": {
+    "retrieved": "2026-11-06T23:22:35+00:00",
+    "url": "https://aztrailmedia.s3.us-west-1.amazonaws.com/wp-content/uploads/2025/03/pass-03.gpx"
+  },
+  "stage-30-main.gpx": {
+    "retrieved": "2026-11-06T23:23:08+00:00",
+    "url": "https://aztrailmedia.s3.us-west-1.amazonaws.com/wp-content/uploads/2025/03/pass-30.gpx"
+  },
+  "stage-31-main.gpx": {
+    "retrieved": "2026-11-06T23:23:09+00:00",
+    "url": "https://aztrailmedia.s3.us-west-1.amazonaws.com/wp-content/uploads/2025/03/pass-31.gpx"
+  },
+  "stage-32-main.gpx": {
+    "retrieved": "2026-11-06T23:23:10+00:00",
+    "url": "https://aztrailmedia.s3.us-west-1.amazonaws.com/wp-content/uploads/2025/03/pass-32.gpx"
+  },
+  "stage-33-variant.gpx": {
+    "retrieved": "2026-11-06T23:23:12+00:00",
+    "url": "https://aztrailmedia.s3.us-west-1.amazonaws.com/wp-content/uploads/2025/08/pass-33.gpx"
+  },
+  "stage-34-main.gpx": {
+    "retrieved": "2026-11-06T23:23:13+00:00",
+    "url": "https://aztrailmedia.s3.us-west-1.amazonaws.com/wp-content/uploads/2025/03/pass-34.gpx"
+  },
+  "stage-35-main.gpx": {
+    "retrieved": "2026-11-06T23:23:14+00:00",
+    "url": "https://aztrailmedia.s3.us-west-1.amazonaws.com/wp-content/uploads/2025/03/pass-35.gpx"
+  },
+  "stage-36-main.gpx": {
+    "retrieved": "2026-11-06T23:23:15+00:00",
+    "url": "https://aztrailmedia.s3.us-west-1.amazonaws.com/wp-content/uploads/2025/03/pass-36.gpx"
+  },
+  "stage-37-main.gpx": {
+    "retrieved": "2026-11-06T23:23:17+00:00",
+    "url": "https://aztrailmedia.s3.us-west-1.amazonaws.com/wp-content/uploads/2025/03/pass-37.gpx"
+  },
+  "stage-38-main.gpx": {
+    "retrieved": "2026-11-06T23:23:18+00:00",
+    "url": "https://aztrailmedia.s3.us-west-1.amazonaws.com/wp-content/uploads/2025/03/pass-38.gpx"
+  },
+  "stage-39-main.gpx": {
+    "retrieved": "2026-11-06T23:23:19+00:00",
+    "url": "https://aztrailmedia.s3.us-west-1.amazonaws.com/wp-content/uploads/2025/03/pass-39.gpx"
+  },
+  "stage-4-main.gpx": {
+    "retrieved": "2026-11-06T23:22:37+00:00",
+    "url": "https://aztrailmedia.s3.us-west-1.amazonaws.com/wp-content/uploads/2025/03/pass-04.gpx"
+  },
+  "stage-40-main.gpx": {
+    "retrieved": "2026-11-06T23:23:20+00:00",
+    "url": "https://aztrailmedia.s3.us-west-1.amazonaws.com/wp-content/uploads/2025/03/pass-40.gpx"
+  },
+  "stage-41-main.gpx": {
+    "retrieved": "2026-11-06T23:23:21+00:00",
+    "url": "https://aztrailmedia.s3.us-west-1.amazonaws.com/wp-content/uploads/2025/03/pass-41.gpx"
+  },
+  "stage-42-main.gpx": {
+    "retrieved": "2026-11-06T23:23:22+00:00",
+    "url": "https://aztrailmedia.s3.us-west-1.amazonaws.com/wp-content/uploads/2025/03/pass-42.gpx"
+  },
+  "stage-43-main.gpx": {
+    "retrieved": "2026-11-06T23:23:23+00:00",
+    "url": "https://aztrailmedia.s3.us-west-1.amazonaws.com/wp-content/uploads/2025/03/pass-43.gpx"
+  },
+  "stage-5-main.gpx": {
+    "retrieved": "2026-11-06T23:22:38+00:00",
+    "url": "https://aztrailmedia.s3.us-west-1.amazonaws.com/wp-content/uploads/2025/03/pass-05.gpx"
+  },
+  "stage-6-main.gpx": {
+    "retrieved": "2026-11-06T23:22:39+00:00",
+    "url": "https://aztrailmedia.s3.us-west-1.amazonaws.com/wp-content/uploads/2025/03/pass-06.gpx"
+  },
+  "stage-7-main.gpx": {
+    "retrieved": "2026-11-06T23:22:40+00:00",
+    "url": "https://aztrailmedia.s3.us-west-1.amazonaws.com/wp-content/uploads/2025/03/pass-07.gpx"
+  },
+  "stage-8-main.gpx": {
+    "retrieved": "2026-11-06T23:22:41+00:00",
+    "url": "https://aztrailmedia.s3.us-west-1.amazonaws.com/wp-content/uploads/2025/03/pass-08.gpx"
+  },
+  "stage-9-main.gpx": {
+    "retrieved": "2026-11-06T23:22:42+00:00",
+    "url": "https://aztrailmedia.s3.us-west-1.amazonaws.com/wp-content/uploads/2025/03/pass-09.gpx"
+  },
+  "wikimedia.json": {
+    "retrieved": "2026-11-06T23:34:04+00:00",
+    "url": "Q4791456 2025-11..2026-10"
+  }
+}

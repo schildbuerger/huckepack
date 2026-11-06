@@ -1,0 +1,449 @@
+name: Arizona National Scenic Trail
+added: 2026-11-07
+aliases: [Arizona Trail, AZT]
+website: https://aztrail.org/
+wikidata: Q4791456
+managedBy:
+  # the Forest Service is "the administering agency for the AZNST" and the Arizona Trail
+  # Association "the primary non-profit managing partner" (Forest Service FAQs)
+  - name: Arizona Trail Association
+    url: https://aztrail.org/
+  - name: USDA Forest Service
+    url: https://www.fs.usda.gov/trails/arizona-nst
+officialGpx:
+  # each passage page offers its track as a GPX download, no login ("Track and Waypoints refer to
+  # downloadable GPS data for that passage"); the link goes to the passage list
+  url: https://aztrail.org/explore/passages/
+  by: Arizona Trail Association
+  source: ata-passages
+trailType: point-to-point
+continents: [North America]
+countries: [US]
+regions: [Arizona]
+protectedAreas:
+  # named on the passage pages (the seven wilderness areas the Forest Service counts, the two
+  # national parks, the memorial and the monument)
+  - Coronado National Memorial
+  - Miller Peak Wilderness
+  - Mount Wrightson Wilderness
+  - Rincon Mountain Wilderness
+  - Saguaro National Park
+  - Pusch Ridge Wilderness
+  - Superstition Wilderness
+  - Four Peaks Wilderness
+  - Mazatzal Wilderness
+  - Baaj Nwaavjo I'tah Kukveni – Ancestral Footprints of the Grand Canyon National Monument
+  - Grand Canyon National Park
+termini:
+  # passage 1 starts at the "Southern Terminus: Mexico Border" (31.33367° N, 110.28276° W) and
+  # passage 43 ends at the "Stateline Trailhead & Campground" (37.00112° N, 112.03499° W), the
+  # association's coordinates
+  start:
+    name: Mexico border (Coronado National Memorial)
+    lat: 31.33367
+    lon: -110.28276
+  end:
+    name: Stateline Trailhead (Utah border)
+    lat: 37.00112
+    lon: -112.03499
+  source: ata-passages
+established:
+  # "Congress designated the Arizona Trail a National Scenic Trail in 2009 … and the final links
+  # were completed in 2011" (Forest Service, About the Trail)
+  year: 2009
+  source: usfs-about
+waymarking:
+  text: The trail is complete and well-signed, though sections may change or be rerouted after wildfires or for administrative reasons; the association advises carrying a map and compass, a GPS unit or its app.
+  source: ata-passages
+length:
+  # "The Arizona National Scenic Trail stretches 800 miles across the entire length of the state"
+  # (The Trail); the 42 main passages sum to 800.1 miles
+  - km: 1287
+    approx: true
+    source: ata-trail
+days:
+  # the Forest Service FAQs: "The average time to complete the trail for thru-hikers is 43 days,
+  # with 60 days being common"
+  min: 43
+  max: 60
+  source: usfs-faqs
+treeLine:
+  # the Coconino National Forest's order for the San Francisco Peaks: "The 11,500 foot elevation
+  # contour is defined on the ground as being the tree line boundary" (3,505 m)
+  m: 3505
+  source: usfs-peaks-tundra
+stages:
+  # the association's 43 passages from south to north, with its miles (Passages and each passage
+  # page), converted at 1.609344 km a mile, each with its own track. Passage 32 (Elden Mountain) is
+  # the main route round Flagstaff and passage 33 (Flagstaff Urban Route) the alternative through
+  # the city, from Fisher Point in passage 31; the Pusch Ridge Wilderness Bypass (11e) the
+  # alternative to passage 11's wilderness. The 42 main passages sum to 800.1 miles
+  source: ata-passages
+  list:
+    - { number: "1", kind: main, from: "Mexico Border", to: "Parker Canyon Lake Trailhead", km: 32.7, track: "https://aztrailmedia.s3.us-west-1.amazonaws.com/wp-content/uploads/2025/03/pass-01.gpx" }
+    - { number: "2", kind: main, from: "Parker Canyon Lake Trailhead", to: "Canelo Pass", km: 22.2, track: "https://aztrailmedia.s3.us-west-1.amazonaws.com/wp-content/uploads/2025/03/pass-02-1.gpx" }
+    - { number: "3", kind: main, from: "Canelo Pass", to: "Highway 82", km: 29.1, track: "https://aztrailmedia.s3.us-west-1.amazonaws.com/wp-content/uploads/2025/03/pass-03.gpx" }
+    - { number: "4", kind: main, from: "Highway 82", to: "Apache Springs Trailhead", km: 33.6, track: "https://aztrailmedia.s3.us-west-1.amazonaws.com/wp-content/uploads/2025/03/pass-04.gpx" }
+    - { number: "5", kind: main, from: "Apache Springs Trailhead", to: "Oak Tree Canyon", km: 26.7, track: "https://aztrailmedia.s3.us-west-1.amazonaws.com/wp-content/uploads/2025/03/pass-05.gpx" }
+    - { number: "6", kind: main, from: "Oak Tree Canyon", to: "Lakes Road", km: 21.1, track: "https://aztrailmedia.s3.us-west-1.amazonaws.com/wp-content/uploads/2025/03/pass-06.gpx" }
+    - { number: "7", kind: main, from: "Lakes Road", to: "Gabe Zimmerman Trailhead", km: 20.3, track: "https://aztrailmedia.s3.us-west-1.amazonaws.com/wp-content/uploads/2025/03/pass-07.gpx" }
+    - { number: "8", kind: main, from: "Gabe Zimmerman Trailhead", to: "Saguaro National Park", km: 22.4, track: "https://aztrailmedia.s3.us-west-1.amazonaws.com/wp-content/uploads/2025/03/pass-08.gpx" }
+    - { number: "9", kind: main, from: "Saguaro National Park", to: "Redington Road", km: 39.1, track: "https://aztrailmedia.s3.us-west-1.amazonaws.com/wp-content/uploads/2025/03/pass-09.gpx" }
+    - { number: "10", kind: main, from: "Redington Road", to: "Gordon Hirabayashi Campground", km: 21.2, track: "https://aztrailmedia.s3.us-west-1.amazonaws.com/wp-content/uploads/2025/03/pass-10.gpx" }
+    - { number: "11", kind: main, from: "Gordon Hirabayashi Campground", to: "Marshall Gulch Trailhead", km: 30.1, track: "https://aztrailmedia.s3.us-west-1.amazonaws.com/wp-content/uploads/2025/03/pass-11.gpx" }
+    - { number: "11e", kind: variant, from: "Gordon Hirabayashi Trailhead", to: "Oracle Ridge Trailhead", km: 29.0, track: "https://aztrailmedia.s3.us-west-1.amazonaws.com/wp-content/uploads/2025/03/pass-11e.gpx" }
+    - { number: "12", kind: main, from: "Marshall Gulch Trailhead", to: "American Flag Ranch Trailhead", km: 28.6, track: "https://aztrailmedia.s3.us-west-1.amazonaws.com/wp-content/uploads/2025/03/pass-12.gpx" }
+    - { number: "13", kind: main, from: "American Flag Ranch Trailhead", to: "Tiger Mine Trailhead", km: 13.8, track: "https://aztrailmedia.s3.us-west-1.amazonaws.com/wp-content/uploads/2025/03/pass-13.gpx" }
+    - { number: "14", kind: main, from: "Tiger Mine Trailhead", to: "Freeman Road Trailhead", km: 44.4, track: "https://aztrailmedia.s3.us-west-1.amazonaws.com/wp-content/uploads/2025/03/pass-14.gpx" }
+    - { number: "15", kind: main, from: "Freeman Road Trailhead", to: "Gila River", km: 45.4, track: "https://aztrailmedia.s3.us-west-1.amazonaws.com/wp-content/uploads/2025/03/pass-15.gpx" }
+    - { number: "16", kind: main, from: "Gila River", to: "Tonto National Forest Boundary", km: 41.4, track: "https://aztrailmedia.s3.us-west-1.amazonaws.com/wp-content/uploads/2025/03/pass-16.gpx" }
+    - { number: "17", kind: main, from: "Tonto National Forest Boundary", to: "Picketpost Trailhead", km: 18.7, track: "https://aztrailmedia.s3.us-west-1.amazonaws.com/wp-content/uploads/2025/03/pass-17.gpx" }
+    - { number: "18", kind: main, from: "Picketpost Trailhead", to: "Rogers Trough Trailhead", km: 28.6, track: "https://aztrailmedia.s3.us-west-1.amazonaws.com/wp-content/uploads/2025/03/pass-18.gpx" }
+    - { number: "19", kind: main, from: "Rogers Trough Trailhead", to: "Vineyard Trailhead", km: 46.3, track: "https://aztrailmedia.s3.us-west-1.amazonaws.com/wp-content/uploads/2025/03/pass-19.gpx" }
+    - { number: "20", kind: main, from: "Vineyard Trailhead", to: "Pigeon Spring Trailhead", km: 29.9, track: "https://aztrailmedia.s3.us-west-1.amazonaws.com/wp-content/uploads/2025/03/pass-20.gpx" }
+    - { number: "21", kind: main, from: "Pigeon Spring Trailhead", to: "Sunflower", km: 31.2, track: "https://aztrailmedia.s3.us-west-1.amazonaws.com/wp-content/uploads/2025/03/pass-21.gpx" }
+    - { number: "22", kind: main, from: "Sunflower", to: "Mount Peeley", km: 26.7, track: "https://aztrailmedia.s3.us-west-1.amazonaws.com/wp-content/uploads/2025/03/pass-22.gpx" }
+    - { number: "23", kind: main, from: "Mount Peeley", to: "Red Hills Trail junction", km: 38.8, track: "https://aztrailmedia.s3.us-west-1.amazonaws.com/wp-content/uploads/2025/03/pass-23.gpx" }
+    - { number: "24", kind: main, from: "Red Hills Trail junction", to: "East Verde River", km: 17.2, track: "https://aztrailmedia.s3.us-west-1.amazonaws.com/wp-content/uploads/2025/03/pass-24.gpx" }
+    - { number: "25", kind: main, from: "East Verde River", to: "Pine Trailhead", km: 33.3, track: "https://aztrailmedia.s3.us-west-1.amazonaws.com/wp-content/uploads/2025/03/pass-25.gpx" }
+    - { number: "26", kind: main, from: "Pine Trailhead", to: "Mogollon Rim", km: 38.5, track: "https://aztrailmedia.s3.us-west-1.amazonaws.com/wp-content/uploads/2025/03/pass-26.gpx" }
+    - { number: "27", kind: main, from: "Mogollon Rim", to: "Highway 87", km: 24.8, track: "https://aztrailmedia.s3.us-west-1.amazonaws.com/wp-content/uploads/2025/03/pass-27.gpx" }
+    - { number: "28", kind: main, from: "Highway 87", to: "Gooseberry Springs Trailhead", km: 47.5, track: "https://aztrailmedia.s3.us-west-1.amazonaws.com/wp-content/uploads/2025/03/pass-28.gpx" }
+    - { number: "29", kind: main, from: "Gooseberry Springs Trailhead", to: "Mayflower Spring", km: 23.8, track: "https://aztrailmedia.s3.us-west-1.amazonaws.com/wp-content/uploads/2025/03/pass-29.gpx" }
+    - { number: "30", kind: main, from: "Mayflower Spring", to: "Marshall Lake Trailhead", km: 28.6, track: "https://aztrailmedia.s3.us-west-1.amazonaws.com/wp-content/uploads/2025/03/pass-30.gpx" }
+    - { number: "31", kind: main, from: "Marshall Lake Trailhead", to: "Interstate 40", km: 33.5, track: "https://aztrailmedia.s3.us-west-1.amazonaws.com/wp-content/uploads/2025/03/pass-31.gpx" }
+    - { number: "32", kind: main, from: "Interstate 40", to: "Schultz Pass", km: 23.8, track: "https://aztrailmedia.s3.us-west-1.amazonaws.com/wp-content/uploads/2025/03/pass-32.gpx" }
+    - { number: "33", kind: variant, from: "Fisher Point", to: "Passage 34 junction (Schultz Pass)", km: 24.8, track: "https://aztrailmedia.s3.us-west-1.amazonaws.com/wp-content/uploads/2025/08/pass-33.gpx" }
+    - { number: "34", kind: main, from: "Schultz Pass", to: "Cedar Ranch", km: 57.1, track: "https://aztrailmedia.s3.us-west-1.amazonaws.com/wp-content/uploads/2025/03/pass-34.gpx" }
+    - { number: "35", kind: main, from: "Cedar Ranch", to: "Moqui Stage Station", km: 44.4, track: "https://aztrailmedia.s3.us-west-1.amazonaws.com/wp-content/uploads/2025/03/pass-35.gpx" }
+    - { number: "36", kind: main, from: "Moqui Stage Station", to: "Grandview Lookout Tower", km: 29.3, track: "https://aztrailmedia.s3.us-west-1.amazonaws.com/wp-content/uploads/2025/03/pass-36.gpx" }
+    - { number: "37", kind: main, from: "Grandview Lookout Tower", to: "South Kaibab Trailhead", km: 36.0, track: "https://aztrailmedia.s3.us-west-1.amazonaws.com/wp-content/uploads/2025/03/pass-37.gpx" }
+    - { number: "38", kind: main, from: "South Kaibab Trailhead", to: "North Kaibab Trailhead", km: 33.3, track: "https://aztrailmedia.s3.us-west-1.amazonaws.com/wp-content/uploads/2025/03/pass-38.gpx",
+        # the association's closure since the flash floods of 29 August 2026 (Arizona Trail CLOSED in
+        # Grand Canyon; UPDATE for Autumn 2026): closed from The Tipoff to the North Kaibab Trailhead;
+        # it recommends a ride round the canyon between the rims, which has no OSM line, so no detour
+        # legs. The Tipoff from OSM (the South Kaibab and Tonto trails' junction, node 5460676153)
+        closed: {
+          at: { name: The Tipoff, lat: 36.09005, lon: -112.08886 }, since: 2026, source: ata-closure-gc,
+          reason: "flash floods in August 2026 damaged bridges, trails and the waterline in the inner canyon; the association recommends a ride round the canyon between the South and North Kaibab Trailheads",
+        } }
+    - { number: "39", kind: main, from: "North Kaibab Trailhead", to: "Kaibab National Forest boundary", km: 19.3, track: "https://aztrailmedia.s3.us-west-1.amazonaws.com/wp-content/uploads/2025/03/pass-39.gpx" }
+    - { number: "40", kind: main, from: "Kaibab National Forest boundary", to: "Telephone Hill Trailhead", km: 33.3, track: "https://aztrailmedia.s3.us-west-1.amazonaws.com/wp-content/uploads/2025/03/pass-40.gpx" }
+    - { number: "41", kind: main, from: "Telephone Hill Trailhead", to: "Orderville Trailhead", km: 26.9, track: "https://aztrailmedia.s3.us-west-1.amazonaws.com/wp-content/uploads/2025/03/pass-41.gpx" }
+    - { number: "42", kind: main, from: "Orderville Trailhead", to: "Winter Road Trailhead", km: 27.5, track: "https://aztrailmedia.s3.us-west-1.amazonaws.com/wp-content/uploads/2025/03/pass-42.gpx" }
+    - { number: "43", kind: main, from: "Winter Road Trailhead", to: "Stateline Trailhead", km: 16.9, track: "https://aztrailmedia.s3.us-west-1.amazonaws.com/wp-content/uploads/2025/03/pass-43.gpx" }
+route:
+  # built by `python -m pipeline.all arizona-trail`: OSM ways matched to the passages' tracks
+  source: osm
+  publishable: true
+difficulty:
+  estimated:
+    sac: T2
+    basis: >-
+      The association rates its passages from "Easy" (Coconino Rim, Buckskin Mountain) to
+      "Difficult" (Superstition Wilderness, Four Peaks, the Grand Canyon's Inner Gorge) and
+      describes rocky singletrack climbing thousands of feet from desert to the sky islands' conifer
+      forests, a primitive trail through remote wilderness with long dry stretches, heat, flash
+      floods and lightning, but no scrambling or exposed passages. Mountain hiking on built trails
+      (T2); the heat, water and remoteness make it hard.
+    source: ata-passages
+season:
+  # the Forest Service FAQs: "The AZNST sees the most thru-hiking use in spring and fall";
+  # northbound "high-use season from Feb. 15 – May 15", southbound "Sept. 15 - Nov. 15"
+  months: [2, 3, 4, 5, 9, 10, 11]
+  text: Spring and fall; northbound thru-hikers start in February or March (mid-February to mid-May), southbound ones in mid-September or October (to mid-November)
+  source: usfs-faqs
+permit:
+  # Permits: none for the long-distance trip, but for camping in two national parks and a county park
+  required: true
+  name: Camping permits in Saguaro and Grand Canyon National Parks
+  issuedBy: National Park Service
+  how: >-
+    No permit is needed for a long-distance hike, but Saguaro National Park (passage 9) requires an
+    entrance and a camping permit (in season the AZT Thru Hiker permit) and Grand Canyon National
+    Park (passage 38) a backcountry camping permit, both through Recreation.gov; camping at Colossal
+    Cave Mountain Park (passage 8) costs a fee.
+  url: https://aztrail.org/explore/permits/
+  source: ata-permits
+sleeping:
+  # Permits: designated campgrounds in Colossal Cave Mountain Park, Saguaro and Grand Canyon
+  # National Parks; camping elsewhere; lodging in the gateway communities off the trail
+  types: [campsite]
+  source: ata-permits
+wildCamping:
+  status: restricted
+  rule: >-
+    Camping along the trail needs no permit on most of it, but Saguaro and Grand Canyon National
+    Parks and Colossal Cave Mountain Park allow it only in designated campgrounds, with a permit or
+    fee; on State Trust Land a State Land Recreation Permit is recommended to camp outside the
+    trail's 15-foot corridor, and a year-round camping ban applies near Flagstaff.
+  source: ata-permits
+access:
+  # Tucson International Airport and Tucson's Amtrak station (the association: "Transportation is
+  # available from the Tucson airport to the Coronado National Memorial"). Coordinates from OSM;
+  # distances by pipeline/access.py
+  - kind: airport
+    name: Tucson International Airport (TUS)
+    lat: 32.12023
+    lon: -110.93721
+    source: osm
+  - kind: station
+    name: Tucson station (Amtrak)
+    lat: 32.22312
+    lon: -110.96671
+    source: osm
+animals:
+  # the National Park Service: Saguaro National Park (passages 8–9) for rattlesnakes and mountain
+  # lions, its bear safety page for black bears; level ours
+  list:
+    - kind: snake
+      name: Rattlesnakes
+      level: moderate
+      basis: Six species of rattlesnake live in Saguaro National Park alone, and the association names rattlesnakes among the trail's hazards; bites are rarely fatal but painful and need a hospital.
+      do:
+        - If you see a rattlesnake, stay at least 10 feet from it
+        - Wear boots and loose-fitting pants while hiking
+        - Carry a flashlight after dark
+        - If you are bitten by a rattlesnake, call 911 immediately
+      dont:
+        - Do not harass or attempt to kill snakes
+        - Do not put your hands or feet where your eyes have not been
+        - Do NOT attempt to treat a snake bite yourself
+      source: nps-sagu-snakes
+    - kind: big-cat
+      name: Mountain lion
+      level: low
+      basis: Mountain lions live in both districts of Saguaro National Park and across Arizona's mountains; the park calls encounters rare, but possible.
+      do:
+        - Give the lion a way to escape
+        - Stay calm and speak loudly and firmly
+        - Stand and face it. Make eye contact
+        - "Appear as large as you can: raise your arms and open your jacket"
+        - FIGHT BACK if you are attacked
+      dont:
+        - Do not hike or jog alone
+        - DO NOT RUN from a mountain lion
+        - Do not feed wildlife
+      source: nps-sagu-safety
+    - kind: bear
+      name: Black bear
+      level: low
+      basis: The association says mountain lions and bears inhabit Arizona but are for the most part shy of humans, and advises keeping food 100 yards from the tent or hung from a branch.
+      do:
+        - Identify yourself by talking calmly so the bear knows you are a human
+        - Remain still; stand your ground but slowly wave your arms
+        - If the bear is stationary, move away slowly and sideways
+        - Hike and travel in groups
+      dont:
+        - Do NOT allow the bear access to your food
+        - Do NOT run or make any sudden movements
+        - Do NOT climb a tree
+      source: nps-bears
+tags: [desert, mountains, canyon, forest, wilderness]
+notes:
+  - >-
+    Stages: the association's passages 1–32 and 34–43 are the main route (800.1 miles, 1,287.6 km;
+    its "800 miles"), each with the miles on its page converted at 1.609344 km a mile. Passage 33
+    (Flagstaff Urban Route, 15.4 miles, from Fisher Point in passage 31 through Flagstaff to the
+    passage 34 junction at Schultz Pass) is the alternative to passage 32 (Elden Mountain, 14.8
+    miles; the association: "If you're in need of resupply … you may wish to use the Flagstaff
+    Urban Route (Passage 33) instead"), so main stage number 33 is missing on purpose and 33 is a
+    variant. The Pusch Ridge Wilderness Bypass (11e, 18.0 miles) is "an alternate route for trail
+    users to avoid the designated wilderness area within Passage 11", recommended for equestrians,
+    and is a variant too. Each passage is guided by the association's own passage track (GPX,
+    kept local, never committed).
+  - >-
+    Start: passage 1 begins at the border, which has no road; the association says one must start
+    at Montezuma Pass, 1.8 miles north, and hike south to the border first ("adding 1.8 miles to
+    the total distance"). Since 13 April 2026 the southernmost mile, from the border (Border
+    Monument 102) to the Joe's Canyon Trail junction, is closed for the border wall's construction
+    "until further notice (likely through the end of 2027)" (Arizona Trail Closed for Border Wall
+    Construction); the record keeps the border as the start, the operator's terminus. The closure
+    can't be drawn (a stage's `closed` cuts its end, not its start).
+  - >-
+    Closure: passage 38 has been closed from The Tipoff to the North Kaibab Trailhead since the
+    flash floods of 29 August 2026 ("16 miles of the AZT within Grand Canyon are closed", the
+    Silver and Black Bridges, Bright Angel Campground and Phantom Ranch closed); the association
+    says "the only way around the closed area is to catch a ride from the North Rim to the South
+    Kaibab Trailhead" (UPDATE for Autumn 2026). The North Kaibab Trail also has a waterline closure
+    from 15 October 2026 to about February 2027. The stage is recorded `closed` at The Tipoff
+    without detour legs (a ride round the canyon has no OSM line); the record keeps the stated
+    miles.
+  - >-
+    Days: the Forest Service's "average time … is 43 days, with 60 days being common", recorded as
+    43 to 60 days. The association publishes no days figure.
+  - >-
+    Season: the Forest Service's spring and fall thru-hiking seasons (northbound mid-February to
+    mid-May, southbound mid-September to mid-November), recorded as February to May and September
+    to November. The association's passage pages give each passage its own seasons (the southern
+    and central desert passages "Fall, Winter and Spring", the high northern ones "Spring, Summer
+    and Fall", several "All year").
+  - >-
+    Ascent: neither the association nor the Forest Service states a total ascent or descent, nor
+    per passage (the passages' profiles are PDFs), so the page estimates both from the terrain
+    model.
+  - >-
+    Wildlife: Arizona Game and Fish's pages (bears, mountain lions) answered with a Cloudflare
+    check (403) and were left out; the National Park Service's Saguaro National Park and bear
+    safety pages give the advice. The association and Saguaro National Park also warn of
+    Africanized honey bees ("If you are attacked: run away as fast as you can … cover your head and
+    face"), not listed since the page has no kind for bees; scorpions and spiders are named by the
+    association without advice of an official source.
+  - >-
+    Tree line: the Coconino National Forest's order for the San Francisco Peaks (2024–2029) defines
+    the 11,500-foot contour (3,505 m) as the tree line boundary; the trail passes the peaks' foot
+    in passage 34 and doesn't reach it.
+  - >-
+    Map line (2026-11-07): the Arizona, Utah and Mexico Geofabrik extracts (2026-11-04/05; Mexico
+    because the start lies on the border); OSM ways matched to the association's 44 passage tracks,
+    every stage 99–100 % matched except two. Passage 5 (Santa Rita Mountains) is 50 % matched: OSM's
+    newly mapped ways for the middle of the passage end on nodes 0 m from the older ways without
+    sharing them, so the matcher takes a connected detour up to 1.25 km off the track (an OSM
+    mapping fault, not fixable in the record). Passage 38 is 21 % matched, by design: it is cut at
+    The Tipoff (the closure note), and OSM maps the North Kaibab Trail as `highway=construction`
+    since the floods. The main route measures 1,224.2 km on the map line against the association's
+    800 miles (1,287 km, −4.9 %; without passage 38, 1,217 against 1,254 km, −3.0 %). Highest point
+    2,791 m at km 1,118 on the Kaibab Plateau, lowest 508 m at km 434 by the Gila River (no stated
+    figures from the association). The terrain model gives about 25,410 m of climbing; nothing is
+    stated.
+  - >-
+    Water: OSM maps 28 drinking water points and 97 springs within 500 m of the trail; the longest
+    stretch without clean water is 160 km (km 250–411, passages 14–16 from Freeman Road over the Gila
+    River), without any mapped water 112 km. The association keeps a water report of springs, tanks,
+    creeks and caches (Water Sources) without coordinates for the record, says hikers may need a
+    gallon a day and that all natural water must be purified, so no waterPoints are added.
+  - >-
+    Resupply: OSM maps 17 shops near the trail, the longest stretch without one 253 km (km 32–285,
+    from Parker Canyon Lake to Oracle); the association's gateway communities lie off the trail
+    (Sierra Vista, Patagonia, Sonoita, Vail, Tucson, Summerhaven, Oracle, Kearny, Superior,
+    Roosevelt, Payson, Pine, Mormon Lake Village, Flagstaff, Tusayan, the Grand Canyon's rims, Jacob
+    Lake and Kanab), and passage 13 has a resupply cache box at Highway 77.
+  - >-
+    Beds: OSM maps 97 places to sleep near the trail (95 campsites), the longest stretch without one
+    217 km (km 250–468, from Freeman Road to the Superstitions); camping is allowed along most of the
+    trail (the wild camping rule).
+  - >-
+    Access: Tucson's airport and Amtrak station, 154 and 164 km by road from the border; the
+    association names shuttles from the Tucson airport to Coronado National Memorial and Montezuma
+    Pass.
+  - >-
+    Data check (2026-11-07): against the Forest Service's pages (About the Trail; Land and Resources
+    Management) and English Wikipedia. Length: "approximately 800 miles" (Forest Service) and 800
+    miles (Wikipedia) against the association's 800 miles (1,287 km) and the main passages' 800.1
+    miles: agree. Passages: 43 in both. Termini: the Forest Service "from Mexico's Huachuca
+    Mountains … to the Utah border … at Buckskin Mountain Passage", Wikipedia Coronado National
+    Memorial and the Arizona–Utah border: agree. Designation 2009 (Wikipedia: 30 March 2009) and
+    completion 2011: agree. Season: Wikipedia "Year-round at lower elevations, Summer and Fall at
+    higher elevations", which matches the passage pages' seasons; the record keeps the Forest
+    Service's thru-hiking seasons (spring and fall). Days: only the Forest Service gives a figure.
+    Permits and camping: the Forest Service FAQs list the same permits (Saguaro and Grand Canyon
+    National Parks, Colossal Cave Mountain Park, State Trust Land) as the association. Lowest point:
+    508 m on the terrain model against Wikipedia's 1,700 ft (518 m) at the Gila River (−2 %);
+    Wikipedia's highest point, 9,600 ft on the San Francisco Peaks, is "on a proposed section" and
+    not compared. Difficulty: Wikipedia "Easy to Strenuous", the passages Easy to Difficult; our T2
+    estimate fits. The 44 passages' miles, ends and the termini on the built page were checked one
+    by one against the association's pages and agree. Derived against stated: the map line is
+    4.9 % under the stated length; passage 38 is 79 % short on the map line because of its closure
+    (dataCheck.deviations).
+dataCheck:
+  # working rule 2: the Forest Service's pages and English Wikipedia as second sources; the
+  # passages' miles only on the association's pages, so the built page was checked against them
+  date: 2026-11-07
+  against: [usfs-land, usfs-about, wikipedia]
+  pageAgainst: [ata-passages]
+  deviations:
+    - { figure: stage 38 length, ours: "33.3 km (20.7 miles)", theirs: "7.1 km on the map line (closed beyond The Tipoff)", source: osm }
+sources:
+  - id: ata-passages
+    title: "Arizona Trail Association: Arizona Trail Passages (43 passages and the Pusch Ridge Wilderness Bypass, each with its ends, miles, difficulty, season, water and track)"
+    url: https://aztrail.org/explore/passages/
+    licence: All rights reserved (facts only)
+    retrieved: 2026-11-07
+  - id: ata-trail
+    title: "Arizona Trail Association: The Trail (800 miles from the Mexico border to Utah)"
+    url: https://aztrail.org/the-trail/
+    licence: All rights reserved (facts only)
+    retrieved: 2026-11-07
+  - id: ata-permits
+    title: "Arizona Trail Association: Permits (Saguaro and Grand Canyon National Parks, Colossal Cave Mountain Park, State Trust Land)"
+    url: https://aztrail.org/explore/permits/
+    licence: All rights reserved (facts only)
+    retrieved: 2026-11-07
+  - id: ata-closure-gc
+    title: "Arizona Trail Association: UPDATE for Autumn 2026 Thru-Hikers & Riders (passage 38 closed after the August 2026 floods)"
+    url: https://aztrail.org/update-for-autumn-2026-thru-hikers-riders/
+    licence: All rights reserved (facts only)
+    retrieved: 2026-11-07
+  - id: usfs-about
+    title: "USDA Forest Service: Arizona National Scenic Trail, About the Trail (43 passages, designated 2009, completed 2011)"
+    url: https://www.fs.usda.gov/trails/arizona-nst/about-trail
+    licence: US federal government work, public domain
+    retrieved: 2026-11-07
+  - id: usfs-faqs
+    title: "USDA Forest Service: Arizona National Scenic Trail, FAQs (thru-hiking seasons, 43 to 60 days, permits)"
+    url: https://www.fs.usda.gov/trails/arizona-nst/about-trail/faqs
+    licence: US federal government work, public domain
+    retrieved: 2026-11-07
+  - id: usfs-peaks-tundra
+    title: "USDA Forest Service, Coconino National Forest: Occupancy and use prohibition, San Francisco Peaks alpine tundra and Inner Basin (tree line at the 11,500-foot contour)"
+    url: https://www.fs.usda.gov/r03/coconino/alerts/occupancy-and-use-prohibition-san-francisco-peaks-alpine-tundra-and-inner-basin
+    licence: US federal government work, public domain
+    retrieved: 2026-11-07
+  - id: nps-sagu-snakes
+    title: "National Park Service, Saguaro National Park: Snakes"
+    url: https://www.nps.gov/sagu/learn/nature/snakes.htm
+    licence: US federal government work, public domain
+    retrieved: 2026-11-07
+  - id: nps-sagu-safety
+    title: "National Park Service, Saguaro National Park: Hiking Safety Information (snakes, bees, mountain lions)"
+    url: https://www.nps.gov/sagu/planyourvisit/hiking-safety-information.htm
+    licence: US federal government work, public domain
+    retrieved: 2026-11-07
+  - id: nps-bears
+    title: "National Park Service: Staying Safe Around Bears"
+    url: https://www.nps.gov/subjects/bears/safety.htm
+    licence: US federal government work, public domain
+    retrieved: 2026-11-07
+  - id: usfs-land
+    title: "USDA Forest Service: Arizona National Scenic Trail, Land and Resources Management (approximately 800 miles)"
+    url: https://www.fs.usda.gov/trails/arizona-nst/land-resources
+    licence: US federal government work, public domain
+    retrieved: 2026-11-07
+    checkOnly: true
+  - id: wikipedia
+    title: "Wikipedia (en): Arizona Trail"
+    url: https://en.wikipedia.org/wiki/Arizona_Trail
+    licence: CC BY-SA 4.0
+    retrieved: 2026-11-07
+    checkOnly: true
+  - id: wikimedia
+    title: "Wikimedia: page views of the trail's Wikipedia articles in every language, by people, over twelve months (Wikidata sitelinks, pageview API)"
+    url: https://wikimedia.org/api/rest_v1/
+    licence: CC0 1.0 (pageview data); Wikidata CC0
+    retrieved: 2026-11-07
+    checkOnly: true  # not on the trail page: the page views only rank the home page's popular trails
+  - id: osm
+    title: "OpenStreetMap contributors: paths, water, shops and places to sleep along the trail (Geofabrik extracts), travel hubs"
+    url: https://www.openstreetmap.org/
+    licence: ODbL 1.0
+    retrieved: 2026-11-07
+  - id: copdem
+    title: "Copernicus DEM GLO-30 (30 m terrain model), tiles from AWS Open Data"
+    url: https://registry.opendata.aws/copernicus-dem/
+    licence: "Copernicus WorldDEM-30 licence, free; produced using Copernicus WorldDEM-30 © DLR e.V. 2010-2014 and © Airbus Defence and Space GmbH 2014-2018 provided under COPERNICUS by the European Union and ESA; all rights reserved"
+    retrieved: 2026-11-07
+  - id: worldcover
+    title: "ESA WorldCover 2021: 10 m land cover (via AWS Open Data)"
+    url: https://esa-worldcover.org/
+    licence: "CC BY 4.0; © ESA WorldCover project 2021 / Contains modified Copernicus Sentinel data (2021) processed by ESA WorldCover consortium"
+    retrieved: 2026-11-07
+  - id: era5
+    title: "Open-Meteo open data on AWS: ERA5-Land temperature and ERA5 precipitation, snow and wind, daily 1995–2024 (reanalysis)"
+    url: https://github.com/open-meteo/open-data
+    licence: CC BY 4.0 (Open-Meteo); contains modified Copernicus Climate Change Service information
+    retrieved: 2026-11-07
+  - id: osrm
+    title: "OSRM: road routes on OpenStreetMap data (router.project-osrm.org)"
+    url: https://project-osrm.org/
+    licence: Route data © OpenStreetMap contributors (ODbL)
+    retrieved: 2026-11-07
