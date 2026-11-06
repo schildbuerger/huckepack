@@ -150,6 +150,8 @@ And the **Laurel Highlands Hiking Trail** (Pennsylvania: Laurel Ridge State Park
 
 And the **Northville–Placid Trail** (New York: the Adirondack Mountain Club's first trail, about 136 miles (219 km) through the Adirondack Park from Northville to Lake Placid, overseen by the NYS DEC and kept by ADK's NPT Chapter, in the chapter's ten sections (7–14 days) between lean-tos, past Spruce Lake, the West Canada Lakes, Long Lake and the Cold River; over the trail's OSM relation; 2026-11-06).
 
+And the **Ouachita National Recreation Trail** (Arkansas and Oklahoma: the Forest Service's longest trail in the Ouachita National Forest, 223 miles (358.9 km) along the Ouachitas' east–west ridges from Talimena State Park to Pinnacle Mountain State Park near Little Rock, the last 32 miles on Arkansas State Parks' and other lands, kept by the Friends of the Ouachita Trail in their ten sections with 23 shelters, blue-blazed, past Queen Wilhelmina State Park and Lake Sylvia, best from late autumn to early spring; over the OSM relation; 2026-11-06).
+
 | # | Trail | Region | Length (approx.) | Why |
 |---|---|---|---|---|
 | 1 | Pacific Crest Trail | USA | 4,265 km | Most-hiked long trail; public US agency data; completion lists |

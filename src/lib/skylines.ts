@@ -2124,6 +2124,35 @@ export const SKYLINES: Record<string, Skyline> = {
       { d: "M318,300L334,244L350,300Z M348,300L366,230L384,300Z M1262,300L1278,238L1294,300Z M1292,300L1306,252L1320,300Z", c: "#2f4a2c" },
     ],
   },
+  "ouachita-trail": {
+    view: "The Ouachita Mountains from Lake Sylvia: long east–west ridges in layers, level-topped and wooded, Pinnacle Mountain's cone at the eastern end, the lake in front with shortleaf pines and an oak on its shore",
+    ridge: "#3f5a34",
+    ground: "#a48a64",
+    shapes: [
+      // the farthest ridges, long and level, blue with distance
+      { d: hills([[0, G], [120, 186], [380, 168], [660, 164], [940, 158], [1220, 166], [1460, 178], [1600, G]]), c: "#b8c7d1" },
+      // a second long ridge, offset, a step nearer
+      { d: hills([[0, G], [100, 214], [300, 196], [560, 190], [820, 196], [1000, 188], [1180, 200], [1400, 206], [1600, 214], [1600, G]]), c: "#9fb3b8" },
+      // Pinnacle Mountain: a lone cone at the eastern end
+      { d: range([[1160, G], [1240, 240], [1300, 196], [1338, 166], [1356, 158], [1374, 166], [1416, 200], [1490, 250], [1560, G]]), c: "#8b9f9c" },
+      // a nearer ridge, level and long
+      { d: hills([[0, G], [140, 236], [420, 226], [700, 232], [960, 224], [1140, 240], [1360, 248], [1600, 242], [1600, G]]), c: FAR },
+      // the nearest wooded ridge behind the lake on the left
+      { d: hills([[0, G], [120, 262], [340, 252], [560, 264], [760, G]]), c: FOREST },
+      // pinewoods on the far shore at the right
+      { d: hills([[1100, G], [1240, 276], [1420, 268], [1600, 274], [1600, G]]), c: FIR },
+    ],
+    front: [
+      // Lake Sylvia, still
+      { d: water(520, 1260, 288), c: LAKE },
+      // shortleaf pines: tall straight trunks and a ragged, flat-topped crown
+      { d: "M436,304V226H440V304Z M478,304V214H482V304Z M1300,304V236H1304V304Z", c: "#5a4636" },
+      { d: "M418,232a20,10 0 1 1 40,0a20,10 0 1 1 -40,0Z M424,218a14,8 0 1 1 28,0a14,8 0 1 1 -28,0Z M460,220a20,10 0 1 1 40,0a20,10 0 1 1 -40,0Z M466,206a14,8 0 1 1 28,0a14,8 0 1 1 -28,0Z M1284,242a18,9 0 1 1 36,0a18,9 0 1 1 -36,0Z M1290,229a12,7 0 1 1 24,0a12,7 0 1 1 -24,0Z", c: "#2f4a2c" },
+      // an oak: a short trunk under a broad round crown
+      { d: "M1376,304V270H1382V304Z", c: "#5a4636" },
+      { d: "M1350,266a29,20 0 1 1 58,0a29,20 0 1 1 -58,0Z", c: "#4f6e36" },
+    ],
+  },
   "superior-hiking-trail": {
     view: "Minnesota's North Shore: the Sawtooth ridges above Lake Superior, birch and spruce on the rocky slopes, a waterfall dropping towards the lake and the lake's long horizon",
     ridge: "#3f5a34",

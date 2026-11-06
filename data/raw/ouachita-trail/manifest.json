@@ -1,0 +1,106 @@
+{
+  "climate-high.json": {
+    "retrieved": "2026-11-06T22:36:34+00:00",
+    "url": "https://openmeteo.s3.us-west-2.amazonaws.com/data/copernicus_era5_land+copernicus_era5?latitude=34.7&longitude=-94.4&elevation=810"
+  },
+  "climate-low.json": {
+    "retrieved": "2026-11-06T22:36:34+00:00",
+    "url": "https://openmeteo.s3.us-west-2.amazonaws.com/data/copernicus_era5_land+copernicus_era5?latitude=34.9&longitude=-92.5&elevation=80"
+  },
+  "commons-geo.json": {
+    "key": "with categories, 350.2 km, every 2.5 km, 1500 m, within 0.5 km",
+    "retrieved": "2026-11-06T22:39:58+00:00",
+    "url": "Commons geosearch along the route"
+  },
+  "commons.json": {
+    "key": "Q7110142",
+    "retrieved": "2026-11-06T22:35:29+00:00",
+    "url": "Q7110142 P18 P373"
+  },
+  "elevation-glo30.json": {
+    "retrieved": "2026-11-06T22:35:40+00:00",
+    "url": "https://copernicus-dem-30m.s3.eu-central-1.amazonaws.com/Copernicus_DSM_COG_10_N34_00_W093_00_DEM/Copernicus_DSM_COG_10_N34_00_W093_00_DEM.tif https://copernicus-dem-30m.s3.eu-central-1.amazonaws.com/Copernicus_DSM_COG_10_N34_00_W094_00_DEM/Copernicus_DSM_COG_10_N34_00_W094_00_DEM.tif https://copernicus-dem-30m.s3.eu-central-1.amazonaws.com/Copernicus_DSM_COG_10_N34_00_W095_00_DEM/Copernicus_DSM_COG_10_N34_00_W095_00_DEM.tif"
+  },
+  "landcover.json": {
+    "retrieved": "2026-11-06T22:35:41+00:00",
+    "url": "https://esa-worldcover.s3.eu-central-1.amazonaws.com/v200/2021/map/ESA_WorldCover_10m_2021_v200_\u2026_Map.tif"
+  },
+  "osm-relation.json": {
+    "retrieved": "2026-11-05T21:23:02Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-1-main.json": {
+    "key": "8cdd254c3055",
+    "retrieved": "2026-11-05T21:23:02Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-10-main.json": {
+    "key": "75fa83a01dc7",
+    "retrieved": "2026-11-05T21:23:02Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-2-main.json": {
+    "key": "a259c45ca527",
+    "retrieved": "2026-11-05T21:23:02Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-3-main.json": {
+    "key": "6f9d342c00fb",
+    "retrieved": "2026-11-05T21:23:02Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-4-main.json": {
+    "key": "b2785f2ba13f",
+    "retrieved": "2026-11-05T21:23:02Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-5-main.json": {
+    "key": "8c710e1dfa38",
+    "retrieved": "2026-11-05T21:23:02Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-6-main.json": {
+    "key": "870a803a7b5c",
+    "retrieved": "2026-11-05T21:23:02Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-7-main.json": {
+    "key": "ce1050000143",
+    "retrieved": "2026-11-05T21:23:02Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-8-main.json": {
+    "key": "076a8f69c6ff",
+    "retrieved": "2026-11-05T21:23:02Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-9-main.json": {
+    "key": "361166ee6b2f",
+    "retrieved": "2026-11-05T21:23:02Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-water.json": {
+    "retrieved": "2026-11-05T21:23:02Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-way-tags.json": {
+    "retrieved": "2026-11-05T21:23:02Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osrm-access-bill-and-hillary-clinton-national-airport-lit.json": {
+    "retrieved": "2026-11-06T22:36:34+00:00",
+    "url": "https://router.project-osrm.org/route/v1/driving/-92.22377,34.73077;-94.95153,34.7835?overview=false"
+  },
+  "osrm-access-fort-smith-regional-airport-fsm.json": {
+    "retrieved": "2026-11-06T22:41:43+00:00",
+    "url": "https://router.project-osrm.org/route/v1/driving/-94.35698,35.33925;-94.95153,34.7835?overview=false"
+  },
+  "osrm-access-little-rock-union-station.json": {
+    "retrieved": "2026-11-06T22:36:34+00:00",
+    "url": "https://router.project-osrm.org/route/v1/driving/-92.28722,34.75038;-94.95153,34.7835?overview=false"
+  },
+  "wikimedia.json": {
+    "retrieved": "2026-11-06T22:36:35+00:00",
+    "url": "Q7110142 2025-11..2026-10"
+  }
+}
