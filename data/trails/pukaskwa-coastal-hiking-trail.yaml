@@ -1,0 +1,308 @@
+name: Coastal Hiking Trail
+added: 2026-11-06
+aliases: [Pukaskwa Coastal Hiking Trail, Pukaskwa Coastal Trail, Piste côtière]
+website: https://parks.canada.ca/pn-np/on/pukaskwa/activ/experience/arriere-back
+managedBy:
+  # Parks Canada runs the national park, its backcountry campsites and the permits
+  - name: Parks Canada, Pukaskwa National Park
+    url: https://parks.canada.ca/pn-np/on/pukaskwa
+officialGpx:
+  none: Parks Canada offers a printable trip planner with a map not intended for navigation (PDF) and recommends the Chrismar Adventure Map, with no GPX to download (checked 2026-11-06)
+  source: pc-backcountry
+trailType: point-to-point
+continents: [North America]
+countries: [CA]
+regions: [Ontario]
+protectedAreas: [Pukaskwa National Park]
+termini:
+  # Parks Canada's distance chart and campsite descriptions run "North to South" from Hattie Cove
+  # to the North Swallow River ("This is where your adventure begins, meets its halfway point or
+  # ends"); the south end is reached only by boat shuttle or on foot back the same way.
+  # Coordinates from OSM: the ends of the Pukaskwa Coastal Hiking Trail relation (15361195)
+  start:
+    name: Hattie Cove (Pukaskwa Visitor Centre)
+    lat: 48.5905683
+    lon: -86.2902698
+  end:
+    name: North Swallow River
+    lat: 48.2121291
+    lon: -86.1098891
+  source: pc-planner
+waymarking:
+  # the planner, "No trail markers": "The Coastal Hiking Trail and Mdaabii Miikna have no directional
+  # signage, you will need to utilize your map reading, compass skills and look for rock cairns"
+  text: No trail markers or directional signage; rock cairns point the way over the rocky shore and cobble beaches, and inland the path shows by its wear
+  source: pc-planner
+length:
+  # the planner's Coastal Hiking Trail distance chart: Hattie Cove to North Swallow River 58.7 km
+  # (one way, by the inland route between Willow River and Morrison Harbour); the park's pages
+  # round it to "60 km"
+  - km: 58.7
+    source: pc-planner
+days:
+  # Superior Country: "Backpackers typically complete the trail in five to seven days" (the 60 km
+  # one way, Hattie Cove to the North Swallow River)
+  min: 5
+  max: 7
+  source: superior-country
+stages:
+  # no stages by design (issue #204; docs/scope.md, "Trails without stages"): Parks Canada publishes
+  # the trail as one route with 12 backcountry campsite areas, which each hiker's permit names; its
+  # distance chart gives the distances between the campsites, not stages
+  source: pc-planner
+  none: true
+route:
+  # built by `python -m pipeline.all pukaskwa-coastal-hiking-trail`: OSM ways matched to the
+  # Pukaskwa Coastal Hiking Trail relation (15361195), the whole route as one segment
+  source: osm
+  publishable: true
+  relation: 15361195
+difficulty:
+  # Parks Canada rates every section of the Coastal Hiking Trail "Difficult" and "Recommended for
+  # experienced hikers only" (trail conditions); the planner: "for hikers who have experience with
+  # difficult terrain and wilderness navigation"
+  estimated:
+    sac: T3
+    basis: >-
+      Parks Canada rates the whole trail difficult, for experienced backpackers only: steep climbs
+      over rocky shoreline, cobble beaches, slippery boardwalks and bridges, knee- to thigh-deep
+      river crossings and no trail markers, only rock cairns, so hikers navigate by map and compass.
+      A rough wilderness path with route finding but without scrambling (T3).
+    source: pc-conditions
+season:
+  # "Backcountry trails and campsites are open (weather permitting) from May 15 - October 14"
+  months: [5, 6, 7, 8, 9, 10]
+  text: Backcountry trails and campsites open from May 15 to October 14, weather permitting; snow can fall in June and September
+  source: pc-backcountry
+permit:
+  # the backcountry page and the planner: "Make a backcountry reservation … Reserve your backcountry
+  # camping permit"; "Mandatory safety orientation"; check in at the park kiosk
+  required: true
+  name: Backcountry camping permit, safety orientation and park entry
+  issuedBy: Parks Canada, Pukaskwa National Park
+  how: >-
+    Book the boat shuttle first if you need one, then reserve the backcountry camping permit through
+    the Parks Canada Reservation Service (fees per person per night, plus reservation and change
+    fees). Park staff then arrange a mandatory in-person or online safety orientation before the
+    hike; on arrival register at the park kiosk and pay the daily entry fee.
+  url: https://parks.canada.ca/pn-np/on/pukaskwa/activ/experience/arriere-back
+  source: pc-backcountry
+sleeping:
+  # the planner's campsite descriptions: 12 backcountry campsite areas from Playter Harbour North to
+  # the North Swallow River, each with pit privy, food locker and firepit; Hattie Cove's drive-in
+  # campground (67 sites, 5 oTENTiks) at the start
+  types: [campsite]
+  source: pc-planner
+wildCamping:
+  status: prohibited
+  rule: >-
+    Camp only at the designated backcountry campsites booked on your permit, at most six people per
+    site; camping in non-designated areas is prohibited, and every overnight backcountry trip must be
+    registered.
+  source: pc-guide
+refillsUntreated:
+  # the planner: "Drinking water is available from most rivers, creeks and certainly from Lake
+  # Superior. We advise all backcountry hikers to fine filter, treat or boil their drinking water"
+  text: The campsites have no taps; water comes from rivers, creeks and Lake Superior, to be filtered, treated or boiled.
+  source: pc-planner
+access:
+  # the planner, "By Plane": Thunder Bay (YQT) and Sault Ste Marie (YAM); buses (Kasper
+  # Transportation, Ontario Northland) stop at Marathon, which OSM maps no stop for; the nearest
+  # railway station is White River (VIA Rail's Sudbury–White River train). Coordinates from OSM;
+  # distances by pipeline/access.py
+  - kind: station
+    name: White River station (VIA Rail)
+    lat: 48.5894379
+    lon: -85.282406
+    source: osm
+  - kind: airport
+    name: Thunder Bay International Airport (YQT)
+    lat: 48.3721108
+    lon: -89.3239509
+    source: osm
+  - kind: airport
+    name: Sault Ste. Marie Airport (YAM)
+    lat: 46.4851313
+    lon: -84.5004954
+    source: osm
+animals:
+  # Pukaskwa National Park's BARE Campsite page: "Black bears live in Pukaskwa, and are occasionally
+  # seen along the coast. Food lockers are available … along the Coastal Hiking Trail", quoted here.
+  # Level ours
+  list:
+    - kind: bear
+      name: Black bear
+      level: moderate
+      basis: Black bears live in Pukaskwa National Park and are occasionally seen along the coast; Parks Canada runs its backcountry campsites as BARE campsites with food lockers, and staff patrol them.
+      do:
+        - "In the backcountry: store all food and food-related items (e.g. dishes, stoves, garbage) in bear-proof lockers, portable bear-resistant containers (e.g. blue barrels) or hang your packs securely"
+        - Store these items at night while you are sleeping and when your site is unattended for any length of time
+        - Be aware of your surroundings, especially at dusk and dawn or in densely vegetated areas
+        - Keep a safe viewing distance at all times
+        - Keep pets on a leash at all times
+        - Report all bear and wolf sightings to park staff as soon as possible
+      dont:
+        - Feed wildlife
+        - Leave coolers, food, garbage, dirty dishes, pet food or any item associated with food preparation unattended at your campsite
+        - Approach or entice wildlife of any kind, regardless of size
+      source: pc-bare
+tags: [coast, lake-superior, boreal-forest, suspension-bridge, wilderness-camps]
+notes:
+  - >-
+    Name: Parks Canada calls it the Coastal Hiking Trail (in Pukaskwa National Park); OSM, Superior
+    Country and Destination Northern Ontario call it the Pukaskwa Coastal (Hiking) Trail, and Parks Canada's French pages the Piste côtière, kept as
+    aliases. It is part of the Trans Canada Trail.
+  - >-
+    Stages: none by design. Parks Canada publishes the trail as one route with 12 backcountry
+    campsite areas, north to south (km from Hattie Cove, the planner's distance chart): Playter
+    Harbour North 4.5, Chigaamiwinigum Falls 7.8, Hook Falls 8.8, Willow River 16.4, Morrison
+    Harbour 22.0, Fish Harbour 25.4, Oiseau Bay 30.5, Fisherman's Cove 37.7, White Gravel River 44.8,
+    White Spruce Harbour 47.9, Hideaway Lake 54.7 and North Swallow River 58.7; Playter Harbour
+    South, Picture Rock Harbour North and South and White River Portage lie on the Mdaabii Miikna
+    loop off the trail. The record keeps them as the campsites they are, not as stages.
+  - >-
+    Direction and the way back: Parks Canada's chart runs north to south from Hattie Cove. The North
+    Swallow River end has no road: hikers take a private boat shuttle (licensed by the park, often
+    cancelled by wind in September and October) to start or finish there, or walk back the same way
+    (about 117 km out and back). Destination Northern Ontario suggests a northbound hike from a
+    shuttle drop at the North Swallow River.
+  - >-
+    Days: Parks Canada's pages and planner give no days figure; Superior Country (the North of
+    Superior Travel Association's regional tourism portal) gives five to seven days one way, the
+    record's figure, and Destination Northern Ontario "five to seven days" too (10 to 12 days out and
+    back).
+  - >-
+    Length: the planner's chart gives 58.7 km Hattie Cove to the North Swallow River by the inland
+    route between Willow River and Morrison Harbour (5.6 km; the coastal detour is 6.6 km). The
+    park's pages, Superior Country and Destination Northern Ontario round it to 60 km.
+  - >-
+    Ascent: no source of Parks Canada states the climbs; Superior Country's trail box gives
+    "Elevation 1,491 m" without saying whether that is gain, so it is left out and the page
+    estimates the climbs from the terrain model.
+  - >-
+    Wikidata: no item for the trail (searched 2026-11-06: "Coastal Hiking Trail" and "Pukaskwa" find
+    the park, Q283482, the river and the Pukaskwa Pits only), and no Wikipedia article.
+  - >-
+    Tree line: none in reach; the trail runs along Lake Superior below about 300 m (the planner:
+    the climb north of Playter Harbour South "reaches 300m above sea level").
+  - >-
+    Wildlife: Parks Canada's planner adds for bears "Bring legal bear deterrents (like bear spray)",
+    "Food or fuel caching is prohibited" and "Firearms are prohibited"; it reports no known
+    black-legged (deer) ticks in the park ("If you do find a deer tick, please notify park staff").
+    The BARE page also asks hikers to report wolf sightings, without advice of its own for wolves,
+    so only the black bear is listed.
+  - >-
+    Water: Parks Canada says "Drinking water is available from most rivers, creeks and certainly from
+    Lake Superior" and advises all hikers to fine filter, treat or boil it; some stretches veer
+    inland, and between Fisherman's Cove and White Gravel River there is no reliable water source.
+    The pipeline's check flags 58.8 km without drinking water: rightly, as there is no tap on the
+    trail; the campsites count as untreated water (refillsUntreated), the longest stretch without
+    one 7.3 km.
+  - >-
+    Map line (2026-11-06): the Ontario Geofabrik extract (2026-11-05); OSM's Pukaskwa Coastal Hiking
+    Trail relation (15361195, 7 ways, the White River Suspension Bridge among them), chained from
+    Hattie Cove as one segment, 100 % matched. The map line measures 58.8 km (the full OSM match
+    59.6 km) against Parks Canada's 58.7 km (+0.2 % and +1.5 %). The terrain model's highest point
+    is 320 m at km 41.3 (the headlands between Fisherman's Cove and White Gravel River, where the
+    planner notes "High elevations") and its lowest 180 m at km 32.1 (Oiseau Bay; Lake Superior
+    lies at about 183 m); the page estimates about 1,580 m of climbing. OSM maps 38 campsites near
+    the route, the longest stretch without one 7.3 km (km 38.0–45.3, Fisherman's Cove to White
+    Gravel River; Parks Canada's chart 7.1 km); no shop and no tap anywhere on the trail: carry all
+    food, treat all water (refillsUntreated).
+  - >-
+    Travel hubs: the pipeline's check flags Thunder Bay International Airport (321 km by road) and
+    Sault Ste. Marie Airport (428 km), the two airports Parks Canada's planner names; they are the
+    nearest with scheduled flights. White River station (VIA Rail's Sudbury–White River train,
+    100 km by road) is the nearest railway station; the planner's buses (Kasper Transportation,
+    Ontario Northland) stop at Marathon, 25 km from the park, with a local taxi to Hattie Cove, but
+    OSM maps no stop there, so it is not listed.
+  - >-
+    Photos: none. Wikimedia Commons has no category for the trail, and the ten usable photos found
+    by location all lie at Hattie Cove (the visitor centre, the Southern Headland Trail, Horseshoe
+    Bay) at km 0.0 of the map line, which pipeline/photos.py's `choose()` drops (`km not in (None,
+    False)` is false for 0.0); none would show the trail itself.
+  - >-
+    Data check (2026-11-06, working rule 2): Parks Canada against Destination Northern Ontario's
+    backpacking guide (dno) and, for the length, Superior Country: length 58.7 km against "the
+    entire 60-km Coastal Trail" in both (+2 %); termini Hattie Cove (the Visitor Centre) and the
+    North Swallow River in both; days 5–7 (Superior Country) against Destination Northern
+    Ontario's "five to seven days" (the same; 10 to 12 days out and back); season May 15 to
+    October 14 in both ("Backcountry camping is permitted … from May 15 to October 14"; it advises
+    late May to late September for the weather); difficulty: Parks Canada's "Difficult", for
+    experienced hikers only, against "intermediate to advanced backpackers" and Superior Country's
+    "Difficult"; designated campsites with firepit, food locker and privy, booked through the
+    reservation service, with a mandatory safety orientation, in both; group size: Parks Canada's
+    six per campsite against Destination Northern Ontario's "Maximum group size for backcountry
+    camping is eight" (the record keeps Parks Canada's); black bears in both; water to be filtered,
+    treated or boiled in both. The campsite distances, the waymarking (rock cairns) and the
+    permit steps were checked on the page against Parks Canada's planner and pages. No second
+    source gives the climbs or a tree line (none in reach).
+dataCheck:
+  # working rule 2: Destination Northern Ontario's backpacking guide as the second source
+  date: 2026-11-06
+  against: [dno, superior-country]
+  pageAgainst: [pc-planner, pc-backcountry, pc-conditions, pc-guide]
+  deviations:
+    - { figure: group size per backcountry campsite, ours: "6 (Parks Canada)", theirs: "8", source: dno }
+sources:
+  - id: pc-backcountry
+    title: "Parks Canada: Pukaskwa National Park, backcountry hiking and paddling (the 60 km Coastal Hiking Trail, season May 15 to October 14, boat shuttles, reservations, safety orientation)"
+    url: https://parks.canada.ca/pn-np/on/pukaskwa/activ/experience/arriere-back
+    licence: © His Majesty the King in Right of Canada, Parks Canada (facts only)
+    retrieved: 2026-11-06
+  - id: pc-planner
+    title: "Parks Canada: Mdaabii Miikna & Coastal Hiking Trail trip planner (2025): campsite descriptions and distance chart, hazards, no trail markers, water, getting here"
+    url: https://pcweb2.azureedge.net/-/media/pn-np/on/pukaskwa/pdf/2025/English-CHT-Planner-2025.pdf
+    licence: © His Majesty the King in Right of Canada, Parks Canada (facts only)
+    retrieved: 2026-11-06
+  - id: pc-conditions
+    title: "Parks Canada: Trail conditions at Pukaskwa National Park (each Coastal Hiking Trail section rated Difficult, for experienced hikers only)"
+    url: https://parks.canada.ca/pn-np/on/pukaskwa/activ/experience/randonnees-hiking/etat-sentiers-trail-conditions
+    licence: © His Majesty the King in Right of Canada, Parks Canada (facts only)
+    retrieved: 2026-11-06
+  - id: pc-guide
+    title: "Parks Canada: Pukaskwa National Park visitor guide (rules: no camping in non-designated areas, six people per backcountry campsite, backcountry registration)"
+    url: https://pcweb2.azureedge.net/-/media/pn-np/on/pukaskwa/pdf/_Pukaskwa-Visitor-Guide---English.pdf
+    licence: © His Majesty the King in Right of Canada, Parks Canada (facts only)
+    retrieved: 2026-11-06
+  - id: pc-bare
+    title: "Parks Canada: Pukaskwa National Park, BARE Campsite (black bears along the coast, food storage in the backcountry)"
+    url: https://parks.canada.ca/pn-np/on/pukaskwa/securite-safety/propre-bare
+    licence: © His Majesty the King in Right of Canada, Parks Canada (facts only)
+    retrieved: 2026-11-06
+  - id: superior-country
+    title: "Superior Country (North of Superior Travel Association): Pukaskwa Coastal Trail (60 km point to point, five to seven days)"
+    url: https://superiorcountry.ca/nature-adventure/hiking-trails/pukaskwa-national-park-trails/pukaskwa-coastal-trail/
+    licence: All rights reserved (facts only)
+    retrieved: 2026-11-06
+  - id: dno
+    title: "Destination Northern Ontario: Complete guide to backpacking in Pukaskwa National Park (60 km, five to seven days, season)"
+    url: https://northernontario.travel/outdoor-adventures/pukaskwa-coastal-trail-backpacking-guide
+    licence: All rights reserved (facts only)
+    retrieved: 2026-11-06
+    checkOnly: true
+  - id: osm
+    title: "OpenStreetMap contributors: the Pukaskwa Coastal Hiking Trail relation (15361195), paths, water, shops and places to sleep along the trail (Geofabrik extract), travel hubs"
+    url: https://www.openstreetmap.org/relation/15361195
+    licence: ODbL 1.0
+    retrieved: 2026-11-06
+  - id: copdem
+    title: "Copernicus DEM GLO-30 (30 m terrain model), tiles from AWS Open Data"
+    url: https://registry.opendata.aws/copernicus-dem/
+    licence: "Copernicus WorldDEM-30 licence, free; produced using Copernicus WorldDEM-30 © DLR e.V. 2010-2014 and © Airbus Defence and Space GmbH 2014-2018 provided under COPERNICUS by the European Union and ESA; all rights reserved"
+    retrieved: 2026-11-06
+  - id: worldcover
+    title: "ESA WorldCover 2021: 10 m land cover (via AWS Open Data)"
+    url: https://esa-worldcover.org/
+    licence: "CC BY 4.0; © ESA WorldCover project 2021 / Contains modified Copernicus Sentinel data (2021) processed by ESA WorldCover consortium"
+    retrieved: 2026-11-06
+  - id: era5
+    title: "Open-Meteo open data on AWS: ERA5-Land temperature and ERA5 precipitation, snow and wind, daily 1995–2024 (reanalysis)"
+    url: https://github.com/open-meteo/open-data
+    licence: CC BY 4.0 (Open-Meteo); contains modified Copernicus Climate Change Service information
+    retrieved: 2026-11-06
+  - id: osrm
+    title: "OSRM: road routes on OpenStreetMap data (router.project-osrm.org)"
+    url: https://project-osrm.org/
+    licence: Route data © OpenStreetMap contributors (ODbL)
+    retrieved: 2026-11-06

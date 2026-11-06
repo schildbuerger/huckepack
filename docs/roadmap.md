@@ -160,6 +160,8 @@ And the **Foothills Trail** (South Carolina and North Carolina: the Foothills Tr
 
 And the **Benton MacKaye Trail** (Georgia, Tennessee and North Carolina: the Benton MacKaye Trail Association's 287.6 miles (463 km) from Springer Mountain, where it shares the Appalachian Trail's start, along the Blue Ridge's western crest over the Toccoa River's swinging bridge, through the Cohutta and Big Frog wildernesses and over the Ocoee and Hiwassee rivers to Fontana Dam and across the Great Smoky Mountains National Park to Big Creek, with the Forest Service and the park, in the association's 25 sections, white-diamond blazed, open year-round, a park permit for the 93 miles in the Smokies; over the trail's OSM relation; 2026-11-06).
 
+And the **Coastal Hiking Trail** (Ontario: Parks Canada's 58.7 km in Pukaskwa National Park along Lake Superior's wild shore from Hattie Cove to the North Swallow River, one way with a boat shuttle or out and back, part of the Trans Canada Trail, without stages by design between twelve backcountry campsites booked on the permit (5–7 days by Superior Country), marked only by rock cairns, over granite headlands, cobble beaches and the White River Suspension Bridge, May 15 to October 14; over the OSM relation; 2026-11-06).
+
 | # | Trail | Region | Length (approx.) | Why |
 |---|---|---|---|---|
 | 1 | Pacific Crest Trail | USA | 4,265 km | Most-hiked long trail; public US agency data; completion lists |
