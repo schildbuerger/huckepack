@@ -139,6 +139,20 @@ And the **Juan de Fuca Marine Trail** (British Columbia: BC Parks' 47 km along t
 And the **Tahoe Rim Trail** (California and Nevada: the Tahoe Rim Trail Association's 165-mile loop round Lake Tahoe from Tahoe City, in its eight segments trailhead to trailhead, over granite ridges, the Desolation Wilderness and the Carson Range up to Relay Peak at 3,151 m; over the OSM relation cut at the trailheads).
 
 And the **Sunshine Coast Trail** (British Columbia: the qathet Parks and Wilderness Society's 180 km from Sarah Point in Desolation Sound to Saltery Bay, in its three sections (12–13 days) between free huts, Canada's longest hut-to-hut trail, over Tin Hat Mountain and Mount Troubridge; over the trail's OSM relation with `via` points on the society's line; 2026-11-06).
+
+And the **Rockwall Trail** (British Columbia: Parks Canada's 54.1 km along the Rockwall in Kootenay National Park from the Paint Pots to Floe Lake, without stages by design (3–5 days between five backcountry campgrounds on a permit), over three alpine passes up to Numa Pass at 2,336 m below the limestone cliff and its hanging glaciers; over the OSM relation; 2026-11-06).
+| # | Trail | Region | Length (approx.) | Why |
+|---|---|---|---|---|
+| 1 | Pacific Crest Trail | USA | 4,265 km | Most-hiked long trail; public US agency data; completion lists |
+| 2 | Appalachian Trail | USA | 3,500 km | Most-hiked long trail; NPS data |
+| 3 | Te Araroa | New Zealand | 3,000 km | Popular abroad; DOC open data |
+| 4 | ~~Camino de Santiago (Camino Francés)~~ (added) | Spain | 780 km | Most-walked long route; pilgrim office statistics |
+| 5 | ~~GR 20~~ (added) | Corsica, France | 180 km | Best-known European thru-hike |
+| 6 | Continental Divide Trail | USA | 5,000 km | Completes the Triple Crown |
+| 7 | ~~Kungsleden~~ (added) | Sweden | 440 km | Well-known Nordic trail |
+| 8 | ~~West Highland Way~~ (added) | Scotland | 154 km | Popular, well documented |
+| 9 | Lycian Way (set aside 2026-11-02, #121) | Turkey | 760 km | Well-known Mediterranean route; no open stage data, and OSM's route measures 441 km |
+| 10 | Israel National Trail | Israel | 1,000 km | Popular desert-to-sea route |
 | # | Trail | Region | Length (approx.) | Why |
 |---|---|---|---|---|
 | 1 | Pacific Crest Trail | USA | 4,265 km | Most-hiked long trail; public US agency data; completion lists |
