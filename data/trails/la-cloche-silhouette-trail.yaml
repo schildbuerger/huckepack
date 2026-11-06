@@ -1,0 +1,190 @@
+name: La Cloche Silhouette Trail
+added: 2026-11-06
+website: https://www.ontarioparks.ca/park/killarney/activities
+wikidata: Q6461861
+managedBy:
+  - name: Ontario Parks, Killarney Provincial Park
+    url: https://www.ontarioparks.ca/park/killarney
+officialGpx:
+  none: Ontario Parks' Killarney pages offer a park map and campsite reservations, no GPX to download (checked 2026-11-06)
+  source: op-activities
+trailType: loop
+continents: [North America]
+countries: [CA]
+regions: [Ontario]
+protectedAreas: [Killarney Provincial Park]
+termini:
+  # "hikers can take shorter trips starting from two trailheads in George Lake Campground"; the loop
+  # starts and ends there (coordinates from OSM)
+  start:
+    name: George Lake Campground
+    lat: 46.01568
+    lon: -81.40055
+  end:
+    name: George Lake Campground
+    lat: 46.01568
+    lon: -81.40055
+  source: op-activities
+length:
+  # "La Cloche Silhouette Trail 80 km loop (7-10 days) strenuous"
+  - km: 80
+    source: op-activities
+days:
+  min: 7
+  max: 10
+  source: op-activities
+stages:
+  # no stages by design (issue #204; docs/scope.md, "Trails without stages"): hikers reserve their own
+  # backcountry campsites along the loop ("campsite specific reservations")
+  source: op-camping
+  none: true
+route:
+  # built by `python -m pipeline.all la-cloche-silhouette-trail`: OSM ways matched to the trail's
+  # OSM relation (14141941), the whole loop as one segment
+  source: osm
+  publishable: true
+  relation: 14141941
+difficulty:
+  # Ontario Parks: "strenuous"; the east section to the Crack "you have to climb over large boulders"
+  estimated:
+    sac: T3
+    basis: >-
+      Ontario Parks rates the loop strenuous: all Killarney's trails cross uneven, rocky ground, the
+      west section is moderate over rolling forested hills and creeks, the east section climbs over
+      rocky quartzite ridges and large boulders to the Crack. Rough mountain paths with some use of
+      the hands on the boulders (T3).
+    source: op-activities
+season:
+  # no season published for the trail; George Lake Campground is open all year
+  months: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
+  text: No season published; every month for now
+  source: huckepack-season
+sleeping:
+  # backcountry campsites with a fire pit and a box privy, reserved for the trail
+  types: [campsite]
+  source: op-camping
+wildCamping:
+  status: prohibited
+  rule: >-
+    Backcountry camping only at the trail's campsites, with an interior camping permit; campsites can
+    be reserved for the La Cloche Silhouette Trail up to five months ahead.
+  source: op-camping
+permit:
+  required: true
+  name: Interior camping permit
+  issuedBy: Ontario Parks
+  how: >-
+    Reserve the trail's campsites online or by phone up to five months ahead, and pick up the
+    interior camping permit at the George Lake campground office on arrival.
+  url: https://www.ontarioparks.ca/park/killarney/camping
+  source: op-camping
+access:
+  # Sudbury's airport; no public transport to the park. Coordinates from OSM; distances by
+  # pipeline/access.py
+  - kind: airport
+    name: Sudbury Airport (YSB)
+    lat: 46.625
+    lon: -80.7989
+    source: osm
+animals:
+  # Ontario's Bear Wise advice (Ministry of Natural Resources). Level ours
+  list:
+    - kind: bear
+      name: Black bear
+      level: low
+      basis: Black bears live in Killarney's forests; most avoid people, and the province's advice is to stay calm and let them leave.
+      do:
+        - Stop, stay calm and slowly back away, keeping the bear in sight
+        - If it doesn't leave, throw objects, wave your arms and make noise
+        - Prepare to use bear spray; drop any food you carry and move away slowly
+        - If it attacks, use bear spray and fight back with everything you have
+      dont:
+        - Run, climb a tree or swim
+        - Kneel down, make direct eye contact or approach it
+        - Play dead, unless attacked by a mother bear defending her cubs
+      source: bearwise
+tags: [lakes, ridges, forest, wilderness-camps]
+notes:
+  - >-
+    Stages: none by design. Ontario Parks gives the loop as 80 km in 7–10 days; hikers reserve their
+    own campsites along it. Wikipedia divides it into five sections (Baie Fine, Threenarrows, Hansen
+    Township and two more), which aren't official.
+  - >-
+    Season: Ontario Parks publishes no season for the trail (searched 2026-11-06: the park, activities
+    and camping pages; George Lake Campground is open all year, walk-in from about the end of November
+    to the beginning of May); every month for now.
+  - >-
+    Waymarking: the park's pages say the trails are marked but map navigation is essential; no
+    waymark described.
+  - >-
+    Tree line: none; the route stays below 416 m (the terrain model).
+  - >-
+    Map line (2026-11-06): the Ontario Geofabrik extract; OSM's La Cloche Silhouette Trail relation
+    (14141941) as one segment, 100 % matched. It measures 73.7 km on OSM's full geometry and 72.6 km
+    on the map line, against Ontario Parks' 80 km (−9 %) and Wikipedia's 78 km; the record keeps the
+    park's figure. The terrain model gives about 2,360 m of climbing, between 187 and 416 m. Water:
+    17 drinking water points in OSM, the longest dry stretch 14.8 km. No shops on the
+    loop: carry all food for 7–10 days.
+  - >-
+    Data check (2026-11-06, working rule 2): Ontario Parks against English Wikipedia: length 80 km
+    against 78 km (−2.5 %); a loop from the trailheads at George Lake in both; black bears among the
+    wildlife in both. Wikipedia gives no days or season; the page was checked against the park's
+    pages for those (7–10 days; no season published).
+dataCheck:
+  # working rule 2: English Wikipedia as the second source; the OSM map line
+  date: 2026-11-06
+  against: [wikipedia]
+  pageAgainst: [op-activities, op-camping]
+  deviations: []
+sources:
+  - id: op-activities
+    title: "Ontario Parks: Killarney Provincial Park, activities (the La Cloche Silhouette Trail: 80 km loop, 7–10 days, strenuous; trailheads)"
+    url: https://www.ontarioparks.ca/park/killarney/activities
+    licence: © King's Printer for Ontario (facts only)
+    retrieved: 2026-11-06
+  - id: op-camping
+    title: "Ontario Parks: Killarney Provincial Park, camping (backcountry campsites, reservations, interior camping permits)"
+    url: https://www.ontarioparks.ca/park/killarney/camping
+    licence: © King's Printer for Ontario (facts only)
+    retrieved: 2026-11-06
+  - id: bearwise
+    title: "Government of Ontario: Prevent bear encounters (Bear Wise)"
+    url: https://www.ontario.ca/page/prevent-bear-encounters-bear-wise
+    licence: © King's Printer for Ontario (facts only)
+    retrieved: 2026-11-06
+  - id: huckepack-season
+    title: "huckepack: no season published by Ontario Parks (the park, activities and camping pages, 2026-11-06); every month for now, until one is found"
+    url: https://github.com/schildbuerger/huckepack/blob/main/docs/trail-building.md
+    licence: CC BY 4.0
+    retrieved: 2026-11-06
+  - id: wikipedia
+    title: "Wikipedia (en): La Cloche Silhouette Trail"
+    url: https://en.wikipedia.org/wiki/La_Cloche_Silhouette_Trail
+    licence: CC BY-SA 4.0
+    retrieved: 2026-11-06
+    checkOnly: true
+  - id: osm
+    title: "OpenStreetMap contributors: the La Cloche Silhouette Trail relation (14141941), paths, water, shops and places to sleep along the trail (Geofabrik extract), travel hubs"
+    url: https://www.openstreetmap.org/relation/14141941
+    licence: ODbL 1.0
+    retrieved: 2026-11-06
+  - id: copdem
+    title: "Copernicus DEM GLO-30 (30 m terrain model), tiles from AWS Open Data"
+    url: https://registry.opendata.aws/copernicus-dem/
+    licence: "Copernicus WorldDEM-30 licence, free; produced using Copernicus WorldDEM-30 © DLR e.V. 2010-2014 and © Airbus Defence and Space GmbH 2014-2018 provided under COPERNICUS by the European Union and ESA; all rights reserved"
+    retrieved: 2026-11-06
+  - id: worldcover
+    title: "ESA WorldCover 2021: 10 m land cover (via AWS Open Data)"
+    url: https://esa-worldcover.org/
+    licence: "CC BY 4.0; © ESA WorldCover project 2021 / Contains modified Copernicus Sentinel data (2021) processed by ESA WorldCover consortium"
+    retrieved: 2026-11-06
+  - id: era5
+    title: "Open-Meteo open data on AWS: ERA5-Land temperature and ERA5 precipitation, snow and wind, daily 1995–2024 (reanalysis)"
+    url: https://github.com/open-meteo/open-data
+    licence: CC BY 4.0 (Open-Meteo); contains modified Copernicus Climate Change Service information
+    retrieved: 2026-11-06
+  - id: osrm
+    title: "OSRM: road routes on OpenStreetMap data (router.project-osrm.org)"
+    url: https://project-osrm.org/
+    licence: Route data © OpenStreetMap contributors (ODbL)
+    retrieved: 2026-11-06

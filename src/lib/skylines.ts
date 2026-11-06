@@ -1837,4 +1837,24 @@ export const SKYLINES: Record<string, Skyline> = {
       { d: "M1242,300L1246,284L1294,278L1296,300Z", c: "#2f2a22" },
     ],
   },
+  "la-cloche-silhouette-trail": {
+    view: "Killarney's La Cloche range: white quartzite ridges over a clear blue lake, pink granite on the shore and wind-shaped jack pines",
+    ridge: "#4a5e3e",
+    ground: "#c9a98a",
+    shapes: [
+      // the La Cloche ridges, white quartzite showing through the forest
+      { d: hills([[0, G], [140, 236], [300, 214], [460, 226], [600, 206], [760, 220], [900, 230], [1080, 210], [1240, 224], [1420, 216], [1600, 232], [1600, G]]), c: "#5f7558" },
+      { d: "M280,218L300,214L340,216L330,226L300,230Z M580,210L600,206L640,210L630,222L596,224Z M1060,214L1080,210L1120,214L1110,226L1074,228Z M1400,220L1420,216L1452,220L1440,230L1410,232Z", c: "#eeeee6" },
+      // a nearer ridge
+      { d: hills([[0, G], [200, 262], [440, 252], [700, 264], [940, 250], [1180, 262], [1400, 256], [1600, 266], [1600, G]]), c: FIR },
+    ],
+    front: [
+      // the lake, and pink granite on its shore
+      { d: water(0, 1600, 290), c: "#3f86b8" },
+      { d: hills([[1040, G], [1160, 288], [1300, 282], [1440, 290], [1600, 286], [1600, G]]), c: "#c48a7a" },
+      // a jack pine leaning over the shore: a trunk and flat crown tiers
+      { d: "M1290,282L1296,230L1300,230L1298,282Z", c: "#3a2f26" },
+      { d: "M1262,240l40-10l30,6l-36,10z M1272,226l34-8l22,6l-30,8z M1280,214l24-6l16,4l-22,6z", c: "#2f4a2c" },
+    ],
+  },
 };

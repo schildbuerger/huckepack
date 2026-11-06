@@ -1,0 +1,53 @@
+{
+  "climate-high.json": {
+    "retrieved": "2026-11-06T14:42:26+00:00",
+    "url": "https://openmeteo.s3.us-west-2.amazonaws.com/data/copernicus_era5_land+copernicus_era5?latitude=46.1&longitude=-81.4&elevation=420"
+  },
+  "climate-low.json": {
+    "retrieved": "2026-11-06T14:38:51+00:00",
+    "url": "https://openmeteo.s3.us-west-2.amazonaws.com/data/copernicus_era5_land+copernicus_era5?latitude=46.0&longitude=-81.5&elevation=190"
+  },
+  "commons-geo.json": {
+    "key": "with categories, 73.6 km, every 2.5 km, 1500 m, within 0.5 km",
+    "retrieved": "2026-11-06T14:44:10+00:00",
+    "url": "Commons geosearch along the route"
+  },
+  "commons.json": {
+    "key": "Q6461861",
+    "retrieved": "2026-11-06T14:42:28+00:00",
+    "url": "Q6461861 P18 P373"
+  },
+  "elevation-glo30.json": {
+    "retrieved": "2026-11-06T14:34:57+00:00",
+    "url": "https://copernicus-dem-30m.s3.eu-central-1.amazonaws.com/Copernicus_DSM_COG_10_N46_00_W082_00_DEM/Copernicus_DSM_COG_10_N46_00_W082_00_DEM.tif"
+  },
+  "landcover.json": {
+    "retrieved": "2026-11-06T14:34:58+00:00",
+    "url": "https://esa-worldcover.s3.eu-central-1.amazonaws.com/v200/2021/map/ESA_WorldCover_10m_2021_v200_\u2026_Map.tif"
+  },
+  "osm-relation.json": {
+    "retrieved": "2026-11-05T21:23:02Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-1-main.json": {
+    "key": "6c453db2f4b7",
+    "retrieved": "2026-11-05T21:23:02Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-water.json": {
+    "retrieved": "2026-11-05T21:23:02Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-way-tags.json": {
+    "retrieved": "2026-11-05T21:23:02Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osrm-access-sudbury-airport-ysb.json": {
+    "retrieved": "2026-11-06T14:42:26+00:00",
+    "url": "https://router.project-osrm.org/route/v1/driving/-80.7989,46.625;-81.40055,46.01568?overview=false"
+  },
+  "wikimedia.json": {
+    "retrieved": "2026-11-06T14:42:27+00:00",
+    "url": "Q6461861 2025-11..2026-10"
+  }
+}
