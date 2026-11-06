@@ -1,0 +1,267 @@
+---
+// The header's navigation on every page (approach C of ten previews, 2026-11-06): an "Explore" button
+// with a compass beside the search, as tall as the search button and hovered like it. It opens the
+// site's pages as a curved list hanging from it; the compass needle sways a little while idle and turns
+// to the entry pointed at. The links are in the HTML from the start (only shown on opening), so crawlers
+// follow them without a script; Tab into them opens the list too. Escape or a click elsewhere closes it.
+import iconFootprints from "lucide-static/icons/footprints.svg?raw";
+import iconMap from "lucide-static/icons/map.svg?raw";
+import iconSignpost from "lucide-static/icons/signpost.svg?raw";
+import iconCalendar from "lucide-static/icons/calendar-range.svg?raw";
+import iconBookA from "lucide-static/icons/book-a.svg?raw";
+
+const path = Astro.url.pathname;
+const pages = [
+  { id: "trails", href: "/trails/", label: "Find a trail", icon: iconFootprints },
+  { id: "map", href: "/trails/map/", label: "Map", icon: iconMap },
+  { id: "guide", href: "/trails/guide/", label: "Help me choose", icon: iconSignpost },
+  { id: "seasons", href: "/trails/seasons/", label: "Season planner", icon: iconCalendar },
+  { id: "all", href: "/trails/all/", label: "All trails A–Z", icon: iconBookA },
+];
+// the page's section: a trail page belongs to "Find a trail"
+const tools = ["map", "guide", "seasons", "all"];
+const current = (id: string, href: string) =>
+  id === "trails" ? path === "/trails/" || (/^\/trails\/[^/]+\/$/.test(path) && !tools.some((t) => path === `/trails/${t}/`)) : path.startsWith(href);
+// a curved list hanging from the button, bowing out to the left
+const entries = pages.map((p, i) => ({
+  ...p,
+  x: -Math.round(Math.sin(((i + 0.5) / pages.length) * Math.PI) * 46),
+  y: 52 + i * 44,
+  current: current(p.id, p.href),
+}));
+---
+
+<nav class="explore" aria-label="Main" data-explore>
+  <button type="button" class="ex-btn" aria-expanded="false" aria-controls="explore-pages">
+    <span class="ex-dial" aria-hidden="true">
+      <svg viewBox="0 0 32 32">
+        <circle class="ex-rim" cx="16" cy="16" r="14.75" />
+        <path class="ex-tick" d="M16 3.5v3M28.5 16h-3M16 28.5v-3M3.5 16h3" />
+        <path class="ex-tick ex-north-tick" d="M16 3.5v3" />
+      </svg>
+      <span class="ex-needle">
+        <svg viewBox="0 0 32 32">
+          <path class="ex-north" d="M16 5.5 19 16h-6z" />
+          <path class="ex-south" d="M16 26.5 13 16h6z" />
+          <circle class="ex-pin" cx="16" cy="16" r="1.7" />
+        </svg>
+      </span>
+    </span>
+    Explore
+  </button>
+  <ul id="explore-pages" class="ex-pages">
+    {entries.map((e) => (
+      <li style={`--x: ${e.x}px; --y: ${e.y}px`}>
+        <a href={e.href} aria-current={e.current ? "page" : undefined}>
+          <span class="ex-ico" set:html={e.icon} aria-hidden="true" />
+          {e.label}
+        </a>
+      </li>
+    ))}
+  </ul>
+</nav>
+
+<script>
+  for (const nav of document.querySelectorAll<HTMLElement>("[data-explore]")) {
+    const btn = nav.querySelector<HTMLButtonElement>(".ex-btn")!;
+    const needle = nav.querySelector<HTMLElement>(".ex-needle")!;
+    const set = (open: boolean) => {
+      if (!open) needle.style.rotate = "0deg";
+      nav.classList.toggle("open", open);
+      btn.setAttribute("aria-expanded", String(open));
+    };
+    btn.addEventListener("click", (e) => {
+      e.stopPropagation();
+      set(!nav.classList.contains("open"));
+    });
+    document.addEventListener("click", (e) => {
+      if (!nav.contains(e.target as Node)) set(false);
+    });
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape" && nav.classList.contains("open")) {
+        set(false);
+        btn.focus();
+      }
+    });
+    nav.addEventListener("focusout", (e) => {
+      if (!nav.contains(e.relatedTarget as Node)) set(false);
+    });
+    for (const li of nav.querySelectorAll<HTMLElement>(".ex-pages li")) {
+      // the needle's north aims at the entry's centre (clockwise from straight up)
+      const turn = () => {
+        const d = needle.getBoundingClientRect();
+        const r = li.getBoundingClientRect();
+        const deg = (Math.atan2(r.left + r.width / 2 - (d.left + d.width / 2), d.top + d.height / 2 - (r.top + r.height / 2)) * 180) / Math.PI;
+        needle.style.rotate = `${Math.round(deg)}deg`;
+      };
+      li.addEventListener("pointerenter", turn);
+      li.addEventListener("focusin", () => (set(true), turn()));
+    }
+  }
+</script>
+
+<style>
+  .explore {
+    position: relative;
+  }
+  /* as tall as the search button beside it (34 px, its 1 px rim), the compass about its icon's size */
+  .ex-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    height: 34px;
+    padding: 0 13px 0 7px;
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    background: var(--bg);
+    color: var(--text);
+    font: 600 13px var(--sans);
+    cursor: pointer;
+  }
+  /* as the search button: filled on hover and while open, the moss ring on keyboard focus */
+  .ex-btn:hover,
+  .open .ex-btn {
+    background: var(--surface);
+  }
+  .ex-btn:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+  }
+  /* a compass: a rim with the four points (north in red) and a diamond needle on a pin; idle, the
+     needle sways a little as a real one settles; open, it turns to the entry pointed at */
+  .ex-dial {
+    position: relative;
+    width: 18px;
+    height: 18px;
+  }
+  .ex-dial svg {
+    position: absolute;
+    inset: 0;
+    display: block;
+    width: 100%;
+    height: 100%;
+  }
+  .ex-rim {
+    fill: var(--accent-soft);
+    stroke: var(--text);
+    stroke-width: 2.2;
+  }
+  .ex-tick {
+    stroke: var(--muted);
+    stroke-width: 2.2;
+    stroke-linecap: round;
+  }
+  .ex-north-tick {
+    stroke: var(--poor);
+    stroke-width: 3;
+  }
+  .ex-north {
+    fill: var(--poor);
+  }
+  .ex-south {
+    fill: var(--text);
+  }
+  .ex-pin {
+    fill: var(--bg);
+    stroke: var(--text);
+    stroke-width: 1;
+  }
+  .ex-needle {
+    position: absolute;
+    inset: 0;
+    rotate: 0deg;
+    transition: rotate 0.45s cubic-bezier(0.3, 1.6, 0.5, 1);
+    animation: ex-sway 3.2s ease-in-out infinite;
+  }
+  .open .ex-needle {
+    animation: none;
+  }
+  @keyframes ex-sway {
+    0%,
+    100% {
+      transform: rotate(-7deg);
+    }
+    50% {
+      transform: rotate(7deg);
+    }
+  }
+
+  /* the pages: dark pills hanging from the button in a curve, folded into it while closed */
+  .ex-pages {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+  .ex-pages li {
+    position: absolute;
+    z-index: 30;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%) scale(0.4);
+    opacity: 0;
+    pointer-events: none;
+    transition: transform 0.3s cubic-bezier(0.3, 1.4, 0.5, 1), opacity 0.2s;
+  }
+  .open .ex-pages li {
+    transform: translate(calc(-100% + 60px + var(--x)), calc(-50% + var(--y)));
+    opacity: 1;
+    pointer-events: auto;
+  }
+  .ex-pages a {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    padding: 8px 14px;
+    border-radius: 999px;
+    background: var(--text);
+    color: var(--bg);
+    font: 600 13px var(--sans);
+    text-decoration: none;
+    white-space: nowrap;
+    transition: background-color 0.15s, transform 0.2s cubic-bezier(0.3, 1.5, 0.5, 1), box-shadow 0.15s;
+  }
+  .ex-pages a[aria-current] {
+    background: var(--accent);
+  }
+  /* pointed at or focused: the entry turns moss, steps out towards the needle and gets a soft ring;
+     its icon tips a little */
+  .ex-pages a:hover,
+  .ex-pages a:focus-visible {
+    background: var(--accent);
+    transform: translateX(-8px);
+    box-shadow: 0 0 0 4px var(--accent-soft);
+    outline: none;
+  }
+  .ex-pages a[aria-current]:hover,
+  .ex-pages a[aria-current]:focus-visible {
+    background: var(--accent-text);
+  }
+  .ex-ico {
+    transition: transform 0.2s;
+  }
+  .ex-ico :global(svg) {
+    display: block;
+    width: 16px;
+    height: 16px;
+  }
+  .ex-pages a:hover .ex-ico,
+  .ex-pages a:focus-visible .ex-ico {
+    transform: rotate(-10deg) scale(1.12);
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .ex-needle {
+      animation: none;
+    }
+    .ex-pages li,
+    .ex-pages a,
+    .ex-needle {
+      transition: none;
+    }
+  }
+  /* phones: the open search takes the header row; Explore steps aside until it closes */
+  @media (max-width: 759px) {
+    :global(html.hsearch-open) .explore {
+      display: none;
+    }
+  }
+</style>

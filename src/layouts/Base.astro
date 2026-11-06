@@ -1,5 +1,6 @@
 ---
 import HeaderSearch from "../components/HeaderSearch.astro";
+import ExploreMenu from "../components/ExploreMenu.astro";
 import logo from "../assets/logo.svg?raw"; // written by design/logos/make.py
 import { inlineScript } from "../lib/inline-script";
 import { ogPageAlt } from "../lib/og-pages";
@@ -93,9 +94,11 @@ const siteLd =
           <span class="brand-mark" aria-hidden="true" set:html={logo} />
           huckepack
         </a>
-        <!-- the same on every page (issues #154, #155): the search as an icon -->
+        <!-- the same on every page (issues #154, #155): the search as an icon, then the site's pages
+             under Explore (2026-11-06) -->
         <div class="header-end">
           <HeaderSearch />
+          <ExploreMenu />
         </div>
       </div>
     </header>
@@ -388,7 +391,7 @@ const siteLd =
     justify-content: space-between;
     height: 60px;
   }
-  /* the header's right side, the same on every page: the search icon */
+  /* the header's right side, the same on every page: the search icon and Explore */
   .header-end {
     display: flex;
     align-items: center;
