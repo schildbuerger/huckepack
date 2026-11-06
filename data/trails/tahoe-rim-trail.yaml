@@ -1,0 +1,275 @@
+name: Tahoe Rim Trail
+added: 2026-11-06
+aliases: [TRT]
+website: https://tahoerimtrail.org/
+wikidata: Q925069
+managedBy:
+  # the association built the trail with the Forest Service and maintains it; the land is the Lake
+  # Tahoe Basin Management Unit's, the Humboldt-Toiyabe and Tahoe National Forests' and Lake Tahoe
+  # Nevada State Park's
+  - name: Tahoe Rim Trail Association
+    url: https://tahoerimtrail.org/
+officialGpx:
+  none: the association offers its segment maps and centerline GPX files only after a form with name, email address and a reCAPTCHA (checked 2026-11-06)
+  source: trta-maps
+trailType: loop
+continents: [North America]
+countries: [US]
+regions: [California, Nevada]
+protectedAreas: [Desolation Wilderness, Granite Chief Wilderness, Mount Rose Wilderness, Lake Tahoe Nevada State Park]
+termini:
+  # a loop round Lake Tahoe; the association lists its eight segments clockwise from Tahoe City
+  # (64 Acres), so the record starts and ends there (coordinates from OSM, on the trail's relation)
+  start:
+    name: Tahoe City
+    lat: 39.16488
+    lon: -120.14714
+  end:
+    name: Tahoe City
+    lat: 39.16488
+    lon: -120.14714
+  source: trta-maps
+established:
+  # "the 150-mile loop was complete … the Tahoe Rim Trail is officially declared open!" (2001)
+  year: 2001
+  source: trta-history
+waymarking:
+  # the backpacking FAQ
+  text: >-
+    Well marked compared to other long-distance trails, but with no confidence markers or mileage
+    signs except at major trail junctions; not signed for winter use.
+  source: trta-backpacking
+length:
+  # the home page: "tackling the Tahoe Rim Trail as a 165 mile thru hike"; the eight segments
+  # sum to 173.9 miles (they run trailhead to trailhead, with the connectors)
+  - km: 266
+    approx: true
+    source: trta
+stages:
+  # the association's eight segments, trailhead to trailhead, clockwise from Tahoe City, with its
+  # miles (maps and trail info page); stage ends on the OSM relation near each trailhead
+  source: trta-maps
+  list:
+    - { number: "1", kind: main, from: Tahoe City, to: Brockway Summit, km: 33.0, end: { lat: 39.25919, lon: -120.07123 } }
+    - { number: "2", kind: main, from: Brockway Summit, to: Mt. Rose Summit / Tahoe Meadows, km: 32.5, end: { lat: 39.31322, lon: -119.89706 } }
+    - { number: "3", kind: main, from: Mt. Rose Summit / Tahoe Meadows, to: Spooner Summit, km: 38.8, end: { lat: 39.10443, lon: -119.89689 } }
+    - { number: "4", kind: main, from: Spooner Summit, to: Kingsbury South Connector, km: 30.6, end: { lat: 38.97006, lon: -119.89544 } }
+    - { number: "5", kind: main, from: Kingsbury South Connector, to: Big Meadow, km: 36.9, end: { lat: 38.78908, lon: -120.0006 } }
+    - { number: "6", kind: main, from: Big Meadow, to: Echo Lakes, km: 29.5, end: { lat: 38.83436, lon: -120.04338 } }
+    - { number: "7", kind: main, from: Echo Lakes, to: Barker Pass, km: 52.3, end: { lat: 39.07698, lon: -120.23509 } }
+    - { number: "8", kind: main, from: Barker Pass, to: Tahoe City, km: 26.4, end: { lat: 39.16488, lon: -120.14714 } }
+route:
+  # built by `python -m pipeline.all tahoe-rim-trail`: OSM ways matched to the trail's OSM relation
+  # (3094865, operator Tahoe Rim Trail Association), cut at the segments' trailheads
+  source: osm
+  publishable: true
+  relation: 3094865
+difficulty:
+  estimated:
+    sac: T2
+    basis: >-
+      The association describes long ridge traverses and climbs between about 1,900 and 3,150 m
+      (Relay Peak, 10,338 ft), long steep approaches over Dicks Pass in the Desolation Wilderness and
+      long dry stretches on the east shore, on a built single-track trail without exposed passages.
+      Mountain hiking on a maintained trail (T2); early in the season snow on high and north-facing
+      slopes can hide the trail.
+    source: trta-maps
+season:
+  # the backpacking FAQ: "Average snow years the trail mostly melts out by the end of June. At
+  # higher elevations and on north facing slopes the snow tends to hang around longer, sometimes
+  # well into July or even early August"; "Snow and freezing temperatures are possible during any
+  # month of the year"; the guided thru-hikes run at the end of July and the end of August
+  months: [7, 8, 9]
+  text: Summer, from July; in an average snow year the trail mostly melts out by the end of June, later on high and north-facing slopes, and snow is possible in any month
+  source: trta-backpacking
+permit:
+  # the backpacking FAQ: "The only section of the TRT you need an overnight camping permit for is
+  # also in Desolation Wilderness. These permits are available at recreation.gov"; day-use permits
+  # there are free at the trailhead
+  required: true
+  name: Desolation Wilderness overnight permit (segment 7 only)
+  issuedBy: USDA Forest Service
+  how: >-
+    Only for camping in the Desolation Wilderness (segment 7, Echo Lakes to Barker Pass): reserve
+    an overnight permit on Recreation.gov. Day use there needs a free permit from the trailhead; the
+    rest of the trail needs none.
+  url: https://www.recreation.gov/permits/233261
+  source: trta-backpacking
+sleeping:
+  # backcountry camping along the trail, a few campgrounds on or near it (Watson Lake, Marlette
+  # Peak, North Canyon, Mount Rose Summit); hotels and hostels in the lake's towns off the trail
+  types: [campsite]
+  source: trta-water
+wildCamping:
+  status: restricted
+  rule: >-
+    Backcountry camping along the trail; in the Desolation Wilderness only with an overnight permit.
+    Fires are generally prohibited, and since 1 January 2024 all food and other smellables must be
+    stored in a bear-resistant canister on the whole trail.
+  source: trta-backpacking
+access:
+  # Reno–Tahoe International Airport; Truckee station (Amtrak's California Zephyr), with transit
+  # (TART) to the Tahoe City trailhead. Coordinates from OSM; distances by pipeline/access.py
+  - kind: airport
+    name: Reno–Tahoe International Airport (RNO)
+    lat: 39.49828
+    lon: -119.76879
+    source: osm
+  - kind: station
+    name: Truckee station
+    lat: 39.32749
+    lon: -120.1856
+    source: osm
+animals:
+  # the Tahoe agencies' joint release (California Department of Fish and Wildlife, California and
+  # Nevada State Parks, Nevada Department of Wildlife, the Forest Service's Lake Tahoe Basin
+  # Management Unit and others); level ours
+  list:
+    - kind: bear
+      name: Black bear
+      level: moderate
+      basis: Black bears live round Lake Tahoe and come for food left unsecured; the agencies require bear-resistant food storage, and on the trail a canister.
+      do:
+        - Store food in bear-resistant, hard-sided canisters
+        - Give wildlife space, especially mothers with young
+        - If a bear approaches, yell at the bear to make it leave before it gets a food reward
+      dont:
+        - Never feed wildlife; feeding bears is illegal, intentional or not
+        - Never leave food, garbage or anything scented in campsites or tents
+      source: tahoe-bears
+tags: [lake, mountains, loop, wilderness]
+notes:
+  - >-
+    Stages: the association's eight segments, trailhead to trailhead, with its miles (20.5, 20.2,
+    24.1, 19.0, 22.9, 18.3, 32.5 and 16.4 = 173.9 miles, 279.9 km), more than its "165 mile" loop,
+    since they reach the trailheads on connector trails. The water page gives the first segment as
+    20.2 miles, the maps page 20.5; the record keeps the maps page. The trail conditions page splits
+    the fourth segment at Kingsbury North (nine segments); the maps page's eight are kept.
+  - >-
+    Days: the association gives no days ("Everyone travels at a different pace. It is recommended to
+    hike a segment or assess with comparable mileage from another hike"); the page counts one day
+    per segment, though most segments are long for one day.
+  - >-
+    Tree line: not added. No published figure for the Lake Tahoe Basin or the Carson Range was
+    found (the Forest Service, the association; searched 2026-11-06). The Forest Service's Silvics of
+    North America gives whitebark pine, the timberline tree, at 3,050–3,510 m in the central and
+    southern Sierra Nevada and 2,440–2,900 m on Mount Shasta; the Tahoe region lies between, and the
+    route's highest point, Relay Peak (3,151 m), is near it.
+  - >-
+    Wildlife: mountain lions live in the region too; the California Department of Fish and Wildlife
+    says attacks on humans are rare, but its pages give no encounter advice to quote, so only the
+    black bear is listed.
+  - >-
+    Map line (2026-11-06): the Northern California and Nevada Geofabrik extracts (2026-11-05); OSM's
+    Tahoe Rim Trail relation (3094865), chained clockwise from Tahoe City and cut near the eight
+    trailheads, every stage 100 % matched. It measures 264.6 km against the association's 165
+    miles (266 km, −0.5 %) and its segments' 173.9 miles (279.9 km). Highest point 3,142 m at km 54
+    (Relay Peak, 10,338 ft or 3,151 m on the association's page), lowest 1,900 m at Tahoe City
+    (Wikipedia: 6,223 ft, 1,897 m). The terrain model gives about 9,060 m of climbing; none is stated.
+  - >-
+    Stage 4 (Spooner Summit to Kingsbury South) measures 23.7 km on the map line against the
+    association's 19.0 miles (30.6 km, −23 %): the relation follows the main trail past the Kingsbury
+    North and South connectors, which the association's segment miles include (its conditions page
+    counts "Kingsbury North to Kingsbury South" as a segment of its own); stage 5 measures 40.1 km
+    against 36.9 km (+9 %), as the cut lies on the relation, about 0.6 km from the Kingsbury South
+    trailhead at Daggett Summit. The record keeps the association's miles.
+  - >-
+    Water: OSM maps 3 drinking water points and 5 springs near the trail; the check's longest dry
+    stretch is 51 km (km 124–175, Kingsbury South to Big Meadow), where the association's water page
+    names seasonal creeks, Star Lake ("never goes dry") and the Cold Creek tributary. The east shore
+    and the stretch from Brockway Summit lack year-round water ("There is no water from Brockway
+    Summit east until Gray Lake or Incline Spring, over 11 miles"; none from Spooner Summit to the
+    Kingsbury North connector).
+  - >-
+    Resupply: OSM maps 4 shops near the trail, the longest stretch without one 123 km (Tahoe City to
+    Kingsbury South); the trail stays above the lake's towns. The association names post offices in
+    Tahoe City, Kings Beach, Incline Village, Zephyr Cove and South Lake Tahoe, towns about 5 miles'
+    drive from Brockway, Mount Rose and Echo Summit, a store 0.8 miles from Kingsbury South and the
+    seasonal Echo Chalet at Echo Lakes.
+  - >-
+    Beds: OSM maps 14 places to sleep near the trail, the longest stretch without one 42.5 km
+    (km 21–64, Brockway Summit to Mount Rose); backcountry camping is allowed there (outside the
+    Desolation Wilderness no permit is needed).
+  - >-
+    Data check (2026-11-06): against English Wikipedia. Length 165 miles (266 km) agrees with its
+    infobox (its lead says 170 miles, 274 km, +3 %); season July to September agrees with its "July
+    through September"; termini (Tahoe City among its trailheads), the highest point (Relay Peak,
+    10,338 ft) and the Desolation Wilderness permit agree. It gives no days, segments, camping rules
+    or tree line; the segments' miles, the season, permits and camping rules on the built page were
+    checked one by one against the association's pages and agree. Its "elevation change 24,400 ft"
+    (7,440 m) is 18 % under the terrain model's 9,060 m of climbing, which the page shows as an
+    estimate.
+  - >-
+    Preflight (2026-11-06): pipeline.preflight flags the association's pages as a bot check, from the
+    Cloudflare script tag (/cdn-cgi/challenge-platform/scripts/jsd/) every page carries; the pages
+    answer 200 with their full text to a plain request, with no challenge, so the sources are used.
+dataCheck:
+  # working rule 2: English Wikipedia as the second source; the segments only on the association's
+  # pages, so the built page was checked against them
+  date: 2026-11-06
+  against: [wikipedia]
+  pageAgainst: [trta-maps, trta-backpacking]
+  deviations:
+    - { figure: ascent, ours: "≈9,060 m (terrain model; none stated)", theirs: "24,400 ft (7,440 m)", source: wikipedia }
+sources:
+  - id: trta
+    title: "Tahoe Rim Trail Association: home page (165 mile thru hike)"
+    url: https://tahoerimtrail.org/
+    licence: All rights reserved (facts only)
+    retrieved: 2026-11-06
+  - id: trta-maps
+    title: "Tahoe Rim Trail Association: Maps & Trail Information (eight segments with miles, segment maps and GPX after a form)"
+    url: https://tahoerimtrail.org/maps-trail-info/
+    licence: All rights reserved (facts only)
+    retrieved: 2026-11-06
+  - id: trta-backpacking
+    title: "Tahoe Rim Trail Association: Backpacking, bikepacking and thru-hiking FAQ (season, permits, bear canisters, fires, waymarking)"
+    url: https://tahoerimtrail.org/backpacking-thru-hiking/
+    licence: All rights reserved (facts only)
+    retrieved: 2026-11-06
+  - id: trta-water
+    title: "Tahoe Rim Trail Association: Water sources by segment (campgrounds on the way)"
+    url: https://tahoerimtrail.org/water-sources/
+    licence: All rights reserved (facts only)
+    retrieved: 2026-11-06
+  - id: trta-history
+    title: "Tahoe Rim Trail Association: History of the Tahoe Rim Trail"
+    url: https://tahoerimtrail.org/history/
+    licence: All rights reserved (facts only)
+    retrieved: 2026-11-06
+  - id: tahoe-bears
+    title: "California State Parks, CDFW, Nevada State Parks, NDOW, USDA Forest Service LTBMU and others: Secure food, trash and other attractants (Tahoe bears, 22 July 2021)"
+    url: https://www.parks.ca.gov/NewsRelease/1031
+    licence: California state government work (facts only)
+    retrieved: 2026-11-06
+  - id: wikipedia
+    title: "Wikipedia (en): Tahoe Rim Trail"
+    url: https://en.wikipedia.org/wiki/Tahoe_Rim_Trail
+    licence: CC BY-SA 4.0
+    retrieved: 2026-11-06
+    checkOnly: true
+  - id: osm
+    title: "OpenStreetMap contributors: paths, water, shops and places to sleep along the trail (Geofabrik extracts), travel hubs"
+    url: https://www.openstreetmap.org/
+    licence: ODbL 1.0
+    retrieved: 2026-11-06
+  - id: copdem
+    title: "Copernicus DEM GLO-30 (30 m terrain model), tiles from AWS Open Data"
+    url: https://registry.opendata.aws/copernicus-dem/
+    licence: "Copernicus WorldDEM-30 licence, free; produced using Copernicus WorldDEM-30 © DLR e.V. 2010-2014 and © Airbus Defence and Space GmbH 2014-2018 provided under COPERNICUS by the European Union and ESA; all rights reserved"
+    retrieved: 2026-11-06
+  - id: worldcover
+    title: "ESA WorldCover 2021: 10 m land cover (via AWS Open Data)"
+    url: https://esa-worldcover.org/
+    licence: "CC BY 4.0; © ESA WorldCover project 2021 / Contains modified Copernicus Sentinel data (2021) processed by ESA WorldCover consortium"
+    retrieved: 2026-11-06
+  - id: era5
+    title: "Open-Meteo open data on AWS: ERA5-Land temperature and ERA5 precipitation, snow and wind, daily 1995–2024 (reanalysis)"
+    url: https://github.com/open-meteo/open-data
+    licence: CC BY 4.0 (Open-Meteo); contains modified Copernicus Climate Change Service information
+    retrieved: 2026-11-06
+  - id: osrm
+    title: "OSRM: road routes on OpenStreetMap data (router.project-osrm.org)"
+    url: https://project-osrm.org/
+    licence: Route data © OpenStreetMap contributors (ODbL)
+    retrieved: 2026-11-06

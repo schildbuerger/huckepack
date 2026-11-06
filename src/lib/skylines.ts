@@ -1909,6 +1909,31 @@ export const SKYLINES: Record<string, Skyline> = {
       { d: "M500,304V288H526V304Z", c: "#5a2a20" },
     ],
   },
+  "tahoe-rim-trail": {
+    view: "Lake Tahoe from the rim: the deep blue lake below granite ridges and pines, the Sierra's peaks across the water with Mount Tallac's snow, and turquoise shallows round granite boulders on the east shore",
+    ridge: "#4a5e3e",
+    ground: "#b8ad92",
+    shapes: [
+      // the Sierra across the lake, pale with distance; Mount Tallac on the left with late snow
+      { d: range([[0, G], [60, 232], [200, 218], [340, 222], [460, 206], [540, 186], [600, 166], [630, 158], [660, 166], [720, 190], [800, 208], [900, 214], [1000, 222], [1120, 214], [1260, 224], [1400, 216], [1520, 226], [1600, 230], [1600, G]]), c: "#aab6c4" },
+      { d: snowOf([[400, G], [460, 206], [540, 186], [600, 166], [630, 158], [660, 166], [720, 190], [800, 208], [900, G]], 184), c: SNOW },
+      // Lake Tahoe, deep blue to the far shore
+      { d: water(0, 1600, 238), c: "#2f6f9f" },
+      // the rim on the left: a granite ridge with dark forest on its lower slopes
+      { d: range([[0, G], [0, 226], [50, 214], [110, 188], [160, 176], [210, 190], [270, 214], [340, 242], [420, 270], [500, G]]), c: "#9a9890" },
+      { d: hills([[0, G], [120, 256], [260, 248], [400, 266], [520, 286], [620, G]]), c: FIR },
+      // forested slopes of the east shore on the right
+      { d: hills([[1200, G], [1320, 262], [1460, 250], [1600, 258], [1600, G]]), c: "#4f6a46" },
+    ],
+    front: [
+      // turquoise shallows over sand, and rounded granite boulders in them
+      { d: water(700, 1520, 294), c: "#5fb0b4" },
+      { d: "M900,300C904,288 926,284 938,292C946,298 944,302 940,304L902,304Z M1020,302C1026,292 1050,290 1060,298L1062,306L1022,306Z M1150,300C1154,286 1186,284 1196,296L1198,306L1152,306Z", c: "#cfc8b8" },
+      // Jeffrey pines on the rim: straight trunks and tiered crowns
+      { d: "M218,300L220,226L224,226L226,300Z M330,300L331,246L334,246L335,300Z", c: "#3a2f26" },
+      { d: "M222,212L206,244L238,244Z M222,226L200,262L244,262Z M222,244L196,280L248,280Z M332,236L320,260L344,260Z M332,250L316,276L348,276Z", c: "#2f4a2c" },
+    ],
+  },
   "superior-hiking-trail": {
     view: "Minnesota's North Shore: the Sawtooth ridges above Lake Superior, birch and spruce on the rocky slopes, a waterfall dropping towards the lake and the lake's long horizon",
     ridge: "#3f5a34",
