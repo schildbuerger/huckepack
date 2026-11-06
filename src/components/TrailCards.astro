@@ -6,11 +6,13 @@
 // moves the rest into the sorted order (by `data-slug`). Each row: the trail (name, countries, ends,
 // landscape, water, wild camping, sleeping), length, days, ascent, difficulty (re-rated in the browser
 // for a month pick, Base.astro), the season, and the elevation profile on one scale for every trail with
-// the ground underfoot. On phones a row folds into a compact card.
+// the ground underfoot. A trail that stands out gets a stamp beside its name, and a dot walks its profile
+// while the row is pointed at. On phones a row folds into a compact card.
 import type { SearchTrail } from "../lib/search";
 import { SLEEPING_CATEGORIES, WATER_LEVELS } from "../lib/trails";
 import { LANDSCAPES, LEVEL_WORDS, MONTHS, dimSay, ratedDims } from "../lib/filters";
 import { rateData } from "../lib/months";
+import { allSearchTrails } from "../lib/search-all";
 
 interface Props {
   trails: SearchTrail[];
@@ -44,6 +46,24 @@ const landText = (t: SearchTrail) => {
   const label = top && LANDSCAPES.find((l) => l.id === top[0])?.label;
   return label ? `${top[1] >= 0.5 ? "Mostly" : "Mainly"} ${label}` : null;
 };
+// passport stamps (2026-11-06, of ten playful previews, H): one per row for a fact that stands out
+// among all the trails (these cards may be only some of them, /trails/cards.html the rest): the highest
+// point, the shortest and the longest, the least climbing per km, and the five added last ("New")
+const everyTrail = await allSearchTrails();
+const ranked = (f: (t: SearchTrail) => number | null) => everyTrail.filter((t) => f(t) !== null).sort((a, b) => f(a)! - f(b)!);
+const stamps = new Map<string, { word: string; tone: "moss" | "rust" }>();
+const stamp = (slug: string | undefined, word: string, tone: "moss" | "rust") => slug && !stamps.has(slug) && stamps.set(slug, { word, tone });
+stamp(ranked((t) => t.highestM).at(-1)?.slug, "Highest", "rust");
+stamp(ranked((t) => t.compareKm)[0]?.slug, "Shortest", "moss");
+stamp(ranked((t) => t.compareKm).at(-1)?.slug, "Longest", "rust");
+stamp(ranked((t) => (t.climb && t.compareKm ? t.climb.m / t.compareKm : null))[0]?.slug, "Flattest", "moss");
+for (const t of ranked((t) => -Date.parse(t.added)).slice(0, 5)) stamp(t.slug, "New", "moss");
+// the profile's top line, which the walker follows (2026-11-06, of ten playful previews, E)
+const sparkLine = (profile: [number, number][]) => {
+  const total = profile.at(-1)![0] || 1;
+  const [lo, hi] = eleRange;
+  return `M${profile.map(([km, m]) => `${((km / total) * W).toFixed(1)},${(H - ((m - lo) / (hi - lo)) * (H - 2)).toFixed(1)}`).join("L")}`;
+};
 const SHAPE = { frequent: "full", regular: "half", scarce: "blocked", allowed: "full", restricted: "half", prohibited: "blocked" } as const;
 const TONE = { frequent: "good", regular: "fair", scarce: "poor", allowed: "good", restricted: "fair", prohibited: "poor" } as const;
 ---
@@ -55,7 +75,10 @@ const TONE = { frequent: "good", regular: "fair", scarce: "poor", allowed: "good
       <li data-slug={t.slug}>
         <a class="card" href={`/trails/${t.slug}/`}>
           <span class="c-trail">
-            <span class="name">{t.name}</span>
+            <span class="name">
+              {t.name}
+              {stamps.get(t.slug) && <span class={`stamp ${stamps.get(t.slug)!.tone}`}><span class="sr-only">, </span>{stamps.get(t.slug)!.word}</span>}
+            </span>
             <span class="where">{t.countries.join(" · ")} · {t.start} → {t.end}</span>
             <span class="facts">
               {landText(t) && <span>{landText(t)}</span>}
@@ -105,7 +128,10 @@ const TONE = { frequent: "good", regular: "fair", scarce: "poor", allowed: "good
             <span class="lbl">Profile and ground</span>
             {t.profile && (
               <span class="profile" title={`${fmt(t.lowestM!)}–${fmt(t.highestM!)} m`}>
-                <svg viewBox={`0 0 ${W} ${H}`} preserveAspectRatio="none" aria-hidden="true"><path d={sparkPath(t.profile)} /></svg>
+                <svg viewBox={`0 0 ${W} ${H}`} preserveAspectRatio="none" aria-hidden="true">
+                  <path d={sparkPath(t.profile)} />
+                  <circle class="walker" r="3.6" style={`offset-path: path('${sparkLine(t.profile)}')`} />
+                </svg>
                 {t.surface && (
                   <span class="surface" aria-hidden="true">
                     <span style={`flex: ${t.surface.natural}; background: var(--surface-natural)`}></span>
@@ -350,6 +376,52 @@ const TONE = { frequent: "good", regular: "fair", scarce: "poor", allowed: "good
     }
     .name {
       font-size: 1.1rem;
+    }
+  }
+
+  /* passport stamps: one fact per row beside the name, slightly askew */
+  .stamp {
+    display: inline-block;
+    margin-left: 10px;
+    padding: 1px 7px;
+    border: 1.5px solid currentColor;
+    border-radius: 4px;
+    font: 700 10px/1.5 var(--sans);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    vertical-align: 3px;
+    transform: rotate(-4deg);
+  }
+  .stamp.moss {
+    color: var(--accent-text);
+  }
+  .stamp.rust {
+    color: var(--poor);
+  }
+  /* the walker: a dot that walks the trail's profile while its row is pointed at or focused */
+  .walker {
+    fill: var(--poor);
+    stroke: var(--bg);
+    stroke-width: 1.5;
+    offset-distance: 0%;
+    offset-rotate: 0deg;
+    opacity: 0;
+    transition: opacity 0.2s;
+    animation: walk 4s linear infinite paused;
+  }
+  .card:hover .walker,
+  .card:focus-visible .walker {
+    opacity: 1;
+    animation-play-state: running;
+  }
+  @keyframes walk {
+    to {
+      offset-distance: 100%;
+    }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .walker {
+      animation: none;
     }
   }
 </style>
