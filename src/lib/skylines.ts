@@ -2215,6 +2215,33 @@ export const SKYLINES: Record<string, Skyline> = {
       { d: "M1350,266a29,20 0 1 1 58,0a29,20 0 1 1 -58,0Z", c: "#4f6e36" },
     ],
   },
+  "foothills-trail": {
+    view: "The Blue Ridge Escarpment from Lake Jocassee: layers of hazy blue mountains, Table Rock's bare granite dome with its sheer face on the left, wooded slopes falling to the gorges, Upper Whitewater Falls dropping down a rock face on the right, and the lake's green-blue water in front with pines on its shore",
+    ridge: "#3f5a34",
+    ground: "#9a8462",
+    shapes: [
+      // the far Blue Ridge, hazy blue layer behind layer
+      { d: hills([[0, G], [110, 210], [320, 192], [540, 202], [780, 182], [1020, 194], [1260, 178], [1460, 196], [1600, 204], [1600, G]]), c: "#b4c4d4" },
+      { d: hills([[0, G], [90, 234], [280, 220], [500, 230], [720, 212], [920, 224], [1140, 208], [1360, 222], [1600, 228], [1600, G]]), c: "#93a9bc" },
+      // Table Rock: a granite dome, rounded on the left, its sheer face dropping on the right
+      { d: range([[130, G], [190, 262], [236, 228], [276, 192], [310, 170], [350, 158], [400, 154], [440, 158], [462, 172], [474, 206], [486, 254], [520, G]]), c: "#a29d92" },
+      // the wooded escarpment on the right, falling towards the gorges
+      { d: hills([[860, G], [980, 240], [1120, 216], [1270, 206], [1420, 216], [1600, 224], [1600, G]]), c: "#5f7c5c" },
+      // the rock face Upper Whitewater Falls drops down
+      { d: "M1248,320L1254,232Q1274,224 1294,232L1302,320Z", c: "#8a857c" },
+      { d: waterfall(1274, 230, 316, 6), c: "#eef3f2" },
+      // forest on Table Rock's lower slopes and along the lake
+      { d: hills([[60, G], [160, 270], [300, 252], [420, 258], [540, 248], [680, 268], [800, G]]), c: FOREST },
+      { d: hills([[0, G], [80, 280], [220, 272], [360, 282], [480, G]]), c: FIR },
+    ],
+    front: [
+      // Lake Jocassee, green-blue and still
+      { d: water(560, 1220, 290), c: "#4f9a98" },
+      // pines on its shore: straight trunks under dark crowns
+      { d: "M1176,304V246H1180V304Z M1206,304V236H1210V304Z", c: "#5a4636" },
+      { d: "M1160,252a18,10 0 1 1 36,0a18,10 0 1 1 -36,0Z M1166,238a12,7 0 1 1 24,0a12,7 0 1 1 -24,0Z M1190,242a18,10 0 1 1 36,0a18,10 0 1 1 -36,0Z M1196,228a12,7 0 1 1 24,0a12,7 0 1 1 -24,0Z", c: "#2f4a2c" },
+    ],
+  },
   "superior-hiking-trail": {
     view: "Minnesota's North Shore: the Sawtooth ridges above Lake Superior, birch and spruce on the rocky slopes, a waterfall dropping towards the lake and the lake's long horizon",
     ridge: "#3f5a34",

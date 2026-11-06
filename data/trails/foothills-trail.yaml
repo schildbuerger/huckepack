@@ -1,0 +1,309 @@
+name: Foothills Trail
+added: 2026-11-06
+aliases: [FHT]
+website: https://foothillstrail.org/
+wikidata: Q5466514
+designation: National Recreation Trail
+managedBy:
+  # the Foothills Trail Conservancy (formerly Foothills Trail Conference) maintains the trail and
+  # publishes its sections; it crosses Table Rock and Oconee State Parks (South Carolina State
+  # Parks), Duke Energy's lands above Lake Jocassee and the Sumter and Nantahala National Forests
+  # (the conservancy's History and Safety pages)
+  - name: Foothills Trail Conservancy
+    url: https://foothillstrail.org/
+  - name: South Carolina State Parks (Table Rock and Oconee State Parks)
+    url: https://southcarolinaparks.com/
+  # Duke Energy's site refuses the pipeline's requests (403), so it is named without a link
+  - name: Duke Energy (the lands above Lake Jocassee)
+  - name: USDA Forest Service (Sumter and Nantahala National Forests)
+    url: https://www.fs.usda.gov/r08/francismarionsumter
+officialGpx:
+  none: the conservancy points to its FarOut app, its guidebook and its trail map for GPS information and offers no GPX download (checked 2026-11-06)
+  source: ftc-maps
+trailType: point-to-point
+continents: [North America]
+countries: [US]
+regions: [South Carolina, North Carolina]
+# protectedAreas: OSM boundary=protected_area relations the map line runs through (note "Protected areas")
+protectedAreas: [Table Rock State Park, Jocassee Gorges, Gorges State Park, Nantahala National Forest, Sumter National Forest, Oconee State Park]
+termini:
+  # the conservancy's sections run from "Table Rock State Park (A1)" to "Oconee State Park (A14)";
+  # coordinates from its GPS coordinates list (Table Rock Access, Oconee St Park Access)
+  start:
+    name: Table Rock State Park
+    lat: 35.03205
+    lon: -82.7004
+  end:
+    name: Oconee State Park
+    lat: 34.86345
+    lon: -83.098
+  source: ftc-sections
+waymarking:
+  # the History page: "The white blaze that had been used to mark the rest of the FT route"; the
+  # Sassafras–Caesars Head spur is blazed blue
+  text: White blazes; the spur from Sassafras Mountain to Caesars Head is blazed blue.
+  source: ftc-history
+length:
+  # "the trail is 77 miles long"
+  - km: 123.9
+    source: ftc-overview
+days:
+  # "Through-hikers should plan to spend approximately 5-10 days on the trail"
+  min: 5
+  max: 10
+  source: ftc-overview
+stages:
+  # the conservancy's thirteen sections between its access points A1 to A14 ("Section By Section",
+  # each section's page with its distance in miles and difficulty), converted to km. The numbering
+  # is ours, in the conservancy's order from A1 to A14. Section ends at the access points of the
+  # conservancy's GPS coordinates list; the trail passes them or a short access path leads there
+  source: ftc-sections
+  list:
+    - { number: "1", kind: main, from: Table Rock State Park (A1), to: Sassafras Mountain (A2), km: 15.6, end: { lat: 35.0645, lon: -82.777 } }
+    - { number: "2", kind: main, from: Sassafras Mountain (A2), to: Chimneytop Gap (A3), km: 3.4, end: { lat: 35.0632, lon: -82.7986 } }
+    - { number: "3", kind: main, from: Chimneytop Gap (A3), to: Laurel Valley (A4), km: 3.4, end: { lat: 35.04897, lon: -82.8138 } }
+    - { number: "4", kind: main, from: Laurel Valley (A4), to: Laurel Fork Falls (A5), km: 13.0, end: { lat: 35.03223, lon: -82.8968 } }
+    - { number: "5", kind: main, from: Laurel Fork Falls (A5), to: Canebrake (A6), km: 9.3, end: { lat: 35.06538, lon: -82.8905 } }
+    - { number: "6", kind: main, from: Canebrake (A6), to: Bad Creek Access (A7), km: 26.4, end: { lat: 35.01227, lon: -82.999 } }
+    - { number: "7", kind: main, from: Bad Creek Access (A7), to: Upper Whitewater Falls (A8), km: 3.7, end: { lat: 35.0291, lon: -83.01595 } }
+    - { number: "8", kind: main, from: Upper Whitewater Falls (A8), to: Sloan Bridge (A9), km: 8.9, end: { lat: 35.0033, lon: -83.0541 } }
+    - { number: "9", kind: main, from: Sloan Bridge (A9), to: Fish Hatchery Road (A10), km: 5.3, end: { lat: 34.97698, lon: -83.0735 } }
+    - { number: "10", kind: main, from: Fish Hatchery Road (A10), to: Burrell's Ford Road (A11), km: 6.3, end: { lat: 34.97102, lon: -83.1149 } }
+    - { number: "11", kind: main, from: Burrell's Ford Road (A11), to: Cheohee Road (A12), km: 16.7, end: { lat: 34.91577, lon: -83.1119 } }
+    - { number: "12", kind: main, from: Cheohee Road (A12), to: Jumping Branch Trailhead (A13), km: 2.3, end: { lat: 34.90328, lon: -83.1069 } }
+    - { number: "13", kind: main, from: Jumping Branch Trailhead (A13), to: Oconee State Park (A14), km: 7.4, end: { lat: 34.86345, lon: -83.098 } }
+route:
+  # built by `python -m pipeline.all foothills-trail`: OSM ways matched to the trail's OSM relation
+  # (4572989, colour white, Wikidata Q5466514), cut at the sections' access points
+  source: osm
+  publishable: true
+  relation: 4572989
+difficulty:
+  estimated:
+    sac: T2
+    basis: >-
+      The conservancy rates its sections from easy to strenuous ("ascends 2,000 feet in three miles"
+      out of Table Rock; the steep steps of Heart Break Ridge above Lake Jocassee; 16.4 miles from
+      Canebrake to Bad Creek). A footpath through the forest of the Blue Ridge Escarpment, with long
+      climbs, steps and suspension bridges over the rivers, and no exposed passages: mountain hiking
+      on a maintained trail (T2).
+    source: ftc-sections
+season:
+  # the Safety page: "Many consider the fall and spring to be the best seasons for hiking"; summer
+  # brings "sub-tropical heat and humidity", winter "ice, snow, and freezing conditions"
+  months: [3, 4, 5, 9, 10, 11]
+  text: Spring and autumn are the best seasons; summers are hot and humid, winters bring ice and snow on the higher ground
+  source: ftc-safety
+sleeping:
+  # designated campsites along the trail; "Both state parks have reservable campsites, and camping
+  # is also available at Burrells Ford and Cherry Hill (USFS)"
+  types: [campsite]
+  source: ftc-faq
+wildCamping:
+  status: restricted
+  rule: >-
+    Camp at the designated campsites along the trail; camping is forbidden within Oconee and Table
+    Rock State Parks, along the Whitewater corridor between Hwy 281 and Bad Creek Access, and within
+    50 feet of the trail or the Chattooga in its Wild and Scenic River corridor. Campfires only in
+    established fire rings at designated campsites.
+  source: ftc-faq
+access:
+  # the conservancy: "The closest airport is Greenville – Spartanburg (GSP)… Another close option
+  # is the Asheville Regional Airport (AVL)"; Greenville's Amtrak station (the Crescent).
+  # Coordinates from OSM; distances by pipeline/access.py
+  - kind: airport
+    name: Greenville-Spartanburg International Airport (GSP)
+    lat: 34.89545
+    lon: -82.21723
+    source: osm
+  - kind: airport
+    name: Asheville Regional Airport (AVL)
+    lat: 35.43642
+    lon: -82.54088
+    source: osm
+  - kind: station
+    name: Greenville station (Amtrak)
+    lat: 34.85847
+    lon: -82.41379
+    source: osm
+animals:
+  # the conservancy's FAQ ("Are bear canisters required on the trail?") and Safety page
+  # ("Wildlife"); level ours
+  list:
+    - kind: bear
+      name: Black bear
+      level: moderate
+      basis: The conservancy says there is plenty of bear activity throughout the trail and that hikers must secure their food from bears; bear canisters are recommended, not required.
+      do:
+        - You must secure your food from bears for your safety and theirs
+        - If you don't have a bear canister, you must have the equipment and skills to do an effective bear hang
+        - Please observe them from a safe distance
+      dont:
+        - Do not feed wildlife! The next hiker may be a victim of your generosity
+      source: ftc-faq
+tags: [forest, mountains, waterfalls, lake]
+notes:
+  - >-
+    Stages: the conservancy's thirteen sections between its access points A1 (Table Rock State
+    Park) and A14 (Oconee State Park), from each section's page on "Section By Section" (9.7, 2.1,
+    2.1, 8.1, 5.8, 16.4, 2.3, 5.5, 3.3, 3.9, 10.4, 1.4 and 4.6 miles, 75.6 miles together against
+    the stated 77). The six spur trails on the same page (Sassafras Mountain to Caesars Head,
+    Eastatoe Gorge, Fork Mountain, Cane Brake, Round Mountain Gap, Lower Whitewater Falls) are not
+    part of the main route and are left out.
+  - >-
+    Length: the conservancy's 77 miles (123.9 km). South Carolina State Parks' Oconee page says the
+    main trail "is either 80 or 85 miles long", depending on where you start.
+  - >-
+    Protected areas (checked 2026-11-07): all six are OSM boundary=protected_area relations that
+    the route's map line runs through (Overpass is_in on every eighth point of
+    public/routes/foothills-trail.geojson): Table Rock State Park (6386165), Jocassee Gorges
+    (8234808), Gorges State Park (2918501), Nantahala National Forest (113533), Sumter National
+    Forest (3746976) and Oconee State Park (12353792). The conservancy's pages name Table Rock and
+    Oconee State Parks (its sections' ends) and the Nantahala and Sumter National Forests (History
+    page) too. Smaller areas OSM shows the line crossing (Toxaway Game Land, Laurel Fork Heritage
+    Preserve, the Table Rock Reservoir Watershed) are left out as game lands and local reserves;
+    the Ellicott Rock Wilderness is not crossed.
+  - >-
+    Waymarking: white blazes; like the Ouachita Trail's and the Laurel Highlands' blazes, no mark
+    is drawn.
+  - >-
+    Tree line: not added; the route tops out at Sassafras Mountain (3,553 ft, 1,083 m, South
+    Carolina's highest point) in forest.
+  - >-
+    Wildlife: only the black bear has official advice (the conservancy's FAQ and Safety page). The
+    Safety page names beavers, bobcats, deer and snakes too, with only the general advice to watch
+    them from a safe distance, so they are not listed.
+  - >-
+    Map line (2026-11-06): the South Carolina, North Carolina and Georgia Geofabrik extracts
+    (2026-11-05); OSM's relation 4572989, chained from Table Rock State Park and cut at the
+    conservancy's thirteen access points, every section 100 % matched (4 short ways, 0.2 km, left
+    out: they don't continue the line). It measures 113.1 km against the stated 77 miles (123.9 km,
+    −8.7 %) and the sections' 75.6 miles (121.7 km, −7.1 %): OSM's line runs shorter throughout.
+    Sections 4 (map line 11.5 against 13.0 km, −12 %) and 8 (7.6 against 8.9 km, −15 %) are more
+    than 10 % off; their ends sit at the conservancy's access points (Laurel Fork Falls boat access,
+    the Upper Whitewater Falls and Sloan Bridge parking areas), so the gaps are the shorter OSM
+    geometry in the Laurel Fork and Whitewater River valleys, not a misplaced end; the record keeps
+    the conservancy's figures. Highest point 1,087 m at km 15.0 (Sassafras Mountain; 3,553 ft,
+    1,083 m), lowest 360 m at km 41.5 near the Toxaway River and Lake Jocassee. The terrain model
+    gives about 4,480 m of climbing; none is stated.
+  - >-
+    Water: OSM maps no drinking water within 500 m of the trail and one spring. The conservancy:
+    "There is ample water to collect along the trail at all but the dryest of conditions", reliable
+    sources marked by wooden posts with a blue reflector, and "All sources of water along the trail
+    should be treated"; running water only at the two state parks and Upper Whitewater Falls. No
+    tap is added: the sources name none on the trail itself.
+  - >-
+    Resupply: OSM maps one shop near Table Rock State Park and none further on (112.3 km without);
+    the conservancy suggests caching supplies with a friend or shuttle driver at an access point.
+  - >-
+    Beds: OSM maps 40 places to sleep (campsites), the longest stretch without one 12.9 km; the
+    conservancy's designated campsites are in its guidebook, map and app only.
+  - >-
+    Travel hubs: the conservancy names Greenville-Spartanburg (GSP, 66 km by road from Table Rock)
+    and Asheville (AVL, 77 km) as the closest airports; Greenville's Amtrak station is 44 km away.
+  - >-
+    Photos: six from Commons, checked by eye; five excluded (a cabin, the Sassafras summit
+    platform's road, railing and plaque, a pavilion at Oconee State Park).
+  - >-
+    Data check (2026-11-06): against English Wikipedia (its section-by-section distances) and South
+    Carolina State Parks' Table Rock and Oconee trail pages. Length: 77 miles against Wikipedia's
+    76.2 miles (−1 %) and State Parks' "either 80 or 85 miles long, depending where you start"
+    (+3.9 % and +10.4 %). Termini (Table Rock State Park, Oconee State Park) agree in both. Sections:
+    eleven of thirteen agree to the tenth of a mile with Wikipedia; section 1 is 9.7 against 8.8
+    miles (−9 %) and section 2 2.1 against 2.7 miles (+29 %; together 11.8 against 11.5 miles, so
+    the two place the Sassafras Mountain access differently). Highest point: Sassafras Mountain in
+    both, the terrain model's 1,087 m against 3,553 ft (1,083 m). White blazes: Table Rock's page
+    ("after trail blaze turns from yellow/white to WHITE ONLY"). Camping: Table Rock's page
+    ("Camping is prohibited within the park trail system") agrees with the conservancy's FAQ.
+    Difficulty: Wikipedia "Easy to strenuous", State Parks "difficult", as the conservancy's
+    section ratings. Days and season: no second source gives them; the built page was checked
+    against the conservancy's Trail Overview (5–10 days) and Safety page (spring and autumn).
+dataCheck:
+  # working rule 2: English Wikipedia (its section distances) and South Carolina State Parks' park
+  # pages as second sources; days and season only from the conservancy, checked on the built page
+  date: 2026-11-06
+  against: [wikipedia, scprt-oconee, scprt-tablerock]
+  pageAgainst: [ftc-overview, ftc-safety]
+  deviations:
+    - { figure: length, ours: "77 miles (123.9 km)", theirs: "80 or 85 miles, depending where you start (+3.9 to +10.4 %)", source: scprt-oconee }
+    - { figure: stage 2 distance, ours: "2.1 miles (3.4 km)", theirs: "2.7 miles (4.3 km), +29 %", source: wikipedia }
+sources:
+  - id: ftc-sections
+    title: "Foothills Trail Conservancy: Section By Section (thirteen sections from Table Rock State Park, A1, to Oconee State Park, A14, with distances and difficulty)"
+    url: https://foothillstrail.org/section-by-section-2/
+    licence: All rights reserved (facts only)
+    retrieved: 2026-11-06
+  - id: ftc-overview
+    title: "Foothills Trail Conservancy: Trail Overview (77 miles; 5–10 days for through-hikers)"
+    url: https://foothillstrail.org/trail-overview/
+    licence: All rights reserved (facts only)
+    retrieved: 2026-11-06
+  - id: ftc-maps
+    title: "Foothills Trail Conservancy: Maps & Coordinates (trail map, elevation profiles, GPS coordinates of the access points)"
+    url: https://foothillstrail.org/maps-coordinates-2/
+    licence: All rights reserved (facts only)
+    retrieved: 2026-11-06
+  - id: ftc-faq
+    title: "Foothills Trail Conservancy: Trail Frequently Asked Questions (camping, bears, water, airports)"
+    url: https://foothillstrail.org/fht-faqs/
+    licence: All rights reserved (facts only)
+    retrieved: 2026-11-06
+  - id: ftc-safety
+    title: "Foothills Trail Conservancy: Safety (weather and seasons, wildlife)"
+    url: https://foothillstrail.org/safety/
+    licence: All rights reserved (facts only)
+    retrieved: 2026-11-06
+  - id: ftc-history
+    title: "Foothills Trail Conservancy: History (The Early Days of the Foothills Trail, by Glenn Hilliard)"
+    url: https://foothillstrail.org/history/
+    licence: All rights reserved (facts only)
+    retrieved: 2026-11-06
+  - id: scprt-oconee
+    title: "South Carolina State Parks: Oconee State Park trails (Foothills Access Trail; the main trail 80 or 85 miles long)"
+    url: https://southcarolinaparks.com/oconee/trails
+    licence: All rights reserved (facts only)
+    retrieved: 2026-11-06
+    checkOnly: true
+  - id: scprt-tablerock
+    title: "South Carolina State Parks: Table Rock State Park trails (Foothills Trail hikers, camping, blazes)"
+    url: https://southcarolinaparks.com/table-rock/trails
+    licence: All rights reserved (facts only)
+    retrieved: 2026-11-06
+    checkOnly: true
+  - id: wikipedia
+    title: "Wikipedia (en): Foothills Trail"
+    url: https://en.wikipedia.org/wiki/Foothills_Trail
+    licence: CC BY-SA 4.0
+    retrieved: 2026-11-06
+    checkOnly: true
+  - id: wikimedia
+    title: "Wikimedia: page views of the trail's Wikipedia articles in every language, by people, over twelve months (Wikidata sitelinks, pageview API)"
+    url: https://wikimedia.org/api/rest_v1/
+    licence: CC0 1.0 (pageview data); Wikidata CC0
+    retrieved: 2026-11-06
+    checkOnly: true
+  - id: osm
+    title: "OpenStreetMap contributors: paths, water, shops and places to sleep along the trail (Geofabrik extracts), travel hubs"
+    url: https://www.openstreetmap.org/
+    licence: ODbL 1.0
+    retrieved: 2026-11-06
+  - id: copdem
+    title: "Copernicus DEM GLO-30 (30 m terrain model), tiles from AWS Open Data"
+    url: https://registry.opendata.aws/copernicus-dem/
+    licence: "Copernicus WorldDEM-30 licence, free; produced using Copernicus WorldDEM-30 © DLR e.V. 2010-2014 and © Airbus Defence and Space GmbH 2014-2018 provided under COPERNICUS by the European Union and ESA; all rights reserved"
+    retrieved: 2026-11-06
+  - id: worldcover
+    title: "ESA WorldCover 2021: 10 m land cover (via AWS Open Data)"
+    url: https://esa-worldcover.org/
+    licence: "CC BY 4.0; © ESA WorldCover project 2021 / Contains modified Copernicus Sentinel data (2021) processed by ESA WorldCover consortium"
+    retrieved: 2026-11-06
+  - id: era5
+    title: "Open-Meteo open data on AWS: ERA5-Land temperature and ERA5 precipitation, snow and wind, daily 1995–2024 (reanalysis)"
+    url: https://github.com/open-meteo/open-data
+    licence: CC BY 4.0 (Open-Meteo); contains modified Copernicus Climate Change Service information
+    retrieved: 2026-11-06
+  - id: osrm
+    title: "OSRM: road routes on OpenStreetMap data (router.project-osrm.org)"
+    url: https://project-osrm.org/
+    licence: Route data © OpenStreetMap contributors (ODbL)
+    retrieved: 2026-11-06

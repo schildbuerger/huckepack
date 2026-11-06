@@ -156,6 +156,8 @@ And the **Colorado Trail** (Colorado: the Colorado Trail Foundation's and the Fo
 
 And the **Ouachita National Recreation Trail** (Arkansas and Oklahoma: the Forest Service's longest trail in the Ouachita National Forest, 223 miles (358.9 km) along the Ouachitas' east–west ridges from Talimena State Park to Pinnacle Mountain State Park near Little Rock, the last 32 miles on Arkansas State Parks' and other lands, kept by the Friends of the Ouachita Trail in their ten sections with 23 shelters, blue-blazed, past Queen Wilhelmina State Park and Lake Sylvia, best from late autumn to early spring; over the OSM relation; 2026-11-06).
 
+And the **Foothills Trail** (South Carolina and North Carolina: the Foothills Trail Conservancy's 77 miles (123.9 km) along the Blue Ridge Escarpment from Table Rock State Park over Sassafras Mountain, South Carolina's highest point, past Lake Jocassee's gorges, Whitewater Falls and the Chattooga River to Oconee State Park, with SC State Parks, Duke Energy and the Forest Service, in the conservancy's thirteen sections between its access points A1 to A14, white-blazed, 5–10 days, best in spring and autumn; over the OSM relation; 2026-11-06).
+
 | # | Trail | Region | Length (approx.) | Why |
 |---|---|---|---|---|
 | 1 | Pacific Crest Trail | USA | 4,265 km | Most-hiked long trail; public US agency data; completion lists |
