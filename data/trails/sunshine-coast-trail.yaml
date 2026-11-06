@@ -1,0 +1,310 @@
+name: Sunshine Coast Trail
+added: 2026-11-06
+website: https://sunshinecoasttrail.com/
+wikidata: Q122929329
+managedBy:
+  # "The Sunshine Coast Trail and its huts were built and are maintained by the qathet Parks and
+  # Wilderness Society (qPAWS)", a registered non-profit society founded in 1992
+  - name: qathet Parks and Wilderness Society (qPAWS)
+    url: https://sunshinecoasttrail.com/get-involved/about-paws/
+officialGpx:
+  none: The society offers section maps as PDFs and the guidebook; no GPX to download (checked 2026-11-06)
+  source: sct-maps
+trailType: point-to-point
+continents: [North America]
+countries: [CA]
+regions: [British Columbia]
+protectedAreas: [Inland Lake Provincial Park]
+termini:
+  # "a 180-kilometre back country hiking experience that stretches from Sarah Point in Desolation
+  # Sound to Saltery Bay"; the society's huts start at Sarah Point Hut (kilometre 0.0) and the trail
+  # ends at the Saltery Bay trailhead kiosk by the ferry terminal (coordinates from OSM)
+  start:
+    name: Sarah Point
+    lat: 50.0582
+    lon: -124.83728
+  end:
+    name: Saltery Bay trailhead
+    lat: 49.78399
+    lon: -124.17492
+  source: sct-home
+waymarking:
+  # the FAQ: north to south "There are twice as many markers", "Better signage"; "KM Markers:
+  # Distances between some kilometre markers have been stretched or shortened based on past re-routes"
+  text: Trail markers, twice as many north to south, and kilometre markers along the trail
+  source: sct-faq
+length:
+  # "The Sunshine Coast Trail is a 180-kilometre back country hiking experience"
+  - km: 180
+    source: sct-home
+days:
+  # the society's multi-day routes that cover the whole trail: "Sarah Point to Shingle Mill – 3 days",
+  # "Powell River to Lang Bay – 6 days", "Lang Bay to Saltery Bay – 3 or 4 days"; together 12–13
+  min: 12
+  max: 13
+  source: sct-routes
+stages:
+  # the society's three multi-day routes that together run the whole trail, north to south as it is
+  # meant to be walked; each one stage, though the society splits them into days (3, 6, 3–4). The
+  # society gives no kilometres for them (only for its huts, see the "Stages" note), so the distances
+  # are measured on our OSM map line. No GPX: each stage is the shortest way over the OSM relation
+  # (`branched`: its 210 ways all connect, but with spurs and alternatives no single chain follows)
+  # through `via` points at the huts the society's routes stay at, and where its line takes a longer
+  # branch (Inland Lake's north end, Tin Hat's East Ridge and Pipes Canyon, Mount Troubridge's summit,
+  # Fairview Bay and the shore); hut coordinates from OSM; the Shingle Mill and Lang Bay at the
+  # nearest point of the relation
+  source: huckepack-measured
+  list:
+    - { number: "1", kind: main, from: Sarah Point, to: Shingle Mill (Powell River), km: 46.6, via: [{ lat: 50.00249, lon: -124.7401 }, { lat: 49.9491, lon: -124.62088 }], end: { name: Shingle Mill, lat: 49.88522, lon: -124.5451 } }
+    - { number: "2", kind: main, from: Shingle Mill (Powell River), to: Lang Bay, km: 83.8, via: [{ lat: 49.93581, lon: -124.49754 }, { lat: 49.9551, lon: -124.5012 }, { lat: 49.94417, lon: -124.49034 }, { lat: 49.97579, lon: -124.45572 }, { lat: 49.98123, lon: -124.37989 }, { lat: 49.9455, lon: -124.3563 }, { lat: 49.89864, lon: -124.37252 }, { lat: 49.85612, lon: -124.32773 }], end: { name: Lang Bay, lat: 49.79087, lon: -124.32929 } }
+    - { number: "3", kind: main, from: Lang Bay, to: Saltery Bay trailhead, km: 35.5, via: [{ lat: 49.81553, lon: -124.26209 }, { lat: 49.81218, lon: -124.17743 }, { lat: 49.81236, lon: -124.16855 }, { lat: 49.79944, lon: -124.13977 }, { lat: 49.79013, lon: -124.12195 }, { lat: 49.78, lon: -124.1606 }], end: { name: Saltery Bay trailhead, lat: 49.78399, lon: -124.17492 } }
+route:
+  # built by `python -m pipeline.all sunshine-coast-trail`: OSM ways matched to the shortest way
+  # over the Sunshine Coast Trail relation (7406716) between the stages' ends
+  source: osm
+  publishable: true
+  relation: 7406716
+  branched: true
+difficulty:
+  # the FAQ: "The trail is well built with moderate sections and difficult terrain. A few parts of the
+  # trail are family friendly, but cumulatively it is a challenge even to the most seasoned experts."
+  estimated:
+    sac: T3
+    basis: >-
+      The society calls the trail well built, with moderate sections and difficult terrain,
+      cumulatively a challenge even to the most seasoned experts: steep climbs from the sea to
+      Tin Hat Mountain and Mount Troubridge (1,300 m), mountain summits without water, snow at height
+      into early summer and sporadic phone coverage. A rough mountain path without scrambling (T3).
+    source: sct-faq
+season:
+  # "Weather can be changeable and is driest during the months of May – September … snow can still be
+  # present at higher elevations even in early summer"
+  months: [5, 6, 7, 8, 9]
+  text: Driest from May to September; snow can linger at higher elevations into early summer
+  source: sct-weather
+sleeping:
+  # 14 huts, free, "first-come, first-serve basis for sleeping … One night stays only", most
+  # campsites with an outhouse and a picnic table; two huts on Inland Lake are BC Parks' (a modest fee)
+  types: [bivouac, campsite]
+  source: sct-faq
+wildCamping:
+  status: restricted
+  rule: >-
+    Camp in the numerous designated areas along the trail; the huts cannot be booked, are shared
+    first come, first served, for one night, with priority for thru-hikers; groups of eight or more
+    should use the campsites.
+  source: sct-faq
+refillsUntreated:
+  # "access to water along most of the trail via creeks and lakes, except some high mountain summits
+  # … You are advised to boil your water or use a purification system"
+  text: Creeks and lakes along most of the trail, not on the high summits; boil or purify the water.
+  source: sct-faq
+access:
+  # Powell River's airport; Vancouver's international airport across two ferries (BC Ferries to
+  # Saltery Bay at the southern end). Coordinates from OSM; distances by pipeline/access.py
+  - kind: airport
+    name: Powell River Airport (YPW)
+    lat: 49.83346
+    lon: -124.4999
+    source: osm
+  - kind: airport
+    name: Vancouver International Airport (YVR)
+    lat: 49.19388
+    lon: -123.18446
+    source: osm
+animals:
+  # the society: "Bears, cougars, wolves, coyotes, elk, deer …"; its wildlife page lists black and
+  # grizzly bears and cougars in the district and links the BC government's advice, quoted here.
+  # Levels ours
+  list:
+    - kind: bear
+      name: Black bear
+      level: moderate
+      basis: The society lists black bears among the animals hikers may meet, asks them to hang food in a bear bag away from the hut or campsite and to carry bear spray.
+      do:
+        - Remain calm and slowly back away, talking to the bear in a quiet, monotone voice
+        - If the bear gets too close, use pepper spray (within 7 metres) or something else to threaten or distract it
+        - Stay together and act as a group; keep children close, pick up and carry small children
+        - Watch the bear until it leaves and make sure it has a clear escape route
+      dont:
+        - Feed bears (it's against the law to feed dangerous wildlife)
+        - Run or climb a tree
+        - Scream, turn your back on the bear, kneel down or make direct eye contact
+        - Try to get closer to it
+      source: bc-bears
+    - kind: big-cat
+      name: Cougar
+      level: low
+      basis: The society lists cougars among the animals of the trail; the BC government advises making noise on the move and keeping children in sight in cougar country.
+      do:
+        - Stay calm, keep the cougar in view and pick up children immediately
+        - Back away slowly, ensuring that the animal has a clear avenue of escape
+        - Make yourself look as large as possible and keep the cougar in front of you
+        - If it shows interest or follows you, respond aggressively, maintain eye contact, make loud noise, arm yourself with rocks or sticks
+        - If a cougar attacks, fight back, focusing on its face and eyes
+      dont:
+        - Run or turn your back on a cougar; sudden movement may provoke an attack
+        - Let children wander in cougar country
+      source: bc-cougars
+tags: [coast, forest, mountains, lakes, huts]
+notes:
+  - >-
+    Stages: the society's three multi-day routes that together run the whole trail ("Sarah Point to
+    Shingle Mill – 3 days", "Powell River to Lang Bay – 6 days", the walk starting at the Shingle Mill,
+    "Lang Bay to Saltery Bay – 3 or 4 days"), each one stage though the society splits it into days.
+    It gives no kilometres for them, so their lengths are measured on our OSM map line
+    (huckepack-measured). The society's huts with their kilometres: Sarah Point 0.0, Bliss Portage 8.2,
+    Manzanita 16, Rieveley Pond 33 (section 1, nights at Manzanita and Rieveley Pond); Inland Lake
+    West 65, Anthony Island 67, Confederation Lake 74, Fiddlehead Landing 81, Tin Hat 90, Elk Lake 110,
+    Walt Hill 122 (section 2, nights at Inland Lake, Confederation Lake, Tin Hat, Elk Lake, Walt Hill);
+    Golden Stanley 145, Troubridge 158, Rainy Day Lake 169, Fairview Bay 173 (section 3, nights at
+    Troubridge, Rainy Day Lake or Fairview Bay).
+  - >-
+    Days: the sum of the society's three sections, 3 + 6 + (3 or 4) = 12–13 days; it states no total
+    for the whole trail, and neither does Sunshine Coast Tourism.
+  - >-
+    Fees: the huts are free, except the two on Inland Lake managed by BC Parks, which "require a
+    modest user fee" (no amount published on the society's page).
+  - >-
+    Season: the society says the weather is driest from May to September and snow can still lie at
+    higher elevations in early summer; Sunshine Coast Tourism says the winterized higher huts make
+    the trail accessible year round. The record keeps the society's May to September.
+  - >-
+    Wild camping: camping in the designated areas; the huts are first come, first served, one night
+    only, not bookable. Campfires only where no provincial or regional fire ban is in effect.
+  - >-
+    Tree line: none; the highest point, Mount Troubridge, is about 1,300 m, in coastal forest ("crowned
+    by the greatest expanse of old growth forest along the Sunshine Coast Trail").
+  - >-
+    Wildlife: black bear and cougar from the BC government's advice, which the society links; the
+    society also names grizzly bears in the district and wolves, coyotes and elk along the trail.
+  - >-
+    Map line (2026-11-06): the Geofabrik extract of British Columbia's Vancouver Island region (which
+    takes in the qathet region); the Sunshine Coast Trail relation (7406716, 210 ways, 196 km with its
+    spurs and alternatives, all connected), each section the shortest way over it through the huts
+    the society's routes stay at and `via` points where its line takes a longer branch (Inland Lake's
+    north end and Anthony Island, Tin Hat's East Ridge and Pipes Canyon, Mount Troubridge's summit,
+    Fairview Bay); every stage 100 % matched. The sections measure 46.6, 83.8 and 35.5 km, together
+    165.9 km (the map line, without the short out-and-back to Inland Lake West Hut, 160.8 km) against
+    the stated 180 km (−8 %; the guidebook's kilometres in Wikipedia end at 178 km, the society's own
+    trail runners' table gives 176 km, and the society warns that "distances between some kilometre
+    markers have been stretched or shortened" by re-routes). Highest point 1,285 m on Mount
+    Troubridge by the terrain model (the society: 1,300 m), lowest at sea level at Saltery Bay; about
+    8,470 m of climbing by the terrain model. Water: only 9 drinking water points in OSM, all near
+    Powell River, the longest stretch without one 107.6 km, but the society: "access to water along
+    most of the trail via creeks and lakes, except some high mountain summits" (treat it;
+    refillsUntreated). Resupply: shops in OSM in Powell River (km 45) and the Lang Bay store just off
+    the trail at the end of section 2 (km 127), 81 km apart: carry food for section 2 (the society
+    also names the shuttle's resupply service).
+  - >-
+    Data check (2026-11-06, working rule 2): the society's site against Sunshine Coast Tourism and
+    the guidebook's kilometres as Wikipedia lists them. Length 180 km in all three ("over 180km";
+    Wikipedia's table ends at 178 km). Termini Sarah Point in Desolation Sound and Saltery Bay in
+    all. Sections, our measured lengths against the guidebook's kilometres (Shingle Mill at the start
+    of the Mowat Bay Trail, km 50.6; Lang Bay at the end of the Eagle River Trail, km 136.9): section
+    1 46.6 against 50.6 km (−8 %), section 2 83.8 against 86.3 km (−3 %), section 3 35.5 against
+    41.1 km (−14 %, the OSM line shorter on the climb over Mount Troubridge). Hut kilometres agree
+    within 1.4 km (Manzanita 16/16, Rieveley Pond 33/33.5, Inland Lake West 65/64, Confederation
+    Lake 74/74.1, Tin Hat 90/89.3, Elk Lake 110/109.3, Walt Hill 122/123.4, Golden Stanley
+    145/144.9, Troubridge 158/157.6, Rainy Day Lake 169/169). Days: 12–13 from the society's
+    sections; no second source gives days. Huts: 14 free ones (the society; one more planned) against
+    15 (Sunshine Coast Tourism) and 16 public huts including the two BC Parks huts on Inland Lake
+    (Wikipedia). Highest point: Mount Troubridge 1,300 m (the society) against 1,304 m (Wikipedia).
+    Season: the society's driest months, May to September, against Sunshine Coast Tourism's
+    "accessible year around" thanks to the winterized higher huts; the record keeps the society's.
+    Camping: huts first come, first served, with tent sites near them, in both. Difficulty and
+    waymarking: the society's only.
+dataCheck:
+  # working rule 2: Sunshine Coast Tourism and Wikipedia's table of the guidebook's kilometres
+  date: 2026-11-06
+  against: [sc-tourism, wikipedia-sct]
+  deviations:
+    - { figure: "Stage 3 length (Lang Bay to Saltery Bay)", ours: "35.5 km (measured)", theirs: "41.1 km (guidebook km 136.9 to 178)", source: wikipedia-sct }
+sources:
+  - id: sct-home
+    title: "qathet Parks and Wilderness Society: Sunshine Coast Trail (180 km from Sarah Point in Desolation Sound to Saltery Bay, 14 huts)"
+    url: https://sunshinecoasttrail.com/
+    licence: © qathet Parks and Wilderness Society (facts only)
+    retrieved: 2026-11-06
+  - id: sct-huts
+    title: "qathet Parks and Wilderness Society: Hut-to-Hut Hiking (each hut's kilometre, sleeping places and amenities; the BC Parks huts on Inland Lake)"
+    url: https://sunshinecoasttrail.com/plan-your-hike/hut-to-hut/
+    licence: © qathet Parks and Wilderness Society (facts only)
+    retrieved: 2026-11-06
+  - id: sct-routes
+    title: "qathet Parks and Wilderness Society: Multi-Day Routes (sections in days, the huts to stay at)"
+    url: https://sunshinecoasttrail.com/plan-your-hike/multi-day-routes/
+    licence: © qathet Parks and Wilderness Society (facts only)
+    retrieved: 2026-11-06
+  - id: sct-faq
+    title: "qathet Parks and Wilderness Society: FAQ (direction, camping and huts, difficulty, water, markers, wildlife)"
+    url: https://sunshinecoasttrail.com/faq/
+    licence: © qathet Parks and Wilderness Society (facts only)
+    retrieved: 2026-11-06
+  - id: sct-weather
+    title: "qathet Parks and Wilderness Society: Weather (driest May to September, snow at height in early summer)"
+    url: https://sunshinecoasttrail.com/plan-your-hike/weather/
+    licence: © qathet Parks and Wilderness Society (facts only)
+    retrieved: 2026-11-06
+  - id: sct-maps
+    title: "qathet Parks and Wilderness Society: Maps (eleven section maps as PDFs)"
+    url: https://sunshinecoasttrail.com/plan-your-hike/maps/
+    licence: © qathet Parks and Wilderness Society (facts only)
+    retrieved: 2026-11-06
+  - id: bc-bears
+    title: "Government of British Columbia: Staying safe around wildlife, bears (if you encounter a bear)"
+    url: https://www2.gov.bc.ca/gov/content/environment/plants-animals-ecosystems/wildlife/human-wildlife-conflict/staying-safe-around-wildlife/bears
+    licence: © Province of British Columbia (facts only)
+    retrieved: 2026-11-06
+  - id: bc-cougars
+    title: "Government of British Columbia: Staying safe around wildlife, cougars (encounters, backcountry)"
+    url: https://www2.gov.bc.ca/gov/content/environment/plants-animals-ecosystems/wildlife/human-wildlife-conflict/staying-safe-around-wildlife/cougars
+    licence: © Province of British Columbia (facts only)
+    retrieved: 2026-11-06
+  - id: sc-tourism
+    title: "Sunshine Coast Tourism: Sunshine Coast Trail (over 180 km from Sarah Point to Saltery Bay, 15 huts, year round)"
+    url: https://sunshinecoastcanada.com/things-to-do/hidden-gems/sunshine-coast-trail/
+    licence: © Sunshine Coast Tourism (facts only)
+    retrieved: 2026-11-06
+    checkOnly: true
+  - id: wikipedia-sct
+    title: "Wikipedia: Sunshine Coast Trail (the guidebook's sections and campsites with their kilometres, Mount Troubridge 1,304 m)"
+    url: https://en.wikipedia.org/wiki/Sunshine_Coast_Trail
+    licence: CC BY-SA 4.0
+    retrieved: 2026-11-06
+    checkOnly: true
+  - id: huckepack-measured
+    title: "huckepack: section distances measured on our OpenStreetMap map line (the society publishes none for its sections)"
+    url: https://www.openstreetmap.org/relation/7406716
+    licence: ODbL 1.0 (measured on OpenStreetMap data)
+    retrieved: 2026-11-06
+  - id: osm
+    title: "OpenStreetMap contributors: the Sunshine Coast Trail relation (7406716), paths, huts, water, shops and places to sleep along the trail (Geofabrik extract), travel hubs"
+    url: https://www.openstreetmap.org/relation/7406716
+    licence: ODbL 1.0
+    retrieved: 2026-11-06
+  - id: wikimedia
+    title: "Wikimedia: page views of the trail's Wikipedia articles in every language, by people, over twelve months (Wikidata sitelinks, pageview API)"
+    url: https://wikimedia.org/api/rest_v1/
+    licence: CC0 1.0 (pageview data); Wikidata CC0
+    retrieved: 2026-11-06
+  - id: copdem
+    title: "Copernicus DEM GLO-30 (30 m terrain model), tiles from AWS Open Data"
+    url: https://registry.opendata.aws/copernicus-dem/
+    licence: "Copernicus WorldDEM-30 licence, free; produced using Copernicus WorldDEM-30 © DLR e.V. 2010-2014 and © Airbus Defence and Space GmbH 2014-2018 provided under COPERNICUS by the European Union and ESA; all rights reserved"
+    retrieved: 2026-11-06
+  - id: worldcover
+    title: "ESA WorldCover 2021: 10 m land cover (via AWS Open Data)"
+    url: https://esa-worldcover.org/
+    licence: "CC BY 4.0; © ESA WorldCover project 2021 / Contains modified Copernicus Sentinel data (2021) processed by ESA WorldCover consortium"
+    retrieved: 2026-11-06
+  - id: era5
+    title: "Open-Meteo open data on AWS: ERA5-Land temperature and ERA5 precipitation, snow and wind, daily 1995–2024 (reanalysis)"
+    url: https://github.com/open-meteo/open-data
+    licence: CC BY 4.0 (Open-Meteo); contains modified Copernicus Climate Change Service information
+    retrieved: 2026-11-06
+  - id: osrm
+    title: "OSRM: road routes on OpenStreetMap data (router.project-osrm.org)"
+    url: https://project-osrm.org/
+    licence: Route data © OpenStreetMap contributors (ODbL)
+    retrieved: 2026-11-06
