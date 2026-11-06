@@ -2054,6 +2054,31 @@ export const SKYLINES: Record<string, Skyline> = {
       { d: "M250,304C258,286 284,280 300,284C314,288 322,296 326,304Z", c: "#6b5440" },
     ],
   },
+  "laurel-highlands-hiking-trail": {
+    view: "Southwestern Pennsylvania's Laurel Ridge: long, level forested ridges one behind the other, the Youghiogheny River's wooded gorge at Ohiopyle with its wide, low falls, and mountain laurel in bloom beside the trail",
+    ridge: "#3f5a34",
+    ground: "#a08a6a",
+    shapes: [
+      // the far Laurel Ridge, long and level, blue with distance
+      { d: hills([[0, G], [140, 214], [420, 192], [720, 186], [1020, 182], [1320, 188], [1500, 208], [1600, G]]), c: "#9cb0a2" },
+      // a nearer level ridge behind the trail
+      { d: hills([[560, G], [720, 246], [980, 236], [1240, 238], [1460, 250], [1600, G]]), c: FAR },
+      // the Youghiogheny gorge at Ohiopyle: two steep wooded walls with the river between
+      { d: range([[0, G], [60, 236], [160, 206], [250, 212], [330, 262], [390, G]]), c: FOREST },
+      { d: range([[480, G], [540, 262], [620, 214], [720, 202], [840, 220], [960, G]]), c: FOREST },
+      // the near woods on the ridge, darker
+      { d: hills([[900, G], [1040, 274], [1240, 266], [1440, 276], [1600, G]]), c: FIR },
+    ],
+    front: [
+      // the river in the gorge, and the falls: a wide, low step of dark rock with white water over it
+      { d: water(300, 640, 302), c: "#5f8ea6" },
+      { d: "M392,304L398,290H486L494,304Z", c: "#4a4440" },
+      { d: "M398,292H486L490,300H394Z", c: "#e8f0f2" },
+      // mountain laurel in bloom beside the trail: dark shrubs with pale pink flower clusters
+      { d: "M1180,304a26,16 0 1 1 52,0Z M1222,304a22,13 0 1 1 44,0Z", c: "#3f5a34" },
+      { d: "M1192,294a4,4 0 1 0 8,0a4,4 0 1 0 -8,0Z M1208,290a4,4 0 1 0 8,0a4,4 0 1 0 -8,0Z M1222,296a4,4 0 1 0 8,0a4,4 0 1 0 -8,0Z M1238,295a4,4 0 1 0 8,0a4,4 0 1 0 -8,0Z M1252,298a4,4 0 1 0 8,0a4,4 0 1 0 -8,0Z", c: "#f2d4dc" },
+    ],
+  },
   "superior-hiking-trail": {
     view: "Minnesota's North Shore: the Sawtooth ridges above Lake Superior, birch and spruce on the rocky slopes, a waterfall dropping towards the lake and the lake's long horizon",
     ridge: "#3f5a34",

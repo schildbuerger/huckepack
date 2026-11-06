@@ -143,6 +143,8 @@ And the **Sunshine Coast Trail** (British Columbia: the qathet Parks and Wildern
 And the **Rockwall Trail** (British Columbia: Parks Canada's 54.1 km along the Rockwall in Kootenay National Park from the Paint Pots to Floe Lake, without stages by design (3–5 days between five backcountry campgrounds on a permit), over three alpine passes up to Numa Pass at 2,336 m below the limestone cliff and its hanging glaciers; over the OSM relation; 2026-11-06).
 
 And the **Dobson Trail** (New Brunswick: the Fundy Hiking Trails Association's sister trail to the Fundy Footpath, about 58 km through Albert County's forests and ridges from Riverview's Pine Glen Road to the northern boundary of Fundy National Park, 3–4 days between established campsites, no stages by design; over the OSM relation; 2026-11-06).
+
+And the **Laurel Highlands Hiking Trail** (Pennsylvania: Laurel Ridge State Park's 70 miles (112.7 km) along the forested Laurel Ridge from the Youghiogheny River at Ohiopyle to the Conemaugh Gorge near Johnstown, in nine legs between DCNR's eight reserved shelter areas, yellow-blazed with stone mileage posts every mile; over the OSM relation; 2026-11-06).
 | # | Trail | Region | Length (approx.) | Why |
 |---|---|---|---|---|
 | 1 | Pacific Crest Trail | USA | 4,265 km | Most-hiked long trail; public US agency data; completion lists |

@@ -1,0 +1,296 @@
+name: Laurel Highlands Hiking Trail
+added: 2026-11-06
+aliases: [LHHT]
+website: https://www.pa.gov/agencies/dcnr/recreation/where-to-go/state-parks/find-a-park/laurel-ridge-state-park
+wikidata: Q67181459
+managedBy:
+  # "The main feature of the park is the 70-mile Laurel Highlands Hiking Trail"; Laurel Ridge State
+  # Park (Pennsylvania Department of Conservation and Natural Resources) takes the reservations and
+  # runs the shelter areas
+  - name: Pennsylvania Department of Conservation and Natural Resources (Laurel Ridge State Park)
+    url: https://www.pa.gov/agencies/dcnr/recreation/where-to-go/state-parks/find-a-park/laurel-ridge-state-park
+officialGpx:
+  none: the park offers its trail map and recreational guide as PDFs and an interactive map, no GPX to download (checked 2026-11-06)
+  source: dcnr-maps
+trailType: point-to-point
+continents: [North America]
+countries: [US]
+regions: [Pennsylvania]
+protectedAreas: [Ohiopyle State Park, Laurel Ridge State Park]
+termini:
+  # "from Ohiopyle State Park to near Johnstown"; the park page gives both termini's coordinates
+  # (Southern Terminus 39.87117, -79.49006; Northern Terminus 40.40858, -79.00557)
+  start:
+    name: Ohiopyle
+    lat: 39.87117
+    lon: -79.49006
+  end:
+    name: PA Route 56 near Johnstown (Seward Trailhead)
+    lat: 40.40858
+    lon: -79.00557
+  source: dcnr-park
+established:
+  # "The first portion of Laurel Ridge State Park and the LHHT were dedicated and opened officially
+  # on May 15, 1974"
+  year: 1974
+  source: dcnr-history
+waymarking:
+  # the Stay the Night page
+  text: >-
+    Yellow blazes, two by five inches, about every 100 feet; blue-blazed connector trails to the
+    trailheads and shelter areas; stone mileage monuments every mile, and yellow bands round the trees
+    at every major road crossing.
+  source: dcnr-stay
+length:
+  # "the 70-mile Laurel Highlands Hiking Trail"; the shelter legs sum to 70.0 miles
+  - km: 112.7
+    source: dcnr-park
+stages:
+  # DCNR's own legs between its eight shelter areas, from the official trail map's shelter-area
+  # insets ("South: Ohiopyle Trailhead: 6.3 Mi. North: Rt. 653 Shelters: 12.2 Mi." …), which match
+  # the Stay the Night page's mileage table (shelter areas at miles 6.3, 18.5, 24, 32.5, 38.2,
+  # 46.5, 56.9 and 64.9 of 70). Camping is allowed only in these shelter areas, one night each,
+  # reserved in advance. The numbering is ours, in DCNR's south-to-north order. Stage ends on the
+  # OSM relation at each shelter area's blue-blazed connector
+  source: dcnr-guide
+  list:
+    - { number: "1", kind: main, from: Ohiopyle Trailhead, to: Ohiopyle Shelter Area, km: 10.1, end: { lat: 39.86225, lon: -79.41955 } }
+    - { number: "2", kind: main, from: Ohiopyle Shelter Area, to: Rt. 653 Shelter Area, km: 19.6, end: { lat: 39.9534, lon: -79.36185 } }
+    - { number: "3", kind: main, from: Rt. 653 Shelter Area, to: Grindle Ridge Shelter Area, km: 8.9, end: { lat: 40.00054, lon: -79.31836 } }
+    - { number: "4", kind: main, from: Grindle Ridge Shelter Area, to: Rt. 31 Shelter Area, km: 13.7, end: { lat: 40.07337, lon: -79.26089 } }
+    - { number: "5", kind: main, from: Rt. 31 Shelter Area, to: Turnpike Shelter Area, km: 9.2, end: { lat: 40.10984, lon: -79.18599 } }
+    - { number: "6", kind: main, from: Turnpike Shelter Area, to: Rt. 30 Shelter Area, km: 13.4, end: { lat: 40.17935, lon: -79.12086 } }
+    - { number: "7", kind: main, from: Rt. 30 Shelter Area, to: Rt. 271 Shelter Area, km: 16.7, end: { lat: 40.28114, lon: -79.05226 } }
+    - { number: "8", kind: main, from: Rt. 271 Shelter Area, to: Rt. 56 Decker Ave. Shelter Area, km: 12.9, end: { lat: 40.36195, lon: -78.98121 } }
+    - { number: "9", kind: main, from: Rt. 56 Decker Ave. Shelter Area, to: Rt. 56 Seward Trailhead, km: 8.2, end: { lat: 40.40833, lon: -79.00554 } }
+route:
+  # built by `python -m pipeline.all laurel-highlands-hiking-trail`: OSM ways matched to the trail's
+  # OSM relation (7192246, operator PA DCNR), cut at the shelter areas' connectors
+  source: osm
+  publishable: true
+  relation: 7192246
+difficulty:
+  estimated:
+    sac: T2
+    basis: >-
+      DCNR rates the trail "Most difficult" (for hikers with advanced skills; steep grades, severe
+      elevation gain or loss) and suggests an average pace of 1.5 miles an hour. A footpath along the
+      forested Laurel Ridge, with steep climbs out of the Youghiogheny valley at Ohiopyle and down to
+      the Conemaugh Gorge, rocky and rooty in places, without exposed passages: mountain hiking on a
+      maintained trail (T2).
+    source: dcnr-hiking
+season:
+  # "The Laurel Highlands Hiking Trail is open year round"; the guide: spring wildflowers in April,
+  # mountain laurel in June, autumn colour at its peak in mid-October, snowshoeing in winter
+  months: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
+  text: Open year round; mountain laurel blooms in June and autumn colour peaks in mid-October, and in winter the trail is walked on snowshoes
+  source: dcnr-guide
+permit:
+  # "Reservations for overnight stays are mandatory and can be made up to 11 months in advance";
+  # the confirmation serves as the backpacking permit
+  required: true
+  name: Backpack camping permit (shelter area reservation)
+  issuedBy: Pennsylvania DCNR, Laurel Ridge State Park
+  how: >-
+    Reserve each night's shelter area online or by phone (724-455-3744) up to 11 months ahead and pay
+    the overnight fee per person and night; day hikes need no permit, only the voluntary registration
+    at the trailheads.
+  url: https://pennsylvaniastateparks.reserveamerica.com/wildernessAreaDetails.do?contractCode=PA&parkId=880219
+  source: dcnr-stay
+sleeping:
+  # eight shelter areas, each with five Adirondack shelters with fireplaces, vault toilets and space
+  # for 25 tents
+  types: [bivouac, campsite]
+  source: dcnr-stay
+wildCamping:
+  status: prohibited
+  rule: >-
+    Camping is only permitted in the eight shelter areas, one night at each, with a reservation; fires
+    only in camp stoves, the shelters' fireplaces or park fire rings.
+  source: dcnr-stay
+refillsUntreated:
+  # "Non-potable is available at most trailheads and shelter areas. Be prepared to treat or filter water."
+  text: Non-potable water at most trailheads and shelter areas; treat or filter it.
+  source: dcnr-hiking
+access:
+  # Pittsburgh's airport; Connellsville station near the southern end and Johnstown station near
+  # the northern (both on Amtrak). Coordinates from OSM; distances by pipeline/access.py
+  - kind: airport
+    name: Pittsburgh International Airport (PIT)
+    lat: 40.49178
+    lon: -80.23702
+    source: osm
+  - kind: station
+    name: Connellsville station
+    lat: 40.02021
+    lon: -79.59284
+    source: osm
+  - kind: station
+    name: Johnstown station
+    lat: 40.32991
+    lon: -78.92197
+    source: osm
+animals:
+  # DCNR's recreational guide ("A word on Pennsylvania black bears"; it also prints the CDC's
+  # blacklegged tick card); the tick advice from the CDC. Levels ours
+  list:
+    - kind: bear
+      name: Black bear
+      level: moderate
+      basis: Laurel Ridge State Park has excellent habitat for black bears, which roam freely and normally avoid people but can become aggressive when people get between them and food.
+      do:
+        - Keep your campsite clean and clean up after meals
+        - When backpacking, store food away from your overnight campsite, suspended between two trees, ten feet in the air and three feet from either tree
+        - If you encounter a black bear, back away slowly without making direct eye contact
+        - If the bear does not leave the area, make a loud noise like blowing a whistle or banging a pot
+      dont:
+        - Never approach a bear, and be especially wary of mother bears with cubs
+        - Do not run
+      source: dcnr-guide
+    - kind: tick
+      name: Blacklegged tick (deer tick)
+      level: moderate
+      basis: DCNR's guide to the trail prints the CDC's blacklegged tick card; the tick carries Lyme disease.
+      do:
+        - Walk in the center of trails
+        - Use EPA-registered insect repellents containing DEET, picaridin, IR3535, Oil of Lemon Eucalyptus (OLE), para-menthane-diol (PMD), or 2-undecanone
+        - Treat boots, clothing and gear with permethrin
+        - Check your body, clothing, gear and pets for ticks after being outdoors
+      dont:
+        - Avoid wooded and brushy areas with high grass and leaf litter
+      source: cdc-ticks
+tags: [forest, ridge, river]
+notes:
+  - >-
+    Stages: DCNR publishes no numbered stages or sections. Its official trail map gives each of the
+    eight shelter areas with the miles to its neighbours, and camping is only allowed in those
+    areas, one night each, so the record takes those nine legs as stages (6.3, 12.2, 5.5, 8.5, 5.7,
+    8.3, 10.4, 8.0 and 5.1 miles = 70.0 miles); the numbers are ours. DCNR's mileage table also lists
+    the six trailheads (Ohiopyle 0, Rt. 653 18.8, Rt. 31 30.6, Rt. 30 45.8, Rt. 271 56.9, Rt. 56
+    Seward 70) and the Maple Summit Road day parking (11.2).
+  - >-
+    Days: DCNR gives no days ("Every hiker's pace varies, but a pace of 1.5 miles per hour is
+    average"); the page counts one day per stage, nine days for the eight nights in the shelter areas.
+  - >-
+    Tree line: not added; the route stays below 1,500 m (highest point 2,961 ft, 903 m, near Seven
+    Springs on DCNR's elevation profile).
+  - >-
+    Wildlife: Wikipedia's infobox also names rattlesnakes as a hazard; DCNR's trail pages give no
+    snake advice, so only the black bear and the blacklegged tick are listed.
+  - >-
+    Map line (2026-11-06): the Pennsylvania Geofabrik extract (2026-11-05); OSM's Laurel Highlands
+    Hiking Trail relation (7192246, operator PA DCNR), its main line chained from Ohiopyle to the
+    Rt. 56 trailhead (the relation's 47 connector and shelter-area ways, 15.3 km, left out) and cut at
+    the eight shelter areas' connectors, every stage 100 % matched. It measures 104.0 km against
+    DCNR's 70 miles (112.7 km, −7.7 %); OSM draws the trail with long, sparsely noded ways (one of
+    34.9 km), which cut the bends short. Highest point 913 m at km 38.7 (DCNR's profile: 2,961 ft,
+    903 m, near Seven Springs), lowest 378 m at Ohiopyle (about 1,200 ft, 366 m, on the profile). The
+    terrain model gives about 3,310 m of climbing; none is stated.
+  - >-
+    Stages 1, 2, 4, 6 and 9 measure 11–13 % under DCNR's miles on the map line (9.0 against 10.1 km,
+    17.6 against 19.6, 12.2 against 13.7, 11.7 against 13.4, 7.2 against 8.2); the others within
+    10 %. The whole line is 7.7 % short for the same reason (long OSM ways cutting the bends), and
+    DCNR's miles count to the shelter areas along their connectors; the record keeps DCNR's miles.
+  - >-
+    Water: OSM maps 1 drinking water point and 2 springs near the trail; the check's longest stretch
+    without drinking water is 57.6 km (km 0–57.6). DCNR: non-potable water at most trailheads and
+    shelter areas (pumps), to be treated or filtered, so water comes every 6 to 12 miles at the
+    shelter areas.
+  - >-
+    Resupply: OSM maps 2 shops near the trail, the longest stretch without one 96.7 km (from
+    Ohiopyle); the trail stays on the ridge, away from towns, and DCNR names no resupply on the way.
+  - >-
+    Beds: OSM maps 2 places to sleep near the trail, the longest stretch without one 49.2 km
+    (km 35–85); DCNR's eight shelter areas (five Adirondack shelters and 25 tent spaces each) lie
+    every 5.1 to 12.2 miles, most of them not mapped as camp sites in OSM.
+  - >-
+    Data check (2026-11-06): against English Wikipedia. Length 70 miles (112.7 km) agrees with its
+    70.1 miles (112.8 km, +0.1 %); the termini (Ohiopyle State Park, PA Route 56 near Johnstown), the
+    season (year-round), the yellow and blue blazes, the eight shelter areas with reservations and fee
+    agree; its shelter positions ("just past mile 6", "just past 17", about 24, "just after 32", 38,
+    46, 57 and 64 miles) agree with DCNR's 6.3, 18.5, 24, 32.5, 38.2, 46.5, 56.9 and 64.9 within
+    10 % (the Rt. 653 area 8 % apart). Its "room for up to thirty tents" at each area is 20 % over
+    DCNR's 25 tent spaces; the record keeps DCNR's. Difficulty: Wikipedia "Moderate to strenuous",
+    DCNR "Most difficult"; our T2 sits between. It gives no days, stage miles or opening year (only
+    "construction began in 1970"); the legs' miles, the opening date (15 May 1974), the permit and
+    camping rules on the built page were checked one by one against DCNR's guide and pages and agree.
+  - >-
+    Preflight (2026-11-06): pipeline.preflight flags the OSM relation as a blocker ("one line from the
+    start 105.5 km (87 %)"): the 15.3 km left over are the blue-blazed connectors and shelter-area
+    paths in the relation; the main line runs unbroken from DCNR's southern to its northern terminus,
+    so the relation is used.
+dataCheck:
+  # working rule 2: English Wikipedia as the second source; the shelter legs only on DCNR's map, so
+  # the built page was checked against it
+  date: 2026-11-06
+  against: [wikipedia]
+  pageAgainst: [dcnr-guide, dcnr-stay]
+  deviations:
+    - { figure: tent spaces per shelter area, ours: "25 (DCNR)", theirs: "up to 30", source: wikipedia }
+sources:
+  - id: dcnr-park
+    title: "Pennsylvania DCNR: Laurel Ridge State Park (70-mile Laurel Highlands Hiking Trail, termini coordinates, reservations)"
+    url: https://www.pa.gov/agencies/dcnr/recreation/where-to-go/state-parks/find-a-park/laurel-ridge-state-park
+    licence: Pennsylvania state government work (facts only)
+    retrieved: 2026-11-06
+  - id: dcnr-stay
+    title: "Pennsylvania DCNR: Laurel Ridge State Park, Stay the Night (shelter areas and trailheads with miles, reservations, rules, blazes)"
+    url: https://www.pa.gov/agencies/dcnr/recreation/where-to-go/state-parks/find-a-park/laurel-ridge-state-park/stay
+    licence: Pennsylvania state government work (facts only)
+    retrieved: 2026-11-06
+  - id: dcnr-hiking
+    title: "Pennsylvania DCNR: Laurel Ridge State Park, Hiking (trail rating, pace, water)"
+    url: https://www.pa.gov/agencies/dcnr/recreation/where-to-go/state-parks/find-a-park/laurel-ridge-state-park/hiking
+    licence: Pennsylvania state government work (facts only)
+    retrieved: 2026-11-06
+  - id: dcnr-maps
+    title: "Pennsylvania DCNR: Laurel Ridge State Park, Maps and Guides (trail map, recreational guide, interactive map)"
+    url: https://www.pa.gov/agencies/dcnr/recreation/where-to-go/state-parks/find-a-park/laurel-ridge-state-park/maps
+    licence: Pennsylvania state government work (facts only)
+    retrieved: 2026-11-06
+  - id: dcnr-guide
+    title: "Pennsylvania DCNR: Laurel Ridge and the Laurel Highlands Hiking Trail, recreational guide and trail map (2022; shelter-area legs, elevation profile, black bears)"
+    url: https://elibrary.dcnr.pa.gov/GetDocument?docId=1743398&DocName=LARI_ParkGuide.pdf
+    licence: Pennsylvania state government work (facts only)
+    retrieved: 2026-11-06
+  - id: dcnr-history
+    title: "Pennsylvania DCNR: Laurel Ridge State Park, History (opened 15 May 1974)"
+    url: https://www.pa.gov/agencies/dcnr/recreation/where-to-go/state-parks/find-a-park/laurel-ridge-state-park/history
+    licence: Pennsylvania state government work (facts only)
+    retrieved: 2026-11-06
+  - id: cdc-ticks
+    title: "US Centers for Disease Control and Prevention: Preventing Tick Bites"
+    url: https://www.cdc.gov/ticks/prevention/index.html
+    licence: US federal government work, public domain
+    retrieved: 2026-11-06
+  - id: wikipedia
+    title: "Wikipedia (en): Laurel Highlands Hiking Trail"
+    url: https://en.wikipedia.org/wiki/Laurel_Highlands_Hiking_Trail
+    licence: CC BY-SA 4.0
+    retrieved: 2026-11-06
+    checkOnly: true
+  - id: osm
+    title: "OpenStreetMap contributors: paths, water, shops and places to sleep along the trail (Geofabrik extract), travel hubs"
+    url: https://www.openstreetmap.org/
+    licence: ODbL 1.0
+    retrieved: 2026-11-06
+  - id: copdem
+    title: "Copernicus DEM GLO-30 (30 m terrain model), tiles from AWS Open Data"
+    url: https://registry.opendata.aws/copernicus-dem/
+    licence: "Copernicus WorldDEM-30 licence, free; produced using Copernicus WorldDEM-30 © DLR e.V. 2010-2014 and © Airbus Defence and Space GmbH 2014-2018 provided under COPERNICUS by the European Union and ESA; all rights reserved"
+    retrieved: 2026-11-06
+  - id: worldcover
+    title: "ESA WorldCover 2021: 10 m land cover (via AWS Open Data)"
+    url: https://esa-worldcover.org/
+    licence: "CC BY 4.0; © ESA WorldCover project 2021 / Contains modified Copernicus Sentinel data (2021) processed by ESA WorldCover consortium"
+    retrieved: 2026-11-06
+  - id: era5
+    title: "Open-Meteo open data on AWS: ERA5-Land temperature and ERA5 precipitation, snow and wind, daily 1995–2024 (reanalysis)"
+    url: https://github.com/open-meteo/open-data
+    licence: CC BY 4.0 (Open-Meteo); contains modified Copernicus Climate Change Service information
+    retrieved: 2026-11-06
+  - id: osrm
+    title: "OSRM: road routes on OpenStreetMap data (router.project-osrm.org)"
+    url: https://project-osrm.org/
+    licence: Route data © OpenStreetMap contributors (ODbL)
+    retrieved: 2026-11-06
