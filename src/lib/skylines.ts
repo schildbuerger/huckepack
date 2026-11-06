@@ -2215,6 +2215,50 @@ export const SKYLINES: Record<string, Skyline> = {
       { d: "M1350,266a29,20 0 1 1 58,0a29,20 0 1 1 -58,0Z", c: "#4f6e36" },
     ],
   },
+  "pukaskwa-coastal-hiking-trail": {
+    view: "Pukaskwa's Lake Superior shore: bare pink granite headlands under boreal spruce, the White River's suspension bridge over its rock gorge, the Ramparts' cliffs to the south, low islands on the lake's long horizon and a cobble beach in front",
+    ridge: "#3f5a34",
+    ground: "#a89878",
+    shapes: [
+      // low islands far out on the lake (the lake covers their feet)
+      { d: hills([[820, G], [880, 242], [960, 236], [1030, 244], [1080, G]]), c: "#a7bccb" },
+      { d: hills([[1340, G], [1380, 244], [1440, 240], [1500, G]]), c: "#a7bccb" },
+      // Lake Superior, wide to the horizon
+      { d: water(420, 1600, 250), c: "#5b8db0" },
+      // boreal forest on the hills behind the shore
+      { d: hills([[0, G], [90, 180], [240, 156], [380, 170], [500, 206], [600, G]]), c: "#4d6a48" },
+      { d: hills([[1160, G], [1260, 192], [1400, 170], [1520, 176], [1600, 184], [1600, G]]), c: "#4d6a48" },
+      // a pink granite headland, bare where the waves reach it
+      { d: range([[0, G], [80, 238], [180, 216], [260, 206], [340, 214], [420, 200], [480, 212], [540, 240], [610, G]]), c: "#b98a7e" },
+      // spruce spires on the headland
+      { d: "M194,218L201,190L208,218Z M214,214L222,180L230,214Z M236,210L242,186L248,210Z M438,204L445,176L452,204Z M458,210L464,188L470,210Z", c: FIR },
+      // the White River's gorge in the forest: rock walls either side of the falls
+      { d: hills([[620, G], [680, 214], [760, 206], [840, 214], [920, G]]), c: FIR },
+      { d: "M716,320L726,224H772L782,320Z", c: "#5e4d48" },
+      { d: "M688,226L726,222L728,262L722,300L700,292L694,256Z M772,222L812,228L806,262L800,294L778,300L772,262Z", c: "#a87a70" },
+      { d: waterfall(749, 228, 320, 12), c: "#e8f0f2" },
+      // the suspension bridge across the gorge: towers, cables, hangers and the sagging deck
+      { d: "M702,224V196H707V224Z M791,224V196H796V224Z", c: "#3a3330" },
+      { d: "M704,197Q749,236 794,197L794,199.5Q749,238.5 704,199.5Z", c: "#3a3330" },
+      { d: "M722.5,211H724V224H722.5Z M748,216H749.5V228H748Z M773.5,211H775V224H773.5Z", c: "#3a3330" },
+      { d: "M704,221Q749,234 794,221L794,225Q749,238 704,225Z", c: "#6b5a4a" },
+      // the Ramparts: tall granite cliffs falling to the lake in the south
+      { d: range([[1120, G], [1180, 252], [1240, 216], [1300, 198], [1380, 192], [1460, 186], [1540, 198], [1600, 208], [1600, G]]), c: "#a8786e" },
+      // spruce and fir along the foot of the hills
+      { d: hills([[0, G], [120, 274], [300, 266], [520, 278], [640, G]]), c: FIR },
+      { d: hills([[1300, G], [1400, 270], [1520, 264], [1600, 270], [1600, G]]), c: FIR },
+    ],
+    front: [
+      // a cobble beach along the lake, its rounded stones
+      { d: hills([[880, G], [960, 302], [1100, 297], [1240, 303], [1330, G]]), c: "#b5ab9c" },
+      {
+        d: ([[972, 308, 5, 3], [996, 304, 4, 2.5], [1030, 310, 6, 3], [1068, 303, 4, 2.5], [1104, 309, 5, 3], [1140, 304, 4, 2.5], [1176, 310, 6, 3], [1214, 306, 4, 2.5]] as const)
+          .map(([cx, cy, rx, ry]) => `M${cx - rx},${cy}a${rx},${ry} 0 1 1 ${2 * rx},0a${rx},${ry} 0 1 1 ${-2 * rx},0Z`)
+          .join(" "),
+        c: "#8f877c",
+      },
+    ],
+  },
   "superior-hiking-trail": {
     view: "Minnesota's North Shore: the Sawtooth ridges above Lake Superior, birch and spruce on the rocky slopes, a waterfall dropping towards the lake and the lake's long horizon",
     ridge: "#3f5a34",

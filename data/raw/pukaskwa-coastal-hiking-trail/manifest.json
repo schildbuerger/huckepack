@@ -1,0 +1,57 @@
+{
+  "climate-high.json": {
+    "retrieved": "2026-11-06T23:04:48+00:00",
+    "url": "https://openmeteo.s3.us-west-2.amazonaws.com/data/copernicus_era5_land+copernicus_era5?latitude=48.3&longitude=-86.2&elevation=320"
+  },
+  "climate-low.json": {
+    "retrieved": "2026-11-06T23:04:48+00:00",
+    "url": "https://openmeteo.s3.us-west-2.amazonaws.com/data/copernicus_era5_land+copernicus_era5?latitude=48.4&longitude=-86.2&elevation=180"
+  },
+  "commons-geo.json": {
+    "key": "with categories, 59.5 km, every 2.5 km, 1500 m, within 0.5 km",
+    "retrieved": "2026-11-06T23:04:14+00:00",
+    "url": "Commons geosearch along the route"
+  },
+  "commons.json": {
+    "key": "none",
+    "retrieved": "2026-11-06T23:03:27+00:00",
+    "url": "None P18 P373"
+  },
+  "elevation-glo30.json": {
+    "retrieved": "2026-11-06T23:03:55+00:00",
+    "url": "https://copernicus-dem-30m.s3.eu-central-1.amazonaws.com/Copernicus_DSM_COG_10_N48_00_W087_00_DEM/Copernicus_DSM_COG_10_N48_00_W087_00_DEM.tif"
+  },
+  "landcover.json": {
+    "retrieved": "2026-11-06T23:03:55+00:00",
+    "url": "https://esa-worldcover.s3.eu-central-1.amazonaws.com/v200/2021/map/ESA_WorldCover_10m_2021_v200_\u2026_Map.tif"
+  },
+  "osm-relation.json": {
+    "retrieved": "2026-11-05T21:23:02Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-1-main.json": {
+    "key": "13299c628325",
+    "retrieved": "2026-11-05T21:23:02Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-water.json": {
+    "retrieved": "2026-11-05T21:23:02Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-way-tags.json": {
+    "retrieved": "2026-11-05T21:23:02Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osrm-access-sault-ste-marie-airport-yam.json": {
+    "retrieved": "2026-11-06T23:04:48+00:00",
+    "url": "https://router.project-osrm.org/route/v1/driving/-84.5004954,46.4851313;-86.2902698,48.5905683?overview=false"
+  },
+  "osrm-access-thunder-bay-international-airport-yqt.json": {
+    "retrieved": "2026-11-06T23:04:48+00:00",
+    "url": "https://router.project-osrm.org/route/v1/driving/-89.3239509,48.3721108;-86.2902698,48.5905683?overview=false"
+  },
+  "osrm-access-white-river-station-via-rail.json": {
+    "retrieved": "2026-11-06T23:06:08+00:00",
+    "url": "https://router.project-osrm.org/route/v1/driving/-85.282406,48.5894379;-86.2902698,48.5905683?overview=false"
+  }
+}
