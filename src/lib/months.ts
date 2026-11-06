@@ -51,7 +51,16 @@ export function monthsText(ms: number[]): string {
     while (set.has(next(run[run.length - 1])) && run.length < ms.length) run.push(next(run[run.length - 1]));
     if (run.length === ms.length) return run.length === 1 ? MONTH_ABBR[run[0] - 1] : `${MONTH_ABBR[run[0] - 1]}–${MONTH_ABBR[run[run.length - 1] - 1]}`;
   }
-  return [...ms].sort((a, b) => a - b).map((m) => MONTH_ABBR[m - 1]).join(", ");
+  // several runs (a season in spring and autumn, the Arizona Trail's): each run as a range, a run of
+  // one or two months by its months ("Feb–May, Sep–Nov"), in calendar order from a run's start
+  const starts = [...ms].sort((a, b) => a - b).filter((m) => !set.has(m === 1 ? 12 : m - 1));
+  return starts
+    .map((s) => {
+      const run = [s];
+      while (set.has(next(run[run.length - 1])) && run.length < 12) run.push(next(run[run.length - 1]));
+      return run.length > 2 ? `${MONTH_ABBR[run[0] - 1]}–${MONTH_ABBR[run[run.length - 1] - 1]}` : run.map((m) => MONTH_ABBR[m - 1]).join(", ");
+    })
+    .join(", ");
 }
 
 // the pick in a URL's query: months=7,8 (the search's When filter), else none

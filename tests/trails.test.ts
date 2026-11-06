@@ -134,6 +134,8 @@ test("months: the best run of at least two season months, and a pick", () => {
   assert.equal(monthsText([9, 10]), "Sep–Oct");
   assert.equal(monthsText([11, 12, 1, 2]), "Nov–Feb");
   assert.equal(monthsText([1, 5]), "Jan, May");
+  assert.equal(monthsText([2, 3, 4, 5, 9, 10, 11]), "Feb–May, Sep–Nov");
+  assert.equal(monthsText([12, 1, 2, 6, 7]), "Jun, Jul, Dec–Feb");
   assert.deepEqual(runBetween(11, 2), [11, 12, 1, 2]);
   assert.deepEqual(readPick("?months=7,8&where=Italy"), [7, 8]);
 });
