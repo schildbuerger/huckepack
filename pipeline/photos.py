@@ -7,7 +7,9 @@ The record's `wikidata` item names the trail's photo (P18) and its Commons categ
 category and its direct subcategories named after it the step takes photos only under an open licence (public
 domain, CC0, CC BY, CC BY-SA: no NC, ND or GFDL-only), with no restriction tagged (personality
 rights, trademarks), a named author, JPEG, landscape and at least 1,200 px wide, and not a map, sign,
-logo, diagram, vehicle or station by its title. A photo with a camera position must lie within 1 km of the trail's
+logo, diagram, vehicle or station by its title; a subject photographed for itself (a flower, a bird, a
+memorial, a milestone, an underpass: SUBJECT) only where the title also names scenery (SCENERY: a view,
+a panorama, a meadow). A photo with a camera position must lie within 1 km of the trail's
 map line (data/derived/lines/<slug>.json), and is placed at its kilometre; one without a position
 counts only from the trail's own category, not a subcategory (a town's category holds the town).
 The P18 photo comes first, then up to MAX photos spread along the route, then unplaced ones.
@@ -53,8 +55,21 @@ NOT_PHOTO = re.compile(
     r"\b(map|karte|carte|mappa|mapa|logo|plan|sign|signpost|finger ?posts?|waymarker|wegmarke\w*|\w*schild|\w*tafel|info\w*|wegweiser|panneau|marker|\w*markierung\w*|waymark|"
     r"stamp|stempel|leaflet|flyer|profile|profil|elevation|diagram|schema|scheme|poster|plaque|tafel|"
     r"bus|irisbus|gare|bahnhof|station|train|tram|truck|lkw|car park|parking|parkplatz|interior|innenraum|"
-    r"\w*grenzstein\w*|boundary stones?|mile ?stones?|meilenstein\w*|flowers?|blumen|bl[üu]ten?|butterfl\w+|insects?|birds?|"
-    r"caravans?|snails?|memorials?|subways?|underpass\w*|fly ?tipping|rubbish|litter)\b|\([A-Z][a-z]+ [a-z]{3,}[^)]*\)",
+    r"\w*grenzstein\w*|boundary stones?|caravans?|fly ?tipping|rubbish|litter)\b|\([A-Z][a-z]+ [a-z]{3,}[^)]*\)",
+    re.I,
+)
+# Subjects photographed for themselves beside a path (a flower, a bird, a milestone, a memorial, an
+# underpass): turned down unless the title also names scenery (SCENERY), so "Meadow with flowers",
+# "View from the war memorial" and "Bird's eye view" stay (decided 2026-11-06)
+SUBJECT = re.compile(
+    r"\b(mile ?stones?|meilenstein\w*|flowers?|blumen|bl[üu]ten?|butterfl\w+|insects?|birds?|snails?|memorials?|"
+    r"subways?|underpass\w*)\b",
+    re.I,
+)
+# deliberately narrow: words that say the photo is a view, not place names ("Hidden Valley Shelter")
+SCENERY = re.compile(
+    r"\b(views?|panoramas?|landscapes?|meadows?|bird'?s[ -]eye|landschaft\w*|aussicht\w*|ausblick\w*|blick|"
+    r"wiesen?|paysages?|vues?|prairies?|paesaggi\w*|vedut[ae]|paisajes?|vistas?|prados?)\b",
     re.I,
 )
 
@@ -212,6 +227,7 @@ def usable(f):
         and f["author"]
         and f["w"] >= 1200 and f["w"] >= 1.2 * f["h"]
         and not NOT_PHOTO.search(f["title"].replace("_", " "))
+        and (not SUBJECT.search(f["title"].replace("_", " ")) or SCENERY.search(f["title"].replace("_", " ")))
         # a 360° sphere, also among the category's photos (the Wonderland Trail's NPS spheres)
         and not SPHERE.search(f["title"].replace("_", " ") + " | " + (f.get("categories") or ""))
         and f["w"] != 2 * f["h"]

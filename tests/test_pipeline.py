@@ -470,6 +470,15 @@ class Photos(unittest.TestCase):
         self.assertEqual(photos.caption(self.file(title="File:2013 03 09 Queen Charlotte Track 15km (4).JPG")), "Queen Charlotte Track 15km")
         self.assertEqual(photos.caption(self.file(name="Wonderland Trail at the Nisqually River 360")), "Wonderland Trail at the Nisqually River 360")
 
+    def test_subjects_only_with_scenery(self):
+        # a flower, a bird, a memorial or an underpass alone is turned down; with a view it stays (2026-11-06)
+        from pipeline import photos
+
+        for title in ("Meadow with flowers above Grindelwald", "View from the war memorial", "Bird's eye view of Ullswater", "Blick über die Blumenwiese"):
+            self.assertTrue(photos.usable(self.file(title=f"File:{title}.jpg")), title)
+        for title in ("Kea near Hidden Valley Shelter, bird", "Spring flowers", "War memorial, Kirk Yetholm", "Subway under the A229"):
+            self.assertFalse(photos.usable(self.file(title=f"File:{title}.jpg")), title)
+
     def test_spheres_unusable_also_in_the_category(self):
         from pipeline import photos
 
