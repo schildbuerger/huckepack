@@ -1,3 +1,4 @@
+import { realpathSync } from "node:fs";
 import { defineConfig } from "astro/config";
 import svelte from "@astrojs/svelte";
 import chartFiles from "./src/integrations/chart-files.mjs";
@@ -34,6 +35,8 @@ export default defineConfig({
     build: { chunkSizeWarningLimit: 1100 },
     // The project lives in a cloud-synced Proton Drive folder, where file change events
     // don't reliably arrive; poll so the dev server sees new and changed files.
-    server: { watch: { usePolling: true, interval: 500 } },
+    // A trail worktree (scripts/trail-worktree.sh) links the project's node_modules, which then lies
+    // outside the worktree: let the dev server serve from where the link points.
+    server: { watch: { usePolling: true, interval: 500 }, fs: { allow: [".", realpathSync("node_modules")] } },
   },
 });

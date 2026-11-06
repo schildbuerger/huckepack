@@ -619,6 +619,8 @@ class FasterBuilds(unittest.TestCase):
         self.assertTrue(preflight.bot_check('<script src="/cdn-cgi/challenge-platform/h/b/orchestrate"></script>'))
         # a page that only mentions a captcha (Wikipedia's scripts, GitHub) is no bot check
         self.assertIsNone(preflight.bot_check("<title>Long Trail - Wikipedia</title><script>var captcha=1</script>"))
+        # Cloudflare's passive script on every page of a site behind it is no bot check either
+        self.assertIsNone(preflight.bot_check('<title>Tahoe Rim Trail</title><script src="/cdn-cgi/challenge-platform/scripts/jsd/main.js"></script>'))
 
     def test_relation_in_pieces_is_a_blocker(self):
         from unittest import mock

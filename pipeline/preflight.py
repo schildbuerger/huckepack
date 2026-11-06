@@ -43,7 +43,9 @@ OSM_API = "https://api.openstreetmap.org/api/0.6"
 # a bot check's page: its title (Cloudflare's interstitial, Anubis, a captcha page) or the challenge's
 # own script; a page that only mentions a captcha somewhere (Wikipedia, GitHub) is no bot check
 BOT_TITLE = re.compile(r"<title>[^<]*(Just a moment|Attention Required|Making sure you.re not a bot|captcha|DDoS|Access denied)[^<]*</title>", re.I)
-BOT_SCRIPT = re.compile(r"/cdn-cgi/challenge-platform/|cf-chl-|within\.website/x/cmd/anubis|anubis_challenge", re.I)
+# Cloudflare's challenge itself ("/cdn-cgi/challenge-platform/h/…/orchestrate", cf-chl-), not its
+# passive "jsd" script, which sits on every page of a site behind Cloudflare (tahoerimtrail.org)
+BOT_SCRIPT = re.compile(r"/cdn-cgi/challenge-platform/h/|cf-chl-|within\.website/x/cmd/anubis|anubis_challenge", re.I)
 
 
 def bot_check(page):
