@@ -1933,6 +1933,8 @@ export const SKYLINES: Record<string, Skyline> = {
       // Botanical Beach: flat sandstone shelves running into the sea, dark tide pools on them
       { d: "M940,320L980,306L1120,302L1300,304L1420,300L1500,320Z", c: "#a8946e" },
       { d: "M1040,309a22,3 0 1 0 44,0a22,3 0 1 0 -44,0Z M1180,307a30,3 0 1 0 60,0a30,3 0 1 0 -60,0Z M1330,306a18,2.5 0 1 0 36,0a18,2.5 0 1 0 -36,0Z", c: "#3f7898" },
+    ],
+  },
   "tahoe-rim-trail": {
     view: "Lake Tahoe from the rim: the deep blue lake below granite ridges and pines, the Sierra's peaks across the water with Mount Tallac's snow, and turquoise shallows round granite boulders on the east shore",
     ridge: "#4a5e3e",
