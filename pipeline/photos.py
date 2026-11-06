@@ -52,7 +52,9 @@ OPEN = re.compile(r"^(CC0|Public domain|PD|CC BY(-SA)? \d(\.\d)?)", re.I)
 NOT_PHOTO = re.compile(
     r"\b(map|karte|carte|mappa|mapa|logo|plan|sign|signpost|fingerpost|waymarker|wegmarke\w*|\w*schild|\w*tafel|info\w*|wegweiser|panneau|marker|\w*markierung\w*|waymark|"
     r"stamp|stempel|leaflet|flyer|profile|profil|elevation|diagram|schema|scheme|poster|plaque|tafel|"
-    r"bus|irisbus|gare|bahnhof|station|train|tram|truck|lkw|car park|parking|parkplatz|interior|innenraum)\b",
+    r"bus|irisbus|gare|bahnhof|station|train|tram|truck|lkw|car park|parking|parkplatz|interior|innenraum|"
+    r"\w*grenzstein\w*|boundary stones?|mile ?stones?|meilenstein\w*|flowers?|blumen|bl[üu]ten?|butterfl\w+|insects?|birds?|"
+    r"caravans?|snails?|memorials?)\b|\([A-Z][a-z]+ [a-z]{3,}[^)]*\)",
     re.I,
 )
 
@@ -126,11 +128,26 @@ def record(page):
     }
 
 
+def batches(titles, most=50, chars=3000):
+    """The titles in groups of at most `most`, each short enough for one request's address (long
+    titles made a 414 "URI Too Long" at 50, 2026-11-06)."""
+    group, size = [], 0
+    for t in titles:
+        n = len(urllib.parse.quote(t)) + 3
+        if group and (len(group) == most or size + n > chars):
+            yield group
+            group, size = [], 0
+        group.append(t)
+        size += n
+    if group:
+        yield group
+
+
 def files_info(titles):
-    """File records for the given file titles, 50 to a request."""
+    """File records for the given file titles, up to 50 to a request."""
     files = []
-    for i in range(0, len(titles), 50):
-        r = query({"action": "query", "titles": "|".join(titles[i:i + 50]), "prop": "imageinfo",
+    for group in batches(titles):
+        r = query({"action": "query", "titles": "|".join(group), "prop": "imageinfo",
                    "iiprop": "url|size|extmetadata|mime"}) or {}
         files += [record(page) for page in (r.get("query") or {}).get("pages", {}).values() if "imageinfo" in page]
         time.sleep(1)
@@ -179,9 +196,16 @@ def route_points(slug):
     return pts
 
 
+# a title that starts with a species' Latin name ("Rhodiola.rosea.76", "Pararge aegeria, Norfolk"): a
+# plant or animal close up, not the trail. The second word must end as Latin names do, so German titles
+# ("Malerweg sächsische Schweiz") pass
+LATIN = re.compile(r"^File:[A-Z][a-z]{3,}[ ._][a-z]{3,}(a|ae|us|um|is|ii|i|ia|es|ensis|ata|ica|ina|ella)\b")
+
+
 def usable(f):
     return (
-        f["mime"] == "image/jpeg"
+        not LATIN.match(f["title"])
+        and f["mime"] == "image/jpeg"
         and OPEN.match(f["licence"] or "")
         and "NC" not in f["licence"] and "ND" not in f["licence"]
         and not f["restrictions"]
@@ -194,6 +218,8 @@ def usable(f):
 def caption(f):
     name = f["name"] or f["title"].split(":", 1)[1].rsplit(".", 1)[0]
     name = re.sub(r"\s*\(\d{6,}\)$", "", name)  # Flickr ids
+    name = re.sub(r"^\d{4}[ _.-]\d{2}[ _.-]\d{2}\s+", "", name)  # a leading date
+    name = re.sub(r"\s*\(\d{1,3}\)(\s+resultat)?$", "", name)  # "(4)"
     name = re.sub(r"\s*-\s*(geograph\.org\.uk\s*-\s*\d+|panoramio(\s*\(\d+\))?)$", "", name, flags=re.I)  # copies from Geograph and Panoramio
     name = re.sub(r"\s+-\s+\w+ \d{1,2}, \d{4}$", "", name)  # " - August 8, 2016"
     name = re.sub(r"\s+\d{4}-\d{2}-\d{2}.*$", "", name)
@@ -322,6 +348,8 @@ def choose(slug, listing, p18, excluded, geo=()):
         km = place(f, line, NEAR_KM)
         if km is False or (km is None and f["title"] not in main_titles):
             continue  # off the trail, or unplaced and not from the trail's own category
+        if NOT_LANDSCAPE.search(f["title"].replace("_", " ")):
+            continue  # people, food, vehicles, animals … by its title, as for photos found by location
         cands[f["title"]] = {**f, "km": km, "found": "category"}
     picked = []
     if p18 and ("File:" + p18) in cands:

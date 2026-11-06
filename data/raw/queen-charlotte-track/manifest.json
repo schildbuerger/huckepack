@@ -1,0 +1,73 @@
+{
+  "climate-high.json": {
+    "retrieved": "2026-11-06T00:34:24+00:00",
+    "url": "https://openmeteo.s3.us-west-2.amazonaws.com/data/copernicus_era5_land+copernicus_era5?latitude=-41.2&longitude=174.1&elevation=470"
+  },
+  "climate-low.json": {
+    "retrieved": "2026-11-06T00:31:00+00:00",
+    "url": "https://openmeteo.s3.us-west-2.amazonaws.com/data/copernicus_era5_land+copernicus_era5?latitude=-41.1&longitude=174.2&elevation=0&wind=-41.25,174.0"
+  },
+  "commons-geo.json": {
+    "key": "with categories, 68.6 km, every 2.5 km, 1500 m, within 0.5 km",
+    "retrieved": "2026-11-06T00:35:37+00:00",
+    "url": "Commons geosearch along the route"
+  },
+  "commons.json": {
+    "key": "Q7270253",
+    "retrieved": "2026-11-06T00:34:26+00:00",
+    "url": "Q7270253 P18 P373"
+  },
+  "elevation-glo30.json": {
+    "retrieved": "2026-11-06T00:27:15+00:00",
+    "url": "https://copernicus-dem-30m.s3.eu-central-1.amazonaws.com/Copernicus_DSM_COG_10_S42_00_E173_00_DEM/Copernicus_DSM_COG_10_S42_00_E173_00_DEM.tif https://copernicus-dem-30m.s3.eu-central-1.amazonaws.com/Copernicus_DSM_COG_10_S42_00_E174_00_DEM/Copernicus_DSM_COG_10_S42_00_E174_00_DEM.tif"
+  },
+  "landcover.json": {
+    "retrieved": "2026-11-06T00:27:16+00:00",
+    "url": "https://esa-worldcover.s3.eu-central-1.amazonaws.com/v200/2021/map/ESA_WorldCover_10m_2021_v200_\u2026_Map.tif"
+  },
+  "osm-relation.json": {
+    "retrieved": "2026-10-31T21:23:06Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-1-main.json": {
+    "key": "9bf388b84e65",
+    "retrieved": "2026-10-31T21:23:06Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-2-main.json": {
+    "key": "d32429ac3bdf",
+    "retrieved": "2026-10-31T21:23:06Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-3-main.json": {
+    "key": "a940b36ba679",
+    "retrieved": "2026-10-31T21:23:06Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-4-main.json": {
+    "key": "633f25cefdfc",
+    "retrieved": "2026-10-31T21:23:06Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-5-main.json": {
+    "key": "6139627f0283",
+    "retrieved": "2026-10-31T21:23:06Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-water.json": {
+    "retrieved": "2026-10-31T21:23:06Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-way-tags.json": {
+    "retrieved": "2026-10-31T21:23:06Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osrm-access-picton.json": {
+    "retrieved": "2026-11-06T00:34:24+00:00",
+    "url": "https://router.project-osrm.org/route/v1/driving/174.00486,-41.28837;174.24609,-41.09643?overview=false"
+  },
+  "wikimedia.json": {
+    "retrieved": "2026-11-06T00:34:25+00:00",
+    "url": "Q7270253 2025-11..2026-10"
+  }
+}

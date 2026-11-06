@@ -92,6 +92,19 @@ class Cache:
         return path.read_text(), False
 
 
+def unzipped_gpx(body):
+    """A download as GPX: a zip archive (St Oswald's Way's section files) gives its first .gpx file;
+    anything else is passed on as it came."""
+    if body[:2] != b"PK":
+        return body
+    import io
+    import zipfile
+
+    with zipfile.ZipFile(io.BytesIO(body)) as z:
+        name = next(n for n in z.namelist() if n.lower().endswith(".gpx") and not n.startswith("__MACOSX"))
+        return z.read(name)
+
+
 def http_get(url):
     """Download url, retrying when the connection drops or the server is busy."""
     request = urllib.request.Request(url, headers={"User-Agent": USER_AGENT})
@@ -361,7 +374,7 @@ def build(slug, refresh=False):
     def track_of_url(url):
         # cached under the first stage that names the url: a whole-trail track is downloaded once
         first = next(s for s in all_stages if s.get("track") == url)
-        gpx, _ = cache.get(f"stage-{first['number']}-{first['kind']}.gpx", url, lambda: http_get(url))
+        gpx, _ = cache.get(f"stage-{first['number']}-{first['kind']}.gpx", url, lambda: unzipped_gpx(http_get(url)))
         points = track_points(gpx)
         # a track drawn from the finish (the Cotswold Way's, from Bath) is turned: it should run from
         # where the stage before its first stage ended (or the trail's start) to its last stage's end

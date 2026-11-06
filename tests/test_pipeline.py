@@ -450,6 +450,11 @@ class Photos(unittest.TestCase):
         self.assertFalse(photos.usable(self.file(title="File:Bus at the station.jpg")))
         self.assertFalse(photos.usable(self.file(title="File:Infotafel Alpe Adria Trail.jpg")))
         self.assertFalse(photos.usable(self.file(title="File:Infoschild Mallnitz.jpg")))
+        self.assertFalse(photos.usable(self.file(title="File:Rhodiola.rosea.76.jpg")))  # a species
+        self.assertFalse(photos.usable(self.file(title="File:Pararge aegeria, Norfolk coast path.jpg")))
+        self.assertTrue(photos.usable(self.file(title="File:Malerweg sächsische Schweiz.jpg")))
+        self.assertFalse(photos.usable(self.file(title="File:GA3-Grenzstein87-SB.jpg")))
+        self.assertFalse(photos.usable(self.file(title="File:-2018-09-19 Rose Hips (Rosa dumalis), Trimingham.jpg")))
         self.assertFalse(photos.usable(self.file(restrictions="personality")))
         self.assertFalse(photos.usable(self.file(author="")))
         self.assertFalse(photos.usable(self.file(w=1000, h=750)))
@@ -462,6 +467,7 @@ class Photos(unittest.TestCase):
         self.assertEqual(photos.caption(self.file(name="Le Grandes Jorasses - Vallone del Maratrà - August 8, 2016")), "Le Grandes Jorasses - Vallone del Maratrà")
         self.assertEqual(photos.caption(self.file(title="File:St Blane's Hill - geograph.org.uk - 8350.jpg")), "St Blane's Hill")
         self.assertEqual(photos.caption(self.file(title="File:Neustadt an der Weinstraße - panoramio.jpg")), "Neustadt an der Weinstraße")
+        self.assertEqual(photos.caption(self.file(title="File:2013 03 09 Queen Charlotte Track 15km (4).JPG")), "Queen Charlotte Track 15km")
         self.assertEqual(photos.author(self.file(author="Own work Rémih")), "Rémih")
         self.assertEqual(photos.author(self.file(author="Guilhem Vellut from Annecy, France")), "Guilhem Vellut")
 
@@ -493,6 +499,14 @@ class Photos(unittest.TestCase):
         self.assertIsNone(photos.place(self.file(), line, 0.5))  # no position
         self.assertEqual(photos.samples(route, 2.5), [(0.0, 0.0), (0.0899, 0.0)])
 
+    def test_batches_stay_short(self):
+        from pipeline import photos
+
+        groups = list(photos.batches([f"File:{'Ä' * 40} {i}.jpg" for i in range(60)]))
+        self.assertTrue(all(len(g) <= 50 for g in groups))
+        self.assertEqual(sum(len(g) for g in groups), 60)
+        self.assertTrue(all(sum(len(photos.urllib.parse.quote(t)) + 3 for t in g) <= 3000 for g in groups))
+
     def test_spread_fills_the_gaps(self):
         from pipeline import photos
 
@@ -500,3 +514,21 @@ class Photos(unittest.TestCase):
         got = photos.spread(cands, [10], 3, 100)
         self.assertEqual([c["km"] for c in got], [90, 55, 1])  # farthest from km 10 first
         self.assertEqual(len(photos.spread(cands[:3], [], 3, 100)), 2)  # two by one author at most
+
+
+class ZippedGpx(unittest.TestCase):
+    """pipeline/routes.py: a GPX offered as a zip archive is unpacked on download."""
+
+    def test_unzips_the_gpx(self):
+        import io
+        import zipfile
+
+        from pipeline.routes import unzipped_gpx
+
+        buf = io.BytesIO()
+        with zipfile.ZipFile(buf, "w") as z:
+            z.writestr("__MACOSX/._a.gpx", b"junk")
+            z.writestr("readme.txt", b"hello")
+            z.writestr("section-1.gpx", b"<gpx>1</gpx>")
+        self.assertEqual(unzipped_gpx(buf.getvalue()), b"<gpx>1</gpx>")
+        self.assertEqual(unzipped_gpx(b"<gpx>2</gpx>"), b"<gpx>2</gpx>")

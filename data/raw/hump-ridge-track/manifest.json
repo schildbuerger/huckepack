@@ -1,0 +1,75 @@
+{
+  "climate-high.json": {
+    "retrieved": "2026-11-06T00:30:09+00:00",
+    "url": "https://openmeteo.s3.us-west-2.amazonaws.com/data/copernicus_era5_land+copernicus_era5?latitude=-46.2&longitude=167.3&elevation=920&wind=-46.0,167.25"
+  },
+  "climate-low.json": {
+    "retrieved": "2026-11-06T00:24:11+00:00",
+    "url": "https://openmeteo.s3.us-west-2.amazonaws.com/data/copernicus_era5_land+copernicus_era5?latitude=-46.2&longitude=167.4&elevation=0&wind=-46.0,167.5"
+  },
+  "commons-geo.json": {
+    "key": "with categories, 57.8 km, every 2.5 km, 1500 m, within 0.5 km",
+    "retrieved": "2026-11-06T00:31:16+00:00",
+    "url": "Commons geosearch along the route"
+  },
+  "commons.json": {
+    "key": "Q5941215",
+    "retrieved": "2026-11-06T00:30:12+00:00",
+    "url": "Q5941215 P18 P373"
+  },
+  "elevation-glo30.json": {
+    "retrieved": "2026-11-06T00:17:54+00:00",
+    "url": "https://copernicus-dem-30m.s3.eu-central-1.amazonaws.com/Copernicus_DSM_COG_10_S47_00_E167_00_DEM/Copernicus_DSM_COG_10_S47_00_E167_00_DEM.tif"
+  },
+  "landcover.json": {
+    "retrieved": "2026-11-06T00:17:54+00:00",
+    "url": "https://esa-worldcover.s3.eu-central-1.amazonaws.com/v200/2021/map/ESA_WorldCover_10m_2021_v200_\u2026_Map.tif"
+  },
+  "osm-relation-11620063.json": {
+    "retrieved": "2026-10-31T21:23:06Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-relation-11620064.json": {
+    "retrieved": "2026-10-31T21:23:06Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-relation-11620065.json": {
+    "retrieved": "2026-10-31T21:23:06Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-1-main.json": {
+    "key": "0fcce47c1e0f",
+    "retrieved": "2026-10-31T21:23:06Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-2-main.json": {
+    "key": "659fad9223ac",
+    "retrieved": "2026-10-31T21:23:06Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-3-main.json": {
+    "key": "47d67f5c2ee7",
+    "retrieved": "2026-10-31T21:23:06Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-water.json": {
+    "retrieved": "2026-10-31T21:23:06Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-way-tags.json": {
+    "retrieved": "2026-10-31T21:23:06Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osrm-access-queenstown-airport-zqn.json": {
+    "retrieved": "2026-11-06T00:30:09+00:00",
+    "url": "https://router.project-osrm.org/route/v1/driving/168.74344,-45.0193;167.47277,-46.14647?overview=false"
+  },
+  "osrm-access-tuatapere.json": {
+    "retrieved": "2026-11-06T00:30:09+00:00",
+    "url": "https://router.project-osrm.org/route/v1/driving/167.68985,-46.13164;167.47277,-46.14647?overview=false"
+  },
+  "wikimedia.json": {
+    "retrieved": "2026-11-06T00:30:10+00:00",
+    "url": "Q5941215 2025-11..2026-10"
+  }
+}

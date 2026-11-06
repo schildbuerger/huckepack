@@ -1,0 +1,68 @@
+{
+  "climate-high.json": {
+    "retrieved": "2026-11-06T00:18:24+00:00",
+    "url": "https://openmeteo.s3.us-west-2.amazonaws.com/data/copernicus_era5_land+copernicus_era5?latitude=-39.1&longitude=175.7&elevation=1870"
+  },
+  "climate-low.json": {
+    "retrieved": "2026-11-06T00:14:54+00:00",
+    "url": "https://openmeteo.s3.us-west-2.amazonaws.com/data/copernicus_era5_land+copernicus_era5?latitude=-39.2&longitude=175.7&elevation=1090"
+  },
+  "commons.json": {
+    "key": "Q1258134",
+    "retrieved": "2026-11-06T00:18:27+00:00",
+    "url": "Q1258134 P18 P373"
+  },
+  "elevation-glo30.json": {
+    "retrieved": "2026-11-06T00:11:07+00:00",
+    "url": "https://copernicus-dem-30m.s3.eu-central-1.amazonaws.com/Copernicus_DSM_COG_10_S40_00_E175_00_DEM/Copernicus_DSM_COG_10_S40_00_E175_00_DEM.tif"
+  },
+  "landcover.json": {
+    "retrieved": "2026-11-06T00:11:08+00:00",
+    "url": "https://esa-worldcover.s3.eu-central-1.amazonaws.com/v200/2021/map/ESA_WorldCover_10m_2021_v200_\u2026_Map.tif"
+  },
+  "osm-relation.json": {
+    "retrieved": "2026-10-31T21:23:06Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-1-main.json": {
+    "key": "a47d3d153111",
+    "retrieved": "2026-10-31T21:23:06Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-2-main.json": {
+    "key": "1d68d5eb7ced",
+    "retrieved": "2026-10-31T21:23:06Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-3-main.json": {
+    "key": "47030968c813",
+    "retrieved": "2026-10-31T21:23:06Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-4-main.json": {
+    "key": "de8e324b20e9",
+    "retrieved": "2026-10-31T21:23:06Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-5-main.json": {
+    "key": "00ea96df3931",
+    "retrieved": "2026-10-31T21:23:06Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-water.json": {
+    "retrieved": "2026-10-31T21:23:06Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-way-tags.json": {
+    "retrieved": "2026-10-31T21:23:06Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osrm-access-national-park-waimarino.json": {
+    "retrieved": "2026-11-06T00:18:24+00:00",
+    "url": "https://router.project-osrm.org/route/v1/driving/175.39321,-39.17583;175.58102,-39.14495?overview=false"
+  },
+  "wikimedia.json": {
+    "retrieved": "2026-11-06T00:18:25+00:00",
+    "url": "Q1258134 2025-11..2026-10"
+  }
+}

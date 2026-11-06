@@ -1,0 +1,200 @@
+name: Queen Charlotte Track
+added: 2026-11-06
+aliases: [Queen Charlotte Walkway, Tōtaranui Queen Charlotte Track]
+website: https://www.qctrack.co.nz/
+wikidata: Q7270253
+managedBy:
+  # "a unique partnership between the Department of Conservation, Marlborough District Council and
+  # private landowners" (the Queen Charlotte Track Land Cooperative); the official website
+  - name: Department of Conservation (Te Papa Atawhai)
+    url: https://www.doc.govt.nz/
+  - name: Marlborough District Council
+    url: https://www.qctrack.co.nz/
+  - name: Queen Charlotte Track Land Cooperative
+    url: https://www.qctrack.co.nz/track-info/qctlc-pass/
+trailType: point-to-point
+continents: [Oceania]
+countries: [NZ]
+regions: [Marlborough]
+termini:
+  # the walk sections run from Meretoto / Ship Cove ("There is no road to Meretoto/Ship Cove so you
+  # will need to arrange boat transport") to Anakiwa (coordinates from OSM)
+  start:
+    name: Meretoto / Ship Cove
+    lat: -41.09643
+    lon: 174.24609
+  end:
+    name: Anakiwa
+    lat: -41.26511
+    lon: 173.92023
+  source: qct-sections
+length:
+  # "73.5 km one way"
+  - km: 73.5
+    source: qct-overview
+days:
+  # "Duration: 3 - 5 days"
+  min: 3
+  max: 5
+  source: qct-overview
+stages:
+  # the site's five walk sections with distance and time; the OSM relation (8524520) guides the
+  # matcher, each section the shortest way over it to its end (`branched`)
+  source: qct-sections
+  list:
+    - { number: "1", kind: main, from: Meretoto / Ship Cove, to: Endeavour Inlet, km: 17, minutes: 330, end: { name: Endeavour Inlet, lat: -41.08836, lon: 174.18113 } }
+    - { number: "2", kind: main, from: Endeavour Inlet, to: Camp Bay, km: 11.5, minutes: 240, end: { name: Camp Bay, lat: -41.12696, lon: 174.15012 } }
+    - { number: "3", kind: main, from: Camp Bay, to: Torea Saddle, km: 24.5, minutes: 480, end: { name: Torea Saddle, lat: -41.2045, lon: 174.034 } }
+    - { number: "4", kind: main, from: Torea Saddle, to: Mistletoe Bay, km: 8, minutes: 240, end: { name: Mistletoe Bay, lat: -41.22465, lon: 173.97183 } }
+    - { number: "5", kind: main, from: Mistletoe Bay, to: Anakiwa, km: 12.5, minutes: 240, end: { name: Anakiwa, lat: -41.26511, lon: 173.92023 } }
+route:
+  # built by `python -m pipeline.all queen-charlotte-track`: OSM ways matched to the shortest way over
+  # the relation between the sections' ends
+  source: osm
+  publishable: true
+  relation: 8524520
+  branched: true
+difficulty:
+  estimated:
+    sac: T2
+    basis: >-
+      "Graded as an easier tramping track. Suitable for people with moderate fitness. Track is
+      generally well formed but may be steep, rough or muddy. Limited backcountry (remote areas)
+      experience required"; Camp Bay to Torea Saddle "the longest and most arduous section", along the
+      ridge. Mountain hiking on a formed track (T2).
+    source: qct-overview
+season:
+  # "Is the Queen Charlotte Track open all year? Yes"; "Each season has it's benefits"
+  months: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
+  text: Open all year; every season has its benefits
+  source: qct-faq
+permit:
+  # "A Queen Charlotte Track Land Cooperative (QCTLC) Pass is required for all QCTLC Land between
+  # Kenepuru Saddle, Torea Saddle, Te Mahia Saddle or Anakiwa"
+  required: true
+  name: QCTLC Pass
+  issuedBy: Queen Charlotte Track Land Cooperative
+  how: Buy a pass for the private land between Kenepuru Saddle and Anakiwa, online or in the QCTLC app; no booking is needed for the track itself (DOC campsites must be booked).
+  url: https://www.qctrack.co.nz/track-info/qctlc-pass/
+  source: qct-pass
+fees:
+  # the QCTLC Pass, in New Zealand dollars
+  - { name: "QCTLC Pass, multi-day", amount: 50, currency: NZD, per: per person, year: 2026, note: "5 consecutive days; single day $25, seasonal $75; school children free", source: qct-pass }
+sleeping:
+  # six DOC campsites (booked all year), and lodges, resorts, cabins, a hotel and holiday parks along
+  # the track
+  types: [campsite, guesthouse, hotel]
+  source: qct-sections
+wildCamping:
+  status: restricted
+  rule: >-
+    Camping at the six DOC campsites, booked throughout the year, and at private camping areas;
+    camping is not permitted at Meretoto / Ship Cove.
+  source: qct-camping
+access:
+  # Picton, where the water taxis leave for Ship Cove and the ferries from Wellington arrive; Picton
+  # station on the Coastal Pacific line. Coordinates from OSM; distances by pipeline/access.py
+  - kind: station
+    name: Picton
+    lat: -41.28837
+    lon: 174.00486
+    source: osm
+tags: [marlborough-sounds, coast, ridge, boat-access]
+notes:
+  - >-
+    Protected areas: the site names none by name (searched 2026-11-06); the track crosses DOC land
+    (scenic reserves) and private land, none recorded.
+  - >-
+    Waymarking: the operator's pages don't describe the trail's marks (searched 2026-11-06); none recorded.
+  - >-
+    Wildlife (2026-11-06): none listed. New Zealand has no dangerous land animals; the site's pages
+    name none.
+  - >-
+    Notices (the FAQ, updated 1 August 2024): all sections open; Kenepuru Road with restricted public
+    access; the track very muddy in places, with machinery working beside it. The track is open to
+    mountain bikes all year (from Ship Cove to Camp Bay too, with an early water taxi in summer).
+  - >-
+    Getting there: no road reaches Meretoto / Ship Cove; water taxis from Picton serve the start and
+    the bays along the track, and carry packs between the lodges.
+  - >-
+    Tree line: none; the ridge reaches 470 m (Wikipedia).
+  - >-
+    Map line (2026-11-06): the New Zealand Geofabrik extract (2026-10-31); each section the shortest
+    way over OSM's relation (8524520) to its end, every section 100 % matched. The route measures 67.2
+    km against the site's 73.5 km (9 % under): sections 2 and 5 measure 9.9 and 11.2 km against 11.5
+    and 12.5 km (the side paths to Camp Bay and the bays' landings are not on the shortest way).
+    Ascent from the terrain model, about 2,550 m (the site gives none). Shops: OSM maps none on the
+    track; the lodges and resorts in the bays sell food, the site's section pages list them.
+  - >-
+    Data check (2026-11-06, working rule 2): against English Wikipedia (Queen Charlotte Track). Length
+    71 km against the site's 73.5 km (3 % apart); Meretoto / Ship Cove to Anakiwa agrees; 3–5 days
+    agree; Camp Bay to Torea Saddle "over 23 km" against the site's 24.5 km agrees; maintained by DOC,
+    well formed, agrees. No figure differs by more than 10 %.
+dataCheck:
+  # working rule 2: English Wikipedia
+  date: 2026-11-06
+  against: [wikipedia-en]
+  deviations: []
+sources:
+  - id: qct-overview
+    title: "Queen Charlotte Track: Track Overview (73.5 km, 3–5 days, grade)"
+    url: https://www.qctrack.co.nz/track-info/overview/
+    licence: © Queen Charlotte Track (facts only)
+    retrieved: 2026-11-06
+  - id: qct-sections
+    title: "Queen Charlotte Track: Walk the Track, the five sections with distance, time, accommodation, campsites and water"
+    url: https://www.qctrack.co.nz/walk-the-track/
+    licence: © Queen Charlotte Track (facts only)
+    retrieved: 2026-11-06
+  - id: qct-faq
+    title: "Queen Charlotte Track: Frequently Asked Questions (open all year, seasons, notices)"
+    url: https://www.qctrack.co.nz/plan-your-trip/frequently-asked-questions/
+    licence: © Queen Charlotte Track (facts only)
+    retrieved: 2026-11-06
+  - id: qct-pass
+    title: "Queen Charlotte Track: QCTLC Pass (the landowners' pass and its fees)"
+    url: https://www.qctrack.co.nz/track-info/qctlc-pass/
+    licence: © Queen Charlotte Track (facts only)
+    retrieved: 2026-11-06
+  - id: qct-camping
+    title: "Queen Charlotte Track: Camping on the Track (six DOC campsites, private camping areas)"
+    url: https://www.qctrack.co.nz/camping-accommodation/
+    licence: © Queen Charlotte Track (facts only)
+    retrieved: 2026-11-06
+  - id: wikipedia-en
+    title: "Wikipedia (en): Queen Charlotte Track (length, ends, days; data check)"
+    url: https://en.wikipedia.org/wiki/Queen_Charlotte_Track
+    licence: CC BY-SA 4.0
+    retrieved: 2026-11-06
+    checkOnly: true  # only for the data check
+  - id: wikimedia
+    title: "Wikimedia: page views of the trail's Wikipedia articles in every language, by people, over twelve months (Wikidata sitelinks, pageview API)"
+    url: https://wikimedia.org/api/rest_v1/
+    licence: CC0 1.0 (pageview data); Wikidata CC0
+    retrieved: 2026-11-06
+    checkOnly: true  # not on the trail page: the page views only rank the home page's popular trails
+  - id: osm
+    title: "OpenStreetMap contributors: paths, water, shops and places to sleep along the trail (Geofabrik extracts), travel hubs"
+    url: https://www.openstreetmap.org/
+    licence: ODbL 1.0
+    retrieved: 2026-11-06
+  - id: copdem
+    title: "Copernicus DEM GLO-30 (30 m terrain model), tiles from AWS Open Data"
+    url: https://registry.opendata.aws/copernicus-dem/
+    licence: "Copernicus WorldDEM-30 licence, free; produced using Copernicus WorldDEM-30 © DLR e.V. 2010-2014 and © Airbus Defence and Space GmbH 2014-2018 provided under COPERNICUS by the European Union and ESA; all rights reserved"
+    retrieved: 2026-11-06
+  - id: worldcover
+    title: "ESA WorldCover 2021: 10 m land cover (via AWS Open Data)"
+    url: https://esa-worldcover.org/
+    licence: "CC BY 4.0; © ESA WorldCover project 2021 / Contains modified Copernicus Sentinel data (2021) processed by ESA WorldCover consortium"
+    retrieved: 2026-11-06
+  - id: era5
+    title: "Open-Meteo open data on AWS: ERA5-Land temperature and ERA5 precipitation, snow and wind, daily 1995–2024 (reanalysis)"
+    url: https://github.com/open-meteo/open-data
+    licence: CC BY 4.0 (Open-Meteo); contains modified Copernicus Climate Change Service information
+    retrieved: 2026-11-06
+  - id: osrm
+    title: "OSRM: road routes on OpenStreetMap data (router.project-osrm.org)"
+    url: https://project-osrm.org/
+    licence: Route data © OpenStreetMap contributors (ODbL)
+    retrieved: 2026-11-06

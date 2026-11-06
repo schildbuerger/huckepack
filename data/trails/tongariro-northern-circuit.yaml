@@ -1,0 +1,178 @@
+name: Tongariro Northern Circuit
+added: 2026-11-06
+aliases: [Tongariro Northern Circuit Great Walk, Northern Circuit]
+website: https://www.doc.govt.nz/parks-and-recreation/places-to-go/central-north-island/places/tongariro-national-park/things-to-do/tracks/tongariro-northern-circuit/
+wikidata: Q1258134
+managedBy:
+  # one of New Zealand's Great Walks; DOC runs the three huts and their campsites
+  - name: Department of Conservation (Te Papa Atawhai)
+    url: https://www.doc.govt.nz/
+trailType: point-to-point
+continents: [Oceania]
+countries: [NZ]
+regions: [Manawatū-Whanganui, Waikato]
+protectedAreas:
+  - Tongariro National Park (UNESCO World Heritage)
+termini:
+  # "For the 2026/27 Great Walk season the track starts at Mangatepopo Carpark and ends in Whakapapa
+  # Village" (coordinates from OSM)
+  start:
+    name: Mangatepopo Carpark
+    lat: -39.14495
+    lon: 175.58102
+  end:
+    name: Whakapapa Village
+    lat: -39.20113
+    lon: 175.53989
+  source: doc
+length:
+  # "35.5 km one way": this season's route, "reduced to 35.5 km from 44.9 km" while the Whakapapa
+  # Village – Mangatepopo Hut section is closed after the 2025 Tongariro fire
+  - km: 35.5
+    source: doc
+days:
+  # "3-4 days"; "Most walkers take 4 days/3 nights or 3 days/2 nights"
+  min: 3
+  max: 4
+  source: doc
+stages:
+  # DOC's legs for the 2026/27 season with distance and time; the OSM relation (GW-02, 173345) guides
+  # the matcher, each leg the shortest way over it between the legs' ends (`branched`)
+  source: doc
+  list:
+    - { number: "1", kind: main, from: Mangatepopo Carpark, to: Mangatepopo Hut, km: 1.7, minutes: 25, end: { name: Mangatepopo Hut, lat: -39.14467, lon: 175.59668 } }
+    - { number: "2", kind: main, from: Mangatepopo Hut, to: Emerald Lakes, km: 8, minutes: 210, end: { name: Emerald Lakes, lat: -39.13447, lon: 175.65279 } }
+    - { number: "3", kind: main, from: Emerald Lakes, to: Oturere Hut, km: 4, minutes: 90, end: { name: Oturere Hut, lat: -39.15868, lon: 175.6892 } }
+    - { number: "4", kind: main, from: Oturere Hut, to: Waihohonu Hut, km: 8.1, minutes: 180, end: { name: Waihohonu Hut, lat: -39.20948, lon: 175.67988 } }
+    - { number: "5", kind: main, from: Waihohonu Hut, to: Whakapapa Village, km: 15.4, minutes: 300, joinM: 100, via: [{ lat: -39.2105, lon: 175.6332 }], end: { name: Whakapapa Village, lat: -39.20113, lon: 175.53989 } }
+route:
+  # built by `python -m pipeline.all tongariro-northern-circuit`: OSM ways matched to the shortest way
+  # over the relation between the legs' ends
+  source: osm
+  publishable: true
+  relation: 173345
+  branched: true
+difficulty:
+  estimated:
+    sac: T3
+    basis: >-
+      DOC grades the track intermediate in the Great Walks season, advanced and expert outside it:
+      the steep climb to Mangatepopo Saddle and Red Crater, where "loose rocks and stones on the steep
+      slopes … present a major slip hazard", a "loose, rocky ridge" down to the Emerald Lakes and a
+      steep descent into the Oturere Valley over lava flows; open alpine terrain. Demanding mountain
+      hiking on loose volcanic slopes (T3).
+    source: doc
+season:
+  # the Great Walks season, 23 October 2026 to 30 April 2027: "Best time to walk the track"
+  months: [10, 11, 12, 1, 2, 3, 4]
+  text: Great Walks season, 23 October to 30 April
+  source: doc
+sleeping:
+  # "There are three huts with campsites nearby", booked year-round
+  types: [hut, campsite]
+  source: doc
+wildCamping:
+  status: restricted
+  rule: >-
+    Camping only at the campsites by the three huts, booked year-round: "Camping is not allowed within
+    500 m of this track".
+  source: doc
+refillsUntreated:
+  # DOC on each hut: "water from tap - not treated, boil before use" (issue #119)
+  text: DOC's huts have tap water that is not treated; boil it before use.
+  source: doc
+access:
+  # "Bus and train services stop in Waimarino (National Park Village), 15 km from Whakapapa Village";
+  # the nearest international airports (Auckland, Wellington) lie over 300 km away. Coordinates from
+  # OSM; distances by pipeline/access.py
+  - kind: station
+    name: National Park (Waimarino)
+    lat: -39.17583
+    lon: 175.39321
+    source: osm
+tags: [great-walk, volcanoes, national-park, world-heritage, alpine]
+notes:
+  - >-
+    Waymarking: the operator's pages don't describe the trail's marks (searched 2026-11-06); none recorded.
+  - >-
+    Wildlife (2026-11-06): none listed. New Zealand has no dangerous land animals; DOC's track page
+    names none.
+  - >-
+    Closure (DOC, 2026-11-06): the Whakapapa Village to Mangatepopo Hut section (9.4 km, 3–5 h) "is
+    closed due to the 2025 Tongariro fire and will not be available for the 2026/27 Great Walk season";
+    the circuit is walked from Mangatepopo Carpark to Whakapapa Village and DOC gives 35.5 km instead
+    of 44.9 km. When it reopens, the circuit closes again at Whakapapa Village. Oturere Hut is being
+    replaced; DOC says the Great Walk is available for the 2026/27 season.
+  - >-
+    Stages: DOC's legs add up to 37.2 km against its 35.5 km; Emerald Lakes ends a leg but has no hut.
+    DOC gives no ascent or descent. Climbing Ngauruhoe and Tongariro "is disrespectful and
+    unacceptable to Ngāti Tūwharetoa", who gifted the peaks to Aotearoa New Zealand.
+  - >-
+    Tree line: none recorded; no published figure for Tongariro's tree line found (2026-11-06). The
+    route crosses open volcanic terrain above the bush well below Red Crater.
+  - >-
+    Travel hubs: no international airport within 300 km by road (Auckland and Wellington are farther);
+    only National Park station is listed.
+  - >-
+    Map line (2026-11-06): the New Zealand Geofabrik extract (2026-10-31); each leg the shortest way
+    over OSM's relation (GW-02, 173345) to its end, the last through a `via` point on Tama Saddle (with
+    `joinM` 100 m: the relation's ways don't join there, and the shortest way otherwise ran round the
+    closed northern section); every leg at least 95 % matched. The route measures 35.7 km against DOC's
+    35.5 km. Legs 1–3 split differently at the Emerald Lakes and Mangatepopo Hut (1.3, 6.7 and 4.8 km
+    against 1.7, 8 and 4 km); together 12.8 km against 13.7 km. Highest point and ascent from the
+    terrain model (about 1,380 m up). Water: OSM maps one drinking water point; the huts' tap water is
+    the water on the way (not treated).
+  - >-
+    Data check (2026-11-06, working rule 2): against English Wikipedia (Tongariro Northern Circuit).
+    Three DOC huts (Mangatepopo, Oturere, Waihohonu) agree; three to four days agree; no camping within
+    500 m of the track agrees. Wikipedia's 50 km is the whole circuit round Ngauruhoe; DOC's 35.5 km is
+    this season's route with the burnt section closed (more than 10 % apart, explained).
+dataCheck:
+  # working rule 2: English Wikipedia
+  date: 2026-11-06
+  against: [wikipedia-en]
+  deviations:
+    - { figure: Length, ours: "35.5 km", theirs: "50 km", source: wikipedia-en }
+sources:
+  - id: doc
+    title: "Department of Conservation: Tongariro Northern Circuit (length, days, legs with distance and time, huts, campsites, season, closure)"
+    url: https://www.doc.govt.nz/parks-and-recreation/places-to-go/central-north-island/places/tongariro-national-park/things-to-do/tracks/tongariro-northern-circuit/
+    licence: © Crown copyright, DOC (facts only)
+    retrieved: 2026-11-06
+  - id: wikipedia-en
+    title: "Wikipedia (en): Tongariro Northern Circuit (length, huts, camping; data check)"
+    url: https://en.wikipedia.org/wiki/Tongariro_Northern_Circuit
+    licence: CC BY-SA 4.0
+    retrieved: 2026-11-06
+    checkOnly: true  # only for the data check
+  - id: wikimedia
+    title: "Wikimedia: page views of the trail's Wikipedia articles in every language, by people, over twelve months (Wikidata sitelinks, pageview API)"
+    url: https://wikimedia.org/api/rest_v1/
+    licence: CC0 1.0 (pageview data); Wikidata CC0
+    retrieved: 2026-11-06
+    checkOnly: true  # not on the trail page: the page views only rank the home page's popular trails
+  - id: osm
+    title: "OpenStreetMap contributors: paths, water, shops and places to sleep along the trail (Geofabrik extracts), travel hubs"
+    url: https://www.openstreetmap.org/
+    licence: ODbL 1.0
+    retrieved: 2026-11-06
+  - id: copdem
+    title: "Copernicus DEM GLO-30 (30 m terrain model), tiles from AWS Open Data"
+    url: https://registry.opendata.aws/copernicus-dem/
+    licence: "Copernicus WorldDEM-30 licence, free; produced using Copernicus WorldDEM-30 © DLR e.V. 2010-2014 and © Airbus Defence and Space GmbH 2014-2018 provided under COPERNICUS by the European Union and ESA; all rights reserved"
+    retrieved: 2026-11-06
+  - id: worldcover
+    title: "ESA WorldCover 2021: 10 m land cover (via AWS Open Data)"
+    url: https://esa-worldcover.org/
+    licence: "CC BY 4.0; © ESA WorldCover project 2021 / Contains modified Copernicus Sentinel data (2021) processed by ESA WorldCover consortium"
+    retrieved: 2026-11-06
+  - id: era5
+    title: "Open-Meteo open data on AWS: ERA5-Land temperature and ERA5 precipitation, snow and wind, daily 1995–2024 (reanalysis)"
+    url: https://github.com/open-meteo/open-data
+    licence: CC BY 4.0 (Open-Meteo); contains modified Copernicus Climate Change Service information
+    retrieved: 2026-11-06
+  - id: osrm
+    title: "OSRM: road routes on OpenStreetMap data (router.project-osrm.org)"
+    url: https://project-osrm.org/
+    licence: Route data © OpenStreetMap contributors (ODbL)
+    retrieved: 2026-11-06

@@ -1,0 +1,233 @@
+name: St Oswald's Way
+added: 2026-11-06
+aliases: [St. Oswald's Way, Saint Oswald's Way]
+website: https://www.stoswaldsway.com/
+wikidata: Q7595024
+managedBy:
+  # "now managed by a small, voluntary non-profit team, the St Oswald's Way Management Group, assisted
+  # by bodies including Northumberland County Council and volunteer rangers"; devised by Embleton
+  # Church Council and built by a partnership of public bodies led by Alnwick District Council
+  - name: St Oswald's Way Management Group
+    url: https://www.stoswaldsway.com/
+officialGpx:
+  # each section page offers its GPX (as a zip) to download
+  url: https://www.stoswaldsway.com/northumberland-walking-route/holy-island-to-bamburgh
+  by: St Oswald's Way
+  source: sow-sections
+trailType: point-to-point
+continents: [Europe]
+countries: [GB]
+regions: [England]
+protectedAreas: [Northumberland Coast National Landscape]
+termini:
+  # "It starts on the Holy Island of Lindisfarne and ends at Heavenfield on Hadrian's Wall"
+  # (coordinates from OSM)
+  start:
+    name: Holy Island (Lindisfarne)
+    lat: 55.6697
+    lon: -1.8002
+  end:
+    name: Heavenfield
+    lat: 55.01951
+    lon: -2.10172
+  source: sow-faq
+established:
+  # "The route was developed with funding from a variety of public bodies and opened in 2006"
+  year: 2006
+  source: sow-faq
+length:
+  # "The path is now 96 miles (155km) in length, slightly shorter than its original length due to
+  # route changes along the coast"
+  - km: 155
+    source: sow-faq
+days:
+  # "It typically takes about a week to walk the full length of the path"
+  min: 7
+  max: 7
+  source: sow-faq
+stages:
+  # the site's six sections, north to south, with their distance, each with the site's own GPX
+  # (zipped, March 2024; it guides the matcher and stays in the git-ignored cache). OSM's relation
+  # (4229903) holds only two ways, 0.2 km, at Bamburgh
+  source: sow-sections
+  list:
+    - { number: "1", kind: main, track: "https://www.stoswaldsway.com/wp-content/uploads/2024/03/SOW_Section_1_Mar24.zip", from: Holy Island, to: Bamburgh, km: 31, end: { name: Bamburgh, lat: 55.60747, lon: -1.71413 } }
+    - { number: "2", kind: main, track: "https://www.stoswaldsway.com/wp-content/uploads/2024/03/SOW_Section_2_Mar24.zip", from: Bamburgh, to: Craster, km: 22, end: { name: Craster, lat: 55.47208, lon: -1.59284 } }
+    - { number: "3", kind: main, track: "https://www.stoswaldsway.com/wp-content/uploads/2024/03/SOW_Section_3_Mar24.zip", from: Craster, to: Warkworth, km: 21.5, end: { name: Warkworth, lat: 55.34776, lon: -1.61033 } }
+    - { number: "4", kind: main, track: "https://www.stoswaldsway.com/wp-content/uploads/2024/03/SOW_Section_4_Mar24.zip", from: Warkworth, to: Rothbury, km: 29, end: { name: Rothbury, lat: 55.30963, lon: -1.91173 } }
+    - { number: "5", kind: main, track: "https://www.stoswaldsway.com/wp-content/uploads/2024/03/SOW_Section_5_Mar24.zip", from: Rothbury, to: Kirkwhelpington, km: 24, end: { name: Kirkwhelpington, lat: 55.15471, lon: -2.0063 } }
+    - { number: "6", kind: main, track: "https://www.stoswaldsway.com/wp-content/uploads/2024/03/SOW_Section_6_Mar24.zip", from: Kirkwhelpington, to: Heavenfield, km: 28.5, end: { name: Heavenfield, lat: 55.01951, lon: -2.10172 } }
+route:
+  # built by `python -m pipeline.all st-oswalds-way`: OSM ways matched to the sections' tracks
+  source: osm
+  publishable: true
+difficulty:
+  estimated:
+    sac: T1
+    basis: >-
+      "The coastal part is fairly flat and the ground tends to be dry. Inland, there are a few climbs
+      but nothing severe, with the highest point about 1,000 feet (300m) above sea level. Parts of the
+      inland sections can be quite muddy after wet weather." Hiking on paths and tracks (T1).
+    source: sow-faq
+season:
+  # no season published (searched 2026-11-06): every month, the rule for trails without one
+  months: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
+  text: "No season published; every month for now"
+  source: huckepack-season
+sleeping:
+  # "The route is well served with independent hostels and bunkhouses"; other accommodation through
+  # Visit Northumberland
+  types: [hostel]
+  source: sow-stay
+access:
+  # Berwick-upon-Tweed (East Coast Main Line), the nearest main station to Holy Island, Hexham near
+  # Heavenfield, and Newcastle Airport. Coordinates from OSM; distances by pipeline/access.py
+  - kind: station
+    name: Berwick-upon-Tweed
+    lat: 55.77406
+    lon: -2.0108
+    source: osm
+  - kind: station
+    name: Hexham
+    lat: 54.97303
+    lon: -2.09476
+    source: osm
+  - kind: airport
+    name: Newcastle Airport (NCL)
+    lat: 55.03842
+    lon: -1.6964
+    source: osm
+animals:
+  # Cattle (the Countryside Code, HSE) and ticks (NHS). Levels ours
+  list:
+    - kind: cattle
+      name: "Cattle"
+      level: moderate
+      basis: "The Way crosses farmland inland from Warkworth to Heavenfield where cattle graze; the Health and Safety Executive names cows with calves and walkers with dogs as the two most common factors in incidents between cattle and the public."
+      do:
+        - "Give livestock plenty of space: their behaviour can be unpredictable, especially when they are with their young"
+        - "Keep your dog on a lead around livestock"
+        - "Let your dog off the lead if you feel threatened by livestock: releasing it makes it easier for you both to reach safety"
+        - "Follow the farmer's directions when animals are being moved or gathered"
+      dont:
+        - "Risk getting hurt protecting your dog"
+        - "Feed livestock"
+      source: countryside-code
+    - kind: tick
+      name: "Ticks (Lyme disease)"
+      level: low
+      basis: "Ticks that can carry Lyme disease live all over the UK, in woods and long grass."
+      do:
+        - "Cover your skin while walking and tuck your trousers into your socks"
+        - "Use insect repellent on your clothes and skin; products containing DEET are best"
+        - "Stay on clear paths whenever possible"
+        - "Wear light-coloured clothing so ticks are easier to see and brush off"
+        - "Remove a tick with fine-tipped tweezers or a tick-removal tool: grasp it as close to the skin as possible, pull slowly upwards, then clean the bite"
+        - "Get an urgent GP appointment or call NHS 111 if, within 3 months of a bite, you feel unwell with flu-like symptoms or a round or oval rash appears"
+      dont:
+        - "Squeeze or crush the tick when you remove it"
+      source: nhs-lyme
+tags: [coast, castles, pilgrimage, tidal-crossing, hadrians-wall]
+notes:
+  - >-
+    Wild camping: the operator's pages give no rule for camping off the sites (searched 2026-11-06); none recorded.
+  - >-
+    Waymarking: the operator's pages don't describe the trail's marks (searched 2026-11-06); none recorded.
+  - >-
+    Holy Island: the causeway to Lindisfarne floods at high tide; walkers must check the safe crossing
+    times (Northumberland County Council publishes them).
+  - >-
+    Season: none published (the official website's pages and FAQ; searched 2026-11-06); every month is
+    recorded for now, by the rule for trails without a published season.
+  - >-
+    Stages: the six sections add up to 156 km against the FAQ's 155 km ("slightly shorter than its
+    original length due to route changes along the coast"; the home page still says 97 miles, 156 km).
+    The site gives no ascent or times.
+  - >-
+    Tree line: none; the highest point is about 300 m (the site).
+  - >-
+    Map line (2026-11-06): the Northumberland Geofabrik extract (2026-11-03), each section matched to
+    its own GPX from the site (March 2024); every section at least 95 % matched (section 5, Rothbury to
+    Kirkwhelpington, exactly 95 %, up to 78 m off). The route measures 153.8 km against the sections'
+    156 km and the FAQ's 155 km. Ascent from the terrain model, about 2,350 m. Water: OSM maps 7
+    drinking water points, none for 29.1 km inland from Warkworth; shops thin out south of Rothbury
+    (51 km to Heavenfield).
+  - >-
+    Data check (2026-11-06, working rule 2): against English Wikipedia (St Oswald's Way). Length 97 miles
+    (156 km) against the FAQ's 155 km (1 % apart); Holy Island to Heavenfield on Hadrian's Wall agrees;
+    launched in 2006 agrees; the coast path shared with the Northumberland Coast Path from the
+    causeway to Warkworth agrees with the sections. Wikipedia gives no section distances. No figure
+    differs by more than 10 %.
+dataCheck:
+  # working rule 2: English Wikipedia
+  date: 2026-11-06
+  against: [wikipedia-en]
+  deviations: []
+sources:
+  - id: huckepack-season
+    title: "huckepack: no season published by the operator or a second source (the official website's pages and FAQ, Wikipedia); every month for now, until one is found"
+    url: https://github.com/schildbuerger/huckepack/blob/main/docs/trail-building.md
+    licence: huckepack's own rule (decided 2026-11-05)
+    retrieved: 2026-11-06
+  - id: sow-sections
+    title: "St Oswald's Way: the six section pages, Holy Island to Bamburgh … Kirkwhelpington to Heavenfield (distance, GPX)"
+    url: https://www.stoswaldsway.com/northumberland-walking-route/holy-island-to-bamburgh
+    licence: © St Oswald's Way Management Group (facts only)
+    retrieved: 2026-11-06
+  - id: sow-stay
+    title: "St Oswald's Way: Stay (hostels and bunkhouses, Visit Northumberland)"
+    url: https://www.stoswaldsway.com/stay
+    licence: © St Oswald's Way Management Group (facts only)
+    retrieved: 2026-11-06
+  - id: sow-faq
+    title: "St Oswald's Way: Frequently Asked Questions (length, ends, opened 2006, conditions, highest point, days)"
+    url: https://www.stoswaldsway.com/faqs
+    licence: © St Oswald's Way Management Group (facts only)
+    retrieved: 2026-11-06
+  - id: countryside-code
+    title: "Natural England and Natural Resources Wales: The Countryside Code, advice for countryside visitors (updated 26 May 2023)"
+    url: https://www.gov.uk/government/publications/the-countryside-code/the-countryside-code-advice-for-countryside-visitors
+    licence: Open Government Licence v3.0
+    retrieved: 2026-11-05
+  - id: nhs-lyme
+    title: "NHS: Lyme disease (avoiding tick bites, removing ticks, when to get help)"
+    url: https://www.nhs.uk/conditions/lyme-disease/
+    licence: © NHS, Open Government Licence (facts only)
+    retrieved: 2026-11-05
+  - id: wikipedia-en
+    title: "Wikipedia (en): St Oswald's Way (length, ends, sections; data check)"
+    url: https://en.wikipedia.org/wiki/St_Oswald%27s_Way
+    licence: CC BY-SA 4.0
+    retrieved: 2026-11-06
+    checkOnly: true  # only for the data check
+  - id: wikimedia
+    title: "Wikimedia: page views of the trail's Wikipedia articles in every language, by people, over twelve months (Wikidata sitelinks, pageview API)"
+    url: https://wikimedia.org/api/rest_v1/
+    licence: CC0 1.0 (pageview data); Wikidata CC0
+    retrieved: 2026-11-06
+    checkOnly: true  # not on the trail page: the page views only rank the home page's popular trails
+  - id: osm
+    title: "OpenStreetMap contributors: paths, water, shops and places to sleep along the trail (Geofabrik extracts), travel hubs"
+    url: https://www.openstreetmap.org/
+    licence: ODbL 1.0
+    retrieved: 2026-11-06
+  - id: copdem
+    title: "Copernicus DEM GLO-30 (30 m terrain model), tiles from AWS Open Data"
+    url: https://registry.opendata.aws/copernicus-dem/
+    licence: "Copernicus WorldDEM-30 licence, free; produced using Copernicus WorldDEM-30 © DLR e.V. 2010-2014 and © Airbus Defence and Space GmbH 2014-2018 provided under COPERNICUS by the European Union and ESA; all rights reserved"
+    retrieved: 2026-11-06
+  - id: worldcover
+    title: "ESA WorldCover 2021: 10 m land cover (via AWS Open Data)"
+    url: https://esa-worldcover.org/
+    licence: "CC BY 4.0; © ESA WorldCover project 2021 / Contains modified Copernicus Sentinel data (2021) processed by ESA WorldCover consortium"
+    retrieved: 2026-11-06
+  - id: era5
+    title: "Open-Meteo open data on AWS: ERA5-Land temperature and ERA5 precipitation, snow and wind, daily 1995–2024 (reanalysis)"
+    url: https://github.com/open-meteo/open-data
+    licence: CC BY 4.0 (Open-Meteo); contains modified Copernicus Climate Change Service information
+    retrieved: 2026-11-06
+  - id: osrm
+    title: "OSRM: road routes on OpenStreetMap data (router.project-osrm.org)"
+    url: https://project-osrm.org/
+    licence: Route data © OpenStreetMap contributors (ODbL)
+    retrieved: 2026-11-06

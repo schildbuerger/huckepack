@@ -1,0 +1,110 @@
+{
+  "climate-high.json": {
+    "retrieved": "2026-11-06T00:41:34+00:00",
+    "url": "https://openmeteo.s3.us-west-2.amazonaws.com/data/copernicus_era5_land+copernicus_era5?latitude=55.3&longitude=-2.0&elevation=310"
+  },
+  "climate-low.json": {
+    "retrieved": "2026-11-06T00:38:12+00:00",
+    "url": "https://openmeteo.s3.us-west-2.amazonaws.com/data/copernicus_era5_land+copernicus_era5?latitude=55.7&longitude=-1.8&elevation=0&wind=55.75,-2.0"
+  },
+  "commons-geo.json": {
+    "key": "with categories, 155.0 km, every 2.5 km, 1500 m, within 0.5 km",
+    "retrieved": "2026-11-06T01:10:57+00:00",
+    "url": "Commons geosearch along the route"
+  },
+  "commons.json": {
+    "key": "Q7595024",
+    "retrieved": "2026-11-06T00:41:43+00:00",
+    "url": "Q7595024 P18 P373"
+  },
+  "elevation-glo30.json": {
+    "retrieved": "2026-11-06T00:33:05+00:00",
+    "url": "https://copernicus-dem-30m.s3.eu-central-1.amazonaws.com/Copernicus_DSM_COG_10_N55_00_W002_00_DEM/Copernicus_DSM_COG_10_N55_00_W002_00_DEM.tif https://copernicus-dem-30m.s3.eu-central-1.amazonaws.com/Copernicus_DSM_COG_10_N55_00_W003_00_DEM/Copernicus_DSM_COG_10_N55_00_W003_00_DEM.tif"
+  },
+  "landcover.json": {
+    "retrieved": "2026-11-06T00:33:07+00:00",
+    "url": "https://esa-worldcover.s3.eu-central-1.amazonaws.com/v200/2021/map/ESA_WorldCover_10m_2021_v200_\u2026_Map.tif"
+  },
+  "osm-relation.json": {
+    "retrieved": "2026-11-03T21:24:23Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-1-main.json": {
+    "key": "89bb9d189e75",
+    "retrieved": "2026-11-03T21:24:23Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-2-main.json": {
+    "key": "e72b2fccc3ce",
+    "retrieved": "2026-11-03T21:24:23Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-3-main.json": {
+    "key": "e9b189380ac0",
+    "retrieved": "2026-11-03T21:24:23Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-4-main.json": {
+    "key": "3e253c882967",
+    "retrieved": "2026-11-03T21:24:23Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-5-main.json": {
+    "key": "972c56a91a60",
+    "retrieved": "2026-11-03T21:24:23Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-6-main.json": {
+    "key": "c7814c4ce5d0",
+    "retrieved": "2026-11-03T21:24:23Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-water.json": {
+    "retrieved": "2026-11-03T21:24:23Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-way-tags.json": {
+    "retrieved": "2026-11-03T21:24:23Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osrm-access-berwick-upon-tweed.json": {
+    "retrieved": "2026-11-06T00:41:35+00:00",
+    "url": "https://router.project-osrm.org/route/v1/driving/-2.0108,55.77406;-1.8002,55.6697?overview=false"
+  },
+  "osrm-access-hexham.json": {
+    "retrieved": "2026-11-06T00:41:35+00:00",
+    "url": "https://router.project-osrm.org/route/v1/driving/-2.09476,54.97303;-1.8002,55.6697?overview=false"
+  },
+  "osrm-access-newcastle-airport-ncl.json": {
+    "retrieved": "2026-11-06T00:41:35+00:00",
+    "url": "https://router.project-osrm.org/route/v1/driving/-1.6964,55.03842;-1.8002,55.6697?overview=false"
+  },
+  "stage-1-main.gpx": {
+    "retrieved": "2026-11-06T00:32:24+00:00",
+    "url": "https://www.stoswaldsway.com/wp-content/uploads/2024/03/SOW_Section_1_Mar24.zip"
+  },
+  "stage-2-main.gpx": {
+    "retrieved": "2026-11-06T00:32:24+00:00",
+    "url": "https://www.stoswaldsway.com/wp-content/uploads/2024/03/SOW_Section_2_Mar24.zip"
+  },
+  "stage-3-main.gpx": {
+    "retrieved": "2026-11-06T00:32:24+00:00",
+    "url": "https://www.stoswaldsway.com/wp-content/uploads/2024/03/SOW_Section_3_Mar24.zip"
+  },
+  "stage-4-main.gpx": {
+    "retrieved": "2026-11-06T00:32:25+00:00",
+    "url": "https://www.stoswaldsway.com/wp-content/uploads/2024/03/SOW_Section_4_Mar24.zip"
+  },
+  "stage-5-main.gpx": {
+    "retrieved": "2026-11-06T00:32:25+00:00",
+    "url": "https://www.stoswaldsway.com/wp-content/uploads/2024/03/SOW_Section_5_Mar24.zip"
+  },
+  "stage-6-main.gpx": {
+    "retrieved": "2026-11-06T00:32:25+00:00",
+    "url": "https://www.stoswaldsway.com/wp-content/uploads/2024/03/SOW_Section_6_Mar24.zip"
+  },
+  "wikimedia.json": {
+    "retrieved": "2026-11-06T00:41:36+00:00",
+    "url": "Q7595024 2025-11..2026-10"
+  }
+}

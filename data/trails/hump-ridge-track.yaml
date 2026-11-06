@@ -1,0 +1,165 @@
+name: Hump Ridge Track
+added: 2026-11-06
+aliases: [Tuatapere Hump Ridge Track, Humpridge Track, Hump Ridge Great Walk]
+website: https://www.doc.govt.nz/parks-and-recreation/places-to-go/fiordland/places/fiordland-national-park/things-to-do/tracks/hump-ridge-track/
+wikidata: Q5941215
+managedBy:
+  # "a partnership between the Tuatapere Hump Track Charitable Trust and DOC. The track and lodges are
+  # maintained and operated by the Trust"; New Zealand's 11th Great Walk since 25 October 2024
+  - name: Tuatapere Hump Track Charitable Trust
+    url: https://humpridgetrack.co.nz/
+  - name: Department of Conservation (Te Papa Atawhai)
+    url: https://www.doc.govt.nz/
+trailType: loop
+continents: [Oceania]
+countries: [NZ]
+regions: [Southland, Fiordland]
+protectedAreas:
+  - Fiordland National Park
+  - Te Wāhipounamu (UNESCO World Heritage)
+termini:
+  # "The Hump Ridge Great Walk begins at Rarakau car park" near Tuatapere, and day 3 returns there
+  # (coordinates from OSM)
+  start:
+    name: Rarakau car park
+    lat: -46.14647
+    lon: 167.47277
+  end:
+    name: Rarakau car park
+    lat: -46.14647
+    lon: 167.47277
+  source: doc
+established:
+  # the track opened in 2001 (the Trust); a Great Walk since 25 October 2024 (DOC)
+  year: 2001
+  source: hrt
+length:
+  # "61.5 km loop"
+  - km: 61.5
+    source: doc
+days:
+  # "3 days/2 nights"
+  min: 3
+  max: 3
+  source: doc
+stages:
+  # DOC's three days with distance and time; each on its OSM stage relation ("Hump Ridge Trail - 01
+  # car park to Okaka Lodge" …), chained from where the day before ended
+  source: doc
+  list:
+    - { number: "1", kind: main, from: Rarakau car park, to: Ōkaka Lodge, km: 20.6, minutes: 420, maxMinutes: 540, relation: 11620065 }
+    - { number: "2", kind: main, from: Ōkaka Lodge, to: Port Craig Lodge, km: 20.7, minutes: 420, maxMinutes: 540, relation: 11620064 }
+    - { number: "3", kind: main, from: Port Craig Lodge, to: Rarakau car park, km: 20.2, minutes: 300, maxMinutes: 420, relation: 11620063 }
+route:
+  # built by `python -m pipeline.all hump-ridge-track`: OSM ways matched to the stage relations
+  source: osm
+  publishable: true
+difficulty:
+  estimated:
+    sac: T2
+    basis: >-
+      DOC grades it an intermediate tramping track needing "a moderate to high level of fitness": 7–9
+      hour days "over formed track, steps and boardwalk and with significant elevation gain", up to
+      Ōkaka Lodge above the tree line, the exposed Hump Ridge in high winds, and the South Coast Track
+      passable only at low tide at Blowholes Beach. Mountain hiking on a formed track (T2).
+    source: doc
+season:
+  # "Summer Season 23rd October 2026 to 17th April 2027 … Winter Season Strictly Closed"
+  months: [10, 11, 12, 1, 2, 3, 4]
+  text: Summer season, 23 October to 17 April; closed in winter
+  source: hrt
+sleeping:
+  # the Trust's two lodges, Ōkaka and Port Craig, booked through the Trust ("DOC hut passes cannot be
+  # used for these lodges")
+  types: [hut]
+  source: doc
+access:
+  # Tuatapere, "1.15 hr from Invercargill Airport", where the Trust's office arranges transport, and
+  # Queenstown Airport (2.5 h). Coordinates from OSM; distances by pipeline/access.py
+  - kind: bus
+    name: Tuatapere
+    lat: -46.13164
+    lon: 167.68985
+    source: osm
+  - kind: airport
+    name: Queenstown Airport (ZQN)
+    lat: -45.0193
+    lon: 168.74344
+    source: osm
+tags: [great-walk, fiordland, coast, viaducts, sub-alpine]
+notes:
+  - >-
+    Wild camping: DOC and the Trust describe only the two lodges, booked through the Trust; no camping rule found (searched 2026-11-06), none recorded.
+  - >-
+    Waymarking: the operator's pages don't describe the trail's marks (searched 2026-11-06); none recorded.
+  - >-
+    Wildlife (2026-11-06): none listed. New Zealand has no dangerous land animals; DOC warns of wasps
+    ("Carry antihistamine medication if you have an allergy") and of hunting in the area, which the
+    wildlife section has no kind for.
+  - >-
+    Closure (the Trust, 2026-11-06): "Percy Burn and Edwin Burn viaducts are closed. Do not attempt to
+    cross them. Use alternative routes provided" (first published 20 February 2026, reviewed 15
+    September 2026); both are on day 2. The map follows OSM's ways.
+  - >-
+    Safety: the South Coast Track "is only accessible at low tide at Blowholes Beach"; tidal surges,
+    rogue waves, rockfalls and, after a strong earthquake, tsunami (DOC).
+  - >-
+    Tree line: none recorded; Ōkaka Lodge sits "above the tree line" on Hump Ridge at about 900 m, below
+    the 1,500 m the rule asks for.
+  - >-
+    Map line (2026-11-06): the New Zealand Geofabrik extract (2026-10-31); each day on its OSM stage
+    relation, every day at least 95 % matched. The loop measures 57.0 km against DOC's 61.5 km (7 %
+    under), the days 19.3, 19.3 and 19.2 km against 20.6, 20.7 and 20.2 km. Ascent from the terrain
+    model, about 2,000 m (DOC gives none). Water: OSM maps no drinking water; DOC names water at
+    Tītahi (Luncheon Rock), and the lodges have it. No shops on the track.
+  - >-
+    Data check (2026-11-06, working rule 2): against the Trust's site (61 km, a Great Walk, the summer
+    season, Ōkaka and Port Craig lodges, opened 2001): the length agrees within 1 %; the days and lodges
+    agree. No figure differs by more than 10 %.
+dataCheck:
+  # working rule 2: the Trust's own site (the track's operator, besides DOC)
+  date: 2026-11-06
+  against: [hrt]
+  deviations: []
+sources:
+  - id: doc
+    title: "Department of Conservation: Hump Ridge Track (length, days with distance and time, grade, lodges, hazards)"
+    url: https://www.doc.govt.nz/parks-and-recreation/places-to-go/fiordland/places/fiordland-national-park/things-to-do/tracks/hump-ridge-track/
+    licence: © Crown copyright, DOC (facts only)
+    retrieved: 2026-11-06
+  - id: hrt
+    title: "Tuatapere Humpridge Track (the Trust): home page (61 km, season, closures, opened 2001)"
+    url: https://humpridgetrack.co.nz/
+    licence: © Tuatapere Hump Track Charitable Trust (facts only)
+    retrieved: 2026-11-06
+  - id: wikimedia
+    title: "Wikimedia: page views of the trail's Wikipedia articles in every language, by people, over twelve months (Wikidata sitelinks, pageview API)"
+    url: https://wikimedia.org/api/rest_v1/
+    licence: CC0 1.0 (pageview data); Wikidata CC0
+    retrieved: 2026-11-06
+    checkOnly: true  # not on the trail page: the page views only rank the home page's popular trails
+  - id: osm
+    title: "OpenStreetMap contributors: paths, water, shops and places to sleep along the trail (Geofabrik extracts), travel hubs"
+    url: https://www.openstreetmap.org/
+    licence: ODbL 1.0
+    retrieved: 2026-11-06
+  - id: copdem
+    title: "Copernicus DEM GLO-30 (30 m terrain model), tiles from AWS Open Data"
+    url: https://registry.opendata.aws/copernicus-dem/
+    licence: "Copernicus WorldDEM-30 licence, free; produced using Copernicus WorldDEM-30 © DLR e.V. 2010-2014 and © Airbus Defence and Space GmbH 2014-2018 provided under COPERNICUS by the European Union and ESA; all rights reserved"
+    retrieved: 2026-11-06
+  - id: worldcover
+    title: "ESA WorldCover 2021: 10 m land cover (via AWS Open Data)"
+    url: https://esa-worldcover.org/
+    licence: "CC BY 4.0; © ESA WorldCover project 2021 / Contains modified Copernicus Sentinel data (2021) processed by ESA WorldCover consortium"
+    retrieved: 2026-11-06
+  - id: era5
+    title: "Open-Meteo open data on AWS: ERA5-Land temperature and ERA5 precipitation, snow and wind, daily 1995–2024 (reanalysis)"
+    url: https://github.com/open-meteo/open-data
+    licence: CC BY 4.0 (Open-Meteo); contains modified Copernicus Climate Change Service information
+    retrieved: 2026-11-06
+  - id: osrm
+    title: "OSRM: road routes on OpenStreetMap data (router.project-osrm.org)"
+    url: https://project-osrm.org/
+    licence: Route data © OpenStreetMap contributors (ODbL)
+    retrieved: 2026-11-06

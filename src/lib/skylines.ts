@@ -1089,6 +1089,126 @@ export const SKYLINES: Record<string, Skyline> = {
       { d: "M778,272L788,262L798,272Z M768,284L788,276L808,284Z", c: "#5a4a4a" },
     ],
   },
+  "tongariro-northern-circuit": {
+    view: "Tongariro's volcanoes from the Oturere side: Ngauruhoe's near-perfect cone, Ruapehu's snowy massif behind, the rust-red rim of Red Crater, the Emerald Lakes' bright pools and golden tussock",
+    ridge: "#8a7a5a",
+    ground: "#b8a26a",
+    shapes: [
+      // Ruapehu, far, broad and snow-capped
+      { d: range([[880, G], [1000, 236], [1120, 196], [1200, 184], [1280, 190], [1380, 214], [1520, 256], [1600, G]]), c: "#9aa2ae" },
+      { d: "M1120,196L1200,184L1280,190L1320,200L1290,206L1250,198L1200,204L1160,200Z", c: "#eef0f2" },
+      // Ngauruhoe: a steep, near-perfect cone
+      { d: range([[420, G], [520, 236], [600, 172], [640, 150], [680, 172], [760, 236], [860, G]]), c: "#5a4e4a" },
+      // Tongariro's broad massif with Red Crater's rust-red rim
+      { d: range([[0, G], [120, 244], [260, 214], [360, 206], [460, 222], [560, 262], [620, G]]), c: "#6a5e56" },
+      { d: "M300,210L330,206L360,206L380,212L350,216L320,216Z", c: "#a64a2e" },
+      // the golden tussock of the Oturere and Rangipo side
+      { d: hills([[0, G], [200, 282], [520, 276], [860, 286], [1200, 278], [1600, 284], [1600, G]]), c: "#b89a5a" },
+    ],
+    front: [
+      // the Emerald Lakes, bright pools in old explosion pits
+      { d: "M240,300a26,6 0 1 0 52,0a26,6 0 1 0 -52,0Z M306,304a18,4 0 1 0 36,0a18,4 0 1 0 -36,0Z M352,300a14,4 0 1 0 28,0a14,4 0 1 0 -28,0Z", c: "#3fa89a" },
+    ],
+  },
+  "hump-ridge-track": {
+    view: "Southern Fiordland from Te Waewae Bay: the forested Hump Ridge with its granite tors, Fiordland's peaks far behind, the bay's long beach, and the Percy Burn viaduct, a timber tramway trestle over a forest gorge",
+    ridge: "#4f6a3a",
+    ground: "#c9b88a",
+    shapes: [
+      // Fiordland's peaks, far to the west
+      { d: range([[0, G], [80, 236], [180, 210], [260, 220], [340, 200], [420, 226], [520, 250], [600, G]]), c: "#9aa4b0" },
+      // the sea in Te Waewae Bay
+      { d: water(0, 1600, 286), c: SEA },
+      // Hump Ridge, forested, with granite tors on its top
+      { d: hills([[420, G], [560, 236], [720, 214], [880, 222], [1000, 250], [1080, G]]), c: "#3f5a34" },
+      { d: "M690,216L694,204H702L706,214Z M724,214L728,200H738L742,214Z M760,216L763,208H770L772,216Z", c: "#a8a090" },
+      // the forest gorge of the Percy Burn and the timber viaduct across it
+      { d: hills([[1040, G], [1080, 262], [1110, 260], [1150, 300], [1250, 300], [1290, 262], [1340, 258], [1420, 270], [1600, 266], [1600, G]]), c: "#4f6a3a" },
+      { d: "M1110,262L1106,300H1109L1112,262Z M1112,262L1116,300H1119L1115,262Z M1134,262L1130,300H1133L1136,262Z M1136,262L1140,300H1143L1139,262Z M1158,262L1154,300H1157L1160,262Z M1160,262L1164,300H1167L1163,262Z M1182,262L1178,300H1181L1184,262Z M1184,262L1188,300H1191L1187,262Z M1206,262L1202,300H1205L1208,262Z M1208,262L1212,300H1215L1211,262Z M1230,262L1226,300H1229L1232,262Z M1232,262L1236,300H1239L1235,262Z M1254,262L1250,300H1253L1256,262Z M1256,262L1260,300H1263L1259,262Z M1278,262L1274,300H1277L1280,262Z M1280,262L1284,300H1287L1283,262Z", c: "#7a5a3c" },
+      { d: "M1108,276L1132,290V293L1108,279Z M1132,276L1156,290V293L1132,279Z M1156,276L1180,290V293L1156,279Z M1180,276L1204,290V293L1180,279Z M1204,276L1228,290V293L1204,279Z M1228,276L1252,290V293L1228,279Z M1252,276L1276,290V293L1252,279Z M1276,276L1300,290V293L1276,279Z", c: "#7a5a3c" },
+      { d: "M1104,258H1306V264H1104Z", c: "#6a4a30" },
+    ],
+  },
+  "queen-charlotte-track": {
+    view: "The Marlborough Sounds from the ridge: drowned valleys as ridge behind bush-clad ridge, fading blue into the distance, the sound's calm water between, and a water taxi with its wake",
+    ridge: "#4f6a3a",
+    ground: "#7f9a54",
+    shapes: [
+      // ridges far out in the sounds, fading blue
+      { d: hills([[0, G], [140, 236], [360, 224], [560, 240], [760, 226], [980, 238], [1200, 222], [1420, 236], [1600, 230], [1600, G]]), c: "#a4b0bc" },
+      { d: hills([[200, G], [400, 250], [620, 240], [820, 256], [1000, G]]), c: "#7f948a" },
+      { d: hills([[900, G], [1080, 252], [1280, 242], [1460, 258], [1600, 254], [1600, G]]), c: "#7f948a" },
+      // the sound's calm water
+      { d: water(0, 1600, 286), c: SEA },
+      // the near bush-clad ridges where the track runs
+      { d: hills([[0, G], [120, 262], [300, 252], [460, 270], [560, G]]), c: "#3f5a34" },
+      { d: hills([[1160, G], [1300, 266], [1460, 256], [1600, 262], [1600, G]]), c: "#3f5a34" },
+    ],
+    front: [
+      // a water taxi and its wake
+      { d: "M820,298H862L856,304H826Z M834,298V292H850V298Z", c: "#f0ece0" },
+      { d: "M760,302H818V303.5H760Z M720,304H790V305H720Z", c: "#d8e6ee" },
+    ],
+  },
+  "st-oswalds-way": {
+    view: "The Northumberland coast: Bamburgh Castle long on its crag above the dunes, Lindisfarne Castle on its rock across the water, and the Farne Islands low on the sea",
+    ridge: "#7f9a54",
+    ground: "#d8c89a",
+    shapes: [
+      // the North Sea
+      { d: water(0, 1600, 282), c: SEA },
+      // the Farne Islands, low and dark on the sea
+      { d: hills([[120, 284], [160, 276], [220, 274], [260, 284]]), c: "#5a5a52" },
+      { d: hills([[300, 284], [330, 279], [370, 284]]), c: "#5a5a52" },
+      // Lindisfarne Castle on its rock, far across the water
+      { d: range([[480, G], [520, 280], [540, 262], [580, 258], [600, 270], [640, 282], [680, G]]), c: "#6a6a5a" },
+      { d: "M546,262V248H580V262Z M552,248V240H566V248Z", c: "#b8ab92" },
+      // Bamburgh Castle, long on its whinstone crag above the dunes
+      { d: range([[880, G], [940, 270], [1000, 250], [1240, 246], [1320, 262], [1400, 286], [1460, G]]), c: "#4a4a44" },
+      { d: "M1010,250V230H1040V222H1070V230H1150V236H1190V226H1214V246H1010Z", c: "#c9a77a" },
+      { d: "M1050,222V206H1062V222Z", c: "#c9a77a" },
+      // the dunes and the long beach below the castle
+      { d: hills([[700, G], [820, 290], [1000, 286], [1200, 292], [1400, 296], [1600, 292], [1600, G]]), c: "#d8c89a" },
+    ],
+  },
+  "wye-valley-walk": {
+    view: "The lower Wye Valley: wooded limestone gorge sides, the river in its loop below, and Tintern Abbey's roofless Gothic gable with its great empty window by the water",
+    ridge: "#5d7a3a",
+    ground: MEADOW,
+    shapes: [
+      // the mid-Wales hills, far upstream
+      { d: hills([[0, G], [200, 230], [460, 216], [720, 232], [980, 220], [1240, 236], [1600, 226], [1600, G]]), c: "#a4aab0" },
+      // the wooded gorge sides, with a limestone crag (Symonds Yat, the Wyndcliff)
+      { d: range([[0, G], [100, 240], [260, 226], [380, 232], [500, 262], [600, G]]), c: "#3f5a34" },
+      { d: "M300,228L318,226L326,244L306,248Z", c: "#c9c2b0" },
+      { d: range([[1000, G], [1120, 254], [1260, 232], [1420, 226], [1600, 236], [1600, G]]), c: "#3f5a34" },
+      // Tintern Abbey: the west gable, roofless, with its tall pointed window open to the sky
+      { d: "M720,300V240L760,206L800,240V300H772V236A12,16 0 0 0 748,236V300Z", c: "#b8a48a" },
+    ],
+    front: [
+      // the Wye in its loop
+      { d: water(500, 1100, 300), c: LAKE },
+    ],
+  },
+  "two-moors-way": {
+    view: "Dartmoor's open moorland under a granite tor, a clapper bridge of stone slabs over a moor stream, and Exmoor's rounded hills beyond",
+    ridge: "#8a7a5a",
+    ground: "#9a8a5a",
+    shapes: [
+      // Exmoor's rounded hills, far to the north
+      { d: hills([[0, G], [220, 238], [520, 228], [820, 240], [1120, 226], [1400, 238], [1600, 232], [1600, G]]), c: "#a4a8a0" },
+      // the moor, tawny with bracken and heather
+      { d: hills([[0, G], [160, 262], [420, 250], [700, 258], [980, 246], [1240, 262], [1600, 254], [1600, G]]), c: "#9a8455" },
+      // a granite tor: stacked blocks on the moor's top
+      { d: "M900,248L904,232L912,230L914,222L926,220L930,212L944,212L946,222L958,224L960,234L968,236L972,248Z", c: "#7a766c" },
+      // a clapper bridge over the moor stream: granite slabs on stone piers
+      { d: "M300,296H460V300H300Z", c: "#7a766c" },
+      { d: "M312,300V312H328V300Z M372,300V312H388V300Z M432,300V312H448V300Z", c: "#6a665e" },
+    ],
+    front: [
+      { d: water(260, 520, 314), c: LAKE },
+    ],
+  },
   "arran-coastal-way": {
     view: "The Isle of Arran from the sea: Goat Fell and the jagged granite ridges of the north, Lochranza Castle on its spit in the bay, and Holy Isle's dome off Lamlash",
     ridge: "#7f9a54",
