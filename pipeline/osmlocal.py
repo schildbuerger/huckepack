@@ -32,9 +32,13 @@ truststore.inject_into_ssl()
 
 ROOT = Path(__file__).resolve().parent.parent
 OSM_DIR = ROOT / "data" / "osm"
-# the extracts are large (hundreds of MB to GB each) and only re-downloadable input: keep them
-# outside a synced project folder with HUCKEPACK_OSM_EXTRACTS=/some/local/folder
-EXTRACTS_DIR = Path(os.environ.get("HUCKEPACK_OSM_EXTRACTS", OSM_DIR / "extracts"))
+# the extracts are large (hundreds of MB to GB each) and only re-downloadable input: kept outside the
+# project, whose folder is synced (Proton Drive uploaded 4 GB of them), in a local cache
+# (HUCKEPACK_OSM_EXTRACTS names another folder); at most EXTRACTS_MAX_GB, the least recently used
+# dropped first (2026-11-06; inside the project, data/osm/extracts/, before)
+CACHE_DIR = Path(os.environ.get("HUCKEPACK_CACHE", Path.home() / ".cache" / "huckepack"))
+EXTRACTS_DIR = Path(os.environ.get("HUCKEPACK_OSM_EXTRACTS", CACHE_DIR / "osm-extracts"))
+EXTRACTS_MAX_GB = float(os.environ.get("HUCKEPACK_EXTRACTS_MAX_GB", 8))
 INDEX_URL = "https://download.geofabrik.de/index-v1.json"
 USER_AGENT = "huckepack-pipeline (personal project)"
 MAX_AGE_DAYS = 7
@@ -136,6 +140,7 @@ def extract(region, url, refresh=False):
     # only the region's own dated copies: "sachsen-*" also matches sachsen-anhalt (the Kammweg, 2026-11-06)
     have = sorted(p for p in folder.glob(f"{stem}-*.osm.pbf") if re.fullmatch(rf"{re.escape(stem)}-\d{{6}}\.osm\.pbf", p.name))
     if have and not (refresh and time.time() - have[-1].stat().st_mtime > MAX_AGE_DAYS * 86400):
+        os.utime(have[-1], (time.time(), have[-1].stat().st_mtime))  # used now: kept longest by _prune
         return have[-1]
     with _get(url) as response:
         dated_url = response.geturl()  # e.g. …/iceland-261028.osm.pbf
@@ -170,7 +175,24 @@ def extract(region, url, refresh=False):
     part.rename(target)
     for old in have:
         old.unlink()
+    _prune(keep=target)
     return target
+
+
+def _prune(keep):
+    """Drop the least recently used extracts while they take more than EXTRACTS_MAX_GB (never the
+    one just fetched); a trail whose extract went is read from its corridor, and the shops and beds
+    step downloads it again when it needs it."""
+    files = sorted(EXTRACTS_DIR.glob("*.osm.pbf"), key=lambda p: p.stat().st_atime)
+    total = sum(p.stat().st_size for p in files)
+    for p in files:
+        if total <= EXTRACTS_MAX_GB * 1e9:
+            break
+        if p == keep:
+            continue
+        total -= p.stat().st_size
+        print(f"  dropping the extract {p.name} (least recently used; extracts over {EXTRACTS_MAX_GB:g} GB)")
+        p.unlink()
 
 
 def _timestamp(path):
@@ -393,6 +415,25 @@ def corridor(slug, guides=None, relation_ids=(), coarse=(), refresh=False):
         c = Corridor(json.loads(gzip.decompress(path.read_bytes())))
         if (guides is None or c.covers(guides)) and all(r in c.relations for r in relation_ids):
             return c
+        # a later step's points (the water step's map line) reach past the corridor: read the
+        # extracts again for them, keeping what the corridor held, its area and its relations, so
+        # the next routes run doesn't read them once more (St Cuthbert's Way, 2026-11-05, lost its
+        # relation this way)
+        if guides is not None:
+            missing = sum(1 for lon, lat in guides if _cell(lon, lat) not in c.cells)
+            print(f"  corridor: {missing} of {len(guides)} points outside it; reading the extracts again")
+            guides = list(guides) + _cell_centres(c.cells)
+            relation_ids = sorted(set(relation_ids) | set(c.relations))
     if guides is None:
         raise SystemExit(f"{slug}: no OSM corridor yet; run pipeline.routes first")
     return build_corridor(slug, guides, relation_ids, coarse, refresh)
+
+
+def _cell_centres(cells):
+    """A point in the middle of each grid cell (the inverse of _cell, near enough: within the
+    corridor's padding), so a rebuilt corridor keeps the old one's area."""
+    out = []
+    for i, j in cells:
+        lat = (j + 0.5) * CELL_DEG
+        out.append(((i + 0.5) * CELL_DEG / max(math.cos(math.radians(lat)), 0.2), lat))
+    return out

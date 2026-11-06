@@ -40,3 +40,7 @@ data/osm/
 
 # the patched deepmerge ships its builds (issue #157)
 !vendor/deepmerge/dist/
+
+# the cache manifest's lock and its write-then-rename file (pipeline/routes.py Cache._save)
+data/raw/*/.manifest.lock
+data/raw/*/manifest.tmp

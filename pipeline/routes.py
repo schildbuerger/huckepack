@@ -26,6 +26,7 @@ import functools
 import hashlib
 import heapq
 import http.client
+import fcntl
 import json
 import math
 import re
@@ -66,6 +67,19 @@ class Cache:
         self.manifest_path = self.dir / "manifest.json"
         self.manifest = json.loads(self.manifest_path.read_text()) if self.manifest_path.exists() else {}
 
+    def _save(self, name):
+        """Write this file's entry into the manifest on disk, merged under a lock with what other
+        steps wrote meanwhile: pipeline.all runs the photos step beside the others (2026-11-06), and
+        a whole-file write from a manifest read earlier would drop their entries."""
+        with open(self.dir / ".manifest.lock", "w") as lock:
+            fcntl.flock(lock, fcntl.LOCK_EX)
+            disk = json.loads(self.manifest_path.read_text()) if self.manifest_path.exists() else {}
+            disk[name] = self.manifest[name]
+            self.manifest = {**disk, **{k: v for k, v in self.manifest.items() if k not in disk}}
+            tmp = self.manifest_path.with_suffix(".tmp")
+            tmp.write_text(json.dumps(disk, indent=2, sort_keys=True) + "\n")
+            tmp.replace(self.manifest_path)
+
     def get(self, name, url, download, key=None):
         """Cached file `name`, calling download() -> bytes when missing or refreshing. With `key` (what
         the download depends on, e.g. a stage's guide line), a cache made for another key is fetched
@@ -76,7 +90,7 @@ class Cache:
         entry = self.manifest.get(name, {})
         if key is not None and path.exists() and not self.refresh and entry.get("key") is None and entry:
             entry["key"] = key
-            self.manifest_path.write_text(json.dumps(self.manifest, indent=2, sort_keys=True) + "\n")
+            self._save(name)
         if self.refresh or not path.exists() or (key is not None and entry.get("key") not in (None, key)):
             body = download()
             path.write_bytes(body)
@@ -87,7 +101,7 @@ class Cache:
             except (ValueError, AttributeError):
                 pass
             self.manifest[name] = {"url": url, "retrieved": retrieved, **({"key": key} if key is not None else {})}
-            self.manifest_path.write_text(json.dumps(self.manifest, indent=2, sort_keys=True) + "\n")
+            self._save(name)
             return path.read_text(), True
         return path.read_text(), False
 

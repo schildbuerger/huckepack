@@ -7,7 +7,7 @@ Needs public/routes/<slug>.geojson (pipeline.routes). Samples the main stages ev
 along the map line (the same kilometres as the water and surface charts) and reads each
 sample's height from the Copernicus DEM GLO-30 (30 m grid; a surface model, so in forests it
 measures the canopy). Its 1° tiles come as Cloud Optimized GeoTIFFs from AWS Open Data (no
-account) and are kept in data/dem/ (git-ignored, shared by all trails; 30 to 45 MB each);
+account) and are kept in ~/.cache/huckepack/dem/ (outside the synced project; shared by all trails; 30 to 45 MB each);
 heights are interpolated bilinearly between the four nearest cells and cached in
 data/raw/<slug>/elevation-glo30.json. Writes data/derived/<slug>.json under `elevation`:
 [km, metres] per sample, stage starts, and the highest and lowest points (with coordinates).
@@ -18,6 +18,7 @@ in the legal notice.
 import http.client
 import json
 import math
+import os
 import sys
 import urllib.error
 import urllib.request
@@ -39,7 +40,9 @@ LONG_SPACING_M = 500
 
 def spacing_for(total_m):
     return LONG_SPACING_M if total_m > LONG_TRAIL_M else SPACING_M
-DEM_DIR = ROOT / "data" / "dem"
+# the terrain tiles (30–45 MB each, shared by all trails) in the same local cache as the OSM extracts,
+# outside the synced project folder (HUCKEPACK_DEM names another folder; data/dem/ before 2026-11-06)
+DEM_DIR = Path(os.environ.get("HUCKEPACK_DEM", Path(os.environ.get("HUCKEPACK_CACHE", Path.home() / ".cache" / "huckepack")) / "dem"))
 TILE_URL = "https://copernicus-dem-30m.s3.eu-central-1.amazonaws.com/{name}/{name}.tif"
 
 

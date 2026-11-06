@@ -89,29 +89,38 @@ def _cell(model, lat, lon):
     return round((lat + 90) / step), round((lon + 180) / step) % round(360 / step)
 
 
+FILE_WORKERS = 6  # files of one variable read at once: each is a few small range requests, so the
+# time is waiting on S3, not reading (one place took 210 s file by file, 2026-11-06)
+
+
 def _series(model, var, lat, lon, start, end):
     """Hourly values at the place's cell from `start` to `end` (UTC datetimes, end excluded)."""
     iy, ix = _cell(model, lat, lon)
+    # the files and hour ranges first, then read them side by side, joined in order
     parts = []
     t = start
     while t < end:
         if t.year <= LAST_YEAR_FILE:
             year_start = datetime(t.year, 1, 1, tzinfo=timezone.utc)
             year_end = min(datetime(t.year + 1, 1, 1, tzinfo=timezone.utc), end)
-            r = _open(f"{model}/{var}/year_{t.year}.om")
             a, b = int((t - year_start).total_seconds() // 3600), int((year_end - year_start).total_seconds() // 3600)
-            parts.append(np.asarray(r[iy, ix, a:b], dtype=float))
+            parts.append((f"{model}/{var}/year_{t.year}.om", a, b))
             t = year_end
         else:
             hours = int(t.timestamp() // 3600)
             chunk = hours // CHUNK_H
             chunk_start = datetime.fromtimestamp(chunk * CHUNK_H * 3600, tz=timezone.utc)
             chunk_end = min(chunk_start + timedelta(hours=CHUNK_H), end)
-            r = _open(f"{model}/{var}/chunk_{chunk}.om")
             a, b = hours - chunk * CHUNK_H, int((chunk_end - chunk_start).total_seconds() // 3600)
-            parts.append(np.asarray(r[iy, ix, a:b], dtype=float))
+            parts.append((f"{model}/{var}/chunk_{chunk}.om", a, b))
             t = chunk_end
-    return np.concatenate(parts)
+
+    def read(part):
+        path, a, b = part
+        return np.asarray(_open(path)[iy, ix, a:b], dtype=float)
+
+    with ThreadPoolExecutor(max_workers=FILE_WORKERS) as pool:
+        return np.concatenate(list(pool.map(read, parts)))
 
 
 def _cell_height(lat, lon, model=LAND):

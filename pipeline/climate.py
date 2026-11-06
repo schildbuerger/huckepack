@@ -8,8 +8,8 @@ Needs the elevation step (pipeline.elevation), whose highest and lowest points o
 route are the two places looked up: the trail's high and low ground. For each, 30 years of
 daily weather (YEARS) from Open-Meteo's open data on AWS (pipeline/era5_open_data.py: ERA5-Land
 temperature at 0.1°, moved to the place's height; ERA5 precipitation, wind and gusts at 0.25°;
-snow from precipitation by the place's temperature; CC BY 4.0; no account and no quota, about
-three minutes a place; cached in data/raw/<slug>/climate-*.json), averaged per month. Until
+snow from precipitation by the place's temperature; CC BY 4.0; no account and no quota, under a minute a
+place, both places at once (2026-11-06; about three minutes a place, one after the other, before); cached in data/raw/<slug>/climate-*.json), averaged per month. Until
 2026-10-31 the step asked Open-Meteo's historical API, whose free quota allowed about six trails a
 day (issue #89); against it, temperatures agree within 0.7 °C, snow and stormy days and
 precipitation differ more in the mountains and Iceland (the coarser ERA5 cells). Each place is
@@ -30,6 +30,7 @@ import time
 import urllib.error
 import urllib.request
 from collections import defaultdict
+from concurrent.futures import ThreadPoolExecutor
 from pathlib import Path
 
 from pipeline import era5_open_data
@@ -154,6 +155,7 @@ def build(slug, refresh=False):
         return True
     cache = Cache(slug, refresh)
     places, per_place = [], {}
+    todo = []
     for pid, key, label in PLACES:
         point = elevation[key]
         place = {"id": pid, "label": label, "km": point["km"], "m": point["m"], "lat": point["lat"], "lon": point["lon"]}
@@ -167,8 +169,16 @@ def build(slug, refresh=False):
         if cached and cached["url"] != url:
             # the point moved to another cell, its wind to another cell, or it came from the API
             (cache.dir / name).unlink(missing_ok=True)
+        todo.append((pid, label, point, place, name, url, download))
+    # both places download at once (each waits on S3, not on this machine): started here for the
+    # places the cache will ask for, then handed to the cache in order
+    due = [t for t in todo if refresh or not (cache.dir / t[4]).exists()]
+    pool = ThreadPoolExecutor(max_workers=2)
+    started = {t[4]: pool.submit(t[6]) for t in due}
+    pool.shutdown(wait=False)
+    for pid, label, point, place, name, url, download in todo:
         try:
-            data, fresh = cache.get(name, url, download)
+            data, fresh = cache.get(name, url, (lambda f=started.get(name), d=download: f.result() if f else d()))
         except QuotaReached as error:
             print(f"  climate pending: {error} (run `~/.venvs/huckepack/bin/python -m pipeline.climate --pending` later)")
             return False

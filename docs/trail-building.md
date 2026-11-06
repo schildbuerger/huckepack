@@ -15,9 +15,8 @@ playbook follows. When a rule here changes, date it.
     certificate error;
   - up to about 1,000 km;
   - before starting, estimate the build against the time left (stages, Geofabrik extracts to
-    download, the climate step's few minutes per place, data check, skyline, wildlife, page
-    check: about an hour for a short alpine trail); if it won't finish, do the research and
-    write the issue only;
+    download, data check, skyline, wildlife, page check: about half an hour for a short trail
+    since 2026-11-06); if it won't finish, do the research and write the issue only;
   - a time box of about 60 minutes per trail: if it isn't through the pipeline's check by then,
     document where it stands on the issue as a blocker and move on.
 
@@ -33,6 +32,12 @@ playbook follows. When a rule here changes, date it.
   - neither a track nor an OSM hiking relation;
   - stage pages drawn by JavaScript with no readable track (the Rheinsteig, #217) count until a
     reader exists.
+- **Preflight first** (2026-11-06): `~/.venvs/huckepack/bin/python -m pipeline.preflight --url
+  <official page> --relation <id> …` (or `pipeline.preflight <slug>` once the record exists)
+  checks in seconds what a full pipeline run found only after half an hour: a bot check, login or
+  refusal on the links, a failing certificate, and whether the OSM relations chain into one line
+  near the stated length (the Bruce Trail: 129 of 876 km in one line, 756 km left over). It
+  changes nothing; a BLOCKER line is a reason to stop or to plan the fix (`via`, `joinM`).
 - **A blocker goes on the issue:** what was tried, what is missing, the next step. The issue
   stays open; move on to the next trail.
 
@@ -143,8 +148,10 @@ nature reserves and national scenic areas the route crosses, from the operator o
 ## 5. Pipeline
 
 `~/.venvs/huckepack/bin/python -m pipeline.all <slug>` (outside Claude Code's sandbox: it needs
-many hosts). Work through every flag of its check; each one is either fixed or explained in a
-note:
+many hosts). It prints each step's time; the photos step runs beside the others. Run it in the
+background and research the next trail meanwhile (its sources, stage list, season, wildlife and
+second source; its preflight): the run takes a few minutes, most of it downloads. Work through every
+flag of its check; each one is either fixed or explained in a note:
 
 - a stage under 95 % matched (missing OSM path, or a turnaround; `via` points, `joinM`; a relation in
   pieces: a stage's own `joinM` and `via` points, so the other stages can't shortcut over the bridge,
@@ -181,7 +188,8 @@ A trail is done only with all of these (decided 2026-11-04):
 - a skyline in `src/lib/skylines.ts`, checked on the built page (sun and moon, no cut-off,
   the profile on the ground);
 - wildlife: `animals` from official sources, `animals.none`, or a note starting "Wildlife";
-- the built page read once: key figures, stages table, map, the sections it should have;
+- the built page read once: key figures, stages table, map, the sections it should have (while
+  drafting, on the running dev server; the full build once, before the commit);
 - a line in docs/roadmap.md.
 
 ## 8. Publish
@@ -200,7 +208,10 @@ A trail is done only with all of these (decided 2026-11-04):
 5. Commit the record, derived data, `data/raw/<slug>/` (GPX stays ignored: check the staged
    list), the route, the skyline, the expectations and the roadmap line, with `Closes #<issue>`.
 6. Fast-forward main, push, delete the branch and watch Deploy, Quality and Pipeline tests until
-   they're green. Everything on main goes live.
+   they're green. Everything on main goes live. In a run of several trails (2026-11-06), each trail
+   is still checked and committed on its own, but main is pushed every three or four trails, and
+   the runs are watched in the background while the next trail is built; a red run stops the
+   next push until it is fixed.
 
 ## 9. After
 

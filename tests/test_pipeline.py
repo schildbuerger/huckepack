@@ -607,3 +607,56 @@ class StagelessTrails(unittest.TestCase):
         stages = [{"number": "1", "kind": "main", "km": 10}]
         self.assertEqual(osm.stage_list({"stages": {"list": stages}}), stages)
         self.assertEqual(osm.stage_list({}), [])
+
+
+class FasterBuilds(unittest.TestCase):
+    """2026-11-06: the preflight, the shared cache manifest and the corridor's kept area."""
+
+    def test_bot_check_by_title_or_challenge_script_only(self):
+        from pipeline import preflight
+
+        self.assertEqual(preflight.bot_check("<title>Just a moment...</title>"), "Just a moment")
+        self.assertTrue(preflight.bot_check('<script src="/cdn-cgi/challenge-platform/h/b/orchestrate"></script>'))
+        # a page that only mentions a captcha (Wikipedia's scripts, GitHub) is no bot check
+        self.assertIsNone(preflight.bot_check("<title>Long Trail - Wikipedia</title><script>var captcha=1</script>"))
+
+    def test_relation_in_pieces_is_a_blocker(self):
+        from unittest import mock
+
+        from pipeline import preflight
+
+        def w(id_, a, b):
+            return {"type": "way", "id": id_, "geometry": [{"lon": a[0], "lat": a[1]}, {"lon": b[0], "lat": b[1]}]}
+
+        # two pieces of 1.4 km each, 3 km apart: the chain stops after the first
+        elements = [
+            {"type": "relation", "id": 1, "tags": {"name": "Test Trail"}, "members": [{"type": "way", "ref": i, "role": ""} for i in (10, 11, 12, 13)]},
+            w(10, (8.000, LAT), (8.010, LAT)), w(11, (8.010, LAT), (8.020, LAT)),
+            w(12, (8.062, LAT), (8.072, LAT)), w(13, (8.072, LAT), (8.082, LAT)),
+        ]
+        with mock.patch.object(preflight, "relation_elements", return_value=elements):
+            ok, lines = preflight.check_relation([1], start=(8.0, LAT))
+        self.assertFalse(ok)
+        self.assertIn("left out", "\n".join(lines))
+        with mock.patch.object(preflight, "relation_elements", return_value=elements[:3]):
+            ok, _ = preflight.check_relation([1], start=(8.0, LAT))
+        self.assertTrue(ok)
+
+    def test_manifest_writes_merge(self):
+        import json
+        import tempfile
+        from pathlib import Path
+        from unittest import mock
+
+        with tempfile.TemporaryDirectory() as d, mock.patch.object(routes, "ROOT", Path(d)):
+            a, b = routes.Cache("t", False), routes.Cache("t", False)  # two steps, each read the manifest empty
+            a.get("one.json", "u1", lambda: b"{}")
+            b.get("two.json", "u2", lambda: b"{}")
+            self.assertEqual(sorted(json.loads((Path(d) / "data/raw/t/manifest.json").read_text())), ["one.json", "two.json"])
+
+    def test_cell_centres_fall_in_their_cells(self):
+        from pipeline import osmlocal
+
+        for lon, lat in [(8.0, 50.0), (-122.3, 46.8), (170.5, -45.1), (-70.9, -51.0)]:
+            c = osmlocal._cell(lon, lat)
+            self.assertEqual(osmlocal._cell(*osmlocal._cell_centres([c])[0]), c)

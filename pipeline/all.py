@@ -10,7 +10,9 @@ pipeline/<step>.py). The caches in data/raw/<slug>/ make a second run fast. When
 changes, the caches that depend on it (water, shops and beds, way tags, heights, land cover) are dropped, so no
 step keeps answering for the old route (the climate step checks its own cache against the grid
 cells of the route's highest and lowest points). A step that fails stops the run with the command
-to resume it; a climate step that fails leaves the trail pending instead.
+to resume it; a climate step that fails leaves the trail pending instead. The photos step runs as its
+own process beside the others once the map line is there (it waits minutes on Wikimedia Commons and
+shares only the cache manifest, written under a lock); each step's time is printed.
 
 The check reads the record and the derived data and flags what a person should look at, mostly
 the mechanical half of working rule 2: stages the OSM match covers poorly, map-line lengths more
@@ -23,7 +25,9 @@ import importlib
 import json
 import math
 import re
+import subprocess
 import sys
+import time
 from pathlib import Path
 
 import yaml
@@ -39,15 +43,55 @@ HUB_KM = 300
 TREE_LINE_FROM_M = 1500  # a trail this high may cross a tree line: the record should say
 
 
+def _photos(slug, refresh):
+    """The photos step as its own process, started once the map line is there: it reads only the
+    line (data/derived/lines/) and the record and writes only its own files (data/photos/,
+    public/photos/), and spends minutes waiting on Wikimedia Commons, so it runs beside the other
+    steps (2026-11-06); its output is printed when it is done. The cache manifest the steps share is
+    written under a lock (Cache._save)."""
+    cmd = [sys.executable, "-m", "pipeline.photos", slug] + (["--refresh"] if refresh else [])
+    return subprocess.Popen(cmd, cwd=ROOT, stdout=subprocess.PIPE, stderr=subprocess.STDOUT, text=True), time.monotonic()
+
+
 def run(slug, refresh=False, start="routes"):
-    for step in STEPS[STEPS.index(start) :]:
+    steps = STEPS[STEPS.index(start) :]
+    photos = None
+    times = []
+
+    def finish_photos(failed=False):
+        proc, t0 = photos
+        out, _ = proc.communicate()
+        took = time.monotonic() - t0
+        print(f"\n== photos (beside the other steps, {took:.0f} s)")
+        print(out.rstrip())
+        times.append(("photos", took))
+        if proc.returncode and not failed:
+            print(f"\nphotos failed (exit {proc.returncode})")
+            print(f"resume with: ~/.venvs/huckepack/bin/python -m pipeline.all {slug} --from photos")
+            raise SystemExit(1)
+
+    for step in steps:
+        if step == "photos":
+            break
         print(f"\n== {step}")
+        t0 = time.monotonic()
         try:
             importlib.import_module(f"pipeline.{step}").build(slug, refresh=refresh)
         except (Exception, SystemExit) as error:
             print(f"\n{step} failed: {error}")
+            if photos:
+                finish_photos(failed=True)
             print(f"resume with: ~/.venvs/huckepack/bin/python -m pipeline.all {slug} --from {step}")
             raise SystemExit(1)
+        times.append((step, time.monotonic() - t0))
+        print(f"   ({times[-1][1]:.0f} s)")
+        if step == "routes" and "photos" in steps:
+            photos = _photos(slug, refresh)
+    if "photos" in steps:
+        if not photos:
+            photos = _photos(slug, refresh)
+        finish_photos()
+    print("\n== time: " + ", ".join(f"{name} {t:.0f} s" for name, t in times))
 
 
 def _line_km(coords):

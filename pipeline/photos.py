@@ -48,6 +48,10 @@ FILEPATH = "https://commons.wikimedia.org/wiki/Special:FilePath/{name}?width=128
 MAX = 8
 NEAR_KM = 1.0
 GEO_STEP_KM = 2.5
+# Wikimedia's API asks for requests one after another, not in parallel; a short pause between them
+# (1 s until 2026-11-06, which made the location search take minutes on a long trail). Images from
+# upload.wikimedia.org keep a second between them
+API_PAUSE_S = 0.2
 GEO_RADIUS_M = 1500
 GEO_NEAR_KM = 0.5
 OPEN = re.compile(r"^(CC0|Public domain|PD|CC BY(-SA)? \d(\.\d)?)", re.I)
@@ -165,7 +169,7 @@ def files_info(titles):
         r = query({"action": "query", "titles": "|".join(group), "prop": "imageinfo",
                    "iiprop": "url|size|extmetadata|mime"}) or {}
         files += [record(page) for page in (r.get("query") or {}).get("pages", {}).values() if "imageinfo" in page]
-        time.sleep(1)
+        time.sleep(API_PAUSE_S)
     return files
 
 
@@ -184,7 +188,7 @@ def files_in(category):
         if "continue" not in r:
             break
         cont = r["continue"]
-        time.sleep(1)
+        time.sleep(API_PAUSE_S)
     subs = query({"action": "query", "list": "categorymembers", "cmtitle": f"Category:{category}", "cmtype": "subcat", "cmlimit": "50"}) or {}
     return files, [c["title"].split(":", 1)[1] for c in (subs.get("query") or {}).get("categorymembers", [])]
 
@@ -307,7 +311,7 @@ def nearby(slug, line, route):
                    "gsnamespace": "6", "gslimit": "500"}) or {}
         for g in (r.get("query") or {}).get("geosearch", []):
             hits.setdefault(g["title"], (g["lon"], g["lat"]))
-        time.sleep(1)
+        time.sleep(API_PAUSE_S)
     titles = []
     for title, pos in hits.items():
         near = line.nearest(pos)
@@ -423,7 +427,7 @@ def build(slug, refresh=False):
             # only subcategories about the trail itself ("Tour du Mont Blanc in 2016", "GR 20 stages"), not
             # the towns and things along it
             for sub in [x for x in subs if cat.lower() in x.lower()][:25]:
-                time.sleep(1)
+                time.sleep(API_PAUSE_S)
                 files += files_in(sub)[0]
         if p18 and "File:" + p18 not in {f["title"] for f in files}:
             for f in files_info(["File:" + p18]):
