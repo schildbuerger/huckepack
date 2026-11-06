@@ -19,13 +19,19 @@
     type Filters,
   } from "../lib/filters";
   import FilterPanel from "./FilterPanel.svelte";
+  import { PER_PAGE, PER_PAGE_OPTIONS, pageCount, pagePath } from "../lib/pages";
 
   // the trails' summaries come from /trails/search.json, not the page's HTML (issue #93); `total` for
   // the count until they're in; `more`: the page carries only the first cards, the rest come with
   // /trails/cards.html
-  let { total = 0, more = false, children }: { total?: number; more?: boolean; children?: import("svelte").Snippet } = $props();
+  // `page`: the page this HTML is (src/layouts/TrailsListing.astro), the list's page until a filter, a
+  // sort or another page size starts it again at 1
+  let { total = 0, more = false, page: firstPage = 1, children }: { total?: number; more?: boolean; page?: number; children?: import("svelte").Snippet } = $props();
   let trails = $state<SearchTrail[]>([]);
   let cardsIn = $state(0); // how many times cards were added, so the order is applied to them too
+  // every card is in the page (its own, and /trails/cards.html's): until then the pager's links load
+  // their pages as plain links, so a click never shows an empty page
+  let cardsReady = false;
 
   // the hardest of a trail's three ratings, climate for the months picked (else its best run of
   // season months, issue #114), for sorting
@@ -74,6 +80,12 @@
   let sort = $state<SortKey>("name");
   let filtersOpen = $state(false);
   let ready = false;
+  // pagination: the page shown and the page size (the query's `per`, else the visitor's choice kept in
+  // the browser, else PER_PAGE)
+  // svelte-ignore state_referenced_locally
+  let page = $state(firstPage);
+  let per = $state<number>(PER_PAGE);
+  const PER_KEY = "trails:per";
 
   const sleepingOptions = SLEEPING_CATEGORIES.filter((c) => c.id !== "wild-camping");
 
@@ -84,27 +96,55 @@
       sleepingOptions.map((c) => c.id),
     );
     sort = (p.get("sort") ?? "") in SORTS ? (p.get("sort") as SortKey) : "name";
+    let stored: string | null = null;
+    try {
+      stored = localStorage.getItem(PER_KEY);
+    } catch {}
+    const asked = Number(p.get("per") ?? stored);
+    if ((PER_PAGE_OPTIONS as readonly number[]).includes(asked)) per = asked;
+    restartKey = listKey();
     ready = true;
+    // back and forward between pages: each page is its own address, so load it
+    addEventListener("popstate", () => location.reload());
     loadTrails().then(async (t) => {
       trails = t;
-      if (!more) return;
+      if (!more) return void (cardsReady = true);
       const html = await fetch("/trails/cards.html").then((r) => (r.ok ? r.text() : ""));
       const list = cardsHost?.querySelector<HTMLElement>("ol.cards");
       const extra = new DOMParser().parseFromString(html, "text/html").querySelector("ol.cards");
       if (list && extra) {
-        list.append(...extra.children);
+        // the cards this page doesn't carry itself
+        const have = new Set([...list.children].map((li) => (li as HTMLElement).dataset.slug));
+        list.append(...[...extra.children].filter((li) => !have.has((li as HTMLElement).dataset.slug)));
         cardsIn++;
+        cardsReady = true;
       }
     });
   });
 
   // keep the URL in step with the filters (replace, not push: the back button leaves the page)
-  $effect(() => {
+  // the query string for the list as it is (filters, sort, page size), kept on every page's address
+  const query = () => {
     const p = toParams(filters);
     if (sort !== "name") p.set("sort", sort);
+    if (per !== PER_PAGE) p.set("per", String(per));
+    const q = p.toString();
+    return q ? `?${q}` : "";
+  };
+  const pageHref = (n: number) => pagePath(n) + query();
+  $effect(() => {
+    const href = pageHref(page);
     if (!ready) return;
-    const search = p.toString();
-    history.replaceState(null, "", search ? `?${search}` : location.pathname);
+    history.replaceState(null, "", href);
+  });
+  // a filter, a sort or another page size starts the list again at page 1
+  const listKey = () => `${toParams(filters)}|${sort}|${per}`;
+  let restartKey = "";
+  $effect(() => {
+    const key = listKey();
+    if (!ready || key === restartKey) return;
+    restartKey = key;
+    page = 1;
   });
 
   let shown = $derived(
@@ -116,6 +156,38 @@
       return typeof x === "string" ? x.localeCompare(y as string) : x - (y as number);
     }),
   );
+
+  // the pages: before the trails are in (and on the server), the page's own count of all trails
+  let pages = $derived(trails.length ? pageCount(shown.length, per) : pageCount(total));
+  // a page past the end (a filter left fewer): the last one
+  $effect(() => {
+    if (trails.length && page > pages) page = pages;
+  });
+  let firstShown = $derived((page - 1) * per + 1);
+  let lastShown = $derived(Math.min(page * per, trails.length ? shown.length : total));
+  // the pager's numbers: all of them up to seven pages, else the first, the last and the current
+  // one's neighbours, with gaps (null) between
+  let pageList = $derived.by(() => {
+    if (pages <= 7) return Array.from({ length: pages }, (_, i) => i + 1);
+    // three numbers round the current page, the first and the last; near either end, the first or last five
+    const from = page <= 3 ? 2 : page >= pages - 2 ? pages - 3 : page - 1;
+    const middle = [from, from + 1, from + 2];
+    return [1, ...(from > 2 ? [null] : []), ...middle, ...(from + 2 < pages - 1 ? [null] : []), pages];
+  });
+  function goTo(n: number, e: MouseEvent) {
+    // a new tab or window keeps the browser's own way
+    if (e.metaKey || e.ctrlKey || e.shiftKey || e.button !== 0 || !cardsReady) return;
+    e.preventDefault();
+    page = n;
+    history.pushState(null, "", pageHref(n));
+    cardsHost?.closest(".results")?.scrollIntoView({ block: "start", behavior: matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth" });
+  }
+  function setPer(n: number) {
+    per = n;
+    try {
+      localStorage.setItem(PER_KEY, String(n));
+    } catch {}
+  }
 
   // the active filters as removable chips
   let active = $derived(
@@ -135,7 +207,7 @@
     if (!list || !trails.length) return;
     void cardsIn;
     const items = new Map([...list.children].map((li) => [(li as HTMLElement).dataset.slug!, li as HTMLElement]));
-    const keep = new Set(shown.map((t) => t.slug));
+    const keep = new Set(shown.slice((page - 1) * per, page * per).map((t) => t.slug));
     for (const [slug, li] of items) li.hidden = !keep.has(slug);
     // cards beyond the first ones arrive a moment after the trails (/trails/cards.html): skip them until then
     for (const t of shown) {
@@ -166,6 +238,12 @@
         <!-- the trail map (issue #33), a quiet way to the same trails by place, with the same filters -->
         <a class="map-link" href={`/trails/map/${toParams(filters).toString() ? `?${toParams(filters)}` : ""}`}>Map view <span aria-hidden="true">→</span></a>
       </p>
+      <label class="sort per">
+        <span class="sort-word">Per page</span>
+        <select value={per} onchange={(e) => setPer(Number((e.currentTarget as HTMLSelectElement).value))}>
+          {#each PER_PAGE_OPTIONS as n}<option value={n}>{n}</option>{/each}
+        </select>
+      </label>
       <label class="sort">
         <span class="sort-word">Sort</span>
         <select bind:value={sort}>
@@ -201,6 +279,28 @@
     </div>
     <!-- the rows, plain HTML from TrailCards.astro: only hidden and ordered here (issue #86) -->
     <div class="cards-host" bind:this={cardsHost}>{@render children?.()}</div>
+    <!-- the pager: plain links to each page's own address (crawlers follow them; the browser pages in
+         place, keeping the filters), shown while there's more than one page -->
+    {#if pages > 1}
+      <nav class="pager" aria-label="Pages of trails">
+        <p class="range">{firstShown}–{lastShown} of {trails.length ? shown.length : total}</p>
+        <ol>
+          <li class="step">
+            {#if page > 1}<a href={pageHref(page - 1)} rel="prev" onclick={(e) => goTo(page - 1, e)}><span aria-hidden="true">←</span> Previous</a>{:else}<span class="off" aria-hidden="true">← Previous</span>{/if}
+          </li>
+          {#each pageList as n}
+            <li>
+              {#if n === null}<span class="gap" aria-hidden="true">…</span>
+              {:else if n === page}<span class="now" aria-current="page"><span class="sr-only">Page </span>{n}</span>
+              {:else}<a href={pageHref(n)} onclick={(e) => goTo(n, e)}><span class="sr-only">Page </span>{n}</a>{/if}
+            </li>
+          {/each}
+          <li class="step">
+            {#if page < pages}<a href={pageHref(page + 1)} rel="next" onclick={(e) => goTo(page + 1, e)}>Next <span aria-hidden="true">→</span></a>{:else}<span class="off" aria-hidden="true">Next →</span>{/if}
+          </li>
+        </ol>
+      </nav>
+    {/if}
     {#if trails.length && !shown.length}
       <div class="empty">
         <p><strong>No trails match all of these filters.</strong></p>
@@ -473,6 +573,81 @@
     text-underline-offset: 3px;
   }
 
+  /* the pager: page numbers as small round links, the current one filled, Previous and Next beside */
+  .pager {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    margin: 24px 0 0;
+    padding-top: 16px;
+    border-top: 1px solid var(--line);
+  }
+  .range {
+    margin: 0;
+    color: var(--muted);
+    font-size: 0.85rem;
+  }
+  .pager ol {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+  .pager a,
+  .pager .now,
+  .pager .off,
+  .pager .gap {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    white-space: nowrap;
+    min-width: 34px;
+    height: 34px;
+    padding: 0 10px;
+    border-radius: 999px;
+    font-size: 0.9rem;
+    text-decoration: none;
+  }
+  .pager a {
+    color: var(--text);
+  }
+  .pager a:hover {
+    background: var(--surface);
+  }
+  .pager a:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+  }
+  .pager .now {
+    background: var(--accent);
+    color: var(--bg);
+    font-weight: 600;
+  }
+  .pager .off,
+  .pager .gap {
+    color: var(--muted);
+    opacity: 0.6;
+  }
+  .pager .step a,
+  .pager .step .off {
+    padding: 0 14px;
+  }
+  @media (max-width: 559px) {
+    .pager .step a,
+    .pager .step .off {
+      font-size: 0;
+      padding: 0;
+    }
+    .pager .step a span,
+    .pager .step .off {
+      font-size: 0.9rem;
+    }
+  }
   .empty {
     margin-top: 24px;
     padding: 32px 20px;

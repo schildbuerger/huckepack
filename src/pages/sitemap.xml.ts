@@ -12,6 +12,7 @@
 import type { APIRoute } from "astro";
 import { getCollection } from "astro:content";
 import { execFileSync } from "node:child_process";
+import { allSearchTrails, pageCount, pagePath } from "../lib/search-all";
 
 // the date (YYYY-MM-DD) of the last commit touching any of the files, or null
 const lastCommit = (files: string[]): string | null => {
@@ -43,6 +44,9 @@ export const GET: APIRoute = async ({ site }) => {
   for (const t of await getCollection("trails")) {
     paths.set(`/trails/${t.id}/`, lastCommit([`data/trails/${t.id}.yaml`, `data/derived/${t.id}.json`, `public/routes/${t.id}.geojson`]));
   }
+  // the trail list's pages after the first (a dynamic route): they change with the list's page file and its layout
+  const listed = lastCommit(["src/layouts/TrailsListing.astro", "src/pages/trails/page/[page].astro"]);
+  for (let n = 2; n <= pageCount((await allSearchTrails()).length); n++) paths.set(pagePath(n), listed);
   const urls = [...paths].sort(([a], [b]) => a.localeCompare(b));
   const xml =
     `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n` +

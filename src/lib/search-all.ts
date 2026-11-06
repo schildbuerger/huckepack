@@ -42,5 +42,9 @@ export function eleRangeOf(trails: SearchTrail[]): [number, number] {
     : [0, 1000];
 }
 
-// the cards the search page carries in its HTML; the rest come with /trails/cards.html
-export const CARDS_IN_PAGE = 24;
+// the cards each page of the trail list carries in its HTML (its page of the list, by name); the rest
+// come with /trails/cards.html
+export { PER_PAGE as CARDS_IN_PAGE } from "./pages";
+
+// pagination: src/lib/pages.ts (no collection access, so the list in the browser can use it too)
+export { PER_PAGE, PER_PAGE_OPTIONS, pageCount, pagePath } from "./pages";

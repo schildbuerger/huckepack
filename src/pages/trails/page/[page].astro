@@ -1,0 +1,16 @@
+---
+// The trail list's pages after the first: /trails/page/2/ and on, one per PER_PAGE trails by name
+// (src/layouts/TrailsListing.astro); there is no /trails/page/1/, the first page is /trails/
+import type { GetStaticPaths } from "astro";
+import TrailsListing from "../../../layouts/TrailsListing.astro";
+import { allSearchTrails, pageCount } from "../../../lib/search-all";
+
+export const getStaticPaths = (async () => {
+  const pages = pageCount((await allSearchTrails()).length);
+  return Array.from({ length: pages - 1 }, (_, i) => ({ params: { page: String(i + 2) } }));
+}) satisfies GetStaticPaths;
+
+const page = Number(Astro.params.page);
+---
+
+<TrailsListing {page} />
