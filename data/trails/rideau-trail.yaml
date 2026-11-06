@@ -1,0 +1,332 @@
+name: Rideau Trail
+added: 2026-11-07
+website: https://www.rideautrail.org/
+wikidata: Q7332581
+managedBy:
+  # "a charitable, volunteer-run organization" that "stewards over 40 trails that span over 450 km.
+  # The main trail, known as the Rideau Trail, is roughly 325 km in length" (About The RTA); its
+  # three clubs (Kingston, Central, Ottawa) maintain the trail in their sectors
+  - name: Rideau Trail Association
+    url: https://www.rideautrail.org/the-rta/
+officialGpx:
+  # the Maps page offers the "RTA Trails and Waypoints gpx file" (a zip) and kmz files without a login
+  url: https://www.rideautrail.org/discover-the-trail/maps/
+  by: the Rideau Trail Association
+  source: rta-maps
+trailType: point-to-point
+continents: [North America]
+countries: [CA]
+regions: [Ontario]
+# the two provincial parks the association's Overnight Accommodations page places on the trail
+# (Frontenac at waypoint 04G, Murphys Point at 09A); note "Protected areas"
+protectedAreas: [Frontenac Provincial Park, Murphys Point Provincial Park]
+termini:
+  # the maps page: Map 01 starts at "Kingston City Hall", Map 19 ends at the "Ottawa Locks";
+  # coordinates of waypoints 01A and 19H from the RTA's distance spreadsheet
+  start:
+    name: Kingston City Hall
+    lat: 44.22997
+    lon: -76.47918
+  end:
+    name: Ottawa Locks
+    lat: 45.42656
+    lon: -75.6995
+  source: rta-distances
+established:
+  # "Both the Rideau Trail and the Rideau Trail Association were funded in 1971"
+  year: 1971
+  source: rta-about
+waymarking:
+  # "orange isosceles triangle blazes mark the northbound route to Ottawa while orange triangle
+  # blazes with yellow tips mark the southbound route to Kingston … side trails, connectors and
+  # loop trails are marked by blue triangle blazes"
+  text: Orange triangles mark the way north to Ottawa, orange triangles with a yellow tip the way south to Kingston; side trails and connectors carry blue triangles.
+  source: rta-discover
+length:
+  # "The distance of the main Rideau Trail … is roughly 325km (217 miles) from Kingston to Ottawa"
+  - km: 325
+    approx: true
+    source: rta-faq
+days:
+  # "it is possible to hike the entire distance in about 9-16 days"
+  min: 9
+  max: 16
+  source: rta-faq
+stages:
+  # the association's nineteen numbered maps of the main trail (Maps page: "Map 01 – Kingston,
+  # Kingston City Hall – Mclvor Road" … "Map 19 – Ottawa, Carling Avenue – Ottawa Locks"), each
+  # map's distance from the RTA's waypoint distance spreadsheet ("Distance by map" at the next
+  # map's first waypoint). Ends at each next map's first waypoint (02A, 03A, … 19A, 19H), with the
+  # spreadsheet's coordinates
+  source: rta-distances
+  list:
+    - { number: "1", kind: main, from: Kingston City Hall, to: McIvor Road, km: 18.1, end: { lat: 44.28664, lon: -76.56126 } }
+    - { number: "2", kind: main, from: McIvor Road, to: Orser Road, km: 13.2, end: { lat: 44.35495, lon: -76.62115 } }
+    - { number: "3", kind: main, from: Orser Road, to: Freeman Road, km: 16.7, end: { lat: 44.43138, lon: -76.61713 } }
+    - { number: "4", kind: main, from: Freeman Road, to: West Slide Junction, km: 23.5, end: { lat: 44.5037, lon: -76.50329 } }
+    - { number: "5", kind: main, from: West Slide Junction, to: Skycroft Access, km: 23.7, end: { lat: 44.55143, lon: -76.36943 } }
+    - { number: "6", kind: main, from: Skycroft Access, to: McAndrews Road, km: 16.6, end: { lat: 44.61731, lon: -76.42064 } }
+    - { number: "7", kind: main, from: McAndrews Road, to: North Shore Road, km: 19.6, end: { lat: 44.69145, lon: -76.36133 } }
+    - { number: "8", kind: main, from: North Shore Road, to: Black Ance Point Road, km: 20.8, end: { lat: 44.76815, lon: -76.23312 } }
+    - { number: "9", kind: main, from: Black Ance Point Road, to: McLaren Point, km: 15.8, end: { lat: 44.82506, lon: -76.26077 } }
+    - { number: "10", kind: main, from: McLaren Point, to: Rathwell Road, km: 18.0, end: { lat: 44.89884, lon: -76.19636 } }
+    - { number: "11", kind: main, from: Rathwell Road, to: Poonamalie Side Road, km: 17.2, end: { lat: 44.90892, lon: -76.05066 } }
+    - { number: "12", kind: main, from: Poonamalie Side Road, to: Wood Road, km: 16.0, end: { lat: 44.9142, lon: -75.92489 } }
+    - { number: "13", kind: main, from: Wood Road, to: Grenville Street (Burritts Rapids), km: 23.3, end: { lat: 44.97956, lon: -75.79546 } }
+    - { number: "14", kind: main, from: Grenville Street (Burritts Rapids), to: Rogers Pond, km: 13.8, end: { lat: 45.06018, lon: -75.82099 } }
+    - { number: "15", kind: main, from: Rogers Pond, to: Jock Trail, km: 14.8, end: { lat: 45.13629, lon: -75.90567 } }
+    - { number: "16", kind: main, from: Jock Trail, to: Shea & Garvin, km: 13.3, end: { lat: 45.21858, lon: -75.85087 } }
+    - { number: "17", kind: main, from: Shea & Garvin, to: Richmond Road, km: 10.2, end: { lat: 45.2781, lon: -75.8356 } }
+    - { number: "18", kind: main, from: Richmond Road, to: Carling Avenue, km: 16.7, end: { lat: 45.35215, lon: -75.81207 } }
+    - { number: "19", kind: main, from: Carling Avenue, to: Ottawa Locks, km: 14.2, end: { lat: 45.42656, lon: -75.6995 } }
+route:
+  # built by `python -m pipeline.all rideau-trail`: OSM ways matched to the trail's three OSM
+  # section relations (Kingston 7366277, Central 7366046, Ottawa 7360383; children of the
+  # superroute 7675635, whose other members are the blue side trails), merged and cut at the maps'
+  # first waypoints
+  source: osm
+  publishable: true
+  relation: [7366277, 7366046, 7360383]
+difficulty:
+  estimated:
+    sac: T2
+    basis: >-
+      The association: "there are many portions of the trail that have some steep elevation
+      changes", the most challenging parts in the southern half from Kingston to Perth. Footpaths
+      over the Canadian Shield's rocky ridges through forest, alternating with rail trails, farm
+      tracks and roads; short steep climbs on uneven ground, no exposed passages: mountain hiking
+      on a marked trail (T2).
+    source: rta-faq
+season:
+  months: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
+  text: No season published; every month for now
+  source: huckepack-season
+sleeping:
+  # campsites (Frontenac and Murphys Point Provincial Parks, Parks Canada's lockstations,
+  # commercial campgrounds), hiker-friendly B&Bs, inns and hotels
+  types: [campsite, guesthouse, hotel]
+  source: rta-accommodations
+wildCamping:
+  status: restricted
+  rule: >-
+    Much of the trail lies on private land open for hiking only: camp only at designated
+    campsites and obtain permits where required (the provincial parks, Foley Mountain Conservation
+    Area, Parks Canada's Rideau Canal lockstations, campgrounds); fires only in campsite
+    fireplaces.
+  source: rta-accommodations
+access:
+  # Kingston's VIA Rail station is on the trail (waypoint 01D, Map 1); Ottawa's VIA station and
+  # Ottawa Macdonald-Cartier International Airport near the end. Coordinates from OSM; distances by
+  # pipeline/access.py
+  - kind: station
+    name: Kingston station (VIA Rail)
+    lat: 44.25723
+    lon: -76.53679
+    source: osm
+  - kind: station
+    name: Ottawa station (VIA Rail)
+    lat: 45.41647
+    lon: -75.65173
+    source: osm
+  - kind: airport
+    name: Ottawa Macdonald-Cartier International Airport (YOW)
+    lat: 45.32204
+    lon: -75.66726
+    source: osm
+animals:
+  # Ottawa Public Health's Lyme disease page; level ours
+  list:
+    - kind: tick
+      name: Blacklegged tick
+      level: moderate
+      basis: Ottawa Public Health says Lyme disease is present in the Ottawa area and across Eastern Ontario, and that blacklegged ticks are most often found in tall grasses and bushy, wooded and forested areas, the trail's ground.
+      do:
+        - Wear long pants, a long-sleeved shirt, shoes, and socks to cover exposed skin
+        - Tuck your pants into your socks
+        - Wear light-coloured clothing to spot ticks more easily
+        - If possible, stay on the trails when hiking in the woods and other natural areas
+        - Do a "full body" check on yourself, your children, and pets for ticks
+        - Grasp the tick's head as close to the skin as possible and pull slowly until the tick is removed
+      dont:
+        - Do not twist or rotate the tick
+        - Do not use a match, lotion or anything else on the tick
+      source: oph-lyme
+tags: [lakes, forest, ridges, river, world-heritage]
+notes:
+  - >-
+    Stages: the association's nineteen numbered maps of the main trail, Kingston City Hall (01A) to
+    the Ottawa Locks (19H), with the from–to names of the Maps page and each map's distance from
+    the RTA's "Measure Waypoint Distances" spreadsheet (Updated Apr 2021), whose "Distance by map"
+    sums to 325.5 km and whose cumulative distance ends at 325.9 km: on Map 10 the first leg
+    (McLaren Point to Ferrier Road W) reads 4.0 km by map and 4.5 km between points, so the map is
+    18.0 km by map and 18.4 km by the cumulative column; the record keeps the by-map figure. A
+    second sheet in the file repeats Maps 14–19 with a cumulative distance 2.2 km higher, an older
+    state; not used. The three sectors (Kingston, Maps 1–8 to Lally Homestead 09B; Central to RT
+    12F; Ottawa to 19H) are the clubs' maintenance areas, not stages.
+  - >-
+    Length: the association's "roughly 325km (217 miles) from Kingston to Ottawa" (FAQ; About The
+    RTA "roughly 325 km"). The network with its side trails, connectors and loops is "over 450 km"
+    (Discover the Trail); English Wikipedia gives 387 km.
+  - >-
+    Ascent: the FAQ's "net elevation gain is about 600m (2000 feet)" is not a total climb, so the
+    page estimates ascent and descent from the terrain model. The Maps page's sector elevation
+    profiles are images without figures.
+  - >-
+    Season: no season published (searched 2026-11-07: the association's FAQ, Through Hikes,
+    Preparation and Trail Etiquette, Overnight Accommodations and Maps pages, English Wikipedia).
+    The FAQ says some hikers "prefer to hike only in cooler weather to avoid the heat and flies of
+    the summer or the wet conditions of the early spring", the RTA holds a winter End-to-End in
+    January and February, and all private-land sections close for the two weeks of the rifle deer
+    season, "generally the first two weeks of November"; the Through Hikes page: not "during the
+    Ontario Fall hunting season". Every month for now.
+  - >-
+    Protected areas (2026-11-07): Frontenac and Murphys Point Provincial Parks, both named on the
+    association's Overnight Accommodations page at their trail waypoints (04G, 09A). An OSM check
+    of the map line against boundary=protected_area relations was tried and failed (Overpass 502
+    and 504 on two servers); to redo. Conservation areas (Gould Lake, Foley Mountain) are local
+    reserves and left out; English Wikipedia's Frontenac Arch Biosphere Reserve is not named by
+    the operator.
+  - >-
+    Waymarking: orange triangles (yellow-tipped southbound), the association's registered
+    trademark (English Wikipedia), so no mark is drawn.
+  - >-
+    Tree line: not added; the route stays low in the Frontenac Arch's forest (see "Map line").
+  - >-
+    Wildlife: blacklegged ticks from Ottawa Public Health (Lyme disease "present in the Ottawa area,
+    across Eastern Ontario"). Ontario's tick page (ontario.ca, Tick-borne diseases) gives the same
+    advice for the whole province without naming the region; KFL&A Public Health's tick page (the
+    Kingston end) failed its certificate check and was left out. The association's pages name no
+    animals (searched 2026-11-07: FAQ, Through Hikes, Preparation, site search "ticks"), and the
+    Frontenac and Murphys Point park pages of Ontario Parks give no wildlife advice, so the black
+    bear (Ontario's province-wide Bear Wise advice) is not listed for want of a source naming this
+    trail.
+  - >-
+    Map line (2026-11-07): the Ontario and Quebec Geofabrik extracts (2026-11-05); OSM's three
+    section relations (7366277, 7366046, 7360383) merged and chained from Kingston City Hall, cut at
+    the maps' first waypoints. Every map at least 98 % matched (Map 1 98 %, Map 13 99 %, the others
+    100 %), all within 10 % of their stated distances (Map 9 the most: 14.5 against 15.8 km, −8 %).
+    The full matched OSM line measures 324.1 km against the stated roughly 325 km (−0.3 %) and
+    the maps' 325.5 km (the simplified line the charts use, 322.0 km). The preflight chained 323.4 of the relations' 325.1 km into one line; the leftover
+    ways are short pieces off the main line. Highest point 209 m at km 123.5 (near Westport, Map 7),
+    lowest 40 m at km 321.6 by the Ottawa River; none is stated. The terrain model gives about
+    4,020 m of climbing; the FAQ's "net elevation gain is about 600m" is not a total.
+  - >-
+    Water: OSM maps 36 drinking water points near the trail, most of them in Kingston and Ottawa;
+    the longest stretch without is 72.8 km (km 234.4–307.2, Merrickville to Ottawa's west end,
+    through the Marlborough Forest and Richmond). The association says "Flush toilets and running
+    potable water are available at each lockstation" (Narrows, Beveridges, Smiths Falls Detached,
+    Merrickville, Nicholsons, Burritts Rapids) and warns of "issues with water and food resupply";
+    no tap is added, as the source places the lockstations only by their nearest waypoints.
+  - >-
+    Beds: OSM maps 35 places to sleep; the longest stretch without one is 65.7 km (km 234.4–300.1,
+    Merrickville to Ottawa's Wesley Clover Parks campground, 18G). The association lists no
+    campsite or roofed place between Burritts Rapids (14A) and Wesley Clover Parks either, and
+    names "the lack of closely located overnight accommodations in many parts of the trail" as the
+    first difficulty of a through hike.
+  - >-
+    Resupply: OSM maps 205 shops, the longest stretch without 52.7 km (km 42.8–95.5, Sydenham
+    through Frontenac Provincial Park to Chaffeys Lock).
+  - >-
+    Travel hubs: Kingston's VIA Rail station lies on the trail (8 km by road from City Hall); Ottawa's
+    station (199 km) and airport (184 km) are near the finish; all within 300 km of the start.
+  - >-
+    Photos: eight from Commons, checked by eye; seventeen excluded (people, a sign, a road with
+    traffic, silos, Ottawa's buildings, the Parliament buildings close up and two interiors).
+  - >-
+    Data check (2026-11-07): against English Wikipedia (Rideau Trail). Length: roughly 325 km
+    against Wikipedia's 387 km (+19 %, over 10 %; the association's own network is "over 450 km"
+    with its side trails, so Wikipedia's figure likely counts more than the main trail; the page
+    keeps the association's figure). Termini: Kingston City Hall (Wikipedia: Confederation Park in
+    front of City Hall) and the Ottawa Locks agree. Established 1971, the orange triangles with a
+    yellow tip southbound and blue side trails, and the three club sectors (Kingston to Lally
+    Homestead, Central to Rosedale, Ottawa) agree. Wikipedia gives no days, season, stages,
+    camping or difficulty: the built page was checked against the FAQ (about 325 km, 9–16 days,
+    T2 basis) and the distance spreadsheet (all nineteen map distances, termini) figure by figure,
+    and they agree. Derived: the measured map line 324.1 km against the stated 325 km (−0.3 %); every map
+    within 10 % of its stated distance.
+dataCheck:
+  # working rule 2: English Wikipedia as the second source; days, season and stage distances only
+  # from the association, checked on the built page
+  date: 2026-11-07
+  against: [wikipedia]
+  pageAgainst: [rta-faq, rta-distances, rta-maps]
+  deviations:
+    - { figure: length, ours: "roughly 325 km", theirs: "387 km (+19 %)", source: wikipedia }
+sources:
+  - id: rta-maps
+    title: "Rideau Trail Association: Maps (the nineteen numbered maps of the main trail with their ends, sectors, GPX and kmz files)"
+    url: https://www.rideautrail.org/discover-the-trail/maps/
+    licence: All rights reserved (facts only)
+    retrieved: 2026-11-07
+  - id: rta-distances
+    title: "Rideau Trail Association: Measure Waypoint Distances spreadsheet (waypoints 01A–19H with coordinates, distance by map and cumulative distance; updated Apr 2021)"
+    url: https://www.rideautrail.org/wp-content/uploads/2015/08/RideauTrailDistanceCalculatorRefv-Apr2021.xlsx
+    licence: All rights reserved (facts only)
+    retrieved: 2026-11-07
+  - id: rta-faq
+    title: "Rideau Trail Association: FAQ (roughly 325 km, 9–16 days, terrain, hunting season)"
+    url: https://www.rideautrail.org/discover-the-trail/faq/
+    licence: All rights reserved (facts only)
+    retrieved: 2026-11-07
+  - id: rta-discover
+    title: "Rideau Trail Association: Discover the Trail (blazes, over 450 km of trails)"
+    url: https://www.rideautrail.org/discover-the-trail/
+    licence: All rights reserved (facts only)
+    retrieved: 2026-11-07
+  - id: rta-about
+    title: "Rideau Trail Association: About The RTA (founded 1971, the clubs)"
+    url: https://www.rideautrail.org/the-rta/
+    licence: All rights reserved (facts only)
+    retrieved: 2026-11-07
+  - id: rta-accommodations
+    title: "Rideau Trail Association: Overnight Accommodations (campsites and roofed accommodations, camping rules)"
+    url: https://www.rideautrail.org/hiking/overnight-accommodations/
+    licence: All rights reserved (facts only)
+    retrieved: 2026-11-07
+  - id: oph-lyme
+    title: "Ottawa Public Health: Lyme disease (blacklegged ticks, prevention and removal)"
+    url: https://www.ottawapublichealth.ca/en/public-health-topics/lyme-disease.aspx
+    licence: © City of Ottawa (facts only)
+    retrieved: 2026-11-07
+  - id: huckepack-season
+    title: "huckepack: no season published by the Rideau Trail Association (FAQ, Through Hikes, Preparation, Overnight Accommodations and Maps pages) or English Wikipedia (2026-11-07); every month for now, until one is found"
+    url: https://github.com/schildbuerger/huckepack/blob/main/docs/trail-building.md
+    licence: CC BY 4.0
+    retrieved: 2026-11-07
+  - id: wikipedia
+    title: "Wikipedia (en): Rideau Trail"
+    url: https://en.wikipedia.org/wiki/Rideau_Trail
+    licence: CC BY-SA 4.0
+    retrieved: 2026-11-07
+    checkOnly: true
+  - id: wikimedia
+    title: "Wikimedia: page views of the trail's Wikipedia articles in every language, by people, over twelve months (Wikidata sitelinks, pageview API)"
+    url: https://wikimedia.org/api/rest_v1/
+    licence: CC0 1.0 (pageview data); Wikidata CC0
+    retrieved: 2026-11-07
+    checkOnly: true
+  - id: osm
+    title: "OpenStreetMap contributors: paths, water, shops and places to sleep along the trail (Geofabrik extracts), travel hubs"
+    url: https://www.openstreetmap.org/
+    licence: ODbL 1.0
+    retrieved: 2026-11-07
+  - id: copdem
+    title: "Copernicus DEM GLO-30 (30 m terrain model), tiles from AWS Open Data"
+    url: https://registry.opendata.aws/copernicus-dem/
+    licence: "Copernicus WorldDEM-30 licence, free; produced using Copernicus WorldDEM-30 © DLR e.V. 2010-2014 and © Airbus Defence and Space GmbH 2014-2018 provided under COPERNICUS by the European Union and ESA; all rights reserved"
+    retrieved: 2026-11-07
+  - id: worldcover
+    title: "ESA WorldCover 2021: 10 m land cover (via AWS Open Data)"
+    url: https://esa-worldcover.org/
+    licence: "CC BY 4.0; © ESA WorldCover project 2021 / Contains modified Copernicus Sentinel data (2021) processed by ESA WorldCover consortium"
+    retrieved: 2026-11-07
+  - id: era5
+    title: "Open-Meteo open data on AWS: ERA5-Land temperature and ERA5 precipitation, snow and wind, daily 1995–2024 (reanalysis)"
+    url: https://github.com/open-meteo/open-data
+    licence: CC BY 4.0 (Open-Meteo); contains modified Copernicus Climate Change Service information
+    retrieved: 2026-11-07
+  - id: osrm
+    title: "OSRM: road routes on OpenStreetMap data (router.project-osrm.org)"
+    url: https://project-osrm.org/
+    licence: Route data © OpenStreetMap contributors (ODbL)
+    retrieved: 2026-11-07

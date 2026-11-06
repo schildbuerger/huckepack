@@ -2325,6 +2325,35 @@ export const SKYLINES: Record<string, Skyline> = {
       },
     ],
   },
+  "rideau-trail": {
+    view: "Eastern Ontario from the Frontenac Arch to Ottawa: knobs of pink granite through mixed forest above a lake, a Rideau Canal lock with its wooden gates on the waterway, and Parliament's Peace Tower on its bluff over the Ottawa River at the trail's end",
+    ridge: "#4d6838",
+    ground: "#8e9c5c",
+    shapes: [
+      // far forested hills, blue with distance
+      { d: hills([[0, G], [160, 248], [420, 236], [700, 246], [980, 238], [1260, 246], [1600, 240], [1600, G]]), c: "#9fb0a6" },
+      // the Frontenac Arch: low rocky knobs of the Canadian Shield under mixed forest
+      { d: range([[0, G], [0, 262], [110, 244], [190, 220], [250, 210], [310, 224], [390, 204], [460, 198], [520, 214], [600, 228], [700, 246], [800, 262], [900, G]]), c: "#5d7a4c" },
+      // bare pink granite on the knobs' faces
+      { d: "M236,214L250,210L272,216L262,226L244,228Z M444,202L460,198L486,204L474,216L452,218Z M566,222L584,224L600,230L586,238L568,234Z", c: "#c2a08e" },
+      // the lake below the knobs
+      { d: water(520, 1180, 282), c: LAKE },
+      // the bluff of Parliament Hill over the river
+      { d: range([[1180, G], [1240, 270], [1300, 258], [1420, 254], [1520, 258], [1600, G]]), c: "#6f7f62" },
+      // Centre Block and the Peace Tower with its copper roof
+      { d: "M1336,258V242H1476V258Z M1398,242V196H1414V242Z", c: "#b9ab92" },
+      { d: "M1396,196L1406,170L1416,196Z M1332,242L1406,234L1480,242Z", c: "#6f9f8a" },
+      // mixed forest along the near shore: firs and rounded hardwoods
+      { d: hills([[0, G], [120, 276], [300, 268], [460, 280], [600, 290], [700, G]]), c: FIR },
+      { d: "M160,272L172,240L184,272Z M214,270L228,232L242,270Z M372,274L384,246L396,274Z", c: FIR },
+    ],
+    front: [
+      // the waterway in front: a lock's stone walls and its wooden mitre gates with their balance beams
+      { d: water(760, 1600, 300), c: "#5a8fb2" },
+      { d: "M900,300V286H930V300Z M1030,300V286H1060V300Z", c: "#a99f8e" },
+      { d: "M930,298L944,288H948L948,298Z M1030,298L1016,288H1012L1012,298Z M904,286V283H950V286Z M1010,286V283H1056V286Z", c: "#4a3a2c" },
+    ],
+  },
   "superior-hiking-trail": {
     view: "Minnesota's North Shore: the Sawtooth ridges above Lake Superior, birch and spruce on the rocky slopes, a waterfall dropping towards the lake and the lake's long horizon",
     ridge: "#3f5a34",

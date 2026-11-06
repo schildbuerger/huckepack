@@ -162,6 +162,8 @@ And the **Benton MacKaye Trail** (Georgia, Tennessee and North Carolina: the Ben
 
 And the **Coastal Hiking Trail** (Ontario: Parks Canada's 58.7 km in Pukaskwa National Park along Lake Superior's wild shore from Hattie Cove to the North Swallow River, one way with a boat shuttle or out and back, part of the Trans Canada Trail, without stages by design between twelve backcountry campsites booked on the permit (5–7 days by Superior Country), marked only by rock cairns, over granite headlands, cobble beaches and the White River Suspension Bridge, May 15 to October 14; over the OSM relation; 2026-11-06).
 
+And the **Rideau Trail** (Ontario: the Rideau Trail Association's roughly 325 km from Kingston City Hall to the Ottawa Locks below Parliament Hill, kept by its volunteer clubs since 1971, over the Frontenac Arch's granite and lakes, through Frontenac and Murphys Point Provincial Parks and past the Rideau Canal's lockstations, Perth, Smiths Falls and Merrickville, in the association's nineteen numbered maps, orange triangles, 9–16 days, much of it on private land with designated campsites only; over the three OSM section relations; 2026-11-07).
+
 | # | Trail | Region | Length (approx.) | Why |
 |---|---|---|---|---|
 | 1 | Pacific Crest Trail | USA | 4,265 km | Most-hiked long trail; public US agency data; completion lists |
