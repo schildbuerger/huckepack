@@ -150,7 +150,8 @@ def track_points(gpx):
     login); it is cached under the same .gpx name, so it stays local like the GPX files. Some
     portals (eifelsteig.de) write the line as "lon,lat,height lon,lat,height …" instead. The
     neusta tour pages (sauerland-waldroute.de) carry the map's line as an HTML-escaped
-    "polyline": "lon,lat lon,lat …"."""
+    "polyline": "lon,lat lon,lat …". WP Go Maps' REST API gives a stage map's polyline as
+    "polydata" (lat, lng pairs as strings)."""
     points = []
     # a KML (from a KMZ download): its line strings in document order, "lon,lat[,height]" each
     if "<kml" in gpx[:2000]:
@@ -184,6 +185,15 @@ def track_points(gpx):
         line = re.search(r'polyline(?:&quot;|")\s*:\s*(?:&quot;|")([-\d.,\s]+)', gpx)
         if line:
             points = [(float(p[0]), float(p[1])) for p in (v.split(",") for v in line.group(1).split())]
+    if not points:
+        # a WP Go Maps polyline from its REST API (/wp-json/wpgmza/v1/polylines/<id>), the line the
+        # operator's own stage map draws (caminodecostarica.org): "polydata": [{"lat": "…", "lng": "…"}, …]
+        data = re.search(r'"polydata"\s*:\s*\[(.*?)\]', gpx, re.S)
+        if data:
+            for vertex in re.findall(r"\{[^}]*\}", data.group(1)):
+                lat = re.search(r'"lat"\s*:\s*"?([-\d.]+)', vertex)
+                lng = re.search(r'"lng"\s*:\s*"?([-\d.]+)', vertex)
+                points.append((float(lng.group(1)), float(lat.group(1))))
     if len(points) < 2:
         raise ValueError("track has fewer than two points")
     return points

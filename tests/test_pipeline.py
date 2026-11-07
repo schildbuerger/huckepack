@@ -56,6 +56,10 @@ class TrackPoints(unittest.TestCase):
         page = '<div data-map="{&quot;polyline&quot;:&quot;8.1,50.1 8.2,50.2&quot;}">'
         self.assertEqual(routes.track_points(page), self.expected)
 
+    def test_wp_go_maps_polydata(self):
+        body = '{"map_id":"37","polydata":[{"lat":"50.1","lng":"8.1"},{"lat":"50.2","lng":"8.2"}],"linecolor":"000000"}'
+        self.assertEqual(routes.track_points(body), self.expected)
+
     def test_gpx_with_several_tracks_reads_the_first(self):
         gpx = ('<gpx><trk><name>Main</name><trkseg><trkpt lat="50.1" lon="8.1"/><trkpt lat="50.2" lon="8.2"/></trkseg></trk>'
                '<trk><name>Alternative</name><trkseg><trkpt lat="51" lon="9"/></trkseg></trk></gpx>')

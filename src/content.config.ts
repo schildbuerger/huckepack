@@ -46,7 +46,7 @@ export const SLEEPING_TYPES = [
 ] as const;
 
 // the simple painted marks src/components/Waymark.astro draws (WAYMARKS there)
-const waymark = z.enum(["cai", "yellow-vertical-stripe", "red-diamond", "white-h-on-black", "white-x-on-black", "white-w-on-green", "white-l-on-anthracite", "white-red-stripes", "blue-stripe-on-white"]);
+const waymark = z.enum(["cai", "yellow-vertical-stripe", "red-diamond", "white-h-on-black", "white-x-on-black", "white-w-on-green", "white-l-on-anthracite", "white-red-stripes", "blue-stripe-on-white", "red-vertical-stripe"]);
 
 const point = z.object({
   name: z.string(),
