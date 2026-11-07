@@ -45,9 +45,10 @@ const perTrail = entries.map((e, i) => {
   const d = derivedAll[i];
   const est = stageEstimates(e.data, d);
   const main = mainStages(e.data);
-  // climbs as the key figures have them: the stated total or stage sums, else the terrain model's estimate
-  const stated = trailClimb(e.data)?.up;
-  const climbed = stated ?? sum(main.map((s) => est.get(s.number)?.ascentM ?? 0));
+  // climbs as the key figures have them: the terrain model's estimate (since 2026-11-07), else the provider's
+  const c = trailClimb(e.data, d);
+  const stated = c && !c.estimate ? c.up : undefined;
+  const climbed = c?.up ?? sum(main.map((s) => est.get(s.number)?.ascentM ?? 0));
   const taps = d?.water?.points.filter((p) => p.kind === "drinking").length ?? 0;
   return { climbed, climbedEst: stated === undefined, taps };
 });
