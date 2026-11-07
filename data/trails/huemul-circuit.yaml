@@ -1,0 +1,285 @@
+name: Huemul Circuit
+added: 2026-11-07
+localName: Circuito Huemul
+aliases: [Vuelta al Huemul, Vuelta al Cerro Huemul, Vuelta del Huemul, Huemul Trek]
+website: https://www.argentina.gob.ar/parquesnacionales/patagonia-austral/parque-nacional-los-glaciares/actividades
+wikidata: Q105633019
+managedBy:
+  - name: Administración de Parques Nacionales (APN), Los Glaciares National Park, Seccional Lago Viedma
+    url: https://www.argentina.gob.ar/parquesnacionales/patagonia-austral/parque-nacional-los-glaciares
+officialGpx:
+  none: The APN's briefing for the circuit has maps and photographs only, and its park pages offer no GPX to download (checked 2026-11-07)
+  source: apn-huemul
+trailType: loop
+continents: [South America]
+countries: [AR]
+regions: [Santa Cruz]
+protectedAreas:
+  - Los Glaciares National Park
+termini:
+  # the APN: day 1 "El Chaltén – Laguna Toro" (the Laguna Toro path leaves from the park's visitor
+  # centre at the entrance to the village), day 4 "Bahía de los Témpanos – Seccional de APN", the
+  # Lago Viedma ranger station at the same visitor centre; coordinates of the visitor centre from OSM
+  # (way 313772124)
+  start:
+    name: El Chaltén, APN visitor centre
+    lat: -49.33754
+    lon: -72.88136
+  end:
+    name: El Chaltén, APN visitor centre
+    lat: -49.33754
+    lon: -72.88136
+  source: osm
+waymarking:
+  # the APN: "Poca o nula señalización del sendero", "Buscar señalización de varillas", "Seguir las
+  # estacas que van de Bahía Témpanos a Bahía Túnel", "seguir las marcas amarillas en el alambrado
+  # hasta la tranquera y luego las estacas amarillas"
+  text: Little or no waymarking; stakes in places, yellow marks and stakes from Bahía Túnel back to the ranger station
+  source: apn-huemul
+length:
+  # "65 kilómetros de recorrida en total"
+  - km: 65
+    source: apn-huemul
+days:
+  # "4 días, 3 noches (recomendado)"
+  min: 4
+  max: 4
+  source: apn-huemul
+stages:
+  # the APN's four "jornadas" (days) of the circuit, with distance, average time and difficulty;
+  # walked anticlockwise from El Chaltén over the Paso del Viento and the Paso Huemul to Lago Viedma
+  # and back by Bahía Túnel. Stage ends from OSM: Campamento Toro (node 598214615), Refugio Paso del
+  # Viento (way 313713472), Camp. Bahía de los Témpanos (node 4602578491), the visitor centre (way
+  # 313772124)
+  source: apn-huemul
+  list:
+    - { number: "1", kind: main, from: El Chaltén, to: Laguna Toro, km: 15, minutes: 360, end: { name: Campamento Toro, lat: -49.38517, lon: -73.0405 } }
+    - { number: "2", kind: main, from: Laguna Toro, to: Refugio Paso del Viento, km: 12, minutes: 360, end: { name: Refugio Paso del Viento, lat: -49.42576, lon: -73.10667 } }
+    - { number: "3", kind: main, from: Refugio Paso del Viento, to: Bahía de los Témpanos, km: 16, minutes: 420, end: { name: Bahía de los Témpanos, lat: -49.48005, lon: -72.98606 } }
+    - { number: "4", kind: main, from: Bahía de los Témpanos, to: El Chaltén (APN ranger station), km: 20, minutes: 420, end: { name: "El Chaltén, APN visitor centre", lat: -49.33754, lon: -72.88136 } }
+route:
+  # built by `python -m pipeline.all huemul-circuit`: OSM ways matched to the OSM hiking relation
+  # "Vuelta al Huemul" (9365907), each stage the shortest way over it to its end. The relation stops
+  # 537 m short of the road into El Chaltén (the piece of Ruta Provincial 41 over the bridge, way
+  # 51003550, isn't a member), so the road relation "Ruta Provincial 23" (17192475), which holds that
+  # piece, is merged in for the way back into the village on stage 4
+  source: osm
+  publishable: true
+  relation: [9365907, 17192475]
+  branched: true
+difficulty:
+  # no SAC grade is published; our estimate from the APN's briefing
+  estimated:
+    sac: T4
+    basis: >-
+      The APN calls it a remote area: an unmaintained path with little or no waymarking, physically
+      demanding long days, fords, two Tyrolean traverses (harness, steel carabiner and the knowledge
+      to use them required) and a crossing of the Túnel glacier past unstable moraine and loose rock
+      with rockfall; days 2 and 3 rated "alta" (hard), not to be walked in strong wind, with a steep
+      descent from the Paso Huemul. Unmarked alpine route with glacier and moraine (T4).
+    source: apn-huemul
+season:
+  # the APN for Los Glaciares: "La temporada de visita recomendada es entre los meses de septiembre a
+  # abril"; from May to October cold and much snow, which hinders "ciertas actividades y senderos"
+  months: [9, 10, 11, 12, 1, 2, 3, 4]
+  text: September to April, the park's recommended season; from May to October snow makes some paths hard to walk
+  source: apn-panoramica
+sleeping:
+  # the APN's camp sites for the circuit (the remote-area register: Laguna Toro, Paso del Viento,
+  # Bahía Témpanos / Cabo de Hornos); the Refugio Paso del Viento is a public shelter, "Para dormir usa
+  # tu carpa"
+  types: [campsite]
+  source: apn-registro
+wildCamping:
+  status: prohibited
+  rule: >-
+    Camp only at the permitted sites (Laguna Toro, Paso del Viento, Bahía de los Témpanos); camping at
+    the Paso Huemul is forbidden. Fires are strictly forbidden and a stove is required.
+  source: apn-huemul
+permit:
+  # Registro para Área Remota, Disposición 013/16
+  required: true
+  name: Remote-area registration (Registro para Área Remota)
+  issuedBy: APN, Los Glaciares National Park
+  how: >-
+    Personal and compulsory for every member of the group: online through the park's form or at the
+    visitor centre in El Chaltén before setting out, and report back to the APN on return.
+  url: https://www.argentina.gob.ar/parquesnacionales/patagonia-austral/parque-nacional-los-glaciares/actividades
+  source: apn-actividades
+access:
+  # El Chaltén's bus terminal (the buses from El Calafate) and El Calafate's international airport.
+  # Coordinates from OSM; distances by pipeline/access.py
+  - kind: bus
+    name: El Chaltén bus terminal
+    lat: -49.3336
+    lon: -72.88289
+    source: osm
+  - kind: airport
+    name: El Calafate Airport (FTE)
+    lat: -50.28084
+    lon: -72.05131
+    source: osm
+animals:
+  # the APN's trail leaflet for the park's north zone ("Native fauna of special value": the puma);
+  # its advice in the English edition's words. Level ours
+  list:
+    - kind: big-cat
+      name: Puma
+      level: low
+      basis: >-
+        The APN names the puma, Patagonia's largest predator, among the north zone's native fauna and
+        says what to do when you meet one; encounters are rare.
+      do:
+        - "If it looks aggressive, raise your arms and yell"
+      dont:
+        - Run or turn your back to him
+      source: apn-folleto
+tags: [mountains, glaciers, lakes, national-park]
+notes:
+  - >-
+    Stages: the APN's four days ("jornadas") from its briefing for the circuit (Vuelta al Cerro
+    Huemul, temporada 2022-2023, Seccional Lago Viedma, linked from the park's remote-area
+    register): El Chaltén – Laguna Toro 15 km, 6 h, "media"; Laguna Toro – Refugio Paso del Viento
+    12 km, 6 h, "alta"; Refugio Paso del Viento – Bahía de los Témpanos 16 km, 7 h, "alta"; Bahía de
+    los Témpanos – Seccional de APN 20 km, 7 h, "media". They add up to 63 km against the briefing's
+    own "65 kilómetros de recorrida en total" (3 %); its total of 26 hours matches the days. Its
+    "Desnivel máximo: 1000 metros" is the greatest height difference, not the ascent, so the page
+    estimates the climbs.
+  - >-
+    Official status: the APN lists the circuit in its remote-area register as "Vuelta al cerro Huemul
+    (El Chaltén- Laguna Toro-Paso del Viento-Paso Huemul-Bahía Túnel)" and publishes the briefing; the
+    park's activities page says trekking can be done on one's own or with a guide ("de manera
+    autónoma o con guía"), with registration compulsory for remote areas. The two Tyrolean traverses
+    (Río Túnel Superior on day 2, Río Túnel Inferior on day 4) are the APN's; the briefing offers a
+    ford as the other option at each.
+  - >-
+    Permit: no fee for the circuit is published by the APN; the last day passes Estancia Río Túnel
+    ("Mantenerse siempre por margen izquierda del alambrado"). The APN also warns of strong wind on
+    days 2 and 3, of rising rivers in the afternoon and of horses and cattle on day 4 ("No se
+    recomienda beber el agua que se encuentra estancada").
+  - >-
+    Countries: OSM's Argentina–Chile line runs over the Southern Patagonian Ice Field, where the
+    border is not yet defined, and puts the Paso Huemul and parts of the path in Chile; the APN
+    presents the whole circuit in Los Glaciares National Park, so the record names Argentina only.
+  - >-
+    Wildlife: the APN's leaflet also lists the European wasp (Vespula germanica) among dangerous
+    species ("Do not try to grab it", "Keep food covered", "In case you get stung, place cold
+    compresses. Allergic people should go to the doctor immediately"); insects have no place in the
+    wildlife section, so it is only noted here. The huemul (a deer, the circuit's namesake) is not
+    dangerous: "keep distance, avoid abrupt movements, do not try to touch him". Cattle: the APN
+    notes horses and cattle on day 4 but gives no advice, so they are not listed.
+  - >-
+    Sleeping: the Refugio Paso del Viento (APN) is a public shelter ("Refugio de uso público. Para
+    dormir usa tu carpa"); its stream and lake water is drinkable, the APN says ("El agua del arroyo y
+    la laguna es potable").
+  - >-
+    Map line: from the Geofabrik extract for Argentina (2026-11-05), the OSM relation Vuelta al Huemul
+    (9365907) with the piece of the road relation Ruta Provincial 23 (17192475) over the bridge into
+    El Chaltén, which the hiking relation lacks (537 m); every stage 100 % matched, no bridges. The
+    map line is 64.2 km against the APN's 65 km total and 63 km of stages; by stage 16.1, 11.2, 13.5
+    and 23.9 km against the APN's 15, 12, 16 and 20 km: stage 3 is 16 % shorter and stage 4 20 %
+    longer on the map (the stage end at the Bahía de los Témpanos camp is OSM's; the APN may count
+    part of the lake shore in day 3). The APN's figures stand (in `dataCheck`). Terrain model:
+    highest 1,406 m at the Paso del Viento (OSM: 1,428 m), lowest 253 m on Lago Viedma; the page
+    estimates about 2,670 m of ascent.
+  - >-
+    Resupply: OSM maps no shop between El Chaltén's at the start and the end (63.5 km); the APN's
+    briefing asks for a self-supported trip (a stove required, no infrastructure on the way).
+    Places to sleep: OSM's beds are El Chaltén's and the circuit's camp sites.
+  - >-
+    Tree line: none recorded. The route's highest point is 1,406 m on the terrain model (the Paso del
+    Viento, 1,428 m in OSM), under the 1,500 m from which these pages need it.
+  - >-
+    Data check (2026-11-07): the APN's four days against Outdoor-Magazin's (15, 12.5, 16.5 and 13 km;
+    6, 7, 8 and 6.5 h; "mittel", "schwer", "mittel", "schwer") and Switchback Travel's (16, 15, 18 and
+    18–26 km; moderate, difficult, difficult, moderate; about 40 miles in four days): days 4 in all
+    three; stage 1 15 against 15 and 16 km; stage 2 12 against 12.5 and 15 km (25 %, in `dataCheck`);
+    stage 3 16 against 16.5 and 18 km (12.5 %); stage 4 20 against 13 km (35 %) and 18–26 km; times
+    6, 6, 7 and 7 h against 6, 7, 8 and 6.5 h (stages 2 and 3 17 and 14 %); total 65 km against about
+    64 km (2 %); termini, camp sites (Laguna Toro, Paso del Viento, Bahía de los Témpanos), the
+    Tyrolean traverses and the glacier crossing agree. Season: the APN's September to April against
+    Switchback's October to April and Outdoor-Magazin's best weather in January and February.
+    Difficulty: the APN's "media/alta" days match both. Map line against the APN in the "Map line"
+    note.
+dataCheck:
+  # working rule 2: Outdoor-Magazin's and Switchback Travel's four days against the APN's
+  date: 2026-11-07
+  against: [outdoor-magazin, switchback]
+  deviations:
+    - { figure: "Stage 4 length", ours: "20 km", theirs: "13 km", source: outdoor-magazin }
+    - { figure: "Stage 2 length", ours: "12 km", theirs: "15 km", source: switchback }
+    - { figure: "Stage 3 length", ours: "16 km", theirs: "18 km", source: switchback }
+    - { figure: "Stage 2 time", ours: "6 h", theirs: "7 h", source: outdoor-magazin }
+    - { figure: "Stage 3 time", ours: "7 h", theirs: "8 h", source: outdoor-magazin }
+    - { figure: "Season", ours: "September to April", theirs: "October to April (most hikers)", source: switchback }
+    - { figure: "Stage 3 length", ours: "16 km", theirs: "13.5 km (map line)", source: osm }
+    - { figure: "Stage 4 length", ours: "20 km", theirs: "23.9 km (map line)", source: osm }
+sources:
+  - id: apn-huemul
+    title: "APN, Parque Nacional Los Glaciares, Seccional Lago Viedma: Vuelta al Cerro Huemul, temporada 2022-2023 (the circuit's briefing: days, distances, times, difficulty, camp sites, Tyrolean traverses, rules)"
+    url: https://drive.google.com/file/d/1P5T6lzAUzFMjT-KkwltR_kE0V9UjB4cF/view
+    licence: © APN (facts only)
+    retrieved: 2026-11-07
+  - id: apn-registro
+    title: "APN, Parque Nacional Los Glaciares: Registro de Uso de Montaña en Áreas Remotas (the remote-area register: itineraries and camp sites)"
+    url: https://docs.google.com/forms/d/e/1FAIpQLSfP8lEz5ry97gEK6fzx2mlu1NAhPwBx8cRlnSZOH8mx8iUMHA/viewform
+    licence: © APN (facts only)
+    retrieved: 2026-11-07
+  - id: apn-actividades
+    title: "APN, Parque Nacional Los Glaciares: Actividades (hiking and trekking on one's own or with a guide, compulsory registration for remote areas)"
+    url: https://www.argentina.gob.ar/parquesnacionales/patagonia-austral/parque-nacional-los-glaciares/actividades
+    licence: © APN (facts only)
+    retrieved: 2026-11-07
+  - id: apn-panoramica
+    title: "APN, Parque Nacional Los Glaciares: Panorámica (épocas de visita, the recommended season)"
+    url: https://www.argentina.gob.ar/parquesnacionales/patagonia-austral/parque-nacional-los-glaciares/panoramica
+    licence: © APN (facts only)
+    retrieved: 2026-11-07
+  - id: apn-folleto
+    title: "APN, Parque Nacional Los Glaciares: Zona Norte trail leaflet, English edition 2024 (native fauna, dangerous species, rules)"
+    url: https://www.argentina.gob.ar/sites/default/files/2019/06/folleto_senderos_zona_norte_pnlg_ingles_2024.pdf
+    licence: © APN (facts only)
+    retrieved: 2026-11-07
+  - id: outdoor-magazin
+    title: "Outdoor-Magazin: Patagonien, auf dem Huemul-Trek durch Los Glaciares (four days with distance, time, climbs and difficulty; best time)"
+    url: https://www.outdoor-magazin.com/wanderwege/patagonien-auf-dem-huemul-trek-durch-los-glaciares
+    licence: © Motor Presse Stuttgart (facts only)
+    retrieved: 2026-11-07
+    checkOnly: true
+  - id: switchback
+    title: "Switchback Travel: Huemul Circuit (four days with distance, climbs and difficulty; seasons)"
+    url: https://switchbacktravel.com/patagonia/huemul-circuit
+    licence: © Switchback Travel (facts only)
+    retrieved: 2026-11-07
+    checkOnly: true
+  - id: wikimedia
+    title: "Wikimedia: page views of the trail's Wikipedia articles in every language, by people, over twelve months (Wikidata sitelinks, pageview API)"
+    url: https://wikimedia.org/api/rest_v1/
+    licence: CC0 1.0 (pageview data); Wikidata CC0
+    retrieved: 2026-11-07
+    checkOnly: true
+  - id: osm
+    title: "OpenStreetMap contributors: the hiking relation Vuelta al Huemul (9365907) and the road relation Ruta Provincial 23 (17192475), camp sites, paths, water, shops and places to sleep along the way (Geofabrik extract), travel hubs"
+    url: https://www.openstreetmap.org/relation/9365907
+    licence: ODbL 1.0
+    retrieved: 2026-11-07
+  - id: copdem
+    title: "Copernicus DEM GLO-30 (30 m terrain model), tiles from AWS Open Data"
+    url: https://registry.opendata.aws/copernicus-dem/
+    licence: "Copernicus WorldDEM-30 licence, free; produced using Copernicus WorldDEM-30 © DLR e.V. 2010-2014 and © Airbus Defence and Space GmbH 2014-2018 provided under COPERNICUS by the European Union and ESA; all rights reserved"
+    retrieved: 2026-11-07
+  - id: worldcover
+    title: "ESA WorldCover 2021: 10 m land cover (via AWS Open Data)"
+    url: https://esa-worldcover.org/
+    licence: "CC BY 4.0; © ESA WorldCover project 2021 / Contains modified Copernicus Sentinel data (2021) processed by ESA WorldCover consortium"
+    retrieved: 2026-11-07
+  - id: era5
+    title: "Open-Meteo open data on AWS: ERA5-Land temperature and ERA5 precipitation, snow and wind, daily 1995–2024 (reanalysis)"
+    url: https://github.com/open-meteo/open-data
+    licence: CC BY 4.0 (Open-Meteo); contains modified Copernicus Climate Change Service information
+    retrieved: 2026-11-07
+  - id: osrm
+    title: "OSRM: road routes on OpenStreetMap data (router.project-osrm.org)"
+    url: https://project-osrm.org/
+    licence: Route data © OpenStreetMap contributors (ODbL)
+    retrieved: 2026-11-07

@@ -2571,6 +2571,39 @@ export const SKYLINES: Record<string, Skyline> = {
       { d: [[1210, 300], [1226, 302], [1560, 300], [1576, 302]].map(([x, y]) => `M${x - 6},${y + 6}L${x},${y - 22}L${x + 6},${y + 6}Z`).join(" "), c: FIR },
     ],
   },
+  "huemul-circuit": {
+    view: "From the Paso Huemul: Fitz Roy's granite spires far off to the north, the Southern Patagonian Ice Field's white plateau along the horizon, the Viedma Glacier's broad tongue flowing down into the grey-green Lago Viedma with its icebergs, the dark rock of Cerro Huemul and lenga forest on the slope below",
+    ridge: "#5f6a4a",
+    ground: "#a29a6a",
+    shapes: [
+      // Fitz Roy and its needles, pale with distance, snow on the tops
+      {
+        d: range([[90, G], [130, 262], [170, 226], [196, 196], [210, 170], [222, 150], [232, 118], [240, 100], [248, 96], [256, 112], [262, 140], [270, 132], [276, 116], [282, 112], [288, 128], [296, 158], [306, 150], [312, 140], [318, 152], [330, 184], [360, 226], [400, 260], [440, G]]),
+        c: "#b9c0c8",
+      },
+      { d: snowOf([[90, G], [130, 262], [170, 226], [196, 196], [210, 170], [222, 150], [232, 118], [240, 100], [248, 96], [256, 112], [262, 140], [270, 132], [276, 116], [282, 112], [288, 128], [296, 158], [306, 150], [312, 140], [318, 152], [330, 184], [360, 226], [400, 260], [440, G]], 150), c: SNOW },
+      // the ice field: a long, nearly level white plateau over grey nunataks
+      {
+        d: range([[300, G], [380, 250], [460, 224], [560, 214], [660, 208], [700, 196], [730, 204], [820, 210], [940, 206], [1000, 194], [1030, 202], [1140, 208], [1260, 204], [1360, 212], [1460, 228], [1560, 252], [1600, 262], [1600, G]]),
+        c: "#c4cbd1",
+      },
+      { d: snowOf([[300, G], [380, 250], [460, 224], [560, 214], [660, 208], [700, 196], [730, 204], [820, 210], [940, 206], [1000, 194], [1030, 202], [1140, 208], [1260, 204], [1360, 212], [1460, 228], [1560, 252], [1600, 262], [1600, G]], 226), c: SNOW },
+      // the Viedma Glacier's tongue, broad and flat, coming down to the lake, its blue crevasses
+      { d: "M820,226L1180,222L1250,250L1220,284L1060,292L900,290L800,262Z", c: "#e4ecf0" },
+      { d: "M870,250L960,244L1080,242L1180,248L1150,266L1040,276L920,274Z", c: "#a6cbdc" },
+      // Cerro Huemul's dark rock on the left, the moraine on the right
+      { d: range([[0, G], [40, 270], [120, 238], [200, 222], [260, 214], [300, 222], [360, 244], [440, 268], [520, G]]), c: "#5a524c" },
+      { d: range([[1300, G], [1360, 270], [1430, 252], [1500, 246], [1560, 254], [1600, 260], [1600, G]]), c: "#8a7f72" },
+    ],
+    front: [
+      // lenga forest on the slopes down from the pass, either side of the lake
+      { d: hills([[0, G], [120, 286], [320, 290], [520, 300], [640, G]]), c: "#3d5733" },
+      { d: hills([[1340, G], [1460, 292], [1600, 288], [1600, G]]), c: "#3d5733" },
+      // Lago Viedma below the glacier's front, a few icebergs
+      { d: water(560, 1440, 290), c: "#8ab0b4" },
+      { d: "M720,291l14-6l12,6z M860,293l10-5l9,5z M1000,290l16-7l13,7z M1170,292l11-5l10,5z M1290,291l9-4l8,4z", c: "#eef4f6" },
+    ],
+  },
   "superior-hiking-trail": {
     view: "Minnesota's North Shore: the Sawtooth ridges above Lake Superior, birch and spruce on the rocky slopes, a waterfall dropping towards the lake and the lake's long horizon",
     ridge: "#3f5a34",
