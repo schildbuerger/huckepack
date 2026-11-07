@@ -166,6 +166,8 @@ And the **Rideau Trail** (Ontario: the Rideau Trail Association's roughly 325 km
 
 And the **Arizona National Scenic Trail** (Arizona: the Arizona Trail Association's 800 miles (1,287 km) with the Forest Service from the Mexican border at Coronado National Memorial over the sky islands, through the Sonoran Desert, the Superstitions and the Mazatzals to the Mogollon Rim, past the San Francisco Peaks and across the Grand Canyon to the Kaibab Plateau and Stateline on the Utah border, in the association's 43 passages (the Flagstaff Urban Route and the Pusch Ridge Wilderness Bypass as variants), 43–60 days, best in spring and autumn; passage 38 in the canyon closed since the August 2026 floods; over the passages' tracks; 2026-11-07).
 
+And the **Pacific Northwest National Scenic Trail** (Montana, Idaho and Washington: the Pacific Northwest Trail Association's about 1,200 miles with the Forest Service from Chief Mountain on Glacier National Park's Canadian border over the Continental Divide, the Purcells, the Selkirks, the Kettle River Range and the Okanogan Highlands, through the Pasayten Wilderness and the North Cascades past Mount Baker, across Puget Sound by the Keystone ferry and through the Olympics' rainforest to Cape Alava on the Pacific, in the association's ten sections, mostly unmarked, 60–75 days, prime season July to September; over the three OSM state relations; 2026-11-07).
+
 | # | Trail | Region | Length (approx.) | Why |
 |---|---|---|---|---|
 | 1 | Pacific Crest Trail | USA | 4,265 km | Most-hiked long trail; public US agency data; completion lists |

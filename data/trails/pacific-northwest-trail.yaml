@@ -1,0 +1,394 @@
+name: Pacific Northwest National Scenic Trail
+added: 2026-11-07
+aliases: [Pacific Northwest Trail, PNT]
+website: https://www.pnt.org/
+wikidata: Q3360192
+managedBy:
+  # the association's FAQ: "When Congress designated the Pacific Northwest Trail as a National
+  # Scenic Trail, it charged the U.S. Forest Service with administering the trail"; the association
+  # publishes the route, its sections and the maps
+  - name: Pacific Northwest Trail Association
+    url: https://www.pnt.org/
+  - name: USDA Forest Service
+    url: https://www.fs.usda.gov/trails/pacific-northwest-nst
+officialGpx:
+  none: the association offers its strip maps as a free PDF map set and the route in the FarOut app; it offers no GPX download (checked 2026-11-07)
+  source: pnta-navigate
+trailType: point-to-point
+continents: [North America]
+countries: [US]
+regions: [Montana, Idaho, Washington]
+protectedAreas:
+  # the national parks and the national recreation area and historical reserve named on the
+  # association's section pages, and the six wilderness areas its FAQ names
+  - Glacier National Park
+  - Salmo-Priest Wilderness
+  - Pasayten Wilderness
+  - Ross Lake National Recreation Area
+  - North Cascades National Park
+  - Stephen Mather Wilderness
+  - Mount Baker Wilderness
+  - Ebey's Landing National Historical Reserve
+  - Buckhorn Wilderness
+  - Olympic National Park
+  - Daniel J. Evans Wilderness
+termini:
+  # the FAQ: "The eastern terminus … is located at the Chief Mountain Customs parking area, in the
+  # northeast corner of Glacier National Park" and "The western terminus … is located at Cape
+  # Alava"; coordinates from OSM (the customs building, way 83326370; the cape, node 4971180836)
+  start:
+    name: Chief Mountain Customs (Glacier National Park)
+    lat: 48.99663
+    lon: -113.66025
+  end:
+    name: Cape Alava (Olympic National Park)
+    lat: 48.16979
+    lon: -124.73141
+  source: pnta-faq
+established:
+  # "Designated a National Scenic Trail in 2009" (FAQ)
+  year: 2009
+  source: pnta-faq
+waymarking:
+  text: Most of the trail is not yet marked with signage, and the right combination of paths is often not obvious; the association advises carrying its strip maps, a compass and a GPS app.
+  source: pnta-navigate
+length:
+  # "The Pacific Northwest Trail is about 1,200 miles long" (FAQ); the ten sections sum to 1,248
+  # miles (the sections' own km: 2,009)
+  - km: 1931
+    approx: true
+    source: pnta-faq
+days:
+  # the FAQ: "Thru-hikers typically take 60-75 days to complete the entire trail"
+  min: 60
+  max: 75
+  source: pnta-faq
+stages:
+  # the association's ten sections from east to west (Sections of the PNT and each section's page),
+  # with their miles, km and elevation gain and loss in feet (converted at 0.3048 m a foot; section
+  # 8's an estimate, "Est."). No GPX: each section is the shortest way over the OSM relations'
+  # ways to its end (route.branched). Ends from OSM on the relations' line: Eureka (the town), the
+  # Kootenai River crossing at Copeland (the FS: "the trail drops down to cross the Kootenai River
+  # near Bonners Ferry"; the section 3 page: "From the fertile Kootenai River Valley the trail
+  # climbs"), Northport (the Columbia River bridge), Sweat Creek and Cold Springs (OSM names neither;
+  # each placed on the line where the operator's section miles from Northport end: Sweat Creek at
+  # the Highway 20 crossing near Clackamas Mountain, Cold Springs below Chopaka Mountain in the
+  # Loomis State Forest), Ross Dam (where the
+  # FS says the trail "crosses the Skagit River at Ross Dam" in Ross Lake NRA), the nearest point to
+  # the Oyster Dome viewpoint, the Coupeville (Keystone) ferry terminal, the point nearest Forks
+  # where the trail passes it, and Cape Alava
+  source: pnta-sections
+  list:
+    - { number: "1", kind: main, from: "Chief Mountain (Glacier National Park)", to: "Eureka, Montana", km: 243, ascentM: 7304, descentM: 8138, end: { lat: 48.87985, lon: -115.05305 } }
+    - { number: "2", kind: main, from: "Eureka, Montana", to: "Bonners Ferry, Idaho (Kootenai River)", km: 159, ascentM: 7076, descentM: 7101, end: { lat: 48.90551, lon: -116.40214 } }
+    - { number: "3", kind: main, from: "Bonners Ferry, Idaho (Kootenai River)", to: "Northport, Washington", km: 245, ascentM: 9291, descentM: 9639, end: { lat: 48.91776, lon: -117.77727 } }
+    - { number: "4", kind: main, from: "Northport, Washington", to: "Sweat Creek", km: 206, ascentM: 8189, descentM: 7531, end: { lat: 48.68003, lon: -118.90605 } }
+    - { number: "5", kind: main, from: "Sweat Creek", to: "Cold Springs (Loomis)", km: 159, ascentM: 5030, descentM: 4246, end: { lat: 48.92524, lon: -119.76604 } }
+    - { number: "6", kind: main, from: "Cold Springs (Loomis)", to: "Ross Lake NRA (Ross Dam)", km: 192, ascentM: 7234, descentM: 8578, end: { lat: 48.73303, lon: -121.0699 } }
+    - { number: "7", kind: main, from: "Ross Lake NRA (Ross Dam)", to: "Oyster Dome", km: 315, ascentM: 11528, descentM: 11999, end: { lat: 48.62197, lon: -122.41089 } }
+    - { number: "8", kind: main, from: "Oyster Dome", to: "Coupeville", km: 113, ascentM: 1529, descentM: 1567, end: { lat: 48.15913, lon: -122.67271 } }
+    - { number: "9", kind: main, from: "Coupeville", to: "Forks", km: 274, ascentM: 11325, descentM: 11256, end: { lat: 47.8953, lon: -124.36409 } }
+    - { number: "10", kind: main, from: "Forks", to: "Cape Alava", km: 103, ascentM: 1732, descentM: 1795, joinM: 520, end: { lat: 48.16979, lon: -124.73141 } }
+  transfers:
+    # the Keystone ferry over Admiralty Inlet, from Coupeville to Port Townsend, at the start of
+    # section 9 ("Keystone Ferry between Coupeville and Port Townsend"); its line OSM's ferry way
+    # 232488600 (Washington State Ferries)
+    - by: boat
+      stage: "9"
+      start: { name: Coupeville (Keystone) ferry terminal, lat: 48.15913, lon: -122.67272 }
+      end: { name: Port Townsend ferry terminal, lat: 48.11111, lon: -122.75902 }
+      via:
+        - { lat: 48.15554, lon: -122.67164 }
+        - { lat: 48.1517, lon: -122.67035 }
+        - { lat: 48.14951, lon: -122.67093 }
+        - { lat: 48.1478, lon: -122.67266 }
+        - { lat: 48.11636, lon: -122.73735 }
+        - { lat: 48.11002, lon: -122.74987 }
+        - { lat: 48.10846, lon: -122.75437 }
+        - { lat: 48.10863, lon: -122.75615 }
+        - { lat: 48.10942, lon: -122.75749 }
+      source: pnta-sections
+route:
+  # built by `python -m pipeline.all pacific-northwest-trail`: OSM ways matched to the OSM hiking
+  # relations "Pacific Northwest Trail 01 Montana" (11225404), "02 Idaho" (11225403) and "03
+  # Washington" (3718820), merged with the superroute's own ways (11225405: the Kettle Crest Trail
+  # South near Sherman Pass, which closes a 6 km gap in the Washington relation)
+  source: osm
+  publishable: true
+  relation: [11225404, 11225403, 3718820, 11225405]
+  branched: true
+difficulty:
+  estimated:
+    sac: T3
+    basis: >-
+      The association calls the trail rugged and harder to follow than other National Scenic
+      Trails: bushwhacking through dense forest where no trail exists, mixed Class 2 and 3
+      scrambling in rocky areas (the Selkirk Crest, "the most rugged terrain found on the PNT"),
+      cross-country travel, overgrown connector trails and logging roads, snow on high passes early
+      in the season, a hazardous ford at Swift Creek, and on the Wilderness Coast headlands crossed
+      at low tide or by steep overland trails and rope ladders. Demanding mountain hiking (T3) with
+      some harder scrambles.
+    source: pnta-navigate
+season:
+  # the FAQ: "Prime Season: July – September"; thru-hikers "typically start at Glacier National
+  # Park in early July … They typically arrive at the Pacific Ocean in September"
+  months: [7, 8, 9]
+  text: Prime season July to September; thru-hikers start in Glacier National Park in early July, once most of the snow has melted, and reach the Pacific in September
+  source: pnta-faq
+permit:
+  required: true
+  name: Backcountry camping permits in Glacier, North Cascades and Olympic National Parks
+  issuedBy: National Park Service
+  how: >-
+    No permit is needed for the trail as a whole, and there is no coordinated thru-hiking permit;
+    overnight stays in Glacier National Park, the North Cascades National Park Complex and Olympic
+    National Park need a backcountry permit from each park, for named backcountry campsites.
+  url: https://www.pnt.org/pnta/know-before-you-go/plan-your-trip/permits-fees/
+  source: pnta-permits
+sleeping:
+  # Camping and Fees: designated backcountry sites in the national parks, national forest, state
+  # forest and state park campgrounds, dispersed camping on the national forests; historic cabins
+  # and fire lookouts to reserve
+  types: [campsite]
+  source: pnta-permits
+wildCamping:
+  status: restricted
+  rule: >-
+    Dispersed backcountry camping is free on the national forests (follow local rules and Leave No
+    Trace); in Glacier, North Cascades and Olympic National Parks camping is allowed only at the
+    designated backcountry sites on the permit, and in the Puget Sound section only in designated
+    campgrounds.
+  source: pnta-permits
+access:
+  # the association: "The AMTRAK station in East Glacier is the closest to the Pacific Northwest
+  # Trail"; Glacier Park International Airport (Kalispell) the nearest international airport.
+  # Coordinates from OSM; distances by pipeline/access.py
+  - kind: station
+    name: East Glacier Park station (Amtrak)
+    lat: 48.44223
+    lon: -113.21936
+    source: osm
+  - kind: airport
+    name: Glacier Park International Airport (FCA)
+    lat: 48.3108
+    lon: -114.25569
+    source: osm
+animals:
+  # the National Park Service: Glacier National Park's bear safety page (grizzly and black bears) and
+  # Olympic National Park's cougar page; the association: grizzly bears along "roughly 400 miles"
+  # from Glacier to the Colville National Forest, black bears on all but the 70 miles of Puget Sound;
+  # levels ours
+  list:
+    - kind: bear
+      name: Grizzly bear and black bear
+      level: high
+      basis: Grizzly bears live along about 400 miles of the trail, from Glacier National Park to the Colville National Forest, and black bears along all of it but the 70 miles of Puget Sound; Glacier alone is home to nearly a thousand bears, and proper food storage is required.
+      do:
+        - Calling out and clapping at regular intervals are better ways to make your presence known
+        - Carry bear spray. Be sure you know how to use it and that you are carrying it in an accessible place
+        - If a bear or other animal is moving in your direction on a trail, get out of its way and let it pass
+        - Back away slowly. Stop if it seems to agitate the bear
+        - If the attack is prolonged, FIGHT BACK!
+      dont:
+        - Never intentionally get close to a bear
+        - Never leave food, garbage, or anything used to prepare, consume, store, or transport food unattended
+        - Do not run!
+        - DO NOT LET THE BEAR GET YOUR FOOD!
+      source: nps-glac-bears
+    - kind: big-cat
+      name: Cougar (mountain lion)
+      level: low
+      basis: Cougars range throughout the Olympics; seldom seen, they are potentially dangerous animals, although attacks on humans are rare.
+      do:
+        - Keep your kids between adults and don't let them run ahead
+        - Face the animal, stand upright, talk calmly and firmly to the cougar and give it a way to escape if you can
+        - Do all you can to appear larger. For example, open your jacket and raise or wave your arms
+        - Fight back if attacked
+      dont:
+        - Do not approach.
+        - Stop, stay calm and do not turn your back. Do not run.
+      source: nps-olym-cougar
+tags: [mountains, forest, wilderness, coast]
+notes:
+  - >-
+    Stages: the association's ten sections, east to west, with the miles and km, elevation gain and
+    loss on each section page (Section at a Glance), the gains and losses converted from feet. They
+    sum to 1,248 miles (2,009 km) and 70,238 m up, 71,850 m down; the FAQ's "about 1,200 miles"
+    is the length the page states ("cumulative mileage for the trail system is based on" the
+    primary route, which "can change year-to-year"). The association's map set also describes the
+    trail as "50 consecutive stages", but only inside its PDF map set; the record uses the sections
+    on its website. The sections are named by their ends' towns; where the line passes a town
+    some way off (Bonners Ferry, 20 km south of the Kootenai crossing at Copeland; Forks) the end is
+    the line's point by it (stages' comment).
+  - >-
+    Ferry: the Keystone ferry from Coupeville to Port Townsend (Washington State Ferries) is the
+    start of section 9, recorded as a transfer in stage 9; the association: "the only saltwater
+    ferry crossing on a National Scenic Trail".
+  - >-
+    Days: the FAQ's "Thru-hikers typically take 60-75 days"; it also gives an "Average Time to
+    Thru-Hike: 68 days" and "Most hikers seem to finish in 60-70 days".
+  - >-
+    Season: the FAQ's prime season July to September (best weather "between mid-June and
+    mid-September"); the Puget Sound section can be hiked year-round and the coast has a longer
+    season.
+  - >-
+    Tree line: no published tree line for the Northern Rockies, the North Cascades or the
+    Olympics was found on the National Park Service's pages (Glacier's plants, North Cascades'
+    plants, Olympic's subalpine zone, 2026-11-07), so none is drawn.
+  - >-
+    Wildlife: also wolves, moose and elk (Olympic National Park: "Elk are one of the most dangerous
+    animals in the park") and, in the Okanogan Highlands, rattlesnakes (the association's section 5
+    page); not listed, without an official source's advice for the trail's region at hand. The
+    association's FAQ points to Glacier and Olympic National Parks and the Interagency Grizzly Bear
+    Committee for bear safety.
+  - >-
+    Map line (2026-11-07): the Montana, Idaho and Washington Geofabrik extracts (2026-11-05); OSM ways
+    matched to the shortest way over the OSM relations' ways (01 Montana, 02 Idaho, 03 Washington
+    and the superroute's own ways, which close the Washington relation's 6 km gap on the Kettle
+    Crest near Sherman Pass). Stages 1–9 are 100 % matched. Stage 10 is 83 % matched: the
+    Washington relation is in three pieces on the coast (28 m apart at the Hoh River and 502 m
+    apart in La Push, where OSM's relation leaves out the village's streets), so the stage's joinM
+    of 520 m lets its guide cut corners of up to 500 m; the matched line follows OSM ways
+    throughout (no bridges) and covers 95.5 % of the relation's own line within 30 m. At the
+    Quillayute River's mouth the relation, and so the map line, crosses on an informal ferry way
+    (404 m, "users must ask local fishermen to ferry them across"); the Forest Service names only
+    "a crossing of the Quillayute River", so it is left in the line, not recorded as a transfer.
+    The main route measures 1,943.6 km on the map line (1,963.8 km on the full match) against the
+    FAQ's about 1,200 miles (1,931 km, +0.7 %) and the sections' 1,248 miles (2,009 km, −3.3 %).
+    Stage 1 is 212 km against 243 km (−13 %) and stage 2 182 km against 159 km (+15 %): OSM's
+    Montana relation runs a shorter way to Eureka and a longer one on to the Kootenai than the
+    sections' miles; together they agree (394 against 402 km, −2 %). Highest point 2,294 m at km
+    1,038 in the Pasayten Wilderness (section 6's stated highest point 7,580 ft, 2,310 m, −0.7 %),
+    lowest 0 m at km 1,485 on Samish Bay.
+  - >-
+    Ascent: the sections' gains and losses sum to 70,238 m up and 71,850 m down; the terrain model
+    gives about 54,440 m of climbing on the map line (−22 %, sampled every 500 m, which smooths
+    small climbs), and Wikipedia's infobox 205,211 ft (62,548 m) east to west. The page keeps the
+    association's figures (dataCheck.deviations).
+  - >-
+    Water: OSM maps 22 drinking water points and 7 springs within 500 m; the longest stretch without
+    clean water (drinking water or a refill at a campground) is 243 km (km 222–465, from Eureka
+    over the Purcells to the Selkirks), without any mapped water 509 km. Creeks and lakes are many
+    but OSM doesn't count them; the association names no water points to add.
+  - >-
+    Resupply: OSM maps 36 shops near the trail, the longest stretch without one 552 km (km 936–1,488,
+    from the Okanogan valley over the Pasayten Wilderness and the North Cascades to the Chuckanut
+    Mountains); the association: "With 150 miles between resupply points" in the Pasayten, and its
+    Trail Towns and Resupply page lists, among others, Polebridge, Eureka, Rexford, Yaak, Bonners
+    Ferry, Metaline Falls, Northport, Orient, Oroville, Loomis, Ross Lake Resort, Alger, Anacortes,
+    Oak Harbor, Coupeville, Port Townsend, Forks and La Push, several off the trail.
+  - >-
+    Beds: OSM maps 189 places to sleep near the trail (179 campsites), the longest stretch without
+    one 243 km (km 222–465); dispersed camping is allowed on the national forests (the wild
+    camping rule).
+  - >-
+    Access: East Glacier Park's Amtrak station, 92 km by road from Chief Mountain, and Glacier Park
+    International Airport, 219 km.
+  - >-
+    Data check (2026-11-07): against the Forest Service's pages (About the Trail; Geographic Areas)
+    and English Wikipedia. Length: the Forest Service "1,200 miles" and its five geographic areas
+    summing to 1,213 miles (1,952 km), Wikipedia 1,200 miles, against the association's about 1,200
+    miles (1,931 km): agree (+1 %); the ten sections sum to 1,248 miles (2,009 km, +3 % on 1,213).
+    Termini: the Forest Service "eastern terminus is located at Chief Mountain Customs in Glacier
+    National Park" and Wikipedia Cape Alava: agree. Designation 2009: agree (Forest Service,
+    Wikipedia). Ascent and descent: Wikipedia 205,211 ft (62,548 m) up and 210,427 ft (64,138 m)
+    down east to west against the sections' 70,238 and 71,850 m: +12 % each (deviations). Season:
+    Wikipedia "Year-round at lower elevations, summer and fall at higher elevations", which agrees
+    with the FAQ (Puget Sound year-round, thru-hikers July to September). Days: only the
+    association gives a figure. Permits and camping: the Forest Service's About the Trail names the
+    same three national parks. Difficulty: Wikipedia "Easy to strenuous"; our T3 estimate fits the
+    association's scrambling and bushwhacking. Highest point: 2,294 m on the terrain model against
+    the association's 7,580 ft (2,310 m): agree. The ten sections' miles, km, gains and losses and
+    ends on the built page were checked one by one against the section pages and agree. Derived
+    against stated: stages 1 and 2 are 13 % and 15 % off on the map line (Map line note).
+dataCheck:
+  # working rule 2: the Forest Service's pages and English Wikipedia as second sources; the sections'
+  # figures only on the association's pages, so the built page was checked against them
+  date: 2026-11-07
+  against: [usfs-about, usfs-areas, wikipedia]
+  pageAgainst: [pnta-sections]
+  deviations:
+    - { figure: ascent, ours: "70,238 m (sections' sum)", theirs: "62,548 m (205,211 ft)", source: wikipedia }
+    - { figure: descent, ours: "71,850 m (sections' sum)", theirs: "64,138 m (210,427 ft)", source: wikipedia }
+    - { figure: stage 1 length, ours: "243 km (151 mi)", theirs: "212.4 km on the map line", source: osm }
+    - { figure: stage 2 length, ours: "159 km (99 mi)", theirs: "181.8 km on the map line", source: osm }
+sources:
+  - id: pnta-sections
+    title: "Pacific Northwest Trail Association: Sections of the PNT and the ten section pages (ends, miles, km, highest point, elevation gain and loss)"
+    url: https://www.pnt.org/pnta/sections-of-the-pnt/
+    licence: All rights reserved (facts only)
+    retrieved: 2026-11-07
+  - id: pnta-faq
+    title: "Pacific Northwest Trail Association: FAQ (about 1,200 miles, termini, prime season, 60–75 days, designated 2009)"
+    url: https://www.pnt.org/pnta/know-before-you-go/plan-your-trip/faq/
+    licence: All rights reserved (facts only)
+    retrieved: 2026-11-07
+  - id: pnta-navigate
+    title: "Pacific Northwest Trail Association: Navigating the PNT (mostly unmarked, bushwhacking, Class 2 and 3 scrambling)"
+    url: https://www.pnt.org/pnta/know-before-you-go/plan-your-trip/navigate/
+    licence: All rights reserved (facts only)
+    retrieved: 2026-11-07
+  - id: pnta-permits
+    title: "Pacific Northwest Trail Association: Camping and Fees (backcountry permits, campgrounds, dispersed camping)"
+    url: https://www.pnt.org/pnta/know-before-you-go/plan-your-trip/permits-fees/
+    licence: All rights reserved (facts only)
+    retrieved: 2026-11-07
+  - id: nps-glac-bears
+    title: "National Park Service, Glacier National Park: Bear Safety"
+    url: https://www.nps.gov/glac/planyourvisit/bears.htm
+    licence: US federal government work, public domain
+    retrieved: 2026-11-07
+  - id: nps-olym-cougar
+    title: "National Park Service, Olympic National Park: Cougar"
+    url: https://www.nps.gov/olym/learn/nature/cougar.htm
+    licence: US federal government work, public domain
+    retrieved: 2026-11-07
+  - id: usfs-about
+    title: "USDA Forest Service: Pacific Northwest National Scenic Trail, About the Trail (1,200 miles)"
+    url: https://www.fs.usda.gov/trails/pacific-northwest-nst/about-trail
+    licence: US federal government work, public domain
+    retrieved: 2026-11-07
+    checkOnly: true
+  - id: usfs-areas
+    title: "USDA Forest Service: Pacific Northwest National Scenic Trail, Geographic Areas (five areas with their miles, east to west)"
+    url: https://www.fs.usda.gov/trails/pacific-northwest-nst/geographic-areas
+    licence: US federal government work, public domain
+    retrieved: 2026-11-07
+    checkOnly: true
+  - id: wikipedia
+    title: "Wikipedia (en): Pacific Northwest Trail (1,200 miles, elevation gain and loss, season, difficulty)"
+    url: https://en.wikipedia.org/wiki/Pacific_Northwest_Trail
+    licence: CC BY-SA 4.0
+    retrieved: 2026-11-07
+    checkOnly: true
+  - id: wikimedia
+    title: "Wikimedia: page views of the trail's Wikipedia articles in every language, by people, over twelve months (Wikidata sitelinks, pageview API)"
+    url: https://wikimedia.org/api/rest_v1/
+    licence: CC0 1.0 (pageview data); Wikidata CC0
+    retrieved: 2026-11-07
+    checkOnly: true  # not on the trail page: the page views only rank the home page's popular trails
+  - id: osm
+    title: "OpenStreetMap contributors: paths, water, shops and places to sleep along the trail (Geofabrik extracts), travel hubs"
+    url: https://www.openstreetmap.org/
+    licence: ODbL 1.0
+    retrieved: 2026-11-07
+  - id: copdem
+    title: "Copernicus DEM GLO-30 (30 m terrain model), tiles from AWS Open Data"
+    url: https://registry.opendata.aws/copernicus-dem/
+    licence: "Copernicus WorldDEM-30 licence, free; produced using Copernicus WorldDEM-30 © DLR e.V. 2010-2014 and © Airbus Defence and Space GmbH 2014-2018 provided under COPERNICUS by the European Union and ESA; all rights reserved"
+    retrieved: 2026-11-07
+  - id: worldcover
+    title: "ESA WorldCover 2021: 10 m land cover (via AWS Open Data)"
+    url: https://esa-worldcover.org/
+    licence: "CC BY 4.0; © ESA WorldCover project 2021 / Contains modified Copernicus Sentinel data (2021) processed by ESA WorldCover consortium"
+    retrieved: 2026-11-07
+  - id: era5
+    title: "Open-Meteo open data on AWS: ERA5-Land temperature and ERA5 precipitation, snow and wind, daily 1995–2024 (reanalysis)"
+    url: https://github.com/open-meteo/open-data
+    licence: CC BY 4.0 (Open-Meteo); contains modified Copernicus Climate Change Service information
+    retrieved: 2026-11-07
+  - id: osrm
+    title: "OSRM: road routes on OpenStreetMap data (router.project-osrm.org)"
+    url: https://project-osrm.org/
+    licence: Route data © OpenStreetMap contributors (ODbL)
+    retrieved: 2026-11-07
