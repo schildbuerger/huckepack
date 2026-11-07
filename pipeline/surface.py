@@ -80,7 +80,7 @@ def build(slug, refresh=False):
         if "number" in f["properties"] and f["properties"]["kind"] != "transfer":
             key = (f["properties"]["number"], f["properties"]["kind"])
             map_km[key] = map_km.get(key, 0) + line_km(f)
-    main = sorted((s for s in stage_ways if s["kind"] == "main"), key=lambda s: osm.stage_order(s["number"]))
+    main = [s for s in stage_ways if s["kind"] == "main"]  # in the record's order, as along.py
 
     runs, km, totals, inferred = [], 0.0, {c: 0.0 for c in [*CATEGORIES, "unknown"]}, 0.0
     for stage in main:

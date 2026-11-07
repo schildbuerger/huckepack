@@ -180,6 +180,8 @@ And the **Cohos Trail** (New Hampshire: the Cohos Trail Association's "nearly 16
 
 And the **Huemul Circuit** (Argentina, Santa Cruz: the Vuelta al Cerro Huemul of the Administración de Parques Nacionales in Los Glaciares National Park, 65 km round Cerro Huemul from El Chaltén by Laguna Toro, the Túnel glacier and the Paso del Viento to the Paso Huemul above the Southern Patagonian Ice Field and the Viedma Glacier, down to Lago Viedma and back by Bahía Túnel, in the APN's four days, a remote area with fords, two Tyrolean traverses and little waymarking, compulsory registration, camping only at the park's sites; over the OSM relation; 2026-11-07).
 
+And the **New England National Scenic Trail** (Connecticut and Massachusetts: the National Park Service's 235 miles with the Connecticut Forest & Park Association and the Appalachian Mountain Club from Long Island Sound at Guilford over the Menunkatuck, the Mattabesett and the Metacomet Trail's traprock ridges, Ragged Mountain, Talcott Mountain and the Mount Tom and Holyoke Ranges, across the Connecticut River without a crossing, to Mount Grace and the New Hampshire line at Royalston, in the trail's 40 sections, with the Mattabesett's eastern arm to Middletown as a branch, 2–4 weeks, spring and fall, camping only at ten overnight sites; over the trail's OSM relation; 2026-11-07).
+
 | # | Trail | Region | Length (approx.) | Why |
 |---|---|---|---|---|
 | 1 | Pacific Crest Trail | USA | 4,265 km | Most-hiked long trail; public US agency data; completion lists |

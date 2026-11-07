@@ -105,10 +105,8 @@ def route_samples(slug):
     where each main stage starts, and the main route's length in metres. Shared with
     pipeline/landcover.py, so its samples fall on the elevation profile's kilometres."""
     route = json.loads((ROOT / "public" / "routes" / f"{slug}.geojson").read_text())
-    stages = sorted(
-        (f for f in route["features"] if f["properties"]["kind"] == "main"),
-        key=lambda f: osm.stage_order(f["properties"]["number"]),
-    )
+    # in the record's order, as pipeline/along.py
+    stages = [f for f in route["features"] if f["properties"]["kind"] == "main"]
     every = [c for f in stages for c in f["geometry"]["coordinates"]]
     proj = osm.Projection(sum(lat for _, lat in every) / len(every))
     total = sum(math.dist(proj.xy(*a), proj.xy(*b)) for f in stages for a, b in zip(f["geometry"]["coordinates"], f["geometry"]["coordinates"][1:]))

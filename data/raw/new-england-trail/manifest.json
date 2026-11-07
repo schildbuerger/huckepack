@@ -1,0 +1,260 @@
+{
+  "climate-high.json": {
+    "retrieved": "2026-11-07T00:37:21+00:00",
+    "url": "https://openmeteo.s3.us-west-2.amazonaws.com/data/copernicus_era5_land+copernicus_era5?latitude=42.7&longitude=-72.4&elevation=500"
+  },
+  "climate-low.json": {
+    "retrieved": "2026-11-07T00:37:20+00:00",
+    "url": "https://openmeteo.s3.us-west-2.amazonaws.com/data/copernicus_era5_land+copernicus_era5?latitude=41.3&longitude=-72.7&elevation=0&wind=41.5,-72.75"
+  },
+  "commons-geo.json": {
+    "key": "with categories, 326.4 km, every 2.5 km, 1500 m, within 0.5 km",
+    "retrieved": "2026-11-07T00:46:36+00:00",
+    "url": "Commons geosearch along the route"
+  },
+  "commons.json": {
+    "key": "Q7007323",
+    "retrieved": "2026-11-07T00:36:00+00:00",
+    "url": "Q7007323 P18 P373"
+  },
+  "elevation-glo30.json": {
+    "retrieved": "2026-11-07T00:42:48+00:00",
+    "url": "https://copernicus-dem-30m.s3.eu-central-1.amazonaws.com/Copernicus_DSM_COG_10_N41_00_W073_00_DEM/Copernicus_DSM_COG_10_N41_00_W073_00_DEM.tif https://copernicus-dem-30m.s3.eu-central-1.amazonaws.com/Copernicus_DSM_COG_10_N42_00_W073_00_DEM/Copernicus_DSM_COG_10_N42_00_W073_00_DEM.tif"
+  },
+  "landcover.json": {
+    "retrieved": "2026-11-07T00:42:50+00:00",
+    "url": "https://esa-worldcover.s3.eu-central-1.amazonaws.com/v200/2021/map/ESA_WorldCover_10m_2021_v200_\u2026_Map.tif"
+  },
+  "osm-relation.json": {
+    "retrieved": "2026-11-05T21:23:02Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-CT 1-variant.json": {
+    "key": "a9ee45e48ac6",
+    "retrieved": "2026-11-05T21:23:02Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-CT 10-main.json": {
+    "key": "4ea77ba145e1",
+    "retrieved": "2026-11-05T21:23:02Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-CT 11-main.json": {
+    "key": "88d5c13b45d3",
+    "retrieved": "2026-11-05T21:23:02Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-CT 12-main.json": {
+    "key": "5fa3f018b58a",
+    "retrieved": "2026-11-05T21:23:02Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-CT 13-main.json": {
+    "key": "7cceeaefca67",
+    "retrieved": "2026-11-05T21:23:02Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-CT 14-main.json": {
+    "key": "7094a3fd6c99",
+    "retrieved": "2026-11-05T21:23:02Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-CT 15-main.json": {
+    "key": "26c7cfb73d75",
+    "retrieved": "2026-11-05T21:23:02Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-CT 16-main.json": {
+    "key": "f4cf7dffb024",
+    "retrieved": "2026-11-05T21:23:02Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-CT 17-main.json": {
+    "key": "abecb7ef3087",
+    "retrieved": "2026-11-05T21:23:02Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-CT 18-main.json": {
+    "key": "052694e61d0a",
+    "retrieved": "2026-11-05T21:23:02Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-CT 19-main.json": {
+    "key": "294f07644358",
+    "retrieved": "2026-11-05T21:23:02Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-CT 2-variant.json": {
+    "key": "7c0cf9c01297",
+    "retrieved": "2026-11-05T21:23:02Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-CT 20-main.json": {
+    "key": "1fb8f30d1568",
+    "retrieved": "2026-11-05T21:23:02Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-CT 21-main.json": {
+    "key": "2dbc0769b9f2",
+    "retrieved": "2026-11-05T21:23:02Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-CT 3-variant.json": {
+    "key": "0c6ed167c479",
+    "retrieved": "2026-11-05T21:23:02Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-CT 4-variant.json": {
+    "key": "4b90c14e6ec1",
+    "retrieved": "2026-11-05T21:23:02Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-CT 5-main.json": {
+    "key": "5e8458bb54fd",
+    "retrieved": "2026-11-05T21:23:02Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-CT 6-main.json": {
+    "key": "93ef28a5a746",
+    "retrieved": "2026-11-05T21:23:02Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-CT 7-main.json": {
+    "key": "9a50c920e94c",
+    "retrieved": "2026-11-05T21:23:02Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-CT 8-main.json": {
+    "key": "7f6189794ecb",
+    "retrieved": "2026-11-05T21:23:02Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-CT 9-main.json": {
+    "key": "6af1fef57936",
+    "retrieved": "2026-11-05T21:23:02Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-MA 1-main.json": {
+    "key": "496937c9b959",
+    "retrieved": "2026-11-05T21:23:02Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-MA 10-main.json": {
+    "key": "58ee7d03c95a",
+    "retrieved": "2026-11-05T21:23:02Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-MA 11-main.json": {
+    "key": "67a8d642849e",
+    "retrieved": "2026-11-05T21:23:02Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-MA 12-main.json": {
+    "key": "366a58d3d540",
+    "retrieved": "2026-11-05T21:23:02Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-MA 13-main.json": {
+    "key": "b635ba4f5c1d",
+    "retrieved": "2026-11-05T21:23:02Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-MA 14-main.json": {
+    "key": "41acdfbc1953",
+    "retrieved": "2026-11-05T21:23:02Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-MA 15-main.json": {
+    "key": "a8569430abcb",
+    "retrieved": "2026-11-05T21:23:02Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-MA 16-main.json": {
+    "key": "0c720ad3a7b7",
+    "retrieved": "2026-11-05T21:23:02Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-MA 17-main.json": {
+    "key": "4c01081ae1fc",
+    "retrieved": "2026-11-05T21:23:02Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-MA 18-main.json": {
+    "key": "a5f64299b203",
+    "retrieved": "2026-11-05T21:23:02Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-MA 19-main.json": {
+    "key": "84a62cee4883",
+    "retrieved": "2026-11-05T21:23:02Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-MA 2-main.json": {
+    "key": "ff5587b4db53",
+    "retrieved": "2026-11-05T21:23:02Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-MA 3-main.json": {
+    "key": "468e86dd7dec",
+    "retrieved": "2026-11-05T21:23:02Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-MA 4-main.json": {
+    "key": "09c93518014e",
+    "retrieved": "2026-11-05T21:23:02Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-MA 5-main.json": {
+    "key": "23a873c85014",
+    "retrieved": "2026-11-05T21:23:02Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-MA 6-main.json": {
+    "key": "8730d5408f4c",
+    "retrieved": "2026-11-05T21:23:02Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-MA 7-main.json": {
+    "key": "3ea26cf324c5",
+    "retrieved": "2026-11-05T21:23:02Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-MA 8-main.json": {
+    "key": "169b409cf283",
+    "retrieved": "2026-11-05T21:23:02Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-MA 9-main.json": {
+    "key": "c1be02cbca6a",
+    "retrieved": "2026-11-05T21:23:02Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-water.json": {
+    "retrieved": "2026-11-05T21:23:02Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-way-tags.json": {
+    "retrieved": "2026-11-05T21:23:02Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osrm-access-boston-logan-international-airport-bos.json": {
+    "retrieved": "2026-11-07T00:37:21+00:00",
+    "url": "https://router.project-osrm.org/route/v1/driving/-71.01364,42.36318;-72.67196,41.26751?overview=false"
+  },
+  "osrm-access-bradley-international-airport-bdl.json": {
+    "retrieved": "2026-11-07T00:37:21+00:00",
+    "url": "https://router.project-osrm.org/route/v1/driving/-72.685,41.94069;-72.67196,41.26751?overview=false"
+  },
+  "osrm-access-guilford-station-amtrak-shore-line-east.json": {
+    "retrieved": "2026-11-07T00:37:21+00:00",
+    "url": "https://router.project-osrm.org/route/v1/driving/-72.67361,41.27572;-72.67196,41.26751?overview=false"
+  },
+  "osrm-access-rhode-island-t-f-green-international-airport-pvd.json": {
+    "retrieved": "2026-11-07T00:37:21+00:00",
+    "url": "https://router.project-osrm.org/route/v1/driving/-71.42873,41.72253;-72.67196,41.26751?overview=false"
+  },
+  "wikimedia.json": {
+    "retrieved": "2026-11-07T00:37:22+00:00",
+    "url": "Q7007323 2025-11..2026-10"
+  }
+}
