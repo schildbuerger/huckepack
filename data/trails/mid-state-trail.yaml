@@ -1,0 +1,362 @@
+name: Mid State Trail
+added: 2026-11-07
+aliases: [MST]
+website: https://hike-mst.org/
+wikidata: Q6841011
+managedBy:
+  # the FAQ: "The footpath is built, mapped, and maintained by volunteers"; "MST is mostly on public
+  # land. Public land partners include Pennsylvania Department of Conservation and Natural Resources
+  # (DCNR) Bureau of Forestry, Pennsylvania Game Commission, DCNR Bureau of State Parks …"
+  - name: Mid State Trail Association
+    url: https://hike-mst.org/
+  - name: Pennsylvania Department of Conservation and Natural Resources (Bureau of Forestry)
+    url: https://www.pa.gov/agencies/dcnr/recreation/where-to-go/state-forests/find-a-forest/rothrock/hiking
+officialGpx:
+  none: the association sells printed maps and its guidebook and offers the route in the FarOut app as an in-app purchase; no GPX to download (checked 2026-11-07)
+  source: msta-guide
+trailType: point-to-point
+continents: [North America]
+countries: [US]
+regions: [Pennsylvania]
+# the state forests and state parks the association's region pages name on the trail
+protectedAreas:
+  - Buchanan State Forest
+  - Rothrock State Forest
+  - Bald Eagle State Forest
+  - Tiadaghton State Forest
+  - Tioga State Forest
+  - Penn-Roosevelt State Park
+  - Poe Valley State Park
+  - Poe Paddy State Park
+  - R. B. Winter State Park
+  - Ravensburg State Park
+  - Little Pine State Park
+  - Hills Creek State Park
+termini:
+  # the FAQ: the south end "At the point where Black Valley Road becomes PA Route 326, 4 km
+  # northeast of Flintstone, MD"; the north end "At the intersection of Heffner, Mayo, and State Line
+  # Roads, on the border between Lawrence Township, Tioga County, Pennsylvania, and the Town of
+  # Tuscarora, Steuben County, New York". Coordinates from the ends of the OSM relation (1022044)
+  start:
+    name: Maryland line at PA 326 / Black Valley Road, near Flintstone
+    lat: 39.72278
+    lon: -78.54589
+  end:
+    name: New York line at Heffner, Mayo and State Line Roads, near Lawrenceville
+    lat: 41.99974
+    lon: -77.20381
+  source: msta-faq
+established:
+  # the State College Region page: "A monument (erected 2003) marks MST's 1969 birthplace near
+  # Little Flat Fire Tower"
+  year: 1969
+  source: msta-state-college
+waymarking:
+  # the Tioga Region page: "so the orange blazes continue across the NY border"; the FAQ: "The orange
+  # blazes continue north as Crystal Hills Trail"; side trails and detours yellow blazed (section updates)
+  text: Orange blazes; side trails and road detours are blazed yellow.
+  source: msta-sections
+stages:
+  # the association's 20 numbered sections, south to north, each with its own updates page
+  # (hike-mst.org/index.php/the-trail/section-updates/<n>-section-<n>) giving its ends and length in
+  # kilometres ("MD Border to PA 326 Rainsburg Gap (23.59 km)" …); section 3 is given as "32 km
+  # considering Everett Borough relocation and Yellow Creek Bridge detour". The lettered spurs A–C
+  # (Greenwood Spur, Ironstone Trail, Reeds Gap Spur) are side trails and left out. Stage ends on the
+  # OSM relation where it meets each section's road or junction
+  source: msta-sections
+  list:
+    - { number: "1", kind: main, from: Maryland line, to: PA 326 Rainsburg Gap, km: 23.59, end: { lat: 39.86677, lon: -78.51293 } }
+    - { number: "2", kind: main, from: PA 326 Rainsburg Gap, to: Ashcom Road (SR 1004), km: 22.69, end: { lat: 40.00541, lon: -78.4147 } }
+    - { number: "3", kind: main, from: Ashcom Road (SR 1004), to: PA 36 Loysburg Gap, km: 32, end: { lat: 40.15977, lon: -78.37215 } }
+    - { number: "4", kind: main, from: PA 36 Loysburg Gap, to: PA 164 near Martinsburg, km: 20.56, end: { lat: 40.29449, lon: -78.26363 } }
+    - { number: "5", kind: main, from: PA 164 near Martinsburg, to: Lower Trail Williamsburg Station, km: 24.83, end: { lat: 40.46192, lon: -78.19766 } }
+    - { number: "6", kind: main, from: Lower Trail Williamsburg Station, to: Alfarata Station near US 22, km: 17.83, end: { lat: 40.56678, lon: -78.1219 } }
+    - { number: "7", kind: main, from: Alfarata Station near US 22, to: PA 26 Jo Hays Vista, km: 31.94, end: { lat: 40.71619, lon: -77.89428 } }
+    - { number: "8", kind: main, from: PA 26 Jo Hays Vista, to: Detweiler Junction, km: 24.33, end: { lat: 40.71518, lon: -77.75101 } }
+    - { number: "9", kind: main, from: Detweiler Junction, to: US 322 Seven Mountains, km: 16.41, end: { lat: 40.74554, lon: -77.62567 } }
+    - { number: "10", kind: main, from: US 322 Seven Mountains, to: PA 45 Hairy John's Picnic Area, km: 42.92, end: { lat: 40.90993, lon: -77.28307 } }
+    - { number: "11", kind: main, from: PA 45 Hairy John's Picnic Area, to: PA 192 R. B. Winter State Park, km: 18.14, end: { lat: 40.98958, lon: -77.18964 } }
+    - { number: "12", kind: main, from: PA 192 R. B. Winter State Park, to: PA 880 Ravensburg State Park, km: 33.31, end: { lat: 41.10728, lon: -77.24423 } }
+    - { number: "13", kind: main, from: PA 880 Ravensburg State Park, to: PA 150, km: 21.13, end: { lat: 41.17118, lon: -77.36524 } }
+    - { number: "14", kind: main, from: PA 150, to: PA 44 (through Woolrich), km: 22.44, end: { lat: 41.28454, lon: -77.32296 } }
+    - { number: "15", kind: main, from: PA 44, to: Little Pine State Park (SR 4001), km: 16.92, end: { lat: 41.35017, lon: -77.35676 } }
+    - { number: "16", kind: main, from: Little Pine State Park (SR 4001), to: PA 414 Blackwell, km: 40.62, end: { lat: 41.55596, lon: -77.37818 } }
+    - { number: "17", kind: main, from: PA 414 Blackwell, to: PA 287 near Antrim, km: 24.64, end: { lat: 41.63827, lon: -77.3004 } }
+    - { number: "18", kind: main, from: PA 287 near Antrim, to: US 6, km: 39.44, end: { lat: 41.77472, lon: -77.17533 } }
+    - { number: "19", kind: main, from: US 6, to: PA 287 Ives Run (Tioga-Hammond Lakes), km: 24.63, end: { lat: 41.88068, lon: -77.20004 } }
+    - { number: "20", kind: main, from: PA 287 Ives Run (Tioga-Hammond Lakes), to: New York line, km: 30.16, end: { lat: 41.99974, lon: -77.20381 } }
+route:
+  # built by `python -m pipeline.all mid-state-trail`: OSM ways matched to the trail's OSM relation
+  # (1022044, "Mid-State Trail", ref MST), cut at the sections' ends
+  source: osm
+  publishable: true
+  relation: 1022044
+difficulty:
+  estimated:
+    sac: T2
+    basis: >-
+      DCNR: "a rugged and demanding mountain top trail, and hikers must carefully assess their own
+      ability to cope with the difficulties and possible dangers involved". The association names
+      ankle-biter rocks in the Detweiler Run valley, sharp boulders and knife edges in State Game Lands
+      97 and glacial mud in Tioga County, along rocky ridge crests with steep descents into the gaps;
+      a blazed footpath without exposed climbing: mountain hiking (T2).
+    source: dcnr-rothrock-hiking
+season:
+  # Wikipedia's infobox: "Season: Year-round"; the association publishes no season, only hunting
+  # closures (note "Season")
+  months: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
+  text: Year-round
+  source: wikipedia
+sleeping:
+  # the section updates: hiker shelters at Tenley Park in Everett, near the Mount Etna and Alfarata
+  # stations on the Lower Trail (one night) and Bald Eagle State Forest's on Pine Creek; campgrounds
+  # near Loysburg (tents allowed, honor box) and Scenic View Campground near Cowanesque Lake
+  types: [bivouac, campsite]
+  source: msta-sections
+wildCamping:
+  status: restricted
+  rule: >-
+    In the state forests backpackers may camp without a permit for one night in any location, but not
+    in Natural Areas, within 200 feet of a forest road, 25 feet of a trail or 100 feet of a stream or
+    open water; a free permit for more than one night at a site. Parts of the trail pass through other
+    ownerships which manage camping differently.
+  source: dcnr-rothrock-camping
+access:
+  # Cumberland station (Amtrak) near the southern end, Pittsburgh's and Harrisburg's airports.
+  # Coordinates from OSM; distances by pipeline/access.py
+  - kind: station
+    name: Cumberland station (Maryland)
+    lat: 39.65055
+    lon: -78.75793
+    source: osm
+  - kind: airport
+    name: Pittsburgh International Airport (PIT)
+    lat: 40.49178
+    lon: -80.23702
+    source: osm
+  - kind: airport
+    name: Harrisburg International Airport (MDT)
+    lat: 40.19321
+    lon: -76.75295
+    source: osm
+animals:
+  # DCNR's black bear advice ("A word on Pennsylvania black bears", in its Laurel Ridge guide, the
+  # same words as the Laurel Highlands Hiking Trail's record), DCNR's timber rattlesnake page and the
+  # CDC's tick advice. Levels ours
+  list:
+    - kind: bear
+      name: Black bear
+      level: moderate
+      basis: The association says that if you hike alone "you will meet more bears than people"; the Game Commission finds bears in large forested areas over three-quarters of the state.
+      do:
+        - Keep your campsite clean and clean up after meals
+        - When backpacking, store food away from your overnight campsite, suspended between two trees, ten feet in the air and three feet from either tree
+        - If you encounter a black bear, back away slowly without making direct eye contact
+        - If the bear does not leave the area, make a loud noise like blowing a whistle or banging a pot
+      dont:
+        - Never approach a bear, and be especially wary of mother bears with cubs
+        - Do not run
+      source: dcnr-bears
+    - kind: snake
+      name: Timber rattlesnake
+      level: moderate
+      basis: DCNR says timber rattlesnakes may use trails, roads or open rocky areas for basking; the trail follows rocky ridge crests for much of its length.
+      do:
+        - Be aware. Look around before sitting or reaching into piles of rock, logs, or boards
+        - Maintain a 3-foot buffer around a snake to avoid a strike
+        - Remain calm and reassure the snakebite victim
+        - If possible, immobilize the affected area and transport the snakebite victim immediately to the nearest medical facility
+      dont:
+        - Never pick up a rattlesnake, even one that appears to be dead
+        - Do not attempt first aid measures such as incision, suction, tourniquets, alcohol, or drugs on the snakebite victim
+      source: dcnr-rattlesnakes
+    - kind: tick
+      name: Blacklegged tick (deer tick)
+      level: moderate
+      basis: The blacklegged tick carries Lyme disease; the trail runs through forest and brush nearly all the way.
+      do:
+        - Walk in the center of trails
+        - Use EPA-registered insect repellents containing DEET, picaridin, IR3535, Oil of Lemon Eucalyptus (OLE), para-menthane-diol (PMD), or 2-undecanone
+        - Treat boots, clothing and gear with permethrin
+        - Check your body, clothing, gear and pets for ticks after being outdoors
+      dont:
+        - Avoid wooded and brushy areas with high grass and leaf litter
+      source: cdc-ticks
+tags: [forest, ridge, river]
+notes:
+  - >-
+    Stages: the association's 20 numbered sections with the lengths in kilometres from each
+    section's updates page (the trail has been measured in metric since its 1973 guide). They sum to
+    528.53 km. Section 3's "32 km" is rounded and still counts the Yellow Creek Bridge detour, which
+    the same page says is no longer needed since the bridge reopened (9/23); the record keeps the
+    association's figure.
+  - >-
+    Length: not stated as a total by the association ("Over 500 kilometers in length"), so the page
+    sums the sections (528.5 km). DCNR's Rothrock State Forest page gives "a 326 mile cross-country
+    trail" (524.6 km), Wikipedia 526 km (data check).
+  - >-
+    Days: the association gives no days for the whole trail; the page counts one day per section
+    (20), though sections 10, 16 and 18 (39–43 km) take most hikers longer.
+  - >-
+    Season: no season from the association; Wikipedia's infobox gives "Year-round". The association
+    lists hunting closures: parts of sections 18, 19 and 20 in Tioga County are closed October 1 to
+    January 31 (signed road detours), the south end of section 14 past PA 150 September 1 to January
+    31 (and closed for logging since May 2023); a hunting lessee asks hikers to wear blaze orange in
+    October, November, December and May, "a darn good idea anywhere on MST in these months".
+  - >-
+    Wild camping: DCNR's rule holds in the state forests (the Rothrock, Bald Eagle and Tiadaghton
+    camping pages alike). The association: section 2 in State Game Lands 97 has "no legal camping"
+    and no water on the trail; much of the Tioga Region crosses private land, camping only at named
+    spots.
+  - >-
+    Waymarking: the orange blaze is not drawn on the page; Waymark.astro has no orange mark yet
+    (OSM's relation tags it "5 cm x 15 cm orange rectangular blazes"). Left for the integrator, as it
+    changes the shared schema enum.
+  - >-
+    Tree line: not added; the route stays below 1,500 m (highest point Martin Hill, 829 m, in
+    section 1, by the association's FAQ).
+  - >-
+    Wildlife: Wikipedia's infobox names "Uneven and wet terrain, rattlesnakes, mosquitoes, ticks,
+    black bears". The black bear advice is DCNR's from its Laurel Ridge guide (advice on
+    Pennsylvania's black bears; the Game Commission's black bear page gives the range, no encounter
+    advice); the rattlesnake advice from DCNR's timber rattlesnake page; ticks from the CDC, whose
+    card DCNR's guides print. Mosquitoes are insects and not listed.
+  - >-
+    Map line (2026-11-07): the Maryland, Pennsylvania and New York Geofabrik extracts (2026-11-06);
+    OSM's Mid-State Trail relation (1022044) chained from the Maryland line to the New York line
+    (the guide jumps the relation's gaps of 167 and 649 m, but the matcher found connected OSM ways
+    there and bridged nothing), cut at the sections' ends, every section 100 % matched. It measures
+    498.9 km against the sections' 528.5 km (−5.6 %). Highest point 833 m at km 15.2 (the FAQ:
+    Martin Hill, 829 m, in section 1), lowest 160 m at km 310.1 by the West Branch Susquehanna
+    (Wikipedia 195 m at the road crossing). The terrain model gives about 16,190 m of climbing;
+    none is stated.
+  - >-
+    Section 3 measures 25.1 km on the map line against the association's 32 km (−22 %): the 32 km
+    is a rounded figure that the page itself says counts the Yellow Creek Bridge detour round by the
+    roads to the west, no longer needed since the bridge reopened in 2023, and the Everett Borough
+    relocation. The record keeps the association's figure; every other section is within 10 % (the
+    map line runs 1–9 % short throughout, as OSM's long ways cut the bends).
+  - >-
+    Water: OSM maps 6 drinking water points near the trail; the check's longest stretch without
+    drinking water is 131.2 km (km 348.9–480.1, Tioga County). The association's section pages list
+    streams and springs as water sources, to be treated ("filter and disinfect"), and taps at Hills
+    Creek State Park.
+  - >-
+    Resupply: OSM maps 7 shops near the trail, the longest stretch without one 159.5 km
+    (km 309.7–469.2, from the West Branch Susquehanna to Tioga County); the trail passes Woolrich
+    (the store is closed, says the association), Ramsey, Blackwell and Antrim without shops mapped.
+  - >-
+    Beds: OSM maps 28 places to sleep near the trail, the longest stretch without one 113.5 km
+    (km 0–113.5, the Everett Region): primitive camping in Buchanan State Forest, the Tenley Park
+    hiker shelter in Everett and the campground near Loysburg (section updates) are not mapped as
+    such; State Game Lands 97 (section 2) allows no camping.
+  - >-
+    Data check (2026-11-07): against English Wikipedia and DCNR's Rothrock State Forest page. Length:
+    the sections' 528.5 km against Wikipedia's 526 km (−0.5 %) and DCNR's 326 miles (524.6 km,
+    −0.7 %). The termini (Maryland line north of Flintstone, New York line near Lawrenceville), the
+    highest point (Martin Hill, 829 m, both), the lowest by the West Branch Susquehanna in Clinton
+    County (Wikipedia 195 m; the FAQ names the place, no height), the orange blazes, the four regions
+    and the year-round season agree. Difficulty: Wikipedia "Moderate to strenuous", DCNR "rugged and
+    demanding"; our T2 fits both. Neither gives days or section lengths; the 20 sections' ends and
+    kilometres on the built page were checked one by one against the association's section pages and
+    agree. No figure is more than 10 % apart.
+  - >-
+    Preflight (2026-11-07): the "login form" on the association's pages is the Joomla site's member
+    login box in the sidebar; every page reads without it, so no blocker. The OSM relation
+    (1022044, 468 ways, 516.1 km) chains 498.7 km (97 %) from the start, with gaps of 628 m and 164 m
+    (near Tram Road in section 15 and in section 17); the 29 ways left over (14.4 km) are side trails
+    and old routes.
+dataCheck:
+  # working rule 2: English Wikipedia and DCNR's Rothrock State Forest page as second sources; the
+  # section lengths only on the association's pages, so the built page was checked against them
+  date: 2026-11-07
+  against: [wikipedia, dcnr-rothrock-hiking]
+  pageAgainst: [msta-sections, msta-faq]
+  deviations: []
+sources:
+  - id: msta-sections
+    title: "Mid State Trail Association: Section Updates (sections 1–20 with their ends and lengths in km, alerts, shelters, water)"
+    url: https://hike-mst.org/index.php/the-trail/section-updates
+    licence: All rights reserved (facts only)
+    retrieved: 2026-11-07
+  - id: msta-faq
+    title: "Mid State Trail Association: Frequently Asked Questions (south and north ends, highest point, partners)"
+    url: https://hike-mst.org/index.php/resources/faq
+    licence: All rights reserved (facts only)
+    retrieved: 2026-11-07
+  - id: msta-guide
+    title: "Mid State Trail Association: Guide and Maps (13th edition guide, printed maps, FarOut app)"
+    url: https://hike-mst.org/index.php/guide-and-maps
+    licence: All rights reserved (facts only)
+    retrieved: 2026-11-07
+  - id: msta-state-college
+    title: "Mid State Trail Association: State College Region (MST's 1969 birthplace)"
+    url: https://hike-mst.org/index.php/the-trail/state-college-region
+    licence: All rights reserved (facts only)
+    retrieved: 2026-11-07
+  - id: dcnr-rothrock-hiking
+    title: "Pennsylvania DCNR: Rothrock State Forest, Hiking (the 326-mile Mid State Trail, rugged and demanding)"
+    url: https://www.pa.gov/agencies/dcnr/recreation/where-to-go/state-forests/find-a-forest/rothrock/hiking
+    licence: Pennsylvania state government work (facts only)
+    retrieved: 2026-11-07
+  - id: dcnr-rothrock-camping
+    title: "Pennsylvania DCNR: Rothrock State Forest, Camping (primitive backpack camping on the Mid State Trail)"
+    url: https://www.pa.gov/agencies/dcnr/recreation/where-to-go/state-forests/find-a-forest/rothrock/camping
+    licence: Pennsylvania state government work (facts only)
+    retrieved: 2026-11-07
+  - id: dcnr-rattlesnakes
+    title: "Pennsylvania DCNR: Timber Rattlesnakes (safety tips, avoiding and treating snakebites)"
+    url: https://www.pa.gov/agencies/dcnr/conservation/wildlife-biodiversity/biodiversity-managament/timber-rattlesnakes
+    licence: Pennsylvania state government work (facts only)
+    retrieved: 2026-11-07
+  - id: dcnr-bears
+    title: "Pennsylvania DCNR: Laurel Ridge recreational guide (2022), A word on Pennsylvania black bears"
+    url: https://elibrary.dcnr.pa.gov/GetDocument?docId=1743398&DocName=LARI_ParkGuide.pdf
+    licence: Pennsylvania state government work (facts only)
+    retrieved: 2026-11-07
+  - id: pgc-bear
+    title: "Pennsylvania Game Commission: Black Bear (range and population)"
+    url: https://www.pa.gov/agencies/pgc/wildlife/discover-pa-wildlife/black-bear
+    licence: Pennsylvania state government work (facts only)
+    retrieved: 2026-11-07
+    checkOnly: true
+  - id: cdc-ticks
+    title: "US Centers for Disease Control and Prevention: Preventing Tick Bites"
+    url: https://www.cdc.gov/ticks/prevention/index.html
+    licence: US federal government work, public domain
+    retrieved: 2026-11-07
+  - id: wikipedia
+    title: "Wikipedia (en): Mid State Trail (Pennsylvania)"
+    url: https://en.wikipedia.org/wiki/Mid_State_Trail_(Pennsylvania)
+    licence: CC BY-SA 4.0
+    retrieved: 2026-11-07
+  - id: wikimedia
+    title: "Wikimedia: page views of the trail's Wikipedia articles in every language, by people, over twelve months (Wikidata sitelinks, pageview API)"
+    url: https://wikimedia.org/api/rest_v1/
+    licence: CC0 1.0 (pageview data); Wikidata CC0
+    retrieved: 2026-11-07
+  - id: osm
+    title: "OpenStreetMap contributors: paths, water, shops and places to sleep along the trail (Geofabrik extract), travel hubs"
+    url: https://www.openstreetmap.org/
+    licence: ODbL 1.0
+    retrieved: 2026-11-07
+  - id: copdem
+    title: "Copernicus DEM GLO-30 (30 m terrain model), tiles from AWS Open Data"
+    url: https://registry.opendata.aws/copernicus-dem/
+    licence: "Copernicus WorldDEM-30 licence, free; produced using Copernicus WorldDEM-30 © DLR e.V. 2010-2014 and © Airbus Defence and Space GmbH 2014-2018 provided under COPERNICUS by the European Union and ESA; all rights reserved"
+    retrieved: 2026-11-07
+  - id: worldcover
+    title: "ESA WorldCover 2021: 10 m land cover (via AWS Open Data)"
+    url: https://esa-worldcover.org/
+    licence: "CC BY 4.0; © ESA WorldCover project 2021 / Contains modified Copernicus Sentinel data (2021) processed by ESA WorldCover consortium"
+    retrieved: 2026-11-07
+  - id: era5
+    title: "Open-Meteo open data on AWS: ERA5-Land temperature and ERA5 precipitation, snow and wind, daily 1995–2024 (reanalysis)"
+    url: https://github.com/open-meteo/open-data
+    licence: CC BY 4.0 (Open-Meteo); contains modified Copernicus Climate Change Service information
+    retrieved: 2026-11-07
+  - id: osrm
+    title: "OSRM: road routes on OpenStreetMap data (router.project-osrm.org)"
+    url: https://project-osrm.org/
+    licence: Route data © OpenStreetMap contributors (ODbL)
+    retrieved: 2026-11-07
