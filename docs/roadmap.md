@@ -192,6 +192,8 @@ And the **Florida National Scenic Trail** (Florida: the USDA Forest Service's tr
 
 And the **Teton Crest Trail** (Wyoming: the National Park Service's 39-mile point-to-point route from Phillips Pass on national forest land into Grand Teton National Park, past Marion Lake, the Death Canyon Shelf, Alaska Basin, Hurricane Pass, Lake Solitude and Paintbrush Divide to String Lake, without stages: hikers camp in the park's mountain camping zones on a permit, the days from the park's Granite Canyon/Paintbrush Canyon itinerary (4 nights, 5 days; the user's decision, #273), late July to September, grizzly and black bears with bear-resistant canisters required; over the trail's OSM relation; 2026-11-07).
 
+And the **Caminho da Fé** (Brazil, São Paulo and Minas Gerais: the Associação dos Amigos do Caminho da Fé's pilgrimage route to the Basilica of Aparecida, on its main branch from Águas da Prata across the Serra da Mantiqueira by Andradas, Inconfidentes, Borda da Mata, Estiva, Paraisópolis and Luminosa to Campos do Jordão, then over Gomeral/Pedrinhas and Potim to Aparecida, in the operator's ten stages plus three on its map's Potim branch (its stage list's Pindamonhangaba branch isn't in OSM), about 300 km, yellow arrows and signs every 2 km, pousadas to book, walked all year; over the route's OSM relation; 2026-11-07).
+
 | # | Trail | Region | Length (approx.) | Why |
 |---|---|---|---|---|
 | 1 | Pacific Crest Trail | USA | 4,265 km | Most-hiked long trail; public US agency data; completion lists |
