@@ -1,6 +1,6 @@
 # huckepack.me
 #
-# Search engines may crawl everything. The legal notice and the privacy policy carry
+# Search engines may crawl everything. The legal notice, the privacy policy and the feedback page carry
 # <meta name="robots" content="noindex, …">; they are not blocked here, because a crawler that
 # can't fetch a page can't see its noindex and may still list the bare URL.
 User-agent: *
@@ -10,7 +10,8 @@ Disallow: /trails/cards.html
 
 Sitemap: https://huckepack.me/sitemap.xml
 
-# AI crawlers and AI training: keep out of the pages with the operator's personal details.
+# AI crawlers and AI training: keep out of the pages with the operator's personal details and of the
+# feedback page (its email address).
 # (A bot that matches a group below follows only that group.)
 User-agent: GPTBot
 User-agent: ChatGPT-User
@@ -41,3 +42,4 @@ User-agent: omgili
 User-agent: omgilibot
 Disallow: /legal-notice/
 Disallow: /privacy/
+Disallow: /feedback/

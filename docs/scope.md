@@ -506,6 +506,21 @@
   rel are written into the HTML at build time, not only by script; the
   footer's Legal notice and Privacy links lost their `nofollow` (the pages
   are noindex already).
+- **Feedback (2026-11-07, the user's decision):** visitors give feedback by
+  email only, no form, on a page of its own, `/feedback/`, linked from the
+  footer. Of three previews (plain, guided, a trail postbox), approach C: a
+  band in the hero's flat style with a postbox by a cairn, whose button
+  "Open the postbox" shows the address. The address is an alias of its own
+  that can be switched off and replaced (`FEEDBACK_EMAIL`, never in the
+  repository) and is never readable in the page: it is assembled only on the
+  visitor's click, with no plain-text fallback without JavaScript. The page is
+  noindex like the legal pages, out of the sitemap, and closed to AI crawlers
+  in robots.txt. No entry points on trail pages for now (a "Report a
+  correction for this trail" link was previewed and left out), so no
+  per-trail subject either. The privacy policy's "Feedback by email" keeps
+  messages 12 months after the matter is settled (to be confirmed by the
+  user) and names the mail provider, Proton Mail (Proton AG, Switzerland,
+  processor under Art. 28 GDPR; Swiss adequacy decision, Art. 45).
 
 ## What a trail page could show
 

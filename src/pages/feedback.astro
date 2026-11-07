@@ -1,0 +1,251 @@
+---
+// Feedback by email (2026-11-07, the user's decision: email only, no form; of three previews, approach
+// C, the trail postbox). The address is an alias of its own (FEEDBACK_EMAIL, src/lib/feedback.ts),
+// never readable in the page: FeedbackReveal carries it in scrambled chunks and joins them when the
+// visitor opens the postbox. Like the legal pages, the page asks search engines not to index, cache or
+// quote it and reserves text and data mining (`personal` in Base), which also keeps it out of the
+// sitemap; public/robots.txt keeps AI crawlers off it. The address never goes into JSON-LD or the
+// link-preview tags. Linked from the footer only (no entry points on trail pages for now).
+import Base from "../layouts/Base.astro";
+import Breadcrumbs from "../components/Breadcrumbs.astro";
+import FeedbackReveal from "../components/FeedbackReveal.astro";
+import { SKY_SCRIPT } from "../lib/sky";
+import { inlineScript } from "../lib/inline-script";
+
+const skyScript = inlineScript(Astro, SKY_SCRIPT);
+---
+
+<Base title="Feedback · huckepack" description="Tell us about a wrong figure, a missing trail or an idea for huckepack, by email." personal>
+  <script is:inline set:html={skyScript} />
+  <Breadcrumbs current="Feedback" />
+  <article class="fb">
+    <div class="pb-band">
+      <div class="pb-text">
+        <h1>Leave a note at the trail postbox</h1>
+        <p>A wrong figure, a missing trail, an idea for the way? Drop us an email: we read every one, and a reply can take a few days.</p>
+        <FeedbackReveal label="Open the postbox" class="pb-reveal" />
+      </div>
+      <svg class="pb-scene" viewBox="0 0 360 220" aria-hidden="true" focusable="false">
+        <path class="pb-r0" d="M0 150 C40 120 70 96 110 104 C150 112 170 70 215 64 C260 58 300 100 360 92 V220 H0Z" />
+        <path class="pb-r1" d="M0 178 C50 160 90 150 140 158 C190 166 230 140 280 142 C320 144 340 154 360 150 V220 H0Z" />
+        <!-- the cairn, a note tucked under its top stone -->
+        <g class="pb-cairn">
+          <rect x="226" y="176" width="58" height="14" rx="6" />
+          <rect x="232" y="164" width="44" height="13" rx="6" />
+          <rect x="238" y="153" width="32" height="12" rx="5" />
+          <path class="pb-note" d="M250 150 l16 -4 l3 10 l-16 4z" />
+          <rect x="244" y="143" width="20" height="11" rx="5" />
+        </g>
+        <!-- the post and the postbox; its flag goes up once opened -->
+        <rect class="pb-post" x="128" y="120" width="10" height="72" />
+        <g class="pb-box">
+          <path d="M102 92 h62 v32 h-62z" />
+          <path class="pb-lid" d="M102 92 a31 18 0 0 1 62 0z" />
+          <rect class="pb-slot" x="118" y="100" width="30" height="4" rx="2" />
+        </g>
+        <g class="pb-flag">
+          <rect x="166" y="78" width="4" height="40" />
+          <rect class="pb-flag-cloth" x="170" y="78" width="16" height="10" />
+        </g>
+        <rect class="pb-ground" x="0" y="190" width="360" height="30" />
+      </svg>
+    </div>
+    <p class="fb-small">We use your email only to answer it. More in the <a href="/privacy/">privacy policy</a>.</p>
+  </article>
+</Base>
+
+<style>
+  .fb > p {
+    margin: 0 0 16px;
+  }
+  .fb-small {
+    margin-top: 24px !important;
+    color: var(--muted);
+    font-size: 0.85rem;
+  }
+  .fb-small a {
+    color: inherit;
+  }
+
+  /* a band wall to wall in the hero's flat style, its sky following the visitor's clock; the text
+     on the left, the postbox by a cairn on the right (under the text on phones) */
+  .pb-band {
+    --ink: #25261c;
+    --ink-soft: #4a4b3b;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 420px);
+    align-items: end;
+    column-gap: 32px;
+    margin: 8px calc(50% - 50vw) 0;
+    padding: 40px max(16px, calc(50vw - 600px)) 0;
+    overflow: clip;
+    background: #d9e8e1;
+    color: var(--ink);
+    transition: background-color 0.5s;
+  }
+  :global(html[data-sky="dawn"]) .pb-band {
+    background: #f2d8c2;
+  }
+  :global(html[data-sky="dusk"]) .pb-band {
+    background: #e7c0a2;
+  }
+  :global(html[data-sky="night"]) .pb-band {
+    --ink: #ecebdb;
+    --ink-soft: #c3c2b0;
+    background: #1d2733;
+  }
+  .pb-text {
+    padding-bottom: 48px;
+  }
+  .pb-text h1 {
+    margin: 0 0 12px;
+    color: var(--ink);
+  }
+  .pb-text p {
+    margin: 0 0 16px;
+    max-width: 52ch;
+    color: var(--ink-soft);
+  }
+  .pb-text strong {
+    color: var(--ink);
+  }
+  .pb-scene {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+  .pb-r0 {
+    fill: #9bb072;
+  }
+  .pb-r1 {
+    fill: #6f8a3b;
+  }
+  .pb-ground {
+    fill: #4c6420;
+  }
+  .pb-cairn rect {
+    fill: #a9a58f;
+  }
+  .pb-cairn rect:nth-child(2n) {
+    fill: #8e8a74;
+  }
+  .pb-note {
+    fill: #f9f8f0;
+  }
+  .pb-post {
+    fill: #7a5a3a;
+  }
+  .pb-box path {
+    fill: #a63d24;
+  }
+  .pb-box .pb-lid {
+    fill: #8c321d;
+  }
+  .pb-slot {
+    fill: #25261c;
+  }
+  .pb-flag rect {
+    fill: #25261c;
+  }
+  .pb-flag .pb-flag-cloth {
+    fill: #f6c453;
+  }
+  /* the flag lies down until the postbox is opened, then goes up */
+  .pb-flag {
+    transform-box: view-box;
+    transform-origin: 168px 118px;
+    transform: rotate(90deg);
+    transition: transform 0.6s cubic-bezier(0.3, 1.6, 0.5, 1);
+  }
+  .pb-band:has(.fb-reveal.open) .pb-flag {
+    transform: none;
+  }
+  .pb-band:has(.fb-reveal.open) .pb-note {
+    fill: #f6c453;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .pb-flag {
+      transition: none;
+    }
+  }
+  :global(html[data-sky="night"]) .pb-r0 {
+    fill: #2c3a2c;
+  }
+  :global(html[data-sky="night"]) .pb-r1 {
+    fill: #233022;
+  }
+  :global(html[data-sky="night"]) .pb-ground {
+    fill: #18211a;
+  }
+  :global(html[data-sky="night"]) .pb-cairn rect {
+    fill: #5d5f52;
+  }
+  :global(html[data-sky="night"]) .pb-cairn rect:nth-child(2n) {
+    fill: #4a4c40;
+  }
+  :global(html[data-sky="night"]) .pb-post {
+    fill: #4d3a28;
+  }
+  :global(html[data-sky="night"]) .pb-box path {
+    fill: #7e2f1c;
+  }
+  :global(html[data-sky="night"]) .pb-box .pb-lid {
+    fill: #662614;
+  }
+  :global(html[data-sky="night"]) .pb-flag rect:not(.pb-flag-cloth) {
+    fill: #ecebdb;
+  }
+  /* the button as a cream envelope label on the sky, the revealed address on a cream slip */
+  .pb-text :global(.pb-reveal .fb-show) {
+    background: #f9f8f0;
+    color: #25261c;
+    border: 2px solid #25261c;
+  }
+  .pb-text :global(.pb-reveal .fb-show:hover) {
+    background: #fff;
+  }
+  .pb-text :global(.pb-reveal.open .fb-out) {
+    display: inline-block;
+    max-width: 100%;
+    padding: 10px 14px;
+    border-radius: 6px;
+    background: #f9f8f0;
+    color: #25261c;
+    transform: rotate(-1deg);
+  }
+  .pb-text :global(.pb-reveal .fb-mail) {
+    color: #4f6820;
+  }
+  .pb-text :global(.pb-reveal .fb-copy) {
+    background: #f9f8f0;
+    color: #25261c;
+    border-color: #c9c6b0;
+  }
+  .pb-text :global(.pb-reveal .fb-status) {
+    color: #61624c;
+  }
+  .pb-text :global(.pb-reveal .fb-nojs) {
+    color: var(--ink-soft);
+  }
+  .pb-text :global(.pb-reveal :is(button, a):focus-visible) {
+    outline-color: var(--ink);
+  }
+  @media (max-width: 759px) {
+    .pb-band {
+      grid-template-columns: minmax(0, 1fr);
+      padding-top: 28px;
+    }
+    .pb-text {
+      padding-bottom: 8px;
+    }
+    .pb-scene {
+      max-width: 360px;
+      justify-self: end;
+    }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .pb-text :global(.pb-reveal.open .fb-out) {
+      transform: none;
+    }
+  }
+</style>

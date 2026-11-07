@@ -1,8 +1,15 @@
-import { realpathSync } from "node:fs";
+import { existsSync, realpathSync } from "node:fs";
+import { fileURLToPath } from "node:url";
 import { defineConfig } from "astro/config";
 import svelte from "@astrojs/svelte";
 import chartFiles from "./src/integrations/chart-files.mjs";
 import externalLinks from "./src/integrations/external-links.mjs";
+
+// Local builds and the dev server read the git-ignored .env into process.env (the operator's details,
+// src/lib/operator.ts, and the feedback address, src/lib/feedback.ts); values already set in the
+// environment win, so the deploy's secrets are never overridden. The deploy has no .env.
+const envFile = fileURLToPath(new URL(".env", import.meta.url));
+if (existsSync(envFile)) process.loadEnvFile(envFile);
 
 export default defineConfig({
   // deployed to GitHub Pages under the custom domain, at the root (.github/workflows/deploy.yml)

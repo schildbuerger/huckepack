@@ -1,0 +1,140 @@
+---
+// The feedback address behind a button (/feedback/): the page carries it only as shuffled, XORed
+// chunks (scramble() in src/lib/feedback.ts), and the script below joins them when the visitor presses
+// the button, then shows a mailto link, the address and a copy button. A scripted click (not the
+// visitor's) does nothing. Without JavaScript a sentence says the address needs it; there is no
+// plain-text fallback. The mailto link brings the subject "huckepack feedback".
+import { feedbackEmail, scramble } from "../lib/feedback";
+
+interface Props {
+  label?: string; // the button's words
+  class?: string;
+}
+const { label = "Show email address", class: cls } = Astro.props;
+const s = feedbackEmail ? scramble(feedbackEmail) : null;
+---
+
+{s ? (
+  <div class:list={["fb-reveal", cls]} data-p={s.parts} data-o={s.order} data-k={s.key}>
+    <p class="fb-nojs">The email address appears when you press a button, which needs JavaScript. Please turn it on for this page.</p>
+    <button type="button" class="fb-show">{label}</button>
+    <div class="fb-out" aria-live="polite"></div>
+  </div>
+) : (
+  <p class:list={["fb-reveal", cls]}><mark class="todo">feedback address</mark></p>
+)}
+
+<script>
+  const b64 = (s: string) => Uint8Array.from(atob(s), (c) => c.charCodeAt(0));
+  const decode = (el: HTMLElement) => {
+    const parts = el.dataset.p!.split(" ").map(b64);
+    const key = b64(el.dataset.k!);
+    const bytes = el.dataset.o!.split(".").flatMap((slot) => [...parts[Number(slot)]]);
+    const address = new TextDecoder().decode(Uint8Array.from(bytes, (b, i) => b ^ key[i]));
+    return /^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(address) ? address : null;
+  };
+
+  for (const box of document.querySelectorAll<HTMLElement>(".fb-reveal[data-p]")) {
+    const show = box.querySelector<HTMLButtonElement>(".fb-show")!;
+    const out = box.querySelector<HTMLElement>(".fb-out")!;
+    show.addEventListener("click", (e) => {
+      if (!e.isTrusted) return;
+      const address = decode(box);
+      if (!address) return;
+      const line = document.createElement("p");
+      line.className = "fb-line";
+      const sr = document.createElement("span");
+      sr.className = "sr-only";
+      sr.textContent = "Email address: ";
+      const a = document.createElement("a");
+      a.className = "fb-mail";
+      a.href = `mailto:${address}?subject=huckepack%20feedback`;
+      a.textContent = address;
+      const copy = document.createElement("button");
+      copy.type = "button";
+      copy.className = "fb-copy";
+      copy.textContent = "Copy";
+      copy.setAttribute("aria-label", "Copy the email address");
+      const status = document.createElement("span");
+      status.className = "fb-status";
+      copy.addEventListener("click", async () => {
+        try {
+          await navigator.clipboard.writeText(address);
+          status.textContent = "Copied.";
+        } catch {
+          getSelection()?.selectAllChildren(a);
+          status.textContent = "Selected: press Ctrl+C or ⌘C to copy.";
+        }
+      });
+      line.append(sr, a, " ", copy, " ", status);
+      out.replaceChildren(line);
+      box.classList.add("open");
+      show.hidden = true;
+      a.focus();
+    });
+  }
+</script>
+
+<style>
+  :global(html.js) .fb-nojs {
+    display: none;
+  }
+  :global(html:not(.js)) .fb-show {
+    display: none;
+  }
+  .fb-nojs {
+    margin: 0;
+    color: var(--muted);
+  }
+  .fb-show {
+    font: inherit;
+    font-weight: 600;
+    padding: 10px 20px;
+    border: 0;
+    border-radius: 999px;
+    background: var(--accent);
+    color: var(--bg);
+    cursor: pointer;
+  }
+  .fb-show:hover {
+    background: var(--accent-text);
+  }
+  .fb-reveal :is(button, a):focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+  }
+  .fb-out :global(.fb-line) {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 6px 12px;
+    margin: 0;
+  }
+  .fb-out :global(.fb-mail) {
+    font-weight: 600;
+    overflow-wrap: anywhere;
+  }
+  .fb-out :global(.fb-copy) {
+    font: inherit;
+    font-size: 0.85rem;
+    padding: 3px 12px;
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    background: var(--bg);
+    color: var(--text);
+    cursor: pointer;
+  }
+  .fb-out :global(.fb-copy:hover) {
+    border-color: var(--accent);
+  }
+  .fb-out :global(.fb-status) {
+    color: var(--muted);
+    font-size: 0.85rem;
+  }
+  .fb-reveal :global(mark.todo) {
+    padding: 0 4px;
+    border-radius: 4px;
+    background: var(--accent-soft);
+    color: var(--text);
+  }
+</style>

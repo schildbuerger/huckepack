@@ -35,13 +35,15 @@ jobs:
       # the figures the site derives (tests/trails.test.ts)
       - run: npm test
       # the operator's personal details for the legal pages, from the repository's Actions secrets,
-      # so they never appear in the (public) repository; see src/lib/operator.ts
+      # so they never appear in the (public) repository; see src/lib/operator.ts; and the feedback
+      # page's address (an alias of its own, src/lib/feedback.ts)
       - run: npm run build
         env:
           LEGAL_NAME: ${{ secrets.LEGAL_NAME }}
           LEGAL_STREET: ${{ secrets.LEGAL_STREET }}
           LEGAL_CITY: ${{ secrets.LEGAL_CITY }}
           LEGAL_EMAIL: ${{ secrets.LEGAL_EMAIL }}
+          FEEDBACK_EMAIL: ${{ secrets.FEEDBACK_EMAIL }}
       - uses: actions/upload-pages-artifact@fc324d3547104276b827a68afc52ff2a11cc49c9 # v5.0.0
         with:
           path: dist
