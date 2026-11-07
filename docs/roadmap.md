@@ -186,6 +186,8 @@ And the **Sentier international des Appalaches** (Québec: the SIA Québec's GR�
 
 And the **Lone Star Hiking Trail** (Texas: the Forest Service's National Recreation Trail through the Sam Houston National Forest's Piney Woods, maintained with the Lone Star Hiking Trail Club, from FS 219 near Richards past Lake Conroe, the Little Lake Creek Wilderness and the Four Notch area to the Big Creek Scenic Area and Winters Bayou near Cleveland, in the NRT record's three sections, about 152 km on the main line (the Forest Service's 129 miles count the loops too), flat, with aluminum markers, camping anywhere except in hunting season (September 26 to January 8, designated camps only); over the trail's OSM relation; 2026-11-07).
 
+And the **Mid State Trail** (Pennsylvania: the Mid State Trail Association's volunteer-built footpath, Pennsylvania's longest, mostly on DCNR state forests and game lands, from the Maryland line near Flintstone along Tussey Mountain's rocky ridge crests and through the water gaps of the Ridge-and-Valley, past State College, the Seven Mountains and Woolrich to the Pine Creek Gorge and across Tioga County to the New York line near Lawrenceville, in the association's 20 sections measured in kilometres (528.5 km), orange blazes, one-night primitive camping in the state forests, open year-round with hunting-season closures in the north; over the trail's OSM relation; 2026-11-07).
+
 | # | Trail | Region | Length (approx.) | Why |
 |---|---|---|---|---|
 | 1 | Pacific Crest Trail | USA | 4,265 km | Most-hiked long trail; public US agency data; completion lists |

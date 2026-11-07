@@ -2709,6 +2709,30 @@ export const SKYLINES: Record<string, Skyline> = {
       { d: water(1220, 1560, 300), c: "#5d7f78" },
     ],
   },
+  "mid-state-trail": {
+    view: "Central Pennsylvania's Ridge-and-Valley from a vista on Tussey Mountain: long, even forested ridges one behind the other with grey sandstone along their crests, a river breaking through a water gap, and in the north the steep wooded walls of the Pine Creek Gorge cut into the flat plateau",
+    ridge: "#3f5a34",
+    ground: "#9c8a66",
+    shapes: [
+      // the farthest ridges, long and level, pale with distance
+      { d: hills([[0, G], [120, 222], [420, 212], [720, 216], [1000, 210], [1300, 214], [1480, 222], [1600, G]]), c: "#a7b6b2" },
+      // grey sandstone peeping over the next ridge's crest: drawn just behind it, a little higher and broken
+      { d: range([[0, G], [40, 244], [120, 236], [180, 240], [240, 232], [300, 238], [380, 233], [460, 239], [540, 234], [600, 250], [650, G]]), c: ROCK },
+      // a long even ridge, broken by a water gap
+      { d: range([[0, G], [40, 246], [140, 240], [300, 242], [460, 241], [580, 248], [640, G]]), c: FAR },
+      { d: range([[760, G], [820, 252], [900, 240], [1000, 238], [1060, 244], [1100, G]]), c: FAR },
+      // the Pine Creek Gorge in the north: the flat plateau with a deep V cut through it
+      { d: range([[1060, G], [1110, 236], [1220, 232], [1300, 236], [1360, 280], [1384, G]]), c: FOREST },
+      { d: range([[1400, G], [1424, 280], [1470, 236], [1560, 232], [1600, 234], [1600, G]]), c: FOREST },
+      // the near ridge's woods, darker
+      { d: hills([[380, G], [520, 280], [760, 272], [980, 278], [1080, G]]), c: FIR },
+    ],
+    front: [
+      // the river through the water gap, and Pine Creek at the bottom of the gorge
+      { d: water(640, 770, 304), c: "#5f8ea6" },
+      { d: water(1370, 1414, 306), c: "#5f8ea6" },
+    ],
+  },
   "superior-hiking-trail": {
     view: "Minnesota's North Shore: the Sawtooth ridges above Lake Superior, birch and spruce on the rocky slopes, a waterfall dropping towards the lake and the lake's long horizon",
     ridge: "#3f5a34",
