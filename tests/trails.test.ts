@@ -3,7 +3,7 @@
 // `npm test` (Node's test runner; Node strips the types itself).
 import { test } from "node:test";
 import assert from "node:assert/strict";
-import { barMetres, climbFacts, climbs, CLIMB_HOW, CLIMB_THRESHOLD_M, gradients, noStages, perDay, perStage, providerClimb, terrainClimb, routeEstimate, stageEstimates, sleepingCategories, summarize, trailClimb, trailLength, providerLength, measuredLength, measuredCover, compareLength, trailDays, walkingMinutes, stageTotals, STEEP_PERCENT } from "../src/lib/trails.ts";
+import { barMetres, climbFacts, climbs, CLIMB_HOW, CLIMB_THRESHOLD_M, gradients, noStages, perDay, providerClimb, terrainClimb, routeEstimate, stageEstimates, sleepingCategories, summarize, trailClimb, trailLength, providerLength, measuredLength, measuredCover, compareLength, trailDays, walkingMinutes, stageTotals, STEEP_PERCENT } from "../src/lib/trails.ts";
 import { DAYS, matches, noFilters } from "../src/lib/filters.ts";
 import { difficulty } from "../src/lib/difficulty.ts";
 import { mergeRuns, rectsPath, simplify, stripPaths, n1 } from "../src/lib/svg.ts";
@@ -217,12 +217,16 @@ test("climb popover: ours, the provider's as Official, more than 10 % apart, cov
   assert.equal(climbFacts(bare, profiled([1, 1, 1])).official, undefined);
 });
 
-test("climb: the averages per stage and the climbing per km take the trail's figure", () => {
+test("climb: the averages per day and the climbing per km take the trail's figure", () => {
   const stated = trail({ ascent: [{ m: 450, source: "site" }], descent: [{ m: 480, source: "site" }] });
   const d = profiled([1, 1, 1]);
-  // 180 m over 2 stages, not the stage sums' 500
-  assert.deepEqual(perStage(stated, d)!.ascentM, { value: 90, est: true, source: "gedtm30" });
-  assert.deepEqual(perStage(stated)!.ascentM, { value: 230, est: false, source: "site" });
+  const two = trail({ ascent: stated.ascent, descent: stated.descent, days: { min: 2, max: 2, basis: "stages", source: "site" } });
+  // 180 m over 2 days, not the stage sums' 500
+  assert.deepEqual(perDay(two, d)!.ascentM, { min: 90, max: 90 });
+  assert.equal(perDay(two, d)!.est, true);
+  // falling back: the provider's 450 m
+  assert.deepEqual(perDay(two)!.ascentM, { min: 230, max: 230 });
+  assert.equal(perDay(two)!.est, false);
   // (the gradients need 500 m windows: the made-up profile is short, so read it as 500 m samples)
   const climb = difficulty(stated, { ...d, elevation: { ...d.elevation, spacingM: 500 } }).dims.find((x) => x.id === "terrain")!.measures.find((m) => m.id === "climb")!;
   assert.equal(climb.text, "8 m per km"); // 180 m over the stages' 22.3 km
@@ -448,17 +452,48 @@ test("days filter: a trail without days stays while no length is picked, and lea
   assert.equal(matches(five, week), true);
 });
 
-test("no stages: averages per day as a range from the most and the fewest days", () => {
+// Per day (the user's rule 4, 2026-11-07): the length the page shows over the days, the ascent
+// likewise, for every trail with days
+test("per day: a range from the most and the fewest days", () => {
   const day = perDay(stageless())!;
-  assert.deepEqual(day.km, { min: 10.7, max: 15 });
+  // 150 km over 14 to 10 days, 8,230 m likewise
+  assert.deepEqual(day.km, { min: 11, max: 15 });
   assert.deepEqual(day.ascentM, { min: 590, max: 820 });
   assert.equal(day.est, false);
-  // the length and the days from different sources: both named
-  assert.deepEqual([day.lengthSource, day.daysSource], ["nps", "planner"]);
-  // one number of days: no range
-  assert.deepEqual(perDay(stageless({ days: { min: 12, max: 12, basis: "operator", source: "planner" } }))!.km, { min: 12.5, max: 12.5 });
-  // trails with stages keep their averages per stage
+  assert.deepEqual(day.days, { min: 10, max: 14, basis: "operator", source: "planner" });
+  assert.deepEqual([day.length, day.lengthSource, day.measured], [150, "nps", false]);
+});
+
+test("per day: one value where the days are one number", () => {
+  const day = perDay(stageless({ days: { min: 12, max: 12, basis: "operator", source: "planner" } }))!;
+  assert.deepEqual(day.km, { min: 13, max: 13 }); // 12.5
+  assert.deepEqual(day.ascentM, { min: 690, max: 690 }); // 685.8
+});
+
+test("per day: none without days", () => {
   assert.equal(perDay(trail()), undefined);
+  assert.equal(perDay(stageless({ days: undefined })), undefined);
+});
+
+test("per day: km whole, a tenth under 10 km; metres to 10 m", () => {
+  // 150 km over 20 to 16 days: 7.5 and 9.375
+  assert.deepEqual(perDay(stageless({ days: { min: 16, max: 20, basis: "secondary", source: "planner" } }))!.km, { min: 7.5, max: 9.4 });
+  // 9.96 rounds to 10
+  assert.deepEqual(perDay(stageless({ length: [{ km: 99.6, source: "nps" }], days: { min: 10, max: 10, basis: "operator", source: "planner" } }))!.km, { min: 10, max: 10 });
+  // 10.5 and up: whole km
+  assert.deepEqual(perDay(stageless({ length: [{ km: 105, source: "nps" }], days: { min: 10, max: 10, basis: "operator", source: "planner" } }))!.km, { min: 11, max: 11 });
+});
+
+test("per day: trails with stages divide the trail's length by the days, not the stage average", () => {
+  // 22.3 km of stages over 4 to 3 days
+  const t = trail({ days: { min: 3, max: 4, basis: "operator", source: "site" } });
+  assert.deepEqual(perDay(t)!.km, { min: 5.6, max: 7.4 });
+  // our measurement where there is one, as the page shows it (23 km)
+  const two = trail({ days: { min: 2, max: 2, basis: "stages", source: "site" } });
+  const d = perDay(two, measuredData([1, 1, 1]))!;
+  assert.deepEqual([d.length, d.measured, d.km.min], [23, true, 12]);
+  // the hardest day for difficulty keeps the unrounded length: 23.4 / 2
+  assert.equal(d.hardest.km, 11.7);
 });
 
 test("no stages: climbs from the terrain model where none are stated", () => {

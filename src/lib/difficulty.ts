@@ -177,12 +177,13 @@ export function difficulty(t: Trail, d?: DerivedData) {
     dims.push({ id: "effort", label: "Effort", level: top.level, by: top, measures: [top] });
   }
   // a trail without stages (issue #204): an average day at the fewest suggested days, its length
-  // and climbs divided evenly, timed by DIN 33466; always an estimate, the hardest plan a source suggests
-  const day = perDay(t, d);
-  if (day?.ascentM && day.descentM) {
-    const minutes = walkingMinutes(day.km.max, day.ascentM.max, day.descentM.max);
+  // and climbs divided evenly, timed by DIN 33466; always an estimate, the hardest plan a source suggests.
+  // Trails with stages keep the longest stage above (the hardest day, not the average).
+  const day = noStages(t) ? perDay(t, d) : undefined;
+  if (day?.hardest.ascentM !== undefined && day.hardest.descentM !== undefined) {
+    const minutes = walkingMinutes(day.hardest.km, day.hardest.ascentM, day.hardest.descentM);
     const text = `${Math.floor(minutes / 60)} h${minutes % 60 ? ` ${String(minutes % 60).padStart(2, "0")}` : ""}`;
-    const top = measure("effort", minutes / 60, text, day.daysSource, { where: `an average day over ${day.days.min} days`, estimate: true });
+    const top = measure("effort", minutes / 60, text, day.days.source, { where: `an average day over ${day.days.min} days`, estimate: true });
     dims.push({ id: "effort", label: "Effort", level: top.level, by: top, measures: [top] });
   }
 

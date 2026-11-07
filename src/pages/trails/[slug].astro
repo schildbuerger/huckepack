@@ -27,7 +27,6 @@ import { linesFor, ownGpx } from "../../lib/gpx";
 import {
   countryName,
   monthName,
-  perStage,
   perDay,
   noStages,
   trailDays,
@@ -104,10 +103,11 @@ const variants = (t.stages?.list ?? []).some((s) => s.kind !== "main" && !s.outA
 // the provider measures differently by more than 10 %: one short row in the popover
 const lengthOff = Boolean(length?.measured && official && Math.abs(length.exact - official.value) > 0.1 * official.value);
 const days = trailDays(t);
-const daily = perStage(t, derived);
 // a trail without stages by design (issue #204): no stages section, kilometres instead of stage
-// numbers, averages per day from the suggested days (perDay)
+// numbers
 const stageless = noStages(t);
+// Per day (the user's rule 4, 2026-11-07): the length the page shows over the days, the ascent
+// likewise, for every trail with days (perDay())
 const dayAvg = perDay(t, derived);
 // a stage that names itself where a stage would be named: none on a trail without stages
 const onStage = (n: string | undefined) => (stageless || !n ? "" : `, stage ${n}`);
@@ -222,6 +222,11 @@ const timeText = (min: number, max?: number) =>
   max === undefined ? hours(min) : min % 60 === 0 && max % 60 === 0 ? `${min / 60}–${max / 60} h` : `${hours(min)}–${hours(max)}`;
 const TRAIL_TYPES = { "point-to-point": "Point to point", loop: "Loop", network: "Network" };
 const range = (min: number, max: number) => (min === max ? `${min}` : `${min}–${max}`);
+// the Per day popover's rows (rule 4): the figure, then the length and the days it divides
+const perDayFacts = dayAvg && {
+  figure: `${range(dayAvg.km.min, dayAvg.km.max)} km${dayAvg.ascentM ? ` · ${dayAvg.est ? "≈ " : ""}${dayAvg.ascentM.min === dayAvg.ascentM.max ? fmt(dayAvg.ascentM.min) : `${fmt(dayAvg.ascentM.min)}–${fmt(dayAvg.ascentM.max)}`} m ↑` : ""}`,
+  how: `The trail's length (${dayAvg.measured ? "our measurement" : `${possessive(sourceShort(dayAvg.lengthSource))} figure`}, ${fmt(dayAvg.length)} km) ÷ its days (${range(dayAvg.days.min, dayAvg.days.max)}, ${dayAvg.days.basis === "stages" ? `one day per stage of ${possessive(sourceShort(dayAvg.days.source))} stage list` : `from ${sourceShort(dayAvg.days.source).replace(/\s*\(.*\)$/, "")}`})${dayAvg.ascentM ? "; ascent likewise" : ""}`,
+};
 // the map line, built by pipeline/routes.py; without it the map shows only the termini
 const routeFile = `routes/${trail.id}.geojson`;
 const routeUrl = t.route && existsSync(`public/${routeFile}`) ? `/${routeFile}` : null;
@@ -906,13 +911,9 @@ const trailLd = JSON.stringify({
           <dt>
             <Explain id="per-day-info" term="Per day">
               <dl class="pop-facts">
-                <dt>How</dt><dd>The length{dayAvg.ascentM ? " and the ascent" : ""} over the suggested {range(dayAvg.days.min, dayAvg.days.max)} days{dayAvg.days.min !== dayAvg.days.max ? ": from the most days to the fewest" : ""}</dd>
-                {dayAvg.lengthSource === dayAvg.daysSource ? (
-                  <><dt>Source</dt><dd>{sourceShort(dayAvg.daysSource)}</dd></>
-                ) : (
-                  <><dt>Length</dt><dd>{sourceShort(dayAvg.lengthSource)}</dd><dt>Days</dt><dd>{sourceShort(dayAvg.daysSource)}</dd></>
-                )}
-                {dayAvg.ascentM && <><dt>Ascent</dt><dd>{dayAvg.est ? "The terrain model's estimate (≈), as the key figure" : `${possessive(sourceShort(dayAvg.climbSource!))} figure, as the key figure`}</dd></>}
+                <dt>This trail</dt><dd>{perDayFacts!.figure}</dd>
+                <dt>How</dt><dd>{perDayFacts!.how}</dd>
+                {dayAvg.days.basis === "stages" && <><dt>Keep in mind</dt><dd>Stages vary in length; see the stage table</dd></>}
               </dl>
             </Explain>
           </dt>
@@ -921,27 +922,6 @@ const trailLd = JSON.stringify({
             {dayAvg.ascentM && (
               <span class="unit">
                 · {dayAvg.est && <span aria-hidden="true">≈ </span>}{dayAvg.est && <span class="sr-only">about </span>}{dayAvg.ascentM.min === dayAvg.ascentM.max ? fmt(dayAvg.ascentM.min) : `${fmt(dayAvg.ascentM.min)}–${fmt(dayAvg.ascentM.max)}`} m ↑
-              </span>
-            )}
-          </dd>
-        </div>
-      )}
-      {daily && (
-        <div>
-          <dt>
-            <Explain id="per-stage-info" term="Per stage">
-              <dl class="pop-facts">
-                <dt>How</dt><dd>The {daily.stages} main stages' totals over their number</dd>
-                <dt>Source</dt><dd>{possessive(sourceShort(daily.source))} stage list</dd>
-                {daily.ascentM && <><dt>Ascent</dt><dd>{daily.ascentM.est ? "The terrain model's estimate (≈), as the key figure" : `${possessive(sourceShort(daily.ascentM.source))} figure, as the key figure`}</dd></>}
-              </dl>
-            </Explain>
-          </dt>
-          <dd>
-            <span class="big">{daily.km}</span><span class="unit">km</span>
-            {daily.ascentM && (
-              <span class="unit">
-                · {daily.ascentM.est && <span aria-hidden="true">≈ </span>}{daily.ascentM.est && <span class="sr-only">about </span>}{fmt(daily.ascentM.value)} m ↑
               </span>
             )}
           </dd>

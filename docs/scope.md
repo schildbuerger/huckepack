@@ -86,13 +86,14 @@
   West Island Way (94 % matched) falls back. The Length popover names the
   provider's figure as "Official" with its source, and says the provider
   measures differently where they differ by over 10 %. The stage distances
-  stay the provider's (stages table, averages per stage or day, difficulty).
+  stay the provider's (stages table, difficulty); the averages per day
+  divide this length (rule 4, below).
   Before (2026-10-30): the operator's stated total, else the stage sum, since
   stage lists often include the paths into the stage towns (the Moselsteig's
   24 stages add up to 392.8 km against its 365 km; we measure 391 km).
 - **Ascent and descent:** since 2026-11-07 (the user's decision) the total
   ascent and descent shown anywhere on the site (key figure, search and
-  home-page cards, the link-preview image, the averages per stage or day, the
+  home-page cards, the link-preview image, the averages per day, the
   difficulty's climbing per km, the search's "least climbing per km") is our
   terrain-model estimate: GEDTM30 along our OSM map line, summed per main
   stage with the 10 m threshold (over the whole route for a trail without
@@ -235,8 +236,8 @@
     EE→T3, EEA→T4, the lower bound where the scales overlap) and labelled as
     converted.
   - Stages are recorded per trail (km, ascent, descent, time, start and end
-    elevation), marked as main, approach or variant. Totals and averages
-    per stage are computed from the main stages, never stored, and only from
+    elevation), marked as main, approach or variant. Totals are
+    computed from the main stages, never stored, and only from
     figures of the same source.
   - Sleeping: only which types exist along the trail (huts, campsites,
     hostels, …), not individual places. Wild camping as allowed, restricted
@@ -434,11 +435,11 @@
   terrain model's estimate (≈) where no source states them. Days: until
   2026-11-07 the ones a source suggests, else one day per main stage
   (`trailDays()`, said so in the tile's popover); since then by the rule
-  below (Where days come from), so a trail can have none. The averages are
-  per stage (`perStage()`: the main stages' totals over their number, so
-  one source), the ascent from the stages' climbs or else the terrain
-  model's per-stage estimate (≈); before, averages per day showed only
-  where days and stages shared a source.
+  below (Where days come from), so a trail can have none. The averages
+  were per stage (`perStage()`: the main stages' totals over their number,
+  so one source) until 2026-11-07, then per day (rule 4, below); before
+  2026-11-02, averages per day showed only where days and stages shared a
+  source.
 - **Where days come from (the user's rule of 2026-11-07):** a trail's
   suggested days come, in this order, from (1) the trail's official
   operator or maintainer, searched thoroughly (site, stage, FAQ, planning
@@ -464,6 +465,27 @@
   7–9 since); the Kerry Way's and Wicklow Way's Sport Ireland days count as
   a second source, the Alpe-Adria-Trail's and Sauerland-Waldroute's as one
   per operator stage.
+- **Per day, not per stage (the user's rule 4 of 2026-11-07):** the key
+  figure "Per stage" became "Per day": the trail's length as the page shows
+  it (`trailLength()`, our measurement where measured) over its days
+  (`trailDays()`), and the total ascent (`trailClimb()`, the terrain
+  model's estimate, ≈) likewise, nothing else, for every trail with days,
+  with or without stages (`perDay()`; `perStage()` removed). Days are
+  usually a range, so the figure is a range, "18–22 km · ≈ 600–730 m ↑",
+  the larger km from the fewest days; one value where min = max. Km to
+  whole numbers (a tenth under 10 km), metres to 10 m. A trail without
+  days (today the Országos Kéktúra) has no Per day tile, as it has no Days
+  tile; nothing is invented. The popover's rows: "This trail" (the range),
+  "How" (the length with its kind and km ÷ the days with their basis: from
+  the source, or one day per stage of the operator's stage list; ascent
+  likewise) and, where the days are one per stage, "Keep in mind: Stages
+  vary in length; see the stage table". Difficulty's Effort keeps the
+  longest stage on trails with stages (the hardest day, not the average);
+  on a trail without stages it stays the average day at the fewest days on
+  the unrounded length. Where a stage list is a list of sections (the
+  Pacific Northwest Trail's, the Great Divide Trail's, the Sentier
+  International des Appalaches', the Sunshine Coast Trail's), the old
+  average per stage read 55–200 km; per day it reads 13–33 km.
 - **Link previews for every page (issue #147, 2026-11-02):** every page has a
   1200 × 630 image (approach B of three, a picture per page): the home page
   three trails' skylines, the trail search six trails as cards, the map the

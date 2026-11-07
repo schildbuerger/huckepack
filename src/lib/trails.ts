@@ -142,7 +142,7 @@ export function terrainClimb(t: Trail, d?: DerivedData) {
 }
 
 // The trail's total ascent and descent, the one figure every page shows (key figure, search and
-// home-page cards, the link preview, the averages per stage or day, the difficulty's climbing per km,
+// home-page cards, the link preview, the averages per day, the difficulty's climbing per km,
 // sorting): the terrain model's estimate along our map line (the user's decision of 2026-11-07,
 // docs/scope.md; `estimate`, shown with ≈), used where the route is at least MEASURED_MIN_COVER
 // matched (the same gate as the length, measuredCover()); else the provider's figure
@@ -229,22 +229,6 @@ export function trailDays(t: Trail) {
   return { min, max, basis, source };
 }
 
-// Averages per stage (issue #148, decided 2026-11-02): the main stages' totals over their number, so
-// they come from one source and every trail with stages has them (before, averages per day showed only
-// where the days and the stages shared a source). The ascent is the trail's total (trailClimb(), the
-// terrain model's estimate since 2026-11-07, ≈) over the number of main stages, so the averages match
-// the key figure.
-export function perStage(t: Trail, d?: DerivedData) {
-  const totals = stageTotals(t);
-  const main = mainStages(t);
-  if (!totals || !main.length) return undefined;
-  const n = main.length;
-  const to10 = (m: number) => Math.round(m / n / 10) * 10;
-  const climb = trailClimb(t, d);
-  const ascentM = climb ? { value: to10(climb.up), est: climb.estimate, source: climb.source } : undefined;
-  return { km: Math.round((totals.km.value / n) * 10) / 10, ascentM, stages: n, source: totals.km.source };
-}
-
 // Trails without stages by design (stages.none, issue #204; docs/scope.md "Trails without stages"):
 // hikers choose their own camps, so the page has no stages section and names kilometres, not stages.
 export const noStages = (t: Trail) => Boolean(t.stages?.none);
@@ -268,33 +252,38 @@ export function routeEstimate(d?: DerivedData) {
   };
 }
 
-// Averages per day for a trail without stages (issue #204): the length, ascent and descent over the
-// suggested days. A range of days gives a range (`min` from the most days, `max` from the fewest),
-// never a midpoint; the length and the days may come from different sources, both named. Climbs are
-// the trail's total (trailClimb(): the terrain model's estimate, `est`, else the provider's).
-// Undefined for trails with stages.
+// Per day (the user's rule 4, decided 2026-11-07; docs/scope.md): the trail's length as the page
+// shows it (trailLength(): our measurement where measured, whole km) over its days (trailDays()), and
+// the total ascent (trailClimb(): the terrain model's estimate, `est`, else the provider's) likewise,
+// nothing else, for every trail with days, with or without stages. A range of days gives a range
+// (`min` from the most days, `max` from the fewest), never a midpoint; one where min = max. Km to
+// whole numbers (a tenth under 10 km), metres to 10 m. Undefined without days (the Days figure is
+// absent too). `hardest` is the day at the fewest days on the unrounded length, for difficulty's
+// Effort on a trail without stages.
+export const perDayKm = (km: number) => (km < 10 ? Math.round(km * 10) / 10 : Math.round(km));
 export function perDay(t: Trail, d?: DerivedData) {
-  if (!noStages(t) || !t.days) return undefined;
-  // the trail's length as the page shows it (ours where measured, 2026-11-07), so the averages per day
-  // and the key figure are one figure; the unrounded measurement where there is one
-  const total = trailLength(t, d);
-  const length = total ? { ...total, value: "exact" in total && typeof total.exact === "number" ? total.exact : total.value } : null;
-  if (!length) return undefined;
-  const { min, max } = t.days;
+  const days = trailDays(t);
+  const length = trailLength(t, d);
+  if (!days || !length) return undefined;
+  const { min, max } = days;
   const climb = trailClimb(t, d);
-  const up = climb?.up;
-  const down = climb?.down;
   const to10 = (m: number) => Math.round(m / 10) * 10;
   const range = (total: number, round: (x: number) => number) => ({ min: round(total / max), max: round(total / min) });
+  const exact = "exact" in length && typeof length.exact === "number" ? length.exact : length.value;
   return {
-    km: range(length.value, (x) => Math.round(x * 10) / 10),
-    ascentM: up !== undefined ? range(up, to10) : undefined,
-    descentM: down !== undefined ? range(down, to10) : undefined,
+    km: range(length.value, perDayKm),
+    ascentM: climb ? range(climb.up, to10) : undefined,
+    descentM: climb ? range(climb.down, to10) : undefined,
     est: climb?.estimate ?? false,
-    days: { min, max },
+    days,
+    length: length.value,
+    measured: length.measured,
     lengthSource: length.source,
-    climbSource: climb?.source,
-    daysSource: t.days.source,
+    hardest: {
+      km: Math.round((exact / min) * 10) / 10,
+      ascentM: climb ? to10(climb.up / min) : undefined,
+      descentM: climb ? to10(climb.down / min) : undefined,
+    },
   };
 }
 
