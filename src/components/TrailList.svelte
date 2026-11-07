@@ -213,6 +213,17 @@
     filters = noFilters();
   }
 
+  // the title band's number (TrailsListing.astro, outside this island) follows the filters: the
+  // trails that match, all of them with none set; the server's total until the trails are in. Not a
+  // live region: the screen-reader status line below announces the count once
+  $effect(() => {
+    const n = trails.length ? shown.length : total;
+    const num = document.querySelector("[data-trail-count]");
+    const word = document.querySelector("[data-trail-word]");
+    if (num) num.textContent = String(n);
+    if (word) word.textContent = n === 1 ? "trail" : "trails";
+  });
+
   // the cards (TrailCards.astro, passed in as children): hide those the filters leave out and move
   // the rest into the sorted order, moving the elements themselves so screen readers and the tab
   // order follow the order on screen
@@ -247,9 +258,10 @@
 
   <div class="results">
     <div class="bar">
-      <p class="count" role="status">
-        {#if active.length}<strong>{shown.length}</strong> of {trails.length || total} {(trails.length || total) === 1 ? "trail" : "trails"}
-        {:else}<strong>{trails.length || total}</strong> {(trails.length || total) === 1 ? "trail" : "trails"}{/if}
+      <p class="count">
+        <!-- the result count for screen readers, announced as the filters change; on screen the title
+             band's number says it (TrailsListing.astro, set by the effect above), so only the map link shows -->
+        <span class="sr-only" role="status">{#if active.length}{shown.length} of {trails.length || total} {(trails.length || total) === 1 ? "trail" : "trails"}{:else}{trails.length || total} {(trails.length || total) === 1 ? "trail" : "trails"}{/if}</span>
         <!-- the trail map (issue #33), a quiet way to the same trails by place, with the same filters -->
         <a class="map-link" href={`/trails/map/${toParams(filters).toString() ? `?${toParams(filters)}` : ""}`}>Map view <span aria-hidden="true">→</span></a>
       </p>
@@ -537,7 +549,6 @@
     color: var(--text);
   }
   .map-link {
-    margin-left: 12px;
     font-size: 0.9rem;
   }
   .sort {
