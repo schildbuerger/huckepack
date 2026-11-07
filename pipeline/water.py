@@ -83,10 +83,8 @@ def build(slug, refresh=False):
     lines = [[proj.xy(*c) for c in f["geometry"]["coordinates"]] for f in stages]
 
     # the main route, stage after stage; where each main stage starts along it
-    main = sorted(
-        (i for i, f in enumerate(stages) if f["properties"]["kind"] == "main"),
-        key=lambda i: osm.stage_order(stages[i]["properties"]["number"]),
-    )
+    # in the record's order, as pipeline/along.py
+    main = [i for i, f in enumerate(stages) if f["properties"]["kind"] == "main"]
     offset, walked = {}, 0.0
     for i in main:
         offset[i] = walked

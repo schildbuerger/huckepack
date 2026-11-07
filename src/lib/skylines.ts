@@ -2504,6 +2504,51 @@ export const SKYLINES: Record<string, Skyline> = {
       { d: "M1490,248L1494,232L1498,247Z M1500,247L1505,228L1510,251Z", c: "#2c4632" },
     ],
   },
+  "new-england-trail": {
+    view: "Southern New England in autumn from the Metacomet Ridge: traprock ridges with their west-facing basalt cliffs above the Connecticut River valley, Heublein Tower on Talcott Mountain, the Holyoke Range's Seven Sisters behind, Mount Monadnock's bare summit far off in the north, hardwood forest in red, orange and gold, and Long Island Sound with Faulkner's Island light at the trail's start",
+    ridge: "#4a5636",
+    ground: "#9a7f5c",
+    shapes: [
+      // Mount Monadnock far off, pale with distance, its bare rocky summit lighter
+      { d: range([[1080, G], [1160, 262], [1230, 214], [1280, 178], [1310, 160], [1330, 150], [1350, 152], [1372, 164], [1410, 190], [1470, 226], [1540, 262], [1600, G]]), c: "#b7c6d3" },
+      { d: "M1292,172L1310,160L1330,150L1350,152L1372,164L1386,174L1364,171L1342,165L1318,170Z", c: "#d3d9de" },
+      // the Holyoke Range's Seven Sisters: a row of small knobs, blue with distance
+      { d: hills([[540, G], [620, 238], [680, 222], [720, 230], [760, 214], [800, 224], [840, 208], [880, 220], [920, 206], [970, 222], [1020, 214], [1080, 236], [1160, G]]), c: "#9cb0b6" },
+      // the Mount Tom Range: a traprock ridge whose basalt cliffs face west, a long gentle slope east
+      { d: range([[820, G], [842, 212], [866, 198], [940, 192], [1020, 202], [1100, 220], [1200, 250], [1290, G]]), c: "#7e8a66" },
+      { d: "M842,212L866,198L876,206L870,228L858,250L840,266L826,266Q836,242 842,212Z", c: "#8c827a" },
+      // Talcott Mountain: the nearer traprock ridge, its cliffs above the valley, Heublein Tower on top
+      { d: range([[300, G], [318, 200], [340, 186], [420, 178], [500, 190], [580, 206], [680, 236], [780, G]]), c: "#6d7448" },
+      { d: "M318,200L340,186L352,194L346,220L332,244L312,262L296,262Q306,236 318,200Z", c: "#776b63" },
+      { d: tower(452, 181, 24, 9), c: "#ece6da" },
+      { d: "M446,157L452,148L458,157Z", c: "#a8432f" },
+      // the Connecticut River valley: farm fields along the river, and the river itself
+      { d: hills([[520, G], [600, 286], [800, 280], [1000, 286], [1120, G]]), c: "#bdb46e" },
+      { d: water(580, 1060, 296), c: "#6f9fc0" },
+      // hardwood forest in autumn on the nearer hills, with dark hemlocks among it
+      { d: hills([[0, G], [80, 262], [220, 246], [360, 262], [460, 276], [560, G]]), c: "#c8692c" },
+      { d: hills([[1060, G], [1180, 266], [1320, 252], [1460, 262], [1600, 270], [1600, G]]), c: "#b5482f" },
+      {
+        d: ([[140, 250, 12], [186, 246, 13], [232, 248, 12], [276, 252, 12], [322, 258, 11], [1150, 268, 12], [1196, 262, 13], [1242, 256, 12], [1290, 252, 13], [1338, 254, 12], [1384, 258, 12], [1428, 262, 11]] as const)
+          .map(([x, y, r]) => `M${x - r},${y}A${r},${r} 0 1 0 ${x + r},${y}A${r},${r} 0 1 0 ${x - r},${y}Z`)
+          .join(" "),
+        c: "#e2a93a",
+      },
+      {
+        d: ([[118, 258, 11], [208, 252, 11], [298, 258, 10], [1218, 266, 11], [1314, 258, 11], [1406, 264, 10]] as const)
+          .map(([x, y, r]) => `M${x - r},${y}A${r},${r} 0 1 0 ${x + r},${y}A${r},${r} 0 1 0 ${x - r},${y}Z`)
+          .join(" "),
+        c: "#a83a2a",
+      },
+      { d: "M160,262L168,232L176,262Z M252,264L259,238L266,264Z M1172,272L1180,244L1188,272Z M1268,266L1276,236L1284,266Z M1362,268L1369,242L1376,268Z", c: FIR },
+    ],
+    front: [
+      // Long Island Sound at the start, and Faulkner's Island with its white lighthouse
+      { d: water(0, 340, 298), c: "#4f8fb8" },
+      { d: hills([[110, G], [140, 294], [200, 292], [236, G]]), c: "#8d8a6a" },
+      { d: "M164,294L166,272H174L176,294Z M165,272V266H175V272Z", c: "#f2efe8" },
+    ],
+  },
   "superior-hiking-trail": {
     view: "Minnesota's North Shore: the Sawtooth ridges above Lake Superior, birch and spruce on the rocky slopes, a waterfall dropping towards the lake and the lake's long horizon",
     ridge: "#3f5a34",

@@ -1,0 +1,426 @@
+name: New England National Scenic Trail
+added: 2026-11-07
+aliases: [New England Trail, NET, Metacomet-Monadnock-Mattabesett Trail]
+website: https://newenglandtrail.org/
+wikidata: Q7007323
+managedBy:
+  # "The trail is federally administered by the National Park Service and managed in Connecticut by
+  # the Connecticut Forest & Park Association (CFPA) and in Massachusetts by the Appalachian Mountain
+  # Club (AMC)" (FAQs)
+  - name: National Park Service
+    url: https://www.nps.gov/neen/index.htm
+  - name: Connecticut Forest & Park Association
+    url: https://www.ctwoodlands.org/
+  - name: Appalachian Mountain Club
+    url: https://www.outdoors.org/
+officialGpx:
+  none: the trail's website offers an interactive map and a printed map and guide sold through the clubs, no GPX download (checked 2026-11-07)
+  source: net-map
+trailType: point-to-point
+continents: [North America]
+countries: [US]
+regions: [Connecticut, Massachusetts]
+protectedAreas:
+  # the state parks and forests the section pages name on the main route
+  - Cockaponset State Forest
+  - Trimountain State Park
+  - Talcott Mountain State Park
+  - Penwood State Park
+  - Robinson State Forest
+  - Mount Tom State Reservation
+  - Wendell State Forest
+  - Mount Grace State Forest
+  - Warwick State Forest
+termini:
+  # "the Southern Terminus of the NET at the Long Island Sound, located in Guildford's Chittenden
+  # Park" and the Northern Terminus at the NH/MA border in Royalston (Thru-Hiking); coordinates the
+  # ends of CT section 5 and MA section 19 on the trail's interactive map data
+  start:
+    name: Chittenden Park, Guilford (Long Island Sound)
+    lat: 41.26751
+    lon: -72.67196
+  end:
+    name: Massachusetts–New Hampshire state line, Royalston
+    lat: 42.72071
+    lon: -72.24805
+  source: net-thru
+established:
+  # "The NET was designated on March 30, 2009 as part of Public Law 111-11" (About the NET)
+  year: 2009
+  source: net-about
+waymarking:
+  text: >-
+    A NET marker throughout, and the whole trail blazed with painted or nail-up rectangles about
+    the size of a dollar bill at eye level: light blue in Connecticut, white in Massachusetts.
+  source: net-thru
+days:
+  # "A typical thru-hiker can complete the trail in 2-4 weeks" (Thru-Hiking)
+  min: 14
+  max: 28
+  source: net-thru
+stages:
+  # the trail's 40 sections, CT NET sections 1–21 and MA NET sections 1–19, with the miles and
+  # elevation change on each section page, converted at 1.609344 km a mile and 0.3048 m a foot; each
+  # stage cut out of OSM's NET relation at its section end on the trail's interactive map data.
+  # Connecticut numbers its sections from the Mattabesett's eastern terminus in Middletown: CT 1–4
+  # run south-west to CT 9, CT 5–8 (the Menunkatuck Trail) north from Guilford to a junction inside
+  # CT 9. The main route is the one from the southern terminus, CT 5–21 and MA 1–19; CT 1–4, the
+  # Mattabesett's eastern arm out to Middletown, are listed as variants, walked from the junction
+  # (their ends and climbs turned round)
+  source: net-sections
+  transfers:
+    # "There is no pedestrian crossing of the Connecticut River where it currently meets the NET …
+    # thru-hikers must hitch a ride across by boat, use a car or hike around" (Thru-Hiking): between
+    # Underwood Avenue in Easthampton and Old Mountain Road in Hadley, the end of MA 6 and the start
+    # of MA 7 on the trail's map data
+    - by: boat
+      stage: "MA 7"
+      start: { name: "Underwood Avenue, Easthampton", lat: 42.28683, lon: -72.61727 }
+      end: { name: "Old Mountain Road, Hadley", lat: 42.29136, lon: -72.59992 }
+      source: net-thru
+  list:
+    - { number: "CT 5", kind: main, from: "Chittenden Park (Long Island Sound), Guilford", to: "Clapboard Hill Road, Guilford", km: 5.1, ascentM: 36, descentM: 0, end: { lat: 41.29401, lon: -72.66065 } }
+    - { number: "CT 6", kind: main, from: "Clapboard Hill Road, Guilford", to: "Willow Road, Guilford", km: 7.2, ascentM: 101, descentM: 94, end: { lat: 41.32763, lon: -72.67015 } }
+    - { number: "CT 7", kind: main, from: "Willow Road, Guilford", to: "Guilford (Timberlands)", km: 5.8, ascentM: 66, descentM: 38, end: { lat: 41.35301, lon: -72.68482 } }
+    - { number: "CT 8", kind: main, from: "Guilford (Timberlands)", to: "Mattabesett Trail junction, North Guilford", km: 8.7, ascentM: 135, descentM: 61, end: { lat: 41.40583, lon: -72.6838 } }
+    - { number: "CT 4", kind: variant, from: "Mattabesett Trail junction, North Guilford", to: "Foot Hills Road, Haddam", km: 11.1, ascentM: 241, descentM: 186, end: { lat: 41.47434, lon: -72.61658 } }
+    - { number: "CT 3", kind: variant, from: "Foot Hills Road, Haddam", to: "Saybrook Road (Route 154), Middletown", km: 8.2, ascentM: 99, descentM: 247, end: { lat: 41.5073, lon: -72.58309 } }
+    - { number: "CT 2", kind: variant, from: "Saybrook Road (Route 154), Middletown", to: "Bear Hill Road, Middletown", km: 9.0, ascentM: 335, descentM: 196, end: { lat: 41.53248, lon: -72.59788 } }
+    - { number: "CT 1", kind: variant, from: "Bear Hill Road, Middletown", to: "River Road, Middletown (the Mattabesett's eastern terminus)", km: 8.2, ascentM: 173, descentM: 328, end: { lat: 41.55405, lon: -72.58226 } }
+    - { number: "CT 9", kind: main, from: "Mattabesett Trail junction, North Guilford", to: "New Haven Road (Route 17), Durham", km: 20.4, ascentM: 526, descentM: 561, end: { lat: 41.43008, lon: -72.73132 } }
+    - { number: "CT 10", kind: main, from: "New Haven Road (Route 17), Durham", to: "Wallingford Road (Route 68), Durham", km: 10.6, ascentM: 345, descentM: 351, end: { lat: 41.47452, lon: -72.72667 } }
+    - { number: "CT 11", kind: main, from: "Wallingford Road (Route 68), Durham", to: "Meriden Road, Middlefield", km: 9.8, ascentM: 563, descentM: 528, end: { lat: 41.53456, lon: -72.73138 } }
+    - { number: "CT 12", kind: main, from: "Meriden Road, Middlefield", to: "Atkins Street, Middletown", km: 11.6, ascentM: 564, descentM: 617, end: { lat: 41.56748, lon: -72.73847 } }
+    - { number: "CT 13", kind: main, from: "Atkins Street, Middletown", to: "Summit Wood Drive, Berlin", km: 19.3, ascentM: 434, descentM: 431, end: { lat: 41.57773, lon: -72.79851 } }
+    - { number: "CT 14", kind: main, from: "Summit Wood Drive, Berlin", to: "Carey Street, Southington", km: 18.5, ascentM: 658, descentM: 624, end: { lat: 41.61179, lon: -72.82145 } }
+    - { number: "CT 15", kind: main, from: "Carey Street, Southington", to: "New Britain Avenue, Plainville", km: 17.5, ascentM: 318, descentM: 369, end: { lat: 41.67119, lon: -72.83212 } }
+    - { number: "CT 16", kind: main, from: "New Britain Avenue, Plainville", to: "Farmington", km: 13.0, ascentM: 311, descentM: 267, end: { lat: 41.7467, lon: -72.79443 } }
+    - { number: "CT 17", kind: main, from: "Farmington", to: "Hartford Road, Simsbury", km: 16.6, ascentM: 337, descentM: 319, end: { lat: 41.83795, lon: -72.78517 } }
+    - { number: "CT 18", kind: main, from: "Hartford Road, Simsbury", to: "Mountain Road, Simsbury", km: 9.7, ascentM: 281, descentM: 360, end: { lat: 41.90813, lon: -72.76159 } }
+    - { number: "CT 19", kind: main, from: "Mountain Road, Simsbury", to: "Turkey Hills Road, East Granby", km: 7.7, ascentM: 233, descentM: 193, end: { lat: 41.94695, lon: -72.74009 } }
+    - { number: "CT 20", kind: main, from: "Turkey Hills Road, East Granby", to: "Mountain Road, Suffield", km: 8.2, ascentM: 259, descentM: 222, end: { lat: 42.00558, lon: -72.72563 } }
+    - { number: "CT 21", kind: main, from: "Mountain Road, Suffield", to: "Connecticut–Massachusetts state line (Rising Corners)", km: 4.0, ascentM: 48, descentM: 101, end: { lat: 42.03666, lon: -72.71538 } }
+    - { number: "MA 1", kind: main, from: "Connecticut–Massachusetts state line (Rising Corners)", to: "Southwick", km: 3.7, ascentM: 84, descentM: 56, end: { lat: 42.06236, lon: -72.70931 } }
+    - { number: "MA 2", kind: main, from: "Southwick", to: "Westfield River (Agawam bank)", km: 6.1, ascentM: 132, descentM: 198, end: { lat: 42.10594, lon: -72.68885 } }
+    - { number: "MA 3", kind: main, from: "Westfield River (West Springfield bank)", to: "Old Holyoke Road, West Springfield", km: 5.8, ascentM: 139, descentM: 83, end: { lat: 42.14079, lon: -72.68679 } }
+    - { number: "MA 4", kind: main, from: "Old Holyoke Road, West Springfield", to: "Holyoke", km: 6.3, ascentM: 280, descentM: 230, end: { lat: 42.18441, lon: -72.67048 } }
+    - { number: "MA 5", kind: main, from: "Holyoke", to: "Old Easthampton Road, Holyoke", km: 7.2, ascentM: 288, descentM: 269, end: { lat: 42.22448, lon: -72.64582 } }
+    - { number: "MA 6", kind: main, from: "Old Easthampton Road, Holyoke", to: "Underwood Avenue, Easthampton (Connecticut River)", km: 10.9, ascentM: 520, descentM: 643, end: { lat: 42.28683, lon: -72.61727 } }
+    - { number: "MA 7", kind: main, from: "Old Mountain Road, Hadley (Connecticut River)", to: "West Street (Route 116), Amherst", km: 8.9, ascentM: 648, descentM: 527, end: { lat: 42.30506, lon: -72.52839 }, joinM: 1600,
+        # the Connecticut River crossed by the transfer (the guide jumps the river at its first via
+        # point, the section's start on the far bank), then via points along the section on the trail's
+        # map data, so the joined way ends can't shortcut the Holyoke Range
+        via: [{ lat: 42.29136, lon: -72.59992 }, { lat: 42.29213, lon: -72.59740 }, { lat: 42.29660, lon: -72.59380 }, { lat: 42.29973, lon: -72.58877 }, { lat: 42.30165, lon: -72.58252 }, { lat: 42.30321, lon: -72.57548 }, { lat: 42.30456, lon: -72.56785 }, { lat: 42.30394, lon: -72.56051 }, { lat: 42.30444, lon: -72.55445 }, { lat: 42.30513, lon: -72.54670 }, { lat: 42.30457, lon: -72.53952 }, { lat: 42.30362, lon: -72.53167 }] }
+    - { number: "MA 8", kind: main, from: "West Street (Route 116), Amherst", to: "Harris Street, Granby", km: 8.0, ascentM: 439, descentM: 479, end: { lat: 42.30749, lon: -72.47071 } }
+    - { number: "MA 9", kind: main, from: "Harris Street, Granby", to: "Federal Street, Belchertown", km: 4.3, ascentM: 163, descentM: 180, end: { lat: 42.31915, lon: -72.43581 } }
+    - { number: "MA 10", kind: main, from: "Federal Street, Belchertown", to: "Mount Lincoln, Pelham", km: 6.6, ascentM: 309, descentM: 34, end: { lat: 42.36357, lon: -72.42323 } }
+    - { number: "MA 11", kind: main, from: "Mount Lincoln, Pelham", to: "Shutesbury Road, Pelham", km: 9.2, ascentM: 143, descentM: 173, end: { lat: 42.39785, lon: -72.40602 } }
+    - { number: "MA 12", kind: main, from: "Shutesbury Road, Pelham", to: "Cooleyville Road, New Salem", km: 9.7, ascentM: 136, descentM: 307, end: { lat: 42.46447, lon: -72.38165 } }
+    - { number: "MA 13", kind: main, from: "Cooleyville Road, New Salem", to: "Jennison Road, Shutesbury", km: 6.3, ascentM: 207, descentM: 110, end: { lat: 42.50284, lon: -72.37793 } }
+    - { number: "MA 14", kind: main, from: "Jennison Road, Shutesbury", to: "Lakeview Road, Shutesbury (Lake Wyola)", km: 7.4, ascentM: 72, descentM: 101, end: { lat: 42.50695, lon: -72.43086 } }
+    - { number: "MA 15", kind: main, from: "Lakeview Road, Shutesbury (Lake Wyola)", to: "Route 2, Farley (Erving)", km: 15.0, ascentM: 278, descentM: 415, end: { lat: 42.5991, lon: -72.43923 } }
+    - { number: "MA 16", kind: main, from: "Route 2, Farley (Erving)", to: "Gulf Road, Northfield", km: 11.1, ascentM: 471, descentM: 219, end: { lat: 42.6597, lon: -72.41904 } }
+    - { number: "MA 17", kind: main, from: "Gulf Road, Northfield", to: "Route 78 (Winchester Road), Warwick", km: 17.5, ascentM: 514, descentM: 709, end: { lat: 42.70548, lon: -72.34879 } }
+    - { number: "MA 18", kind: main, from: "Route 78 (Winchester Road), Warwick", to: "Athol-Richmond Road (Route 32), Royalston", km: 14.3, ascentM: 571, descentM: 373, end: { lat: 42.71578, lon: -72.25584 } }
+    - { number: "MA 19", kind: main, from: "Athol-Richmond Road (Route 32), Royalston", to: "Massachusetts–New Hampshire state line", km: 1.1, ascentM: 0, descentM: 86, end: { lat: 42.72071, lon: -72.24805 } }
+route:
+  # built by `python -m pipeline.all new-england-trail`: OSM ways matched to OSM's NET relation
+  # (3672563, "There is an intentional gap at the Connecticut River"), each stage the shortest way
+  # over the relation's ways to its section end
+  source: osm
+  publishable: true
+  relation: 3672563
+  branched: true
+difficulty:
+  estimated:
+    sac: T2
+    basis: >-
+      The trail is well marked and easy to follow, single track along traprock ridges and through
+      forest with several road walks, but rugged in some sections: steep, rugged climbs over loose
+      rock (CT 14), scrambling climbs (CT 15), cliffs that are dangerous when wet (CT 11) and a
+      steep pitch where some may need a rope (MA 9). Mountain hiking on marked paths (T2), with
+      short steeper scrambles.
+    source: net-sections
+season:
+  # "Although the trail could be hiked year round, many choose to hike in the spring and fall, as
+  # summers tend to be humid and buggy and winters are cold and icy" (Thru-Hiking); spring and fall
+  # taken as March–May and September–November
+  months: [3, 4, 5, 9, 10, 11]
+  text: Spring and fall; the trail could be hiked year round, but summers tend to be humid and buggy and winters cold and icy
+  source: net-thru
+sleeping:
+  # Overnight Sites: cabins, lean-tos and tent sites (ten in all); where there is none, hikers leave
+  # the trail for "a nearby hotel, airbnb or campground" (Thru-Hiking)
+  types: [bivouac, campsite, hotel, guesthouse]
+  source: net-overnight
+wildCamping:
+  status: prohibited
+  rule: >-
+    Camping is allowed only at the designated overnight sites; much of the trail is on private
+    land, and stealth camping is not permitted. Campfires are not allowed at overnight sites in
+    Connecticut, and only at existing designated fire rings in Massachusetts.
+  source: net-faqs
+access:
+  # the operator names Amtrak at Guilford and the airports at Bradley, Boston Logan and T. F. Green
+  # (Thru-Hiking). Coordinates from OSM; distances by pipeline/access.py
+  - kind: station
+    name: Guilford station (Amtrak, Shore Line East)
+    lat: 41.27572
+    lon: -72.67361
+    source: osm
+  - kind: airport
+    name: Bradley International Airport (BDL)
+    lat: 41.94069
+    lon: -72.685
+    source: osm
+  - kind: airport
+    name: Rhode Island T. F. Green International Airport (PVD)
+    lat: 41.72253
+    lon: -71.42873
+    source: osm
+  - kind: airport
+    name: Boston Logan International Airport (BOS)
+    lat: 42.36318
+    lon: -71.01364
+    source: osm
+animals:
+  # the operator names black bears, copperheads and ticks (Thru-Hiking); the advice from
+  # Connecticut's Department of Energy and Environmental Protection and the CDC. Levels ours
+  list:
+    - kind: tick
+      name: Blacklegged tick (deer tick)
+      level: moderate
+      basis: The operator calls ticks, which can transmit Lyme disease, one of the most common threats on the trail; the CDC says they are most active from April to September.
+      do:
+        - Treat clothing and gear with products containing 0.5% permethrin
+        - Walk in the center of trails
+        - Use EPA-registered insect repellents containing DEET, picaridin, IR3535, Oil of Lemon Eucalyptus (OLE), para-menthane-diol (PMD), or 2-undecanone
+        - Check your body for ticks after being outdoors
+      dont:
+        - Avoid wooded and brushy areas with high grass and leaf litter
+      source: cdc-ticks
+    - kind: bear
+      name: Black bear
+      level: low
+      basis: Hikers sometimes meet black bears on the trail; Connecticut's population is growing fast, but black bear attacks on humans are exceptionally rare.
+      do:
+        - If you see a bear when hiking or camping, make your presence known by making noise and waving your arms
+        - If you surprise a bear at close range, walk away slowly while facing the bear
+        - "Black bears will sometimes \"bluff charge\": stand your ground and shout at the bear"
+        - Use a rope to suspend food 10 or more feet off the ground and at least 6 feet away from tree trunks
+        - Make sure your dog is on a leash and under control
+      dont:
+        - Do not run
+        - Do not climb a tree because black bears are excellent tree climbers
+        - Do not cook near your tent and do not store food inside your tent
+        - Never attempt to feed or attract bears
+      source: ctdeep-bear
+    - kind: snake
+      name: Northern copperhead
+      level: low
+      basis: Connecticut's copperheads are most abundant on the traprock ridges the trail follows, active April to October; docile, their bite is painful and can make one severely ill but rarely kills.
+      do:
+        - Observe it from a distance and allow it to go on its way
+        - In trap rock areas, be careful of where you place your hands and feet
+        - Seek medical attention immediately if bitten
+      dont:
+        - The killing of this snake is strongly discouraged
+      source: ctdeep-copperhead
+tags: [ridge, forest, river, coast]
+notes:
+  - >-
+    Stages: the trail's 40 section pages (Find a Hike, "Section Hike"), CT NET sections 1–21 and MA
+    NET sections 1–19, each with its miles and elevation change ("+1075 / -567 feet"), converted at
+    1.609344 km a mile and 0.3048 m a foot; the ends are those of each section's line on the
+    interactive map's data (the line's segments carry the section's web id). The trail is branched:
+    Connecticut numbers its sections from the Mattabesett's eastern terminus on the Connecticut
+    River in Middletown, CT 1–4 running south-west to CT 9, while CT 5–8 (the Menunkatuck Trail)
+    climb from the southern terminus in Guilford to a junction inside CT 9. The main stages are the
+    route from the southern terminus to the New Hampshire line, CT 5–21 and MA 1–19 (219.6 miles,
+    353.1 km); CT 1–4 (22.7 miles), the Mattabesett's eastern arm, are variants walked from the
+    junction out to Middletown, with their ends and their climbs turned round. The junction lies
+    inside CT 9, so on the map line the main stage CT 9 covers only the section's western part
+    (8.9 km against its 12.7 miles, 20.4 km) and the variant CT 4 also its eastern part (20.8 km
+    against 6.9 miles, 11.1 km); the record keeps the stated miles. Stage numbers carry the state
+    ("CT 5", "MA 1"), as the operator names them.
+  - >-
+    Length: the trail is "a 235-mile hiking trail route" (About the NET; the National Park Service
+    the same), which takes in the Mattabesett's eastern arm; the 40 sections sum to 242.3 miles
+    (3 % more). The main route alone has no stated total, so the record states none and the page
+    sums the main stages (219.6 miles, 353.1 km).
+  - >-
+    Connecticut River: "There is no pedestrian crossing of the Connecticut River where it currently
+    meets the NET … thru-hikers must hitch a ride across by boat, use a car or hike around" (a road
+    walk on US-5 and MA-47, 10.2 miles, "possible but not suggested"). The crossing between the end
+    of MA 6 (Underwood Avenue, Easthampton) and the start of MA 7 (Old Mountain Road, Hadley) is
+    recorded as a transfer by boat inside MA 7, the first of the operator's ways across; OSM's
+    relation has "an intentional gap at the Connecticut River". The Westfield River (end of MA 2) is
+    forded; at high water a road walk of about 3 miles goes round it.
+  - >-
+    Days: "A typical thru-hiker can complete the trail in 2-4 weeks", recorded as 14 to 28 days; it
+    doesn't say whether the eastern arm to Middletown is included.
+  - >-
+    Ascent: the operator gives thru-hikers "a net gain of just over 30,000 ft" (9,144 m) without a
+    descent; the page sums the main sections' stated climbs instead (10,609 m up, 10,328 m down),
+    which every main stage states. The terrain model gives about 10,300 m.
+  - >-
+    Season: the operator's "many choose to hike in the spring and fall, as summers tend to be humid
+    and buggy and winters are cold and icy", recorded as March–May and September–November (the
+    meteorological seasons); Wikipedia's infobox says "Spring to Fall".
+  - >-
+    Waymarking: the light blue (Connecticut) and white (Massachusetts) rectangular blazes are not
+    drawn (no plain rectangle blaze in Waymark.astro yet, as for the Ozark Highlands Trail).
+  - >-
+    Protected areas: the state parks and forests that the main route's section pages name; the
+    eastern arm's Millers Pond State Park and the land trusts' and municipal preserves are left out.
+  - >-
+    Wildlife: the operator names black bears, copperheads and ticks (Thru-Hiking). Massachusetts'
+    wildlife pages (mass.gov) answered 403 and were left out; Connecticut's Department of Energy and
+    Environmental Protection gives the bear and copperhead advice and the CDC the tick advice.
+  - >-
+    Map line (2026-11-07): the Connecticut, Massachusetts and New Hampshire Geofabrik extracts
+    (2026-11-05); OSM's NET relation 3672563 (489 main ways, 80 excursions, in two pieces split at
+    the Connecticut River) with each stage the shortest way over its ways to the section end.
+    Every stage is 99–100 % matched except two: MA 5 is 90 % matched, as the matcher leaves the
+    relation's ways for the parallel Pipeline Trail for about 0.7 km near Mount Tom (up to 200 m
+    off; the relation's ways don't join there in the routable network); MA 7 is 88 % matched, since
+    its guide jumps the river and joins the relation's way ends (joinM 1,600 m) through via points
+    on the trail's map data; its map line (8.6 km) equals the operator's line (8.6 km). The main
+    route measures 319.5 km against the main sections' 353.1 km (−9.5 %); the operator's own map
+    line is shorter than its stated miles too (CT 12 9.7 km against 11.6 km, CT 14 16.7 km against
+    18.5 km), so the map line's 10–18 % shorter CT 1–3, 10, 12, 14 and 17 follow the operator's
+    line. Highest point 500 m at km 302 (Mount Grace; the operator's 1,617 ft, 493 m), lowest 1 m
+    at Long Island Sound (the operator's 0 ft).
+  - >-
+    Water: OSM maps only 2 drinking water points and 3 springs within 500 m of the trail; the
+    operator says "water sources are very limited, particularly in the Summer and Fall", "there is
+    not a guide to available water sources", and to treat or filter all water, so no waterPoints
+    are added.
+  - >-
+    Resupply and beds: OSM maps 41 shops near the trail, the longest stretch without one 106 km
+    (km 213–320, from Pelham to the state line); thru-hikers "leave the trail to periodically
+    resupply in nearby towns, carrying roughly enough food for 3-7 days" over its roughly 100 road
+    crossings. OSM maps only 7 campsites near the trail (the longest stretch without one 133 km);
+    the operator's ten overnight sites (cabins, lean-tos, tent sites) are mostly not mapped as
+    such, and hikers are expected to leave the trail for hotels, rooms or campgrounds.
+  - >-
+    Access: Guilford station (Amtrak and Shore Line East), 1.8 km by road from the start, and the
+    airports the operator names: Bradley (89 km), T. F. Green (135 km) and Boston Logan (234 km).
+  - >-
+    Data check (2026-11-07): against the National Park Service's Basic Information and English
+    Wikipedia. Length: the NPS "235-mile" agrees with the operator's 235 miles; Wikipedia's "Approx.
+    215 mi" is 8.5 % less (the Massachusetts relocation and the Guilford extension came later).
+    Termini: Wikipedia's "Guilford Harbor, CT" and "MA-32, Royalston" agree with Chittenden Park and
+    the state line 0.7 miles beyond the Route 32 trailhead. Designation 2009: agrees. Highest point
+    Mount Grace 1,617 ft and lowest Long Island Sound 0 ft in both; the terrain model 500 m (+1.4 %)
+    and 1 m. Season: Wikipedia "Spring to Fall", the operator spring and fall; the record keeps the
+    operator's. Difficulty: Wikipedia "Moderate to strenuous"; our T2 fits. Days, camping and
+    sleeping only on the operator's pages. Ascent: the operator's "just over 30,000 ft" (9,144 m)
+    against the main sections' 10,609 m (+16 %, dataCheck.deviations). The 40 sections' miles and
+    climbs were checked one by one against the section pages. Derived against stated: CT 9 and
+    CT 4 on the map line (the branch junction inside CT 9), and CT 1–3, 10, 12, 14 and 17 10–18 %
+    shorter on the map line, as on the operator's own line (dataCheck.deviations).
+dataCheck:
+  date: 2026-11-07
+  against: [nps-basic, wikipedia]
+  pageAgainst: [net-sections]
+  deviations:
+    - { figure: ascent, ours: "10,609 m (sum of the main sections)", theirs: "just over 30,000 ft (9,144 m) for thru-hikers", source: net-thru }
+    - { figure: stage CT 9 length, ours: "20.4 km (12.7 miles)", theirs: "8.9 km on the map line (the main route joins inside the section)", source: osm }
+    - { figure: stage CT 4 length, ours: "11.1 km (6.9 miles)", theirs: "20.8 km on the map line (with CT 9's eastern part)", source: osm }
+    - { figure: stage CT 3 length, ours: "8.2 km (5.1 miles)", theirs: "6.7 km on the map line", source: osm }
+    - { figure: stage CT 1 length, ours: "8.2 km (5.1 miles)", theirs: "7.2 km on the map line", source: osm }
+    - { figure: stage CT 10 length, ours: "10.6 km (6.6 miles)", theirs: "9.4 km on the map line", source: osm }
+    - { figure: stage CT 12 length, ours: "11.6 km (7.2 miles)", theirs: "9.5 km on the map line", source: osm }
+    - { figure: stage CT 14 length, ours: "18.5 km (11.5 miles)", theirs: "16.2 km on the map line", source: osm }
+    - { figure: stage CT 2 length, ours: "9.0 km (5.6 miles)", theirs: "8.1 km on the map line", source: osm }
+    - { figure: stage CT 17 length, ours: "16.6 km (10.3 miles)", theirs: "14.9 km on the map line", source: osm }
+sources:
+  - id: net-sections
+    title: "New England Trail: Find a Hike, section hikes (CT NET sections 1–21 and MA NET sections 1–19, each with its miles, elevation change, towns and description)"
+    url: https://newenglandtrail.org/find-a-hike/
+    licence: All rights reserved (facts only)
+    retrieved: 2026-11-07
+  - id: net-map
+    title: "New England Trail: Interactive Map (the trail line by section, whose ends place the stage ends)"
+    url: https://newenglandtrail.org/interactive-map/
+    licence: All rights reserved (facts only)
+    retrieved: 2026-11-07
+  - id: net-thru
+    title: "New England Trail: Thru-Hiking (termini, 2–4 weeks, season, blazes, camping, resupply, water, road walks, river crossings, wildlife)"
+    url: https://newenglandtrail.org/thru-hiking/
+    licence: All rights reserved (facts only)
+    retrieved: 2026-11-07
+  - id: net-about
+    title: "New England Trail: About the NET (235 miles, designated 30 March 2009)"
+    url: https://newenglandtrail.org/about-the-net/
+    licence: All rights reserved (facts only)
+    retrieved: 2026-11-07
+  - id: net-faqs
+    title: "New England Trail: FAQs (management, camping only at designated sites, blaze colours)"
+    url: https://newenglandtrail.org/faqs/
+    licence: All rights reserved (facts only)
+    retrieved: 2026-11-07
+  - id: net-overnight
+    title: "New England Trail: Overnight Sites (cabins, lean-tos and tent sites)"
+    url: https://newenglandtrail.org/overnight-sites/
+    licence: All rights reserved (facts only)
+    retrieved: 2026-11-07
+  - id: cdc-ticks
+    title: "US Centers for Disease Control and Prevention: Preventing Tick Bites"
+    url: https://www.cdc.gov/ticks/prevention/index.html
+    licence: US federal government work, public domain
+    retrieved: 2026-11-07
+  - id: ctdeep-bear
+    title: "Connecticut Department of Energy and Environmental Protection: Black Bear fact sheet (bears seen while hiking or camping)"
+    url: https://portal.ct.gov/deep/wildlife/fact-sheets/black-bear
+    licence: Connecticut state government work (facts only)
+    retrieved: 2026-11-07
+  - id: ctdeep-copperhead
+    title: "Connecticut Department of Energy and Environmental Protection: Northern Copperhead fact sheet"
+    url: https://portal.ct.gov/deep/wildlife/fact-sheets/northern-copperhead
+    licence: Connecticut state government work (facts only)
+    retrieved: 2026-11-07
+  - id: nps-basic
+    title: "National Park Service: New England National Scenic Trail, Basic Information (a 235-mile hiking trail route)"
+    url: https://www.nps.gov/neen/planyourvisit/basicinfo.htm
+    licence: US federal government work, public domain
+    retrieved: 2026-11-07
+    checkOnly: true
+  - id: wikipedia
+    title: "Wikipedia (en): New England National Scenic Trail"
+    url: https://en.wikipedia.org/wiki/New_England_National_Scenic_Trail
+    licence: CC BY-SA 4.0
+    retrieved: 2026-11-07
+    checkOnly: true
+  - id: wikimedia
+    title: "Wikimedia: page views of the trail's Wikipedia articles in every language, by people, over twelve months (Wikidata sitelinks, pageview API)"
+    url: https://wikimedia.org/api/rest_v1/
+    licence: CC0 1.0 (pageview data); Wikidata CC0
+    retrieved: 2026-11-07
+    checkOnly: true  # not on the trail page: the page views only rank the home page's popular trails
+  - id: osm
+    title: "OpenStreetMap contributors: paths, water, shops and places to sleep along the trail (Geofabrik extracts), travel hubs"
+    url: https://www.openstreetmap.org/
+    licence: ODbL 1.0
+    retrieved: 2026-11-07
+  - id: copdem
+    title: "Copernicus DEM GLO-30 (30 m terrain model), tiles from AWS Open Data"
+    url: https://registry.opendata.aws/copernicus-dem/
+    licence: "Copernicus WorldDEM-30 licence, free; produced using Copernicus WorldDEM-30 © DLR e.V. 2010-2014 and © Airbus Defence and Space GmbH 2014-2018 provided under COPERNICUS by the European Union and ESA; all rights reserved"
+    retrieved: 2026-11-07
+  - id: worldcover
+    title: "ESA WorldCover 2021: 10 m land cover (via AWS Open Data)"
+    url: https://esa-worldcover.org/
+    licence: "CC BY 4.0; © ESA WorldCover project 2021 / Contains modified Copernicus Sentinel data (2021) processed by ESA WorldCover consortium"
+    retrieved: 2026-11-07
+  - id: era5
+    title: "Open-Meteo open data on AWS: ERA5-Land temperature and ERA5 precipitation, snow and wind, daily 1995–2024 (reanalysis)"
+    url: https://github.com/open-meteo/open-data
+    licence: CC BY 4.0 (Open-Meteo); contains modified Copernicus Climate Change Service information
+    retrieved: 2026-11-07
+  - id: osrm
+    title: "OSRM: road routes on OpenStreetMap data (router.project-osrm.org)"
+    url: https://project-osrm.org/
+    licence: Route data © OpenStreetMap contributors (ODbL)
+    retrieved: 2026-11-07

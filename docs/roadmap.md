@@ -172,6 +172,8 @@ And the **Greenstone Ridge Trail** (Michigan: the National Park Service's "about
 
 And the **Pacific Northwest National Scenic Trail** (Montana, Idaho and Washington: the Pacific Northwest Trail Association's about 1,200 miles with the Forest Service from Chief Mountain on Glacier National Park's Canadian border over the Continental Divide, the Purcells, the Selkirks, the Kettle River Range and the Okanogan Highlands, through the Pasayten Wilderness and the North Cascades past Mount Baker, across Puget Sound by the Keystone ferry and through the Olympics' rainforest to Cape Alava on the Pacific, in the association's ten sections, mostly unmarked, 60–75 days, prime season July to September; over the three OSM state relations; 2026-11-07).
 
+And the **New England National Scenic Trail** (Connecticut and Massachusetts: the National Park Service's 235 miles with the Connecticut Forest & Park Association and the Appalachian Mountain Club from Long Island Sound at Guilford over the Menunkatuck, the Mattabesett and the Metacomet Trail's traprock ridges, Ragged Mountain, Talcott Mountain and the Mount Tom and Holyoke Ranges, across the Connecticut River without a crossing, to Mount Grace and the New Hampshire line at Royalston, in the trail's 40 sections, with the Mattabesett's eastern arm to Middletown as a branch, 2–4 weeks, spring and fall, camping only at ten overnight sites; over the trail's OSM relation; 2026-11-07).
+
 | # | Trail | Region | Length (approx.) | Why |
 |---|---|---|---|---|
 | 1 | Pacific Crest Trail | USA | 4,265 km | Most-hiked long trail; public US agency data; completion lists |

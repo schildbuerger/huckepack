@@ -130,7 +130,9 @@ def build(slug, refresh=False):
     every = [tuple(c) for f in stages for c in f["geometry"]["coordinates"]]
     proj = osm.Projection(sum(lat for _, lat in every) / len(every))
     lines = [[proj.xy(*c) for c in f["geometry"]["coordinates"]] for f in stages]
-    main = sorted((i for i, f in enumerate(stages) if f["properties"]["kind"] == "main"), key=lambda i: osm.stage_order(stages[i]["properties"]["number"]))
+    # in the record's order (the routes step writes the features so): numbers with a state prefix
+    # (the New England Trail's "CT 5" … "MA 19") don't sort by their digits
+    main = [i for i, f in enumerate(stages) if f["properties"]["kind"] == "main"]
     offset, walked = {}, 0.0
     for i in main:
         offset[i] = walked
