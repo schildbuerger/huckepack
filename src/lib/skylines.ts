@@ -2439,6 +2439,28 @@ export const SKYLINES: Record<string, Skyline> = {
     // a turquoise glacial lake below the peaks
     front: [{ d: water(560, 1080, 302), c: "#4fb3b5" }],
   },
+  "border-route-trail": {
+    view: "The Boundary Waters along the Canadian border: high dark cliffs above a long border lake, spruce and pine on their crests, the forested Ontario shore across the water, and a ridge of the Canadian Shield on the right",
+    ridge: "#3f5a34",
+    ground: "#8a7f6a",
+    shapes: [
+      // the Ontario shore across the border lakes, pale with distance
+      { d: hills([[0, G], [120, 238], [360, 226], [620, 236], [900, 222], [1180, 232], [1420, 224], [1600, 234], [1600, G]]), c: "#aabdb5" },
+      { d: hills([[480, G], [680, 240], [940, 232], [1180, 242], [1380, G]]), c: "#90a79b" },
+      // the high cliffs on the Minnesota side, dark rock of the Canadian Shield dropping into the lake
+      { d: range([[0, G], [0, 214], [80, 196], [170, 178], [250, 168], [320, 164], [356, 172], [370, 214], [380, G]]), c: "#6b6661" },
+      // spruce and pine along the cliffs' crest
+      { d: [[200, 180], [236, 176], [270, 172], [304, 170], [336, 170]].map(([x, y]) => `M${x - 6},${y + 6}L${x},${y - 18}L${x + 6},${y + 6}Z`).join(" "), c: FIR },
+      // the long border lake below them
+      { d: water(300, 1600, 256), c: "#5f93b5" },
+      // a ridge of the Shield on the right, rising out of the lake, forested to its top
+      { d: range([[1150, G], [1200, 252], [1250, 212], [1310, 194], [1390, 186], [1470, 194], [1540, 206], [1600, 214], [1600, G]]), c: "#55704c" },
+      { d: [[1272, 212], [1320, 198], [1364, 193], [1404, 193]].map(([x, y]) => `M${x - 5},${y + 6}L${x},${y - 16}L${x + 5},${y + 6}Z`).join(" "), c: FIR },
+      // boreal forest on the near shore
+      { d: hills([[0, G], [140, 272], [360, 264], [560, 280], [700, G]]), c: FIR },
+      { d: hills([[1080, G], [1280, 272], [1480, 262], [1600, 270], [1600, G]]), c: FIR },
+    ],
+  },
   "superior-hiking-trail": {
     view: "Minnesota's North Shore: the Sawtooth ridges above Lake Superior, birch and spruce on the rocky slopes, a waterfall dropping towards the lake and the lake's long horizon",
     ridge: "#3f5a34",
