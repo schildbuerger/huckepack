@@ -170,6 +170,8 @@ And the **Great Divide Trail** (Alberta and British Columbia: the Great Divide T
 
 And the **Greenstone Ridge Trail** (Michigan: the National Park Service's "about 41.7" miles (67 km) along Isle Royale's spine in Lake Superior, from Lookout Louise over Mount Franklin, the Mount Ojibway fire tower, Ishpeming Tower and Mount Desor to Windigo, in the park's eight trail sections, 5–8 days for intermediate backpackers between first-come campgrounds on a free permit, the island reached only by ferry or seaplane from mid-May to September; over the trail's OSM relation; 2026-11-07).
 
+And the **Knobstone Trail** (Indiana: the Indiana Department of Natural Resources' footpath along the Knobstone Escarpment, Indiana's longest, from Deam Lake State Recreation Area through Clark State Forest, Elk Creek Public Fishing Area and Jackson-Washington State Forest to Delaney Park, in the DNR's seven sections between trailheads, 45.5 miles (73 km) by the shortest of its loop legs (the DNR's 60 miles count the loops too), steep climbs, scarce water and primitive camping away from roads; over the trail's OSM relation; 2026-11-07).
+
 | # | Trail | Region | Length (approx.) | Why |
 |---|---|---|---|---|
 | 1 | Pacific Crest Trail | USA | 4,265 km | Most-hiked long trail; public US agency data; completion lists |

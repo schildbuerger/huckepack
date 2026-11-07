@@ -2465,6 +2465,25 @@ export const SKYLINES: Record<string, Skyline> = {
       { d: "M178,288L185,258L192,288Z M206,286L212,264L218,286Z M1366,286L1373,254L1380,286Z M1398,284L1404,262L1410,284Z", c: FIR },
     ],
   },
+  "knobstone-trail": {
+    view: "Southern Indiana's Knobstone Escarpment from the lowland to its east: far knobs blue with distance, the escarpment's steep wooded face rising over flat farmland to narrow, flat-topped ridges cut by ravines, and Deam Lake at the foot of the knobs",
+    ridge: "#4a5f36",
+    ground: "#9c8462",
+    shapes: [
+      // the far knobs of the Norman Upland, flat-topped and blue with distance
+      { d: hills([[0, G], [120, 226], [320, 212], [540, 220], [740, 208], [940, 218], [1140, 230], [1340, 240], [1500, 248], [1600, G]]), c: "#a4b4b0" },
+      // the escarpment: narrow flat-topped ridges cut by steep ravines, its face falling to the east
+      { d: range([[0, G], [70, 248], [150, 200], [240, 196], [268, 226], [290, 230], [316, 198], [424, 192], [454, 224], [476, 228], [504, 194], [604, 190], [642, 220], [664, 224], [692, 192], [776, 188], [826, 214], [890, 250], [960, 280], [1040, G]]), c: "#6a8a5e" },
+      // the flat farmland of the Scottsburg Lowland below the face
+      { d: hills([[720, G], [860, 294], [1080, 288], [1340, 290], [1520, 292], [1600, G]]), c: "#b5b27c" },
+      // the near wooded knobs on the left, darker, a ravine between them
+      { d: range([[0, G], [50, 270], [130, 244], [236, 240], [266, 262], [296, 264], [330, 246], [430, 244], [490, 264], [580, G]]), c: FIR },
+    ],
+    front: [
+      // Deam Lake at the foot of the knobs
+      { d: water(1020, 1460, 302), c: "#5f8ea6" },
+    ],
+  },
   "superior-hiking-trail": {
     view: "Minnesota's North Shore: the Sawtooth ridges above Lake Superior, birch and spruce on the rocky slopes, a waterfall dropping towards the lake and the lake's long horizon",
     ridge: "#3f5a34",

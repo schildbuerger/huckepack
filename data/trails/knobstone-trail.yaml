@@ -1,0 +1,322 @@
+name: Knobstone Trail
+added: 2026-11-07
+aliases: [KT]
+website: https://www.in.gov/dnr/forestry/properties/knobstone-trail-conditions-reroutes-maps/knobstone-trail-about/
+wikidata: Q6422737
+managedBy:
+  # the About page: "The Indiana Department of Natural Resources developed the Knobstone Trail";
+  # questions go to Jackson-Washington State Forest (Division of Forestry), whose two-person field
+  # crew maintains it
+  - name: Indiana Department of Natural Resources, Division of Forestry
+    url: https://www.in.gov/dnr/forestry/
+officialGpx:
+  none: the DNR offers its trail map as two PDFs (north and south half) and sells the printed map; no GPX to download (checked 2026-11-07)
+  source: dnr-conditions
+trailType: point-to-point
+continents: [North America]
+countries: [US]
+regions: [Indiana]
+termini:
+  # the About page: "The trail extends from Deam Lake, just north of State Road 60 in Clark County,
+  # to Delaney Park, just east of S.R. 135 in Washington County"; mile markers count from Deam Lake
+  # (the hiking rules' "mile marker 0 to mile marker 2"). Coordinates from OSM: the start where OSM's
+  # Knobstone Trail relation (4644135) begins by Deam Lake, the finish at the Delaney Park trailhead,
+  # where the trail meets Delaney Park Road's gravel end
+  start:
+    name: Deam Lake Trailhead
+    lat: 38.46535
+    lon: -85.85397
+  end:
+    name: Delaney Park Trailhead
+    lat: 38.72446
+    lon: -86.03272
+  source: dnr-about
+established:
+  # the About page: "The initial 32-mile segment of the trail was opened in 1980"
+  year: 1980
+  source: dnr-about
+waymarking:
+  # the Descriptions & Trailheads page
+  text: >-
+    White blazes, 2 by 6 inches, painted near eye level on trees; two blazes mark a change of
+    direction at an intersection with another trail or forest road. Brown 4-foot KT posts with the
+    letters KT in yellow stand at the trailheads' entrance roads.
+  source: dnr-trailheads
+stages:
+  # the DNR's trail section descriptions, trailhead to trailhead, listed from Delaney Park south;
+  # taken here from Deam Lake north, as the mile markers run. Each km is the section's stated miles:
+  # "about five miles", "about 12", "approximately 9", "approximately 7", "about 5", "about 5.5 to
+  # 7.5 miles, depending on route chosen" (5.5 by the backcountry loop's southern leg) and "roughly
+  # 2, 7, or 9 miles … depending on route chosen" (2, the shortest). Ends at the trailheads (OSM);
+  # the Jackson Road Trailhead lies half a mile off the trail, so stage 1 ends where the trail
+  # crosses Bartle Knob Road, its access. The Pixley Knob Road trailhead gets no section of its own
+  source: dnr-trailheads
+  list:
+    - { number: "1", kind: main, from: Deam Lake Trailhead, to: Jackson Road Trailhead, km: 8.0, end: { lat: 38.50990, lon: -85.86855 } }
+    - { number: "2", kind: main, from: Jackson Road Trailhead, to: New Chapel Trailhead, km: 19.3, end: { lat: 38.57628, lon: -85.87306 } }
+    - { number: "3", kind: main, from: New Chapel Trailhead, to: Leota Trailhead, km: 14.5, end: { lat: 38.64260, lon: -85.88574 } }
+    - { number: "4", kind: main, from: Leota Trailhead, to: Elk Creek Trailhead, km: 11.3, end: { lat: 38.64912, lon: -85.95036 } }
+    - { number: "5", kind: main, from: Elk Creek Trailhead, to: Oxley Memorial Trailhead, km: 8.0, end: { lat: 38.68300, lon: -85.97537 } }
+    - { number: "6", kind: main, from: Oxley Memorial Trailhead, to: Spurgeon Hollow Trailhead, km: 8.9, end: { lat: 38.71319, lon: -86.04388 } }
+    - { number: "7", kind: main, from: Spurgeon Hollow Trailhead, to: Delaney Park Trailhead, km: 3.2, end: { lat: 38.72446, lon: -86.03272 } }
+route:
+  # built by `python -m pipeline.all knobstone-trail`: OSM ways matched to the shortest way over
+  # the ways of OSM's Knobstone Trail relation (4644135) to each trailhead (`branched`: the relation
+  # holds both legs of the Spurgeon Hollow backcountry loop and the Delaney Park loop)
+  source: osm
+  publishable: true
+  relation: 4644135
+  branched: true
+difficulty:
+  estimated:
+    sac: T2
+    basis: >-
+      The DNR: "Because the trail follows the Knobstone Escarpment, there are many steep climbs and
+      descents. It can be regarded as a rugged, difficult trail to hike", managed and maintained to
+      backcountry standards with only primitive steps and waterbars; a forest footpath over narrow
+      ridges without exposed passages. Hiking in hilly terrain on a maintained trail (T2).
+    source: dnr-about
+season:
+  # no season on the DNR's four Knobstone Trail pages (About; Conditions, Reroutes, Maps; Hiking &
+  # Rules; Descriptions & Trailheads), the Hoosier Hikers Council's page or Wikipedia's infobox
+  # (empty "season"); the hiking rules only warn that "July, Aug., and Sept. are the worst times to
+  # find water" and of the shorter daylight in late fall and winter
+  months: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
+  text: No season published; every month for now
+  source: huckepack-season
+sleeping:
+  # the hiking rules: "More modern types of camping are available at campgrounds at Delaney Park,
+  # Clark State Forest, and Deam Lake State Recreation Area"
+  types: [campsite]
+  source: dnr-rules
+wildCamping:
+  status: restricted
+  rule: >-
+    Primitive backpack camping is allowed along the trail, except from mile marker 0 to 2: only on
+    public land, at least a quarter-mile from all roads, recreation areas and trailheads and at least
+    100 feet from the trail. Overnight users should register with the DNR Law Dispatch.
+  source: dnr-rules
+access:
+  # Louisville's airport for the south end (no passenger railway near the trail), Indianapolis's
+  # for the north. Coordinates from OSM (Nominatim); distances by pipeline/access.py
+  - kind: airport
+    name: Louisville Muhammad Ali International Airport (SDF)
+    lat: 38.17170
+    lon: -85.73541
+    source: osm
+  - kind: airport
+    name: Indianapolis International Airport (IND)
+    lat: 39.71625
+    lon: -86.29508
+    source: osm
+animals:
+  # level ours
+  list:
+    - kind: tick
+      name: Ticks
+      level: moderate
+      basis: >-
+        The DNR's Knobstone Trail hiking rules give ticks their own advice ("Protect from ticks")
+        and point to the Indiana Department of Health's tick pages.
+      do:
+        - The most effective commercial insect repellents contain the active ingredient DEET or PERMETHRIM [permethrin]
+        - Once a tick becomes embedded, it's best to remove the tick using tweezers
+        - Apply antiseptic to the bite after removal
+      dont:
+        - Avoid tall grass and thick brush
+      source: dnr-rules
+    - kind: snake
+      name: Northern copperhead
+      level: low
+      basis: >-
+        Indiana's most common venomous snake, whose range on the DNR's map covers southern Indiana;
+        it lives in dry, rocky areas. "The bite of this snake is extremely painful but rarely life
+        threatening."
+      do:
+        - Look closely before stepping when hiking trails
+        - Keep calm. Most snakes are not venomous
+        - Clean the bite area thoroughly with soap and water as soon as possible
+        - If you think the snake was venomous, or if you are unsure, call or have a friend call 911
+        - Keep the bitten part of your body higher than your heart to help reduce swelling
+      dont:
+        - Avoid bites by watching snakes in their natural habitat instead of picking them up
+        - Walk—don't run—when moving
+      source: dnr-snakes
+tags: [forest, ridge, lake]
+notes:
+  - >-
+    Length: the DNR's About page calls the trail "a 60-mile backcountry-hiking trail"; Wikipedia
+    gives 58 miles, the Hoosier Hikers Council "48 mile". The DNR's sections add up to 45.5 miles
+    by the shortest routes (43.5 to Spurgeon Hollow, as the Hoosier Hikers Council counts it, and 2
+    on to Delaney Park); the 60 miles count the Spurgeon Hollow backcountry loop's and the Delaney
+    Park loop's other legs too, a different stretch, so the record states no total and the page
+    sums the stages.
+  - >-
+    Stages: the DNR publishes seven sections between its trailheads, with lengths in round miles
+    ("about", "approximately"). Two depend on the route chosen: Oxley to Spurgeon Hollow is 5.5
+    miles by the backcountry loop's southern leg (3 miles "through a moist valley", easy walking)
+    and 7.5 by its northern ridge-top leg; Spurgeon Hollow to Delaney Park is 2, 7 or 9 miles by the
+    Delaney Park loop. The record takes the shortest of each, which the map line follows. The
+    Pixley Knob Road trailhead (between New Chapel and Jackson Road) has no section of its own.
+  - >-
+    Days: no days published by the DNR or a second official source; the page counts one day per
+    stage.
+  - >-
+    Waymarking: the white 2″×6″ blaze is not drawn (no such mark in Waymark.astro yet).
+  - >-
+    Water: the hiking rules: "Water is scarce. Dehydration is the largest problem on the Knobstone
+    Trail"; water can be had at Elk Creek Lake, Deam Lake, the small stream along S.R. 56 and a
+    small pond near mile marker 13, "There are no springs, fountains or other water supplies along
+    the trail or at trailheads", and the DNR recommends caching water near trailheads or road
+    crossings; treat all of it. July to September are the worst months for water.
+  - >-
+    Reroutes: the trail runs through actively managed state forest; the DNR posts temporary
+    closures and reroutes for forest management on its Conditions page (condition "GOOD" on
+    15 October 2026, a Clark State Forest section to close on or after 13 October).
+  - >-
+    Wildlife: besides ticks and the northern copperhead, the DNR's snake leaflet names the timber
+    rattlesnake ("endangered in Indiana … lives on dry forested hillsides", range shaded in
+    south-central Indiana) without advice of its own; the general bite advice above covers it.
+    The trail runs through areas open to public hunting (the hiking rules: wear bright colors in
+    hunting seasons).
+  - >-
+    Protected areas: none. The trail runs through Clark State Forest, Elk Creek Public Fishing Area
+    and Jackson-Washington State Forest (the DNR), state forests managed for multiple uses
+    including timber (OSM tags Clark State Forest boundary=forest, not protected_area), and starts
+    at the edge of Deam Lake State Recreation Area, which the map line doesn't enter (OSM
+    boundaries containing the relation's points, checked 2026-11-07).
+  - >-
+    Tree line: not added; the route stays below 330 m in the knobs' hardwood forest.
+  - >-
+    Map line (2026-11-07): the Indiana Geofabrik extract (2026-11-05); OSM's Knobstone Trail relation
+    (4644135, 16 ways), the shortest way over its ways to each trailhead, every stage 100 % matched.
+    It measures 70.8 km on the full match (69.6 km on the simplified line) against the sections'
+    45.5 miles (73.2 km, −3 %). Stages 3, 4 and 5 are 10–14 % off their stated miles (12.8 km
+    against "approximately 9" miles, 9.8 against "approximately 7", 9.1 against "about 5"); the
+    DNR's section lengths are round miles, and stages 4 and 5 together (18.9 km against 19.3) agree,
+    so the Elk Creek trailhead, beside the lake off the trail, cuts them a little further west
+    than the DNR counts. Highest point 330 m at km 36.1, near the Leota trailhead, where the DNR
+    says the trail "rises to an elevation of 1,000 feet" (305 m; the terrain model counts the
+    treetops); lowest 167 m at Delaney Park. No ascent is stated; the terrain model gives about
+    2,670 m.
+  - >-
+    Water (map line): OSM maps no drinking water and no springs within 500 m of the trail; counting
+    the three campsites near it as refills, the longest stretch without clean water is 48.8 km
+    (Deam Lake to near Elk Creek). Those campsites are primitive, so the DNR's advice stands: that is what the DNR says (no springs,
+    fountains or water supplies at the trail or trailheads; untreated water from Elk Creek Lake,
+    Deam Lake, the stream along S.R. 56 and a pond near mile marker 13); the record adds no water
+    points, since none of them is drinking water.
+  - >-
+    Resupply (map line): OSM maps no shop within 1 km of the trail or 3 km of a trailhead; the DNR
+    names none either and tells hikers to cache water near trailheads and road crossings.
+  - >-
+    Beds (map line): OSM maps 3 campsites near the trail (at km 48.8 near Elk Creek and km 58.9 and
+    61.7 on stage 6), the longest stretch without one 48.8 km from Deam Lake; the DNR names
+    campgrounds at Deam Lake State Recreation Area, Clark State Forest and Delaney Park, and
+    primitive camping is allowed along most of the trail (wildCamping).
+  - >-
+    Preflight (2026-11-07): the DNR's pages answer 200; its BLOCKER line for relation 4644135 (one
+    line of 3.8 km from the start, 78.8 km left over) chained from the relation's first member, a
+    piece of the Delaney Park loop; the relation's ways meet at shared nodes mid-way, not end to
+    end, and hold both legs of the Spurgeon Hollow backcountry loop and the Delaney Park loop. With
+    `branched` and the trailheads as stage ends, every stage is 100 % matched without a bridge, so
+    it was no blocker.
+  - >-
+    Photos: none. Commons has no category for the trail; of 20 files near the route, 5 JPEGs lie
+    within 500 m and none passed the scenery rules (2026-11-07).
+  - >-
+    Data check (2026-11-07): against the Hoosier Hikers Council's Knobstone Trail page and
+    Wikipedia. Stages 1–6, Deam Lake to Spurgeon Hollow: the DNR's 43.5 miles against the Council's
+    "43.5 mile linear path to Deam Lake", the same. The whole trail: the record's 45.5 miles (stage
+    sum) against the Council's 48 miles (+5 %) and Wikipedia's 58 (+27 %; like the DNR's own 60, it
+    counts the loops, notes "Length"). Termini: Deam Lake and Delaney Park in both (the Council: many
+    hikers end at Spurgeon Hollow instead); 1980 and the first 32 miles agree with Wikipedia.
+    Difficulty: Wikipedia "Moderate to Strenuous", the Council "a challenge" with steep, narrow
+    ridges, consistent with the DNR's "rugged, difficult". Height: Wikipedia's highest point, Round
+    Knob at 1,000 ft (305 m), against the terrain model's 330 m (treetops). Ascent: Wikipedia's
+    "approximately 20,000 ft of elevation change between the gains and losses" (about 3,050 m up)
+    against the terrain model's 2,670 m (−12 %), neither stated by the DNR, so not in the record.
+    Waymarking (the Council: very well blazed, a brown numbered sign every mile) and camping
+    (Wikipedia: established backcountry campsites with a stone fire ring) agree. No second source
+    gives a season, days or the stage distances; those were checked on the built page against the
+    DNR's pages, figure by figure.
+dataCheck:
+  date: 2026-11-07
+  against: [hhc, wikipedia]
+  pageAgainst: [dnr-about, dnr-trailheads, dnr-rules]
+  deviations:
+    - { figure: "whole trail", ours: "45.5 miles (73.2 km), the sections' sum by the shortest loop legs", theirs: "58 miles (93 km), loops counted", source: wikipedia }
+sources:
+  - id: dnr-about
+    title: "Indiana DNR, Division of Forestry: Knobstone Trail: About (60-mile trail, termini, 1980, rugged terrain, foot traffic only)"
+    url: https://www.in.gov/dnr/forestry/properties/knobstone-trail-conditions-reroutes-maps/knobstone-trail-about/
+    licence: Indiana state government work (facts only)
+    retrieved: 2026-11-07
+  - id: dnr-trailheads
+    title: "Indiana DNR, Division of Forestry: Knobstone Trail: Descriptions & Trailheads (trailheads, trail sections with lengths, blazes)"
+    url: https://www.in.gov/dnr/forestry/properties/knobstone-trail-conditions-reroutes-maps/knobstone-trail-descriptions-and-trailheads/
+    licence: Indiana state government work (facts only)
+    retrieved: 2026-11-07
+  - id: dnr-rules
+    title: "Indiana DNR, Division of Forestry: Knobstone Trail: Hiking & Rules (camping, water, ticks)"
+    url: https://www.in.gov/dnr/forestry/properties/knobstone-trail-conditions-reroutes-maps/knobstone-trail-hiking-and-rules/
+    licence: Indiana state government work (facts only)
+    retrieved: 2026-11-07
+  - id: dnr-conditions
+    title: "Indiana DNR, Division of Forestry: Knobstone Trail Conditions, Reroutes, Maps (trail map PDFs, reroutes)"
+    url: https://www.in.gov/dnr/forestry/properties/knobstone-trail-conditions-reroutes-maps/
+    licence: Indiana state government work (facts only)
+    retrieved: 2026-11-07
+  - id: dnr-snakes
+    title: "Indiana DNR, Division of State Parks: Common Snakes of Indiana State Parks (leaflet, 9/2017; venomous snakes, what if I get bitten)"
+    url: https://www.in.gov/dnr/state-parks/files/snakes.pdf
+    licence: Indiana state government work (facts only)
+    retrieved: 2026-11-07
+  - id: huckepack-season
+    title: "huckepack: no season published by the operator or a second source (the DNR's four Knobstone Trail pages, the Hoosier Hikers Council's trail page, Wikipedia's infobox); every month for now, until one is found"
+    url: https://github.com/schildbuerger/huckepack/blob/main/docs/trail-building.md
+    licence: huckepack's own rule (decided 2026-11-05)
+    retrieved: 2026-11-07
+  - id: hhc
+    title: "Hoosier Hikers Council: Knobstone Trail (48 miles; 43.5 miles from Deam Lake to Spurgeon Hollow)"
+    url: https://hoosierhikerscouncil.org/knobstone-trail/
+    licence: All rights reserved (facts only)
+    retrieved: 2026-11-07
+    checkOnly: true
+  - id: wikipedia
+    title: "Wikipedia (en): Knobstone Trail"
+    url: https://en.wikipedia.org/wiki/Knobstone_Trail
+    licence: CC BY-SA 4.0
+    retrieved: 2026-11-07
+    checkOnly: true
+  - id: wikimedia
+    title: "Wikimedia: page views of the trail's Wikipedia articles in every language, by people, over twelve months (Wikidata sitelinks, pageview API)"
+    url: https://wikimedia.org/api/rest_v1/
+    licence: CC0 1.0 (pageview data); Wikidata CC0
+    retrieved: 2026-11-07
+    checkOnly: true  # not on the trail page: the page views only rank the home page's popular trails
+  - id: osm
+    title: "OpenStreetMap contributors: paths, water, shops and places to sleep along the trail (Geofabrik extracts), travel hubs"
+    url: https://www.openstreetmap.org/
+    licence: ODbL 1.0
+    retrieved: 2026-11-07
+  - id: copdem
+    title: "Copernicus DEM GLO-30 (30 m terrain model), tiles from AWS Open Data"
+    url: https://registry.opendata.aws/copernicus-dem/
+    licence: "Copernicus WorldDEM-30 licence, free; produced using Copernicus WorldDEM-30 © DLR e.V. 2010-2014 and © Airbus Defence and Space GmbH 2014-2018 provided under COPERNICUS by the European Union and ESA; all rights reserved"
+    retrieved: 2026-11-07
+  - id: worldcover
+    title: "ESA WorldCover 2021: 10 m land cover (via AWS Open Data)"
+    url: https://esa-worldcover.org/
+    licence: "CC BY 4.0; © ESA WorldCover project 2021 / Contains modified Copernicus Sentinel data (2021) processed by ESA WorldCover consortium"
+    retrieved: 2026-11-07
+  - id: era5
+    title: "Open-Meteo open data on AWS: ERA5-Land temperature and ERA5 precipitation, snow and wind, daily 1995–2024 (reanalysis)"
+    url: https://github.com/open-meteo/open-data
+    licence: CC BY 4.0 (Open-Meteo); contains modified Copernicus Climate Change Service information
+    retrieved: 2026-11-07
+  - id: osrm
+    title: "OSRM: road routes on OpenStreetMap data (router.project-osrm.org)"
+    url: https://project-osrm.org/
+    licence: Route data © OpenStreetMap contributors (ODbL)
+    retrieved: 2026-11-07

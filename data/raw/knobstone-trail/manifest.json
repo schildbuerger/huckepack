@@ -1,0 +1,87 @@
+{
+  "climate-high.json": {
+    "retrieved": "2026-11-07T00:19:18+00:00",
+    "url": "https://openmeteo.s3.us-west-2.amazonaws.com/data/copernicus_era5_land+copernicus_era5?latitude=38.6&longitude=-85.9&elevation=330"
+  },
+  "climate-low.json": {
+    "retrieved": "2026-11-07T00:19:18+00:00",
+    "url": "https://openmeteo.s3.us-west-2.amazonaws.com/data/copernicus_era5_land+copernicus_era5?latitude=38.7&longitude=-86.0&elevation=170"
+  },
+  "commons-geo.json": {
+    "key": "with categories, 70.7 km, every 2.5 km, 1500 m, within 0.5 km",
+    "retrieved": "2026-11-07T00:19:13+00:00",
+    "url": "Commons geosearch along the route"
+  },
+  "commons.json": {
+    "key": "Q6422737",
+    "retrieved": "2026-11-07T00:18:16+00:00",
+    "url": "Q6422737 P18 P373"
+  },
+  "elevation-glo30.json": {
+    "retrieved": "2026-11-07T00:18:24+00:00",
+    "url": "https://copernicus-dem-30m.s3.eu-central-1.amazonaws.com/Copernicus_DSM_COG_10_N38_00_W086_00_DEM/Copernicus_DSM_COG_10_N38_00_W086_00_DEM.tif https://copernicus-dem-30m.s3.eu-central-1.amazonaws.com/Copernicus_DSM_COG_10_N38_00_W087_00_DEM/Copernicus_DSM_COG_10_N38_00_W087_00_DEM.tif"
+  },
+  "landcover.json": {
+    "retrieved": "2026-11-07T00:18:25+00:00",
+    "url": "https://esa-worldcover.s3.eu-central-1.amazonaws.com/v200/2021/map/ESA_WorldCover_10m_2021_v200_\u2026_Map.tif"
+  },
+  "osm-relation.json": {
+    "retrieved": "2026-11-05T21:23:02Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-1-main.json": {
+    "key": "d8e6d67e6e46",
+    "retrieved": "2026-11-05T21:23:02Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-2-main.json": {
+    "key": "26af813a41cd",
+    "retrieved": "2026-11-05T21:23:02Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-3-main.json": {
+    "key": "ab46a84230ef",
+    "retrieved": "2026-11-05T21:23:02Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-4-main.json": {
+    "key": "3ccc33453ded",
+    "retrieved": "2026-11-05T21:23:02Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-5-main.json": {
+    "key": "80755e808bb6",
+    "retrieved": "2026-11-05T21:23:02Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-6-main.json": {
+    "key": "5574e92acb40",
+    "retrieved": "2026-11-05T21:23:02Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-7-main.json": {
+    "key": "0d2ccb554dc1",
+    "retrieved": "2026-11-05T21:23:02Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-water.json": {
+    "retrieved": "2026-11-05T21:23:02Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-way-tags.json": {
+    "retrieved": "2026-11-05T21:23:02Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osrm-access-indianapolis-international-airport-ind.json": {
+    "retrieved": "2026-11-07T00:19:18+00:00",
+    "url": "https://router.project-osrm.org/route/v1/driving/-86.29508,39.71625;-85.85397,38.46535?overview=false"
+  },
+  "osrm-access-louisville-muhammad-ali-international-airport-sdf.json": {
+    "retrieved": "2026-11-07T00:19:18+00:00",
+    "url": "https://router.project-osrm.org/route/v1/driving/-85.73541,38.1717;-85.85397,38.46535?overview=false"
+  },
+  "wikimedia.json": {
+    "retrieved": "2026-11-07T00:19:18+00:00",
+    "url": "Q6422737 2025-11..2026-10"
+  }
+}
