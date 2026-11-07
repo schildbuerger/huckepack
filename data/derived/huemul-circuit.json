@@ -1,0 +1,5428 @@
+{
+  "routeWays": [
+    {
+      "number": "1",
+      "kind": "main",
+      "ways": [
+        [
+          44833574,
+          299.7
+        ],
+        [
+          542291381,
+          90.3
+        ],
+        [
+          46837802,
+          302.9
+        ],
+        [
+          650854285,
+          6.6
+        ],
+        [
+          650854282,
+          144.8
+        ],
+        [
+          650854298,
+          464.4
+        ],
+        [
+          650854288,
+          9.2
+        ],
+        [
+          650854294,
+          3233.6
+        ],
+        [
+          157595406,
+          1809.6
+        ],
+        [
+          654219399,
+          2.3
+        ],
+        [
+          654219398,
+          158.8
+        ],
+        [
+          654219392,
+          8.4
+        ],
+        [
+          654219395,
+          6526.8
+        ],
+        [
+          655490516,
+          7.5
+        ],
+        [
+          655490517,
+          3013.5
+        ]
+      ]
+    },
+    {
+      "number": "2",
+      "kind": "main",
+      "ways": [
+        [
+          655490517,
+          1727.7
+        ],
+        [
+          1312831981,
+          151.8
+        ],
+        [
+          1312831980,
+          538.8
+        ],
+        [
+          172038330,
+          13.6
+        ],
+        [
+          172038331,
+          1134.4
+        ],
+        [
+          1312831977,
+          203.1
+        ],
+        [
+          1132593939,
+          965.2
+        ],
+        [
+          1312831976,
+          209.9
+        ],
+        [
+          172038344,
+          2629.8
+        ],
+        [
+          1312831973,
+          181.4
+        ],
+        [
+          1312831969,
+          2917.5
+        ],
+        [
+          313706756,
+          575.1
+        ]
+      ]
+    },
+    {
+      "number": "3",
+      "kind": "main",
+      "ways": [
+        [
+          313706756,
+          5664.7
+        ],
+        [
+          313768975,
+          4771.8
+        ],
+        [
+          1312831956,
+          72.8
+        ],
+        [
+          1312831954,
+          1531.0
+        ],
+        [
+          1312831952,
+          84.9
+        ],
+        [
+          313768963,
+          378.3
+        ],
+        [
+          1312831951,
+          97.2
+        ],
+        [
+          1312831949,
+          38.7
+        ],
+        [
+          1312831948,
+          25.2
+        ],
+        [
+          1312831947,
+          57.4
+        ],
+        [
+          1312831950,
+          77.8
+        ],
+        [
+          1312831953,
+          676.3
+        ],
+        [
+          1312831946,
+          185.0
+        ],
+        [
+          674138529,
+          18.8
+        ]
+      ]
+    },
+    {
+      "number": "4",
+      "kind": "main",
+      "ways": [
+        [
+          674138529,
+          1851.5
+        ],
+        [
+          1106850154,
+          443.5
+        ],
+        [
+          313710397,
+          51.6
+        ],
+        [
+          1312831944,
+          996.5
+        ],
+        [
+          313770740,
+          343.9
+        ],
+        [
+          1312831943,
+          220.3
+        ],
+        [
+          313770743,
+          44.7
+        ],
+        [
+          746218745,
+          7650.1
+        ],
+        [
+          551041149,
+          1882.2
+        ],
+        [
+          661947791,
+          34.5
+        ],
+        [
+          1106850153,
+          39.6
+        ],
+        [
+          399728548,
+          1226.8
+        ],
+        [
+          399729456,
+          1389.5
+        ],
+        [
+          1158751123,
+          2674.6
+        ],
+        [
+          107758210,
+          1732.8
+        ],
+        [
+          674138518,
+          26.1
+        ],
+        [
+          1369811309,
+          7.6
+        ],
+        [
+          674138519,
+          1350.5
+        ],
+        [
+          51003550,
+          541.1
+        ],
+        [
+          1369811304,
+          1245.3
+        ],
+        [
+          505642116,
+          110.4
+        ],
+        [
+          51710640,
+          39.5
+        ],
+        [
+          1126506510,
+          99.3
+        ],
+        [
+          1126506509,
+          11.5
+        ],
+        [
+          61900603,
+          5.4
+        ],
+        [
+          44833574,
+          3.7
+        ]
+      ]
+    }
+  ],
+  "measured": {
+    "source": "osm",
+    "km": 65.0,
+    "minCovered": 1.0,
+    "stages": [
+      {
+        "number": "1",
+        "kind": "main",
+        "km": 16.08,
+        "covered": 1.0
+      },
+      {
+        "number": "2",
+        "kind": "main",
+        "km": 11.25,
+        "covered": 1.0
+      },
+      {
+        "number": "3",
+        "kind": "main",
+        "km": 13.68,
+        "covered": 1.0
+      },
+      {
+        "number": "4",
+        "kind": "main",
+        "km": 24.02,
+        "covered": 1.0
+      }
+    ]
+  },
+  "water": {
+    "source": "osm",
+    "extraSources": [],
+    "retrieved": "2026-11-05T21:23:02Z",
+    "withinM": 500,
+    "routeKm": 64.2,
+    "stageStarts": [
+      {
+        "number": "1",
+        "km": 0.0
+      },
+      {
+        "number": "2",
+        "km": 15.8
+      },
+      {
+        "number": "3",
+        "km": 26.9
+      },
+      {
+        "number": "4",
+        "km": 40.3
+      }
+    ],
+    "longestGapKm": {
+      "drinking": {
+        "km": 47.1,
+        "fromKm": 17.0,
+        "toKm": 64.1
+      },
+      "any": {
+        "km": 47.1,
+        "fromKm": 17.0,
+        "toKm": 64.1
+      }
+    },
+    "stages": [
+      {
+        "number": "1",
+        "kind": "main",
+        "drinking": 2,
+        "springs": 0
+      },
+      {
+        "number": "2",
+        "kind": "main",
+        "drinking": 1,
+        "springs": 0
+      },
+      {
+        "number": "3",
+        "kind": "main",
+        "drinking": 0,
+        "springs": 0
+      },
+      {
+        "number": "4",
+        "kind": "main",
+        "drinking": 1,
+        "springs": 0
+      }
+    ],
+    "points": [
+      {
+        "lat": -49.3337,
+        "lon": -72.88329,
+        "kind": "drinking",
+        "name": null,
+        "stage": "1",
+        "stageKind": "main",
+        "km": 0.1,
+        "offM": 398,
+        "source": "osm",
+        "osm": "node/10628090505"
+      },
+      {
+        "lat": -49.38563,
+        "lon": -73.03665,
+        "kind": "drinking",
+        "name": null,
+        "stage": "1",
+        "stageKind": "main",
+        "km": 15.5,
+        "offM": 12,
+        "source": "osm",
+        "osm": "node/6141425082"
+      },
+      {
+        "lat": -49.38299,
+        "lon": -73.05413,
+        "kind": "drinking",
+        "name": null,
+        "stage": "2",
+        "stageKind": "main",
+        "km": 17.0,
+        "offM": 34,
+        "source": "osm",
+        "osm": "node/6141425072"
+      },
+      {
+        "lat": -49.33743,
+        "lon": -72.88109,
+        "kind": "drinking",
+        "name": "Canilla de Agua Potable",
+        "stage": "4",
+        "stageKind": "main",
+        "km": 64.1,
+        "offM": 15,
+        "source": "osm",
+        "osm": "node/6086839189"
+      }
+    ]
+  },
+  "along": {
+    "source": "osm",
+    "retrieved": "2026-11-05T21:23:02Z",
+    "withinM": 1000,
+    "stageEndM": 3000,
+    "routeKm": 64.2,
+    "resupply": {
+      "points": [
+        {
+          "lat": -49.325157,
+          "lon": -72.891123,
+          "group": "resupply",
+          "kind": "convenience",
+          "name": "Maxikiosco",
+          "osm": "node/1653013002",
+          "stage": "1",
+          "stageKind": "main",
+          "km": 0.1,
+          "offM": 1474
+        },
+        {
+          "lat": -49.332202,
+          "lon": -72.885311,
+          "group": "resupply",
+          "kind": "convenience",
+          "name": "Puentes Amarillos",
+          "osm": "node/1653013024",
+          "stage": "1",
+          "stageKind": "main",
+          "km": 0.1,
+          "offM": 591
+        },
+        {
+          "lat": -49.330245,
+          "lon": -72.886674,
+          "group": "resupply",
+          "kind": "supermarket",
+          "name": "Almacén don Manolo",
+          "osm": "node/4590621389",
+          "stage": "1",
+          "stageKind": "main",
+          "km": 0.1,
+          "offM": 828
+        },
+        {
+          "lat": -49.32932,
+          "lon": -72.887123,
+          "group": "resupply",
+          "kind": "convenience",
+          "name": null,
+          "osm": "node/4654631591",
+          "stage": "1",
+          "stageKind": "main",
+          "km": 0.1,
+          "offM": 936
+        },
+        {
+          "lat": -49.330757,
+          "lon": -72.885827,
+          "group": "resupply",
+          "kind": "supermarket",
+          "name": "El Chalten",
+          "osm": "node/7101569602",
+          "stage": "1",
+          "stageKind": "main",
+          "km": 0.1,
+          "offM": 755
+        },
+        {
+          "lat": -49.33124,
+          "lon": -72.886035,
+          "group": "resupply",
+          "kind": "convenience",
+          "name": "Atardecer",
+          "osm": "node/7137737609",
+          "stage": "1",
+          "stageKind": "main",
+          "km": 0.1,
+          "offM": 709
+        },
+        {
+          "lat": -49.330998,
+          "lon": -72.884421,
+          "group": "resupply",
+          "kind": "convenience",
+          "name": null,
+          "osm": "node/10746796305",
+          "stage": "1",
+          "stageKind": "main",
+          "km": 0.1,
+          "offM": 706
+        },
+        {
+          "lat": -49.333184,
+          "lon": -72.883833,
+          "group": "resupply",
+          "kind": "supermarket",
+          "name": "Supermercado Pachamama",
+          "osm": "node/11239995783",
+          "stage": "1",
+          "stageKind": "main",
+          "km": 0.1,
+          "offM": 460
+        },
+        {
+          "lat": -49.333306,
+          "lon": -72.883586,
+          "group": "resupply",
+          "kind": "convenience",
+          "name": "El Salto",
+          "osm": "node/11328503190",
+          "stage": "1",
+          "stageKind": "main",
+          "km": 0.1,
+          "offM": 444
+        },
+        {
+          "lat": -49.330516,
+          "lon": -72.889952,
+          "group": "resupply",
+          "kind": "convenience",
+          "name": "Maruja",
+          "osm": "node/12709039206",
+          "stage": "1",
+          "stageKind": "main",
+          "km": 0.1,
+          "offM": 910
+        },
+        {
+          "lat": -49.329943,
+          "lon": -72.890524,
+          "group": "resupply",
+          "kind": "convenience",
+          "name": "El Almanecer",
+          "osm": "node/12709039647",
+          "stage": "1",
+          "stageKind": "main",
+          "km": 0.1,
+          "offM": 985
+        },
+        {
+          "lat": -49.324067,
+          "lon": -72.892893,
+          "group": "resupply",
+          "kind": "convenience",
+          "name": "Maxikiosco",
+          "osm": "node/13573404702",
+          "stage": "1",
+          "stageKind": "main",
+          "km": 0.1,
+          "offM": 1638
+        },
+        {
+          "lat": -49.329106,
+          "lon": -72.892236,
+          "group": "resupply",
+          "kind": "convenience",
+          "name": "Camino al Cerro",
+          "osm": "node/12732037518",
+          "stage": "1",
+          "stageKind": "main",
+          "km": 0.5,
+          "offM": 1111
+        },
+        {
+          "lat": -49.330321,
+          "lon": -72.893998,
+          "group": "resupply",
+          "kind": "general",
+          "name": "San Humito",
+          "osm": "node/12732037652",
+          "stage": "1",
+          "stageKind": "main",
+          "km": 0.6,
+          "offM": 1031
+        },
+        {
+          "lat": -49.331279,
+          "lon": -72.882436,
+          "group": "resupply",
+          "kind": "convenience",
+          "name": null,
+          "osm": "way/319547664",
+          "stage": "4",
+          "stageKind": "main",
+          "km": 64.1,
+          "offM": 652
+        }
+      ],
+      "longestGapKm": {
+        "km": 63.5,
+        "fromKm": 0.6,
+        "toKm": 64.1
+      }
+    },
+    "beds": {
+      "points": [
+        {
+          "lat": -49.331455,
+          "lon": -72.883583,
+          "group": "beds",
+          "kind": "hostel",
+          "name": "Cabañas Arco Iris",
+          "osm": "node/661828332",
+          "stage": "1",
+          "stageKind": "main",
+          "km": 0.1,
+          "offM": 649
+        },
+        {
+          "lat": -49.330877,
+          "lon": -72.883766,
+          "group": "beds",
+          "kind": "hostel",
+          "name": "La Cima",
+          "osm": "node/661828333",
+          "stage": "1",
+          "stageKind": "main",
+          "km": 0.1,
+          "offM": 714
+        },
+        {
+          "lat": -49.329091,
+          "lon": -72.88398,
+          "group": "beds",
+          "kind": "hostel",
+          "name": "Aylen Aike",
+          "osm": "node/661849066",
+          "stage": "1",
+          "stageKind": "main",
+          "km": 0.1,
+          "offM": 913
+        },
+        {
+          "lat": -49.332829,
+          "lon": -72.888667,
+          "group": "beds",
+          "kind": "hostel",
+          "name": "Los Ñires",
+          "osm": "node/661871377",
+          "stage": "1",
+          "stageKind": "main",
+          "km": 0.1,
+          "offM": 648
+        },
+        {
+          "lat": -49.333167,
+          "lon": -72.887632,
+          "group": "beds",
+          "kind": "hostel",
+          "name": "La Nativa",
+          "osm": "node/661871452",
+          "stage": "1",
+          "stageKind": "main",
+          "km": 0.1,
+          "offM": 572
+        },
+        {
+          "lat": -49.331262,
+          "lon": -72.889182,
+          "group": "beds",
+          "kind": "hostel",
+          "name": "El Paraíso",
+          "osm": "node/661881475",
+          "stage": "1",
+          "stageKind": "main",
+          "km": 0.1,
+          "offM": 810
+        },
+        {
+          "lat": -49.3312,
+          "lon": -72.887951,
+          "group": "beds",
+          "kind": "hostel",
+          "name": "Glaciar Marconi",
+          "osm": "node/661890997",
+          "stage": "1",
+          "stageKind": "main",
+          "km": 0.1,
+          "offM": 769
+        },
+        {
+          "lat": -49.324399,
+          "lon": -72.889594,
+          "group": "beds",
+          "kind": "campsite",
+          "name": "El Mochilero",
+          "osm": "node/662448112",
+          "stage": "1",
+          "stageKind": "main",
+          "km": 0.1,
+          "offM": 1512
+        },
+        {
+          "lat": -49.324856,
+          "lon": -72.890259,
+          "group": "beds",
+          "kind": "campsite",
+          "name": "El Refugio",
+          "osm": "node/662448121",
+          "stage": "1",
+          "stageKind": "main",
+          "km": 0.1,
+          "offM": 1481
+        },
+        {
+          "lat": -49.324608,
+          "lon": -72.891597,
+          "group": "beds",
+          "kind": "hostel",
+          "name": "Lo de Trivi",
+          "osm": "node/662450101",
+          "stage": "1",
+          "stageKind": "main",
+          "km": 0.1,
+          "offM": 1543
+        },
+        {
+          "lat": -49.325755,
+          "lon": -72.893,
+          "group": "beds",
+          "kind": "hostel",
+          "name": "Posada Altas Cumbres",
+          "osm": "node/662572308",
+          "stage": "1",
+          "stageKind": "main",
+          "km": 0.1,
+          "offM": 1476
+        },
+        {
+          "lat": -49.326963,
+          "lon": -72.892406,
+          "group": "beds",
+          "kind": "hostel",
+          "name": "El Puma",
+          "osm": "node/662572309",
+          "stage": "1",
+          "stageKind": "main",
+          "km": 0.1,
+          "offM": 1338
+        },
+        {
+          "lat": -49.326926,
+          "lon": -72.890834,
+          "group": "beds",
+          "kind": "hostel",
+          "name": "Kalenshen",
+          "osm": "node/662572310",
+          "stage": "1",
+          "stageKind": "main",
+          "km": 0.1,
+          "offM": 1287
+        },
+        {
+          "lat": -49.324518,
+          "lon": -72.892648,
+          "group": "beds",
+          "kind": "hostel",
+          "name": "Rancho Grande",
+          "osm": "node/662572321",
+          "stage": "1",
+          "stageKind": "main",
+          "km": 0.1,
+          "offM": 1585
+        },
+        {
+          "lat": -49.32479,
+          "lon": -72.894085,
+          "group": "beds",
+          "kind": "hostel",
+          "name": "Koonek",
+          "osm": "node/662572327",
+          "stage": "1",
+          "stageKind": "main",
+          "km": 0.1,
+          "offM": 1608
+        },
+        {
+          "lat": -49.331614,
+          "lon": -72.888178,
+          "group": "beds",
+          "kind": "guesthouse",
+          "name": "La Guanaca",
+          "osm": "node/662575116",
+          "stage": "1",
+          "stageKind": "main",
+          "km": 0.1,
+          "offM": 737
+        },
+        {
+          "lat": -49.332024,
+          "lon": -72.885132,
+          "group": "beds",
+          "kind": "guesthouse",
+          "name": "Andreas Madsen",
+          "osm": "node/1237892681",
+          "stage": "1",
+          "stageKind": "main",
+          "km": 0.1,
+          "offM": 606
+        },
+        {
+          "lat": -49.325783,
+          "lon": -72.890167,
+          "group": "beds",
+          "kind": "campsite",
+          "name": "El Relincho",
+          "drinkingWater": "yes",
+          "osm": "node/1653013003",
+          "stage": "1",
+          "stageKind": "main",
+          "km": 0.1,
+          "offM": 1382
+        },
+        {
+          "lat": -49.330499,
+          "lon": -72.885465,
+          "group": "beds",
+          "kind": "guesthouse",
+          "name": "Panaderia",
+          "osm": "node/2012735765",
+          "stage": "1",
+          "stageKind": "main",
+          "km": 0.1,
+          "offM": 776
+        },
+        {
+          "lat": -49.322508,
+          "lon": -72.894435,
+          "group": "beds",
+          "kind": "hostel",
+          "name": "Las Cuatro Estaciones",
+          "osm": "node/4621917592",
+          "stage": "1",
+          "stageKind": "main",
+          "km": 0.1,
+          "offM": 1843
+        },
+        {
+          "lat": -49.33285,
+          "lon": -72.882911,
+          "group": "beds",
+          "kind": "hostel",
+          "name": "La Comarca",
+          "osm": "node/4710937990",
+          "stage": "1",
+          "stageKind": "main",
+          "km": 0.1,
+          "offM": 491
+        },
+        {
+          "lat": -49.323688,
+          "lon": -72.893208,
+          "group": "beds",
+          "kind": "guesthouse",
+          "name": "Nunataks",
+          "osm": "node/5008609621",
+          "stage": "1",
+          "stageKind": "main",
+          "km": 0.1,
+          "offM": 1686
+        },
+        {
+          "lat": -49.331607,
+          "lon": -72.886634,
+          "group": "beds",
+          "kind": "hostel",
+          "name": "Los Viajeros",
+          "osm": "node/5213254022",
+          "stage": "1",
+          "stageKind": "main",
+          "km": 0.1,
+          "offM": 686
+        },
+        {
+          "lat": -49.325275,
+          "lon": -72.893386,
+          "group": "beds",
+          "kind": "hostel",
+          "name": "Casa Azul",
+          "osm": "node/5285032621",
+          "stage": "1",
+          "stageKind": "main",
+          "km": 0.1,
+          "offM": 1536
+        },
+        {
+          "lat": -49.321708,
+          "lon": -72.895452,
+          "group": "beds",
+          "kind": "hostel",
+          "name": "Sur Azul",
+          "osm": "node/6340319794",
+          "stage": "1",
+          "stageKind": "main",
+          "km": 0.1,
+          "offM": 1956
+        },
+        {
+          "lat": -49.325031,
+          "lon": -72.893546,
+          "group": "beds",
+          "kind": "guesthouse",
+          "name": "Don Atilio",
+          "osm": "node/7044757186",
+          "stage": "1",
+          "stageKind": "main",
+          "km": 0.1,
+          "offM": 1565
+        },
+        {
+          "lat": -49.332349,
+          "lon": -72.884173,
+          "group": "beds",
+          "kind": "hostel",
+          "name": "Güer Aike Tiny Houses",
+          "osm": "node/10969015705",
+          "stage": "1",
+          "stageKind": "main",
+          "km": 0.1,
+          "offM": 555
+        },
+        {
+          "lat": -49.328818,
+          "lon": -72.885625,
+          "group": "beds",
+          "kind": "hostel",
+          "name": "Familia del Campo",
+          "osm": "node/12316735801",
+          "stage": "1",
+          "stageKind": "main",
+          "km": 0.1,
+          "offM": 961
+        },
+        {
+          "lat": -49.330522,
+          "lon": -72.889883,
+          "group": "beds",
+          "kind": "guesthouse",
+          "name": "Ricanor",
+          "osm": "node/12709039192",
+          "stage": "1",
+          "stageKind": "main",
+          "km": 0.1,
+          "offM": 906
+        },
+        {
+          "lat": -49.322392,
+          "lon": -72.895499,
+          "group": "beds",
+          "kind": "hostel",
+          "name": "Pudulodge",
+          "osm": "node/12732037842",
+          "stage": "1",
+          "stageKind": "main",
+          "km": 0.1,
+          "offM": 1890
+        },
+        {
+          "lat": -49.326193,
+          "lon": -72.889807,
+          "group": "beds",
+          "kind": "hostel",
+          "name": "Pioneros Del Valle",
+          "osm": "way/268534666",
+          "stage": "1",
+          "stageKind": "main",
+          "km": 0.1,
+          "offM": 1330
+        },
+        {
+          "lat": -49.32723,
+          "lon": -72.889952,
+          "group": "beds",
+          "kind": "hostel",
+          "name": "Patagonia",
+          "osm": "way/313772108",
+          "stage": "1",
+          "stageKind": "main",
+          "km": 0.1,
+          "offM": 1229
+        },
+        {
+          "lat": -49.332875,
+          "lon": -72.889467,
+          "group": "beds",
+          "kind": "guesthouse",
+          "name": "Nothofagus",
+          "osm": "node/661871372",
+          "stage": "1",
+          "stageKind": "main",
+          "km": 0.5,
+          "offM": 655
+        },
+        {
+          "lat": -49.330478,
+          "lon": -72.891722,
+          "group": "beds",
+          "kind": "hostel",
+          "name": "Kaulem",
+          "osm": "node/661881471",
+          "stage": "1",
+          "stageKind": "main",
+          "km": 0.5,
+          "offM": 955
+        },
+        {
+          "lat": -49.331596,
+          "lon": -72.889607,
+          "group": "beds",
+          "kind": "guesthouse",
+          "name": "Mi Rincón",
+          "osm": "node/661881474",
+          "stage": "1",
+          "stageKind": "main",
+          "km": 0.5,
+          "offM": 797
+        },
+        {
+          "lat": -49.325431,
+          "lon": -72.893859,
+          "group": "beds",
+          "kind": "campsite",
+          "name": "Casa Azul",
+          "osm": "node/5285016828",
+          "stage": "1",
+          "stageKind": "main",
+          "km": 0.5,
+          "offM": 1536
+        },
+        {
+          "lat": -49.326375,
+          "lon": -72.893403,
+          "group": "beds",
+          "kind": "hostel",
+          "name": "Alma Travelers",
+          "osm": "node/7167624885",
+          "stage": "1",
+          "stageKind": "main",
+          "km": 0.5,
+          "offM": 1426
+        },
+        {
+          "lat": -49.333632,
+          "lon": -72.889739,
+          "group": "beds",
+          "kind": "hostel",
+          "name": "Refugio Chaltén",
+          "osm": "node/10759781205",
+          "stage": "1",
+          "stageKind": "main",
+          "km": 0.5,
+          "offM": 578
+        },
+        {
+          "lat": -49.332301,
+          "lon": -72.890339,
+          "group": "beds",
+          "kind": "guesthouse",
+          "name": "Piramide",
+          "osm": "node/12709039230",
+          "stage": "1",
+          "stageKind": "main",
+          "km": 0.5,
+          "offM": 732
+        },
+        {
+          "lat": -49.333368,
+          "lon": -72.888733,
+          "group": "beds",
+          "kind": "hostel",
+          "name": "Thiamalu",
+          "osm": "way/319547680",
+          "stage": "1",
+          "stageKind": "main",
+          "km": 0.5,
+          "offM": 592
+        },
+        {
+          "lat": -49.332916,
+          "lon": -72.890988,
+          "group": "beds",
+          "kind": "guesthouse",
+          "name": "Cabanas Martinez",
+          "osm": "way/1372566303",
+          "stage": "1",
+          "stageKind": "main",
+          "km": 0.5,
+          "offM": 681
+        },
+        {
+          "lat": -49.331109,
+          "lon": -72.894458,
+          "group": "beds",
+          "kind": "campsite",
+          "name": "La Torcida",
+          "osm": "node/4476637392",
+          "stage": "1",
+          "stageKind": "main",
+          "km": 0.6,
+          "offM": 967
+        },
+        {
+          "lat": -49.328638,
+          "lon": -72.897343,
+          "group": "beds",
+          "kind": "campsite",
+          "name": "Planta Estable",
+          "osm": "node/4730610623",
+          "stage": "1",
+          "stageKind": "main",
+          "km": 0.6,
+          "offM": 1308
+        },
+        {
+          "lat": -49.330537,
+          "lon": -72.89396,
+          "group": "beds",
+          "kind": "campsite",
+          "name": "Casa de Ciclistas El Charito",
+          "osm": "node/6083014589",
+          "stage": "1",
+          "stageKind": "main",
+          "km": 0.6,
+          "offM": 1008
+        },
+        {
+          "lat": -49.330148,
+          "lon": -72.895348,
+          "group": "beds",
+          "kind": "hostel",
+          "name": "Luna",
+          "osm": "node/11665136769",
+          "stage": "1",
+          "stageKind": "main",
+          "km": 0.6,
+          "offM": 1091
+        },
+        {
+          "lat": -49.330476,
+          "lon": -72.894094,
+          "group": "beds",
+          "kind": "hostel",
+          "name": "Casa de Ciclista El Charito",
+          "osm": "way/647806741",
+          "stage": "1",
+          "stageKind": "main",
+          "km": 0.6,
+          "offM": 1019
+        },
+        {
+          "lat": -49.330221,
+          "lon": -72.893791,
+          "group": "beds",
+          "kind": "guesthouse",
+          "name": "El Kamaruco",
+          "osm": "way/1375107599",
+          "stage": "1",
+          "stageKind": "main",
+          "km": 0.6,
+          "offM": 1036
+        },
+        {
+          "lat": -49.385169,
+          "lon": -73.040499,
+          "group": "beds",
+          "kind": "campsite",
+          "name": "Toro",
+          "drinkingWater": "yes",
+          "osm": "node/598214615",
+          "stage": "1",
+          "stageKind": "main",
+          "km": 15.8,
+          "offM": 16
+        },
+        {
+          "lat": -49.391916,
+          "lon": -73.088062,
+          "group": "beds",
+          "kind": "campsite",
+          "name": "Túnel (Biwak Camping)",
+          "osm": "node/5401285952",
+          "stage": "2",
+          "stageKind": "main",
+          "km": 20.6,
+          "offM": 6
+        },
+        {
+          "lat": -49.425763,
+          "lon": -73.106684,
+          "group": "beds",
+          "kind": "hut",
+          "name": "Refugio Paso del Viento",
+          "osm": "way/313713472",
+          "stage": "2",
+          "stageKind": "main",
+          "km": 26.9,
+          "offM": 41
+        },
+        {
+          "lat": -49.426139,
+          "lon": -73.106922,
+          "group": "beds",
+          "kind": "campsite",
+          "name": "Campamento Paso del Viento",
+          "osm": "way/674131623",
+          "stage": "3",
+          "stageKind": "main",
+          "km": 26.9,
+          "offM": 82
+        },
+        {
+          "lat": -49.427988,
+          "lon": -73.107481,
+          "group": "beds",
+          "kind": "campsite",
+          "name": "One tent only",
+          "osm": "node/12588254601",
+          "stage": "3",
+          "stageKind": "main",
+          "km": 27.1,
+          "offM": 223
+        },
+        {
+          "lat": -49.480049,
+          "lon": -72.986062,
+          "group": "beds",
+          "kind": "campsite",
+          "name": "Camp. Bahia de los Témpanos",
+          "osm": "node/4602578491",
+          "stage": "3",
+          "stageKind": "main",
+          "km": 40.3,
+          "offM": 183
+        },
+        {
+          "lat": -49.482405,
+          "lon": -72.958496,
+          "group": "beds",
+          "kind": "campsite",
+          "name": "Camp. Bahía de Hornos",
+          "drinkingWater": "yes",
+          "osm": "node/3197297468",
+          "stage": "4",
+          "stageKind": "main",
+          "km": 42.6,
+          "offM": 175
+        },
+        {
+          "lat": -49.475283,
+          "lon": -72.943223,
+          "group": "beds",
+          "kind": "campsite",
+          "name": null,
+          "osm": "node/10601288953",
+          "stage": "4",
+          "stageKind": "main",
+          "km": 44.1,
+          "offM": 36
+        },
+        {
+          "lat": -49.32979,
+          "lon": -72.882589,
+          "group": "beds",
+          "kind": "campsite",
+          "name": "Camping El Paredon",
+          "osm": "node/10745027505",
+          "stage": "4",
+          "stageKind": "main",
+          "km": 64.1,
+          "offM": 816
+        },
+        {
+          "lat": -49.331823,
+          "lon": -72.881276,
+          "group": "beds",
+          "kind": "hostel",
+          "name": "Don Galle",
+          "osm": "node/12580588274",
+          "stage": "4",
+          "stageKind": "main",
+          "km": 64.1,
+          "offM": 577
+        }
+      ],
+      "longestGapKm": {
+        "km": 20.0,
+        "fromKm": 44.1,
+        "toKm": 64.1
+      },
+      "byGroup": {
+        "huts": 1,
+        "camping": 15,
+        "hostels": 30,
+        "rooms": 11
+      }
+    },
+    "water": {
+      "withinM": 500,
+      "promoted": [
+        {
+          "kind": "campsite",
+          "name": "Toro",
+          "stage": "1",
+          "km": 15.8,
+          "osm": "node/598214615"
+        },
+        {
+          "kind": "campsite",
+          "name": "Camp. Bahía de Hornos",
+          "stage": "4",
+          "km": 42.6,
+          "osm": "node/3197297468"
+        }
+      ],
+      "refills": [
+        {
+          "kind": "hostel",
+          "name": "La Comarca",
+          "stage": "1",
+          "km": 0.1,
+          "osm": "node/4710937990"
+        },
+        {
+          "kind": "campsite",
+          "name": "Túnel (Biwak Camping)",
+          "stage": "2",
+          "km": 20.6,
+          "osm": "node/5401285952"
+        },
+        {
+          "kind": "hut",
+          "name": "Refugio Paso del Viento",
+          "stage": "2",
+          "km": 26.9,
+          "osm": "way/313713472"
+        },
+        {
+          "kind": "campsite",
+          "name": "Campamento Paso del Viento",
+          "stage": "3",
+          "km": 26.9,
+          "osm": "way/674131623"
+        },
+        {
+          "kind": "campsite",
+          "name": "One tent only",
+          "stage": "3",
+          "km": 27.1,
+          "osm": "node/12588254601"
+        },
+        {
+          "kind": "campsite",
+          "name": "Camp. Bahia de los Témpanos",
+          "stage": "3",
+          "km": 40.3,
+          "osm": "node/4602578491"
+        },
+        {
+          "kind": "campsite",
+          "name": null,
+          "stage": "4",
+          "km": 44.1,
+          "osm": "node/10601288953"
+        }
+      ],
+      "longestGapKm": {
+        "drinking": {
+          "km": 25.6,
+          "fromKm": 17.0,
+          "toKm": 42.6
+        },
+        "treatment": {
+          "km": 25.6,
+          "fromKm": 17.0,
+          "toKm": 42.6
+        },
+        "clean": {
+          "km": 20.0,
+          "fromKm": 44.1,
+          "toKm": 64.1
+        },
+        "refill": {
+          "km": 20.0,
+          "fromKm": 44.1,
+          "toKm": 64.1
+        }
+      },
+      "refillsUntreated": false
+    }
+  },
+  "surface": {
+    "source": "osm",
+    "retrieved": "2026-11-05T21:23:02Z",
+    "routeKm": 64.2,
+    "totals": {
+      "paved": {
+        "km": 1.9,
+        "share": 0.03
+      },
+      "gravel": {
+        "km": 2.9,
+        "share": 0.044
+      },
+      "natural": {
+        "km": 59.4,
+        "share": 0.925
+      },
+      "unknown": {
+        "km": 0.0,
+        "share": 0.0
+      }
+    },
+    "inferredShare": 0.712,
+    "runs": [
+      {
+        "category": "natural",
+        "fromKm": 0.0,
+        "toKm": 0.68,
+        "stage": "1"
+      },
+      {
+        "category": "paved",
+        "fromKm": 0.68,
+        "toKm": 0.69,
+        "stage": "1"
+      },
+      {
+        "category": "natural",
+        "fromKm": 0.69,
+        "toKm": 1.29,
+        "stage": "1"
+      },
+      {
+        "category": "paved",
+        "fromKm": 1.29,
+        "toKm": 1.3,
+        "stage": "1"
+      },
+      {
+        "category": "natural",
+        "fromKm": 1.3,
+        "toKm": 55.0,
+        "stage": "1"
+      },
+      {
+        "category": "gravel",
+        "fromKm": 55.0,
+        "toKm": 56.37,
+        "stage": "4"
+      },
+      {
+        "category": "natural",
+        "fromKm": 56.37,
+        "toKm": 60.75,
+        "stage": "4"
+      },
+      {
+        "category": "gravel",
+        "fromKm": 60.75,
+        "toKm": 60.77,
+        "stage": "4"
+      },
+      {
+        "category": "natural",
+        "fromKm": 60.77,
+        "toKm": 60.78,
+        "stage": "4"
+      },
+      {
+        "category": "gravel",
+        "fromKm": 60.78,
+        "toKm": 62.12,
+        "stage": "4"
+      },
+      {
+        "category": "paved",
+        "fromKm": 62.12,
+        "toKm": 63.89,
+        "stage": "4"
+      },
+      {
+        "category": "gravel",
+        "fromKm": 63.89,
+        "toKm": 64.0,
+        "stage": "4"
+      },
+      {
+        "category": "paved",
+        "fromKm": 64.0,
+        "toKm": 64.15,
+        "stage": "4"
+      },
+      {
+        "category": "natural",
+        "fromKm": 64.15,
+        "toKm": 64.16,
+        "stage": "4"
+      }
+    ]
+  },
+  "elevation": {
+    "source": "copdem",
+    "retrieved": "2026-11-07T00:42:53+00:00",
+    "spacingM": 100,
+    "routeKm": 64.2,
+    "stageStarts": [
+      {
+        "number": "1",
+        "km": 0.0
+      },
+      {
+        "number": "2",
+        "km": 15.8
+      },
+      {
+        "number": "3",
+        "km": 26.86
+      },
+      {
+        "number": "4",
+        "km": 40.32
+      }
+    ],
+    "highest": {
+      "km": 23.0,
+      "m": 1406,
+      "lat": -49.39616,
+      "lon": -73.11378
+    },
+    "lowest": {
+      "km": 42.7,
+      "m": 253,
+      "lat": -49.48006,
+      "lon": -72.95768
+    },
+    "points": [
+      [
+        0.0,
+        396
+      ],
+      [
+        0.1,
+        396
+      ],
+      [
+        0.2,
+        398
+      ],
+      [
+        0.3,
+        400
+      ],
+      [
+        0.4,
+        404
+      ],
+      [
+        0.5,
+        408
+      ],
+      [
+        0.6,
+        412
+      ],
+      [
+        0.7,
+        423
+      ],
+      [
+        0.8,
+        437
+      ],
+      [
+        0.9,
+        458
+      ],
+      [
+        1.0,
+        471
+      ],
+      [
+        1.1,
+        475
+      ],
+      [
+        1.2,
+        482
+      ],
+      [
+        1.3,
+        478
+      ],
+      [
+        1.4,
+        492
+      ],
+      [
+        1.5,
+        503
+      ],
+      [
+        1.6,
+        516
+      ],
+      [
+        1.7,
+        530
+      ],
+      [
+        1.8,
+        534
+      ],
+      [
+        1.9,
+        541
+      ],
+      [
+        2.0,
+        554
+      ],
+      [
+        2.1,
+        568
+      ],
+      [
+        2.2,
+        578
+      ],
+      [
+        2.3,
+        598
+      ],
+      [
+        2.4,
+        619
+      ],
+      [
+        2.5,
+        636
+      ],
+      [
+        2.6,
+        653
+      ],
+      [
+        2.7,
+        664
+      ],
+      [
+        2.8,
+        677
+      ],
+      [
+        2.9,
+        689
+      ],
+      [
+        3.0,
+        702
+      ],
+      [
+        3.1,
+        718
+      ],
+      [
+        3.2,
+        730
+      ],
+      [
+        3.3,
+        749
+      ],
+      [
+        3.4,
+        765
+      ],
+      [
+        3.5,
+        773
+      ],
+      [
+        3.6,
+        784
+      ],
+      [
+        3.7,
+        791
+      ],
+      [
+        3.8,
+        795
+      ],
+      [
+        3.9,
+        798
+      ],
+      [
+        4.0,
+        800
+      ],
+      [
+        4.1,
+        794
+      ],
+      [
+        4.2,
+        798
+      ],
+      [
+        4.3,
+        801
+      ],
+      [
+        4.4,
+        804
+      ],
+      [
+        4.5,
+        806
+      ],
+      [
+        4.6,
+        809
+      ],
+      [
+        4.7,
+        816
+      ],
+      [
+        4.8,
+        825
+      ],
+      [
+        4.9,
+        841
+      ],
+      [
+        5.0,
+        844
+      ],
+      [
+        5.1,
+        853
+      ],
+      [
+        5.2,
+        859
+      ],
+      [
+        5.3,
+        867
+      ],
+      [
+        5.4,
+        881
+      ],
+      [
+        5.5,
+        893
+      ],
+      [
+        5.6,
+        899
+      ],
+      [
+        5.7,
+        916
+      ],
+      [
+        5.8,
+        943
+      ],
+      [
+        5.9,
+        957
+      ],
+      [
+        6.0,
+        958
+      ],
+      [
+        6.1,
+        962
+      ],
+      [
+        6.2,
+        968
+      ],
+      [
+        6.3,
+        965
+      ],
+      [
+        6.4,
+        964
+      ],
+      [
+        6.5,
+        971
+      ],
+      [
+        6.6,
+        987
+      ],
+      [
+        6.7,
+        1001
+      ],
+      [
+        6.8,
+        1014
+      ],
+      [
+        6.9,
+        1018
+      ],
+      [
+        7.0,
+        1036
+      ],
+      [
+        7.1,
+        1035
+      ],
+      [
+        7.2,
+        1038
+      ],
+      [
+        7.3,
+        1044
+      ],
+      [
+        7.4,
+        1050
+      ],
+      [
+        7.5,
+        1056
+      ],
+      [
+        7.6,
+        1059
+      ],
+      [
+        7.7,
+        1054
+      ],
+      [
+        7.8,
+        1056
+      ],
+      [
+        7.9,
+        1051
+      ],
+      [
+        8.0,
+        1044
+      ],
+      [
+        8.1,
+        1035
+      ],
+      [
+        8.2,
+        1027
+      ],
+      [
+        8.3,
+        1017
+      ],
+      [
+        8.4,
+        994
+      ],
+      [
+        8.5,
+        978
+      ],
+      [
+        8.6,
+        968
+      ],
+      [
+        8.7,
+        952
+      ],
+      [
+        8.8,
+        939
+      ],
+      [
+        8.9,
+        929
+      ],
+      [
+        9.0,
+        928
+      ],
+      [
+        9.1,
+        921
+      ],
+      [
+        9.2,
+        908
+      ],
+      [
+        9.3,
+        899
+      ],
+      [
+        9.4,
+        888
+      ],
+      [
+        9.5,
+        881
+      ],
+      [
+        9.6,
+        869
+      ],
+      [
+        9.7,
+        857
+      ],
+      [
+        9.8,
+        844
+      ],
+      [
+        9.9,
+        834
+      ],
+      [
+        10.0,
+        824
+      ],
+      [
+        10.1,
+        822
+      ],
+      [
+        10.2,
+        816
+      ],
+      [
+        10.3,
+        802
+      ],
+      [
+        10.4,
+        786
+      ],
+      [
+        10.5,
+        769
+      ],
+      [
+        10.6,
+        756
+      ],
+      [
+        10.7,
+        737
+      ],
+      [
+        10.8,
+        715
+      ],
+      [
+        10.9,
+        706
+      ],
+      [
+        11.0,
+        699
+      ],
+      [
+        11.1,
+        691
+      ],
+      [
+        11.2,
+        677
+      ],
+      [
+        11.3,
+        661
+      ],
+      [
+        11.4,
+        635
+      ],
+      [
+        11.5,
+        617
+      ],
+      [
+        11.6,
+        610
+      ],
+      [
+        11.7,
+        606
+      ],
+      [
+        11.8,
+        607
+      ],
+      [
+        11.9,
+        607
+      ],
+      [
+        12.0,
+        608
+      ],
+      [
+        12.1,
+        608
+      ],
+      [
+        12.2,
+        608
+      ],
+      [
+        12.3,
+        609
+      ],
+      [
+        12.4,
+        608
+      ],
+      [
+        12.5,
+        610
+      ],
+      [
+        12.6,
+        609
+      ],
+      [
+        12.7,
+        619
+      ],
+      [
+        12.8,
+        618
+      ],
+      [
+        12.9,
+        611
+      ],
+      [
+        13.0,
+        613
+      ],
+      [
+        13.1,
+        614
+      ],
+      [
+        13.2,
+        614
+      ],
+      [
+        13.3,
+        615
+      ],
+      [
+        13.4,
+        618
+      ],
+      [
+        13.5,
+        618
+      ],
+      [
+        13.6,
+        620
+      ],
+      [
+        13.7,
+        620
+      ],
+      [
+        13.8,
+        621
+      ],
+      [
+        13.9,
+        622
+      ],
+      [
+        14.0,
+        624
+      ],
+      [
+        14.1,
+        625
+      ],
+      [
+        14.2,
+        627
+      ],
+      [
+        14.3,
+        629
+      ],
+      [
+        14.4,
+        629
+      ],
+      [
+        14.5,
+        630
+      ],
+      [
+        14.6,
+        633
+      ],
+      [
+        14.7,
+        634
+      ],
+      [
+        14.8,
+        638
+      ],
+      [
+        14.9,
+        636
+      ],
+      [
+        15.0,
+        640
+      ],
+      [
+        15.1,
+        644
+      ],
+      [
+        15.2,
+        646
+      ],
+      [
+        15.3,
+        648
+      ],
+      [
+        15.4,
+        650
+      ],
+      [
+        15.5,
+        649
+      ],
+      [
+        15.6,
+        652
+      ],
+      [
+        15.7,
+        653
+      ],
+      [
+        15.8,
+        658
+      ],
+      [
+        15.9,
+        660
+      ],
+      [
+        16.0,
+        660
+      ],
+      [
+        16.1,
+        664
+      ],
+      [
+        16.2,
+        666
+      ],
+      [
+        16.3,
+        667
+      ],
+      [
+        16.4,
+        666
+      ],
+      [
+        16.5,
+        664
+      ],
+      [
+        16.6,
+        664
+      ],
+      [
+        16.7,
+        669
+      ],
+      [
+        16.8,
+        668
+      ],
+      [
+        16.9,
+        668
+      ],
+      [
+        17.0,
+        666
+      ],
+      [
+        17.1,
+        664
+      ],
+      [
+        17.2,
+        664
+      ],
+      [
+        17.3,
+        665
+      ],
+      [
+        17.4,
+        672
+      ],
+      [
+        17.5,
+        666
+      ],
+      [
+        17.6,
+        686
+      ],
+      [
+        17.7,
+        689
+      ],
+      [
+        17.8,
+        691
+      ],
+      [
+        17.9,
+        696
+      ],
+      [
+        18.0,
+        687
+      ],
+      [
+        18.1,
+        682
+      ],
+      [
+        18.2,
+        685
+      ],
+      [
+        18.3,
+        694
+      ],
+      [
+        18.4,
+        721
+      ],
+      [
+        18.5,
+        756
+      ],
+      [
+        18.6,
+        780
+      ],
+      [
+        18.7,
+        791
+      ],
+      [
+        18.8,
+        810
+      ],
+      [
+        18.9,
+        812
+      ],
+      [
+        19.0,
+        800
+      ],
+      [
+        19.1,
+        790
+      ],
+      [
+        19.2,
+        803
+      ],
+      [
+        19.3,
+        815
+      ],
+      [
+        19.4,
+        824
+      ],
+      [
+        19.5,
+        832
+      ],
+      [
+        19.6,
+        840
+      ],
+      [
+        19.7,
+        845
+      ],
+      [
+        19.8,
+        842
+      ],
+      [
+        19.9,
+        839
+      ],
+      [
+        20.0,
+        847
+      ],
+      [
+        20.1,
+        843
+      ],
+      [
+        20.2,
+        836
+      ],
+      [
+        20.3,
+        827
+      ],
+      [
+        20.4,
+        816
+      ],
+      [
+        20.5,
+        857
+      ],
+      [
+        20.6,
+        886
+      ],
+      [
+        20.7,
+        901
+      ],
+      [
+        20.8,
+        928
+      ],
+      [
+        20.9,
+        954
+      ],
+      [
+        21.0,
+        978
+      ],
+      [
+        21.1,
+        1017
+      ],
+      [
+        21.2,
+        1036
+      ],
+      [
+        21.3,
+        1050
+      ],
+      [
+        21.4,
+        1076
+      ],
+      [
+        21.5,
+        1107
+      ],
+      [
+        21.6,
+        1120
+      ],
+      [
+        21.7,
+        1133
+      ],
+      [
+        21.8,
+        1134
+      ],
+      [
+        21.9,
+        1136
+      ],
+      [
+        22.0,
+        1172
+      ],
+      [
+        22.1,
+        1207
+      ],
+      [
+        22.2,
+        1242
+      ],
+      [
+        22.3,
+        1259
+      ],
+      [
+        22.4,
+        1291
+      ],
+      [
+        22.5,
+        1318
+      ],
+      [
+        22.6,
+        1340
+      ],
+      [
+        22.7,
+        1361
+      ],
+      [
+        22.8,
+        1377
+      ],
+      [
+        22.9,
+        1402
+      ],
+      [
+        23.0,
+        1406
+      ],
+      [
+        23.1,
+        1401
+      ],
+      [
+        23.2,
+        1400
+      ],
+      [
+        23.3,
+        1392
+      ],
+      [
+        23.4,
+        1347
+      ],
+      [
+        23.5,
+        1308
+      ],
+      [
+        23.6,
+        1264
+      ],
+      [
+        23.7,
+        1246
+      ],
+      [
+        23.8,
+        1222
+      ],
+      [
+        23.9,
+        1200
+      ],
+      [
+        24.0,
+        1193
+      ],
+      [
+        24.1,
+        1183
+      ],
+      [
+        24.2,
+        1180
+      ],
+      [
+        24.3,
+        1177
+      ],
+      [
+        24.4,
+        1168
+      ],
+      [
+        24.5,
+        1160
+      ],
+      [
+        24.6,
+        1153
+      ],
+      [
+        24.7,
+        1143
+      ],
+      [
+        24.8,
+        1140
+      ],
+      [
+        24.9,
+        1134
+      ],
+      [
+        25.0,
+        1134
+      ],
+      [
+        25.1,
+        1131
+      ],
+      [
+        25.2,
+        1125
+      ],
+      [
+        25.3,
+        1114
+      ],
+      [
+        25.4,
+        1109
+      ],
+      [
+        25.5,
+        1099
+      ],
+      [
+        25.6,
+        1083
+      ],
+      [
+        25.7,
+        1070
+      ],
+      [
+        25.8,
+        1053
+      ],
+      [
+        25.9,
+        1038
+      ],
+      [
+        26.0,
+        1018
+      ],
+      [
+        26.1,
+        998
+      ],
+      [
+        26.2,
+        987
+      ],
+      [
+        26.3,
+        974
+      ],
+      [
+        26.4,
+        964
+      ],
+      [
+        26.5,
+        949
+      ],
+      [
+        26.6,
+        944
+      ],
+      [
+        26.7,
+        935
+      ],
+      [
+        26.8,
+        922
+      ],
+      [
+        26.9,
+        915
+      ],
+      [
+        27.0,
+        914
+      ],
+      [
+        27.1,
+        917
+      ],
+      [
+        27.2,
+        927
+      ],
+      [
+        27.3,
+        932
+      ],
+      [
+        27.4,
+        945
+      ],
+      [
+        27.5,
+        946
+      ],
+      [
+        27.6,
+        946
+      ],
+      [
+        27.7,
+        938
+      ],
+      [
+        27.8,
+        933
+      ],
+      [
+        27.9,
+        939
+      ],
+      [
+        28.0,
+        955
+      ],
+      [
+        28.1,
+        966
+      ],
+      [
+        28.2,
+        974
+      ],
+      [
+        28.3,
+        970
+      ],
+      [
+        28.4,
+        972
+      ],
+      [
+        28.5,
+        963
+      ],
+      [
+        28.6,
+        972
+      ],
+      [
+        28.7,
+        977
+      ],
+      [
+        28.8,
+        965
+      ],
+      [
+        28.9,
+        956
+      ],
+      [
+        29.0,
+        954
+      ],
+      [
+        29.1,
+        954
+      ],
+      [
+        29.2,
+        948
+      ],
+      [
+        29.3,
+        939
+      ],
+      [
+        29.4,
+        925
+      ],
+      [
+        29.5,
+        918
+      ],
+      [
+        29.6,
+        912
+      ],
+      [
+        29.7,
+        912
+      ],
+      [
+        29.8,
+        912
+      ],
+      [
+        29.9,
+        904
+      ],
+      [
+        30.0,
+        899
+      ],
+      [
+        30.1,
+        893
+      ],
+      [
+        30.2,
+        888
+      ],
+      [
+        30.3,
+        887
+      ],
+      [
+        30.4,
+        901
+      ],
+      [
+        30.5,
+        908
+      ],
+      [
+        30.6,
+        902
+      ],
+      [
+        30.7,
+        904
+      ],
+      [
+        30.8,
+        900
+      ],
+      [
+        30.9,
+        898
+      ],
+      [
+        31.0,
+        901
+      ],
+      [
+        31.1,
+        904
+      ],
+      [
+        31.2,
+        899
+      ],
+      [
+        31.3,
+        866
+      ],
+      [
+        31.4,
+        869
+      ],
+      [
+        31.5,
+        876
+      ],
+      [
+        31.6,
+        894
+      ],
+      [
+        31.7,
+        901
+      ],
+      [
+        31.8,
+        893
+      ],
+      [
+        31.9,
+        890
+      ],
+      [
+        32.0,
+        867
+      ],
+      [
+        32.1,
+        850
+      ],
+      [
+        32.2,
+        834
+      ],
+      [
+        32.3,
+        820
+      ],
+      [
+        32.4,
+        801
+      ],
+      [
+        32.5,
+        788
+      ],
+      [
+        32.6,
+        786
+      ],
+      [
+        32.7,
+        798
+      ],
+      [
+        32.8,
+        803
+      ],
+      [
+        32.9,
+        804
+      ],
+      [
+        33.0,
+        808
+      ],
+      [
+        33.1,
+        806
+      ],
+      [
+        33.2,
+        804
+      ],
+      [
+        33.3,
+        802
+      ],
+      [
+        33.4,
+        799
+      ],
+      [
+        33.5,
+        796
+      ],
+      [
+        33.6,
+        804
+      ],
+      [
+        33.7,
+        809
+      ],
+      [
+        33.8,
+        785
+      ],
+      [
+        33.9,
+        769
+      ],
+      [
+        34.0,
+        757
+      ],
+      [
+        34.1,
+        746
+      ],
+      [
+        34.2,
+        744
+      ],
+      [
+        34.3,
+        741
+      ],
+      [
+        34.4,
+        736
+      ],
+      [
+        34.5,
+        740
+      ],
+      [
+        34.6,
+        747
+      ],
+      [
+        34.7,
+        746
+      ],
+      [
+        34.8,
+        746
+      ],
+      [
+        34.9,
+        748
+      ],
+      [
+        35.0,
+        754
+      ],
+      [
+        35.1,
+        757
+      ],
+      [
+        35.2,
+        764
+      ],
+      [
+        35.3,
+        764
+      ],
+      [
+        35.4,
+        766
+      ],
+      [
+        35.5,
+        770
+      ],
+      [
+        35.6,
+        776
+      ],
+      [
+        35.7,
+        786
+      ],
+      [
+        35.8,
+        783
+      ],
+      [
+        35.9,
+        790
+      ],
+      [
+        36.0,
+        780
+      ],
+      [
+        36.1,
+        762
+      ],
+      [
+        36.2,
+        780
+      ],
+      [
+        36.3,
+        784
+      ],
+      [
+        36.4,
+        830
+      ],
+      [
+        36.5,
+        835
+      ],
+      [
+        36.6,
+        827
+      ],
+      [
+        36.7,
+        834
+      ],
+      [
+        36.8,
+        842
+      ],
+      [
+        36.9,
+        856
+      ],
+      [
+        37.0,
+        881
+      ],
+      [
+        37.1,
+        920
+      ],
+      [
+        37.2,
+        964
+      ],
+      [
+        37.3,
+        990
+      ],
+      [
+        37.4,
+        1006
+      ],
+      [
+        37.5,
+        1007
+      ],
+      [
+        37.6,
+        975
+      ],
+      [
+        37.7,
+        958
+      ],
+      [
+        37.8,
+        941
+      ],
+      [
+        37.9,
+        925
+      ],
+      [
+        38.0,
+        896
+      ],
+      [
+        38.1,
+        883
+      ],
+      [
+        38.2,
+        878
+      ],
+      [
+        38.3,
+        879
+      ],
+      [
+        38.4,
+        880
+      ],
+      [
+        38.5,
+        875
+      ],
+      [
+        38.6,
+        882
+      ],
+      [
+        38.7,
+        886
+      ],
+      [
+        38.8,
+        838
+      ],
+      [
+        38.9,
+        796
+      ],
+      [
+        39.0,
+        747
+      ],
+      [
+        39.1,
+        699
+      ],
+      [
+        39.2,
+        647
+      ],
+      [
+        39.3,
+        574
+      ],
+      [
+        39.4,
+        523
+      ],
+      [
+        39.5,
+        470
+      ],
+      [
+        39.6,
+        425
+      ],
+      [
+        39.7,
+        382
+      ],
+      [
+        39.8,
+        343
+      ],
+      [
+        39.9,
+        331
+      ],
+      [
+        40.0,
+        322
+      ],
+      [
+        40.1,
+        316
+      ],
+      [
+        40.2,
+        308
+      ],
+      [
+        40.3,
+        304
+      ],
+      [
+        40.4,
+        293
+      ],
+      [
+        40.5,
+        291
+      ],
+      [
+        40.6,
+        282
+      ],
+      [
+        40.7,
+        276
+      ],
+      [
+        40.8,
+        273
+      ],
+      [
+        40.9,
+        271
+      ],
+      [
+        41.0,
+        269
+      ],
+      [
+        41.1,
+        267
+      ],
+      [
+        41.2,
+        266
+      ],
+      [
+        41.3,
+        265
+      ],
+      [
+        41.4,
+        264
+      ],
+      [
+        41.5,
+        263
+      ],
+      [
+        41.6,
+        262
+      ],
+      [
+        41.7,
+        261
+      ],
+      [
+        41.8,
+        260
+      ],
+      [
+        41.9,
+        259
+      ],
+      [
+        42.0,
+        260
+      ],
+      [
+        42.1,
+        260
+      ],
+      [
+        42.2,
+        259
+      ],
+      [
+        42.3,
+        262
+      ],
+      [
+        42.4,
+        262
+      ],
+      [
+        42.5,
+        260
+      ],
+      [
+        42.6,
+        254
+      ],
+      [
+        42.7,
+        253
+      ],
+      [
+        42.8,
+        254
+      ],
+      [
+        42.9,
+        254
+      ],
+      [
+        43.0,
+        254
+      ],
+      [
+        43.1,
+        254
+      ],
+      [
+        43.2,
+        255
+      ],
+      [
+        43.3,
+        255
+      ],
+      [
+        43.4,
+        256
+      ],
+      [
+        43.5,
+        254
+      ],
+      [
+        43.6,
+        255
+      ],
+      [
+        43.7,
+        253
+      ],
+      [
+        43.8,
+        253
+      ],
+      [
+        43.9,
+        253
+      ],
+      [
+        44.0,
+        254
+      ],
+      [
+        44.1,
+        256
+      ],
+      [
+        44.2,
+        256
+      ],
+      [
+        44.3,
+        258
+      ],
+      [
+        44.4,
+        260
+      ],
+      [
+        44.5,
+        270
+      ],
+      [
+        44.6,
+        276
+      ],
+      [
+        44.7,
+        285
+      ],
+      [
+        44.8,
+        293
+      ],
+      [
+        44.9,
+        301
+      ],
+      [
+        45.0,
+        311
+      ],
+      [
+        45.1,
+        318
+      ],
+      [
+        45.2,
+        321
+      ],
+      [
+        45.3,
+        323
+      ],
+      [
+        45.4,
+        324
+      ],
+      [
+        45.5,
+        325
+      ],
+      [
+        45.6,
+        313
+      ],
+      [
+        45.7,
+        326
+      ],
+      [
+        45.8,
+        337
+      ],
+      [
+        45.9,
+        353
+      ],
+      [
+        46.0,
+        370
+      ],
+      [
+        46.1,
+        388
+      ],
+      [
+        46.2,
+        397
+      ],
+      [
+        46.3,
+        402
+      ],
+      [
+        46.4,
+        400
+      ],
+      [
+        46.5,
+        406
+      ],
+      [
+        46.6,
+        409
+      ],
+      [
+        46.7,
+        413
+      ],
+      [
+        46.8,
+        419
+      ],
+      [
+        46.9,
+        422
+      ],
+      [
+        47.0,
+        424
+      ],
+      [
+        47.1,
+        428
+      ],
+      [
+        47.2,
+        428
+      ],
+      [
+        47.3,
+        435
+      ],
+      [
+        47.4,
+        443
+      ],
+      [
+        47.5,
+        453
+      ],
+      [
+        47.6,
+        464
+      ],
+      [
+        47.7,
+        480
+      ],
+      [
+        47.8,
+        480
+      ],
+      [
+        47.9,
+        478
+      ],
+      [
+        48.0,
+        481
+      ],
+      [
+        48.1,
+        494
+      ],
+      [
+        48.2,
+        503
+      ],
+      [
+        48.3,
+        512
+      ],
+      [
+        48.4,
+        506
+      ],
+      [
+        48.5,
+        496
+      ],
+      [
+        48.6,
+        491
+      ],
+      [
+        48.7,
+        489
+      ],
+      [
+        48.8,
+        488
+      ],
+      [
+        48.9,
+        490
+      ],
+      [
+        49.0,
+        489
+      ],
+      [
+        49.1,
+        486
+      ],
+      [
+        49.2,
+        483
+      ],
+      [
+        49.3,
+        480
+      ],
+      [
+        49.4,
+        482
+      ],
+      [
+        49.5,
+        477
+      ],
+      [
+        49.6,
+        460
+      ],
+      [
+        49.7,
+        458
+      ],
+      [
+        49.8,
+        453
+      ],
+      [
+        49.9,
+        455
+      ],
+      [
+        50.0,
+        461
+      ],
+      [
+        50.1,
+        460
+      ],
+      [
+        50.2,
+        462
+      ],
+      [
+        50.3,
+        452
+      ],
+      [
+        50.4,
+        452
+      ],
+      [
+        50.5,
+        441
+      ],
+      [
+        50.6,
+        443
+      ],
+      [
+        50.7,
+        443
+      ],
+      [
+        50.8,
+        443
+      ],
+      [
+        50.9,
+        436
+      ],
+      [
+        51.0,
+        434
+      ],
+      [
+        51.1,
+        437
+      ],
+      [
+        51.2,
+        433
+      ],
+      [
+        51.3,
+        426
+      ],
+      [
+        51.4,
+        421
+      ],
+      [
+        51.5,
+        420
+      ],
+      [
+        51.6,
+        412
+      ],
+      [
+        51.7,
+        409
+      ],
+      [
+        51.8,
+        412
+      ],
+      [
+        51.9,
+        409
+      ],
+      [
+        52.0,
+        412
+      ],
+      [
+        52.1,
+        414
+      ],
+      [
+        52.2,
+        419
+      ],
+      [
+        52.3,
+        418
+      ],
+      [
+        52.4,
+        417
+      ],
+      [
+        52.5,
+        414
+      ],
+      [
+        52.6,
+        406
+      ],
+      [
+        52.7,
+        394
+      ],
+      [
+        52.8,
+        386
+      ],
+      [
+        52.9,
+        375
+      ],
+      [
+        53.0,
+        351
+      ],
+      [
+        53.1,
+        329
+      ],
+      [
+        53.2,
+        300
+      ],
+      [
+        53.3,
+        283
+      ],
+      [
+        53.4,
+        272
+      ],
+      [
+        53.5,
+        264
+      ],
+      [
+        53.6,
+        266
+      ],
+      [
+        53.7,
+        269
+      ],
+      [
+        53.8,
+        279
+      ],
+      [
+        53.9,
+        279
+      ],
+      [
+        54.0,
+        278
+      ],
+      [
+        54.1,
+        275
+      ],
+      [
+        54.2,
+        278
+      ],
+      [
+        54.3,
+        279
+      ],
+      [
+        54.4,
+        280
+      ],
+      [
+        54.5,
+        283
+      ],
+      [
+        54.6,
+        274
+      ],
+      [
+        54.7,
+        264
+      ],
+      [
+        54.8,
+        256
+      ],
+      [
+        54.9,
+        257
+      ],
+      [
+        55.0,
+        259
+      ],
+      [
+        55.1,
+        266
+      ],
+      [
+        55.2,
+        260
+      ],
+      [
+        55.3,
+        260
+      ],
+      [
+        55.4,
+        260
+      ],
+      [
+        55.5,
+        258
+      ],
+      [
+        55.6,
+        266
+      ],
+      [
+        55.7,
+        269
+      ],
+      [
+        55.8,
+        271
+      ],
+      [
+        55.9,
+        269
+      ],
+      [
+        56.0,
+        263
+      ],
+      [
+        56.1,
+        262
+      ],
+      [
+        56.2,
+        261
+      ],
+      [
+        56.3,
+        258
+      ],
+      [
+        56.4,
+        265
+      ],
+      [
+        56.5,
+        267
+      ],
+      [
+        56.6,
+        271
+      ],
+      [
+        56.7,
+        272
+      ],
+      [
+        56.8,
+        280
+      ],
+      [
+        56.9,
+        286
+      ],
+      [
+        57.0,
+        302
+      ],
+      [
+        57.1,
+        306
+      ],
+      [
+        57.2,
+        309
+      ],
+      [
+        57.3,
+        314
+      ],
+      [
+        57.4,
+        327
+      ],
+      [
+        57.5,
+        339
+      ],
+      [
+        57.6,
+        364
+      ],
+      [
+        57.7,
+        380
+      ],
+      [
+        57.8,
+        380
+      ],
+      [
+        57.9,
+        373
+      ],
+      [
+        58.0,
+        372
+      ],
+      [
+        58.1,
+        364
+      ],
+      [
+        58.2,
+        358
+      ],
+      [
+        58.3,
+        354
+      ],
+      [
+        58.4,
+        354
+      ],
+      [
+        58.5,
+        352
+      ],
+      [
+        58.6,
+        353
+      ],
+      [
+        58.7,
+        357
+      ],
+      [
+        58.8,
+        360
+      ],
+      [
+        58.9,
+        368
+      ],
+      [
+        59.0,
+        371
+      ],
+      [
+        59.1,
+        373
+      ],
+      [
+        59.2,
+        384
+      ],
+      [
+        59.3,
+        405
+      ],
+      [
+        59.4,
+        419
+      ],
+      [
+        59.5,
+        431
+      ],
+      [
+        59.6,
+        432
+      ],
+      [
+        59.7,
+        433
+      ],
+      [
+        59.8,
+        432
+      ],
+      [
+        59.9,
+        430
+      ],
+      [
+        60.0,
+        430
+      ],
+      [
+        60.1,
+        429
+      ],
+      [
+        60.2,
+        429
+      ],
+      [
+        60.3,
+        427
+      ],
+      [
+        60.4,
+        426
+      ],
+      [
+        60.5,
+        426
+      ],
+      [
+        60.6,
+        425
+      ],
+      [
+        60.7,
+        426
+      ],
+      [
+        60.8,
+        426
+      ],
+      [
+        60.9,
+        426
+      ],
+      [
+        61.0,
+        424
+      ],
+      [
+        61.1,
+        424
+      ],
+      [
+        61.2,
+        423
+      ],
+      [
+        61.3,
+        422
+      ],
+      [
+        61.4,
+        422
+      ],
+      [
+        61.5,
+        422
+      ],
+      [
+        61.6,
+        421
+      ],
+      [
+        61.7,
+        420
+      ],
+      [
+        61.8,
+        419
+      ],
+      [
+        61.9,
+        418
+      ],
+      [
+        62.0,
+        418
+      ],
+      [
+        62.1,
+        418
+      ],
+      [
+        62.2,
+        417
+      ],
+      [
+        62.3,
+        416
+      ],
+      [
+        62.4,
+        412
+      ],
+      [
+        62.5,
+        406
+      ],
+      [
+        62.6,
+        400
+      ],
+      [
+        62.7,
+        391
+      ],
+      [
+        62.8,
+        389
+      ],
+      [
+        62.9,
+        389
+      ],
+      [
+        63.0,
+        389
+      ],
+      [
+        63.1,
+        390
+      ],
+      [
+        63.2,
+        390
+      ],
+      [
+        63.3,
+        390
+      ],
+      [
+        63.4,
+        390
+      ],
+      [
+        63.5,
+        389
+      ],
+      [
+        63.6,
+        391
+      ],
+      [
+        63.7,
+        396
+      ],
+      [
+        63.8,
+        392
+      ],
+      [
+        63.9,
+        393
+      ],
+      [
+        64.0,
+        394
+      ],
+      [
+        64.1,
+        394
+      ],
+      [
+        64.16,
+        396
+      ]
+    ]
+  },
+  "landcover": {
+    "source": "worldcover",
+    "retrieved": "2026-11-07T00:42:54+00:00",
+    "spacingM": 100,
+    "routeKm": 64.2,
+    "stageStarts": [
+      {
+        "number": "1",
+        "km": 0.0
+      },
+      {
+        "number": "2",
+        "km": 15.8
+      },
+      {
+        "number": "3",
+        "km": 26.86
+      },
+      {
+        "number": "4",
+        "km": 40.32
+      }
+    ],
+    "shares": {
+      "forest": 0.098,
+      "open": 0.611,
+      "moss": 0.05,
+      "bare": 0.215,
+      "water": 0.023,
+      "farm": 0.003
+    },
+    "runs": [
+      {
+        "group": "open",
+        "fromKm": 0.0,
+        "toKm": 0.75
+      },
+      {
+        "group": "bare",
+        "fromKm": 0.75,
+        "toKm": 0.85
+      },
+      {
+        "group": "open",
+        "fromKm": 0.85,
+        "toKm": 1.25
+      },
+      {
+        "group": "forest",
+        "fromKm": 1.25,
+        "toKm": 1.35
+      },
+      {
+        "group": "open",
+        "fromKm": 1.35,
+        "toKm": 1.65
+      },
+      {
+        "group": "forest",
+        "fromKm": 1.65,
+        "toKm": 1.75
+      },
+      {
+        "group": "open",
+        "fromKm": 1.75,
+        "toKm": 2.55
+      },
+      {
+        "group": "forest",
+        "fromKm": 2.55,
+        "toKm": 2.65
+      },
+      {
+        "group": "open",
+        "fromKm": 2.65,
+        "toKm": 3.05
+      },
+      {
+        "group": "forest",
+        "fromKm": 3.05,
+        "toKm": 3.45
+      },
+      {
+        "group": "open",
+        "fromKm": 3.45,
+        "toKm": 3.55
+      },
+      {
+        "group": "forest",
+        "fromKm": 3.55,
+        "toKm": 3.85
+      },
+      {
+        "group": "open",
+        "fromKm": 3.85,
+        "toKm": 4.15
+      },
+      {
+        "group": "forest",
+        "fromKm": 4.15,
+        "toKm": 4.25
+      },
+      {
+        "group": "open",
+        "fromKm": 4.25,
+        "toKm": 4.55
+      },
+      {
+        "group": "forest",
+        "fromKm": 4.55,
+        "toKm": 4.95
+      },
+      {
+        "group": "open",
+        "fromKm": 4.95,
+        "toKm": 5.05
+      },
+      {
+        "group": "forest",
+        "fromKm": 5.05,
+        "toKm": 5.15
+      },
+      {
+        "group": "open",
+        "fromKm": 5.15,
+        "toKm": 5.35
+      },
+      {
+        "group": "forest",
+        "fromKm": 5.35,
+        "toKm": 6.85
+      },
+      {
+        "group": "open",
+        "fromKm": 6.85,
+        "toKm": 6.95
+      },
+      {
+        "group": "forest",
+        "fromKm": 6.95,
+        "toKm": 7.15
+      },
+      {
+        "group": "open",
+        "fromKm": 7.15,
+        "toKm": 7.45
+      },
+      {
+        "group": "bare",
+        "fromKm": 7.45,
+        "toKm": 7.55
+      },
+      {
+        "group": "open",
+        "fromKm": 7.55,
+        "toKm": 8.15
+      },
+      {
+        "group": "forest",
+        "fromKm": 8.15,
+        "toKm": 8.35
+      },
+      {
+        "group": "open",
+        "fromKm": 8.35,
+        "toKm": 8.75
+      },
+      {
+        "group": "moss",
+        "fromKm": 8.75,
+        "toKm": 8.85
+      },
+      {
+        "group": "open",
+        "fromKm": 8.85,
+        "toKm": 9.75
+      },
+      {
+        "group": "forest",
+        "fromKm": 9.75,
+        "toKm": 9.85
+      },
+      {
+        "group": "open",
+        "fromKm": 9.85,
+        "toKm": 10.35
+      },
+      {
+        "group": "moss",
+        "fromKm": 10.35,
+        "toKm": 10.45
+      },
+      {
+        "group": "open",
+        "fromKm": 10.45,
+        "toKm": 10.55
+      },
+      {
+        "group": "bare",
+        "fromKm": 10.55,
+        "toKm": 10.75
+      },
+      {
+        "group": "open",
+        "fromKm": 10.75,
+        "toKm": 10.85
+      },
+      {
+        "group": "bare",
+        "fromKm": 10.85,
+        "toKm": 11.15
+      },
+      {
+        "group": "open",
+        "fromKm": 11.15,
+        "toKm": 11.25
+      },
+      {
+        "group": "bare",
+        "fromKm": 11.25,
+        "toKm": 11.35
+      },
+      {
+        "group": "open",
+        "fromKm": 11.35,
+        "toKm": 12.65
+      },
+      {
+        "group": "forest",
+        "fromKm": 12.65,
+        "toKm": 13.45
+      },
+      {
+        "group": "open",
+        "fromKm": 13.45,
+        "toKm": 13.55
+      },
+      {
+        "group": "forest",
+        "fromKm": 13.55,
+        "toKm": 13.65
+      },
+      {
+        "group": "open",
+        "fromKm": 13.65,
+        "toKm": 13.75
+      },
+      {
+        "group": "moss",
+        "fromKm": 13.75,
+        "toKm": 13.95
+      },
+      {
+        "group": "bare",
+        "fromKm": 13.95,
+        "toKm": 14.15
+      },
+      {
+        "group": "open",
+        "fromKm": 14.15,
+        "toKm": 14.75
+      },
+      {
+        "group": "forest",
+        "fromKm": 14.75,
+        "toKm": 14.85
+      },
+      {
+        "group": "open",
+        "fromKm": 14.85,
+        "toKm": 14.95
+      },
+      {
+        "group": "forest",
+        "fromKm": 14.95,
+        "toKm": 15.55
+      },
+      {
+        "group": "open",
+        "fromKm": 15.55,
+        "toKm": 15.85
+      },
+      {
+        "group": "bare",
+        "fromKm": 15.85,
+        "toKm": 15.95
+      },
+      {
+        "group": "open",
+        "fromKm": 15.95,
+        "toKm": 16.05
+      },
+      {
+        "group": "bare",
+        "fromKm": 16.05,
+        "toKm": 16.45
+      },
+      {
+        "group": "water",
+        "fromKm": 16.45,
+        "toKm": 16.85
+      },
+      {
+        "group": "open",
+        "fromKm": 16.85,
+        "toKm": 17.15
+      },
+      {
+        "group": "bare",
+        "fromKm": 17.15,
+        "toKm": 17.25
+      },
+      {
+        "group": "open",
+        "fromKm": 17.25,
+        "toKm": 17.35
+      },
+      {
+        "group": "bare",
+        "fromKm": 17.35,
+        "toKm": 17.85
+      },
+      {
+        "group": "open",
+        "fromKm": 17.85,
+        "toKm": 17.95
+      },
+      {
+        "group": "bare",
+        "fromKm": 17.95,
+        "toKm": 18.45
+      },
+      {
+        "group": "moss",
+        "fromKm": 18.45,
+        "toKm": 18.55
+      },
+      {
+        "group": "bare",
+        "fromKm": 18.55,
+        "toKm": 19.25
+      },
+      {
+        "group": "water",
+        "fromKm": 19.25,
+        "toKm": 20.35
+      },
+      {
+        "group": "bare",
+        "fromKm": 20.35,
+        "toKm": 20.65
+      },
+      {
+        "group": "open",
+        "fromKm": 20.65,
+        "toKm": 20.75
+      },
+      {
+        "group": "bare",
+        "fromKm": 20.75,
+        "toKm": 21.15
+      },
+      {
+        "group": "open",
+        "fromKm": 21.15,
+        "toKm": 21.45
+      },
+      {
+        "group": "moss",
+        "fromKm": 21.45,
+        "toKm": 21.75
+      },
+      {
+        "group": "bare",
+        "fromKm": 21.75,
+        "toKm": 22.75
+      },
+      {
+        "group": "open",
+        "fromKm": 22.75,
+        "toKm": 22.85
+      },
+      {
+        "group": "bare",
+        "fromKm": 22.85,
+        "toKm": 23.85
+      },
+      {
+        "group": "open",
+        "fromKm": 23.85,
+        "toKm": 24.05
+      },
+      {
+        "group": "moss",
+        "fromKm": 24.05,
+        "toKm": 24.25
+      },
+      {
+        "group": "bare",
+        "fromKm": 24.25,
+        "toKm": 24.45
+      },
+      {
+        "group": "moss",
+        "fromKm": 24.45,
+        "toKm": 24.65
+      },
+      {
+        "group": "open",
+        "fromKm": 24.65,
+        "toKm": 24.75
+      },
+      {
+        "group": "bare",
+        "fromKm": 24.75,
+        "toKm": 24.85
+      },
+      {
+        "group": "moss",
+        "fromKm": 24.85,
+        "toKm": 24.95
+      },
+      {
+        "group": "bare",
+        "fromKm": 24.95,
+        "toKm": 25.05
+      },
+      {
+        "group": "open",
+        "fromKm": 25.05,
+        "toKm": 25.15
+      },
+      {
+        "group": "moss",
+        "fromKm": 25.15,
+        "toKm": 25.25
+      },
+      {
+        "group": "bare",
+        "fromKm": 25.25,
+        "toKm": 25.45
+      },
+      {
+        "group": "open",
+        "fromKm": 25.45,
+        "toKm": 25.65
+      },
+      {
+        "group": "bare",
+        "fromKm": 25.65,
+        "toKm": 25.75
+      },
+      {
+        "group": "open",
+        "fromKm": 25.75,
+        "toKm": 26.65
+      },
+      {
+        "group": "moss",
+        "fromKm": 26.65,
+        "toKm": 26.85
+      },
+      {
+        "group": "open",
+        "fromKm": 26.85,
+        "toKm": 27.05
+      },
+      {
+        "group": "bare",
+        "fromKm": 27.05,
+        "toKm": 27.25
+      },
+      {
+        "group": "moss",
+        "fromKm": 27.25,
+        "toKm": 27.45
+      },
+      {
+        "group": "open",
+        "fromKm": 27.45,
+        "toKm": 27.55
+      },
+      {
+        "group": "moss",
+        "fromKm": 27.55,
+        "toKm": 27.65
+      },
+      {
+        "group": "open",
+        "fromKm": 27.65,
+        "toKm": 27.95
+      },
+      {
+        "group": "moss",
+        "fromKm": 27.95,
+        "toKm": 28.25
+      },
+      {
+        "group": "bare",
+        "fromKm": 28.25,
+        "toKm": 28.35
+      },
+      {
+        "group": "moss",
+        "fromKm": 28.35,
+        "toKm": 28.45
+      },
+      {
+        "group": "open",
+        "fromKm": 28.45,
+        "toKm": 28.65
+      },
+      {
+        "group": "moss",
+        "fromKm": 28.65,
+        "toKm": 28.75
+      },
+      {
+        "group": "open",
+        "fromKm": 28.75,
+        "toKm": 31.05
+      },
+      {
+        "group": "moss",
+        "fromKm": 31.05,
+        "toKm": 31.15
+      },
+      {
+        "group": "open",
+        "fromKm": 31.15,
+        "toKm": 32.35
+      },
+      {
+        "group": "moss",
+        "fromKm": 32.35,
+        "toKm": 32.45
+      },
+      {
+        "group": "open",
+        "fromKm": 32.45,
+        "toKm": 34.15
+      },
+      {
+        "group": "moss",
+        "fromKm": 34.15,
+        "toKm": 34.25
+      },
+      {
+        "group": "open",
+        "fromKm": 34.25,
+        "toKm": 34.95
+      },
+      {
+        "group": "moss",
+        "fromKm": 34.95,
+        "toKm": 35.05
+      },
+      {
+        "group": "open",
+        "fromKm": 35.05,
+        "toKm": 35.85
+      },
+      {
+        "group": "moss",
+        "fromKm": 35.85,
+        "toKm": 35.95
+      },
+      {
+        "group": "open",
+        "fromKm": 35.95,
+        "toKm": 36.05
+      },
+      {
+        "group": "moss",
+        "fromKm": 36.05,
+        "toKm": 36.25
+      },
+      {
+        "group": "bare",
+        "fromKm": 36.25,
+        "toKm": 36.45
+      },
+      {
+        "group": "open",
+        "fromKm": 36.45,
+        "toKm": 36.75
+      },
+      {
+        "group": "bare",
+        "fromKm": 36.75,
+        "toKm": 36.85
+      },
+      {
+        "group": "open",
+        "fromKm": 36.85,
+        "toKm": 37.15
+      },
+      {
+        "group": "bare",
+        "fromKm": 37.15,
+        "toKm": 37.75
+      },
+      {
+        "group": "open",
+        "fromKm": 37.75,
+        "toKm": 38.45
+      },
+      {
+        "group": "forest",
+        "fromKm": 38.45,
+        "toKm": 38.55
+      },
+      {
+        "group": "moss",
+        "fromKm": 38.55,
+        "toKm": 38.65
+      },
+      {
+        "group": "forest",
+        "fromKm": 38.65,
+        "toKm": 38.95
+      },
+      {
+        "group": "open",
+        "fromKm": 38.95,
+        "toKm": 39.05
+      },
+      {
+        "group": "forest",
+        "fromKm": 39.05,
+        "toKm": 39.25
+      },
+      {
+        "group": "open",
+        "fromKm": 39.25,
+        "toKm": 39.75
+      },
+      {
+        "group": "forest",
+        "fromKm": 39.75,
+        "toKm": 39.85
+      },
+      {
+        "group": "open",
+        "fromKm": 39.85,
+        "toKm": 40.05
+      },
+      {
+        "group": "forest",
+        "fromKm": 40.05,
+        "toKm": 40.15
+      },
+      {
+        "group": "open",
+        "fromKm": 40.15,
+        "toKm": 43.65
+      },
+      {
+        "group": "bare",
+        "fromKm": 43.65,
+        "toKm": 44.05
+      },
+      {
+        "group": "open",
+        "fromKm": 44.05,
+        "toKm": 44.65
+      },
+      {
+        "group": "bare",
+        "fromKm": 44.65,
+        "toKm": 44.85
+      },
+      {
+        "group": "open",
+        "fromKm": 44.85,
+        "toKm": 44.95
+      },
+      {
+        "group": "bare",
+        "fromKm": 44.95,
+        "toKm": 45.35
+      },
+      {
+        "group": "open",
+        "fromKm": 45.35,
+        "toKm": 45.65
+      },
+      {
+        "group": "bare",
+        "fromKm": 45.65,
+        "toKm": 45.95
+      },
+      {
+        "group": "open",
+        "fromKm": 45.95,
+        "toKm": 46.05
+      },
+      {
+        "group": "bare",
+        "fromKm": 46.05,
+        "toKm": 46.25
+      },
+      {
+        "group": "open",
+        "fromKm": 46.25,
+        "toKm": 46.85
+      },
+      {
+        "group": "forest",
+        "fromKm": 46.85,
+        "toKm": 46.95
+      },
+      {
+        "group": "open",
+        "fromKm": 46.95,
+        "toKm": 47.25
+      },
+      {
+        "group": "bare",
+        "fromKm": 47.25,
+        "toKm": 47.35
+      },
+      {
+        "group": "open",
+        "fromKm": 47.35,
+        "toKm": 47.85
+      },
+      {
+        "group": "bare",
+        "fromKm": 47.85,
+        "toKm": 48.15
+      },
+      {
+        "group": "open",
+        "fromKm": 48.15,
+        "toKm": 48.25
+      },
+      {
+        "group": "bare",
+        "fromKm": 48.25,
+        "toKm": 48.35
+      },
+      {
+        "group": "open",
+        "fromKm": 48.35,
+        "toKm": 48.55
+      },
+      {
+        "group": "bare",
+        "fromKm": 48.55,
+        "toKm": 48.75
+      },
+      {
+        "group": "open",
+        "fromKm": 48.75,
+        "toKm": 49.45
+      },
+      {
+        "group": "bare",
+        "fromKm": 49.45,
+        "toKm": 49.65
+      },
+      {
+        "group": "open",
+        "fromKm": 49.65,
+        "toKm": 49.95
+      },
+      {
+        "group": "bare",
+        "fromKm": 49.95,
+        "toKm": 50.05
+      },
+      {
+        "group": "open",
+        "fromKm": 50.05,
+        "toKm": 50.15
+      },
+      {
+        "group": "bare",
+        "fromKm": 50.15,
+        "toKm": 50.25
+      },
+      {
+        "group": "open",
+        "fromKm": 50.25,
+        "toKm": 51.75
+      },
+      {
+        "group": "forest",
+        "fromKm": 51.75,
+        "toKm": 51.85
+      },
+      {
+        "group": "open",
+        "fromKm": 51.85,
+        "toKm": 52.15
+      },
+      {
+        "group": "bare",
+        "fromKm": 52.15,
+        "toKm": 52.25
+      },
+      {
+        "group": "open",
+        "fromKm": 52.25,
+        "toKm": 52.35
+      },
+      {
+        "group": "bare",
+        "fromKm": 52.35,
+        "toKm": 52.55
+      },
+      {
+        "group": "open",
+        "fromKm": 52.55,
+        "toKm": 52.75
+      },
+      {
+        "group": "bare",
+        "fromKm": 52.75,
+        "toKm": 53.15
+      },
+      {
+        "group": "open",
+        "fromKm": 53.15,
+        "toKm": 53.65
+      },
+      {
+        "group": "bare",
+        "fromKm": 53.65,
+        "toKm": 53.75
+      },
+      {
+        "group": "open",
+        "fromKm": 53.75,
+        "toKm": 54.95
+      },
+      {
+        "group": "bare",
+        "fromKm": 54.95,
+        "toKm": 55.05
+      },
+      {
+        "group": "forest",
+        "fromKm": 55.05,
+        "toKm": 55.15
+      },
+      {
+        "group": "bare",
+        "fromKm": 55.15,
+        "toKm": 55.25
+      },
+      {
+        "group": "open",
+        "fromKm": 55.25,
+        "toKm": 55.35
+      },
+      {
+        "group": "bare",
+        "fromKm": 55.35,
+        "toKm": 55.45
+      },
+      {
+        "group": "open",
+        "fromKm": 55.45,
+        "toKm": 57.75
+      },
+      {
+        "group": "bare",
+        "fromKm": 57.75,
+        "toKm": 57.85
+      },
+      {
+        "group": "open",
+        "fromKm": 57.85,
+        "toKm": 59.35
+      },
+      {
+        "group": "bare",
+        "fromKm": 59.35,
+        "toKm": 59.55
+      },
+      {
+        "group": "open",
+        "fromKm": 59.55,
+        "toKm": 60.75
+      },
+      {
+        "group": "bare",
+        "fromKm": 60.75,
+        "toKm": 60.85
+      },
+      {
+        "group": "open",
+        "fromKm": 60.85,
+        "toKm": 62.05
+      },
+      {
+        "group": "bare",
+        "fromKm": 62.05,
+        "toKm": 62.75
+      },
+      {
+        "group": "farm",
+        "fromKm": 62.75,
+        "toKm": 62.85
+      },
+      {
+        "group": "bare",
+        "fromKm": 62.85,
+        "toKm": 62.95
+      },
+      {
+        "group": "farm",
+        "fromKm": 62.95,
+        "toKm": 63.05
+      },
+      {
+        "group": "bare",
+        "fromKm": 63.05,
+        "toKm": 64.05
+      },
+      {
+        "group": "open",
+        "fromKm": 64.05,
+        "toKm": 64.16
+      }
+    ],
+    "highestForest": {
+      "km": 7.0,
+      "m": 1036
+    }
+  },
+  "climate": {
+    "source": "era5",
+    "method": "open-data-2026-10",
+    "retrieved": "2026-11-07T00:37:58+00:00",
+    "years": [
+      1995,
+      2024
+    ],
+    "places": [
+      {
+        "id": "low",
+        "label": "Lowest point",
+        "km": 42.7,
+        "m": 253,
+        "lat": -49.48006,
+        "lon": -72.95768
+      },
+      {
+        "id": "high",
+        "label": "Highest point",
+        "km": 23.0,
+        "m": 1406,
+        "lat": -49.39616,
+        "lon": -73.11378
+      }
+    ],
+    "months": [
+      {
+        "month": 1,
+        "low": {
+          "tmax": 10.7,
+          "tmin": 6.8,
+          "wetDays": 23.6,
+          "snowDays": 0.0,
+          "frostNights": 0.0,
+          "precipMm": 250,
+          "windKmh": 20.5,
+          "gustDays": 2.5
+        },
+        "high": {
+          "tmax": 2.6,
+          "tmin": -1.7,
+          "wetDays": 23.6,
+          "snowDays": 17.4,
+          "frostNights": 25.0,
+          "precipMm": 250,
+          "windKmh": 20.5,
+          "gustDays": 2.5
+        },
+        "daylightH": 15.8
+      },
+      {
+        "month": 2,
+        "low": {
+          "tmax": 11.7,
+          "tmin": 7.3,
+          "wetDays": 18.5,
+          "snowDays": 0.0,
+          "frostNights": 0.0,
+          "precipMm": 210,
+          "windKmh": 19.3,
+          "gustDays": 2.0
+        },
+        "high": {
+          "tmax": 3.6,
+          "tmin": -1.1,
+          "wetDays": 18.5,
+          "snowDays": 12.2,
+          "frostNights": 19.5,
+          "precipMm": 210,
+          "windKmh": 19.3,
+          "gustDays": 2.0
+        },
+        "daylightH": 14.3
+      },
+      {
+        "month": 3,
+        "low": {
+          "tmax": 9.9,
+          "tmin": 6.0,
+          "wetDays": 21.8,
+          "snowDays": 0.0,
+          "frostNights": 0.2,
+          "precipMm": 259,
+          "windKmh": 19.0,
+          "gustDays": 3.1
+        },
+        "high": {
+          "tmax": 2.1,
+          "tmin": -2.3,
+          "wetDays": 21.8,
+          "snowDays": 16.5,
+          "frostNights": 25.4,
+          "precipMm": 259,
+          "windKmh": 19.0,
+          "gustDays": 3.1
+        },
+        "daylightH": 12.6
+      },
+      {
+        "month": 4,
+        "low": {
+          "tmax": 7.9,
+          "tmin": 4.2,
+          "wetDays": 21.3,
+          "snowDays": 0.1,
+          "frostNights": 0.8,
+          "precipMm": 263,
+          "windKmh": 18.8,
+          "gustDays": 3.7
+        },
+        "high": {
+          "tmax": 0.2,
+          "tmin": -3.9,
+          "wetDays": 21.3,
+          "snowDays": 19.1,
+          "frostNights": 28.2,
+          "precipMm": 263,
+          "windKmh": 18.8,
+          "gustDays": 3.7
+        },
+        "daylightH": 10.7
+      },
+      {
+        "month": 5,
+        "low": {
+          "tmax": 5.5,
+          "tmin": 2.3,
+          "wetDays": 20.5,
+          "snowDays": 1.2,
+          "frostNights": 5.5,
+          "precipMm": 237,
+          "windKmh": 16.4,
+          "gustDays": 2.1
+        },
+        "high": {
+          "tmax": -2.0,
+          "tmin": -5.6,
+          "wetDays": 20.5,
+          "snowDays": 19.2,
+          "frostNights": 30.6,
+          "precipMm": 237,
+          "windKmh": 16.4,
+          "gustDays": 2.1
+        },
+        "daylightH": 9.1
+      },
+      {
+        "month": 6,
+        "low": {
+          "tmax": 3.3,
+          "tmin": 0.2,
+          "wetDays": 20.3,
+          "snowDays": 5.8,
+          "frostNights": 13.0,
+          "precipMm": 200,
+          "windKmh": 16.8,
+          "gustDays": 2.8
+        },
+        "high": {
+          "tmax": -4.4,
+          "tmin": -7.9,
+          "wetDays": 20.3,
+          "snowDays": 19.3,
+          "frostNights": 30.0,
+          "precipMm": 200,
+          "windKmh": 16.8,
+          "gustDays": 2.8
+        },
+        "daylightH": 8.2
+      },
+      {
+        "month": 7,
+        "low": {
+          "tmax": 2.8,
+          "tmin": -0.5,
+          "wetDays": 20.6,
+          "snowDays": 6.6,
+          "frostNights": 17.0,
+          "precipMm": 212,
+          "windKmh": 16.9,
+          "gustDays": 2.6
+        },
+        "high": {
+          "tmax": -4.7,
+          "tmin": -8.5,
+          "wetDays": 20.6,
+          "snowDays": 19.6,
+          "frostNights": 31.0,
+          "precipMm": 212,
+          "windKmh": 16.9,
+          "gustDays": 2.6
+        },
+        "daylightH": 8.6
+      },
+      {
+        "month": 8,
+        "low": {
+          "tmax": 3.4,
+          "tmin": -0.6,
+          "wetDays": 20.9,
+          "snowDays": 6.2,
+          "frostNights": 16.4,
+          "precipMm": 194,
+          "windKmh": 16.7,
+          "gustDays": 2.9
+        },
+        "high": {
+          "tmax": -3.8,
+          "tmin": -8.2,
+          "wetDays": 20.9,
+          "snowDays": 19.5,
+          "frostNights": 31.0,
+          "precipMm": 194,
+          "windKmh": 16.7,
+          "gustDays": 2.9
+        },
+        "daylightH": 10.0
+      },
+      {
+        "month": 9,
+        "low": {
+          "tmax": 4.8,
+          "tmin": 0.5,
+          "wetDays": 18.8,
+          "snowDays": 1.9,
+          "frostNights": 11.4,
+          "precipMm": 166,
+          "windKmh": 16.8,
+          "gustDays": 2.3
+        },
+        "high": {
+          "tmax": -2.2,
+          "tmin": -7.0,
+          "wetDays": 18.8,
+          "snowDays": 17.2,
+          "frostNights": 30.0,
+          "precipMm": 166,
+          "windKmh": 16.8,
+          "gustDays": 2.3
+        },
+        "daylightH": 11.8
+      },
+      {
+        "month": 10,
+        "low": {
+          "tmax": 6.3,
+          "tmin": 2.4,
+          "wetDays": 20.0,
+          "snowDays": 0.4,
+          "frostNights": 3.1,
+          "precipMm": 209,
+          "windKmh": 18.2,
+          "gustDays": 2.8
+        },
+        "high": {
+          "tmax": -0.7,
+          "tmin": -5.3,
+          "wetDays": 20.0,
+          "snowDays": 18.9,
+          "frostNights": 31.0,
+          "precipMm": 209,
+          "windKmh": 18.2,
+          "gustDays": 2.8
+        },
+        "daylightH": 13.7
+      },
+      {
+        "month": 11,
+        "low": {
+          "tmax": 7.6,
+          "tmin": 3.8,
+          "wetDays": 21.1,
+          "snowDays": 0.0,
+          "frostNights": 0.8,
+          "precipMm": 211,
+          "windKmh": 19.1,
+          "gustDays": 2.5
+        },
+        "high": {
+          "tmax": 0.4,
+          "tmin": -4.0,
+          "wetDays": 21.1,
+          "snowDays": 19.3,
+          "frostNights": 29.5,
+          "precipMm": 211,
+          "windKmh": 19.1,
+          "gustDays": 2.5
+        },
+        "daylightH": 15.4
+      },
+      {
+        "month": 12,
+        "low": {
+          "tmax": 9.3,
+          "tmin": 5.5,
+          "wetDays": 23.0,
+          "snowDays": 0.0,
+          "frostNights": 0.0,
+          "precipMm": 245,
+          "windKmh": 19.9,
+          "gustDays": 2.8
+        },
+        "high": {
+          "tmax": 1.7,
+          "tmin": -2.6,
+          "wetDays": 23.0,
+          "snowDays": 19.4,
+          "frostNights": 28.2,
+          "precipMm": 245,
+          "windKmh": 19.9,
+          "gustDays": 2.8
+        },
+        "daylightH": 16.3
+      }
+    ]
+  },
+  "access": {
+    "source": "osrm",
+    "retrieved": "2026-11-07T00:37:58+00:00",
+    "hubs": [
+      {
+        "name": "El Chaltén bus terminal",
+        "roadKm": 0.9,
+        "driveMin": 2,
+        "straightKm": 0.5
+      },
+      {
+        "name": "El Calafate Airport (FTE)",
+        "roadKm": 200.1,
+        "driveMin": 221,
+        "straightKm": 120.6
+      }
+    ]
+  },
+  "popularity": {
+    "source": "wikimedia",
+    "retrieved": "2026-11-07T00:37:58+00:00",
+    "wikidata": "Q105633019",
+    "from": "2025-11",
+    "to": "2026-10",
+    "views": 0,
+    "articles": []
+  }
+}

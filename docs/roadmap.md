@@ -176,6 +176,8 @@ And the **Border Route Trail** (Minnesota: the Border Route Trail Association's 
 
 And the **Knobstone Trail** (Indiana: the Indiana Department of Natural Resources' footpath along the Knobstone Escarpment, Indiana's longest, from Deam Lake State Recreation Area through Clark State Forest, Elk Creek Public Fishing Area and Jackson-Washington State Forest to Delaney Park, in the DNR's seven sections between trailheads, 45.5 miles (73 km) by the shortest of its loop legs (the DNR's 60 miles count the loops too), steep climbs, scarce water and primitive camping away from roads; over the trail's OSM relation; 2026-11-07).
 
+And the **Huemul Circuit** (Argentina, Santa Cruz: the Vuelta al Cerro Huemul of the Administración de Parques Nacionales in Los Glaciares National Park, 65 km round Cerro Huemul from El Chaltén by Laguna Toro, the Túnel glacier and the Paso del Viento to the Paso Huemul above the Southern Patagonian Ice Field and the Viedma Glacier, down to Lago Viedma and back by Bahía Túnel, in the APN's four days, a remote area with fords, two Tyrolean traverses and little waymarking, compulsory registration, camping only at the park's sites; over the OSM relation; 2026-11-07).
+
 | # | Trail | Region | Length (approx.) | Why |
 |---|---|---|---|---|
 | 1 | Pacific Crest Trail | USA | 4,265 km | Most-hiked long trail; public US agency data; completion lists |

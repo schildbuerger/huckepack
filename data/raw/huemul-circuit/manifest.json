@@ -1,0 +1,72 @@
+{
+  "climate-high.json": {
+    "retrieved": "2026-11-07T00:37:58+00:00",
+    "url": "https://openmeteo.s3.us-west-2.amazonaws.com/data/copernicus_era5_land+copernicus_era5?latitude=-49.4&longitude=-73.1&elevation=1410"
+  },
+  "climate-low.json": {
+    "retrieved": "2026-11-07T00:40:44+00:00",
+    "url": "https://openmeteo.s3.us-west-2.amazonaws.com/data/copernicus_era5_land+copernicus_era5?latitude=-49.5&longitude=-73.0&elevation=250"
+  },
+  "commons-geo.json": {
+    "key": "with categories, 65.0 km, every 2.5 km, 1500 m, within 0.5 km",
+    "retrieved": "2026-11-07T00:40:26+00:00",
+    "url": "Commons geosearch along the route"
+  },
+  "commons.json": {
+    "key": "Q105633019",
+    "retrieved": "2026-11-07T00:36:49+00:00",
+    "url": "Q105633019 P18 P373"
+  },
+  "elevation-glo30.json": {
+    "retrieved": "2026-11-07T00:42:53+00:00",
+    "url": "https://copernicus-dem-30m.s3.eu-central-1.amazonaws.com/Copernicus_DSM_COG_10_S50_00_W073_00_DEM/Copernicus_DSM_COG_10_S50_00_W073_00_DEM.tif https://copernicus-dem-30m.s3.eu-central-1.amazonaws.com/Copernicus_DSM_COG_10_S50_00_W074_00_DEM/Copernicus_DSM_COG_10_S50_00_W074_00_DEM.tif"
+  },
+  "landcover.json": {
+    "retrieved": "2026-11-07T00:42:54+00:00",
+    "url": "https://esa-worldcover.s3.eu-central-1.amazonaws.com/v200/2021/map/ESA_WorldCover_10m_2021_v200_\u2026_Map.tif"
+  },
+  "osm-relation.json": {
+    "retrieved": "2026-11-05T21:23:02Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-1-main.json": {
+    "key": "62f9e43b12e8",
+    "retrieved": "2026-11-05T21:23:02Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-2-main.json": {
+    "key": "d3ef1c783290",
+    "retrieved": "2026-11-05T21:23:02Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-3-main.json": {
+    "key": "a7838045f3e4",
+    "retrieved": "2026-11-05T21:23:02Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-4-main.json": {
+    "key": "50acefc9c260",
+    "retrieved": "2026-11-05T21:23:02Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-water.json": {
+    "retrieved": "2026-11-05T21:23:02Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-way-tags.json": {
+    "retrieved": "2026-11-05T21:23:02Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osrm-access-el-calafate-airport-fte.json": {
+    "retrieved": "2026-11-07T00:37:58+00:00",
+    "url": "https://router.project-osrm.org/route/v1/driving/-72.05131,-50.28084;-72.88136,-49.33754?overview=false"
+  },
+  "osrm-access-el-chalt-n-bus-terminal.json": {
+    "retrieved": "2026-11-07T00:37:58+00:00",
+    "url": "https://router.project-osrm.org/route/v1/driving/-72.88289,-49.3336;-72.88136,-49.33754?overview=false"
+  },
+  "wikimedia.json": {
+    "retrieved": "2026-11-07T00:37:58+00:00",
+    "url": "Q105633019 2025-11..2026-10"
+  }
+}
