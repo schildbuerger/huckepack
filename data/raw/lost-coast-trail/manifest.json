@@ -42,8 +42,14 @@
     "retrieved": "2026-11-05T21:23:02Z",
     "url": "https://download.geofabrik.de/"
   },
-  "osrm-access-california-redwood-coast-humboldt-county-airport-acv.json": {
-    "retrieved": "2026-11-06T15:14:25+00:00",
-    "url": "https://router.project-osrm.org/route/v1/driving/-124.10843,40.97636;-124.35561,40.28979?overview=false"
+  "osrm-access-sacramento-international-airport-smf.json": {
+    "key": "https://router.project-osrm.org/route/v1/driving/-121.59314,38.693;-124.35561,40.28979?overview=false",
+    "retrieved": "2026-11-07T14:03:06+00:00",
+    "url": "https://router.project-osrm.org/route/v1/driving/-121.59314,38.693;-124.35561,40.28979?overview=false"
+  },
+  "osrm-access-san-francisco-international-airport-sfo.json": {
+    "key": "https://router.project-osrm.org/route/v1/driving/-122.37896,37.62178;-124.35561,40.28979?overview=false",
+    "retrieved": "2026-11-07T14:03:07+00:00",
+    "url": "https://router.project-osrm.org/route/v1/driving/-122.37896,37.62178;-124.35561,40.28979?overview=false"
   }
 }

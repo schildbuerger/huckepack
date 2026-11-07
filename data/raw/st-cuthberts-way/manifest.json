@@ -58,20 +58,24 @@
     "url": "https://download.geofabrik.de/"
   },
   "osrm-access-berwick-upon-tweed.json": {
+    "key": "https://router.project-osrm.org/route/v1/driving/-2.0108,55.77406;-2.71896,55.59861?overview=false",
     "retrieved": "2026-11-05T17:52:08+00:00",
     "url": "https://router.project-osrm.org/route/v1/driving/-2.0108,55.77406;-2.71896,55.59861?overview=false"
   },
   "osrm-access-edinburgh-airport-edi.json": {
+    "key": "https://router.project-osrm.org/route/v1/driving/-3.35939,55.95026;-2.71896,55.59861?overview=false",
     "retrieved": "2026-11-05T17:52:09+00:00",
     "url": "https://router.project-osrm.org/route/v1/driving/-3.35939,55.95026;-2.71896,55.59861?overview=false"
   },
+  "osrm-access-edinburgh-waverley.json": {
+    "key": "https://router.project-osrm.org/route/v1/driving/-3.19042,55.9519;-2.71896,55.59861?overview=false",
+    "retrieved": "2026-11-07T14:03:59+00:00",
+    "url": "https://router.project-osrm.org/route/v1/driving/-3.19042,55.9519;-2.71896,55.59861?overview=false"
+  },
   "osrm-access-newcastle-international-airport-ncl.json": {
+    "key": "https://router.project-osrm.org/route/v1/driving/-1.6964,55.03842;-2.71896,55.59861?overview=false",
     "retrieved": "2026-11-05T17:52:09+00:00",
     "url": "https://router.project-osrm.org/route/v1/driving/-1.6964,55.03842;-2.71896,55.59861?overview=false"
-  },
-  "osrm-access-tweedbank.json": {
-    "retrieved": "2026-11-05T17:52:08+00:00",
-    "url": "https://router.project-osrm.org/route/v1/driving/-2.759,55.60586;-2.71896,55.59861?overview=false"
   },
   "stage-1-main.gpx": {
     "retrieved": "2026-11-05T17:03:26+00:00",

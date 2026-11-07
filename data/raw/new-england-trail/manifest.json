@@ -237,21 +237,20 @@
     "retrieved": "2026-11-05T21:23:02Z",
     "url": "https://download.geofabrik.de/"
   },
-  "osrm-access-boston-logan-international-airport-bos.json": {
-    "retrieved": "2026-11-07T00:37:21+00:00",
-    "url": "https://router.project-osrm.org/route/v1/driving/-71.01364,42.36318;-72.67196,41.26751?overview=false"
-  },
   "osrm-access-bradley-international-airport-bdl.json": {
+    "key": "https://router.project-osrm.org/route/v1/driving/-72.685,41.94069;-72.67196,41.26751?overview=false",
     "retrieved": "2026-11-07T00:37:21+00:00",
     "url": "https://router.project-osrm.org/route/v1/driving/-72.685,41.94069;-72.67196,41.26751?overview=false"
   },
-  "osrm-access-guilford-station-amtrak-shore-line-east.json": {
-    "retrieved": "2026-11-07T00:37:21+00:00",
-    "url": "https://router.project-osrm.org/route/v1/driving/-72.67361,41.27572;-72.67196,41.26751?overview=false"
+  "osrm-access-new-haven-state-street.json": {
+    "key": "https://router.project-osrm.org/route/v1/driving/-72.92182,41.30525;-72.67196,41.26751?overview=false",
+    "retrieved": "2026-11-07T14:03:15+00:00",
+    "url": "https://router.project-osrm.org/route/v1/driving/-72.92182,41.30525;-72.67196,41.26751?overview=false"
   },
-  "osrm-access-rhode-island-t-f-green-international-airport-pvd.json": {
-    "retrieved": "2026-11-07T00:37:21+00:00",
-    "url": "https://router.project-osrm.org/route/v1/driving/-71.42873,41.72253;-72.67196,41.26751?overview=false"
+  "osrm-access-westchester-county-airport-hpn.json": {
+    "key": "https://router.project-osrm.org/route/v1/driving/-73.70772,41.0678;-72.67196,41.26751?overview=false",
+    "retrieved": "2026-11-07T14:03:16+00:00",
+    "url": "https://router.project-osrm.org/route/v1/driving/-73.70772,41.0678;-72.67196,41.26751?overview=false"
   },
   "wikimedia.json": {
     "retrieved": "2026-11-07T00:37:22+00:00",

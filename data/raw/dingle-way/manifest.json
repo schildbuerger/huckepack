@@ -70,14 +70,17 @@
     "url": "https://download.geofabrik.de/"
   },
   "osrm-access-kerry-airport-kir.json": {
+    "key": "https://router.project-osrm.org/route/v1/driving/-9.52578,52.18091;-9.70596,52.26672?overview=false",
     "retrieved": "2026-11-03T06:43:26+00:00",
     "url": "https://router.project-osrm.org/route/v1/driving/-9.52578,52.18091;-9.70596,52.26672?overview=false"
   },
-  "osrm-access-shannon-airport-snn.json": {
-    "retrieved": "2026-11-03T06:43:26+00:00",
-    "url": "https://router.project-osrm.org/route/v1/driving/-8.92155,52.69868;-9.70596,52.26672?overview=false"
+  "osrm-access-limerick-colbert.json": {
+    "key": "https://router.project-osrm.org/route/v1/driving/-8.62468,52.65888;-9.70596,52.26672?overview=false",
+    "retrieved": "2026-11-07T14:02:20+00:00",
+    "url": "https://router.project-osrm.org/route/v1/driving/-8.62468,52.65888;-9.70596,52.26672?overview=false"
   },
   "osrm-access-tralee-casement.json": {
+    "key": "https://router.project-osrm.org/route/v1/driving/-9.69916,52.27102;-9.70596,52.26672?overview=false",
     "retrieved": "2026-11-03T06:43:26+00:00",
     "url": "https://router.project-osrm.org/route/v1/driving/-9.69916,52.27102;-9.70596,52.26672?overview=false"
   },

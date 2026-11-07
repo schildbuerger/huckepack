@@ -83,12 +83,13 @@ sleeping:
   types: [hostel]
   source: si
 access:
-  # Dublin Heuston, the city's main railway station, and Dublin Airport. Coordinates from OSM;
-  # distances by pipeline/access.py
+  # hubs by the rules of 2026-11-07 (docs/scope.md: long-distance trains, the main station of a city
+  # of 100,000, airports with international flights), suggested by pipeline/hubs.py and reviewed.
+  # Coordinates from OSM; distances by pipeline/access.py
   - kind: station
-    name: Dublin Heuston
-    lat: 53.3465
-    lon: -6.29297
+    name: Dublin Pearse
+    lat: 53.34333
+    lon: -6.24846
     source: osm
   - kind: airport
     name: Dublin Airport (DUB)

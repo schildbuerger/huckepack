@@ -5103,19 +5103,25 @@
   },
   "access": {
     "source": "osrm",
-    "retrieved": "2026-11-04T18:14:06+00:00",
+    "retrieved": "2026-11-07T14:02:11+00:00",
     "hubs": [
       {
-        "name": "La Pobla de Segur",
-        "roadKm": 91.1,
-        "driveMin": 112,
-        "straightKm": 44.8
+        "name": "Lleida-Pirineus",
+        "roadKm": 175.1,
+        "driveMin": 176,
+        "straightKm": 114.2
       },
       {
-        "name": "Toulouse–Blagnac Airport (TLS)",
-        "roadKm": 179.0,
-        "driveMin": 164,
-        "straightKm": 118.1
+        "name": "Andorra–La Seu d'Urgell Airport (LEU)",
+        "roadKm": 121.9,
+        "driveMin": 132,
+        "straightKm": 56.0
+      },
+      {
+        "name": "Tarbes–Lourdes–Pyrénées Airport (LDE)",
+        "roadKm": 137.5,
+        "driveMin": 131,
+        "straightKm": 92.4
       }
     ]
   },

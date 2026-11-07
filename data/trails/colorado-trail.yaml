@@ -140,18 +140,18 @@ wildCamping:
     camping, see the notes.)
   source: fs-sanjuan-camping
 access:
-  # Denver International Airport and Denver Union Station (Amtrak) for the Waterton Canyon start
-  # (distances are measured to the start, so Durango–La Plata County Airport at the finish, 525 km
-  # by road from Waterton Canyon, is left out). Coordinates from OSM; distances by pipeline/access.py
-  - kind: airport
-    name: Denver International Airport (DEN)
-    lat: 39.86067
-    lon: -104.68537
-    source: osm
+  # hubs by the rules of 2026-11-07 (docs/scope.md: long-distance trains, the main station of a city
+  # of 100,000, airports with international flights), suggested by pipeline/hubs.py and reviewed.
+  # Coordinates from OSM; distances by pipeline/access.py
   - kind: station
     name: Denver Union Station
     lat: 39.75363
     lon: -105.00075
+    source: osm
+  - kind: airport
+    name: Denver International Airport (DEN)
+    lat: 39.86067
+    lon: -104.68537
     source: osm
 animals:
   # Colorado Parks and Wildlife (the state's wildlife agency); level ours

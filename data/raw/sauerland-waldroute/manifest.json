@@ -109,16 +109,14 @@
     "url": "https://download.geofabrik.de/"
   },
   "osrm-access-dortmund-airport-dtm.json": {
+    "key": "https://router.project-osrm.org/route/v1/driving/7.61277,51.5164;7.68765,51.3706?overview=false",
     "retrieved": "2026-10-31T08:20:52+00:00",
     "url": "https://router.project-osrm.org/route/v1/driving/7.61277,51.5164;7.68765,51.3706?overview=false"
   },
-  "osrm-access-iserlohn-station.json": {
-    "retrieved": "2026-10-31T08:20:52+00:00",
-    "url": "https://router.project-osrm.org/route/v1/driving/7.69136,51.37329;7.68765,51.3706?overview=false"
-  },
-  "osrm-access-paderborn-lippstadt-airport-pad.json": {
-    "retrieved": "2026-10-31T08:20:52+00:00",
-    "url": "https://router.project-osrm.org/route/v1/driving/8.61906,51.6146;7.68765,51.3706?overview=false"
+  "osrm-access-hagen-hbf.json": {
+    "key": "https://router.project-osrm.org/route/v1/driving/7.46089,51.36314;7.68765,51.3706?overview=false",
+    "retrieved": "2026-11-07T14:03:51+00:00",
+    "url": "https://router.project-osrm.org/route/v1/driving/7.46089,51.36314;7.68765,51.3706?overview=false"
   },
   "stage-1-main.gpx": {
     "retrieved": "2026-10-31T07:57:37+00:00",

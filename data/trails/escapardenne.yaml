@@ -75,12 +75,18 @@ sleeping:
   types: [hotel, campsite]
   source: esc-eislek
 access:
-  # Ettelbruck station at the start (trains from Luxembourg City) and Luxembourg Airport. Coordinates
-  # from OSM; distances by pipeline/access.py
+  # hubs by the rules of 2026-11-07 (docs/scope.md: long-distance trains, the main station of a city
+  # of 100,000, airports with international flights), suggested by pipeline/hubs.py and reviewed.
+  # Coordinates from OSM; distances by pipeline/access.py
   - kind: station
-    name: Ettelbruck
-    lat: 49.84778
-    lon: 6.10686
+    name: Sandweiler-Contern
+    lat: 49.59909
+    lon: 6.21175
+    source: osm
+  - kind: station
+    name: Trier Hbf
+    lat: 49.75697
+    lon: 6.652
     source: osm
   - kind: airport
     name: Luxembourg Airport (LUX)

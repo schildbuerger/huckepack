@@ -86,8 +86,11 @@ refillsUntreated:
   text: DOC's huts have cold tap water that is not treated; boil it before use.
   source: doc
 access:
-  # buses from Te Anau to the boat at Te Anau Downs and back from Milford Sound; Queenstown the
-  # nearest international airport. Coordinates from OSM; distances by pipeline/access.py
+  # hubs by the rules of 2026-11-07 (docs/scope.md: long-distance trains, the main station of a city
+  # of 100,000, airports with international flights), suggested by pipeline/hubs.py and reviewed. Te
+  # Anau: the main bus station (no long-distance trains within 300 km); Queenstown Airport (ZQN): by
+  # road to Te Anau Downs (boat to Glade Wharf), then boat. Coordinates from OSM; distances by
+  # pipeline/access.py
   - kind: bus
     name: Te Anau
     lat: -45.41449
@@ -97,6 +100,7 @@ access:
     name: Queenstown Airport (ZQN)
     lat: -45.0193
     lon: 168.74344
+    via: { name: "Te Anau Downs (boat to Glade Wharf)", lat: -45.19339, lon: 167.82685, by: boat }
     source: osm
 tags: [great-walk, fiordland, national-park, waterfalls, alpine-pass]
 notes:

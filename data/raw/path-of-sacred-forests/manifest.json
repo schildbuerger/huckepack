@@ -70,14 +70,22 @@
     "url": "https://download.geofabrik.de/"
   },
   "osrm-access-bologna-airport-blq.json": {
+    "key": "https://router.project-osrm.org/route/v1/driving/11.28794,44.53449;11.69999,44.03032?overview=false",
     "retrieved": "2026-10-27T12:31:25+00:00",
     "url": "https://router.project-osrm.org/route/v1/driving/11.28794,44.53449;11.69999,44.03032?overview=false"
   },
+  "osrm-access-cesena.json": {
+    "key": "https://router.project-osrm.org/route/v1/driving/12.24948,44.1454;11.69999,44.03032?overview=false",
+    "retrieved": "2026-11-07T14:03:37+00:00",
+    "url": "https://router.project-osrm.org/route/v1/driving/12.24948,44.1454;11.69999,44.03032?overview=false"
+  },
   "osrm-access-firenze-santa-maria-novella.json": {
+    "key": "https://router.project-osrm.org/route/v1/driving/11.24742,43.77757;11.69999,44.03032?overview=false",
     "retrieved": "2026-10-27T12:31:24+00:00",
     "url": "https://router.project-osrm.org/route/v1/driving/11.24742,43.77757;11.69999,44.03032?overview=false"
   },
   "osrm-access-florence-airport-flr.json": {
+    "key": "https://router.project-osrm.org/route/v1/driving/11.20244,43.80918;11.69999,44.03032?overview=false",
     "retrieved": "2026-10-27T12:31:24+00:00",
     "url": "https://router.project-osrm.org/route/v1/driving/11.20244,43.80918;11.69999,44.03032?overview=false"
   },

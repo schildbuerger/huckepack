@@ -80,12 +80,23 @@ permit:
   url: https://www.ontarioparks.ca/park/killarney/camping
   source: op-camping
 access:
-  # Sudbury's airport; no public transport to the park. Coordinates from OSM; distances by
-  # pipeline/access.py
+  # hubs by the rules of 2026-11-07 (docs/scope.md: long-distance trains, the main station of a city
+  # of 100,000, airports with international flights), suggested by pipeline/hubs.py and reviewed.
+  # Coordinates from OSM; distances by pipeline/access.py
+  - kind: station
+    name: Sudbury
+    lat: 46.48749
+    lon: -80.99215
+    source: osm
   - kind: airport
-    name: Sudbury Airport (YSB)
-    lat: 46.625
-    lon: -80.7989
+    name: Toronto Pearson International Airport (YYZ)
+    lat: 43.67732
+    lon: -79.62853
+    source: osm
+  - kind: airport
+    name: Billy Bishop Toronto City Airport (YTZ)
+    lat: 43.62789
+    lon: -79.39619
     source: osm
 animals:
   # Ontario's Bear Wise advice (Ministry of Natural Resources). Level ours

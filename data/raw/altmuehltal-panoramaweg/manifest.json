@@ -112,13 +112,20 @@
     "retrieved": "2026-10-31T21:23:06Z",
     "url": "https://download.geofabrik.de/"
   },
-  "osrm-access-munich-airport-muc.json": {
-    "retrieved": "2026-11-06T03:09:17+00:00",
-    "url": "https://router.project-osrm.org/route/v1/driving/11.77859,48.35396;10.75459,49.11471?overview=false"
+  "osrm-access-ansbach.json": {
+    "key": "https://router.project-osrm.org/route/v1/driving/10.57773,49.29794;10.75459,49.11471?overview=false",
+    "retrieved": "2026-11-07T14:01:54+00:00",
+    "url": "https://router.project-osrm.org/route/v1/driving/10.57773,49.29794;10.75459,49.11471?overview=false"
   },
-  "osrm-access-treuchtlingen.json": {
-    "retrieved": "2026-11-06T03:09:17+00:00",
-    "url": "https://router.project-osrm.org/route/v1/driving/10.91076,48.95529;10.75459,49.11471?overview=false"
+  "osrm-access-n-rnberg-hauptbahnhof.json": {
+    "key": "https://router.project-osrm.org/route/v1/driving/11.08231,49.4452;10.75459,49.11471?overview=false",
+    "retrieved": "2026-11-07T14:01:55+00:00",
+    "url": "https://router.project-osrm.org/route/v1/driving/11.08231,49.4452;10.75459,49.11471?overview=false"
+  },
+  "osrm-access-nuremberg-airport-nue.json": {
+    "key": "https://router.project-osrm.org/route/v1/driving/11.07775,49.49821;10.75459,49.11471?overview=false",
+    "retrieved": "2026-11-07T14:01:56+00:00",
+    "url": "https://router.project-osrm.org/route/v1/driving/11.07775,49.49821;10.75459,49.11471?overview=false"
   },
   "wikimedia.json": {
     "retrieved": "2026-11-06T03:09:17+00:00",

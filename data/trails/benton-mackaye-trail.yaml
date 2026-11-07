@@ -142,17 +142,23 @@ wildCamping:
     one campsite, and fires only in the fire rings there.
   source: nps-backcountry
 access:
-  # Hartsfield–Jackson Atlanta International Airport and Gainesville's Amtrak station (the
-  # Crescent) for the Springer Mountain start. Coordinates from OSM; distances by pipeline/access.py
-  - kind: airport
-    name: Hartsfield–Jackson Atlanta International Airport (ATL)
-    lat: 33.63740
-    lon: -84.42982
-    source: osm
+  # hubs by the rules of 2026-11-07 (docs/scope.md: long-distance trains, the main station of a city
+  # of 100,000, airports with international flights), suggested by pipeline/hubs.py and reviewed.
+  # Coordinates from OSM; distances by pipeline/access.py
   - kind: station
     name: Gainesville (Amtrak)
     lat: 34.28875
     lon: -83.81962
+    source: osm
+  - kind: station
+    name: Atlanta
+    lat: 33.79937
+    lon: -84.39265
+    source: osm
+  - kind: airport
+    name: Hartsfield–Jackson Atlanta International Airport (ATL)
+    lat: 33.6374
+    lon: -84.42982
     source: osm
 animals:
   # Great Smoky Mountains National Park's black bear page (the association links the park's and the

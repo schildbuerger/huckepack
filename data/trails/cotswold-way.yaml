@@ -101,23 +101,18 @@ wildCamping:
     section has none.
   source: nt
 access:
-  # Chipping Campden has no station: Moreton-in-Marsh (Cotswold Line) is the nearest; Bath Spa at the
-  # finish; Birmingham and Bristol the nearest international airports. Coordinates from OSM;
-  # distances by pipeline/access.py
+  # hubs by the rules of 2026-11-07 (docs/scope.md: long-distance trains, the main station of a city
+  # of 100,000, airports with international flights), suggested by pipeline/hubs.py and reviewed.
+  # Coordinates from OSM; distances by pipeline/access.py
   - kind: station
-    name: Moreton-in-Marsh
-    lat: 51.99218
-    lon: -1.70027
+    name: Coventry
+    lat: 52.40074
+    lon: -1.51355
     source: osm
   - kind: airport
     name: Birmingham Airport (BHX)
     lat: 52.45418
     lon: -1.74387
-    source: osm
-  - kind: airport
-    name: Bristol Airport (BRS)
-    lat: 51.38297
-    lon: -2.71862
     source: osm
 animals:
   # Cattle (the Countryside Code, HSE) and ticks (NHS). Levels ours

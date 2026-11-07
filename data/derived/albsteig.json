@@ -31627,25 +31627,25 @@
   },
   "access": {
     "source": "osrm",
-    "retrieved": "2026-11-06T02:54:45+00:00",
+    "retrieved": "2026-11-07T14:01:46+00:00",
     "hubs": [
       {
-        "name": "Donauwörth",
-        "roadKm": 1.2,
-        "driveMin": 2,
-        "straightKm": 0.8
+        "name": "Augsburg Hauptbahnhof",
+        "roadKm": 44.4,
+        "driveMin": 38,
+        "straightKm": 40.0
       },
       {
-        "name": "Tuttlingen",
-        "roadKm": 234.6,
-        "driveMin": 175,
-        "straightKm": 167.8
+        "name": "Nuremberg Airport (NUE)",
+        "roadKm": 110.0,
+        "driveMin": 92,
+        "straightKm": 89.4
       },
       {
-        "name": "Stuttgart Airport (STR)",
-        "roadKm": 182.6,
-        "driveMin": 110,
-        "straightKm": 115.6
+        "name": "Munich Airport (MUC)",
+        "roadKm": 124.3,
+        "driveMin": 78,
+        "straightKm": 84.4
       }
     ]
   },

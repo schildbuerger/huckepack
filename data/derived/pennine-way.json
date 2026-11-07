@@ -30539,13 +30539,19 @@
   },
   "access": {
     "source": "osrm",
-    "retrieved": "2026-11-03T16:53:32+00:00",
+    "retrieved": "2026-11-07T14:03:39+00:00",
     "hubs": [
       {
-        "name": "Manchester Piccadilly",
-        "roadKm": 46.0,
-        "driveMin": 53,
-        "straightKm": 29.9
+        "name": "Chinley",
+        "roadKm": 14.6,
+        "driveMin": 16,
+        "straightKm": 9.1
+      },
+      {
+        "name": "Sheffield",
+        "roadKm": 33.0,
+        "driveMin": 37,
+        "straightKm": 23.5
       },
       {
         "name": "Manchester Airport (MAN)",

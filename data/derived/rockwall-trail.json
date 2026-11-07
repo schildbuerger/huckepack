@@ -3200,8 +3200,14 @@
   },
   "access": {
     "source": "osrm",
-    "retrieved": "2026-11-06T21:49:01+00:00",
+    "retrieved": "2026-11-07T14:03:49+00:00",
     "hubs": [
+      {
+        "name": "Jasper",
+        "roadKm": 277.3,
+        "driveMin": 255,
+        "straightKm": 231.2
+      },
       {
         "name": "Calgary International Airport (YYC)",
         "roadKm": 184.6,

@@ -93,22 +93,18 @@ wildCamping:
     the campsites along the trail.
   source: nt-info
 access:
-  # Thetford and Harling Road near the start, Great Yarmouth near the end, Norwich in between, and
-  # Norwich Airport. Coordinates from OSM; distances by pipeline/access.py
+  # hubs by the rules of 2026-11-07 (docs/scope.md: long-distance trains, the main station of a city
+  # of 100,000, airports with international flights), suggested by pipeline/hubs.py and reviewed.
+  # Coordinates from OSM; distances by pipeline/access.py
   - kind: station
-    name: Thetford
-    lat: 52.41916
-    lon: 0.74528
+    name: Diss
+    lat: 52.37362
+    lon: 1.12354
     source: osm
   - kind: station
     name: Norwich
     lat: 52.62631
     lon: 1.30769
-    source: osm
-  - kind: station
-    name: Great Yarmouth
-    lat: 52.61192
-    lon: 1.72069
     source: osm
   - kind: airport
     name: Norwich Airport (NWI)

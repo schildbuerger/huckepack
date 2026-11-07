@@ -77,27 +77,28 @@ sleeping:
   types: [hotel, guesthouse, hostel, campsite]
   source: osm
 access:
-  # stations on or near the path (Inverkeithing, Kirkcaldy, Leuchars for St Andrews) and Edinburgh
-  # Airport. Coordinates from OSM; distances by pipeline/access.py
+  # hubs by the rules of 2026-11-07 (docs/scope.md: long-distance trains, the main station of a city
+  # of 100,000, airports with international flights), suggested by pipeline/hubs.py and reviewed.
+  # Coordinates from OSM; distances by pipeline/access.py
   - kind: station
-    name: Inverkeithing
-    lat: 56.03524
-    lon: -3.39542
+    name: Larbert
+    lat: 56.02214
+    lon: -3.82979
     source: osm
   - kind: station
-    name: Kirkcaldy
-    lat: 56.11204
-    lon: -3.16702
-    source: osm
-  - kind: station
-    name: Leuchars
-    lat: 56.3748
-    lon: -2.89385
+    name: Edinburgh Waverley
+    lat: 55.9519
+    lon: -3.19042
     source: osm
   - kind: airport
     name: Edinburgh Airport (EDI)
     lat: 55.95026
     lon: -3.35939
+    source: osm
+  - kind: airport
+    name: Glasgow Airport (GLA)
+    lat: 55.87058
+    lon: -4.43517
     source: osm
 animals:
   # the Trust's Stay Safe page (cattle and other farm animals, ticks). Levels ours

@@ -96,17 +96,25 @@ wildCamping:
     campsites.
   source: afcd-camping
 access:
-  # the bus to Pak Tam Chung leaves from Sai Kung; Hong Kong International Airport. Coordinates
-  # from OSM; distances by pipeline/access.py
-  - kind: bus
-    name: Sai Kung Bus Terminus
-    lat: 22.38221
-    lon: 114.27386
-    source: osm
+  # hubs by the rules of 2026-11-07 (docs/scope.md: long-distance trains, the main station of a city
+  # of 100,000, airports with international flights), suggested by pipeline/hubs.py and reviewed.
+  # Hong Kong West Kowloon: MTR High Speed Rail (Guangzhou–Shenzhen–Hong Kong Express Rail Link),
+  # missing from OSM's route relations (operator's page). Coordinates from OSM; distances by
+  # pipeline/access.py
+  - kind: station
+    name: Hong Kong West Kowloon
+    lat: 22.30368
+    lon: 114.16493
+    source: mtr-hsr
   - kind: airport
     name: Hong Kong International Airport (HKG)
     lat: 22.31255
     lon: 113.91134
+    source: osm
+  - kind: airport
+    name: "Shenzhen Bao'an International Airport (SZX)"
+    lat: 22.64049
+    lon: 113.80003
     source: osm
 animals:
   # Snakes (AFCD's hiking safety guidelines) and the monkeys of Kam Shan Country Park (AFCD). Levels ours
@@ -244,3 +252,8 @@ sources:
     url: https://project-osrm.org/
     licence: Route data © OpenStreetMap contributors (ODbL)
     retrieved: 2026-10-31
+  - id: mtr-hsr
+    title: "MTR: High Speed Rail, Hong Kong West Kowloon Station (the Guangzhou–Shenzhen–Hong Kong Express Rail Link)"
+    url: https://www.highspeed.mtr.com.hk/en/main/index.html
+    licence: All rights reserved (facts only)
+    retrieved: 2026-11-07

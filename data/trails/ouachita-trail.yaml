@@ -113,23 +113,23 @@ wildCamping:
     to Pinnacle Mountain run on private and other public lands.
   source: usfs-camping
 access:
-  # Fort Smith Regional Airport, the nearest airport with airline flights to the western start;
-  # Clinton National Airport and Little Rock Union Station (Amtrak's Texas Eagle), near the eastern
-  # end. Coordinates from OSM; distances by pipeline/access.py
-  - kind: airport
-    name: Fort Smith Regional Airport (FSM)
-    lat: 35.33925
-    lon: -94.35698
-    source: osm
-  - kind: airport
-    name: Bill and Hillary Clinton National Airport (LIT)
-    lat: 34.73077
-    lon: -92.22377
-    source: osm
+  # hubs by the rules of 2026-11-07 (docs/scope.md: long-distance trains, the main station of a city
+  # of 100,000, airports with international flights), suggested by pipeline/hubs.py and reviewed.
+  # Coordinates from OSM; distances by pipeline/access.py
   - kind: station
-    name: Little Rock Union Station
-    lat: 34.75038
-    lon: -92.28722
+    name: Texarkana
+    lat: 33.42015
+    lon: -94.04242
+    source: osm
+  - kind: airport
+    name: Dallas Love Field (DAL)
+    lat: 32.84693
+    lon: -96.85077
+    source: osm
+  - kind: airport
+    name: Dallas Fort Worth International Airport (DFW)
+    lat: 32.89625
+    lon: -97.03979
     source: osm
 animals:
   # the Ouachita National Forest's alert "Be Bear Aware in the National Forests in Arkansas &

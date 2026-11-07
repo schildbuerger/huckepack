@@ -83,17 +83,23 @@ sleeping:
   types: [hotel, guesthouse, campsite]
   source: osm
 access:
-  # Treuchtlingen and Eichstätt stations on the route, and Munich Airport. Coordinates from OSM;
-  # distances by pipeline/access.py
+  # hubs by the rules of 2026-11-07 (docs/scope.md: long-distance trains, the main station of a city
+  # of 100,000, airports with international flights), suggested by pipeline/hubs.py and reviewed.
+  # Coordinates from OSM; distances by pipeline/access.py
   - kind: station
-    name: Treuchtlingen
-    lat: 48.95529
-    lon: 10.91076
+    name: Ansbach
+    lat: 49.29794
+    lon: 10.57773
+    source: osm
+  - kind: station
+    name: Nürnberg Hauptbahnhof
+    lat: 49.4452
+    lon: 11.08231
     source: osm
   - kind: airport
-    name: Munich Airport (MUC)
-    lat: 48.35396
-    lon: 11.77859
+    name: Nuremberg Airport (NUE)
+    lat: 49.49821
+    lon: 11.07775
     source: osm
 animals:
   # ticks: Lyme disease all over Germany (the federal health agency's advice); TBE risk areas not

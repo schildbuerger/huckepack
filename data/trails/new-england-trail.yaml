@@ -163,12 +163,13 @@ wildCamping:
     Connecticut, and only at existing designated fire rings in Massachusetts.
   source: net-faqs
 access:
-  # the operator names Amtrak at Guilford and the airports at Bradley, Boston Logan and T. F. Green
-  # (Thru-Hiking). Coordinates from OSM; distances by pipeline/access.py
+  # hubs by the rules of 2026-11-07 (docs/scope.md: long-distance trains, the main station of a city
+  # of 100,000, airports with international flights), suggested by pipeline/hubs.py and reviewed.
+  # Coordinates from OSM; distances by pipeline/access.py
   - kind: station
-    name: Guilford station (Amtrak, Shore Line East)
-    lat: 41.27572
-    lon: -72.67361
+    name: New Haven State Street
+    lat: 41.30525
+    lon: -72.92182
     source: osm
   - kind: airport
     name: Bradley International Airport (BDL)
@@ -176,14 +177,9 @@ access:
     lon: -72.685
     source: osm
   - kind: airport
-    name: Rhode Island T. F. Green International Airport (PVD)
-    lat: 41.72253
-    lon: -71.42873
-    source: osm
-  - kind: airport
-    name: Boston Logan International Airport (BOS)
-    lat: 42.36318
-    lon: -71.01364
+    name: Westchester County Airport (HPN)
+    lat: 41.0678
+    lon: -73.70772
     source: osm
 animals:
   # the operator names black bears, copperheads and ticks (Thru-Hiking); the advice from

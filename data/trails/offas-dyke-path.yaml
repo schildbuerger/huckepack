@@ -104,28 +104,28 @@ wildCamping:
     the landowner's permission.
   source: nt
 access:
-  # Chepstow station near the start, Prestatyn station at the finish; Cardiff and Liverpool John
-  # Lennon the airports the National Trail names for each end. Coordinates from OSM; distances by
-  # pipeline/access.py
+  # hubs by the rules of 2026-11-07 (docs/scope.md: long-distance trains, the main station of a city
+  # of 100,000, airports with international flights), suggested by pipeline/hubs.py and reviewed.
+  # Coordinates from OSM; distances by pipeline/access.py
   - kind: station
-    name: Chepstow
-    lat: 51.63997
-    lon: -2.67108
+    name: Severn Tunnel Junction
+    lat: 51.58425
+    lon: -2.7773
     source: osm
   - kind: station
-    name: Prestatyn
-    lat: 53.33617
-    lon: -3.40735
+    name: Newport
+    lat: 51.58877
+    lon: -3.00042
+    source: osm
+  - kind: airport
+    name: Bristol Airport (BRS)
+    lat: 51.38307
+    lon: -2.71866
     source: osm
   - kind: airport
     name: Cardiff Airport (CWL)
     lat: 51.39785
     lon: -3.34458
-    source: osm
-  - kind: airport
-    name: Liverpool John Lennon Airport (LPL)
-    lat: 53.3358
-    lon: -2.84854
     source: osm
 animals:
   # Cattle (the Countryside Code, HSE) and ticks (NHS). Levels ours

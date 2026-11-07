@@ -101,17 +101,31 @@ refillsUntreated:
   text: Creeks and lakes along most of the trail, not on the high summits; boil or purify the water.
   source: sct-faq
 access:
-  # Powell River's airport; Vancouver's international airport across two ferries (BC Ferries to
-  # Saltery Bay at the southern end). Coordinates from OSM; distances by pipeline/access.py
+  # hubs by the rules of 2026-11-07 (docs/scope.md: long-distance trains, the main station of a city
+  # of 100,000, airports with international flights), suggested by pipeline/hubs.py and reviewed.
+  # Vancouver Pacific Central: by road to Horseshoe Bay (ferry to Langdale), then ferry; Comox
+  # Valley Airport (YQQ): international flights in season only (Wikipedia's route table); Comox
+  # Valley Airport (YQQ): by road to Comox (Little River, ferry to Powell River), then ferry;
+  # Vancouver International Airport (YVR): by road to Horseshoe Bay (ferry to Langdale), then ferry.
+  # Coordinates from OSM; distances by pipeline/access.py
+  - kind: station
+    name: Vancouver Pacific Central
+    lat: 49.27375
+    lon: -123.09786
+    via: { name: "Horseshoe Bay (ferry to Langdale)", lat: 49.36856, lon: -123.27359, by: ferry }
+    source: osm
   - kind: airport
-    name: Powell River Airport (YPW)
-    lat: 49.83346
-    lon: -124.4999
+    name: Comox Valley Airport (YQQ)
+    lat: 49.70633
+    lon: -124.90581
+    flights: seasonal
+    via: { name: "Comox (Little River, ferry to Powell River)", lat: 49.74096, lon: -124.92389, by: ferry }
     source: osm
   - kind: airport
     name: Vancouver International Airport (YVR)
     lat: 49.19388
     lon: -123.18446
+    via: { name: "Horseshoe Bay (ferry to Langdale)", lat: 49.36856, lon: -123.27359, by: ferry }
     source: osm
 animals:
   # the society: "Bears, cougars, wolves, coyotes, elk, deer …"; its wildlife page lists black and

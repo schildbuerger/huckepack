@@ -10,10 +10,12 @@ only), and the straight-line distance. Router answers are cached in data/raw/<sl
 result goes into data/derived/<slug>.json under `access`.
 """
 
+import fcntl
 import json
 import math
 import re
 import sys
+import time
 import urllib.request
 from pathlib import Path
 
@@ -23,6 +25,7 @@ from pipeline.routes import USER_AGENT, Cache
 
 ROOT = Path(__file__).resolve().parent.parent
 OSRM = "https://router.project-osrm.org/route/v1/driving"
+_last = [0.0]  # the demo server's policy: at most one request a second
 
 
 def straight_km(a, b):
@@ -47,10 +50,16 @@ def build(slug, refresh=False):
         url = f"{OSRM}/{hub['lon']},{hub['lat']};{to['lon']},{to['lat']}?overview=false"
 
         def download():
+            time.sleep(max(0.0, 1.1 - (time.time() - _last[0])))
+            _last[0] = time.time()
             request = urllib.request.Request(url, headers={"User-Agent": USER_AGENT})
             with urllib.request.urlopen(request, timeout=60) as response:
                 return response.read()
 
+        # a route cached for other coordinates (a hub moved, or now sails from a port) is fetched
+        # again: a cache from before keys were kept would otherwise take the new key unchecked
+        if cache.manifest.get(name, {}).get("url") not in (None, url):
+            (cache.dir / name).unlink(missing_ok=True)
         answer, _ = cache.get(name, url, download, key=url)
         route = json.loads(answer)
         if route.get("code") != "Ok":
@@ -66,6 +75,17 @@ def build(slug, refresh=False):
         )
         print(f"{hub['name']}: {results[-1]['roadKm']} km by road ({results[-1]['driveMin']} min), "
               f"{results[-1]['straightKm']} km straight")
+
+    # routes of hubs no longer in the record go (2026-11-07: the hubs were chosen anew)
+    stale = [p for p in cache.dir.glob("osrm-access-*.json") if p.name not in names]
+    if stale:
+        with open(cache.dir / ".manifest.lock", "w") as lock:  # as Cache._save: other steps may write meanwhile
+            fcntl.flock(lock, fcntl.LOCK_EX)
+            disk = json.loads(cache.manifest_path.read_text()) if cache.manifest_path.exists() else {}
+            for p in stale:
+                p.unlink()
+                disk.pop(p.name, None)
+            cache.manifest_path.write_text(json.dumps(disk, indent=2, sort_keys=True) + "\n")
 
     out = ROOT / "data" / "derived" / f"{slug}.json"
     out.parent.mkdir(parents=True, exist_ok=True)

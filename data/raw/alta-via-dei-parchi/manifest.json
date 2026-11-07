@@ -249,13 +249,20 @@
     "retrieved": "2026-11-02T21:21:26Z",
     "url": "https://download.geofabrik.de/"
   },
-  "osrm-access-bologna-guglielmo-marconi-airport-blq.json": {
-    "retrieved": "2026-11-03T18:41:49+00:00",
-    "url": "https://router.project-osrm.org/route/v1/driving/11.28845,44.53443;9.98965,44.51061?overview=false"
+  "osrm-access-la-spezia-centrale.json": {
+    "key": "https://router.project-osrm.org/route/v1/driving/9.81358,44.11156;9.98965,44.51061?overview=false",
+    "retrieved": "2026-11-07T14:01:51+00:00",
+    "url": "https://router.project-osrm.org/route/v1/driving/9.81358,44.11156;9.98965,44.51061?overview=false"
   },
-  "osrm-access-parma.json": {
-    "retrieved": "2026-11-03T18:41:49+00:00",
-    "url": "https://router.project-osrm.org/route/v1/driving/10.32888,44.80935;9.98965,44.51061?overview=false"
+  "osrm-access-parma-airport-pmf.json": {
+    "key": "https://router.project-osrm.org/route/v1/driving/10.29616,44.82655;9.98965,44.51061?overview=false",
+    "retrieved": "2026-11-07T14:01:53+00:00",
+    "url": "https://router.project-osrm.org/route/v1/driving/10.29616,44.82655;9.98965,44.51061?overview=false"
+  },
+  "osrm-access-reggio-emilia-av-mediopadana.json": {
+    "key": "https://router.project-osrm.org/route/v1/driving/10.65504,44.72427;9.98965,44.51061?overview=false",
+    "retrieved": "2026-11-07T14:01:52+00:00",
+    "url": "https://router.project-osrm.org/route/v1/driving/10.65504,44.72427;9.98965,44.51061?overview=false"
   },
   "wikimedia.json": {
     "retrieved": "2026-11-04T22:12:10+00:00",

@@ -42430,25 +42430,25 @@
   },
   "access": {
     "source": "osrm",
-    "retrieved": "2026-10-31T04:24:16+00:00",
+    "retrieved": "2026-11-07T14:02:39+00:00",
     "hubs": [
       {
-        "name": "Marktredwitz station",
-        "roadKm": 0.2,
-        "driveMin": 1,
-        "straightKm": 0.1
+        "name": "Kronach",
+        "roadKm": 82.8,
+        "driveMin": 75,
+        "straightKm": 60.4
+      },
+      {
+        "name": "Nürnberg Hauptbahnhof",
+        "roadKm": 117.9,
+        "driveMin": 94,
+        "straightKm": 95.0
       },
       {
         "name": "Nuremberg Airport (NUE)",
         "roadKm": 119.6,
         "driveMin": 95,
         "straightKm": 91.5
-      },
-      {
-        "name": "Munich Airport (MUC)",
-        "roadKm": 228.8,
-        "driveMin": 139,
-        "straightKm": 184.8
       }
     ]
   },

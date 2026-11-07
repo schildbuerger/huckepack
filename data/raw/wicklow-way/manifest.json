@@ -53,12 +53,14 @@
     "url": "https://download.geofabrik.de/"
   },
   "osrm-access-dublin-airport-dub.json": {
+    "key": "https://router.project-osrm.org/route/v1/driving/-6.24727,53.42829;-6.26839,53.27737?overview=false",
     "retrieved": "2026-11-03T15:33:20+00:00",
     "url": "https://router.project-osrm.org/route/v1/driving/-6.24727,53.42829;-6.26839,53.27737?overview=false"
   },
-  "osrm-access-dublin-heuston.json": {
-    "retrieved": "2026-11-03T15:33:20+00:00",
-    "url": "https://router.project-osrm.org/route/v1/driving/-6.29297,53.3465;-6.26839,53.27737?overview=false"
+  "osrm-access-dublin-pearse.json": {
+    "key": "https://router.project-osrm.org/route/v1/driving/-6.24846,53.34333;-6.26839,53.27737?overview=false",
+    "retrieved": "2026-11-07T14:04:26+00:00",
+    "url": "https://router.project-osrm.org/route/v1/driving/-6.24846,53.34333;-6.26839,53.27737?overview=false"
   },
   "stage-1-main.gpx": {
     "retrieved": "2026-11-03T15:23:10+00:00",

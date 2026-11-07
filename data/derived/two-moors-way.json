@@ -11720,19 +11720,25 @@
   },
   "access": {
     "source": "osrm",
-    "retrieved": "2026-11-06T01:07:28+00:00",
+    "retrieved": "2026-11-07T14:04:19+00:00",
     "hubs": [
       {
-        "name": "Ivybridge",
-        "roadKm": 1.4,
-        "driveMin": 2,
-        "straightKm": 0.9
+        "name": "Exeter St Davids",
+        "roadKm": 55.1,
+        "driveMin": 44,
+        "straightKm": 45.9
       },
       {
         "name": "Exeter Airport (EXT)",
         "roadKm": 59.4,
         "driveMin": 47,
         "straightKm": 52.2
+      },
+      {
+        "name": "Newquay Airport (NQY)",
+        "roadKm": 92.5,
+        "driveMin": 80,
+        "straightKm": 76.7
       }
     ]
   },

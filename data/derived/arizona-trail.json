@@ -20641,19 +20641,31 @@
   },
   "access": {
     "source": "osrm",
-    "retrieved": "2026-11-06T23:34:03+00:00",
+    "retrieved": "2026-11-07T14:01:59+00:00",
     "hubs": [
       {
-        "name": "Tucson International Airport (TUS)",
-        "roadKm": 154.4,
-        "driveMin": 143,
-        "straightKm": 107.1
+        "name": "Benson",
+        "roadKm": 96.8,
+        "driveMin": 105,
+        "straightKm": 70.6
       },
       {
         "name": "Tucson station (Amtrak)",
         "roadKm": 164.0,
         "driveMin": 149,
         "straightKm": 118.2
+      },
+      {
+        "name": "Phoenix Sky Harbor International Airport (PHX)",
+        "roadKm": 339.7,
+        "driveMin": 266,
+        "straightKm": 284.1
+      },
+      {
+        "name": "Hermosillo International Airport (HMO)",
+        "roadKm": 378.5,
+        "driveMin": 374,
+        "straightKm": 260.1
       }
     ]
   },

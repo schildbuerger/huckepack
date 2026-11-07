@@ -61761,31 +61761,31 @@
   },
   "access": {
     "source": "osrm",
-    "retrieved": "2026-11-01T07:43:47+00:00",
+    "retrieved": "2026-11-07T14:03:26+00:00",
     "hubs": [
       {
-        "name": "Kőszeg",
-        "roadKm": 25.0,
-        "driveMin": 46,
-        "straightKm": 9.8
+        "name": "Wiener Neustadt Hauptbahnhof",
+        "roadKm": 78.3,
+        "driveMin": 90,
+        "straightKm": 53.1
       },
       {
-        "name": "Sátoraljaújhely",
-        "roadKm": 507.9,
-        "driveMin": 374,
-        "straightKm": 406.1
+        "name": "Vienna Central Station",
+        "roadKm": 118.9,
+        "driveMin": 116,
+        "straightKm": 92.6
+      },
+      {
+        "name": "Graz Airport (GRZ)",
+        "roadKm": 120.6,
+        "driveMin": 109,
+        "straightKm": 85.4
       },
       {
         "name": "Vienna International Airport (VIE)",
         "roadKm": 126.1,
         "driveMin": 125,
         "straightKm": 84.4
-      },
-      {
-        "name": "Budapest Ferenc Liszt International Airport (BUD)",
-        "roadKm": 284.7,
-        "driveMin": 221,
-        "straightKm": 212.4
       }
     ]
   },

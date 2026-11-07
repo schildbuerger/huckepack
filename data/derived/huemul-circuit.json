@@ -5423,7 +5423,7 @@
   },
   "access": {
     "source": "osrm",
-    "retrieved": "2026-11-07T00:37:58+00:00",
+    "retrieved": "2026-11-07T14:02:51+00:00",
     "hubs": [
       {
         "name": "El Chaltén bus terminal",
@@ -5436,6 +5436,12 @@
         "roadKm": 200.1,
         "driveMin": 221,
         "straightKm": 120.6
+      },
+      {
+        "name": "Piloto Civil Norberto Fernández International Airport (RGL)",
+        "roadKm": 449.5,
+        "driveMin": 412,
+        "straightKm": 357.2
       }
     ]
   },

@@ -83,22 +83,23 @@ sleeping:
   types: [hotel, guesthouse, hostel, campsite]
   source: rbw-unterkuenfte
 access:
-  # Koblenz Hbf mid-way (IC and ICE), Bonn Hbf near the start, Bingen (Rhein) Hbf at the finish,
-  # and Frankfurt Airport. Coordinates from OSM; distances by pipeline/access.py
+  # hubs by the rules of 2026-11-07 (docs/scope.md: long-distance trains, the main station of a city
+  # of 100,000, airports with international flights), suggested by pipeline/hubs.py and reviewed.
+  # Coordinates from OSM; distances by pipeline/access.py
+  - kind: station
+    name: Remagen
+    lat: 50.57732
+    lon: 7.22971
+    source: osm
   - kind: station
     name: Bonn Hauptbahnhof
     lat: 50.73211
     lon: 7.09703
     source: osm
-  - kind: station
-    name: Bingen (Rhein) Hauptbahnhof
-    lat: 49.96701
-    lon: 7.89889
-    source: osm
   - kind: airport
-    name: Frankfurt Airport (FRA)
-    lat: 50.03793
-    lon: 8.56256
+    name: Cologne Bonn Airport (CGN)
+    lat: 50.86787
+    lon: 7.14205
     source: osm
 animals:
   # ticks: Lyme disease all over Germany (the federal health agency's advice). Level ours

@@ -10542,25 +10542,31 @@
   },
   "access": {
     "source": "osrm",
-    "retrieved": "2026-11-04T17:11:37+00:00",
+    "retrieved": "2026-11-07T14:01:51+00:00",
     "hubs": [
       {
-        "name": "Toblach-Dobbiaco",
-        "roadKm": 16.3,
-        "driveMin": 18,
-        "straightKm": 11.1
+        "name": "Franzensfeste - Fortezza",
+        "roadKm": 59.4,
+        "driveMin": 60,
+        "straightKm": 37.5
       },
       {
-        "name": "Belluno",
-        "roadKm": 114.3,
-        "driveMin": 116,
-        "straightKm": 62.8
+        "name": "Bolzano - Bozen",
+        "roadKm": 100.9,
+        "driveMin": 92,
+        "straightKm": 59.9
       },
       {
-        "name": "Venice Marco Polo Airport (VCE)",
-        "roadKm": 198.6,
-        "driveMin": 180,
-        "straightKm": 135.1
+        "name": "Bolzano Airport (BZO)",
+        "roadKm": 106.5,
+        "driveMin": 97,
+        "straightKm": 63.9
+      },
+      {
+        "name": "Innsbruck Airport (INN)",
+        "roadKm": 135.1,
+        "driveMin": 119,
+        "straightKm": 83.8
       }
     ]
   },

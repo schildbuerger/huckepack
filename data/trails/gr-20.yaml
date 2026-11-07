@@ -107,22 +107,30 @@ wildCamping:
     Tents only beside the refuges; pitching along the trail is not permitted.
   source: wikipedia
 access:
-  # Calvi's railway station and airport, nearest the start at Calenzana; Bastia, the island's
-  # main airport. Coordinates from OSM; distances by pipeline/access.py
+  # hubs by the rules of 2026-11-07 (docs/scope.md: long-distance trains, the main station of a city
+  # of 100,000, airports with international flights), suggested by pipeline/hubs.py and reviewed.
+  # Marseille Saint-Charles: by road to Marseille (ferries to Corsica), then ferry; Calvi
+  # Sainte-Catherine Airport (CLY): international flights in season only (Wikipedia's route table);
+  # Bastia Poretta Airport (BIA): international flights in season only (Wikipedia's route table);
+  # Corsica keeps its two airports with seasonal international flights (the user's decision of
+  # 2026-11-07); no year-round one is listed. Coordinates from OSM; distances by pipeline/access.py
   - kind: station
-    name: Gare de Calvi
-    lat: 42.5648
-    lon: 8.75596
+    name: Marseille Saint-Charles
+    lat: 43.30326
+    lon: 5.38119
+    via: { name: "Marseille (ferries to Corsica)", lat: 43.30096, lon: 5.36348, by: ferry }
     source: osm
   - kind: airport
     name: Calvi Sainte-Catherine Airport (CLY)
     lat: 42.52981
     lon: 8.79208
+    flights: seasonal
     source: osm
   - kind: airport
     name: Bastia Poretta Airport (BIA)
     lat: 42.55441
     lon: 9.4822
+    flights: seasonal
     source: osm
 tags: [mountains, huts, scrambling, island]
 notes:

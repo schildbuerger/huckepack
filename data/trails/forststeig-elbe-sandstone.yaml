@@ -100,8 +100,14 @@ wildCamping:
     reservation). Neither the bivouac sites nor the trekking huts have drinking water.
   source: sachsenforst-biwak
 access:
-  # the nearest major travel hubs: main railway station and international airports (OSM);
-  # distances by pipeline/access.py
+  # hubs by the rules of 2026-11-07 (docs/scope.md: long-distance trains, the main station of a city
+  # of 100,000, airports with international flights), suggested by pipeline/hubs.py and reviewed.
+  # Coordinates from OSM; distances by pipeline/access.py
+  - kind: station
+    name: Bad Schandau
+    lat: 50.91892
+    lon: 14.13893
+    source: osm
   - kind: station
     name: Dresden Hauptbahnhof
     lat: 51.04025
@@ -111,11 +117,6 @@ access:
     name: Dresden Airport (DRS)
     lat: 51.13429
     lon: 13.76929
-    source: osm
-  - kind: airport
-    name: Prague Airport (PRG)
-    lat: 50.10257
-    lon: 14.25608
     source: osm
 animals:
   # Ticks: the RKI's TBE risk areas (2026) and the federal health agency's advice. Level ours

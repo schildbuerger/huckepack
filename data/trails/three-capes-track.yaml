@@ -100,10 +100,15 @@ refillsUntreated:
   text: The cabins' rainwater tanks need their water treated before use; carry two litres a day.
   source: tct-faq
 access:
-  # the Port Arthur Historic Site, where walkers check in and the boat and bus leave, and Hobart
-  # Airport. Coordinates from OSM; distances by pipeline/access.py
+  # hubs by the rules of 2026-11-07 (docs/scope.md: long-distance trains, the main station of a city
+  # of 100,000, airports with international flights), suggested by pipeline/hubs.py and reviewed.
+  # Port Arthur Historic Site (check-in, boat and bus): the main bus station (no long-distance
+  # trains within 300 km); Hobart Airport (HBA): international flights in season only (Wikipedia's
+  # route table); Avalon Airport (AVV): by road to Geelong (Spirit of Tasmania), then ferry;
+  # Melbourne Airport (MEL): by road to Geelong (Spirit of Tasmania), then ferry. Coordinates from
+  # OSM; distances by pipeline/access.py
   - kind: bus
-    name: Port Arthur Historic Site (check-in, boat and bus)
+    name: "Port Arthur Historic Site (check-in, boat and bus)"
     lat: -43.14741
     lon: 147.85052
     source: osm
@@ -111,6 +116,19 @@ access:
     name: Hobart Airport (HBA)
     lat: -42.83592
     lon: 147.51145
+    flights: seasonal
+    source: osm
+  - kind: airport
+    name: Avalon Airport (AVV)
+    lat: -38.039
+    lon: 144.47415
+    via: { name: "Geelong (Spirit of Tasmania)", lat: -38.10689, lon: 144.36226, by: ferry }
+    source: osm
+  - kind: airport
+    name: Melbourne Airport (MEL)
+    lat: -37.66709
+    lon: 144.83362
+    via: { name: "Geelong (Spirit of Tasmania)", lat: -38.10689, lon: 144.36226, by: ferry }
     source: osm
 tags: [sea-cliffs, capes, cabins, boardwalk]
 notes:

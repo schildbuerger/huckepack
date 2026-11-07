@@ -17820,31 +17820,31 @@
   },
   "access": {
     "source": "osrm",
-    "retrieved": "2026-11-05T18:07:26+00:00",
+    "retrieved": "2026-11-07T14:02:29+00:00",
     "hubs": [
       {
-        "name": "Inverkeithing",
-        "roadKm": 22.8,
-        "driveMin": 23,
-        "straightKm": 20.4
+        "name": "Larbert",
+        "roadKm": 10.4,
+        "driveMin": 11,
+        "straightKm": 8.6
       },
       {
-        "name": "Kirkcaldy",
-        "roadKm": 44.3,
-        "driveMin": 38,
-        "straightKm": 34.6
-      },
-      {
-        "name": "Leuchars",
-        "roadKm": 75.4,
-        "driveMin": 68,
-        "straightKm": 61.3
+        "name": "Edinburgh Waverley",
+        "roadKm": 43.2,
+        "driveMin": 48,
+        "straightKm": 35.3
       },
       {
         "name": "Edinburgh Airport (EDI)",
         "roadKm": 40.9,
         "driveMin": 36,
         "straightKm": 25.9
+      },
+      {
+        "name": "Glasgow Airport (GLA)",
+        "roadKm": 61.3,
+        "driveMin": 49,
+        "straightKm": 49.7
       }
     ]
   },

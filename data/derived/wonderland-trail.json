@@ -7621,13 +7621,31 @@
   },
   "access": {
     "source": "osrm",
-    "retrieved": "2026-11-06T07:22:29+00:00",
+    "retrieved": "2026-11-07T14:04:31+00:00",
     "hubs": [
+      {
+        "name": "Olympia-Lacey",
+        "roadKm": 103.2,
+        "driveMin": 107,
+        "straightKm": 79.3
+      },
+      {
+        "name": "Tacoma Dome",
+        "roadKm": 104.8,
+        "driveMin": 107,
+        "straightKm": 71.7
+      },
       {
         "name": "Seattle–Tacoma International Airport (SEA)",
         "roadKm": 128.6,
         "driveMin": 134,
         "straightKm": 86.2
+      },
+      {
+        "name": "Boeing Field (BFI)",
+        "roadKm": 139.1,
+        "driveMin": 138,
+        "straightKm": 94.4
       }
     ]
   },

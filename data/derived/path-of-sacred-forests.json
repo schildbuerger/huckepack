@@ -1128,8 +1128,14 @@
   },
   "access": {
     "source": "osrm",
-    "retrieved": "2026-10-27T12:31:25+00:00",
+    "retrieved": "2026-11-07T14:03:37+00:00",
     "hubs": [
+      {
+        "name": "Cesena",
+        "roadKm": 84.7,
+        "driveMin": 82,
+        "straightKm": 45.7
+      },
       {
         "name": "Firenze Santa Maria Novella",
         "roadKm": 80.5,

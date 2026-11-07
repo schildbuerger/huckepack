@@ -96,8 +96,14 @@ sleeping:
   types: [hotel, guesthouse]
   source: osm
 access:
-  # Dresden Hauptbahnhof (trains to Altenberg near the start), and Dresden Airport. Coordinates from
-  # OSM; distances by pipeline/access.py
+  # hubs by the rules of 2026-11-07 (docs/scope.md: long-distance trains, the main station of a city
+  # of 100,000, airports with international flights), suggested by pipeline/hubs.py and reviewed.
+  # Coordinates from OSM; distances by pipeline/access.py
+  - kind: station
+    name: Ústí nad Labem hlavní nádraží
+    lat: 50.65943
+    lon: 14.04452
+    source: osm
   - kind: station
     name: Dresden Hauptbahnhof
     lat: 51.04039

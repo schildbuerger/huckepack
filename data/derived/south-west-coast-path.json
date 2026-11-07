@@ -75338,13 +75338,19 @@
   },
   "access": {
     "source": "osrm",
-    "retrieved": "2026-11-03T21:51:00+00:00",
+    "retrieved": "2026-11-07T14:03:59+00:00",
     "hubs": [
       {
-        "name": "Taunton",
-        "roadKm": 38.2,
-        "driveMin": 40,
-        "straightKm": 33.3
+        "name": "Weston-super-Mare",
+        "roadKm": 69.9,
+        "driveMin": 75,
+        "straightKm": 37.9
+      },
+      {
+        "name": "Exeter Central",
+        "roadKm": 70.4,
+        "driveMin": 75,
+        "straightKm": 54.0
       },
       {
         "name": "Bristol Airport (BRS)",

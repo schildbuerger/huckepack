@@ -57,13 +57,20 @@
     "retrieved": "2026-10-28T21:21:02Z",
     "url": "https://download.geofabrik.de/"
   },
-  "osrm-access-frankfurt-airport-fra.json": {
-    "retrieved": "2026-10-30T13:04:14+00:00",
-    "url": "https://router.project-osrm.org/route/v1/driving/8.55985,50.03989;7.45952,49.78622?overview=false"
+  "osrm-access-bullay.json": {
+    "key": "https://router.project-osrm.org/route/v1/driving/7.13466,50.05428;7.45952,49.78622?overview=false",
+    "retrieved": "2026-11-07T14:03:55+00:00",
+    "url": "https://router.project-osrm.org/route/v1/driving/7.13466,50.05428;7.45952,49.78622?overview=false"
   },
-  "osrm-access-kirn-station.json": {
-    "retrieved": "2026-10-30T13:04:14+00:00",
-    "url": "https://router.project-osrm.org/route/v1/driving/7.46417,49.78564;7.45952,49.78622?overview=false"
+  "osrm-access-frankfurt-hahn-airport-hhn.json": {
+    "key": "https://router.project-osrm.org/route/v1/driving/7.26195,49.94467;7.45952,49.78622?overview=false",
+    "retrieved": "2026-11-07T14:03:57+00:00",
+    "url": "https://router.project-osrm.org/route/v1/driving/7.26195,49.94467;7.45952,49.78622?overview=false"
+  },
+  "osrm-access-mainz-hauptbahnhof.json": {
+    "key": "https://router.project-osrm.org/route/v1/driving/8.25872,50.00111;7.45952,49.78622?overview=false",
+    "retrieved": "2026-11-07T14:03:56+00:00",
+    "url": "https://router.project-osrm.org/route/v1/driving/8.25872,50.00111;7.45952,49.78622?overview=false"
   },
   "stage-1-main.gpx": {
     "retrieved": "2026-10-30T12:31:55+00:00",

@@ -73,20 +73,24 @@
     "url": "https://download.geofabrik.de/"
   },
   "osrm-access-edinburgh-airport-edi.json": {
+    "key": "https://router.project-osrm.org/route/v1/driving/-3.35939,55.95026;-3.71846,56.0684?overview=false",
     "retrieved": "2026-11-05T18:07:26+00:00",
     "url": "https://router.project-osrm.org/route/v1/driving/-3.35939,55.95026;-3.71846,56.0684?overview=false"
   },
-  "osrm-access-inverkeithing.json": {
-    "retrieved": "2026-11-05T18:07:26+00:00",
-    "url": "https://router.project-osrm.org/route/v1/driving/-3.39542,56.03524;-3.71846,56.0684?overview=false"
+  "osrm-access-edinburgh-waverley.json": {
+    "key": "https://router.project-osrm.org/route/v1/driving/-3.19042,55.9519;-3.71846,56.0684?overview=false",
+    "retrieved": "2026-11-07T14:02:27+00:00",
+    "url": "https://router.project-osrm.org/route/v1/driving/-3.19042,55.9519;-3.71846,56.0684?overview=false"
   },
-  "osrm-access-kirkcaldy.json": {
-    "retrieved": "2026-11-05T18:07:26+00:00",
-    "url": "https://router.project-osrm.org/route/v1/driving/-3.16702,56.11204;-3.71846,56.0684?overview=false"
+  "osrm-access-glasgow-airport-gla.json": {
+    "key": "https://router.project-osrm.org/route/v1/driving/-4.43517,55.87058;-3.71846,56.0684?overview=false",
+    "retrieved": "2026-11-07T14:02:29+00:00",
+    "url": "https://router.project-osrm.org/route/v1/driving/-4.43517,55.87058;-3.71846,56.0684?overview=false"
   },
-  "osrm-access-leuchars.json": {
-    "retrieved": "2026-11-05T18:07:26+00:00",
-    "url": "https://router.project-osrm.org/route/v1/driving/-2.89385,56.3748;-3.71846,56.0684?overview=false"
+  "osrm-access-larbert.json": {
+    "key": "https://router.project-osrm.org/route/v1/driving/-3.82979,56.02214;-3.71846,56.0684?overview=false",
+    "retrieved": "2026-11-07T14:02:26+00:00",
+    "url": "https://router.project-osrm.org/route/v1/driving/-3.82979,56.02214;-3.71846,56.0684?overview=false"
   },
   "wikimedia.json": {
     "retrieved": "2026-11-05T18:07:27+00:00",

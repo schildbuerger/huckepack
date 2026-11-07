@@ -877,3 +877,79 @@ class StageClimbs(unittest.TestCase):
         e = {"points": [[0, 0], [1, 500]], "stageClimbs": [{"number": "1", "up": 125, "down": 0}, {"number": "2", "up": 34, "down": 7}]}
         self.assertEqual(pipeline_all.model_ascent(e), 160)  # 130 + 30, half up as on the page
         self.assertEqual(pipeline_all.model_ascent({"points": [[0, 0], [1, 500]]}), 500)  # before stageClimbs
+
+
+from pipeline import hubs  # noqa: E402 (kept apart from the imports above: other steps' tests change them)
+
+
+class Hubs(unittest.TestCase):
+    """pipeline/hubs.py: Wikipedia's route tables, the year-round/seasonal rule, the second airport."""
+
+    ARTICLE = """Intro.
+== Airlines and destinations ==
+=== Passenger ===
+{{Airport-dest-list
+|3rdcoltitle = Refs
+| [[Norwegian Air Shuttle]]
+| [[Oslo Airport, Gardermoen|Oslo]], [[Stockholm Arlanda Airport|Stockholm–Arlanda]] <br>'''Seasonal:''' [[London Gatwick Airport|London–Gatwick]]
+| <ref>timetable</ref>
+| [[SAS]]
+| [[Stockholm Arlanda Airport|Stockholm–Arlanda]]<br>Seasonal charter: [[Antalya Airport|Antalya]]
+|
+| [[Widerøe]]
+| [[Tromsø Airport|Tromsø]] {{Airline begins|1 June 2027}}, [[Bodø Airport|Bodø]] (resumes 1 May 2027)
+|
+}}
+=== Cargo ===
+{{Airport-dest-list
+| [[DHL]] | [[Leipzig/Halle Airport|Leipzig]]
+}}
+== Statistics ==
+[[Paris Charles de Gaulle Airport|Paris]]
+"""
+    COUNTRIES = {"Oslo Airport, Gardermoen": ["NO"], "Stockholm Arlanda Airport": ["SE"], "London Gatwick Airport": ["GB"],
+                 "Antalya Airport": ["TR"], "Tromsø Airport": ["NO"], "Bodø Airport": ["NO"], "Leipzig/Halle Airport": ["DE"]}
+
+    def test_route_table(self):
+        routes = {(r["airline"], r["dest"]): (r["mode"], r["status"]) for r in hubs.route_table(self.ARTICLE)}
+        self.assertEqual(routes[("Norwegian Air Shuttle", "Oslo Airport, Gardermoen")], ("year", "ok"))
+        self.assertEqual(routes[("Norwegian Air Shuttle", "London Gatwick Airport")], ("seasonal", "ok"))
+        self.assertEqual(routes[("SAS", "Antalya Airport")], ("charter", "ok"))  # "Seasonal charter:" is a charter
+        self.assertEqual(routes[("Widerøe", "Tromsø Airport")], ("year", "begins"))
+        self.assertEqual(routes[("Widerøe", "Bodø Airport")], ("year", "resumes"))
+        self.assertNotIn(("DHL", "Leipzig/Halle Airport"), routes)  # cargo is not passenger service
+        self.assertFalse(any(d == "Paris Charles de Gaulle Airport" for _, d in routes))  # outside the section
+        self.assertEqual(hubs.route_table("No such section."), [])
+
+    def test_plain_labels(self):
+        cell = "[[Oslo Airport, Gardermoen|Oslo]]<br>Seasonal: [[Antalya Airport|Antalya]]<br>Charter: [[Bodø Airport|Bodø]]"
+        self.assertEqual([(d["dest"], d["mode"]) for d in hubs.destination_cell(cell)],
+                         [("Oslo Airport, Gardermoen", "year"), ("Antalya Airport", "seasonal"), ("Bodø Airport", "charter")])
+
+    def classify(self, routes, home="SE"):
+        return hubs.classify(routes, home, lambda t: self.COUNTRIES.get(t, []))
+
+    def test_classify(self):
+        def r(dest, mode="year", status="ok"):
+            return {"airline": "X", "dest": dest, "mode": mode, "status": status}
+        self.assertEqual(self.classify(hubs.route_table(self.ARTICLE)), "year-round")  # Oslo all year
+        self.assertEqual(self.classify([r("Stockholm Arlanda Airport"), r("London Gatwick Airport", "seasonal")]), "seasonal")
+        self.assertEqual(self.classify([r("Stockholm Arlanda Airport"), r("Oslo Airport, Gardermoen", status="resumes")]), "seasonal")
+        self.assertIsNone(self.classify([r("Stockholm Arlanda Airport")]))  # domestic only
+        self.assertIsNone(self.classify([r("Antalya Airport", "charter"), r("Tromsø Airport", status="begins")]))
+        self.assertIsNone(self.classify([r("Somewhere unknown")]))
+
+    def test_pick_airports(self):
+        def a(iata, km, flights="year-round", ferry=False):
+            return {"iata": iata, "km": km, "flights": flights, "ferry": ferry}
+        pick = lambda cands: [c["iata"] for c in hubs.pick_airports(cands)]  # noqa: E731
+        self.assertEqual(pick([a("A", 100), a("B", 145), a("C", 300)]), ["A", "B"])  # 145 <= 1.25 x 100 + 20
+        self.assertEqual(pick([a("A", 100), a("B", 146)]), ["A"])
+        self.assertEqual(pick([a("A", 600)]), ["A"])  # no cap
+        # a much nearer seasonal one is listed too (Kiruna before Tromsø), a near one not
+        self.assertEqual(pick([a("TOS", 287), a("KRN", 104, "seasonal")]), ["KRN", "TOS"])
+        self.assertEqual(pick([a("HAJ", 114), a("KSF", 108, "seasonal")]), ["HAJ"])
+        # a route over water counts only when there is no other (the start isn't on an island)
+        self.assertEqual(pick([a("F", 50, ferry=True), a("G", 200)]), ["G"])
+        self.assertEqual(pick([a("S", 40, "seasonal")]), ["S"])
+        self.assertEqual(pick([]), [])

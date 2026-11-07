@@ -42,11 +42,18 @@
     "retrieved": "2026-11-05T21:23:02Z",
     "url": "https://download.geofabrik.de/"
   },
+  "osrm-access-bingen-white-salmon.json": {
+    "key": "https://router.project-osrm.org/route/v1/driving/-121.46867,45.71499;-121.71175,45.33111?overview=false",
+    "retrieved": "2026-11-07T14:04:14+00:00",
+    "url": "https://router.project-osrm.org/route/v1/driving/-121.46867,45.71499;-121.71175,45.33111?overview=false"
+  },
   "osrm-access-portland-international-airport-pdx.json": {
+    "key": "https://router.project-osrm.org/route/v1/driving/-122.59278,45.58713;-121.71175,45.33111?overview=false",
     "retrieved": "2026-11-06T21:54:16+00:00",
     "url": "https://router.project-osrm.org/route/v1/driving/-122.59278,45.58713;-121.71175,45.33111?overview=false"
   },
   "osrm-access-portland-union-station.json": {
+    "key": "https://router.project-osrm.org/route/v1/driving/-122.67701,45.52897;-121.71175,45.33111?overview=false",
     "retrieved": "2026-11-06T21:54:16+00:00",
     "url": "https://router.project-osrm.org/route/v1/driving/-122.67701,45.52897;-121.71175,45.33111?overview=false"
   },

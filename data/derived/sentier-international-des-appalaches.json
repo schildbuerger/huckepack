@@ -33778,7 +33778,7 @@
   },
   "access": {
     "source": "osrm",
-    "retrieved": "2026-11-07T00:57:34+00:00",
+    "retrieved": "2026-11-07T14:03:55+00:00",
     "hubs": [
       {
         "name": "Matapédia station (VIA Rail)",
@@ -33787,16 +33787,22 @@
         "straightKm": 1.6
       },
       {
-        "name": "Bathurst Regional Airport (YZT)",
-        "roadKm": 121.8,
-        "driveMin": 99,
-        "straightKm": 96.7
+        "name": "Greater Moncton Roméo LeBlanc International Airport (YQM)",
+        "roadKm": 334.2,
+        "driveMin": 263,
+        "straightKm": 268.2
       },
       {
-        "name": "Mont-Joli Airport (YYY)",
-        "roadKm": 150.8,
-        "driveMin": 141,
-        "straightKm": 118.2
+        "name": "Québec City Jean Lesage International Airport (YQB)",
+        "roadKm": 507.7,
+        "driveMin": 405,
+        "straightKm": 361.3
+      },
+      {
+        "name": "Halifax Stanfield International Airport (YHZ)",
+        "roadKm": 558.9,
+        "driveMin": 420,
+        "straightKm": 432.6
       }
     ]
   }

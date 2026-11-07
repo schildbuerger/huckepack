@@ -209,17 +209,25 @@
     "retrieved": "2026-10-28T21:21:02Z",
     "url": "https://download.geofabrik.de/"
   },
+  "osrm-access-dorfgastein.json": {
+    "key": "https://router.project-osrm.org/route/v1/driving/13.10322,47.23852;12.75081,47.07533?overview=false",
+    "retrieved": "2026-11-07T14:01:46+00:00",
+    "url": "https://router.project-osrm.org/route/v1/driving/13.10322,47.23852;12.75081,47.07533?overview=false"
+  },
   "osrm-access-klagenfurt-airport-klu.json": {
+    "key": "https://router.project-osrm.org/route/v1/driving/14.3286,46.64348;12.75081,47.07533?overview=false",
     "retrieved": "2026-10-29T22:52:33+00:00",
     "url": "https://router.project-osrm.org/route/v1/driving/14.3286,46.64348;12.75081,47.07533?overview=false"
   },
-  "osrm-access-lienz-station.json": {
-    "retrieved": "2026-10-29T22:52:33+00:00",
-    "url": "https://router.project-osrm.org/route/v1/driving/12.77127,46.82885;12.75081,47.07533?overview=false"
-  },
   "osrm-access-salzburg-airport-szg.json": {
+    "key": "https://router.project-osrm.org/route/v1/driving/13.00183,47.79346;12.75081,47.07533?overview=false",
     "retrieved": "2026-10-29T22:52:33+00:00",
     "url": "https://router.project-osrm.org/route/v1/driving/13.00183,47.79346;12.75081,47.07533?overview=false"
+  },
+  "osrm-access-salzburg-hauptbahnhof.json": {
+    "key": "https://router.project-osrm.org/route/v1/driving/13.04585,47.81306;12.75081,47.07533?overview=false",
+    "retrieved": "2026-11-07T14:01:47+00:00",
+    "url": "https://router.project-osrm.org/route/v1/driving/13.04585,47.81306;12.75081,47.07533?overview=false"
   },
   "stage-1-main.gpx": {
     "retrieved": "2026-10-29T21:19:38+00:00",

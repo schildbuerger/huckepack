@@ -83,16 +83,19 @@
     "url": "https://download.geofabrik.de/"
   },
   "osrm-access-connellsville-station.json": {
+    "key": "https://router.project-osrm.org/route/v1/driving/-79.59284,40.02021;-79.49006,39.87117?overview=false",
     "retrieved": "2026-11-06T22:14:05+00:00",
     "url": "https://router.project-osrm.org/route/v1/driving/-79.59284,40.02021;-79.49006,39.87117?overview=false"
   },
-  "osrm-access-johnstown-station.json": {
-    "retrieved": "2026-11-06T22:14:05+00:00",
-    "url": "https://router.project-osrm.org/route/v1/driving/-78.92197,40.32991;-79.49006,39.87117?overview=false"
-  },
   "osrm-access-pittsburgh-international-airport-pit.json": {
+    "key": "https://router.project-osrm.org/route/v1/driving/-80.23702,40.49178;-79.49006,39.87117?overview=false",
     "retrieved": "2026-11-06T22:14:05+00:00",
     "url": "https://router.project-osrm.org/route/v1/driving/-80.23702,40.49178;-79.49006,39.87117?overview=false"
+  },
+  "osrm-access-pittsburgh-union-station.json": {
+    "key": "https://router.project-osrm.org/route/v1/driving/-79.99164,40.44458;-79.49006,39.87117?overview=false",
+    "retrieved": "2026-11-07T14:03:01+00:00",
+    "url": "https://router.project-osrm.org/route/v1/driving/-79.99164,40.44458;-79.49006,39.87117?overview=false"
   },
   "wikimedia.json": {
     "retrieved": "2026-11-06T22:14:06+00:00",

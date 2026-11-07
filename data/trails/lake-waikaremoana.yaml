@@ -87,22 +87,19 @@ refillsUntreated:
   text: Water at the huts and campsites is from a tap and not treated; boil it before use.
   source: doc
 access:
-  # Wairoa the nearest town with buses, on the road to Onepoto; Gisborne and Napier the nearest
-  # airports. Coordinates from OSM; distances by pipeline/access.py
-  - kind: bus
-    name: Wairoa
-    lat: -39.03939
-    lon: 177.42714
-    source: osm
+  # hubs by the rules of 2026-11-07 (docs/scope.md: long-distance trains, the main station of a city
+  # of 100,000, airports with international flights), suggested by pipeline/hubs.py and reviewed.
+  # Hamilton (Frankton): Great Journeys NZ Northern Explorer (Auckland – Wellington), missing from
+  # OSM's route relations (operator's page). Coordinates from OSM; distances by pipeline/access.py
+  - kind: station
+    name: Hamilton (Frankton)
+    lat: -37.79092
+    lon: 175.26523
+    source: gjnz-northern-explorer
   - kind: airport
-    name: Gisborne Airport (GIS)
-    lat: -38.66391
-    lon: 177.97945
-    source: osm
-  - kind: airport
-    name: Hawke's Bay Airport (NPE)
-    lat: -39.46957
-    lon: 176.86789
+    name: Hamilton Airport (HLZ)
+    lat: -37.8648
+    lon: 175.332
     source: osm
 tags: [great-walk, te-urewera, ngai-tuhoe, lake, panekire-bluff]
 notes:
@@ -178,3 +175,8 @@ sources:
     url: https://project-osrm.org/
     licence: Route data © OpenStreetMap contributors (ODbL)
     retrieved: 2026-11-05
+  - id: gjnz-northern-explorer
+    title: "Great Journeys New Zealand (KiwiRail): the Northern Explorer, Auckland – Hamilton – Tongariro National Park – Wellington"
+    url: https://www.greatjourneysnz.com/routes/northern-explorer/
+    licence: All rights reserved (facts only)
+    retrieved: 2026-11-07

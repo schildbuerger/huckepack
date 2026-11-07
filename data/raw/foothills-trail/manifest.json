@@ -102,17 +102,25 @@
     "retrieved": "2026-11-05T21:23:02Z",
     "url": "https://download.geofabrik.de/"
   },
-  "osrm-access-asheville-regional-airport-avl.json": {
-    "retrieved": "2026-11-06T22:59:29+00:00",
-    "url": "https://router.project-osrm.org/route/v1/driving/-82.54088,35.43642;-82.7004,35.03205?overview=false"
+  "osrm-access-charlotte-douglas-international-airport-clt.json": {
+    "key": "https://router.project-osrm.org/route/v1/driving/-80.94634,35.21284;-82.7004,35.03205?overview=false",
+    "retrieved": "2026-11-07T14:02:35+00:00",
+    "url": "https://router.project-osrm.org/route/v1/driving/-80.94634,35.21284;-82.7004,35.03205?overview=false"
   },
-  "osrm-access-greenville-spartanburg-international-airport-gsp.json": {
-    "retrieved": "2026-11-06T22:59:28+00:00",
-    "url": "https://router.project-osrm.org/route/v1/driving/-82.21723,34.89545;-82.7004,35.03205?overview=false"
+  "osrm-access-charlotte.json": {
+    "key": "https://router.project-osrm.org/route/v1/driving/-80.82266,35.24123;-82.7004,35.03205?overview=false",
+    "retrieved": "2026-11-07T14:02:33+00:00",
+    "url": "https://router.project-osrm.org/route/v1/driving/-80.82266,35.24123;-82.7004,35.03205?overview=false"
   },
   "osrm-access-greenville-station-amtrak.json": {
+    "key": "https://router.project-osrm.org/route/v1/driving/-82.41379,34.85847;-82.7004,35.03205?overview=false",
     "retrieved": "2026-11-06T22:59:29+00:00",
     "url": "https://router.project-osrm.org/route/v1/driving/-82.41379,34.85847;-82.7004,35.03205?overview=false"
+  },
+  "osrm-access-hartsfield-jackson-atlanta-international-airport-atl.json": {
+    "key": "https://router.project-osrm.org/route/v1/driving/-84.42728,33.63739;-82.7004,35.03205?overview=false",
+    "retrieved": "2026-11-07T14:02:36+00:00",
+    "url": "https://router.project-osrm.org/route/v1/driving/-84.42728,33.63739;-82.7004,35.03205?overview=false"
   },
   "wikimedia.json": {
     "retrieved": "2026-11-06T22:59:29+00:00",

@@ -20196,8 +20196,14 @@
   },
   "access": {
     "source": "osrm",
-    "retrieved": "2026-11-03T07:03:27+00:00",
+    "retrieved": "2026-11-07T14:03:41+00:00",
     "hubs": [
+      {
+        "name": "Worms Hauptbahnhof",
+        "roadKm": 15.5,
+        "driveMin": 14,
+        "straightKm": 12.9
+      },
       {
         "name": "Mannheim Hauptbahnhof",
         "roadKm": 38.5,
@@ -20209,6 +20215,12 @@
         "roadKm": 75.0,
         "driveMin": 59,
         "straightKm": 53.4
+      },
+      {
+        "name": "Saarbrücken Airport (SCN)",
+        "roadKm": 103.6,
+        "driveMin": 69,
+        "straightKm": 89.0
       }
     ]
   },

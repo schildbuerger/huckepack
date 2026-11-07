@@ -5476,31 +5476,19 @@
   },
   "access": {
     "source": "osrm",
-    "retrieved": "2026-11-04T20:23:10+00:00",
+    "retrieved": "2026-11-07T14:02:53+00:00",
     "hubs": [
       {
-        "name": "Reith bei Seefeld",
-        "roadKm": 0.0,
-        "driveMin": 0,
-        "straightKm": 0.0
-      },
-      {
-        "name": "Scharnitz",
-        "roadKm": 13.0,
-        "driveMin": 13,
-        "straightKm": 11.2
+        "name": "Innsbruck Hauptbahnhof",
+        "roadKm": 20.5,
+        "driveMin": 19,
+        "straightKm": 15.7
       },
       {
         "name": "Innsbruck Airport (INN)",
         "roadKm": 18.9,
         "driveMin": 21,
         "straightKm": 11.6
-      },
-      {
-        "name": "Munich Airport (MUC)",
-        "roadKm": 171.2,
-        "driveMin": 129,
-        "straightKm": 124.8
       }
     ]
   }

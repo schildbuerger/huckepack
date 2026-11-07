@@ -94,7 +94,8 @@ permit:
   url: https://capenature.co.za/activities/the-whale-trail-de-hoop-nature-reserve
   source: capenature
 access:
-  # Cape Town's international airport, about three hours' drive away; no railway or bus to the reserve.
+  # hubs by the rules of 2026-11-07 (docs/scope.md: long-distance trains, the main station of a city
+  # of 100,000, airports with international flights), suggested by pipeline/hubs.py and reviewed.
   # Coordinates from OSM; distances by pipeline/access.py
   - kind: airport
     name: Cape Town International Airport (CPT)

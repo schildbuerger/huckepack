@@ -43,7 +43,13 @@
     "url": "https://download.geofabrik.de/"
   },
   "osrm-access-calgary-international-airport-yyc.json": {
+    "key": "https://router.project-osrm.org/route/v1/driving/-114.01354,51.12226;-116.14752,51.16999?overview=false",
     "retrieved": "2026-11-06T21:49:01+00:00",
     "url": "https://router.project-osrm.org/route/v1/driving/-114.01354,51.12226;-116.14752,51.16999?overview=false"
+  },
+  "osrm-access-jasper.json": {
+    "key": "https://router.project-osrm.org/route/v1/driving/-118.07962,52.87618;-116.14752,51.16999?overview=false",
+    "retrieved": "2026-11-07T14:03:49+00:00",
+    "url": "https://router.project-osrm.org/route/v1/driving/-118.07962,52.87618;-116.14752,51.16999?overview=false"
   }
 }

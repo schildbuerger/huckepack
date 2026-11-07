@@ -8094,19 +8094,31 @@
   },
   "access": {
     "source": "osrm",
-    "retrieved": "2026-10-30T11:56:11+00:00",
+    "retrieved": "2026-11-07T14:02:03+00:00",
     "hubs": [
       {
-        "name": "Baiersbronn station",
-        "roadKm": 0.2,
-        "driveMin": 1,
-        "straightKm": 0.1
+        "name": "Horb",
+        "roadKm": 30.9,
+        "driveMin": 35,
+        "straightKm": 24.4
+      },
+      {
+        "name": "Pforzheim Hauptbahnhof",
+        "roadKm": 63.9,
+        "driveMin": 66,
+        "straightKm": 49.6
       },
       {
         "name": "Karlsruhe/Baden-Baden Airport (FKB)",
         "roadKm": 61.5,
         "driveMin": 68,
         "straightKm": 36.9
+      },
+      {
+        "name": "Strasbourg Airport (SXB)",
+        "roadKm": 87.4,
+        "driveMin": 84,
+        "straightKm": 55.1
       }
     ]
   },

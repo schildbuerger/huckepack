@@ -74,11 +74,18 @@ sleeping:
   types: [hotel, guesthouse]
   source: osm
 access:
-  # Dunfermline City station at the end of the first section, and Edinburgh Airport. Coordinates from OSM; distances by pipeline/access.py
+  # hubs by the rules of 2026-11-07 (docs/scope.md: long-distance trains, the main station of a city
+  # of 100,000, airports with international flights), suggested by pipeline/hubs.py and reviewed.
+  # Coordinates from OSM; distances by pipeline/access.py
   - kind: station
-    name: Dunfermline City
-    lat: 56.06811
-    lon: -3.45236
+    name: Larbert
+    lat: 56.02214
+    lon: -3.82979
+    source: osm
+  - kind: station
+    name: Edinburgh Waverley
+    lat: 55.9519
+    lon: -3.19042
     source: osm
   - kind: airport
     name: Edinburgh Airport (EDI)

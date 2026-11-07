@@ -86,23 +86,23 @@ sleeping:
   types: [guesthouse, hostel, campsite, hotel]
   source: dw
 access:
-  # Tralee's railway station (trains from Dublin Heuston and Cork) and the airports the committee
-  # names: Kerry Airport near Tralee and Shannon. Coordinates from OSM; distances by
-  # pipeline/access.py
+  # hubs by the rules of 2026-11-07 (docs/scope.md: long-distance trains, the main station of a city
+  # of 100,000, airports with international flights), suggested by pipeline/hubs.py and reviewed.
+  # Coordinates from OSM; distances by pipeline/access.py
   - kind: station
     name: Tralee Casement
     lat: 52.27102
     lon: -9.69916
     source: osm
+  - kind: station
+    name: Limerick Colbert
+    lat: 52.65888
+    lon: -8.62468
+    source: osm
   - kind: airport
     name: Kerry Airport (KIR)
     lat: 52.18091
     lon: -9.52578
-    source: osm
-  - kind: airport
-    name: Shannon Airport (SNN)
-    lat: 52.69868
-    lon: -8.92155
     source: osm
 animals:
   # Ticks (HSE Health Protection Surveillance Centre). Level ours. No Irish official source found

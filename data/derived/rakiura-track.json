@@ -2118,13 +2118,21 @@
   },
   "access": {
     "source": "osrm",
-    "retrieved": "2026-11-05T12:07:07+00:00",
+    "retrieved": "2026-11-07T14:03:46+00:00",
     "hubs": [
       {
-        "name": "Invercargill Airport (IVC)",
-        "roadKm": 73.0,
-        "driveMin": 504,
-        "straightKm": 52.4
+        "name": "Queenstown Airport (ZQN)",
+        "to": "Bluff (ferry to Oban)",
+        "roadKm": 208.3,
+        "driveMin": 171,
+        "straightKm": 178.3
+      },
+      {
+        "name": "Dunedin Airport (DUD)",
+        "to": "Bluff (ferry to Oban)",
+        "roadKm": 208.2,
+        "driveMin": 175,
+        "straightKm": 160.6
       }
     ]
   },

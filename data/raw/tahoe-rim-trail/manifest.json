@@ -78,10 +78,17 @@
     "url": "https://download.geofabrik.de/"
   },
   "osrm-access-reno-tahoe-international-airport-rno.json": {
+    "key": "https://router.project-osrm.org/route/v1/driving/-119.76879,39.49828;-120.14714,39.16488?overview=false",
     "retrieved": "2026-11-06T20:37:32+00:00",
     "url": "https://router.project-osrm.org/route/v1/driving/-119.76879,39.49828;-120.14714,39.16488?overview=false"
   },
+  "osrm-access-reno.json": {
+    "key": "https://router.project-osrm.org/route/v1/driving/-119.8118,39.52868;-120.14714,39.16488?overview=false",
+    "retrieved": "2026-11-07T14:04:06+00:00",
+    "url": "https://router.project-osrm.org/route/v1/driving/-119.8118,39.52868;-120.14714,39.16488?overview=false"
+  },
   "osrm-access-truckee-station.json": {
+    "key": "https://router.project-osrm.org/route/v1/driving/-120.1856,39.32749;-120.14714,39.16488?overview=false",
     "retrieved": "2026-11-06T20:37:32+00:00",
     "url": "https://router.project-osrm.org/route/v1/driving/-120.1856,39.32749;-120.14714,39.16488?overview=false"
   },

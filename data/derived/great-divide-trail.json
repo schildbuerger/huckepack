@@ -16459,8 +16459,14 @@
   },
   "access": {
     "source": "osrm",
-    "retrieved": "2026-11-06T23:50:13+00:00",
+    "retrieved": "2026-11-07T14:02:41+00:00",
     "hubs": [
+      {
+        "name": "East Glacier Park",
+        "roadKm": 124.9,
+        "driveMin": 110,
+        "straightKm": 79.8
+      },
       {
         "name": "Calgary International Airport (YYC)",
         "roadKm": 278.6,

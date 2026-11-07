@@ -2945,13 +2945,19 @@
   },
   "access": {
     "source": "osrm",
-    "retrieved": "2026-10-27T22:27:50+00:00",
+    "retrieved": "2026-11-07T14:03:01+00:00",
     "hubs": [
       {
         "name": "BSÍ bus terminal, Reykjavík",
         "roadKm": 181.2,
         "driveMin": 176,
         "straightKm": 140.6
+      },
+      {
+        "name": "Reykjavík Airport (RKV)",
+        "roadKm": 183.4,
+        "driveMin": 179,
+        "straightKm": 141.0
       },
       {
         "name": "Keflavík International Airport (KEF)",

@@ -91,17 +91,23 @@ sleeping:
   types: [hotel, guesthouse, hostel, campsite]
   source: wvw-stay
 access:
-  # Hereford (mid-way) and Chepstow stations, and Cardiff Airport. Coordinates from OSM; distances
-  # by pipeline/access.py
+  # hubs by the rules of 2026-11-07 (docs/scope.md: long-distance trains, the main station of a city
+  # of 100,000, airports with international flights), suggested by pipeline/hubs.py and reviewed.
+  # Coordinates from OSM; distances by pipeline/access.py
   - kind: station
-    name: Hereford
-    lat: 52.0612
-    lon: -2.70812
+    name: Carmarthen
+    lat: 51.85331
+    lon: -4.30576
     source: osm
   - kind: station
-    name: Chepstow
-    lat: 51.63997
-    lon: -2.67108
+    name: Newport
+    lat: 51.58877
+    lon: -3.00042
+    source: osm
+  - kind: airport
+    name: Liverpool John Lennon Airport (LPL)
+    lat: 53.33577
+    lon: -2.85023
     source: osm
   - kind: airport
     name: Cardiff Airport (CWL)

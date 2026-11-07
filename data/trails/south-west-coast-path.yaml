@@ -156,12 +156,18 @@ wildCamping:
     landowner's permission.
   source: nt-info
 access:
-  # Taunton (the main line's station for Minehead, buses on to the start) and the airports of Bristol
-  # and Exeter. Coordinates from OSM; distances by pipeline/access.py
+  # hubs by the rules of 2026-11-07 (docs/scope.md: long-distance trains, the main station of a city
+  # of 100,000, airports with international flights), suggested by pipeline/hubs.py and reviewed.
+  # Coordinates from OSM; distances by pipeline/access.py
   - kind: station
-    name: Taunton
-    lat: 51.02329
-    lon: -3.10267
+    name: Weston-super-Mare
+    lat: 51.3445
+    lon: -2.97183
+    source: osm
+  - kind: station
+    name: Exeter Central
+    lat: 50.72691
+    lon: -3.53228
     source: osm
   - kind: airport
     name: Bristol Airport (BRS)

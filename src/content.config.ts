@@ -366,9 +366,12 @@ const trail = z
     // (issue #119; pipeline/along.py water_tiers()). `text`: the source's words, shown on the page
     refillsUntreated: z.object({ text: z.string(), source: sourceRef }).optional(),
 
-    // Travel hubs near the start: the nearest railway station (or, without railways, the main bus
-    // station the trail's buses leave from) and airport(s). pipeline/access.py
-    // derives their distance to the start by road.
+    // Travel hubs near the start (rules of 2026-11-07, docs/scope.md; suggested by pipeline/hubs.py,
+    // reviewed by hand): the nearest station served by long-distance trains and the main station of
+    // the nearest city of 100,000 (or, without railways, the main bus station the trail's buses
+    // leave from), the nearest airport(s) with year-round international flights, and a much nearer
+    // one with seasonal international flights only. pipeline/access.py derives their distance to
+    // the start by road.
     access: z
       .array(
         z.object({
@@ -377,6 +380,9 @@ const trail = z
           lat: z.number().min(-90).max(90),
           lon: z.number().min(-180).max(180),
           note: z.string().optional(),
+          // an airport whose international flights run only in a season (Wikipedia's route tables);
+          // the page says "seasonal international flights"
+          flights: z.literal("seasonal").optional(),
           // a start on an island (the Greenstone Ridge Trail on Isle Royale): the port the hub's
           // travellers sail from; the road distance runs to it and the page adds "then <by>"
           via: z

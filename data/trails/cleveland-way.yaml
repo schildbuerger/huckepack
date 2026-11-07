@@ -94,8 +94,14 @@ wildCamping:
     without the landowner's permission; tents on campsites.
   source: nymnp
 access:
-  # York, the main station of the region; Teesside International and Leeds Bradford airports. No
-  # railway reaches Helmsley. Coordinates from OSM; distances by pipeline/access.py
+  # hubs by the rules of 2026-11-07 (docs/scope.md: long-distance trains, the main station of a city
+  # of 100,000, airports with international flights), suggested by pipeline/hubs.py and reviewed.
+  # Coordinates from OSM; distances by pipeline/access.py
+  - kind: station
+    name: Thirsk
+    lat: 54.22865
+    lon: -1.37326
+    source: osm
   - kind: station
     name: York
     lat: 53.9577

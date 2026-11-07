@@ -52,17 +52,30 @@
     "retrieved": "2026-10-31T21:23:06Z",
     "url": "https://download.geofabrik.de/"
   },
-  "osrm-access-hessle.json": {
-    "retrieved": "2026-11-05T08:57:02+00:00",
-    "url": "https://router.project-osrm.org/route/v1/driving/-0.4421,53.71737;-0.43464,53.71731?overview=false"
+  "osrm-access-barnetby.json": {
+    "key": "https://router.project-osrm.org/route/v1/driving/-0.40976,53.57501;-0.43464,53.71731?overview=false",
+    "retrieved": "2026-11-07T14:04:35+00:00",
+    "url": "https://router.project-osrm.org/route/v1/driving/-0.40976,53.57501;-0.43464,53.71731?overview=false"
   },
   "osrm-access-humberside-airport-huy.json": {
+    "key": "https://router.project-osrm.org/route/v1/driving/-0.35346,53.5714;-0.43464,53.71731?overview=false",
     "retrieved": "2026-11-05T08:57:02+00:00",
     "url": "https://router.project-osrm.org/route/v1/driving/-0.35346,53.5714;-0.43464,53.71731?overview=false"
   },
   "osrm-access-leeds-bradford-airport-lba.json": {
+    "key": "https://router.project-osrm.org/route/v1/driving/-1.65678,53.86665;-0.43464,53.71731?overview=false",
     "retrieved": "2026-11-05T08:57:02+00:00",
     "url": "https://router.project-osrm.org/route/v1/driving/-1.65678,53.86665;-0.43464,53.71731?overview=false"
+  },
+  "osrm-access-teesside-international-airport-mme.json": {
+    "key": "https://router.project-osrm.org/route/v1/driving/-1.42747,54.50931;-0.43464,53.71731?overview=false",
+    "retrieved": "2026-11-07T14:04:37+00:00",
+    "url": "https://router.project-osrm.org/route/v1/driving/-1.42747,54.50931;-0.43464,53.71731?overview=false"
+  },
+  "osrm-access-york.json": {
+    "key": "https://router.project-osrm.org/route/v1/driving/-1.09373,53.9577;-0.43464,53.71731?overview=false",
+    "retrieved": "2026-11-07T14:04:36+00:00",
+    "url": "https://router.project-osrm.org/route/v1/driving/-1.09373,53.9577;-0.43464,53.71731?overview=false"
   },
   "stage-1-main.gpx": {
     "retrieved": "2026-11-05T08:48:59+00:00",

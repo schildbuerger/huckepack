@@ -93,12 +93,23 @@ wildCamping:
     camping is not permitted at Meretoto / Ship Cove.
   source: qct-camping
 access:
-  # Picton, where the water taxis leave for Ship Cove and the ferries from Wellington arrive; Picton
-  # station on the Coastal Pacific line. Coordinates from OSM; distances by pipeline/access.py
+  # hubs by the rules of 2026-11-07 (docs/scope.md: long-distance trains, the main station of a city
+  # of 100,000, airports with international flights), suggested by pipeline/hubs.py and reviewed.
+  # Picton: Great Journeys NZ Coastal Pacific (Christchurch – Picton), missing from OSM's route
+  # relations (operator's page); Picton: by road to Picton (water taxi to Ship Cove), then boat;
+  # Wellington Airport (WLG): by road to Wellington (Interislander to Picton), then ferry.
+  # Coordinates from OSM; distances by pipeline/access.py
   - kind: station
     name: Picton
     lat: -41.28837
     lon: 174.00486
+    via: { name: "Picton (water taxi to Ship Cove)", lat: -41.28902, lon: 174.00898, by: boat }
+    source: gjnz-coastal-pacific
+  - kind: airport
+    name: Wellington Airport (WLG)
+    lat: -41.3269
+    lon: 174.80827
+    via: { name: "Wellington (Interislander to Picton)", lat: -41.26424, lon: 174.78695, by: ferry }
     source: osm
 tags: [marlborough-sounds, coast, ridge, boat-access]
 notes:
@@ -200,3 +211,8 @@ sources:
     url: https://project-osrm.org/
     licence: Route data © OpenStreetMap contributors (ODbL)
     retrieved: 2026-11-06
+  - id: gjnz-coastal-pacific
+    title: "Great Journeys New Zealand (KiwiRail): the Coastal Pacific, Christchurch – Picton"
+    url: https://www.greatjourneysnz.com/routes/coastal-pacific/
+    licence: All rights reserved (facts only)
+    retrieved: 2026-11-07

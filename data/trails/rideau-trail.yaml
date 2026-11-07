@@ -116,19 +116,15 @@ wildCamping:
     fireplaces.
   source: rta-accommodations
 access:
-  # Kingston's VIA Rail station is on the trail (waypoint 01D, Map 1); Ottawa's VIA station and
-  # Ottawa Macdonald-Cartier International Airport near the end. Coordinates from OSM; distances by
-  # pipeline/access.py
+  # hubs by the rules of 2026-11-07 (docs/scope.md: long-distance trains, the main station of a city
+  # of 100,000, airports with international flights), suggested by pipeline/hubs.py and reviewed.
+  # Kingston station (VIA Rail): VIA Rail Corridor (Toronto – Ottawa/Montréal), missing from OSM's
+  # route relations (operator's page). Coordinates from OSM; distances by pipeline/access.py
   - kind: station
     name: Kingston station (VIA Rail)
     lat: 44.25723
     lon: -76.53679
-    source: osm
-  - kind: station
-    name: Ottawa station (VIA Rail)
-    lat: 45.41647
-    lon: -75.65173
-    source: osm
+    source: via-kingston
   - kind: airport
     name: Ottawa Macdonald-Cartier International Airport (YOW)
     lat: 45.32204
@@ -331,4 +327,9 @@ sources:
     title: "OSRM: road routes on OpenStreetMap data (router.project-osrm.org)"
     url: https://project-osrm.org/
     licence: Route data © OpenStreetMap contributors (ODbL)
+    retrieved: 2026-11-07
+  - id: via-kingston
+    title: "VIA Rail Canada: Kingston station (Corridor trains Toronto – Ottawa and Montréal)"
+    url: https://www.viarail.ca/en/explore-our-destinations/stations/ontario/kingston
+    licence: All rights reserved (facts only)
     retrieved: 2026-11-07

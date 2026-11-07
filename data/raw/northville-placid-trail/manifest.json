@@ -87,13 +87,25 @@
     "retrieved": "2026-11-05T21:23:02Z",
     "url": "https://download.geofabrik.de/"
   },
-  "osrm-access-albany-international-airport-alb.json": {
-    "retrieved": "2026-11-06T22:16:22+00:00",
-    "url": "https://router.project-osrm.org/route/v1/driving/-73.79862,42.74817;-74.17176,43.22561?overview=false"
+  "osrm-access-albany-rensselaer.json": {
+    "key": "https://router.project-osrm.org/route/v1/driving/-73.74129,42.64125;-74.17176,43.22561?overview=false",
+    "retrieved": "2026-11-07T14:03:18+00:00",
+    "url": "https://router.project-osrm.org/route/v1/driving/-73.74129,42.64125;-74.17176,43.22561?overview=false"
   },
   "osrm-access-amsterdam-station.json": {
+    "key": "https://router.project-osrm.org/route/v1/driving/-74.21956,42.95367;-74.17176,43.22561?overview=false",
     "retrieved": "2026-11-06T22:16:23+00:00",
     "url": "https://router.project-osrm.org/route/v1/driving/-74.21956,42.95367;-74.17176,43.22561?overview=false"
+  },
+  "osrm-access-bradley-international-airport-bdl.json": {
+    "key": "https://router.project-osrm.org/route/v1/driving/-72.68548,41.94044;-74.17176,43.22561?overview=false",
+    "retrieved": "2026-11-07T14:03:20+00:00",
+    "url": "https://router.project-osrm.org/route/v1/driving/-72.68548,41.94044;-74.17176,43.22561?overview=false"
+  },
+  "osrm-access-westchester-county-airport-hpn.json": {
+    "key": "https://router.project-osrm.org/route/v1/driving/-73.70772,41.0678;-74.17176,43.22561?overview=false",
+    "retrieved": "2026-11-07T14:03:20+00:00",
+    "url": "https://router.project-osrm.org/route/v1/driving/-73.70772,41.0678;-74.17176,43.22561?overview=false"
   },
   "wikimedia.json": {
     "retrieved": "2026-11-06T22:16:23+00:00",

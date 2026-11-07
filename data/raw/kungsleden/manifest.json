@@ -265,12 +265,19 @@
     "url": "https://download.geofabrik.de/"
   },
   "osrm-access-abisko-turiststation.json": {
+    "key": "https://router.project-osrm.org/route/v1/driving/18.78247,68.35738;18.78247,68.35738?overview=false",
     "retrieved": "2026-10-31T20:29:29+00:00",
     "url": "https://router.project-osrm.org/route/v1/driving/18.78247,68.35738;18.78247,68.35738?overview=false"
   },
   "osrm-access-kiruna-airport-krn.json": {
+    "key": "https://router.project-osrm.org/route/v1/driving/20.33308,67.82006;18.78247,68.35738?overview=false",
     "retrieved": "2026-10-31T20:29:29+00:00",
     "url": "https://router.project-osrm.org/route/v1/driving/20.33308,67.82006;18.78247,68.35738?overview=false"
+  },
+  "osrm-access-troms-airport-tos.json": {
+    "key": "https://router.project-osrm.org/route/v1/driving/18.91662,69.68199;18.78247,68.35738?overview=false",
+    "retrieved": "2026-11-07T14:02:56+00:00",
+    "url": "https://router.project-osrm.org/route/v1/driving/18.91662,69.68199;18.78247,68.35738?overview=false"
   },
   "wikimedia.json": {
     "retrieved": "2026-10-31T20:29:34+00:00",

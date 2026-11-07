@@ -37930,19 +37930,25 @@
   },
   "access": {
     "source": "osrm",
-    "retrieved": "2026-11-03T18:41:49+00:00",
+    "retrieved": "2026-11-07T14:01:53+00:00",
     "hubs": [
       {
-        "name": "Parma",
-        "roadKm": 63.0,
-        "driveMin": 52,
-        "straightKm": 42.7
+        "name": "La Spezia Centrale",
+        "roadKm": 65.7,
+        "driveMin": 50,
+        "straightKm": 46.5
       },
       {
-        "name": "Bologna Guglielmo Marconi Airport (BLQ)",
-        "roadKm": 154.7,
-        "driveMin": 106,
-        "straightKm": 103.0
+        "name": "Reggio Emilia AV Mediopadana",
+        "roadKm": 94.9,
+        "driveMin": 71,
+        "straightKm": 57.8
+      },
+      {
+        "name": "Parma Airport (PMF)",
+        "roadKm": 63.0,
+        "driveMin": 60,
+        "straightKm": 42.7
       }
     ]
   },

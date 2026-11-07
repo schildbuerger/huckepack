@@ -154,28 +154,28 @@ wildCamping:
     protected areas only at designated sites or with the park directorate's permit.
   source: forest-act
 access:
-  # Kőszeg station near the start (the climb to Írott-kő from Velem or Kőszeg), Sátoraljaújhely
-  # station near the finish; Vienna and Budapest the international airports. Coordinates from OSM;
-  # distances by pipeline/access.py
+  # hubs by the rules of 2026-11-07 (docs/scope.md: long-distance trains, the main station of a city
+  # of 100,000, airports with international flights), suggested by pipeline/hubs.py and reviewed.
+  # Coordinates from OSM; distances by pipeline/access.py
   - kind: station
-    name: Kőszeg
-    lat: 47.38174
-    lon: 16.55689
+    name: Wiener Neustadt Hauptbahnhof
+    lat: 47.81107
+    lon: 16.23365
     source: osm
   - kind: station
-    name: Sátoraljaújhely
-    lat: 48.38582
-    lon: 21.65758
+    name: Vienna Central Station
+    lat: 48.18499
+    lon: 16.37794
+    source: osm
+  - kind: airport
+    name: Graz Airport (GRZ)
+    lat: 46.98802
+    lon: 15.44
     source: osm
   - kind: airport
     name: Vienna International Airport (VIE)
     lat: 48.105
     lon: 16.5849
-    source: osm
-  - kind: airport
-    name: Budapest Ferenc Liszt International Airport (BUD)
-    lat: 47.43527
-    lon: 19.25351
     source: osm
 animals:
   # Ticks (the Hungarian government offices' public information, 2025). Level ours

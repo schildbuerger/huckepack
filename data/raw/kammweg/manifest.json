@@ -123,11 +123,18 @@
     "url": "https://download.geofabrik.de/"
   },
   "osrm-access-dresden-airport-drs.json": {
+    "key": "https://router.project-osrm.org/route/v1/driving/13.76948,51.1343;13.79383,50.75649?overview=false",
     "retrieved": "2026-11-06T05:28:49+00:00",
     "url": "https://router.project-osrm.org/route/v1/driving/13.76948,51.1343;13.79383,50.75649?overview=false"
   },
   "osrm-access-dresden-hauptbahnhof.json": {
+    "key": "https://router.project-osrm.org/route/v1/driving/13.73147,51.04039;13.79383,50.75649?overview=false",
     "retrieved": "2026-11-06T05:28:49+00:00",
     "url": "https://router.project-osrm.org/route/v1/driving/13.73147,51.04039;13.79383,50.75649?overview=false"
+  },
+  "osrm-access-st-nad-labem-hlavn-n-dra.json": {
+    "key": "https://router.project-osrm.org/route/v1/driving/14.04452,50.65943;13.79383,50.75649?overview=false",
+    "retrieved": "2026-11-07T14:02:53+00:00",
+    "url": "https://router.project-osrm.org/route/v1/driving/14.04452,50.65943;13.79383,50.75649?overview=false"
   }
 }

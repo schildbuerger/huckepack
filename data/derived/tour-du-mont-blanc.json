@@ -15362,13 +15362,19 @@
   },
   "access": {
     "source": "osrm",
-    "retrieved": "2026-10-31T17:46:48+00:00",
+    "retrieved": "2026-11-07T14:04:18+00:00",
     "hubs": [
       {
-        "name": "Saint-Gervais-les-Bains-Le Fayet",
-        "roadKm": 13.4,
-        "driveMin": 13,
-        "straightKm": 7.7
+        "name": "Martigny",
+        "roadKm": 51.7,
+        "driveMin": 57,
+        "straightKm": 32.2
+      },
+      {
+        "name": "Genève-Cornavin",
+        "roadKm": 76.2,
+        "driveMin": 59,
+        "straightKm": 61.8
       },
       {
         "name": "Geneva Airport (GVA)",

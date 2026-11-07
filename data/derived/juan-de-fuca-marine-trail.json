@@ -4330,8 +4330,15 @@
   },
   "access": {
     "source": "osrm",
-    "retrieved": "2026-11-06T20:31:17+00:00",
+    "retrieved": "2026-11-07T14:02:52+00:00",
     "hubs": [
+      {
+        "name": "Vancouver Pacific Central",
+        "to": "Tsawwassen (ferry to Swartz Bay)",
+        "roadKm": 35.2,
+        "driveMin": 42,
+        "straightKm": 29.7
+      },
       {
         "name": "Victoria International Airport (YYJ)",
         "roadKm": 92.1,

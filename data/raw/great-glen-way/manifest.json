@@ -57,10 +57,22 @@
     "url": "https://download.geofabrik.de/"
   },
   "osrm-access-fort-william.json": {
+    "key": "https://router.project-osrm.org/route/v1/driving/-5.10531,56.82056;-5.10774,56.82135?overview=false",
     "retrieved": "2026-11-03T16:10:06+00:00",
     "url": "https://router.project-osrm.org/route/v1/driving/-5.10531,56.82056;-5.10774,56.82135?overview=false"
   },
+  "osrm-access-glasgow-airport-gla.json": {
+    "key": "https://router.project-osrm.org/route/v1/driving/-4.43517,55.87058;-5.10774,56.82135?overview=false",
+    "retrieved": "2026-11-07T14:02:42+00:00",
+    "url": "https://router.project-osrm.org/route/v1/driving/-4.43517,55.87058;-5.10774,56.82135?overview=false"
+  },
+  "osrm-access-glasgow-queen-street.json": {
+    "key": "https://router.project-osrm.org/route/v1/driving/-4.25112,55.86256;-5.10774,56.82135?overview=false",
+    "retrieved": "2026-11-07T14:02:41+00:00",
+    "url": "https://router.project-osrm.org/route/v1/driving/-4.25112,55.86256;-5.10774,56.82135?overview=false"
+  },
   "osrm-access-inverness-airport-inv.json": {
+    "key": "https://router.project-osrm.org/route/v1/driving/-4.05058,57.54315;-5.10774,56.82135?overview=false",
     "retrieved": "2026-11-03T16:10:06+00:00",
     "url": "https://router.project-osrm.org/route/v1/driving/-4.05058,57.54315;-5.10774,56.82135?overview=false"
   },

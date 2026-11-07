@@ -136,22 +136,28 @@ wildCamping:
     terrain above the tree line is allowed.
   source: oegv-campen
 access:
-  # Innsbruck Hauptbahnhof, Tyrol's main station, and Innsbruck and Munich airports. Coordinates
-  # from OSM; distances by pipeline/access.py
+  # hubs by the rules of 2026-11-07 (docs/scope.md: long-distance trains, the main station of a city
+  # of 100,000, airports with international flights), suggested by pipeline/hubs.py and reviewed.
+  # Coordinates from OSM; distances by pipeline/access.py
   - kind: station
-    name: Innsbruck Hauptbahnhof
-    lat: 47.26319
-    lon: 11.40109
+    name: Kufstein
+    lat: 47.58297
+    lon: 12.16573
+    source: osm
+  - kind: station
+    name: Salzburg Hauptbahnhof
+    lat: 47.81306
+    lon: 13.04585
+    source: osm
+  - kind: airport
+    name: Salzburg Airport (SZG)
+    lat: 47.79346
+    lon: 13.00368
     source: osm
   - kind: airport
     name: Innsbruck Airport (INN)
     lat: 47.25973
     lon: 11.34187
-    source: osm
-  - kind: airport
-    name: Munich Airport (MUC)
-    lat: 48.35396
-    lon: 11.77859
     source: osm
 animals:
   # Cattle on the alpine pastures (the Austrian ministry's 10 rules) and ticks (AGES: TBE risk all over Austria). Levels ours

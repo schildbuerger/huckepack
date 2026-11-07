@@ -166,16 +166,24 @@
     "url": "https://download.geofabrik.de/"
   },
   "osrm-access-innsbruck-airport-inn.json": {
+    "key": "https://router.project-osrm.org/route/v1/driving/11.34187,47.25973;12.43079,47.51982?overview=false",
     "retrieved": "2026-11-03T18:03:40+00:00",
     "url": "https://router.project-osrm.org/route/v1/driving/11.34187,47.25973;12.43079,47.51982?overview=false"
   },
-  "osrm-access-innsbruck-hauptbahnhof.json": {
-    "retrieved": "2026-11-03T18:03:39+00:00",
-    "url": "https://router.project-osrm.org/route/v1/driving/11.40109,47.26319;12.43079,47.51982?overview=false"
+  "osrm-access-kufstein.json": {
+    "key": "https://router.project-osrm.org/route/v1/driving/12.16573,47.58297;12.43079,47.51982?overview=false",
+    "retrieved": "2026-11-07T14:01:41+00:00",
+    "url": "https://router.project-osrm.org/route/v1/driving/12.16573,47.58297;12.43079,47.51982?overview=false"
   },
-  "osrm-access-munich-airport-muc.json": {
-    "retrieved": "2026-11-03T18:03:40+00:00",
-    "url": "https://router.project-osrm.org/route/v1/driving/11.77859,48.35396;12.43079,47.51982?overview=false"
+  "osrm-access-salzburg-airport-szg.json": {
+    "key": "https://router.project-osrm.org/route/v1/driving/13.00368,47.79346;12.43079,47.51982?overview=false",
+    "retrieved": "2026-11-07T14:01:43+00:00",
+    "url": "https://router.project-osrm.org/route/v1/driving/13.00368,47.79346;12.43079,47.51982?overview=false"
+  },
+  "osrm-access-salzburg-hauptbahnhof.json": {
+    "key": "https://router.project-osrm.org/route/v1/driving/13.04585,47.81306;12.43079,47.51982?overview=false",
+    "retrieved": "2026-11-07T14:01:42+00:00",
+    "url": "https://router.project-osrm.org/route/v1/driving/13.04585,47.81306;12.43079,47.51982?overview=false"
   },
   "stage-1-main.gpx": {
     "retrieved": "2026-11-03T17:43:14+00:00",

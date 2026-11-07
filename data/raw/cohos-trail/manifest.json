@@ -42,13 +42,25 @@
     "retrieved": "2026-11-05T21:23:02Z",
     "url": "https://download.geofabrik.de/"
   },
-  "osrm-access-manchester-boston-regional-airport-mht.json": {
-    "retrieved": "2026-11-07T00:30:19+00:00",
-    "url": "https://router.project-osrm.org/route/v1/driving/-71.43881,42.93067;-71.35377,44.11873?overview=false"
+  "osrm-access-boston-south-station.json": {
+    "key": "https://router.project-osrm.org/route/v1/driving/-71.05553,42.35075;-71.35377,44.11873?overview=false",
+    "retrieved": "2026-11-07T14:02:17+00:00",
+    "url": "https://router.project-osrm.org/route/v1/driving/-71.05553,42.35075;-71.35377,44.11873?overview=false"
   },
-  "osrm-access-portland-international-jetport-pwm.json": {
-    "retrieved": "2026-11-07T00:30:19+00:00",
-    "url": "https://router.project-osrm.org/route/v1/driving/-70.31441,43.64618;-71.35377,44.11873?overview=false"
+  "osrm-access-logan-international-airport-bos.json": {
+    "key": "https://router.project-osrm.org/route/v1/driving/-71.00923,42.36314;-71.35377,44.11873?overview=false",
+    "retrieved": "2026-11-07T14:02:18+00:00",
+    "url": "https://router.project-osrm.org/route/v1/driving/-71.00923,42.36314;-71.35377,44.11873?overview=false"
+  },
+  "osrm-access-montpelier.json": {
+    "key": "https://router.project-osrm.org/route/v1/driving/-72.60636,44.25569;-71.35377,44.11873?overview=false",
+    "retrieved": "2026-11-07T14:02:16+00:00",
+    "url": "https://router.project-osrm.org/route/v1/driving/-72.60636,44.25569;-71.35377,44.11873?overview=false"
+  },
+  "osrm-access-montr-al-trudeau-international-airport-yul.json": {
+    "key": "https://router.project-osrm.org/route/v1/driving/-73.74648,45.46869;-71.35377,44.11873?overview=false",
+    "retrieved": "2026-11-07T14:02:19+00:00",
+    "url": "https://router.project-osrm.org/route/v1/driving/-73.74648,45.46869;-71.35377,44.11873?overview=false"
   },
   "wikimedia.json": {
     "retrieved": "2026-11-07T00:30:20+00:00",

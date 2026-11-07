@@ -248,10 +248,15 @@ def check(slug):
         msg = f"surface: {unknown:.0%} unknown, {surface['inferredShare']:.0%} inferred from the way type"
         (flags if unknown > UNKNOWN_SHARE else fine).append(msg)
 
+    # stations and bus stations over 300 km away; airports may be (the nearest with international
+    # flights, however far, 2026-11-07), so theirs are checked against the straight line instead
     hubs = (derived.get("access") or {}).get("hubs", [])
-    far = [f"{h['name']} ({h['roadKm']} km)" for h in hubs if h.get("roadKm", 0) > HUB_KM]
+    kinds = {h["name"]: h["kind"] for h in trail.get("access") or []}
+    far = [f"{h['name']} ({h['roadKm']} km)" for h in hubs
+           if (h.get("roadKm", 0) > HUB_KM if kinds.get(h["name"]) != "airport" else h.get("roadKm", 0) > 3 * h.get("straightKm", 0) + 50)]
     if hubs:
-        (flags if far else fine).append(f"travel hubs far from the start: {', '.join(far)} (coordinates right?)" if far else "travel hubs: all within 300 km of the start")
+        (flags if far else fine).append(f"travel hubs far from the start or a long way round: {', '.join(far)} (coordinates right?)" if far
+                                        else "travel hubs: stations within 300 km of the start, airports' roads not far round")
 
     for step, key in (("landcover", "landcover"), ("climate", "climate"), ("access", "access")):
         if not derived.get(key):

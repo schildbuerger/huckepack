@@ -61,12 +61,19 @@
     "url": "https://download.geofabrik.de/"
   },
   "osrm-access-eisenach-hauptbahnhof.json": {
+    "key": "https://router.project-osrm.org/route/v1/driving/10.33199,50.9769;10.22758,51.00793?overview=false",
     "retrieved": "2026-11-03T15:11:50+00:00",
     "url": "https://router.project-osrm.org/route/v1/driving/10.33199,50.9769;10.22758,51.00793?overview=false"
   },
-  "osrm-access-frankfurt-airport-fra.json": {
-    "retrieved": "2026-11-03T15:11:50+00:00",
-    "url": "https://router.project-osrm.org/route/v1/driving/8.5552,50.02441;10.22758,51.00793?overview=false"
+  "osrm-access-erfurt-hauptbahnhof.json": {
+    "key": "https://router.project-osrm.org/route/v1/driving/11.03808,50.97229;10.22758,51.00793?overview=false",
+    "retrieved": "2026-11-07T14:03:46+00:00",
+    "url": "https://router.project-osrm.org/route/v1/driving/11.03808,50.97229;10.22758,51.00793?overview=false"
+  },
+  "osrm-access-erfurt-weimar-airport-erf.json": {
+    "key": "https://router.project-osrm.org/route/v1/driving/10.95778,50.97921;10.22758,51.00793?overview=false",
+    "retrieved": "2026-11-07T14:03:47+00:00",
+    "url": "https://router.project-osrm.org/route/v1/driving/10.95778,50.97921;10.22758,51.00793?overview=false"
   },
   "stage-1-main.gpx": {
     "retrieved": "2026-11-03T14:58:03+00:00",

@@ -112,17 +112,20 @@
     "retrieved": "2026-10-31T21:23:06Z",
     "url": "https://download.geofabrik.de/"
   },
-  "osrm-access-donauw-rth.json": {
-    "retrieved": "2026-11-06T02:54:44+00:00",
-    "url": "https://router.project-osrm.org/route/v1/driving/10.77156,48.71409;10.78073,48.71804?overview=false"
+  "osrm-access-augsburg-hauptbahnhof.json": {
+    "key": "https://router.project-osrm.org/route/v1/driving/10.88569,48.36549;10.78073,48.71804?overview=false",
+    "retrieved": "2026-11-07T14:01:44+00:00",
+    "url": "https://router.project-osrm.org/route/v1/driving/10.88569,48.36549;10.78073,48.71804?overview=false"
   },
-  "osrm-access-stuttgart-airport-str.json": {
-    "retrieved": "2026-11-06T02:54:45+00:00",
-    "url": "https://router.project-osrm.org/route/v1/driving/9.20539,48.68842;10.78073,48.71804?overview=false"
+  "osrm-access-munich-airport-muc.json": {
+    "key": "https://router.project-osrm.org/route/v1/driving/11.78603,48.35372;10.78073,48.71804?overview=false",
+    "retrieved": "2026-11-07T14:01:46+00:00",
+    "url": "https://router.project-osrm.org/route/v1/driving/11.78603,48.35372;10.78073,48.71804?overview=false"
   },
-  "osrm-access-tuttlingen.json": {
-    "retrieved": "2026-11-06T02:54:45+00:00",
-    "url": "https://router.project-osrm.org/route/v1/driving/8.79913,47.98045;10.78073,48.71804?overview=false"
+  "osrm-access-nuremberg-airport-nue.json": {
+    "key": "https://router.project-osrm.org/route/v1/driving/11.07775,49.49821;10.78073,48.71804?overview=false",
+    "retrieved": "2026-11-07T14:01:45+00:00",
+    "url": "https://router.project-osrm.org/route/v1/driving/11.07775,49.49821;10.78073,48.71804?overview=false"
   },
   "wikimedia.json": {
     "retrieved": "2026-11-06T02:54:46+00:00",

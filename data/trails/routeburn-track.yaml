@@ -85,9 +85,10 @@ refillsUntreated:
   text: DOC's huts and campsites have tap water that is not treated; boil it before use.
   source: doc
 access:
-  # shuttles from Glenorchy and Queenstown to the Routeburn Shelter, and from The Divide to Te Anau;
-  # Queenstown the nearest international airport. Coordinates from OSM; distances by
-  # pipeline/access.py
+  # hubs by the rules of 2026-11-07 (docs/scope.md: long-distance trains, the main station of a city
+  # of 100,000, airports with international flights), suggested by pipeline/hubs.py and reviewed.
+  # Glenorchy: the main bus station (no long-distance trains within 300 km). Coordinates from OSM;
+  # distances by pipeline/access.py
   - kind: bus
     name: Glenorchy
     lat: -44.84975

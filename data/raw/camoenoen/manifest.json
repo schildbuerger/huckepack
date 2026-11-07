@@ -83,12 +83,24 @@
     "url": "https://download.geofabrik.de/"
   },
   "osrm-access-copenhagen-airport-cph.json": {
+    "key": "https://router.project-osrm.org/route/v1/driving/12.65098,55.60913;12.28906,54.98713?overview=false",
     "retrieved": "2026-11-06T01:58:46+00:00",
     "url": "https://router.project-osrm.org/route/v1/driving/12.65098,55.60913;12.28906,54.98713?overview=false"
   },
-  "osrm-access-vordingborg.json": {
-    "retrieved": "2026-11-06T01:58:46+00:00",
-    "url": "https://router.project-osrm.org/route/v1/driving/11.90025,55.0126;12.28906,54.98713?overview=false"
+  "osrm-access-copenhagen-central-station.json": {
+    "key": "https://router.project-osrm.org/route/v1/driving/12.56537,55.67245;12.28906,54.98713?overview=false",
+    "retrieved": "2026-11-07T14:02:07+00:00",
+    "url": "https://router.project-osrm.org/route/v1/driving/12.56537,55.67245;12.28906,54.98713?overview=false"
+  },
+  "osrm-access-malm-airport-mmx.json": {
+    "key": "https://router.project-osrm.org/route/v1/driving/13.37057,55.53622;12.28906,54.98713?overview=false",
+    "retrieved": "2026-11-07T14:02:08+00:00",
+    "url": "https://router.project-osrm.org/route/v1/driving/13.37057,55.53622;12.28906,54.98713?overview=false"
+  },
+  "osrm-access-ringsted.json": {
+    "key": "https://router.project-osrm.org/route/v1/driving/11.7861,55.43807;12.28906,54.98713?overview=false",
+    "retrieved": "2026-11-07T14:02:06+00:00",
+    "url": "https://router.project-osrm.org/route/v1/driving/11.7861,55.43807;12.28906,54.98713?overview=false"
   },
   "wikimedia.json": {
     "retrieved": "2026-11-06T01:58:47+00:00",

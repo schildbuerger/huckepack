@@ -93,17 +93,23 @@ wildCamping:
     Paradise Park; groups of at most 12.
   source: fs
 access:
-  # Portland International Airport and Portland Union Station (Amtrak). Coordinates from OSM;
-  # distances by pipeline/access.py
-  - kind: airport
-    name: Portland International Airport (PDX)
-    lat: 45.58713
-    lon: -122.59278
+  # hubs by the rules of 2026-11-07 (docs/scope.md: long-distance trains, the main station of a city
+  # of 100,000, airports with international flights), suggested by pipeline/hubs.py and reviewed.
+  # Coordinates from OSM; distances by pipeline/access.py
+  - kind: station
+    name: Bingen-White Salmon
+    lat: 45.71499
+    lon: -121.46867
     source: osm
   - kind: station
     name: Portland Union Station
     lat: 45.52897
     lon: -122.67701
+    source: osm
+  - kind: airport
+    name: Portland International Airport (PDX)
+    lat: 45.58713
+    lon: -122.59278
     source: osm
 animals:
   # the forest's "Respect Wildlife" page: "Be Bear Aware" and "Oregon is Cougar Country", linking the

@@ -24573,31 +24573,31 @@
   },
   "access": {
     "source": "osrm",
-    "retrieved": "2026-11-01T05:24:26+00:00",
+    "retrieved": "2026-11-07T14:03:23+00:00",
     "hubs": [
       {
-        "name": "Chepstow",
-        "roadKm": 3.9,
-        "driveMin": 10,
-        "straightKm": 2.0
+        "name": "Severn Tunnel Junction",
+        "roadKm": 15.7,
+        "driveMin": 28,
+        "straightKm": 10.8
       },
       {
-        "name": "Prestatyn",
-        "roadKm": 249.8,
-        "driveMin": 221,
-        "straightKm": 196.1
+        "name": "Newport",
+        "roadKm": 33.6,
+        "driveMin": 36,
+        "straightKm": 25.2
+      },
+      {
+        "name": "Bristol Airport (BRS)",
+        "roadKm": 49.6,
+        "driveMin": 52,
+        "straightKm": 28.5
       },
       {
         "name": "Cardiff Airport (CWL)",
         "roadKm": 76.3,
         "driveMin": 71,
         "straightKm": 55.2
-      },
-      {
-        "name": "Liverpool John Lennon Airport (LPL)",
-        "roadKm": 287.6,
-        "driveMin": 211,
-        "straightKm": 189.7
       }
     ]
   },

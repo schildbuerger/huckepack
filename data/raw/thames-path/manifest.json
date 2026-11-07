@@ -108,16 +108,14 @@
     "url": "https://download.geofabrik.de/"
   },
   "osrm-access-bristol-airport-brs.json": {
+    "key": "https://router.project-osrm.org/route/v1/driving/-2.71862,51.38297;-2.02951,51.69441?overview=false",
     "retrieved": "2026-11-05T09:58:18+00:00",
     "url": "https://router.project-osrm.org/route/v1/driving/-2.71862,51.38297;-2.02951,51.69441?overview=false"
   },
-  "osrm-access-kemble.json": {
-    "retrieved": "2026-11-05T09:58:17+00:00",
-    "url": "https://router.project-osrm.org/route/v1/driving/-2.02294,51.67704;-2.02951,51.69441?overview=false"
-  },
-  "osrm-access-london-heathrow-airport-lhr.json": {
-    "retrieved": "2026-11-05T09:58:18+00:00",
-    "url": "https://router.project-osrm.org/route/v1/driving/-0.45878,51.46774;-2.02951,51.69441?overview=false"
+  "osrm-access-swindon.json": {
+    "key": "https://router.project-osrm.org/route/v1/driving/-1.78528,51.5657;-2.02951,51.69441?overview=false",
+    "retrieved": "2026-11-07T14:04:07+00:00",
+    "url": "https://router.project-osrm.org/route/v1/driving/-1.78528,51.5657;-2.02951,51.69441?overview=false"
   },
   "stage-1-main.gpx": {
     "retrieved": "2026-11-05T09:40:50+00:00",

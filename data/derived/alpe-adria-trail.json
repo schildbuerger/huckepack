@@ -61893,25 +61893,31 @@
   },
   "access": {
     "source": "osrm",
-    "retrieved": "2026-10-29T22:52:33+00:00",
+    "retrieved": "2026-11-07T14:01:47+00:00",
     "hubs": [
       {
-        "name": "Lienz station",
-        "roadKm": 54.7,
-        "driveMin": 65,
-        "straightKm": 27.5
+        "name": "Dorfgastein",
+        "roadKm": 75.1,
+        "driveMin": 99,
+        "straightKm": 32.2
       },
       {
-        "name": "Klagenfurt Airport (KLU)",
-        "roadKm": 179.7,
-        "driveMin": 159,
-        "straightKm": 129.2
+        "name": "Salzburg Hauptbahnhof",
+        "roadKm": 147.4,
+        "driveMin": 153,
+        "straightKm": 85.0
       },
       {
         "name": "Salzburg Airport (SZG)",
         "roadKm": 141.9,
         "driveMin": 147,
         "straightKm": 82.1
+      },
+      {
+        "name": "Klagenfurt Airport (KLU)",
+        "roadKm": 179.7,
+        "driveMin": 159,
+        "straightKm": 129.2
       }
     ]
   },

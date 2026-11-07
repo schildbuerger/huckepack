@@ -8716,13 +8716,25 @@
   },
   "access": {
     "source": "osrm",
-    "retrieved": "2026-11-03T19:58:47+00:00",
+    "retrieved": "2026-11-07T14:02:25+00:00",
     "hubs": [
       {
-        "name": "Oviedo",
-        "roadKm": 139.8,
-        "driveMin": 157,
-        "straightKm": 76.6
+        "name": "Mieres del Camín",
+        "roadKm": 132.4,
+        "driveMin": 151,
+        "straightKm": 69.6
+      },
+      {
+        "name": "León",
+        "roadKm": 137.2,
+        "driveMin": 141,
+        "straightKm": 89.8
+      },
+      {
+        "name": "Santander Airport (SDR)",
+        "roadKm": 171.8,
+        "driveMin": 165,
+        "straightKm": 91.5
       },
       {
         "name": "Asturias Airport (OVD)",

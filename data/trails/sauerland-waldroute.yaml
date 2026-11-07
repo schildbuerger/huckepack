@@ -108,23 +108,18 @@ wildCamping:
     Himmelsnah (Brilon-Petersborn) and Buttenberg (Südroute).
   source: lfog-nrw
 access:
-  # Iserlohn station near the start (the site's "Iserlohner Wanderbahnhof"), Dortmund Airport near
-  # the start, Paderborn/Lippstadt Airport nearest the end in Marsberg. Coordinates from OSM;
-  # distances by pipeline/access.py
+  # hubs by the rules of 2026-11-07 (docs/scope.md: long-distance trains, the main station of a city
+  # of 100,000, airports with international flights), suggested by pipeline/hubs.py and reviewed.
+  # Coordinates from OSM; distances by pipeline/access.py
   - kind: station
-    name: Iserlohn station
-    lat: 51.37329
-    lon: 7.69136
+    name: Hagen Hbf
+    lat: 51.36314
+    lon: 7.46089
     source: osm
   - kind: airport
     name: Dortmund Airport (DTM)
     lat: 51.5164
     lon: 7.61277
-    source: osm
-  - kind: airport
-    name: Paderborn/Lippstadt Airport (PAD)
-    lat: 51.6146
-    lon: 8.61906
     source: osm
 animals:
   # Ticks: Lyme disease all over Germany (the federal health agency's advice). Level ours

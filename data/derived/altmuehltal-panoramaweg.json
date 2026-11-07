@@ -19833,19 +19833,25 @@
   },
   "access": {
     "source": "osrm",
-    "retrieved": "2026-11-06T03:09:17+00:00",
+    "retrieved": "2026-11-07T14:01:56+00:00",
     "hubs": [
       {
-        "name": "Treuchtlingen",
-        "roadKm": 23.8,
-        "driveMin": 28,
-        "straightKm": 21.1
+        "name": "Ansbach",
+        "roadKm": 27.8,
+        "driveMin": 27,
+        "straightKm": 24.1
       },
       {
-        "name": "Munich Airport (MUC)",
-        "roadKm": 156.4,
-        "driveMin": 112,
-        "straightKm": 113.1
+        "name": "Nürnberg Hauptbahnhof",
+        "roadKm": 56.5,
+        "driveMin": 50,
+        "straightKm": 43.8
+      },
+      {
+        "name": "Nuremberg Airport (NUE)",
+        "roadKm": 63.2,
+        "driveMin": 62,
+        "straightKm": 48.7
       }
     ]
   },

@@ -86,17 +86,19 @@ refillsUntreated:
   text: DOC's huts and campsites have tap water that is not treated; boil it before use.
   source: doc
 access:
-  # shuttles from Collingwood and Takaka to Brown Hut, from Karamea to Kōhaihai; Nelson the nearest
-  # airport. Coordinates from OSM; distances by pipeline/access.py
-  - kind: bus
-    name: Collingwood
-    lat: -40.67725
-    lon: 172.68266
-    source: osm
+  # hubs by the rules of 2026-11-07 (docs/scope.md: long-distance trains, the main station of a city
+  # of 100,000, airports with international flights), suggested by pipeline/hubs.py and reviewed.
+  # Picton: Great Journeys NZ Coastal Pacific (Christchurch – Picton), missing from OSM's route
+  # relations (operator's page). Coordinates from OSM; distances by pipeline/access.py
+  - kind: station
+    name: Picton
+    lat: -41.28837
+    lon: 174.00486
+    source: gjnz-coastal-pacific
   - kind: airport
-    name: Nelson Airport (NSN)
-    lat: -41.29685
-    lon: 173.2254
+    name: Christchurch Airport (CHC)
+    lat: -43.48497
+    lon: 172.53631
     source: osm
 tags: [great-walk, kahurangi, national-park, tussock-downs, nikau-palms]
 notes:
@@ -169,3 +171,8 @@ sources:
     url: https://project-osrm.org/
     licence: Route data © OpenStreetMap contributors (ODbL)
     retrieved: 2026-11-05
+  - id: gjnz-coastal-pacific
+    title: "Great Journeys New Zealand (KiwiRail): the Coastal Pacific, Christchurch – Picton"
+    url: https://www.greatjourneysnz.com/routes/coastal-pacific/
+    licence: All rights reserved (facts only)
+    retrieved: 2026-11-07

@@ -52,13 +52,20 @@
     "retrieved": "2026-10-31T21:23:06Z",
     "url": "https://download.geofabrik.de/"
   },
-  "osrm-access-greymouth.json": {
-    "retrieved": "2026-11-05T11:50:56+00:00",
-    "url": "https://router.project-osrm.org/route/v1/driving/171.20799,-42.44995;171.39819,-42.3375?overview=false"
+  "osrm-access-christchurch-airport-chc.json": {
+    "key": "https://router.project-osrm.org/route/v1/driving/172.53631,-43.48497;171.39819,-42.3375?overview=false",
+    "retrieved": "2026-11-07T14:03:37+00:00",
+    "url": "https://router.project-osrm.org/route/v1/driving/172.53631,-43.48497;171.39819,-42.3375?overview=false"
   },
-  "osrm-access-hokitika-airport-hkk.json": {
-    "retrieved": "2026-11-05T11:50:56+00:00",
-    "url": "https://router.project-osrm.org/route/v1/driving/170.98583,-42.71319;171.39819,-42.3375?overview=false"
+  "osrm-access-christchurch.json": {
+    "key": "https://router.project-osrm.org/route/v1/driving/172.60791,-43.53992;171.39819,-42.3375?overview=false",
+    "retrieved": "2026-11-07T14:03:36+00:00",
+    "url": "https://router.project-osrm.org/route/v1/driving/172.60791,-43.53992;171.39819,-42.3375?overview=false"
+  },
+  "osrm-access-greymouth.json": {
+    "key": "https://router.project-osrm.org/route/v1/driving/171.21459,-42.44829;171.39819,-42.3375?overview=false",
+    "retrieved": "2026-11-07T14:15:16+00:00",
+    "url": "https://router.project-osrm.org/route/v1/driving/171.21459,-42.44829;171.39819,-42.3375?overview=false"
   },
   "wikimedia.json": {
     "retrieved": "2026-11-05T11:50:57+00:00",

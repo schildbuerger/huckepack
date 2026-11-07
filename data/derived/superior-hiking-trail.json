@@ -25762,13 +25762,25 @@
   },
   "access": {
     "source": "osrm",
-    "retrieved": "2026-11-06T15:42:35+00:00",
+    "retrieved": "2026-11-07T14:04:05+00:00",
     "hubs": [
       {
-        "name": "Duluth International Airport (DLH)",
-        "roadKm": 38.4,
-        "driveMin": 71,
-        "straightKm": 26.9
+        "name": "Saint Cloud",
+        "roadKm": 203.1,
+        "driveMin": 188,
+        "straightKm": 184.0
+      },
+      {
+        "name": "Saint Paul Union Depot",
+        "roadKm": 214.1,
+        "driveMin": 191,
+        "straightKm": 194.6
+      },
+      {
+        "name": "Minneapolis–Saint Paul International Airport (MSP)",
+        "roadKm": 229.5,
+        "driveMin": 209,
+        "straightKm": 205.3
       }
     ]
   },

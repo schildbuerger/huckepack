@@ -102,12 +102,18 @@ wildCamping:
     on private land.
   source: tmb
 access:
-  # trains from Paris and Geneva to Saint-Gervais-les-Bains-Le Fayet, the Mont-Blanc Express on to
-  # Les Houches; Geneva Airport. Coordinates from OSM; distances by pipeline/access.py
+  # hubs by the rules of 2026-11-07 (docs/scope.md: long-distance trains, the main station of a city
+  # of 100,000, airports with international flights), suggested by pipeline/hubs.py and reviewed.
+  # Coordinates from OSM; distances by pipeline/access.py
   - kind: station
-    name: Saint-Gervais-les-Bains-Le Fayet
-    lat: 45.90657
-    lon: 6.70146
+    name: Martigny
+    lat: 46.1058
+    lon: 7.07913
+    source: osm
+  - kind: station
+    name: Genève-Cornavin
+    lat: 46.21023
+    lon: 6.14262
     source: osm
   - kind: airport
     name: Geneva Airport (GVA)

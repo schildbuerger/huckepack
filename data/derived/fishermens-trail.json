@@ -22208,13 +22208,19 @@
   },
   "access": {
     "source": "osrm",
-    "retrieved": "2026-11-03T21:36:42+00:00",
+    "retrieved": "2026-11-07T14:02:32+00:00",
     "hubs": [
       {
-        "name": "Lisbon Sete Rios",
-        "roadKm": 161.4,
-        "driveMin": 117,
-        "straightKm": 95.8
+        "name": "Ermidas-Sado",
+        "roadKm": 47.3,
+        "driveMin": 43,
+        "straightKm": 35.4
+      },
+      {
+        "name": "Lisboa - Oriente",
+        "roadKm": 158.9,
+        "driveMin": 115,
+        "straightKm": 96.8
       },
       {
         "name": "Lisbon Airport (LIS)",

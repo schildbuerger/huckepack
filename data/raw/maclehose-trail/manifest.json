@@ -69,12 +69,19 @@
     "url": "https://download.geofabrik.de/"
   },
   "osrm-access-hong-kong-international-airport-hkg.json": {
+    "key": "https://router.project-osrm.org/route/v1/driving/113.91134,22.31255;114.3239,22.40002?overview=false",
     "retrieved": "2026-10-31T16:18:48+00:00",
     "url": "https://router.project-osrm.org/route/v1/driving/113.91134,22.31255;114.3239,22.40002?overview=false"
   },
-  "osrm-access-sai-kung-bus-terminus.json": {
-    "retrieved": "2026-10-31T16:18:48+00:00",
-    "url": "https://router.project-osrm.org/route/v1/driving/114.27386,22.38221;114.3239,22.40002?overview=false"
+  "osrm-access-hong-kong-west-kowloon.json": {
+    "key": "https://router.project-osrm.org/route/v1/driving/114.16493,22.30368;114.3239,22.40002?overview=false",
+    "retrieved": "2026-11-07T14:03:08+00:00",
+    "url": "https://router.project-osrm.org/route/v1/driving/114.16493,22.30368;114.3239,22.40002?overview=false"
+  },
+  "osrm-access-shenzhen-bao-an-international-airport-szx.json": {
+    "key": "https://router.project-osrm.org/route/v1/driving/113.80003,22.64049;114.3239,22.40002?overview=false",
+    "retrieved": "2026-11-07T14:03:09+00:00",
+    "url": "https://router.project-osrm.org/route/v1/driving/113.80003,22.64049;114.3239,22.40002?overview=false"
   },
   "stage-1-main.gpx": {
     "retrieved": "2026-10-31T16:09:57+00:00",

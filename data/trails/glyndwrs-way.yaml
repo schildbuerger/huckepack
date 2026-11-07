@@ -87,12 +87,13 @@ wildCamping:
     landowner's permission, or use the campsites along the trail.
   source: nt-info
 access:
-  # Knighton station (Heart of Wales Line) by the start; Birmingham and Cardiff the nearest
-  # airports. Coordinates from OSM; distances by pipeline/access.py
+  # hubs by the rules of 2026-11-07 (docs/scope.md: long-distance trains, the main station of a city
+  # of 100,000, airports with international flights), suggested by pipeline/hubs.py and reviewed.
+  # Coordinates from OSM; distances by pipeline/access.py
   - kind: station
-    name: Knighton
-    lat: 52.34502
-    lon: -3.04234
+    name: Wolverhampton
+    lat: 52.58799
+    lon: -2.12024
     source: osm
   - kind: airport
     name: Birmingham Airport (BHX)

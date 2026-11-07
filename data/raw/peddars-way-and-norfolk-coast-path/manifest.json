@@ -97,21 +97,20 @@
     "retrieved": "2026-11-03T21:24:23Z",
     "url": "https://download.geofabrik.de/"
   },
-  "osrm-access-great-yarmouth.json": {
-    "retrieved": "2026-11-05T16:56:12+00:00",
-    "url": "https://router.project-osrm.org/route/v1/driving/1.72069,52.61192;0.85484,52.39054?overview=false"
+  "osrm-access-diss.json": {
+    "key": "https://router.project-osrm.org/route/v1/driving/1.12354,52.37362;0.85484,52.39054?overview=false",
+    "retrieved": "2026-11-07T14:03:37+00:00",
+    "url": "https://router.project-osrm.org/route/v1/driving/1.12354,52.37362;0.85484,52.39054?overview=false"
   },
   "osrm-access-norwich-airport-nwi.json": {
+    "key": "https://router.project-osrm.org/route/v1/driving/1.28189,52.67518;0.85484,52.39054?overview=false",
     "retrieved": "2026-11-05T16:56:12+00:00",
     "url": "https://router.project-osrm.org/route/v1/driving/1.28189,52.67518;0.85484,52.39054?overview=false"
   },
   "osrm-access-norwich.json": {
+    "key": "https://router.project-osrm.org/route/v1/driving/1.30769,52.62631;0.85484,52.39054?overview=false",
     "retrieved": "2026-11-05T16:56:12+00:00",
     "url": "https://router.project-osrm.org/route/v1/driving/1.30769,52.62631;0.85484,52.39054?overview=false"
-  },
-  "osrm-access-thetford.json": {
-    "retrieved": "2026-11-05T16:56:12+00:00",
-    "url": "https://router.project-osrm.org/route/v1/driving/0.74528,52.41916;0.85484,52.39054?overview=false"
   },
   "stage-1-main.gpx": {
     "retrieved": "2026-11-05T16:47:09+00:00",

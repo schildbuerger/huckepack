@@ -16251,25 +16251,19 @@
   },
   "access": {
     "source": "osrm",
-    "retrieved": "2026-10-31T08:20:52+00:00",
+    "retrieved": "2026-11-07T14:03:51+00:00",
     "hubs": [
       {
-        "name": "Iserlohn station",
-        "roadKm": 0.8,
-        "driveMin": 2,
-        "straightKm": 0.4
+        "name": "Hagen Hbf",
+        "roadKm": 18.8,
+        "driveMin": 18,
+        "straightKm": 15.8
       },
       {
         "name": "Dortmund Airport (DTM)",
         "roadKm": 41.3,
         "driveMin": 31,
         "straightKm": 17.0
-      },
-      {
-        "name": "Paderborn/Lippstadt Airport (PAD)",
-        "roadKm": 89.6,
-        "driveMin": 81,
-        "straightKm": 70.0
       }
     ]
   },

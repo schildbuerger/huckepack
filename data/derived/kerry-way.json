@@ -15715,13 +15715,19 @@
   },
   "access": {
     "source": "osrm",
-    "retrieved": "2026-11-03T14:58:49+00:00",
+    "retrieved": "2026-11-07T14:02:54+00:00",
     "hubs": [
       {
         "name": "Killarney",
         "roadKm": 1.7,
         "driveMin": 3,
         "straightKm": 1.4
+      },
+      {
+        "name": "Cork Kent",
+        "roadKm": 90.5,
+        "driveMin": 76,
+        "straightKm": 73.6
       },
       {
         "name": "Kerry Airport (KIR)",

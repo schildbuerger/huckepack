@@ -108,8 +108,11 @@ permit:
   url: https://www.argentina.gob.ar/parquesnacionales/patagonia-austral/parque-nacional-los-glaciares/actividades
   source: apn-actividades
 access:
-  # El Chaltén's bus terminal (the buses from El Calafate) and El Calafate's international airport.
-  # Coordinates from OSM; distances by pipeline/access.py
+  # hubs by the rules of 2026-11-07 (docs/scope.md: long-distance trains, the main station of a city
+  # of 100,000, airports with international flights), suggested by pipeline/hubs.py and reviewed. El
+  # Chaltén bus terminal: the main bus station (no long-distance trains within 300 km); El Calafate
+  # Airport (FTE): international flights in season only (Wikipedia's route table). Coordinates from
+  # OSM; distances by pipeline/access.py
   - kind: bus
     name: El Chaltén bus terminal
     lat: -49.3336
@@ -119,6 +122,12 @@ access:
     name: El Calafate Airport (FTE)
     lat: -50.28084
     lon: -72.05131
+    flights: seasonal
+    source: osm
+  - kind: airport
+    name: Piloto Civil Norberto Fernández International Airport (RGL)
+    lat: -51.6078
+    lon: -69.30914
     source: osm
 animals:
   # the APN's trail leaflet for the park's north zone ("Native fauna of special value": the puma);

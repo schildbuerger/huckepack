@@ -3942,15 +3942,8 @@
   },
   "access": {
     "source": "osrm",
-    "retrieved": "2026-11-07T06:05:05+00:00",
+    "retrieved": "2026-11-07T14:14:34+00:00",
     "hubs": [
-      {
-        "name": "Houghton County Memorial Airport (CMX)",
-        "to": "Houghton (Ranger III)",
-        "roadKm": 15.8,
-        "driveMin": 32,
-        "straightKm": 7.7
-      },
       {
         "name": "Thunder Bay International Airport (YQT)",
         "to": "Grand Portage (Voyageur II, Sea Hunter III)",
@@ -3959,11 +3952,11 @@
         "straightKm": 51.8
       },
       {
-        "name": "Duluth International Airport (DLH)",
+        "name": "Minneapolis–Saint Paul International Airport (MSP)",
         "to": "Grand Portage (Voyageur II, Sea Hunter III)",
-        "roadKm": 249.1,
-        "driveMin": 217,
-        "straightKm": 228.7
+        "roadKm": 494.4,
+        "driveMin": 383,
+        "straightKm": 438.5
       }
     ]
   },

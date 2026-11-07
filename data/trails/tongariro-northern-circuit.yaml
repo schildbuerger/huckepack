@@ -83,13 +83,26 @@ refillsUntreated:
   text: DOC's huts have tap water that is not treated; boil it before use.
   source: doc
 access:
-  # "Bus and train services stop in Waimarino (National Park Village), 15 km from Whakapapa Village";
-  # the nearest international airports (Auckland, Wellington) lie over 300 km away. Coordinates from
-  # OSM; distances by pipeline/access.py
+  # hubs by the rules of 2026-11-07 (docs/scope.md: long-distance trains, the main station of a city
+  # of 100,000, airports with international flights), suggested by pipeline/hubs.py and reviewed.
+  # National Park (Waimarino): Great Journeys NZ Northern Explorer (Auckland – Wellington), missing
+  # from OSM's route relations (operator's page); Hamilton (Frankton): Great Journeys NZ Northern
+  # Explorer (Auckland – Wellington), missing from OSM's route relations (operator's page).
+  # Coordinates from OSM; distances by pipeline/access.py
   - kind: station
     name: National Park (Waimarino)
     lat: -39.17583
     lon: 175.39321
+    source: gjnz-northern-explorer
+  - kind: station
+    name: Hamilton (Frankton)
+    lat: -37.79092
+    lon: 175.26523
+    source: gjnz-northern-explorer
+  - kind: airport
+    name: Hamilton Airport (HLZ)
+    lat: -37.8648
+    lon: 175.332
     source: osm
 tags: [great-walk, volcanoes, national-park, world-heritage, alpine]
 notes:
@@ -177,3 +190,8 @@ sources:
     url: https://project-osrm.org/
     licence: Route data © OpenStreetMap contributors (ODbL)
     retrieved: 2026-11-06
+  - id: gjnz-northern-explorer
+    title: "Great Journeys New Zealand (KiwiRail): the Northern Explorer, Auckland – Hamilton – Tongariro National Park – Wellington"
+    url: https://www.greatjourneysnz.com/routes/northern-explorer/
+    licence: All rights reserved (facts only)
+    retrieved: 2026-11-07

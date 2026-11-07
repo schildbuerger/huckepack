@@ -19667,13 +19667,13 @@
   },
   "access": {
     "source": "osrm",
-    "retrieved": "2026-11-07T00:37:21+00:00",
+    "retrieved": "2026-11-07T14:03:16+00:00",
     "hubs": [
       {
-        "name": "Guilford station (Amtrak, Shore Line East)",
-        "roadKm": 1.8,
-        "driveMin": 5,
-        "straightKm": 0.9
+        "name": "New Haven State Street",
+        "roadKm": 25.3,
+        "driveMin": 25,
+        "straightKm": 21.3
       },
       {
         "name": "Bradley International Airport (BDL)",
@@ -19682,16 +19682,10 @@
         "straightKm": 74.9
       },
       {
-        "name": "Rhode Island T. F. Green International Airport (PVD)",
-        "roadKm": 134.9,
-        "driveMin": 109,
-        "straightKm": 115.2
-      },
-      {
-        "name": "Boston Logan International Airport (BOS)",
-        "roadKm": 234.1,
-        "driveMin": 178,
-        "straightKm": 183.7
+        "name": "Westchester County Airport (HPN)",
+        "roadKm": 110.0,
+        "driveMin": 101,
+        "straightKm": 89.5
       }
     ]
   },

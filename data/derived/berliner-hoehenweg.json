@@ -5984,25 +5984,25 @@
   },
   "access": {
     "source": "osrm",
-    "retrieved": "2026-11-04T20:01:06+00:00",
+    "retrieved": "2026-11-07T14:15:16+00:00",
     "hubs": [
       {
-        "name": "Mayrhofen",
-        "roadKm": 8.6,
-        "driveMin": 15,
-        "straightKm": 3.3
+        "name": "Jenbach",
+        "roadKm": 37.0,
+        "driveMin": 38,
+        "straightKm": 26.3
+      },
+      {
+        "name": "Innsbruck Hauptbahnhof",
+        "roadKm": 71.7,
+        "driveMin": 65,
+        "straightKm": 34.2
       },
       {
         "name": "Innsbruck Airport (INN)",
-        "roadKm": 82.8,
-        "driveMin": 83,
+        "roadKm": 78.1,
+        "driveMin": 73,
         "straightKm": 38.3
-      },
-      {
-        "name": "Munich Airport (MUC)",
-        "roadKm": 206.3,
-        "driveMin": 151,
-        "straightKm": 133.5
       }
     ]
   },

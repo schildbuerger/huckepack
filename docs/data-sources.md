@@ -60,6 +60,22 @@ Wikimedia Commons by Wikidata and category, and by location where the category l
 | Unsplash, Pexels, Pixabay | Stock photos | Their own licences (free use) | API keys; Unsplash requires hotlinking and a download call per pick; Pixabay forbids permanent hotlinking and asks to cache 24 hours; Pexels asks for a link back | Not suitable: keyword-tagged, so nothing proves a photo shows the trail |
 | Tourism boards' press photos | Official photos | Usually editorial use only, time-limited | By request | Only where a photo carries an explicit open licence |
 
+## Travel hubs
+
+Which hubs a trail lists (the rules of 2026-11-07, docs/scope.md) rests on these, shared by every
+trail and named here once rather than in each record: they decide which hubs are chosen, while the
+figures on the page (the hub's place, road distance and time) come from the record's `osm` and
+`osrm` sources. `pipeline/hubs.py` reads them (cached in `~/.cache/huckepack/hubs/`, not the repo).
+
+| Source | What | Licence | Notes |
+|---|---|---|---|
+| English Wikipedia, each airport's "Airlines and destinations" table | Which airlines fly where, with "Seasonal:", "Charter:" and "begins" marks: whether an airport has year-round or only seasonal scheduled international passenger flights | CC BY-SA 4.0; "Wikipedia: <airport>, Airlines and destinations", retrieved 2026-11-07 for every airport in the records | In use: fetched again when older than 30 days; a destination is international when its Wikidata country differs from the airport's; charters and routes that only begin later don't count; cargo tables skipped. The page's "seasonal international flights" label comes from it |
+| Wikidata | The country (P17, ISO code P297) of each destination airport | CC0 | In use, with the route tables |
+| OurAirports | Airports with scheduled service, IATA codes, links to their Wikipedia articles | Public domain | In use: the candidate airports; their coordinates in the record still come from OSM |
+| OpenStreetMap, train route relations | `route=train` relations tagged `service=long_distance`, `high_speed` or `night`, with their stops: a station on at least two is a long-distance station | ODbL | In use (Overpass API). Misses some services; `EXTRA_STATIONS` in pipeline/hubs.py adds them with the operator's page (JR West's Kuroshio, KiwiRail's Great Journeys, VIA Rail's Corridor, the MTR's high-speed line), cited as the hub's source in the record |
+| GeoNames cities15000 | Towns of 15,000 or more with their population: whether a station lies in a city of 100,000 | CC BY 4.0 (GeoNames) | In use |
+| OSRM demo server (router.project-osrm.org) | Road distance and time from each candidate to the start, to pick the nearest by road | OSM data, ODbL | In use: at most one request a second; the record's `osrm` source covers the distances shown |
+
 ## Methods
 
 | Method | What | Notes |

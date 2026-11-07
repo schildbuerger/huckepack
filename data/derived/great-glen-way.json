@@ -11651,7 +11651,7 @@
   },
   "access": {
     "source": "osrm",
-    "retrieved": "2026-11-03T16:10:06+00:00",
+    "retrieved": "2026-11-07T14:02:42+00:00",
     "hubs": [
       {
         "name": "Fort William",
@@ -11660,10 +11660,22 @@
         "straightKm": 0.2
       },
       {
+        "name": "Glasgow Queen Street",
+        "roadKm": 172.7,
+        "driveMin": 147,
+        "straightKm": 119.0
+      },
+      {
         "name": "Inverness Airport (INV)",
         "roadKm": 121.9,
         "driveMin": 113,
         "straightKm": 102.5
+      },
+      {
+        "name": "Glasgow Airport (GLA)",
+        "roadKm": 158.3,
+        "driveMin": 137,
+        "straightKm": 113.6
       }
     ]
   },

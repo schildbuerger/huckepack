@@ -110,23 +110,28 @@ wildCamping:
     established fire rings at designated campsites.
   source: ftc-faq
 access:
-  # the conservancy: "The closest airport is Greenville – Spartanburg (GSP)… Another close option
-  # is the Asheville Regional Airport (AVL)"; Greenville's Amtrak station (the Crescent).
+  # hubs by the rules of 2026-11-07 (docs/scope.md: long-distance trains, the main station of a city
+  # of 100,000, airports with international flights), suggested by pipeline/hubs.py and reviewed.
   # Coordinates from OSM; distances by pipeline/access.py
-  - kind: airport
-    name: Greenville-Spartanburg International Airport (GSP)
-    lat: 34.89545
-    lon: -82.21723
-    source: osm
-  - kind: airport
-    name: Asheville Regional Airport (AVL)
-    lat: 35.43642
-    lon: -82.54088
-    source: osm
   - kind: station
     name: Greenville station (Amtrak)
     lat: 34.85847
     lon: -82.41379
+    source: osm
+  - kind: station
+    name: Charlotte
+    lat: 35.24123
+    lon: -80.82266
+    source: osm
+  - kind: airport
+    name: Charlotte Douglas International Airport (CLT)
+    lat: 35.21284
+    lon: -80.94634
+    source: osm
+  - kind: airport
+    name: Hartsfield–Jackson Atlanta International Airport (ATL)
+    lat: 33.63739
+    lon: -84.42728
     source: osm
 animals:
   # the conservancy's FAQ ("Are bear canisters required on the trail?") and Safety page

@@ -88,12 +88,19 @@
     "url": "https://download.geofabrik.de/"
   },
   "osrm-access-exeter-airport-ext.json": {
+    "key": "https://router.project-osrm.org/route/v1/driving/-3.41277,50.73492;-3.91777,50.39184?overview=false",
     "retrieved": "2026-11-06T01:07:28+00:00",
     "url": "https://router.project-osrm.org/route/v1/driving/-3.41277,50.73492;-3.91777,50.39184?overview=false"
   },
-  "osrm-access-ivybridge.json": {
-    "retrieved": "2026-11-06T01:07:28+00:00",
-    "url": "https://router.project-osrm.org/route/v1/driving/-3.90518,50.39351;-3.91777,50.39184?overview=false"
+  "osrm-access-exeter-st-davids.json": {
+    "key": "https://router.project-osrm.org/route/v1/driving/-3.54357,50.72922;-3.91777,50.39184?overview=false",
+    "retrieved": "2026-11-07T14:04:18+00:00",
+    "url": "https://router.project-osrm.org/route/v1/driving/-3.54357,50.72922;-3.91777,50.39184?overview=false"
+  },
+  "osrm-access-newquay-airport-nqy.json": {
+    "key": "https://router.project-osrm.org/route/v1/driving/-4.99763,50.44152;-3.91777,50.39184?overview=false",
+    "retrieved": "2026-11-07T14:04:19+00:00",
+    "url": "https://router.project-osrm.org/route/v1/driving/-4.99763,50.44152;-3.91777,50.39184?overview=false"
   },
   "wikimedia.json": {
     "retrieved": "2026-11-06T01:07:29+00:00",

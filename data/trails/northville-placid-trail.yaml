@@ -113,17 +113,28 @@ wildCamping:
     must be shared.
   source: dec-camping
 access:
-  # Albany International Airport; Amsterdam station (Amtrak), about 30 km from Northville.
+  # hubs by the rules of 2026-11-07 (docs/scope.md: long-distance trains, the main station of a city
+  # of 100,000, airports with international flights), suggested by pipeline/hubs.py and reviewed.
   # Coordinates from OSM; distances by pipeline/access.py
-  - kind: airport
-    name: Albany International Airport (ALB)
-    lat: 42.74817
-    lon: -73.79862
-    source: osm
   - kind: station
     name: Amsterdam station
     lat: 42.95367
     lon: -74.21956
+    source: osm
+  - kind: station
+    name: Albany-Rensselaer
+    lat: 42.64125
+    lon: -73.74129
+    source: osm
+  - kind: airport
+    name: Bradley International Airport (BDL)
+    lat: 41.94044
+    lon: -72.68548
+    source: osm
+  - kind: airport
+    name: Westchester County Airport (HPN)
+    lat: 41.0678
+    lon: -73.70772
     source: osm
 animals:
   # DEC's Adirondack Backcountry page (seasonal notices). Level ours

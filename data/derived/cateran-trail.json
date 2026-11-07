@@ -7276,13 +7276,13 @@
   },
   "access": {
     "source": "osrm",
-    "retrieved": "2026-11-05T18:22:10+00:00",
+    "retrieved": "2026-11-07T14:02:12+00:00",
     "hubs": [
       {
-        "name": "Perth",
-        "roadKm": 25.9,
-        "driveMin": 27,
-        "straightKm": 22.9
+        "name": "Dunkeld and Birnam",
+        "roadKm": 20.5,
+        "driveMin": 21,
+        "straightKm": 15.0
       },
       {
         "name": "Dundee",
@@ -7295,6 +7295,12 @@
         "roadKm": 98.6,
         "driveMin": 79,
         "straightKm": 71.2
+      },
+      {
+        "name": "Aberdeen Airport (ABZ)",
+        "roadKm": 122.8,
+        "driveMin": 92,
+        "straightKm": 97.1
       }
     ]
   },

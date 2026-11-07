@@ -114,17 +114,23 @@ wildCamping:
     stored in a bear-resistant canister on the whole trail.
   source: trta-backpacking
 access:
-  # Reno–Tahoe International Airport; Truckee station (Amtrak's California Zephyr), with transit
-  # (TART) to the Tahoe City trailhead. Coordinates from OSM; distances by pipeline/access.py
-  - kind: airport
-    name: Reno–Tahoe International Airport (RNO)
-    lat: 39.49828
-    lon: -119.76879
-    source: osm
+  # hubs by the rules of 2026-11-07 (docs/scope.md: long-distance trains, the main station of a city
+  # of 100,000, airports with international flights), suggested by pipeline/hubs.py and reviewed.
+  # Coordinates from OSM; distances by pipeline/access.py
   - kind: station
     name: Truckee station
     lat: 39.32749
     lon: -120.1856
+    source: osm
+  - kind: station
+    name: Reno
+    lat: 39.52868
+    lon: -119.8118
+    source: osm
+  - kind: airport
+    name: Reno–Tahoe International Airport (RNO)
+    lat: 39.49828
+    lon: -119.76879
     source: osm
 animals:
   # the Tahoe agencies' joint release (California Department of Fish and Wildlife, California and

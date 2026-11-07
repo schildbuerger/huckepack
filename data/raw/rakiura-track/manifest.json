@@ -47,9 +47,15 @@
     "retrieved": "2026-10-31T21:23:06Z",
     "url": "https://download.geofabrik.de/"
   },
-  "osrm-access-invercargill-airport-ivc.json": {
-    "retrieved": "2026-11-05T12:07:07+00:00",
-    "url": "https://router.project-osrm.org/route/v1/driving/168.31782,-46.41532;168.12549,-46.86792?overview=false"
+  "osrm-access-dunedin-airport-dud.json": {
+    "key": "https://router.project-osrm.org/route/v1/driving/170.19675,-45.9279;168.3457,-46.5984?overview=false",
+    "retrieved": "2026-11-07T14:03:46+00:00",
+    "url": "https://router.project-osrm.org/route/v1/driving/170.19675,-45.9279;168.3457,-46.5984?overview=false"
+  },
+  "osrm-access-queenstown-airport-zqn.json": {
+    "key": "https://router.project-osrm.org/route/v1/driving/168.74661,-45.01942;168.3457,-46.5984?overview=false",
+    "retrieved": "2026-11-07T14:03:45+00:00",
+    "url": "https://router.project-osrm.org/route/v1/driving/168.74661,-45.01942;168.3457,-46.5984?overview=false"
   },
   "wikimedia.json": {
     "retrieved": "2026-11-05T12:07:08+00:00",

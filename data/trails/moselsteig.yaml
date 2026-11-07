@@ -110,12 +110,18 @@ wildCamping:
     trail; campsites lie along the river.
   source: lwaldg-rp
 access:
-  # Perl station near the start; Luxembourg airport. Coordinates from OSM; distances by
-  # pipeline/access.py
+  # hubs by the rules of 2026-11-07 (docs/scope.md: long-distance trains, the main station of a city
+  # of 100,000, airports with international flights), suggested by pipeline/hubs.py and reviewed.
+  # Coordinates from OSM; distances by pipeline/access.py
   - kind: station
-    name: Perl station
-    lat: 49.47294
-    lon: 6.36934
+    name: Sandweiler-Contern
+    lat: 49.59909
+    lon: 6.21175
+    source: osm
+  - kind: station
+    name: Trier Hbf
+    lat: 49.75697
+    lon: 6.652
     source: osm
   - kind: airport
     name: Luxembourg Airport (LUX)

@@ -60,17 +60,20 @@
     "retrieved": "2026-11-01T21:21:36Z",
     "url": "https://download.geofabrik.de/"
   },
+  "osrm-access-bad-schandau.json": {
+    "key": "https://router.project-osrm.org/route/v1/driving/14.13893,50.91892;13.95902,50.99664?overview=false",
+    "retrieved": "2026-11-07T14:03:09+00:00",
+    "url": "https://router.project-osrm.org/route/v1/driving/14.13893,50.91892;13.95902,50.99664?overview=false"
+  },
   "osrm-access-dresden-airport-drs.json": {
+    "key": "https://router.project-osrm.org/route/v1/driving/13.76929,51.13429;13.95902,50.99664?overview=false",
     "retrieved": "2026-11-03T15:26:55+00:00",
     "url": "https://router.project-osrm.org/route/v1/driving/13.76929,51.13429;13.95902,50.99664?overview=false"
   },
   "osrm-access-dresden-hauptbahnhof.json": {
+    "key": "https://router.project-osrm.org/route/v1/driving/13.73208,51.04025;13.95902,50.99664?overview=false",
     "retrieved": "2026-11-03T15:26:54+00:00",
     "url": "https://router.project-osrm.org/route/v1/driving/13.73208,51.04025;13.95902,50.99664?overview=false"
-  },
-  "osrm-access-prague-airport-prg.json": {
-    "retrieved": "2026-11-03T15:26:55+00:00",
-    "url": "https://router.project-osrm.org/route/v1/driving/14.25608,50.10257;13.95902,50.99664?overview=false"
   },
   "stage-1-main.gpx": {
     "retrieved": "2026-11-03T15:08:04+00:00",

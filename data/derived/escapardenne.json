@@ -14107,13 +14107,19 @@
   },
   "access": {
     "source": "osrm",
-    "retrieved": "2026-11-06T02:26:51+00:00",
+    "retrieved": "2026-11-07T14:02:26+00:00",
     "hubs": [
       {
-        "name": "Ettelbruck",
-        "roadKm": 0.0,
-        "driveMin": 0,
-        "straightKm": 0.0
+        "name": "Sandweiler-Contern",
+        "roadKm": 36.0,
+        "driveMin": 30,
+        "straightKm": 28.7
+      },
+      {
+        "name": "Trier Hbf",
+        "roadKm": 69.7,
+        "driveMin": 52,
+        "straightKm": 40.4
       },
       {
         "name": "Luxembourg Airport (LUX)",

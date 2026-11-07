@@ -10461,13 +10461,19 @@
   },
   "access": {
     "source": "osrm",
-    "retrieved": "2026-11-05T08:57:02+00:00",
+    "retrieved": "2026-11-07T14:04:37+00:00",
     "hubs": [
       {
-        "name": "Hessle",
-        "roadKm": 2.8,
-        "driveMin": 3,
-        "straightKm": 0.5
+        "name": "Barnetby",
+        "roadKm": 20.6,
+        "driveMin": 18,
+        "straightKm": 15.9
+      },
+      {
+        "name": "York",
+        "roadKm": 67.9,
+        "driveMin": 59,
+        "straightKm": 50.8
       },
       {
         "name": "Humberside Airport (HUY)",
@@ -10480,6 +10486,12 @@
         "roadKm": 102.6,
         "driveMin": 84,
         "straightKm": 82.0
+      },
+      {
+        "name": "Teesside International Airport (MME)",
+        "roadKm": 136.5,
+        "driveMin": 118,
+        "straightKm": 109.3
       }
     ]
   },

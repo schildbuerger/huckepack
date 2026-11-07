@@ -111,12 +111,27 @@ fees:
   - { name: "Ferry, Nitinaht Narrows", amount: 28, currency: CAD, per: per person, year: 2026, source: parks-canada-fees }
   - { name: "National park entry", amount: 12.25, currency: CAD, per: per adult and day, year: 2026, note: "free under 18", source: parks-canada-fees }
 access:
-  # Victoria's international airport; no railway on Vancouver Island, the trail buses leave from
-  # Victoria and Nanaimo. Coordinates from OSM; distances by pipeline/access.py
+  # hubs by the rules of 2026-11-07 (docs/scope.md: long-distance trains, the main station of a city
+  # of 100,000, airports with international flights), suggested by pipeline/hubs.py and reviewed.
+  # Vancouver Pacific Central: by road to Tsawwassen (ferry to Swartz Bay), then ferry; Vancouver
+  # International Airport (YVR): by road to Tsawwassen (ferry to Swartz Bay), then ferry.
+  # Coordinates from OSM; distances by pipeline/access.py
+  - kind: station
+    name: Vancouver Pacific Central
+    lat: 49.27375
+    lon: -123.09786
+    via: { name: "Tsawwassen (ferry to Swartz Bay)", lat: 49.00789, lon: -123.1295, by: ferry }
+    source: osm
   - kind: airport
     name: Victoria International Airport (YYJ)
     lat: 48.6463
     lon: -123.421
+    source: osm
+  - kind: airport
+    name: Vancouver International Airport (YVR)
+    lat: 49.19258
+    lon: -123.17945
+    via: { name: "Tsawwassen (ferry to Swartz Bay)", lat: 49.00789, lon: -123.1295, by: ferry }
     source: osm
 animals:
   # Parks Canada: "Black bears, wolves and cougars use the beaches and trails. All wild animals are

@@ -92,13 +92,20 @@
     "retrieved": "2026-11-01T21:21:36Z",
     "url": "https://download.geofabrik.de/"
   },
+  "osrm-access-chinley.json": {
+    "key": "https://router.project-osrm.org/route/v1/driving/-1.94452,53.34012;-1.81683,53.37045?overview=false",
+    "retrieved": "2026-11-07T14:03:38+00:00",
+    "url": "https://router.project-osrm.org/route/v1/driving/-1.94452,53.34012;-1.81683,53.37045?overview=false"
+  },
   "osrm-access-manchester-airport-man.json": {
+    "key": "https://router.project-osrm.org/route/v1/driving/-2.28037,53.35034;-1.81683,53.37045?overview=false",
     "retrieved": "2026-11-03T16:53:32+00:00",
     "url": "https://router.project-osrm.org/route/v1/driving/-2.28037,53.35034;-1.81683,53.37045?overview=false"
   },
-  "osrm-access-manchester-piccadilly.json": {
-    "retrieved": "2026-11-03T16:53:32+00:00",
-    "url": "https://router.project-osrm.org/route/v1/driving/-2.23083,53.47742;-1.81683,53.37045?overview=false"
+  "osrm-access-sheffield.json": {
+    "key": "https://router.project-osrm.org/route/v1/driving/-1.46214,53.37837;-1.81683,53.37045?overview=false",
+    "retrieved": "2026-11-07T14:03:39+00:00",
+    "url": "https://router.project-osrm.org/route/v1/driving/-1.46214,53.37837;-1.81683,53.37045?overview=false"
   },
   "stage-1-main.gpx": {
     "retrieved": "2026-11-03T15:35:29+00:00",

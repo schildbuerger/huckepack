@@ -112,22 +112,28 @@ wildCamping:
     huts and fixed bivouacs for the night; sleep in the huts along the route.
   source: ampezzo-park
 access:
-  # Toblach-Dobbiaco station (buses to Lago di Braies), Belluno station at the end, and Venice Marco
-  # Polo Airport. Coordinates from OSM; distances by pipeline/access.py
+  # hubs by the rules of 2026-11-07 (docs/scope.md: long-distance trains, the main station of a city
+  # of 100,000, airports with international flights), suggested by pipeline/hubs.py and reviewed.
+  # Coordinates from OSM; distances by pipeline/access.py
   - kind: station
-    name: Toblach-Dobbiaco
-    lat: 46.7248
-    lon: 12.22546
+    name: Franzensfeste - Fortezza
+    lat: 46.7888
+    lon: 11.61002
     source: osm
   - kind: station
-    name: Belluno
-    lat: 46.14145
-    lon: 12.20988
+    name: Bolzano - Bozen
+    lat: 46.49643
+    lon: 11.3588
     source: osm
   - kind: airport
-    name: Venice Marco Polo Airport (VCE)
-    lat: 45.49706
-    lon: 12.33896
+    name: Bolzano Airport (BZO)
+    lat: 46.45841
+    lon: 11.32634
+    source: osm
+  - kind: airport
+    name: Innsbruck Airport (INN)
+    lat: 47.25977
+    lon: 11.34658
     source: osm
 animals:
   # Grazing cattle on the alpine pastures (the Province of Bolzano's sheet with the farmers' union).

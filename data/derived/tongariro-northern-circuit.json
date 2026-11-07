@@ -2833,13 +2833,25 @@
   },
   "access": {
     "source": "osrm",
-    "retrieved": "2026-11-06T00:18:24+00:00",
+    "retrieved": "2026-11-07T14:04:16+00:00",
     "hubs": [
       {
         "name": "National Park (Waimarino)",
         "roadKm": 20.1,
         "driveMin": 23,
         "straightKm": 16.6
+      },
+      {
+        "name": "Hamilton (Frankton)",
+        "roadKm": 219.3,
+        "driveMin": 185,
+        "straightKm": 153.1
+      },
+      {
+        "name": "Hamilton Airport (HLZ)",
+        "roadKm": 209.2,
+        "driveMin": 177,
+        "straightKm": 144.0
       }
     ]
   },

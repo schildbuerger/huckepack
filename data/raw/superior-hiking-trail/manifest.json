@@ -42,9 +42,20 @@
     "retrieved": "2026-11-05T21:23:02Z",
     "url": "https://download.geofabrik.de/"
   },
-  "osrm-access-duluth-international-airport-dlh.json": {
-    "retrieved": "2026-11-06T15:42:35+00:00",
-    "url": "https://router.project-osrm.org/route/v1/driving/-92.20298,46.84189;-92.29246,46.60761?overview=false"
+  "osrm-access-minneapolis-saint-paul-international-airport-msp.json": {
+    "key": "https://router.project-osrm.org/route/v1/driving/-93.21878,44.878;-92.29246,46.60761?overview=false",
+    "retrieved": "2026-11-07T14:04:05+00:00",
+    "url": "https://router.project-osrm.org/route/v1/driving/-93.21878,44.878;-92.29246,46.60761?overview=false"
+  },
+  "osrm-access-saint-cloud.json": {
+    "key": "https://router.project-osrm.org/route/v1/driving/-94.14882,45.56797;-92.29246,46.60761?overview=false",
+    "retrieved": "2026-11-07T14:04:03+00:00",
+    "url": "https://router.project-osrm.org/route/v1/driving/-94.14882,45.56797;-92.29246,46.60761?overview=false"
+  },
+  "osrm-access-saint-paul-union-depot.json": {
+    "key": "https://router.project-osrm.org/route/v1/driving/-93.08471,44.94668;-92.29246,46.60761?overview=false",
+    "retrieved": "2026-11-07T14:04:04+00:00",
+    "url": "https://router.project-osrm.org/route/v1/driving/-93.08471,44.94668;-92.29246,46.60761?overview=false"
   },
   "wikimedia.json": {
     "retrieved": "2026-11-06T15:42:35+00:00",

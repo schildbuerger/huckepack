@@ -611,6 +611,45 @@
   messages 12 months after the matter is settled (to be confirmed by the
   user) and names the mail provider, Proton Mail (Proton AG, Switzerland,
   processor under Art. 28 GDPR; Swiss adequacy decision, Art. 45).
+- **Travel hubs by rule** (the user's decisions of 2026-11-07, after a study of
+  every trail's hubs under four airport and two station definitions): hubs
+  were chosen by hand until then, with domestic airports, small local
+  stations and one wrong code (the Sentier international des Appalaches'
+  "Bathurst Regional Airport (YZT)": YZT is Port Hardy, Bathurst is ZBF, and
+  domestic). Now, for the start only (no end hubs):
+  - Airports: the nearest by road with year-round scheduled international
+    passenger flights (English Wikipedia's "Airlines and destinations"
+    tables, destinations' countries from Wikidata, charters and routes that
+    only begin later left out), however far, with its road distance (no
+    cap), plus a second one within 1.25 × + 20 km of the first; where one
+    with seasonal international flights only is much nearer (the year-round
+    one beyond 1.25 × + 20 km of it), that one too, labelled "seasonal
+    international flights". Domestic-only airports are dropped. Cross-border
+    airports count. Corsica keeps its two seasonal airports (Calvi, Bastia)
+    and lists no year-round one.
+  - Stations: the nearest served by long-distance trains (on at least two
+    OSM long-distance, high-speed or night train relations) and, when it
+    isn't in a city of 100,000 (GeoNames), the main station of the nearest
+    such city, each within 300 km by road (our cap: stations further away
+    help no one); hand overrides where OSM's tagging misses a service, each
+    with the operator's page. The hand-picked main bus station stays where
+    there is no long-distance railway within reach (and on Menorca and
+    Tasmania, islands without railways). Small local stations that aren't
+    hubs are replaced.
+  - Islands: a mainland hub runs by road to the island's ferry port (`via`,
+    "then ferry"), hubs on the island straight to the start.
+  - The page lists trains and buses first, then airports.
+  `pipeline/hubs.py` suggests the hubs by these rules; each record's hubs
+  were reviewed by hand. The sources behind the choice are named once in
+  docs/data-sources.md ("Travel hubs"). On 2026-11-07, over the 131 trails: 202 airports
+  (105 kept, 97 new, 76 dropped; the nearest airport changed on 48 trails, 3
+  had none), 15 labelled seasonal, 16 trails whose nearest year-round airport
+  is over 300 km by road (up to 877 km, MSP for the Pukaskwa); 180 stations
+  (48 kept, 132 new, 65 dropped; the nearest changed on 60 trails, 19 gain
+  one), 13 bus stations kept and 6 replaced by a station; 18 trails without
+  a station. Known gap: OSM tags few French TGV relations, so French trails
+  get the nearest tagged station (Corsica: Marseille Saint-Charles by the
+  ferry port).
 
 ## What a trail page could show
 

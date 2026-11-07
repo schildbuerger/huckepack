@@ -8236,8 +8236,14 @@
   },
   "access": {
     "source": "osrm",
-    "retrieved": "2026-10-27T17:48:18+00:00",
+    "retrieved": "2026-11-07T14:02:36+00:00",
     "hubs": [
+      {
+        "name": "Bad Schandau",
+        "roadKm": 9.5,
+        "driveMin": 35,
+        "straightKm": 8.3
+      },
       {
         "name": "Dresden Hauptbahnhof",
         "roadKm": 51.6,
@@ -8249,12 +8255,6 @@
         "roadKm": 78.9,
         "driveMin": 107,
         "straightKm": 43.4
-      },
-      {
-        "name": "Prague Airport (PRG)",
-        "roadKm": 149.7,
-        "driveMin": 162,
-        "straightKm": 86.0
       }
     ]
   },

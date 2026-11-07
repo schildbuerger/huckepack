@@ -253,11 +253,23 @@
     "retrieved": "2026-11-04T21:21:03Z",
     "url": "https://download.geofabrik.de/"
   },
-  "osrm-access-tucson-international-airport-tus.json": {
-    "retrieved": "2026-11-06T23:34:03+00:00",
-    "url": "https://router.project-osrm.org/route/v1/driving/-110.93721,32.12023;-110.28276,31.33367?overview=false"
+  "osrm-access-benson.json": {
+    "key": "https://router.project-osrm.org/route/v1/driving/-110.29706,31.9688;-110.28276,31.33367?overview=false",
+    "retrieved": "2026-11-07T14:01:56+00:00",
+    "url": "https://router.project-osrm.org/route/v1/driving/-110.29706,31.9688;-110.28276,31.33367?overview=false"
+  },
+  "osrm-access-hermosillo-international-airport-hmo.json": {
+    "key": "https://router.project-osrm.org/route/v1/driving/-111.05634,29.09222;-110.28276,31.33367?overview=false",
+    "retrieved": "2026-11-07T14:01:59+00:00",
+    "url": "https://router.project-osrm.org/route/v1/driving/-111.05634,29.09222;-110.28276,31.33367?overview=false"
+  },
+  "osrm-access-phoenix-sky-harbor-international-airport-phx.json": {
+    "key": "https://router.project-osrm.org/route/v1/driving/-112.00704,33.43277;-110.28276,31.33367?overview=false",
+    "retrieved": "2026-11-07T14:01:57+00:00",
+    "url": "https://router.project-osrm.org/route/v1/driving/-112.00704,33.43277;-110.28276,31.33367?overview=false"
   },
   "osrm-access-tucson-station-amtrak.json": {
+    "key": "https://router.project-osrm.org/route/v1/driving/-110.96671,32.22312;-110.28276,31.33367?overview=false",
     "retrieved": "2026-11-06T23:34:03+00:00",
     "url": "https://router.project-osrm.org/route/v1/driving/-110.96671,32.22312;-110.28276,31.33367?overview=false"
   },

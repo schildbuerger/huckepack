@@ -104,12 +104,18 @@ wildCamping:
     100 feet from the trail. Overnight users should register with the DNR Law Dispatch.
   source: dnr-rules
 access:
-  # Louisville's airport for the south end (no passenger railway near the trail), Indianapolis's
-  # for the north. Coordinates from OSM (Nominatim); distances by pipeline/access.py
+  # hubs by the rules of 2026-11-07 (docs/scope.md: long-distance trains, the main station of a city
+  # of 100,000, airports with international flights), suggested by pipeline/hubs.py and reviewed.
+  # Coordinates from OSM; distances by pipeline/access.py
+  - kind: station
+    name: Indianapolis Union Station
+    lat: 39.7623
+    lon: -86.15963
+    source: osm
   - kind: airport
-    name: Louisville Muhammad Ali International Airport (SDF)
-    lat: 38.17170
-    lon: -85.73541
+    name: Cincinnati/Northern Kentucky International Airport (CVG)
+    lat: 39.04989
+    lon: -84.67108
     source: osm
   - kind: airport
     name: Indianapolis International Airport (IND)
