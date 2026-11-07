@@ -55,6 +55,38 @@ GAP_M = 100  # a jump between relation ways the matcher would have to bridge (MA
 CHAINED_MIN = 0.95  # less of the relation's length in one line: OSM is in pieces there
 
 
+def _text(page):
+    """The page's visible words, roughly: scripts, styles and tags dropped."""
+    page = re.sub(r"<(script|style|noscript)\b.*?</\1>", " ", page, flags=re.S | re.I)
+    return re.sub(r"\s+", " ", re.sub(r"<[^>]+>", " ", page)).strip()
+
+
+def login_wall(page):
+    """A page that is a login: a password field on a page that is little else, or titled so. A
+    member or shop login box in a site's header (the Cohos Trail's, the Mid State Trail's,
+    2026-11-07) leaves the page's content readable and is no wall."""
+    if not re.search(r"<input[^>]+type=.password", page, re.I) or re.search(r"<gpx|<kml", page, re.I):
+        return False
+    title = re.search(r"<title>([^<]*)</title>", page, re.I)
+    if title and re.search(r"log ?in|sign ?in|anmelden|connexion|iniciar ses|accedi", title.group(1), re.I):
+        return True
+    return len(_text(page)) < 1500
+
+
+# words of the spam that fills a taken-over domain (the Pinhoti Trail Alliance's site, 2026-11-07:
+# an Indonesian gambling page), none of which a trail operator's page would carry several of
+SPAM = re.compile(r"\b(gacor|slot ?online|situs (?:slot|toto)|togel|judi|toto ?online|casino online|maxwin|sbobet|bandar|pasaran)", re.I)
+
+
+def spam(page):
+    """The spam words on the page: in its title (a taken-over page's first lines can be all
+    stylesheet) and in its text."""
+    title = re.search(r"<title>([^<]*)</title>", page, re.I)
+    text = (title.group(1) if title else "") + " " + _text(page)
+    words = {m.group(1).lower() for m in SPAM.finditer(text)}
+    return ", ".join(sorted(words)) if len(words) >= 2 else None
+
+
 def probe(url):
     """(ok, what): one GET with redirects followed, looking at the status and the first 200 KB."""
     request = urllib.request.Request(_iri(url), headers={"User-Agent": USER_AGENT, "Accept": "text/html,application/xhtml+xml,*/*"})
@@ -63,8 +95,10 @@ def probe(url):
             head = r.read(200_000).decode("utf-8", "ignore")
             if bot_check(head):
                 return False, f"a bot check on the page ({bot_check(head)})"
-            if re.search(r"<input[^>]+type=.password", head, re.I) and not re.search(r"<gpx|<kml", head, re.I):
+            if login_wall(head):
                 return False, "a login form"
+            if spam(head):
+                return False, f"content that isn't the operator's ({spam(head)}): a taken-over domain?"
             return True, f"{r.status}" + (f", now {r.url}" if r.url.rstrip("/") != url.rstrip("/") else "")
     except urllib.error.HTTPError as error:
         body = error.read(200_000).decode("utf-8", "ignore") if error.fp else ""

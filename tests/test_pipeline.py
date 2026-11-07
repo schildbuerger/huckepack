@@ -697,3 +697,19 @@ class Captions(unittest.TestCase):
         self.assertEqual(photos.caption(f), "Pukaskwa National Park, Ont. - Southern Headland Panorama")
         self.assertEqual(photos.caption({"name": None, "title": "File:Nisqually River 360.jpg"}), "Nisqually River 360")
         self.assertEqual(photos.caption({"name": None, "title": "File:Southern Headland Panorama No. 2.jpg"}), "Southern Headland Panorama")
+
+
+class PreflightContent(unittest.TestCase):
+    def test_login_box_in_a_header_is_no_wall(self):
+        from pipeline import preflight
+
+        box = '<form><input type="password" name="pw"></form>'
+        self.assertFalse(preflight.login_wall("<title>The Cohos Trail</title>" + box + "<p>" + "trail news " * 300 + "</p>"))
+        self.assertTrue(preflight.login_wall("<title>Member login</title>" + box))
+        self.assertTrue(preflight.login_wall("<title>Members</title>" + box + "<p>Please log in.</p>"))
+
+    def test_a_taken_over_domain(self):
+        from pipeline import preflight
+
+        self.assertTrue(preflight.spam("<title>GACOR188</title><p>situs slot gacor, toto online terpercaya</p>"))
+        self.assertIsNone(preflight.spam("<title>Pinhoti Trail Alliance</title><p>Trail sections and maps</p>"))
