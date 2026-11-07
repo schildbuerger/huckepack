@@ -51,13 +51,29 @@ jobs:
   deploy:
     needs: build
     runs-on: ubuntu-latest
+    # three tries of at most 10 minutes each, plus the pauses between them
+    timeout-minutes: 40
     environment:
       name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
+      url: ${{ steps.deploy3.outputs.page_url || steps.deploy2.outputs.page_url || steps.deploy1.outputs.page_url }}
     steps:
-      - id: deployment
+      # Pages sometimes leaves a deployment in "syncing_files" (or with no status at all) until
+      # deploy-pages gives up after 10 minutes, its maximum timeout (a larger value is cut back to it).
+      # A deploy normally takes 10 to 70 seconds, and a later try of the same artifact usually goes
+      # through (2026-11-06/07: seven such stalls, independent of the artifact's size). So the job
+      # tries up to three times, with a pause before each retry to let Pages finish cancelling the
+      # stalled deployment (each try reuses the commit SHA as the deployment ID).
+      - id: deploy1
         uses: actions/deploy-pages@368f82528645a54fb793d4d04e342629a3f51346 # v5.0.1
-        with:
-          # 30 minutes instead of the default 10: with the trails' photos, Pages once took longer to sync
-          # the files and the deploy timed out (2026-11-06)
-          timeout: 1800000
+        continue-on-error: true
+      - if: steps.deploy1.outcome == 'failure'
+        run: sleep 90
+      - id: deploy2
+        if: steps.deploy1.outcome == 'failure'
+        uses: actions/deploy-pages@368f82528645a54fb793d4d04e342629a3f51346 # v5.0.1
+        continue-on-error: true
+      - if: steps.deploy1.outcome == 'failure' && steps.deploy2.outcome == 'failure'
+        run: sleep 90
+      - id: deploy3
+        if: steps.deploy1.outcome == 'failure' && steps.deploy2.outcome == 'failure'
+        uses: actions/deploy-pages@368f82528645a54fb793d4d04e342629a3f51346 # v5.0.1
