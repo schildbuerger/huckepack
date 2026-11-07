@@ -41,8 +41,8 @@ const onPage = page > 1 ? ` · page ${page} of ${pages}` : "";
   <header class="band">
     <h1>Trails</h1>
     <div class="path" aria-hidden="true">
-      <svg viewBox="0 0 1000 24" preserveAspectRatio="none" focusable="false">
-        <path id="trail-line" class="line" d="M0 12C60 12 100 4 190 4S320 20 440 19S600 3 720 5S880 18 1000 12" />
+      <svg viewBox="0 0 1000 48" preserveAspectRatio="none" focusable="false">
+        <path id="trail-line" class="line" d="M0 24C20 24 20 8 40 8C68 8 67 40 95 40C113 40 112 10 130 10C148 10 147 38 165 38C248 38 247 16 330 16C375 16 375 30 420 30C445 30 445 5 470 5C488 5 487 43 505 43C523 43 522 12 540 12C630 12 630 40 720 40C760 40 760 20 800 20C823 20 822 42 845 42C865 42 865 6 885 6C943 6 942 24 1000 24" />
         <g class="walker moving" opacity="0">
           <path class="halo" d="M0 0h.01" />
           <path class="dot" d="M0 0h.01" />
@@ -91,17 +91,18 @@ const onPage = page > 1 ? ` · page ${page} of ${pages}` : "";
     font-size: 0.95rem;
   }
   /* the footpath (round dots of 3 px, 6 px apart, as the dotted border it replaces), and the walker
-     who sets off at the title, walks to the count and starts again (24 s). The SVG overhangs the
-     3 px row the old border took, centred on it, so the layout stays as it was */
+     who sets off at the title, walks to the count and starts again (24 s). The SVG is 48 px tall, within
+     the 53 px title row, centred on the 3 px row the old border took, so the layout stays as it
+     was; the path winds irregularly, tight switchbacks between long sweeps, over its full height */
   .path {
     height: 3px;
   }
   .path svg {
     position: absolute;
     left: 0;
-    top: calc(50% - 12px);
+    top: calc(50% - 24px);
     width: 100%;
-    height: 24px;
+    height: 48px;
     overflow: visible;
   }
   .line {
