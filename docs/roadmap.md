@@ -184,6 +184,8 @@ And the **New England National Scenic Trail** (Connecticut and Massachusetts: th
 
 And the **Sentier international des Appalaches** (Québec: the SIA Québec's GR®A1, the International Appalachian Trail's Québec chapter, about 650 km across the Gaspé Peninsula from Matapédia over the Chic-Chocs (Mont Logan, Mont Albert, Mont Jacques-Cartier) and along the St. Lawrence coast to Cap Gaspé in Forillon National Park, in the operator's seven sections from its guide Le Compagnon, 35–40 days between refuges, shelters and campsites to book, blue and white SIA/IAT markers, mid-June to the end of September; over OSM's section relations; 2026-11-07).
 
+And the **Lone Star Hiking Trail** (Texas: the Forest Service's National Recreation Trail through the Sam Houston National Forest's Piney Woods, maintained with the Lone Star Hiking Trail Club, from FS 219 near Richards past Lake Conroe, the Little Lake Creek Wilderness and the Four Notch area to the Big Creek Scenic Area and Winters Bayou near Cleveland, in the NRT record's three sections, about 152 km on the main line (the Forest Service's 129 miles count the loops too), flat, with aluminum markers, camping anywhere except in hunting season (September 26 to January 8, designated camps only); over the trail's OSM relation; 2026-11-07).
+
 | # | Trail | Region | Length (approx.) | Why |
 |---|---|---|---|---|
 | 1 | Pacific Crest Trail | USA | 4,265 km | Most-hiked long trail; public US agency data; completion lists |

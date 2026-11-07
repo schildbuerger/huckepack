@@ -1,0 +1,67 @@
+{
+  "climate-high.json": {
+    "retrieved": "2026-11-07T01:02:45+00:00",
+    "url": "https://openmeteo.s3.us-west-2.amazonaws.com/data/copernicus_era5_land+copernicus_era5?latitude=30.7&longitude=-95.5&elevation=150"
+  },
+  "climate-low.json": {
+    "retrieved": "2026-11-07T01:02:45+00:00",
+    "url": "https://openmeteo.s3.us-west-2.amazonaws.com/data/copernicus_era5_land+copernicus_era5?latitude=30.4&longitude=-95.1&elevation=50"
+  },
+  "commons-geo.json": {
+    "key": "with categories, 151.9 km, every 2.5 km, 1500 m, within 0.5 km",
+    "retrieved": "2026-11-07T01:03:42+00:00",
+    "url": "Commons geosearch along the route"
+  },
+  "commons.json": {
+    "key": "Q6671437",
+    "retrieved": "2026-11-07T01:01:30+00:00",
+    "url": "Q6671437 P18 P373"
+  },
+  "elevation-glo30.json": {
+    "retrieved": "2026-11-07T01:01:51+00:00",
+    "url": "https://copernicus-dem-30m.s3.eu-central-1.amazonaws.com/Copernicus_DSM_COG_10_N30_00_W096_00_DEM/Copernicus_DSM_COG_10_N30_00_W096_00_DEM.tif"
+  },
+  "landcover.json": {
+    "retrieved": "2026-11-07T01:01:52+00:00",
+    "url": "https://esa-worldcover.s3.eu-central-1.amazonaws.com/v200/2021/map/ESA_WorldCover_10m_2021_v200_\u2026_Map.tif"
+  },
+  "osm-relation.json": {
+    "retrieved": "2026-11-05T21:23:02Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-1-main.json": {
+    "key": "a313569f6be7",
+    "retrieved": "2026-11-05T21:23:02Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-2-main.json": {
+    "key": "3d5a22ac608a",
+    "retrieved": "2026-11-05T21:23:02Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-3-main.json": {
+    "key": "51f6cf7a9115",
+    "retrieved": "2026-11-05T21:23:02Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-water.json": {
+    "retrieved": "2026-11-05T21:23:02Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-way-tags.json": {
+    "retrieved": "2026-11-05T21:23:02Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osrm-access-george-bush-intercontinental-airport-iah.json": {
+    "retrieved": "2026-11-07T01:02:45+00:00",
+    "url": "https://router.project-osrm.org/route/v1/driving/-95.33299,29.98414;-95.78492,30.53876?overview=false"
+  },
+  "osrm-access-houston-station-amtrak.json": {
+    "retrieved": "2026-11-07T01:02:45+00:00",
+    "url": "https://router.project-osrm.org/route/v1/driving/-95.36746,29.76758;-95.78492,30.53876?overview=false"
+  },
+  "wikimedia.json": {
+    "retrieved": "2026-11-07T01:02:46+00:00",
+    "url": "Q6671437 2025-11..2026-10"
+  }
+}
