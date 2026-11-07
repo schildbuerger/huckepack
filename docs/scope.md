@@ -451,6 +451,9 @@
   follows the visitor's clock, with ridges drawn from real trails' profiles.
   Gradients and textures were ruled out; the more drastic redesigns are kept
   as ideas in the "design exploration" issues (#129–#141).
+  - 2026-11-07: USPs removed; hero fills the first screen, title and search
+    centred; eyebrow "Official long-distance trails, in data" (the user's
+    request).
 
 - **Explainer film (2026-11-04, the user's choices):** right after the about
   band (of three places, approach A), whose colour comes down into the film's
