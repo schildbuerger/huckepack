@@ -37,6 +37,7 @@ termini:
 waymarking:
   # Discover the Trail, "The Blaze"
   text: The official blaze is a white diamond, 5″ across by 7″ tall; none are permitted in Wilderness.
+  symbol: white-diamond
   source: bmta-discover
 length:
   # Discover the Trail, Vital Trail Information: "Current official length is 287.6" (miles; 81.8 in
@@ -213,8 +214,8 @@ notes:
     Smoky Mountains National Park; "Nearly half the route is on land managed as Wilderness", and
     English Wikipedia counts seven wilderness areas, not named there.
   - >-
-    Waymarking: the white diamond blaze (5″ × 7″) is not drawn (Waymark.astro has the Westweg's red
-    diamond on white, no white diamond on bark yet).
+    Waymarking: the white diamond is drawn from the source's description (`white-diamond`,
+    added 2026-11-07).
   - >-
     Tree line: not added; the southern Appalachians have no alpine tree line within the trail's
     reach. The highest point, Mount Sterling (5,843 ft, 1,781 m), is forested to its summit, with a

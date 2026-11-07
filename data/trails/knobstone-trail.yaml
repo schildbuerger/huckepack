@@ -41,6 +41,7 @@ waymarking:
     White blazes, 2 by 6 inches, painted near eye level on trees; two blazes mark a change of
     direction at an intersection with another trail or forest road. Brown 4-foot KT posts with the
     letters KT in yellow stand at the trailheads' entrance roads.
+  symbol: white-blaze
   source: dnr-trailheads
 stages:
   # the DNR's trail section descriptions, trailhead to trailhead, listed from Delaney Park south;
@@ -162,7 +163,8 @@ notes:
     Days: no days published by the DNR or a second official source; the page counts one day per
     stage.
   - >-
-    Waymarking: the white 2″×6″ blaze is not drawn (no such mark in Waymark.astro yet).
+    Waymarking: the white blaze is drawn from the source's description (`white-blaze`,
+    added 2026-11-07).
   - >-
     Water: the hiking rules: "Water is scarce. Dehydration is the largest problem on the Knobstone
     Trail"; water can be had at Elk Creek Lake, Deam Lake, the small stream along S.R. 56 and a

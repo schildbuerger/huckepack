@@ -45,6 +45,7 @@ waymarking:
     Blazed with 2″×6″ white markers, vertical and nailed to a tree near eye level; mile markers are
     12″ carsonite posts fixed horizontally to a tree. On the Buffalo River's shared stretch,
     hiker-only trail is blazed white and the equestrian trail yellow.
+  symbol: white-blaze
   source: ohta-trail
 length:
   # the FAQ: "Continuous built trail is in place from Lake Fort Smith State Park to AR-14, or 207
@@ -177,7 +178,8 @@ notes:
     distance from the trail"; post offices at Ozone and Pelsor (within two miles) take resupply
     packages.
   - >-
-    Waymarking: the white 2″×6″ vertical blaze is not drawn (no such mark in Waymark.astro yet).
+    Waymarking: the white blaze is drawn from the source's description (`white-blaze`,
+    added 2026-11-07).
   - >-
     Wildlife: the association's FAQ names rattlesnakes, copperheads and water moccasins ("There has
     never been a reported incident of a hiker getting snake bit on the OHT") and advises bear

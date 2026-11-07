@@ -55,6 +55,7 @@ waymarking:
   # the Tioga Region page: "so the orange blazes continue across the NY border"; the FAQ: "The orange
   # blazes continue north as Crystal Hills Trail"; side trails and detours yellow blazed (section updates)
   text: Orange blazes; side trails and road detours are blazed yellow.
+  symbol: orange-blaze
   source: msta-sections
 stages:
   # the association's 20 numbered sections, south to north, each with its own updates page
@@ -209,9 +210,8 @@ notes:
     and no water on the trail; much of the Tioga Region crosses private land, camping only at named
     spots.
   - >-
-    Waymarking: the orange blaze is not drawn on the page; Waymark.astro has no orange mark yet
-    (OSM's relation tags it "5 cm x 15 cm orange rectangular blazes"). Left for the integrator, as it
-    changes the shared schema enum.
+    Waymarking: the orange blaze is drawn from the source's description (`orange-blaze`,
+    added 2026-11-07).
   - >-
     Tree line: not added; the route stays below 1,500 m (highest point Martin Hill, 829 m, in
     section 1, by the association's FAQ).

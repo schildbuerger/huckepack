@@ -46,6 +46,7 @@ established:
   source: usfs-about
 waymarking:
   text: Orange blazes, with blue-blazed side trails; the trail is well blazed in most places, a double blaze marks a turn, and in some places offset blazes show the direction of the turn.
+  symbol: orange-blaze
   source: fta-safety
 length:
   # the association's FAQs: "An Eastern Corridor thru-hike (eastern Lake O, eastern central FL,
@@ -269,8 +270,8 @@ notes:
   - >-
     Tree line: the trail stays below 100 m; no tree line applies.
   - >-
-    Waymarking: the orange blaze has no drawn symbol yet (src/components/Waymark.astro has no orange
-    blaze, and no source describes its shape).
+    Waymarking: the orange blaze is drawn from the source's description (`orange-blaze`,
+    added 2026-11-07).
   - >-
     Wildlife: the Florida Fish and Wildlife Conservation Commission's pages (bears, venomous snakes,
     alligators) answered with a bot check (403) and were left out. The National Park Service's Big
