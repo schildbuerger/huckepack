@@ -41,12 +41,12 @@ stages:
   # here), and the catamaran over Lago Pehoé is the way out. Stage ends from OSM.
   source: conaf
   list:
-    - { number: "V1", kind: variant, from: Hotel Las Torres, to: Mirador Base Torres, km: 9.4, minutes: 270, end: { lat: -50.94267, lon: -72.94966 } }
+    - { number: "V1", kind: variant, outAndBack: true, from: Hotel Las Torres, to: Mirador Base Torres, km: 9.4, minutes: 270, end: { lat: -50.94267, lon: -72.94966 } }
     - { number: "1", kind: main, from: Hotel Las Torres, to: Los Cuernos, km: 11.6, minutes: 270, end: { lat: -51.02385, lon: -72.98537 } }
     - { number: "2", kind: main, from: Los Cuernos, to: Italiano, km: 5, minutes: 150, end: { lat: -51.02692, lon: -73.04043 } }
-    - { number: "V2", kind: variant, from: Italiano, to: Mirador Británico, km: 5.4, minutes: 180, end: { lat: -50.98268, lon: -73.05375 } }
+    - { number: "V2", kind: variant, outAndBack: true, from: Italiano, to: Mirador Británico, km: 5.4, minutes: 180, end: { lat: -50.98268, lon: -73.05375 } }
     - { number: "3", kind: main, from: Italiano, to: Paine Grande, km: 7.5, minutes: 150, end: { lat: -51.07265, lon: -73.09378 } }
-    - { number: "V3", kind: variant, from: Paine Grande, to: Grey, km: 11, minutes: 210, end: { lat: -51.00822, lon: -73.17605 } }
+    - { number: "V3", kind: variant, outAndBack: true, from: Paine Grande, to: Grey, km: 11, minutes: 210, end: { lat: -51.00822, lon: -73.17605 } }
   transfers:
     # the catamaran from Paine Grande over Lago Pehoé to Pudeto, where the buses to Puerto Natales
     # leave; its line OSM's ferry way 130034232

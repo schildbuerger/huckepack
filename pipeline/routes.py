@@ -698,10 +698,13 @@ def build(slug, refresh=False):
     # each stage's length on the full matched line (not the simplified map line, which runs about
     # 1 % short) and how much of its track the match covers; the site uses the main route's sum as
     # the comparable length where every main stage is at least 95 % matched
-    main = [m for m in measured if m["kind"] == "main"]
+    # (rules of 2026-11-07): variants and approaches never count; a side trip the trail includes,
+    # walked there and back (`outAndBack`, the W Trek's valleys), counts both ways
+    back = {(s["number"], s["kind"]) for s in stages if s.get("outAndBack")}
+    main = [m for m in measured if m["kind"] == "main" or (m["number"], m["kind"]) in back]
     length = {
         "source": "osm",
-        "km": round(sum(m["km"] for m in main), 1),
+        "km": round(sum(m["km"] * (2 if (m["number"], m["kind"]) in back else 1) for m in main), 1),
         "minCovered": min(m["covered"] for m in main),
         "stages": measured,
     }

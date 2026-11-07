@@ -82,6 +82,9 @@ const EXPLAINED: [string, string, (t: TrailIn) => boolean][] = [
 const stage = z.object({
   number: z.string(), // "1", "2", … as the source numbers them; "0" for an approach
   kind: z.enum(["main", "approach", "variant"]),
+  // a variant that is part of the trail, walked there and back (the W Trek's valleys, decided
+  // 2026-11-07): its km is one way, as the source gives it; our measured length counts it twice
+  outAndBack: z.literal(true).optional(),
   from: z.string(),
   to: z.string(),
   km: z.number().positive(),
@@ -512,7 +515,8 @@ const tierPoint = z.object({ kind: z.string(), name: z.string().nullable(), stag
 
 const derived = z.object({
   // pipeline/routes.py: each stage's length on the full matched OSM line and the share of its track
-  // the match covers; km is the main route's sum, minCovered the weakest main stage
+  // the match covers; km is the main route's sum plus each out-and-back side trip twice (variants and
+  // approaches otherwise left out), minCovered the weakest of those stages
   measured: z
     .object({
       source: sourceRef,

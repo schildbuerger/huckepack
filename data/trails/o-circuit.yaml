@@ -43,7 +43,7 @@ stages:
   # from OSM
   source: conaf
   list:
-    - { number: "V1", kind: variant, from: Hotel Las Torres, to: Mirador Base Torres, km: 9.4, minutes: 270, end: { lat: -50.94267, lon: -72.94966 } }
+    - { number: "V1", kind: variant, outAndBack: true, from: Hotel Las Torres, to: Mirador Base Torres, km: 9.4, minutes: 270, end: { lat: -50.94267, lon: -72.94966 } }
     - { number: "1", kind: main, from: Hotel Las Torres, to: Serón, km: 13, minutes: 240, end: { name: Campamento Serón, lat: -50.86585, lon: -72.89283 } }
     - { number: "2", kind: main, from: Serón, to: Dickson, km: 18, minutes: 360, end: { name: Refugio Dickson, lat: -50.87943, lon: -73.07476 } }
     - { number: "3", kind: main, from: Dickson, to: Los Perros, km: 11.8, minutes: 270, end: { name: Campamento Los Perros, lat: -50.9323, lon: -73.1343 } }
@@ -51,7 +51,7 @@ stages:
     - { number: "5", kind: main, from: Paso, to: Grey, km: 7, minutes: 300, end: { name: Refugio Grey, lat: -51.00822, lon: -73.17605 } }
     - { number: "6", kind: main, from: Grey, to: Paine Grande, km: 11, minutes: 210, end: { name: Paine Grande, lat: -51.07265, lon: -73.09378 } }
     - { number: "7", kind: main, from: Paine Grande, to: Italiano, km: 7.5, minutes: 150, end: { name: Italiano, lat: -51.02692, lon: -73.04043 } }
-    - { number: "V2", kind: variant, from: Italiano, to: Mirador Británico, km: 5.4, minutes: 180, end: { lat: -50.98268, lon: -73.05375 } }
+    - { number: "V2", kind: variant, outAndBack: true, from: Italiano, to: Mirador Británico, km: 5.4, minutes: 180, end: { lat: -50.98268, lon: -73.05375 } }
     - { number: "8", kind: main, from: Italiano, to: Los Cuernos, km: 5, minutes: 150, end: { name: Los Cuernos, lat: -51.02385, lon: -72.98537 } }
     - { number: "9", kind: main, from: Los Cuernos, to: Hotel Las Torres, km: 11.6, minutes: 270, end: { name: Hotel Las Torres, lat: -50.97316, lon: -72.87498 } }
 route:

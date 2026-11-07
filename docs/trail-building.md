@@ -78,6 +78,12 @@ null.
   from the full OSM match (`pipeline.all`'s report) under the `huckepack-measured` source. Say
   why in the stages' comment and the data check. Keep the operator's times, climbs and heights
   where they are usable.
+- **What our measured length counts** (decided 2026-11-07; `measured.km` in `data/derived/<slug>.json`,
+  which search sorting and comparisons use): the main stages only, never variants or approaches.
+  A side trip the trail includes and walks there and back (the W Trek's and the O Circuit's
+  valleys) stays a variant with `outAndBack: true`, its `km` one way as the source gives it, and
+  counts twice. A there-and-back inside a stage (the Three Capes' Cape Pillar) is routed out and
+  back through the stage's `via` points, so the match measures both ways.
 - **Ascent without descent** (2026-11-05, the Three Lochs Way): an `ascent` total or stage
   `ascentM` values without their descents leave the page with no Ascent key figure and no Effort
   rating, since it needs the pair; put such figures in a note ("Ascent: …") and let the page
