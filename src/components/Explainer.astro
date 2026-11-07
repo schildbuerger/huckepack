@@ -79,14 +79,16 @@ const clouds = `<rect width="2400" height="96" fill="${S.sky}" data-d="fill:sky"
     <div class="ex-top">
       <div class="ex-intro">
         <h2 id={h}>{OPENING}</h2>
-        <button type="button" class="ex-play" aria-label={`Play the film, ${DURATION} seconds`}>
+        <!-- no aria-label: its name is its words, so it contains the visible label (Lighthouse's
+             label-content-name-mismatch, 2026-11-07) -->
+        <button type="button" class="ex-play">
           <span class="ex-play-dot"><Icon name="play" size={24} /></span>
-          <span>Play · {DURATION} s</span>
+          <span>Play<span class="sr-only"> the film</span> · {DURATION} s</span>
         </button>
       </div>
       <p class="ex-caption" aria-live="polite"></p>
       <div class="ex-end">
-        <a class="ex-cta" href="/trails/">Explore the trails <span aria-hidden="true">→</span></a>
+        <a class="ex-cta" href="/trails/">Find a trail <span aria-hidden="true">→</span></a>
       </div>
     </div>
 
@@ -278,7 +280,7 @@ const clouds = `<rect width="2400" height="96" fill="${S.sky}" data-d="fill:sky"
     display: grid;
   }
   .ex-cta {
-    padding: 10px 20px;
+    padding: 12px 22px; /* 46 px tall, a tap target (2026-11-07) */
     border-radius: 999px;
     background: #b4cb76;
     color: #18190f;

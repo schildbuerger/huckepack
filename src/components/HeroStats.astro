@@ -14,13 +14,17 @@ import { RIDGE_DEPTHS, RIDGE_HEIGHTS, flagPlace, summitFlags } from "../lib/summ
 
 const { totals, ridges } = Astro.props;
 const fmt = (n: number, dec = 0) => n.toLocaleString("en", { minimumFractionDigits: dec, maximumFractionDigits: dec });
-type Fig = { n: number; dec?: number; unit?: string; label: string; sr?: string };
+// label: the words under the number from 720 px; short: the phones' shorter words (2026-11-07,
+// Baymard #1085: before, phones showed the numbers alone)
+type Fig = { n: number; dec?: number; unit?: string; label: string; short: string; sr?: string };
 const FIGURES: Fig[] = [
-  { n: totals.trails, label: "Trails" },
-  { n: totals.countries, label: "Countries" },
-  { n: totals.km, label: "Kilometres" },
-  { n: totals.everests, dec: 1, unit: "×", label: "Everest climbed", sr: `${fmt(totals.everests, 1)} times the height of Mount Everest climbed` },
-  { n: totals.taps, label: "Water points", sr: `${fmt(totals.taps)} drinking water points` },
+  { n: totals.trails, label: "Trails", short: "trails" },
+  { n: totals.countries, label: "Countries", short: "countries" },
+  { n: totals.km, label: "Kilometres", short: "km" },
+  { n: totals.everests, dec: 1, unit: "×", label: "Everest climbed", short: "Everest", sr: `${fmt(totals.everests, 1)} times the height of Mount Everest climbed` },
+  // on two short lines: on one, at 320 px the words reached the kilometres' pole (the user's wording,
+  // "water points", 2026-11-07)
+  { n: totals.taps, label: "Water points", short: "water\npoints", sr: `${fmt(totals.taps)} drinking water points` },
 ];
 const value = (f: Fig) =>
   `<span class="sr-only">${f.sr ?? fmt(f.n, f.dec)}</span><span aria-hidden="true"><span class="count" data-count="${f.n}" data-dec="${f.dec ?? 0}">${fmt(f.n, f.dec)}</span>${f.unit ?? ""}</span>`;
@@ -35,7 +39,7 @@ const flags = summitFlags(ridges);
       {flags.filter((g) => g.ridge === r).map((g) => (
         <dl class:list={["flag", { flip: g.flip }]} style={flagPlace(g)}>
           <div class="cloth">
-            <dt>{FIGURES[g.i].label}</dt>
+            <dt><span class="long">{FIGURES[g.i].label}</span><span class="short" aria-hidden="true">{FIGURES[g.i].short.split("\n").map((w, k) => <>{k > 0 && <br />}{w}</>)}</span></dt>
             <dd set:html={value(FIGURES[g.i])} />
           </div>
         </dl>
@@ -124,30 +128,52 @@ const flags = summitFlags(ridges);
     font-variant-numeric: tabular-nums;
     white-space: nowrap;
   }
+  /* the label under the number: 12 px, the least for small uppercase words (2026-11-07, Baymard
+     #1085; 8.8 px before) */
   .cloth dt {
     order: 2;
-    font-size: 0.55rem;
+    font-size: 0.75rem;
     font-weight: 700;
-    letter-spacing: 0.06em;
+    letter-spacing: 0.05em;
     line-height: 1.2;
     text-transform: uppercase;
     white-space: nowrap;
   }
+  .cloth .short {
+    display: none;
+  }
 
-  /* phones: the number only; the label stays for screen readers */
+  /* phones: shorter words in small letters, 12 px, on the number's line (under it they reached down
+     to the dark front ridge; before 2026-11-07 the number alone); the long label stays for screen
+     readers */
   @media (max-width: 719px) {
     .flag {
       --flag-h: 30px;
+    }
+    .cloth {
+      flex-direction: row;
+      align-items: baseline;
+      gap: 4px;
     }
     .cloth dd {
       font-size: 1rem;
     }
     .cloth dt {
+      font-weight: 600;
+      letter-spacing: 0;
+      line-height: 1.1;
+      text-transform: none;
+    }
+    .cloth .short {
+      display: inline;
+    }
+    .cloth .long {
       position: absolute;
       width: 1px;
       height: 1px;
       overflow: hidden;
       clip-path: inset(50%);
+      white-space: nowrap;
     }
   }
 </style>

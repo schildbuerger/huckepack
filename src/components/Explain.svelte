@@ -42,6 +42,14 @@
     color: var(--muted);
     text-decoration: none;
     cursor: pointer;
+    position: relative;
+  }
+  /* a tap target of 44 px round the 28 px icon (2026-11-07, as Explain.astro) */
+  .term.icon::after {
+    content: "";
+    position: absolute;
+    inset: -8px;
+    border-radius: 50%;
   }
   .term {
     padding: 0;

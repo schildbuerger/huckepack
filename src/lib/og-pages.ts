@@ -42,11 +42,16 @@ export function siteData() {
 
 // what each page is called on its image, and one line under it
 const WORDS: Record<OgPage, (s: Site) => [string, string]> = {
-  home: (s) => ["Find your trail. Go prepared.", `${s.trails.length} long-distance hiking trails, from official and open sources`],
+  // the claim under the headline (docs/mission.md, in use since 2026-11-07), the count beneath (EXTRA)
+  home: () => ["Find your trail. Go prepared.", "We carry the research; you carry the pack."],
   trails: (s) => ["Find a long-distance trail", `${s.trails.length} trails to filter by month, region, days and difficulty`],
   map: (s) => ["Trail map", `${s.trails.length} long-distance trails in ${s.countries} countries on one map`],
   guide: () => ["Which trail suits you?", "Eleven short questions lead to the trails that fit"],
   site: () => ["huckepack", "Find your trail. Go prepared."],
+};
+// a third, smaller line where a page has one
+const EXTRA: Partial<Record<OgPage, (s: Site) => string>> = {
+  home: (s) => `${s.trails.length} long-distance hiking trails, from official and open sources`,
 };
 
 const doc = (bg: string, body: string) =>
@@ -67,7 +72,10 @@ function picture(page: OgPage, s: Site) {
   const out: string[] = [];
   out.push(brand(OG.width - 72, 50, "end"));
   out.push(text(title, 72, 130, 72, { weight: 700, max: 820 }).svg);
-  out.push(text(line, 72, 188, 30, { fill: C.muted, max: 1056 }).svg);
+  const extra = EXTRA[page]?.(s);
+  // with a third line the second is the claim, in the text colour; the count muted under it
+  out.push(text(line, 72, 188, 30, { fill: extra ? C.text : C.muted, max: 1056 }).svg);
+  if (extra) out.push(text(extra, 72, 236, 24, { fill: C.muted, max: 1056 }).svg);
   const sky = s.trails.filter((t) => SKYLINES[t.slug]);
   if (page === "home" || page === "site") {
     // three trails' skylines side by side, wall to wall: the middle half of each drawing, where its
@@ -135,5 +143,6 @@ export async function ogPageAlt(page: OgPage) {
     guide: "the guide's questions",
   }[page];
   const end = (str: string) => (/[.?]$/.test(str) ? str : `${str}.`);
-  return `${end(title)} ${end(line)} With ${what}.`;
+  const extra = EXTRA[page]?.(s);
+  return `${end(title)} ${end(line)}${extra ? ` ${end(extra)}` : ""} With ${what}.`;
 }

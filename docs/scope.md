@@ -520,6 +520,25 @@
   - 2026-11-07: USPs removed; hero fills the first screen, title and search
     centred; eyebrow "Official long-distance trails, in data" (the user's
     request).
+  - 2026-11-07, from a review against Baymard's usability findings (the
+    user's picks): the sun or moon keeps its hour's arc but never stands on the
+    hero's words (#290); tap targets at least 44 px (7 mm) without a change in
+    look; small text at least 11–12 px (the summit flags' labels, shown on
+    phones too, the eyebrow, the stamps' words; #1085); the popular cards say
+    "Wikipedia views, last 12 months" and the (i) links Wikimedia's pageviews;
+    the logbook's stamps are inked on touch screens as they scroll into view;
+    the sticky bar's and the film's button read "Find a trail".
+  - 2026-11-07, the user's decisions on the review's previews: the popular
+    trails on phones are row cards (approach A of three: the route small on
+    the left, name and figures on the right), and the page views leave the
+    cards everywhere (the (i) still says they rank the list, with Wikimedia's
+    source); on wide screens the three stand in rank order, 1 2 3 from the
+    left, as they always looked (the "first in the middle" rule had never
+    applied); the explainer film and "On every trail page" stay two sections
+    (three ways of merging them were previewed), the list gaining Photos and
+    Wildlife in the trail page's order; the hero's water flag on phones reads
+    "water points" on two short lines; the smaller phone sun, low beside the
+    flags, stays.
 
 - **Explainer film (2026-11-04, the user's choices):** right after the about
   band (of three places, approach A), whose colour comes down into the film's
