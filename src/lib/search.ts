@@ -4,7 +4,6 @@
 import type { CollectionEntry } from "astro:content";
 import { difficulty } from "./difficulty";
 import { summarize } from "./trails";
-import { placesOf } from "./place-aliases";
 
 type Trail = CollectionEntry<"trails">["data"];
 type DerivedData = CollectionEntry<"derived">["data"];
@@ -28,9 +27,10 @@ export function searchSummary(id: string, t: Trail, d?: DerivedData) {
     climateByMonth: diff.months.map((m) => m.level as number),
     // the day the trail was added (YYYY-MM-DD), for the search's "Newest first" sort (issue #218)
     added: t.added.toISOString().slice(0, 10),
-    // the regions of src/lib/place-aliases.ts the trail lies in ("Alps"), for the searches and the
-    // Where filter (`where=Alps`)
-    places: placesOf({ slug: id, countries: base.countries, regions: base.regions }),
+    // the regions holding at least 20 % of the main route ("Alps", "Bavaria"; pipeline/regions.py,
+    // Natural Earth), for the searches and the Where filter (`where=Alps`); the record's own
+    // `regions` stay the trail page's words
+    places: (d?.regions ?? []).map((r) => r.name),
     landscape: d?.landcover?.shares ?? null, // share of each landscape group (src/pages/trails/[slug].astro LAND)
   };
 }

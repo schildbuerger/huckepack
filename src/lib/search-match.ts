@@ -5,13 +5,14 @@
 // - Words match at a word's start, in any order ("west high"), accents and case aside ("tubingen").
 // - A word of 4 letters or more also matches with one typo (Damerau–Levenshtein: a letter added,
 //   dropped, changed or two swapped, "wset" → West), only when no name matches as typed.
-// - Places (continents, countries, the regions of src/lib/place-aliases.ts with their other names)
-//   come before trails, unless only typos found them and a trail matches exactly.
+// - Places (continents, countries, and the regions the trails lie in: the trails' `places`, from
+//   pipeline/regions.py; with the other names of src/lib/place-aliases.ts) come before trails,
+//   unless the trails' best match is clearly better.
 // - Trails match by name, local name and aliases; their countries and places count as extra words
 //   only with a word of the name ("scotland coast" finds the Fife Coastal Path, "scotland" alone the
 //   place Scotland, not 13 trails).
 // - Nothing matched: `nearest()` gives the closest names for a "Did you mean".
-import { PLACE_ALIASES, isCountryName } from "./place-aliases.ts";
+import { PLACE_ALIASES } from "./place-aliases.ts";
 
 export type Kind = "continent" | "country" | "region" | "topic" | "trail";
 export const PLACE_KINDS: Kind[] = ["continent", "country", "region", "topic"];
@@ -246,10 +247,12 @@ export function placeCandidates(trails: TrailLike[], opts: { topics?: boolean } 
     const k = count((t) => t.countries.includes(c));
     out.push({ id: `n-${c}`, kind: "country", label: c, names: [c, ...(ALSO.get(c) ?? [])], count: k, href: whereHref(c), note: n(k) });
   }
-  for (const p of PLACE_ALIASES.filter((p) => !isCountryName(p))) {
-    const k = count((t) => (t.places ?? []).includes(p.name));
-    if (!k) continue;
-    out.push({ id: `r-${p.name}`, kind: "region", label: p.name, names: [p.name, ...(p.also ?? [])], count: k, href: whereHref(p.name), note: n(k) });
+  // regions: those the trails lie in (pipeline/regions.py), not a country's or continent's name
+  const taken = new Set(out.map((c) => c.label));
+  for (const r of uniq(trails.flatMap((t) => t.places ?? []))) {
+    if (taken.has(r)) continue;
+    const k = count((t) => (t.places ?? []).includes(r));
+    out.push({ id: `r-${r}`, kind: "region", label: r, names: [r, ...(ALSO.get(r) ?? [])], count: k, href: whereHref(r), note: n(k) });
   }
   if (opts.topics)
     for (const tp of TOPICS) {

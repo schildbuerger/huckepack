@@ -8,14 +8,14 @@
 // (disabled) and the URL come from the search page's filters (src/lib/filters.ts), so they agree.
 // Without JavaScript the panels don't open and the button opens the search page.
 // Where matches as the header search does (src/lib/search-match.ts, the Baymard review of
-// 2026-11-07): continents, countries and regions (src/lib/place-aliases.ts, "Alps", "Schwarzwald")
-// with their other names, one typo allowed from four letters, the typed part bold; and after the
+// 2026-11-07): continents, countries and the regions the trails lie in (pipeline/regions.py, "Alps",
+// "Bavaria") with their other names (src/lib/place-aliases.ts, "Bayern"), one typo allowed from four letters, the typed part bold; and after the
 // places a group of trails by name (from /trails/search.json, at most 5), each an action straight to
 // its page, not a pick.
 import type { SearchTrail } from "../lib/search";
 import { places, TRIP_LENGTHS } from "../lib/filters";
 import { MONTH_ABBR } from "../lib/months";
-import { PLACE_ALIASES, isCountryName } from "../lib/place-aliases";
+import { PLACE_ALIASES } from "../lib/place-aliases";
 
 interface Props {
   trails: SearchTrail[];
@@ -33,10 +33,12 @@ const rank = (c: string) => (top.has(c) ? byTrails.indexOf(c) : TOP_COUNTRIES);
 const countries = where
   .flatMap((p) => p.countries.map((c) => ({ name: c, continent: p.continent })))
   .sort((a, b) => rank(a.name) - rank(b.name) || a.name.localeCompare(b.name));
-// regions with trails, by name; each with its other names for the matching
-const regions = PLACE_ALIASES.filter((p) => !isCountryName(p))
-  .map((p) => ({ ...p, n: trails.filter((t) => t.places.includes(p.name)).length }))
-  .filter((p) => p.n > 0)
+// the regions the trails lie in (pipeline/regions.py), by name, without a country's or continent's
+// name; each with its other names for the matching
+const placeNames = new Set([...where.map((p) => p.continent), ...where.flatMap((p) => p.countries)]);
+const regions = [...new Set(trails.flatMap((t) => t.places))]
+  .filter((name) => !placeNames.has(name))
+  .map((name) => ({ name, n: trails.filter((t) => t.places.includes(name)).length }))
   .sort((a, b) => a.name.localeCompare(b.name));
 const alsoOf = (name: string) => PLACE_ALIASES.find((p) => p.name === name)?.also ?? [];
 const names = (name: string) => [name, ...alsoOf(name)].join("|");
