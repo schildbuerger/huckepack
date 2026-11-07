@@ -1,0 +1,425 @@
+name: Florida National Scenic Trail
+added: 2026-11-07
+aliases: [Florida Trail, FT, FNST]
+website: https://www.fs.usda.gov/trails/florida-nst
+wikidata: Q5461683
+managedBy:
+  # the Forest Service "is the administrator of the Florida Trail" and the association its
+  # non-profit partner, which built and maintains it (Explore the Trail; Forest Service, About the Trail)
+  - name: USDA Forest Service
+    url: https://www.fs.usda.gov/trails/florida-nst
+  - name: Florida Trail Association
+    url: https://floridatrail.org/
+officialGpx:
+  none: the Forest Service offers the trail's centerline as a KMZ file for Google Earth (Geospatial Data), and the association sells its paper maps and data book; neither offers a GPX download (checked 2026-11-07)
+  source: usfs-gis
+trailType: point-to-point
+continents: [North America]
+countries: [US]
+regions: [Florida]
+protectedAreas:
+  # named on the association's section pages along the main route
+  - Big Cypress National Preserve
+  - Kissimmee Prairie Preserve State Park
+  - Juniper Prairie Wilderness
+  - St. Marks National Wildlife Refuge
+  - Bradwell Bay Wilderness
+  - Gulf Islands National Seashore
+termini:
+  # the association: "The Florida Trail's Southern Terminus is located here at the Oasis Visitor's
+  # Center in Big Cypress National Preserve"; the northern terminus at Fort Pickens in Gulf Islands
+  # National Seashore. Coordinates from the Forest Service's centerline ("Oasis Terminus", "North
+  # terminus of FNST at Ft Pickens parking area")
+  start:
+    name: Oasis Visitor Center (Big Cypress National Preserve)
+    lat: 25.85706
+    lon: -81.03303
+  end:
+    name: Fort Pickens (Gulf Islands National Seashore)
+    lat: 30.32862
+    lon: -87.28969
+  source: fta-regions
+established:
+  # "The first blaze … was marked in the Ocala National Forest in October of 1966, but the Trail was
+  # not officially designated as a National Scenic Trail until 1983" (About the Trail)
+  year: 1983
+  source: usfs-about
+waymarking:
+  text: Orange blazes, with blue-blazed side trails; the trail is well blazed in most places, a double blaze marks a turn, and in some places offset blazes show the direction of the turn.
+  source: fta-safety
+length:
+  # the association's FAQs: "An Eastern Corridor thru-hike (eastern Lake O, eastern central FL,
+  # including roadwalks and excluding Blackwater side-trail) yields 1,287.9 miles", the route of
+  # the main stages here
+  - km: 2072.7
+    source: fta-faqs
+days:
+  # "A typical thru-hiker takes two to three months to hike the entire FT" (Thru Hike), recorded
+  # as 60 to 90 days
+  min: 60
+  max: 90
+  source: fta-thru
+stages:
+  # the association's sections (The Florida Trail by Region), south to north and west, on the main
+  # route: the Eastern Corridor ("the original thru-trail route") and the east side of Lake
+  # Okeechobee, the side the Forest Service counts in the Eastern Corridor. The association names
+  # and describes the sections without numbers, so they are numbered here in walking order. Its
+  # miles converted at 1.609344 km a mile; where it gives no miles (KICCO, the Aucilla and St. Marks
+  # stretch, Chipola) or its miles disagree with the Forest Service's centerline by more than a
+  # quarter (Bull Creek, Lake Jesup, Econfina River, Pine Log with the
+  # SR 20 road walk before it, Nokuse), the stage's length is measured on the map line
+  # (huckepack-measured). Ends: where the association names them ("from SR 40 to SR 20"), else at
+  # the land unit the section is named for, as the Forest Service's centerline (KMZ, LandUnit and
+  # segment names) has them; road walks between two units go with the section before. Each stage
+  # follows the four OSM region relations of the trail (route.branched), the shortest way over their
+  # ways to its end
+  source: fta-regions
+  list:
+    - { number: "1", kind: main, from: "Oasis Visitor Center", to: "I-75 (Big Cypress rest area)", km: 39.6, end: { name: "I-75", lat: 26.16791, lon: -81.07233 } }
+    - { number: "2", kind: main, from: "I-75 (Big Cypress rest area)", to: "Big Cypress Seminole Indian Reservation boundary", km: 12.9, end: { name: "Reservation boundary", lat: 26.25634, lon: -81.08679 } }
+    - { number: "3", kind: main, from: "Big Cypress Seminole Indian Reservation boundary", to: "CR 835 (L-2 canal levee)", km: 64.9, end: { name: "CR 835, west crossing", lat: 26.62391, lon: -80.94986 } }
+    - { number: "4", kind: main, from: "CR 835 (L-2 canal levee)", to: "Pahokee State Park", km: 50.4, end: { name: "Pahokee State Park, north side", lat: 26.82777, lon: -80.66149 } }
+    - { number: "5", kind: main, from: "Pahokee State Park", to: "Herbert Hoover Dike north of Port Mayaca", km: 35.9, end: { name: "Herbert Hoover Dike", lat: 27.08886, lon: -80.66212 } }
+    - { number: "6", kind: main, from: "Herbert Hoover Dike north of Port Mayaca", to: "Platts Bluff County Park", km: 53.3, end: { name: "Platts Bluff County Park", lat: 27.29641, lon: -80.99392 } }
+    - { number: "7", kind: main, from: "Platts Bluff County Park", to: "Kissimmee Prairie Preserve State Park", km: 53.4, end: { name: "Kissimmee Prairie Preserve State Park boundary", lat: 27.54213, lon: -81.19979 } }
+    - { number: "8", kind: main, from: "Kissimmee Prairie Preserve State Park", to: "KICCO Wildlife Management Area", km: 33.5, end: { name: "KICCO boundary", lat: 27.65794, lon: -81.14774 } }
+    - { number: "9", kind: main, from: "KICCO Wildlife Management Area", to: "SR 60 (Three Lakes access road)", km: 34.9, source: huckepack-measured, end: { name: "SR 60 at the Three Lakes access road", lat: 27.80456, lon: -81.12670 } }
+    - { number: "10", kind: main, from: "SR 60 (Three Lakes access road)", to: "US 441", km: 52.5, end: { name: "US 441", lat: 27.99753, lon: -81.01957 } }
+    - { number: "11", kind: main, from: "US 441", to: "US 192 (Bull Creek WMA)", km: 37.4, source: huckepack-measured, end: { name: "US 192", lat: 28.11729, lon: -80.93219 } }
+    - { number: "12", kind: main, from: "US 192 (Bull Creek WMA)", to: "St. Nicholas Road (Christmas)", km: 56.2, end: { name: "St. Nicholas Road", lat: 28.51162, lon: -80.96657 } }
+    - { number: "13", kind: main, from: "St. Nicholas Road (Christmas)", to: "Spring Hammock Preserve", km: 66.4, source: huckepack-measured, end: { name: "Spring Hammock Preserve", lat: 28.71814, lon: -81.30507 } }
+    - { number: "14", kind: main, from: "Spring Hammock Preserve", to: "Clearwater Lake", km: 54.4, end: { name: "Clearwater Lake", lat: 28.97676, lon: -81.55020 } }
+    - { number: "15", kind: main, from: "Clearwater Lake", to: "SR 40", km: 45.4, end: { name: "SR 40", lat: 29.18010, lon: -81.71292 } }
+    - { number: "16", kind: main, from: "SR 40", to: "SR 20", km: 81.6, end: { name: "SR 20", lat: 29.62988, lon: -81.74889 } }
+    - { number: "17", kind: main, from: "SR 20", to: "SR 21 (Gold Head Branch State Park)", km: 55.2, end: { name: "SR 21", lat: 29.83569, lon: -81.97700 }, via: [{ name: "Etoniah Creek State Forest", lat: 29.77911, lon: -81.87219 }] }
+    - { number: "18", kind: main, from: "SR 21 (Gold Head Branch State Park)", to: "Lake Butler", km: 57.8, end: { name: "Lake Butler, end of the rail trail", lat: 30.02636, lon: -82.35343 } }
+    - { number: "19", kind: main, from: "Lake Butler", to: "Olustee Battlefield", km: 37.0, end: { name: "Olustee Battlefield Historic State Park", lat: 30.20644, lon: -82.40997 } }
+    - { number: "20", kind: main, from: "Olustee Battlefield", to: "Cow Catcher Road", km: 38.9, end: { name: "Cow Catcher Road", lat: 30.35608, lon: -82.65717 } }
+    - { number: "21", kind: main, from: "Cow Catcher Road", to: "Winquepin Street (Ellaville)", km: 114.3, end: { name: "Winquepin Street", lat: 30.29854, lon: -83.24344 } }
+    - { number: "22", kind: main, from: "Winquepin Street (Ellaville)", to: "Aucilla River tract (Foley boundary)", km: 79.7, source: huckepack-measured, end: { name: "Foley/SRWMD boundary", lat: 30.26164, lon: -83.88225 } }
+    - { number: "23", kind: main, from: "Aucilla River tract (Foley boundary)", to: "Wakulla Beach Road", km: 78.6, source: huckepack-measured, end: { name: "Wakulla Beach Road trailhead", lat: 30.14553, lon: -84.25422 } }
+    - { number: "24", kind: main, from: "Wakulla Beach Road", to: "Ochlockonee River (FH 13)", km: 78.5, end: { name: "Ochlockonee River, FH 13", lat: 30.17688, lon: -84.67738 } }
+    - { number: "25", kind: main, from: "Ochlockonee River (FH 13)", to: "CR 12", km: 56.2, end: { name: "CR 12", lat: 30.29835, lon: -85.01884 } }
+    - { number: "26", kind: main, from: "CR 12", to: "Scott Road Trailhead", km: 68.2, source: huckepack-measured, end: { name: "Scott Road Trailhead", lat: 30.54887, lon: -85.43576 } }
+    - { number: "27", kind: main, from: "Scott Road Trailhead", to: "SR 20 Trailhead (Pitt Spring)", km: 29.0, end: { name: "SR 20 Trailhead", lat: 30.42770, lon: -85.60974 } }
+    - { number: "28", kind: main, from: "SR 20 Trailhead (Pitt Spring)", to: "Strickland Road (SR 20)", km: 33.7, source: huckepack-measured, end: { name: "Strickland Road and SR 20", lat: 30.44678, lon: -85.88552 } }
+    - { number: "29", kind: main, from: "Strickland Road (SR 20)", to: "US 331", km: 46.2, source: huckepack-measured, end: { name: "US 331", lat: 30.56192, lon: -86.10654 } }
+    - { number: "30", kind: main, from: "US 331", to: "SR 285", km: 62.1, end: { name: "SR 285", lat: 30.71812, lon: -86.36750 } }
+    - { number: "31", kind: main, from: "SR 285", to: "Log Lake Road", km: 52.9, end: { name: "Log Lake Road", lat: 30.67551, lon: -86.75090 } }
+    - { number: "32", kind: main, from: "Log Lake Road", to: "Navarre Bridge", km: 54.7, end: { name: "Navarre Bridge, north end", lat: 30.40135, lon: -86.86412 } }
+    - { number: "33", kind: main, from: "Navarre Bridge", to: "Fort Pickens", km: 40.7, end: { name: "Fort Pickens", lat: 30.32862, lon: -87.28969 } }
+route:
+  # built by `python -m pipeline.all florida-trail`: OSM ways matched to guide lines over the
+  # trail's four OSM region relations (the superroute 1163455's Southern, Central, Northern and
+  # Panhandle Region), each stage the shortest way over their ways to its end
+  source: osm
+  publishable: true
+  relation: [14480290, 14480289, 14480288, 14480287]
+  branched: true
+difficulty:
+  estimated:
+    sac: T1
+    basis: >-
+      The association: "No climbing, but still physically demanding", with marl mud and deep water
+      in Big Cypress, eight miles of swamp forest in Bradwell Bay, rough uneven limerock and grass on
+      the South Florida dikes and soft sand in the scrub of the Ocala National Forest, and long road
+      walks. A flat trail on footpaths, forest roads, levees and roads (T1); wading, heat and the
+      length make it hard.
+    source: fta-faqs
+season:
+  # FAQs: "The hiking season in Florida runs roughly from late October through April … we
+  # recommend thru-hikes start in the south in early January and end in the north by April"
+  months: [10, 11, 12, 1, 2, 3, 4]
+  text: Late October through April; thru-hikers are advised to start in the south in early January and finish in the north by April, avoiding most gun hunting restrictions in the winter dry season
+  source: fta-faqs
+permit:
+  required: true
+  name: Permits for the Seminole Reservation, Camp Blanding, St. Marks National Wildlife Refuge and Eglin Air Force Base
+  issuedBy: the land managers (Seminole Tribe of Florida, Camp Blanding, U.S. Fish and Wildlife Service, Eglin Air Force Base)
+  how: >-
+    Hikers need permission to cross the Big Cypress Seminole Indian Reservation (a notarized release
+    form, no camping), a permit through Camp Blanding's iSportsman system, a written camping permit
+    with a fee for St. Marks National Wildlife Refuge, and thru-hikers a permit from Eglin Air Force
+    Base's Jackson Guard; many campsites need a reservation, and the association asks thru-hikers to
+    register at least 30 days before starting.
+  url: https://floridatrail.org/permits/
+  source: fta-permits
+sleeping:
+  # the section pages: backcountry and designated campsites, a few open-sided shelters (the FAQs:
+  # "only seven hiker shelters"), motels in the towns along the road walks
+  types: [campsite, bivouac, hotel]
+  source: fta-regions
+wildCamping:
+  status: restricted
+  rule: >-
+    During hunting seasons on certain public lands hikers must use designated campsites; on many
+    others they can camp where they wish, using Leave No Trace principles. Some land managers allow
+    camping only at designated, often reserved campsites (the water management districts, St. Marks
+    National Wildlife Refuge), and none on the Seminole Reservation.
+  source: fta-faqs
+access:
+  # the international airports of Miami and Fort Myers, the nearest to Big Cypress; coordinates
+  # from OSM, distances by pipeline/access.py
+  - kind: airport
+    name: Miami International Airport (MIA)
+    lat: 25.79498
+    lon: -80.28672
+    source: osm
+  - kind: airport
+    name: Southwest Florida International Airport (RSW)
+    lat: 26.53295
+    lon: -81.75881
+    source: osm
+animals:
+  # the National Park Service's Big Cypress National Preserve safety page (panthers, venomous
+  # snakes) and the Forest Service's trail safety page (bears); level ours
+  list:
+    - kind: snake
+      name: Venomous snakes (cottonmouth, rattlesnakes, copperhead, coral snake)
+      level: moderate
+      basis: The association counts six venomous snakes in Florida (the cottonmouth, three rattlesnakes, the southern copperhead and the eastern coral snake); Big Cypress says they are active year round and bites rare but serious.
+      do:
+        - Pay attention to where you walk and place your hands
+        - Consider wearing high boots or protective leggings while hiking
+        - Inspect your shoes and sleeping bags or bedding before use and always carry a flashlight at night
+        - If you are bitten by a snake, it is crucial to exit the backcountry and go to the nearest emergency room
+      dont:
+        - Stay a safe distance from any wildlife
+      source: nps-bicy-safety
+    - kind: big-cat
+      name: Florida panther
+      level: low
+      basis: Big Cypress calls itself panther country, where attacks are rare but do occur; the association knows of no panther that has harmed a person in modern times.
+      do:
+        - "Should you encounter an aggressive panther, hold your ground, wave your arms, throw stones, and shout"
+        - Keep groups together
+        - It is strongly advised to not hike alone
+      dont:
+        - Never run
+      source: nps-bicy-safety
+    - kind: bear
+      name: Florida black bear
+      level: low
+      basis: The Forest Service says interactions between campers and Florida black bears are rising in the national forests; the association knows of no attack on a person by a Florida black bear.
+      do:
+        - Hang all attractants at least 10 feet above ground and 4 feet from any vertical support
+        - Make noise to avoid surprising a bear
+        - If a bear approaches you, move away slowly and get into a vehicle or secure area
+        - Carry EPA registered bear pepper spray
+      dont:
+        - Never store food in your tent
+        - Never approach a bear or other wild animal
+        - DO NOT burn or bury any attractants
+      source: usfs-safety
+tags: [swamp, forest, lake, river, coast, beach, wilderness]
+notes:
+  - >-
+    Stages: the association's sections on the main route. Their ends are named only for some
+    ("Ocala South … from Clearwater Lake to SR 40", "Suwannee River … from Big Shoals State Park to
+    Winquepin St.", "This section ends at Spring Hammock Preserve"); the others end where the land
+    unit the section is named for ends on the Forest Service's centerline, and where the stated
+    miles fit it best: Big Cypress South at I-75, Big Cypress North at the reservation's boundary,
+    Seminole Tribe Reservation at the CR 835 crossing of the L-2 levee (its 40.3 miles end there,
+    though the association's Okeechobee South text names the STA 5/6 campsite before it),
+    Okeechobee South at Pahokee State Park and Okeechobee East on the dike north of Port Mayaca
+    (both by their miles; the association names no point between them, and Okeechobee North's 33.1
+    miles to Platts Bluff agree), KICCO at SR 60, Three Lakes at US 441, Bull Creek at US 192,
+    Tosohatchee at St. Nicholas Road, Econfina River at the Foley Timber boundary, Pine Log at
+    Strickland Road, Nokuse at US 331, Eglin East at SR 285, Eglin North at Log Lake Road, Eglin West
+    (which the association describes with its Yellow River Ravines and Weaver Creek sections) at
+    the Navarre Bridge. Stage 23 joins the association's Aucilla and Byrd Hammock entries (a slide
+    without text or miles, and a page on the Byrd Hammock midden in St. Marks National Wildlife
+    Refuge) from the Aucilla River tract through the refuge to Wakulla Beach Road, where
+    Apalachicola East's 48.8 miles begin. Stage 20 ends at Cow Catcher Road, where the association
+    ends Osceola National Forest, so stage 21 includes the short road walk to Big Shoals State Park.
+    Stage 28 includes the SR 20 road walk from the Econfina Creek section's SR 20 trailhead to Pine
+    Log's east end. These placements follow the sources as far as they go; an integrator may want to
+    check them against the association's map set and data book (sold, not open).
+  - >-
+    Corridors: around Orlando the trail splits into the Eastern Corridor (Three Lakes North, Bull
+    Creek, Tosohatchee, Lake Jesup, Cassia, Ocala South) and the Western Corridor (Upper Kissimmee,
+    21.5 miles; Reedy Creek, 27.9; Green Swamp East, 25.4; Richloam/Green Swamp West, 30; Croom,
+    20.1; Citrus, 31.4; Cross Florida Greenway West, 40.6; Cross Florida Greenway East and Ocala
+    West, 32.2, to the 88 Store), which the association calls "an alternate route around Central
+    Florida from the original thru-trail route, the Eastern Corridor". Around Lake Okeechobee
+    hikers "have the choice of walking around the east or west sides" (Okeechobee West, 40.5
+    miles); the Forest Service's centerline counts the east side in the Eastern Corridor. Both
+    alternatives leave the main route inside a section (the Western Corridor at CR 523 in Three
+    Lakes, Lake Okeechobee's west side at the S-3 lock) and rejoin inside another (the 88 Store in
+    Ocala North, SR 78 in Okeechobee North), which the pipeline's variants (each beginning where a
+    main stage ends) can't draw, so they are recorded here only. The official Blackwater River side
+    trail (48.6 miles) to the Alabama line is left out like the association's own totals do.
+  - >-
+    Length: the association's FAQs give 1,287.9 miles for an Eastern Corridor thru-hike (903 miles
+    of trail, 365.71 of road connector) and "~ 1,500 miles" for the whole trail with both corridors
+    and the gaps, the figure the Forest Service gives ("currently about 1,500 miles long"); the
+    record keeps the first, which covers the main stages' route. The association's section miles
+    sum to about 1,060 miles on the main route (with the measured stages), far less: the GIS figure
+    and the section pages don't agree with each other.
+  - >-
+    Start: the association's FAQs still give the southern terminus "on Loop Road (SR 94)"; its
+    section page and the Forest Service's centerline put it at the Oasis Visitor Center, which the
+    record uses.
+  - >-
+    Days: the association's "two to three months" for a thru-hike, recorded as 60 to 90 days. The
+    Forest Service gives no days figure.
+  - >-
+    Ascent: neither the Forest Service nor the association states a total ascent or descent, nor per
+    section, so the page estimates both from the terrain model.
+  - >-
+    Tree line: the trail stays below 100 m; no tree line applies.
+  - >-
+    Waymarking: the orange blaze has no drawn symbol yet (src/components/Waymark.astro has no orange
+    blaze, and no source describes its shape).
+  - >-
+    Wildlife: the Florida Fish and Wildlife Conservation Commission's pages (bears, venomous snakes,
+    alligators) answered with a bot check (403) and were left out. The National Park Service's Big
+    Cypress safety page gives the advice for panthers and venomous snakes, the Forest Service's
+    trail safety page for black bears. Alligators are not listed, since the page has no kind for them: Big Cypress says
+    "in the event that you meet an alligator on the trail, give it a wide berth and do not attempt to
+    move it yourself", and the association "never throw your food scraps into a body of water … and
+    don't bring a dog along if you're hiking into a swampy area". Big Cypress also names scorpions
+    and spiders among the venomous animals active year round.
+  - >-
+    Map line (2026-11-07): the Florida Geofabrik extract (2026-11-05); OSM ways matched to guide
+    lines over the four OSM region relations, every stage 100 % matched without bridges over 100 m.
+    The main route measures 1,767.9 km on the map line against the association's 1,287.9 miles
+    (2,072.7 km, −15 %; dataCheck.deviations) and its section miles summed with the measured
+    stages (about 1,060 miles, 1,705 km, +4 %). Stages more than 10 % off their stated miles: 1 Big
+    Cypress South +20 % (47.7 against 39.6 km), 8 Kissimmee Prairie +19 %, 10 Three Lakes −19 %, 12
+    Tosohatchee +13 %, 30 Eglin East −22 %, 33 Seashore +16 %; the association's section miles
+    seem older than the Forest Service's 2026 centerline (reroutes), and the record keeps them.
+    Highest point 87 m at km 1,598 on Eglin Air Force Base, lowest −3 m at km 1,231 by the St.
+    Marks salt marshes (terrain model, a surface model in the forest; nothing stated). The terrain
+    model gives about 5,350 m of climbing, mostly tree canopy noise; nothing is stated.
+  - >-
+    Water: OSM maps 19 drinking water points and 52 springs within 500 m; the longest stretch
+    without clean water (drinking water or a refill at a campsite) is 190 km (km 750–940, from the
+    Ocala National Forest to Olustee), without public drinking water alone 756 km (km 1,010–1,766),
+    without any water 343 km. The association: "All water in Florida should be treated unless identified as
+    potable by signs", water is shown on its (sold) maps, and canal water along the South Florida
+    levees "can be of dubious quality", so no waterPoints are added.
+  - >-
+    Resupply: OSM maps 64 shops near the trail, the longest stretch without one 408 km (km 176–585,
+    from Pahokee round Lake Okeechobee and up the Kissimmee River to Christmas); the association
+    lists gateway communities off the trail. Beds: 97 places to sleep (93 campsites), the longest
+    stretch without one 151 km.
+  - >-
+    Access: Miami International Airport, 81.6 km by road from the Oasis Visitor Center, and
+    Southwest Florida International Airport at Fort Myers, 137.2 km.
+  - >-
+    Data check (2026-11-07): against English Wikipedia and the Forest Service's pages (About the
+    Trail, Safety and Outdoor Ethics) and centerline (KMZ). Termini: Wikipedia's Oasis Visitor Center
+    (25.8571, −81.0329) and Fort Pickens parking lot (30.3286, −87.2896) against ours (25.85706,
+    −81.03303; 30.32862, −87.28969): agree. Designation 1983: Wikipedia and the Forest Service agree.
+    Length: Wikipedia and the Forest Service give 1,500 miles for the whole trail with both
+    corridors (the association's "~ 1,500 miles" too), not the main route; the map line is 15 %
+    under the association's 1,287.9 miles (deviations). Season: the Forest Service "most Florida
+    hikers only hit the trail between October and April", Wikipedia "maintained for seasonal use
+    September through April", against the association's late October through April: agree.
+    Difficulty: Wikipedia "Moderate"; our T1 with Hard effort fits a flat but long trail. Hazards:
+    Wikipedia names alligators, venomous snakes and bears, as listed (alligators in the Wildlife
+    note). Days: only the association gives a figure. Section lengths: the association's miles
+    against the Forest Service's centerline as matched to OSM, within 10 % on 21 of the 25 stated
+    sections, the six over 10 % listed in the Map line note; the stage table on the built page was
+    checked against the association's section pages, name by name and mile by mile.
+dataCheck:
+  date: 2026-11-07
+  against: [wikipedia, usfs-about, usfs-safety, usfs-gis]
+  pageAgainst: [fta-regions]
+  deviations:
+    - { figure: length, ours: "2,072.7 km (1,287.9 miles, the association's FAQs)", theirs: "1,767.9 km on the map line (−15 %)", source: osm }
+    - { figure: stage 1 length, ours: "39.6 km (24.6 miles)", theirs: "47.7 km on the map line (+20 %)", source: osm }
+    - { figure: stage 8 length, ours: "33.5 km (20.8 miles)", theirs: "39.8 km on the map line (+19 %)", source: osm }
+    - { figure: stage 10 length, ours: "52.5 km (32.6 miles)", theirs: "42.4 km on the map line (−19 %)", source: osm }
+    - { figure: stage 12 length, ours: "56.2 km (34.9 miles)", theirs: "63.7 km on the map line (+13 %)", source: osm }
+    - { figure: stage 30 length, ours: "62.1 km (38.6 miles)", theirs: "48.5 km on the map line (−22 %)", source: osm }
+    - { figure: stage 33 length, ours: "40.7 km (25.3 miles)", theirs: "47.1 km on the map line (+16 %)", source: osm }
+sources:
+  - id: fta-regions
+    title: "Florida Trail Association: The Florida Trail by Region (the sections of the four regions, with their miles and descriptions)"
+    url: https://floridatrail.org/the-florida-trail-by-region/
+    licence: All rights reserved (facts only)
+    retrieved: 2026-11-07
+  - id: fta-faqs
+    title: "Florida Trail Association: FAQs (season, trail length by corridor, camping, demands, water)"
+    url: https://floridatrail.org/faqs/
+    licence: All rights reserved (facts only)
+    retrieved: 2026-11-07
+  - id: fta-thru
+    title: "Florida Trail Association: Thru Hike (two to three months)"
+    url: https://floridatrail.org/thru-hike/
+    licence: All rights reserved (facts only)
+    retrieved: 2026-11-07
+  - id: fta-permits
+    title: "Florida Trail Association: Permits for hikers (Seminole Reservation, Camp Blanding, St. Marks, Eglin; campsite reservations)"
+    url: https://floridatrail.org/permits/
+    licence: All rights reserved (facts only)
+    retrieved: 2026-11-07
+  - id: fta-safety
+    title: "Florida Trail Association: Hiker Safety (blazes, hunting season, heat, wildlife)"
+    url: https://floridatrail.org/hiker-safety/
+    licence: All rights reserved (facts only)
+    retrieved: 2026-11-07
+  - id: usfs-about
+    title: "USDA Forest Service: Florida National Scenic Trail, About the Trail (about 1,500 miles, four regions, designated 1983)"
+    url: https://www.fs.usda.gov/trails/florida-nst/about-trail
+    licence: US federal government work, public domain
+    retrieved: 2026-11-07
+  - id: usfs-gis
+    title: "USDA Forest Service: Florida National Scenic Trail, Geospatial Data (the official centerline as a KMZ file, updated June 2026)"
+    url: https://www.fs.usda.gov/trails/florida-nst/data-tools/gis
+    licence: US federal government work, public domain
+    retrieved: 2026-11-07
+  - id: nps-bicy-safety
+    title: "National Park Service, Big Cypress National Preserve: Safety (panthers, venomous animals, wildlife, water)"
+    url: https://www.nps.gov/bicy/planyourvisit/safety.htm
+    licence: US federal government work, public domain
+    retrieved: 2026-11-07
+  - id: usfs-safety
+    title: "USDA Forest Service: Florida National Scenic Trail, Safety and Outdoor Ethics (heat, hunting, hurricanes, bear safety)"
+    url: https://www.fs.usda.gov/trails/florida-nst/safety-ethics
+    licence: US federal government work, public domain
+    retrieved: 2026-11-07
+  - id: wikipedia
+    title: "Wikipedia (en): Florida Trail"
+    url: https://en.wikipedia.org/wiki/Florida_Trail
+    licence: CC BY-SA 4.0
+    retrieved: 2026-11-07
+    checkOnly: true
+  - id: huckepack-measured
+    title: "huckepack: section distances measured on our OpenStreetMap map line (where the association gives none, or its miles disagree with the Forest Service's centerline)"
+    url: https://www.openstreetmap.org/relation/1163455
+    licence: ODbL 1.0 (measured on OpenStreetMap data)
+    retrieved: 2026-11-07
+  - id: wikimedia
+    title: "Wikimedia: page views of the trail's Wikipedia articles in every language, by people, over twelve months (Wikidata sitelinks, pageview API)"
+    url: https://wikimedia.org/api/rest_v1/
+    licence: CC0 1.0 (pageview data); Wikidata CC0
+    retrieved: 2026-11-07
+    checkOnly: true  # not on the trail page: the page views only rank the home page's popular trails
+  - id: osm
+    title: "OpenStreetMap contributors: paths, water, shops and places to sleep along the trail (Geofabrik extracts), travel hubs"
+    url: https://www.openstreetmap.org/
+    licence: ODbL 1.0
+    retrieved: 2026-11-07
+  - id: copdem
+    title: "Copernicus DEM GLO-30 (30 m terrain model), tiles from AWS Open Data"
+    url: https://registry.opendata.aws/copernicus-dem/
+    licence: "Copernicus WorldDEM-30 licence, free; produced using Copernicus WorldDEM-30 © DLR e.V. 2010-2014 and © Airbus Defence and Space GmbH 2014-2018 provided under COPERNICUS by the European Union and ESA; all rights reserved"
+    retrieved: 2026-11-07
+  - id: worldcover
+    title: "ESA WorldCover 2021: 10 m land cover (via AWS Open Data)"
+    url: https://esa-worldcover.org/
+    licence: "CC BY 4.0; © ESA WorldCover project 2021 / Contains modified Copernicus Sentinel data (2021) processed by ESA WorldCover consortium"
+    retrieved: 2026-11-07
+  - id: era5
+    title: "Open-Meteo open data on AWS: ERA5-Land temperature and ERA5 precipitation, snow and wind, daily 1995–2024 (reanalysis)"
+    url: https://github.com/open-meteo/open-data
+    licence: CC BY 4.0 (Open-Meteo); contains modified Copernicus Climate Change Service information
+    retrieved: 2026-11-07
+  - id: osrm
+    title: "OSRM: road routes on OpenStreetMap data (router.project-osrm.org)"
+    url: https://project-osrm.org/
+    licence: Route data © OpenStreetMap contributors (ODbL)
+    retrieved: 2026-11-07
