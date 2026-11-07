@@ -172,6 +172,8 @@ And the **Greenstone Ridge Trail** (Michigan: the National Park Service's "about
 
 And the **Pacific Northwest National Scenic Trail** (Montana, Idaho and Washington: the Pacific Northwest Trail Association's about 1,200 miles with the Forest Service from Chief Mountain on Glacier National Park's Canadian border over the Continental Divide, the Purcells, the Selkirks, the Kettle River Range and the Okanogan Highlands, through the Pasayten Wilderness and the North Cascades past Mount Baker, across Puget Sound by the Keystone ferry and through the Olympics' rainforest to Cape Alava on the Pacific, in the association's ten sections, mostly unmarked, 60–75 days, prime season July to September; over the three OSM state relations; 2026-11-07).
 
+And the **Border Route Trail** (Minnesota: the Border Route Trail Association's 65 miles (105 km) with the Superior National Forest along the Canadian border, from the Gunflint Trail, where the Kekekabic Trail ends, through the Boundary Waters Canoe Area Wilderness over high cliffs above the border lakes to the Superior Hiking Trail's northern end, part of the North Country Trail since 2019, in the association's four sections, unmarked in the wilderness, designated campsites, a BWCAW permit year round; over the OSM relation; 2026-11-07).
+
 | # | Trail | Region | Length (approx.) | Why |
 |---|---|---|---|---|
 | 1 | Pacific Crest Trail | USA | 4,265 km | Most-hiked long trail; public US agency data; completion lists |

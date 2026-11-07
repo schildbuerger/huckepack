@@ -1,0 +1,296 @@
+name: Border Route Trail
+added: 2026-11-07
+aliases: [BRT]
+website: https://www.borderroutetrail.org/
+wikidata: Q4944613
+designation: Part of the North Country National Scenic Trail
+managedBy:
+  # the association "coordinates the maintenance of the Border Route Trail"; the Superior National
+  # Forest manages the land and the Boundary Waters Canoe Area Wilderness it crosses (trail 21007)
+  - name: Border Route Trail Association
+    url: https://www.borderroutetrail.org/
+  - name: USDA Forest Service, Superior National Forest
+    url: https://www.fs.usda.gov/r09/superior/recreation/trails/border-route-trail
+officialGpx:
+  none: the association sells its guidebook and map set and points to third-party apps (AllTrails, Gaia GPS, FarOut) for digital maps; it offers no GPX download (checked 2026-11-07)
+  source: brt-about
+trailType: point-to-point
+continents: [North America]
+countries: [US]
+regions: [Minnesota]
+# protectedAreas: the association names the Boundary Waters Canoe Area Wilderness; the Forest
+# Service page puts the trail in the Superior National Forest (note "Protected areas")
+protectedAreas: [Boundary Waters Canoe Area Wilderness, Superior National Forest]
+termini:
+  # the association: "It connects to the Kekekabic Trail on its western terminus and the Superior
+  # Hiking Trail on its eastern terminus"; its sections run west to east from the "Western
+  # Terminus" to the "Eastern Terminus". Coordinates: the OSM relation's two ends, at the Gunflint
+  # Trail (road) and at Otter Lake Road where the Superior Hiking Trail joins
+  start:
+    name: Western terminus (Gunflint Trail, Kekekabic Trail)
+    lat: 48.08956
+    lon: -90.8239
+  end:
+    name: Eastern terminus (Superior Hiking Trail junction)
+    lat: 47.98762
+    lon: -89.93581
+  source: brt-about
+waymarking:
+  # "Other than occasional signs at spurs, there are no trail markings within the BWCAW"
+  text: Other than occasional signs at spurs, there are no trail markings within the Boundary Waters Canoe Area Wilderness.
+  source: brt-planning
+length:
+  # "The Border Route Trail (BRT) is a 65-mile-long hiking trail"
+  - km: 104.6
+    approx: true
+    source: brt-about
+stages:
+  # the association's four sections on its Trail Conditions page ("Conditions by Section"), west to
+  # east, each with its miles inside and outside the BWCAW: 15.8 + 0.2, 14, 22.1 + 0.8 and 12.3
+  # miles, converted to km. The numbering is ours, in the association's order. Section ends: the
+  # OSM relation's nodes where the Crab Lake Cut-off Trail and the Clearwater–Daniels Lake Trail
+  # join, and next to McFarland Lake Campground
+  source: brt-conditions
+  list:
+    - { number: "1", kind: main, from: Western Terminus, to: Crab Lake Cutoff Trail, km: 25.7, end: { lat: 48.09069, lon: -90.61711 } }
+    - { number: "2", kind: main, from: Crab Lake Cutoff Trail, to: Daniels Lake Trail Spur, km: 22.5, end: { lat: 48.09062, lon: -90.37728 } }
+    - { number: "3", kind: main, from: Daniels Lake Trail Spur, to: McFarland Lake Campground, km: 36.9, end: { lat: 48.05415, lon: -90.05717 } }
+    - { number: "4", kind: main, from: McFarland Lake Campground, to: Eastern Terminus, km: 19.8, end: { lat: 47.98762, lon: -89.93581 } }
+route:
+  # built by `python -m pipeline.all border-route-trail`: OSM ways matched to the trail's OSM
+  # relation (5996078, Wikidata Q4944613), chained from the western terminus and cut at the
+  # sections' ends
+  source: osm
+  publishable: true
+  relation: 5996078
+difficulty:
+  estimated:
+    sac: T3
+    basis: >-
+      The association calls the trail very remote and rugged, for experienced backpackers with land
+      navigation skills only: within the wilderness it is unmarked, often overgrown and can take
+      some skill to spot and follow, with steep descents and flooded stretches at beaver ponds. A
+      footpath that is not always visible, needing map and compass (T3).
+    source: brt-planning
+season:
+  # the Forest Service: "Seasons of Use: This trail is open year-round"
+  months: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
+  text: Open year-round
+  source: fs-brt
+permit:
+  # "Permits are required year round for everyone entering the BWCAW. For the Border Route Trail,
+  # this means any trip between Crab Lake and McFarland Lake (entry points #81 west, #82 center and
+  # #83 east)"
+  required: true
+  name: Boundary Waters Canoe Area Wilderness permit
+  issuedBy: USDA Forest Service, Superior National Forest
+  how: >-
+    Needed year round for any trip between Crab Lake and McFarland Lake (entry points #81, #82 and
+    #83), one per group of up to nine. Backpackers starting from 1 May to 30 September buy a quota
+    permit at recreation.gov; day hikers, and backpackers starting from 1 October to 30 April,
+    self-register at a trailhead kiosk.
+  url: https://www.borderroutetrail.org/permits-and-regulations
+  source: brt-permits
+sleeping:
+  # "Plan to stay at established campsites"; the association lists the designated campsites from
+  # west to east, McFarland Lake Campground (fee) among them
+  types: [campsite]
+  source: brt-backpacking
+wildCamping:
+  status: restricted
+  rule: >-
+    Plan to stay at the established campsites (steel fire grate and latrine, at most nine people a
+    site, shared with other hikers); if needed, hikers can camp dispersed at least 150 feet from the
+    trail or a body of water. Fires only in designated fire rings, and only without fire
+    restrictions.
+  source: brt-backpacking
+access:
+  # the nearest international airports: Thunder Bay (Ontario) near the eastern end, Duluth to the
+  # south-west; no passenger railway in reach. Coordinates from OSM; distances by pipeline/access.py
+  - kind: airport
+    name: Thunder Bay International Airport (YQT)
+    lat: 48.37214
+    lon: -89.32087
+    source: osm
+  - kind: airport
+    name: Duluth International Airport (DLH)
+    lat: 46.8419
+    lon: -92.20047
+    source: osm
+animals:
+  # the association's Hike Planning page ("Animals"): "home to grouse, squirrels, black bears,
+  # moose, beavers, mice, wolves and more"; the Trail Conditions page: "Bears become more active in
+  # September and October as they prepare for winter". Level ours
+  list:
+    - kind: bear
+      name: Black bear
+      level: low
+      basis: Black bears live along the trail and become more active in September and October; the association's advice is to store food and trash properly and to avoid an animal that approaches.
+      do:
+        - Properly store food and trash
+        - If an animal approaches you, try to avoid it or scare it away
+      dont:
+        - Do not feed or approach wild animals
+      source: brt-planning
+    - kind: wolf
+      name: Wolf
+      level: low
+      basis: Wolves live in the area the trail crosses; the association gives the same advice as for all wild animals.
+      do:
+        - Properly store food and trash
+        - If an animal approaches you, try to avoid it or scare it away
+      dont:
+        - Do not feed or approach wild animals
+      source: brt-planning
+tags: [lakes, cliffs, forest, wilderness, waterfalls]
+notes:
+  - >-
+    Stages: the association's four sections on its Trail Conditions page, west to east: Western
+    Terminus to Crab Lake Cutoff Trail (15.8 miles outside the BWCAW, 0.2 inside, 16.0), Crab Lake
+    Cutoff Trail to Daniels Lake Trail Spur (14), Daniels Lake Trail Spur to McFarland Lake
+    Campground (22.1 + 0.8, 22.9) and McFarland Lake Campground to Eastern Terminus (12.3), 65.2
+    miles together against the stated 65 (the interactive-map page says 65.4). The Backpacking page
+    groups its campsites by the same four sections. The sections are the association's, not days.
+  - >-
+    Days: no source gives a number of days (searched 2026-11-07: the association's About, Hike
+    Planning, Backpacking, Day Hikes and Trail Conditions pages, the Forest Service's trail page).
+    The Backpacking page: "Most backpackers average around 1 mile per hour". The page counts one day
+    per section.
+  - >-
+    Length: the association's 65 miles (104.6 km). The Forest Service's page says "This trail is 53
+    miles long" (85.3 km), English Wikipedia 65 miles (105 km).
+  - >-
+    Season: the Forest Service: "This trail is open year-round". The association's Trail Conditions
+    page gives seasonal considerations, no season: snow often lingers into mid- to late May, black
+    flies and mosquitoes in June and early July, fall colours late September to early October,
+    winter for experienced winter backpackers only, trailheads may not be plowed.
+  - >-
+    Permit: the association's BWCAW Permits page and the Forest Service's page (entry points #81,
+    #82, #83; thru-hikers of the North Country Trail use #90 and #91). About half the trail lies in
+    the wilderness: the About page puts its start about 13 miles from the western terminus and its
+    end about 16 miles from the eastern one, the Permits page the other way round (16 and 13); the
+    section mileages (15.8 + 0.2 outside in the west, 0.8 + 12.3 in the east) agree with the
+    Permits page.
+  - >-
+    Protected areas: the Boundary Waters Canoe Area Wilderness (the association: over half of the
+    trail) and the Superior National Forest (the Forest Service's page; trail number 21007).
+  - >-
+    Waymarking: the Hike Planning page: no trail markings within the BWCAW other than occasional
+    signs at spurs; the Trail Conditions page mentions blue blazes added on select rock surfaces in
+    the western, non-wilderness part (2022). No mark is drawn.
+  - >-
+    Wildlife: the association's Hike Planning page names grouse, squirrels, black bears, moose,
+    beavers, mice and wolves, with one advice for all ("Do not feed or approach wild animals ...
+    Properly store food and trash"); black bears and wolves are listed (moose has no kind in the
+    schema). Ticks peak in May and June (Trail Conditions page) without advice, so they are not
+    listed.
+  - >-
+    Tree line: none; the route stays in boreal forest between 414 and 630 m (terrain model).
+  - >-
+    Map line (2026-11-07): the Minnesota Geofabrik extract (2026-11-05); OSM's Border Route Trail
+    relation (5996078, 43 ways, one line of 106.0 km from the western terminus, no leftover ways),
+    cut at the four section ends, every section 100 % matched, no bridges. It measures 104.2 km
+    against the stated 65 miles (104.6 km, −0.4 %) and the sections' 65.2 miles (104.9 km, −0.7 %);
+    the sections 26.1, 22.9, 37.0 and 20.1 km against 25.7, 22.5, 36.9 and 19.8 km (all within
+    2 %). Highest point 630 m at km 56.3, lowest 414 m at km 94.1; the terrain model gives about
+    2,660 m of climbing, none is stated.
+  - >-
+    Resupply: OSM maps no shop within reach of the trail (104.2 km without, the whole route): it
+    runs through wilderness without towns. The association lists shuttle services from lodges and
+    outfitters (Hike Planning page); hikers carry all their food.
+  - >-
+    Beds: OSM maps 67 places to sleep within reach (65 campsites, the longest stretch without one
+    12.1 km); the association lists 19 designated campsites west to east on its Backpacking page.
+  - >-
+    Water: the association: "Water collected from natural sources along the trail must be treated
+    before consuming"; most campsites lie near a natural water source; smaller sources can dry up in
+    late summer. The Forest Service: "Boil or filter your water".
+  - >-
+    Data check (2026-11-07, working rule 2): the association against the Forest Service's trail page
+    and English Wikipedia. Length: 65 miles against Wikipedia's 65 miles (105 km, 0 %) and the
+    Forest Service's "53 miles long" (85.3 km, −18 %, recorded as a deviation; the page keeps the
+    association's figure, which the OSM map line confirms at 104.2 km). Termini: from the Kekekabic
+    Trail at the Gunflint Trail to the Superior Hiking Trail in all three. Permit: a BWCAW permit,
+    entry points #81, #82 and #83, in both the association's and the Forest Service's pages. Camping:
+    nine people per site in both; water to be treated (association) or boiled or filtered (Forest
+    Service). Season: the Forest Service's "open year-round"; neither other source gives a season.
+    Difficulty: the Forest Service, like the association, says a compass and accurate map are
+    essential and help is hard to get in. The four sections' distances and the campsites have no
+    second source: the built page was checked against the Trail Conditions and Backpacking pages
+    (16.0, 14, 22.9 and 12.3 miles as 25.7, 22.5, 36.9 and 19.8 km). Days: none published.
+dataCheck:
+  # working rule 2: the Forest Service's trail page and English Wikipedia as second sources; the
+  # sections, days and camping rules only from the association, checked on the built page
+  date: 2026-11-07
+  against: [fs-brt, wikipedia]
+  pageAgainst: [brt-conditions, brt-about, brt-backpacking, brt-permits]
+  deviations:
+    - { figure: length, ours: "65 miles (104.6 km)", theirs: "53 miles (85.3 km), −18 %", source: fs-brt }
+sources:
+  - id: brt-about
+    title: "Border Route Trail Association: About the Trail (65 miles, termini, BWCAW, trail guide and digital maps)"
+    url: https://www.borderroutetrail.org/about-the-trail
+    licence: All rights reserved (facts only)
+    retrieved: 2026-11-07
+  - id: brt-conditions
+    title: "Border Route Trail Association: Trail Conditions (seasonal considerations; conditions by section, the four sections with their miles)"
+    url: https://www.borderroutetrail.org/trail-conditions
+    licence: All rights reserved (facts only)
+    retrieved: 2026-11-07
+  - id: brt-planning
+    title: "Border Route Trail Association: Hike Planning (navigation, water, animals, dogs, shuttles)"
+    url: https://www.borderroutetrail.org/hike-planning
+    licence: All rights reserved (facts only)
+    retrieved: 2026-11-07
+  - id: brt-backpacking
+    title: "Border Route Trail Association: Backpacking (campfires, camping, designated campsites west to east)"
+    url: https://www.borderroutetrail.org/backpacking
+    licence: All rights reserved (facts only)
+    retrieved: 2026-11-07
+  - id: brt-permits
+    title: "Border Route Trail Association: BWCAW Permits (entry points, quota and self-registered permits)"
+    url: https://www.borderroutetrail.org/permits-and-regulations
+    licence: All rights reserved (facts only)
+    retrieved: 2026-11-07
+  - id: fs-brt
+    title: "USDA Forest Service, Superior National Forest: Border Route Trail (trail 21007; seasons of use, permits, water)"
+    url: https://www.fs.usda.gov/r09/superior/recreation/trails/border-route-trail
+    licence: Public domain (US federal government)
+    retrieved: 2026-11-07
+  - id: wikipedia
+    title: "Wikipedia (en): Border Route Trail"
+    url: https://en.wikipedia.org/wiki/Border_Route_Trail
+    licence: CC BY-SA 4.0
+    retrieved: 2026-11-07
+    checkOnly: true
+  - id: wikimedia
+    title: "Wikimedia: page views of the trail's Wikipedia articles in every language, by people, over twelve months (Wikidata sitelinks, pageview API)"
+    url: https://wikimedia.org/api/rest_v1/
+    licence: CC0 1.0 (pageview data); Wikidata CC0
+    retrieved: 2026-11-07
+    checkOnly: true
+  - id: osm
+    title: "OpenStreetMap contributors: the Border Route Trail relation (5996078), paths, water, shops and places to sleep along the trail (Geofabrik extract), travel hubs"
+    url: https://www.openstreetmap.org/relation/5996078
+    licence: ODbL 1.0
+    retrieved: 2026-11-07
+  - id: copdem
+    title: "Copernicus DEM GLO-30 (30 m terrain model), tiles from AWS Open Data"
+    url: https://registry.opendata.aws/copernicus-dem/
+    licence: "Copernicus WorldDEM-30 licence, free; produced using Copernicus WorldDEM-30 © DLR e.V. 2010-2014 and © Airbus Defence and Space GmbH 2014-2018 provided under COPERNICUS by the European Union and ESA; all rights reserved"
+    retrieved: 2026-11-07
+  - id: worldcover
+    title: "ESA WorldCover 2021: 10 m land cover (via AWS Open Data)"
+    url: https://esa-worldcover.org/
+    licence: "CC BY 4.0; © ESA WorldCover project 2021 / Contains modified Copernicus Sentinel data (2021) processed by ESA WorldCover consortium"
+    retrieved: 2026-11-07
+  - id: era5
+    title: "Open-Meteo open data on AWS: ERA5-Land temperature and ERA5 precipitation, snow and wind, daily 1995–2024 (reanalysis)"
+    url: https://github.com/open-meteo/open-data
+    licence: CC BY 4.0 (Open-Meteo); contains modified Copernicus Climate Change Service information
+    retrieved: 2026-11-07
+  - id: osrm
+    title: "OSRM: road routes on OpenStreetMap data (router.project-osrm.org)"
+    url: https://project-osrm.org/
+    licence: Route data © OpenStreetMap contributors (ODbL)
+    retrieved: 2026-11-07
