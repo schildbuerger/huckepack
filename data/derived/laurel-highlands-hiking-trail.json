@@ -5409,5 +5409,19 @@
         "views": 2233
       }
     ]
-  }
+  },
+  "regions": [
+    {
+      "name": "Pennsylvania",
+      "kind": "admin",
+      "code": "US-PA",
+      "share": 1.0
+    },
+    {
+      "name": "Appalachian Mountains",
+      "kind": "natural",
+      "cla": "Range/mtn",
+      "share": 1.0
+    }
+  ]
 }

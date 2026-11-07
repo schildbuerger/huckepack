@@ -22192,5 +22192,37 @@
         "views": 93
       }
     ]
-  }
+  },
+  "regions": [
+    {
+      "name": "Appalachian Mountains",
+      "kind": "natural",
+      "cla": "Range/mtn",
+      "share": 1.0
+    },
+    {
+      "name": "Blue Ridge Mountains",
+      "kind": "natural",
+      "cla": "Range/mtn",
+      "share": 1.0
+    },
+    {
+      "name": "North Carolina",
+      "kind": "admin",
+      "code": "US-NC",
+      "share": 0.498
+    },
+    {
+      "name": "Georgia",
+      "kind": "admin",
+      "code": "US-GA",
+      "share": 0.285
+    },
+    {
+      "name": "Tennessee",
+      "kind": "admin",
+      "code": "US-TN",
+      "share": 0.217
+    }
+  ]
 }

@@ -10609,5 +10609,25 @@
         "views": 10070
       }
     ]
-  }
+  },
+  "regions": [
+    {
+      "name": "Alps",
+      "kind": "natural",
+      "cla": "Range/mtn",
+      "share": 1.0
+    },
+    {
+      "name": "Veneto",
+      "kind": "admin",
+      "code": "IT-34",
+      "share": 0.767
+    },
+    {
+      "name": "Trentino-Alto Adige",
+      "kind": "admin",
+      "code": "IT-32",
+      "share": 0.233
+    }
+  ]
 }

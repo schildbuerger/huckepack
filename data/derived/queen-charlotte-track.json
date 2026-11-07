@@ -4278,5 +4278,19 @@
         "views": 64
       }
     ]
-  }
+  },
+  "regions": [
+    {
+      "name": "Marlborough Sounds",
+      "kind": "natural",
+      "cla": "Coast",
+      "share": 0.975
+    },
+    {
+      "name": "Marlborough",
+      "kind": "admin",
+      "code": "NZ-MBH",
+      "share": 0.757
+    }
+  ]
 }

@@ -13053,5 +13053,19 @@
         "views": 1454
       }
     ]
-  }
+  },
+  "regions": [
+    {
+      "name": "Corse",
+      "kind": "admin",
+      "code": "FR-COR",
+      "share": 1.0
+    },
+    {
+      "name": "Corsica",
+      "kind": "natural",
+      "cla": "Island",
+      "share": 1.0
+    }
+  ]
 }

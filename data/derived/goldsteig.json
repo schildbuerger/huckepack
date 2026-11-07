@@ -45739,5 +45739,19 @@
       },
       "refillsUntreated": false
     }
-  }
+  },
+  "regions": [
+    {
+      "name": "Bavaria",
+      "kind": "admin",
+      "code": "DE-BY",
+      "share": 0.865
+    },
+    {
+      "name": "Böhmerwald",
+      "kind": "natural",
+      "cla": "Range/mtn",
+      "share": 0.735
+    }
+  ]
 }

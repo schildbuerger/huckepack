@@ -14682,5 +14682,19 @@
         "views": 2378
       }
     ]
-  }
+  },
+  "regions": [
+    {
+      "name": "Arkansas",
+      "kind": "admin",
+      "code": "US-AR",
+      "share": 1.0
+    },
+    {
+      "name": "Ozarks",
+      "kind": "natural",
+      "cla": "Plateau",
+      "share": 1.0
+    }
+  ]
 }

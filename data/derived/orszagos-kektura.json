@@ -61883,5 +61883,25 @@
         "views": 69
       }
     ]
-  }
+  },
+  "regions": [
+    {
+      "name": "Carpathian Mountains",
+      "kind": "natural",
+      "cla": "Range/mtn",
+      "share": 0.241
+    },
+    {
+      "name": "Borsod-Abaúj-Zemplén",
+      "kind": "admin",
+      "code": "HU-BZ",
+      "share": 0.209
+    },
+    {
+      "name": "Veszprém",
+      "kind": "admin",
+      "code": "HU-VE",
+      "share": 0.207
+    }
+  ]
 }

@@ -10583,5 +10583,19 @@
         "views": 1442
       }
     ]
-  }
+  },
+  "regions": [
+    {
+      "name": "Västernorrland",
+      "kind": "admin",
+      "code": "SE-Y",
+      "share": 0.942
+    },
+    {
+      "name": "Scandinavia",
+      "kind": "natural",
+      "cla": "Pen/cape",
+      "share": 0.881
+    }
+  ]
 }

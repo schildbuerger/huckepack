@@ -25798,5 +25798,19 @@
         "views": 6979
       }
     ]
-  }
+  },
+  "regions": [
+    {
+      "name": "Laurentian Upland",
+      "kind": "natural",
+      "cla": "Plateau",
+      "share": 1.0
+    },
+    {
+      "name": "Minnesota",
+      "kind": "admin",
+      "code": "US-MN",
+      "share": 0.998
+    }
+  ]
 }

@@ -96079,5 +96079,23 @@
         "views": 143
       }
     ]
-  }
+  },
+  "regions": [
+    {
+      "name": "Iberian Peninsula",
+      "kind": "natural",
+      "cla": "Plateau",
+      "share": 0.998
+    },
+    {
+      "name": "Castilla y León",
+      "kind": "admin",
+      "share": 0.514
+    },
+    {
+      "name": "Galicia",
+      "kind": "admin",
+      "share": 0.2
+    }
+  ]
 }

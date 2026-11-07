@@ -8662,5 +8662,19 @@
       },
       "refillsUntreated": false
     }
-  }
+  },
+  "regions": [
+    {
+      "name": "Appennino Ligure",
+      "kind": "natural",
+      "cla": "Range/mtn",
+      "share": 1.0
+    },
+    {
+      "name": "Toscana",
+      "kind": "admin",
+      "code": "IT-52",
+      "share": 0.833
+    }
+  ]
 }

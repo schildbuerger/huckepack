@@ -4684,5 +4684,19 @@
         "views": 1981
       }
     ]
-  }
+  },
+  "regions": [
+    {
+      "name": "Oregon",
+      "kind": "admin",
+      "code": "US-OR",
+      "share": 1.0
+    },
+    {
+      "name": "Cascade Range",
+      "kind": "natural",
+      "cla": "Range/mtn",
+      "share": 1.0
+    }
+  ]
 }

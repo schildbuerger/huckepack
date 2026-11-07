@@ -8252,5 +8252,19 @@
         "views": 89
       }
     ]
-  }
+  },
+  "regions": [
+    {
+      "name": "Scotland",
+      "kind": "admin",
+      "code": "GB-SCT",
+      "share": 0.528
+    },
+    {
+      "name": "England",
+      "kind": "admin",
+      "code": "GB-ENG",
+      "share": 0.426
+    }
+  ]
 }

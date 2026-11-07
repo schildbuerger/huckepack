@@ -33805,5 +33805,25 @@
         "straightKm": 432.6
       }
     ]
-  }
+  },
+  "regions": [
+    {
+      "name": "Quebec",
+      "kind": "admin",
+      "code": "CA-QC",
+      "share": 0.983
+    },
+    {
+      "name": "Appalachian Mountains",
+      "kind": "natural",
+      "cla": "Range/mtn",
+      "share": 0.922
+    },
+    {
+      "name": "Gaspé Peninsula",
+      "kind": "natural",
+      "cla": "Pen/cape",
+      "share": 0.648
+    }
+  ]
 }

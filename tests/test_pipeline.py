@@ -953,3 +953,56 @@ class Hubs(unittest.TestCase):
         self.assertEqual(pick([a("F", 50, ferry=True), a("G", 200)]), ["G"])
         self.assertEqual(pick([a("S", 40, "seasonal")]), ["S"])
         self.assertEqual(pick([]), [])
+
+class Regions(unittest.TestCase):
+    """A trail is in a region when at least 20 % of its main route lies inside (pipeline/regions.py)."""
+
+    @staticmethod
+    def square(name, x0, y0, x1, y1, kind="natural", hole=None):
+        from pipeline import regions
+
+        poly = [[[x0, y0], [x1, y0], [x1, y1], [x0, y1], [x0, y0]]]
+        if hole:
+            hx0, hy0, hx1, hy1 = hole
+            poly.append([[hx0, hy0], [hx1, hy0], [hx1, hy1], [hx0, hy1], [hx0, hy0]])
+        r = {"name": name, "kind": kind, "polygons": [poly]}
+        r["bbox"] = regions.bbox_of(r["polygons"])
+        return r
+
+    def test_share_threshold(self):
+        from pipeline import regions
+
+        # a line along the equator from 0° to 1° east, about 111 km
+        line = [[0.0, 0.0], [1.0, 0.0]]
+        half = self.square("Half", 0.5, -1, 2, 1)  # holds the eastern half
+        tenth = self.square("Tenth", 0.9, -1, 2, 1, kind="admin")  # holds a tenth
+        fifth = self.square("Fifth", 0.79, -1, 2, 1)  # holds a little over a fifth
+        found = regions.memberships([line], [half, tenth, fifth])
+        self.assertEqual([r["name"] for r in found], ["Half", "Fifth"])
+        self.assertAlmostEqual(found[0]["share"], 0.5, places=2)
+        self.assertGreaterEqual(found[1]["share"], regions.SHARE_MIN)
+        self.assertEqual(found[0]["kind"], "natural")
+
+    def test_holes_and_pieces(self):
+        from pipeline import regions
+
+        line = [[0.0, 0.0], [1.0, 0.0]]
+        # the whole line's box, with a hole over its middle 70 %
+        ring = self.square("Ring", -1, -1, 2, 1, hole=(0.15, -0.5, 0.85, 0.5))
+        found = regions.memberships([line], [ring])
+        self.assertEqual(len(found), 1)
+        self.assertAlmostEqual(found[0]["share"], 0.3, places=2)
+        # pieces are at most 500 m long and add up to the line
+        parts = list(regions.pieces([line]))
+        self.assertTrue(all(k <= regions.PIECE_KM + 1e-9 for _, k in parts))
+        self.assertAlmostEqual(sum(k for _, k in parts), regions.km([0, 0], [1, 0]), places=6)
+
+    def test_names(self):
+        from pipeline import regions
+
+        self.assertEqual(regions.title("PYRENEES"), "Pyrenees")
+        self.assertEqual(regions.title("Grampian Mts."), "Grampian Mountains")
+        # Natural Earth's English name where it is the same place, its label where it names another
+        self.assertEqual(regions.natural_name({"NAME": "PENÍNSULA IBÉRICA", "NAME_EN": "Iberian Peninsula"}), "Iberian Peninsula")
+        self.assertEqual(regions.natural_name({"NAME": "Grampian Mts.", "NAME_EN": "Cruach nam Miseag"}), "Grampian Mountains")
+

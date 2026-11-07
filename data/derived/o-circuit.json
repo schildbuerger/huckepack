@@ -7203,5 +7203,25 @@
         "straightKm": 265.3
       }
     ]
-  }
+  },
+  "regions": [
+    {
+      "name": "Magellan and the Chilean Antarctic",
+      "kind": "admin",
+      "code": "CL-MA",
+      "share": 1.0
+    },
+    {
+      "name": "Andes",
+      "kind": "natural",
+      "cla": "Range/mtn",
+      "share": 1.0
+    },
+    {
+      "name": "Patagonia",
+      "kind": "natural",
+      "cla": "Geoarea",
+      "share": 1.0
+    }
+  ]
 }

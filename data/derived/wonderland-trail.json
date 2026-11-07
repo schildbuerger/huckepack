@@ -7673,5 +7673,19 @@
         "views": 163
       }
     ]
-  }
+  },
+  "regions": [
+    {
+      "name": "Washington",
+      "kind": "admin",
+      "code": "US-WA",
+      "share": 1.0
+    },
+    {
+      "name": "Cascade Range",
+      "kind": "natural",
+      "cla": "Range/mtn",
+      "share": 1.0
+    }
+  ]
 }

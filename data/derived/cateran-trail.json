@@ -7323,5 +7323,19 @@
         "views": 89
       }
     ]
-  }
+  },
+  "regions": [
+    {
+      "name": "Scotland",
+      "kind": "admin",
+      "code": "GB-SCT",
+      "share": 1.0
+    },
+    {
+      "name": "Grampian Mountains",
+      "kind": "natural",
+      "cla": "Range/mtn",
+      "share": 0.495
+    }
+  ]
 }

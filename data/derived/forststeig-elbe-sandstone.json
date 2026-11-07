@@ -10540,5 +10540,19 @@
       },
       "refillsUntreated": false
     }
-  }
+  },
+  "regions": [
+    {
+      "name": "Saxony",
+      "kind": "admin",
+      "code": "DE-SN",
+      "share": 0.792
+    },
+    {
+      "name": "Ústí nad Labem",
+      "kind": "admin",
+      "code": "CZ-US",
+      "share": 0.208
+    }
+  ]
 }

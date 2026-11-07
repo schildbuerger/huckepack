@@ -29463,5 +29463,37 @@
         "views": 8531
       }
     ]
-  }
+  },
+  "regions": [
+    {
+      "name": "Scandinavia",
+      "kind": "natural",
+      "cla": "Pen/cape",
+      "share": 1.0
+    },
+    {
+      "name": "Norrbotten",
+      "kind": "admin",
+      "code": "SE-BD",
+      "share": 0.753
+    },
+    {
+      "name": "Scandinavian Mountains",
+      "kind": "natural",
+      "cla": "Range/mtn",
+      "share": 0.61
+    },
+    {
+      "name": "Lapland",
+      "kind": "natural",
+      "cla": "Geoarea",
+      "share": 0.483
+    },
+    {
+      "name": "Västerbotten",
+      "kind": "admin",
+      "code": "SE-AC",
+      "share": 0.247
+    }
+  ]
 }

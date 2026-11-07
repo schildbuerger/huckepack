@@ -22468,5 +22468,31 @@
         "views": 14065
       }
     ]
-  }
+  },
+  "regions": [
+    {
+      "name": "Brazilian Highlands",
+      "kind": "natural",
+      "cla": "Plateau",
+      "share": 1.0
+    },
+    {
+      "name": "Minas Gerais",
+      "kind": "admin",
+      "code": "BR-MG",
+      "share": 0.624
+    },
+    {
+      "name": "Serra da Mantiquiera",
+      "kind": "natural",
+      "cla": "Range/mtn",
+      "share": 0.609
+    },
+    {
+      "name": "São Paulo",
+      "kind": "admin",
+      "code": "BR-SP",
+      "share": 0.376
+    }
+  ]
 }

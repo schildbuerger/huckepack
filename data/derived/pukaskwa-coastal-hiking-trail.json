@@ -3870,5 +3870,19 @@
         "straightKm": 746.1
       }
     ]
-  }
+  },
+  "regions": [
+    {
+      "name": "Ontario",
+      "kind": "admin",
+      "code": "CA-ON",
+      "share": 1.0
+    },
+    {
+      "name": "Great Lakes",
+      "kind": "natural",
+      "cla": "Lake",
+      "share": 0.571
+    }
+  ]
 }

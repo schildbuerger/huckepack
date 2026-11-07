@@ -5144,5 +5144,24 @@
         "views": 2292
       }
     ]
-  }
+  },
+  "regions": [
+    {
+      "name": "Cataluña",
+      "kind": "admin",
+      "share": 1.0
+    },
+    {
+      "name": "Iberian Peninsula",
+      "kind": "natural",
+      "cla": "Plateau",
+      "share": 1.0
+    },
+    {
+      "name": "Pyrenees",
+      "kind": "natural",
+      "cla": "Range/mtn",
+      "share": 1.0
+    }
+  ]
 }

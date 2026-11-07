@@ -16273,5 +16273,19 @@
         "views": 96
       }
     ]
-  }
+  },
+  "regions": [
+    {
+      "name": "Wales",
+      "kind": "admin",
+      "code": "GB-WLS",
+      "share": 0.994
+    },
+    {
+      "name": "Cambrian Mountains",
+      "kind": "natural",
+      "cla": "Range/mtn",
+      "share": 0.965
+    }
+  ]
 }

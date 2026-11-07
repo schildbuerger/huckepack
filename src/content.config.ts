@@ -579,6 +579,20 @@ const derived = z.object({
       ),
     })
     .optional(),
+  // pipeline/regions.py: the regions holding at least 20 % of the main route (Natural Earth's
+  // first-level subdivisions, `admin`, and geography regions, `natural`, with its feature class);
+  // the searches group trails by them (the user's rule of 2026-11-07)
+  regions: z
+    .array(
+      z.object({
+        name: z.string(),
+        kind: z.enum(["admin", "natural"]),
+        code: z.string().optional(), // ISO 3166-2
+        cla: z.string().optional(), // Natural Earth's class: Range/mtn, Plateau, Island …
+        share: z.number(),
+      }),
+    )
+    .optional(),
   // pipeline/landcover.py: ESA WorldCover land cover at the elevation profile's samples, in six
   // groups (forest, open, moss, bare, water, farm)
   landcover: z

@@ -11388,5 +11388,19 @@
       },
       "refillsUntreated": false
     }
-  }
+  },
+  "regions": [
+    {
+      "name": "Trentino-Alto Adige",
+      "kind": "admin",
+      "code": "IT-32",
+      "share": 1.0
+    },
+    {
+      "name": "Alps",
+      "kind": "natural",
+      "cla": "Range/mtn",
+      "share": 1.0
+    }
+  ]
 }

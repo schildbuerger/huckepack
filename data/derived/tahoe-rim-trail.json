@@ -14059,5 +14059,25 @@
         "views": 267
       }
     ]
-  }
+  },
+  "regions": [
+    {
+      "name": "Sierra Nevada",
+      "kind": "natural",
+      "cla": "Range/mtn",
+      "share": 0.718
+    },
+    {
+      "name": "California",
+      "kind": "admin",
+      "code": "US-CA",
+      "share": 0.654
+    },
+    {
+      "name": "Nevada",
+      "kind": "admin",
+      "code": "US-NV",
+      "share": 0.346
+    }
+  ]
 }

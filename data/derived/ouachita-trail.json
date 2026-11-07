@@ -15508,5 +15508,25 @@
         "views": 4246
       }
     ]
-  }
+  },
+  "regions": [
+    {
+      "name": "Ouachita Mountains",
+      "kind": "natural",
+      "cla": "Range/mtn",
+      "share": 1.0
+    },
+    {
+      "name": "Arkansas",
+      "kind": "admin",
+      "code": "US-AR",
+      "share": 0.8
+    },
+    {
+      "name": "Oklahoma",
+      "kind": "admin",
+      "code": "US-OK",
+      "share": 0.2
+    }
+  ]
 }

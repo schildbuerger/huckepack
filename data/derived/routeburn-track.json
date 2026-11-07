@@ -2467,5 +2467,19 @@
         "views": 46
       }
     ]
-  }
+  },
+  "regions": [
+    {
+      "name": "Southern Alps/Kā Tiritiri o te Moana",
+      "kind": "natural",
+      "cla": "Range/mtn",
+      "share": 1.0
+    },
+    {
+      "name": "Otago",
+      "kind": "admin",
+      "code": "NZ-OTA",
+      "share": 0.806
+    }
+  ]
 }

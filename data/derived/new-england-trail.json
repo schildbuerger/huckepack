@@ -19713,5 +19713,25 @@
         "views": 112
       }
     ]
-  }
+  },
+  "regions": [
+    {
+      "name": "Appalachian Mountains",
+      "kind": "natural",
+      "cla": "Range/mtn",
+      "share": 0.841
+    },
+    {
+      "name": "Connecticut",
+      "kind": "admin",
+      "code": "US-CT",
+      "share": 0.521
+    },
+    {
+      "name": "Massachusetts",
+      "kind": "admin",
+      "code": "US-MA",
+      "share": 0.479
+    }
+  ]
 }

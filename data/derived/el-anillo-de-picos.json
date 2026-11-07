@@ -8752,5 +8752,29 @@
     "to": "2026-10",
     "views": 0,
     "articles": []
-  }
+  },
+  "regions": [
+    {
+      "name": "Cantabrian Mountains",
+      "kind": "natural",
+      "cla": "Range/mtn",
+      "share": 1.0
+    },
+    {
+      "name": "Iberian Peninsula",
+      "kind": "natural",
+      "cla": "Plateau",
+      "share": 1.0
+    },
+    {
+      "name": "Asturias",
+      "kind": "admin",
+      "share": 0.486
+    },
+    {
+      "name": "Castilla y León",
+      "kind": "admin",
+      "share": 0.365
+    }
+  ]
 }

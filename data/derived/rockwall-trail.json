@@ -3215,5 +3215,19 @@
         "straightKm": 148.9
       }
     ]
-  }
+  },
+  "regions": [
+    {
+      "name": "British Columbia",
+      "kind": "admin",
+      "code": "CA-BC",
+      "share": 1.0
+    },
+    {
+      "name": "Rocky Mountains",
+      "kind": "natural",
+      "cla": "Range/mtn",
+      "share": 1.0
+    }
+  ]
 }

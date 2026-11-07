@@ -20693,5 +20693,25 @@
         "views": 328
       }
     ]
-  }
+  },
+  "regions": [
+    {
+      "name": "Arizona",
+      "kind": "admin",
+      "code": "US-AZ",
+      "share": 1.0
+    },
+    {
+      "name": "Colorado Plateau",
+      "kind": "natural",
+      "cla": "Plateau",
+      "share": 0.215
+    },
+    {
+      "name": "Chihuahuan Desert",
+      "kind": "natural",
+      "cla": "Desert",
+      "share": 0.211
+    }
+  ]
 }

@@ -11188,5 +11188,25 @@
       },
       "refillsUntreated": false
     }
-  }
+  },
+  "regions": [
+    {
+      "name": "Harz",
+      "kind": "natural",
+      "cla": "Range/mtn",
+      "share": 1.0
+    },
+    {
+      "name": "Saxony-Anhalt",
+      "kind": "admin",
+      "code": "DE-ST",
+      "share": 0.613
+    },
+    {
+      "name": "Lower Saxony",
+      "kind": "admin",
+      "code": "DE-NI",
+      "share": 0.387
+    }
+  ]
 }

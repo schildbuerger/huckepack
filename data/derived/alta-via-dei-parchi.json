@@ -37966,5 +37966,25 @@
         "views": 93
       }
     ]
-  }
+  },
+  "regions": [
+    {
+      "name": "Appennino Ligure",
+      "kind": "natural",
+      "cla": "Range/mtn",
+      "share": 0.999
+    },
+    {
+      "name": "Emilia-Romagna",
+      "kind": "admin",
+      "code": "IT-45",
+      "share": 0.573
+    },
+    {
+      "name": "Toscana",
+      "kind": "admin",
+      "code": "IT-52",
+      "share": 0.404
+    }
+  ]
 }

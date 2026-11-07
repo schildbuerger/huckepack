@@ -2884,5 +2884,25 @@
         "views": 113
       }
     ]
-  }
+  },
+  "regions": [
+    {
+      "name": "North Island Volcanic Plateau",
+      "kind": "natural",
+      "cla": "Plateau",
+      "share": 1.0
+    },
+    {
+      "name": "Waikato",
+      "kind": "admin",
+      "code": "NZ-WKO",
+      "share": 0.594
+    },
+    {
+      "name": "Manawatū-Whanganui",
+      "kind": "admin",
+      "code": "NZ-MWT",
+      "share": 0.406
+    }
+  ]
 }

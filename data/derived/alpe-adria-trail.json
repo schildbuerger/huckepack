@@ -71015,5 +71015,19 @@
       },
       "refillsUntreated": false
     }
-  }
+  },
+  "regions": [
+    {
+      "name": "Alps",
+      "kind": "natural",
+      "cla": "Range/mtn",
+      "share": 0.576
+    },
+    {
+      "name": "Carinthia",
+      "kind": "admin",
+      "code": "AT-2",
+      "share": 0.536
+    }
+  ]
 }

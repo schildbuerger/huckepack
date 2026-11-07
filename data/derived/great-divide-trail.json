@@ -16494,5 +16494,25 @@
         "views": 221
       }
     ]
-  }
+  },
+  "regions": [
+    {
+      "name": "Rocky Mountains",
+      "kind": "natural",
+      "cla": "Range/mtn",
+      "share": 1.0
+    },
+    {
+      "name": "Alberta",
+      "kind": "admin",
+      "code": "CA-AB",
+      "share": 0.665
+    },
+    {
+      "name": "British Columbia",
+      "kind": "admin",
+      "code": "CA-BC",
+      "share": 0.335
+    }
+  ]
 }

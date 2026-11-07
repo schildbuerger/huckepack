@@ -3347,5 +3347,19 @@
         "views": 33
       }
     ]
-  }
+  },
+  "regions": [
+    {
+      "name": "Southland",
+      "kind": "admin",
+      "code": "NZ-STL",
+      "share": 1.0
+    },
+    {
+      "name": "Southern Alps/Kā Tiritiri o te Moana",
+      "kind": "natural",
+      "cla": "Range/mtn",
+      "share": 1.0
+    }
+  ]
 }

@@ -11551,5 +11551,19 @@
         "views": 1140
       }
     ]
-  }
+  },
+  "regions": [
+    {
+      "name": "New York",
+      "kind": "admin",
+      "code": "US-NY",
+      "share": 1.0
+    },
+    {
+      "name": "Adirondack Mountains",
+      "kind": "natural",
+      "cla": "Range/mtn",
+      "share": 1.0
+    }
+  ]
 }

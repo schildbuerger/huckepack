@@ -23454,5 +23454,25 @@
         "views": 882
       }
     ]
-  }
+  },
+  "regions": [
+    {
+      "name": "Massif Central",
+      "kind": "natural",
+      "cla": "Plateau",
+      "share": 1.0
+    },
+    {
+      "name": "Occitanie",
+      "kind": "admin",
+      "code": "FR-OCC",
+      "share": 0.71
+    },
+    {
+      "name": "Auvergne-Rhône-Alpes",
+      "kind": "admin",
+      "code": "FR-ARA",
+      "share": 0.29
+    }
+  ]
 }

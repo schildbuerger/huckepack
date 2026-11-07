@@ -22235,5 +22235,25 @@
         "straightKm": 125.2
       }
     ]
-  }
+  },
+  "regions": [
+    {
+      "name": "Iberian Peninsula",
+      "kind": "natural",
+      "cla": "Plateau",
+      "share": 0.737
+    },
+    {
+      "name": "Faro",
+      "kind": "admin",
+      "code": "PT-08",
+      "share": 0.561
+    },
+    {
+      "name": "Beja",
+      "kind": "admin",
+      "code": "PT-02",
+      "share": 0.281
+    }
+  ]
 }

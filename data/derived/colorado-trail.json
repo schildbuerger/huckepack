@@ -41958,5 +41958,25 @@
         "views": 14388
       }
     ]
-  }
+  },
+  "regions": [
+    {
+      "name": "Colorado",
+      "kind": "admin",
+      "code": "US-CO",
+      "share": 1.0
+    },
+    {
+      "name": "Rocky Mountains",
+      "kind": "natural",
+      "cla": "Range/mtn",
+      "share": 1.0
+    },
+    {
+      "name": "Front Range",
+      "kind": "natural",
+      "cla": "Range/mtn",
+      "share": 0.205
+    }
+  ]
 }

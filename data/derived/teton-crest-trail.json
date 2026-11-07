@@ -3980,5 +3980,19 @@
         "views": 3333
       }
     ]
-  }
+  },
+  "regions": [
+    {
+      "name": "Wyoming",
+      "kind": "admin",
+      "code": "US-WY",
+      "share": 1.0
+    },
+    {
+      "name": "Rocky Mountains",
+      "kind": "natural",
+      "cla": "Range/mtn",
+      "share": 1.0
+    }
+  ]
 }

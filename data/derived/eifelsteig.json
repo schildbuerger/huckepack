@@ -30005,5 +30005,19 @@
       },
       "refillsUntreated": false
     }
-  }
+  },
+  "regions": [
+    {
+      "name": "Rhineland-Palatinate",
+      "kind": "admin",
+      "code": "DE-RP",
+      "share": 0.548
+    },
+    {
+      "name": "North Rhine-Westphalia",
+      "kind": "admin",
+      "code": "DE-NW",
+      "share": 0.433
+    }
+  ]
 }

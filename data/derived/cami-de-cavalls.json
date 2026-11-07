@@ -15849,5 +15849,24 @@
         "views": 3697
       }
     ]
-  }
+  },
+  "regions": [
+    {
+      "name": "Balearic Islands",
+      "kind": "natural",
+      "cla": "Island group",
+      "share": 1.0
+    },
+    {
+      "name": "Islas Baleares",
+      "kind": "admin",
+      "share": 0.746
+    },
+    {
+      "name": "Menorca",
+      "kind": "natural",
+      "cla": "Island",
+      "share": 0.481
+    }
+  ]
 }

@@ -4734,5 +4734,19 @@
         "views": 94
       }
     ]
-  }
+  },
+  "regions": [
+    {
+      "name": "Tasman",
+      "kind": "admin",
+      "code": "NZ-TAS",
+      "share": 0.454
+    },
+    {
+      "name": "West Coast",
+      "kind": "admin",
+      "code": "NZ-WTC",
+      "share": 0.33
+    }
+  ]
 }

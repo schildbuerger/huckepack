@@ -25937,5 +25937,19 @@
         "straightKm": 42.0
       }
     ]
-  }
+  },
+  "regions": [
+    {
+      "name": "Saxony",
+      "kind": "admin",
+      "code": "DE-SN",
+      "share": 0.894
+    },
+    {
+      "name": "Erzgebirge",
+      "kind": "natural",
+      "cla": "Range/mtn",
+      "share": 0.834
+    }
+  ]
 }

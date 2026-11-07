@@ -12971,5 +12971,19 @@
         "views": 966
       }
     ]
-  }
+  },
+  "regions": [
+    {
+      "name": "New Hampshire",
+      "kind": "admin",
+      "code": "US-NH",
+      "share": 1.0
+    },
+    {
+      "name": "Appalachian Mountains",
+      "kind": "natural",
+      "cla": "Range/mtn",
+      "share": 1.0
+    }
+  ]
 }

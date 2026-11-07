@@ -15458,5 +15458,31 @@
         "views": 1512
       }
     ]
-  }
+  },
+  "regions": [
+    {
+      "name": "Alps",
+      "kind": "natural",
+      "cla": "Range/mtn",
+      "share": 1.0
+    },
+    {
+      "name": "Auvergne-Rhône-Alpes",
+      "kind": "admin",
+      "code": "FR-ARA",
+      "share": 0.436
+    },
+    {
+      "name": "Valais",
+      "kind": "admin",
+      "code": "CH-VS",
+      "share": 0.303
+    },
+    {
+      "name": "Valle d'Aosta",
+      "kind": "admin",
+      "code": "IT-23",
+      "share": 0.261
+    }
+  ]
 }

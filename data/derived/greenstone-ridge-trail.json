@@ -3979,5 +3979,19 @@
         "views": 36
       }
     ]
-  }
+  },
+  "regions": [
+    {
+      "name": "Michigan",
+      "kind": "admin",
+      "code": "US-MI",
+      "share": 1.0
+    },
+    {
+      "name": "Laurentian Upland",
+      "kind": "natural",
+      "cla": "Plateau",
+      "share": 1.0
+    }
+  ]
 }

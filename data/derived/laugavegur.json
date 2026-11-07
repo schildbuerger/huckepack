@@ -4648,5 +4648,13 @@
       },
       "refillsUntreated": false
     }
-  }
+  },
+  "regions": [
+    {
+      "name": "Southern",
+      "kind": "admin",
+      "code": "IS-8",
+      "share": 1.0
+    }
+  ]
 }

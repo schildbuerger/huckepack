@@ -16392,5 +16392,19 @@
         "views": 2575
       }
     ]
-  }
+  },
+  "regions": [
+    {
+      "name": "Alps",
+      "kind": "natural",
+      "cla": "Range/mtn",
+      "share": 1.0
+    },
+    {
+      "name": "Tyrol",
+      "kind": "admin",
+      "code": "AT-7",
+      "share": 0.723
+    }
+  ]
 }

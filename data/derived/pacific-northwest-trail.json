@@ -30502,5 +30502,31 @@
         "views": 324
       }
     ]
-  }
+  },
+  "regions": [
+    {
+      "name": "Washington",
+      "kind": "admin",
+      "code": "US-WA",
+      "share": 0.711
+    },
+    {
+      "name": "Columbia Kootenay Mountain",
+      "kind": "natural",
+      "cla": "Range/mtn",
+      "share": 0.373
+    },
+    {
+      "name": "Cascade Range",
+      "kind": "natural",
+      "cla": "Range/mtn",
+      "share": 0.26
+    },
+    {
+      "name": "Rocky Mountains",
+      "kind": "natural",
+      "cla": "Range/mtn",
+      "share": 0.203
+    }
+  ]
 }

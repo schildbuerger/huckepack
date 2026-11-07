@@ -20238,5 +20238,19 @@
         "views": 2008
       }
     ]
-  }
+  },
+  "regions": [
+    {
+      "name": "Rhineland-Palatinate",
+      "kind": "admin",
+      "code": "DE-RP",
+      "share": 1.0
+    },
+    {
+      "name": "Vosges Mountains",
+      "kind": "natural",
+      "cla": "Range/mtn",
+      "share": 0.489
+    }
+  ]
 }

@@ -4376,5 +4376,19 @@
         "views": 19
       }
     ]
-  }
+  },
+  "regions": [
+    {
+      "name": "British Columbia",
+      "kind": "admin",
+      "code": "CA-BC",
+      "share": 0.801
+    },
+    {
+      "name": "Vancouver Island",
+      "kind": "natural",
+      "cla": "Island",
+      "share": 0.38
+    }
+  ]
 }

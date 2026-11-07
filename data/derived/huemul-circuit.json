@@ -5453,5 +5453,25 @@
     "to": "2026-10",
     "views": 0,
     "articles": []
-  }
+  },
+  "regions": [
+    {
+      "name": "Andes",
+      "kind": "natural",
+      "cla": "Range/mtn",
+      "share": 1.0
+    },
+    {
+      "name": "Patagonia",
+      "kind": "natural",
+      "cla": "Geoarea",
+      "share": 1.0
+    },
+    {
+      "name": "Santa Cruz",
+      "kind": "admin",
+      "code": "AR-Z",
+      "share": 0.849
+    }
+  ]
 }

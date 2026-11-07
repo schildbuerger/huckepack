@@ -2165,5 +2165,19 @@
         "views": 33
       }
     ]
-  }
+  },
+  "regions": [
+    {
+      "name": "Southland",
+      "kind": "admin",
+      "code": "NZ-STL",
+      "share": 0.742
+    },
+    {
+      "name": "Stewart Island / Rakiura",
+      "kind": "natural",
+      "cla": "Island",
+      "share": 0.677
+    }
+  ]
 }
