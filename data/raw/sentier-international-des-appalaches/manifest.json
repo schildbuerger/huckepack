@@ -1,0 +1,87 @@
+{
+  "climate-high.json": {
+    "retrieved": "2026-11-07T00:57:34+00:00",
+    "url": "https://openmeteo.s3.us-west-2.amazonaws.com/data/copernicus_era5_land+copernicus_era5?latitude=49.0&longitude=-65.9&elevation=1280"
+  },
+  "climate-low.json": {
+    "retrieved": "2026-11-07T00:57:34+00:00",
+    "url": "https://openmeteo.s3.us-west-2.amazonaws.com/data/copernicus_era5_land+copernicus_era5?latitude=49.2&longitude=-65.3&elevation=0&wind=49.0,-65.25"
+  },
+  "commons-geo.json": {
+    "key": "with categories, 630.7 km, every 2.5 km, 1500 m, within 0.5 km",
+    "retrieved": "2026-11-07T01:04:11+00:00",
+    "url": "Commons geosearch along the route"
+  },
+  "commons.json": {
+    "key": "none",
+    "retrieved": "2026-11-07T00:56:00+00:00",
+    "url": "None P18 P373"
+  },
+  "elevation-glo30.json": {
+    "retrieved": "2026-11-07T00:56:37+00:00",
+    "url": "https://copernicus-dem-30m.s3.eu-central-1.amazonaws.com/Copernicus_DSM_COG_10_N47_00_W067_00_DEM/Copernicus_DSM_COG_10_N47_00_W067_00_DEM.tif https://copernicus-dem-30m.s3.eu-central-1.amazonaws.com/Copernicus_DSM_COG_10_N48_00_W065_00_DEM/Copernicus_DSM_COG_10_N48_00_W065_00_DEM.tif https://copernicus-dem-30m.s3.eu-central-1.amazonaws.com/Copernicus_DSM_COG_10_N48_00_W066_00_DEM/Copernicus_DSM_COG_10_N48_00_W066_00_DEM.tif https://copernicus-dem-30m.s3.eu-central-1.amazonaws.com/Copernicus_DSM_COG_10_N48_00_W067_00_DEM/Copernicus_DSM_COG_10_N48_00_W067_00_DEM.tif https://copernicus-dem-30m.s3.eu-central-1.amazonaws.com/Copernicus_DSM_COG_10_N48_00_W068_00_DEM/Copernicus_DSM_COG_10_N48_00_W068_00_DEM.tif https://copernicus-dem-30m.s3.eu-central-1.amazonaws.com/Copernicus_DSM_COG_10_N49_00_W065_00_DEM/Copernicus_DSM_COG_10_N49_00_W065_00_DEM.tif https://copernicus-dem-30m.s3.eu-central-1.amazonaws.com/Copernicus_DSM_COG_10_N49_00_W066_00_DEM/Copernicus_DSM_COG_10_N49_00_W066_00_DEM.tif"
+  },
+  "landcover.json": {
+    "retrieved": "2026-11-07T00:56:41+00:00",
+    "url": "https://esa-worldcover.s3.eu-central-1.amazonaws.com/v200/2021/map/ESA_WorldCover_10m_2021_v200_\u2026_Map.tif"
+  },
+  "osm-relation.json": {
+    "retrieved": "2026-11-05T21:23:02Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-1-main.json": {
+    "key": "c0560b7109f7",
+    "retrieved": "2026-11-05T21:23:02Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-2-main.json": {
+    "key": "f52d6f06ee25",
+    "retrieved": "2026-11-05T21:23:02Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-3-main.json": {
+    "key": "852d614d7312",
+    "retrieved": "2026-11-05T21:23:02Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-4-main.json": {
+    "key": "fb9805048ca6",
+    "retrieved": "2026-11-05T21:23:02Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-5-main.json": {
+    "key": "d90d0fcbaa27",
+    "retrieved": "2026-11-05T21:23:02Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-6-main.json": {
+    "key": "5cbec12c962f",
+    "retrieved": "2026-11-05T21:23:02Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-7-main.json": {
+    "key": "1bdf55a6dc2c",
+    "retrieved": "2026-11-05T21:23:02Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-water.json": {
+    "retrieved": "2026-11-05T21:23:02Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-way-tags.json": {
+    "retrieved": "2026-11-05T21:23:02Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osrm-access-bathurst-regional-airport-yzt.json": {
+    "retrieved": "2026-11-07T00:57:34+00:00",
+    "url": "https://router.project-osrm.org/route/v1/driving/-65.73576,47.63001;-66.92014,47.98076?overview=false"
+  },
+  "osrm-access-matap-dia-station-via-rail.json": {
+    "retrieved": "2026-11-07T00:57:34+00:00",
+    "url": "https://router.project-osrm.org/route/v1/driving/-66.93927,47.97487;-66.92014,47.98076?overview=false"
+  },
+  "osrm-access-mont-joli-airport-yyy.json": {
+    "retrieved": "2026-11-07T00:57:34+00:00",
+    "url": "https://router.project-osrm.org/route/v1/driving/-68.20813,48.61051;-66.92014,47.98076?overview=false"
+  }
+}

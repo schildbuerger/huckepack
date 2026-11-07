@@ -182,6 +182,8 @@ And the **Huemul Circuit** (Argentina, Santa Cruz: the Vuelta al Cerro Huemul of
 
 And the **New England National Scenic Trail** (Connecticut and Massachusetts: the National Park Service's 235 miles with the Connecticut Forest & Park Association and the Appalachian Mountain Club from Long Island Sound at Guilford over the Menunkatuck, the Mattabesett and the Metacomet Trail's traprock ridges, Ragged Mountain, Talcott Mountain and the Mount Tom and Holyoke Ranges, across the Connecticut River without a crossing, to Mount Grace and the New Hampshire line at Royalston, in the trail's 40 sections, with the Mattabesett's eastern arm to Middletown as a branch, 2–4 weeks, spring and fall, camping only at ten overnight sites; over the trail's OSM relation; 2026-11-07).
 
+And the **Sentier international des Appalaches** (Québec: the SIA Québec's GR®A1, the International Appalachian Trail's Québec chapter, about 650 km across the Gaspé Peninsula from Matapédia over the Chic-Chocs (Mont Logan, Mont Albert, Mont Jacques-Cartier) and along the St. Lawrence coast to Cap Gaspé in Forillon National Park, in the operator's seven sections from its guide Le Compagnon, 35–40 days between refuges, shelters and campsites to book, blue and white SIA/IAT markers, mid-June to the end of September; over OSM's section relations; 2026-11-07).
+
 | # | Trail | Region | Length (approx.) | Why |
 |---|---|---|---|---|
 | 1 | Pacific Crest Trail | USA | 4,265 km | Most-hiked long trail; public US agency data; completion lists |

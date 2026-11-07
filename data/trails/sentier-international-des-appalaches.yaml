@@ -1,0 +1,302 @@
+name: Sentier international des Appalaches
+added: 2026-11-07
+aliases: [International Appalachian Trail – Québec, SIA-QC, IAT-QC, GR A1]
+website: https://www.sia-iat.com/
+# the SIA's accreditation page: "le premier itinéraire de Grande Randonnée (GR®) en Amérique du
+# Nord, le GR®A1, par l'homologation des 650 km du sentier international des Appalaches - Québec"
+designation: GR®A1 (homologated by the FFRandonnée, 2015)
+managedBy:
+  # "Sentier international des Appalaches – Québec GR®A1", the non-profit that builds, marks and
+  # books the trail (Le Compagnon, the operator's guide; head office in Matane)
+  - name: Sentier International des Appalaches – Québec
+    url: https://www.sia-iat.com/
+officialGpx:
+  # "Données GPX par section": seven section files, free, no login (Cartes et Tableaux des Distances)
+  url: https://www.sia-iat.com/cartes-coordonees
+  by: SIA Québec
+  source: sia-maps
+trailType: point-to-point
+continents: [North America]
+countries: [CA]
+regions: [Québec]
+protectedAreas: [Réserve faunique de Matane, Parc national de la Gaspésie, Forillon National Park]
+termini:
+  # the guide: "il décrit les sections à partir de Matapédia jusqu'à Cap Gaspé (Parc national du
+  # Canada Forillon)"; the distance table: "Départ du SIA-QC" KM 650 at Matapédia, "Fin du SIA-QC" at
+  # Cap Gaspé (KM 0). Coordinates from OSM: the end of the Avignon section's relation by the
+  # Restigouche bridge, and the end of the Forillon relation at Cap Gaspé
+  start:
+    name: Matapédia (Restigouche River bridge)
+    lat: 47.98076
+    lon: -66.92014
+  end:
+    name: Cap Gaspé (Forillon National Park)
+    lat: 48.75121
+    lon: -64.16111
+  source: sia-compagnon
+waymarking:
+  # the guide, "Le balisage"
+  text: >-
+    35,000 blue and white aluminium markers (5 × 15 cm, inscribed SIA/IAT) in both directions, on
+    the right, placed so two can be seen at once; numbered red and white 9-1-1 markers about every
+    kilometre (km 0 at Cap Gaspé, km 650 at Matapédia).
+  source: sia-compagnon
+length:
+  # the guide: "Au Québec, le SIA offre un parcours de plus de 650 KM"; the distance table counts
+  # from KM 650 at Matapédia to KM 0 at Cap Gaspé
+  - km: 650
+    approx: true
+    source: sia-compagnon
+days:
+  # the guide: "d'une traversée complète (moyenne de 35 à 40 jours)"
+  min: 35
+  max: 40
+  source: sia-compagnon
+stages:
+  # the operator's seven sections ("le Sentier International des Appalaches-Québec est divisé en
+  # sections"), from Matapédia to Cap Gaspé, with the guide's section lengths; the guide numbers
+  # none, so they are numbered in its order. Stage ends on the OSM section relations: where each
+  # section's relation meets the next (Assemetquagan, Matane river, Mont Logan, Mont
+  # Jacques-Cartier campground, the Route 197 crossing at Rivière-au-Renard), and the trail in
+  # Grande-Vallée, where the guide ends the Haute-Gaspésie section
+  source: sia-compagnon
+  list:
+    - { number: "1", kind: main, from: Matapédia, to: Rivière Assemetquagan, km: 50.5, end: { name: Rivière Assemetquagan, lat: 48.19151, lon: -67.01621 } }
+    - { number: "2", kind: main, from: Rivière Assemetquagan, to: Rivière Matane (Camps Tamagodi), km: 132.8, end: { name: Rivière Matane, lat: 48.65580, lon: -67.33204 } }
+    - { number: "3", kind: main, from: Rivière Matane (Camps Tamagodi), to: Mont Logan, km: 112.1, end: { name: Mont Logan, lat: 48.89671, lon: -66.59874 } }
+    - { number: "4", kind: main, from: Mont Logan, to: Camping du Mont-Jacques-Cartier, km: 99.5, end: { name: Camping du Mont-Jacques-Cartier, lat: 49.02576, lon: -65.88254 } }
+    - { number: "5", kind: main, from: Camping du Mont-Jacques-Cartier, to: Grande-Vallée, km: 96.8, end: { name: Grande-Vallée, lat: 49.22579, lon: -65.12492 } }
+    - { number: "6", kind: main, from: Grande-Vallée, to: Route 197 (Rivière-au-Renard), km: 122.6, end: { name: Route 197, lat: 48.95926, lon: -64.46604 } }
+    - { number: "7", kind: main, from: Route 197 (Rivière-au-Renard), to: Cap Gaspé, km: 45, end: { name: Cap Gaspé, lat: 48.75121, lon: -64.16111 } }
+route:
+  # built by `python -m pipeline.all sentier-international-des-appalaches`: the seven section
+  # relations of OSM's superroute 9318808 (Forillon's as its five trail relations), merged; each
+  # stage the shortest way over them to its end (the Vallée relation carries side trails into the
+  # villages and does not chain)
+  source: osm
+  publishable: true
+  relation: [11295376, 11295264, 11267819, 9318733, 9318807, 9337473, 9337773, 9337774, 9337779, 9337780, 16009098]
+  branched: true
+difficulty:
+  # the guide: the Avignon section "considéré difficile"; the Réserve faunique de Matane "considérée
+  # (en général) comme très difficile", "la plus difficile du SIA-QC"; the coast "de facile à
+  # intermédiaire"
+  estimated:
+    sac: T3
+    basis: >-
+      The guide calls the Chic-Chocs the hardest and most remote part: long sustained climbs and
+      descents (747 m up Mont Nicol-Albert alone), alpine tundra and granite fields above the tree
+      line on Mont Logan, Albert and Jacques-Cartier, many fords in the Avignon section, beaches
+      passable only at low tide on the coast. A rough mountain path without scrambling (T3); the
+      valley and coast sections are easy to intermediate.
+    source: sia-compagnon
+season:
+  # À propos du SIA: "certaines sections peuvent être parcourues à compter de la mi-mai, mais
+  # globalement, le sentier est accessible de la mi-juin à la fin septembre"
+  months: [6, 7, 8, 9]
+  text: Mid-June to the end of September (some sections from mid-May)
+  source: sia-about
+sleeping:
+  # the guide: "64 possibilités (11 refuges, 25 abris (dont 5 Lean-to) et 29 plates-formes
+  # campings)", unstaffed, plus private campgrounds, gîtes, motels and hotels in the villages
+  types: [bivouac, campsite, guesthouse, hotel]
+  source: sia-compagnon
+wildCamping:
+  # the guide's rules: "camper uniquement sur les sites de camping ou aux refuges du SIA-QC";
+  # Parc national de la Gaspésie: "le camping sauvage est strictement interdit"
+  status: prohibited
+  rule: >-
+    Camp only at the SIA's campsites, shelters and refuges, booked in advance; in the Parc national
+    de la Gaspésie wild camping is strictly forbidden and every night must be reserved with the
+    Sépaq.
+  source: sia-compagnon
+access:
+  # coordinates from OSM; distances by pipeline/access.py
+  - kind: station
+    name: Matapédia station (VIA Rail)
+    lat: 47.97487
+    lon: -66.93927
+    source: osm
+  - kind: airport
+    name: Bathurst Regional Airport (YZT)
+    lat: 47.63001
+    lon: -65.73576
+    source: osm
+  - kind: airport
+    name: Mont-Joli Airport (YYY)
+    lat: 48.61051
+    lon: -68.20813
+    source: osm
+animals:
+  # Forillon: "Ce pays de l'ours noir et de l'orignal" (the section page); the guide: "Dans les
+  # forêts du Québec … on retrouve l'ours noir"; what to do in Parks Canada's words (Forillon
+  # National Park's black bear advice). Level ours
+  list:
+    - kind: bear
+      name: Black bear
+      level: low
+      basis: Black bears live in the forests along the whole trail; the operator calls Forillon's backcountry black bear and moose country and asks hikers to hang their food at the sites.
+      do:
+        - Stay calm and talk calmly to the bear
+        - Take children into your arms and stay together as a group
+        - Move away sideways or back away, keeping an eye on the bear
+        - Keep your backpack on
+        - Give the bear room and leave it open escape routes
+      dont:
+        - Approach a bear
+        - Run
+        - Turn your back on it
+        - Surround it when hiking in a group
+      source: pc-bears
+tags: [mountains, coast, tundra, forest, villages, wilderness-camps]
+notes:
+  - >-
+    Official: run by the non-profit Sentier International des Appalaches – Québec (head office in
+    Matane), with its website, a published guide (Le Compagnon, 10th edition 2020), seven named
+    sections with their lengths, a distance table and GPX files per section; homologated GR®A1 by
+    the FFRandonnée in 2015 and part of Rando Québec's Sentier national since 2017.
+  - >-
+    Stages: the operator's seven sections, Avignon (Matapédia to the Assemetquagan, 50.5 km),
+    Vallée de la Matapédia (the Assemetquagan to the Matane river, 132.8 km), Réserve faunique de
+    Matane (112.1 km to Mont Logan; west sector 72 km to Lac Beaulieu, east sector 34.5 km to Mont
+    Logan), Parc national de la Gaspésie (99.5 km, Mont Logan to Mont Jacques-Cartier), Haute-Gaspésie
+    (96.8 km to Grande-Vallée), Côte-de-Gaspé (122.6 km, "De Grande-Vallée au parc national
+    Forillon"; its own header says "Section de 113.2 KM", which counts its table from the
+    Grand-Sault campground, inside the Haute-Gaspésie section) and Forillon (45 km, Rivière-au-Renard
+    to Cap Gaspé), all from Le Compagnon. They are sections of several days each, not days; the guide
+    gives 35 to 40 days for the whole trail. The website's section pages agree (Vallée 131.8 km,
+    Matane 72 + 34.5 km, Gaspésie 99.5 km, Forillon 45 km) and give no lengths for the other three.
+    The guide's tables of distances between sites sum to more than its section headers in some
+    sections (they count side trips into villages); the headers are used. The section GPX files are
+    unordered pieces with side trails, so the map follows OSM's section relations instead.
+  - >-
+    Map line (2026-11-07): the Québec Geofabrik extract; the seven section relations of OSM's
+    superroute 9318808 (Forillon's five trail relations), merged, each stage the shortest way over
+    them to its end; every stage 100 % matched, no bridges. The map line measures 631.2 km against
+    the guide's 650 km (−3 %): stages 47.7 (50.5), 127.0 (132.8), 106.8 (112.1), 92.6 (99.5),
+    119.4 (96.8), 93.0 (122.6) and 44.8 (45) km. Stages 5 and 6 are 23 % and 24 % off: the guide's
+    headers for them disagree with its own tables, whose distances between sites sum to 120.2 km
+    from the Mont-Jacques-Cartier campground to Grande-Vallée and 94.3 km from Grande-Vallée to
+    Route 197, close to the map line; the record keeps the headers, the operator's stated section
+    lengths. Highest point 1,275 m on Mont Jacques-Cartier by the terrain model (the guide: 1,268 m);
+    lowest at sea level on the coast. Ascent: none published; the page estimates about 24,750 m.
+  - >-
+    Water and resupply: OSM maps 10 drinking water points; the longest dry stretch, 46.6 km (km
+    416.8–463.4, the Haute-Gaspésie section's coast between Mont-Saint-Pierre and Madeleine), has the SIA's
+    sites, each placed near a stream or spring (the guide: "Les campings et refuges ont été
+    mis près de points d'eau", except Les Trois-Sœurs; treat all water). OSM has no shop for 231.7
+    km (km 173.6–405.3) through the Réserve faunique de Matane and the Parc de la Gaspésie; the guide
+    says the same ("Le prochain point de ravitaillement est à 180 KM" from Saint-Vianney, at the
+    Gîte du Mont-Albert) and offers food drops at Lac Matane, Petit-Sault and in the park. The
+    longest stretch without a bed in OSM (46.6 km, the same stretch) has the guide's L'Anse-Pleureuse
+    campground and Ruisseau-Flétan shelter.
+  - >-
+    Data check (2026-11-07): the length against the IAT's Québec chapter page (645 km, −1 %) and
+    Rando Québec (650 km, the same); the termini (Matapédia, after the Restigouche River, to Cap
+    Gaspé in Forillon) agree in both. The section lengths have no independent second source (the
+    Sépaq's pages answer 403); against the operator's website: Vallée 131.8 km (guide 132.8),
+    Matane 72 + 34.5 km (guide 112.1, −5 %, the guide counting from the Camps Tamagodi), Gaspésie
+    99.5 km and Forillon 45 km the same. Derived against stated: the map line 631.2 km against 650 km
+    (−3 %), stages 5 and 6 more than 10 % off (above, in dataCheck.deviations); the highest point
+    1,275 m against 1,268 m. The built page checked against the guide and the website: length,
+    days (35–40), season (Jun–Sep), the seven sections, start and finish, wild camping prohibited,
+    waymarking.
+  - >-
+    Season: the website says mid-June to the end of September overall (some sections from
+    mid-May); the 2020 guide says the trail is open from 24 June to the second Monday of October and
+    that long hikes start in part on 21 June and fully on 24 June. The Parc national de la Gaspésie
+    section opens on 1 July, Forillon at the start of June (À propos du SIA). The record keeps the
+    website's months.
+  - >-
+    Fees: access is free except for a daily fee in the Parc national de la Gaspésie and Forillon
+    National Park; the SIA's sites are booked and paid per night (À propos du SIA, the guide).
+  - >-
+    Wikidata: Q656486 is the whole International Appalachian Trail (Maine to Newfoundland and
+    Europe's chapters), not the Québec trail; no item of its own (searched 2026-11-07), so none is
+    linked.
+  - >-
+    Tree line: none recorded; the route tops out at Mont Jacques-Cartier, 1,268 m (the guide),
+    below 1,500 m. The guide says the trail first reaches the tree line after the Ruisseau-Bascon
+    campground, between Mont Collins and Mont Logan, where it crosses alpine tundra.
+  - >-
+    Established: the Grande traversée of the Parc de la Gaspésie joined the IAT in June 1995 and the
+    sections were opened 1996–1999 (À propos du SIA); no single opening year, so none is recorded.
+  - >-
+    Wildlife: black bear from Parks Canada's Forillon advice and the operator. Moose ("orignal") are
+    common along the trail (the guide, the Matane and Forillon pages) but there is no moose kind.
+    The woodland caribou of the Chic-Chocs (about 200 left) must be watched from a distance, and the
+    summits of Mont Albert, Jacques-Cartier and Xalibu are closed in October for the rut. Biting
+    insects (mosquitoes, black flies) are heavy near bogs. The Sépaq's pages answer 403 to the
+    pipeline's user agent (2026-11-07) and are left out.
+dataCheck:
+  # working rule 2: the IAT's Québec chapter page and Rando Québec as second sources; the built page
+  # against the operator's guide where no second source gives a figure
+  date: 2026-11-07
+  against: [iat-quebec, rando-quebec]
+  pageAgainst: [sia-compagnon, sia-about]
+  deviations:
+    - { figure: "Stage 5 (Haute-Gaspésie) length", ours: "96.8 km", theirs: "119.4 km on the map line", source: osm }
+    - { figure: "Stage 6 (Côte-de-Gaspé) length", ours: "122.6 km", theirs: "93.0 km on the map line", source: osm }
+sources:
+  - id: sia-compagnon
+    title: "SIA Québec: Le Compagnon, guide de randonnée du Sentier International des Appalaches au Québec GR®A1, 10th edition 2020 (650 km, seven sections with lengths, 35–40 days, markers, sleeping, rules, wildlife)"
+    url: https://www.sia-iat.com/_files/ugd/c7871a_91b8136052174a1fa220e730498848ea.pdf
+    licence: © SIA/IAT – Québec, all rights reserved (facts only)
+    retrieved: 2026-11-07
+  - id: sia-about
+    title: "SIA Québec: À propos du SIA (more than 650 km from Matapédia to Forillon, season, access fees, history)"
+    url: https://www.sia-iat.com/a-propos-du-sia
+    licence: © Sentier International des Appalaches – Québec (facts only)
+    retrieved: 2026-11-07
+  - id: sia-maps
+    title: "SIA Québec: Cartes et Tableaux des Distances (official distance table, GPX per section)"
+    url: https://www.sia-iat.com/cartes-coordonees
+    licence: © Sentier International des Appalaches – Québec (facts only)
+    retrieved: 2026-11-07
+  - id: sia-gr
+    title: "SIA Québec: Accréditation GR-A1 (homologation of the 650 km as GR®A1, 2 October 2015)"
+    url: https://www.sia-iat.com/accreditation-gr-a1
+    licence: © Sentier International des Appalaches – Québec (facts only)
+    retrieved: 2026-11-07
+  - id: pc-bears
+    title: "Parks Canada: How to react if you encounter a black bear (Forillon National Park)"
+    url: https://parks.canada.ca/pn-np/qc/forillon/securite-safety/faune-wildlife/rencontre-ours-bear-encounter1
+    licence: © His Majesty the King in Right of Canada, Parks Canada (facts only)
+    retrieved: 2026-11-07
+  - id: iat-quebec
+    title: "International Appalachian Trail: Québec chapter (645 km from Matapédia to Cap Gaspé)"
+    url: https://iat-sia.org/quebec/
+    licence: © International Appalachian Trail (facts only)
+    retrieved: 2026-11-07
+    checkOnly: true
+  - id: rando-quebec
+    title: "Rando Québec: the Sentier national reaches 1,650 km with the SIA-QC's 650 km from Matapédia to Gaspé (6 September 2017)"
+    url: https://www.randoquebec.ca/sentier-national-atteint-1650-km-parcours-lineraire-snq/
+    licence: © Rando Québec (facts only)
+    retrieved: 2026-11-07
+    checkOnly: true
+  - id: osm
+    title: "OpenStreetMap contributors: the SIA's section relations (superroute 9318808), paths, water, shops and places to sleep along the trail (Geofabrik extract), travel hubs"
+    url: https://www.openstreetmap.org/relation/9318808
+    licence: ODbL 1.0
+    retrieved: 2026-11-07
+  - id: copdem
+    title: "Copernicus DEM GLO-30 (30 m terrain model), tiles from AWS Open Data"
+    url: https://registry.opendata.aws/copernicus-dem/
+    licence: "Copernicus WorldDEM-30 licence, free; produced using Copernicus WorldDEM-30 © DLR e.V. 2010-2014 and © Airbus Defence and Space GmbH 2014-2018 provided under COPERNICUS by the European Union and ESA; all rights reserved"
+    retrieved: 2026-11-07
+  - id: worldcover
+    title: "ESA WorldCover 2021: 10 m land cover (via AWS Open Data)"
+    url: https://esa-worldcover.org/
+    licence: "CC BY 4.0; © ESA WorldCover project 2021 / Contains modified Copernicus Sentinel data (2021) processed by ESA WorldCover consortium"
+    retrieved: 2026-11-07
+  - id: era5
+    title: "Open-Meteo open data on AWS: ERA5-Land temperature and ERA5 precipitation, snow and wind, daily 1995–2024 (reanalysis)"
+    url: https://github.com/open-meteo/open-data
+    licence: CC BY 4.0 (Open-Meteo); contains modified Copernicus Climate Change Service information
+    retrieved: 2026-11-07
+  - id: osrm
+    title: "OSRM: road routes on OpenStreetMap data (router.project-osrm.org)"
+    url: https://project-osrm.org/
+    licence: Route data © OpenStreetMap contributors (ODbL)
+    retrieved: 2026-11-07
