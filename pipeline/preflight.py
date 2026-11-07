@@ -109,12 +109,22 @@ def relation_elements(rid, seen=None):
 def check_relation(rids, start=None, stated_km=None):
     """(ok, lines): whether the relations' ways chain into one line from `start` (lon, lat; else
     from an open end), with the gaps on the way and what is left over."""
-    elements = []
+    elements, ids = [], set()
     for rid in rids:
-        elements += relation_elements(rid)
+        for e in relation_elements(rid):
+            if (e["type"], e["id"]) not in ids:
+                ids.add((e["type"], e["id"]))
+                elements.append(e)
     rels = [e for e in elements if e["type"] == "relation"]
     ways = {e["id"]: e for e in elements if e["type"] == "way"}
-    main = [ways[m["ref"]]["geometry"] for r in rels for m in r["members"] if m["type"] == "way" and m["ref"] in ways and m.get("role", "") in MAIN_ROLES]
+    # each way once: a way in a section relation and in its segment relation (a superroute of
+    # superroutes, the Great Divide Trail's) was counted twice and the line looked half chained
+    seen, main = set(), []
+    for r in rels:
+        for m in r["members"]:
+            if m["type"] == "way" and m["ref"] in ways and m.get("role", "") in MAIN_ROLES and m["ref"] not in seen:
+                seen.add(m["ref"])
+                main.append(ways[m["ref"]]["geometry"])
     if not main:
         return False, [f"relation {', '.join(map(str, rids))}: no ways without a role (only alternatives or excursions?)"]
     total = sum(line_km([(p["lon"], p["lat"]) for p in g]) for g in main)
