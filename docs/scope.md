@@ -684,6 +684,12 @@
   (Schwarzwald, Bayern, UK) and the topics; a name with no Natural Earth
   region (Black Forest, Dolomites, Lake District) finds nothing until one
   exists. The records' hand-written `regions` stay what the trail page shows.
+  - 2026-11-07 (the user's decisions): names in English, an admin region's
+    from its Wikidata item (CC0), the local name kept as another name
+    ("Cataluña" finds Catalonia); an admin and a natural region that are
+    one place (each covers at least 90 % of the other's area) are listed once
+    under the English name (Corsica, also "Corse"); the large natural regions
+    (Iberian Peninsula, Scandinavia) stay.
 
 ## What a trail page could show
 

@@ -94,4 +94,5 @@ figures on the page (the hub's place, road distance and time) come from the reco
 |---|---|---|---|
 | OpenStreetMap | Shelters, water, campsites, towns near the route | ODbL | |
 | Wikidata | Length, termini, established date, managing body | CC0 | Cross-check against official figures |
+| Wikidata (in use) | English names of first-level subdivisions (labels of the items by Natural Earth's wikidataid, ISO 3166-2 code P300 or HASC code P8119) | CC0 | Since 2026-11-07: `pipeline/regions.py` names the trails' admin regions in English, cached in `~/.cache/huckepack/naturalearth/wikidata-en.json`; API and SPARQL, no key, with a User-Agent |
 | Trail association reports | Completions per year, permits issued | Varies | E.g. PCTA's 2,600 miler list |
