@@ -108,15 +108,18 @@
     "retrieved": "2026-10-31T21:23:06Z",
     "url": "https://download.geofabrik.de/"
   },
-  "osrm-access-celle.json": {
-    "retrieved": "2026-11-05T23:35:49+00:00",
-    "url": "https://router.project-osrm.org/route/v1/driving/10.06216,52.62142;9.83183,53.46664?overview=false"
-  },
   "osrm-access-hamburg-airport-ham.json": {
+    "key": "https://router.project-osrm.org/route/v1/driving/9.98823,53.63041;9.83183,53.46664?overview=false",
     "retrieved": "2026-11-05T23:35:50+00:00",
     "url": "https://router.project-osrm.org/route/v1/driving/9.98823,53.63041;9.83183,53.46664?overview=false"
   },
+  "osrm-access-hamburg-harburg.json": {
+    "key": "https://router.project-osrm.org/route/v1/driving/9.99177,53.45572;9.83183,53.46664?overview=false",
+    "retrieved": "2026-11-07T14:02:48+00:00",
+    "url": "https://router.project-osrm.org/route/v1/driving/9.99177,53.45572;9.83183,53.46664?overview=false"
+  },
   "osrm-access-hamburg-hauptbahnhof.json": {
+    "key": "https://router.project-osrm.org/route/v1/driving/10.00661,53.55302;9.83183,53.46664?overview=false",
     "retrieved": "2026-11-05T23:35:49+00:00",
     "url": "https://router.project-osrm.org/route/v1/driving/10.00661,53.55302;9.83183,53.46664?overview=false"
   },

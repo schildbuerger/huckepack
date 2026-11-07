@@ -131,22 +131,23 @@ wildCamping:
     by their house.
   source: gs
 access:
-  # Marktredwitz station at the start, Passau Hauptbahnhof at the end; Nuremberg and Munich
-  # airports. Coordinates from OSM; distances by pipeline/access.py
+  # hubs by the rules of 2026-11-07 (docs/scope.md: long-distance trains, the main station of a city
+  # of 100,000, airports with international flights), suggested by pipeline/hubs.py and reviewed.
+  # Coordinates from OSM; distances by pipeline/access.py
   - kind: station
-    name: Marktredwitz station
-    lat: 50.00446
-    lon: 12.0824
+    name: Kronach
+    lat: 50.23971
+    lon: 11.32019
+    source: osm
+  - kind: station
+    name: Nürnberg Hauptbahnhof
+    lat: 49.4452
+    lon: 11.08231
     source: osm
   - kind: airport
     name: Nuremberg Airport (NUE)
     lat: 49.49827
     lon: 11.07811
-    source: osm
-  - kind: airport
-    name: Munich Airport (MUC)
-    lat: 48.35396
-    lon: 11.77859
     source: osm
 animals:
   # Ticks: the RKI's TBE risk areas (2026) and the federal health agency's advice. Level ours

@@ -101,22 +101,23 @@ wildCamping:
     terrain above the tree line is allowed.
   source: oegv-campen
 access:
-  # Mayrhofen, the Zillertalbahn's terminus below the route, and Innsbruck and Munich airports.
+  # hubs by the rules of 2026-11-07 (docs/scope.md: long-distance trains, the main station of a city
+  # of 100,000, airports with international flights), suggested by pipeline/hubs.py and reviewed.
   # Coordinates from OSM; distances by pipeline/access.py
   - kind: station
-    name: Mayrhofen
-    lat: 47.16935
-    lon: 11.86237
+    name: Jenbach
+    lat: 47.38842
+    lon: 11.77827
+    source: osm
+  - kind: station
+    name: Innsbruck Hauptbahnhof
+    lat: 47.2633
+    lon: 11.40102
     source: osm
   - kind: airport
     name: Innsbruck Airport (INN)
     lat: 47.25973
     lon: 11.34187
-    source: osm
-  - kind: airport
-    name: Munich Airport (MUC)
-    lat: 48.35396
-    lon: 11.77859
     source: osm
 animals:
   # Cattle on the alpine pastures (the Austrian ministry's 10 rules) and ticks (AGES: TBE risk all

@@ -110,12 +110,13 @@ sleeping:
   types: [hostel, guesthouse]
   source: xunta-guide
 access:
-  # trains to Bayonne, then the line to Saint-Jean-Pied-de-Port; Biarritz airport. Coordinates from
-  # OSM; distances by pipeline/access.py
+  # hubs by the rules of 2026-11-07 (docs/scope.md: long-distance trains, the main station of a city
+  # of 100,000, airports with international flights), suggested by pipeline/hubs.py and reviewed.
+  # Coordinates from OSM; distances by pipeline/access.py
   - kind: station
-    name: Gare de Bayonne
-    lat: 43.49616
-    lon: -1.46973
+    name: Pamplona-Iruña
+    lat: 42.82505
+    lon: -1.66149
     source: osm
   - kind: airport
     name: Biarritz Pays Basque Airport (BIQ)

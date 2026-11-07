@@ -109,8 +109,14 @@ wildCamping:
     backcountry.
   source: pc-backcountry
 access:
-  # Calgary International Airport; no railway or scheduled bus to the trailheads on Highway 93 South.
+  # hubs by the rules of 2026-11-07 (docs/scope.md: long-distance trains, the main station of a city
+  # of 100,000, airports with international flights), suggested by pipeline/hubs.py and reviewed.
   # Coordinates from OSM; distances by pipeline/access.py
+  - kind: station
+    name: Jasper
+    lat: 52.87618
+    lon: -118.07962
+    source: osm
   - kind: airport
     name: Calgary International Airport (YYC)
     lat: 51.12226

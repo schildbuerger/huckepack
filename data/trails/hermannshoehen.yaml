@@ -105,22 +105,23 @@ wildCamping:
     permission outside campsites (NWaldLG § 27). The trail names no trekking sites.
   source: lfog-nrw
 access:
-  # Rheine station at the start, Marsberg station at the end; Münster Osnabrück and
-  # Paderborn/Lippstadt airports. Coordinates from OSM; distances by pipeline/access.py
+  # hubs by the rules of 2026-11-07 (docs/scope.md: long-distance trains, the main station of a city
+  # of 100,000, airports with international flights), suggested by pipeline/hubs.py and reviewed.
+  # Coordinates from OSM; distances by pipeline/access.py
   - kind: station
     name: Rheine station
     lat: 52.27617
     lon: 7.43402
     source: osm
+  - kind: station
+    name: Münster (Westf) Hauptbahnhof
+    lat: 51.95641
+    lon: 7.63579
+    source: osm
   - kind: airport
     name: Münster Osnabrück Airport (FMO)
     lat: 52.13422
     lon: 7.68292
-    source: osm
-  - kind: airport
-    name: Paderborn/Lippstadt Airport (PAD)
-    lat: 51.6146
-    lon: 8.61906
     source: osm
 animals:
   # Ticks: Lyme disease all over Germany (the federal health agency's advice). Level ours

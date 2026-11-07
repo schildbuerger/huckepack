@@ -97,8 +97,14 @@ wildCamping:
     § 22 (4) no. 3); the vineyards and fields are private land.
   source: lwaldg-rp
 access:
-  # Mannheim Hauptbahnhof, the region's main station, and Frankfurt Airport. Bockenheim has only a
-  # regional station. Coordinates from OSM; distances by pipeline/access.py
+  # hubs by the rules of 2026-11-07 (docs/scope.md: long-distance trains, the main station of a city
+  # of 100,000, airports with international flights), suggested by pipeline/hubs.py and reviewed.
+  # Coordinates from OSM; distances by pipeline/access.py
+  - kind: station
+    name: Worms Hauptbahnhof
+    lat: 49.63518
+    lon: 8.35665
+    source: osm
   - kind: station
     name: Mannheim Hauptbahnhof
     lat: 49.47966
@@ -108,6 +114,11 @@ access:
     name: Frankfurt Airport (FRA)
     lat: 50.02441
     lon: 8.5552
+    source: osm
+  - kind: airport
+    name: Saarbrücken Airport (SCN)
+    lat: 49.21657
+    lon: 7.10953
     source: osm
 animals:
   # Ticks: Lyme disease all over Germany (the federal health agency's advice); none of the districts

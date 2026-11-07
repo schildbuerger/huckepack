@@ -341,15 +341,18 @@
     "retrieved": "2026-10-28T21:21:02Z",
     "url": "https://download.geofabrik.de/"
   },
-  "osrm-access-marktredwitz-station.json": {
-    "retrieved": "2026-10-31T04:24:16+00:00",
-    "url": "https://router.project-osrm.org/route/v1/driving/12.0824,50.00446;12.08291,50.0039?overview=false"
+  "osrm-access-kronach.json": {
+    "key": "https://router.project-osrm.org/route/v1/driving/11.32019,50.23971;12.08291,50.0039?overview=false",
+    "retrieved": "2026-11-07T14:02:37+00:00",
+    "url": "https://router.project-osrm.org/route/v1/driving/11.32019,50.23971;12.08291,50.0039?overview=false"
   },
-  "osrm-access-munich-airport-muc.json": {
-    "retrieved": "2026-10-31T04:24:16+00:00",
-    "url": "https://router.project-osrm.org/route/v1/driving/11.77859,48.35396;12.08291,50.0039?overview=false"
+  "osrm-access-n-rnberg-hauptbahnhof.json": {
+    "key": "https://router.project-osrm.org/route/v1/driving/11.08231,49.4452;12.08291,50.0039?overview=false",
+    "retrieved": "2026-11-07T14:02:39+00:00",
+    "url": "https://router.project-osrm.org/route/v1/driving/11.08231,49.4452;12.08291,50.0039?overview=false"
   },
   "osrm-access-nuremberg-airport-nue.json": {
+    "key": "https://router.project-osrm.org/route/v1/driving/11.07811,49.49827;12.08291,50.0039?overview=false",
     "retrieved": "2026-10-31T04:24:16+00:00",
     "url": "https://router.project-osrm.org/route/v1/driving/11.07811,49.49827;12.08291,50.0039?overview=false"
   },

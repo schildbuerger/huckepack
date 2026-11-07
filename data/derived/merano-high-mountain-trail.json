@@ -8687,25 +8687,19 @@
   },
   "access": {
     "source": "osrm",
-    "retrieved": "2026-10-29T21:56:40+00:00",
+    "retrieved": "2026-11-07T14:03:11+00:00",
     "hubs": [
       {
-        "name": "Merano station",
-        "roadKm": 32.3,
-        "driveMin": 42,
-        "straightKm": 15.5
+        "name": "Bolzano - Bozen",
+        "roadKm": 63.6,
+        "driveMin": 69,
+        "straightKm": 38.9
       },
       {
-        "name": "Innsbruck Airport (INN)",
-        "roadKm": 105.1,
-        "driveMin": 104,
-        "straightKm": 52.1
-      },
-      {
-        "name": "Verona Airport (VRN)",
-        "roadKm": 208.4,
-        "driveMin": 164,
-        "straightKm": 158.5
+        "name": "Bolzano Airport (BZO)",
+        "roadKm": 62.7,
+        "driveMin": 70,
+        "straightKm": 41.9
       }
     ]
   },

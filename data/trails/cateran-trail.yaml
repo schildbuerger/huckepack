@@ -76,12 +76,13 @@ sleeping:
   types: [hotel, guesthouse, hostel]
   source: osm
 access:
-  # Perth and Dundee, the nearest main stations, and Edinburgh Airport. Coordinates from OSM;
-  # distances by pipeline/access.py
+  # hubs by the rules of 2026-11-07 (docs/scope.md: long-distance trains, the main station of a city
+  # of 100,000, airports with international flights), suggested by pipeline/hubs.py and reviewed.
+  # Coordinates from OSM; distances by pipeline/access.py
   - kind: station
-    name: Perth
-    lat: 56.39211
-    lon: -3.43957
+    name: Dunkeld and Birnam
+    lat: 56.55658
+    lon: -3.57751
     source: osm
   - kind: station
     name: Dundee
@@ -92,6 +93,11 @@ access:
     name: Edinburgh Airport (EDI)
     lat: 55.95026
     lon: -3.35939
+    source: osm
+  - kind: airport
+    name: Aberdeen Airport (ABZ)
+    lat: 57.20223
+    lon: -2.19909
     source: osm
 animals:
   # cattle and sheep with young (the Trust's warning), ticks (NHS). Levels ours

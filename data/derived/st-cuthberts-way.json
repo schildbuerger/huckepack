@@ -8177,19 +8177,19 @@
   },
   "access": {
     "source": "osrm",
-    "retrieved": "2026-11-05T17:52:09+00:00",
+    "retrieved": "2026-11-07T14:03:59+00:00",
     "hubs": [
-      {
-        "name": "Tweedbank",
-        "roadKm": 3.1,
-        "driveMin": 6,
-        "straightKm": 2.6
-      },
       {
         "name": "Berwick-upon-Tweed",
         "roadKm": 57.5,
         "driveMin": 53,
         "straightKm": 48.5
+      },
+      {
+        "name": "Edinburgh Waverley",
+        "roadKm": 63.4,
+        "driveMin": 63,
+        "straightKm": 49.1
       },
       {
         "name": "Edinburgh Airport (EDI)",

@@ -70,12 +70,24 @@
     "url": "https://download.geofabrik.de/"
   },
   "osrm-access-asturias-airport-ovd.json": {
+    "key": "https://router.project-osrm.org/route/v1/driving/-6.03091,43.56162;-4.92309,43.24293?overview=false",
     "retrieved": "2026-11-03T19:58:47+00:00",
     "url": "https://router.project-osrm.org/route/v1/driving/-6.03091,43.56162;-4.92309,43.24293?overview=false"
   },
-  "osrm-access-oviedo.json": {
-    "retrieved": "2026-11-03T19:58:47+00:00",
-    "url": "https://router.project-osrm.org/route/v1/driving/-5.85487,43.36636;-4.92309,43.24293?overview=false"
+  "osrm-access-le-n.json": {
+    "key": "https://router.project-osrm.org/route/v1/driving/-5.58194,42.5951;-4.92309,43.24293?overview=false",
+    "retrieved": "2026-11-07T14:02:24+00:00",
+    "url": "https://router.project-osrm.org/route/v1/driving/-5.58194,42.5951;-4.92309,43.24293?overview=false"
+  },
+  "osrm-access-mieres-del-cam-n.json": {
+    "key": "https://router.project-osrm.org/route/v1/driving/-5.78239,43.25004;-4.92309,43.24293?overview=false",
+    "retrieved": "2026-11-07T14:02:22+00:00",
+    "url": "https://router.project-osrm.org/route/v1/driving/-5.78239,43.25004;-4.92309,43.24293?overview=false"
+  },
+  "osrm-access-santander-airport-sdr.json": {
+    "key": "https://router.project-osrm.org/route/v1/driving/-3.8205,43.42694;-4.92309,43.24293?overview=false",
+    "retrieved": "2026-11-07T14:02:25+00:00",
+    "url": "https://router.project-osrm.org/route/v1/driving/-3.8205,43.42694;-4.92309,43.24293?overview=false"
   },
   "wikimedia.json": {
     "retrieved": "2026-11-03T19:58:47+00:00",

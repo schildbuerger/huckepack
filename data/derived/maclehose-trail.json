@@ -10003,19 +10003,25 @@
   },
   "access": {
     "source": "osrm",
-    "retrieved": "2026-10-31T16:18:48+00:00",
+    "retrieved": "2026-11-07T14:03:09+00:00",
     "hubs": [
       {
-        "name": "Sai Kung Bus Terminus",
-        "roadKm": 8.5,
-        "driveMin": 13,
-        "straightKm": 5.5
+        "name": "Hong Kong West Kowloon",
+        "roadKm": 27.9,
+        "driveMin": 38,
+        "straightKm": 19.5
       },
       {
         "name": "Hong Kong International Airport (HKG)",
         "roadKm": 58.8,
         "driveMin": 67,
         "straightKm": 43.5
+      },
+      {
+        "name": "Shenzhen Bao'an International Airport (SZX)",
+        "roadKm": 81.1,
+        "driveMin": 77,
+        "straightKm": 60.1
       }
     ]
   },

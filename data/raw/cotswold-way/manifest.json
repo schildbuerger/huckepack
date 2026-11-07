@@ -93,16 +93,14 @@
     "url": "https://download.geofabrik.de/"
   },
   "osrm-access-birmingham-airport-bhx.json": {
+    "key": "https://router.project-osrm.org/route/v1/driving/-1.74387,52.45418;-1.78075,52.05067?overview=false",
     "retrieved": "2026-11-01T06:33:51+00:00",
     "url": "https://router.project-osrm.org/route/v1/driving/-1.74387,52.45418;-1.78075,52.05067?overview=false"
   },
-  "osrm-access-bristol-airport-brs.json": {
-    "retrieved": "2026-11-01T06:33:51+00:00",
-    "url": "https://router.project-osrm.org/route/v1/driving/-2.71862,51.38297;-1.78075,52.05067?overview=false"
-  },
-  "osrm-access-moreton-in-marsh.json": {
-    "retrieved": "2026-11-01T06:33:50+00:00",
-    "url": "https://router.project-osrm.org/route/v1/driving/-1.70027,51.99218;-1.78075,52.05067?overview=false"
+  "osrm-access-coventry.json": {
+    "key": "https://router.project-osrm.org/route/v1/driving/-1.51355,52.40074;-1.78075,52.05067?overview=false",
+    "retrieved": "2026-11-07T14:02:20+00:00",
+    "url": "https://router.project-osrm.org/route/v1/driving/-1.51355,52.40074;-1.78075,52.05067?overview=false"
   },
   "stage-1-main.gpx": {
     "retrieved": "2026-11-01T03:37:30+00:00",

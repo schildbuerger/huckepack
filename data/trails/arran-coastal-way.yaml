@@ -79,17 +79,28 @@ sleeping:
   types: [hotel, guesthouse, campsite]
   source: acw-sections
 access:
-  # Ardrossan Harbour, the station by the ferry to Brodick, and Glasgow Prestwick Airport. Coordinates
-  # from OSM; distances by pipeline/access.py
+  # hubs by the rules of 2026-11-07 (docs/scope.md: long-distance trains, the main station of a city
+  # of 100,000, airports with international flights), suggested by pipeline/hubs.py and reviewed.
+  # Dalmuir: by road to Ardrossan (ferry to Brodick), then ferry; Glasgow Queen Street: by road to
+  # Ardrossan (ferry to Brodick), then ferry; Glasgow Prestwick Airport (PIK): by road to Ardrossan
+  # (ferry to Brodick), then ferry. Coordinates from OSM; distances by pipeline/access.py
   - kind: station
-    name: Ardrossan Harbour (ferry to Brodick)
-    lat: 55.63951
-    lon: -4.82025
+    name: Dalmuir
+    lat: 55.91201
+    lon: -4.42685
+    via: { name: "Ardrossan (ferry to Brodick)", lat: 55.64067, lon: -4.82333, by: ferry }
+    source: osm
+  - kind: station
+    name: Glasgow Queen Street
+    lat: 55.86256
+    lon: -4.25112
+    via: { name: "Ardrossan (ferry to Brodick)", lat: 55.64067, lon: -4.82333, by: ferry }
     source: osm
   - kind: airport
     name: Glasgow Prestwick Airport (PIK)
     lat: 55.50231
     lon: -4.5776
+    via: { name: "Ardrossan (ferry to Brodick)", lat: 55.64067, lon: -4.82333, by: ferry }
     source: osm
 animals:
   # cattle (HSE with the Scottish Outdoor Access Code) and ticks (NHS). Levels ours

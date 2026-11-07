@@ -37,9 +37,25 @@
     "retrieved": "2026-11-05T21:23:02Z",
     "url": "https://download.geofabrik.de/"
   },
+  "osrm-access-boeing-field-bfi.json": {
+    "key": "https://router.project-osrm.org/route/v1/driving/-122.30343,47.52978;-121.81254,46.74954?overview=false",
+    "retrieved": "2026-11-07T14:04:31+00:00",
+    "url": "https://router.project-osrm.org/route/v1/driving/-122.30343,47.52978;-121.81254,46.74954?overview=false"
+  },
+  "osrm-access-olympia-lacey.json": {
+    "key": "https://router.project-osrm.org/route/v1/driving/-122.79411,46.99127;-121.81254,46.74954?overview=false",
+    "retrieved": "2026-11-07T14:04:29+00:00",
+    "url": "https://router.project-osrm.org/route/v1/driving/-122.79411,46.99127;-121.81254,46.74954?overview=false"
+  },
   "osrm-access-seattle-tacoma-international-airport-sea.json": {
+    "key": "https://router.project-osrm.org/route/v1/driving/-122.30802,47.44757;-121.81254,46.74954?overview=false",
     "retrieved": "2026-11-06T07:22:29+00:00",
     "url": "https://router.project-osrm.org/route/v1/driving/-122.30802,47.44757;-121.81254,46.74954?overview=false"
+  },
+  "osrm-access-tacoma-dome.json": {
+    "key": "https://router.project-osrm.org/route/v1/driving/-122.42773,47.23965;-121.81254,46.74954?overview=false",
+    "retrieved": "2026-11-07T14:04:30+00:00",
+    "url": "https://router.project-osrm.org/route/v1/driving/-122.42773,47.23965;-121.81254,46.74954?overview=false"
   },
   "wikimedia.json": {
     "retrieved": "2026-11-06T07:22:30+00:00",

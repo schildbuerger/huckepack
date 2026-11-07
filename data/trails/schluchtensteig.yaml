@@ -100,18 +100,18 @@ wildCamping:
     allowed.
   source: sst
 access:
-  # Basel Badischer Bahnhof, the official arrival page's recommended station (then train and bus to
-  # Stühlingen); EuroAirport Basel-Mulhouse and Zürich airports. Coordinates from OSM; distances by
-  # pipeline/access.py
+  # hubs by the rules of 2026-11-07 (docs/scope.md: long-distance trains, the main station of a city
+  # of 100,000, airports with international flights), suggested by pipeline/hubs.py and reviewed.
+  # Coordinates from OSM; distances by pipeline/access.py
   - kind: station
-    name: Basel Badischer Bahnhof
-    lat: 47.56746
-    lon: 7.60731
+    name: Erzingen (Baden)
+    lat: 47.66022
+    lon: 8.43074
     source: osm
-  - kind: airport
-    name: EuroAirport Basel-Mulhouse (BSL)
-    lat: 47.59914
-    lon: 7.53028
+  - kind: station
+    name: Winterthur
+    lat: 47.50031
+    lon: 8.72397
     source: osm
   - kind: airport
     name: Zürich Airport (ZRH)

@@ -69,16 +69,19 @@
     "url": "https://download.geofabrik.de/"
   },
   "osrm-access-birmingham-airport-bhx.json": {
+    "key": "https://router.project-osrm.org/route/v1/driving/-1.74387,52.45418;-3.04981,52.34433?overview=false",
     "retrieved": "2026-11-05T09:22:44+00:00",
     "url": "https://router.project-osrm.org/route/v1/driving/-1.74387,52.45418;-3.04981,52.34433?overview=false"
   },
   "osrm-access-cardiff-airport-cwl.json": {
+    "key": "https://router.project-osrm.org/route/v1/driving/-3.34458,51.39785;-3.04981,52.34433?overview=false",
     "retrieved": "2026-11-05T09:22:44+00:00",
     "url": "https://router.project-osrm.org/route/v1/driving/-3.34458,51.39785;-3.04981,52.34433?overview=false"
   },
-  "osrm-access-knighton.json": {
-    "retrieved": "2026-11-05T09:22:44+00:00",
-    "url": "https://router.project-osrm.org/route/v1/driving/-3.04234,52.34502;-3.04981,52.34433?overview=false"
+  "osrm-access-wolverhampton.json": {
+    "key": "https://router.project-osrm.org/route/v1/driving/-2.12024,52.58799;-3.04981,52.34433?overview=false",
+    "retrieved": "2026-11-07T14:02:37+00:00",
+    "url": "https://router.project-osrm.org/route/v1/driving/-2.12024,52.58799;-3.04981,52.34433?overview=false"
   },
   "stage-1-main.gpx": {
     "retrieved": "2026-11-05T08:58:49+00:00",

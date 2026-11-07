@@ -105,22 +105,18 @@ wildCamping:
     Camping is not allowed in the Texelgruppe Nature Park, which the trail runs around and through.
   source: texelgruppe
 access:
-  # Merano is the main station (buses into the valleys, cable cars to the stage starts);
-  # airports at Innsbruck and Verona. Coordinates from OSM; distances by pipeline/access.py
+  # hubs by the rules of 2026-11-07 (docs/scope.md: long-distance trains, the main station of a city
+  # of 100,000, airports with international flights), suggested by pipeline/hubs.py and reviewed.
+  # Coordinates from OSM; distances by pipeline/access.py
   - kind: station
-    name: Merano station
-    lat: 46.67266
-    lon: 11.15009
+    name: Bolzano - Bozen
+    lat: 46.49643
+    lon: 11.3588
     source: osm
   - kind: airport
-    name: Innsbruck Airport (INN)
-    lat: 47.25973
-    lon: 11.34187
-    source: osm
-  - kind: airport
-    name: Verona Airport (VRN)
-    lat: 45.39717
-    lon: 10.8859
+    name: Bolzano Airport (BZO)
+    lat: 46.45841
+    lon: 11.32634
     source: osm
 animals:
   # Grazing cattle on the alpine pastures (the Province of Bolzano's sheet with the farmers' union).

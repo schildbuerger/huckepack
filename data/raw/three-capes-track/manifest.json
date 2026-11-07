@@ -57,11 +57,23 @@
     "retrieved": "2026-11-04T21:21:03Z",
     "url": "https://download.geofabrik.de/"
   },
+  "osrm-access-avalon-airport-avv.json": {
+    "key": "https://router.project-osrm.org/route/v1/driving/144.47415,-38.039;144.36226,-38.10689?overview=false",
+    "retrieved": "2026-11-07T14:04:09+00:00",
+    "url": "https://router.project-osrm.org/route/v1/driving/144.47415,-38.039;144.36226,-38.10689?overview=false"
+  },
   "osrm-access-hobart-airport-hba.json": {
+    "key": "https://router.project-osrm.org/route/v1/driving/147.51145,-42.83592;147.89085,-43.13886?overview=false",
     "retrieved": "2026-11-05T23:30:42+00:00",
     "url": "https://router.project-osrm.org/route/v1/driving/147.51145,-42.83592;147.89085,-43.13886?overview=false"
   },
+  "osrm-access-melbourne-airport-mel.json": {
+    "key": "https://router.project-osrm.org/route/v1/driving/144.83362,-37.66709;144.36226,-38.10689?overview=false",
+    "retrieved": "2026-11-07T14:04:10+00:00",
+    "url": "https://router.project-osrm.org/route/v1/driving/144.83362,-37.66709;144.36226,-38.10689?overview=false"
+  },
   "osrm-access-port-arthur-historic-site-check-in-boat-and-bus.json": {
+    "key": "https://router.project-osrm.org/route/v1/driving/147.85052,-43.14741;147.89085,-43.13886?overview=false",
     "retrieved": "2026-11-05T23:30:42+00:00",
     "url": "https://router.project-osrm.org/route/v1/driving/147.85052,-43.14741;147.89085,-43.13886?overview=false"
   }

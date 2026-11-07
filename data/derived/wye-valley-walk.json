@@ -18840,19 +18840,25 @@
   },
   "access": {
     "source": "osrm",
-    "retrieved": "2026-11-06T01:42:27+00:00",
+    "retrieved": "2026-11-07T14:04:34+00:00",
     "hubs": [
       {
-        "name": "Hereford",
-        "roadKm": 106.9,
-        "driveMin": 125,
-        "straightKm": 80.2
+        "name": "Carmarthen",
+        "roadKm": 128.1,
+        "driveMin": 138,
+        "straightKm": 80.8
       },
       {
-        "name": "Chepstow",
-        "roadKm": 144.3,
-        "driveMin": 167,
-        "straightKm": 115.1
+        "name": "Newport",
+        "roadKm": 137.4,
+        "driveMin": 155,
+        "straightKm": 108.4
+      },
+      {
+        "name": "Liverpool John Lennon Airport (LPL)",
+        "roadKm": 164.6,
+        "driveMin": 165,
+        "straightKm": 111.2
       },
       {
         "name": "Cardiff Airport (CWL)",

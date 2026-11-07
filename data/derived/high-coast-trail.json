@@ -10474,19 +10474,25 @@
   },
   "access": {
     "source": "osrm",
-    "retrieved": "2026-11-03T18:20:56+00:00",
+    "retrieved": "2026-11-07T14:02:51+00:00",
     "hubs": [
       {
-        "name": "Härnösand",
-        "roadKm": 25.4,
-        "driveMin": 24,
-        "straightKm": 18.7
+        "name": "Kramfors",
+        "roadKm": 22.1,
+        "driveMin": 28,
+        "straightKm": 16.8
       },
       {
-        "name": "Sundsvall–Timrå Airport (SDL)",
-        "roadKm": 54.5,
-        "driveMin": 52,
-        "straightKm": 40.5
+        "name": "Umeå Central",
+        "roadKm": 190.1,
+        "driveMin": 149,
+        "straightKm": 162.2
+      },
+      {
+        "name": "Umeå Airport (UME)",
+        "roadKm": 189.1,
+        "driveMin": 148,
+        "straightKm": 159.8
       }
     ]
   },

@@ -12920,25 +12920,19 @@
   },
   "access": {
     "source": "osrm",
-    "retrieved": "2026-10-31T03:55:56+00:00",
+    "retrieved": "2026-11-07T14:03:50+00:00",
     "hubs": [
       {
-        "name": "Brilon Stadt station",
-        "roadKm": 1.2,
-        "driveMin": 4,
-        "straightKm": 0.6
+        "name": "Hamm (Westf) Hbf",
+        "roadKm": 82.0,
+        "driveMin": 68,
+        "straightKm": 61.3
       },
       {
         "name": "Paderborn/Lippstadt Airport (PAD)",
         "roadKm": 38.5,
         "driveMin": 44,
         "straightKm": 24.6
-      },
-      {
-        "name": "Frankfurt Airport (FRA)",
-        "roadKm": 193.1,
-        "driveMin": 157,
-        "straightKm": 150.8
       }
     ]
   },

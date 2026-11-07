@@ -96,17 +96,19 @@ fees:
   - { name: "Hut (international visitor, adult)", amount: 84, currency: NZD, per: per person and night, year: 2026, note: "NZ visitors $55; 1 October to 30 April", source: doc }
   - { name: "Campsite (international visitor, adult)", amount: 31, currency: NZD, per: per person and night, year: 2026, note: "NZ visitors $21; 1 October to 30 April", source: doc }
 access:
-  # shuttles from Motueka and Nelson to Mārahau, and water taxis along the coast; Nelson the nearest
-  # airport. Coordinates from OSM; distances by pipeline/access.py
-  - kind: bus
-    name: Motueka
-    lat: -41.11249
-    lon: 173.00949
-    source: osm
+  # hubs by the rules of 2026-11-07 (docs/scope.md: long-distance trains, the main station of a city
+  # of 100,000, airports with international flights), suggested by pipeline/hubs.py and reviewed.
+  # Picton: Great Journeys NZ Coastal Pacific (Christchurch – Picton), missing from OSM's route
+  # relations (operator's page). Coordinates from OSM; distances by pipeline/access.py
+  - kind: station
+    name: Picton
+    lat: -41.28837
+    lon: 174.00486
+    source: gjnz-coastal-pacific
   - kind: airport
-    name: Nelson Airport (NSN)
-    lat: -41.29685
-    lon: 173.2254
+    name: Christchurch Airport (CHC)
+    lat: -43.48497
+    lon: 172.53631
     source: osm
 tags: [great-walk, abel-tasman, national-park, beaches, tidal-crossing]
 notes:
@@ -184,3 +186,8 @@ sources:
     url: https://project-osrm.org/
     licence: Route data © OpenStreetMap contributors (ODbL)
     retrieved: 2026-11-05
+  - id: gjnz-coastal-pacific
+    title: "Great Journeys New Zealand (KiwiRail): the Coastal Pacific, Christchurch – Picton"
+    url: https://www.greatjourneysnz.com/routes/coastal-pacific/
+    licence: All rights reserved (facts only)
+    retrieved: 2026-11-07

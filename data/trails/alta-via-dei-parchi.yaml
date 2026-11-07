@@ -128,17 +128,23 @@ wildCamping:
     along the route; ask the park authorities and municipalities, each has its own rules.
   source: rer-camping
 access:
-  # Parma station (trains and buses to Berceto) and Bologna Airport. Coordinates from OSM; distances
-  # by pipeline/access.py
+  # hubs by the rules of 2026-11-07 (docs/scope.md: long-distance trains, the main station of a city
+  # of 100,000, airports with international flights), suggested by pipeline/hubs.py and reviewed.
+  # Coordinates from OSM; distances by pipeline/access.py
   - kind: station
-    name: Parma
-    lat: 44.80935
-    lon: 10.32888
+    name: La Spezia Centrale
+    lat: 44.11156
+    lon: 9.81358
+    source: osm
+  - kind: station
+    name: Reggio Emilia AV Mediopadana
+    lat: 44.72427
+    lon: 10.65504
     source: osm
   - kind: airport
-    name: Bologna Guglielmo Marconi Airport (BLQ)
-    lat: 44.53443
-    lon: 11.28845
+    name: Parma Airport (PMF)
+    lat: 44.82655
+    lon: 10.29616
     source: osm
 tags: [apennines, ridge, national-park, forest, monasteries]
 notes:

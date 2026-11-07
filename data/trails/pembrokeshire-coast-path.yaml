@@ -106,12 +106,18 @@ wildCamping:
     the landowner's permission.
   source: nt-info
 access:
-  # Carmarthen, the nearest main railway station (the line from Swansea and Cardiff), and Cardiff
-  # Airport. Coordinates from OSM; distances by pipeline/access.py
+  # hubs by the rules of 2026-11-07 (docs/scope.md: long-distance trains, the main station of a city
+  # of 100,000, airports with international flights), suggested by pipeline/hubs.py and reviewed.
+  # Coordinates from OSM; distances by pipeline/access.py
   - kind: station
     name: Carmarthen
     lat: 51.85318
     lon: -4.3062
+    source: osm
+  - kind: station
+    name: Swansea
+    lat: 51.62568
+    lon: -3.94037
     source: osm
   - kind: airport
     name: Cardiff Airport (CWL)

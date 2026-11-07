@@ -90,17 +90,23 @@ refillsUntreated:
   text: Each overnight site has a natural water source, untreated; treat or filter all drinking water.
   source: gmc-thru
 access:
-  # Albany's airport, the nearest to the southern end, and Burlington's to the northern half.
+  # hubs by the rules of 2026-11-07 (docs/scope.md: long-distance trains, the main station of a city
+  # of 100,000, airports with international flights), suggested by pipeline/hubs.py and reviewed.
   # Coordinates from OSM; distances by pipeline/access.py
-  - kind: airport
-    name: Albany International Airport (ALB)
-    lat: 42.74817
-    lon: -73.79862
+  - kind: station
+    name: Pittsfield
+    lat: 42.45143
+    lon: -73.25404
+    source: osm
+  - kind: station
+    name: Albany-Rensselaer
+    lat: 42.64125
+    lon: -73.74129
     source: osm
   - kind: airport
-    name: Burlington International Airport (BTV)
-    lat: 44.4729
-    lon: -73.15146
+    name: Bradley International Airport (BDL)
+    lat: 41.94044
+    lon: -72.68548
     source: osm
 animals:
   # the club's thru-hiking page, "Bears and Food Storage". Level ours

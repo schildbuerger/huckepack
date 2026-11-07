@@ -94,7 +94,10 @@ permit:
   url: https://reservation.pc.gc.ca/
   source: fhta-safety
 access:
-  # coordinates from OSM; distances by pipeline/access.py
+  # hubs by the rules of 2026-11-07 (docs/scope.md: long-distance trains, the main station of a city
+  # of 100,000, airports with international flights), suggested by pipeline/hubs.py and reviewed.
+  # Greater Moncton Roméo LeBlanc International Airport (YQM): international flights in season only
+  # (Wikipedia's route table). Coordinates from OSM; distances by pipeline/access.py
   - kind: station
     name: Moncton station (VIA Rail)
     lat: 46.08335
@@ -104,11 +107,12 @@ access:
     name: Greater Moncton Roméo LeBlanc International Airport (YQM)
     lat: 46.11615
     lon: -64.68833
+    flights: seasonal
     source: osm
   - kind: airport
-    name: Saint John Airport (YSJ)
-    lat: 45.32912
-    lon: -65.89028
+    name: Halifax Stanfield International Airport (YHZ)
+    lat: 44.87878
+    lon: -63.51142
     source: osm
 animals:
   # Fundy National Park: "home to many animals including black bear, coyote, moose, and deer"; the

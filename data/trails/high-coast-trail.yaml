@@ -89,17 +89,23 @@ wildCamping:
     owners; in Skuleskogen National Park only at the designated tent sites.
   source: hk
 access:
-  # Härnösand station near the start, and Sundsvall–Timrå Airport. Coordinates from OSM; distances
-  # by pipeline/access.py
+  # hubs by the rules of 2026-11-07 (docs/scope.md: long-distance trains, the main station of a city
+  # of 100,000, airports with international flights), suggested by pipeline/hubs.py and reviewed.
+  # Coordinates from OSM; distances by pipeline/access.py
   - kind: station
-    name: Härnösand
-    lat: 62.635
-    lon: 17.92797
+    name: Kramfors
+    lat: 62.92901
+    lon: 17.77862
+    source: osm
+  - kind: station
+    name: Umeå Central
+    lat: 63.82996
+    lon: 20.26688
     source: osm
   - kind: airport
-    name: Sundsvall–Timrå Airport (SDL)
-    lat: 62.52782
-    lon: 17.44063
+    name: Umeå Airport (UME)
+    lat: 63.7904
+    lon: 20.28392
     source: osm
 animals:
   # Ticks (1177, Sweden's health guide). Level ours

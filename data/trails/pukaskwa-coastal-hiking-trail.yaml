@@ -107,10 +107,10 @@ refillsUntreated:
   text: The campsites have no taps; water comes from rivers, creeks and Lake Superior, to be filtered, treated or boiled.
   source: pc-planner
 access:
-  # the planner, "By Plane": Thunder Bay (YQT) and Sault Ste Marie (YAM); buses (Kasper
-  # Transportation, Ontario Northland) stop at Marathon, which OSM maps no stop for; the nearest
-  # railway station is White River (VIA Rail's Sudbury–White River train). Coordinates from OSM;
-  # distances by pipeline/access.py
+  # hubs by the rules of 2026-11-07 (docs/scope.md: long-distance trains, the main station of a city
+  # of 100,000, airports with international flights), suggested by pipeline/hubs.py and reviewed.
+  # Thunder Bay International Airport (YQT): international flights in season only (Wikipedia's route
+  # table). Coordinates from OSM; distances by pipeline/access.py
   - kind: station
     name: White River station (VIA Rail)
     lat: 48.5894379
@@ -120,11 +120,17 @@ access:
     name: Thunder Bay International Airport (YQT)
     lat: 48.3721108
     lon: -89.3239509
+    flights: seasonal
     source: osm
   - kind: airport
-    name: Sault Ste. Marie Airport (YAM)
-    lat: 46.4851313
-    lon: -84.5004954
+    name: Minneapolis–Saint Paul International Airport (MSP)
+    lat: 44.878
+    lon: -93.21878
+    source: osm
+  - kind: airport
+    name: Detroit Metropolitan Airport (DTW)
+    lat: 42.20421
+    lon: -83.35289
     source: osm
 animals:
   # Pukaskwa National Park's BARE Campsite page: "Black bears live in Pukaskwa, and are occasionally

@@ -100,13 +100,18 @@ wildCamping:
   rule: No wild camping; sleep at the campsites or the accommodation along the route.
   source: rota-vicentina
 access:
-  # Lisbon's Sete Rios coach station (express coaches to Sines and Porto Covo; no passenger railway
-  # reaches the start) and the airports of Lisbon and Faro. Coordinates from OSM; distances by
-  # pipeline/access.py
-  - kind: bus
-    name: Lisbon Sete Rios
-    lat: 38.74183
-    lon: -9.16627
+  # hubs by the rules of 2026-11-07 (docs/scope.md: long-distance trains, the main station of a city
+  # of 100,000, airports with international flights), suggested by pipeline/hubs.py and reviewed.
+  # Coordinates from OSM; distances by pipeline/access.py
+  - kind: station
+    name: Ermidas-Sado
+    lat: 38.00277
+    lon: -8.41398
+    source: osm
+  - kind: station
+    name: Lisboa - Oriente
+    lat: 38.76782
+    lon: -9.09907
     source: osm
   - kind: airport
     name: Lisbon Airport (LIS)

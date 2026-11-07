@@ -129,22 +129,28 @@ wildCamping:
     ownerships which manage camping differently.
   source: dcnr-rothrock-camping
 access:
-  # Cumberland station (Amtrak) near the southern end, Pittsburgh's and Harrisburg's airports.
+  # hubs by the rules of 2026-11-07 (docs/scope.md: long-distance trains, the main station of a city
+  # of 100,000, airports with international flights), suggested by pipeline/hubs.py and reviewed.
   # Coordinates from OSM; distances by pipeline/access.py
   - kind: station
     name: Cumberland station (Maryland)
     lat: 39.65055
     lon: -78.75793
     source: osm
-  - kind: airport
-    name: Pittsburgh International Airport (PIT)
-    lat: 40.49178
-    lon: -80.23702
+  - kind: station
+    name: Pittsburgh Union Station
+    lat: 40.44458
+    lon: -79.99164
     source: osm
   - kind: airport
-    name: Harrisburg International Airport (MDT)
-    lat: 40.19321
-    lon: -76.75295
+    name: Dulles International Airport (IAD)
+    lat: 38.95222
+    lon: -77.47417
+    source: osm
+  - kind: airport
+    name: Ronald Reagan Washington National Airport (DCA)
+    lat: 38.85137
+    lon: -77.03996
     source: osm
 animals:
   # DCNR's black bear advice ("A word on Pennsylvania black bears", in its Laurel Ridge guide, the

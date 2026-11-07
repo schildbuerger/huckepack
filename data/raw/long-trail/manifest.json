@@ -42,13 +42,20 @@
     "retrieved": "2026-11-05T21:23:02Z",
     "url": "https://download.geofabrik.de/"
   },
-  "osrm-access-albany-international-airport-alb.json": {
-    "retrieved": "2026-11-06T14:01:21+00:00",
-    "url": "https://router.project-osrm.org/route/v1/driving/-73.79862,42.74817;-73.15553,42.74382?overview=false"
+  "osrm-access-albany-rensselaer.json": {
+    "key": "https://router.project-osrm.org/route/v1/driving/-73.74129,42.64125;-73.15553,42.74382?overview=false",
+    "retrieved": "2026-11-07T14:03:05+00:00",
+    "url": "https://router.project-osrm.org/route/v1/driving/-73.74129,42.64125;-73.15553,42.74382?overview=false"
   },
-  "osrm-access-burlington-international-airport-btv.json": {
-    "retrieved": "2026-11-06T14:01:22+00:00",
-    "url": "https://router.project-osrm.org/route/v1/driving/-73.15146,44.4729;-73.15553,42.74382?overview=false"
+  "osrm-access-bradley-international-airport-bdl.json": {
+    "key": "https://router.project-osrm.org/route/v1/driving/-72.68548,41.94044;-73.15553,42.74382?overview=false",
+    "retrieved": "2026-11-07T14:03:06+00:00",
+    "url": "https://router.project-osrm.org/route/v1/driving/-72.68548,41.94044;-73.15553,42.74382?overview=false"
+  },
+  "osrm-access-pittsfield.json": {
+    "key": "https://router.project-osrm.org/route/v1/driving/-73.25404,42.45143;-73.15553,42.74382?overview=false",
+    "retrieved": "2026-11-07T14:03:04+00:00",
+    "url": "https://router.project-osrm.org/route/v1/driving/-73.25404,42.45143;-73.15553,42.74382?overview=false"
   },
   "wikimedia.json": {
     "retrieved": "2026-11-06T14:01:22+00:00",

@@ -14552,19 +14552,31 @@
   },
   "access": {
     "source": "osrm",
-    "retrieved": "2026-11-06T22:30:46+00:00",
+    "retrieved": "2026-11-07T14:03:35+00:00",
     "hubs": [
       {
-        "name": "Northwest Arkansas National Airport (XNA)",
-        "roadKm": 98.8,
-        "driveMin": 77,
-        "straightKm": 67.1
+        "name": "Little Rock",
+        "roadKm": 265.9,
+        "driveMin": 180,
+        "straightKm": 196.7
       },
       {
-        "name": "Bill and Hillary Clinton National Airport, Little Rock (LIT)",
-        "roadKm": 273.0,
-        "driveMin": 186,
-        "straightKm": 202.8
+        "name": "OKC Will Rogers International Airport (OKC)",
+        "roadKm": 354.4,
+        "driveMin": 239,
+        "straightKm": 317.1
+      },
+      {
+        "name": "Kansas City International Airport (MCI)",
+        "roadKm": 470.3,
+        "driveMin": 330,
+        "straightKm": 404.6
+      },
+      {
+        "name": "Dallas Love Field (DAL)",
+        "roadKm": 500.4,
+        "driveMin": 351,
+        "straightKm": 404.1
       }
     ]
   },

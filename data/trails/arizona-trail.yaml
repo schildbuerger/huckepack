@@ -180,18 +180,28 @@ wildCamping:
     trail's 15-foot corridor, and a year-round camping ban applies near Flagstaff.
   source: ata-permits
 access:
-  # Tucson International Airport and Tucson's Amtrak station (the association: "Transportation is
-  # available from the Tucson airport to the Coronado National Memorial"). Coordinates from OSM;
-  # distances by pipeline/access.py
-  - kind: airport
-    name: Tucson International Airport (TUS)
-    lat: 32.12023
-    lon: -110.93721
+  # hubs by the rules of 2026-11-07 (docs/scope.md: long-distance trains, the main station of a city
+  # of 100,000, airports with international flights), suggested by pipeline/hubs.py and reviewed.
+  # Coordinates from OSM; distances by pipeline/access.py
+  - kind: station
+    name: Benson
+    lat: 31.9688
+    lon: -110.29706
     source: osm
   - kind: station
     name: Tucson station (Amtrak)
     lat: 32.22312
     lon: -110.96671
+    source: osm
+  - kind: airport
+    name: Phoenix Sky Harbor International Airport (PHX)
+    lat: 33.43277
+    lon: -112.00704
+    source: osm
+  - kind: airport
+    name: Hermosillo International Airport (HMO)
+    lat: 29.09222
+    lon: -111.05634
     source: osm
 animals:
   # the National Park Service: Saguaro National Park (passages 8–9) for rattlesnakes and mountain

@@ -108,12 +108,18 @@ wildCamping:
     landowner's permission, and take all waste away.
   source: nt-info
 access:
-  # Manchester Piccadilly, the main station for Edale (trains on the Hope Valley line), and
-  # Manchester Airport. Coordinates from OSM; distances by pipeline/access.py
+  # hubs by the rules of 2026-11-07 (docs/scope.md: long-distance trains, the main station of a city
+  # of 100,000, airports with international flights), suggested by pipeline/hubs.py and reviewed.
+  # Coordinates from OSM; distances by pipeline/access.py
   - kind: station
-    name: Manchester Piccadilly
-    lat: 53.47742
-    lon: -2.23083
+    name: Chinley
+    lat: 53.34012
+    lon: -1.94452
+    source: osm
+  - kind: station
+    name: Sheffield
+    lat: 53.37837
+    lon: -1.46214
     source: osm
   - kind: airport
     name: Manchester Airport (MAN)

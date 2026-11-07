@@ -105,17 +105,23 @@ wildCamping:
     advance through the crossing's reservation centre.
   source: cdf
 access:
-  # La Pobla de Segur, the railhead of the line from Lleida, and Toulouse airport (Barcelona's is
-  # over 300 km by road). Coordinates from OSM; distances by pipeline/access.py
+  # hubs by the rules of 2026-11-07 (docs/scope.md: long-distance trains, the main station of a city
+  # of 100,000, airports with international flights), suggested by pipeline/hubs.py and reviewed.
+  # Coordinates from OSM; distances by pipeline/access.py
   - kind: station
-    name: La Pobla de Segur
-    lat: 42.24
-    lon: 0.96616
+    name: Lleida-Pirineus
+    lat: 41.62073
+    lon: 0.63304
     source: osm
   - kind: airport
-    name: Toulouse–Blagnac Airport (TLS)
-    lat: 43.62996
-    lon: 1.36362
+    name: "Andorra–La Seu d'Urgell Airport (LEU)"
+    lat: 42.34103
+    lon: 1.40909
+    source: osm
+  - kind: airport
+    name: Tarbes–Lourdes–Pyrénées Airport (LDE)
+    lat: 43.17927
+    lon: -0.00304
     source: osm
 animals:
   # The asp viper (Spain's National Institute of Toxicology; the park's declaration: up to 2,300 m).

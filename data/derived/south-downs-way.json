@@ -13570,7 +13570,7 @@
   },
   "access": {
     "source": "osrm",
-    "retrieved": "2026-11-05T07:53:23+00:00",
+    "retrieved": "2026-11-07T14:03:58+00:00",
     "hubs": [
       {
         "name": "Winchester",
@@ -13579,16 +13579,16 @@
         "straightKm": 1.1
       },
       {
+        "name": "Southampton Central",
+        "roadKm": 20.5,
+        "driveMin": 22,
+        "straightKm": 18.6
+      },
+      {
         "name": "Southampton Airport (SOU)",
         "roadKm": 18.7,
         "driveMin": 16,
         "straightKm": 12.6
-      },
-      {
-        "name": "London Heathrow Airport (LHR)",
-        "roadKm": 87.5,
-        "driveMin": 70,
-        "straightKm": 74.4
       }
     ]
   },

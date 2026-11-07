@@ -111,17 +111,20 @@ wildCamping:
     restrictions.
   source: brt-backpacking
 access:
-  # the nearest international airports: Thunder Bay (Ontario) near the eastern end, Duluth to the
-  # south-west; no passenger railway in reach. Coordinates from OSM; distances by pipeline/access.py
+  # hubs by the rules of 2026-11-07 (docs/scope.md: long-distance trains, the main station of a city
+  # of 100,000, airports with international flights), suggested by pipeline/hubs.py and reviewed.
+  # Thunder Bay International Airport (YQT): international flights in season only (Wikipedia's route
+  # table). Coordinates from OSM; distances by pipeline/access.py
   - kind: airport
     name: Thunder Bay International Airport (YQT)
     lat: 48.37214
     lon: -89.32087
+    flights: seasonal
     source: osm
   - kind: airport
-    name: Duluth International Airport (DLH)
-    lat: 46.8419
-    lon: -92.20047
+    name: Minneapolis–Saint Paul International Airport (MSP)
+    lat: 44.878
+    lon: -93.21878
     source: osm
 animals:
   # the association's Hike Planning page ("Animals"): "home to grouse, squirrels, black bears,

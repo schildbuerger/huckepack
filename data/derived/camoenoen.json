@@ -12059,19 +12059,31 @@
   },
   "access": {
     "source": "osrm",
-    "retrieved": "2026-11-06T01:58:46+00:00",
+    "retrieved": "2026-11-07T14:02:08+00:00",
     "hubs": [
       {
-        "name": "Vordingborg",
-        "roadKm": 29.3,
-        "driveMin": 34,
-        "straightKm": 25.0
+        "name": "Ringsted",
+        "roadKm": 81.1,
+        "driveMin": 73,
+        "straightKm": 59.4
+      },
+      {
+        "name": "Copenhagen Central Station",
+        "roadKm": 118.3,
+        "driveMin": 93,
+        "straightKm": 78.2
       },
       {
         "name": "Copenhagen Airport (CPH)",
         "roadKm": 127.4,
         "driveMin": 97,
         "straightKm": 72.9
+      },
+      {
+        "name": "Malmö Airport (MMX)",
+        "roadKm": 174.8,
+        "driveMin": 130,
+        "straightKm": 91.8
       }
     ]
   },

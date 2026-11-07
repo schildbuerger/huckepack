@@ -113,22 +113,18 @@ wildCamping:
     trekking sites (trekking-eifel.de, up to two tents each).
   source: lfog-nrw
 access:
-  # Aachen Hbf (buses to Kornelimünster), Cologne Bonn and Luxembourg airports (Luxembourg is
-  # nearest the end in Trier). Coordinates from OSM; distances by pipeline/access.py
+  # hubs by the rules of 2026-11-07 (docs/scope.md: long-distance trains, the main station of a city
+  # of 100,000, airports with international flights), suggested by pipeline/hubs.py and reviewed.
+  # Coordinates from OSM; distances by pipeline/access.py
   - kind: station
     name: Aachen Hauptbahnhof
     lat: 50.76777
     lon: 6.09138
     source: osm
   - kind: airport
-    name: Cologne Bonn Airport (CGN)
-    lat: 50.86778
-    lon: 7.13896
-    source: osm
-  - kind: airport
-    name: Luxembourg Airport (LUX)
-    lat: 49.62771
-    lon: 6.21085
+    name: Maastricht Aachen Airport (MST)
+    lat: 50.91203
+    lon: 5.77007
     source: osm
 animals:
   # Ticks: Lyme disease all over Germany (the federal health agency's advice). Level ours

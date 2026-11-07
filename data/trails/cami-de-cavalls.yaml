@@ -105,8 +105,11 @@ wildCamping:
     notifying the park.
   source: cime-faq
 access:
-  # Maó's bus station near the start, Ciutadella's halfway round, Menorca Airport. Coordinates from
-  # OSM; distances by pipeline/access.py
+  # hubs by the rules of 2026-11-07 (docs/scope.md: long-distance trains, the main station of a city
+  # of 100,000, airports with international flights), suggested by pipeline/hubs.py and reviewed.
+  # Maó bus station: the main bus station (no long-distance trains within 300 km); Ciutadella bus
+  # station: the main bus station (no long-distance trains within 300 km). Coordinates from OSM;
+  # distances by pipeline/access.py
   - kind: bus
     name: Maó bus station
     lat: 39.88684

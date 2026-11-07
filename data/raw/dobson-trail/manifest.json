@@ -43,10 +43,22 @@
     "url": "https://download.geofabrik.de/"
   },
   "osrm-access-greater-moncton-rom-o-leblanc-international-airport-yqm.json": {
+    "key": "https://router.project-osrm.org/route/v1/driving/-64.68833,46.11615;-64.78741,46.04208?overview=false",
     "retrieved": "2026-11-06T21:48:03+00:00",
     "url": "https://router.project-osrm.org/route/v1/driving/-64.68833,46.11615;-64.78741,46.04208?overview=false"
   },
+  "osrm-access-halifax-stanfield-international-airport-yhz.json": {
+    "key": "https://router.project-osrm.org/route/v1/driving/-63.51142,44.87878;-64.78741,46.04208?overview=false",
+    "retrieved": "2026-11-07T14:02:22+00:00",
+    "url": "https://router.project-osrm.org/route/v1/driving/-63.51142,44.87878;-64.78741,46.04208?overview=false"
+  },
+  "osrm-access-halifax.json": {
+    "key": "https://router.project-osrm.org/route/v1/driving/-63.56796,44.63968;-64.78741,46.04208?overview=false",
+    "retrieved": "2026-11-07T14:02:21+00:00",
+    "url": "https://router.project-osrm.org/route/v1/driving/-63.56796,44.63968;-64.78741,46.04208?overview=false"
+  },
   "osrm-access-moncton-station-via-rail.json": {
+    "key": "https://router.project-osrm.org/route/v1/driving/-64.78612,46.08335;-64.78741,46.04208?overview=false",
     "retrieved": "2026-11-06T21:48:03+00:00",
     "url": "https://router.project-osrm.org/route/v1/driving/-64.78612,46.08335;-64.78741,46.04208?overview=false"
   },

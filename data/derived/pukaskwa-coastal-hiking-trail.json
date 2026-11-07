@@ -3835,7 +3835,7 @@
   },
   "access": {
     "source": "osrm",
-    "retrieved": "2026-11-06T23:06:08+00:00",
+    "retrieved": "2026-11-07T14:03:44+00:00",
     "hubs": [
       {
         "name": "White River station (VIA Rail)",
@@ -3850,10 +3850,16 @@
         "straightKm": 224.9
       },
       {
-        "name": "Sault Ste. Marie Airport (YAM)",
-        "roadKm": 428.4,
-        "driveMin": 373,
-        "straightKm": 269.9
+        "name": "Minneapolis–Saint Paul International Airport (MSP)",
+        "roadKm": 876.9,
+        "driveMin": 701,
+        "straightKm": 669.8
+      },
+      {
+        "name": "Detroit Metropolitan Airport (DTW)",
+        "roadKm": 987.3,
+        "driveMin": 732,
+        "straightKm": 746.1
       }
     ]
   }

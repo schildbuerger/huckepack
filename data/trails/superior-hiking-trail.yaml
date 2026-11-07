@@ -76,11 +76,23 @@ wildCamping:
     has none, at the fee-for-use campgrounds near the trail. No campfires in Duluth.
   source: sht-thru
 access:
-  # Duluth's airport, near the southern half. Coordinates from OSM; distances by pipeline/access.py
+  # hubs by the rules of 2026-11-07 (docs/scope.md: long-distance trains, the main station of a city
+  # of 100,000, airports with international flights), suggested by pipeline/hubs.py and reviewed.
+  # Coordinates from OSM; distances by pipeline/access.py
+  - kind: station
+    name: Saint Cloud
+    lat: 45.56797
+    lon: -94.14882
+    source: osm
+  - kind: station
+    name: Saint Paul Union Depot
+    lat: 44.94668
+    lon: -93.08471
+    source: osm
   - kind: airport
-    name: Duluth International Airport (DLH)
-    lat: 46.84189
-    lon: -92.20298
+    name: Minneapolis–Saint Paul International Airport (MSP)
+    lat: 44.878
+    lon: -93.21878
     source: osm
 animals:
   # the association's FAQ: "Keeping a clean campsite and hanging food at night will help to prevent

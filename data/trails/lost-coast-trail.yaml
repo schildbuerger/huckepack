@@ -85,12 +85,18 @@ permit:
   url: https://www.recreation.gov/permits/72192
   source: blm-kr
 access:
-  # Humboldt County's airport near Eureka; no public transport to the trailheads. Coordinates from
-  # OSM; distances by pipeline/access.py
+  # hubs by the rules of 2026-11-07 (docs/scope.md: long-distance trains, the main station of a city
+  # of 100,000, airports with international flights), suggested by pipeline/hubs.py and reviewed.
+  # Coordinates from OSM; distances by pipeline/access.py
   - kind: airport
-    name: California Redwood Coast–Humboldt County Airport (ACV)
-    lat: 40.97636
-    lon: -124.10843
+    name: Sacramento International Airport (SMF)
+    lat: 38.693
+    lon: -121.59314
+    source: osm
+  - kind: airport
+    name: San Francisco International Airport (SFO)
+    lat: 37.62178
+    lon: -122.37896
     source: osm
 animals:
   # the King Range NCA: "Backpackers are required to carry one hard-sided bear resistant canister";

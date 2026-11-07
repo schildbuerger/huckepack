@@ -86,8 +86,9 @@ wildCamping:
     campsites along the trail.
   source: nt-info
 access:
-  # no station at Overton Hill: Swindon is the nearest main-line station; Bristol and Heathrow the
-  # nearest airports. Coordinates from OSM; distances by pipeline/access.py
+  # hubs by the rules of 2026-11-07 (docs/scope.md: long-distance trains, the main station of a city
+  # of 100,000, airports with international flights), suggested by pipeline/hubs.py and reviewed.
+  # Coordinates from OSM; distances by pipeline/access.py
   - kind: station
     name: Swindon
     lat: 51.5657
@@ -99,9 +100,9 @@ access:
     lon: -2.71862
     source: osm
   - kind: airport
-    name: London Heathrow Airport (LHR)
-    lat: 51.46774
-    lon: -0.45878
+    name: Bournemouth Airport (BOH)
+    lat: 50.78252
+    lon: -1.84229
     source: osm
 animals:
   # Cattle (the Countryside Code, HSE) and ticks (NHS). Levels ours

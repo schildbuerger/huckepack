@@ -93,18 +93,18 @@ wildCamping:
     Island; in Scotland (Melrose to the border) the Scottish Outdoor Access Code applies.
   source: scw-stay
 access:
-  # Tweedbank (the Borders Railway, near Melrose), Berwick-upon-Tweed (near the end), and the
-  # airports the site names, Edinburgh and Newcastle. Coordinates from OSM; distances by
-  # pipeline/access.py
-  - kind: station
-    name: Tweedbank
-    lat: 55.60586
-    lon: -2.759
-    source: osm
+  # hubs by the rules of 2026-11-07 (docs/scope.md: long-distance trains, the main station of a city
+  # of 100,000, airports with international flights), suggested by pipeline/hubs.py and reviewed.
+  # Coordinates from OSM; distances by pipeline/access.py
   - kind: station
     name: Berwick-upon-Tweed
     lat: 55.77406
     lon: -2.0108
+    source: osm
+  - kind: station
+    name: Edinburgh Waverley
+    lat: 55.9519
+    lon: -3.19042
     source: osm
   - kind: airport
     name: Edinburgh Airport (EDI)

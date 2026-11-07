@@ -57,13 +57,25 @@
     "retrieved": "2026-10-28T21:21:02Z",
     "url": "https://download.geofabrik.de/"
   },
-  "osrm-access-baiersbronn-station.json": {
-    "retrieved": "2026-10-30T11:56:11+00:00",
-    "url": "https://router.project-osrm.org/route/v1/driving/8.37204,48.5037;8.37217,48.50486?overview=false"
+  "osrm-access-horb.json": {
+    "key": "https://router.project-osrm.org/route/v1/driving/8.68897,48.44181;8.37217,48.50486?overview=false",
+    "retrieved": "2026-11-07T14:02:00+00:00",
+    "url": "https://router.project-osrm.org/route/v1/driving/8.68897,48.44181;8.37217,48.50486?overview=false"
   },
   "osrm-access-karlsruhe-baden-baden-airport-fkb.json": {
+    "key": "https://router.project-osrm.org/route/v1/driving/8.08401,48.77634;8.37217,48.50486?overview=false",
     "retrieved": "2026-10-30T11:56:11+00:00",
     "url": "https://router.project-osrm.org/route/v1/driving/8.08401,48.77634;8.37217,48.50486?overview=false"
+  },
+  "osrm-access-pforzheim-hauptbahnhof.json": {
+    "key": "https://router.project-osrm.org/route/v1/driving/8.70326,48.89398;8.37217,48.50486?overview=false",
+    "retrieved": "2026-11-07T14:02:01+00:00",
+    "url": "https://router.project-osrm.org/route/v1/driving/8.70326,48.89398;8.37217,48.50486?overview=false"
+  },
+  "osrm-access-strasbourg-airport-sxb.json": {
+    "key": "https://router.project-osrm.org/route/v1/driving/7.62611,48.53887;8.37217,48.50486?overview=false",
+    "retrieved": "2026-11-07T14:02:03+00:00",
+    "url": "https://router.project-osrm.org/route/v1/driving/7.62611,48.53887;8.37217,48.50486?overview=false"
   },
   "stage-1-main.gpx": {
     "retrieved": "2026-10-30T11:52:28+00:00",

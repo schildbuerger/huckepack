@@ -120,11 +120,18 @@
     "retrieved": "2026-11-02T21:21:26Z",
     "url": "https://download.geofabrik.de/"
   },
-  "osrm-access-le-puy-en-velay.json": {
-    "retrieved": "2026-11-03T18:34:34+00:00",
-    "url": "https://router.project-osrm.org/route/v1/driving/3.89252,45.04293;3.88471,45.04559?overview=false"
+  "osrm-access-clermont-ferrand-auvergne-airport-cfe.json": {
+    "key": "https://router.project-osrm.org/route/v1/driving/3.17294,45.78558;3.88471,45.04559?overview=false",
+    "retrieved": "2026-11-07T14:02:40+00:00",
+    "url": "https://router.project-osrm.org/route/v1/driving/3.17294,45.78558;3.88471,45.04559?overview=false"
+  },
+  "osrm-access-lyon-part-dieu.json": {
+    "key": "https://router.project-osrm.org/route/v1/driving/4.86016,45.76057;3.88471,45.04559?overview=false",
+    "retrieved": "2026-11-07T14:02:39+00:00",
+    "url": "https://router.project-osrm.org/route/v1/driving/4.86016,45.76057;3.88471,45.04559?overview=false"
   },
   "osrm-access-lyon-saint-exup-ry-airport-lys.json": {
+    "key": "https://router.project-osrm.org/route/v1/driving/5.08652,45.72442;3.88471,45.04559?overview=false",
     "retrieved": "2026-11-03T18:34:34+00:00",
     "url": "https://router.project-osrm.org/route/v1/driving/5.08652,45.72442;3.88471,45.04559?overview=false"
   },

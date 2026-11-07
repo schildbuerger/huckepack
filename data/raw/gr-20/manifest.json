@@ -97,16 +97,19 @@
     "url": "https://download.geofabrik.de/"
   },
   "osrm-access-bastia-poretta-airport-bia.json": {
+    "key": "https://router.project-osrm.org/route/v1/driving/9.4822,42.55441;8.85529,42.50837?overview=false",
     "retrieved": "2026-11-02T07:04:24+00:00",
     "url": "https://router.project-osrm.org/route/v1/driving/9.4822,42.55441;8.85529,42.50837?overview=false"
   },
   "osrm-access-calvi-sainte-catherine-airport-cly.json": {
+    "key": "https://router.project-osrm.org/route/v1/driving/8.79208,42.52981;8.85529,42.50837?overview=false",
     "retrieved": "2026-11-02T07:04:23+00:00",
     "url": "https://router.project-osrm.org/route/v1/driving/8.79208,42.52981;8.85529,42.50837?overview=false"
   },
-  "osrm-access-gare-de-calvi.json": {
-    "retrieved": "2026-11-02T07:04:23+00:00",
-    "url": "https://router.project-osrm.org/route/v1/driving/8.75596,42.5648;8.85529,42.50837?overview=false"
+  "osrm-access-marseille-saint-charles.json": {
+    "key": "https://router.project-osrm.org/route/v1/driving/5.38119,43.30326;5.36348,43.30096?overview=false",
+    "retrieved": "2026-11-07T14:02:39+00:00",
+    "url": "https://router.project-osrm.org/route/v1/driving/5.38119,43.30326;5.36348,43.30096?overview=false"
   },
   "wikimedia.json": {
     "retrieved": "2026-11-02T07:04:28+00:00",

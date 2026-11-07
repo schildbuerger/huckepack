@@ -2845,25 +2845,19 @@
   },
   "access": {
     "source": "osrm",
-    "retrieved": "2026-11-05T12:20:14+00:00",
+    "retrieved": "2026-11-07T14:03:01+00:00",
     "hubs": [
       {
-        "name": "Wairoa",
-        "roadKm": 55.8,
-        "driveMin": 55,
-        "straightKm": 37.6
+        "name": "Hamilton (Frankton)",
+        "roadKm": 273.2,
+        "driveMin": 294,
+        "straightKm": 197.0
       },
       {
-        "name": "Gisborne Airport (GIS)",
-        "roadKm": 149.8,
-        "driveMin": 129,
-        "straightKm": 76.0
-      },
-      {
-        "name": "Hawke's Bay Airport (NPE)",
-        "roadKm": 158.7,
-        "driveMin": 144,
-        "straightKm": 77.6
+        "name": "Hamilton Airport (HLZ)",
+        "roadKm": 270.5,
+        "driveMin": 288,
+        "straightKm": 187.5
       }
     ]
   },

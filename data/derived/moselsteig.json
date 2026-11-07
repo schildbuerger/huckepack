@@ -35247,13 +35247,19 @@
   },
   "access": {
     "source": "osrm",
-    "retrieved": "2026-10-30T13:08:24+00:00",
+    "retrieved": "2026-11-07T14:03:15+00:00",
     "hubs": [
       {
-        "name": "Perl station",
-        "roadKm": 0.9,
-        "driveMin": 2,
-        "straightKm": 0.0
+        "name": "Sandweiler-Contern",
+        "roadKm": 25.7,
+        "driveMin": 25,
+        "straightKm": 18.1
+      },
+      {
+        "name": "Trier Hbf",
+        "roadKm": 52.9,
+        "driveMin": 48,
+        "straightKm": 37.5
       },
       {
         "name": "Luxembourg Airport (LUX)",

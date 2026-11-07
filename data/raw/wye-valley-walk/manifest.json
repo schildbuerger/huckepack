@@ -123,16 +123,24 @@
     "url": "https://download.geofabrik.de/"
   },
   "osrm-access-cardiff-airport-cwl.json": {
+    "key": "https://router.project-osrm.org/route/v1/driving/-3.34458,51.39785;-3.6792,52.4695?overview=false",
     "retrieved": "2026-11-06T01:42:27+00:00",
     "url": "https://router.project-osrm.org/route/v1/driving/-3.34458,51.39785;-3.6792,52.4695?overview=false"
   },
-  "osrm-access-chepstow.json": {
-    "retrieved": "2026-11-06T01:42:27+00:00",
-    "url": "https://router.project-osrm.org/route/v1/driving/-2.67108,51.63997;-3.6792,52.4695?overview=false"
+  "osrm-access-carmarthen.json": {
+    "key": "https://router.project-osrm.org/route/v1/driving/-4.30576,51.85331;-3.6792,52.4695?overview=false",
+    "retrieved": "2026-11-07T14:04:32+00:00",
+    "url": "https://router.project-osrm.org/route/v1/driving/-4.30576,51.85331;-3.6792,52.4695?overview=false"
   },
-  "osrm-access-hereford.json": {
-    "retrieved": "2026-11-06T01:42:27+00:00",
-    "url": "https://router.project-osrm.org/route/v1/driving/-2.70812,52.0612;-3.6792,52.4695?overview=false"
+  "osrm-access-liverpool-john-lennon-airport-lpl.json": {
+    "key": "https://router.project-osrm.org/route/v1/driving/-2.85023,53.33577;-3.6792,52.4695?overview=false",
+    "retrieved": "2026-11-07T14:04:34+00:00",
+    "url": "https://router.project-osrm.org/route/v1/driving/-2.85023,53.33577;-3.6792,52.4695?overview=false"
+  },
+  "osrm-access-newport.json": {
+    "key": "https://router.project-osrm.org/route/v1/driving/-3.00042,51.58877;-3.6792,52.4695?overview=false",
+    "retrieved": "2026-11-07T14:04:33+00:00",
+    "url": "https://router.project-osrm.org/route/v1/driving/-3.00042,51.58877;-3.6792,52.4695?overview=false"
   },
   "wikimedia.json": {
     "retrieved": "2026-11-06T01:42:28+00:00",

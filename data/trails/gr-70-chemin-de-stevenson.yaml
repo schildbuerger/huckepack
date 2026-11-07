@@ -99,12 +99,18 @@ wildCamping:
     Mont Lozère; other camping in the core is prohibited.
   source: pnc-bivouac
 access:
-  # Le Puy-en-Velay station and Lyon-Saint-Exupéry airport. Coordinates from OSM; distances by
-  # pipeline/access.py
+  # hubs by the rules of 2026-11-07 (docs/scope.md: long-distance trains, the main station of a city
+  # of 100,000, airports with international flights), suggested by pipeline/hubs.py and reviewed.
+  # Coordinates from OSM; distances by pipeline/access.py
   - kind: station
-    name: Le Puy-en-Velay
-    lat: 45.04293
-    lon: 3.89252
+    name: Lyon Part-Dieu
+    lat: 45.76057
+    lon: 4.86016
+    source: osm
+  - kind: airport
+    name: Clermont-Ferrand Auvergne Airport (CFE)
+    lat: 45.78558
+    lon: 3.17294
     source: osm
   - kind: airport
     name: Lyon-Saint-Exupéry Airport (LYS)

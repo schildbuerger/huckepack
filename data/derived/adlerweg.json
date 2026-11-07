@@ -37322,25 +37322,31 @@
   },
   "access": {
     "source": "osrm",
-    "retrieved": "2026-11-03T18:03:40+00:00",
+    "retrieved": "2026-11-07T14:01:43+00:00",
     "hubs": [
       {
-        "name": "Innsbruck Hauptbahnhof",
-        "roadKm": 91.8,
-        "driveMin": 83,
-        "straightKm": 82.6
+        "name": "Kufstein",
+        "roadKm": 30.6,
+        "driveMin": 36,
+        "straightKm": 21.1
+      },
+      {
+        "name": "Salzburg Hauptbahnhof",
+        "roadKm": 70.7,
+        "driveMin": 73,
+        "straightKm": 56.4
+      },
+      {
+        "name": "Salzburg Airport (SZG)",
+        "roadKm": 64.7,
+        "driveMin": 67,
+        "straightKm": 52.6
       },
       {
         "name": "Innsbruck Airport (INN)",
         "roadKm": 98.3,
         "driveMin": 90,
         "straightKm": 86.9
-      },
-      {
-        "name": "Munich Airport (MUC)",
-        "roadKm": 162.1,
-        "driveMin": 113,
-        "straightKm": 104.7
       }
     ]
   }

@@ -92,11 +92,18 @@
     "retrieved": "2026-10-28T21:21:02Z",
     "url": "https://download.geofabrik.de/"
   },
+  "osrm-access-dalmuir.json": {
+    "key": "https://router.project-osrm.org/route/v1/driving/-4.42685,55.91201;-4.31783,55.94149?overview=false",
+    "retrieved": "2026-11-07T14:04:22+00:00",
+    "url": "https://router.project-osrm.org/route/v1/driving/-4.42685,55.91201;-4.31783,55.94149?overview=false"
+  },
   "osrm-access-glasgow-airport-gla.json": {
+    "key": "https://router.project-osrm.org/route/v1/driving/-4.4357,55.87056;-4.31783,55.94149?overview=false",
     "retrieved": "2026-10-29T22:25:21+00:00",
     "url": "https://router.project-osrm.org/route/v1/driving/-4.4357,55.87056;-4.31783,55.94149?overview=false"
   },
   "osrm-access-glasgow-queen-street.json": {
+    "key": "https://router.project-osrm.org/route/v1/driving/-4.25112,55.86256;-4.31783,55.94149?overview=false",
     "retrieved": "2026-10-29T22:25:21+00:00",
     "url": "https://router.project-osrm.org/route/v1/driving/-4.25112,55.86256;-4.31783,55.94149?overview=false"
   },

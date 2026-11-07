@@ -13965,19 +13965,25 @@
   },
   "access": {
     "source": "osrm",
-    "retrieved": "2026-11-06T20:37:32+00:00",
+    "retrieved": "2026-11-07T14:04:06+00:00",
     "hubs": [
-      {
-        "name": "Reno–Tahoe International Airport (RNO)",
-        "roadKm": 83.4,
-        "driveMin": 70,
-        "straightKm": 49.3
-      },
       {
         "name": "Truckee station",
         "roadKm": 23.7,
         "driveMin": 24,
         "straightKm": 18.4
+      },
+      {
+        "name": "Reno",
+        "roadKm": 76.0,
+        "driveMin": 62,
+        "straightKm": 49.7
+      },
+      {
+        "name": "Reno–Tahoe International Airport (RNO)",
+        "roadKm": 83.4,
+        "driveMin": 70,
+        "straightKm": 49.3
       }
     ]
   },

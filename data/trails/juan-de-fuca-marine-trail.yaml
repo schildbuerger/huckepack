@@ -107,11 +107,19 @@ fees:
   - { name: "Backcountry camping, adult (16+)", amount: 10, currency: CAD, per: per person and night, year: 2026, note: "youth 6–15 $5, children under 6 free", source: bcp-park }
   - { name: "Non-resident fee, adult (16+)", amount: 20, currency: CAD, per: per person and trip, year: 2026, note: "visitors who do not live in B.C., since 2026", source: bcp-park }
 access:
-  # no passenger railway on southern Vancouver Island; coordinates from OSM; distances by
-  # pipeline/access.py
+  # hubs by the rules of 2026-11-07 (docs/scope.md: long-distance trains, the main station of a city
+  # of 100,000, airports with international flights), suggested by pipeline/hubs.py and reviewed.
+  # Vancouver Pacific Central: by road to Tsawwassen (ferry to Swartz Bay), then ferry. Coordinates
+  # from OSM; distances by pipeline/access.py
+  - kind: station
+    name: Vancouver Pacific Central
+    lat: 49.27375
+    lon: -123.09786
+    via: { name: "Tsawwassen (ferry to Swartz Bay)", lat: 49.00789, lon: -123.1295, by: ferry }
+    source: osm
   - kind: airport
     name: Victoria International Airport (YYJ)
-    lat: 48.64630
+    lat: 48.6463
     lon: -123.42171
     source: osm
 animals:

@@ -47717,25 +47717,19 @@
   },
   "access": {
     "source": "osrm",
-    "retrieved": "2026-11-05T09:58:18+00:00",
+    "retrieved": "2026-11-07T14:04:07+00:00",
     "hubs": [
       {
-        "name": "Kemble",
-        "roadKm": 6.6,
-        "driveMin": 10,
-        "straightKm": 2.0
+        "name": "Swindon",
+        "roadKm": 28.9,
+        "driveMin": 29,
+        "straightKm": 22.1
       },
       {
         "name": "Bristol Airport (BRS)",
         "roadKm": 71.2,
         "driveMin": 73,
         "straightKm": 58.9
-      },
-      {
-        "name": "London Heathrow Airport (LHR)",
-        "roadKm": 138.0,
-        "driveMin": 104,
-        "straightKm": 111.4
       }
     ]
   },

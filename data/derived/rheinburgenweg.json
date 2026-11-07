@@ -22099,8 +22099,14 @@
   },
   "access": {
     "source": "osrm",
-    "retrieved": "2026-11-05T23:44:53+00:00",
+    "retrieved": "2026-11-07T14:03:49+00:00",
     "hubs": [
+      {
+        "name": "Remagen",
+        "roadKm": 6.8,
+        "driveMin": 9,
+        "straightKm": 6.2
+      },
       {
         "name": "Bonn Hauptbahnhof",
         "roadKm": 15.9,
@@ -22108,16 +22114,10 @@
         "straightKm": 13.7
       },
       {
-        "name": "Bingen (Rhein) Hauptbahnhof",
-        "roadKm": 124.4,
-        "driveMin": 92,
-        "straightKm": 88.7
-      },
-      {
-        "name": "Frankfurt Airport (FRA)",
-        "roadKm": 143.1,
-        "driveMin": 106,
-        "straightKm": 116.6
+        "name": "Cologne Bonn Airport (CGN)",
+        "roadKm": 36.8,
+        "driveMin": 39,
+        "straightKm": 26.7
       }
     ]
   },

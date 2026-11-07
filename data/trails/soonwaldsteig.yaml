@@ -89,17 +89,23 @@ wildCamping:
     five tents; a compost toilet, no water) and the tent site at the Outdoor-Park Lauschhütte.
   source: sws-camps
 access:
-  # Kirn station at the start; Frankfurt Airport. Coordinates from OSM; distances by
-  # pipeline/access.py
+  # hubs by the rules of 2026-11-07 (docs/scope.md: long-distance trains, the main station of a city
+  # of 100,000, airports with international flights), suggested by pipeline/hubs.py and reviewed.
+  # Coordinates from OSM; distances by pipeline/access.py
   - kind: station
-    name: Kirn station
-    lat: 49.78564
-    lon: 7.46417
+    name: Bullay
+    lat: 50.05428
+    lon: 7.13466
+    source: osm
+  - kind: station
+    name: Mainz Hauptbahnhof
+    lat: 50.00111
+    lon: 8.25872
     source: osm
   - kind: airport
-    name: Frankfurt Airport (FRA)
-    lat: 50.03989
-    lon: 8.55985
+    name: Frankfurt-Hahn Airport (HHN)
+    lat: 49.94467
+    lon: 7.26195
     source: osm
 animals:
   # Ticks: Lyme disease all over Germany (the federal health agency's advice). Level ours

@@ -72,17 +72,15 @@
     "retrieved": "2026-10-31T21:23:06Z",
     "url": "https://download.geofabrik.de/"
   },
-  "osrm-access-gisborne-airport-gis.json": {
-    "retrieved": "2026-11-05T12:20:14+00:00",
-    "url": "https://router.project-osrm.org/route/v1/driving/177.97945,-38.66391;177.12085,-38.79998?overview=false"
+  "osrm-access-hamilton-airport-hlz.json": {
+    "key": "https://router.project-osrm.org/route/v1/driving/175.332,-37.8648;177.12085,-38.79998?overview=false",
+    "retrieved": "2026-11-07T14:03:01+00:00",
+    "url": "https://router.project-osrm.org/route/v1/driving/175.332,-37.8648;177.12085,-38.79998?overview=false"
   },
-  "osrm-access-hawke-s-bay-airport-npe.json": {
-    "retrieved": "2026-11-05T12:20:14+00:00",
-    "url": "https://router.project-osrm.org/route/v1/driving/176.86789,-39.46957;177.12085,-38.79998?overview=false"
-  },
-  "osrm-access-wairoa.json": {
-    "retrieved": "2026-11-05T12:20:14+00:00",
-    "url": "https://router.project-osrm.org/route/v1/driving/177.42714,-39.03939;177.12085,-38.79998?overview=false"
+  "osrm-access-hamilton-frankton.json": {
+    "key": "https://router.project-osrm.org/route/v1/driving/175.26523,-37.79092;177.12085,-38.79998?overview=false",
+    "retrieved": "2026-11-07T14:03:00+00:00",
+    "url": "https://router.project-osrm.org/route/v1/driving/175.26523,-37.79092;177.12085,-38.79998?overview=false"
   },
   "wikimedia.json": {
     "retrieved": "2026-11-05T12:20:15+00:00",

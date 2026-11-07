@@ -67,13 +67,20 @@
     "retrieved": "2026-10-31T21:23:06Z",
     "url": "https://download.geofabrik.de/"
   },
-  "osrm-access-dunfermline-city.json": {
-    "retrieved": "2026-11-06T02:20:37+00:00",
-    "url": "https://router.project-osrm.org/route/v1/driving/-3.45236,56.06811;-3.62837,56.05566?overview=false"
-  },
   "osrm-access-edinburgh-airport-edi.json": {
+    "key": "https://router.project-osrm.org/route/v1/driving/-3.35939,55.95026;-3.62837,56.05566?overview=false",
     "retrieved": "2026-11-06T02:20:38+00:00",
     "url": "https://router.project-osrm.org/route/v1/driving/-3.35939,55.95026;-3.62837,56.05566?overview=false"
+  },
+  "osrm-access-edinburgh-waverley.json": {
+    "key": "https://router.project-osrm.org/route/v1/driving/-3.19042,55.9519;-3.62837,56.05566?overview=false",
+    "retrieved": "2026-11-07T14:02:30+00:00",
+    "url": "https://router.project-osrm.org/route/v1/driving/-3.19042,55.9519;-3.62837,56.05566?overview=false"
+  },
+  "osrm-access-larbert.json": {
+    "key": "https://router.project-osrm.org/route/v1/driving/-3.82979,56.02214;-3.62837,56.05566?overview=false",
+    "retrieved": "2026-11-07T14:02:29+00:00",
+    "url": "https://router.project-osrm.org/route/v1/driving/-3.82979,56.02214;-3.62837,56.05566?overview=false"
   },
   "wikimedia.json": {
     "retrieved": "2026-11-06T02:20:38+00:00",

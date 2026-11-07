@@ -95,17 +95,23 @@ sleeping:
   types: [hotel, guesthouse, campsite]
   source: rv-list
 access:
-  # Eisenach Hauptbahnhof, the nearest main station to Hörschel, and Frankfurt Airport.
+  # hubs by the rules of 2026-11-07 (docs/scope.md: long-distance trains, the main station of a city
+  # of 100,000, airports with international flights), suggested by pipeline/hubs.py and reviewed.
   # Coordinates from OSM; distances by pipeline/access.py
   - kind: station
     name: Eisenach Hauptbahnhof
     lat: 50.9769
     lon: 10.33199
     source: osm
+  - kind: station
+    name: Erfurt Hauptbahnhof
+    lat: 50.97229
+    lon: 11.03808
+    source: osm
   - kind: airport
-    name: Frankfurt Airport (FRA)
-    lat: 50.02441
-    lon: 8.5552
+    name: Erfurt–Weimar Airport (ERF)
+    lat: 50.97921
+    lon: 10.95778
     source: osm
 animals:
   # Ticks: the RKI's TBE risk areas (2026): the districts Schmalkalden-Meiningen, Suhl, Ilm-Kreis,

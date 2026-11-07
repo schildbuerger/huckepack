@@ -138,22 +138,28 @@ wildCamping:
     whole trail can't be walked from campsite to campsite.
   source: aat
 access:
-  # the start is reached by bus from Lienz (via Heiligenblut); airports at Klagenfurt and Salzburg.
+  # hubs by the rules of 2026-11-07 (docs/scope.md: long-distance trains, the main station of a city
+  # of 100,000, airports with international flights), suggested by pipeline/hubs.py and reviewed.
   # Coordinates from OSM; distances by pipeline/access.py
   - kind: station
-    name: Lienz station
-    lat: 46.82885
-    lon: 12.77127
+    name: Dorfgastein
+    lat: 47.23852
+    lon: 13.10322
     source: osm
-  - kind: airport
-    name: Klagenfurt Airport (KLU)
-    lat: 46.64348
-    lon: 14.3286
+  - kind: station
+    name: Salzburg Hauptbahnhof
+    lat: 47.81306
+    lon: 13.04585
     source: osm
   - kind: airport
     name: Salzburg Airport (SZG)
     lat: 47.79346
     lon: 13.00183
+    source: osm
+  - kind: airport
+    name: Klagenfurt Airport (KLU)
+    lat: 46.64348
+    lon: 14.3286
     source: osm
 animals:
   # Cattle on the alpine pastures (the Austrian ministry's 10 rules) and ticks (AGES: TBE risk all over Austria). Levels ours

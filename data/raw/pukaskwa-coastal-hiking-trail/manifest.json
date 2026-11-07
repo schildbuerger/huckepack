@@ -42,15 +42,23 @@
     "retrieved": "2026-11-05T21:23:02Z",
     "url": "https://download.geofabrik.de/"
   },
-  "osrm-access-sault-ste-marie-airport-yam.json": {
-    "retrieved": "2026-11-06T23:04:48+00:00",
-    "url": "https://router.project-osrm.org/route/v1/driving/-84.5004954,46.4851313;-86.2902698,48.5905683?overview=false"
+  "osrm-access-detroit-metropolitan-airport-dtw.json": {
+    "key": "https://router.project-osrm.org/route/v1/driving/-83.35289,42.20421;-86.2902698,48.5905683?overview=false",
+    "retrieved": "2026-11-07T14:03:44+00:00",
+    "url": "https://router.project-osrm.org/route/v1/driving/-83.35289,42.20421;-86.2902698,48.5905683?overview=false"
+  },
+  "osrm-access-minneapolis-saint-paul-international-airport-msp.json": {
+    "key": "https://router.project-osrm.org/route/v1/driving/-93.21878,44.878;-86.2902698,48.5905683?overview=false",
+    "retrieved": "2026-11-07T14:03:43+00:00",
+    "url": "https://router.project-osrm.org/route/v1/driving/-93.21878,44.878;-86.2902698,48.5905683?overview=false"
   },
   "osrm-access-thunder-bay-international-airport-yqt.json": {
+    "key": "https://router.project-osrm.org/route/v1/driving/-89.3239509,48.3721108;-86.2902698,48.5905683?overview=false",
     "retrieved": "2026-11-06T23:04:48+00:00",
     "url": "https://router.project-osrm.org/route/v1/driving/-89.3239509,48.3721108;-86.2902698,48.5905683?overview=false"
   },
   "osrm-access-white-river-station-via-rail.json": {
+    "key": "https://router.project-osrm.org/route/v1/driving/-85.282406,48.5894379;-86.2902698,48.5905683?overview=false",
     "retrieved": "2026-11-06T23:06:08+00:00",
     "url": "https://router.project-osrm.org/route/v1/driving/-85.282406,48.5894379;-86.2902698,48.5905683?overview=false"
   }

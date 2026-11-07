@@ -22228,13 +22228,13 @@
   },
   "access": {
     "source": "osrm",
-    "retrieved": "2026-11-05T10:22:09+00:00",
+    "retrieved": "2026-11-07T14:03:18+00:00",
     "hubs": [
       {
-        "name": "Farnham",
-        "roadKm": 3.5,
-        "driveMin": 4,
-        "straightKm": 0.2
+        "name": "Woking",
+        "roadKm": 26.4,
+        "driveMin": 27,
+        "straightKm": 20.2
       },
       {
         "name": "London Heathrow Airport (LHR)",
@@ -22243,10 +22243,10 @@
         "straightKm": 36.7
       },
       {
-        "name": "London Gatwick Airport (LGW)",
-        "roadKm": 73.0,
-        "driveMin": 55,
-        "straightKm": 43.1
+        "name": "Southampton Airport (SOU)",
+        "roadKm": 64.3,
+        "driveMin": 52,
+        "straightKm": 48.6
       }
     ]
   },

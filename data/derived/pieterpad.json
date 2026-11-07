@@ -54851,8 +54851,14 @@
   },
   "access": {
     "source": "osrm",
-    "retrieved": "2026-11-03T15:12:04+00:00",
+    "retrieved": "2026-11-07T14:03:42+00:00",
     "hubs": [
+      {
+        "name": "Zuidhorn",
+        "roadKm": 23.7,
+        "driveMin": 35,
+        "straightKm": 17.2
+      },
       {
         "name": "Groningen",
         "roadKm": 28.5,
@@ -54860,10 +54866,10 @@
         "straightKm": 22.3
       },
       {
-        "name": "Amsterdam Airport Schiphol (AMS)",
-        "roadKm": 213.5,
-        "driveMin": 177,
-        "straightKm": 165.6
+        "name": "Groningen Airport Eelde (GRQ)",
+        "roadKm": 46.6,
+        "driveMin": 51,
+        "straightKm": 32.1
       }
     ]
   },

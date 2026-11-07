@@ -137,16 +137,24 @@
     "retrieved": "2026-11-02T21:21:26Z",
     "url": "https://download.geofabrik.de/"
   },
+  "osrm-access-ermidas-sado.json": {
+    "key": "https://router.project-osrm.org/route/v1/driving/-8.41398,38.00277;-8.80679,37.92756?overview=false",
+    "retrieved": "2026-11-07T14:02:31+00:00",
+    "url": "https://router.project-osrm.org/route/v1/driving/-8.41398,38.00277;-8.80679,37.92756?overview=false"
+  },
   "osrm-access-faro-airport-fao.json": {
+    "key": "https://router.project-osrm.org/route/v1/driving/-7.97058,37.01751;-8.80679,37.92756?overview=false",
     "retrieved": "2026-11-03T21:36:42+00:00",
     "url": "https://router.project-osrm.org/route/v1/driving/-7.97058,37.01751;-8.80679,37.92756?overview=false"
   },
+  "osrm-access-lisboa-oriente.json": {
+    "key": "https://router.project-osrm.org/route/v1/driving/-9.09907,38.76782;-8.80679,37.92756?overview=false",
+    "retrieved": "2026-11-07T14:02:32+00:00",
+    "url": "https://router.project-osrm.org/route/v1/driving/-9.09907,38.76782;-8.80679,37.92756?overview=false"
+  },
   "osrm-access-lisbon-airport-lis.json": {
+    "key": "https://router.project-osrm.org/route/v1/driving/-9.13601,38.78099;-8.80679,37.92756?overview=false",
     "retrieved": "2026-11-03T21:36:42+00:00",
     "url": "https://router.project-osrm.org/route/v1/driving/-9.13601,38.78099;-8.80679,37.92756?overview=false"
-  },
-  "osrm-access-lisbon-sete-rios.json": {
-    "retrieved": "2026-11-03T21:36:42+00:00",
-    "url": "https://router.project-osrm.org/route/v1/driving/-9.16627,38.74183;-8.80679,37.92756?overview=false"
   }
 }

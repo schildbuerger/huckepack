@@ -3096,7 +3096,7 @@
   },
   "access": {
     "source": "osrm",
-    "retrieved": "2026-11-06T21:48:03+00:00",
+    "retrieved": "2026-11-07T14:02:22+00:00",
     "hubs": [
       {
         "name": "Moncton station (VIA Rail)",
@@ -3105,10 +3105,22 @@
         "straightKm": 4.6
       },
       {
+        "name": "Halifax",
+        "roadKm": 269.4,
+        "driveMin": 202,
+        "straightKm": 182.8
+      },
+      {
         "name": "Greater Moncton Roméo LeBlanc International Airport (YQM)",
         "roadKm": 16.0,
         "driveMin": 20,
         "straightKm": 11.2
+      },
+      {
+        "name": "Halifax Stanfield International Airport (YHZ)",
+        "roadKm": 245.5,
+        "driveMin": 181,
+        "straightKm": 163.2
       }
     ]
   },

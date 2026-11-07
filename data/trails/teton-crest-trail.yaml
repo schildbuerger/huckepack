@@ -111,17 +111,13 @@ wildCamping:
     the Forest Service's rules apply.
   source: nps
 access:
-  # Jackson Hole Airport, inside the park, and Idaho Falls Regional Airport; no railway or long-distance
-  # bus to the trailheads. Coordinates from OSM; distances by pipeline/access.py
+  # hubs by the rules of 2026-11-07 (docs/scope.md: long-distance trains, the main station of a city
+  # of 100,000, airports with international flights), suggested by pipeline/hubs.py and reviewed.
+  # Coordinates from OSM; distances by pipeline/access.py
   - kind: airport
-    name: Jackson Hole Airport (JAC)
-    lat: 43.60895
-    lon: -110.73641
-    source: osm
-  - kind: airport
-    name: Idaho Falls Regional Airport (IDA)
-    lat: 43.51219
-    lon: -112.07423
+    name: Salt Lake City International Airport (SLC)
+    lat: 40.78975
+    lon: -111.97837
     source: osm
 animals:
   # the backcountry planner: "Black and grizzly bears live throughout the park"; the bear safety page

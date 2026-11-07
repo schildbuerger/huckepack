@@ -57,15 +57,18 @@
     "retrieved": "2026-11-01T21:21:36Z",
     "url": "https://download.geofabrik.de/"
   },
-  "osrm-access-basel-badischer-bahnhof.json": {
-    "retrieved": "2026-11-03T05:54:59+00:00",
-    "url": "https://router.project-osrm.org/route/v1/driving/7.60731,47.56746;8.44602,47.7431?overview=false"
+  "osrm-access-erzingen-baden.json": {
+    "key": "https://router.project-osrm.org/route/v1/driving/8.43074,47.66022;8.44602,47.7431?overview=false",
+    "retrieved": "2026-11-07T14:03:51+00:00",
+    "url": "https://router.project-osrm.org/route/v1/driving/8.43074,47.66022;8.44602,47.7431?overview=false"
   },
-  "osrm-access-euroairport-basel-mulhouse-bsl.json": {
-    "retrieved": "2026-11-03T05:54:59+00:00",
-    "url": "https://router.project-osrm.org/route/v1/driving/7.53028,47.59914;8.44602,47.7431?overview=false"
+  "osrm-access-winterthur.json": {
+    "key": "https://router.project-osrm.org/route/v1/driving/8.72397,47.50031;8.44602,47.7431?overview=false",
+    "retrieved": "2026-11-07T14:03:52+00:00",
+    "url": "https://router.project-osrm.org/route/v1/driving/8.72397,47.50031;8.44602,47.7431?overview=false"
   },
   "osrm-access-z-rich-airport-zrh.json": {
+    "key": "https://router.project-osrm.org/route/v1/driving/8.55185,47.46314;8.44602,47.7431?overview=false",
     "retrieved": "2026-11-03T05:54:59+00:00",
     "url": "https://router.project-osrm.org/route/v1/driving/8.55185,47.46314;8.44602,47.7431?overview=false"
   },

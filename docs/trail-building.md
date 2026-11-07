@@ -110,7 +110,13 @@ schema's superRefine; the skyline by `tests/trails.test.ts`):
   - `route`;
   - `difficulty`: stated, converted from CAI, or our estimate with its `basis`;
   - `sleeping`;
-  - `access`: at least one hub;
+  - `access`: at least one hub, by the rules of 2026-11-07 (docs/scope.md): run
+    `~/.venvs/huckepack/bin/python -m pipeline.hubs <slug>` once the record has its `termini`
+    (`--port "<port (ferry to …)>" <lat> <lon> ferry` for a start on an island), check each
+    suggestion (the station is where long-distance trains stop, the airport's flights are
+    current, a seasonal one says `flights: seasonal`; a service OSM misses goes into
+    `EXTRA_STATIONS` with the operator's page as the hub's source) and paste it; keep or add the
+    main bus station where there are no railways; `pipeline.access` then measures the roads;
   - `dataCheck`;
   - wildlife: `animals`, `animals.none`, or a note starting "Wildlife";
   - `sources`;
@@ -192,7 +198,7 @@ flag of its check; each one is either fixed or explained in a note:
 - a stage more than 10 % off the map line;
 - stated against terrain-model ascent (GEDTM30, climbs counted from 10 m; within about 10 %
   on most trails since 2026-11-07, so a bigger gap is worth a look at the stated figure and the line);
-- a dry stretch, unknown surface, hubs too far away;
+- a dry stretch, unknown surface, a station over 300 km away or an airport's road far round;
 - no `treeLine` above 1,500 m, no skyline, no wildlife, no `dataCheck`, climate pending.
 
 Write a "Map line" note: extracts used, coverage, measured against stated length, highest and

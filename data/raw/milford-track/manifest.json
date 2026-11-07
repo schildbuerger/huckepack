@@ -49,10 +49,12 @@
     "url": "https://download.geofabrik.de/"
   },
   "osrm-access-queenstown-airport-zqn.json": {
-    "retrieved": "2026-11-01T04:22:39+00:00",
-    "url": "https://router.project-osrm.org/route/v1/driving/168.74344,-45.0193;167.93031,-44.93215?overview=false"
+    "key": "https://router.project-osrm.org/route/v1/driving/168.74344,-45.0193;167.82685,-45.19339?overview=false",
+    "retrieved": "2026-11-07T14:15:17+00:00",
+    "url": "https://router.project-osrm.org/route/v1/driving/168.74344,-45.0193;167.82685,-45.19339?overview=false"
   },
   "osrm-access-te-anau.json": {
+    "key": "https://router.project-osrm.org/route/v1/driving/167.71749,-45.41449;167.93031,-44.93215?overview=false",
     "retrieved": "2026-11-01T04:22:39+00:00",
     "url": "https://router.project-osrm.org/route/v1/driving/167.71749,-45.41449;167.93031,-44.93215?overview=false"
   },

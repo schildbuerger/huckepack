@@ -97,13 +97,20 @@
     "retrieved": "2026-11-02T21:21:26Z",
     "url": "https://download.geofabrik.de/"
   },
-  "osrm-access-h-rn-sand.json": {
-    "retrieved": "2026-11-03T18:20:56+00:00",
-    "url": "https://router.project-osrm.org/route/v1/driving/17.92797,62.635;17.95969,62.80265?overview=false"
+  "osrm-access-kramfors.json": {
+    "key": "https://router.project-osrm.org/route/v1/driving/17.77862,62.92901;17.95969,62.80265?overview=false",
+    "retrieved": "2026-11-07T14:02:49+00:00",
+    "url": "https://router.project-osrm.org/route/v1/driving/17.77862,62.92901;17.95969,62.80265?overview=false"
   },
-  "osrm-access-sundsvall-timr-airport-sdl.json": {
-    "retrieved": "2026-11-03T18:20:56+00:00",
-    "url": "https://router.project-osrm.org/route/v1/driving/17.44063,62.52782;17.95969,62.80265?overview=false"
+  "osrm-access-ume-airport-ume.json": {
+    "key": "https://router.project-osrm.org/route/v1/driving/20.28392,63.7904;17.95969,62.80265?overview=false",
+    "retrieved": "2026-11-07T14:02:51+00:00",
+    "url": "https://router.project-osrm.org/route/v1/driving/20.28392,63.7904;17.95969,62.80265?overview=false"
+  },
+  "osrm-access-ume-central.json": {
+    "key": "https://router.project-osrm.org/route/v1/driving/20.26688,63.82996;17.95969,62.80265?overview=false",
+    "retrieved": "2026-11-07T14:02:50+00:00",
+    "url": "https://router.project-osrm.org/route/v1/driving/20.26688,63.82996;17.95969,62.80265?overview=false"
   },
   "wikimedia.json": {
     "retrieved": "2026-11-03T18:20:58+00:00",

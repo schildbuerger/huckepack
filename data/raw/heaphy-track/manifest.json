@@ -62,13 +62,15 @@
     "retrieved": "2026-10-31T21:23:06Z",
     "url": "https://download.geofabrik.de/"
   },
-  "osrm-access-collingwood.json": {
-    "retrieved": "2026-11-05T11:22:43+00:00",
-    "url": "https://router.project-osrm.org/route/v1/driving/172.68266,-40.67725;172.44918,-40.84779?overview=false"
+  "osrm-access-christchurch-airport-chc.json": {
+    "key": "https://router.project-osrm.org/route/v1/driving/172.53631,-43.48497;172.44918,-40.84779?overview=false",
+    "retrieved": "2026-11-07T14:02:48+00:00",
+    "url": "https://router.project-osrm.org/route/v1/driving/172.53631,-43.48497;172.44918,-40.84779?overview=false"
   },
-  "osrm-access-nelson-airport-nsn.json": {
-    "retrieved": "2026-11-05T11:22:43+00:00",
-    "url": "https://router.project-osrm.org/route/v1/driving/173.2254,-41.29685;172.44918,-40.84779?overview=false"
+  "osrm-access-picton.json": {
+    "key": "https://router.project-osrm.org/route/v1/driving/174.00486,-41.28837;172.44918,-40.84779?overview=false",
+    "retrieved": "2026-11-07T14:02:47+00:00",
+    "url": "https://router.project-osrm.org/route/v1/driving/174.00486,-41.28837;172.44918,-40.84779?overview=false"
   },
   "wikimedia.json": {
     "retrieved": "2026-11-05T11:22:44+00:00",

@@ -12592,7 +12592,7 @@
   },
   "access": {
     "source": "osrm",
-    "retrieved": "2026-11-06T00:41:35+00:00",
+    "retrieved": "2026-11-07T14:04:01+00:00",
     "hubs": [
       {
         "name": "Berwick-upon-Tweed",
@@ -12601,16 +12601,22 @@
         "straightKm": 17.6
       },
       {
-        "name": "Hexham",
-        "roadKm": 123.5,
-        "driveMin": 92,
-        "straightKm": 79.7
+        "name": "Newcastle",
+        "roadKm": 96.2,
+        "driveMin": 78,
+        "straightKm": 78.9
       },
       {
         "name": "Newcastle Airport (NCL)",
         "roadKm": 102.0,
         "driveMin": 94,
         "straightKm": 70.5
+      },
+      {
+        "name": "Edinburgh Airport (EDI)",
+        "roadKm": 130.6,
+        "driveMin": 103,
+        "straightKm": 102.4
       }
     ]
   },

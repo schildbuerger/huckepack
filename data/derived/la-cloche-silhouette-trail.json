@@ -4563,13 +4563,25 @@
   },
   "access": {
     "source": "osrm",
-    "retrieved": "2026-11-06T14:42:26+00:00",
+    "retrieved": "2026-11-07T14:02:59+00:00",
     "hubs": [
       {
-        "name": "Sudbury Airport (YSB)",
-        "roadKm": 123.5,
-        "driveMin": 115,
-        "straightKm": 82.0
+        "name": "Sudbury",
+        "roadKm": 98.9,
+        "driveMin": 92,
+        "straightKm": 61.1
+      },
+      {
+        "name": "Toronto Pearson International Airport (YYZ)",
+        "roadKm": 412.4,
+        "driveMin": 335,
+        "straightKm": 295.1
+      },
+      {
+        "name": "Billy Bishop Toronto City Airport (YTZ)",
+        "roadKm": 412.8,
+        "driveMin": 341,
+        "straightKm": 309.0
       }
     ]
   },

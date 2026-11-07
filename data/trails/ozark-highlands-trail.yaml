@@ -119,17 +119,30 @@ wildCamping:
     rings.
   source: ohta-faq
 access:
-  # Northwest Arkansas National Airport (XNA) for the west end; Little Rock's airport for the east;
-  # no passenger railway near the trail. Coordinates from OSM; distances by pipeline/access.py
-  - kind: airport
-    name: Northwest Arkansas National Airport (XNA)
-    lat: 36.27981
-    lon: -94.30259
+  # hubs by the rules of 2026-11-07 (docs/scope.md: long-distance trains, the main station of a city
+  # of 100,000, airports with international flights), suggested by pipeline/hubs.py and reviewed.
+  # OKC Will Rogers International Airport (OKC): international flights in season only (Wikipedia's
+  # route table). Coordinates from OSM; distances by pipeline/access.py
+  - kind: station
+    name: Little Rock
+    lat: 34.75044
+    lon: -92.28723
     source: osm
   - kind: airport
-    name: Bill and Hillary Clinton National Airport, Little Rock (LIT)
-    lat: 34.73077
-    lon: -92.22377
+    name: OKC Will Rogers International Airport (OKC)
+    lat: 35.38725
+    lon: -97.60333
+    flights: seasonal
+    source: osm
+  - kind: airport
+    name: Kansas City International Airport (MCI)
+    lat: 39.30255
+    lon: -94.70982
+    source: osm
+  - kind: airport
+    name: Dallas Love Field (DAL)
+    lat: 32.84693
+    lon: -96.85077
     source: osm
 animals:
   # the Ozark–St. Francis National Forests' alert "Be Bear Aware in the National Forests in Arkansas

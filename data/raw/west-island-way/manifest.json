@@ -57,13 +57,20 @@
     "retrieved": "2026-10-31T21:23:06Z",
     "url": "https://download.geofabrik.de/"
   },
-  "osrm-access-glasgow-airport-gla.json": {
-    "retrieved": "2026-11-05T23:02:13+00:00",
-    "url": "https://router.project-osrm.org/route/v1/driving/-4.4357,55.87056;-5.02409,55.7504?overview=false"
+  "osrm-access-dalmuir.json": {
+    "key": "https://router.project-osrm.org/route/v1/driving/-4.42685,55.91201;-4.89087,55.87575?overview=false",
+    "retrieved": "2026-11-07T14:04:22+00:00",
+    "url": "https://router.project-osrm.org/route/v1/driving/-4.42685,55.91201;-4.89087,55.87575?overview=false"
   },
-  "osrm-access-wemyss-bay-ferry-to-rothesay.json": {
-    "retrieved": "2026-11-05T23:02:13+00:00",
-    "url": "https://router.project-osrm.org/route/v1/driving/-4.88934,55.87602;-5.02409,55.7504?overview=false"
+  "osrm-access-glasgow-prestwick-airport-pik.json": {
+    "key": "https://router.project-osrm.org/route/v1/driving/-4.59484,55.50217;-4.89087,55.87575?overview=false",
+    "retrieved": "2026-11-07T14:04:24+00:00",
+    "url": "https://router.project-osrm.org/route/v1/driving/-4.59484,55.50217;-4.89087,55.87575?overview=false"
+  },
+  "osrm-access-glasgow-queen-street.json": {
+    "key": "https://router.project-osrm.org/route/v1/driving/-4.25112,55.86256;-4.89087,55.87575?overview=false",
+    "retrieved": "2026-11-07T14:04:23+00:00",
+    "url": "https://router.project-osrm.org/route/v1/driving/-4.25112,55.86256;-4.89087,55.87575?overview=false"
   },
   "wikimedia.json": {
     "retrieved": "2026-11-05T23:02:14+00:00",

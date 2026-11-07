@@ -65,13 +65,20 @@
     "retrieved": "2026-10-28T21:21:02Z",
     "url": "https://download.geofabrik.de/"
   },
+  "osrm-access-erfurt-weimar-airport-erf.json": {
+    "key": "https://router.project-osrm.org/route/v1/driving/10.95778,50.97921;10.26029,51.72831?overview=false",
+    "retrieved": "2026-11-07T14:02:46+00:00",
+    "url": "https://router.project-osrm.org/route/v1/driving/10.95778,50.97921;10.26029,51.72831?overview=false"
+  },
+  "osrm-access-g-ttingen.json": {
+    "key": "https://router.project-osrm.org/route/v1/driving/9.9259,51.53678;10.26029,51.72831?overview=false",
+    "retrieved": "2026-11-07T14:02:45+00:00",
+    "url": "https://router.project-osrm.org/route/v1/driving/9.9259,51.53678;10.26029,51.72831?overview=false"
+  },
   "osrm-access-hannover-airport-haj.json": {
+    "key": "https://router.project-osrm.org/route/v1/driving/9.69099,52.46089;10.26029,51.72831?overview=false",
     "retrieved": "2026-10-30T12:08:42+00:00",
     "url": "https://router.project-osrm.org/route/v1/driving/9.69099,52.46089;10.26029,51.72831?overview=false"
-  },
-  "osrm-access-osterode-harz-mitte.json": {
-    "retrieved": "2026-10-30T12:08:41+00:00",
-    "url": "https://router.project-osrm.org/route/v1/driving/10.24546,51.72606;10.26029,51.72831?overview=false"
   },
   "stage-1-main.gpx": {
     "retrieved": "2026-10-30T12:01:31+00:00",

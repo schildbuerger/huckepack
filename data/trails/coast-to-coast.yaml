@@ -99,12 +99,18 @@ wildCamping:
     permission.
   source: nt
 access:
-  # St Bees has its own station on the Cumbrian Coast Line; the nearest international airports are
-  # Newcastle and Manchester. Coordinates from OSM; distances by pipeline/access.py
+  # hubs by the rules of 2026-11-07 (docs/scope.md: long-distance trains, the main station of a city
+  # of 100,000, airports with international flights), suggested by pipeline/hubs.py and reviewed.
+  # Coordinates from OSM; distances by pipeline/access.py
   - kind: station
-    name: St Bees
-    lat: 54.49235
-    lon: -3.59124
+    name: Carlisle
+    lat: 54.89026
+    lon: -2.93305
+    source: osm
+  - kind: station
+    name: Preston
+    lat: 53.75529
+    lon: -2.70716
     source: osm
   - kind: airport
     name: Newcastle International Airport (NCL)
@@ -112,9 +118,9 @@ access:
     lon: -1.6964
     source: osm
   - kind: airport
-    name: Manchester Airport (MAN)
-    lat: 53.35034
-    lon: -2.28037
+    name: Liverpool John Lennon Airport (LPL)
+    lat: 53.33577
+    lon: -2.85023
     source: osm
 animals:
   # Cattle (the Countryside Code, HSE) and ticks (NHS). Levels ours

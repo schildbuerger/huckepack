@@ -6762,19 +6762,25 @@
   },
   "access": {
     "source": "osrm",
-    "retrieved": "2026-10-30T13:04:14+00:00",
+    "retrieved": "2026-11-07T14:03:57+00:00",
     "hubs": [
       {
-        "name": "Kirn station",
-        "roadKm": 0.4,
-        "driveMin": 1,
-        "straightKm": 0.3
+        "name": "Bullay",
+        "roadKm": 50.2,
+        "driveMin": 54,
+        "straightKm": 37.8
       },
       {
-        "name": "Frankfurt Airport (FRA)",
-        "roadKm": 104.7,
-        "driveMin": 86,
-        "straightKm": 83.7
+        "name": "Mainz Hauptbahnhof",
+        "roadKm": 74.9,
+        "driveMin": 61,
+        "straightKm": 62.0
+      },
+      {
+        "name": "Frankfurt-Hahn Airport (HHN)",
+        "roadKm": 28.7,
+        "driveMin": 32,
+        "straightKm": 22.6
       }
     ]
   },

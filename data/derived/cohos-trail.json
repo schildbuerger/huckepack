@@ -12921,19 +12921,31 @@
   },
   "access": {
     "source": "osrm",
-    "retrieved": "2026-11-07T00:30:19+00:00",
+    "retrieved": "2026-11-07T14:02:19+00:00",
     "hubs": [
       {
-        "name": "Portland International Jetport (PWM)",
-        "roadKm": 132.9,
-        "driveMin": 131,
-        "straightKm": 98.5
+        "name": "Montpelier",
+        "roadKm": 144.3,
+        "driveMin": 125,
+        "straightKm": 101.0
       },
       {
-        "name": "Manchester–Boston Regional Airport (MHT)",
-        "roadKm": 200.1,
-        "driveMin": 160,
-        "straightKm": 132.3
+        "name": "Boston South Station",
+        "roadKm": 272.8,
+        "driveMin": 211,
+        "straightKm": 198.1
+      },
+      {
+        "name": "Logan International Airport (BOS)",
+        "roadKm": 274.5,
+        "driveMin": 213,
+        "straightKm": 197.2
+      },
+      {
+        "name": "Montréal–Trudeau International Airport (YUL)",
+        "roadKm": 332.1,
+        "driveMin": 268,
+        "straightKm": 241.2
       }
     ]
   },

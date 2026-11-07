@@ -16307,7 +16307,7 @@
   },
   "access": {
     "source": "osrm",
-    "retrieved": "2026-11-04T19:38:57+00:00",
+    "retrieved": "2026-11-07T14:03:03+00:00",
     "hubs": [
       {
         "name": "Langen am Arlberg",
@@ -16316,22 +16316,22 @@
         "straightKm": 10.2
       },
       {
-        "name": "Füssen",
-        "roadKm": 97.1,
-        "driveMin": 128,
-        "straightKm": 69.0
+        "name": "Innsbruck Hauptbahnhof",
+        "roadKm": 130.4,
+        "driveMin": 141,
+        "straightKm": 106.5
+      },
+      {
+        "name": "St. Gallen–Altenrhein Airport (ACH)",
+        "roadKm": 108.5,
+        "driveMin": 125,
+        "straightKm": 48.1
       },
       {
         "name": "Innsbruck Airport (INN)",
         "roadKm": 128.8,
         "driveMin": 143,
         "straightKm": 102.0
-      },
-      {
-        "name": "Munich Airport (MUC)",
-        "roadKm": 258.5,
-        "driveMin": 241,
-        "straightKm": 187.2
       }
     ]
   },

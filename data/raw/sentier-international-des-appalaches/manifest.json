@@ -72,16 +72,24 @@
     "retrieved": "2026-11-05T21:23:02Z",
     "url": "https://download.geofabrik.de/"
   },
-  "osrm-access-bathurst-regional-airport-yzt.json": {
-    "retrieved": "2026-11-07T00:57:34+00:00",
-    "url": "https://router.project-osrm.org/route/v1/driving/-65.73576,47.63001;-66.92014,47.98076?overview=false"
+  "osrm-access-greater-moncton-rom-o-leblanc-international-airport-yqm.json": {
+    "key": "https://router.project-osrm.org/route/v1/driving/-64.67403,46.11656;-66.92014,47.98076?overview=false",
+    "retrieved": "2026-11-07T14:03:52+00:00",
+    "url": "https://router.project-osrm.org/route/v1/driving/-64.67403,46.11656;-66.92014,47.98076?overview=false"
+  },
+  "osrm-access-halifax-stanfield-international-airport-yhz.json": {
+    "key": "https://router.project-osrm.org/route/v1/driving/-63.51142,44.87878;-66.92014,47.98076?overview=false",
+    "retrieved": "2026-11-07T14:03:55+00:00",
+    "url": "https://router.project-osrm.org/route/v1/driving/-63.51142,44.87878;-66.92014,47.98076?overview=false"
   },
   "osrm-access-matap-dia-station-via-rail.json": {
+    "key": "https://router.project-osrm.org/route/v1/driving/-66.93927,47.97487;-66.92014,47.98076?overview=false",
     "retrieved": "2026-11-07T00:57:34+00:00",
     "url": "https://router.project-osrm.org/route/v1/driving/-66.93927,47.97487;-66.92014,47.98076?overview=false"
   },
-  "osrm-access-mont-joli-airport-yyy.json": {
-    "retrieved": "2026-11-07T00:57:34+00:00",
-    "url": "https://router.project-osrm.org/route/v1/driving/-68.20813,48.61051;-66.92014,47.98076?overview=false"
+  "osrm-access-qu-bec-city-jean-lesage-international-airport-yqb.json": {
+    "key": "https://router.project-osrm.org/route/v1/driving/-71.38794,46.79214;-66.92014,47.98076?overview=false",
+    "retrieved": "2026-11-07T14:03:54+00:00",
+    "url": "https://router.project-osrm.org/route/v1/driving/-71.38794,46.79214;-66.92014,47.98076?overview=false"
   }
 }

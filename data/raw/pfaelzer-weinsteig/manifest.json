@@ -78,12 +78,24 @@
     "url": "https://download.geofabrik.de/"
   },
   "osrm-access-frankfurt-airport-fra.json": {
+    "key": "https://router.project-osrm.org/route/v1/driving/8.5552,50.02441;8.18143,49.60929?overview=false",
     "retrieved": "2026-11-03T07:03:27+00:00",
     "url": "https://router.project-osrm.org/route/v1/driving/8.5552,50.02441;8.18143,49.60929?overview=false"
   },
   "osrm-access-mannheim-hauptbahnhof.json": {
+    "key": "https://router.project-osrm.org/route/v1/driving/8.46982,49.47966;8.18143,49.60929?overview=false",
     "retrieved": "2026-11-03T07:03:27+00:00",
     "url": "https://router.project-osrm.org/route/v1/driving/8.46982,49.47966;8.18143,49.60929?overview=false"
+  },
+  "osrm-access-saarbr-cken-airport-scn.json": {
+    "key": "https://router.project-osrm.org/route/v1/driving/7.10953,49.21657;8.18143,49.60929?overview=false",
+    "retrieved": "2026-11-07T14:03:41+00:00",
+    "url": "https://router.project-osrm.org/route/v1/driving/7.10953,49.21657;8.18143,49.60929?overview=false"
+  },
+  "osrm-access-worms-hauptbahnhof.json": {
+    "key": "https://router.project-osrm.org/route/v1/driving/8.35665,49.63518;8.18143,49.60929?overview=false",
+    "retrieved": "2026-11-07T14:03:40+00:00",
+    "url": "https://router.project-osrm.org/route/v1/driving/8.35665,49.63518;8.18143,49.60929?overview=false"
   },
   "stage-1-main.gpx": {
     "retrieved": "2026-11-03T06:53:30+00:00",

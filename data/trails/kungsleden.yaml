@@ -120,9 +120,10 @@ wildCamping:
     have their own rules.
   source: abisko-np
 access:
-  # trains stop at Abisko Turiststation (the line Stockholm/Luleå – Kiruna – Narvik); Kiruna
-  # Airport is the nearest with scheduled flights. Coordinates from OSM; distances by
-  # pipeline/access.py
+  # hubs by the rules of 2026-11-07 (docs/scope.md: long-distance trains, the main station of a city
+  # of 100,000, airports with international flights), suggested by pipeline/hubs.py and reviewed.
+  # Kiruna Airport (KRN): international flights in season only (Wikipedia's route table).
+  # Coordinates from OSM; distances by pipeline/access.py
   - kind: station
     name: Abisko Turiststation
     lat: 68.35738
@@ -132,6 +133,12 @@ access:
     name: Kiruna Airport (KRN)
     lat: 67.82006
     lon: 20.33308
+    flights: seasonal
+    source: osm
+  - kind: airport
+    name: Tromsø Airport (TOS)
+    lat: 69.68199
+    lon: 18.91662
     source: osm
 tags: [lapland, arctic, huts, fjell, lakes]
 notes:

@@ -27150,7 +27150,7 @@
   },
   "access": {
     "source": "osrm",
-    "retrieved": "2026-10-30T11:57:38+00:00",
+    "retrieved": "2026-11-07T14:04:25+00:00",
     "hubs": [
       {
         "name": "Pforzheim Hauptbahnhof",
@@ -27159,16 +27159,16 @@
         "straightKm": 1.9
       },
       {
+        "name": "Stuttgart Airport (STR)",
+        "roadKm": 50.0,
+        "driveMin": 39,
+        "straightKm": 43.6
+      },
+      {
         "name": "Karlsruhe/Baden-Baden Airport (FKB)",
         "roadKm": 63.6,
         "driveMin": 52,
         "straightKm": 46.4
-      },
-      {
-        "name": "EuroAirport Basel-Mulhouse (BSL)",
-        "roadKm": 217.4,
-        "driveMin": 141,
-        "straightKm": 166.4
       }
     ]
   },

@@ -79,12 +79,22 @@ fees:
   - { name: "Hut (international visitor, adult)", amount: 66, currency: NZD, per: per person and night, year: 2026, note: "NZ visitors $44; 1 October to 30 April", source: doc }
   - { name: "Campsite (international visitor, adult)", amount: 28, currency: NZD, per: per person and night, year: 2026, note: "NZ visitors $19; 1 October to 30 April", source: doc }
 access:
-  # Oban, the island's only town, is reached by a 20-minute flight from Invercargill or a one-hour
-  # ferry from Bluff. Coordinates from OSM; distances by pipeline/access.py
+  # hubs by the rules of 2026-11-07 (docs/scope.md: long-distance trains, the main station of a city
+  # of 100,000, airports with international flights), suggested by pipeline/hubs.py and reviewed.
+  # Queenstown Airport (ZQN): by road to Bluff (ferry to Oban), then ferry; Dunedin Airport (DUD):
+  # by road to Bluff (ferry to Oban), then ferry. Coordinates from OSM; distances by
+  # pipeline/access.py
   - kind: airport
-    name: Invercargill Airport (IVC)
-    lat: -46.41532
-    lon: 168.31782
+    name: Queenstown Airport (ZQN)
+    lat: -45.01942
+    lon: 168.74661
+    via: { name: "Bluff (ferry to Oban)", lat: -46.5984, lon: 168.3457, by: ferry }
+    source: osm
+  - kind: airport
+    name: Dunedin Airport (DUD)
+    lat: -45.9279
+    lon: 170.19675
+    via: { name: "Bluff (ferry to Oban)", lat: -46.5984, lon: 168.3457, by: ferry }
     source: osm
 tags: [great-walk, stewart-island, national-park, beaches, kiwi]
 notes:

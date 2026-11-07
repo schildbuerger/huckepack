@@ -42,13 +42,10 @@
     "retrieved": "2026-11-06T21:21:21Z",
     "url": "https://download.geofabrik.de/"
   },
-  "osrm-access-idaho-falls-regional-airport-ida.json": {
-    "retrieved": "2026-11-07T06:07:24+00:00",
-    "url": "https://router.project-osrm.org/route/v1/driving/-112.07423,43.51219;-110.93199,43.54809?overview=false"
-  },
-  "osrm-access-jackson-hole-airport-jac.json": {
-    "retrieved": "2026-11-07T06:07:24+00:00",
-    "url": "https://router.project-osrm.org/route/v1/driving/-110.73641,43.60895;-110.93199,43.54809?overview=false"
+  "osrm-access-salt-lake-city-international-airport-slc.json": {
+    "key": "https://router.project-osrm.org/route/v1/driving/-111.97837,40.78975;-110.93199,43.54809?overview=false",
+    "retrieved": "2026-11-07T14:04:06+00:00",
+    "url": "https://router.project-osrm.org/route/v1/driving/-111.97837,40.78975;-110.93199,43.54809?overview=false"
   },
   "wikimedia.json": {
     "retrieved": "2026-11-07T06:07:25+00:00",

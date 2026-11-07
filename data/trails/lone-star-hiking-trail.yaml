@@ -91,17 +91,23 @@ wildCamping:
     the trail cross private property and public road rights-of-way.
   source: usfs-lsht
 access:
-  # George Bush Intercontinental Airport and Houston's Amtrak station; coordinates from OSM;
-  # distances by pipeline/access.py
+  # hubs by the rules of 2026-11-07 (docs/scope.md: long-distance trains, the main station of a city
+  # of 100,000, airports with international flights), suggested by pipeline/hubs.py and reviewed.
+  # Coordinates from OSM; distances by pipeline/access.py
+  - kind: station
+    name: Houston station (Amtrak)
+    lat: 29.76758
+    lon: -95.36746
+    source: osm
   - kind: airport
     name: George Bush Intercontinental Airport (IAH)
     lat: 29.98414
     lon: -95.33299
     source: osm
-  - kind: station
-    name: Houston station (Amtrak)
-    lat: 29.76758
-    lon: -95.36746
+  - kind: airport
+    name: William P. Hobby Airport (HOU)
+    lat: 29.6454
+    lon: -95.27796
     source: osm
 animals:
   # the National Forests and Grasslands in Texas, "Respect Wildlife" (updated 19 May 2025); level ours

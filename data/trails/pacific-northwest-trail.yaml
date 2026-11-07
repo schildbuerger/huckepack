@@ -161,8 +161,8 @@ wildCamping:
     campgrounds.
   source: pnta-permits
 access:
-  # the association: "The AMTRAK station in East Glacier is the closest to the Pacific Northwest
-  # Trail"; Glacier Park International Airport (Kalispell) the nearest international airport.
+  # hubs by the rules of 2026-11-07 (docs/scope.md: long-distance trains, the main station of a city
+  # of 100,000, airports with international flights), suggested by pipeline/hubs.py and reviewed.
   # Coordinates from OSM; distances by pipeline/access.py
   - kind: station
     name: East Glacier Park station (Amtrak)
@@ -170,9 +170,9 @@ access:
     lon: -113.21936
     source: osm
   - kind: airport
-    name: Glacier Park International Airport (FCA)
-    lat: 48.3108
-    lon: -114.25569
+    name: Calgary International Airport (YYC)
+    lat: 51.12353
+    lon: -114.0145
     source: osm
 animals:
   # the National Park Service: Glacier National Park's bear safety page (grizzly and black bears) and

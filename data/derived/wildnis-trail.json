@@ -7270,13 +7270,25 @@
   },
   "access": {
     "source": "osrm",
-    "retrieved": "2026-11-03T07:22:55+00:00",
+    "retrieved": "2026-11-07T14:04:28+00:00",
     "hubs": [
+      {
+        "name": "Eupen",
+        "roadKm": 24.4,
+        "driveMin": 30,
+        "straightKm": 18.8
+      },
       {
         "name": "Aachen Hauptbahnhof",
         "roadKm": 37.8,
         "driveMin": 46,
         "straightKm": 28.4
+      },
+      {
+        "name": "Maastricht Aachen Airport (MST)",
+        "roadKm": 83.2,
+        "driveMin": 75,
+        "straightKm": 54.1
       },
       {
         "name": "Cologne Bonn Airport (CGN)",

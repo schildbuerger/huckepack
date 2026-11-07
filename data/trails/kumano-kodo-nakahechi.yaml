@@ -84,13 +84,15 @@ wildCamping:
     passes sacred sites and mostly private land; no open campfires.
   source: tb-tips
 access:
-  # Kii-Tanabe, the station for the buses to Takijiri, and Kansai International Airport.
-  # Coordinates from OSM; distances by pipeline/access.py
+  # hubs by the rules of 2026-11-07 (docs/scope.md: long-distance trains, the main station of a city
+  # of 100,000, airports with international flights), suggested by pipeline/hubs.py and reviewed.
+  # Kii-Tanabe: JR West limited express Kuroshio (Kyoto/Shin-Osaka – Kii-Tanabe), missing from OSM's
+  # route relations (operator's page). Coordinates from OSM; distances by pipeline/access.py
   - kind: station
     name: Kii-Tanabe
     lat: 33.73288
     lon: 135.38454
-    source: osm
+    source: tb-train
   - kind: airport
     name: Kansai International Airport (KIX)
     lat: 34.4342
@@ -216,3 +218,8 @@ sources:
     url: https://project-osrm.org/
     licence: Route data © OpenStreetMap contributors (ODbL)
     retrieved: 2026-11-03
+  - id: tb-train
+    title: "Tanabe City Kumano Tourism Bureau: getting here by train (the limited express Kuroshio to Kii-Tanabe)"
+    url: https://www.tb-kumano.jp/en/transport/train/
+    licence: All rights reserved (facts only)
+    retrieved: 2026-11-07

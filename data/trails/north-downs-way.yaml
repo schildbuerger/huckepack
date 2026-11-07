@@ -99,12 +99,13 @@ wildCamping:
     trail.
   source: nt-info
 access:
-  # Farnham station by the start; Heathrow and Gatwick the nearest airports. Coordinates from OSM;
-  # distances by pipeline/access.py
+  # hubs by the rules of 2026-11-07 (docs/scope.md: long-distance trains, the main station of a city
+  # of 100,000, airports with international flights), suggested by pipeline/hubs.py and reviewed.
+  # Coordinates from OSM; distances by pipeline/access.py
   - kind: station
-    name: Farnham
-    lat: 51.21171
-    lon: -0.79179
+    name: Woking
+    lat: 51.31845
+    lon: -0.55731
     source: osm
   - kind: airport
     name: London Heathrow Airport (LHR)
@@ -112,9 +113,9 @@ access:
     lon: -0.45878
     source: osm
   - kind: airport
-    name: London Gatwick Airport (LGW)
-    lat: 51.15408
-    lon: -0.18232
+    name: Southampton Airport (SOU)
+    lat: 50.95139
+    lon: -1.35167
     source: osm
 animals:
   # Cattle (the Countryside Code, HSE) and ticks (NHS). Levels ours

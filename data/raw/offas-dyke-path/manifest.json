@@ -76,21 +76,25 @@
     "retrieved": "2026-10-31T21:23:06Z",
     "url": "https://download.geofabrik.de/"
   },
+  "osrm-access-bristol-airport-brs.json": {
+    "key": "https://router.project-osrm.org/route/v1/driving/-2.71866,51.38307;-2.64342,51.63473?overview=false",
+    "retrieved": "2026-11-07T14:03:23+00:00",
+    "url": "https://router.project-osrm.org/route/v1/driving/-2.71866,51.38307;-2.64342,51.63473?overview=false"
+  },
   "osrm-access-cardiff-airport-cwl.json": {
+    "key": "https://router.project-osrm.org/route/v1/driving/-3.34458,51.39785;-2.64342,51.63473?overview=false",
     "retrieved": "2026-11-01T05:24:25+00:00",
     "url": "https://router.project-osrm.org/route/v1/driving/-3.34458,51.39785;-2.64342,51.63473?overview=false"
   },
-  "osrm-access-chepstow.json": {
-    "retrieved": "2026-11-01T05:24:25+00:00",
-    "url": "https://router.project-osrm.org/route/v1/driving/-2.67108,51.63997;-2.64342,51.63473?overview=false"
+  "osrm-access-newport.json": {
+    "key": "https://router.project-osrm.org/route/v1/driving/-3.00042,51.58877;-2.64342,51.63473?overview=false",
+    "retrieved": "2026-11-07T14:03:22+00:00",
+    "url": "https://router.project-osrm.org/route/v1/driving/-3.00042,51.58877;-2.64342,51.63473?overview=false"
   },
-  "osrm-access-liverpool-john-lennon-airport-lpl.json": {
-    "retrieved": "2026-11-01T05:24:26+00:00",
-    "url": "https://router.project-osrm.org/route/v1/driving/-2.84854,53.3358;-2.64342,51.63473?overview=false"
-  },
-  "osrm-access-prestatyn.json": {
-    "retrieved": "2026-11-01T05:24:25+00:00",
-    "url": "https://router.project-osrm.org/route/v1/driving/-3.40735,53.33617;-2.64342,51.63473?overview=false"
+  "osrm-access-severn-tunnel-junction.json": {
+    "key": "https://router.project-osrm.org/route/v1/driving/-2.7773,51.58425;-2.64342,51.63473?overview=false",
+    "retrieved": "2026-11-07T14:03:21+00:00",
+    "url": "https://router.project-osrm.org/route/v1/driving/-2.7773,51.58425;-2.64342,51.63473?overview=false"
   },
   "stage-1-main.gpx": {
     "retrieved": "2026-11-01T03:53:54+00:00",

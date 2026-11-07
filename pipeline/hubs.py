@@ -38,6 +38,7 @@ import os
 import re
 import sys
 import time
+import urllib.error
 import urllib.parse
 import urllib.request
 import zipfile
@@ -229,18 +230,18 @@ def pick_airports(candidates):
 
 # --- cached downloads ------------------------------------------------------------------------------
 
-def _get(url, data=None, headers=None, polite=1.0, timeout=180):
+def _get(url, data=None, headers=None, polite=1.0, timeout=180, tries=4):
     wait = polite - (time.time() - _last_request[0])
     if wait > 0:
         time.sleep(wait)
-    for attempt in range(4):
+    for attempt in range(tries):
         _last_request[0] = time.time()
         try:
             req = urllib.request.Request(url, data=data, headers={"User-Agent": USER_AGENT, **(headers or {})})
             with urllib.request.urlopen(req, timeout=timeout) as r:
                 return r.read()
         except Exception as e:  # busy servers answer 429/504 now and then
-            if attempt == 3:
+            if attempt == tries - 1 or (isinstance(e, urllib.error.HTTPError) and e.code == 400):
                 raise
             print(f"  retry {url[:60]}…: {e}", file=sys.stderr)
             time.sleep(10 * (attempt + 1))
@@ -387,7 +388,12 @@ def route(a, b, ferry_ok=True):
     cache = _json(path, {})
     key = "%.5f,%.5f;%.5f,%.5f" % (a[1], a[0], b[1], b[0])
     if key not in cache:
-        d = json.loads(_get(f"{OSRM}/{key}?overview=false&steps=true", polite=1.1))
+        try:
+            d = json.loads(_get(f"{OSRM}/{key}?overview=false&steps=true", polite=1.1))
+        except urllib.error.HTTPError as e:  # 400 with a body: no route between the two (NoRoute, NoSegment)
+            if e.code != 400:
+                raise
+            d = json.loads(e.read() or b"{}") or {"code": "NoRoute"}
         if d.get("code") != "Ok":
             cache[key] = {"code": d.get("code")}
         else:
@@ -527,14 +533,18 @@ def _match_osm(hub, elements):
 def _road(hub, start, ports, island):
     """Road km from a hub to the start, or to the nearest mainland port when the route crosses water."""
     r = route((hub["lat"], hub["lon"]), (start["lat"], start["lon"]))
-    ok = r.get("code") == "Ok" and max(r.get("snap", [0])) < 5000
+    # a start off the road (the Great Divide Trail's at the border) snaps to the nearest road up to
+    # 20 km away; on an island only 5 km, or the router snaps it to the mainland shore
+    ok = r.get("code") == "Ok" and max(r.get("snap", [0])) < (5000 if ports else 20000)
     total = r["km"] if ok else None
     out = {"km": total, "totalKm": total, "min": r.get("min") if ok else None, "ferry": False, "via": None}
-    crosses = ok and (r.get("ferryKm") or 0) >= 1
+    crosses = ok and (r.get("ferryKm") or 0) > 0  # Bute's Colintraive crossing is 0.4 km
     if ports and (crosses or not ok):
-        port = min(ports, key=lambda p: km_between(hub["lat"], hub["lon"], p["lat"], p["lon"]))
-        rp = route((hub["lat"], hub["lon"]), (port["lat"], port["lon"]))
-        if rp.get("code") == "Ok" and (rp.get("ferryKm") or 0) < 1:
+        # the port nearest by road
+        by_road = [(route((hub["lat"], hub["lon"]), (p["lat"], p["lon"])), p) for p in ports]
+        by_road = [(r_, p) for r_, p in by_road if r_.get("code") == "Ok" and not r_.get("ferryKm")]
+        if by_road:
+            rp, port = min(by_road, key=lambda x: x[0]["km"])
             out.update(km=rp["km"], min=rp["min"], via=port)
             # compare hubs by the whole way, ferries included; a route that failed counts the straight line
             out["totalKm"] = total if total is not None else round(rp["km"] + km_between(port["lat"], port["lon"], start["lat"], start["lon"]), 1)
@@ -578,21 +588,24 @@ def suggest_stations(start, ports=(), island=False):
         s["straightKm"] = round(km_between(start["lat"], start["lon"], s["lat"], s["lon"]), 1)
     extra = [{**x, "relations": None, "city": None, "extra": True,
               "straightKm": round(km_between(start["lat"], start["lon"], x["lat"], x["lon"]), 1)} for x in EXTRA_STATIONS]
+    # an island's stations are near its ports, not its start: order them by the nearer of the two
+    for x in lds + extra:
+        x["nearKm"] = min([x["straightKm"]] + [km_between(p["lat"], p["lon"], x["lat"], x["lon"]) for p in ports])
     for x in extra:
         c = city_of(x["lat"], x["lon"], towns)
         x["city"], x["cityId"] = c and c["name"], c and c["id"]
 
-    def nearest(group, n=3):
-        group = sorted(group, key=lambda s: s["straightKm"])
-        if not group or group[0]["straightKm"] > STATION_MAX_KM:
+    def nearest(group, n=6 if ports else 3):  # across water the straight line says less
+        group = sorted(group, key=lambda s: s["nearKm"])
+        if not group or group[0]["nearKm"] > STATION_MAX_KM:
             return None
-        lim = group[0]["straightKm"] * 1.6 + 30
+        lim = group[0]["nearKm"] * 1.6 + 30
         best = None
-        for s in [g for g in group if g["straightKm"] <= lim][:n]:
+        for s in [g for g in group if g["nearKm"] <= lim][:n]:
             road = _road(s, start, ports, island)
             if road["km"] is None:
                 continue
-            k = (road["ferry"], road["totalKm"])
+            k = (road["ferry"], road["km"])  # to the start, or to the island's port: the crossing is the same
             if best is None or k < best[0]:
                 best = (k, {**s, **road, "roadKm": road["km"]})
         return best[1] if best and best[1]["roadKm"] <= STATION_MAX_KM else None

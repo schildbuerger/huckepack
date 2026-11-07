@@ -97,16 +97,14 @@
     "url": "https://download.geofabrik.de/"
   },
   "osrm-access-aachen-hauptbahnhof.json": {
+    "key": "https://router.project-osrm.org/route/v1/driving/6.09138,50.76777;6.18256,50.72832?overview=false",
     "retrieved": "2026-10-31T07:45:58+00:00",
     "url": "https://router.project-osrm.org/route/v1/driving/6.09138,50.76777;6.18256,50.72832?overview=false"
   },
-  "osrm-access-cologne-bonn-airport-cgn.json": {
-    "retrieved": "2026-10-31T07:45:58+00:00",
-    "url": "https://router.project-osrm.org/route/v1/driving/7.13896,50.86778;6.18256,50.72832?overview=false"
-  },
-  "osrm-access-luxembourg-airport-lux.json": {
-    "retrieved": "2026-10-31T07:45:58+00:00",
-    "url": "https://router.project-osrm.org/route/v1/driving/6.21085,49.62771;6.18256,50.72832?overview=false"
+  "osrm-access-maastricht-aachen-airport-mst.json": {
+    "key": "https://router.project-osrm.org/route/v1/driving/5.77007,50.91203;6.18256,50.72832?overview=false",
+    "retrieved": "2026-11-07T14:02:22+00:00",
+    "url": "https://router.project-osrm.org/route/v1/driving/5.77007,50.91203;6.18256,50.72832?overview=false"
   },
   "stage-1-main.gpx": {
     "retrieved": "2026-10-31T03:36:54+00:00",

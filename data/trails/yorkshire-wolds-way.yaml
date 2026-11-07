@@ -84,22 +84,35 @@ wildCamping:
     landowner's permission, or use the campsites along the trail.
   source: nt-info
 access:
-  # Hessle station by the start; Humberside the nearest airport, Leeds Bradford the nearest larger
-  # one. Coordinates from OSM; distances by pipeline/access.py
+  # hubs by the rules of 2026-11-07 (docs/scope.md: long-distance trains, the main station of a city
+  # of 100,000, airports with international flights), suggested by pipeline/hubs.py and reviewed.
+  # Humberside Airport (HUY): international flights in season only (Wikipedia's route table).
+  # Coordinates from OSM; distances by pipeline/access.py
   - kind: station
-    name: Hessle
-    lat: 53.71737
-    lon: -0.4421
+    name: Barnetby
+    lat: 53.57501
+    lon: -0.40976
+    source: osm
+  - kind: station
+    name: York
+    lat: 53.9577
+    lon: -1.09373
     source: osm
   - kind: airport
     name: Humberside Airport (HUY)
     lat: 53.5714
     lon: -0.35346
+    flights: seasonal
     source: osm
   - kind: airport
     name: Leeds Bradford Airport (LBA)
     lat: 53.86665
     lon: -1.65678
+    source: osm
+  - kind: airport
+    name: Teesside International Airport (MME)
+    lat: 54.50931
+    lon: -1.42747
     source: osm
 animals:
   # Cattle (the Countryside Code, HSE) and ticks (NHS). Levels ours

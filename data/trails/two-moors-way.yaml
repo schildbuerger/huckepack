@@ -87,17 +87,23 @@ wildCamping:
     relevant landowner, and even National Parks are privately owned."
   source: tmw-faq
 access:
-  # Ivybridge station (Plymouth line) at the start, and Exeter Airport.
+  # hubs by the rules of 2026-11-07 (docs/scope.md: long-distance trains, the main station of a city
+  # of 100,000, airports with international flights), suggested by pipeline/hubs.py and reviewed.
   # Coordinates from OSM; distances by pipeline/access.py
   - kind: station
-    name: Ivybridge
-    lat: 50.39351
-    lon: -3.90518
+    name: Exeter St Davids
+    lat: 50.72922
+    lon: -3.54357
     source: osm
   - kind: airport
     name: Exeter Airport (EXT)
     lat: 50.73492
     lon: -3.41277
+    source: osm
+  - kind: airport
+    name: Newquay Airport (NQY)
+    lat: 50.44152
+    lon: -4.99763
     source: osm
 animals:
   # Cattle (the Countryside Code, HSE) and ticks (NHS). Levels ours

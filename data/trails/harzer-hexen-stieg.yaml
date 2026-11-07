@@ -99,17 +99,23 @@ wildCamping:
     Saxony-Anhalt don't allow tents in the woods either.
   source: natphharzv
 access:
-  # Osterode Mitte, the stop the portal names for the start; Hannover airport. Coordinates from
-  # OSM; distances by pipeline/access.py
+  # hubs by the rules of 2026-11-07 (docs/scope.md: long-distance trains, the main station of a city
+  # of 100,000, airports with international flights), suggested by pipeline/hubs.py and reviewed.
+  # Coordinates from OSM; distances by pipeline/access.py
   - kind: station
-    name: Osterode (Harz) Mitte
-    lat: 51.72606
-    lon: 10.24546
+    name: Göttingen
+    lat: 51.53678
+    lon: 9.9259
     source: osm
   - kind: airport
     name: Hannover Airport (HAJ)
     lat: 52.46089
     lon: 9.69099
+    source: osm
+  - kind: airport
+    name: Erfurt–Weimar Airport (ERF)
+    lat: 50.97921
+    lon: 10.95778
     source: osm
 animals:
   # Ticks: Lyme disease all over Germany (the federal health agency's advice). Level ours

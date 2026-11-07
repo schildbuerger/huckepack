@@ -97,8 +97,14 @@
     "url": "https://download.geofabrik.de/"
   },
   "osrm-access-calgary-international-airport-yyc.json": {
+    "key": "https://router.project-osrm.org/route/v1/driving/-114.01354,51.12226;-113.90612,48.99869?overview=false",
     "retrieved": "2026-11-06T23:50:13+00:00",
     "url": "https://router.project-osrm.org/route/v1/driving/-114.01354,51.12226;-113.90612,48.99869?overview=false"
+  },
+  "osrm-access-east-glacier-park.json": {
+    "key": "https://router.project-osrm.org/route/v1/driving/-113.21936,48.44223;-113.90612,48.99869?overview=false",
+    "retrieved": "2026-11-07T14:02:41+00:00",
+    "url": "https://router.project-osrm.org/route/v1/driving/-113.21936,48.44223;-113.90612,48.99869?overview=false"
   },
   "wikimedia.json": {
     "retrieved": "2026-11-06T23:50:14+00:00",

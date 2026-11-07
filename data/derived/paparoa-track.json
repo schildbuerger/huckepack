@@ -3161,19 +3161,25 @@
   },
   "access": {
     "source": "osrm",
-    "retrieved": "2026-11-05T11:50:56+00:00",
+    "retrieved": "2026-11-07T14:15:16+00:00",
     "hubs": [
       {
         "name": "Greymouth",
-        "roadKm": 30.2,
+        "roadKm": 29.9,
         "driveMin": 27,
-        "straightKm": 20.0
+        "straightKm": 19.5
       },
       {
-        "name": "Hokitika Airport (HKK)",
-        "roadKm": 69.5,
-        "driveMin": 62,
-        "straightKm": 53.7
+        "name": "Christchurch",
+        "roadKm": 249.4,
+        "driveMin": 206,
+        "straightKm": 166.1
+      },
+      {
+        "name": "Christchurch Airport (CHC)",
+        "roadKm": 247.2,
+        "driveMin": 202,
+        "straightKm": 157.7
       }
     ]
   },

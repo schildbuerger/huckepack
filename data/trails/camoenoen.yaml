@@ -92,17 +92,28 @@ wildCamping:
     them, such as MØNHYTTEN; several free shelters along the route, first come first served.
   source: cam-sleep
 access:
-  # Vordingborg station (trains to Copenhagen; buses to Møn) and Copenhagen Airport. Coordinates from
-  # OSM; distances by pipeline/access.py
+  # hubs by the rules of 2026-11-07 (docs/scope.md: long-distance trains, the main station of a city
+  # of 100,000, airports with international flights), suggested by pipeline/hubs.py and reviewed.
+  # Coordinates from OSM; distances by pipeline/access.py
   - kind: station
-    name: Vordingborg
-    lat: 55.0126
-    lon: 11.90025
+    name: Ringsted
+    lat: 55.43807
+    lon: 11.7861
+    source: osm
+  - kind: station
+    name: Copenhagen Central Station
+    lat: 55.67245
+    lon: 12.56537
     source: osm
   - kind: airport
     name: Copenhagen Airport (CPH)
     lat: 55.60913
     lon: 12.65098
+    source: osm
+  - kind: airport
+    name: Malmö Airport (MMX)
+    lat: 55.53622
+    lon: 13.37057
     source: osm
 tags: [island, cliffs, coast, biosphere-reserve]
 notes:

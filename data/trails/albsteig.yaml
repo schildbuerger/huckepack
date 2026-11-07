@@ -84,22 +84,23 @@ sleeping:
   types: [hotel, guesthouse]
   source: osm
 access:
-  # Donauwörth station at the start, Tuttlingen station at the finish, and Stuttgart Airport.
+  # hubs by the rules of 2026-11-07 (docs/scope.md: long-distance trains, the main station of a city
+  # of 100,000, airports with international flights), suggested by pipeline/hubs.py and reviewed.
   # Coordinates from OSM; distances by pipeline/access.py
   - kind: station
-    name: Donauwörth
-    lat: 48.71409
-    lon: 10.77156
-    source: osm
-  - kind: station
-    name: Tuttlingen
-    lat: 47.98045
-    lon: 8.79913
+    name: Augsburg Hauptbahnhof
+    lat: 48.36549
+    lon: 10.88569
     source: osm
   - kind: airport
-    name: Stuttgart Airport (STR)
-    lat: 48.68842
-    lon: 9.20539
+    name: Nuremberg Airport (NUE)
+    lat: 49.49821
+    lon: 11.07775
+    source: osm
+  - kind: airport
+    name: Munich Airport (MUC)
+    lat: 48.35372
+    lon: 11.78603
     source: osm
 animals:
   # ticks: Lyme disease all over Germany (the federal health agency's advice). Level ours

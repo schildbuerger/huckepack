@@ -120,22 +120,23 @@ refillsUntreated:
   text: Non-potable water at most trailheads and shelter areas; treat or filter it.
   source: dcnr-hiking
 access:
-  # Pittsburgh's airport; Connellsville station near the southern end and Johnstown station near
-  # the northern (both on Amtrak). Coordinates from OSM; distances by pipeline/access.py
-  - kind: airport
-    name: Pittsburgh International Airport (PIT)
-    lat: 40.49178
-    lon: -80.23702
-    source: osm
+  # hubs by the rules of 2026-11-07 (docs/scope.md: long-distance trains, the main station of a city
+  # of 100,000, airports with international flights), suggested by pipeline/hubs.py and reviewed.
+  # Coordinates from OSM; distances by pipeline/access.py
   - kind: station
     name: Connellsville station
     lat: 40.02021
     lon: -79.59284
     source: osm
   - kind: station
-    name: Johnstown station
-    lat: 40.32991
-    lon: -78.92197
+    name: Pittsburgh Union Station
+    lat: 40.44458
+    lon: -79.99164
+    source: osm
+  - kind: airport
+    name: Pittsburgh International Airport (PIT)
+    lat: 40.49178
+    lon: -80.23702
     source: osm
 animals:
   # DCNR's recreational guide ("A word on Pennsylvania black bears"; it also prints the CDC's

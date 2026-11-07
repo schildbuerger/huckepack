@@ -453,16 +453,24 @@
     "url": "https://download.geofabrik.de/"
   },
   "osrm-access-bristol-airport-brs.json": {
+    "key": "https://router.project-osrm.org/route/v1/driving/-2.71866,51.38307;-3.47371,51.21148?overview=false",
     "retrieved": "2026-11-03T21:51:00+00:00",
     "url": "https://router.project-osrm.org/route/v1/driving/-2.71866,51.38307;-3.47371,51.21148?overview=false"
   },
   "osrm-access-exeter-airport-ext.json": {
+    "key": "https://router.project-osrm.org/route/v1/driving/-3.41381,50.73485;-3.47371,51.21148?overview=false",
     "retrieved": "2026-11-03T21:51:00+00:00",
     "url": "https://router.project-osrm.org/route/v1/driving/-3.41381,50.73485;-3.47371,51.21148?overview=false"
   },
-  "osrm-access-taunton.json": {
-    "retrieved": "2026-11-03T21:51:00+00:00",
-    "url": "https://router.project-osrm.org/route/v1/driving/-3.10267,51.02329;-3.47371,51.21148?overview=false"
+  "osrm-access-exeter-central.json": {
+    "key": "https://router.project-osrm.org/route/v1/driving/-3.53228,50.72691;-3.47371,51.21148?overview=false",
+    "retrieved": "2026-11-07T14:03:59+00:00",
+    "url": "https://router.project-osrm.org/route/v1/driving/-3.53228,50.72691;-3.47371,51.21148?overview=false"
+  },
+  "osrm-access-weston-super-mare.json": {
+    "key": "https://router.project-osrm.org/route/v1/driving/-2.97183,51.3445;-3.47371,51.21148?overview=false",
+    "retrieved": "2026-11-07T14:03:58+00:00",
+    "url": "https://router.project-osrm.org/route/v1/driving/-2.97183,51.3445;-3.47371,51.21148?overview=false"
   },
   "wikimedia.json": {
     "retrieved": "2026-11-03T22:03:12+00:00",

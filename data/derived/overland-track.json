@@ -4218,7 +4218,7 @@
   },
   "access": {
     "source": "osrm",
-    "retrieved": "2026-11-05T12:36:11+00:00",
+    "retrieved": "2026-11-07T14:03:31+00:00",
     "hubs": [
       {
         "name": "Cradle Mountain Visitor Centre",
@@ -4227,10 +4227,24 @@
         "straightKm": 6.2
       },
       {
-        "name": "Launceston Airport (LST)",
-        "roadKm": 153.8,
-        "driveMin": 127,
-        "straightKm": 106.0
+        "name": "Hobart Airport (HBA)",
+        "roadKm": 316.9,
+        "driveMin": 253,
+        "straightKm": 185.4
+      },
+      {
+        "name": "Avalon Airport (AVV)",
+        "to": "Geelong (Spirit of Tasmania)",
+        "roadKm": 19.3,
+        "driveMin": 25,
+        "straightKm": 12.4
+      },
+      {
+        "name": "Melbourne Airport (MEL)",
+        "to": "Geelong (Spirit of Tasmania)",
+        "roadKm": 79.3,
+        "driveMin": 68,
+        "straightKm": 64.1
       }
     ]
   },

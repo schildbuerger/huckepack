@@ -264,21 +264,25 @@
     "retrieved": "2026-10-28T21:21:02Z",
     "url": "https://download.geofabrik.de/"
   },
-  "osrm-access-budapest-ferenc-liszt-international-airport-bud.json": {
-    "retrieved": "2026-11-01T07:43:47+00:00",
-    "url": "https://router.project-osrm.org/route/v1/driving/19.25351,47.43527;16.43375,47.35276?overview=false"
+  "osrm-access-graz-airport-grz.json": {
+    "key": "https://router.project-osrm.org/route/v1/driving/15.44,46.98802;16.43375,47.35276?overview=false",
+    "retrieved": "2026-11-07T14:03:26+00:00",
+    "url": "https://router.project-osrm.org/route/v1/driving/15.44,46.98802;16.43375,47.35276?overview=false"
   },
-  "osrm-access-k-szeg.json": {
-    "retrieved": "2026-11-01T07:43:47+00:00",
-    "url": "https://router.project-osrm.org/route/v1/driving/16.55689,47.38174;16.43375,47.35276?overview=false"
-  },
-  "osrm-access-s-toralja-jhely.json": {
-    "retrieved": "2026-11-01T07:43:47+00:00",
-    "url": "https://router.project-osrm.org/route/v1/driving/21.65758,48.38582;16.43375,47.35276?overview=false"
+  "osrm-access-vienna-central-station.json": {
+    "key": "https://router.project-osrm.org/route/v1/driving/16.37794,48.18499;16.43375,47.35276?overview=false",
+    "retrieved": "2026-11-07T14:03:25+00:00",
+    "url": "https://router.project-osrm.org/route/v1/driving/16.37794,48.18499;16.43375,47.35276?overview=false"
   },
   "osrm-access-vienna-international-airport-vie.json": {
+    "key": "https://router.project-osrm.org/route/v1/driving/16.5849,48.105;16.43375,47.35276?overview=false",
     "retrieved": "2026-11-01T07:43:47+00:00",
     "url": "https://router.project-osrm.org/route/v1/driving/16.5849,48.105;16.43375,47.35276?overview=false"
+  },
+  "osrm-access-wiener-neustadt-hauptbahnhof.json": {
+    "key": "https://router.project-osrm.org/route/v1/driving/16.23365,47.81107;16.43375,47.35276?overview=false",
+    "retrieved": "2026-11-07T14:03:24+00:00",
+    "url": "https://router.project-osrm.org/route/v1/driving/16.23365,47.81107;16.43375,47.35276?overview=false"
   },
   "stage-1-main.gpx": {
     "retrieved": "2026-11-01T06:55:37+00:00",

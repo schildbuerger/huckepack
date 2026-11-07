@@ -130,12 +130,19 @@
     "url": "https://download.geofabrik.de/"
   },
   "osrm-access-luxembourg-airport-lux.json": {
+    "key": "https://router.project-osrm.org/route/v1/driving/6.21085,49.62771;6.36964,49.47314?overview=false",
     "retrieved": "2026-10-30T13:08:24+00:00",
     "url": "https://router.project-osrm.org/route/v1/driving/6.21085,49.62771;6.36964,49.47314?overview=false"
   },
-  "osrm-access-perl-station.json": {
-    "retrieved": "2026-10-30T13:08:24+00:00",
-    "url": "https://router.project-osrm.org/route/v1/driving/6.36934,49.47294;6.36964,49.47314?overview=false"
+  "osrm-access-sandweiler-contern.json": {
+    "key": "https://router.project-osrm.org/route/v1/driving/6.21175,49.59909;6.36964,49.47314?overview=false",
+    "retrieved": "2026-11-07T14:03:14+00:00",
+    "url": "https://router.project-osrm.org/route/v1/driving/6.21175,49.59909;6.36964,49.47314?overview=false"
+  },
+  "osrm-access-trier-hbf.json": {
+    "key": "https://router.project-osrm.org/route/v1/driving/6.652,49.75697;6.36964,49.47314?overview=false",
+    "retrieved": "2026-11-07T14:03:15+00:00",
+    "url": "https://router.project-osrm.org/route/v1/driving/6.652,49.75697;6.36964,49.47314?overview=false"
   },
   "stage-1-main.gpx": {
     "retrieved": "2026-10-30T12:58:45+00:00",

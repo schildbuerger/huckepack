@@ -106,12 +106,19 @@ fees:
   - { name: "Park entry, more than one day, foreign visitors", amount: 48500, currency: CLP, per: per adult, year: 2026, source: conaf-pases }
   - { name: "Park entry, more than one day, Chilean residents", amount: 14200, currency: CLP, per: per adult, year: 2026, source: conaf-pases }
 access:
-  # Puerto Natales' bus station (the park buses to Laguna Amarga and Hotel Las Torres) and Punta
-  # Arenas' international airport. Coordinates from OSM; distances by pipeline/access.py
+  # hubs by the rules of 2026-11-07 (docs/scope.md: long-distance trains, the main station of a city
+  # of 100,000, airports with international flights), suggested by pipeline/hubs.py and reviewed.
+  # Rodoviario Puerto Natales: the main bus station (no long-distance trains within 300 km).
+  # Coordinates from OSM; distances by pipeline/access.py
   - kind: bus
     name: Rodoviario Puerto Natales
     lat: -51.7287
     lon: -72.488
+    source: osm
+  - kind: airport
+    name: Piloto Civil Norberto Fernández International Airport (RGL)
+    lat: -51.6078
+    lon: -69.30914
     source: osm
   - kind: airport
     name: Punta Arenas Airport (PUQ)

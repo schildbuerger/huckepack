@@ -112,21 +112,30 @@ wildCamping:
     Sépaq.
   source: sia-compagnon
 access:
-  # coordinates from OSM; distances by pipeline/access.py
+  # hubs by the rules of 2026-11-07 (docs/scope.md: long-distance trains, the main station of a city
+  # of 100,000, airports with international flights), suggested by pipeline/hubs.py and reviewed.
+  # Greater Moncton Roméo LeBlanc International Airport (YQM): international flights in season only
+  # (Wikipedia's route table). Coordinates from OSM; distances by pipeline/access.py
   - kind: station
     name: Matapédia station (VIA Rail)
     lat: 47.97487
     lon: -66.93927
     source: osm
   - kind: airport
-    name: Bathurst Regional Airport (YZT)
-    lat: 47.63001
-    lon: -65.73576
+    name: Greater Moncton Roméo LeBlanc International Airport (YQM)
+    lat: 46.11656
+    lon: -64.67403
+    flights: seasonal
     source: osm
   - kind: airport
-    name: Mont-Joli Airport (YYY)
-    lat: 48.61051
-    lon: -68.20813
+    name: Québec City Jean Lesage International Airport (YQB)
+    lat: 46.79214
+    lon: -71.38794
+    source: osm
+  - kind: airport
+    name: Halifax Stanfield International Airport (YHZ)
+    lat: 44.87878
+    lon: -63.51142
     source: osm
 animals:
   # Forillon: "Ce pays de l'ours noir et de l'orignal" (the section page); the guide: "Dans les

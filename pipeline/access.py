@@ -56,6 +56,10 @@ def build(slug, refresh=False):
             with urllib.request.urlopen(request, timeout=60) as response:
                 return response.read()
 
+        # a route cached for other coordinates (a hub moved, or now sails from a port) is fetched
+        # again: a cache from before keys were kept would otherwise take the new key unchecked
+        if cache.manifest.get(name, {}).get("url") not in (None, url):
+            (cache.dir / name).unlink(missing_ok=True)
         answer, _ = cache.get(name, url, download, key=url)
         route = json.loads(answer)
         if route.get("code") != "Ok":

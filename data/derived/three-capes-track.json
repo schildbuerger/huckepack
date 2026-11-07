@@ -2678,7 +2678,7 @@
   },
   "access": {
     "source": "osrm",
-    "retrieved": "2026-11-05T23:30:42+00:00",
+    "retrieved": "2026-11-07T14:04:10+00:00",
     "hubs": [
       {
         "name": "Port Arthur Historic Site (check-in, boat and bus)",
@@ -2691,6 +2691,20 @@
         "roadKm": 85.3,
         "driveMin": 101,
         "straightKm": 45.7
+      },
+      {
+        "name": "Avalon Airport (AVV)",
+        "to": "Geelong (Spirit of Tasmania)",
+        "roadKm": 19.3,
+        "driveMin": 25,
+        "straightKm": 12.4
+      },
+      {
+        "name": "Melbourne Airport (MEL)",
+        "to": "Geelong (Spirit of Tasmania)",
+        "roadKm": 79.3,
+        "driveMin": 68,
+        "straightKm": 64.1
       }
     ]
   }

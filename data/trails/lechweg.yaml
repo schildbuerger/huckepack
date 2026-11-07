@@ -107,27 +107,28 @@ wildCamping:
     stage towns' guesthouses and hotels, or at campsites.
   source: oegv-campen
 access:
-  # Langen am Arlberg station near the start, Füssen station at the end, and Innsbruck and Munich
-  # airports. Coordinates from OSM (Nominatim); distances by pipeline/access.py
+  # hubs by the rules of 2026-11-07 (docs/scope.md: long-distance trains, the main station of a city
+  # of 100,000, airports with international flights), suggested by pipeline/hubs.py and reviewed.
+  # Coordinates from OSM; distances by pipeline/access.py
   - kind: station
     name: Langen am Arlberg
     lat: 47.13196
     lon: 10.11978
     source: osm
   - kind: station
-    name: Füssen
-    lat: 47.57027
-    lon: 10.69795
+    name: Innsbruck Hauptbahnhof
+    lat: 47.2633
+    lon: 11.40102
+    source: osm
+  - kind: airport
+    name: St. Gallen–Altenrhein Airport (ACH)
+    lat: 47.48539
+    lon: 9.56013
     source: osm
   - kind: airport
     name: Innsbruck Airport (INN)
     lat: 47.25973
     lon: 11.34187
-    source: osm
-  - kind: airport
-    name: Munich Airport (MUC)
-    lat: 48.35396
-    lon: 11.77859
     source: osm
 animals:
   # Cattle on the alpine pastures (the Austrian ministry's 10 rules) and ticks (AGES: TBE risk all

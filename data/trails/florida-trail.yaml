@@ -160,17 +160,23 @@ wildCamping:
     National Wildlife Refuge), and none on the Seminole Reservation.
   source: fta-faqs
 access:
-  # the international airports of Miami and Fort Myers, the nearest to Big Cypress; coordinates
-  # from OSM, distances by pipeline/access.py
+  # hubs by the rules of 2026-11-07 (docs/scope.md: long-distance trains, the main station of a city
+  # of 100,000, airports with international flights), suggested by pipeline/hubs.py and reviewed.
+  # Coordinates from OSM; distances by pipeline/access.py
+  - kind: station
+    name: Miami
+    lat: 25.84948
+    lon: -80.25798
+    source: osm
   - kind: airport
     name: Miami International Airport (MIA)
     lat: 25.79498
     lon: -80.28672
     source: osm
   - kind: airport
-    name: Southwest Florida International Airport (RSW)
-    lat: 26.53295
-    lon: -81.75881
+    name: Fort Lauderdale–Hollywood International Airport (FLL)
+    lat: 26.07231
+    lon: -80.1498
     source: osm
 animals:
   # the National Park Service's Big Cypress National Preserve safety page (panthers, venomous

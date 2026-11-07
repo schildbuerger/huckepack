@@ -85,17 +85,25 @@
     "retrieved": "2026-10-28T21:21:02Z",
     "url": "https://download.geofabrik.de/"
   },
-  "osrm-access-belluno.json": {
-    "retrieved": "2026-11-04T17:11:37+00:00",
-    "url": "https://router.project-osrm.org/route/v1/driving/12.20988,46.14145;12.08502,46.69935?overview=false"
+  "osrm-access-bolzano-airport-bzo.json": {
+    "key": "https://router.project-osrm.org/route/v1/driving/11.32634,46.45841;12.08502,46.69935?overview=false",
+    "retrieved": "2026-11-07T14:01:50+00:00",
+    "url": "https://router.project-osrm.org/route/v1/driving/11.32634,46.45841;12.08502,46.69935?overview=false"
   },
-  "osrm-access-toblach-dobbiaco.json": {
-    "retrieved": "2026-11-04T17:11:36+00:00",
-    "url": "https://router.project-osrm.org/route/v1/driving/12.22546,46.7248;12.08502,46.69935?overview=false"
+  "osrm-access-bolzano-bozen.json": {
+    "key": "https://router.project-osrm.org/route/v1/driving/11.3588,46.49643;12.08502,46.69935?overview=false",
+    "retrieved": "2026-11-07T14:01:49+00:00",
+    "url": "https://router.project-osrm.org/route/v1/driving/11.3588,46.49643;12.08502,46.69935?overview=false"
   },
-  "osrm-access-venice-marco-polo-airport-vce.json": {
-    "retrieved": "2026-11-04T17:11:37+00:00",
-    "url": "https://router.project-osrm.org/route/v1/driving/12.33896,45.49706;12.08502,46.69935?overview=false"
+  "osrm-access-franzensfeste-fortezza.json": {
+    "key": "https://router.project-osrm.org/route/v1/driving/11.61002,46.7888;12.08502,46.69935?overview=false",
+    "retrieved": "2026-11-07T14:01:48+00:00",
+    "url": "https://router.project-osrm.org/route/v1/driving/11.61002,46.7888;12.08502,46.69935?overview=false"
+  },
+  "osrm-access-innsbruck-airport-inn.json": {
+    "key": "https://router.project-osrm.org/route/v1/driving/11.34658,47.25977;12.08502,46.69935?overview=false",
+    "retrieved": "2026-11-07T14:01:51+00:00",
+    "url": "https://router.project-osrm.org/route/v1/driving/11.34658,47.25977;12.08502,46.69935?overview=false"
   },
   "wikimedia.json": {
     "retrieved": "2026-11-04T17:11:39+00:00",

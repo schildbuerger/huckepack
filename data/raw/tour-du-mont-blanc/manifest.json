@@ -76,13 +76,20 @@
     "retrieved": "2026-10-28T21:21:02Z",
     "url": "https://download.geofabrik.de/"
   },
+  "osrm-access-gen-ve-cornavin.json": {
+    "key": "https://router.project-osrm.org/route/v1/driving/6.14262,46.21023;6.79914,45.89151?overview=false",
+    "retrieved": "2026-11-07T14:04:18+00:00",
+    "url": "https://router.project-osrm.org/route/v1/driving/6.14262,46.21023;6.79914,45.89151?overview=false"
+  },
   "osrm-access-geneva-airport-gva.json": {
+    "key": "https://router.project-osrm.org/route/v1/driving/6.10798,46.23771;6.79914,45.89151?overview=false",
     "retrieved": "2026-10-31T17:46:48+00:00",
     "url": "https://router.project-osrm.org/route/v1/driving/6.10798,46.23771;6.79914,45.89151?overview=false"
   },
-  "osrm-access-saint-gervais-les-bains-le-fayet.json": {
-    "retrieved": "2026-10-31T17:46:48+00:00",
-    "url": "https://router.project-osrm.org/route/v1/driving/6.70146,45.90657;6.79914,45.89151?overview=false"
+  "osrm-access-martigny.json": {
+    "key": "https://router.project-osrm.org/route/v1/driving/7.07913,46.1058;6.79914,45.89151?overview=false",
+    "retrieved": "2026-11-07T14:04:17+00:00",
+    "url": "https://router.project-osrm.org/route/v1/driving/7.07913,46.1058;6.79914,45.89151?overview=false"
   },
   "wikimedia.json": {
     "retrieved": "2026-10-31T17:46:50+00:00",

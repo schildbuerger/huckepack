@@ -81,22 +81,28 @@ sleeping:
   types: [hostel]
   source: sow-stay
 access:
-  # Berwick-upon-Tweed (East Coast Main Line), the nearest main station to Holy Island, Hexham near
-  # Heavenfield, and Newcastle Airport. Coordinates from OSM; distances by pipeline/access.py
+  # hubs by the rules of 2026-11-07 (docs/scope.md: long-distance trains, the main station of a city
+  # of 100,000, airports with international flights), suggested by pipeline/hubs.py and reviewed.
+  # Coordinates from OSM; distances by pipeline/access.py
   - kind: station
     name: Berwick-upon-Tweed
     lat: 55.77406
     lon: -2.0108
     source: osm
   - kind: station
-    name: Hexham
-    lat: 54.97303
-    lon: -2.09476
+    name: Newcastle
+    lat: 54.96834
+    lon: -1.61605
     source: osm
   - kind: airport
     name: Newcastle Airport (NCL)
     lat: 55.03842
     lon: -1.6964
+    source: osm
+  - kind: airport
+    name: Edinburgh Airport (EDI)
+    lat: 55.95008
+    lon: -3.36147
     source: osm
 animals:
   # Cattle (the Countryside Code, HSE) and ticks (NHS). Levels ours

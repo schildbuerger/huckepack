@@ -7100,25 +7100,31 @@
   },
   "access": {
     "source": "osrm",
-    "retrieved": "2026-11-06T22:59:29+00:00",
+    "retrieved": "2026-11-07T14:02:36+00:00",
     "hubs": [
-      {
-        "name": "Greenville-Spartanburg International Airport (GSP)",
-        "roadKm": 66.2,
-        "driveMin": 74,
-        "straightKm": 46.6
-      },
-      {
-        "name": "Asheville Regional Airport (AVL)",
-        "roadKm": 77.0,
-        "driveMin": 68,
-        "straightKm": 47.2
-      },
       {
         "name": "Greenville station (Amtrak)",
         "roadKm": 43.6,
         "driveMin": 56,
         "straightKm": 32.5
+      },
+      {
+        "name": "Charlotte",
+        "roadKm": 207.1,
+        "driveMin": 168,
+        "straightKm": 172.3
+      },
+      {
+        "name": "Charlotte Douglas International Airport (CLT)",
+        "roadKm": 197.7,
+        "driveMin": 169,
+        "straightKm": 160.8
+      },
+      {
+        "name": "Hartsfield–Jackson Atlanta International Airport (ATL)",
+        "roadKm": 258.1,
+        "driveMin": 208,
+        "straightKm": 221.8
       }
     ]
   },

@@ -7532,8 +7532,14 @@
   },
   "access": {
     "source": "osrm",
-    "retrieved": "2026-11-07T01:02:45+00:00",
+    "retrieved": "2026-11-07T14:03:03+00:00",
     "hubs": [
+      {
+        "name": "Houston station (Amtrak)",
+        "roadKm": 109.4,
+        "driveMin": 93,
+        "straightKm": 94.7
+      },
       {
         "name": "George Bush Intercontinental Airport (IAH)",
         "roadKm": 99.5,
@@ -7541,10 +7547,10 @@
         "straightKm": 75.4
       },
       {
-        "name": "Houston station (Amtrak)",
-        "roadKm": 109.4,
-        "driveMin": 93,
-        "straightKm": 94.7
+        "name": "William P. Hobby Airport (HOU)",
+        "roadKm": 129.9,
+        "driveMin": 113,
+        "straightKm": 110.7
       }
     ]
   },

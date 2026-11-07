@@ -107,12 +107,28 @@ wildCamping:
     backcountry.
   source: nps
 access:
-  # Seattle–Tacoma International Airport; no public transport to Longmire. Coordinates from OSM;
-  # distances by pipeline/access.py
+  # hubs by the rules of 2026-11-07 (docs/scope.md: long-distance trains, the main station of a city
+  # of 100,000, airports with international flights), suggested by pipeline/hubs.py and reviewed.
+  # Coordinates from OSM; distances by pipeline/access.py
+  - kind: station
+    name: Olympia-Lacey
+    lat: 46.99127
+    lon: -122.79411
+    source: osm
+  - kind: station
+    name: Tacoma Dome
+    lat: 47.23965
+    lon: -122.42773
+    source: osm
   - kind: airport
     name: Seattle–Tacoma International Airport (SEA)
     lat: 47.44757
     lon: -122.30802
+    source: osm
+  - kind: airport
+    name: Boeing Field (BFI)
+    lat: 47.52978
+    lon: -122.30343
     source: osm
 animals:
   # NPS wildlife safety: "Among the largest and most feared are the black bear and the mountain lion.

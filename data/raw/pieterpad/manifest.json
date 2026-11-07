@@ -132,13 +132,20 @@
     "retrieved": "2026-11-01T21:21:36Z",
     "url": "https://download.geofabrik.de/"
   },
-  "osrm-access-amsterdam-airport-schiphol-ams.json": {
-    "retrieved": "2026-11-03T15:12:04+00:00",
-    "url": "https://router.project-osrm.org/route/v1/driving/4.74151,52.32698;6.45316,53.40003?overview=false"
+  "osrm-access-groningen-airport-eelde-grq.json": {
+    "key": "https://router.project-osrm.org/route/v1/driving/6.57538,53.12077;6.45316,53.40003?overview=false",
+    "retrieved": "2026-11-07T14:03:42+00:00",
+    "url": "https://router.project-osrm.org/route/v1/driving/6.57538,53.12077;6.45316,53.40003?overview=false"
   },
   "osrm-access-groningen.json": {
+    "key": "https://router.project-osrm.org/route/v1/driving/6.56412,53.21047;6.45316,53.40003?overview=false",
     "retrieved": "2026-11-03T15:12:03+00:00",
     "url": "https://router.project-osrm.org/route/v1/driving/6.56412,53.21047;6.45316,53.40003?overview=false"
+  },
+  "osrm-access-zuidhorn.json": {
+    "key": "https://router.project-osrm.org/route/v1/driving/6.40675,53.24815;6.45316,53.40003?overview=false",
+    "retrieved": "2026-11-07T14:03:41+00:00",
+    "url": "https://router.project-osrm.org/route/v1/driving/6.40675,53.24815;6.45316,53.40003?overview=false"
   },
   "stage-1-main.gpx": {
     "retrieved": "2026-11-03T14:36:04+00:00",

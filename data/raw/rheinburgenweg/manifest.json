@@ -150,17 +150,20 @@
     "retrieved": "2026-10-31T21:23:06Z",
     "url": "https://download.geofabrik.de/"
   },
-  "osrm-access-bingen-rhein-hauptbahnhof.json": {
-    "retrieved": "2026-11-05T23:44:53+00:00",
-    "url": "https://router.project-osrm.org/route/v1/driving/7.89889,49.96701;7.2084,50.63146?overview=false"
-  },
   "osrm-access-bonn-hauptbahnhof.json": {
+    "key": "https://router.project-osrm.org/route/v1/driving/7.09703,50.73211;7.2084,50.63146?overview=false",
     "retrieved": "2026-11-05T23:44:53+00:00",
     "url": "https://router.project-osrm.org/route/v1/driving/7.09703,50.73211;7.2084,50.63146?overview=false"
   },
-  "osrm-access-frankfurt-airport-fra.json": {
-    "retrieved": "2026-11-05T23:44:53+00:00",
-    "url": "https://router.project-osrm.org/route/v1/driving/8.56256,50.03793;7.2084,50.63146?overview=false"
+  "osrm-access-cologne-bonn-airport-cgn.json": {
+    "key": "https://router.project-osrm.org/route/v1/driving/7.14205,50.86787;7.2084,50.63146?overview=false",
+    "retrieved": "2026-11-07T14:03:49+00:00",
+    "url": "https://router.project-osrm.org/route/v1/driving/7.14205,50.86787;7.2084,50.63146?overview=false"
+  },
+  "osrm-access-remagen.json": {
+    "key": "https://router.project-osrm.org/route/v1/driving/7.22971,50.57732;7.2084,50.63146?overview=false",
+    "retrieved": "2026-11-07T14:03:47+00:00",
+    "url": "https://router.project-osrm.org/route/v1/driving/7.22971,50.57732;7.2084,50.63146?overview=false"
   },
   "wikimedia.json": {
     "retrieved": "2026-11-05T23:44:54+00:00",

@@ -4640,19 +4640,25 @@
   },
   "access": {
     "source": "osrm",
-    "retrieved": "2026-11-06T21:54:16+00:00",
+    "retrieved": "2026-11-07T14:04:14+00:00",
     "hubs": [
       {
-        "name": "Portland International Airport (PDX)",
-        "roadKm": 94.4,
-        "driveMin": 92,
-        "straightKm": 74.4
+        "name": "Bingen-White Salmon",
+        "roadKm": 78.7,
+        "driveMin": 78,
+        "straightKm": 46.7
       },
       {
         "name": "Portland Union Station",
         "roadKm": 100.1,
         "driveMin": 98,
         "straightKm": 78.5
+      },
+      {
+        "name": "Portland International Airport (PDX)",
+        "roadKm": 94.4,
+        "driveMin": 92,
+        "straightKm": 74.4
       }
     ]
   },

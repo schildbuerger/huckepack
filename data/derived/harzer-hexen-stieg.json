@@ -9775,19 +9775,25 @@
   },
   "access": {
     "source": "osrm",
-    "retrieved": "2026-10-30T12:08:42+00:00",
+    "retrieved": "2026-11-07T14:02:46+00:00",
     "hubs": [
       {
-        "name": "Osterode (Harz) Mitte",
-        "roadKm": 1.7,
-        "driveMin": 4,
-        "straightKm": 1.1
+        "name": "Göttingen",
+        "roadKm": 42.3,
+        "driveMin": 45,
+        "straightKm": 31.4
       },
       {
         "name": "Hannover Airport (HAJ)",
         "roadKm": 112.6,
         "driveMin": 77,
         "straightKm": 90.3
+      },
+      {
+        "name": "Erfurt–Weimar Airport (ERF)",
+        "roadKm": 125.5,
+        "driveMin": 116,
+        "straightKm": 96.4
       }
     ]
   },

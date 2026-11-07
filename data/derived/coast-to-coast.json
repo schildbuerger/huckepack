@@ -25490,13 +25490,19 @@
   },
   "access": {
     "source": "osrm",
-    "retrieved": "2026-10-31T17:16:10+00:00",
+    "retrieved": "2026-11-07T14:02:15+00:00",
     "hubs": [
       {
-        "name": "St Bees",
-        "roadKm": 0.1,
-        "driveMin": 0,
-        "straightKm": 0.0
+        "name": "Carlisle",
+        "roadKm": 69.3,
+        "driveMin": 63,
+        "straightKm": 61.2
+      },
+      {
+        "name": "Preston",
+        "roadKm": 139.0,
+        "driveMin": 126,
+        "straightKm": 100.2
       },
       {
         "name": "Newcastle International Airport (NCL)",
@@ -25505,10 +25511,10 @@
         "straightKm": 135.8
       },
       {
-        "name": "Manchester Airport (MAN)",
-        "roadKm": 200.9,
-        "driveMin": 164,
-        "straightKm": 153.3
+        "name": "Liverpool John Lennon Airport (LPL)",
+        "roadKm": 207.9,
+        "driveMin": 174,
+        "straightKm": 137.5
       }
     ]
   },

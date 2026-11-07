@@ -57,11 +57,13 @@
     "retrieved": "2026-11-05T21:23:02Z",
     "url": "https://download.geofabrik.de/"
   },
-  "osrm-access-duluth-international-airport-dlh.json": {
-    "retrieved": "2026-11-07T00:16:55+00:00",
-    "url": "https://router.project-osrm.org/route/v1/driving/-92.20047,46.8419;-90.8239,48.08956?overview=false"
+  "osrm-access-minneapolis-saint-paul-international-airport-msp.json": {
+    "key": "https://router.project-osrm.org/route/v1/driving/-93.21878,44.878;-90.8239,48.08956?overview=false",
+    "retrieved": "2026-11-07T14:02:05+00:00",
+    "url": "https://router.project-osrm.org/route/v1/driving/-93.21878,44.878;-90.8239,48.08956?overview=false"
   },
   "osrm-access-thunder-bay-international-airport-yqt.json": {
+    "key": "https://router.project-osrm.org/route/v1/driving/-89.32087,48.37214;-90.8239,48.08956?overview=false",
     "retrieved": "2026-11-07T00:16:55+00:00",
     "url": "https://router.project-osrm.org/route/v1/driving/-89.32087,48.37214;-90.8239,48.08956?overview=false"
   },

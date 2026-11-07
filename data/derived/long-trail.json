@@ -17690,19 +17690,25 @@
   },
   "access": {
     "source": "osrm",
-    "retrieved": "2026-11-06T14:01:22+00:00",
+    "retrieved": "2026-11-07T14:03:06+00:00",
     "hubs": [
       {
-        "name": "Albany International Airport (ALB)",
-        "roadKm": 67.8,
-        "driveMin": 72,
-        "straightKm": 52.5
+        "name": "Pittsfield",
+        "roadKm": 38.2,
+        "driveMin": 47,
+        "straightKm": 33.5
       },
       {
-        "name": "Burlington International Airport (BTV)",
-        "roadKm": 225.0,
-        "driveMin": 230,
-        "straightKm": 192.3
+        "name": "Albany-Rensselaer",
+        "roadKm": 71.7,
+        "driveMin": 79,
+        "straightKm": 49.2
+      },
+      {
+        "name": "Bradley International Airport (BDL)",
+        "roadKm": 124.3,
+        "driveMin": 141,
+        "straightKm": 97.3
       }
     ]
   },

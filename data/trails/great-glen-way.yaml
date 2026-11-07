@@ -90,17 +90,28 @@ wildCamping:
     leave no trace; Scottish Canals offers free pitches along the Caledonian Canal.
   source: ggw-access
 access:
-  # Fort William station (trains from Glasgow) and Inverness Airport, which the Great Glen Way team
-  # names. Coordinates from OSM; distances by pipeline/access.py
+  # hubs by the rules of 2026-11-07 (docs/scope.md: long-distance trains, the main station of a city
+  # of 100,000, airports with international flights), suggested by pipeline/hubs.py and reviewed.
+  # Coordinates from OSM; distances by pipeline/access.py
   - kind: station
     name: Fort William
     lat: 56.82056
     lon: -5.10531
     source: osm
+  - kind: station
+    name: Glasgow Queen Street
+    lat: 55.86256
+    lon: -4.25112
+    source: osm
   - kind: airport
     name: Inverness Airport (INV)
     lat: 57.54315
     lon: -4.05058
+    source: osm
+  - kind: airport
+    name: Glasgow Airport (GLA)
+    lat: 55.87058
+    lon: -4.43517
     source: osm
 animals:
   # Ticks (the Great Glen Way team's safety page names the risk; the NHS's advice). Level ours

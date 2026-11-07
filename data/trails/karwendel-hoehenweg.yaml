@@ -91,27 +91,18 @@ wildCamping:
     terrain above the tree line is allowed.
   source: oegv-campen
 access:
-  # the stations at both ends (Reith bei Seefeld and Scharnitz, the Karwendelbahn) and Innsbruck
-  # and Munich airports. Coordinates from OSM (Nominatim); distances by pipeline/access.py
+  # hubs by the rules of 2026-11-07 (docs/scope.md: long-distance trains, the main station of a city
+  # of 100,000, airports with international flights), suggested by pipeline/hubs.py and reviewed.
+  # Coordinates from OSM; distances by pipeline/access.py
   - kind: station
-    name: Reith bei Seefeld
-    lat: 47.30096
-    lon: 11.20089
-    source: osm
-  - kind: station
-    name: Scharnitz
-    lat: 47.39182
-    lon: 11.26649
+    name: Innsbruck Hauptbahnhof
+    lat: 47.2633
+    lon: 11.40102
     source: osm
   - kind: airport
     name: Innsbruck Airport (INN)
     lat: 47.25973
     lon: 11.34187
-    source: osm
-  - kind: airport
-    name: Munich Airport (MUC)
-    lat: 48.35396
-    lon: 11.77859
     source: osm
 animals:
   # Cattle on the alpine pastures (the Austrian ministry's 10 rules) and ticks (AGES: TBE risk all

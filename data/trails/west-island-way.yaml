@@ -83,13 +83,28 @@ sleeping:
   types: [guesthouse]
   source: visitbute-stay
 access:
-  # Wemyss Bay, the station on the pier for the ferry to Rothesay. Coordinates from OSM; distances
-  # by pipeline/access.py. Glasgow Airport left out: OSRM routes it round by the Colintraive ferry
-  # (152 km against 39 km straight), as for Arran's airport
+  # hubs by the rules of 2026-11-07 (docs/scope.md: long-distance trains, the main station of a city
+  # of 100,000, airports with international flights), suggested by pipeline/hubs.py and reviewed.
+  # Dalmuir: by road to Wemyss Bay (ferry to Rothesay), then ferry; Glasgow Queen Street: by road to
+  # Wemyss Bay (ferry to Rothesay), then ferry; Glasgow Prestwick Airport (PIK): by road to Wemyss
+  # Bay (ferry to Rothesay), then ferry. Coordinates from OSM; distances by pipeline/access.py
   - kind: station
-    name: Wemyss Bay (ferry to Rothesay)
-    lat: 55.87602
-    lon: -4.88934
+    name: Dalmuir
+    lat: 55.91201
+    lon: -4.42685
+    via: { name: "Wemyss Bay (ferry to Rothesay)", lat: 55.87575, lon: -4.89087, by: ferry }
+    source: osm
+  - kind: station
+    name: Glasgow Queen Street
+    lat: 55.86256
+    lon: -4.25112
+    via: { name: "Wemyss Bay (ferry to Rothesay)", lat: 55.87575, lon: -4.89087, by: ferry }
+    source: osm
+  - kind: airport
+    name: Glasgow Prestwick Airport (PIK)
+    lat: 55.50217
+    lon: -4.59484
+    via: { name: "Wemyss Bay (ferry to Rothesay)", lat: 55.87575, lon: -4.89087, by: ferry }
     source: osm
 animals:
   # ticks (NHS). The site lists no livestock or other risk; level ours

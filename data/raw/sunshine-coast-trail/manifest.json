@@ -92,13 +92,20 @@
     "retrieved": "2026-11-05T21:23:02Z",
     "url": "https://download.geofabrik.de/"
   },
-  "osrm-access-powell-river-airport-ypw.json": {
-    "retrieved": "2026-11-06T20:34:31+00:00",
-    "url": "https://router.project-osrm.org/route/v1/driving/-124.4999,49.83346;-124.83728,50.0582?overview=false"
+  "osrm-access-comox-valley-airport-yqq.json": {
+    "key": "https://router.project-osrm.org/route/v1/driving/-124.90581,49.70633;-124.92389,49.74096?overview=false",
+    "retrieved": "2026-11-07T14:04:03+00:00",
+    "url": "https://router.project-osrm.org/route/v1/driving/-124.90581,49.70633;-124.92389,49.74096?overview=false"
   },
   "osrm-access-vancouver-international-airport-yvr.json": {
-    "retrieved": "2026-11-06T20:34:31+00:00",
-    "url": "https://router.project-osrm.org/route/v1/driving/-123.18446,49.19388;-124.83728,50.0582?overview=false"
+    "key": "https://router.project-osrm.org/route/v1/driving/-123.18446,49.19388;-123.27359,49.36856?overview=false",
+    "retrieved": "2026-11-07T14:15:15+00:00",
+    "url": "https://router.project-osrm.org/route/v1/driving/-123.18446,49.19388;-123.27359,49.36856?overview=false"
+  },
+  "osrm-access-vancouver-pacific-central.json": {
+    "key": "https://router.project-osrm.org/route/v1/driving/-123.09786,49.27375;-123.27359,49.36856?overview=false",
+    "retrieved": "2026-11-07T14:04:02+00:00",
+    "url": "https://router.project-osrm.org/route/v1/driving/-123.09786,49.27375;-123.27359,49.36856?overview=false"
   },
   "wikimedia.json": {
     "retrieved": "2026-11-06T20:34:32+00:00",

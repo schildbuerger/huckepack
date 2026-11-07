@@ -86,17 +86,26 @@ fees:
   # dollars; the other huts' tables differ
   - { name: "Moonlight Tops Hut (international visitor, adult)", amount: 117, currency: NZD, per: per person and night, year: 2026, note: "NZ visitors $78; 1 October to 30 April", source: doc }
 access:
-  # Greymouth (bus and train) to the south, Blackball the village below the start; Hokitika the
-  # nearest airport. Coordinates from OSM; distances by pipeline/access.py
-  - kind: bus
+  # hubs by the rules of 2026-11-07 (docs/scope.md: long-distance trains, the main station of a city
+  # of 100,000, airports with international flights), suggested by pipeline/hubs.py and reviewed.
+  # Greymouth: Great Journeys NZ TranzAlpine (Christchurch – Greymouth), missing from OSM's route
+  # relations (operator's page); Christchurch: Great Journeys NZ TranzAlpine and Coastal Pacific,
+  # missing from OSM's route relations (operator's page). Coordinates from OSM; distances by
+  # pipeline/access.py
+  - kind: station
     name: Greymouth
-    lat: -42.44995
-    lon: 171.20799
-    source: osm
+    lat: -42.44829
+    lon: 171.21459
+    source: gjnz-tranzalpine
+  - kind: station
+    name: Christchurch
+    lat: -43.53992
+    lon: 172.60791
+    source: gjnz-tranzalpine
   - kind: airport
-    name: Hokitika Airport (HKK)
-    lat: -42.71319
-    lon: 170.98583
+    name: Christchurch Airport (CHC)
+    lat: -43.48497
+    lon: 172.53631
     source: osm
 tags: [great-walk, paparoa, national-park, karst, pike29]
 notes:
@@ -171,3 +180,8 @@ sources:
     url: https://project-osrm.org/
     licence: Route data © OpenStreetMap contributors (ODbL)
     retrieved: 2026-11-05
+  - id: gjnz-tranzalpine
+    title: "Great Journeys New Zealand (KiwiRail): the TranzAlpine, Christchurch – Greymouth"
+    url: https://www.greatjourneysnz.com/routes/tranzalpine/
+    licence: All rights reserved (facts only)
+    retrieved: 2026-11-07

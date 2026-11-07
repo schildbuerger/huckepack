@@ -3081,13 +3081,19 @@
   },
   "access": {
     "source": "osrm",
-    "retrieved": "2026-11-06T15:14:25+00:00",
+    "retrieved": "2026-11-07T14:03:07+00:00",
     "hubs": [
       {
-        "name": "California Redwood Coast–Humboldt County Airport (ACV)",
-        "roadKm": 114.6,
-        "driveMin": 151,
-        "straightKm": 79.1
+        "name": "Sacramento International Airport (SMF)",
+        "roadKm": 425.7,
+        "driveMin": 405,
+        "straightKm": 296.1
+      },
+      {
+        "name": "San Francisco International Airport (SFO)",
+        "roadKm": 431.8,
+        "driveMin": 406,
+        "straightKm": 342.4
       }
     ]
   }

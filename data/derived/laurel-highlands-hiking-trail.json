@@ -5325,14 +5325,8 @@
   },
   "access": {
     "source": "osrm",
-    "retrieved": "2026-11-06T22:14:05+00:00",
+    "retrieved": "2026-11-07T14:03:01+00:00",
     "hubs": [
-      {
-        "name": "Pittsburgh International Airport (PIT)",
-        "roadKm": 130.2,
-        "driveMin": 123,
-        "straightKm": 93.7
-      },
       {
         "name": "Connellsville station",
         "roadKm": 31.3,
@@ -5340,10 +5334,16 @@
         "straightKm": 18.7
       },
       {
-        "name": "Johnstown station",
-        "roadKm": 91.1,
-        "driveMin": 91,
-        "straightKm": 70.3
+        "name": "Pittsburgh Union Station",
+        "roadKm": 110.3,
+        "driveMin": 99,
+        "straightKm": 76.7
+      },
+      {
+        "name": "Pittsburgh International Airport (PIT)",
+        "roadKm": 130.2,
+        "driveMin": 123,
+        "straightKm": 93.7
       }
     ]
   },

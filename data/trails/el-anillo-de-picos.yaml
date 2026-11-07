@@ -111,12 +111,23 @@ wildCamping:
     campsites, and not outside the refuges unless authorised for force majeure.
   source: prug-asturias
 access:
-  # Oviedo station (Asturias's main station; buses on to Cangas de Onís and the Lagos de Covadonga
-  # below Vega de Ario) and Asturias Airport. Coordinates from OSM; distances by pipeline/access.py
+  # hubs by the rules of 2026-11-07 (docs/scope.md: long-distance trains, the main station of a city
+  # of 100,000, airports with international flights), suggested by pipeline/hubs.py and reviewed.
+  # Coordinates from OSM; distances by pipeline/access.py
   - kind: station
-    name: Oviedo
-    lat: 43.36636
-    lon: -5.85487
+    name: Mieres del Camín
+    lat: 43.25004
+    lon: -5.78239
+    source: osm
+  - kind: station
+    name: León
+    lat: 42.5951
+    lon: -5.58194
+    source: osm
+  - kind: airport
+    name: Santander Airport (SDR)
+    lat: 43.42694
+    lon: -3.8205
     source: osm
   - kind: airport
     name: Asturias Airport (OVD)

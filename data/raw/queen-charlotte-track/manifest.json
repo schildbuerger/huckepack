@@ -63,8 +63,14 @@
     "url": "https://download.geofabrik.de/"
   },
   "osrm-access-picton.json": {
-    "retrieved": "2026-11-06T00:34:24+00:00",
-    "url": "https://router.project-osrm.org/route/v1/driving/174.00486,-41.28837;174.24609,-41.09643?overview=false"
+    "key": "https://router.project-osrm.org/route/v1/driving/174.00486,-41.28837;174.00898,-41.28902?overview=false",
+    "retrieved": "2026-11-07T14:15:17+00:00",
+    "url": "https://router.project-osrm.org/route/v1/driving/174.00486,-41.28837;174.00898,-41.28902?overview=false"
+  },
+  "osrm-access-wellington-airport-wlg.json": {
+    "key": "https://router.project-osrm.org/route/v1/driving/174.80827,-41.3269;174.78695,-41.26424?overview=false",
+    "retrieved": "2026-11-07T14:03:44+00:00",
+    "url": "https://router.project-osrm.org/route/v1/driving/174.80827,-41.3269;174.78695,-41.26424?overview=false"
   },
   "wikimedia.json": {
     "retrieved": "2026-11-06T00:34:25+00:00",

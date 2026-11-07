@@ -95,18 +95,28 @@ wildCamping:
     campfires anywhere on the trail.
   source: cta-faq
 access:
-  # the two international airports nearest the southern end (no railway in northern New Hampshire;
-  # the FAQ: buses run only as far as Gorham, Littleton or North Conway). Coordinates from OSM;
-  # distances by pipeline/access.py
-  - kind: airport
-    name: Portland International Jetport (PWM)
-    lat: 43.64618
-    lon: -70.31441
+  # hubs by the rules of 2026-11-07 (docs/scope.md: long-distance trains, the main station of a city
+  # of 100,000, airports with international flights), suggested by pipeline/hubs.py and reviewed.
+  # Coordinates from OSM; distances by pipeline/access.py
+  - kind: station
+    name: Montpelier
+    lat: 44.25569
+    lon: -72.60636
+    source: osm
+  - kind: station
+    name: Boston South Station
+    lat: 42.35075
+    lon: -71.05553
     source: osm
   - kind: airport
-    name: Manchester–Boston Regional Airport (MHT)
-    lat: 42.93067
-    lon: -71.43881
+    name: Logan International Airport (BOS)
+    lat: 42.36314
+    lon: -71.00923
+    source: osm
+  - kind: airport
+    name: Montréal–Trudeau International Airport (YUL)
+    lat: 45.46869
+    lon: -73.74648
     source: osm
 animals:
   # the Forest Service's White Mountain National Forest safety page (bears) and the CDC (ticks).

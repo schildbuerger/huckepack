@@ -79,17 +79,18 @@ wildCamping:
     and Glen Douglas, an active military training area.
   source: tlw-faq
 access:
-  # Balloch at the start and Arrochar and Tarbet near the end (the West Highland Line), and
-  # Glasgow Airport. Coordinates from OSM; distances by pipeline/access.py
+  # hubs by the rules of 2026-11-07 (docs/scope.md: long-distance trains, the main station of a city
+  # of 100,000, airports with international flights), suggested by pipeline/hubs.py and reviewed.
+  # Coordinates from OSM; distances by pipeline/access.py
   - kind: station
-    name: Balloch
-    lat: 56.00236
-    lon: -4.58328
+    name: Dumbarton Central
+    lat: 55.94652
+    lon: -4.56761
     source: osm
   - kind: station
-    name: Arrochar and Tarbet
-    lat: 56.2033
-    lon: -4.72312
+    name: Glasgow Queen Street
+    lat: 55.86256
+    lon: -4.25112
     source: osm
   - kind: airport
     name: Glasgow Airport (GLA)

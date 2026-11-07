@@ -89,12 +89,19 @@
     "url": "https://download.geofabrik.de/"
   },
   "osrm-access-cardiff-airport-cwl.json": {
+    "key": "https://router.project-osrm.org/route/v1/driving/-3.34458,51.39785;-4.68253,52.08973?overview=false",
     "retrieved": "2026-11-03T15:38:54+00:00",
     "url": "https://router.project-osrm.org/route/v1/driving/-3.34458,51.39785;-4.68253,52.08973?overview=false"
   },
   "osrm-access-carmarthen.json": {
+    "key": "https://router.project-osrm.org/route/v1/driving/-4.3062,51.85318;-4.68253,52.08973?overview=false",
     "retrieved": "2026-11-03T15:38:53+00:00",
     "url": "https://router.project-osrm.org/route/v1/driving/-4.3062,51.85318;-4.68253,52.08973?overview=false"
+  },
+  "osrm-access-swansea.json": {
+    "key": "https://router.project-osrm.org/route/v1/driving/-3.94037,51.62568;-4.68253,52.08973?overview=false",
+    "retrieved": "2026-11-07T14:03:38+00:00",
+    "url": "https://router.project-osrm.org/route/v1/driving/-3.94037,51.62568;-4.68253,52.08973?overview=false"
   },
   "stage-1-main.gpx": {
     "retrieved": "2026-11-03T15:26:41+00:00",

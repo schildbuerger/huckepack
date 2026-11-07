@@ -90,17 +90,28 @@ wildCamping:
     trekking-schwarzwald.de); elsewhere camping in the forest isn't allowed.
   source: naturpark-trekking
 access:
-  # Baiersbronn station (Murgtalbahn) at the start; Karlsruhe/Baden-Baden airport. Coordinates
-  # from OSM; distances by pipeline/access.py
+  # hubs by the rules of 2026-11-07 (docs/scope.md: long-distance trains, the main station of a city
+  # of 100,000, airports with international flights), suggested by pipeline/hubs.py and reviewed.
+  # Coordinates from OSM; distances by pipeline/access.py
   - kind: station
-    name: Baiersbronn station
-    lat: 48.5037
-    lon: 8.37204
+    name: Horb
+    lat: 48.44181
+    lon: 8.68897
+    source: osm
+  - kind: station
+    name: Pforzheim Hauptbahnhof
+    lat: 48.89398
+    lon: 8.70326
     source: osm
   - kind: airport
     name: Karlsruhe/Baden-Baden Airport (FKB)
     lat: 48.77634
     lon: 8.08401
+    source: osm
+  - kind: airport
+    name: Strasbourg Airport (SXB)
+    lat: 48.53887
+    lon: 7.62611
     source: osm
 animals:
   # Ticks: the RKI's TBE risk areas (2026) and the federal health agency's advice. Level ours

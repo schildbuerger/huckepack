@@ -42,9 +42,20 @@
     "retrieved": "2026-11-05T21:23:02Z",
     "url": "https://download.geofabrik.de/"
   },
-  "osrm-access-sudbury-airport-ysb.json": {
-    "retrieved": "2026-11-06T14:42:26+00:00",
-    "url": "https://router.project-osrm.org/route/v1/driving/-80.7989,46.625;-81.40055,46.01568?overview=false"
+  "osrm-access-billy-bishop-toronto-city-airport-ytz.json": {
+    "key": "https://router.project-osrm.org/route/v1/driving/-79.39619,43.62789;-81.40055,46.01568?overview=false",
+    "retrieved": "2026-11-07T14:02:59+00:00",
+    "url": "https://router.project-osrm.org/route/v1/driving/-79.39619,43.62789;-81.40055,46.01568?overview=false"
+  },
+  "osrm-access-sudbury.json": {
+    "key": "https://router.project-osrm.org/route/v1/driving/-80.99215,46.48749;-81.40055,46.01568?overview=false",
+    "retrieved": "2026-11-07T14:02:57+00:00",
+    "url": "https://router.project-osrm.org/route/v1/driving/-80.99215,46.48749;-81.40055,46.01568?overview=false"
+  },
+  "osrm-access-toronto-pearson-international-airport-yyz.json": {
+    "key": "https://router.project-osrm.org/route/v1/driving/-79.62853,43.67732;-81.40055,46.01568?overview=false",
+    "retrieved": "2026-11-07T14:02:58+00:00",
+    "url": "https://router.project-osrm.org/route/v1/driving/-79.62853,43.67732;-81.40055,46.01568?overview=false"
   },
   "wikimedia.json": {
     "retrieved": "2026-11-06T14:42:27+00:00",
