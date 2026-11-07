@@ -242,12 +242,15 @@ def caption(f):
     name = f["name"] or f["title"].split(":", 1)[1].rsplit(".", 1)[0]
     name = re.sub(r"\s*\(\d{6,}\)$", "", name)  # Flickr ids
     name = re.sub(r"^\d{4}[ _.-]\d{2}[ _.-]\d{2}\s+", "", name)  # a leading date
+    # a camera's date and frame number: "20150708 - 41 - Pukaskwa National Park, Ont. - …"
+    name = re.sub(r"^\d{8}\s*-\s*(\d{1,4}\s*-\s*)?", "", name)
     name = re.sub(r"\s*\(\d{1,3}\)(\s+resultat)?$", "", name)  # "(4)"
     name = re.sub(r"\s*-\s*(geograph\.org\.uk\s*-\s*\d+|panoramio(\s*\(\d+\))?)$", "", name, flags=re.I)  # copies from Geograph and Panoramio
     name = re.sub(r"\s+-\s+\w+ \d{1,2}, \d{4}$", "", name)  # " - August 8, 2016"
     name = re.sub(r"\s+\d{4}-\d{2}-\d{2}.*$", "", name)
     # a trailing count, never the end of a longer number ("Nisqually River 360")
     name = re.sub(r"\s*(?<!\d)\d{1,2}$", "", name).replace("_", " ").replace(" @ ", ", ")
+    name = re.sub(r"\s+(No|Nr|Nº)\.?$", "", name)  # "Panorama No. 2" without its number
     return re.sub(r"[\s\-–,]+$", "", name)[:90]
 
 

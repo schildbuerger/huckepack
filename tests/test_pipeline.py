@@ -687,3 +687,13 @@ class PhotoAtStart(unittest.TestCase):
         # the condition in photos.choose(): a photo at km 0.0 is placed, not dropped
         for km, placed in ((0.0, True), (12.5, True), (None, False), (False, False)):
             self.assertEqual(km is not None and km is not False, placed)
+
+
+class Captions(unittest.TestCase):
+    def test_camera_date_and_frame_go(self):
+        from pipeline import photos
+
+        f = {"name": None, "title": "File:20150708 - 41 - Pukaskwa National Park, Ont. - Southern Headland Panorama.jpg"}
+        self.assertEqual(photos.caption(f), "Pukaskwa National Park, Ont. - Southern Headland Panorama")
+        self.assertEqual(photos.caption({"name": None, "title": "File:Nisqually River 360.jpg"}), "Nisqually River 360")
+        self.assertEqual(photos.caption({"name": None, "title": "File:Southern Headland Panorama No. 2.jpg"}), "Southern Headland Panorama")

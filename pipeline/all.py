@@ -150,8 +150,10 @@ def check(slug):
         pts = elevation["points"]
         model = sum(max(0, b[1] - a[1]) for a, b in zip(pts, pts[1:]))
         up = sum(s["ascentM"] for s in main) if main and all("ascentM" in s for s in main) else None
-        if whole and trail.get("ascent"):
-            up = trail["ascent"][0]["m"]  # a trail without stages: its stated total
+        if (whole or not up) and trail.get("ascent"):
+            # the stated total: a trail without stages, or stages that state no climbs of their own
+            # (the Benton MacKaye Trail's total from its association, 2026-11-07)
+            up = trail["ascent"][0]["m"]
         if up:
             msg = f"ascent: stated {up:,} m, terrain model about {round(model, -1):,.0f} m"
             (flags if off(model, up) else fine).append(msg + (" (the model runs high in forests; check the stated figure)" if off(model, up) else ""))
