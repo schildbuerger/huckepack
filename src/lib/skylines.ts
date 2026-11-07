@@ -2733,6 +2733,48 @@ export const SKYLINES: Record<string, Skyline> = {
       { d: water(1370, 1414, 306), c: "#5f8ea6" },
     ],
   },
+  "florida-trail": {
+    view: "Florida from south to north: the cypress domes of Big Cypress over the sawgrass, Lake Okeechobee's wide water behind the grassy Herbert Hoover Dike, longleaf pines over saw palmetto in the flatwoods, and the white quartz-sand dunes of Santa Rosa Island on the Gulf at the trail's end",
+    ridge: "#5c7a3e",
+    ground: "#d8cda4",
+    shapes: [
+      // Lake Okeechobee far off, a pale band to the horizon, and the dike's long grassy levee in front
+      { d: water(260, 1000, 280), c: "#8db6cc" },
+      { d: hills([[300, G], [380, 298], [560, 294], [780, 295], [960, 298], [1040, G]]), c: "#a9b07c" },
+      // the Gulf of Mexico at the end, emerald towards the horizon
+      { d: water(1120, 1600, 278), c: "#3f9ea6" },
+      // Big Cypress: cypress domes, the far ones paler, tallest in the middle where the water is deepest
+      { d: hills([[0, G], [50, 278], [120, 250], [200, 238], [280, 250], [350, 278], [410, G]]), c: "#869f7c" },
+      { d: hills([[330, G], [380, 270], [450, 252], [520, 262], [580, G]]), c: "#7a9470" },
+      { d: hills([[110, G], [170, 276], [240, 254], [310, 246], [380, 256], [440, 282], [500, G]]), c: "#4e6a3c" },
+      // the sawgrass prairie around the domes
+      { d: hills([[0, G], [80, 300], [280, 303], [480, 301], [640, G]]), c: "#b3ab62" },
+      // longleaf pines in the flatwoods: tall bare trunks with tufted crowns
+      {
+        d: ([[690, 156], [760, 132], [826, 168], [900, 142], [972, 160], [1044, 176]] as const)
+          .map(([x, top]) => `M${x - 2.5},${G}L${x - 1.5},${top}H${x + 1.5}L${x + 2.5},${G}Z`)
+          .join(" "),
+        c: "#5b4636",
+      },
+      {
+        d: ([[690, 156, 16, 9], [682, 168, 10, 6], [699, 172, 9, 6], [760, 132, 18, 10], [751, 146, 11, 6], [770, 150, 10, 6], [826, 168, 14, 8], [834, 180, 9, 5], [900, 142, 17, 9], [890, 156, 10, 6], [910, 158, 9, 5], [972, 160, 15, 8], [964, 173, 9, 5], [1044, 176, 14, 8], [1052, 188, 9, 5]] as const)
+          .map(([x, y, rx, ry]) => `M${x - rx},${y}A${rx},${ry} 0 1 0 ${x + rx},${y}A${rx},${ry} 0 1 0 ${x - rx},${y}Z`)
+          .join(" "),
+        c: "#3f5f34",
+      },
+      // saw palmetto under the pines, its fans spread low over the sand
+      { d: hills([[600, G], [660, 298], [800, 292], [950, 296], [1100, 293], [1180, G]]), c: "#6f8f3e" },
+      { d: "M700,294l-12,-12l6,13z M704,294l2,-16l3,16z M708,294l13,-11l-6,12z M880,292l-12,-12l6,13z M884,292l2,-16l3,16z M888,292l13,-11l-6,12z M1030,294l-11,-11l6,12z M1034,294l2,-15l3,15z M1038,294l12,-10l-6,11z", c: "#56772f" },
+      // the white dunes of Santa Rosa Island, with sea oats on their crests
+      { d: hills([[1160, G], [1240, 292], [1330, 284], [1420, 292], [1520, G]]), c: "#efe9d8" },
+      { d: "M1290,287l-1,-16h1.6l0.4,16z M1330,285l0,-18h1.6l0,18z M1372,288l1,-15h1.6l-1,15z", c: "#b89f58" },
+      { d: "M1286,272a3,6 0 1 0 6,0a3,6 0 1 0 -6,0Z M1327,268a3,6 0 1 0 6,0a3,6 0 1 0 -6,0Z M1371,274a3,6 0 1 0 6,0a3,6 0 1 0 -6,0Z", c: "#c9b26a" },
+    ],
+    front: [
+      // the white quartz-sand beach along the Gulf at Fort Pickens
+      { d: hills([[1240, G], [1360, 308], [1500, 306], [1600, 307], [1600, G]]), c: "#f6f2e6" },
+    ],
+  },
   "superior-hiking-trail": {
     view: "Minnesota's North Shore: the Sawtooth ridges above Lake Superior, birch and spruce on the rocky slopes, a waterfall dropping towards the lake and the lake's long horizon",
     ridge: "#3f5a34",
