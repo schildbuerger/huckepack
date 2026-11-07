@@ -158,8 +158,10 @@ export function routeEstimate(d?: DerivedData) {
 // the stated pair, else the terrain model's estimate (`est`). Undefined for trails with stages.
 export function perDay(t: Trail, d?: DerivedData) {
   if (!noStages(t) || !t.days) return undefined;
-  // the provider's length (as the stage averages, which stay on the provider's figures), else ours
-  const length = providerLength(t) ?? ((m) => (m ? { ...m, how: "measured on the map line", approx: false } : null))(measuredLength(t, d));
+  // the trail's length as the page shows it (ours where measured, 2026-11-07), so the averages per day
+  // and the key figure are one figure; the unrounded measurement where there is one
+  const total = trailLength(t, d);
+  const length = total ? { ...total, value: "exact" in total && typeof total.exact === "number" ? total.exact : total.value } : null;
   if (!length) return undefined;
   const { min, max } = t.days;
   const stated = trailClimb(t);
