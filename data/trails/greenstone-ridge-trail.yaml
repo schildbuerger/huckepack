@@ -123,17 +123,9 @@ access:
   # (Michigan) or Grand Portage (Minnesota), to Windigo or Rock Harbor (directions page): the
   # nearest airports with scheduled flights on each side. No railway reaches the region; the
   # Indian Trails bus stops at Houghton, which OSM maps no stop for. Coordinates from OSM;
-  # distances by pipeline/access.py
-  - kind: airport
-    name: Houghton County Memorial Airport (CMX)
-    lat: 47.1686
-    lon: -88.48728
-    source: osm
-  - kind: airport
-    name: Duluth International Airport (DLH)
-    lat: 46.8419
-    lon: -92.20047
-    source: osm
+  # distances by pipeline/access.py. Only Thunder Bay is listed: road routing to an island start
+  # snaps it to the Canadian shore by Grand Portage, so Houghton (751 km) and Duluth (399 km) came
+  # out as meaningless figures (2026-11-07, the integrator)
   - kind: airport
     name: Thunder Bay International Airport (YQT)
     lat: 48.37214
