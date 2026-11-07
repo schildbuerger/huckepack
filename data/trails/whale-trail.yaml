@@ -153,9 +153,9 @@ notes:
   - >-
     Data check (2026-11-02): no independent source repeats the stages (SA Hikes copies CapeNature's
     figures word for word). SA Hikes' GPS track: 51.06 km against the stated 55.7 km (8 %), 1,169 m
-    up and 1,327 m down against the terrain model's 1,650 m up (41 %, in `dataCheck`: the model reads
-    the dune and fynbos surface and the track's own smoothing differs; the page marks the estimate
-    ≈). Highest point: 603 m on the terrain model against Potberg's 611 m (CapeNature). Days: 5 both.
+    up and 1,327 m down against the terrain model's 1,340 m up (GEDTM30, 2026-11-07; 15 %, in
+    `dataCheck`: the track's own smoothing differs; the page marks the estimate ≈). Highest point:
+    601 m on the terrain model against Potberg's 611 m (CapeNature). Days: 5 both.
   - >-
     Wild camping: no source found (2026-11-03); hikers stay in CapeNature's huts, and fires in the
     veld are prohibited.
@@ -167,7 +167,7 @@ dataCheck:
   date: 2026-11-02
   against: [sahikes]
   deviations:
-    - { figure: "Ascent", ours: "≈ 1,650 m (terrain model)", theirs: "1,169 m (GPS track)", source: sahikes }
+    - { figure: "Ascent", ours: "≈ 1,340 m (terrain model, GEDTM30, 2026-11-07)", theirs: "1,169 m (GPS track)", source: sahikes }
     - { figure: "Stage 3 length", ours: "8.5 km", theirs: "7.1 km (map line, along the beach)", source: osm }
 sources:
   - id: huckepack-season

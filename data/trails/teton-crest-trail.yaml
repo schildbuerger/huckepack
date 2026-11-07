@@ -203,38 +203,39 @@ notes:
   - >-
     Map line (2026-11-07): the Wyoming Geofabrik extract (2026-11-06); OSM's "Teton Crest Trail"
     relation (3895101, 49 ways, 57.5 km), which begins on the Phillips Pass saddle and ends at the
-    String Lake trailhead, chained from Phillips Pass as one segment, 100 % matched (at most 2 m off),
-    no bridges. The main route measures 56.6 km against the park's 39 miles (62.8 km, −9.9 %): the
-    record keeps the park's figure. It runs by Marion Lake, the Death Canyon Shelf, Alaska Basin,
-    Hurricane Pass, the South and North Forks of Cascade Canyon, Lake Solitude, Paintbrush Divide and
-    Holly Lake down Paintbrush Canyon to String Lake. The terrain model's highest point is 3,260 m at
-    km 43.5 (Paintbrush Divide, 10,700 feet), above the park's tree line of about 10,000 feet; its
-    lowest 2,096 m at km 55.8 (String Lake). It estimates about 2,390 m of climbing, under the park's
-    "over 9000’" (2,743 m): sampled every 100 m, the model misses part of the switchbacks' climbing.
-    Resupply: OSM maps no shop and no drinking water along the route (the check's 56.6 km without
-    either): carry food for the whole route and treat the water of the streams and lakes, as the park
-    says. OSM maps 9 campsites within reach (the longest stretch without one 13.5 km).
+    String Lake trailhead, chained from Phillips Pass as one segment, 100 % matched (at most 2 m
+    off), no bridges. The main route measures 56.6 km against the park's 39 miles (62.8 km, −9.9 %):
+    the record keeps the park's figure. It runs by Marion Lake, the Death Canyon Shelf, Alaska
+    Basin, Hurricane Pass, the South and North Forks of Cascade Canyon, Lake Solitude, Paintbrush
+    Divide and Holly Lake down Paintbrush Canyon to String Lake. The terrain model's highest point
+    is 3,259 m at km 43.2 (GEDTM30, 2026-11-07; (Paintbrush Divide, 10,700 feet), above the park's
+    tree line of about 10,000 feet; its lowest 2,091 m at km 55.2 (String Lake). It estimates about
+    2,200 m of climbing, under the park's "over 9000’" (2,743 m): sampled every 100 m and counted
+    from 10 m, the model misses part of the switchbacks' climbing. Resupply: OSM maps no shop and no
+    drinking water along the route (the check's 56.6 km without either): carry food for the whole
+    route and treat the water of the streams and lakes, as the park says. OSM maps 9 campsites
+    within reach (the longest stretch without one 13.5 km).
   - >-
     Data check (2026-11-07): against English Wikipedia (the only independent second source with
     figures; the Forest Service has no page for the trail). Length 39 miles (62.8 km) against 40
     miles (64.4 km, −2 %, agrees); termini Phillips Pass and String Lake (agree); highest point,
-    terrain model 3,260 m, against Paintbrush Divide 10,645 feet (3,245 m, agrees); lowest 2,096 m
+    terrain model 3,259 m, against Paintbrush Divide 10,645 feet (3,245 m, agrees); lowest 2,091 m
     against String Lake 6,870 feet (2,094 m, agrees); season late July to September against "Summer
     to Fall" (agrees); difficulty T3 against "Strenuous" (agrees); grizzly bears named as a hazard
-    (agrees). Ascent: no stated figure; the terrain model's ≈2,390 m is 19 % under Wikipedia's 9,681
-    feet (2,951 m, which it gives for the 32 miles from the tram) and 13 % under the park's "over
-    9000’", recorded in dataCheck. Days: Wikipedia gives none, so the 5 days (the park's 4-night
-    itinerary, note "Days") were checked on the built page against the park's page only. The
-    permit, fees, camping rule, season and wildlife advice on the built page were checked one by one
-    against the park's pages and agree. Tree line: no second source found.
+    (agrees). Ascent: no stated figure; the terrain model's ≈2,200 m (GEDTM30, 2026-11-07) is 25 %
+    under Wikipedia's 9,681 feet (2,951 m, which it gives for the 32 miles from the tram) and 20 %
+    under the park's "over 9000’", recorded in dataCheck. Days: Wikipedia gives none, so the 5 days
+    (the park's 4-night itinerary, note "Days") were checked on the built page against the park's
+    page only. The permit, fees, camping rule, season and wildlife advice on the built page were
+    checked one by one against the park's pages and agree. Tree line: no second source found.
 dataCheck:
   # working rule 2: English Wikipedia as the second source
   date: 2026-11-07
   against: [wikipedia]
   pageAgainst: [nps, nps-kbyg, nps-permits, nps-bears, nps-safety, nps-forests]
   deviations:
-    - { figure: ascent, ours: "≈2,390 m (terrain model; no stated figure)", theirs: "9,681 ft (2,951 m), for the 32 miles from the tram", source: wikipedia }
-    - { figure: ascent, ours: "≈2,390 m (terrain model; no stated figure)", theirs: "over 9,000 ft (2,743 m)", source: nps }
+    - { figure: ascent, ours: "≈2,200 m (terrain model, GEDTM30, 2026-11-07; no stated figure)", theirs: "9,681 ft (2,951 m), for the 32 miles from the tram", source: wikipedia }
+    - { figure: ascent, ours: "≈2,200 m (terrain model, GEDTM30, 2026-11-07; no stated figure)", theirs: "over 9,000 ft (2,743 m)", source: nps }
 sources:
   - id: nps
     title: "National Park Service, Grand Teton National Park: Backcountry Camping Routes and Zones (the route, length, suggested itineraries, camping zones)"

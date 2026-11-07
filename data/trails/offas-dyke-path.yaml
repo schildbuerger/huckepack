@@ -183,14 +183,16 @@ notes:
     Data check (2026-11-01). Second source: English Wikipedia (177 miles, 285 km; opened 10 July
     1971; Hatterrall Ridge the highest point at 703 m; roughly 12 days). Length, opening year and
     highest point agree (the National Trail 700 m, the terrain model 702 m). The stated ascent,
-    28,000 ft (8,534 m), is 8 % under the terrain model's estimate (≈ 9,240 m). Apart: the days,
-    the National Trail's "about two weeks" against Wikipedia's 12 (14 %).
+    28,000 ft (8,534 m), is 11 % over the terrain model's estimate (≈ 7,710 m, GEDTM30, 2026-11-07;
+    in dataCheck). Apart: the days, the National Trail's "about two weeks" against Wikipedia's 12
+    (14 %).
 dataCheck:
   # working rule 2: English Wikipedia
   date: 2026-11-01
   against: [wikipedia-en]
   deviations:
     - { figure: "Days", ours: "14 (about two weeks)", theirs: "roughly 12", source: wikipedia-en }
+    - { figure: ascent, ours: "28,000 ft (8,534 m), south to north", theirs: "about 7,710 m from the terrain model (GEDTM30, 2026-11-07)", source: gedtm30 }
 sources:
   - id: countryside-code
     title: "Natural England and Natural Resources Wales: The Countryside Code, advice for countryside visitors (updated 26 May 2023)"

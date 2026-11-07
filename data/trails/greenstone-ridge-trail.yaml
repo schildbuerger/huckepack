@@ -228,14 +228,14 @@ notes:
     (the full match 62.9 km) against the trailhead page's "about 41.7" miles (67.1 km, −7 %) and the
     sections' 39.7 mi (63.9 km, −2 %). The check flags two sections more than 10 % off: section 4
     (Chickenbone Lake–Hatchet Lake) measures 13.5 km against 7.2 mi (11.6 km), as its start is the
-    East Chickenbone junction; taken from the West Chickenbone junction 1.4 km on, section 3 would be
-    10.2 km against 9.2 and section 4 12.1 against 11.6, so the NPS may count it from there; together
-    sections 3 and 4 measure 22.4 km against 20.8 (+8 %). Section 8 (Island Mine–Windigo) measures
-    9.5 km against 6.5 mi (10.5 km), since OSM's relation ends at the junction above Washington
-    Creek, about 0.9 km short of the Windigo dock. The record keeps the NPS's figures. The terrain
-    model's highest point is 434 m at km 48.8 (near Mount Desor; the NPS gives "about 1,362 feet",
-    415 m: the surface model reads the treetops) and its lowest 198 m at Windigo (Lake Superior lies
-    at about 183 m); the page estimates about 1,200 m of climbing and 1,280 m of descent.
+    East Chickenbone junction; taken from the West Chickenbone junction 1.4 km on, section 3 would
+    be 10.2 km against 9.2 and section 4 12.1 against 11.6, so the NPS may count it from there;
+    together sections 3 and 4 measure 22.4 km against 20.8 (+8 %). Section 8 (Island Mine–Windigo)
+    measures 9.5 km against 6.5 mi (10.5 km), since OSM's relation ends at the junction above
+    Washington Creek, about 0.9 km short of the Windigo dock. The record keeps the NPS's figures.
+    The terrain model's highest point is 425 m at km 48.9 (GEDTM30, 2026-11-07; near Mount Desor;
+    the NPS gives "about 1,362 feet", 415 m) and its lowest 188 m at Windigo (Lake Superior lies at
+    about 183 m); the page estimates about 810 m of climbing and 920 m of descent.
   - >-
     Water: the check flags 62.4 km without drinking water. Rightly: the NPS says "No potable water
     is available along the trail" (trailhead page); the campgrounds have a water source to boil or
@@ -257,25 +257,25 @@ notes:
     Lodge): the NPS's sections end at Lookout Louise, and Rock Harbor is reached by the Tobin Harbor
     or Rock Harbor Trail (the trip idea's itineraries); difficulty T2 from the NPS's "intermediate
     backpackers" against Wikipedia's "Medium" (agrees); ascent: none stated by the NPS, the terrain
-    model's ≈1,200 m against Wikipedia's 1,555 m elevation gain and loss (−23 %, recorded as a
-    deviation; the page keeps its estimate); days 5–8 (trip idea) against the camping page's "usually
-    traveling six to eight miles per day" (41.7 mi in 5.2–7 days: agrees); season: the directions
-    page's ferries and seaplane mid-May to September within the hours page's park season, April 16
-    to October 31 (agrees; Wikipedia gives none); sleeping and camping (campgrounds, first come,
-    first served, off-trail camping with a permit addendum) from the camping and permits pages, the
-    trailhead page's nine campgrounds along the trail (agrees; Wikipedia gives none); highest point
-    434 m (terrain model) against the NPS's Mount Desor, about 1,362 ft (415 m, +5 %). Stage
-    distances: no second source gives the sections; the built page's stage table was checked against
-    the eight NPS section pages and the trip idea's list (5, 2.8, 5.7, 7.2, 3.8, 3.5, 5.2 and 6.5 mi,
-    converted), all as published; the map line differs by more than 10 % on sections 4 and 8 (see
-    "Map line").
+    model's ≈810 m (GEDTM30, 2026-11-07) against Wikipedia's 1,555 m elevation gain and loss (−48 %,
+    recorded as a deviation; the page keeps its estimate); days 5–8 (trip idea) against the camping
+    page's "usually traveling six to eight miles per day" (41.7 mi in 5.2–7 days: agrees); season:
+    the directions page's ferries and seaplane mid-May to September within the hours page's park
+    season, April 16 to October 31 (agrees; Wikipedia gives none); sleeping and camping
+    (campgrounds, first come, first served, off-trail camping with a permit addendum) from the
+    camping and permits pages, the trailhead page's nine campgrounds along the trail (agrees;
+    Wikipedia gives none); highest point 425 m (terrain model) against the NPS's Mount Desor, about
+    1,362 ft (415 m, +2 %). Stage distances: no second source gives the sections; the built page's
+    stage table was checked against the eight NPS section pages and the trip idea's list (5, 2.8,
+    5.7, 7.2, 3.8, 3.5, 5.2 and 6.5 mi, converted), all as published; the map line differs by more
+    than 10 % on sections 4 and 8 (see "Map line").
 dataCheck:
   # working rule 2: English Wikipedia as the second source; the NPS's own pages against each other
   date: 2026-11-07
   against: [wikipedia]
   pageAgainst: [nps-trip, nps-windigo]
   deviations:
-    - { figure: ascent, ours: "≈1,200 m (terrain model estimate)", theirs: "1,555 m", source: wikipedia }
+    - { figure: ascent, ours: "≈810 m (terrain model estimate, GEDTM30, 2026-11-07)", theirs: "1,555 m", source: wikipedia }
 sources:
   - id: nps-trip
     title: "National Park Service: Backpack the Greenstone Ridge Trail (trip idea: the eight trail sections and their mileage, days, rating, itineraries)"

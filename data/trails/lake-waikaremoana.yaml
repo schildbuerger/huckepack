@@ -114,11 +114,11 @@ notes:
   - >-
     Route (pipeline, 2026-11-05, Geofabrik extracts): each leg is the shortest way over OSM's
     relation (GW01, 5987155) between its ends; every leg matches 100 %. The map line is 46.1 km
-    (stated 46 km; the legs add up to 44.2 km). The legs split differently from DOC's at the bays:
-    5 and 6 (Maraunui Campsite to Marauiti Hut to Waiharuru Hut) come out 0.8 and 5.4 km against 1.7
+    (stated 46 km; the legs add up to 44.2 km). The legs split differently from DOC's at the bays: 5
+    and 6 (Maraunui Campsite to Marauiti Hut to Waiharuru Hut) come out 0.8 and 5.4 km against 1.7
     and 6.2 km, and 7 runs 11.9 km against 9.5 km, as OSM's track continues past Hopuruahine Landing
-    to the road by the Hopuruahine Stream. Highest point 1,183 m (km 9, Panekire Bluff), lowest 582 m
-    by the lake.
+    to the road by the Hopuruahine Stream. Highest point 1,168 m (terrain model, GEDTM30,
+    2026-11-07; km 9, Panekire Bluff), lowest 570 m by the lake.
   - >-
     Water and food: OSM maps no drinking water and no shop along the track; the huts and campsites
     have tap water, "not treated, boil before use" (`refillsUntreated`). Walkers carry all their

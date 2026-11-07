@@ -190,17 +190,16 @@ notes:
   - >-
     Tree line: not added; the route stays below 330 m in the knobs' hardwood forest.
   - >-
-    Map line (2026-11-07): the Indiana Geofabrik extract (2026-11-05); OSM's Knobstone Trail relation
-    (4644135, 16 ways), the shortest way over its ways to each trailhead, every stage 100 % matched.
-    It measures 70.8 km on the full match (69.6 km on the simplified line) against the sections'
-    45.5 miles (73.2 km, −3 %). Stages 3, 4 and 5 are 10–14 % off their stated miles (12.8 km
-    against "approximately 9" miles, 9.8 against "approximately 7", 9.1 against "about 5"); the
+    Map line (2026-11-07): the Indiana Geofabrik extract (2026-11-05); OSM's Knobstone Trail
+    relation (4644135, 16 ways), the shortest way over its ways to each trailhead, every stage 100 %
+    matched. It measures 70.8 km on the full match (69.6 km on the simplified line) against the
+    sections' 45.5 miles (73.2 km, −3 %). Stages 3, 4 and 5 are 10–14 % off their stated miles (12.8
+    km against "approximately 9" miles, 9.8 against "approximately 7", 9.1 against "about 5"); the
     DNR's section lengths are round miles, and stages 4 and 5 together (18.9 km against 19.3) agree,
-    so the Elk Creek trailhead, beside the lake off the trail, cuts them a little further west
-    than the DNR counts. Highest point 330 m at km 36.1, near the Leota trailhead, where the DNR
-    says the trail "rises to an elevation of 1,000 feet" (305 m; the terrain model counts the
-    treetops); lowest 167 m at Delaney Park. No ascent is stated; the terrain model gives about
-    2,670 m.
+    so the Elk Creek trailhead, beside the lake off the trail, cuts them a little further west than
+    the DNR counts. Highest point 312 m at km 36.1 (GEDTM30, 2026-11-07), near the Leota trailhead,
+    where the DNR says the trail "rises to an elevation of 1,000 feet" (305 m); lowest 154 m at
+    Delaney Park. No ascent is stated; the terrain model gives about 2,080 m.
   - >-
     Water (map line): OSM maps no drinking water and no springs within 500 m of the trail; counting
     the three campsites near it as refills, the longest stretch without clean water is 48.8 km
@@ -231,17 +230,17 @@ notes:
     Wikipedia. Stages 1–6, Deam Lake to Spurgeon Hollow: the DNR's 43.5 miles against the Council's
     "43.5 mile linear path to Deam Lake", the same. The whole trail: the record's 45.5 miles (stage
     sum) against the Council's 48 miles (+5 %) and Wikipedia's 58 (+27 %; like the DNR's own 60, it
-    counts the loops, notes "Length"). Termini: Deam Lake and Delaney Park in both (the Council: many
-    hikers end at Spurgeon Hollow instead); 1980 and the first 32 miles agree with Wikipedia.
+    counts the loops, notes "Length"). Termini: Deam Lake and Delaney Park in both (the Council:
+    many hikers end at Spurgeon Hollow instead); 1980 and the first 32 miles agree with Wikipedia.
     Difficulty: Wikipedia "Moderate to Strenuous", the Council "a challenge" with steep, narrow
     ridges, consistent with the DNR's "rugged, difficult". Height: Wikipedia's highest point, Round
-    Knob at 1,000 ft (305 m), against the terrain model's 330 m (treetops). Ascent: Wikipedia's
-    "approximately 20,000 ft of elevation change between the gains and losses" (about 3,050 m up)
-    against the terrain model's 2,670 m (−12 %), neither stated by the DNR, so not in the record.
-    Waymarking (the Council: very well blazed, a brown numbered sign every mile) and camping
-    (Wikipedia: established backcountry campsites with a stone fire ring) agree. No second source
-    gives a season, days or the stage distances; those were checked on the built page against the
-    DNR's pages, figure by figure.
+    Knob at 1,000 ft (305 m), against the terrain model's 312 m (GEDTM30, 2026-11-07, +2 %). Ascent:
+    Wikipedia's "approximately 20,000 ft of elevation change between the gains and losses" (about
+    3,050 m up) against the terrain model's 2,080 m (−32 %), neither stated by the DNR, so not in
+    the record. Waymarking (the Council: very well blazed, a brown numbered sign every mile) and
+    camping (Wikipedia: established backcountry campsites with a stone fire ring) agree. No second
+    source gives a season, days or the stage distances; those were checked on the built page against
+    the DNR's pages, figure by figure.
 dataCheck:
   date: 2026-11-07
   against: [hhc, wikipedia]

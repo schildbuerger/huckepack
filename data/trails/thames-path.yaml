@@ -164,12 +164,12 @@ notes:
   - >-
     Route (pipeline, 2026-11-05, Geofabrik extracts): National Trails' GPX (November 2024) guides
     every section but 9, Henley to Marlow, which follows the OSM relation (14519665): along the GPX
-    only 80 % matched, up to 340 m from OSM's paths near Hurley. Every section matches at least
-    95 %; the map line is 295.3 km against the sections' 295.5 km. Sections 4 and 5 split at Oxford:
+    only 80 % matched, up to 340 m from OSM's paths near Hurley. Every section matches at least 95
+    %; the map line is 295.3 km against the sections' 295.5 km. Sections 4 and 5 split at Oxford:
     24.0 and 13.5 km on the map line against the stated 22.4 and 15.8 km (section 5 more than 10 %
     apart); together they agree (37.5 against 38.2 km), so National Trails counts Oxford's end of
-    the section at another point in the city. Highest point 110 m at Thames Head; the path falls to
-    sea level in London.
+    the section at another point in the city. Highest point 107 m at Thames Head (terrain model,
+    GEDTM30, 2026-11-07); the path falls to sea level in London.
   - >-
     Water: (2026-11-05, within 500 m) OSM has 111 drinking water points near the route; the longest
     stretch without one is 14 km.

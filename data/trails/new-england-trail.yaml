@@ -263,7 +263,8 @@ notes:
   - >-
     Ascent: the operator gives thru-hikers "a net gain of just over 30,000 ft" (9,144 m) without a
     descent; the page sums the main sections' stated climbs instead (10,609 m up, 10,328 m down),
-    which every main stage states. The terrain model gives about 10,300 m.
+    which every main stage states. The terrain model gives about 7,470 m (GEDTM30, 2026-11-07; see
+    Ascent check).
   - >-
     Season: the operator's "many choose to hike in the spring and fall, as summers tend to be humid
     and buggy and winters are cold and icy", recorded as March–May and September–November (the
@@ -281,17 +282,17 @@ notes:
   - >-
     Map line (2026-11-07): the Connecticut, Massachusetts and New Hampshire Geofabrik extracts
     (2026-11-05); OSM's NET relation 3672563 (489 main ways, 80 excursions, in two pieces split at
-    the Connecticut River) with each stage the shortest way over its ways to the section end.
-    Every stage is 99–100 % matched except two: MA 5 is 90 % matched, as the matcher leaves the
-    relation's ways for the parallel Pipeline Trail for about 0.7 km near Mount Tom (up to 200 m
-    off; the relation's ways don't join there in the routable network); MA 7 is 88 % matched, since
-    its guide jumps the river and joins the relation's way ends (joinM 1,600 m) through via points
-    on the trail's map data; its map line (8.6 km) equals the operator's line (8.6 km). The main
-    route measures 319.5 km against the main sections' 353.1 km (−9.5 %); the operator's own map
-    line is shorter than its stated miles too (CT 12 9.7 km against 11.6 km, CT 14 16.7 km against
-    18.5 km), so the map line's 10–18 % shorter CT 1–3, 10, 12, 14 and 17 follow the operator's
-    line. Highest point 500 m at km 302 (Mount Grace; the operator's 1,617 ft, 493 m), lowest 1 m
-    at Long Island Sound (the operator's 0 ft).
+    the Connecticut River) with each stage the shortest way over its ways to the section end. Every
+    stage is 99–100 % matched except two: MA 5 is 90 % matched, as the matcher leaves the relation's
+    ways for the parallel Pipeline Trail for about 0.7 km near Mount Tom (up to 200 m off; the
+    relation's ways don't join there in the routable network); MA 7 is 88 % matched, since its guide
+    jumps the river and joins the relation's way ends (joinM 1,600 m) through via points on the
+    trail's map data; its map line (8.6 km) equals the operator's line (8.6 km). The main route
+    measures 319.5 km against the main sections' 353.1 km (−9.5 %); the operator's own map line is
+    shorter than its stated miles too (CT 12 9.7 km against 11.6 km, CT 14 16.7 km against 18.5 km),
+    so the map line's 10–18 % shorter CT 1–3, 10, 12, 14 and 17 follow the operator's line. Highest
+    point 487 m at km 302 (GEDTM30, 2026-11-07; Mount Grace; the operator's 1,617 ft, 493 m), lowest
+    1 m at Long Island Sound (the operator's 0 ft).
   - >-
     Water: OSM maps only 2 drinking water points and 3 springs within 500 m of the trail; the
     operator says "water sources are very limited, particularly in the Summer and Fall", "there is
@@ -313,20 +314,35 @@ notes:
     215 mi" is 8.5 % less (the Massachusetts relocation and the Guilford extension came later).
     Termini: Wikipedia's "Guilford Harbor, CT" and "MA-32, Royalston" agree with Chittenden Park and
     the state line 0.7 miles beyond the Route 32 trailhead. Designation 2009: agrees. Highest point
-    Mount Grace 1,617 ft and lowest Long Island Sound 0 ft in both; the terrain model 500 m (+1.4 %)
-    and 1 m. Season: Wikipedia "Spring to Fall", the operator spring and fall; the record keeps the
-    operator's. Difficulty: Wikipedia "Moderate to strenuous"; our T2 fits. Days, camping and
-    sleeping only on the operator's pages. Ascent: the operator's "just over 30,000 ft" (9,144 m)
-    against the main sections' 10,609 m (+16 %, dataCheck.deviations). The 40 sections' miles and
-    climbs were checked one by one against the section pages. Derived against stated: CT 9 and
-    CT 4 on the map line (the branch junction inside CT 9), and CT 1–3, 10, 12, 14 and 17 10–18 %
-    shorter on the map line, as on the operator's own line (dataCheck.deviations).
+    Mount Grace 1,617 ft and lowest Long Island Sound 0 ft in both; the terrain model 487 m (−1.2 %,
+    GEDTM30, 2026-11-07) and 1 m. Season: Wikipedia "Spring to Fall", the operator spring and fall;
+    the record keeps the operator's. Difficulty: Wikipedia "Moderate to strenuous"; our T2 fits.
+    Days, camping and sleeping only on the operator's pages. Ascent: the operator's "just over
+    30,000 ft" (9,144 m) against the main sections' 10,609 m (+16 %, dataCheck.deviations). The 40
+    sections' miles and climbs were checked one by one against the section pages. Derived against
+    stated: CT 9 and CT 4 on the map line (the branch junction inside CT 9), and CT 1–3, 10, 12, 14
+    and 17 10–18 % shorter on the map line, as on the operator's own line (dataCheck.deviations).
+  - >-
+    Ascent check (2026-11-07): each section page gives an "Elevation change" in feet ("+1852 / -2023
+    feet" for CT 12) without saying how it was measured; the main sections sum to 10,609 m up, and
+    the operator gives thru-hikers "a net gain of just over 30,000 ft" (9,144 m). GEDTM30 per
+    section along the map line (319.5 km against 353.1 km) gives 9,560 m up with every rise counted
+    (−10 %), 8,750 m counting climbs from 5 m and 7,470 m from 10 m (−30 %, the page's method).
+    Three causes add up: the threshold, about 2,090 m, as the rolling wooded ridges rise and fall in
+    short steps; the map line, on which CT 9 covers only 8.8 of its 20.4 km (the branch junction
+    lies inside it: 526 m stated against 150 m); and the traprock ridges (CT 10–12 and MA 4–8, the
+    Metacomet, Mount Tom and Holyoke ranges), where the stated climbs run up to twice our raw sums
+    (CT 11 563 against 273 m, CT 12 564 against 253 m), more than a 30 m model's smoothing of the
+    cliffs explains. So the sections' figures look generous there (likely a GPS recording or a
+    mapping tool counting every step); the operator's own 30,000 ft is 14 % under them. The page
+    shows the sections' figures (dataCheck.deviations).
 dataCheck:
   date: 2026-11-07
   against: [nps-basic, wikipedia]
   pageAgainst: [net-sections]
   deviations:
     - { figure: ascent, ours: "10,609 m (sum of the main sections)", theirs: "just over 30,000 ft (9,144 m) for thru-hikers", source: net-thru }
+    - { figure: ascent, ours: "10,609 m (sum of the main sections)", theirs: "about 7,470 m from the terrain model (GEDTM30, 2026-11-07, 10 m threshold; 9,560 m with every rise)", source: gedtm30 }
     - { figure: stage CT 9 length, ours: "20.4 km (12.7 miles)", theirs: "8.9 km on the map line (the main route joins inside the section)", source: osm }
     - { figure: stage CT 4 length, ours: "11.1 km (6.9 miles)", theirs: "20.8 km on the map line (with CT 9's eastern part)", source: osm }
     - { figure: stage CT 3 length, ours: "8.2 km (5.1 miles)", theirs: "6.7 km on the map line", source: osm }

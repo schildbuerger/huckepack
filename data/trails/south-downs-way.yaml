@@ -161,9 +161,11 @@ notes:
     National Trails counts Buriton's end of the section further on, likely down in the village,
     which lies just off the trail.
   - >-
-    Ascent: National Trails' "about 3800m" against the terrain model's ≈ 4,050 m (6 %) and English
-    Wikipedia's 4,150 m. Highest point on the map line 245 m at km 35.6 (Butser Hill); GOV.UK gives
-    Butser Hill as the highest point at 270 m, its summit just off the trail.
+    Ascent: National Trails' "about 3800m" against the terrain model's ≈ 3,110 m (GEDTM30,
+    2026-11-07; −18 %, in dataCheck: the chalk downs' many short rises stay under the 10 m
+    threshold, the raw sum is about 3,910 m) and English Wikipedia's 4,150 m. Highest point on the
+    map line 244 m at km 35.6 (Butser Hill); GOV.UK gives Butser Hill as the highest point at 270 m,
+    its summit just off the trail.
   - >-
     Water: (2026-11-05, within 500 m) OSM has 28 drinking water points near the route (National
     Trails' map has water taps along the trail too); the longest stretch without one is 21.1 km
@@ -178,7 +180,8 @@ dataCheck:
   # working rule 2: GOV.UK (Natural England), English Wikipedia
   date: 2026-11-05
   against: [govuk, wikipedia-en]
-  deviations: []
+  deviations:
+    - { figure: ascent, ours: "3,800 m (stated)", theirs: "about 3,110 m from the terrain model (GEDTM30, 2026-11-07)", source: gedtm30 }
 sources:
   - id: countryside-code
     title: "Natural England and Natural Resources Wales: The Countryside Code, advice for countryside visitors (updated 26 May 2023)"

@@ -149,16 +149,17 @@ notes:
     Tree line: none; the route stays below 240 m (the terrain model; the association says "from sea
     level to 300 metres").
   - >-
-    Map line (2026-11-06): the New Brunswick Geofabrik extract; the Fundy Footpath relation (4077806,
-    its nine ways with the role "route", which the pipeline now reads as the main line) and the Trans
-    Canada Trail's Fundy relation (11593655) merged, each stage the shortest way over them to its end;
-    every stage 100 % matched. The map line measures 58.7 km against the stated 64.3 km (−9 %): stage
-    1 21.3 km (as stated), stage 2 22.9 km against 25.8 km (−11 %, the footpath's OSM line between
-    Goose River and the Little Salmon River; the association's figure likely counts the side trails
-    down to the campsites and the tidal detours), stage 3 15.8 km against 17.2 km (−8 %). The record
-    keeps the association's figures. The terrain model gives about 3,120 m of climbing between sea
-    level and 237 m. Water: 8 drinking water points in OSM, the longest dry stretch 19.4 km (rivers
-    and brooks all along; Parks Canada: treat it). One shop in Alma at the start: carry all food.
+    Map line (2026-11-06): the New Brunswick Geofabrik extract; the Fundy Footpath relation
+    (4077806, its nine ways with the role "route", which the pipeline now reads as the main line)
+    and the Trans Canada Trail's Fundy relation (11593655) merged, each stage the shortest way over
+    them to its end; every stage 100 % matched. The map line measures 58.7 km against the stated
+    64.3 km (−9 %): stage 1 21.3 km (as stated), stage 2 22.9 km against 25.8 km (−11 %, the
+    footpath's OSM line between Goose River and the Little Salmon River; the association's figure
+    likely counts the side trails down to the campsites and the tidal detours), stage 3 15.8 km
+    against 17.2 km (−8 %). The record keeps the association's figures. The terrain model gives
+    about 2,580 m of climbing between sea level and 226 m (GEDTM30, 2026-11-07). Water: 8 drinking
+    water points in OSM, the longest dry stretch 19.4 km (rivers and brooks all along; Parks Canada:
+    treat it). One shop in Alma at the start: carry all food.
   - >-
     Data check (2026-11-06, working rule 2): the association's safety guide against Parks Canada's
     backcountry planning guide: length 64.3 km in both; the three sections 21.3, 25.8 and 17.2 km in

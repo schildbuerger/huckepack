@@ -144,20 +144,33 @@ notes:
     Data check (2026-11-01). Second sources: Turespaña (185 km, 20 stages of about 5 to 13 km,
     difficulty "media") and Catalan Wikipedia (185 km, twenty stages, highest point 125 m,
     cumulative ascent about 4,000 m, GR 223 since 2012). Length, stage count, stage distances and
-    the GR year agree; the terrain model's highest point is 127 m (the council's highest section
-    point 118 m, Wikipedia 125 m). Apart: the ascent, the sections' 3,548 m against Wikipedia's
-    "about four thousand" (11 %); the terrain model estimates about 3,460 m, close to the
-    council's.
+    the GR year agree; the terrain model's highest point is 126 m (GEDTM30, 2026-11-07; the
+    council's highest section point 118 m, Wikipedia 125 m). Apart: the ascent, the sections' 3,548
+    m against Wikipedia's "about four thousand" (11 %); the former surface model estimated about
+    3,460 m, close to the council's; GEDTM30 with the 10 m threshold gives about 2,180 m (Ascent
+    check).
   - >-
     Season: none published (the island council's site, Turespaña, Wikipedia in five languages; searched 2026-11-05); every month is recorded for now, by the rule for trails without a published season.
   - >-
     Days: none stated by the island council (2026-11-01); the page counts one day per section.
+  - >-
+    Ascent check (2026-11-07): the island council gives each section's "desnivell positiu acumulat"
+    (cumulative positive gain; the section pages don't say how it was measured, and the section GPX
+    files carry no heights), 3,548 m in all. GEDTM30 along the map line, summed per section along
+    the 100 m samples, gives 3,250 m with every rise counted (−8 %), 2,630 m counting climbs from 5
+    m and 2,180 m from 10 m (−39 %, the page's method); the former surface model gave about 3,460 m.
+    The gap is the threshold: the coast rises and falls a few metres at a time into and out of the
+    coves and ravines, and on the flattest sections (11, 12 and 18, 96–122 m stated) the 10 m
+    threshold leaves 0–21 m. The council's figure counts these real short climbs, as the raw sum
+    does; it is not generous, and the map line (180.5 km against 183.7 km) explains little. The page
+    shows the council's figures (dataCheck.deviations).
 dataCheck:
   # working rule 2: Turespaña and Catalan Wikipedia
   date: 2026-11-01
   against: [turespana, wikipedia-ca]
   deviations:
     - { figure: "Ascent", ours: "3,548 m (sum of the 20 sections)", theirs: "about 4,000 m", source: wikipedia-ca }
+    - { figure: "Ascent (terrain model)", ours: "3,548 m (sum of the 20 sections)", theirs: "about 2,180 m from the terrain model (GEDTM30, 2026-11-07, 10 m threshold; 3,250 m with every rise)", source: gedtm30 }
 sources:
   - id: huckepack-season
     title: "huckepack: no season published by the operator or a second source (the island council's site, Turespaña, Wikipedia in five languages); every month for now, until one is found"

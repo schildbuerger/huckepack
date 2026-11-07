@@ -115,13 +115,13 @@ notes:
     only National Park station is listed.
   - >-
     Map line (2026-11-06): the New Zealand Geofabrik extract (2026-10-31); each leg the shortest way
-    over OSM's relation (GW-02, 173345) to its end, the last through a `via` point on Tama Saddle (with
-    `joinM` 100 m: the relation's ways don't join there, and the shortest way otherwise ran round the
-    closed northern section); every leg at least 95 % matched. The route measures 35.7 km against DOC's
-    35.5 km. Legs 1–3 split differently at the Emerald Lakes and Mangatepopo Hut (1.3, 6.7 and 4.8 km
-    against 1.7, 8 and 4 km); together 12.8 km against 13.7 km. Highest point and ascent from the
-    terrain model (about 1,380 m up). Water: OSM maps one drinking water point; the huts' tap water is
-    the water on the way (not treated).
+    over OSM's relation (GW-02, 173345) to its end, the last through a `via` point on Tama Saddle
+    (with `joinM` 100 m: the relation's ways don't join there, and the shortest way otherwise ran
+    round the closed northern section); every leg at least 95 % matched. The route measures 35.7 km
+    against DOC's 35.5 km. Legs 1–3 split differently at the Emerald Lakes and Mangatepopo Hut (1.3,
+    6.7 and 4.8 km against 1.7, 8 and 4 km); together 12.8 km against 13.7 km. Highest point and
+    ascent from the terrain model (about 1,230 m up, GEDTM30, 2026-11-07). Water: OSM maps one
+    drinking water point; the huts' tap water is the water on the way (not treated).
   - >-
     Data check (2026-11-06, working rule 2): against English Wikipedia (Tongariro Northern Circuit).
     Three DOC huts (Mangatepopo, Oturere, Waihohonu) agree; three to four days agree; no camping within

@@ -126,7 +126,7 @@ notes:
     Route (pipeline, 2026-11-05, Geofabrik extracts): each leg is the shortest way over OSM's
     relation (GW04, 5987159) between its ends, which takes the tidal crossings; every leg matches
     100 %. The map line is 54.4 km against DOC's 56.9 km with the low-tide crossing. Highest point
-    197 m (km 52, the saddle above Wainui Inlet).
+    186 m (terrain model, GEDTM30, 2026-11-07; km 52, the saddle above Wainui Inlet).
   - >-
     Water and food: OSM maps no drinking water and no shop along the track; DOC's huts and campsites
     have water, "not treated, boil before use" (`refillsUntreated`). Water taxis call at the main

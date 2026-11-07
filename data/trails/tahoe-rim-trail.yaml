@@ -162,10 +162,11 @@ notes:
   - >-
     Map line (2026-11-06): the Northern California and Nevada Geofabrik extracts (2026-11-05); OSM's
     Tahoe Rim Trail relation (3094865), chained clockwise from Tahoe City and cut near the eight
-    trailheads, every stage 100 % matched. It measures 264.6 km against the association's 165
-    miles (266 km, −0.5 %) and its segments' 173.9 miles (279.9 km). Highest point 3,142 m at km 54
-    (Relay Peak, 10,338 ft or 3,151 m on the association's page), lowest 1,900 m at Tahoe City
-    (Wikipedia: 6,223 ft, 1,897 m). The terrain model gives about 9,060 m of climbing; none is stated.
+    trailheads, every stage 100 % matched. It measures 264.6 km against the association's 165 miles
+    (266 km, −0.5 %) and its segments' 173.9 miles (279.9 km). Highest point 3,139 m at km 54
+    (GEDTM30, 2026-11-07; Relay Peak, 10,338 ft or 3,151 m on the association's page), lowest 1,896
+    m at Tahoe City (Wikipedia: 6,223 ft, 1,897 m). The terrain model gives about 7,560 m of
+    climbing; none is stated.
   - >-
     Stage 4 (Spooner Summit to Kingsbury South) measures 23.7 km on the map line against the
     association's 19.0 miles (30.6 km, −23 %): the relation follows the main trail past the Kingsbury
@@ -197,8 +198,8 @@ notes:
     10,338 ft) and the Desolation Wilderness permit agree. It gives no days, segments, camping rules
     or tree line; the segments' miles, the season, permits and camping rules on the built page were
     checked one by one against the association's pages and agree. Its "elevation change 24,400 ft"
-    (7,440 m) is 18 % under the terrain model's 9,060 m of climbing, which the page shows as an
-    estimate.
+    (7,440 m) is 2 % under the terrain model's 7,560 m of climbing (GEDTM30, 2026-11-07; 18 % under
+    the former model's 9,060 m), which the page shows as an estimate.
   - >-
     Preflight (2026-11-06): pipeline.preflight flags the association's pages as a bot check, from the
     Cloudflare script tag (/cdn-cgi/challenge-platform/scripts/jsd/) every page carries; the pages
@@ -209,8 +210,7 @@ dataCheck:
   date: 2026-11-06
   against: [wikipedia]
   pageAgainst: [trta-maps, trta-backpacking]
-  deviations:
-    - { figure: ascent, ours: "≈9,060 m (terrain model; none stated)", theirs: "24,400 ft (7,440 m)", source: wikipedia }
+  deviations: []
 sources:
   - id: trta
     title: "Tahoe Rim Trail Association: home page (165 mile thru hike)"

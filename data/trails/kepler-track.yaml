@@ -112,8 +112,9 @@ notes:
     Route (pipeline, 2026-11-05, Geofabrik extracts): each leg is the shortest way over OSM's
     relation (GW08, 1385141) between its ends; every leg matches 100 %. The map line is 56.6 km
     against DOC's 60 km; it starts and ends at the control gates, 400 m from the car park DOC counts
-    from. Highest point on the map line 1,400 m (km 16, on the ridge below Mount Luxmore; the summit
-    side trip reaches 1,472 m), lowest 185 m by Lake Manapouri.
+    from. Highest point on the map line 1,404 m (terrain model, GEDTM30, 2026-11-07; km 16, on the
+    ridge below Mount Luxmore; the summit side trip reaches 1,472 m), lowest 176 m by Lake
+    Manapouri.
   - >-
     Water: OSM maps one drinking water point near the route. DOC's huts and campsites have tap water,
     "not treated, boil before use"; `refillsUntreated` counts them as any water, not clean water.

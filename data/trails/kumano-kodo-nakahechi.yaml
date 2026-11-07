@@ -138,9 +138,9 @@ notes:
     900 m.
   - >-
     Map line: each section follows its OSM relation; every section 100 % matched, 62.1 km against
-    the bureau's 65 km (Takijiri to Hongu 35.8 km against 38, the Kumotori routes 26.3 km against 27).
-    The stages' stated 4,040 m of climbing against about 3,950 m on the terrain model. Highest point
-    882 m on the Ogumotori-goe.
+    the bureau's 65 km (Takijiri to Hongu 35.8 km against 38, the Kumotori routes 26.3 km against
+    27). The stages' stated 4,040 m of climbing against about 3,420 m on the terrain model (GEDTM30,
+    2026-11-07; −15 %, in dataCheck). Highest point 870 m on the Ogumotori-goe.
   - >-
     Data check (2026-11-03): the bureau's figures against English Wikipedia (Kumano Kodō, Nakahechi):
     Takijiri-oji to Hongu "about 37 km", usually two days (the bureau's 17 + 21 km, 3 %); Hongu to
@@ -159,7 +159,8 @@ dataCheck:
   # working rule 2: English Wikipedia
   date: 2026-11-03
   against: [wikipedia]
-  deviations: []
+  deviations:
+    - { figure: ascent, ours: "4,040 m (sum of the stages)", theirs: "about 3,420 m from the terrain model (GEDTM30, 2026-11-07)", source: gedtm30 }
 sources:
   - id: tb
     title: "Tanabe City Kumano Tourism Bureau: the Nakahechi and its section pages (Takijiri-oji to Tsugizakura-oji, Tsugizakura-oji to Kumano Hongu Taisha, Kogumotori-goe, Ogumotori-goe) with their course data"

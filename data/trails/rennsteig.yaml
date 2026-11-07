@@ -150,9 +150,9 @@ notes:
   - >-
     Map line: the Regionalverbund's tour line, cut at the eight stage ends, guides the OSM matcher;
     every stage 100 % matched and within 5 % of its stated km, 167.7 km against 169.3 km. Highest
-    point 976 m (terrain model) near the Großer Beerberg. The terrain model sums about 4,630 m of
-    climbing against the stated 2,690 m: it measures the treetops along a forest ridge, and the page
-    shows the stated pair.
+    point 966 m (terrain model, GEDTM30, 2026-11-07) near the Großer Beerberg. The terrain model
+    sums about 3,100 m of climbing against the stated 2,690 m (+15 %, in dataCheck); the page shows
+    the stated pair.
   - >-
     Data check (2026-11-03): the Regionalverbund's figures against German Wikipedia: length 169.3 km
     against 169.29 km (the Thuringian survey office's measurement), start on the Werra bank at
@@ -162,7 +162,8 @@ dataCheck:
   # working rule 2: German Wikipedia
   date: 2026-11-03
   against: [wikipedia]
-  deviations: []
+  deviations:
+    - { figure: ascent, ours: "2,690 m (stated)", theirs: "about 3,100 m from the terrain model (GEDTM30, 2026-11-07)", source: gedtm30 }
 sources:
   - id: rv
     title: "Regionalverbund Thüringer Wald (thueringer-wald.com, tourismus-thueringer-wald.de): the Rennsteig's stage overview and its tour \"Fernwanderweg Rennsteig von Hörschel nach Blankenstein\" (length, ascent, descent, the line)"

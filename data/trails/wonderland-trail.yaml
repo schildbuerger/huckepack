@@ -162,7 +162,8 @@ notes:
     Map line (2026-11-06): the Washington Geofabrik extract (2026-11-05); OSM's Wonderland Trail
     relation (4111743), chained from Longmire round the loop as one segment, 100 % matched. It
     measures 136.1 km against the park's "about 93 miles (150 km)" (−9 %); the record keeps the
-    park's figure. The terrain model gives about 7,990 m of climbing against the park's 8,230 m.
+    park's figure. The terrain model gives about 7,380 m of climbing against the park's 8,230 m
+    (GEDTM30, 2026-11-07; −10.3 %, in dataCheck).
 dataCheck:
   # working rule 2: English Wikipedia as the second source
   date: 2026-11-06
@@ -170,6 +171,7 @@ dataCheck:
   pageAgainst: [nps, nps-planner]
   deviations:
     - { figure: ascent, ours: "8,230 m (NPS)", theirs: "6,700 m", source: wikipedia }
+    - { figure: ascent, ours: "8,230 m (NPS)", theirs: "about 7,380 m from the terrain model (GEDTM30, 2026-11-07)", source: gedtm30 }
 sources:
   - id: nps
     title: "National Park Service: The Wonderland Trail (length, climbs, season, camps, rules)"

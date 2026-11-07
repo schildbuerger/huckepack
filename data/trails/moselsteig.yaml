@@ -160,8 +160,8 @@ notes:
   - >-
     Ascent: the whole-route tour says 9,140 m; the stage tours add up to 11,807 m (with the paths
     into the towns, more than 10 % apart within the same source); the terrain model gives about
-    13,370 m (it measures the treetops; 72 % of the route runs through forest). Highest point: the
-    tour 425 m, Wikipedia 416 m (Mehringer Berg), the terrain model 447 m.
+    10,260 m on the map line (GEDTM30, 2026-11-07; +12 % on the tour's figure, in dataCheck).
+    Highest point: the tour 425 m, Wikipedia 416 m (Mehringer Berg), the terrain model 429 m.
   - >-
     Tree line: none in reach. The route stays below 450 m.
   - >-
@@ -182,6 +182,7 @@ dataCheck:
     - { figure: "Stage 8 length", ours: "14.1 km", theirs: "12 km", source: wikipedia }
     - { figure: "Stage 9 length", ours: "18 km", theirs: "14.5 km", source: wikipedia }
     - { figure: "Stage 17 length", ours: "16 km", theirs: "18 km", source: wikipedia }
+    - { figure: ascent, ours: "9,140 m (the whole-route tour)", theirs: "about 10,260 m from the terrain model (GEDTM30, 2026-11-07)", source: gedtm30 }
 sources:
   - id: bzga-borreliose
     title: "Bundeszentrale für gesundheitliche Aufklärung (infektionsschutz.de): Bürgerinformation Borreliose, protection against ticks (as of August 2019)"

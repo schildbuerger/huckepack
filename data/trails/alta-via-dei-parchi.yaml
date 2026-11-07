@@ -149,12 +149,13 @@ notes:
     Map line: each stage follows its OSM section relation (AVP01–AVP27), every stage at least 95 %
     matched; 482.0 km against the Region's "about 500 km" (4 %). The Region publishes no stage
     distances, so they are measured on the map line (491.3 km summed per stage). No stage climbs are
-    published; the page estimates about 25,230 m up from the terrain model.
+    published; the page estimates about 22,480 m up from the terrain model (GEDTM30, 2026-11-07).
   - >-
     Data check (2026-11-03): no second source gives figures; the built page against the Region's
     stage list (27 stages, Berceto to the Eremo Madonna del Faggio: agree) and totals: length within
-    4 %, but the terrain-model ascent of about 25,230 m is 16 % under the Region's "more than
-    30,000 m of elevation gain" (a 30 m terrain model smooths the many short climbs on the ridge).
+    4 %, but the terrain-model ascent of about 22,480 m (GEDTM30, 2026-11-07) is 25 % under the
+    Region's "more than 30,000 m of elevation gain" (a 30 m terrain model and the 10 m climb
+    threshold smooth the many short climbs on the ridge).
   - >-
     Season: none published (the Region's stage, camping and image-manual pages, Wikipedia; searched 2026-11-05); every month is recorded for now, by the rule for trails without a published season.
   - >-
@@ -166,7 +167,7 @@ dataCheck:
   against: []
   pageAgainst: [rer]
   deviations:
-    - { figure: ascent, ours: "about 25,230 m (terrain model)", theirs: "more than 30,000 m", source: rer }
+    - { figure: ascent, ours: "about 22,480 m (terrain model, GEDTM30, 2026-11-07)", theirs: "more than 30,000 m", source: rer }
 sources:
   - id: huckepack-season
     title: "huckepack: no season published by the operator or a second source (the Region's stage, camping and image-manual pages, Wikipedia); every month for now, until one is found"

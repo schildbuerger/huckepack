@@ -108,10 +108,10 @@ notes:
     the last leg was destroyed by a storm in February 2020.
   - >-
     Route (pipeline, 2026-11-05, Geofabrik extracts): each leg is the shortest way over OSM's
-    relation (GW06, 1385139) between its ends; every leg matches 100 %. The map line is
-    30.6 km against DOC's 33 km. Highest point on the map line 1,306 m (km 12; the terrain model
-    runs above DOC's 1,255 m for Harris Saddle, likely on the bluffs beside the track), lowest 471 m
-    at the Routeburn Shelter.
+    relation (GW06, 1385139) between its ends; every leg matches 100 %. The map line is 30.6 km
+    against DOC's 33 km. Highest point on the map line 1,296 m (terrain model, GEDTM30, 2026-11-07;
+    km 12; the terrain model runs above DOC's 1,255 m for Harris Saddle, likely on the bluffs beside
+    the track), lowest 465 m at the Routeburn Shelter.
   - >-
     Water: OSM maps no drinking water near the route. DOC's huts and campsites have tap water, "not
     treated, boil before use"; `refillsUntreated` counts them as any water, not clean water.

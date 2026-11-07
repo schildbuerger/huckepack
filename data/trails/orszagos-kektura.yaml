@@ -217,9 +217,9 @@ notes:
     against the official 1,183.1 km (1.4 %). The Danube between Visegrád and Nagymaros is crossed
     by ferry and is not part of any day.
   - >-
-    Ascent: the official 31,915 m against the terrain model's ≈ 24,930 m (22 % lower): on trails
-    over 1,000 km the model is sampled every 500 m, which smooths away short climbs; English
-    Wikipedia's 31,460 m agrees with the official figure.
+    Ascent: the official 31,915 m against the terrain model's ≈ 22,440 m (GEDTM30, 2026-11-07; 30 %
+    lower, in dataCheck): on trails over 1,000 km the model is sampled every 500 m, which smooths
+    away short climbs; English Wikipedia's 31,460 m agrees with the official figure.
   - >-
     Water (2026-11-01, within 500 m): 623 drinking water points in OSM; the longest stretch without one is 30.9 km (km
     478–509, days 27–28 in the Gerecse hills); the official section pages name the springs and
@@ -229,10 +229,10 @@ notes:
     Travel hubs: Sátoraljaújhely station serves the finish at Hollóháza, 508 km by road from the
     start; Kőszeg station and Vienna airport serve the start.
   - >-
-    Data check (2026-11-01). Second source: English Wikipedia (1,172.4 km and 31,460 m climbing
-    west to east as of March 2023, Írott-kő to Hollóháza, the blue stripe on white). Length (0.9 %)
-    and ascent (1.4 %) agree, the difference being the yearly route changes; the 59 days' sums
-    equal the official totals. The terrain model's highest point is 1,023 m on the Kékes
+    Data check (2026-11-01). Second source: English Wikipedia (1,172.4 km and 31,460 m climbing west
+    to east as of March 2023, Írott-kő to Hollóháza, the blue stripe on white). Length (0.9 %) and
+    ascent (1.4 %) agree, the difference being the yearly route changes; the 59 days' sums equal the
+    official totals. The terrain model's highest point is 1,007 m on the Kékes (GEDTM30, 2026-11-07)
     (Hungary's highest, 1,014 m).
   - >-
     Days: none stated by the MTSZ (2026-11-04) beyond its 59 day stages; the page counts one day per
@@ -243,7 +243,8 @@ dataCheck:
   # working rule 2: English Wikipedia
   date: 2026-11-01
   against: [wikipedia-en]
-  deviations: []
+  deviations:
+    - { figure: ascent, ours: "31,915 m (official)", theirs: "about 22,440 m from the terrain model (GEDTM30, 2026-11-07)", source: gedtm30 }
 sources:
   - id: huckepack-season
     title: "huckepack: no season published by the operator or a second source (kektura.hu, Wikipedia in six languages); every month for now, until one is found"

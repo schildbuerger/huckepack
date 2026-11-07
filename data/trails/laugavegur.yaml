@@ -150,13 +150,14 @@ notes:
   - Highest point on the trail is Hrafntinnusker at about 1,050 m (Wikipedia) or 1,100 m (FÍ hut page).
   - >-
     Data check (2026-10-29). Second source for the overview: Wikipedia (54 km against the stage sum
-    of 55 km, 4 days, June to September, highest point 1,050 m against 1,053 m from the terrain
-    model), all within 10 %. No independent source gives stage figures (only tour operators and
-    blogs, which disagree), so the stage lengths, times, huts, season, sleeping and camping rules
-    were checked on the built page against FÍ's trail and hut pages: they match. More than 10 %
-    apart: Wikipedia's "500 m" elevation gain and loss (apparently the net height difference, also
-    FÍ's key figure) against our terrain-model estimate of ≈ 1,400 m up and ≈ 1,750 m down; guides
-    quote around 1,700 m up, so our estimate is likely low (listed in `dataCheck`).
+    of 55 km, 4 days, June to September, highest point 1,050 m against 1,054 m from the terrain
+    model, GEDTM30, 2026-11-07), all within 10 %. No independent source gives stage figures (only
+    tour operators and blogs, which disagree), so the stage lengths, times, huts, season, sleeping
+    and camping rules were checked on the built page against FÍ's trail and hut pages: they match.
+    More than 10 % apart: Wikipedia's "500 m" elevation gain and loss (apparently the net height
+    difference, also FÍ's key figure) against our terrain-model estimate of ≈ 1,140 m up and ≈ 1,480
+    m down (GEDTM30, 2026-11-07); guides quote around 1,700 m up, so our estimate is likely low
+    (listed in `dataCheck`).
   - >-
     Tree line (2026-10-30): Skógræktin (2019) finds birch above 550 m in Goðaland and Þórsmörk; the
     route climbs to about 1,050 m (Hrafntinnusker). No independent current figure was found:
@@ -170,7 +171,7 @@ dataCheck:
   against: [wikipedia]
   pageAgainst: [fi, fi-huts, skograektin]
   deviations:
-    - { figure: "Ascent and descent", ours: "≈ 1,400 / ≈ 1,750 m (our estimate)", theirs: "500 m", source: wikipedia }
+    - { figure: "Ascent and descent", ours: "≈ 1,140 / ≈ 1,480 m (our estimate, GEDTM30, 2026-11-07)", theirs: "500 m", source: wikipedia }
 sources:
   - id: fi
     title: "Ferðafélag Íslands: Trails: Laugavegur (stages, itineraries, season, river crossings, camping)"

@@ -129,7 +129,7 @@ notes:
   - >-
     Ascent: the site gives "Total ascent is approximately 1,500 metres" and each stage's ascent
     (about 400, 200, 490 and 411 m) but no descents, so the page estimates both from the terrain
-    model (about 1,400 m up, 1,430 m down).
+    model (about 1,080 m up, 1,100 m down; GEDTM30, 2026-11-07).
   - >-
     Protected areas: the site says the Way links communities "fringing Scotland's first national
     park" (Loch Lomond and The Trossachs) but names no protected area the route crosses.
@@ -139,13 +139,14 @@ notes:
     Map line (2026-11-05): the Scotland Geofabrik extract (2026-10-31); each stage the shortest way
     over the OSM relation to its end, every stage 100 % matched. The route measures 53.2 km on the
     map line against the stated 55 km. Stages 2 and 3 split differently: the site's stage 2 ends at
-    "the MOD Training Area at Garelochhead" and stage 3 begins at the southern end of the Yankee Road
-    (grid reference 261899), while our split is at Garelochhead station, so stage 2 measures 13.1 km
-    against 10.5 km and stage 3 17.3 km against 20.5 km; together 30.4 km against 31 km. The record
-    keeps the site's figures. Ascent: stated about 1,500 m, the terrain model about 1,440 m. Highest
-    point 271 m (terrain model, at km 6 on the upland above Balloch; "rarely rising above 250
-    metres"), lowest 4 m. Water and beds: the longest stretch without either in OSM, 27.1 km, runs
-    from Helensburgh through Glen Fruin and the training area towards Arrochar.
+    "the MOD Training Area at Garelochhead" and stage 3 begins at the southern end of the Yankee
+    Road (grid reference 261899), while our split is at Garelochhead station, so stage 2 measures
+    13.1 km against 10.5 km and stage 3 17.3 km against 20.5 km; together 30.4 km against 31 km. The
+    record keeps the site's figures. Ascent: stated about 1,500 m, the terrain model about 1,080 m
+    (GEDTM30, 2026-11-07; −28 %, in dataCheck). Highest point 266 m (terrain model, at km 6 on the
+    upland above Balloch; "rarely rising above 250 metres"), lowest 3 m. Water and beds: the longest
+    stretch without either in OSM, 27.1 km, runs from Helensburgh through Glen Fruin and the
+    training area towards Arrochar.
   - >-
     Data check (2026-11-05, working rule 2): against English Wikipedia (Three Lochs Way). Length 55
     km (34 mi) agrees; Balloch to Inveruglas agrees; the Helensburgh & District Access Trust, which
@@ -155,7 +156,8 @@ dataCheck:
   # working rule 2: English Wikipedia
   date: 2026-11-05
   against: [wikipedia-en]
-  deviations: []
+  deviations:
+    - { figure: ascent, ours: "≈1,080 m (terrain model, GEDTM30, 2026-11-07; no descents stated)", theirs: "approximately 1,500 metres", source: tlw-stages }
 sources:
   - id: huckepack-season
     title: "huckepack: no season published by the operator or a second source (the official website's pages and FAQ, Wikipedia); every month for now, until one is found"

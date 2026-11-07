@@ -138,22 +138,24 @@ notes:
     Map line (2026-11-05): the Scotland Geofabrik extract (2026-10-31); the OSM relation (10841122)
     cut at the sections' ends, every section 100 % matched and within 10 % of its stated length. The
     main route measures 183.7 km on the map line against the sections' 186.4 km (stated about 188
-    km). Highest point 251 m (terrain model, at km 173 above Newburgh), lowest 0 m on the beaches.
-    Water: 15 drinking-water points in OSM; the longest stretch without, 25.8 km, is the last
-    section from Wormit Bay to Newburgh, which also has no bed or shop in OSM until Newburgh.
+    km). Highest point 240 m (terrain model, GEDTM30, 2026-11-07; at km 173 above Newburgh), lowest
+    0 m on the beaches. Water: 15 drinking-water points in OSM; the longest stretch without, 25.8
+    km, is the last section from Wormit Bay to Newburgh, which also has no bed or shop in OSM until
+    Newburgh.
   - >-
     Data check (2026-11-05, working rule 2): against English Wikipedia (Fife Coastal Path). Length
     187 km (Wikipedia) against the Trust's about 188 km and our map line's 183.7 km; Kincardine to
     Newburgh agrees; the Trust as manager and one of Scotland's Great Trails agree; Wikipedia's
     "between one week and 10 days" fits the eight sections; its season "all year" and ascent of
-    1,865 m have no counterpart from the Trust (the page estimates about 2,470 m from the terrain
-    model, which reads cliff edges and woods as climbs). No figure in the record differs by more
-    than 10 %.
+    1,865 m have no counterpart from the Trust (the page estimates about 1,100 m from the terrain
+    model, GEDTM30, 2026-11-07: 41 % under Wikipedia's figure, in dataCheck). No figure in the
+    record differs by more than 10 %.
 dataCheck:
   # working rule 2: English Wikipedia
   date: 2026-11-05
   against: [wikipedia-en]
-  deviations: []
+  deviations:
+    - { figure: ascent, ours: "≈1,100 m (terrain model, GEDTM30, 2026-11-07; none stated)", theirs: "1,865 m", source: wikipedia-en }
 sources:
   - id: fcct
     title: "Fife Coast and Countryside Trust: Fife Coastal Path (length, start and finish, the eight sections, waymarkers)"

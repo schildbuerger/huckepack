@@ -245,10 +245,10 @@ notes:
     south Cornish coast (km 497–523, Falmouth to Portloe and on), where cafés and pubs in the
     coves are the refills.
   - >-
-    Ascent: the terrain model gives about 18,250 m, about half the stated 35,000 m. On trails over
-    1,000 km it samples the route every 500 m, which misses most of the coast's short, steep
-    climbs into and out of the coves; the stated figure is the Association's sum along the path
-    (Wikipedia: 35,031 m), which the page shows.
+    Ascent: the terrain model gives about 15,910 m (GEDTM30, 2026-11-07), less than half the stated
+    35,000 m. On trails over 1,000 km it samples the route every 500 m, which misses most of the
+    coast's short, steep climbs into and out of the coves; the stated figure is the Association's
+    sum along the path (Wikipedia: 35,031 m), which the page shows.
   - >-
     Data check (2026-11-03). Second source: Wikipedia: 630 miles (1,014 km) from Minehead to Poole
     Harbour, 114,931 ft (35,031 m) climbed, its last section designated in 1978, 30 to 60 days, open
@@ -261,7 +261,7 @@ dataCheck:
   against: [wikipedia]
   pageAgainst: [swcpa-itinerary]
   deviations:
-    - { figure: ascent, ours: "about 18,250 m (terrain model)", theirs: "35,000 m", source: govuk }
+    - { figure: ascent, ours: "about 15,910 m (terrain model, GEDTM30, 2026-11-07)", theirs: "35,000 m", source: govuk }
 sources:
   - id: govuk
     title: "Natural England (gov.uk): Visit a National Trail in England, South West Coast Path (630 miles, 30 to 56 days, ascent, open all year)"

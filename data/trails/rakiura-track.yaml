@@ -99,11 +99,11 @@ notes:
   - >-
     Route (pipeline, 2026-11-05, Geofabrik extracts): each leg is the shortest way over OSM's
     relation (GW09, 1385146) between its ends; every leg matches 100 %. The map line is 26.3 km
-    against DOC's 32 km (18 % short): each leg comes out about 15 % under DOC's figure (7.1, 10.9 and
-    9.5 km against 8, 13 and 11), and the whole relation, Oban's roads included, is only 34.8 km, so
-    OSM maps the circuit at about 27 km and DOC's distances run long, as on the Heaphy and Paparoa
-    Tracks. The page keeps DOC's figures. Highest point 193 m (km 11, the interior between Port
-    William and North Arm).
+    against DOC's 32 km (18 % short): each leg comes out about 15 % under DOC's figure (7.1, 10.9
+    and 9.5 km against 8, 13 and 11), and the whole relation, Oban's roads included, is only 34.8
+    km, so OSM maps the circuit at about 27 km and DOC's distances run long, as on the Heaphy and
+    Paparoa Tracks. The page keeps DOC's figures. Highest point 184 m (terrain model, GEDTM30,
+    2026-11-07; km 11, the interior between Port William and North Arm).
   - >-
     Data check (2026-11-05). Second source: English Wikipedia (32 km circular, Lee Bay to Fern Gully,
     usually three days, most often anticlockwise from Lee Bay). Length, ends and days agree with
