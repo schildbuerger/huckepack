@@ -23,7 +23,7 @@ import { difficulty, levelText, DIFFICULTY_FACTS, DIMENSION_TEXT, EFFORT_NO_STAG
 import { monthsText, rateData } from "../../lib/months";
 import { existsSync } from "node:fs";
 import TrailPhotos, { type Photo } from "../../components/TrailPhotos.astro";
-import { ownGpx } from "../../lib/gpx";
+import { linesFor, ownGpx } from "../../lib/gpx";
 import {
   countryName,
   monthName,
@@ -37,7 +37,8 @@ import {
   stageTotals,
   trailLength,
   trailClimb,
-  measuredLength,
+  providerLength,
+  measuredCover,
   SAC_FACTS,
   SAC_SCALE,
   WATER_LEVELS,
@@ -84,13 +85,20 @@ const sleeping = SLEEPING_CATEGORIES.map((c) => ({
 }));
 const sources = Object.fromEntries(t.sources.map((s, i) => [s.id, { ...s, n: i + 1 }]));
 const totals = stageTotals(t);
-// one length: the first stated total, else the sum of the main stages (trailLength())
-const length = trailLength(t);
-// the length on our map line, where every main stage is well matched (measuredLength())
-const measured = measuredLength(derived);
-// the length's wording in its info box: how it was found and its source
-const lengthHow = length ? (length.how === "stated total" ? "the stated length" : `the ${length.how}`) : "";
-const lengthSrc = length ? sources[length.source].title.split(":")[0] : "";
+// one length (the user's decision, 2026-11-07): ours, measured on the map line where it covers at
+// least 95 % of the route, in whole km; else the provider's (stated total, else the stage sum)
+const length = trailLength(t, derived);
+// the provider's figure, named in the popover as the official one (or as the fallback)
+const official = providerLength(t);
+const officialHow = official ? (official.how === "stated total" ? "stated length" : official.how) : "";
+const officialSrc = official ? sources[official.source].title.split(":")[0] : "";
+// how much of the route our map line covers, said where it falls short (measuredCover())
+const cover = measuredCover(t, derived);
+const osmDate = ((d) => (d ? new Date(d).toLocaleDateString("en-GB", { day: "numeric", month: "short", year: "numeric" }) : null))(linesFor(trail.id)?.osmDate);
+const sideTrips = (t.stages?.list ?? []).some((s) => s.outAndBack);
+const variants = (t.stages?.list ?? []).some((s) => s.kind !== "main" && !s.outAndBack);
+// the provider measures differently by more than 10 %: one short row in the popover
+const lengthOff = Boolean(length?.measured && official && Math.abs(length.exact - official.value) > 0.1 * official.value);
 const days = trailDays(t);
 const daily = perStage(t, derived);
 // a trail without stages by design (issue #204): no stages section, kilometres instead of stage
@@ -755,16 +763,18 @@ const trailLd = JSON.stringify({
           <dt>
             <Explain id="length-info" term="Length">
               <dl class="pop-facts">
-                <dt>Stated</dt><dd>{length.approx ? "About " : ""}{fmt(length.value)} km, {lengthHow} ({lengthSrc})</dd>
-                {measured ? (
+                {length.measured ? (
                   <>
-                    <dt>Map line</dt><dd>{fmt(measured.value)} km, OpenStreetMap along the official track</dd>
-                    <dt>Used for</dt><dd>The charts on this page, and comparing trails in the search</dd>
+                    <dt>This trail</dt><dd>{length.exact.toLocaleString("en", { minimumFractionDigits: 1, maximumFractionDigits: 1 })} km</dd>
+                    <dt>How</dt><dd>Measured on our OpenStreetMap map line{osmDate ? ` (data of ${osmDate})` : ""}: the main route{variants ? ", variants left out" : ""}{sideTrips ? ", side trips walked there and back counted twice" : ""}</dd>
+                    {official && <><dt>Official</dt><dd>{official.approx ? "About " : ""}{fmt(official.value)} km, {officialHow} ({officialSrc})</dd></>}
+                    {lengthOff && <><dt>Keep in mind</dt><dd>{officialSrc} measures the route differently</dd></>}
                   </>
-                ) : derived?.measured && (
+                ) : (
                   <>
-                    <dt>Map line</dt><dd>Not used: only {Math.round(derived.measured.minCovered * 100)} % matched{stageless ? "" : " on its weakest stage"}</dd>
-                    <dt>Search</dt><dd>Compares this trail by the stated length</dd>
+                    <dt>This trail</dt><dd>{length.approx ? "About " : ""}{fmt(length.value)} km</dd>
+                    <dt>Source</dt><dd>{officialSrc}, {officialHow}</dd>
+                    {cover !== null && <><dt>Why</dt><dd>Our map line covers only {Math.floor(cover * 100)} % of the route, so this is {officialSrc}'s figure</dd></>}
                   </>
                 )}
               </dl>

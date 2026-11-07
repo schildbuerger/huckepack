@@ -3,7 +3,7 @@
 // `npm test` (Node's test runner; Node strips the types itself).
 import { test } from "node:test";
 import assert from "node:assert/strict";
-import { barMetres, gradients, noStages, perDay, routeEstimate, sleepingCategories, trailClimb, trailLength, trailDays, walkingMinutes, stageTotals, STEEP_PERCENT } from "../src/lib/trails.ts";
+import { barMetres, gradients, noStages, perDay, routeEstimate, sleepingCategories, trailClimb, trailLength, providerLength, measuredLength, measuredCover, compareLength, trailDays, walkingMinutes, stageTotals, STEEP_PERCENT } from "../src/lib/trails.ts";
 import { difficulty } from "../src/lib/difficulty.ts";
 import { mergeRuns, rectsPath, simplify, stripPaths, n1 } from "../src/lib/svg.ts";
 import { kmBetween, roundDistance } from "../src/lib/geo.ts";
@@ -27,9 +27,77 @@ const trail = (over: Record<string, unknown> = {}) =>
     ...over,
   }) as any;
 
-test("length: the stated total first, else the main stages' sum", () => {
+test("provider's length: the stated total first, else the main stages' sum", () => {
+  assert.equal(providerLength(trail())!.value, 22.3);
+  assert.equal(providerLength(trail({ length: [{ km: 20, source: "site" }] }))!.value, 20);
+});
+
+// derived data with only `measured`: the main stages (and a variant) with their coverage
+const measuredData = (covered: [number, number, number], km = 23.4) =>
+  ({
+    measured: {
+      source: "osm",
+      km,
+      minCovered: Math.min(covered[0], covered[1]),
+      stages: [
+        { number: "1", kind: "main", km: 10.4, covered: covered[0] },
+        { number: "2", kind: "main", km: 13, covered: covered[1] },
+        { number: "2a", kind: "variant", km: 30, covered: covered[2] },
+      ],
+    },
+  }) as any;
+
+test("length: our measurement first, in whole km, with its tenth kept for the popover", () => {
+  const l = trailLength(trail({ length: [{ km: 20, source: "site", approx: true }] }), measuredData([1, 1, 1]))!;
+  assert.equal(l.value, 23);
+  assert.equal(l.measured, true);
+  assert.equal(l.measured && l.exact, 23.4);
+  assert.equal(l.source, "osm");
+  assert.equal(l.approx, false); // "about" only for a provider's figure flagged approx
+  assert.equal(compareLength(trail(), measuredData([1, 1, 1])), 23);
+});
+
+test("length: measured where the route is 95 % matched overall, weighted by stage length", () => {
+  // stage 1 only 90 % matched, but over both stages (10.4 × 0.9 + 13 × 1) / 23.4 = 95.6 %
+  assert.equal(trailLength(trail(), measuredData([0.9, 1, 1]))!.value, 23);
+  assert.ok(Math.abs(measuredCover(trail(), measuredData([0.9, 1, 1]))! - 0.9556) < 0.001);
+  // a variant never counts, however poorly matched
+  assert.equal(trailLength(trail(), measuredData([1, 1, 0]))!.measured, true);
+  // under 95 % overall: the provider's figure, the stated total, else the stage sum
+  assert.equal(trailLength(trail({ length: [{ km: 20, source: "site" }] }), measuredData([0.9, 0.95, 1]))!.value, 20);
+  assert.equal(trailLength(trail(), measuredData([0.9, 0.95, 1]))!.value, 22.3);
+  assert.equal(measuredLength(trail(), measuredData([0.9, 0.95, 1])), null);
+  // no measurement at all
   assert.equal(trailLength(trail())!.value, 22.3);
-  assert.equal(trailLength(trail({ length: [{ km: 20, source: "site" }] }))!.value, 20);
+  assert.equal(trailLength(trail())!.measured, false);
+  assert.equal(measuredCover(trail()), null);
+});
+
+test("length: a side trip walked there and back weighs twice in the coverage", () => {
+  const t = trail({
+    stages: {
+      source: "site",
+      list: [
+        { number: "1", kind: "main", from: "A", to: "B", km: 10 },
+        { number: "V1", kind: "variant", from: "B", to: "V", km: 5, outAndBack: true },
+      ],
+    },
+  });
+  const d = {
+    measured: {
+      source: "osm",
+      km: 20,
+      minCovered: 1,
+      stages: [
+        { number: "1", kind: "main", km: 10, covered: 1 },
+        { number: "V1", kind: "variant", km: 5, covered: 0.8 },
+      ],
+    },
+  } as any;
+  // (10 × 1 + 2 × 5 × 0.8) / 20 = 90 %: our map line misses too much of the side trip
+  assert.ok(Math.abs(measuredCover(t, d)! - 0.9) < 1e-9);
+  assert.equal(trailLength(t, d)!.value, 20); // the stage sum, the side trip counted twice
+  assert.equal(trailLength(t, d)!.measured, false);
 });
 
 test("climb: the stated pair only from one source, else the main stages' sums", () => {

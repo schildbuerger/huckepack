@@ -2,7 +2,7 @@
 // All trails A–Z (issue #178): every trail as a plain link, grouped by country, so every trail page has a
 // link in the HTML that search engines follow (the search page renders only its first cards and loads
 // the rest by script; the home page links a few). Linked from the footer on every page. No script.
-import { getCollection } from "astro:content";
+import { getCollection, getEntry } from "astro:content";
 import Base from "../../../layouts/Base.astro";
 import Breadcrumbs from "../../../components/Breadcrumbs.astro";
 import { countryName, trailLength } from "../../../lib/trails";
@@ -10,7 +10,7 @@ import { countryName, trailLength } from "../../../lib/trails";
 const trails = await getCollection("trails");
 const byCountry = new Map<string, { slug: string; name: string; km: number | null }[]>();
 for (const t of trails) {
-  const km = trailLength(t.data)?.value ?? null;
+  const km = trailLength(t.data, (await getEntry("derived", t.id))?.data)?.value ?? null;
   for (const c of t.data.countries) {
     const name = countryName(c);
     if (!byCountry.has(name)) byCountry.set(name, []);

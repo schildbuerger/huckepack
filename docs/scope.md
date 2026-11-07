@@ -71,12 +71,25 @@
   page. Complex or protected logos are left out: the waymark's text stands
   alone (decided 2026-10-30; Wikimedia Commons was checked: its logo vectors
   carry doubtful licences, and its photos only read when large).
-- **Trail length:** the key figure, page title, search cards and home page show
-  the operator's stated total where the record has one, not the sum of the
-  stages: stage lists often include the paths into the stage towns (the
-  Moselsteig's 24 stages add up to 392.8 km against its 365 km). The stage
-  sums stay in the stages table and feed the per-day averages and difficulty,
-  which must share a source with the stages (decided 2026-10-30).
+- **Trail length:** since 2026-11-07 (the user's decision) the total shown
+  anywhere on the site (key figure, page title, description, link-preview
+  image, search and home-page cards, the A–Z list, sorting and totals) is our
+  measurement on the OSM map line (main route; variants and approaches left
+  out; side trips walked there and back counted twice), in whole kilometres,
+  where the route it measures is at least 95 % matched overall, weighted by
+  stage length; else the provider's figure (stated total, else the stage
+  sum), and the popover says why. One method for every trail, so lengths
+  compare, and one figure with one source everywhere. Compared on all 131
+  trails: 68 within 2 % of the provider's total, 31 within 2–5 %, 29 within
+  5–10 %, 3 over 10 % (the Juan de Fuca Marine Trail, the Rakiura Track, the
+  Florida Trail, each checked and explained in its record's notes); only the
+  West Island Way (94 % matched) falls back. The Length popover names the
+  provider's figure as "Official" with its source, and says the provider
+  measures differently where they differ by over 10 %. The stage distances
+  stay the provider's (stages table, averages per stage or day, difficulty).
+  Before (2026-10-30): the operator's stated total, else the stage sum, since
+  stage lists often include the paths into the stage towns (the Moselsteig's
+  24 stages add up to 392.8 km against its 365 km; we measure 391 km).
 - **Ascent and descent:** the same rule as the length: the stated total pair
   (only when ascent and descent come from the same source, so one tile never
   mixes sources), else the stage sums, else the terrain model's estimate (≈).
@@ -119,13 +132,13 @@
   data's date in the file), leaving out stages under 95 % matched, where OSM
   differs from the trail. Each GPX link carries a note on its source: the
   provider, or just "Our tracing from OpenStreetMap" (decided 2026-11-05).
-- **Measured length:** where every main stage's OSM match covers at least
-  95 % of its official track, the length of our map line (the full match) is
-  the comparable length: the search sorts by it and the home page sums it, so
-  every trail is measured the same way. The page's headline stays the stated
-  figure hikers see on signs and bookings; its popover gives the measured one
-  (decided 2026-10-30). Below 95 % the stated figure stands in, since a
-  stage whose match takes a shortcut would come out short.
+- **Measured length:** the length of our map line (the full match) is the
+  trail's length everywhere since 2026-11-07 (see Trail length), where the
+  route is at least 95 % matched overall, weighted by stage length; below
+  that the provider's figure stands in, since a stretch the match shortcuts
+  would come out short. Before (2026-10-30 to 2026-11-07) it was only the
+  comparable length (search sorting, home-page totals), used where every main
+  stage was 95 % matched, while the headline kept the stated figure.
 
 - **Name:** huckepack (German for carrying someone piggyback, from Low German
   *Hucke*, a load carried on the back). huckepack.com is taken; the domain

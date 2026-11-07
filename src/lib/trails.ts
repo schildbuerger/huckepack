@@ -37,14 +37,16 @@ export function stageTotals(t: Trail) {
   };
 }
 
-// The trail's length: the first stated total where the record has one (the official figure; stage
-// lists often include the paths into the stage towns, e.g. the Moselsteig's 392.8 km against its
-// 365 km), else the sum of the main stages.
-export function trailLength(t: Trail) {
+// The provider's length: the first stated total where the record has one (stage lists often include
+// the paths into the stage towns, e.g. the Moselsteig's 392.8 km against its 365 km), else the sum of
+// the main stages (side trips walked there and back counted twice). The trail's length falls back to
+// it where our map line doesn't cover the route well enough (trailLength()); the Length popover names
+// it as the official figure.
+export function providerLength(t: Trail) {
   const stated = t.length[0];
-  if (stated) return { value: stated.km, source: stated.source, how: "stated total", approx: stated.approx ?? false };
+  if (stated) return { value: stated.km, source: stated.source, how: "stated total", approx: stated.approx ?? false, measured: false as const };
   const totals = stageTotals(t);
-  return totals ? { ...totals.km, approx: false } : null;
+  return totals ? { ...totals.km, approx: false, measured: false as const } : null;
 }
 
 // The trail's total ascent and descent, like its length: the stated pair where the record states both
@@ -60,18 +62,48 @@ export function trailClimb(t: Trail) {
     : undefined;
 }
 
-// The length measured on our map line (the full OSM match, pipeline/routes.py): one method for every
-// trail, so it is what search sorting and comparisons use; only where every main stage is at least
-// MEASURED_MIN_COVER matched, since a stage whose match takes a shortcut would come out short.
-export const MEASURED_MIN_COVER = 0.95;
-export function measuredLength(d?: DerivedData) {
+// How much of the measured route our map line matches (pipeline/routes.py): over the stages that count
+// in the derived `measured.km` (main stages, plus side trips the record marks `outAndBack`, counted
+// twice), each weighted by its length. Null without a measurement.
+export function measuredCover(t: Trail, d?: DerivedData) {
   const m = d?.measured;
-  return m && m.minCovered >= MEASURED_MIN_COVER ? { value: m.km, source: m.source } : null;
+  if (!m) return null;
+  const back = new Set((t.stages?.list ?? []).filter((s) => s.outAndBack).map((s) => `${s.kind} ${s.number}`));
+  let km = 0;
+  let matched = 0;
+  for (const s of m.stages) {
+    const w = s.kind === "main" ? 1 : back.has(`${s.kind} ${s.number}`) ? 2 : 0;
+    km += w * s.km;
+    matched += w * s.km * s.covered;
+  }
+  return km > 0 ? matched / km : null;
 }
 
-// the length to compare trails by: measured where the match is good, else the trail's length
+// The length measured on our map line (the full OSM match, pipeline/routes.py), to a tenth of a km:
+// one method for every trail (the user's decision, 2026-11-07, docs/scope.md), used where the route
+// it measures is at least MEASURED_MIN_COVER matched overall (measuredCover(), weighted by stage
+// length), since a stretch the match shortcuts would come out short.
+export const MEASURED_MIN_COVER = 0.95;
+export function measuredLength(t: Trail, d?: DerivedData) {
+  const m = d?.measured;
+  const cover = measuredCover(t, d);
+  return m && cover !== null && cover >= MEASURED_MIN_COVER ? { value: m.km, source: m.source, cover } : null;
+}
+
+// The trail's length, the one total every page shows (key figure, title, description, link preview,
+// search and home-page cards, the A–Z list, sorting and totals): our measurement in whole kilometres
+// (a measurement shouldn't look more precise than it is; `exact` keeps its tenth for the popover),
+// else the provider's figure (providerLength()).
+export function trailLength(t: Trail, d?: DerivedData) {
+  const m = measuredLength(t, d);
+  if (m)
+    return { value: Math.round(m.value), exact: m.value, source: m.source, how: "measured on our OpenStreetMap line", approx: false, measured: true as const };
+  return providerLength(t);
+}
+
+// the length to compare trails by: the same total as trailLength() (sorting, climbing per km, totals)
 export function compareLength(t: Trail, d?: DerivedData) {
-  return measuredLength(d)?.value ?? trailLength(t)?.value ?? null;
+  return trailLength(t, d)?.value ?? null;
 }
 
 // The trail's days (issue #148): the days a source suggests, else one day per main stage, so every
@@ -126,7 +158,8 @@ export function routeEstimate(d?: DerivedData) {
 // the stated pair, else the terrain model's estimate (`est`). Undefined for trails with stages.
 export function perDay(t: Trail, d?: DerivedData) {
   if (!noStages(t) || !t.days) return undefined;
-  const length = trailLength(t) ?? ((m) => (m ? { ...m, how: "measured on the map line", approx: false } : null))(measuredLength(d));
+  // the provider's length (as the stage averages, which stay on the provider's figures), else ours
+  const length = providerLength(t) ?? ((m) => (m ? { ...m, how: "measured on the map line", approx: false } : null))(measuredLength(t, d));
   if (!length) return undefined;
   const { min, max } = t.days;
   const stated = trailClimb(t);
@@ -178,8 +211,8 @@ export const SAC_FACTS: [string, string][] = [
 export const SAC_NOTE =
   "Trails rate their difficulty in many local scales, or only describe it in words. We translate each rating into the Swiss Alpine Club's hiking scale, from T1 (easy) to T6 (very hard), so trails can be compared. It stays an estimate: how hard a trail feels depends on your fitness, experience, pack and the weather."
 
-// The compact record lists and filters work on. Lists show the stage total when there are
-// stages, else the first stated length; trail pages show every figure with its source. With the
+// The compact record lists and filters work on. Lists show the trail's length (trailLength(): measured,
+// else the provider's); trail pages show every figure with its source. With the
 // trail's derived data (the pipeline's output) it also carries what the search page filters and
 // previews: water, surfaces and a coarse elevation profile.
 const PROFILE_POINTS = 80;
@@ -194,8 +227,8 @@ export function summarize(id: string, t: Trail, d?: DerivedData) {
     continents: t.continents as string[],
     countries: t.countries.map(countryName),
     regions: t.regions,
-    lengthKm: trailLength(t)?.value ?? null,
-    compareKm: compareLength(t, d), // for sorting and totals (compareLength())
+    lengthKm: trailLength(t, d)?.value ?? null, // measured, else the provider's (trailLength())
+    compareKm: compareLength(t, d), // for sorting and totals: the same figure
     ascentM: trailClimb(t)?.up ?? null,
     // the suggested days, else one day per main stage (trailDays)
     days: ((d) => (d ? ([d.min, d.max] as [number, number]) : null))(trailDays(t)),

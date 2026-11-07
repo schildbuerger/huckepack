@@ -79,7 +79,7 @@ null.
   why in the stages' comment and the data check. Keep the operator's times, climbs and heights
   where they are usable.
 - **What our measured length counts** (decided 2026-11-07; `measured.km` in `data/derived/<slug>.json`,
-  which search sorting and comparisons use): the main stages only, never variants or approaches.
+  the trail's length on every page where the route is 95 % matched overall, docs/scope.md): the main stages only, never variants or approaches.
   A side trip the trail includes and walks there and back (the W Trek's and the O Circuit's
   valleys) stays a variant with `outAndBack: true`, its `km` one way as the source gives it, and
   counts twice. A there-and-back inside a stage (the Three Capes' Cape Pillar) is routed out and
@@ -180,7 +180,10 @@ lowest point against stated, resupply.
 - Where no second source exists, check the built page against the original source, figure by
   figure.
 - More than 10 % apart: the page keeps the operator's figure; both go in `notes` and
-  `dataCheck.deviations`.
+  `dataCheck.deviations`. The length is the exception: the page shows our measured length
+  (since 2026-11-07, docs/scope.md), so compare it against the provider's total; a deviation over
+  10 % is checked (shortcut, missing stretch, or the provider measuring differently) and recorded
+  the same way, and the page's Length popover names the provider's figure.
 - A source used only for the check gets `checkOnly: true`.
 - Give the user the comparison as a table.
 
