@@ -37,7 +37,8 @@ const TRAILS = [
   t("tour-du-mont-blanc", "Tour du Mont Blanc", ["France", "Italy", "Switzerland"], ["Alps", "Auvergne-Rhône-Alpes", "Valais"], { aliases: ["TMB"], sleeping: ["huts"] }),
   t("alpe-adria-trail", "Alpe-Adria-Trail", ["Austria", "Slovenia", "Italy"], ["Alps", "Carinthia"]),
   t("alta-via-1", "Alta Via 1", ["Italy"], ["Alps", "Veneto", "Trentino-Alto Adige"], { localName: "Alta Via delle Dolomiti n. 1" }),
-  t("gr-20", "GR 20", ["France"], ["Corse", "Corsica"]),
+  t("gr-20", "GR 20", ["France"], ["Corsica"], { placeAlso: { Corsica: ["Corse"] } }),
+  t("carros-de-foc", "Carros de Foc", ["Spain"], ["Catalonia", "Pyrenees"], { placeAlso: { Catalonia: ["Cataluña"] } }),
   t("gr-70-chemin-de-stevenson", "GR 70 Chemin de Stevenson", ["France"], ["Occitanie", "Massif Central"]),
   t("great-divide-trail", "Great Divide Trail", ["Canada"], ["Rocky Mountains", "Alberta"]),
   t("greenstone-ridge-trail", "Greenstone Ridge Trail", ["United States"], ["Michigan"]),
@@ -79,6 +80,10 @@ test("continents and the trails' derived regions match like countries", () => {
   assert.equal(labels("nordrhein")[0], "North Rhine-Westphalia");
   assert.equal(labels("uk")[0], "United Kingdom");
   assert.equal(labels("hermannshohen")[0], "Hermannshöhen");
+  // the derived data's other names: the local name finds the English one
+  assert.equal(labels("cataluna")[0], "Catalonia");
+  assert.equal(labels("corse")[0], "Corsica");
+  assert.equal(PLACES.filter((p) => p.label === "Corsica").length, 1);
   // an alias for a region no trail lies in suggests nothing
   assert.ok(!labels("schwarzwald").includes("Black Forest"));
 });
@@ -185,6 +190,12 @@ test("the real derived regions: each trail's list is valid, and the examples hol
   assert.ok(names("o-circuit").includes("Patagonia"));
   assert.ok(names("colorado-trail").includes("Rocky Mountains"));
   assert.ok(names("carros-de-foc").includes("Pyrenees"));
+  // English names from Wikidata, the local ones kept as other names; one place once
+  assert.ok(names("carros-de-foc").includes("Catalonia"));
+  assert.ok(names("camino-frances").includes("Castile and León"));
+  assert.deepEqual(names("gr-20"), ["Corsica"]);
+  assert.ok((regions.get("gr-20")![0] as { also?: string[] }).also!.includes("Corse"));
+  for (const [slug, list] of regions) assert.equal(new Set(list.map((r) => r.name)).size, list.length, slug);
   // the Camino Francés crosses the Pyrenees on its first day only: under 20 % of its route
   assert.ok(!names("camino-frances").includes("Pyrenees"));
   // every alias's other names are unique to it

@@ -31,6 +31,8 @@ export function searchSummary(id: string, t: Trail, d?: DerivedData) {
     // Natural Earth), for the searches and the Where filter (`where=Alps`); the record's own
     // `regions` stay the trail page's words
     places: (d?.regions ?? []).map((r) => r.name),
+    // their other names ("Cataluña" for Catalonia, "Corse" for Corsica), for the matching
+    placeAlso: Object.fromEntries((d?.regions ?? []).filter((r) => r.also?.length).map((r) => [r.name, r.also!])) as Record<string, string[]>,
     landscape: d?.landcover?.shares ?? null, // share of each landscape group (src/pages/trails/[slug].astro LAND)
   };
 }

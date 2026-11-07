@@ -16,6 +16,7 @@ import type { SearchTrail } from "../lib/search";
 import { places, TRIP_LENGTHS } from "../lib/filters";
 import { MONTH_ABBR } from "../lib/months";
 import { PLACE_ALIASES } from "../lib/place-aliases";
+import { placeAlso } from "../lib/search-match";
 
 interface Props {
   trails: SearchTrail[];
@@ -40,7 +41,8 @@ const regions = [...new Set(trails.flatMap((t) => t.places))]
   .filter((name) => !placeNames.has(name))
   .map((name) => ({ name, n: trails.filter((t) => t.places.includes(name)).length }))
   .sort((a, b) => a.name.localeCompare(b.name));
-const alsoOf = (name: string) => PLACE_ALIASES.find((p) => p.name === name)?.also ?? [];
+const derivedAlso = placeAlso(trails);
+const alsoOf = (name: string) => [...(derivedAlso.get(name) ?? []), ...(PLACE_ALIASES.find((p) => p.name === name)?.also ?? [])];
 const names = (name: string) => [name, ...alsoOf(name)].join("|");
 const total = (test: (t: SearchTrail) => boolean) => trails.filter(test).length;
 // only what the three questions ask of a trail

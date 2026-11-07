@@ -219,6 +219,7 @@ export interface TrailLike {
   countries: string[];
   regions: string[];
   places?: string[];
+  placeAlso?: Record<string, string[]>; // a region's other names from the derived data ("Cataluña")
   sleeping?: string[];
 }
 
@@ -235,6 +236,13 @@ export const TOPICS = [
 // the other names of each place (from the alias list), folded: "Bayern" for Bavaria
 const ALSO = new Map(PLACE_ALIASES.map((p) => [p.name, p.also ?? []]));
 
+// every region's other names the trails' records carry, joined
+export function placeAlso(trails: TrailLike[]) {
+  const out = new Map<string, string[]>();
+  for (const t of trails) for (const [name, also] of Object.entries(t.placeAlso ?? {})) out.set(name, [...new Set([...(out.get(name) ?? []), ...also])]);
+  return out;
+}
+
 export function placeCandidates(trails: TrailLike[], opts: { topics?: boolean } = {}): Candidate[] {
   const count = (test: (t: TrailLike) => boolean) => trails.filter(test).length;
   const uniq = (xs: string[]) => [...new Set(xs)].sort((a, b) => a.localeCompare(b));
@@ -247,12 +255,14 @@ export function placeCandidates(trails: TrailLike[], opts: { topics?: boolean } 
     const k = count((t) => t.countries.includes(c));
     out.push({ id: `n-${c}`, kind: "country", label: c, names: [c, ...(ALSO.get(c) ?? [])], count: k, href: whereHref(c), note: n(k) });
   }
-  // regions: those the trails lie in (pipeline/regions.py), not a country's or continent's name
+  // regions: those the trails lie in (pipeline/regions.py), not a country's or continent's name;
+  // their other names from the derived data and the alias list
   const taken = new Set(out.map((c) => c.label));
+  const derived = placeAlso(trails);
   for (const r of uniq(trails.flatMap((t) => t.places ?? []))) {
     if (taken.has(r)) continue;
     const k = count((t) => (t.places ?? []).includes(r));
-    out.push({ id: `r-${r}`, kind: "region", label: r, names: [r, ...(ALSO.get(r) ?? [])], count: k, href: whereHref(r), note: n(k) });
+    out.push({ id: `r-${r}`, kind: "region", label: r, names: [r, ...(derived.get(r) ?? []), ...(ALSO.get(r) ?? [])], count: k, href: whereHref(r), note: n(k) });
   }
   if (opts.topics)
     for (const tp of TOPICS) {
@@ -268,7 +278,7 @@ export function trailCandidates(trails: TrailLike[]): Candidate[] {
     kind: "trail" as const,
     label: t.name,
     names: [t.name, ...(t.localName ? [t.localName] : []), ...t.aliases],
-    extra: [...t.countries, ...t.continents, ...(t.places ?? []).flatMap((p) => [p, ...(ALSO.get(p) ?? [])])],
+    extra: [...t.countries, ...t.continents, ...(t.places ?? []).flatMap((p) => [p, ...(t.placeAlso?.[p] ?? []), ...(ALSO.get(p) ?? [])])],
     href: `/trails/${t.slug}/`,
     note: t.countries.join(", "),
   }));

@@ -5,8 +5,9 @@
 // belonging where at least 20 % of its main route lies; the user's rule of 2026-11-07).
 //
 // To add a name: the place's `name` exactly as the search shows it (a country as the records name
-// it, a region as Natural Earth names it, see data/derived/<slug>.json `regions`), and `also`, other
-// spellings and languages hikers type (accents optional). A name for a place no trail lies in does
+// it, a region as the derived data name it, see data/derived/<slug>.json `regions`: English, from
+// Wikidata for first-level subdivisions), and `also`, other spellings and languages hikers type
+// (accents optional; the region's own local name is in the derived data already). A name for a place no trail lies in does
 // nothing until one does.
 export interface PlaceAlias {
   name: string;
@@ -28,13 +29,13 @@ export const PLACE_ALIASES: PlaceAlias[] = [
   { name: "Rocky Mountains", also: ["Rockies"] },
   { name: "Scandinavia", also: ["Skandinavien"] },
   { name: "Scandinavian Mountains", also: ["Kjølen", "Scandes", "Fjällen"] },
-  { name: "Corsica", also: ["Corse", "Korsika"] },
+  { name: "Corsica", also: ["Korsika"] },
   { name: "Erzgebirge", also: ["Ore Mountains", "Krušné hory"] },
   { name: "Appennino Ligure", also: ["Apennines", "Appennini", "Apennin"] },
   { name: "Iberian Peninsula", also: ["Iberia", "Península Ibérica"] },
-  { name: "Islas Baleares", also: ["Balearic Islands", "Illes Balears"] },
-  { name: "Kerry", also: ["County Kerry"] },
-  { name: "Wicklow", also: ["County Wicklow"] },
+  { name: "Balearic Islands", also: ["Illes Balears"] },
+  { name: "County Kerry", also: ["Kerry"] },
+  { name: "County Wicklow", also: ["Wicklow"] },
   { name: "Baden-Württemberg", also: ["Baden-Wurttemberg", "Baden-Wuerttemberg"] },
   { name: "North Rhine-Westphalia", also: ["Nordrhein-Westfalen", "NRW"] },
   { name: "Rhineland-Palatinate", also: ["Rheinland-Pfalz"] },
@@ -43,10 +44,9 @@ export const PLACE_ALIASES: PlaceAlias[] = [
   { name: "Thuringia", also: ["Thüringen"] },
   { name: "Hesse", also: ["Hessen"] },
   { name: "Carinthia", also: ["Kärnten"] },
-  { name: "Trentino-Alto Adige", also: ["South Tyrol", "Südtirol", "Trentino"] },
-  { name: "Valle d'Aosta", also: ["Aosta Valley", "Vallée d'Aoste"] },
-  { name: "Cataluña", also: ["Catalonia", "Catalunya"] },
-  { name: "Castilla y León", also: ["Castile and León"] },
+  { name: "Trentino-South Tyrol", also: ["South Tyrol", "Südtirol", "Alto Adige", "Trentino"] },
+  { name: "Aosta Valley", also: ["Vallée d'Aoste"] },
+  { name: "Catalonia", also: ["Catalunya"] },
   { name: "Galicia", also: ["Galiza"] },
   // countries (the records' names)
   { name: "United Kingdom", also: ["UK", "Britain", "Great Britain"] },
