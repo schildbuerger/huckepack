@@ -39,6 +39,7 @@ days:
   # hogakusten.com: "Tidsåtgång 7-9 dagar" (found 2026-11-04)
   min: 7
   max: 9
+  basis: operator
   source: hk
 stages:
   # hogakusten.com's nine stage pages, each headed with length, grade and time. No official GPX:

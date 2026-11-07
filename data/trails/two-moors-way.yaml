@@ -32,6 +32,13 @@ length:
   # "102 miles" (164 km) from Ivybridge to Lynmouth
   - km: 164
     source: tmw-about
+days:
+  # the Route Sections page "breaks the walk down into manageable one-day sections for most people":
+  # a day a section
+  min: 11
+  max: 11
+  basis: operator
+  source: tmw-sections
 stages:
   # the site's one-day sections ("Approximately … miles", converted), Ivybridge to Lynmouth; the OSM
   # relation (228450) guides the matcher, cut at each section's end
@@ -127,8 +134,8 @@ notes:
   - >-
     Waymarking: the operator's pages don't describe the trail's marks (searched 2026-11-06); none recorded.
   - >-
-    Days: the site splits the route into one-day sections ("How you split the route is, of course,
-    entirely up to you"); no number of days for the whole route. The page counts one day per section.
+    Days (2026-11-07): the association's "manageable one-day sections for most people", 11 days
+    ("How you split the route is, of course, entirely up to you").
   - >-
     Coast to coast: from Wembury on the South Devon coast the Erme-Plym Trail leads to Ivybridge
     (Wembury to Yealmpton about 7 miles, Yealmpton to Ivybridge about 9; the site: "adding around 15

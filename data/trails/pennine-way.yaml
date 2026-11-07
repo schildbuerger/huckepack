@@ -48,6 +48,7 @@ days:
   # "Time to complete: around 16 to 19 days"
   min: 16
   max: 19
+  basis: operator
   source: govuk
 stages:
   # gov.uk's sixteen example sections with miles and km. One official GPX for the whole trail

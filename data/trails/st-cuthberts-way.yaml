@@ -48,6 +48,7 @@ days:
   # "Most people walk the long distance route over four or five days"
   min: 4
   max: 5
+  basis: operator
   source: scw-faqs
 stages:
   # the site's five sections, west to east, with its distances and times. Sections 1–2 follow the

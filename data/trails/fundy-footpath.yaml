@@ -35,6 +35,7 @@ days:
   # minimum stands for both (a "Days" note says so)
   min: 4
   max: 4
+  basis: operator
   source: fhta-safety
 stages:
   # the association's three sections, hiking east to west ("Recommended Travel Time"); not days

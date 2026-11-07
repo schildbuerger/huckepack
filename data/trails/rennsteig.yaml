@@ -53,6 +53,7 @@ days:
   # bis 10 Tage"
   min: 5
   max: 10
+  basis: operator
   source: rv-list
 stages:
   # the Regionalverbund's eight stages "für Genießer" (its stage overview), whole km only; no

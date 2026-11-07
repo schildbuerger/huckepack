@@ -45,6 +45,7 @@ days:
   # Sport Ireland: "Time 9 days" (found 2026-11-04)
   min: 9
   max: 9
+  basis: secondary
   source: si
 stages:
   # the committee's nine stage pages, each with length, hours, grade, ascent and the grid references
@@ -125,6 +126,9 @@ animals:
       source: hpsc-lyme
 tags: [mountains, coast, lakes, moorland, national-park, national-waymarked-trail]
 notes:
+  - >-
+    Days (2026-11-07): Sport Ireland's "Time 9 days" (the National Trails Office, a second source):
+    the Kerry Way Committee's pages (home, the route, things to know) give stage times, no days.
   - >-
     The Way circles the Iveragh Peninsula from Killarney: through Killarney National Park past
     Muckross House and Torc Waterfall, along the Old Kenmare Road to the Black Valley, under the

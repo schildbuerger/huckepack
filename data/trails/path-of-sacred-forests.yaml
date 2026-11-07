@@ -34,6 +34,7 @@ length:
 days:
   min: 7
   max: 7
+  basis: operator
   source: pnfc
 stages:
   source: pnfc

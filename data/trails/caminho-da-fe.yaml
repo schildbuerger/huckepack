@@ -38,6 +38,12 @@ waymarking:
   # … as setas amarelas durante todo o trajeto" (Características)
   text: Yellow arrows on posts and fence posts throughout, and signs every 2 km with the distance left to the Basilica
   source: aacf-features
+days:
+  # one day per main stage of the Associação's stages
+  min: 13
+  max: 13
+  basis: stages
+  source: aacf
 stages:
   # stages 1–10: the operator's stage list (Distâncias, one image per stage with its distance), from
   # Águas da Prata to Campos do Jordão. Its stages 11–12 (Campos do Jordão – Pindamonhangaba 52 km,
@@ -159,8 +165,9 @@ notes:
     Roseira), and its stages add up to 316 km. The stages here, by Potim, add up to 302.8 km; the map line
     measures 297.1 km.
   - >-
-    Days: none recorded. The FAQ's "em média em 10 dias" on foot is for its 318 km via
-    Pindamonhangaba; it advises 25 to 30 km a day. The page counts one day per stage.
+    Days (2026-11-07): one per stage of the Associação's list (13). The FAQ's "em média em 10 dias"
+    on foot is for its 318 km via Pindamonhangaba, another stretch than the stages here (via Potim,
+    302.8 km), so left out; it advises 25 to 30 km a day.
   - >-
     Tree line: none recorded. The Associação's profile (via Pindamonhangaba) tops out at 1,820 m at
     Campista; on the Potim branch the terrain model (GEDTM30, 2026-11-07) has the route's highest

@@ -35,6 +35,7 @@ days:
   # "can only be walked in one direction over 3 nights and 4 days"
   min: 4
   max: 4
+  basis: operator
   source: doc
 stages:
   # DOC's four days, hut to hut, with distance and time; the OSM relation (GW07) guides the matcher,

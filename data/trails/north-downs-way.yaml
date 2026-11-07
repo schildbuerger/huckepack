@@ -35,6 +35,12 @@ termini:
 waymarking:
   text: The National Trail acorn, or the trail's name, on gates and signposts
   source: govuk
+days:
+  # one day per main section of National Trails' sections (without the Canterbury loop)
+  min: 13
+  max: 13
+  basis: stages
+  source: nt
 stages:
   # the National Trail's 15 sections (Route Description): 1–13 from Farnham by Canterbury to Dover,
   # the main route (the old Pilgrims' Way to Canterbury; GOV.UK: "from Farnham in Surrey to
@@ -174,8 +180,9 @@ notes:
     to Dover (216.4 km by Canterbury, 201.3 km by Folkestone; all 15 sections together are 254.3
     km), so the record leaves it out and the page sums the sections (2026-11-05).
   - >-
-    Days: National Trails' "twelve days" (13 miles a day) and GOV.UK's "around 12 days" are for
-    the 246 km, so the record leaves them out and the page counts one day per main section.
+    Days (2026-11-07): one per main section of National Trails' list (13). National Trails' "twelve
+    days" (13 miles a day) and GOV.UK's "around 12 days" are for the 246 km with the Canterbury
+    loop, another stretch, so left out.
 dataCheck:
   # working rule 2: GOV.UK (Natural England), English Wikipedia
   date: 2026-11-05

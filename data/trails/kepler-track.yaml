@@ -34,6 +34,7 @@ days:
   # "3-4 days"; "Most walkers take 4 days/3 nights"
   min: 3
   max: 4
+  basis: operator
   source: doc
 stages:
   # DOC's six legs between the huts, campsites and road ends, with distance and time; the OSM

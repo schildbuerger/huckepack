@@ -46,6 +46,12 @@ length:
   # "the 70-mile Laurel Highlands Hiking Trail"; the shelter legs sum to 70.0 miles
   - km: 112.7
     source: dcnr-park
+days:
+  # one day per main stage of DCNR's legs between the shelter areas
+  min: 9
+  max: 9
+  basis: stages
+  source: dcnr-guide
 stages:
   # DCNR's own legs between its eight shelter areas, from the official trail map's shelter-area
   # insets ("South: Ohiopyle Trailhead: 6.3 Mi. North: Rt. 653 Shelters: 12.2 Mi." …), which match
@@ -170,8 +176,9 @@ notes:
     the six trailheads (Ohiopyle 0, Rt. 653 18.8, Rt. 31 30.6, Rt. 30 45.8, Rt. 271 56.9, Rt. 56
     Seward 70) and the Maple Summit Road day parking (11.2).
   - >-
-    Days: DCNR gives no days ("Every hiker's pace varies, but a pace of 1.5 miles per hour is
-    average"); the page counts one day per stage, nine days for the eight nights in the shelter areas.
+    Days (2026-11-07): one per leg of DCNR's list (9, eight nights in the shelter areas). DCNR gives
+    no days ("a pace of 1.5 miles per hour is average"); English Wikipedia and the Laurel Highlands
+    Visitors Bureau's FAQ give none; the National Park Service's end-to-end page is gone (404).
   - >-
     Tree line: not added; the route stays below 1,500 m (highest point 2,961 ft, 903 m, near Seven
     Springs on DCNR's elevation profile).

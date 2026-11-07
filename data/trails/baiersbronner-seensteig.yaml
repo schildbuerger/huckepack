@@ -47,6 +47,7 @@ days:
   # "Auf dem Seensteig umrunden Sie Baiersbronn in fünf Tagen"
   min: 5
   max: 5
+  basis: operator
   source: bb
 stages:
   # Baiersbronn Touristik's five stage pages (destination.one), each with its GPX (kept local, it

@@ -45,6 +45,7 @@ days:
   # "Time 6 days" (Sport Ireland)
   min: 6
   max: 6
+  basis: secondary
   source: si
 stages:
   # Visit Wicklow's six stage pages (distance, estimated walking time), each with its GPX file, which
@@ -114,6 +115,10 @@ animals:
       source: hpsc-lyme
 tags: [mountains, moorland, lakes, forest, national-park, national-waymarked-trail]
 notes:
+  - >-
+    Days (2026-11-07): Sport Ireland's "Time 6 days" (the National Trails Office, a second source):
+    Visit Wicklow says only that "many walkers spend from one to seven days along this fantastic
+    trail".
   - >-
     The Way leaves Marlay Park in Dublin's southern suburbs for the Dublin Mountains, crosses Glencree
     to Knockree, passes above Lough Tay and Lough Dan to Oldbridge, goes by the monastic site and the

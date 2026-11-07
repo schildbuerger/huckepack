@@ -47,6 +47,7 @@ days:
   # the site's tour plans: 4 or 5 days with a tent, packages in 3 to 6 walking days, six stages
   min: 3
   max: 6
+  basis: operator
   source: sws
 stages:
   # the Naturpark's six stage tours on Outdooractive (linked from the stage pages of

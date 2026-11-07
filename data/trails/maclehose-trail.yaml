@@ -43,6 +43,12 @@ length:
   # the ten official sections add up to 100.0 km
   - km: 100
     source: afcd
+days:
+  # one day per main section of AFCD's ten sections
+  min: 10
+  max: 10
+  basis: stages
+  source: afcd
 stages:
   # the ten sections on hiking.gov.hk (AFCD): length and walking time per section, each page with an
   # official GPX, which only guides the OSM matcher (kept local)
@@ -167,8 +173,8 @@ notes:
     1 2.5 h against 3.25 h, section 2 4 h against 5.25 h, section 6 1 h against 1.75 h); the page
     uses AFCD's. Highest point 922 m on the terrain model (GEDTM30, 2026-11-07) against 957 m (4 %).
   - >-
-    Days: no official number (AFCD, 2026-11-03); its walking times suggest 4–5 days, so the page
-    counts one day per stage.
+    Days (2026-11-07): one per section of AFCD's ten. AFCD gives walking times only; English
+    Wikipedia gives none (the Trailwalker's 48 hours is a race).
 dataCheck:
   # working rule 2: English Wikipedia
   date: 2026-10-31

@@ -47,6 +47,7 @@ days:
   # "in five to eight daily stages"; the nine official stages can be walked one to three a day
   min: 5
   max: 8
+  basis: operator
   source: brochure
 stages:
   # the nine stages of meranerland.org, clockwise, with its times, lengths and climbs; each with

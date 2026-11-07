@@ -40,6 +40,7 @@ days:
   # "The official guide book recommends a 5 or 6 day walk"
   min: 5
   max: 6
+  basis: operator
   source: nt-info
 stages:
   # the National Trail's six sections (Route Description), by Goodmanham where section 2 offers

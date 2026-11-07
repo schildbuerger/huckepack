@@ -54,6 +54,7 @@ days:
   # the western variant in 12 stages, the eastern in 13
   min: 12
   max: 13
+  basis: operator
   source: stg
 stages:
   # Schwarzwald Tourismus's stage pages (toubiz): distances, times, climbs. The western variant is

@@ -59,6 +59,7 @@ days:
   # "Time to complete: around 30 to 56 days"
   min: 30
   max: 56
+  basis: operator
   source: govuk
 stages:
   # the Association's 52-day itinerary ("the most popular"), in miles, converted to km (1 mile =

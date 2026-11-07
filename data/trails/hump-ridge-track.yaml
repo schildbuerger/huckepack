@@ -41,6 +41,7 @@ days:
   # "3 days/2 nights"
   min: 3
   max: 3
+  basis: operator
   source: doc
 stages:
   # DOC's three days with distance and time; each on its OSM stage relation ("Hump Ridge Trail - 01

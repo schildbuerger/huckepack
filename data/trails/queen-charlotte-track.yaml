@@ -36,6 +36,7 @@ days:
   # "Duration: 3 - 5 days"
   min: 3
   max: 5
+  basis: operator
   source: qct-overview
 stages:
   # the site's five walk sections with distance and time; the OSM relation (8524520) guides the

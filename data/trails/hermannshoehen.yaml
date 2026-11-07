@@ -53,6 +53,7 @@ days:
   # "In dreizehn Tagesetappen … Für Sportwanderer ist die Strecke in 10 Etappen erwanderbar"
   min: 10
   max: 13
+  basis: operator
   source: hhs
 stages:
   # the 13 stage tours on hermannshoehen.teutoburgerwald.de (read with

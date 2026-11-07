@@ -37,6 +37,7 @@ length:
 days:
   min: 4
   max: 4
+  basis: operator
   source: fi
 stages:
   # FÍ's standard 4-day itinerary between its huts; times are FÍ's ranges. FÍ gives no ascent and

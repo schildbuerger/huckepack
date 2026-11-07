@@ -45,6 +45,12 @@ length:
   - km: 266
     approx: true
     source: trta
+days:
+  # one day per main segment of the association's eight segments
+  min: 8
+  max: 8
+  basis: stages
+  source: trta-maps
 stages:
   # the association's eight segments, trailhead to trailhead, clockwise from Tahoe City, with its
   # miles (maps and trail info page); stage ends on the OSM relation near each trailhead
@@ -146,9 +152,9 @@ notes:
     20.2 miles, the maps page 20.5; the record keeps the maps page. The trail conditions page splits
     the fourth segment at Kingsbury North (nine segments); the maps page's eight are kept.
   - >-
-    Days: the association gives no days ("Everyone travels at a different pace. It is recommended to
-    hike a segment or assess with comparable mileage from another hike"); the page counts one day
-    per segment, though most segments are long for one day.
+    Days (2026-11-07): one per segment of the association's eight, though most are long for one day.
+    The association gives none ("Everyone travels at a different pace"); English Wikipedia and the
+    Lake Tahoe Visitors Authority give none; Travel Nevada's page refuses automated visitors (403).
   - >-
     Tree line: not added. No published figure for the Lake Tahoe Basin or the Carson Range was
     found (the Forest Service, the association; searched 2026-11-06). The Forest Service's Silvics of

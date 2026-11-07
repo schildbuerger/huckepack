@@ -47,6 +47,7 @@ days:
   # the FAQ: "Most hikers manage the Cohos Trail in twelve to fourteen days"
   min: 12
   max: 14
+  basis: operator
   source: cta-faq
 stages:
   # no stages published (docs/scope.md, "Trails without stages"): the association's The Trail page

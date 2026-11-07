@@ -59,6 +59,7 @@ days:
   # as 60 to 90 days
   min: 60
   max: 90
+  basis: operator
   source: fta-thru
 stages:
   # the association's sections (The Florida Trail by Region), south to north and west, on the main

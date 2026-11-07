@@ -32,6 +32,12 @@ length:
   # "159 km"
   - km: 159
     source: esc
+days:
+  # one day per main stage of Visit Éislek's stages
+  min: 8
+  max: 8
+  basis: stages
+  source: esc
 stages:
   # the Lee Trail's three stages and the Éislek Trail's five, each with distance, time, difficulty,
   # ascent and descent. The Lee Trail's stages are cut from its OSM relation (5437763) at their ends,
@@ -92,7 +98,9 @@ notes:
     Stages: the Lee Trail's 52 km and the Éislek Trail's 107 km add up to the stated 159 km. Stage 4
     (Kautenbach to Clervaux) can be shortened at the stations of Wilwerwiltz or Drauffelt.
   - >-
-    Days: the site gives no number of days for the whole route; the page counts one day per stage.
+    Days (2026-11-07): one per stage of Visit Éislek's list (8). Searched: visit-eislek.lu's
+    Escapardenne, Lee Trail and Éislek Trail pages (lengths and walking hours, no days); tour
+    operators' packages left out.
   - >-
     Season: none published (the site's pages; searched 2026-11-06); every month is recorded for now, by
     the rule for trails without a published season.

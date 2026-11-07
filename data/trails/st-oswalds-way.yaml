@@ -44,6 +44,7 @@ days:
   # "It typically takes about a week to walk the full length of the path"
   min: 7
   max: 7
+  basis: operator
   source: sow-faq
 stages:
   # the site's six sections, north to south, with their distance, each with the site's own GPX

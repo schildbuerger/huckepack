@@ -44,6 +44,7 @@ days:
   # the whole-route page: "15 bis 16 Tage ist man unterwegs, wenn man den Eifelsteig am Stück erwandert"
   min: 15
   max: 16
+  basis: operator
   source: es
 stages:
   # the 15 stage tours of eifelsteig.de (Eifel Tourismus' Outdooractive pages, read with

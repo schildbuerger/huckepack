@@ -43,6 +43,7 @@ days:
   # "we will need between 5 and 7 days"
   min: 5
   max: 7
+  basis: operator
   source: cdf
 treeLine:
   # the park's environmental declaration: "Els prats alpins … constitueixen el límit superior del

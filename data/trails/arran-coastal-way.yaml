@@ -32,6 +32,12 @@ length:
   # "a challenging and rewarding 65-mile / 105 kilometre circular route around the beautiful Isle of Arran"
   - km: 105
     source: acw
+days:
+  # the home page: "perfect for a week long walking holiday" (a week, seven days)
+  min: 7
+  max: 7
+  basis: operator
+  source: acw
 stages:
   # the site's eight sections round the island from Brodick, each with the distance on its own page
   # (the route table gives other figures for five of them, see notes). No GPX: each section is the
@@ -121,8 +127,10 @@ notes:
     15 km (16), Whiting Bay to Lamlash 9 km (10). The alternative routes (red waymarkers: over Goat
     Fell, the coast at Sliddery, round Dippen Head) are not in the record.
   - >-
-    Days: none stated as a number; the site calls the route "perfect for a week long walking
-    holiday" (searched 2026-11-05). The page counts one day per section (8).
+    Days (2026-11-07): the trust's home page calls the route "perfect for a week long walking
+    holiday", recorded as 7 days; its Plan your walk page and section pages give no number. English
+    Wikipedia gives none; Scotland's Great Trails' page ("6-8 days" in search results) failed to
+    load (Cloudflare 526), so it is not used.
   - >-
     Season: none published (the site's home, route, section and planning pages, Wikipedia; searched 2026-11-05); every month is recorded for now, by the rule for trails without a published season.
   - >-

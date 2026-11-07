@@ -37,6 +37,7 @@ days:
   # "3 - 4 days"
   min: 3
   max: 4
+  basis: operator
   source: doc
 stages:
   # DOC's seven legs between the road ends, huts and campsites, with distance and time; the OSM

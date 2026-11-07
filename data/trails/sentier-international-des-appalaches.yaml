@@ -51,6 +51,7 @@ days:
   # the guide: "d'une traversée complète (moyenne de 35 à 40 jours)"
   min: 35
   max: 40
+  basis: operator
   source: sia-compagnon
 stages:
   # the operator's seven sections ("le Sentier International des Appalaches-Québec est divisé en

@@ -36,6 +36,7 @@ days:
   # "can be comfortably walked in five days"
   min: 5
   max: 5
+  basis: operator
   source: pkct
 stages:
   # the Trust's five stages, clockwise from Blairgowrie. No public GPX: each stage is the shortest

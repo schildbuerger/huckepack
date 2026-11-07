@@ -43,6 +43,7 @@ days:
   # the whole-route tour: "Dauer: 33 Tage" (found 2026-11-04)
   min: 33
   max: 33
+  basis: operator
   source: tw
 stages:
   # Tirol Werbung's 33 stage pages (length, time, climb and descent, grade), each with its GPX,

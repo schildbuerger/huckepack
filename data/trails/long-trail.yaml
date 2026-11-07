@@ -42,6 +42,7 @@ days:
   # the thru-hiking page: "The average thru-hike takes 20-30 days, or roughly 3-4 weeks"
   min: 20
   max: 30
+  basis: operator
   source: gmc-thru
 stages:
   # no stages by design (issue #204; docs/scope.md, "Trails without stages"): hikers choose among 70

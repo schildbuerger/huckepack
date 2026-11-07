@@ -50,6 +50,7 @@ days:
   # "26 dagwandelingen"
   min: 26
   max: 26
+  basis: operator
   source: wn
 stages:
   # Wandelnet's 26 stage pages (Pieterpad 1, etappe 01–13, and Pieterpad 2, etappe 01–13, here

@@ -45,9 +45,11 @@ descent:
   - m: 1615
     source: htv
 days:
-  # "die fünf empfohlenen Etappen"
+  # "die fünf empfohlenen Etappen"; "Genusswanderer nehmen sich jeden Tag eine der ca. 20 Kilometer
+  # langen Etappen vor"
   min: 5
   max: 5
+  basis: operator
   source: htv
 treeLine:
   # "Die Baumgrenze liegt allerdings schon bei 1100 m. Grund dafür sind die extremen

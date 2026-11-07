@@ -52,6 +52,7 @@ descent:
 days:
   min: 7
   max: 7
+  basis: operator
   source: sachsenforst
 stages:
   # times from the Tourismusverband's stage pages: Sachsenforst publishes none

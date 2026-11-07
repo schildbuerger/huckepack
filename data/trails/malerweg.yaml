@@ -47,6 +47,7 @@ days:
   # "Acht Tagesetappen: Das ist die offizielle Empfehlung"
   min: 8
   max: 8
+  basis: operator
   source: tvss-plan
 stages:
   # the eight official stage pages (length, climbs, time), each with its GPX file, which only guides

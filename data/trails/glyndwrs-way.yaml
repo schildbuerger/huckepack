@@ -40,6 +40,7 @@ days:
   # "It usually takes around 9 days to complete it"
   min: 9
   max: 9
+  basis: operator
   source: nt-info
 stages:
   # the National Trail's nine sections (Route Description). One official GPX (April 2022), cut at

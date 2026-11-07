@@ -36,6 +36,7 @@ days:
   # "3–5 days one way"
   min: 3
   max: 5
+  basis: operator
   source: doc
 stages:
   # DOC's six legs from Mārahau to Wainui, with distance and time (it can be walked either way);

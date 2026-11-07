@@ -50,6 +50,7 @@ days:
   # "usually walked in 7 to 12 days"
   min: 7
   max: 12
+  basis: operator
   source: tmb
 stages:
   # the official site gives no stages; English Wikipedia's eleven legs from Les Houches,

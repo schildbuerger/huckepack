@@ -46,6 +46,7 @@ days:
   # "around 6 to 7 days for experienced walkers"
   min: 6
   max: 7
+  basis: operator
   source: govuk
 stages:
   # gov.uk's example sections with miles and km, the same six as National Trails' route description.

@@ -43,6 +43,12 @@ waymarking:
     letters KT in yellow stand at the trailheads' entrance roads.
   symbol: white-blaze
   source: dnr-trailheads
+days:
+  # one day per main section of the DNR's sections
+  min: 7
+  max: 7
+  basis: stages
+  source: dnr-trailheads
 stages:
   # the DNR's trail section descriptions, trailhead to trailhead, listed from Delaney Park south;
   # taken here from Deam Lake north, as the mile markers run. Each km is the section's stated miles:
@@ -160,8 +166,8 @@ notes:
     Delaney Park loop. The record takes the shortest of each, which the map line follows. The
     Pixley Knob Road trailhead (between New Chapel and Jackson Road) has no section of its own.
   - >-
-    Days: no days published by the DNR or a second official source; the page counts one day per
-    stage.
+    Days (2026-11-07): one per section of the DNR's list (7). Searched: the DNR's About and
+    Descriptions pages ("a 60-mile backcountry-hiking trail", no days), English Wikipedia (no days).
   - >-
     Waymarking: the white blaze is drawn from the source's description (`white-blaze`,
     added 2026-11-07).

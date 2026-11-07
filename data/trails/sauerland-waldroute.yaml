@@ -42,9 +42,11 @@ length: []
   # no stated total: the site's and the flyer's 240 km count both halves of the loop, the Südroute
   # a variant here; the page shows the main route's stage sum (decided 2026-11-07)
 days:
-  # the flyer: "Von Iserlohn nach Marsberg in 13 Etappen"
+  # one day per main stage of the operator's list, as its flyer: "Von Iserlohn nach Marsberg in 13
+  # Etappen" (the flyer's publisher is the Sauerland-Waldroute itself); no source suggests days
   min: 13
   max: 13
+  basis: stages
   source: swr-flyer
 stages:
   # the stage tours of sauerland-waldroute.de ("Die Waldroute in 19 Etappen"): stages 1–7 from
@@ -142,6 +144,10 @@ animals:
       source: bzga-borreliose
 tags: [sauerland, forests, lakes, caves, legends]
 notes:
+  - >-
+    Days (2026-11-07): one per main stage of the operator's 13 (its flyer's "in 13 Etappen"), as
+    sauerland-waldroute.de ("Die Waldroute in 19 Etappen", both halves of the loop) and the flyer give
+    stages, not days.
   - >-
     Length (2026-11-07): the site's "über 240 km" and the flyer's 240 km count both halves of the loop; a total over more than the route walked is no length to compare
     by, so the record states none and the page shows the main stages' sum (the user's rule: variants

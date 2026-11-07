@@ -51,6 +51,7 @@ days:
   # "it is possible to hike the entire distance in about 9-16 days"
   min: 9
   max: 16
+  basis: operator
   source: rta-faq
 stages:
   # the association's nineteen numbered maps of the main trail (Maps page: "Map 01 – Kingston,

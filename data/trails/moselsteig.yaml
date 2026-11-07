@@ -46,6 +46,7 @@ days:
   # "24 Etappen", each "eine Tagestour"; "eine mehrwöchige Wanderreise"
   min: 24
   max: 24
+  basis: operator
   source: mlt
 stages:
   # Mosellandtouristik's 24 stage tours on the Tourenplaner Rheinland-Pfalz (Outdooractive), each

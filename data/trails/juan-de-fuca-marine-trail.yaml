@@ -40,6 +40,12 @@ length:
   # "The Juan de Fuca Marine Trail follows 47 km of remote coastline"
   - km: 47
     source: bcp-park
+days:
+  # the Encyclopedia of British Columbia: 3–4 days
+  min: 3
+  max: 4
+  basis: secondary
+  source: knowbc
 stages:
   # no day stages published: BC Parks names four trailheads ("Day-hiking and multi-day trips can
   # begin at any of these trailheads") and gives their kilometre markers in the brochure's distance
@@ -150,8 +156,9 @@ notes:
     the park names, with the kilometre markers of the brochure's distance reference table (29, 8 and
     10 km, rounded to the kilometre).
   - >-
-    Days: BC Parks publishes no number of days ("designed for challenging day or multi-day hikes");
-    the page counts one day per section. The Encyclopedia of British Columbia says 3–4 days.
+    Days (2026-11-07): the Encyclopedia of British Columbia's 3–4 days. BC Parks publishes none
+    ("Day-hiking and multi-day trips can begin at any of these trailheads"); English Wikipedia's
+    "four to six days" is a check only.
   - >-
     Season: open all year (BC Parks); storms damage the trail every winter, and it was closed in
     2024–2025 (the government's release of 17 April 2025): check the park's advisories.
@@ -222,7 +229,6 @@ sources:
     url: https://www.knowbc.com/limited/Books/Encyclopedia-of-BC/J/Juan-de-Fuca-Marine-Trail
     licence: © Harbour Publishing (facts only)
     retrieved: 2026-11-06
-    checkOnly: true
   - id: osm
     title: "OpenStreetMap contributors: the Juan de Fuca Marine Trail relation (7518802) and its kilometre posts, paths, water, shops and places to sleep along the trail (Geofabrik extract), travel hubs"
     url: https://www.openstreetmap.org/relation/7518802

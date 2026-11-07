@@ -38,6 +38,12 @@ ascent:
 descent:
   - m: 6185
     source: kw
+days:
+  # one day per main stage of the Tourismusverband Erzgebirge's 17 stages
+  min: 17
+  max: 17
+  basis: stages
+  source: kw-stages
 stages:
   # the 17 stage pages with difficulty, distance, time, ascent and descent (found through the site's
   # sitemap; the overview pages them by script). OSM maps the trail as three relations (east, middle,
@@ -136,7 +142,9 @@ notes:
     Wildlife: tick-borne encephalitis (TBE) risk areas along the trail (the RKI's yearly list) were not
     checked for this record; only Lyme disease is listed.
   - >-
-    Days: the site gives no number of days for the whole trail; the page counts one day per stage.
+    Days (2026-11-07): one per stage of the Tourismusverband Erzgebirge's 17. Searched:
+    erzgebirge-tourismus.de's Kammweg page (packages only), the Top Trails of Germany fact sheet (no
+    days); tour operators' packages left out.
   - >-
     Season: none published (the site's pages; searched 2026-11-06); every month is recorded for now, by
     the rule for trails without a published season.

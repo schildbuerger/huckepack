@@ -38,6 +38,7 @@ days:
   # "Over four days and three nights"; one night in each of the three cabins is required
   min: 4
   max: 4
+  basis: operator
   source: tct
 stages:
   # the walk notes' four days. No GPX and no OSM route relation: each day is the shortest way over

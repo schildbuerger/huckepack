@@ -51,6 +51,13 @@ ascent:
 descent:
   - m: 17315
     source: bmta-discover
+days:
+  # the association's thru-hiking article: "Most through-hikers complete the BMT in 3-4 weeks",
+  # recorded as 21 to 28 days
+  min: 21
+  max: 28
+  basis: operator
+  source: bmta-blog
 stages:
   # the association's 25 numbered sections (its Section Hiker's Tracking Log, sections 1–25 with
   # their sub-sections a–e, trailhead to trailhead, with cumulative miles); each section's miles
@@ -198,8 +205,9 @@ notes:
     track, beside the summit heights it names (highest 5,843 ft at Mount Sterling, lowest 765 ft at
     the Hiwassee River at Reliance).
   - >-
-    Days: the association gives no days for a thru-hike (its Thru-Hikers Guide is sold), so the
-    page counts one day per section.
+    Days (2026-11-07): the association's thru-hiking article on bmta.org (Dave Meeks, 4 January
+    2025): "Most through-hikers complete the BMT in 3-4 weeks", recorded as 21 to 28 days. Its
+    Thru-Hikers Guide is sold and was not read.
   - >-
     Season: the association: "generally open year-round, but hikers should be prepared for extreme
     weather, especially in the higher elevations"; it names spring wildflowers, fall colours and
@@ -301,6 +309,11 @@ sources:
     url: https://bmta.org/thru-hikers-guide/
     licence: All rights reserved (facts only)
     retrieved: 2026-11-06
+  - id: bmta-blog
+    title: "Benton MacKaye Trail Association: Thru-Hiking the Benton MacKaye Trail, Embrace the Wilderness (Dave Meeks, 4 January 2025; 3–4 weeks for a thru-hike)"
+    url: https://bmta.org/blog/thru-hiking-the-benton-mackaye-trail-embrace-the-wilderness/
+    licence: All rights reserved (facts only)
+    retrieved: 2026-11-07
   - id: nps-backcountry
     title: "National Park Service, Great Smoky Mountains National Park: Backcountry Camping (permits, designated campsites and shelters, regulations)"
     url: https://www.nps.gov/grsm/planyourvisit/backcountry-camping.htm

@@ -37,9 +37,11 @@ length:
     approx: true
     source: wikipedia
 days:
-  # the park's 16 stages, Calenzana to Conca
+  # the park's 16 stages, Calenzana to Conca, a day each: its stage 16 page has walkers "reminiscing
+  # about the past 15 days" before the last day
   min: 16
   max: 16
+  basis: operator
   source: pnr-resa
 treeLine:
   # "Il atteint au maximum 1750-1800 m et marque la limite supérieure des forêts sur l'île": the

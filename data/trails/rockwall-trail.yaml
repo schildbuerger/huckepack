@@ -45,6 +45,7 @@ days:
   # "Estimated time … 3-5 days"
   min: 3
   max: 5
+  basis: operator
   source: pc-backcountry
 treeLine:
   # the same page: "Trails above tree line (2,000 m) may be exposed to avalanche hazard at any time

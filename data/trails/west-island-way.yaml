@@ -41,6 +41,7 @@ days:
   # "easily walked over two full days (or four half-days)"
   min: 2
   max: 4
+  basis: operator
   source: wiw-about
 stages:
   # the site's four stage pages with their distance. No GPX: each stage is the shortest way over the OSM

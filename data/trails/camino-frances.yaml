@@ -34,6 +34,14 @@ length:
   # English Wikipedia's itinerary from Saint-Jean-Pied-de-Port (its stage table adds up to 769 km)
   - km: 769
     source: wikipedia
+days:
+  # English Wikipedia: "A typical walk on the Camino francés takes at least four weeks, allowing for
+  # one or two rest days on the way"; a minimum only, so it stands for both (as the Fundy
+  # Footpath's)
+  min: 28
+  max: 28
+  basis: secondary
+  source: wikipedia
 stages:
   # no official stage list exists for the whole way ("there is no set itinerary for this route",
   # Wikipedia): English Wikipedia's example itinerary to Sarria (working decision 2026-10-31:
@@ -150,10 +158,11 @@ notes:
     Roncesvalles ("los 775 km del Camino Francés (Roncesvalles-Santiago)") and at least 31 days for
     them. Our stages add up to 776 km from Saint-Jean.
   - >-
-    Days: no source gives a range (the Xunta: "al menos, 31 días" from Roncesvalles; Wikipedia: "at
-    least four weeks"), so the record has none. Season: no official source names one (the way is
-    walked all year; the Xunta's albergues stay open); none recorded. Wild camping and waymarking:
-    no official source found; not recorded.
+    Days (2026-11-07): English Wikipedia's "at least four weeks, allowing for one or two rest days"
+    from Saint-Jean-Pied-de-Port, recorded as 28 days (a minimum only, which stands for both). The
+    Xunta's "al menos, 31 días" counts from Roncesvalles, another stretch, so left out; the stage
+    list is Wikipedia's, not an operator's, so one day per stage would not apply. Spanish Wikipedia
+    gives no days.
   - >-
     Tree line: none recorded. The way's highest point is about 1,515 m near Manjarín (Wikipedia), on
     the open heath of the Montes de León, where no regional tree-line figure applies.
@@ -210,10 +219,10 @@ sources:
     licence: © Xunta de Galicia (facts only)
     retrieved: 2026-11-02
   - id: wikipedia
-    title: "Wikipedia (en): French Way (example itinerary with stage distances; highest point)"
+    title: "Wikipedia (en): French Way (example itinerary with stage distances; days; highest point)"
     url: https://en.wikipedia.org/wiki/French_Way
     licence: CC BY-SA 4.0
-    retrieved: 2026-11-02
+    retrieved: 2026-11-07
   - id: gronze
     title: "Gronze.com: Camino Francés, its 33 stages with distances (pilgrim guide; data check)"
     url: https://www.gronze.com/camino-frances

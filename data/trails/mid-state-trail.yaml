@@ -57,6 +57,12 @@ waymarking:
   text: Orange blazes; side trails and road detours are blazed yellow.
   symbol: orange-blaze
   source: msta-sections
+days:
+  # one day per main section of the association's 20 sections
+  min: 20
+  max: 20
+  basis: stages
+  source: msta-sections
 stages:
   # the association's 20 numbered sections, south to north, each with its own updates page
   # (hike-mst.org/index.php/the-trail/section-updates/<n>-section-<n>) giving its ends and length in
@@ -196,8 +202,9 @@ notes:
     sums the sections (528.5 km). DCNR's Rothrock State Forest page gives "a 326 mile cross-country
     trail" (524.6 km), Wikipedia 526 km (data check).
   - >-
-    Days: the association gives no days for the whole trail; the page counts one day per section
-    (20), though sections 10, 16 and 18 (39–43 km) take most hikers longer.
+    Days (2026-11-07): one per section of the association's 20, though sections 10, 16 and 18 (39–43
+    km) take most hikers longer. Searched: hike-mst.org (The Trail, FAQ, section updates: no days),
+    English Wikipedia (no days).
   - >-
     Season: no season from the association; Wikipedia's infobox gives "Year-round". The association
     lists hunting closures: parts of sections 18, 19 and 20 in Tioga County are closed October 1 to

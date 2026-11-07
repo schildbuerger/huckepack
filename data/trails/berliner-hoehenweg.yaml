@@ -44,6 +44,13 @@ waymarking:
   # the tour: "Gut markiert, aber teils steile und ausgesetzte Passagen"
   text: Well marked, with steep and exposed passages.
   source: tw
+days:
+  # one day per main stage of Tirol Werbung's stages (stage 1 the climb from Finkenberg; distances
+  # ours)
+  min: 8
+  max: 8
+  basis: stages
+  source: tw
 stages:
   # Tirol Werbung's stages 2–8 from hut to hut; stage 1, the climb from Finkenberg to the Gamshütte
   # (the tour's starting point), has no Tirol page or track and follows OSM's relation "Berliner
@@ -177,8 +184,11 @@ notes:
     Length: no stated total (2026-11-04): Tirol's "71 Kilometer" is its GPX from the Gamshütte,
     without stage 1 from Finkenberg, so the page sums the stages (78.6 km).
   - >-
-    Days: none stated for the whole trail (2026-11-04): Tirol's "sieben Tage" start at the
-    Gamshütte; the page counts one day per stage, eight.
+    Days (2026-11-07): one per stage of Tirol Werbung's list (8, with the climb from Finkenberg, its
+    tour's starting point). Tirol's "Dauer: 7 Tage" and "in etwa einer Woche mehr als 70 Kilometer"
+    are for the hut stages from the Gamshütte (its stage links run 2–8), another stretch than the
+    main stages, so left out (docs/trail-building.md, "Stated totals cover the same stretch").
+    German Wikipedia gives no days.
 dataCheck:
   # working rule 2: German Wikipedia
   date: 2026-11-04

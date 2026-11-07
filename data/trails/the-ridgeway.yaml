@@ -43,6 +43,7 @@ days:
   # "the Trail can be completed in 6 days", at about 15 miles (24 km) a day
   min: 6
   max: 6
+  basis: operator
   source: nt-info
 stages:
   # the National Trail's six sections (Route Description, the same on GOV.UK). One official GPX (a

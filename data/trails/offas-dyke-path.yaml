@@ -53,6 +53,7 @@ days:
   # "It takes about two weeks to complete the whole Trail"
   min: 14
   max: 14
+  basis: operator
   source: nt
 stages:
   # the National Trail's 12 sections (Route Description, "a day by day breakdown"). One official GPX

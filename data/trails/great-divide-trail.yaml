@@ -70,6 +70,7 @@ days:
   # Itineraries: "3 sample itineraries – Relaxed (68 days), Average (50 days) and Fast (36 days)"
   min: 36
   max: 68
+  basis: operator
   source: gdta-itineraries
 treeLine:
   # Parks Canada, Kootenay National Park's backcountry (the GDT's Section C runs through it on the

@@ -39,6 +39,7 @@ days:
   # "The route can be walked in 4 – 7 days"
   min: 4
   max: 7
+  basis: operator
   source: ggw
 stages:
   # the Great Glen Way team's six route sections (miles and km), each by its low route; the high

@@ -45,6 +45,7 @@ days:
   # "Time to complete: around 7 to 10 days"
   min: 7
   max: 10
+  basis: operator
   source: govuk
 stages:
   # the National Trail's 15 sections with distance, ascent and descent (Route Description). One

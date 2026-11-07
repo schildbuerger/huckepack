@@ -45,6 +45,12 @@ treeLine:
   m: 2300
   fromM: 2000
   source: bfw
+days:
+  # one day per main stage of Tirol Werbung's seven stages
+  min: 7
+  max: 7
+  basis: stages
+  source: tw
 stages:
   # Tirol Werbung's seven stage pages (data from TVB Stubai: length, time, climb and descent), each
   # with its GPX, which only guides the OSM matcher (kept local). Variant 1, Starkenburger Hütte to
@@ -162,8 +168,9 @@ notes:
     3 (6 against 7 h), 4 (2.5 against 3 h), 5 (3 against 4 h) and 6 (3 against 4 h); the page keeps
     Tirol's.
   - >-
-    Days: none recorded (2026-11-04): Tirol Werbung's tour says both "5 Tage" and "Die gesamte Tour
-    erfordert 8 Tage", so the page counts one day per stage.
+    Days (2026-11-07): one per stage of Tirol Werbung's seven. Its tour contradicts itself ("Dauer:
+    5 Tage" and "Die gesamte Tour erfordert 8 Tage"), so neither is used; German Wikipedia gives no
+    days.
 dataCheck:
   # working rule 2: German Wikipedia
   date: 2026-11-04

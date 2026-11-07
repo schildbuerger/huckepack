@@ -43,6 +43,7 @@ days:
   # "Il vous faudra entre 12 et 14 jours pour relier le Puy-en-Velay à Alès"
   min: 12
   max: 14
+  basis: operator
   source: assoc
 stages:
   # the association publishes no day stages (they are in FFRandonnée's paid topoguide); French

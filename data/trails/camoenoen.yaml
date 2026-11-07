@@ -37,6 +37,13 @@ length: []
   # no stated total: the site's 175 km ("12 meget forskellige etaper, der tilsammen udgør 175
   # kilometers vandreglæde") adds the Farø round trip and two shortcuts to the loop; the page shows
   # the loop's stage sum (decided 2026-11-07)
+days:
+  # Danish Wikipedia: "Camønoen er opdelt i 10 etaper, der typisk kan gennemføres på én dag" (Den
+  # Store Danske: "10 dagsetaper")
+  min: 10
+  max: 10
+  basis: secondary
+  source: wikipedia-da
 stages:
   # the site's stages round the loop from Møns Museum; the Surf stage (a round trip to Farø) and the two
   # shortcuts (Genvejen ved Borre, ved Elmelunde) are not drawn. The OSM relation (2839163) guides the
@@ -111,7 +118,10 @@ notes:
     Nygammelsø: OSM names no such place, so the end of stage 8 is placed on the relation 8.8 km from
     Camping Mønbroen, the site's distance; stages 8 and 9 together match the site's 19.7 km.
   - >-
-    Days: the site gives no number of days; the page counts one day per stage.
+    Days (2026-11-07): Danish Wikipedia's ten stages that "typisk kan gennemføres på én dag",
+    recorded as 10 days; Den Store Danske (lex.dk) agrees ("opdelt i 10 dagsetaper"). The museum's
+    pages and VisitDenmark give no days ("Uanset om du går én dag, en weekend eller hele ruten").
+    The record's nine main stages leave the Farø loop as a side trip.
   - >-
     Wildlife (2026-11-06): none listed; the site names no dangerous animals, and no Danish authority's
     advice was gathered for the route.
@@ -150,10 +160,16 @@ sources:
     licence: © Museum Sydøstdanmark (facts only)
     retrieved: 2026-11-06
   - id: wikipedia-da
-    title: "Wikipedia (da): Camønoen (about 175 km, opened 2016; data check)"
+    title: "Wikipedia (da): Camønoen (about 175 km, opened 2016, ten stages of a day each; data check)"
     url: https://da.wikipedia.org/wiki/Cam%C3%B8noen
     licence: CC BY-SA 4.0
-    retrieved: 2026-11-06
+    retrieved: 2026-11-07
+  - id: lex
+    title: "Den Store Danske (lex.dk): Camønoen (175 km, ten day stages; data check)"
+    url: https://lex.dk/Cam%C3%B8noen
+    licence: © Lex.dk (facts only)
+    retrieved: 2026-11-07
+    checkOnly: true
   - id: wikimedia
     title: "Wikimedia: page views of the trail's Wikipedia articles in every language, by people, over twelve months (Wikidata sitelinks, pageview API)"
     url: https://wikimedia.org/api/rest_v1/

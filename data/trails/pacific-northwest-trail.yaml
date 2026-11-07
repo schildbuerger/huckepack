@@ -62,6 +62,7 @@ days:
   # the FAQ: "Thru-hikers typically take 60-75 days to complete the entire trail"
   min: 60
   max: 75
+  basis: operator
   source: pnta-faq
 stages:
   # the association's ten sections from east to west (Sections of the PNT and each section's page),

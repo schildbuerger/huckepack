@@ -52,6 +52,12 @@ length:
   # miles" (the trail page: "The longest continuous piece is 207 miles")
   - km: 333
     source: ohta-faq
+days:
+  # one day per main stage of the association's stages
+  min: 17
+  max: 17
+  basis: stages
+  source: ohta-trail
 stages:
   # the association's major trailheads with their mile markers (trail page: the Boston Mountains
   # segment's ten, the Buffalo River segment's nine), trailhead to trailhead from west to east;
@@ -163,8 +169,8 @@ notes:
     2.0 to 8.6 miles along the Buffalo River, where the trailheads lie closer). The mile markers were
     recalculated and replaced in 2016–17.
   - >-
-    Days: the FAQ gives "10 to 14 days for the 164-mile Boston Mountains segment", which covers
-    another stretch; no days for the 207 miles, so the page counts one day per stage.
+    Days (2026-11-07): one per stage of the association's list (17). The FAQ's "10 to 14 days for
+    the 164-mile Boston Mountains segment" covers another stretch; English Wikipedia gives no days.
   - >-
     Fort Douglas: the Forest Service closed the Ft. Douglas trailhead (end of stage 6) during the
     ARDOT Highway 123 Big Piney Creek bridge reconstruction (alert from 28 September 2026); hikers

@@ -42,6 +42,7 @@ days:
   # "Powell River to Lang Bay – 6 days", "Lang Bay to Saltery Bay – 3 or 4 days"; together 12–13
   min: 12
   max: 13
+  basis: operator
   source: sct-routes
 stages:
   # the society's three multi-day routes that together run the whole trail, north to south as it is

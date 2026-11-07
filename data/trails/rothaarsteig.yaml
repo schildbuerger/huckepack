@@ -50,6 +50,7 @@ days:
   # the site's stage plans: "Rothaarsteig in 6, 8 oder 12 Etappen"
   min: 6
   max: 12
+  basis: operator
   source: rs
 stages:
   # the "Rothaarsteig in 8 Etappen" tours on rothaarsteig.de (with stage 4 on the ridge, the

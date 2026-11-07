@@ -46,6 +46,7 @@ length:
 days:
   min: 12
   max: 15
+  basis: operator
   source: nt
 stages:
   # the National Trail publishes no stage list; German Wikipedia's twelve stages along the National

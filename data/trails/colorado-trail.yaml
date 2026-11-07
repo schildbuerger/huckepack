@@ -46,6 +46,12 @@ treeLine:
   m: 3505
   fromM: 3353
   source: nps-romo-tundra
+days:
+  # English Wikipedia: "most thru-hikers spend about 4 to 6 weeks (28 to 42 days) on the trail"
+  min: 28
+  max: 42
+  basis: secondary
+  source: wikipedia
 stages:
   # the 28 numbered segments of the Collegiate East route as Colorado Parks and Wildlife's Colorado
   # Trail Explorer (COTREX) maps them ("Colorado Trail Segment 1" to "28", from the land managers'
@@ -213,8 +219,9 @@ notes:
     (27,430 m, San Juan National Forest) and gives no descent, so the page estimates both from the
     terrain model.
   - >-
-    Days: no official source other than the foundation states a number of days (searched
-    2026-11-07: the Forest Service's pages, COTREX); the page counts one day per segment.
+    Days (2026-11-07): English Wikipedia's "about 4 to 6 weeks (28 to 42 days)", which cites the
+    foundation. The foundation's own site refuses automated visitors (403) and is left out (see
+    Sources); the Forest Service's pages and COTREX give no days.
   - >-
     Season: none published by an official source other than the foundation (the Forest Service's
     and COTREX's pages; searched 2026-11-07), so every month for now; the climate charts show the
@@ -345,11 +352,10 @@ sources:
     licence: US federal government work, public domain
     retrieved: 2026-11-06
   - id: wikipedia
-    title: "Wikipedia (en): Colorado Trail"
+    title: "Wikipedia (en): Colorado Trail (days for a thru-hike; data check)"
     url: https://en.wikipedia.org/wiki/Colorado_Trail
     licence: CC BY-SA 4.0
     retrieved: 2026-11-07
-    checkOnly: true
   - id: wikimedia
     title: "Wikimedia: page views of the trail's Wikipedia articles in every language, by people, over twelve months (Wikidata sitelinks, pageview API)"
     url: https://wikimedia.org/api/rest_v1/

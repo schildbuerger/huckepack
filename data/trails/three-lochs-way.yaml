@@ -35,6 +35,7 @@ days:
   # "can be walked in 3 to 4 days"
   min: 3
   max: 4
+  basis: operator
   source: tlw
 stages:
   # the site's four stages with their distance (their ascents are in the notes). No GPX: each stage is the shortest way

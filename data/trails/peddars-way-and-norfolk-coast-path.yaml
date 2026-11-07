@@ -34,6 +34,12 @@ termini:
 waymarking:
   text: The National Trail acorn, or the trail's name, on stiles, gates and signposts; on the coast also signs for the King Charles III England Coast Path
   source: govuk
+days:
+  # one day per main section of National Trails' sections
+  min: 13
+  max: 13
+  basis: stages
+  source: nt
 stages:
   # the National Trail's sections (Route Description, the same on GOV.UK), north along the Peddars Way
   # and east along the coast, the way most walkers go (National Trails). Neither list has a section
@@ -148,11 +154,11 @@ notes:
     extensions east of Cromer), and English Wikipedia's 133 miles (214 km). The page sums the
     stages: north along the Peddars Way, then east along the coast to Hopton-on-Sea.
   - >-
-    Days: none in the record. GOV.UK's "Peddars Way – around 4 days, Norfolk Coast Path – around
-    10 days, both trails – around 14 days in total" includes the coast path's westward arm to the
-    Lincolnshire border (48.4 km), which this route leaves out, and National Trails' "about 4 days
-    to walk the Peddars Way, and about another 7 if you head east" stops short of the extensions
-    to Hopton-on-Sea; the page counts one day per stage (13).
+    Days (2026-11-07): one per section of National Trails' list (13). GOV.UK's "around 14 days in
+    total" includes the coast path's westward arm to the Lincolnshire border (48.4 km), which this
+    route leaves out, and National Trails' "about 4 days to walk the Peddars Way, and about another
+    7 if you head east" stops short of the extensions to Hopton-on-Sea, so both are left out;
+    English Wikipedia gives no days.
   - >-
     Stages: the sections as National Trails and GOV.UK list them. The coast path's westward arm
     from Holme next the Sea through Hunstanton and King's Lynn to the Lincolnshire border (30.1

@@ -38,6 +38,12 @@ waymarking:
   # the NRT record: "The trail is marked with two-inch by four-inch aluminum markers to guide hikers"
   text: Marked with two-inch by four-inch aluminum markers.
   source: nrt
+days:
+  # one day per main section of the Forest Service's three sections (its NRT application)
+  min: 3
+  max: 3
+  basis: stages
+  source: nrt
 stages:
   # the NRT record's three major sections, west to east (the Forest Service's National Recreation
   # Trail entry): the Lake Conroe section to the Stubblefield Recreation Area, the Central Area to
@@ -164,8 +170,10 @@ notes:
     additional 32 miles of loop and crossover trails"), a different stretch from the main line the
     sections follow, so no stated length is recorded; the page sums the measured sections.
   - >-
-    Days: no source gives days for the whole trail; the page counts one day per section, though the
-    sections run 30.7, 75.7 and 45.5 km (the NRT record's 40, 60 and 27 miles with the loops).
+    Days (2026-11-07): one per section of the Forest Service's three (its National Recreation Trail
+    application), though the sections run 30.7, 75.7 and 45.5 km. Searched: the Forest Service's
+    trail page, English Wikipedia (no days); the Lone Star Hiking Trail Club's thru-hiker pages
+    refuse automated visitors (403).
   - >-
     Hunting (the Forest Service, 2026-11-07): from September 26 to January 8, during hunting season,
     overnight camping is allowed in designated camping areas only. The NRT record: "During deer
@@ -233,7 +241,7 @@ sources:
     licence: US federal government work (public domain)
     retrieved: 2026-11-07
   - id: nrt
-    title: "National Recreation Trails database (American Trails): Lone Star Hiking Trail (the 1978 NRT application, USDA Forest Service; three major sections, markers, season, camping)"
+    title: "USDA Forest Service: the Lone Star Hiking Trail's National Recreation Trail application (1978, in American Trails' NRT database; three major sections, markers, season, camping)"
     url: https://www.nrtapplication.org/trails/lone-star-hiking-trail
     licence: All rights reserved (facts only)
     retrieved: 2026-11-07

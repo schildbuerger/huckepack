@@ -39,6 +39,12 @@ length:
   # "Scenic 176 km Hiking Trail" (the route overview's title); the eight sections sum to 178 km
   - km: 176
     source: dw
+days:
+  # Sport Ireland's National Trails Office: "Time 7 days"
+  min: 7
+  max: 7
+  basis: secondary
+  source: si
 stages:
   # the committee's eight sections, each page's fact file (distance, ascent, time); no descent is
   # given. No official GPX: each section cuts the OSM relation "The Dingle Way" (21664) at its end
@@ -149,8 +155,9 @@ notes:
     Wild camping: no official source found for Ireland (2026-11-03): most land is private and the
     Way crosses farmland by the landowners' permission.
   - >-
-    Days: none stated by the Dingle Way committee's pages (2026-11-04; English Wikipedia's eight
-    days are a check only); the page counts one day per section.
+    Days (2026-11-07): Sport Ireland's National Waymarked Trail page, "Time 7 days" (for its 162.9
+    km). The Dingle Way committee's pages (home, route overview, sections) give no days; English
+    Wikipedia's "typically completed in eight days" is a check only.
 dataCheck:
   # working rule 2: English Wikipedia (its infobox cites the Irish Sports Council's trail page)
   date: 2026-11-03
@@ -163,6 +170,11 @@ sources:
     url: https://thedingleway.ie/the-dingle-way-walking-route-guide-sections-overview.html
     licence: All rights reserved (facts only)
     retrieved: 2026-11-03
+  - id: si
+    title: "Sport Ireland (National Trails Office): Dingle Way, National Waymarked Trail (length, time in days)"
+    url: https://www.sportireland.ie/outdoors/walking/trails/dingle-way
+    licence: © Sport Ireland (facts only)
+    retrieved: 2026-11-07
   - id: wikipedia
     title: "English Wikipedia: Dingle Way (designation, management, season; length, ascent and days for the data check)"
     url: https://en.wikipedia.org/wiki/Dingle_Way

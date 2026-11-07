@@ -39,6 +39,7 @@ days:
   # "Sechs Tage zu Fuß"
   min: 6
   max: 6
+  basis: operator
   source: kh
 treeLine:
   # the BFW's high-subalpine zone in the northern intermediate Alps (growth regions 2.1 and 2.2):

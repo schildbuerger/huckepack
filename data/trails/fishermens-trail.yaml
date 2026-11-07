@@ -41,6 +41,12 @@ length:
   # "Fishermen's Trail includes a total of 13 steps, a total of 226,5 km"
   - km: 226.5
     source: rota-vicentina
+days:
+  # "13 one-day stages, which can be walked in both directions": a day a stage
+  min: 13
+  max: 13
+  basis: operator
+  source: rota-vicentina-stages
 stages:
   # the trail page's stage list, which the site renders in the browser only: distance, duration,
   # ascent and descent per stage, copied from the page into this conversation by the site's operator on
@@ -148,7 +154,7 @@ notes:
     Wikidata: no article on the Fishermen's Trail or the Rota Vicentina in the Portuguese or English
     Wikipedia (2026-11-04), so no item.
   - >-
-    Days: none stated by Rota Vicentina (2026-11-04); the page counts one day per stage.
+    Days (2026-11-07): Rota Vicentina's "13 one-day stages", recorded as 13 days.
 dataCheck:
   date: 2026-11-03
   against: [deco-proteste]

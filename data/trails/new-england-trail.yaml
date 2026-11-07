@@ -58,6 +58,7 @@ days:
   # "A typical thru-hiker can complete the trail in 2-4 weeks" (Thru-Hiking)
   min: 14
   max: 28
+  basis: operator
   source: net-thru
 stages:
   # the trail's 40 sections, CT NET sections 1–21 and MA NET sections 1–19, with the miles and

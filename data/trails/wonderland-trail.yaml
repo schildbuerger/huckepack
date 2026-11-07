@@ -43,6 +43,7 @@ days:
   # the trip planner: "Allow 10 to 14 days to hike the entire trail, depending on your hiking pace"
   min: 10
   max: 14
+  basis: operator
   source: nps-planner
 stages:
   # no stages by design (issue #204; docs/scope.md, "Trails without stages"): hikers plan their own

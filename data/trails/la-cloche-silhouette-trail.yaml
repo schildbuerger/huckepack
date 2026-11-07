@@ -32,6 +32,7 @@ length:
 days:
   min: 7
   max: 10
+  basis: operator
   source: op-activities
 stages:
   # no stages by design (issue #204; docs/scope.md, "Trails without stages"): hikers reserve their own

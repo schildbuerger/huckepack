@@ -51,6 +51,7 @@ days:
   # "Giorni di percorrenza: 12"
   min: 12
   max: 12
+  basis: operator
   source: prov-bl
 treeLine:
   # "In Südtirol schwankt die natürliche Waldgrenze nämlich aktuell zwischen 1900 und 2200 Metern";

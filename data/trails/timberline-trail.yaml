@@ -37,6 +37,7 @@ days:
   # "Most backpackers take 3 or 4 days for the entire loop"
   min: 3
   max: 4
+  basis: operator
   source: fs
 stages:
   # no stages by design (issue #204; docs/scope.md, "Trails without stages"): the Forest Service

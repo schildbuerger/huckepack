@@ -51,6 +51,7 @@ days:
   # "5 - 6 Etappen"; the FAQ: "6 Tagesetappen, die zwischen 18-22 km lang sind"
   min: 5
   max: 6
+  basis: operator
   source: sst
 stages:
   # the six stages as Schwarzwald Tourismus publishes them on Outdooractive (the official site's

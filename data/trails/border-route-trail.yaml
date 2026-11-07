@@ -44,6 +44,12 @@ length:
   - km: 104.6
     approx: true
     source: brt-about
+days:
+  # one day per main section of the association's four sections
+  min: 4
+  max: 4
+  basis: stages
+  source: brt-conditions
 stages:
   # the association's four sections on its Trail Conditions page ("Conditions by Section"), west to
   # east, each with its miles inside and outside the BWCAW: 15.8 + 0.2, 14, 22.1 + 0.8 and 12.3
@@ -152,10 +158,10 @@ notes:
     miles together against the stated 65 (the interactive-map page says 65.4). The Backpacking page
     groups its campsites by the same four sections. The sections are the association's, not days.
   - >-
-    Days: no source gives a number of days (searched 2026-11-07: the association's About, Hike
-    Planning, Backpacking, Day Hikes and Trail Conditions pages, the Forest Service's trail page).
-    The Backpacking page: "Most backpackers average around 1 mile per hour". The page counts one day
-    per section.
+    Days (2026-11-07): one per section of the association's four. Searched: the association's About,
+    Hike Planning, Backpacking, Day Hikes and Trail Conditions pages ("Most backpackers average
+    around 1 mile per hour", no days), the Forest Service's trail page, English Wikipedia ("short
+    day-hikes to multiday backpacking expeditions"). None suggests days for the whole trail.
   - >-
     Length: the association's 65 miles (104.6 km). The Forest Service's page says "This trail is 53
     miles long" (85.3 km), English Wikipedia 65 miles (105 km).

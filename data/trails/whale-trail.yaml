@@ -33,6 +33,7 @@ length:
 days:
   min: 5
   max: 5
+  basis: operator
   source: capenature
 stages:
   # CapeNature's information sheet: five days between its five huts, with distance, grade and time;

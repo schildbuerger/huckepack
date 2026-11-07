@@ -39,6 +39,13 @@ length:
   - km: 500
     approx: true
     source: rer
+days:
+  # one day per main stage of the Region's 27 stages (their distances are ours; the division is the
+  # Region's)
+  min: 27
+  max: 27
+  basis: stages
+  source: rer
 stages:
   # the Region's 27 named stages (its stage page; the GPX files behind it now need a staff login).
   # No source publishes stage distances, so they are measured on our OSM map line (decided
@@ -159,7 +166,10 @@ notes:
   - >-
     Season: none published (the Region's stage, camping and image-manual pages, Wikipedia; searched 2026-11-05); every month is recorded for now, by the rule for trails without a published season.
   - >-
-    Days: none stated by the Region (2026-11-04); the page counts one day per stage.
+    Days (2026-11-07): one per stage of the Region's 27 (the stage division is the Region's; only
+    the distances are measured by us). Searched: the Region's pages ("divided into 27 stages";
+    "2-3-4-5-6-7 days trekking proposals" are shorter trips, not the whole route), Italian Wikipedia
+    (no article). None suggests days for the whole route.
 dataCheck:
   # working rule 2: no second source gives stage figures (no Wikipedia article); the built page is
   # checked against the Region's stage list and totals

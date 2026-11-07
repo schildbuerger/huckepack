@@ -41,6 +41,7 @@ days:
   # Pass (note "Days")
   min: 5
   max: 5
+  basis: operator
   source: nps
 treeLine:
   # the park's forests page: "Some conifers, such as the whitebark and limber pines, sub-alpine fir,

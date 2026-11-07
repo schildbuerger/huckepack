@@ -31,10 +31,11 @@ waymarking:
   text: Clearly marked paths
   source: wikipedia
 days:
-  # Las Torres' O Circuit programme: "8 days / 7 nights"
-  min: 8
-  max: 8
-  source: lastorres
+  # English Wikipedia: "The O route (full circuit), which typically takes 7 to 9 days"
+  min: 7
+  max: 9
+  basis: secondary
+  source: wikipedia
 stages:
   # CONAF's trails round the massif, leg by leg ("Senderos habilitados": length and time each),
   # anticlockwise from Hotel Las Torres: the back of the circuit (Serón, Dickson, Los Perros, the
@@ -139,6 +140,10 @@ animals:
 tags: [mountains, glaciers, lakes, huts, national-park, mountain-pass]
 notes:
   - >-
+    Days (2026-11-07): English Wikipedia's "typically takes 7 to 9 days" (a trusted second source).
+    CONAF's park page gives trail lengths and hours, no days; Las Torres' "8 days / 7 nights" is a
+    hotel and tour company's programme, not a trusted source for days, and stays a check only.
+  - >-
     Stages: CONAF publishes the circuit leg by leg, not by day. The main stages are its legs round
     the massif from Hotel Las Torres: Serón, Dickson, Los Perros, the John Gardner pass to the Paso
     campsite and down to Grey, then Paine Grande, Italiano, Los Cuernos and back to Hotel Las Torres
@@ -203,6 +208,7 @@ sources:
     url: https://lastorres.com/en/hikking-circuits/o-circuit-8d-7n/
     licence: © Las Torres Patagonia (facts only)
     retrieved: 2026-11-06
+    checkOnly: true  # a hotel and tour company: only the data check (days from Wikipedia since 2026-11-07)
   - id: wikipedia
     title: "Wikipedia (en): Torres del Paine National Park (the O's days and length; waymarking and camping rules)"
     url: https://en.wikipedia.org/wiki/Torres_del_Paine_National_Park

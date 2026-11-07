@@ -31,6 +31,12 @@ waymarking:
   # pinpoint location."
   text: Numbered signposts along the routes, useful to pinpoint your location.
   source: tb-tips
+days:
+  # English Wikipedia: Takijiri-oji to Hongū "a two-day walk", Hongū to Nachi "two days"; together 4
+  min: 4
+  max: 4
+  basis: secondary
+  source: wikipedia
 stages:
   # the bureau's four sections from Takijiri-oji to Kumano Nachi Taisha (decided 2026-11-03: the
   # Nakahechi to Nachi), each page's course data (distance, time, elevation gain and loss). The
@@ -146,8 +152,10 @@ notes:
     Takijiri-oji to Hongu "about 37 km", usually two days (the bureau's 17 + 21 km, 3 %); Hongu to
     Nachi two days via Koguchi on the Kogumotori-goe and Ogumotori-goe: agree. No deviation over 10 %.
   - >-
-    Days: none stated by the bureau (2026-11-04: "consecutive day treks"; English Wikipedia's two
-    plus two days are a check only); the page counts one day per section.
+    Days (2026-11-07): English Wikipedia's "two-day walk" from Takijiri-oji to Kumano Hongū Taisha
+    and "two days" from Hongū to Nachi, together 4 days. The bureau gives none for the walking
+    ("consecutive day treks"); its 6-day package, Takijiri to Nachi, counts travel days and is left
+    out.
   - >-
     Length: no stated total (2026-11-04): the bureau gives the four sections only (65 km together),
     so the page sums them.
@@ -176,8 +184,7 @@ sources:
     title: "English Wikipedia: Kumano Kodō (the Nakahechi's length and days; data check)"
     url: https://en.wikipedia.org/wiki/Kumano_Kod%C5%8D
     licence: CC BY-SA 4.0
-    retrieved: 2026-11-03
-    checkOnly: true
+    retrieved: 2026-11-07
   - id: wikimedia
     title: "Wikimedia: page views of the trail's Wikipedia articles in every language, by people, over twelve months (Wikidata sitelinks, pageview API)"
     url: https://wikimedia.org/api/rest_v1/

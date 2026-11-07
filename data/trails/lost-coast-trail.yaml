@@ -33,6 +33,7 @@ days:
   # "It is recommended to allow at least three days to accomplish this hike"
   min: 3
   max: 3
+  basis: operator
   source: blm
 stages:
   # no stages by design (issue #204; docs/scope.md, "Trails without stages"): hikers camp where the

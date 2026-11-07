@@ -45,6 +45,7 @@ days:
   # "Most people take 8 or 9 days to walk the whole 100 miles (160km)"
   min: 8
   max: 9
+  basis: operator
   source: nt-info
 stages:
   # the National Trail's sections (Route Description, the same on GOV.UK), west to east; from

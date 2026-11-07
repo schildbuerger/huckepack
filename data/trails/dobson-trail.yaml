@@ -35,6 +35,7 @@ days:
   # "Allow 3–4 days"; the safety guide: "Recommended minimum hiking time is 3 to 4 days"
   min: 3
   max: 4
+  basis: operator
   source: fhta-dobson
 stages:
   # no stages by design (issue #204; docs/scope.md, "Trails without stages"): the association

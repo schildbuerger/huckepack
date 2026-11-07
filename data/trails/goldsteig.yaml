@@ -43,6 +43,12 @@ waymarking:
 length: []
   # no stated total: the operator's "Gesamtlänge 660 km" adds the Nordroute and the Südroute, which
   # no one walks both of; the page shows the main route's stage sum (decided 2026-11-07)
+days:
+  # one day per main stage of the Tourismusverband's stages
+  min: 23
+  max: 23
+  basis: stages
+  source: gs
 stages:
   # the 38 stage pages of goldsteig-wandern.de (length and time, rounded; no climbs): 1–7 in the
   # Oberpfälzer Wald, then the Nordroute (N8–N23, the "Gipfelroute", here the main route) and the
@@ -203,7 +209,9 @@ notes:
     beds (day shelters); OSM maps few guest houses in these forest villages, and hotels are not
     counted.
   - >-
-    Days: none stated by goldsteig-wandern.de (2026-11-04); the page counts one day per stage.
+    Days (2026-11-07): one per main stage of the Tourismusverband Ostbayern's list (23). Searched:
+    goldsteig-wandern.de (Über den Goldsteig, FAQ: no days), the German National Tourist Board's
+    page ("Number of legs 23", no days), German Wikipedia (no days).
 dataCheck:
   # working rule 2: German Wikipedia
   date: 2026-10-31

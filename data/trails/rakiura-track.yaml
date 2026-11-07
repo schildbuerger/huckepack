@@ -34,6 +34,7 @@ days:
   # "3 days"
   min: 3
   max: 3
+  basis: operator
   source: doc
 stages:
   # DOC's three legs of the circuit, Lee Bay to the Fern Gully car park, with distance and time (it

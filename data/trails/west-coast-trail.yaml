@@ -33,6 +33,7 @@ length:
 days:
   min: 6
   max: 8
+  basis: operator
   source: parks-canada
 stages:
   # Parks Canada's day plans from the mid-point at Balaats'adt (Nitinaht Village), north to Pachena

@@ -40,6 +40,13 @@ length:
   # "just over 450 kilometers" between Abisko and Hemavan
   - km: 450
     source: stf
+days:
+  # Cicerone (guidebook publisher): "The average walker usually takes between four and five
+  # unhurried weeks to complete the entire trail"
+  min: 28
+  max: 35
+  basis: secondary
+  source: cicerone
 stages:
   # STF's five section pages: every leg hut to hut with distance and walking time (a range, in
   # hours). Each matches one OSM stage relation of the Kungsleden superroute (1657661), except
@@ -172,7 +179,10 @@ notes:
     terrain model 1,135 m), the season's months the same. The opening year (1928) is Wikipedia's
     alone.
   - >-
-    Days: none stated for the whole trail by STF (2026-11-04); the page counts one day per leg.
+    Days (2026-11-07): Cicerone's "between four and five unhurried weeks", recorded as 28 to 35
+    days. STF's pages give none for the whole trail; English Wikipedia's four sections "each
+    representing approximately one week of hiking" agree; Swedish Wikipedia gives only running
+    records.
 dataCheck:
   # working rule 2: English Wikipedia
   date: 2026-10-31
@@ -186,6 +196,11 @@ sources:
     url: https://www.swedishtouristassociation.com/areas/kungsleden/
     licence: © Svenska Turistföreningen (facts only)
     retrieved: 2026-10-31
+  - id: cicerone
+    title: "Cicerone Press: An introduction to the Kungsleden (the whole trail in four to five weeks)"
+    url: https://www.cicerone.co.uk/an-introduction-to-the-kungsleden
+    licence: © Cicerone Press (facts only)
+    retrieved: 2026-11-07
   - id: abisko-np
     title: "Naturvårdsverket: Abisko National Park regulations (SNFS 1987:7 as amended by NFS 2014:12)"
     url: https://www.sverigesnationalparker.se/globalassets/abisko/filer/abisko-nationalpark-foreskrifter-eng.pdf

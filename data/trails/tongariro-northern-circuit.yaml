@@ -34,6 +34,7 @@ days:
   # "3-4 days"; "Most walkers take 4 days/3 nights or 3 days/2 nights"
   min: 3
   max: 4
+  basis: operator
   source: doc
 stages:
   # DOC's legs for the 2026/27 season with distance and time; the OSM relation (GW-02, 173345) guides

@@ -41,6 +41,12 @@ waymarking:
   # parte, marcas de pintura señalando algún PR y hitos"
   text: No waymarks of its own; mostly the paint marks of local PR paths and cairns, so carry the map
   source: anillo-consejos
+days:
+  # one day per main stage of the site's eight stages (distances ours)
+  min: 8
+  max: 8
+  basis: stages
+  source: anillo-itinerarios
 stages:
   # the itineraries page's eight stages round the three massifs from Vega de Ario, with their times
   # (decided 2026-11-03: the official site's stages; its comparison table
@@ -150,8 +156,8 @@ notes:
     Wildlife: no official source on the animals a walker meets on the ring was found (2026-11-03),
     so none is listed.
   - >-
-    Days: none stated for the ring (2026-11-04); the site's "4 días, 3 noches" is the price of its
-    guided package, so the page counts one day per stage.
+    Days (2026-11-07): one per stage of the site's eight. Its "4 días, 3 noches" is the price of its
+    guided package, not days for the ring; no Wikipedia article.
 dataCheck:
   # working rule 2: no second source gives figures (no Wikipedia article); the built page is checked
   # against the site's own stage list and totals

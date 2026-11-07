@@ -32,6 +32,12 @@ length:
   # "entlang der 200 Kilometer langen Strecke"
   - km: 200
     source: amp-route
+days:
+  # one day per main stage of the Naturpark's 15 named stages (their distances are ours)
+  min: 15
+  max: 15
+  basis: stages
+  source: amp-route
 stages:
   # "in 15 Etappen eingeteilt": the site names the stages but gives no distances, so they are measured
   # on our OSM map line (the relation 37187, cut at the towns), as for the GR 20
@@ -112,7 +118,10 @@ notes:
     Stages: the site divides the route into 15 stages by name only; their distances are measured on our
     OSM map line, cut at the towns' centres (OSM place nodes), and may differ from guidebooks.
   - >-
-    Days: the site gives no number of days; the page counts one day per stage.
+    Days (2026-11-07): one per stage of the Naturpark Altmühltal's 15 (the division is the
+    Naturpark's, the distances ours). Searched: naturpark-altmuehltal.de's trail page (no days), the
+    Top Trails of Germany fact sheet ("11 etappes", no days); no Wikipedia article; tour operators'
+    packages left out.
   - >-
     Season: none published (the site's pages; searched 2026-11-06); every month is recorded for now, by
     the rule for trails without a published season.

@@ -45,6 +45,7 @@ days:
   # "the Trail can be completed in 14 days allowing for a couple of days' rest"
   min: 14
   max: 14
+  basis: operator
   source: nt-info
 stages:
   # the National Trail's 15 sections (Route Description), by the south bank in London (it reaches the

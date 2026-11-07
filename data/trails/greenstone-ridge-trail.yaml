@@ -39,6 +39,7 @@ days:
   # the trip idea, "About the Greenstone Ridge Trail": "Duration: Five to eight days"
   min: 5
   max: 8
+  basis: operator
   source: nps-trip
 stages:
   # the NPS's trail sections, listed on the trip idea "Backpack the Greenstone Ridge Trail" with

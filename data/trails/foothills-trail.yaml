@@ -52,6 +52,7 @@ days:
   # "Through-hikers should plan to spend approximately 5-10 days on the trail"
   min: 5
   max: 10
+  basis: operator
   source: ftc-overview
 stages:
   # the conservancy's thirteen sections between its access points A1 to A14 ("Section By Section",

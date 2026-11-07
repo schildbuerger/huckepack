@@ -52,6 +52,7 @@ days:
   # "Klassisch in sieben, gemütlich in acht oder entschleunigend in zehn Wandertagen"
   min: 7
   max: 10
+  basis: operator
   source: lw
 treeLine:
   # the BFW's high-subalpine zone in the northern intermediate Alps (growth regions 2.1 and 2.2):

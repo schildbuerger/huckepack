@@ -36,6 +36,7 @@ days:
   # "4-6 days" walking
   min: 4
   max: 6
+  basis: operator
   source: doc
 stages:
   # DOC's six legs between the huts and road ends, with distance and walking time, from Brown Hut

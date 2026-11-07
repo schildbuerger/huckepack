@@ -35,6 +35,7 @@ days:
   # "6 days one way"; "Most walkers complete the track in six days"
   min: 6
   max: 6
+  basis: operator
   source: pws
 stages:
   # the walk notes' six days from Ronny Creek to Narcissus, with distance and time, and the walk

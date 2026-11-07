@@ -33,6 +33,12 @@ length:
   - km: 200
     approx: true
     source: rbw
+days:
+  # one day per main stage of the site's 13 stages
+  min: 13
+  max: 13
+  basis: stages
+  source: rbw-stages
 stages:
   # the site's 13 stages north to south (Unteres and Oberes Mittelrheintal), each with distance,
   # time and difficulty; the stage pages are drawn by script, the lists are readable. Each stage on
@@ -113,8 +119,8 @@ animals:
 tags: [rhine, castles, vineyards, world-heritage]
 notes:
   - >-
-    Days: the site suggests no number of days for the whole trail (searched 2026-11-06); the page
-    counts one day per stage (13).
+    Days (2026-11-07): one per stage of the site's 13. Searched: rheinburgenweg.com (home, stages),
+    German Wikipedia (no days).
   - >-
     Season: none published (the official website's pages, Wikipedia; searched 2026-11-06); every
     month is recorded for now, by the rule for trails without a published season. The site warns

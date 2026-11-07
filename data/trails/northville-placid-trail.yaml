@@ -57,6 +57,7 @@ days:
   # folks think 12 days is ideal, and 14 days lets you really soak up all the trail has to offer"
   min: 7
   max: 14
+  basis: operator
   source: npt-faq
 stages:
   # the chapter's ten sections with its mile log (Section Descriptions and Mileages, the 2015

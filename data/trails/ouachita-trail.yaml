@@ -52,6 +52,12 @@ length:
   # from mile 0.0 to 223.0
   - km: 358.9
     source: foot
+days:
+  # one day per main section of the Friends of the Ouachita Trail's ten sections
+  min: 10
+  max: 10
+  basis: stages
+  source: foot-reports
 stages:
   # the Friends' ten sections from their trail condition report (Sect 1–10, begin and end mile
   # markers; ends at the trailheads named there); the same ten sections as the guide the Friends
@@ -155,8 +161,9 @@ notes:
     gives 192 miles in the national forest plus "an additional 32 miles" to Pinnacle Mountain State
     Park (224 miles together).
   - >-
-    Days: no source gives days for the whole trail; the page counts one day per section, though
-    several sections run over 40 km.
+    Days (2026-11-07): one per section of the Friends of the Ouachita Trail's ten, though several
+    run over 40 km. Searched: the Forest Service's trail page, English Wikipedia and the
+    Encyclopedia of Arkansas (no days).
   - >-
     Season: neither the Forest Service nor the Friends publish one (searched 2026-11-06); the record
     takes English Wikipedia's (late autumn to early spring). The Ouachita Mountain Hikers, a club

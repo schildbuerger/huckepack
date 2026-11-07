@@ -42,6 +42,7 @@ days:
   # time to explore"
   min: 7
   max: 12
+  basis: operator
   source: wvw-walk
 stages:
   # the site's 17 route sections, source to sea, each with distance, time and ascent; the OSM relation

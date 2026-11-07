@@ -29,6 +29,12 @@ termini:
 waymarking:
   text: A red triangle pointing towards Tuttlingen
   source: wikipedia-de
+days:
+  # one day per main stage of Schwäbische Alb Tourismus' 16 stages
+  min: 16
+  max: 16
+  basis: stages
+  source: alb-stages
 stages:
   # the 16 stages with difficulty, distance, time, ascent and descent; the OSM relation of the HW 1
   # (2268844) guides the matcher, each stage the shortest way over it to its end
@@ -119,7 +125,11 @@ notes:
   - >-
     Length: the site states no total; the 16 stages add up to 360.1 km.
   - >-
-    Days: the site gives no number of days for the whole trail; the page counts one day per stage.
+    Days (2026-11-07): one per main stage of Schwäbische Alb Tourismus' list (16), as no source
+    suggests days for the whole trail. Searched: schwaebischealb.de's Albsteig pages ("16 Etappen",
+    no days), the Schwäbischer Albverein's HW1 stage description (23 stages, no days), German
+    Wikipedia ("in 25 Tagesetappen", the Albverein's older division, which neither operator
+    publishes now, so left out).
   - >-
     Season: none published (the site's pages; searched 2026-11-06); every month is recorded for now, by
     the rule for trails without a published season.

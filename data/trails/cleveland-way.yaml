@@ -43,6 +43,7 @@ length:
 days:
   min: 9
   max: 9
+  basis: operator
   source: nt
 stages:
   # the National Trail's nine sections from its route description, one a day for the nine days it

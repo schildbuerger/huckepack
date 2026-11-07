@@ -39,6 +39,12 @@ length:
   # "185 Km", "divididos en 20 tramos"
   - km: 185
     source: turespana
+days:
+  # one day per main section of the island council's 20 sections
+  min: 20
+  max: 20
+  basis: stages
+  source: cime
 stages:
   # the island council's 20 sections (trams) with distance, cumulative ascent and descent; each
   # with its own GPX, which only guides the OSM matcher (kept local). Section 11's GPX lists its
@@ -152,7 +158,10 @@ notes:
   - >-
     Season: none published (the island council's site, Turespaña, Wikipedia in five languages; searched 2026-11-05); every month is recorded for now, by the rule for trails without a published season.
   - >-
-    Days: none stated by the island council (2026-11-01); the page counts one day per section.
+    Days (2026-11-07): one per section of the Consell Insular's 20. Searched: camidecavalls.com
+    (home, FAQ, practical information: no days), Spain's tourism portal spain.info ("en diferentes
+    jornadas", no number), Spanish Wikipedia (20 stages with times, no days). Tour operators' and
+    newspapers' figures left out.
   - >-
     Ascent check (2026-11-07): the island council gives each section's "desnivell positiu acumulat"
     (cumulative positive gain; the section pages don't say how it was measured, and the section GPX

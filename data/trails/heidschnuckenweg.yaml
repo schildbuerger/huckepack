@@ -36,6 +36,12 @@ established:
 waymarking:
   text: Signposted throughout ("unverlaufbar - dank durchgängiger Beschilderung"); feeder paths from the stations marked with a yellow H on a black square
   source: hsw-anreise
+days:
+  # one day per main stage of the site's 13 stages
+  min: 13
+  max: 13
+  basis: stages
+  source: hsw-stages
 stages:
   # the site's 13 stages and two variants, each with its distance in its title and its own GPX (the
   # operator's, free to download; it guides the matcher and stays in the git-ignored cache)
@@ -117,8 +123,8 @@ animals:
 tags: [heath, heidschnucken, juniper, rivers]
 notes:
   - >-
-    Days: the site suggests no number of days for the whole trail (searched 2026-11-06); the page
-    counts one day per stage (13).
+    Days (2026-11-07): one per stage of the site's 13. Searched: heidschnuckenweg.de (home, stages;
+    no days for the whole trail), German Wikipedia (no days).
   - >-
     Length: the site states no total; the 13 main stages add up to 225 km (the variants 21 and 12
     km).

@@ -66,6 +66,7 @@ days:
   # with 60 days being common"
   min: 43
   max: 60
+  basis: operator
   source: usfs-faqs
 treeLine:
   # the Coconino National Forest's order for the San Francisco Peaks: "The 11,500 foot elevation

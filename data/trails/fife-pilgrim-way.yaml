@@ -31,6 +31,12 @@ length:
   # together; the main route from Culross is the six sections' 89.3 km
   - km: 89.3
     source: fpw-sections
+days:
+  # one day per main section of the Trust's sections
+  min: 6
+  max: 6
+  basis: stages
+  source: fpw-sections
 stages:
   # the Trust's sections with "Path Length" and "Estimated Time", Culross to St Andrews; the OSM
   # relation (7776868) guides the matcher, each section the shortest way over it to its end
@@ -109,7 +115,9 @@ animals:
 tags: [pilgrimage, abbeys, farmland, st-andrews]
 notes:
   - >-
-    Days: the Trust gives no number of days; the page counts one day per section.
+    Days (2026-11-07): one per section of the Trust's list (6). Searched: the Trust's Fife Pilgrim
+    Way and Plan Your Trip pages (no days), English Wikipedia (no days); Walkhighlands (403) and
+    Cicerone's guidebook page (429) could not be read, so not used.
   - >-
     Stages: the seven sections include a second start, North Queensferry to Dunfermline (13.5 km, 4.5
     h), which joins at Dunfermline; it is not drawn. The main route from Culross adds up to 89.3 km;

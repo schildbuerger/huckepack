@@ -37,6 +37,7 @@ days:
   # "3 days one way" walking
   min: 3
   max: 3
+  basis: operator
   source: doc
 stages:
   # DOC's four walking legs between the car parks and huts, with distance and time; the OSM relation

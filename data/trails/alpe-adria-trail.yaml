@@ -43,9 +43,11 @@ length:
     approx: true
     source: aat
 days:
-  # one official daily stage a day along the main route
+  # one day per main stage of Kärnten Werbung's 37 stages along the main route: the operators give
+  # stages ("in a total of 43 stages" with the variants), no days
   min: 37
   max: 37
+  basis: stages
   source: aat-tours
 stages:
   # Kärnten Werbung's official stage pages (touren.kaernten.at, Outdooractive): 37 main stages
@@ -183,6 +185,10 @@ animals:
       source: ages-fsme
 tags: [alpine, lakes, cross-border, coast, culture]
 notes:
+  - >-
+    Days (2026-11-07): one per main stage of the official list (37 along the main route), as
+    alpe-adria-trail.com ("in a total of 43 stages") and touren.kaernten.at give stages, no days for
+    the whole trail.
   - >-
     The official site gives "circa 750 km" and "43 stages"; Kärnten Werbung's stage pages list 37
     main stages (705.5 km in sum) plus 7 stages of the circular route (136.1 km), and an overall

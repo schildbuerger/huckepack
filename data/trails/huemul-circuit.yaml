@@ -44,6 +44,7 @@ days:
   # "4 días, 3 noches (recomendado)"
   min: 4
   max: 4
+  basis: operator
   source: apn-huemul
 stages:
   # the APN's four "jornadas" (days) of the circuit, with distance, average time and difficulty;

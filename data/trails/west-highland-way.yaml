@@ -40,6 +40,7 @@ days:
   # "On average it takes six to seven days"; the suggested itineraries run from 5 to 7 days
   min: 6
   max: 7
+  basis: operator
   source: whw-faq
 stages:
   # the official site's eight route sections, with its distances and start and finish heights; it

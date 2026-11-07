@@ -33,6 +33,12 @@ length:
   - km: 188
     approx: true
     source: fcct
+days:
+  # English Wikipedia: "usually takes between one week and 10 days to walk in full"
+  min: 7
+  max: 10
+  basis: secondary
+  source: wikipedia-en
 stages:
   # the Trust's eight sections, each with its path length and estimated time. No GPX: the map line
   # follows the OSM relation "Fife Coastal Path" (10841122), cut at each section's `end` (the place
@@ -125,8 +131,9 @@ notes:
   - >-
     Season: all year, from English Wikipedia's infobox (2026-11-05); the Trust names none.
   - >-
-    Days: none stated by the Trust; the page counts one day per section (8). English Wikipedia: "usually
-    takes between one week and 10 days".
+    Days (2026-11-07): English Wikipedia's "between one week and 10 days", Kincardine to Newburgh.
+    The Trust's path and Plan Your Trip pages give no days ("what is achievable for a day's walk or
+    when tackling the entire route").
   - >-
     Wild camping: the Trust states no camping rule; it points to the Scottish Outdoor Access Code for
     access (searched 2026-11-05).
@@ -176,7 +183,7 @@ sources:
     title: "Wikipedia (en): Fife Coastal Path (length, ends, season, days, ascent; data check)"
     url: https://en.wikipedia.org/wiki/Fife_Coastal_Path
     licence: CC BY-SA 4.0
-    retrieved: 2026-11-05
+    retrieved: 2026-11-07
   - id: wikimedia
     title: "Wikimedia: page views of the trail's Wikipedia articles in every language, by people, over twelve months (Wikidata sitelinks, pageview API)"
     url: https://wikimedia.org/api/rest_v1/

@@ -48,6 +48,12 @@ ascent:
 descent:
   - m: 5602
     source: pt
+days:
+  # German Wikipedia: "elf ausgewiesenen Tagesetappen"
+  min: 11
+  max: 11
+  basis: secondary
+  source: wikipedia
 stages:
   # the eleven stages as Pfalz.Touristik publishes them on Outdooractive (publisher "Zum Wohl die
   # Pfalz", linked from pfalz.de): distance, climbs, time; each tour page carries its track (read by
@@ -150,7 +156,8 @@ notes:
     descent 5,602 against 6,013 m, 7 %; highest point the Kalmit, 673 m; Bockenheim to
     Schweigen-Rechtenbach; season March to November: all agree, no deviation over 10 %.
   - >-
-    Days: none stated by Pfalz Touristik (2026-11-04); the page counts one day per stage.
+    Days (2026-11-07): German Wikipedia's "elf ausgewiesenen Tagesetappen", 11 days. Pfalz.Touristik
+    gives a walking time ("Dauer 52:40 h") and eleven stages, no days.
 dataCheck:
   # working rule 2: German Wikipedia (stage distances from Publicpress's Leporello map)
   date: 2026-11-03
@@ -163,10 +170,10 @@ sources:
     licence: All rights reserved (facts only)
     retrieved: 2026-11-03
   - id: wikipedia
-    title: "German Wikipedia: Pfälzer Weinsteig (opening, waymark; stage table from Publicpress's map for the data check)"
+    title: "German Wikipedia: Pfälzer Weinsteig (opening, waymark, eleven day stages; stage table from Publicpress's map for the data check)"
     url: https://de.wikipedia.org/wiki/Pf%C3%A4lzer_Weinsteig
     licence: CC BY-SA 4.0
-    retrieved: 2026-11-03
+    retrieved: 2026-11-07
   - id: lwaldg-rp
     title: "Landeswaldgesetz Rheinland-Pfalz (LWaldG), § 22 (4): what needs the forest owner's consent"
     url: https://umwelt-online.de/recht/natursch/laender/rp/wald2.htm
