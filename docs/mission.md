@@ -91,5 +91,5 @@ user's request, 2026-11-04):
 - "We carry the research; you carry the pack." (a play on the name, German for piggyback; first drafted
   for the home page's "What is huckepack?" band, issue #210, and taken out of it to keep the band short).
   In use since 2026-11-07 (the user's decision): the footer's tagline on every page ("We carry the
-  research; you carry the pack. Every figure names its source."), the opening of the feedback page's
+  research; you carry the pack.", alone since the same day: "Every figure names its source." was dropped), the opening of the feedback page's
   intro, and under the headline on the home page's link-preview image.
