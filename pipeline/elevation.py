@@ -15,7 +15,8 @@ data/raw/<slug>/elevation-gedtm30.json. Writes data/derived/<slug>.json under `e
 each main stage's ascent and descent (`stageClimbs`, the 10 m threshold, `climbs()`) from samples
 every CLIMB_SPACING_M (100 m) on every trail: a trail over 1,000 km keeps its 500 m profile for the
 page, but its climbs come from a second set of 100 m samples (data/raw/<slug>/elevation-gedtm30-100.json),
-since 500 m samples missed 25–58 % of the climbs (2026-11-07).
+since 500 m samples missed 25–58 % of the climbs (2026-11-07). Side trips the trail walks there and
+back (`outAndBack` variants) are sampled too (`sideTrips`, elevation-gedtm30-sidetrips.json).
 Source id `gedtm30` (CC BY 4.0). The Copernicus DEM source and its notice were removed from the
 records and the legal notice on 2026-11-07, since no figure uses the Copernicus DEM any more.
 """
@@ -30,6 +31,8 @@ import numpy as np
 import rasterio
 import rasterio.errors
 from rasterio.windows import Window
+
+import yaml
 
 from pipeline import osm
 from pipeline.all import climbs
@@ -46,6 +49,7 @@ LONG_SPACING_M = 500
 # ascent and descent always from samples this far apart, whatever the profile's spacing (2026-11-07)
 CLIMB_SPACING_M = 100
 CACHE_100 = "elevation-gedtm30-100.json"
+CACHE_SIDE = "elevation-gedtm30-sidetrips.json"
 
 
 def spacing_for(total_m):
@@ -182,6 +186,26 @@ def stage_climbs(points, starts):
     return out
 
 
+def side_trips(record, route):
+    """The map lines of side trips the trail walks there and back (the record's `outAndBack`
+    variants: the W Trek's and the O Circuit's valleys), as (number, feature), in the map line's
+    order."""
+    back = {str(s["number"]) for s in ((record.get("stages") or {}).get("list") or []) if s.get("outAndBack")}
+    return [(f["properties"]["number"], f) for f in route["features"] if f["properties"]["kind"] != "main" and f["properties"].get("number") in back]
+
+
+def side_trip_climbs(trips, heights_m):
+    """Each side trip's climbs one way along its own samples, the 10 m threshold: `trips` are
+    (number, sample count), `heights_m` all their heights one after another. The page counts each
+    there and back: up and down both as ascent and as descent."""
+    out, at = [], 0
+    for number, n in trips:
+        up, down = climbs([round(h) for h in heights_m[at : at + n]])
+        at += n
+        out.append({"number": number, "up": up, "down": down})
+    return out
+
+
 def _heights_cached(cache, name, samples):
     """Heights for `samples` from cache file `name`, read from the terrain model when missing; open
     sea (no data) taken as 0 m."""
@@ -228,6 +252,14 @@ def build(slug, refresh=False):
         assert dense_starts == starts
         hs = _heights_cached(cache, CACHE_100, dense)
         climb_points = [[round(km, 2), round(h)] for (km, _, _), h in zip(dense, hs)]
+    # side trips walked there and back: sampled every 100 m along their own map line, one way
+    trips = []
+    route, _, proj = _route(slug)
+    lines = side_trips(yaml.safe_load((ROOT / "data" / "trails" / f"{slug}.yaml").read_text()), route)
+    if lines:
+        each = [line_samples([f], proj, CLIMB_SPACING_M)[0] for _, f in lines]
+        hs = _heights_cached(cache, CACHE_SIDE, [p for ss in each for p in ss])
+        trips = side_trip_climbs([(number, len(ss)) for (number, _), ss in zip(lines, each)], hs)
     # with coordinates, so later steps (climate) can look up these places
     at = lambda i: {"lat": round(samples[i][2], 5), "lon": round(samples[i][1], 5)}
     elevation = {
@@ -240,6 +272,7 @@ def build(slug, refresh=False):
         "lowest": {"km": low[0], "m": low[1], **at(lo)},
         "climbSpacingM": CLIMB_SPACING_M,
         "stageClimbs": stage_climbs(climb_points, starts),
+        **({"sideTrips": trips} if trips else {}),
         "points": points,
     }
 

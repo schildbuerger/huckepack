@@ -113,13 +113,16 @@ function stageClimb(e: NonNullable<DerivedData["elevation"]>, number: string) {
 // The terrain model's ascent and descent over the main route: each main stage's climbs and drops with
 // the 10 m threshold (stageClimb(), from 100 m samples), to 10 m, summed (as stageEstimates() has
 // them per stage), or over the whole route for a trail without stages (routeEstimate()). Undefined
-// without a profile or where a main stage has no samples.
+// without a profile or where a main stage has no samples. Side trips the trail walks there and back
+// (`outAndBack`, the W Trek's valleys; 2026-11-07) count both ways, as the measured length counts
+// them twice: each one's climbs one way (the derived `sideTrips`), up and down, added to both the
+// ascent and the descent; `sideTrips` says how many (none where the derived file predates them).
 export function terrainClimb(t: Trail, d?: DerivedData) {
   const e = d?.elevation;
   if (!e?.points.length) return undefined;
   if (noStages(t) || !t.stages) {
     const r = routeEstimate(d)!;
-    return { up: r.ascentM, down: r.descentM, source: r.source };
+    return { up: r.ascentM, down: r.descentM, source: r.source, sideTrips: 0 };
   }
   const to10 = (m: number) => Math.round(m / 10) * 10;
   const main = mainStages(t);
@@ -131,7 +134,11 @@ export function terrainClimb(t: Trail, d?: DerivedData) {
     up += to10(c.up);
     down += to10(c.down);
   }
-  return main.length ? { up, down, source: e.source } : undefined;
+  const back = t.stages.list.filter((s) => s.outAndBack);
+  const trips = back.map((s) => e.sideTrips?.find((x) => x.number === s.number));
+  const both = trips.every(Boolean) ? trips.reduce((a, x) => a + to10(x!.up) + to10(x!.down), 0) : 0;
+  const sideTrips = trips.every(Boolean) ? back.length : 0;
+  return main.length ? { up: up + both, down: down + both, source: e.source, sideTrips } : undefined;
 }
 
 // The trail's total ascent and descent, the one figure every page shows (key figure, search and

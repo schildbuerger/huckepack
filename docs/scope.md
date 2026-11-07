@@ -127,7 +127,14 @@
   Trail 22,570 → 25,430 m and the Florida Trail 1,510 → 2,400 m (no official
   figure). Over the 38 trails with a provider's figure: median −0.3 %, mean
   |gap| 11.9 % → 10.7 %, 24 within 10 %; the profiles of the trails up to
-  1,000 km are unchanged. Before (2026-10-30 to 2026-11-07): the
+  1,000 km are unchanged. **Side trips walked there and back** (the user's
+  decision, 2026-11-07; `outAndBack` variants, the W Trek's and the O
+  Circuit's valleys) count both ways, as the measured length counts them
+  twice: each one's map line is sampled every 100 m, and its climbs one way,
+  up plus down, are added to both the total ascent and the total descent
+  (the popover's How row says so). The W Trek 760 → 2,990 m up (830 → 3,060
+  m down), the O Circuit 2,790 → 4,350 m up (2,820 → 4,380 m down); neither
+  operator states a total. Before (2026-10-30 to 2026-11-07): the
   stated pair, else the stage sums, else the estimate (≈), since a terrain
   model's sum was taken as no fair measure (the Copernicus GLO-30 surface
   model read treetops, 15–60 % high in forests).

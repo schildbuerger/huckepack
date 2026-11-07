@@ -852,6 +852,27 @@ class StageClimbs(unittest.TestCase):
         self.assertAlmostEqual(fine[1][0], 0.1)
         self.assertEqual(fine[-1][1:], (7.0, 46.02))
 
+    def test_side_trips_walked_there_and_back(self):
+        record = {"stages": {"list": [
+            {"number": "V1", "kind": "variant", "outAndBack": True},
+            {"number": "1", "kind": "main"},
+            {"number": "V2", "kind": "variant"},  # a variant walked instead: not a side trip
+        ]}}
+        feat = lambda n, k: {"properties": {"number": n, "kind": k}, "geometry": {"coordinates": [[0, 0], [0, 1]]}}
+        route = {"features": [feat("V1", "variant"), feat("1", "main"), feat("V2", "variant"), {"properties": {"kind": "transfer"}, "geometry": {}}]}
+        self.assertEqual([n for n, _ in elevation.side_trips(record, route)], ["V1"])
+        self.assertEqual(elevation.side_trips({"stages": None}, route), [])
+        # one way along each trip's own samples, each starting fresh
+        hs = [100.0, 160.4, 140.0, 500.0, 504.0]
+        self.assertEqual(
+            elevation.side_trip_climbs([("V1", 3), ("V3", 2)], hs),
+            [{"number": "V1", "up": 60, "down": 20}, {"number": "V3", "up": 0, "down": 0}],
+        )
+
+    def test_check_counts_side_trips_both_ways(self):
+        e = {"points": [], "stageClimbs": [{"number": "1", "up": 100, "down": 0}], "sideTrips": [{"number": "V1", "up": 600, "down": 40}]}
+        self.assertEqual(pipeline_all.model_ascent(e), 100 + 600 + 40)
+
     def test_check_counts_the_stage_climbs_to_10_m(self):
         e = {"points": [[0, 0], [1, 500]], "stageClimbs": [{"number": "1", "up": 125, "down": 0}, {"number": "2", "up": 34, "down": 7}]}
         self.assertEqual(pipeline_all.model_ascent(e), 160)  # 130 + 30, half up as on the page

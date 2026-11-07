@@ -803,7 +803,7 @@ const trailLd = JSON.stringify({
                 {climb?.estimate ? (
                   <>
                     <dt>This trail</dt><dd>{fmt(climb.up)} m up, {fmt(climb.down)} m down, estimated</dd>
-                    <dt>How</dt><dd>Estimated from the GEDTM30 terrain model along our OpenStreetMap line: {stageless ? "the route's" : "every main stage's"} climbs and drops along samples {climbM} m apart, each counted once it reaches {CLIMB_THRESHOLD_M} m</dd>
+                    <dt>How</dt><dd>Estimated from the GEDTM30 terrain model along our OpenStreetMap line: {stageless ? "the route's" : "every main stage's"} climbs and drops along samples {climbM} m apart, each counted once it reaches {CLIMB_THRESHOLD_M} m{climb.sideTrips > 0 && "; side trips walked there and back counted both ways"}</dd>
                     {officialClimb && <><dt>Official</dt><dd>{fmt(officialClimb.up)} m up, {fmt(officialClimb.down)} m down, {officialClimbHow} ({officialClimbSrc})</dd></>}
                     {climbShort !== null ? (
                       <><dt>Keep in mind</dt><dd>Our map line covers only {Math.floor(climbShort * 100)} % of the route, and no source states the climbs</dd></>

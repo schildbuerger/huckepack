@@ -139,8 +139,8 @@ test("climb: the terrain model's estimate first, summed per main stage to 10 m (
   const stated = trail({ ascent: [{ m: 450, source: "site" }], descent: [{ m: 480, source: "site" }] });
   const c = trailClimb(stated, profiled([1, 1, 1]))!;
   // stage 1: 60 up, 30 down; stage 2: 75 + 47 = 122 up (the 6 m dip uncounted), to 10 m: 120
-  assert.deepEqual(terrainClimb(stated, profiled([1, 1, 1])), { up: 180, down: 30, source: "gedtm30" });
-  assert.deepEqual(c, { up: 180, down: 30, source: "gedtm30", how: CLIMB_HOW, estimate: true });
+  assert.deepEqual(terrainClimb(stated, profiled([1, 1, 1])), { up: 180, down: 30, source: "gedtm30", sideTrips: 0 });
+  assert.deepEqual(c, { up: 180, down: 30, source: "gedtm30", sideTrips: 0, how: CLIMB_HOW, estimate: true });
   // the same as the stage table's estimates where the stages state none
   const bare = trail({ stages: { source: "site", list: trail().stages.list.map(({ ascentM, descentM, ...s }: any) => s) } });
   const est = stageEstimates(bare, profiled([1, 1, 1]));
@@ -158,7 +158,7 @@ test("climb: the pipeline's stage climbs from 100 m samples win over the profile
   const d = profiled([1, 1, 1]);
   // a 500 m profile would miss climbs; the pipeline's 100 m samples found these (unrounded)
   d.elevation.stageClimbs = [{ number: "1", up: 214, down: 96 }, { number: "2", up: 305, down: 12 }];
-  assert.deepEqual(terrainClimb(stated, d), { up: 210 + 310, down: 100 + 10, source: "gedtm30" });
+  assert.deepEqual(terrainClimb(stated, d), { up: 210 + 310, down: 100 + 10, source: "gedtm30", sideTrips: 0 });
   // the stage table's estimates take them too, where a stage states none
   const bare = trail({ stages: { source: "site", list: trail().stages.list.map(({ ascentM, descentM, ...s }: any) => s) } });
   const est = stageEstimates(bare, d);
@@ -169,6 +169,19 @@ test("climb: the pipeline's stage climbs from 100 m samples win over the profile
   // a trail without stages: the one segment's climbs
   const whole = { elevation: { source: "gedtm30", points: [[0, 100], [0.5, 120]], stageClimbs: [{ number: "1", up: 344, down: 336 }] } } as any;
   assert.deepEqual(routeEstimate(whole), { ascentM: 340, descentM: 340, source: "gedtm30" });
+});
+
+test("climb: a side trip walked there and back climbs both ways, its up and down in each total", () => {
+  const t = trail();
+  t.stages.list.push({ number: "V1", kind: "variant", outAndBack: true, from: "C", to: "Peak", km: 4 });
+  const d = profiled([1, 1, 1]);
+  d.elevation.stageClimbs = [{ number: "1", up: 60, down: 30 }, { number: "2", up: 122, down: 0 }];
+  // up to the viewpoint 604 m, down 38 m on the way (one way): 600 + 40 more each way
+  d.elevation.sideTrips = [{ number: "V1", up: 604, down: 38 }];
+  assert.deepEqual(terrainClimb(t, d), { up: 180 + 640, down: 30 + 640, source: "gedtm30", sideTrips: 1 });
+  // a derived file from before: the side trip left out, as until 2026-11-07
+  delete d.elevation.sideTrips;
+  assert.deepEqual(terrainClimb(t, d), { up: 180, down: 30, source: "gedtm30", sideTrips: 0 });
 });
 
 test("climb: the provider's figure where our map line covers under 95 % of the route", () => {

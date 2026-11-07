@@ -62,12 +62,14 @@ def climbs(heights, threshold=CLIMB_THRESHOLD_M):
 
 def model_ascent(elevation):
     """The terrain model's ascent as the page shows it (terrainClimb() in src/lib/trails.ts): each
-    main stage's climbs from 100 m samples (pipeline/elevation.py's `stageClimbs`), each to 10 m
-    (half up, as JavaScript rounds); from the profile's samples over the whole route where the
+    main stage's climbs from 100 m samples (pipeline/elevation.py's `stageClimbs`), plus each side
+    trip walked there and back both ways (`sideTrips`: its up and its down both climbed), each to
+    10 m (half up, as JavaScript rounds); from the profile's samples over the whole route where the
     derived file predates them."""
     to10 = lambda m: math.floor(m / 10 + 0.5) * 10
     if elevation.get("stageClimbs"):
-        return sum(to10(s["up"]) for s in elevation["stageClimbs"])
+        trips = sum(to10(s["up"]) + to10(s["down"]) for s in elevation.get("sideTrips", []))
+        return sum(to10(s["up"]) for s in elevation["stageClimbs"]) + trips
     return climbs([p[1] for p in elevation["points"]])[0]
 
 
