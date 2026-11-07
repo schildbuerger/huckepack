@@ -174,6 +174,8 @@ And the **Pacific Northwest National Scenic Trail** (Montana, Idaho and Washingt
 
 And the **Border Route Trail** (Minnesota: the Border Route Trail Association's 65 miles (105 km) with the Superior National Forest along the Canadian border, from the Gunflint Trail, where the Kekekabic Trail ends, through the Boundary Waters Canoe Area Wilderness over high cliffs above the border lakes to the Superior Hiking Trail's northern end, part of the North Country Trail since 2019, in the association's four sections, unmarked in the wilderness, designated campsites, a BWCAW permit year round; over the OSM relation; 2026-11-07).
 
+And the **Cohos Trail** (New Hampshire: the Cohos Trail Association's "nearly 165 miles" (about 265 km) without spurs through Coos County, from Notchland in Crawford Notch over the Montalban Ridge and the Presidential Range near Mount Eisenhower, through the Pondicherry refuge, the Kilkenny, the Nash Stream Forest and Dixville Notch to the Connecticut Lakes and the Canadian border at Fourth Connecticut Lake, yellow-blazed, without published sections by design (eight regions, no section ends), 12–14 days between shelters, tent sites and campgrounds, supply caches needed; no season published; over the trail's OSM relation; 2026-11-07).
+
 | # | Trail | Region | Length (approx.) | Why |
 |---|---|---|---|---|
 | 1 | Pacific Crest Trail | USA | 4,265 km | Most-hiked long trail; public US agency data; completion lists |

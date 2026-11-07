@@ -2526,6 +2526,32 @@ export const SKYLINES: Record<string, Skyline> = {
       { d: hills([[1080, G], [1280, 272], [1480, 262], [1600, 270], [1600, G]]), c: FIR },
     ],
   },
+  "cohos-trail": {
+    view: "New Hampshire's North Country: the Presidential Range's bare summits above the forest, Dixville Notch's cliffs with Table Rock, and a Connecticut Lake among spruce and fir in the north woods",
+    ridge: "#3f5a34",
+    ground: "#b4a77c",
+    shapes: [
+      // far ridges, pale blue
+      { d: hills([[0, G], [140, 246], [360, 236], [600, 248], [860, 234], [1100, 244], [1340, 232], [1600, 240], [1600, G]]), c: "#b9c6d0" },
+      // the Presidential Range: bare rock summits above the tree line, Mount Washington the highest
+      { d: range([[0, G], [40, 252], [110, 206], [170, 176], [215, 160], [250, 166], [300, 140], [345, 124], [385, 130], [430, 114], [480, 98], [520, 104], [565, 128], [620, 164], [690, 204], [770, 240], [860, G]]), c: "#8e98a2" },
+      // forest up to the tree line on its flanks
+      { d: hills([[0, G], [90, 240], [230, 214], [390, 206], [540, 212], [690, 232], [880, G]]), c: "#61805c" },
+      // Dixville Notch: two steep walls of rock with the notch between, Table Rock on the left wall
+      { d: range([[780, G], [830, 262], [890, 226], [940, 204], [972, 194], [990, 202], [1004, 250], [1012, G]]), c: "#6f7769" },
+      { d: "M954,200L972,194L990,202L976,207Z", c: "#b0aa9c" },
+      { d: range([[1004, G], [1016, 250], [1030, 204], [1048, 186], [1072, 182], [1130, 194], [1210, 216], [1290, 246], [1360, G]]), c: "#66705f" },
+      // the north woods round the Connecticut Lakes, spruce and fir spires on the far shore
+      { d: hills([[1180, G], [1300, 254], [1440, 244], [1600, 250], [1600, G]]), c: "#4f6b4a" },
+      { d: [[1250, 262], [1290, 256], [1330, 252], [1372, 248], [1412, 246], [1452, 245], [1492, 247], [1532, 249]].map(([x, y]) => `M${x - 6},${y + 8}L${x},${y - 18}L${x + 6},${y + 8}Z`).join(" "), c: FIR },
+    ],
+    front: [
+      // a Connecticut Lake on the right
+      { d: water(1180, 1600, 292), c: "#4f86a8" },
+      // spruce spires on its near shore
+      { d: [[1210, 300], [1226, 302], [1560, 300], [1576, 302]].map(([x, y]) => `M${x - 6},${y + 6}L${x},${y - 22}L${x + 6},${y + 6}Z`).join(" "), c: FIR },
+    ],
+  },
   "superior-hiking-trail": {
     view: "Minnesota's North Shore: the Sawtooth ridges above Lake Superior, birch and spruce on the rocky slopes, a waterfall dropping towards the lake and the lake's long horizon",
     ridge: "#3f5a34",
