@@ -74,8 +74,11 @@ const skyScript = inlineScript(Astro, SKY_SCRIPT);
 const water = derived?.water;
 // sources of water points besides OSM (the record's waterPoints), by their titles' first part
 const waterExtra = (water?.extraSources ?? []).map((id) => t.sources.find((x) => x.id === id)?.title.split(":")[0] ?? id);
-// travel hubs with their distance to the start (pipeline/access.py), stations first
-const hubs = t.access.map((h) => ({ ...h, ...derived?.access?.hubs.find((d) => d.name === h.name) }));
+// travel hubs with their distance to the start (pipeline/access.py): trains and buses first, then
+// airports, each in the record's order (2026-11-07)
+const hubs = t.access
+  .map((h) => ({ ...h, ...derived?.access?.hubs.find((d) => d.name === h.name) }))
+  .sort((a, b) => Number(a.kind === "airport") - Number(b.kind === "airport"));
 // sleeping: each category with the types this trail's source lists, and how many places OSM maps
 // along the route (pipeline/along.py); available when either has it (sleepingCategories())
 const bedsByGroup: Partial<Record<string, number>> = derived?.along?.beds.byGroup ?? {};
@@ -1027,9 +1030,15 @@ const trailLd = JSON.stringify({
                       </span>
                       <span>
                         {h.name}
-                        {h.roadKm !== undefined && derived?.access && (
+                        {((h.roadKm !== undefined && derived?.access) || h.flights) && (
                           <span class="hub-dist">
-                            {h.roadKm} km by road{h.to ? ` to ${h.to}` : ""} · {h.driveMin} min{h.via ? `, then ${h.via.by}` : ""}
+                            {[
+                              h.roadKm !== undefined && derived?.access &&
+                                `${h.roadKm} km by road${h.to ? ` to ${h.to}` : ""} · ${h.driveMin} min${h.via ? `, then ${h.via.by}` : ""}`,
+                              h.flights === "seasonal" && "seasonal international flights",
+                            ]
+                              .filter(Boolean)
+                              .join(" · ")}
                           </span>
                         )}
                       </span>
