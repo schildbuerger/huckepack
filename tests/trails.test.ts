@@ -153,6 +153,24 @@ test("climb: the terrain model's estimate first, summed per main stage to 10 m (
   assert.equal(trailClimb(stated, short)!.estimate, false);
 });
 
+test("climb: the pipeline's stage climbs from 100 m samples win over the profile's own samples", () => {
+  const stated = trail({ ascent: [{ m: 450, source: "site" }], descent: [{ m: 480, source: "site" }] });
+  const d = profiled([1, 1, 1]);
+  // a 500 m profile would miss climbs; the pipeline's 100 m samples found these (unrounded)
+  d.elevation.stageClimbs = [{ number: "1", up: 214, down: 96 }, { number: "2", up: 305, down: 12 }];
+  assert.deepEqual(terrainClimb(stated, d), { up: 210 + 310, down: 100 + 10, source: "gedtm30" });
+  // the stage table's estimates take them too, where a stage states none
+  const bare = trail({ stages: { source: "site", list: trail().stages.list.map(({ ascentM, descentM, ...s }: any) => s) } });
+  const est = stageEstimates(bare, d);
+  assert.deepEqual([est.get("1")!.ascentM, est.get("1")!.descentM, est.get("2")!.ascentM], [210, 100, 310]);
+  // a stage missing from them: no estimate (never mixed with the profile's sums)
+  d.elevation.stageClimbs = [{ number: "1", up: 214, down: 96 }];
+  assert.equal(terrainClimb(stated, d), undefined);
+  // a trail without stages: the one segment's climbs
+  const whole = { elevation: { source: "gedtm30", points: [[0, 100], [0.5, 120]], stageClimbs: [{ number: "1", up: 344, down: 336 }] } } as any;
+  assert.deepEqual(routeEstimate(whole), { ascentM: 340, descentM: 340, source: "gedtm30" });
+});
+
 test("climb: the provider's figure where our map line covers under 95 % of the route", () => {
   const stated = trail({ ascent: [{ m: 450, source: "site" }], descent: [{ m: 480, source: "site" }] });
   // (10.4 × 0.9 + 13 × 0.95) / 23.4 = 92.8 %, the same gate as the length

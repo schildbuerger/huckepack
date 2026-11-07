@@ -818,3 +818,41 @@ class TerrainWindows(unittest.TestCase):
         grid = np.array([[10.0, nodata], [10.0, 10.0]], dtype=np.float32)
         self.assertAlmostEqual(elevation.bilinear(grid, 1.0, 1.0, nodata), 10.0)
         self.assertIsNone(elevation.bilinear(np.full((2, 2), nodata, dtype=np.float32), 1.0, 1.0, nodata))
+
+
+class StageClimbs(unittest.TestCase):
+    """Each main stage's climbs from 100 m samples, with the 10 m threshold (pipeline/elevation.py,
+    2026-11-07): the same rule as stageEstimates() in src/lib/trails.ts."""
+
+    def test_each_stage_starts_fresh_with_the_threshold(self):
+        points = [[0, 100], [0.1, 134], [0.2, 160], [0.3, 130], [0.4, 130], [0.5, 205], [0.6, 199], [0.7, 252]]
+        starts = [{"number": "1", "km": 0}, {"number": "2", "km": 0.4}]
+        self.assertEqual(
+            elevation.stage_climbs(points, starts),
+            [{"number": "1", "up": 60, "down": 30}, {"number": "2", "up": 122, "down": 0}],
+        )
+        # 8 m in each stage: under the threshold in both, though 16 m over the two
+        flat = [[0, 100], [0.1, 104], [0.2, 108], [0.3, 108], [0.4, 112], [0.5, 116]]
+        self.assertEqual([(s["up"], s["down"]) for s in elevation.stage_climbs(flat, [{"number": "1", "km": 0}, {"number": "2", "km": 0.3}])], [(0, 0), (0, 0)])
+        # a stage with no samples (past the profile's end) is left out
+        self.assertEqual([s["number"] for s in elevation.stage_climbs(points, starts + [{"number": "3", "km": 9}])], ["1", "2"])
+
+    def test_line_samples_every_spacing_with_stage_starts(self):
+        proj = osm.Projection(46.0)
+        # two stages along a meridian, about 1.11 km and 0.56 km long
+        a = {"properties": {"number": "1"}, "geometry": {"coordinates": [[7.0, 46.0], [7.0, 46.01]]}}
+        b = {"properties": {"number": "2"}, "geometry": {"coordinates": [[7.0, 46.01], [7.0, 46.015]]}}
+        part = {"properties": {"number": "2", "part": 2}, "geometry": {"coordinates": [[7.0, 46.015], [7.0, 46.02]]}}
+        fine, starts, walked = elevation.line_samples([a, b, part], proj, 100)
+        coarse, starts500, _ = elevation.line_samples([a, b, part], proj, 500)
+        self.assertEqual(starts, starts500)  # the same stage starts at either spacing
+        self.assertEqual([s["number"] for s in starts], ["1", "2"])  # a later part starts no stage
+        self.assertEqual(len(fine), math.floor(walked / 100) + 2)  # every 100 m from 0, and the end
+        self.assertEqual(len(coarse), math.floor(walked / 500) + 2)
+        self.assertAlmostEqual(fine[1][0], 0.1)
+        self.assertEqual(fine[-1][1:], (7.0, 46.02))
+
+    def test_check_counts_the_stage_climbs_to_10_m(self):
+        e = {"points": [[0, 0], [1, 500]], "stageClimbs": [{"number": "1", "up": 125, "down": 0}, {"number": "2", "up": 34, "down": 7}]}
+        self.assertEqual(pipeline_all.model_ascent(e), 160)  # 130 + 30, half up as on the page
+        self.assertEqual(pipeline_all.model_ascent({"points": [[0, 0], [1, 500]]}), 500)  # before stageClimbs

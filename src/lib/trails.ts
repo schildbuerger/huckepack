@@ -87,11 +87,33 @@ export function providerClimb(t: Trail) {
     : undefined;
 }
 
-// The terrain model's ascent and descent over the main route: each main stage's climbs and drops along
-// its own samples with the 10 m threshold, to 10 m, summed (as stageEstimates() has them per stage),
-// or over the whole route for a trail without stages (routeEstimate()). Undefined without a profile or
-// where a main stage has no samples. The profile samples the main stages only: side trips walked
-// there and back are not in it.
+// A main stage's samples in the profile: from its start up to the next stage's (the next stage starts
+// after a gap on the map line); empty where the profile doesn't reach it.
+function stagePoints(e: NonNullable<DerivedData["elevation"]>, number: string) {
+  const i = e.stageStarts.findIndex((x) => x.number === number);
+  if (i < 0) return [];
+  const from = e.stageStarts[i].km;
+  const to = e.stageStarts[i + 1]?.km ?? Infinity;
+  return e.points.filter(([km]) => km >= from && km < to);
+}
+
+// A main stage's ascent and descent from the terrain model, unrounded: the pipeline's `stageClimbs`
+// (pipeline/elevation.py: from samples every 100 m on every trail, also where the profile is sampled
+// every 500 m, 2026-11-07), else summed along the profile's own samples (climbs(), 10 m threshold;
+// derived files from before). Undefined where neither has the stage.
+function stageClimb(e: NonNullable<DerivedData["elevation"]>, number: string) {
+  if (e.stageClimbs) {
+    const c = e.stageClimbs.find((x) => x.number === number);
+    return c ? { up: c.up, down: c.down } : undefined;
+  }
+  const pts = stagePoints(e, number);
+  return pts.length ? climbs(pts.map((p) => p[1])) : undefined;
+}
+
+// The terrain model's ascent and descent over the main route: each main stage's climbs and drops with
+// the 10 m threshold (stageClimb(), from 100 m samples), to 10 m, summed (as stageEstimates() has
+// them per stage), or over the whole route for a trail without stages (routeEstimate()). Undefined
+// without a profile or where a main stage has no samples.
 export function terrainClimb(t: Trail, d?: DerivedData) {
   const e = d?.elevation;
   if (!e?.points.length) return undefined;
@@ -104,13 +126,8 @@ export function terrainClimb(t: Trail, d?: DerivedData) {
   let up = 0;
   let down = 0;
   for (const s of main) {
-    const i = e.stageStarts.findIndex((x) => x.number === s.number);
-    if (i < 0) return undefined;
-    const from = e.stageStarts[i].km;
-    const to = e.stageStarts[i + 1]?.km ?? Infinity;
-    const pts = e.points.filter(([km]) => km >= from && km < to);
-    if (!pts.length) return undefined;
-    const c = climbs(pts.map((p) => p[1]));
+    const c = stageClimb(e, s.number);
+    if (!c) return undefined;
     up += to10(c.up);
     down += to10(c.down);
   }
@@ -232,7 +249,11 @@ export function routeEstimate(d?: DerivedData) {
   const pts = d?.elevation?.points;
   if (!pts?.length) return undefined;
   const to10 = (m: number) => Math.round(m / 10) * 10;
-  const c = climbs(pts.map((p) => p[1]));
+  // the pipeline's climbs from 100 m samples (one segment over the whole route), else the profile's
+  const sc = d!.elevation!.stageClimbs;
+  const c = sc?.length
+    ? { up: sc.reduce((a, x) => a + x.up, 0), down: sc.reduce((a, x) => a + x.down, 0) }
+    : climbs(pts.map((p) => p[1]));
   return {
     ascentM: to10(c.up),
     descentM: to10(c.down),
@@ -538,9 +559,7 @@ export function stageEstimates(t: Trail, d?: DerivedData) {
       est.minutes = walkingMinutes(s.km, s.ascentM, s.descentM);
     const i = e?.stageStarts.findIndex((x) => x.number === s.number) ?? -1;
     if (e && s.kind === "main" && i >= 0) {
-      const from = e.stageStarts[i].km;
-      const to = e.stageStarts[i + 1]?.km ?? Infinity; // the next stage starts after a gap on the map line
-      const pts = e.points.filter(([km]) => km >= from && km < to);
+      const pts = stagePoints(e, s.number);
       if (pts.length) {
         // to 10 m: the terrain model is a 30 m grid, so its heights are estimates
         if (s.startEleM === undefined && s.endEleM === undefined) {
@@ -548,10 +567,12 @@ export function stageEstimates(t: Trail, d?: DerivedData) {
           est.endEleM = to10(pts.at(-1)![1]);
         }
         if (s.ascentM === undefined && s.descentM === undefined) {
-          // along the stage's own samples with the 10 m threshold: each stage starts fresh
-          const c = climbs(pts.map((p) => p[1]));
-          est.ascentM = to10(c.up);
-          est.descentM = to10(c.down);
+          // with the 10 m threshold, each stage starting fresh, from 100 m samples (stageClimb())
+          const c = stageClimb(e, s.number);
+          if (c) {
+            est.ascentM = to10(c.up);
+            est.descentM = to10(c.down);
+          }
         }
       }
     }

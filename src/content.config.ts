@@ -597,6 +597,10 @@ const derived = z.object({
       stageStarts: z.array(z.object({ number: z.string(), km: z.number() })),
       highest: z.object({ km: z.number(), m: z.number() }),
       lowest: z.object({ km: z.number(), m: z.number() }),
+      // each main stage's ascent and descent (10 m threshold) from samples every climbSpacingM (100 m),
+      // also on trails whose profile is sampled every 500 m (pipeline/elevation.py, 2026-11-07)
+      climbSpacingM: z.number().optional(),
+      stageClimbs: z.array(z.object({ number: z.string(), up: z.number(), down: z.number() })).optional(),
       points: z.array(z.tuple([z.number(), z.number()])), // [km, metres]
     })
     .optional(),

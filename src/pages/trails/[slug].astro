@@ -189,7 +189,10 @@ const climbTotal = climb ? { up: climb.up, down: climb.down, est: climb.estimate
 const officialClimbSrc = officialClimb ? sources[officialClimb.source].title.split(":")[0] : "";
 const officialClimbHow = officialClimb?.how ?? "";
 // a long trail sampled every 500 m (pipeline/elevation.py): its estimate misses more short climbs
-const climbCoarse = (derived?.elevation?.spacingM ?? 100) > 100;
+// the climbs come from samples climbSpacingM apart (100 m on every trail since 2026-11-07); a derived
+// file from before sums the profile's own samples, 500 m apart on trails over 1,000 km
+const climbM = derived?.elevation?.stageClimbs ? (derived.elevation.climbSpacingM ?? 100) : (derived?.elevation?.spacingM ?? 100);
+const climbCoarse = climbM > 100;
 const estClimb = stageView.some((s) => s.climb?.est);
 // trails with many stages (issue #25): from MANY_STAGES main stages the charts' stage axes label only
 // every k-th stage over alternating stage bands; with more than STAGES_SHOWN, the stage table shows
@@ -800,12 +803,12 @@ const trailLd = JSON.stringify({
                 {climb?.estimate ? (
                   <>
                     <dt>This trail</dt><dd>{fmt(climb.up)} m up, {fmt(climb.down)} m down, estimated</dd>
-                    <dt>How</dt><dd>Estimated from the GEDTM30 terrain model along our OpenStreetMap line: {stageless ? "the route's" : "every main stage's"} climbs and drops along samples {sampleM} m apart, each counted once it reaches {CLIMB_THRESHOLD_M} m</dd>
+                    <dt>How</dt><dd>Estimated from the GEDTM30 terrain model along our OpenStreetMap line: {stageless ? "the route's" : "every main stage's"} climbs and drops along samples {climbM} m apart, each counted once it reaches {CLIMB_THRESHOLD_M} m</dd>
                     {officialClimb && <><dt>Official</dt><dd>{fmt(officialClimb.up)} m up, {fmt(officialClimb.down)} m down, {officialClimbHow} ({officialClimbSrc})</dd></>}
                     {climbShort !== null ? (
                       <><dt>Keep in mind</dt><dd>Our map line covers only {Math.floor(climbShort * 100)} % of the route, and no source states the climbs</dd></>
                     ) : climbOff ? (
-                      <><dt>Keep in mind</dt><dd>{climbCoarse ? `Samples ${sampleM} m apart on a trail this long miss short climbs that ${officialClimbSrc} counts` : `${officialClimbSrc} counts the climbs differently`}</dd></>
+                      <><dt>Keep in mind</dt><dd>{climbCoarse ? `Samples ${climbM} m apart on a trail this long miss short climbs that ${officialClimbSrc} counts` : `${officialClimbSrc} counts the climbs differently`}</dd></>
                     ) : !officialClimb && (
                       <><dt>Keep in mind</dt><dd>A 30 m terrain model: short climbs between the samples are missed</dd></>
                     )}
@@ -1451,7 +1454,7 @@ const trailLd = JSON.stringify({
           .map((s) => ` Stage ${s.number}${s.kind !== "main" ? ` (${s.kind})` : ""} from ${sourceShort(s.source!)}.`)}
         {(estEle || estClimb || estTime) && " ≈ marks our estimates where the source gives no figure: "}
         {(estEle || estClimb) &&
-          `${[estClimb && "ascent and descent", estEle && "heights"].filter(Boolean).join(" and ")} from the terrain model (GEDTM30, 30 m grid, sampled every ${sampleM} m; climbs and drops counted once they reach ${CLIMB_THRESHOLD_M} m), to the nearest 10 m`}
+          `${[estClimb && "ascent and descent", estEle && "heights"].filter(Boolean).join(" and ")} from the terrain model (GEDTM30, 30 m grid, sampled every ${sampleM} m${estClimb && climbM !== sampleM ? `, the climbs every ${climbM} m` : ""}; climbs and drops counted once they reach ${CLIMB_THRESHOLD_M} m), to the nearest 10 m`}
         {(estEle || estClimb) && estTime && "; "}
         {estTime && "walking times from each stage's distance, ascent and descent by the German hiking standard DIN 33466 (4 km/h, 300 m/h up, 500 m/h down), without breaks"}
         {(estEle || estClimb || estTime) && "."}

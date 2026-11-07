@@ -3228,6 +3228,39 @@
       "lat": 53.71302,
       "lon": -0.50918
     },
+    "climbSpacingM": 100,
+    "stageClimbs": [
+      {
+        "number": "1",
+        "up": 326,
+        "down": 276
+      },
+      {
+        "number": "2",
+        "up": 278,
+        "down": 252
+      },
+      {
+        "number": "3",
+        "up": 252,
+        "down": 142
+      },
+      {
+        "number": "4",
+        "up": 339,
+        "down": 387
+      },
+      {
+        "number": "5",
+        "up": 475,
+        "down": 529
+      },
+      {
+        "number": "6",
+        "up": 355,
+        "down": 387
+      }
+    ],
     "points": [
       [
         0.0,

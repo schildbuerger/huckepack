@@ -60,6 +60,17 @@ def climbs(heights, threshold=CLIMB_THRESHOLD_M):
     return up, down
 
 
+def model_ascent(elevation):
+    """The terrain model's ascent as the page shows it (terrainClimb() in src/lib/trails.ts): each
+    main stage's climbs from 100 m samples (pipeline/elevation.py's `stageClimbs`), each to 10 m
+    (half up, as JavaScript rounds); from the profile's samples over the whole route where the
+    derived file predates them."""
+    to10 = lambda m: math.floor(m / 10 + 0.5) * 10
+    if elevation.get("stageClimbs"):
+        return sum(to10(s["up"]) for s in elevation["stageClimbs"])
+    return climbs([p[1] for p in elevation["points"]])[0]
+
+
 def _photos(slug, refresh):
     """The photos step as its own process, started once the map line is there: it reads only the
     line (data/derived/lines/) and the record and writes only its own files (data/photos/,
@@ -192,7 +203,7 @@ def check(slug):
     elevation = derived.get("elevation")
     if elevation:
         pts = elevation["points"]
-        model = climbs([p[1] for p in pts])[0]
+        model = model_ascent(elevation)
         up = sum(s["ascentM"] for s in main) if main and all("ascentM" in s for s in main) else None
         if (whole or not up) and trail.get("ascent"):
             # the stated total: a trail without stages, or stages that state no climbs of their own

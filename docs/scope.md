@@ -109,13 +109,25 @@
   threshold came out 0 % in the median against the official figure, mean
   |gap| 8 %, 24 within 10 % (see Terrain model below). Of the 38 trails that
   showed a provider's figure until then (19 stated totals, 19 stage sums),
-  the largest changes: the Great Divide Trail 74,273 → 31,520 m, the South
-  West Coast Path 35,000 → 15,920 m, the Camí de Cavalls 3,548 → 2,180 m, the
+  the largest changes: the Great Divide Trail 74,273 → 33,980 m, the South
+  West Coast Path 35,000 → 23,100 m, the Camí de Cavalls 3,548 → 2,180 m, the
   Rockwall Trail 3,405 → 2,320 m, the New England Trail 10,609 → 7,470 m, the
-  Országos Kéktúra 31,915 → 22,480 m, the Pacific Northwest Trail 70,238 →
-  52,520 m: the four trails over 1,000 km are sampled every 500 m, which
-  misses short climbs (their popover says so), and coastal paths' short ups
-  and downs stay under the threshold. Before (2026-10-30 to 2026-11-07): the
+  Országos Kéktúra 31,915 → 25,650 m, the Pacific Northwest Trail 70,238 →
+  60,550 m; coastal paths' short ups and downs stay under the threshold.
+  **Climbs from 100 m samples on every trail** (the user's decision,
+  2026-11-07): the six trails over 1,000 km keep their 500 m profile for the
+  page (page weight), but pipeline/elevation.py samples their main stages a
+  second time every 100 m for the climbs alone (`stageClimbs` per main stage
+  in the derived elevation, written for every trail, so the site no longer
+  sums the chart's samples). With 500 m samples their climbs had come out
+  25–58 % under the official figures; with 100 m: the Great Divide Trail
+  31,520 → 33,980 m (−54 % against the association's stage sums), the South
+  West Coast Path 15,920 → 23,100 m (−34 %), the Kéktúra 22,480 → 25,650 m
+  (−20 %), the Pacific Northwest Trail 52,520 → 60,550 m (−14 %), the Arizona
+  Trail 22,570 → 25,430 m and the Florida Trail 1,510 → 2,400 m (no official
+  figure). Over the 38 trails with a provider's figure: median −0.3 %, mean
+  |gap| 11.9 % → 10.7 %, 24 within 10 %; the profiles of the trails up to
+  1,000 km are unchanged. Before (2026-10-30 to 2026-11-07): the
   stated pair, else the stage sums, else the estimate (≈), since a terrain
   model's sum was taken as no fair measure (the Copernicus GLO-30 surface
   model read treetops, 15–60 % high in forests).

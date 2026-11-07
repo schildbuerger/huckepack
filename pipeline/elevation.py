@@ -11,7 +11,11 @@ before the Copernicus DEM GLO-30, a surface model). It is one global Cloud Optim
 read remotely with rasterio in windows around chunks of consecutive samples (no account, no
 tiles kept); heights are interpolated bilinearly between the four nearest cells and cached in
 data/raw/<slug>/elevation-gedtm30.json. Writes data/derived/<slug>.json under `elevation`:
-[km, metres] per sample, stage starts, and the highest and lowest points (with coordinates).
+[km, metres] per sample, stage starts, and the highest and lowest points (with coordinates), and
+each main stage's ascent and descent (`stageClimbs`, the 10 m threshold, `climbs()`) from samples
+every CLIMB_SPACING_M (100 m) on every trail: a trail over 1,000 km keeps its 500 m profile for the
+page, but its climbs come from a second set of 100 m samples (data/raw/<slug>/elevation-gedtm30-100.json),
+since 500 m samples missed 25–58 % of the climbs (2026-11-07).
 Source id `gedtm30` (CC BY 4.0). The Copernicus DEM source and its notice were removed from the
 records and the legal notice on 2026-11-07, since no figure uses the Copernicus DEM any more.
 """
@@ -28,6 +32,7 @@ import rasterio.errors
 from rasterio.windows import Window
 
 from pipeline import osm
+from pipeline.all import climbs
 from pipeline.routes import Cache
 
 ROOT = Path(__file__).resolve().parent.parent
@@ -36,6 +41,11 @@ SPACING_M = 100
 # under about 1 MB; the gradients then use 500 m bars (decided on 2026-10-31)
 LONG_TRAIL_M = 1_000_000
 LONG_SPACING_M = 500
+
+
+# ascent and descent always from samples this far apart, whatever the profile's spacing (2026-11-07)
+CLIMB_SPACING_M = 100
+CACHE_100 = "elevation-gedtm30-100.json"
 
 
 def spacing_for(total_m):
@@ -113,21 +123,12 @@ def heights(points):
     return out
 
 
-def route_samples(slug):
-    """Points every SPACING_M along the main stages of the map line, as (km, lon, lat), the km
-    where each main stage starts, and the main route's length in metres. Shared with
-    pipeline/landcover.py, so its samples fall on the elevation profile's kilometres."""
-    route = json.loads((ROOT / "public" / "routes" / f"{slug}.geojson").read_text())
-    # in the record's order, as pipeline/along.py
-    stages = [f for f in route["features"] if f["properties"]["kind"] == "main"]
-    every = [c for f in stages for c in f["geometry"]["coordinates"]]
-    proj = osm.Projection(sum(lat for _, lat in every) / len(every))
-    total = sum(math.dist(proj.xy(*a), proj.xy(*b)) for f in stages for a, b in zip(f["geometry"]["coordinates"], f["geometry"]["coordinates"][1:]))
-    spacing = spacing_for(total)
-
-    # samples every `spacing` along the main stages, with their km and stage
+def line_samples(features, proj, spacing):
+    """Points every `spacing` metres along `features` (map-line stages) chained one after another, as
+    (km, lon, lat), the km where each stage starts (a stage's later `part` doesn't start it), and the
+    length in metres; the last point is the end of the last feature."""
     samples, starts, walked = [], [], 0.0
-    for f in stages:
+    for f in features:
         line = f["geometry"]["coordinates"]
         xy = [proj.xy(*c) for c in line]
         if "part" not in f["properties"]:  # a stage's later parts (after a ride) don't start it
@@ -140,9 +141,59 @@ def route_samples(slug):
                 samples.append((next_at / 1000, la[0] + t * (lb[0] - la[0]), la[1] + t * (lb[1] - la[1])))
                 next_at += spacing
             walked += seg
-    end = stages[-1]["geometry"]["coordinates"][-1]
+    end = features[-1]["geometry"]["coordinates"][-1]
     samples.append((walked / 1000, end[0], end[1]))
     return samples, starts, walked
+
+
+def _route(slug):
+    route = json.loads((ROOT / "public" / "routes" / f"{slug}.geojson").read_text())
+    # in the record's order, as pipeline/along.py
+    stages = [f for f in route["features"] if f["properties"]["kind"] == "main"]
+    every = [c for f in stages for c in f["geometry"]["coordinates"]]
+    proj = osm.Projection(sum(lat for _, lat in every) / len(every))
+    return route, stages, proj
+
+
+def route_samples(slug, spacing=None):
+    """Points every SPACING_M (500 m on trails over 1,000 km, or `spacing`) along the main stages of
+    the map line, as (km, lon, lat), the km where each main stage starts, and the main route's length
+    in metres. Shared with pipeline/landcover.py, so its samples fall on the elevation profile's
+    kilometres."""
+    _, stages, proj = _route(slug)
+    if spacing is None:
+        total = sum(math.dist(proj.xy(*a), proj.xy(*b)) for f in stages for a, b in zip(f["geometry"]["coordinates"], f["geometry"]["coordinates"][1:]))
+        spacing = spacing_for(total)
+    return line_samples(stages, proj, spacing)
+
+
+def stage_climbs(points, starts):
+    """Each main stage's ascent and descent along its own samples ([km, metres], heights in whole
+    metres as the profile has them), with the 10 m threshold, each stage starting fresh: the samples
+    from the stage's start up to the next stage's (the rule of stageEstimates() in src/lib/trails.ts).
+    A stage without samples is left out."""
+    out = []
+    for i, st in enumerate(starts):
+        end = starts[i + 1]["km"] if i + 1 < len(starts) else math.inf
+        hs = [h for km, h in points if st["km"] <= km < end]
+        if hs:
+            up, down = climbs(hs)
+            out.append({"number": st["number"], "up": up, "down": down})
+    return out
+
+
+def _heights_cached(cache, name, samples):
+    """Heights for `samples` from cache file `name`, read from the terrain model when missing; open
+    sea (no data) taken as 0 m."""
+    def download():
+        hs = heights([(lon, lat) for _, lon, lat in samples])
+        return json.dumps({"samples": len(samples), "elevation": [None if h is None else round(h, 1) for h in hs]}).encode()
+
+    data, _ = cache.get(name, DTM_URL, download, key=str(len(samples)))
+    data = json.loads(data)
+    if data["samples"] != len(samples):
+        raise SystemExit(f"cached elevations in {name} don't match the route; run again with --refresh")
+    return [0.0 if h is None else h for h in data["elevation"]]
 
 
 def build(slug, refresh=False):
@@ -168,6 +219,15 @@ def build(slug, refresh=False):
     hi = max(range(len(points)), key=lambda i: points[i][1])
     lo = min(range(len(points)), key=lambda i: points[i][1])
     high, low = points[hi], points[lo]
+    # ascent and descent from 100 m samples on every trail: the profile's own where it is sampled every
+    # 100 m, else a second set of samples at 100 m (the climbs only; the page keeps the 500 m profile)
+    if spacing_for(walked) == CLIMB_SPACING_M:
+        climb_points = points
+    else:
+        dense, dense_starts, _ = route_samples(slug, CLIMB_SPACING_M)
+        assert dense_starts == starts
+        hs = _heights_cached(cache, CACHE_100, dense)
+        climb_points = [[round(km, 2), round(h)] for (km, _, _), h in zip(dense, hs)]
     # with coordinates, so later steps (climate) can look up these places
     at = lambda i: {"lat": round(samples[i][2], 5), "lon": round(samples[i][1], 5)}
     elevation = {
@@ -178,6 +238,8 @@ def build(slug, refresh=False):
         "stageStarts": starts,
         "highest": {"km": high[0], "m": high[1], **at(hi)},
         "lowest": {"km": low[0], "m": low[1], **at(lo)},
+        "climbSpacingM": CLIMB_SPACING_M,
+        "stageClimbs": stage_climbs(climb_points, starts),
         "points": points,
     }
 

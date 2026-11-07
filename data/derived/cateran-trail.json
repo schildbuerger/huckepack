@@ -1715,6 +1715,34 @@
       "lat": 56.59416,
       "lon": -3.33754
     },
+    "climbSpacingM": 100,
+    "stageClimbs": [
+      {
+        "number": "1",
+        "up": 503,
+        "down": 352
+      },
+      {
+        "number": "2",
+        "up": 466,
+        "down": 339
+      },
+      {
+        "number": "3",
+        "up": 313,
+        "down": 406
+      },
+      {
+        "number": "4",
+        "up": 344,
+        "down": 471
+      },
+      {
+        "number": "5",
+        "up": 510,
+        "down": 556
+      }
+    ],
     "points": [
       [
         0.0,
