@@ -1827,6 +1827,8 @@ import Explainer from "../components/Explainer.astro";
     grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 14px 18px;
     margin: 6px 0 0;
+    /* the figures are sized by the width of their own half (below) */
+    container-type: inline-size;
   }
   .rs-stats div {
     display: flex;
@@ -1839,11 +1841,16 @@ import Explainer from "../components/Explainer.astro";
     letter-spacing: 0.08em;
     text-transform: uppercase;
   }
-  /* every figure alike, the difficulty's word too (sized so "Demanding" fits its half) */
+  /* every figure alike, the difficulty's word too, sized by the width of its half so the longest of
+     any trail fits: "Demanding" (6.1 em wide in this type; the climate re-rating can bring it in on any
+     trail) and "≈74,273 m" (5.4 em); so a half holds 6.4 em: (the grid's width less its 18 px gap) / 2 /
+     6.4, between 1.25 rem (a 320 px phone) and 2.7 rem (2026-11-07: "Demanding" at a fixed 2 rem ran
+     17 px past the screen on phones and at 820 px) */
   .rs-stats dd {
     margin: 0;
     font-family: var(--serif);
-    font-size: clamp(2rem, 3.4vw, 2.7rem);
+    font-size: clamp(1.25rem, 6.4vw, 2.7rem);
+    font-size: clamp(1.25rem, (100cqi - 18px) / 12.8, 2.7rem);
     font-weight: 800;
     line-height: 1;
   }
