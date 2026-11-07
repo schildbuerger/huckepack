@@ -713,3 +713,33 @@ class PreflightContent(unittest.TestCase):
 
         self.assertTrue(preflight.spam("<title>GACOR188</title><p>situs slot gacor, toto online terpercaya</p>"))
         self.assertIsNone(preflight.spam("<title>Pinhoti Trail Alliance</title><p>Trail sections and maps</p>"))
+
+
+class AccessViaPort(unittest.TestCase):
+    def test_road_distance_runs_to_the_ferry_port(self):
+        import io
+        import json
+        import tempfile
+        from pathlib import Path
+        from unittest import mock
+
+        from pipeline import access
+
+        with tempfile.TemporaryDirectory() as d:
+            root = Path(d)
+            (root / "data" / "trails").mkdir(parents=True)
+            (root / "data" / "trails" / "isle.yaml").write_text(
+                "termini: {start: {name: S, lat: 48.0, lon: -88.5}}\n"
+                "access:\n  - {kind: airport, name: A, lat: 47.0, lon: -88.0, via: {name: Port, lat: 47.1, lon: -88.6, by: ferry}, source: osm}\n"
+            )
+            asked = []
+
+            def urlopen(request, timeout=0):
+                asked.append(request.full_url)
+                return io.BytesIO(json.dumps({"code": "Ok", "routes": [{"distance": 15800, "duration": 1920}]}).encode())
+
+            with mock.patch.object(access, "ROOT", root), mock.patch.object(routes, "ROOT", root), mock.patch("urllib.request.urlopen", urlopen):
+                access.build("isle")
+            self.assertIn("-88.6,47.1", asked[0])  # to the port, not the island start
+            hub = json.loads((root / "data" / "derived" / "isle.json").read_text())["access"]["hubs"][0]
+            self.assertEqual((hub["to"], hub["roadKm"]), ("Port", 15.8))

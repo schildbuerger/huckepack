@@ -1016,7 +1016,9 @@ const trailLd = JSON.stringify({
                       <span>
                         {h.name}
                         {h.roadKm !== undefined && derived?.access && (
-                          <span class="hub-dist">{h.roadKm} km by road · {h.driveMin} min</span>
+                          <span class="hub-dist">
+                            {h.roadKm} km by road{h.to ? ` to ${h.to}` : ""} · {h.driveMin} min{h.via ? `, then ${h.via.by}` : ""}
+                          </span>
                         )}
                       </span>
                     </li>

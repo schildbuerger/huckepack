@@ -4,7 +4,8 @@
     ~/.venvs/huckepack/bin/python -m pipeline.access <slug> --refresh  # ask the router again
 
 For each hub in the `access` list of data/trails/<slug>.yaml: the driving distance and time to
-the trail's start from OSRM (routing on OpenStreetMap data; public demo server, so light use
+the trail's start (or, for a start on an island, to the port in the hub's `via`, 2026-11-07: road
+routing to an island snapped it to the nearest mainland shore) from OSRM (routing on OpenStreetMap data; public demo server, so light use
 only), and the straight-line distance. Router answers are cached in data/raw/<slug>/; the
 result goes into data/derived/<slug>.json under `access`.
 """
@@ -42,23 +43,25 @@ def build(slug, refresh=False):
     for hub in hubs:
         name = "osrm-access-" + re.sub(r"[^a-z0-9]+", "-", hub["name"].lower()).strip("-") + ".json"
         names.append(name)
-        url = f"{OSRM}/{hub['lon']},{hub['lat']};{start['lon']},{start['lat']}?overview=false"
+        to = hub.get("via") or start
+        url = f"{OSRM}/{hub['lon']},{hub['lat']};{to['lon']},{to['lat']}?overview=false"
 
         def download():
             request = urllib.request.Request(url, headers={"User-Agent": USER_AGENT})
             with urllib.request.urlopen(request, timeout=60) as response:
                 return response.read()
 
-        answer, _ = cache.get(name, url, download)
+        answer, _ = cache.get(name, url, download, key=url)
         route = json.loads(answer)
         if route.get("code") != "Ok":
             raise SystemExit(f"{hub['name']}: router answered {route.get('code')}")
         results.append(
             {
                 "name": hub["name"],
+                **({"to": hub["via"]["name"]} if hub.get("via") else {}),
                 "roadKm": round(route["routes"][0]["distance"] / 1000, 1),
                 "driveMin": round(route["routes"][0]["duration"] / 60),
-                "straightKm": round(straight_km((hub["lat"], hub["lon"]), (start["lat"], start["lon"])), 1),
+                "straightKm": round(straight_km((hub["lat"], hub["lon"]), (to["lat"], to["lon"])), 1),
             }
         )
         print(f"{hub['name']}: {results[-1]['roadKm']} km by road ({results[-1]['driveMin']} min), "

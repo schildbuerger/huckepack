@@ -120,16 +120,28 @@ refillsUntreated:
   source: nps-camping
 access:
   # the island is reached only by ferry, seaplane or private boat from Houghton or Copper Harbor
-  # (Michigan) or Grand Portage (Minnesota), to Windigo or Rock Harbor (directions page): the
-  # nearest airports with scheduled flights on each side. No railway reaches the region; the
-  # Indian Trails bus stops at Houghton, which OSM maps no stop for. Coordinates from OSM;
-  # distances by pipeline/access.py. Only Thunder Bay is listed: road routing to an island start
-  # snaps it to the Canadian shore by Grand Portage, so Houghton (751 km) and Duluth (399 km) came
-  # out as meaningless figures (2026-11-07, the integrator)
+  # (Michigan) or Grand Portage (Minnesota), to Windigo or Rock Harbor (directions page). The road
+  # distance runs from each hub to its port (`via`, 2026-11-07: routing to the island itself snapped
+  # to the Canadian shore and gave meaningless figures); the ports are the mainland ends of OSM's
+  # ferry routes (the Ranger III from Houghton, the Voyageur II and Sea Hunter III from Grand
+  # Portage). Hub coordinates from OSM; distances by pipeline/access.py
+  - kind: airport
+    name: Houghton County Memorial Airport (CMX)
+    lat: 47.1686
+    lon: -88.48728
+    via: { name: "Houghton (Ranger III)", lat: 47.12318, lon: -88.56391, by: ferry }
+    source: osm
   - kind: airport
     name: Thunder Bay International Airport (YQT)
     lat: 48.37214
     lon: -89.32087
+    via: { name: "Grand Portage (Voyageur II, Sea Hunter III)", lat: 47.96247, lon: -89.65259, by: ferry }
+    source: osm
+  - kind: airport
+    name: Duluth International Airport (DLH)
+    lat: 46.8419
+    lon: -92.20047
+    via: { name: "Grand Portage (Voyageur II, Sea Hunter III)", lat: 47.96247, lon: -89.65259, by: ferry }
     source: osm
 animals:
   # the NPS's wolf page, "Safety in a Wolf Sanctuary", and its moose page, "Safe Moose Viewing",
@@ -234,14 +246,10 @@ notes:
     and Windigo (Rock Harbor Lodge's; the fees page names "its stores in Rock Harbor and Windigo"),
     off the trail's ends and not tagged as shops in OSM: carry all food for the crossing.
   - >-
-    Travel hubs: the check flags Houghton County Memorial Airport (751 km by road) and Duluth
-    International Airport (399 km). The island has no roads: OSRM routes to the nearest road to
-    Lookout Louise, on the Canadian shore near Thunder Bay, so the road distances run round Lake
-    Superior and say nothing of the real journey, by ferry or seaplane from Houghton (the airport lies
-    "eight miles north of Houghton", the NPS's directions page), Copper Harbor or Grand Portage to
-    Rock Harbor or Windigo; Duluth and Thunder Bay are the airports on the Grand Portage side. No railway serves
-    the region. The page's "km by road" for these hubs is misleading for an island trail: an open
-    question for the access step (a ferry port as the road's end).
+    Travel hubs: each airport's road distance runs to its ferry port (2026-11-07): Houghton County
+    Memorial Airport to the Ranger III's dock in Houghton, Thunder Bay and Duluth to Grand Portage;
+    the island itself has no roads. The Isle Royale Queen IV sails from Copper Harbor and Isle Royale
+    Seaplanes fly from the Houghton area. No railway serves the region.
   - >-
     Data check (2026-11-07, working rule 2): the NPS against English Wikipedia (the second source)
     and its own pages. Length 67.1 km (41.7 mi) against Wikipedia's 40 mi (64.4 km, −4 %; uncited

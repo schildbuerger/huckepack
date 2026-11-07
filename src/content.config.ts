@@ -363,6 +363,16 @@ const trail = z
           lat: z.number().min(-90).max(90),
           lon: z.number().min(-180).max(180),
           note: z.string().optional(),
+          // a start on an island (the Greenstone Ridge Trail on Isle Royale): the port the hub's
+          // travellers sail from; the road distance runs to it and the page adds "then <by>"
+          via: z
+            .object({
+              name: z.string(),
+              lat: z.number().min(-90).max(90),
+              lon: z.number().min(-180).max(180),
+              by: z.enum(["ferry", "boat", "seaplane"]).default("ferry"),
+            })
+            .optional(),
           source: sourceRef,
         }),
       )
@@ -628,6 +638,7 @@ const derived = z.object({
       hubs: z.array(
         z.object({
           name: z.string(), // matches the hub's name in the trail record
+          to: z.string().optional(), // the port the road distance runs to (the hub's `via`)
           roadKm: z.number(),
           driveMin: z.number(),
           straightKm: z.number(),
