@@ -12,8 +12,8 @@ read remotely with rasterio in windows around chunks of consecutive samples (no 
 tiles kept); heights are interpolated bilinearly between the four nearest cells and cached in
 data/raw/<slug>/elevation-gedtm30.json. Writes data/derived/<slug>.json under `elevation`:
 [km, metres] per sample, stage starts, and the highest and lowest points (with coordinates).
-Source id `gedtm30`. GEDTM30 is derived from GLO-30 (and AW3D30), so the records keep the
-`copdem` source with its notice and the legal notice keeps the Copernicus liability disclaimer.
+Source id `gedtm30` (CC BY 4.0). The Copernicus DEM source and its notice were removed from the
+records and the legal notice on 2026-11-07, since no figure uses the Copernicus DEM any more.
 """
 
 import json

@@ -247,6 +247,7 @@ dataCheck:
   pageAgainst: [dnr-about, dnr-trailheads, dnr-rules]
   deviations:
     - { figure: "whole trail", ours: "45.5 miles (73.2 km), the sections' sum by the shortest loop legs", theirs: "58 miles (93 km), loops counted", source: wikipedia }
+    - { figure: ascent, ours: "about 2,080 m from the terrain model (GEDTM30, 2026-11-07)", theirs: "3,050 m", source: wikipedia }
 sources:
   - id: dnr-about
     title: "Indiana DNR, Division of Forestry: Knobstone Trail: About (60-mile trail, termini, 1980, rugged terrain, foot traffic only)"

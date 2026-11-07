@@ -289,7 +289,7 @@ dataCheck:
     - { figure: stage 16 length, ours: "23.2 km (14.4 miles)", theirs: "17.5 km on the map line", source: osm }
     - { figure: stage 17 length, ours: "19.3 km (12.0 miles)", theirs: "23.7 km on the map line", source: osm }
     - { figure: stage 20 length, ours: "10.9 km (6.8 miles)", theirs: "9.1 km on the map line", source: osm }
-    - { figure: ascent, ours: "16,667 m (54,682 ft)", theirs: "about 16,940 m from the terrain model (2026-11-07)", source: gedtm30 }
+    - { figure: ascent, ours: "16,667 m (54,682 ft)", theirs: "about 16,910 m from the terrain model (GEDTM30, 2026-11-07, summed per stage as the page shows)", source: gedtm30 }
 sources:
   - id: bmta-discover
     title: "Benton MacKaye Trail Association: Discover the Trail (overview, Vital Trail Information with the 287.6-mile official length, ascent and descent, access points and trailheads, Section Hiker's Tracking Log with the 25 sections)"

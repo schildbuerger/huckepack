@@ -476,7 +476,7 @@ export function stageEstimates(t: Trail, d?: DerivedData) {
       const to = e.stageStarts[i + 1]?.km ?? Infinity; // the next stage starts after a gap on the map line
       const pts = e.points.filter(([km]) => km >= from && km < to);
       if (pts.length) {
-        // to 10 m: the terrain model is a 30 m grid and measures the treetops in forests
+        // to 10 m: the terrain model is a 30 m grid, so its heights are estimates
         if (s.startEleM === undefined && s.endEleM === undefined) {
           est.startEleM = to10(pts[0][1]);
           est.endEleM = to10(pts.at(-1)![1]);

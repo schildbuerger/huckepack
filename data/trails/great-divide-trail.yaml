@@ -276,7 +276,7 @@ dataCheck:
   against: [wikipedia]
   pageAgainst: [gdta-sections, gdta-faq, pc-kootenay]
   deviations:
-    - { figure: ascent, ours: "74,273 m (the association's sections)", theirs: "about 31,560 m (terrain model, 2026-11-07)", source: gedtm30 }
+    - { figure: ascent, ours: "74,273 m (the association's sections)", theirs: "about 31,520 m (terrain model GEDTM30, 2026-11-07, summed per stage as the page shows)", source: gedtm30 }
 sources:
   - id: gdta-sections
     title: "Great Divide Trail Association: Trip Planning Resources and the section pages A–G (1,095 km in seven sections; each section's ends, distance, elevation gain and loss, days, permits, campgrounds and resupply)"

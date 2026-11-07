@@ -203,7 +203,7 @@ dataCheck:
     - { figure: "Stage 2 length (map line)", ours: "14 km", theirs: "12.9 km on the OSM map line", source: osm }
     - { figure: "Stage 5 length (map line)", ours: "11 km", theirs: "13.2 km on the OSM map line", source: osm }
     - { figure: "Stage 12 length (map line)", ours: "9 km", theirs: "7.7 km on the OSM map line", source: osm }
-    - { figure: "Ascent (terrain model)", ours: "7,330 m (stage sum)", theirs: "about 8,880 m (terrain model, 2026-11-07)", source: gedtm30 }
+    - { figure: "Ascent (terrain model)", ours: "7,330 m (stage sum)", theirs: "about 8,540 m (terrain model GEDTM30, 2026-11-07, summed per stage as the page shows)", source: gedtm30 }
 sources:
   - id: prov-bl
     title: "Provincia di Belluno, Settore Turismo: Alta Via delle Dolomiti n. 1, dal Lago di Bràies a Belluno (official guide by Italo Zandonella Callegher, 2005, reprint 2007; data sheet and twelve stages with climbs, lengths and times), hosted by the Fondazione DMO Dolomiti Bellunesi"
