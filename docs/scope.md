@@ -690,6 +690,11 @@
     one place (each covers at least 90 % of the other's area) are listed once
     under the English name (Corsica, also "Corse"); the large natural regions
     (Iberian Peninsula, Scandinavia) stay.
+  - 2026-11-07 (the user's decision): natural regions in
+    English from Wikidata too (Erzgebirge → Ore Mountains, Böhmerwald →
+    Bohemian Forest, Cruach nam Miseag → Grampian Mountains), Natural Earth's
+    names kept as other names; its "Appennino Ligure" polygon is the whole
+    range and is named Apennines.
 
 ## What a trail page could show
 

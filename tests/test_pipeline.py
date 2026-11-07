@@ -1034,5 +1034,31 @@ class Regions(unittest.TestCase):
         names = regions.namer({"P300:ES-CT": "Catalonia", "Q980": "Bavaria"})
         self.assertEqual(names(joined), ("Catalonia", ["Cataluña"]))
         self.assertEqual(names({"kind": "admin", "name": "Bavaria", "qid": "Q980"}), ("Bavaria", []))
-        self.assertEqual(names({"kind": "natural", "name": "Alps"}), ("Alps", []))
+        self.assertEqual(names({"kind": "natural", "name": "Alps", "label": "Alps"}), ("Alps", []))
+
+    def test_natural_names_from_wikidata(self):
+        from pipeline import regions
+
+        cache = {
+            # Natural Earth's item for "Erzgebirge": its German label is the region's own
+            "Q4198": "Ore Mountains",
+            "names:Q4198": ["erzgebirge", "krusne hory", "ore mountains"],
+            # Natural Earth's item for "Grampian Mts.": another place, so a search decides
+            "Q5189745": "Cruach nam Miseag",
+            "names:Q5189745": ["cruach nam miseag"],
+            "search:Grampian Mountains": "Grampian Mountains",
+            "Q377264": "Ligurian Apennines",
+        }
+        names = regions.namer(cache)
+        erz = {"kind": "natural", "name": "Erzgebirge", "label": "Erzgebirge", "qid": "Q4198"}
+        self.assertFalse(regions.needs_search(erz, cache))
+        self.assertEqual(names(erz), ("Ore Mountains", ["Erzgebirge"]))
+        self.assertEqual(regions.plain("Península Ibérica"), "peninsula iberica")
+        grampian = {"kind": "natural", "name": "Grampian Mountains", "label": "Grampian Mountains", "qid": "Q5189745"}
+        self.assertEqual(names(grampian), ("Grampian Mountains", []))
+        # Natural Earth's own mistake, fixed by hand: the whole range, not its Ligurian end
+        apennines = {"kind": "natural", "name": "Appennino Ligure", "label": "Appennini", "qid": "Q377264"}
+        self.assertEqual(names(apennines), ("Apennines", ["Appennini", "Appennino Ligure"]))
+        # nothing found: Natural Earth's name stays
+        self.assertEqual(names({"kind": "natural", "name": "Sai Kung Pen.", "label": "Sai Kung Pen.", "qid": None}), ("Sai Kung Pen.", []))
 

@@ -194,6 +194,13 @@ test("the real derived regions: each trail's list is valid, and the examples hol
   assert.ok(names("carros-de-foc").includes("Catalonia"));
   assert.ok(names("camino-frances").includes("Castile and León"));
   assert.deepEqual(names("gr-20"), ["Corsica"]);
+  // natural regions in English too, Natural Earth's names kept as other names
+  const all = [...regions.values()].flat();
+  for (const [en, local] of [["Ore Mountains", "Erzgebirge"], ["Apennines", "Appennino Ligure"], ["Bohemian Forest", "Böhmerwald"]]) {
+    const r = all.find((x) => x.name === en) as { also?: string[] } | undefined;
+    assert.ok(r?.also?.includes(local), en);
+  }
+  assert.ok(!all.some((x) => ["Erzgebirge", "Appennino Ligure", "Cruach nam Miseag"].includes(x.name)));
   assert.ok((regions.get("gr-20")![0] as { also?: string[] }).also!.includes("Corse"));
   for (const [slug, list] of regions) assert.equal(new Set(list.map((r) => r.name)).size, list.length, slug);
   // the Camino Francés crosses the Pyrenees on its first day only: under 20 % of its route

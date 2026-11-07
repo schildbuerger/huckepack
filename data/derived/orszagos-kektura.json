@@ -61886,9 +61886,12 @@
   },
   "regions": [
     {
-      "name": "Carpathian Mountains",
+      "name": "Carpathians",
       "kind": "natural",
       "cla": "Range/mtn",
+      "also": [
+        "Carpathian Mountains"
+      ],
       "share": 0.241
     },
     {

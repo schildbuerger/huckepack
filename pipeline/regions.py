@@ -24,7 +24,10 @@ once into ~/.cache/huckepack/naturalearth/ (not the repository).
 Names in English (the user's decisions of 2026-11-07): an admin region takes the English label of
 its Wikidata item (CC0; by Natural Earth's wikidataid, else its ISO 3166-2 code, P300, or HASC code,
 P8119; cached in the same folder), "Cataluña" → "Catalonia", the Natural Earth name kept as an other
-name. An admin and a natural region that are one place are listed once, under the admin region's
+name; a natural region too: its item's English label where Natural Earth's label or English name is
+one of the item's labels or aliases in any language ("Erzgebirge" → "Ore Mountains"), else the first
+landform a Wikidata search for the label finds ("Grampian Mountains", where Natural Earth links
+another place), with NAME_FIX for the few it gets wrong ("Appennini" → "Apennines"). An admin and a natural region that are one place are listed once, under the admin region's
 English name with the natural one as an other name: each covers at least MERGE_OVERLAP (90 %) of
 the other's area (Corse and the island of Corsica, Islas Baleares and the Balearic Islands; counted
 on a grid over both, for the pairs a trail has a fifth of its route in each).
@@ -185,7 +188,7 @@ def load_regions():
             continue
         polys = rings_of(f["geometry"])
         if polys:
-            out.append({"name": natural_name(p), "kind": "natural", "cla": cla, "polygons": polys})
+            out.append({"name": natural_name(p), "label": title(p["NAME"]), "kind": "natural", "cla": cla, "qid": p.get("WIKIDATAID"), "polygons": polys})
     for r in out:
         r["bbox"] = bbox_of(r["polygons"])
     out = [r for r in out if r["bbox"]]
@@ -341,6 +344,23 @@ def memberships(lines, regions, share_min=SHARE_MIN):
 # ——— English names from Wikidata (CC0) ———
 
 WIKIDATA_CACHE = "wikidata-en.json"
+# what a natural region found by a search must be an instance of (P31): mountain range, mountain
+# system, plateau, upland, hill range, natural region, geographic region, region, peninsula, desert,
+# island, archipelago, landform, forest
+NATURAL_TYPES = {
+    "Q46831", "Q1437459", "Q75520", "Q2525834", "Q1373595", "Q1970725", "Q82794", "Q3502482",
+    "Q34763", "Q8514", "Q23442", "Q33837", "Q271669", "Q4421",
+}
+# Names corrected by hand, by Natural Earth's label (reviewed 2026-11-07, the user's decision):
+# its "APPENNINI" polygon is the whole range, its English name and item the Ligurian Apennines
+# only; the items it links for the Columbia Mountains ("Columbia Kootenay Mountain"), the Serra da
+# Mantiqueira (misspelt "Mantiquiera") and the Böhmerwald (no English label) give no English name
+NAME_FIX = {
+    "Appennini": "Apennines",
+    "Columbia Mountains": "Columbia Mountains",
+    "Serra da Mantiqueira": "Mantiqueira Mountains",
+    "Böhmerwald": "Bohemian Forest",
+}
 USER_AGENT = "huckepack-pipeline/1.0 (https://huckepack.me; regions of long-distance trails)"
 
 
@@ -375,14 +395,23 @@ def english_names(regions):
     """The English label of each admin region's Wikidata item, cached in ~/.cache/huckepack/naturalearth/."""
     path = CACHE_DIR / WIKIDATA_CACHE
     cache = json.loads(path.read_text()) if path.exists() else {}
-    want = {k for r in regions if r["kind"] == "admin" for k in wikidata_keys(r)} - set(cache)
-    qids = sorted(k for k in want if k.startswith("Q"))
+    # an item's names are fetched again if an earlier run left them out
+    cache = {k: v for k, v in cache.items() if not (k.startswith("names:") and v is None)}
+    want ={k for r in regions if r["kind"] == "admin" for k in wikidata_keys(r)}
+    want |= {f"names:{r['qid']}" for r in regions if r["kind"] == "natural" and r.get("qid")}
+    want -= set(cache)
+    qids = sorted({k.removeprefix("names:") for k in want if k.startswith(("Q", "names:"))})
     for i in range(0, len(qids), 50):
         batch = qids[i : i + 50]
-        data = _get("https://www.wikidata.org/w/api.php?action=wbgetentities&format=json&props=labels&languages=en&ids=" + "|".join(batch))
+        # every language's labels and aliases: Natural Earth's label must be one of them for the
+        # item to count as the region's own (names:<qid>, plain())
+        data = _get("https://www.wikidata.org/w/api.php?action=wbgetentities&format=json&props=labels|aliases&ids=" + "|".join(batch))
         for q in batch:
-            cache[q] = data.get("entities", {}).get(q, {}).get("labels", {}).get("en", {}).get("value")
-    codes = sorted(k for k in want if not k.startswith("Q"))
+            e = data.get("entities", {}).get(q, {})
+            cache[q] = e.get("labels", {}).get("en", {}).get("value")
+            names = [v["value"] for v in e.get("labels", {}).values()] + [a["value"] for vs in e.get("aliases", {}).values() for a in vs]
+            cache[f"names:{q}"] = sorted({plain(n) for n in names})
+    codes = sorted(k for k in want if k.startswith(("P300:", "P8119:")))
     if codes:
         values = " ".join(json.dumps(k.split(":", 1)[1]) for k in codes)
         query = (
@@ -394,23 +423,73 @@ def english_names(regions):
         found = {f"{'P8119' if '.' in b['code']['value'] else 'P300'}:{b['code']['value']}": b["en"]["value"] for b in data["results"]["bindings"]}
         for k in codes:
             cache[k] = found.get(k)
-    if not want:
+    # natural regions whose item names another place: a search by the label, landforms only
+    searches = sorted({f"search:{r['label']}" for r in regions if r["kind"] == "natural" and needs_search(r, cache)} - set(cache))
+    for key in searches:
+        cache[key] = search_landform(key.split(":", 1)[1])
+    if not want and not searches:
         return cache
     CACHE_DIR.mkdir(parents=True, exist_ok=True)
     path.write_text(json.dumps(cache, indent=1, ensure_ascii=False, sort_keys=True) + "\n")
     return cache
 
 
+def plain(s):
+    """A name to compare: lower case, accents and punctuation dropped."""
+    s = unicodedata.normalize("NFD", s).encode("ascii", "ignore").decode().lower()
+    return " ".join("".join(c if c.isalnum() else " " for c in s).split())
+
+
+def needs_search(r, cache):
+    """A natural region whose Wikidata item (Natural Earth's wikidataid) isn't its own: none of the
+    item's labels and aliases, in any language, is Natural Earth's label or English name
+    ("Erzgebirge" is the German label of Q4198, "Ore Mountains"; Q5189745, given for the
+    Grampians, is "Cruach nam Miseag")."""
+    if r["label"] in NAME_FIX:
+        return False
+    names = cache.get(f"names:{r.get('qid')}") or []
+    return not (cache.get(r.get("qid") or "") and ({plain(r["label"]), plain(r["name"])} & set(names)))
+
+
+def natural_english(r, cache):
+    """A natural region's English name: NAME_FIX first (Natural Earth's own mistakes), else its
+    Wikidata item's label where that names the same place as Natural Earth's label, else the first
+    landform a Wikidata search for the label finds (`search:<label>`), else None."""
+    if r["label"] in NAME_FIX:
+        return NAME_FIX[r["label"]]
+    if not needs_search(r, cache):
+        return cache[r["qid"]]
+    return cache.get(f"search:{r['label']}")
+
+
+def search_landform(text):
+    """The English label of the first item Wikidata's search finds for `text` that is a landform
+    (an instance of one of NATURAL_TYPES), else None."""
+    hits = _get("https://www.wikidata.org/w/api.php?action=wbsearchentities&format=json&language=en&type=item&limit=7&search=" + urllib.parse.quote(text))
+    ids = [h["id"] for h in hits.get("search", [])]
+    if not ids:
+        return None
+    data = _get("https://www.wikidata.org/w/api.php?action=wbgetentities&format=json&props=labels|claims&languages=en&ids=" + "|".join(ids))
+    for q in ids:
+        e = data["entities"].get(q, {})
+        kinds = {c["mainsnak"].get("datavalue", {}).get("value", {}).get("id") for c in e.get("claims", {}).get("P31", [])}
+        if kinds & NATURAL_TYPES:
+            return e.get("labels", {}).get("en", {}).get("value")
+    return None
+
+
 def namer(cache):
-    """A region's name and other names: an admin region in English from Wikidata where there is
-    one, its Natural Earth name then among the other names."""
+    """A region's name and other names: in English from Wikidata where there is one, Natural
+    Earth's names then among the other names."""
 
     def names(r):
         if r["kind"] == "admin":
             en = next((cache.get(k) for k in wikidata_keys(r) if cache.get(k)), None)
             if en and en != r["name"]:
                 return en, [r["name"]]
-        return r["name"], []
+            return r["name"], []
+        en = natural_english(r, cache) or r["name"]
+        return en, sorted({r["name"], r["label"]} - {en})
 
     return names
 
