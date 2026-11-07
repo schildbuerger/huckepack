@@ -120,7 +120,7 @@ animals:
   # agriculture authority). No official source found: delete `animals` and add a note starting
   # "Wildlife" saying what was searched; an official statement that there are none: `none`
   list:
-    - kind: null  # bear, wolf, big-cat, boar, cattle, dog, monkey, snake, scorpion, spider, tick
+    - kind: null  # bear, wolf, big-cat, boar, moose, alligator, cattle, dog, monkey, snake, scorpion, spider, tick
       name: null
       level: null
       basis: null

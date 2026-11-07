@@ -9,7 +9,7 @@ import { SKYLINES, SKY_W, SKY_H } from "./skylines";
 import { withDetail } from "./skyline-detail";
 import { SKY } from "./sky";
 
-export type AnimalKind = "bear" | "wolf" | "big-cat" | "boar" | "cattle" | "dog" | "monkey" | "snake" | "scorpion" | "spider" | "tick" | "hogweed";
+export type AnimalKind = "bear" | "wolf" | "big-cat" | "boar" | "moose" | "alligator" | "cattle" | "dog" | "monkey" | "snake" | "scorpion" | "spider" | "tick" | "hogweed";
 
 const FILES = import.meta.glob<string>("../assets/animals/*.svg", { query: "?raw", import: "default", eager: true });
 const URLS = import.meta.glob<string>("../assets/animals/*.svg", { query: "?url", import: "default", eager: true });
@@ -30,6 +30,10 @@ const ANIMALS: Record<AnimalKind, Animal> = {
   wolf: { h: 88, anchor: [0.45, 0.05], credit: "François-Louis Pelissier", species: "Canis lupus italicus" },
   "big-cat": { h: 78, anchor: [0.5, 0.05], credit: "Margot Michaud", species: "Puma concolor" },
   boar: { h: 74, anchor: [0.45, 0.03], credit: "Ferran Sayol", species: "Sus scrofa" },
+  // a bull with antlers, taller than the bear (added 2026-11-07, the Greenstone Ridge, Cohos and Québec trails)
+  moose: { h: 160, anchor: [0.62, 0.12], credit: "Kai Caspar", species: "Alces alces" },
+  // long and low: its height is a fifth of its length (added 2026-11-07, the Florida and Lone Star trails)
+  alligator: { h: 36, anchor: [0.3, 0.2], credit: "Ferran Sayol", species: "Alligator mississippiensis" },
   cattle: { h: 100, anchor: [0.4, 0.06], credit: "Katy Lawler", species: "Bos taurus" },
   dog: { h: 84, anchor: [0.5, 0.3], credit: "Rachel T. Mason", species: "Canis familiaris dingo" },
   monkey: { h: 58, anchor: [0.4, 0.12], credit: "Ben Murrell", species: "Macaca mulatta" },

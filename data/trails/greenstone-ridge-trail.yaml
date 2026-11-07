@@ -132,7 +132,8 @@ access:
     lon: -89.32087
     source: osm
 animals:
-  # the NPS's wolf page, "Safety in a Wolf Sanctuary", quoted here. Level ours
+  # the NPS's wolf page, "Safety in a Wolf Sanctuary", and its moose page, "Safe Moose Viewing",
+  # quoted here. Levels ours
   list:
     - kind: wolf
       name: Gray wolf
@@ -150,6 +151,18 @@ animals:
         - Leave food or garbage in campsites or picnic areas
         - Bring pets; no pets are allowed on the island
       source: nps-wolves
+    - kind: moose
+      name: Moose
+      level: moderate
+      basis: "Moose are large and potentially dangerous animals, seen on the island especially at dawn and dusk; cows rearing calves are protective, and bulls in rut in September and October are often aggressive."
+      do:
+        - Maintain a safe distance and when in doubt, move farther away
+        - If you unexpectedly come upon a moose, back away slowly and get behind a tree or rock so you are not visible
+        - Watch closely for signs of agitation; if the ears go back, the moose looks directly at you, or the hair on the back of the neck stands up
+        - Give bulls more distance during September and October
+      dont:
+        - Never get between a cow and her calf
+      source: nps-moose
 tags: [island, lake-superior, ridge, wilderness-camps, ferry]
 notes:
   - >-
@@ -186,13 +199,8 @@ notes:
   - >-
     Tree line: none in reach; the trail stays below about 415 m (Mount Desor).
   - >-
-    Wildlife: the NPS's moose page asks hikers to keep a safe distance from moose ("Moose are large
-    and potentially dangerous animals"; "If you unexpectedly come upon a moose, back away slowly and
-    get behind a tree or rock"; "Never get between a cow and her calf"; bulls in rut "often
-    aggressive. Give them more distance during September and October"). The site has no moose kind
-    and silhouette yet (src/content.config.ts, src/lib/animal-art.ts), so only the wolf is listed;
-    moose should be added as a new kind (PhyloPic, Alces alces) and listed here. The camping page
-    adds that mosquitoes and black flies peak in June or July and wasps are common.
+    Wildlife: wolves and moose are listed from the NPS's pages (the moose kind added 2026-11-07). The
+    camping page adds that mosquitoes and black flies peak in June or July and wasps are common.
   - >-
     Getting there: Isle Royale is closed to visitors from November 1 to April 15 and has no roads.
     The NPS's Ranger III sails from Houghton, the Isle Royale Queen IV from Copper Harbor (both
@@ -289,6 +297,11 @@ sources:
   - id: nps-fees
     title: "National Park Service: Isle Royale fees and passes"
     url: https://www.nps.gov/isro/planyourvisit/fees.htm
+    licence: US federal government work (public domain)
+    retrieved: 2026-11-07
+  - id: nps-moose
+    title: "National Park Service: Isle Royale moose (safe moose viewing)"
+    url: https://www.nps.gov/isro/learn/nature/moose.htm
     licence: US federal government work (public domain)
     retrieved: 2026-11-07
   - id: nps-wolves

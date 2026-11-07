@@ -115,6 +115,20 @@ animals:
         - Don't place hands or feet in places you can't see (like rock crevices or log piles)
         - Don't try to handle, catch, or kill it
       source: usfs-wildlife
+    - kind: alligator
+      name: American alligator
+      level: low
+      basis: Alligators live in the ponds, lakes, rivers, bayous and swamps of the national forests in Texas; the Forest Service says they generally avoid humans but can be dangerous if provoked, fed or threatened.
+      do:
+        - Stay at least 30 feet away from any alligator
+        - Keep pets leashed and away from the water's edge
+        - Avoid the water at dawn, dusk, or night when alligators are most active
+        - Remain calm and observe from a distance
+        - Supervise children closely when near water
+      dont:
+        - Don't feed or harass wildlife — it's illegal and unsafe
+        - Do not attempt to feed or move closer
+      source: usfs-wildlife
     - kind: tick
       name: Ticks
       level: moderate
@@ -164,9 +178,8 @@ notes:
   - >-
     Tree line: not added; the route stays under 150 m in the Piney Woods.
   - >-
-    Wildlife: the Forest Service's page also covers alligators ("Stay at least 30 feet away from any
-    alligator", in ponds, lakes, rivers, bayous and swamps); the site has no alligator silhouette or
-    kind yet, so they are named here only.
+    Wildlife: snakes, alligators (the kind added 2026-11-07) and ticks are listed from the Forest
+    Service's "Respect Wildlife" page.
   - >-
     Map line (2026-11-07): the Texas Geofabrik extract (2026-11-05); OSM's relation 7014936
     (operator US Forest Service), chained from FS 219 near Richards and cut at the three section
