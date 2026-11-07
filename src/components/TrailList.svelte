@@ -213,6 +213,17 @@
     filters = noFilters();
   }
 
+  // the title band's number (TrailsListing.astro, outside this island) follows the filters: the
+  // trails that match, all of them with none set; the server's total until the trails are in. Not a
+  // live region: the screen-reader status line below announces the count once
+  $effect(() => {
+    const n = trails.length ? shown.length : total;
+    const num = document.querySelector("[data-trail-count]");
+    const word = document.querySelector("[data-trail-word]");
+    if (num) num.textContent = String(n);
+    if (word) word.textContent = n === 1 ? "trail" : "trails";
+  });
+
   // the cards (TrailCards.astro, passed in as children): hide those the filters leave out and move
   // the rest into the sorted order, moving the elements themselves so screen readers and the tab
   // order follow the order on screen
@@ -247,9 +258,10 @@
 
   <div class="results">
     <div class="bar">
-      <p class="count" role="status">
-        {#if active.length}<strong>{shown.length}</strong> of {trails.length || total} {(trails.length || total) === 1 ? "trail" : "trails"}
-        {:else}<strong>{trails.length || total}</strong> {(trails.length || total) === 1 ? "trail" : "trails"}{/if}
+      <p class="count">
+        <!-- the result count for screen readers, announced as the filters change; on screen the title
+             band's number says it (TrailsListing.astro, set by the effect above), so only the map link shows -->
+        <span class="sr-only" role="status">{#if active.length}{shown.length} of {trails.length || total} {(trails.length || total) === 1 ? "trail" : "trails"}{:else}{trails.length || total} {(trails.length || total) === 1 ? "trail" : "trails"}{/if}</span>
         <!-- the trail map (issue #33), a quiet way to the same trails by place, with the same filters -->
         <a class="map-link" href={`/trails/map/${toParams(filters).toString() ? `?${toParams(filters)}` : ""}`}>Map view <span aria-hidden="true">→</span></a>
       </p>
@@ -301,7 +313,7 @@
         <p class="range">{firstShown}–{lastShown} of {trails.length ? shown.length : total}</p>
         <ol>
           <li class="step">
-            {#if page > 1}<a href={pageHref(page - 1)} rel="prev" onclick={(e) => goTo(page - 1, e)}><span aria-hidden="true">←</span> Previous</a>{:else}<span class="off" aria-hidden="true">← Previous</span>{/if}
+            {#if page > 1}<a href={pageHref(page - 1)} rel="prev" onclick={(e) => goTo(page - 1, e)}><span aria-hidden="true">←</span> Previous</a>{:else}<span class="off" aria-hidden="true"><span>←</span> Previous</span>{/if}
           </li>
           {#each pageList as n}
             <li>
@@ -311,7 +323,7 @@
             </li>
           {/each}
           <li class="step">
-            {#if page < pages}<a href={pageHref(page + 1)} rel="next" onclick={(e) => goTo(page + 1, e)}>Next <span aria-hidden="true">→</span></a>{:else}<span class="off" aria-hidden="true">Next →</span>{/if}
+            {#if page < pages}<a href={pageHref(page + 1)} rel="next" onclick={(e) => goTo(page + 1, e)}>Next <span aria-hidden="true">→</span></a>{:else}<span class="off" aria-hidden="true">Next <span>→</span></span>{/if}
           </li>
         </ol>
       </nav>
@@ -328,6 +340,9 @@
 <style>
   /* the compare table's columns, shared by the header here and the rows (TrailCards.astro) */
   .results {
+    /* the table's rows fold into cards where this column is narrower than the table
+       (TrailCards.astro and the header below ask the container, not the window) */
+    container: results / inline-size;
     --cols: minmax(220px, 3fr) 60px 44px 70px 112px 80px minmax(100px, 1.1fr);
     --col-gap: 14px;
   }
@@ -384,8 +399,9 @@
     opacity: 1;
     color: var(--accent-text);
   }
-  /* phones: no header row (the rows fold into cards and label their figures); the sort menu instead */
-  @media (max-width: 759px) {
+  /* a column narrower than the table: no header row (the rows fold into cards and label their
+     figures); the sort menu instead */
+  @container results (max-width: 799px) {
     .thead {
       display: none;
     }
@@ -537,7 +553,6 @@
     color: var(--text);
   }
   .map-link {
-    margin-left: 12px;
     font-size: 0.9rem;
   }
   .sort {
@@ -659,9 +674,23 @@
       font-size: 0;
       padding: 0;
     }
+    /* only the arrows show, the inactive step's too (its words took 90 px and pushed the page wider) */
     .pager .step a span,
-    .pager .step .off {
+    .pager .step .off span {
       font-size: 0.9rem;
+    }
+  }
+  /* the smallest phones: slimmer numbers, so nine of them (first, last, gaps, steps) fit 288 px */
+  @media (max-width: 399px) {
+    .pager ol {
+      gap: 2px;
+    }
+    .pager a,
+    .pager .now,
+    .pager .off,
+    .pager .gap {
+      min-width: 28px;
+      padding: 0 4px;
     }
   }
   .empty {

@@ -32,14 +32,32 @@ const onPage = page > 1 ? ` · page ${page} of ${pages}` : "";
     : `${trails.length} official long-distance hiking trails, to filter by month, region, walking days, difficulty, landscape, ground underfoot, where to sleep and water on the way.`}
 >
   {page > 1 ? <Breadcrumbs trail={[{ label: "Trails", href: "/trails/" }]} current={`Page ${page}`} /> : <Breadcrumbs current="Trails" />}
-  <!-- the title band (2026-11-06, of eleven previews, K "Footpath under clouds"): low, so the results
-       start high; a dotted footpath from the title to the count, a walker heading along it while
-       clouds drift the same way above -->
+  <!-- the title band (2026-11-06, of eleven previews, K "Footpath under clouds"; the clouds gone
+       2026-11-07): low, so the results start high; a dotted footpath winding from the title to the
+       count, and a walker on it. Path and walker are one SVG: the walker follows the very same path
+       (animateMotion + mpath), so it stays on the line at every width. The drawing stretches
+       sideways only (preserveAspectRatio="none", height in px), and non-scaling strokes keep the
+       dots and the walker round. The count follows the filters (TrailList.svelte sets it) -->
   <header class="band">
-    <div class="sky" aria-hidden="true"><span class="cloud c1"></span><span class="cloud c2"></span><span class="cloud c3"></span></div>
     <h1>Trails</h1>
-    <div class="path" aria-hidden="true"><span class="walker"></span></div>
-    <p class="count"><strong>{trails.length}</strong> trails to walk</p>
+    <div class="path" aria-hidden="true">
+      <svg viewBox="0 0 1000 48" preserveAspectRatio="none" focusable="false">
+        <path id="trail-line" class="line" d="M0 24C20 24 20 8 40 8C68 8 67 40 95 40C113 40 112 10 130 10C148 10 147 38 165 38C248 38 247 16 330 16C375 16 375 30 420 30C445 30 445 5 470 5C488 5 487 43 505 43C523 43 522 12 540 12C630 12 630 40 720 40C760 40 760 20 800 20C823 20 822 42 845 42C865 42 865 6 885 6C943 6 942 24 1000 24" />
+        <g class="walker moving" opacity="0">
+          <path class="halo" d="M0 0h.01" />
+          <path class="dot" d="M0 0h.01" />
+          <animateMotion dur="24s" repeatCount="indefinite" calcMode="linear"><mpath href="#trail-line" /></animateMotion>
+          <animate attributeName="opacity" dur="24s" repeatCount="indefinite" values="0;1;1;0" keyTimes="0;0.04;0.94;1" />
+        </g>
+        <!-- reduced motion: the walker rests a third of the way along, on the same path -->
+        <g class="walker resting">
+          <path class="halo" d="M0 0h.01" />
+          <path class="dot" d="M0 0h.01" />
+          <animateMotion dur="1s" fill="freeze" keyPoints="0.33;0.33" keyTimes="0;1" calcMode="linear"><mpath href="#trail-line" /></animateMotion>
+        </g>
+      </svg>
+    </div>
+    <p class="count"><strong data-trail-count>{trails.length}</strong> <span data-trail-word>{trails.length === 1 ? "trail" : "trails"}</span> to walk</p>
     <p class="lede">Filter by when, how long and how hard, then compare the trails side by side.</p>
   </header>
   <TrailList client:load total={trails.length} more={trails.length > mine.length} {page}>
@@ -72,88 +90,45 @@ const onPage = page > 1 ? ` · page ${page} of ${pages}` : "";
     color: var(--muted);
     font-size: 0.95rem;
   }
-  /* a strip of sky above the path: flat clouds drifting left to right across the band */
-  .sky {
-    position: absolute;
-    left: 0;
-    right: 0;
-    top: 0;
-    height: 52px;
-    overflow: hidden;
-  }
-  .cloud {
-    position: absolute;
-    left: 0;
-    width: 70px;
-    height: 18px;
-    border-radius: 999px;
-    background: var(--line);
-    animation: drift 60s linear infinite;
-  }
-  .cloud::before {
-    content: "";
-    position: absolute;
-    left: 16px;
-    top: -11px;
-    width: 32px;
-    height: 26px;
-    border-radius: 50%;
-    background: inherit;
-  }
-  .c1 {
-    top: 14px;
-    animation-delay: -12s;
-  }
-  .c2 {
-    top: 6px;
-    scale: 0.7;
-    animation-duration: 85s;
-    animation-delay: -55s;
-  }
-  .c3 {
-    top: 22px;
-    scale: 0.85;
-    animation-duration: 70s;
-    animation-delay: -38s;
-  }
-  @keyframes drift {
-    from {
-      transform: translateX(-90px);
-    }
-    to {
-      transform: translateX(min(1240px, 100vw));
-    }
-  }
-  /* the footpath, and the walker who sets off at the title, walks to the count and starts again */
+  /* the footpath (round dots of 3 px, 6 px apart, as the dotted border it replaces), and the walker
+     who sets off at the title, walks to the count and starts again (24 s). The SVG is 48 px tall, within
+     the 53 px title row, centred on the 3 px row the old border took, so the layout stays as it
+     was; the path winds irregularly, tight switchbacks between long sweeps, over its full height */
   .path {
-    height: 2px;
-    border-top: 3px dotted var(--accent);
-    opacity: 0.85;
+    height: 3px;
   }
-  .walker {
+  .path svg {
     position: absolute;
-    top: -8px;
     left: 0;
-    width: 12px;
-    height: 12px;
-    border-radius: 50%;
-    background: var(--poor);
-    box-shadow: 0 0 0 3px var(--bg);
-    animation: walk 24s linear infinite;
+    top: calc(50% - 24px);
+    width: 100%;
+    height: 48px;
+    overflow: visible;
   }
-  @keyframes walk {
-    0% {
-      left: 0;
-      opacity: 0;
-    }
-    4%,
-    94% {
-      opacity: 1;
-    }
-    100% {
-      left: calc(100% - 12px);
-      opacity: 0;
-    }
+  .line {
+    fill: none;
+    stroke: var(--accent);
+    stroke-width: 3;
+    stroke-linecap: round;
+    stroke-dasharray: 0 6;
+    opacity: 0.85;
+    vector-effect: non-scaling-stroke;
+  }
+  .walker path {
+    fill: none;
+    stroke-linecap: round;
+    vector-effect: non-scaling-stroke;
+  }
+  .walker .dot {
+    stroke: var(--poor);
+    stroke-width: 12;
+  }
+  .walker .halo {
+    stroke: var(--bg);
+    stroke-width: 18;
+  }
+  .resting {
+    display: none;
   }
   .count {
     margin: 0;
@@ -176,9 +151,11 @@ const onPage = page > 1 ? ` · page ${page} of ${pages}` : "";
     }
   }
   @media (prefers-reduced-motion: reduce) {
-    .cloud,
-    .walker {
-      animation: none;
+    .moving {
+      display: none;
+    }
+    .resting {
+      display: inline;
     }
   }
 </style>

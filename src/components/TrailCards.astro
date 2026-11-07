@@ -329,8 +329,10 @@ const TONE = { frequent: "good", regular: "fair", scarce: "poor", allowed: "good
     font-size: 0.7rem;
   }
 
-  /* phones and small tablets: each row folds into a compact card, the figures labelled */
-  @media (max-width: 759px) {
+  /* where the results column is narrower than the table (about 790 px: phones, tablets, and the
+     sidebar layout below 1100 px), each row folds into a compact card, the figures labelled; a
+     container query on .results (TrailList.svelte), so the table never runs past the page */
+  @container results (max-width: 799px) {
     .card {
       grid-template-columns: repeat(4, minmax(0, 1fr));
       grid-template-areas:
@@ -354,6 +356,15 @@ const TONE = { frequent: "good", regular: "fair", scarce: "poor", allowed: "good
     }
     .c-diff {
       grid-area: diff;
+      container-type: inline-size;
+    }
+    /* a narrow column (phones): the word goes under the bars, and "Demanding" fits its column */
+    .diff {
+      flex-wrap: wrap;
+      row-gap: 4px;
+    }
+    .rate-word {
+      font-size: min(0.82rem, 100cqi / 5);
     }
     .c-season {
       grid-area: season;
