@@ -70,8 +70,8 @@ null.
 - **Stated totals cover the same stretch as the main stages** (decided 2026-11-04): where the
   operator's length, ascent, descent or days cover a different stretch (Tirol's 71 km from the
   Gamshütte, while the trail starts in Finkenberg), leave them out of the record. The page then
-  sums the stages, estimating the ascent from the terrain model where stages lack it. Record the
-  operator's figures in a note.
+  sums the stages (the total ascent is our terrain model's estimate anyway since 2026-11-07; the
+  stated figures are its "Official" comparison). Record the operator's figures in a note.
 - **Distances, always measured where the operator's are missing or broken** (decided 2026-11-04):
   when the operator names the stages but gives no usable distances (none, or broken like Tirol
   Werbung's: the same 15.3 km on three stages, 22.4 km in 2½ hours), take each stage's length
@@ -85,9 +85,10 @@ null.
   counts twice. A there-and-back inside a stage (the Three Capes' Cape Pillar) is routed out and
   back through the stage's `via` points, so the match measures both ways.
 - **Ascent without descent** (2026-11-05, the Three Lochs Way): an `ascent` total or stage
-  `ascentM` values without their descents leave the page with no Ascent key figure and no Effort
-  rating, since it needs the pair; put such figures in a note ("Ascent: …") and let the page
-  estimate both from the terrain model.
+  `ascentM` values without their descents give no provider's pair for the Ascent popover's
+  "Official" row and no Effort rating from the stated stages, since both need the pair; put such
+  figures in a note ("Ascent: …") and let the page estimate both from the terrain model (the key
+  figure is the estimate either way since 2026-11-07).
 - **Broken figures:** a stage figure is broken when the same value repeats across different
   stages, the pace is outside about 1–6 km/h, or it disagrees with the operator's own track by
   more than 25 %. Note it and use the next source in order.
@@ -209,7 +210,12 @@ lowest point against stated, resupply.
   `dataCheck.deviations`. The length is the exception: the page shows our measured length
   (since 2026-11-07, docs/scope.md), so compare it against the provider's total; a deviation over
   10 % is checked (shortcut, missing stretch, or the provider measuring differently) and recorded
-  the same way, and the page's Length popover names the provider's figure.
+  the same way, and the page's Length popover names the provider's figure. So is the total
+  ascent and descent: the page shows ours, the terrain model's estimate (GEDTM30, climbs
+  counted from 10 m, since 2026-11-07, docs/scope.md), so compare the provider's figure (stated
+  total, else the stage sums; `pipeline.all`'s check prints both) with it; a deviation over 10 %
+  is recorded in `notes` and `dataCheck.deviations` as before, and the page's Ascent popover
+  names the provider's figure as "Official".
 - A source used only for the check gets `checkOnly: true`.
 - Give the user the comparison as a table.
 

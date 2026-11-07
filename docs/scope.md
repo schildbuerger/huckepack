@@ -90,12 +90,35 @@
   Before (2026-10-30): the operator's stated total, else the stage sum, since
   stage lists often include the paths into the stage towns (the Moselsteig's
   24 stages add up to 392.8 km against its 365 km; we measure 391 km).
-- **Ascent and descent:** the same rule as the length: the stated total pair
-  (only when ascent and descent come from the same source, so one tile never
-  mixes sources), else the stage sums, else the terrain model's estimate (≈).
-  No measured ascent for comparing: the terrain model measures treetops and
-  reads 15–60 % high in forests (decided 2026-10-30, on the Copernicus GLO-30
-  surface model; still so with GEDTM30: an estimate stays an estimate).
+- **Ascent and descent:** since 2026-11-07 (the user's decision) the total
+  ascent and descent shown anywhere on the site (key figure, search and
+  home-page cards, the link-preview image, the averages per stage or day, the
+  difficulty's climbing per km, the search's "least climbing per km") is our
+  terrain-model estimate: GEDTM30 along our OSM map line, summed per main
+  stage with the 10 m threshold (over the whole route for a trail without
+  stages), to 10 m, marked ≈ as an estimate. The same gate as the length:
+  where our map line covers under 95 % of the route, or there is no elevation
+  profile, the provider's figure (the stated pair from one source, else the
+  stage sums), and the popover says why; where no source states one, the
+  estimate all the same (today only the West Island Way, 94 % matched, with
+  no stated climbs). The popover names the provider's figure as "Official"
+  with its source and adds "Keep in mind" where they differ by over 10 %.
+  The stage table keeps each stage's stated climbs (estimates only where a
+  stage has none), and DIN walking times stay on each stage's own figures.
+  Evidence: on the 34 trails with an official ascent, GEDTM30 with the 10 m
+  threshold came out 0 % in the median against the official figure, mean
+  |gap| 8 %, 24 within 10 % (see Terrain model below). Of the 38 trails that
+  showed a provider's figure until then (19 stated totals, 19 stage sums),
+  the largest changes: the Great Divide Trail 74,273 → 31,520 m, the South
+  West Coast Path 35,000 → 15,920 m, the Camí de Cavalls 3,548 → 2,180 m, the
+  Rockwall Trail 3,405 → 2,320 m, the New England Trail 10,609 → 7,470 m, the
+  Országos Kéktúra 31,915 → 22,480 m, the Pacific Northwest Trail 70,238 →
+  52,520 m: the four trails over 1,000 km are sampled every 500 m, which
+  misses short climbs (their popover says so), and coastal paths' short ups
+  and downs stay under the threshold. Before (2026-10-30 to 2026-11-07): the
+  stated pair, else the stage sums, else the estimate (≈), since a terrain
+  model's sum was taken as no fair measure (the Copernicus GLO-30 surface
+  model read treetops, 15–60 % high in forests).
 - **Terrain model: GEDTM30 with a 10 m climb threshold** (the user's decision,
   2026-11-07): every trail's heights come from GEDTM30 v1.2, OpenGeoHub's
   global ensemble digital terrain model (bare earth, 30 m, CC BY 4.0; Ho et al.

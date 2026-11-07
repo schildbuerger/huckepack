@@ -37,7 +37,7 @@ import {
   CLIMB_THRESHOLD_M,
   stageTotals,
   trailLength,
-  trailClimb,
+  climbFacts,
   providerLength,
   measuredCover,
   SAC_FACTS,
@@ -178,15 +178,18 @@ const stageView = (t.stages?.list ?? []).map((s) => {
           : null;
   return { ...s, ele, time, climb };
 });
-// total ascent and descent: the stated pair, else the stated stage sums (trailClimb()), else the sum
-// of the terrain model's estimates for every main stage (marked ≈)
+// total ascent and descent (the user's decision, 2026-11-07): the terrain model's estimate along our
+// map line, summed per main stage (trailClimb(), marked ≈), where the map line covers at least 95 % of
+// the route; else the provider's figure (the stated pair, else the stage sums)
 const mainView = stageView.filter((s) => s.kind === "main");
-const climb = trailClimb(t);
-const climbTotal = climb
-    ? { up: climb.up, down: climb.down, est: false }
-    : mainView.length && mainView.every((s) => s.climb?.down !== undefined)
-      ? { up: mainView.reduce((a, s) => a + s.climb!.up, 0), down: mainView.reduce((a, s) => a + s.climb!.down!, 0), est: true }
-      : null;
+// the popover's facts (climbFacts()): the provider's figure named as the official one (or as the
+// fallback), whether ours and theirs lie more than 10 % apart, and the map line's coverage where short
+const { climb, official: officialClimb, short: climbShort, apart: climbOff } = climbFacts(t, derived);
+const climbTotal = climb ? { up: climb.up, down: climb.down, est: climb.estimate } : null;
+const officialClimbSrc = officialClimb ? sources[officialClimb.source].title.split(":")[0] : "";
+const officialClimbHow = officialClimb?.how ?? "";
+// a long trail sampled every 500 m (pipeline/elevation.py): its estimate misses more short climbs
+const climbCoarse = (derived?.elevation?.spacingM ?? 100) > 100;
 const estClimb = stageView.some((s) => s.climb?.est);
 // trails with many stages (issue #25): from MANY_STAGES main stages the charts' stage axes label only
 // every k-th stage over alternating stage bands; with more than STAGES_SHOWN, the stage table shows
@@ -794,19 +797,27 @@ const trailLd = JSON.stringify({
           <dt>
             <Explain id="climb-info" term="Ascent · descent">
               <dl class="pop-facts">
-                {climb ? (
+                {climb?.estimate ? (
+                  <>
+                    <dt>This trail</dt><dd>{fmt(climb.up)} m up, {fmt(climb.down)} m down, estimated</dd>
+                    <dt>How</dt><dd>Estimated from the GEDTM30 terrain model along our OpenStreetMap line: {stageless ? "the route's" : "every main stage's"} climbs and drops along samples {sampleM} m apart, each counted once it reaches {CLIMB_THRESHOLD_M} m</dd>
+                    {officialClimb && <><dt>Official</dt><dd>{fmt(officialClimb.up)} m up, {fmt(officialClimb.down)} m down, {officialClimbHow} ({officialClimbSrc})</dd></>}
+                    {climbShort !== null ? (
+                      <><dt>Keep in mind</dt><dd>Our map line covers only {Math.floor(climbShort * 100)} % of the route, and no source states the climbs</dd></>
+                    ) : climbOff ? (
+                      <><dt>Keep in mind</dt><dd>{climbCoarse ? `Samples ${sampleM} m apart on a trail this long miss short climbs that ${officialClimbSrc} counts` : `${officialClimbSrc} counts the climbs differently`}</dd></>
+                    ) : !officialClimb && (
+                      <><dt>Keep in mind</dt><dd>A 30 m terrain model: short climbs between the samples are missed</dd></>
+                    )}
+                  </>
+                ) : climb && (
                   <>
                     <dt>This trail</dt><dd>{fmt(climb.up)} m up, {fmt(climb.down)} m down</dd>
-                    <dt>Source</dt><dd>{climb.how === "stated total" ? "The stated totals" : `The ${climb.how}`} ({sources[climb.source].title.split(":")[0]})</dd>
-                  </>
-                ) : (
-                  <>
-                    <dt>This trail</dt><dd>Estimated from the terrain model (≈): no source states them</dd>
-                    <dt>How</dt><dd>Every main stage's climbs and drops along samples {sampleM} m apart, each counted once it reaches {CLIMB_THRESHOLD_M} m, so the model's small wobbles don't add up</dd>
-                    <dt>Keep in mind</dt><dd>A 30 m terrain model: short climbs between the samples are missed</dd>
+                    <dt>Source</dt><dd>{officialClimbSrc}, {officialClimbHow}</dd>
+                    <dt>Why</dt><dd>{climbShort !== null ? `Our map line covers only ${Math.floor(climbShort * 100)} % of the route` : "Our elevation profile doesn't cover the route"}, so this is {possessive(officialClimbSrc)} figure</dd>
                   </>
                 )}
-                {climb?.how === "stated total" && totals?.ascentM && totals.descentM &&
+                {!climb?.estimate && climb?.how === "stated total" && totals?.ascentM && totals.descentM &&
                   (totals.ascentM.value !== climb.up || totals.descentM.value !== climb.down) && (
                   <>
                     <dt>Stage sums</dt><dd>{fmt(totals.ascentM.value)} m up, {fmt(totals.descentM.value)} m down ({mainView.length} main stages)</dd>
@@ -895,7 +906,7 @@ const trailLd = JSON.stringify({
                 ) : (
                   <><dt>Length</dt><dd>{sourceShort(dayAvg.lengthSource)}</dd><dt>Days</dt><dd>{sourceShort(dayAvg.daysSource)}</dd></>
                 )}
-                {dayAvg.ascentM && dayAvg.est && <><dt>Ascent</dt><dd>The terrain model's estimate (≈): no source states the climbs</dd></>}
+                {dayAvg.ascentM && <><dt>Ascent</dt><dd>{dayAvg.est ? "The terrain model's estimate (≈), as the key figure" : `${possessive(sourceShort(dayAvg.climbSource!))} figure, as the key figure`}</dd></>}
               </dl>
             </Explain>
           </dt>
@@ -915,8 +926,8 @@ const trailLd = JSON.stringify({
             <Explain id="per-stage-info" term="Per stage">
               <dl class="pop-facts">
                 <dt>How</dt><dd>The {daily.stages} main stages' totals over their number</dd>
-                <dt>Source</dt><dd>{sourceShort(daily.source)}, so the averages come from one source</dd>
-                {daily.ascentM?.est && <><dt>Ascent</dt><dd>The terrain model's estimate per stage (≈): the stages state no climbs</dd></>}
+                <dt>Source</dt><dd>{possessive(sourceShort(daily.source))} stage list</dd>
+                {daily.ascentM && <><dt>Ascent</dt><dd>{daily.ascentM.est ? "The terrain model's estimate (≈), as the key figure" : `${possessive(sourceShort(daily.ascentM.source))} figure, as the key figure`}</dd></>}
               </dl>
             </Explain>
           </dt>

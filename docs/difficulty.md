@@ -20,7 +20,7 @@ How hard a trail is, rated the same way for every trail (issue #16). The rule li
 | Dimension | Measure | Easy | Moderate | Demanding | Hard | From |
 |---|---|---|---|---|---|---|
 | Terrain | Path grade | T1 | T2 | T3 | T4–T6 | SAC grade, stated, converted (CAI) or estimated |
-| Terrain | Climbing | < 15 m/km | 15–30 | 30–50 | ≥ 50 | ascent of the main stages / their length (stated, else the terrain model's sum) |
+| Terrain | Climbing | < 15 m/km | 15–30 | 30–50 | ≥ 50 | the trail's ascent (the terrain model's estimate, as the key figure since 2026-11-07; the provider's where our map line covers under 95 %) / the main stages' length |
 | Terrain | Steep stretches | < 5 % | 5–15 % | 15–30 % | ≥ 30 % | share of the route steeper than 15 %, up or down (`gradients()`) |
 | Terrain | Natural ground | < ⅓ | ⅓–⅔ | ≥ ⅔ | – | share on natural ground (OSM); capped at Demanding: unmade paths alone don't make a trail hard |
 | Climate | Heat | < 22 °C | 22–27 | 27–32 | ≥ 32 | mean daily high at the lowest point |
@@ -34,7 +34,7 @@ How hard a trail is, rated the same way for every trail (issue #16). The rule li
 (`stages.none`, the Wonderland Trail) is rated by an **average day** instead of the longest: its
 length, ascent and descent divided evenly over the fewest suggested days, timed by DIN 33466 and
 marked ≈. It's the hardest plan a source suggests, so it doesn't understate the day. Its Terrain
-climb is the stated ascent over the stated length (else the terrain model's, ≈).
+climb is the trail's ascent (the terrain model's estimate since 2026-11-07, ≈) over the length the page shows.
 
 **Climate by month (issue #114, 2026-11-01).** Each month is rated on its own. Without a month
 picked, a trail's climate rating is its **best run of at least two consecutive season months**

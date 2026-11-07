@@ -3,7 +3,7 @@
 // `npm test` (Node's test runner; Node strips the types itself).
 import { test } from "node:test";
 import assert from "node:assert/strict";
-import { barMetres, climbs, CLIMB_THRESHOLD_M, gradients, noStages, perDay, routeEstimate, stageEstimates, sleepingCategories, summarize, trailClimb, trailLength, providerLength, measuredLength, measuredCover, compareLength, trailDays, walkingMinutes, stageTotals, STEEP_PERCENT } from "../src/lib/trails.ts";
+import { barMetres, climbFacts, climbs, CLIMB_HOW, CLIMB_THRESHOLD_M, gradients, noStages, perDay, perStage, providerClimb, terrainClimb, routeEstimate, stageEstimates, sleepingCategories, summarize, trailClimb, trailLength, providerLength, measuredLength, measuredCover, compareLength, trailDays, walkingMinutes, stageTotals, STEEP_PERCENT } from "../src/lib/trails.ts";
 import { DAYS, matches, noFilters } from "../src/lib/filters.ts";
 import { difficulty } from "../src/lib/difficulty.ts";
 import { mergeRuns, rectsPath, simplify, stripPaths, n1 } from "../src/lib/svg.ts";
@@ -101,16 +101,104 @@ test("length: a side trip walked there and back weighs twice in the coverage", (
   assert.equal(trailLength(t, d)!.measured, false);
 });
 
-test("climb: the stated pair only from one source, else the main stages' sums", () => {
+test("provider's climb: the stated pair only from one source, else the main stages' sums", () => {
   assert.deepEqual(
-    [trailClimb(trail())!.up, trailClimb(trail())!.down],
+    [providerClimb(trail())!.up, providerClimb(trail())!.down],
     [500, 500],
   );
+  assert.equal(providerClimb(trail())!.how, "sum of the 2 main stages");
   const stated = trail({ ascent: [{ m: 450, source: "site" }], descent: [{ m: 480, source: "site" }] });
-  assert.equal(trailClimb(stated)!.up, 450);
+  assert.deepEqual(providerClimb(stated), { up: 450, down: 480, source: "site", how: "stated total" });
   // ascent and descent from different sources are never paired: back to the stage sums
   const mixed = trail({ ascent: [{ m: 450, source: "site" }], descent: [{ m: 480, source: "book" }] });
-  assert.equal(trailClimb(mixed)!.up, 500);
+  assert.equal(providerClimb(mixed)!.up, 500);
+  // a main stage without climbs: no stage sums, so nothing
+  const t = trail();
+  delete t.stages.list[1].ascentM;
+  assert.equal(providerClimb(t), undefined);
+  // without our profile the trail's climb is the provider's
+  assert.deepEqual(trailClimb(stated), { up: 450, down: 480, source: "site", how: "stated total", estimate: false });
+});
+
+// derived data with the map line's coverage and a profile over both main stages: stage 1 climbs
+// 100 → 160 and drops to 130, stage 2 climbs to 250 with a wobble under the threshold
+const profiled = (covered: [number, number, number]) =>
+  ({
+    ...measuredData(covered),
+    elevation: {
+      source: "gedtm30",
+      spacingM: 100,
+      highest: { m: 252, km: 0.7 },
+      lowest: { m: 100, km: 0 },
+      stageStarts: [{ number: "1", km: 0 }, { number: "2", km: 0.4 }],
+      points: [[0, 100], [0.1, 134], [0.2, 160], [0.3, 130], [0.4, 130], [0.5, 205], [0.6, 199], [0.7, 252]],
+    },
+  }) as any;
+
+test("climb: the terrain model's estimate first, summed per main stage to 10 m (2026-11-07)", () => {
+  const stated = trail({ ascent: [{ m: 450, source: "site" }], descent: [{ m: 480, source: "site" }] });
+  const c = trailClimb(stated, profiled([1, 1, 1]))!;
+  // stage 1: 60 up, 30 down; stage 2: 75 + 47 = 122 up (the 6 m dip uncounted), to 10 m: 120
+  assert.deepEqual(terrainClimb(stated, profiled([1, 1, 1])), { up: 180, down: 30, source: "gedtm30" });
+  assert.deepEqual(c, { up: 180, down: 30, source: "gedtm30", how: CLIMB_HOW, estimate: true });
+  // the same as the stage table's estimates where the stages state none
+  const bare = trail({ stages: { source: "site", list: trail().stages.list.map(({ ascentM, descentM, ...s }: any) => s) } });
+  const est = stageEstimates(bare, profiled([1, 1, 1]));
+  assert.equal(est.get("1")!.ascentM! + est.get("2")!.ascentM!, c.up);
+  // a main stage the profile doesn't reach: no estimate, the provider's figure
+  const short = profiled([1, 1, 1]);
+  short.elevation.stageStarts = [{ number: "1", km: 0 }];
+  short.elevation.points = short.elevation.points.slice(0, 4);
+  assert.equal(terrainClimb(stated, short), undefined);
+  assert.equal(trailClimb(stated, short)!.estimate, false);
+});
+
+test("climb: the provider's figure where our map line covers under 95 % of the route", () => {
+  const stated = trail({ ascent: [{ m: 450, source: "site" }], descent: [{ m: 480, source: "site" }] });
+  // (10.4 × 0.9 + 13 × 0.95) / 23.4 = 92.8 %, the same gate as the length
+  const c = trailClimb(stated, profiled([0.9, 0.95, 1]))!;
+  assert.equal(c.estimate, false);
+  assert.deepEqual([c.up, c.down, c.how], [450, 480, "stated total"]);
+  // the stage sums where no total is stated
+  assert.equal(trailClimb(trail(), profiled([0.9, 0.95, 1]))!.up, 500);
+  // no provider's figure at all: the estimate all the same
+  const bare = trail({ stages: { source: "site", list: trail().stages.list.map(({ ascentM, descentM, ...s }: any) => s) } });
+  assert.equal(trailClimb(bare, profiled([0.9, 0.95, 1]))!.estimate, true);
+});
+
+test("climb popover: ours, the provider's as Official, more than 10 % apart, coverage when short", () => {
+  const stated = trail({ ascent: [{ m: 450, source: "site" }], descent: [{ m: 480, source: "site" }] });
+  const f = climbFacts(stated, profiled([1, 1, 1]));
+  assert.equal(f.climb!.estimate, true);
+  assert.deepEqual(f.official, { up: 450, down: 480, source: "site", how: "stated total" });
+  assert.equal(f.apart, true); // 180 against 450
+  assert.equal(f.short, null);
+  // within 10 % on both: no Keep in mind
+  const close = trail({ ascent: [{ m: 190, source: "site" }], descent: [{ m: 32, source: "site" }] });
+  assert.equal(climbFacts(close, profiled([1, 1, 1])).apart, false);
+  // falling back: the provider's figure, never "apart", and the coverage that says why
+  const back = climbFacts(stated, profiled([0.9, 0.95, 1]));
+  assert.equal(back.climb!.estimate, false);
+  assert.equal(back.apart, false);
+  assert.ok(Math.abs(back.short! - 0.928) < 0.001);
+  // no official figure: no Official row
+  const bare = trail({ stages: { source: "site", list: trail().stages.list.map(({ ascentM, descentM, ...s }: any) => s) } });
+  assert.equal(climbFacts(bare, profiled([1, 1, 1])).official, undefined);
+});
+
+test("climb: the averages per stage and the climbing per km take the trail's figure", () => {
+  const stated = trail({ ascent: [{ m: 450, source: "site" }], descent: [{ m: 480, source: "site" }] });
+  const d = profiled([1, 1, 1]);
+  // 180 m over 2 stages, not the stage sums' 500
+  assert.deepEqual(perStage(stated, d)!.ascentM, { value: 90, est: true, source: "gedtm30" });
+  assert.deepEqual(perStage(stated)!.ascentM, { value: 230, est: false, source: "site" });
+  // (the gradients need 500 m windows: the made-up profile is short, so read it as 500 m samples)
+  const climb = difficulty(stated, { ...d, elevation: { ...d.elevation, spacingM: 500 } }).dims.find((x) => x.id === "terrain")!.measures.find((m) => m.id === "climb")!;
+  assert.equal(climb.text, "8 m per km"); // 180 m over the stages' 22.3 km
+  assert.equal(climb.estimate, true);
+  // the search record carries the same figure, marked as an estimate
+  const s = summarize("x", { ...stated, name: "X", aliases: [], continents: [], countries: [], regions: [], tags: [], termini: { start: { name: "A" }, end: { name: "C" } } }, d);
+  assert.deepEqual([s.ascentM, s.climbEst], [180, true]);
 });
 
 test("stage sums leave out the climbs when a main stage lacks them", () => {

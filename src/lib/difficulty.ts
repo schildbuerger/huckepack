@@ -10,7 +10,7 @@
 //            more months, or for the months picked (src/lib/months.ts, issue #114)
 //   Effort   the longest day's walking time
 import type { CollectionEntry } from "astro:content";
-import { climbs, gradients, mainStages, noStages, perDay, sacGrade, stageEstimates, stageTotals, trailClimb, trailLength, walkingMinutes, STEEP_PERCENT } from "./trails.ts";
+import { gradients, mainStages, noStages, perDay, sacGrade, stageEstimates, stageTotals, trailClimb, trailLength, walkingMinutes, STEEP_PERCENT } from "./trails.ts";
 import { climateFor, monthsText } from "./months.ts";
 
 type Trail = CollectionEntry<"trails">["data"];
@@ -34,7 +34,7 @@ type Scale = {
 
 export const SCALES = {
   sac: { label: "Path grade", at: [2, 3, 4], dir: "up", bands: ["T1", "T2", "T3", "T4 to T6"], from: "the trail's SAC grade, stated, converted or estimated" },
-  climb: { label: "Climbing", at: [15, 30, 50], dir: "up", bands: ["under 15 m per km", "15–30 m", "30–50 m", "50 m or more"], from: "ascent of the main stages over their length" },
+  climb: { label: "Climbing", at: [15, 30, 50], dir: "up", bands: ["under 15 m per km", "15–30 m", "30–50 m", "50 m or more"], from: "the trail's ascent (the terrain model's estimate) over the main stages' length" },
   steep: {
     label: "Steep stretches",
     at: [5, 15, 30],
@@ -107,8 +107,8 @@ const days = (n: number) => `${round(n)} ${round(n) === 1 ? "day" : "days"}`;
 export function difficulty(t: Trail, d?: DerivedData) {
   const dims: Dimension[] = [];
 
-  // terrain over the main route: climbs as the key figures have them (stated, else the terrain
-  // model's estimate per stage)
+  // terrain over the main route: climbs as the key figure has them (trailClimb(): the terrain
+  // model's estimate since 2026-11-07, ≈, else the provider's)
   const terrain: Measure[] = [];
   const sac = sacGrade(t);
   if (sac) terrain.push(measure("sac", SAC_RANK[sac.value], sac.value, sac.source, { estimate: sac.how !== "stated" }));
@@ -117,20 +117,11 @@ export function difficulty(t: Trail, d?: DerivedData) {
   const main = mainStages(t);
   const e = d?.elevation;
   if (e) {
-    const km = totals?.km.value ?? e.routeKm;
-    const est = main.length > 0 && main.every((s) => estimates.get(s.number)?.ascentM !== undefined);
-    const up = totals?.ascentM?.value ?? (est ? main.reduce((a, s) => a + estimates.get(s.number)!.ascentM!, 0) : undefined);
-    const whole = noStages(t) ? { climb: trailClimb(t), length: trailLength(t, d) } : undefined;
-    if (whole?.climb && whole.length)
-      // a trail without stages: the climbs over the length the page shows (issue #204; measured since 2026-11-07)
-      terrain.push(measure("climb", whole.climb.up / whole.length.value, `${round(whole.climb.up / whole.length.value)} m per km`, whole.climb.source));
-    else if (up !== undefined)
-      terrain.push(measure("climb", up / km, `${round(up / km)} m per km`, totals?.ascentM?.source ?? e.source, { estimate: !totals?.ascentM }));
-    else if (whole) {
-      // no stated climbs: the terrain model's over the map line (≈)
-      const rise = climbs(e.points.map((p) => p[1])).up;
-      terrain.push(measure("climb", rise / e.routeKm, `${round(rise / e.routeKm)} m per km`, e.source, { estimate: true }));
-    }
+    // over the main stages' length; a trail without stages over the length the page shows (issue
+    // #204; measured since 2026-11-07)
+    const km = noStages(t) ? trailLength(t, d)?.value : (totals?.km.value ?? e.routeKm);
+    const climb = trailClimb(t, d);
+    if (climb && km) terrain.push(measure("climb", climb.up / km, `${round(climb.up / km)} m per km`, climb.source, { estimate: climb.estimate }));
     const g = gradients(e.points, e.stageStarts, e.spacingM);
     const steep = ((g.steepUpKm + g.steepDownKm) / e.routeKm) * 100;
     terrain.push(measure("steep", steep, `${round(steep)} % of the way`, e.source));
@@ -241,7 +232,7 @@ export const EFFORT_NO_STAGES = {
 };
 // the measures' wording on a trail without stages, where it differs from SCALES
 export const NO_STAGES_SCALES: Partial<Record<MeasureId, { label?: string; from: string }>> = {
-  climb: { from: "the stated ascent over the stated length (else the terrain model's over the map line)" },
+  climb: { from: "the trail's ascent (the terrain model's estimate) over the length the page shows" },
   effort: { label: EFFORT_NO_STAGES.label, from: EFFORT_NO_STAGES.from },
 };
 

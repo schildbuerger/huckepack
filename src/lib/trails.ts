@@ -72,10 +72,12 @@ export function providerLength(t: Trail) {
   return totals ? { ...totals.km, approx: false, measured: false as const } : null;
 }
 
-// The trail's total ascent and descent, like its length: the stated pair where the record states both
-// from one source (ascent and descent never from different sources in one tile), else the sums of
-// the main stages; undefined when neither exists (the page then sums the terrain model's estimates).
-export function trailClimb(t: Trail) {
+// The provider's ascent and descent: the stated pair where the record states both from one source
+// (ascent and descent never from different sources in one tile), else the sums of the main stages
+// when every stage states both; undefined when neither exists. The trail's climbs fall back to it
+// where our map line doesn't cover the route well enough (trailClimb()); the popover names it as the
+// official figure, and pipeline/all.py's check compares it with the terrain model's.
+export function providerClimb(t: Trail) {
   const up = t.ascent[0];
   const down = t.descent.find((d) => d.source === up?.source);
   if (up && down) return { up: up.m, down: down.m, source: up.source, how: "stated total" };
@@ -83,6 +85,70 @@ export function trailClimb(t: Trail) {
   return totals?.ascentM && totals.descentM
     ? { up: totals.ascentM.value, down: totals.descentM.value, source: totals.ascentM.source, how: totals.ascentM.how }
     : undefined;
+}
+
+// The terrain model's ascent and descent over the main route: each main stage's climbs and drops along
+// its own samples with the 10 m threshold, to 10 m, summed (as stageEstimates() has them per stage),
+// or over the whole route for a trail without stages (routeEstimate()). Undefined without a profile or
+// where a main stage has no samples. The profile samples the main stages only: side trips walked
+// there and back are not in it.
+export function terrainClimb(t: Trail, d?: DerivedData) {
+  const e = d?.elevation;
+  if (!e?.points.length) return undefined;
+  if (noStages(t) || !t.stages) {
+    const r = routeEstimate(d)!;
+    return { up: r.ascentM, down: r.descentM, source: r.source };
+  }
+  const to10 = (m: number) => Math.round(m / 10) * 10;
+  const main = mainStages(t);
+  let up = 0;
+  let down = 0;
+  for (const s of main) {
+    const i = e.stageStarts.findIndex((x) => x.number === s.number);
+    if (i < 0) return undefined;
+    const from = e.stageStarts[i].km;
+    const to = e.stageStarts[i + 1]?.km ?? Infinity;
+    const pts = e.points.filter(([km]) => km >= from && km < to);
+    if (!pts.length) return undefined;
+    const c = climbs(pts.map((p) => p[1]));
+    up += to10(c.up);
+    down += to10(c.down);
+  }
+  return main.length ? { up, down, source: e.source } : undefined;
+}
+
+// The trail's total ascent and descent, the one figure every page shows (key figure, search and
+// home-page cards, the link preview, the averages per stage or day, the difficulty's climbing per km,
+// sorting): the terrain model's estimate along our map line (the user's decision of 2026-11-07,
+// docs/scope.md; `estimate`, shown with ≈), used where the route is at least MEASURED_MIN_COVER
+// matched (the same gate as the length, measuredCover()); else the provider's figure
+// (providerClimb()); else, where no source states one, the estimate all the same.
+export const CLIMB_HOW = "estimated from the terrain model along our OpenStreetMap line";
+export function trailClimb(t: Trail, d?: DerivedData) {
+  const est = terrainClimb(t, d);
+  const cover = measuredCover(t, d);
+  const covered = cover !== null && cover >= MEASURED_MIN_COVER;
+  if (est && covered) return { ...est, how: CLIMB_HOW, estimate: true as const };
+  const p = providerClimb(t);
+  if (p) return { ...p, estimate: false as const };
+  return est ? { ...est, how: CLIMB_HOW, estimate: true as const } : undefined;
+}
+
+// What the ascent key figure's popover says, like the Length popover: the trail's figure, the
+// provider's as "Official" (the stated total, else the stage sums), whether the two lie more than 10 %
+// apart (ascent or descent; "Keep in mind"), and the map line's coverage where it falls short of
+// MEASURED_MIN_COVER (why the provider's figure is shown, or why the estimate stands alone).
+export function climbFacts(t: Trail, d?: DerivedData) {
+  const climb = trailClimb(t, d);
+  const official = providerClimb(t);
+  const cover = measuredCover(t, d);
+  const off = (a: number, b: number) => Math.abs(a - b) > 0.1 * b;
+  return {
+    climb,
+    official,
+    short: cover !== null && cover < MEASURED_MIN_COVER ? cover : null,
+    apart: Boolean(climb?.estimate && official && (off(climb.up, official.up) || off(climb.down, official.down))),
+  };
 }
 
 // How much of the measured route our map line matches (pipeline/routes.py): over the stages that count
@@ -141,21 +207,17 @@ export function trailDays(t: Trail) {
 
 // Averages per stage (issue #148, decided 2026-11-02): the main stages' totals over their number, so
 // they come from one source and every trail with stages has them (before, averages per day showed only
-// where the days and the stages shared a source). The ascent from the stages' own climbs, else from the
-// terrain model's estimate per stage (≈, stageEstimates), when every main stage has one.
+// where the days and the stages shared a source). The ascent is the trail's total (trailClimb(), the
+// terrain model's estimate since 2026-11-07, ≈) over the number of main stages, so the averages match
+// the key figure.
 export function perStage(t: Trail, d?: DerivedData) {
   const totals = stageTotals(t);
   const main = mainStages(t);
   if (!totals || !main.length) return undefined;
   const n = main.length;
   const to10 = (m: number) => Math.round(m / n / 10) * 10;
-  let ascentM: { value: number; est: boolean } | undefined;
-  if (totals.ascentM) ascentM = { value: to10(totals.ascentM.value), est: false };
-  else {
-    const est = stageEstimates(t, d);
-    const ups = main.map((s) => est.get(s.number)?.ascentM);
-    if (ups.every((m) => m !== undefined)) ascentM = { value: to10(ups.reduce((a, m) => a + m!, 0)), est: true };
-  }
+  const climb = trailClimb(t, d);
+  const ascentM = climb ? { value: to10(climb.up), est: climb.estimate, source: climb.source } : undefined;
   return { km: Math.round((totals.km.value / n) * 10) / 10, ascentM, stages: n, source: totals.km.source };
 }
 
@@ -181,7 +243,8 @@ export function routeEstimate(d?: DerivedData) {
 // Averages per day for a trail without stages (issue #204): the length, ascent and descent over the
 // suggested days. A range of days gives a range (`min` from the most days, `max` from the fewest),
 // never a midpoint; the length and the days may come from different sources, both named. Climbs are
-// the stated pair, else the terrain model's estimate (`est`). Undefined for trails with stages.
+// the trail's total (trailClimb(): the terrain model's estimate, `est`, else the provider's).
+// Undefined for trails with stages.
 export function perDay(t: Trail, d?: DerivedData) {
   if (!noStages(t) || !t.days) return undefined;
   // the trail's length as the page shows it (ours where measured, 2026-11-07), so the averages per day
@@ -190,20 +253,19 @@ export function perDay(t: Trail, d?: DerivedData) {
   const length = total ? { ...total, value: "exact" in total && typeof total.exact === "number" ? total.exact : total.value } : null;
   if (!length) return undefined;
   const { min, max } = t.days;
-  const stated = trailClimb(t);
-  const est = stated ? undefined : routeEstimate(d);
-  const up = stated?.up ?? est?.ascentM;
-  const down = stated?.down ?? est?.descentM;
+  const climb = trailClimb(t, d);
+  const up = climb?.up;
+  const down = climb?.down;
   const to10 = (m: number) => Math.round(m / 10) * 10;
   const range = (total: number, round: (x: number) => number) => ({ min: round(total / max), max: round(total / min) });
   return {
     km: range(length.value, (x) => Math.round(x * 10) / 10),
     ascentM: up !== undefined ? range(up, to10) : undefined,
     descentM: down !== undefined ? range(down, to10) : undefined,
-    est: !stated,
+    est: climb?.estimate ?? false,
     days: { min, max },
     lengthSource: length.source,
-    climbSource: stated?.source ?? est?.source,
+    climbSource: climb?.source,
     daysSource: t.days.source,
   };
 }
@@ -257,7 +319,9 @@ export function summarize(id: string, t: Trail, d?: DerivedData) {
     regions: t.regions,
     lengthKm: trailLength(t, d)?.value ?? null, // measured, else the provider's (trailLength())
     compareKm: compareLength(t, d), // for sorting and totals: the same figure
-    ascentM: trailClimb(t)?.up ?? null,
+    // the terrain model's estimate, else the provider's (trailClimb()); `climbEst` says which
+    ascentM: trailClimb(t, d)?.up ?? null,
+    climbEst: trailClimb(t, d)?.estimate ?? false,
     // the record's days (trailDays); null where no source gives any, which only a days filter leaves out
     days: ((d) => (d ? ([d.min, d.max] as [number, number]) : null))(trailDays(t)),
     sac: sacGrade(t)?.value ?? null,
