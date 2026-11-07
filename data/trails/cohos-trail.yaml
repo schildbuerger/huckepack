@@ -1,0 +1,316 @@
+name: Cohos Trail
+added: 2026-11-07
+aliases: [CT]
+website: https://www.cohostrail.org/
+wikidata: Q5141436
+managedBy:
+  # "The mission of The Cohos Trail Association is to maintain and protect the wild 170-mile Cohos
+  # Trail" (About); volunteers built and maintain it
+  - name: Cohos Trail Association
+    url: https://www.cohostrail.org/
+officialGpx:
+  none: the association sells its guidebook, databooks and map and offers no GPX to download (checked 2026-11-07)
+  source: cta-trail
+trailType: point-to-point
+continents: [North America]
+countries: [US]
+regions: [New Hampshire]
+protectedAreas: [White Mountain National Forest, Pondicherry Wildlife Refuge]
+termini:
+  # the Thru-Hike page: "runs from Harts Location at Notchland in southern Crawford Notch to the
+  # Canadian border at Fourth Connecticut Lake high on Prospect Hill"; the guidebook is written
+  # northbound. Coordinates: OSM, the relation's southern end at the Davis Path trailhead and the
+  # Fourth Connecticut Lake (way 332247984) on the border
+  start:
+    name: Notchland (Crawford Notch)
+    lat: 44.11873
+    lon: -71.35377
+  end:
+    name: Fourth Connecticut Lake (Canadian border)
+    lat: 45.24774
+    lon: -71.21424
+  source: cta-thru
+waymarking:
+  # Trail Changes and Updates: "the yellow blazed CT", "You will see a Cohos Trail sign and yellow
+  # blazes", "Follow the yellow blazes throughout"; spurs to be blazed "red or orange"
+  text: Yellow blazes and Cohos Trail signs; spur trails are to be blazed red or orange
+  symbol: yellow-vertical-stripe
+  source: cta-updates
+length:
+  # the FAQ: "If hiked without investigating some of the spur trails, the CT is nearly 165 miles
+  # long" (the main route this record covers; "most trekkers tend to average 170 to 175 miles"
+  # with spurs, and the Thru-Hike and About pages round it to 170 miles)
+  - km: 265.5
+    approx: true
+    source: cta-faq
+days:
+  # the FAQ: "Most hikers manage the Cohos Trail in twelve to fourteen days"
+  min: 12
+  max: 14
+  source: cta-faq
+stages:
+  # no stages published (docs/scope.md, "Trails without stages"): the association's The Trail page
+  # describes eight regions without their ends or distances, its Section Hike page says "coming
+  # soon", and hikers pick among shelters, tent sites and campgrounds "within a day's hike from one
+  # another" (the FAQ); the days are the FAQ's
+  source: cta-faq
+  none: true
+route:
+  # built by `python -m pipeline.all cohos-trail`: OSM ways matched to the trail's OSM relation
+  # (14765821, "Cohos Trail", operator Cohos Trail Association), the whole route as one segment
+  source: osm
+  publishable: true
+  relation: 14765821
+difficulty:
+  # the FAQ: "The Cohos Trail can be an arduous trek in some areas, but on average, the long
+  # pathway is not terribly difficult, terrain-wise. The real difficulty lies in resupplying"
+  estimated:
+    sac: T3
+    basis: >-
+      The association calls the trail an arduous trek in some areas but, on average, not terribly
+      difficult terrain-wise; it climbs nearly 40 peaks, including the Presidential Range's Mount
+      Eisenhower in the White Mountains, the steep bare rock of North Percy Peak and Dixville
+      Notch's cliffs, and follows old farm lanes and logging roads in the north. Mountain hiking on
+      steep, rocky ground in places (T3).
+    source: cta-faq
+season:
+  # no season months on the association's pages (home, The Trail, Thru-Hike, FAQ, Trouble Spots,
+  # Trail Changes) or in English Wikipedia; the FAQ speaks of black flies in late spring and a
+  # largely bug-free August, Trouble Spots of blowdowns "early in the season, before July 4th"
+  months: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
+  text: No season published; every month for now
+  source: huckepack-season
+sleeping:
+  # Places to Stay: shelters (lean-tos, the Mt. Cabot cabin, the Neil Tillotson Hut), tent sites,
+  # campgrounds (state parks and private), inns and B&Bs
+  types: [bivouac, campsite, guesthouse]
+  source: cta-stay
+wildCamping:
+  status: restricted
+  rule: >-
+    In the White Mountain National Forest, south of Route 110, hikers may camp in the forest in most
+    places, at least 200 feet from trails, under the Forest Service's rules; north of Route 110 only
+    at the association's shelters and tent sites, the state campgrounds and private campgrounds. No
+    campfires anywhere on the trail.
+  source: cta-faq
+access:
+  # the two international airports nearest the southern end (no railway in northern New Hampshire;
+  # the FAQ: buses run only as far as Gorham, Littleton or North Conway). Coordinates from OSM;
+  # distances by pipeline/access.py
+  - kind: airport
+    name: Portland International Jetport (PWM)
+    lat: 43.64618
+    lon: -70.31441
+    source: osm
+  - kind: airport
+    name: Manchester–Boston Regional Airport (MHT)
+    lat: 42.93067
+    lon: -71.43881
+    source: osm
+animals:
+  # the Forest Service's White Mountain National Forest safety page (bears) and the CDC (ticks).
+  # Levels ours
+  list:
+    - kind: bear
+      name: American black bear
+      level: low
+      basis: >-
+        The White Mountain National Forest is home to a healthy American black bear population;
+        normally shy and wary of humans, bears can become aggressive as they become habituated to
+        human food.
+      do:
+        - Store your food, food containers, scented items (such as soap, lip balm, toothpaste) and trash properly
+        - Use IGBC-certified bear-resistant canisters, or suspend food at least twelve feet above the ground and six feet from any object
+        - Place sleeping tents at least 100 feet away from food storage and cooking areas
+        - Give the bear(s) lots of room, 50 yards or more, and never surround it
+        - Make lots of noise and look big
+      dont:
+        - Never feed anything to a bear, or to any wildlife
+        - Don't get between a sow (mom) and her cubs
+        - Don't run; stand your ground or back away slowly
+      source: wmnf-safety
+    - kind: tick
+      name: Blacklegged tick (deer tick)
+      level: moderate
+      basis: The CDC says ticks live in grassy, brushy or wooded areas; the blacklegged tick carries Lyme disease.
+      do:
+        - Walk in the center of trails
+        - Use EPA-registered insect repellents containing DEET, picaridin, IR3535, Oil of Lemon Eucalyptus (OLE), para-menthane-diol (PMD), or 2-undecanone
+        - Treat boots, clothing and gear with permethrin
+        - Check your body, clothing, gear and pets for ticks after being outdoors
+      dont:
+        - Avoid wooded and brushy areas with high grass and leaf litter
+      source: cdc-ticks
+tags: [mountains, forest, shelters, thru-hike]
+notes:
+  - >-
+    Stages: none by design. The association publishes no sections with ends or distances: its The
+    Trail page describes eight regions (Montalban Ridge and White Mountains, Jefferson Dome, the
+    Kilkenny, Nash Stream Forest, Dixville Notch, Hardscabble and Deadwater, the Connecticut Lakes,
+    the Boundary Mountains) with only the first one's ends (Notchland to the Mt. Washington Hotel,
+    "at least two days"), and its Section Hike page says "Helpful information for section hiking
+    coming soon". The FAQ: shelters, tent sites and campgrounds "tend to be within a day's hike from
+    one another". Thru-hikers need supply caches: between Jefferson and Happy Corner in Pittsburg,
+    nearly 90 miles, there is no store within three miles of the route.
+  - >-
+    Route in the White Mountains: the association names two alternate routes between Notchland and
+    the Mt. Washington Hotel (by the Dry River Shelter or the AMC's Lakes of the Clouds Hut); OSM's
+    relation maps one, over the Davis Path, the Isolation and Dry River Trails to the Crawford Path
+    near Mount Eisenhower and down the Edmands Path, which the map line follows.
+  - >-
+    Length: the FAQ's "nearly 165 miles" without spurs (265.5 km) is the record's figure, as the
+    map line leaves the spurs out. The Thru-Hike and About pages say "170-miles long (or more
+    depending on various side spurs)", and the FAQ says most hikers walk 170 to 175 miles with
+    spurs, up to about 190 miles with all of them.
+  - >-
+    Days: the FAQ's twelve to fourteen days ("most hikers"); the Thru-Hike page says hikers have
+    finished in as little as nine days and some take two weeks.
+  - >-
+    Season: no season published. The association's pages (home, The Trail, Thru-Hike, FAQ, Trouble
+    Spots, Trail Changes and Updates) and English Wikipedia name no months; the FAQ says ice and
+    snow have been recorded in the mountains in every month, black flies are a nuisance in late
+    spring and August is largely bug-free, and Trouble Spots warns of blowdowns before July 4th.
+    Every month for now.
+  - >-
+    Established: no opening year on the association's pages (the idea dates from 1978 and was
+    revived twenty years later, About); English Wikipedia says the final section was completed in
+    2011, so the field is left out.
+  - >-
+    Protected areas: the association names the White Mountain National Forest (its Kilkenny unit
+    too) and the Pondicherry Wildlife Refuge (no camping, no campfires, its home page); the Nash
+    Stream Forest and the Connecticut Lakes State Forest are state forests, not of the kinds these
+    pages list.
+  - >-
+    Wildlife: moose are the trail's best-known animal (the association: "You will meet moose on the
+    Cohos Trail if you are on the trail for any real length of time"; give them room, back away,
+    take special care with bulls in the autumn rut), but these pages have no moose kind or
+    silhouette yet, so they are not listed. NH Fish and Game's pages (wildlife.nh.gov) and NH DHHS's
+    tick page answer 403 to the pipeline's User-Agent and were left out; the bear advice is the
+    Forest Service's for the White Mountain National Forest, the tick advice the CDC's. The
+    association's FAQ: ticks tend to be confined to lowland habitat favoured by deer and moose.
+  - >-
+    Sources: the association's pages carry a shop login widget in the header, which the preflight
+    reads as "a login form"; every page's content is public and was read with the pipeline's own
+    User-Agent.
+  - >-
+    Map line (2026-11-07): the New Hampshire Geofabrik extract; OSM's Cohos Trail relation
+    (14765821), chained from Notchland as one segment, 100 % matched; 7 ways (3.4 km) of spurs left
+    out of the chain (Johnson's Spring Spur, the Idlewilde Spur and the like) and a 29 m gap between
+    two of its ways. The matcher bridges one 80 m gap at km 58.6 in the Pondicherry Wildlife Refuge,
+    between the old Boston and Maine railbed (the Presidential Range Rail Trail) and the Shore Path
+    Trail at Cherry Pond, where OSM has no way. It measures 253.1 km on OSM's full geometry and
+    250.1 km on the simplified map line, against the FAQ's nearly 165 miles (265.5 km, −5 to −6 %).
+    The terrain model gives a highest point of 1,362 m at km 23.2 (on the Crawford Path below Mount
+    Eisenhower; the relation takes the Mount Eisenhower Loop, not the 4,760-foot summit), a lowest
+    of 297 m at km 106.8, and about 10,090 m of climbing; the association states no ascent or
+    heights.
+  - >-
+    Water, food and beds (the check's flags): OSM maps only six drinking water points near the trail
+    (172.5 km without one from the start, 54.4 km at most between them after), though streams,
+    ponds and lakes are many; the FAQ warns that in very dry summers water is hard to find on the
+    Kilkenny's high ridges and between Gadwah Notch and Dixville Notch. Resupply: 173.8 km without a
+    mapped shop (km 37–211), as the association says (no store within three miles between Jefferson
+    and Happy Corner, nearly 90 miles; caches needed; Stark Village Inn takes them). Beds: 54.5 km
+    at most without a mapped place to sleep (km 118–173, Nash Stream Forest to Dixville), since OSM
+    lacks most of the association's shelters (Devil's Rest, Old Hermit, Erving's Hideaway, Panorama)
+    as places to sleep.
+  - >-
+    Tree line: not drawn. The route's highest point on the terrain model is 1,362 m, below the
+    1,500 m where these pages need one. The association's other route, by the AMC's Lakes of the
+    Clouds Hut, is not on the map line.
+  - >-
+    Photos: none. Commons has no category for the trail; of the three found by location, a log
+    cabin, a dam in front of a cliff and a view from Jefferson with a utility pole in its middle
+    were excluded (data/reference/photo-exclude.yaml), so the page shows no mosaic.
+  - >-
+    Data check (2026-11-07, working rule 2): the association against English Wikipedia: length
+    nearly 165 miles (265.5 km) against 162 miles (260 km), +2 %; termini Notchland near Crawford
+    Notch and the Canada–US border in both; the route through Jefferson, the Kilkenny Ridge, Stark,
+    the Nash Stream Forest, Dixville Notch and the Connecticut Lakes in both. Wikipedia gives no
+    days, season, difficulty, sleeping or camping rules; the page was checked against the
+    association's FAQ and Thru-Hike pages for those (12–14 days, no season, T3 estimate from the
+    FAQ's words, shelters, tent sites, campgrounds and inns, camping rules north and south of Route
+    110). The map line (250.1 km) is 6 % shorter than the stated length.
+dataCheck:
+  date: 2026-11-07
+  against: [wikipedia]
+  pageAgainst: [cta-faq, cta-thru]
+  deviations: []
+sources:
+  - id: cta-trail
+    title: "Cohos Trail Association: The Trail (the route's eight regions, south to north)"
+    url: https://www.cohostrail.org/the-trail/
+    licence: © Cohos Trail Association (facts only)
+    retrieved: 2026-11-07
+  - id: cta-thru
+    title: "Cohos Trail Association: Thru-Hike (length, termini, days, resupply)"
+    url: https://www.cohostrail.org/through-hike/
+    licence: © Cohos Trail Association (facts only)
+    retrieved: 2026-11-07
+  - id: cta-faq
+    title: "Cohos Trail Association: FAQ (length without spurs, days, difficulty, camping, resupply, bugs)"
+    url: https://www.cohostrail.org/f-a-q/
+    licence: © Cohos Trail Association (facts only)
+    retrieved: 2026-11-07
+  - id: cta-stay
+    title: "Cohos Trail Association: Places to Stay (shelters, tent sites, campgrounds, inns)"
+    url: https://www.cohostrail.org/places-to-stay/
+    licence: © Cohos Trail Association (facts only)
+    retrieved: 2026-11-07
+  - id: cta-updates
+    title: "Cohos Trail Association: Trail Changes and Updates (reroutes, yellow blazes)"
+    url: https://www.cohostrail.org/trail-changes-and-updates/
+    licence: © Cohos Trail Association (facts only)
+    retrieved: 2026-11-07
+  - id: wmnf-safety
+    title: "USDA Forest Service, White Mountain National Forest: Safety and Outdoor Ethics (bear safety, food storage)"
+    url: https://www.fs.usda.gov/r09/whitemountain/safety-ethics
+    licence: US federal government work, public domain
+    retrieved: 2026-11-07
+  - id: cdc-ticks
+    title: "US Centers for Disease Control and Prevention: Preventing Tick Bites"
+    url: https://www.cdc.gov/ticks/prevention/index.html
+    licence: US federal government work, public domain
+    retrieved: 2026-11-07
+  - id: huckepack-season
+    title: "huckepack: no season published by the operator or a second source (the association's home, The Trail, Thru-Hike, FAQ, Trouble Spots and Trail Changes pages, Wikipedia); every month for now, until one is found"
+    url: https://github.com/schildbuerger/huckepack/blob/main/docs/trail-building.md
+    licence: huckepack's own rule (decided 2026-11-05)
+    retrieved: 2026-11-07
+  - id: wikipedia
+    title: "Wikipedia (en): Cohos Trail"
+    url: https://en.wikipedia.org/wiki/Cohos_Trail
+    licence: CC BY-SA 4.0
+    retrieved: 2026-11-07
+    checkOnly: true
+  - id: wikimedia
+    title: "Wikimedia: page views of the trail's Wikipedia articles in every language, by people, over twelve months (Wikidata sitelinks, pageview API)"
+    url: https://wikimedia.org/api/rest_v1/
+    licence: CC0 1.0 (pageview data); Wikidata CC0
+    retrieved: 2026-11-07
+    checkOnly: true
+  - id: osm
+    title: "OpenStreetMap contributors: the Cohos Trail relation (14765821), paths, water, shops and places to sleep along the trail (Geofabrik extracts), travel hubs"
+    url: https://www.openstreetmap.org/relation/14765821
+    licence: ODbL 1.0
+    retrieved: 2026-11-07
+  - id: copdem
+    title: "Copernicus DEM GLO-30 (30 m terrain model), tiles from AWS Open Data"
+    url: https://registry.opendata.aws/copernicus-dem/
+    licence: "Copernicus WorldDEM-30 licence, free; produced using Copernicus WorldDEM-30 © DLR e.V. 2010-2014 and © Airbus Defence and Space GmbH 2014-2018 provided under COPERNICUS by the European Union and ESA; all rights reserved"
+    retrieved: 2026-11-07
+  - id: worldcover
+    title: "ESA WorldCover 2021: 10 m land cover (via AWS Open Data)"
+    url: https://esa-worldcover.org/
+    licence: "CC BY 4.0; © ESA WorldCover project 2021 / Contains modified Copernicus Sentinel data (2021) processed by ESA WorldCover consortium"
+    retrieved: 2026-11-07
+  - id: era5
+    title: "Open-Meteo open data on AWS: ERA5-Land temperature and ERA5 precipitation, snow and wind, daily 1995–2024 (reanalysis)"
+    url: https://github.com/open-meteo/open-data
+    licence: CC BY 4.0 (Open-Meteo); contains modified Copernicus Climate Change Service information
+    retrieved: 2026-11-07
+  - id: osrm
+    title: "OSRM: road routes on OpenStreetMap data (router.project-osrm.org)"
+    url: https://project-osrm.org/
+    licence: Route data © OpenStreetMap contributors (ODbL)
+    retrieved: 2026-11-07

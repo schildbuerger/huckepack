@@ -176,6 +176,8 @@ And the **Border Route Trail** (Minnesota: the Border Route Trail Association's 
 
 And the **Knobstone Trail** (Indiana: the Indiana Department of Natural Resources' footpath along the Knobstone Escarpment, Indiana's longest, from Deam Lake State Recreation Area through Clark State Forest, Elk Creek Public Fishing Area and Jackson-Washington State Forest to Delaney Park, in the DNR's seven sections between trailheads, 45.5 miles (73 km) by the shortest of its loop legs (the DNR's 60 miles count the loops too), steep climbs, scarce water and primitive camping away from roads; over the trail's OSM relation; 2026-11-07).
 
+And the **Cohos Trail** (New Hampshire: the Cohos Trail Association's "nearly 165 miles" (about 265 km) without spurs through Coos County, from Notchland in Crawford Notch over the Montalban Ridge and the Presidential Range near Mount Eisenhower, through the Pondicherry refuge, the Kilkenny, the Nash Stream Forest and Dixville Notch to the Connecticut Lakes and the Canadian border at Fourth Connecticut Lake, yellow-blazed, without published sections by design (eight regions, no section ends), 12–14 days between shelters, tent sites and campgrounds, supply caches needed; no season published; over the trail's OSM relation; 2026-11-07).
+
 | # | Trail | Region | Length (approx.) | Why |
 |---|---|---|---|---|
 | 1 | Pacific Crest Trail | USA | 4,265 km | Most-hiked long trail; public US agency data; completion lists |
