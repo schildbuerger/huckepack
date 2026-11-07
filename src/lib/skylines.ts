@@ -2604,6 +2604,41 @@ export const SKYLINES: Record<string, Skyline> = {
       { d: "M720,291l14-6l12,6z M860,293l10-5l9,5z M1000,290l16-7l13,7z M1170,292l11-5l10,5z M1290,291l9-4l8,4z", c: "#eef4f6" },
     ],
   },
+  "lone-star-hiking-trail": {
+    view: "East Texas's Piney Woods in the Sam Houston National Forest: a flat, unbroken line of forest blue with distance, tall loblolly pines with bare straight trunks and high ragged crowns, Lake Conroe's open water on the left and a creek bottom on the right where rounded hardwoods crowd a still, dark bayou",
+    ridge: "#3f5a34",
+    ground: "#a48f68",
+    shapes: [
+      // the far forest line, level and blue with distance
+      { d: hills([[0, G], [140, 232], [400, 226], [680, 230], [960, 224], [1240, 230], [1480, 226], [1600, 232], [1600, G]]), c: "#b3c3c4" },
+      // a nearer belt of pine forest, its crowns a slightly broken line
+      { d: hills([[0, G], [100, 252], [260, 244], [420, 250], [600, 242], [780, 248], [960, 240], [1140, 248], [1320, 242], [1500, 250], [1600, 246], [1600, G]]), c: "#8ea38c" },
+      // tall loblolly pines: bare straight trunks rising high above the forest
+      { d: [[636, 134, 1], [688, 112, -1], [742, 146, 1], [806, 102, -1], [866, 128, 1], [936, 114, -1], [1000, 150, 1]].map(([x, y]) => `M${x - 2.5},${G}V${y + 8}H${x + 2.5}V${G}Z`).join(" "), c: "#6b5440" },
+      // their high ragged crowns: an open, rounded head of needle clumps, a lower clump to one side
+      {
+        d: [[636, 134, 1], [688, 112, -1], [742, 146, 1], [806, 102, -1], [866, 128, 1], [936, 114, -1], [1000, 150, 1]]
+          .map(([x, y, s]) => [[x, y, 20, 11], [x + s * 14, y + 7, 14, 8], [x - s * 12, y - 6, 13, 8], [x + s * 2, y - 12, 10, 6], [x - s * 9, y + 20, 11, 6]]
+            .map(([cx, cy, rx, ry]) => `M${cx - rx},${cy}a${rx},${ry} 0 1 1 ${2 * rx},0a${rx},${ry} 0 1 1 ${-2 * rx},0Z`)
+            .join(" "))
+          .join(" "),
+        c: "#33502f",
+      },
+      // the pinewoods under them
+      { d: hills([[520, G], [620, 266], [760, 258], [900, 262], [1040, 256], [1160, 268], [1260, G]]), c: FIR },
+      // the creek bottom's hardwoods on the right: round, crowded crowns
+      { d: hills([[1120, G], [1180, 262], [1230, 244], [1280, 252], [1330, 236], [1390, 248], [1440, 232], [1500, 244], [1560, 238], [1600, 246], [1600, G]]), c: "#55733f" },
+    ],
+    front: [
+      // Lake Conroe, wide and still, on the left
+      { d: water(0, 600, 286), c: LAKE },
+      // two pines on its shore
+      { d: "M560,304V214H564V304Z M598,304V200H602V304Z", c: "#5a4636" },
+      { d: "M542,220a20,9 0 1 1 40,0a20,9 0 1 1 -40,0Z M548,206a14,7 0 1 1 28,0a14,7 0 1 1 -28,0Z M580,206a20,9 0 1 1 40,0a20,9 0 1 1 -40,0Z M586,192a14,7 0 1 1 28,0a14,7 0 1 1 -28,0Z", c: "#2f4a2c" },
+      // a bayou in the creek bottom, dark and still
+      { d: water(1220, 1560, 300), c: "#5d7f78" },
+    ],
+  },
   "superior-hiking-trail": {
     view: "Minnesota's North Shore: the Sawtooth ridges above Lake Superior, birch and spruce on the rocky slopes, a waterfall dropping towards the lake and the lake's long horizon",
     ridge: "#3f5a34",

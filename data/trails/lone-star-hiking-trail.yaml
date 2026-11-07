@@ -1,0 +1,273 @@
+name: Lone Star Hiking Trail
+added: 2026-11-07
+aliases: [LSHT]
+website: https://www.fs.usda.gov/r08/texas/recreation/trails/lone-star-hiking-trail
+wikidata: Q6671437
+designation: National Recreation Trail
+managedBy:
+  # the Forest Service: "Operated By Sam Houston National Forest". The Lone Star Hiking Trail Club
+  # maintains the trail (the NRT record's photos are the club's); its site (lonestartrail.org)
+  # answers our pipeline's User-Agent with 403 Forbidden (2026-11-07), so it is named without a link
+  # and used for no figure
+  - name: USDA Forest Service, Sam Houston National Forest
+    url: https://www.fs.usda.gov/r08/texas
+  - name: Lone Star Hiking Trail Club
+officialGpx:
+  none: the Forest Service offers a PDF map of the trailheads only, no GPX download (checked 2026-11-07)
+  source: usfs-map
+trailType: point-to-point
+continents: [North America]
+countries: [US]
+regions: [Texas]
+protectedAreas: [Sam Houston National Forest, Little Lake Creek Wilderness, Big Creek Scenic Area]
+termini:
+  # the Forest Service: the trail runs "near Montague Church on FM 1725 close to Cleveland, Texas to
+  # the extreme western edge near Richards, Texas"; the NRT record: the Lake Conroe section "begins
+  # near the intersection of FS 219 and FM 149 east of Richards". Listed west to east, as the NRT
+  # record's sections are. Coordinates: the ends of OSM's relation 7014936
+  start:
+    name: FS 219 near Richards (Trailhead 1)
+    lat: 30.53876
+    lon: -95.78492
+  end:
+    name: FM 1725 near Montague Church, Cleveland (Trailhead 15)
+    lat: 30.39321
+    lon: -95.15788
+  source: usfs-lsht
+waymarking:
+  # the NRT record: "The trail is marked with two-inch by four-inch aluminum markers to guide hikers"
+  text: Marked with two-inch by four-inch aluminum markers.
+  source: nrt
+stages:
+  # the NRT record's three major sections, west to east (the Forest Service's National Recreation
+  # Trail entry): the Lake Conroe section to the Stubblefield Recreation Area, the Central Area to
+  # the FM 945 / S Butch Arthur Road trailhead, and the Winters Bayou/Tarkington Creek Area. Their
+  # stated 40, 60 and 27 miles include the loops and crossovers ("Four connecting loops", "The Four
+  # Notch Loop, a 9.2-mile section"), so each section's km is measured on the main line (notes).
+  # Section ends on OSM's relation at the recreation area and where the trail leaves FM 945 at
+  # S Butch Arthur Road. Their ends and names are the NRT record's (source nrt); the km measured
+  source: huckepack-measured
+  list:
+    - { number: "1", kind: main, from: FS 219 near Richards, to: Stubblefield Recreation Area, km: 30.7, end: { lat: 30.55993, lon: -95.63728 } }
+    - { number: "2", kind: main, from: Stubblefield Recreation Area, to: FM 945 at S Butch Arthur Road, km: 75.7, end: { lat: 30.52784, lon: -95.2202 } }
+    - { number: "3", kind: main, from: FM 945 at S Butch Arthur Road, to: FM 1725 near Montague Church, km: 45.5, end: { lat: 30.39321, lon: -95.15788 } }
+route:
+  # built by `python -m pipeline.all lone-star-hiking-trail`: OSM ways matched to the trail's OSM
+  # relation (7014936, operator US Forest Service), cut at the sections' ends
+  source: osm
+  publishable: true
+  relation: 7014936
+difficulty:
+  estimated:
+    sac: T1
+    basis: >-
+      The Forest Service: "The terrain is relatively flat with some wet areas; and bridges allow for
+      easy creek crossings. The southern portion of the trail follows an old railroad tramway." A
+      footpath through pine and hardwood forest with short road walks and no steep or exposed
+      passages: hiking (T1).
+    source: usfs-lsht
+season:
+  # the NRT record: "may be hiked year-round, but winter and spring are the most popular seasons
+  # due to the mild southeast Texas climate"
+  months: [12, 1, 2, 3, 4, 5]
+  text: Year-round, but winter and spring are the most popular seasons due to the mild southeast Texas climate
+  source: nrt
+sleeping:
+  # the Forest Service: camping anywhere along the trail, in designated areas during hunting season;
+  # campgrounds at the Stubblefield and Double Lake recreation areas on the way (NRT record)
+  types: [campsite]
+  source: usfs-lsht
+wildCamping:
+  status: restricted
+  rule: >-
+    Camping is permitted anywhere along the trail, except from September 26 to January 8 during
+    hunting season, when overnight camping is allowed in designated camping areas only. Sections of
+    the trail cross private property and public road rights-of-way.
+  source: usfs-lsht
+access:
+  # George Bush Intercontinental Airport and Houston's Amtrak station; coordinates from OSM;
+  # distances by pipeline/access.py
+  - kind: airport
+    name: George Bush Intercontinental Airport (IAH)
+    lat: 29.98414
+    lon: -95.33299
+    source: osm
+  - kind: station
+    name: Houston station (Amtrak)
+    lat: 29.76758
+    lon: -95.36746
+    source: osm
+animals:
+  # the National Forests and Grasslands in Texas, "Respect Wildlife" (updated 19 May 2025); level ours
+  list:
+    - kind: snake
+      name: Copperheads, cottonmouths and rattlesnakes
+      level: moderate
+      basis: The Forest Service names copperheads, cottonmouths (water moccasins) and rattlesnakes among the snakes of the Texas forests, found under logs, in tall grass, near water or on warm trails, most active in spring and summer, early morning and evening; most avoid people.
+      do:
+        - Stay on trails and avoid walking through tall grass or heavy brush
+        - Wear boots and long pants when hiking
+        - Use a flashlight at night
+        - If you see a snake, stop and give it space
+        - If bitten, remain calm and call 911 or seek immediate medical help
+        - Keep the affected limb still and below heart level
+      dont:
+        - Don't place hands or feet in places you can't see (like rock crevices or log piles)
+        - Don't try to handle, catch, or kill it
+      source: usfs-wildlife
+    - kind: tick
+      name: Ticks
+      level: moderate
+      basis: The Forest Service says ticks thrive in the wooded, brushy and grassy places of the national forests in Texas and can carry Lyme disease, ehrlichiosis and Rocky Mountain spotted fever.
+      do:
+        - Wear long sleeves and tuck pants into socks or boots
+        - Use EPA-registered insect repellents that contain DEET, picaridin, or permethrin
+        - Stay on trails and avoid brushing against vegetation
+        - Check yourself, children, and pets for ticks, especially in hidden areas like underarms, behind ears, waistbands, and hairlines
+        - Shower within two hours to help remove ticks before they attach
+        - Use fine-tipped tweezers to grasp the tick as close to the skin as possible and pull upward with steady pressure
+      dont:
+        - Do not twist, burn, or squeeze the tick
+      source: usfs-wildlife
+tags: [forest]
+notes:
+  - >-
+    Stages: the three major sections of the National Recreation Trail record (the Forest Service's
+    1978 application, kept by American Trails' NRT database): the Lake Conroe section (FS 219 near
+    Richards to the Stubblefield Recreation Area), the Central Area (to the FM 945 / S Butch Arthur
+    Road trailhead) and the Winters Bayou/Tarkington Creek Area (to the eastern end near Cleveland).
+    Their ends match the Forest Service's trailhead map (trailheads 1, 6, 10 and 15). The Forest
+    Service's own page publishes no sections; its map numbers 15 trailheads without mileages. The
+    club's site, which keeps a mileage chart, refuses our User-Agent (403), so it is not used.
+  - >-
+    Stage distances: the NRT record's 40, 60 and 27 miles include the loops and crossovers (four
+    connecting loops in the Lake Conroe section, the 9.2-mile Four Notch Loop in the Central Area),
+    which the main line doesn't walk, so each section's km is measured on the full OSM match
+    (huckepack-measured).
+  - >-
+    Length: the Forest Service's "129-mile National Recreation Trail" and the NRT record's 128 miles
+    include the loops and crossover trails (Wikipedia: "a 96 mile long hiking trail with an
+    additional 32 miles of loop and crossover trails"), a different stretch from the main line the
+    sections follow, so no stated length is recorded; the page sums the measured sections.
+  - >-
+    Days: no source gives days for the whole trail; the page counts one day per section, though the
+    sections run 30.7, 75.7 and 45.5 km (the NRT record's 40, 60 and 27 miles with the loops).
+  - >-
+    Hunting (the Forest Service, 2026-11-07): from September 26 to January 8, during hunting season,
+    overnight camping is allowed in designated camping areas only. The NRT record: "During deer
+    hunting season in November and December, hikers should wear highly visible clothing."
+  - >-
+    Water: the Forest Service lists "Water Available: None"; the NRT record and Wikipedia name
+    drinking water at the Double Lake and Stubblefield recreation areas.
+  - >-
+    Waymarking: aluminum markers; no simple painted mark is described, so none is drawn.
+  - >-
+    Tree line: not added; the route stays under 150 m in the Piney Woods.
+  - >-
+    Wildlife: the Forest Service's page also covers alligators ("Stay at least 30 feet away from any
+    alligator", in ponds, lakes, rivers, bayous and swamps); the site has no alligator silhouette or
+    kind yet, so they are named here only.
+  - >-
+    Map line (2026-11-07): the Texas Geofabrik extract (2026-11-05); OSM's relation 7014936
+    (operator US Forest Service), chained from FS 219 near Richards and cut at the three section
+    ends, every section 100 % matched, no bridges. The full match measures 30.7, 75.7 and 45.5 km
+    (151.9 km; the simplified map line 150.3 km), against Wikipedia's 96 miles (154.5 km, −1.7 %)
+    for the main trail; the NRT record's sections (40, 60 and 27 miles) and the Forest Service's
+    129 miles include the loops. Highest point 152 m at km 60.2 (the Central Area), lowest 53 m at
+    km 147.4 near the eastern end; no heights are stated. The terrain model gives about 2,720 m of
+    climbing, much of it treetops (96 % forest); none is stated.
+  - >-
+    Resupply: OSM maps no shop within 1 km of the trail or 3 km of a section end; the towns
+    (Richards, New Waverly, Coldspring, Cleveland) lie off the trail by road.
+  - >-
+    Beds: OSM maps 15 campsites along the trail (hunter camps and the recreation areas'
+    campgrounds), the longest stretch without one 14.6 km.
+  - >-
+    Drinking water: OSM maps no drinking water within 500 m; the NRT record names potable water at
+    the Double Lake and Stubblefield recreation areas, which is not added as points since no source
+    places the taps. The Forest Service's trail page: "Water Available: None".
+  - >-
+    Photos: 6 from Commons (the trail's category and by location), each checked by eye; a trailhead with a car and sign, three Double Lake buildings, a trunk close-up and a fungus left out.
+  - >-
+    Data check (2026-11-07): against English Wikipedia (its sections follow the NRT record's text,
+    so they are not independent; no other second source could be read: the club's site and Texas
+    Highways answer 403). Main line: ours 151.9 km (full match) against Wikipedia's 96 miles
+    (154.5 km, −1.7 %); with loops, the Forest Service's 129 miles against the NRT record's and
+    Wikipedia's 128 miles (96 + 32; +0.8 %). Termini (Richards / FS 219 and FM 149; north-west of
+    Cleveland, the Forest Service's FM 1725 near Montague Church), the three sections with their
+    ends and miles, the aluminum markers, the season (year-round, winter and spring the most
+    popular), camping (off the trail except in hunting season, then designated camps; the Forest
+    Service dates it September 26 to January 8) and water at Double Lake and Stubblefield agree.
+    The sections' km are measured (the stated miles include the loops); the built page was checked
+    against the Forest Service's page and the NRT record figure by figure. No days, ascent,
+    heights or difficulty are published.
+dataCheck:
+  # working rule 2: English Wikipedia as second source; the built page checked against the Forest
+  # Service's page and the NRT record
+  date: 2026-11-07
+  against: [wikipedia]
+  pageAgainst: [usfs-lsht, nrt]
+  deviations: []
+sources:
+  - id: usfs-lsht
+    title: "USDA Forest Service, National Forests and Grasslands in Texas: Lone Star Hiking Trail (129-mile National Recreation Trail, Richards to Montague Church on FM 1725; terrain, camping and hunting season)"
+    url: https://www.fs.usda.gov/r08/texas/recreation/trails/lone-star-hiking-trail
+    licence: US federal government work (public domain)
+    retrieved: 2026-11-07
+  - id: usfs-map
+    title: "USDA Forest Service: Lone Star Hiking Trail map (trailheads 1–15, updated 24 February 2025, PDF)"
+    url: https://www.fs.usda.gov/sites/nfs/files/r08/texas/publication/lsht%202-24-25%20update%201.pdf
+    licence: US federal government work (public domain)
+    retrieved: 2026-11-07
+  - id: nrt
+    title: "National Recreation Trails database (American Trails): Lone Star Hiking Trail (the 1978 NRT application, USDA Forest Service; three major sections, markers, season, camping)"
+    url: https://www.nrtapplication.org/trails/lone-star-hiking-trail
+    licence: All rights reserved (facts only)
+    retrieved: 2026-11-07
+  - id: usfs-wildlife
+    title: "USDA Forest Service, National Forests and Grasslands in Texas: Respect Wildlife (alligators, ticks, snakes; updated 19 May 2025)"
+    url: https://www.fs.usda.gov/r08/texas/safety-ethics/respect-wildlife
+    licence: US federal government work (public domain)
+    retrieved: 2026-11-07
+  - id: huckepack-measured
+    title: "huckepack: section distances measured on our OpenStreetMap map line (the NRT record's section miles include the loops); the sections themselves are the NRT record's"
+    url: https://www.openstreetmap.org/relation/7014936
+    licence: ODbL 1.0 (OpenStreetMap data)
+    retrieved: 2026-11-07
+  - id: wikipedia
+    title: "Wikipedia (en): Lone Star Hiking Trail"
+    url: https://en.wikipedia.org/wiki/Lone_Star_Hiking_Trail
+    licence: CC BY-SA 4.0
+    retrieved: 2026-11-07
+    checkOnly: true
+  - id: osm
+    title: "OpenStreetMap contributors: paths, water, shops and places to sleep along the trail (Geofabrik extract), travel hubs"
+    url: https://www.openstreetmap.org/
+    licence: ODbL 1.0
+    retrieved: 2026-11-07
+  - id: copdem
+    title: "Copernicus DEM GLO-30 (30 m terrain model), tiles from AWS Open Data"
+    url: https://registry.opendata.aws/copernicus-dem/
+    licence: "Copernicus WorldDEM-30 licence, free; produced using Copernicus WorldDEM-30 © DLR e.V. 2010-2014 and © Airbus Defence and Space GmbH 2014-2018 provided under COPERNICUS by the European Union and ESA; all rights reserved"
+    retrieved: 2026-11-07
+  - id: worldcover
+    title: "ESA WorldCover 2021: 10 m land cover (via AWS Open Data)"
+    url: https://esa-worldcover.org/
+    licence: "CC BY 4.0; © ESA WorldCover project 2021 / Contains modified Copernicus Sentinel data (2021) processed by ESA WorldCover consortium"
+    retrieved: 2026-11-07
+  - id: era5
+    title: "Open-Meteo open data on AWS: ERA5-Land temperature and ERA5 precipitation, snow and wind, daily 1995–2024 (reanalysis)"
+    url: https://github.com/open-meteo/open-data
+    licence: CC BY 4.0 (Open-Meteo); contains modified Copernicus Climate Change Service information
+    retrieved: 2026-11-07
+  - id: osrm
+    title: "OSRM: road routes on OpenStreetMap data (router.project-osrm.org)"
+    url: https://project-osrm.org/
+    licence: Route data © OpenStreetMap contributors (ODbL)
+    retrieved: 2026-11-07
+  - id: wikimedia
+    title: "Wikimedia: page views of the trail's Wikipedia articles in every language, by people, over twelve months (Wikidata sitelinks, pageview API)"
+    url: https://wikimedia.org/api/rest_v1/
+    licence: CC0 1.0 (pageview data); Wikidata CC0
+    retrieved: 2026-11-07
+    checkOnly: true

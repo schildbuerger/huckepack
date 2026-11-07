@@ -180,6 +180,8 @@ And the **Cohos Trail** (New Hampshire: the Cohos Trail Association's "nearly 16
 
 And the **Huemul Circuit** (Argentina, Santa Cruz: the Vuelta al Cerro Huemul of the Administración de Parques Nacionales in Los Glaciares National Park, 65 km round Cerro Huemul from El Chaltén by Laguna Toro, the Túnel glacier and the Paso del Viento to the Paso Huemul above the Southern Patagonian Ice Field and the Viedma Glacier, down to Lago Viedma and back by Bahía Túnel, in the APN's four days, a remote area with fords, two Tyrolean traverses and little waymarking, compulsory registration, camping only at the park's sites; over the OSM relation; 2026-11-07).
 
+And the **Lone Star Hiking Trail** (Texas: the Forest Service's National Recreation Trail through the Sam Houston National Forest's Piney Woods, maintained with the Lone Star Hiking Trail Club, from FS 219 near Richards past Lake Conroe, the Little Lake Creek Wilderness and the Four Notch area to the Big Creek Scenic Area and Winters Bayou near Cleveland, in the NRT record's three sections, about 152 km on the main line (the Forest Service's 129 miles count the loops too), flat, with aluminum markers, camping anywhere except in hunting season (September 26 to January 8, designated camps only); over the trail's OSM relation; 2026-11-07).
+
 | # | Trail | Region | Length (approx.) | Why |
 |---|---|---|---|---|
 | 1 | Pacific Crest Trail | USA | 4,265 km | Most-hiked long trail; public US agency data; completion lists |
