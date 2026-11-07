@@ -2,11 +2,12 @@ import { realpathSync } from "node:fs";
 import { defineConfig } from "astro/config";
 import svelte from "@astrojs/svelte";
 import chartFiles from "./src/integrations/chart-files.mjs";
+import externalLinks from "./src/integrations/external-links.mjs";
 
 export default defineConfig({
   // deployed to GitHub Pages under the custom domain, at the root (.github/workflows/deploy.yml)
   site: "https://huckepack.me",
-  integrations: [svelte(), chartFiles()],
+  integrations: [svelte(), chartFiles(), externalLinks()],
   // scope component styles with a class rather than a data-astro-cid-* attribute: the same
   // specificity (one class equals one attribute selector), far less markup on the long trail pages
   scopedStyleStrategy: "class",

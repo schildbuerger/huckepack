@@ -473,6 +473,21 @@
   reduced motion the still stays and the captions are shown as text. Sound is
   optional and off by default: footsteps, birds and crickets synthesised in
   the browser, no recordings. 16:7 on wide screens, 10:11 on phones.
+- **Outgoing links (2026-11-07, the user's decision):** links to other
+  websites are followed by default (operators, authorities, science,
+  Wikipedia and Commons, data and licences). `nofollow` only for commercial
+  businesses cited as sources that aren't the trail's managing or official
+  body (hotels, tour and travel companies, ferry and boat companies,
+  commercial portals such as Outdooractive), decided per URL in
+  `data/reference/commercial-links.yaml` (a park's own booking page and a
+  tourism board's own tour portal count as official), and for the per-place
+  links the charts and the map make (OpenStreetMap objects, a place's own
+  source). Never `sponsored` or `ugc`: nothing is paid and nothing is
+  written by visitors. `noopener` without `noreferrer`, so operators see
+  huckepack.me (the origin only) as where visitors came from. The new tab and
+  rel are written into the HTML at build time, not only by script; the
+  footer's Legal notice and Privacy links lost their `nofollow` (the pages
+  are noindex already).
 
 ## What a trail page could show
 

@@ -111,7 +111,7 @@ const siteLd =
           huckepack collects facts about official long-distance trails. Every figure names its source.
         </p>
         <p>Maps and trail lines © OpenStreetMap contributors (ODbL), basemap by OpenFreeMap.</p>
-        <p class="legal-links"><a href="/trails/all/">All trails A–Z</a><a href="/trails/seasons/">Season planner</a><a href="/legal-notice/" rel="nofollow">Legal notice</a><a href="/privacy/" rel="nofollow">Privacy</a></p>
+        <p class="legal-links"><a href="/trails/all/">All trails A–Z</a><a href="/trails/seasons/">Season planner</a><a href="/legal-notice/">Legal notice</a><a href="/privacy/">Privacy</a></p>
       </div>
     </footer>
     <script>
@@ -163,12 +163,16 @@ const siteLd =
     </script>
     <script>
       // links to other websites open in a new tab (with a note for screen readers); links within
-      // huckepack stay in the same tab, so back and the breadcrumbs work as usual
-      for (const a of document.querySelectorAll<HTMLAnchorElement>("a[href]")) {
-        if (!a.protocol.startsWith("http") || a.host === location.host || a.target) continue;
-        a.target = "_blank";
-        a.rel = "noopener noreferrer";
-        a.insertAdjacentHTML("beforeend", '<span class="sr-only"> (opens in a new tab)</span>');
+      // huckepack stay in the same tab, so back and the breadcrumbs work as usual. The build writes
+      // this into the HTML (src/integrations/external-links.mjs, with nofollow for the commercial
+      // prefixes); in dev the same is done here, so the page behaves alike (without nofollow)
+      if (import.meta.env.DEV) {
+        for (const a of document.querySelectorAll<HTMLAnchorElement>("a[href]")) {
+          if (!a.protocol.startsWith("http") || a.host === location.host || a.target) continue;
+          a.target = "_blank";
+          a.rel = "noopener";
+          a.insertAdjacentHTML("beforeend", '<span class="sr-only"> (opens in a new tab)</span>');
+        }
       }
     </script>
     <script>

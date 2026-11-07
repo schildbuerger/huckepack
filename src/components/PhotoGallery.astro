@@ -52,7 +52,7 @@ const { photos, trailName } = Astro.props;
     const a = document.createElement("a");
     a.href = p.page;
     a.target = "_blank";
-    a.rel = "noopener noreferrer";
+    a.rel = "noopener"; // a Commons file page, followed like the photo credits in the Sources
     a.textContent = `Photo: ${p.author}, ${p.licence}, Wikimedia Commons`;
     credit.append(a);
     count.textContent = `${at + 1} / ${photos.length}${p.km !== null ? ` · km ${Math.round(p.km)} of the route` : ""}`;

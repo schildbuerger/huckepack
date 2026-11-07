@@ -2211,9 +2211,10 @@ const trailLd = JSON.stringify({
     const KINDS: Record<string, string> = { n: "node", w: "way", r: "relation" };
     const href = (v: string) => (v.startsWith("http") ? v : `https://www.openstreetmap.org/${KINDS[v[0]]}/${v.slice(1)}`);
     const linkText = (v: string) => (v.startsWith("http") ? "View its source ↗" : "View on OpenStreetMap ↗");
-    // a link to another website, opening in a new tab (Base's script only sees links there on load)
+    // a link to another website, opening in a new tab (the build sets only links in the HTML); one
+    // per place, so nofollow (the user's decision of 2026-11-07, docs/scope.md)
     const outLink = (p: Place, text = linkText(p[4])) => {
-      const a = Object.assign(document.createElement("a"), { href: href(p[4]), textContent: text, className: "osm-link", target: "_blank", rel: "noopener noreferrer" });
+      const a = Object.assign(document.createElement("a"), { href: href(p[4]), textContent: text, className: "osm-link", target: "_blank", rel: "noopener nofollow" });
       a.insertAdjacentHTML("beforeend", '<span class="sr-only"> (opens in a new tab)</span>');
       return a;
     };

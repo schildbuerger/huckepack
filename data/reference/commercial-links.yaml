@@ -1,0 +1,20 @@
+# Outgoing links that get rel="nofollow" (src/integrations/external-links.mjs; the user's decision of
+# 2026-11-07, docs/scope.md): commercial businesses cited as sources that are not the trail's managing
+# or official body (hotels, tour and travel agencies, ferry and boat companies, commercial portals).
+# Decided per source URL, not per domain: a park's own booking page or a tourism board's tour portal
+# counts as official and stays followed. Each entry is a URL prefix without the scheme (http and https
+# both match), with a one-line reason. Everything else is followed.
+- prefix: www.outdooractive.com/
+  reason: commercial tour portal (Outdooractive AG), even where a tourism board posted the tour there
+- prefix: www.vertice.travel/
+  reason: Vertice Patagonia, the company running refuges and campsites in Torres del Paine, not the park (CONAF)
+- prefix: lastorres.com/
+  reason: Las Torres Patagonia, hotel and tour company in Torres del Paine, not the park (CONAF)
+- prefix: travel.thewom.it/
+  reason: The Wom Travel, a commercial travel magazine
+- prefix: www.ich-geh-wandern.de/
+  reason: a privately run, ad-financed hiking portal, not the trail's body
+- prefix: lexmea.de/
+  reason: LexMea, a commercial law-text platform (the law itself is an authority's; the page is a business's)
+- prefix: umwelt-online.de/
+  reason: umwelt-online, a commercial law-text database (as above)
