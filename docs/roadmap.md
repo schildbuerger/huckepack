@@ -188,6 +188,8 @@ And the **Lone Star Hiking Trail** (Texas: the Forest Service's National Recreat
 
 And the **Mid State Trail** (Pennsylvania: the Mid State Trail Association's volunteer-built footpath, Pennsylvania's longest, mostly on DCNR state forests and game lands, from the Maryland line near Flintstone along Tussey Mountain's rocky ridge crests and through the water gaps of the Ridge-and-Valley, past State College, the Seven Mountains and Woolrich to the Pine Creek Gorge and across Tioga County to the New York line near Lawrenceville, in the association's 20 sections measured in kilometres (528.5 km), orange blazes, one-night primitive camping in the state forests, open year-round with hunting-season closures in the north; over the trail's OSM relation; 2026-11-07).
 
+And the **Teton Crest Trail** (Wyoming: the National Park Service's 39-mile point-to-point route from Phillips Pass on national forest land into Grand Teton National Park, past Marion Lake, the Death Canyon Shelf, Alaska Basin, Hurricane Pass, Lake Solitude and Paintbrush Divide to String Lake, without stages: hikers camp in the park's mountain camping zones on a permit, the days from the park's Granite Canyon/Paintbrush Canyon itinerary (4 nights, 5 days; the user's decision, #273), late July to September, grizzly and black bears with bear-resistant canisters required; over the trail's OSM relation; 2026-11-07).
+
 | # | Trail | Region | Length (approx.) | Why |
 |---|---|---|---|---|
 | 1 | Pacific Crest Trail | USA | 4,265 km | Most-hiked long trail; public US agency data; completion lists |

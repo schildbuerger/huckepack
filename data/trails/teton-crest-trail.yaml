@@ -1,0 +1,311 @@
+name: Teton Crest Trail
+added: 2026-11-07
+aliases: [TCT]
+website: https://www.nps.gov/grte/planyourvisit/backcountryroutesandzones.htm
+wikidata: Q7706161
+managedBy:
+  # the National Park Service runs the park, its mountain camping zones and the permits; the trail
+  # starts on national forest land (the park: "starting outside the park at Phillips Pass"), where
+  # "different regulations apply"
+  - name: National Park Service, Grand Teton National Park
+    url: https://www.nps.gov/grte/
+officialGpx:
+  none: the park offers a point to point mileage map (an image) and a camping zones map, with no GPX to download (checked 2026-11-07)
+  source: nps
+trailType: point-to-point
+continents: [North America]
+countries: [US]
+regions: [Wyoming]
+protectedAreas: [Grand Teton National Park, Jedediah Smith Wilderness]
+termini:
+  # "a 39-mile point to point route starting outside the park at Phillips Pass and ending at String
+  # Lake" (coordinates from OSM: the Phillips Pass saddle, node 10217322017, where OSM's relation
+  # begins, and the String Lake Trailhead, node 1381857059)
+  start:
+    name: Phillips Pass
+    lat: 43.54809
+    lon: -110.93199
+  end:
+    name: String Lake
+    lat: 43.78445
+    lon: -110.72739
+  source: nps
+length:
+  # "a 39-mile point to point route"
+  - km: 62.8
+    source: nps
+days:
+  # the user's decision of 2026-11-07 (issue #273): the park's suggested itinerary "Granite
+  # Canyon/Paintbrush Canyon 38.6 miles. Trailheads: Granite Canyon and String Lake – 4 nights",
+  # four nights being five days of hiking; it starts at the Granite Canyon trailhead, not Phillips
+  # Pass (note "Days")
+  min: 5
+  max: 5
+  source: nps
+treeLine:
+  # the park's forests page: "Some conifers, such as the whitebark and limber pines, sub-alpine fir,
+  # and Engelmann spruce can survive the cold windy slopes of the alpine zone to around 10,000 feet"
+  m: 3050
+  source: nps-forests
+stages:
+  # no stages by design (issue #204; docs/scope.md, "Trails without stages"): hikers choose their
+  # nights in the mountain camping zones, which their permit names ("you are free to choose your
+  # campsite within the boundary of the zone"); the park gives suggested itineraries, not stages
+  source: nps
+  none: true
+route:
+  # built by `python -m pipeline.all teton-crest-trail`: OSM ways matched to the trail's OSM relation
+  # (3895101), chained from Phillips Pass and cut at String Lake, one segment
+  source: osm
+  publishable: true
+  relation: 3895101
+difficulty:
+  # no published grade; OSM's relation is tagged sac_scale=demanding_mountain_hiking
+  estimated:
+    sac: T3
+    basis: >-
+      The park calls it a route that climbs over 9,000 feet over several high passes (Paintbrush
+      Divide and Hurricane Pass among them), which remain snowy and hazardous well into the summer,
+      when an ice-axe, crampons and the ability to self-arrest are musts; high alpine country with
+      little shade, afternoon thunderstorms and dry stretches late in summer. In season, demanding
+      mountain hiking on built trails (T3).
+    source: nps-kbyg
+season:
+  # "Winter conditions persist well into July"; "Backpacking the Tetons is typically more enjoyable
+  # in August and September"; the camping zones "are full almost every night late July through
+  # early September"
+  months: [7, 8, 9]
+  text: Late July to September; the passes stay snowy well into July, best in August and September
+  source: nps-kbyg
+permit:
+  # "Permits are required for all overnight stays in the backcountry … a camping zone along the
+  # Teton Crest Trail"
+  required: true
+  name: Backcountry camping permit
+  issuedBy: National Park Service, Grand Teton National Park
+  how: >-
+    For 1 May to 31 October, reserve on Recreation.gov (about a third of permits, from January) or
+    get a walk-up permit at a park permit office no sooner than one day before the start (about two
+    thirds), first come, first served. Pick a reserved permit up in person by 10 a.m. on the first
+    day. It names a camping zone or site for each night.
+  url: https://www.nps.gov/grte/planyourvisit/bcres.htm
+  source: nps-permits
+fees:
+  # the permits page: "Permit Fee : $20 flat per permit (non-refundable) Nightly Fee : $7 per
+  # person, per night"; "Backcountry camping fees do not include park Entrance Fees"
+  - { name: "Backcountry permit", amount: 20, currency: USD, per: per permit, year: 2026, note: "non-refundable", source: nps-permits }
+  - { name: "Backcountry camping, nightly fee", amount: 7, currency: USD, per: per person and night, year: 2026, note: "refundable until five days before the start; park entrance fees extra", source: nps-permits }
+sleeping:
+  # "Mountain Camping Zones are popular zones along the Teton Crest Trail"; "Many trips on the Teton
+  # Crest Trail are completed by staying in the zones"
+  types: [campsite]
+  source: nps
+wildCamping:
+  status: restricted
+  rule: >-
+    In the park, camping in the mountain camping zones named on the permit, anywhere within the
+    zone, wherever possible at previously occupied sites out of sight of trails and other campers
+    and 200 feet from lakes and streams. No campfires in the mountain camping areas; food in an
+    approved bear-resistant canister. On the national forest land at the start and in Alaska Basin,
+    the Forest Service's rules apply.
+  source: nps
+access:
+  # Jackson Hole Airport, inside the park, and Idaho Falls Regional Airport; no railway or long-distance
+  # bus to the trailheads. Coordinates from OSM; distances by pipeline/access.py
+  - kind: airport
+    name: Jackson Hole Airport (JAC)
+    lat: 43.60895
+    lon: -110.73641
+    source: osm
+  - kind: airport
+    name: Idaho Falls Regional Airport (IDA)
+    lat: 43.51219
+    lon: -112.07423
+    source: osm
+animals:
+  # the backcountry planner: "Black and grizzly bears live throughout the park"; the bear safety page
+  # word for word; moose from the park's mammals page and its safety page's wildlife rules. Levels
+  # ours
+  list:
+    - kind: bear
+      name: Grizzly bear and black bear
+      level: moderate
+      basis: Black and grizzly bears live throughout the park, and some of the most popular trails travel through excellent bear habitat; an encounter is always possible, and approved bear-resistant food storage is required in the backcountry.
+      do:
+        - Talk loudly or call out ("Hey bear!") at regular intervals; clap your hands, especially in dense vegetation or on blind corners
+        - "If the bear is unaware of you, detour quickly and quietly; if it is aware but not aggressive, back slowly away while talking in an even tone"
+        - "If a bear charges you: do not run; stand still until the bear stops and then slowly back away, and use your bear spray"
+        - If the bear makes contact with you, lie flat on your stomach with your legs spread apart slightly, cover the back of your neck with your hands and keep your pack on
+        - If you are attacked at night or feel you have been stalked and attacked as prey, fight back
+        - Store all food, garbage, toiletries and any odorous item in a bear-resistant food container when not in immediate use, day and night
+      dont:
+        - "Do not run: bears can easily out run any human"
+        - Do not drop your pack and do not climb trees
+        - Never approach a bear; keep at least 100 yards (300 feet) away
+        - "Don't rely on bear bells: they're often not loud enough"
+        - Never throw food or your pack at a bear to distract it; hanging food is strictly prohibited in the park
+      source: nps-bears
+    - kind: moose
+      name: Moose
+      level: low
+      basis: Moose are among the large ungulates of the park, mostly seen in the valleys and willow flats rather than up on the crest.
+      do:
+        - Maintain a distance of at least 25 yards (75 feet) from all other wildlife
+      dont:
+        - Never put yourself between an adult animal and its offspring
+        - Do not feed any wild animal; don't approach or chase wildlife
+      source: nps-safety
+tags: [alpine, passes, national-park, wilderness, permit]
+notes:
+  - >-
+    Days: the park gives no days for the whole route ("best enjoyed over multiple days"). By the
+    user's decision of 2026-11-07 (issue #273) the record uses the park's suggested itinerary
+    "Granite Canyon/Paintbrush Canyon 38.6 miles. Trailheads: Granite Canyon and String Lake – 4
+    nights": four nights, five days of hiking (min = max = 5). Its start and finish differ from the
+    route's: it starts at the Granite Canyon trailhead inside the park, not at Phillips Pass, and
+    ends at String Lake by Paintbrush Canyon; its 38.6 miles are close to the route's 39. The park's
+    other itineraries on the same page: Death Canyon/Paintbrush Canyon 37.1 miles, 3 to 4 nights;
+    Death Canyon/Cascade Canyon 30.1 miles, 2 to 3 nights; tram to Granite Canyon via Marion Lake
+    15.0 miles, 1 night.
+  - >-
+    Stages: none by design. The park describes the Teton Crest Trail as a route of mountain camping
+    zones, where hikers choose their own camps within the zone their permit names, and suggests
+    itineraries between trailheads (note "Days"), not stages.
+  - >-
+    Ascent: the park says the route "climbs over 9000’ of elevation gain", a lower bound and no
+    descent, so the record states no ascent and the page estimates both from the terrain model.
+  - >-
+    Length: the park's "39-mile point to point route" from Phillips Pass to String Lake (62.8 km).
+    The park's archived news releases of 2020 and 2021 call it "a 45-mile long trail" (from Teton
+    Pass, south of Phillips Pass). The park also notes that starting at the Granite Canyon trailhead
+    keeps the hike inside the park, and the aerial tram from Teton Village saves about 4 miles and
+    2,400 feet of gain.
+  - >-
+    Waymarking: the park's pages describe no waymarks; a park trail with signs at junctions and at
+    the beginning and end of each camping zone (not documented further).
+  - >-
+    Established: no year given by the park; the field is left out.
+  - >-
+    Tree line: the park's forests page, "Some conifers … can survive the cold windy slopes of the
+    alpine zone to around 10,000 feet" (3,048 m, recorded as 3,050 m). The planner: "As you climb
+    out of the sagebrush valley and forested morains you'll find yourself in an high apline
+    environement … little shade".
+  - >-
+    Wildlife: black and grizzly bears from the park's backcountry planner and its "Safety in Bear
+    Country" page, used word for word (shortened). Moose: the park's mammals page names moose among
+    the large ungulates; no Grand Teton moose safety page was found (2026-11-07), so the advice is the
+    park safety page's rules for all wildlife other than bears and wolves. Wolves and mountain lions
+    are "typically more elusive" (the mammals page) and left out.
+  - >-
+    Water: "Streams flow through every canyon … Water is plentiful"; "In late summer, the following
+    areas may become dry: Fox Creek Pass, Death Canyon Shelf, Mt. Hunt Divide, and Open Canyon".
+    Drinking water must be treated.
+  - >-
+    Map line (2026-11-07): the Wyoming Geofabrik extract (2026-11-06); OSM's "Teton Crest Trail"
+    relation (3895101, 49 ways, 57.5 km), which begins on the Phillips Pass saddle and ends at the
+    String Lake trailhead, chained from Phillips Pass as one segment, 100 % matched (at most 2 m off),
+    no bridges. The main route measures 56.6 km against the park's 39 miles (62.8 km, −9.9 %): the
+    record keeps the park's figure. It runs by Marion Lake, the Death Canyon Shelf, Alaska Basin,
+    Hurricane Pass, the South and North Forks of Cascade Canyon, Lake Solitude, Paintbrush Divide and
+    Holly Lake down Paintbrush Canyon to String Lake. The terrain model's highest point is 3,260 m at
+    km 43.5 (Paintbrush Divide, 10,700 feet), above the park's tree line of about 10,000 feet; its
+    lowest 2,096 m at km 55.8 (String Lake). It estimates about 2,390 m of climbing, under the park's
+    "over 9000’" (2,743 m): sampled every 100 m, the model misses part of the switchbacks' climbing.
+    Resupply: OSM maps no shop and no drinking water along the route (the check's 56.6 km without
+    either): carry food for the whole route and treat the water of the streams and lakes, as the park
+    says. OSM maps 9 campsites within reach (the longest stretch without one 13.5 km).
+  - >-
+    Data check (2026-11-07): against English Wikipedia (the only independent second source with
+    figures; the Forest Service has no page for the trail). Length 39 miles (62.8 km) against 40
+    miles (64.4 km, −2 %, agrees); termini Phillips Pass and String Lake (agree); highest point,
+    terrain model 3,260 m, against Paintbrush Divide 10,645 feet (3,245 m, agrees); lowest 2,096 m
+    against String Lake 6,870 feet (2,094 m, agrees); season late July to September against "Summer
+    to Fall" (agrees); difficulty T3 against "Strenuous" (agrees); grizzly bears named as a hazard
+    (agrees). Ascent: no stated figure; the terrain model's ≈2,390 m is 19 % under Wikipedia's 9,681
+    feet (2,951 m, which it gives for the 32 miles from the tram) and 13 % under the park's "over
+    9000’", recorded in dataCheck. Days: Wikipedia gives none, so the 5 days (the park's 4-night
+    itinerary, note "Days") were checked on the built page against the park's page only. The
+    permit, fees, camping rule, season and wildlife advice on the built page were checked one by one
+    against the park's pages and agree. Tree line: no second source found.
+dataCheck:
+  # working rule 2: English Wikipedia as the second source
+  date: 2026-11-07
+  against: [wikipedia]
+  pageAgainst: [nps, nps-kbyg, nps-permits, nps-bears, nps-safety, nps-forests]
+  deviations:
+    - { figure: ascent, ours: "≈2,390 m (terrain model; no stated figure)", theirs: "9,681 ft (2,951 m), for the 32 miles from the tram", source: wikipedia }
+    - { figure: ascent, ours: "≈2,390 m (terrain model; no stated figure)", theirs: "over 9,000 ft (2,743 m)", source: nps }
+sources:
+  - id: nps
+    title: "National Park Service, Grand Teton National Park: Backcountry Camping Routes and Zones (the route, length, suggested itineraries, camping zones)"
+    url: https://www.nps.gov/grte/planyourvisit/backcountryroutesandzones.htm
+    licence: US federal government work (public domain)
+    retrieved: 2026-11-07
+  - id: nps-kbyg
+    title: "National Park Service, Grand Teton National Park: Know Before You Go (snow, season, water, bears, food storage)"
+    url: https://www.nps.gov/grte/planyourvisit/bc_knowbeforeyougo.htm
+    licence: US federal government work (public domain)
+    retrieved: 2026-11-07
+  - id: nps-permits
+    title: "National Park Service, Grand Teton National Park: Backcountry Camping Permits (reservations, walk-up permits, fees)"
+    url: https://www.nps.gov/grte/planyourvisit/bcres.htm
+    licence: US federal government work (public domain)
+    retrieved: 2026-11-07
+  - id: nps-bears
+    title: "National Park Service, Grand Teton National Park: Safety in Bear Country"
+    url: https://www.nps.gov/grte/planyourvisit/bearsafety.htm
+    licence: US federal government work (public domain)
+    retrieved: 2026-11-07
+  - id: nps-safety
+    title: "National Park Service, Grand Teton National Park: Safety (viewing wildlife safely)"
+    url: https://www.nps.gov/grte/planyourvisit/safety.htm
+    licence: US federal government work (public domain)
+    retrieved: 2026-11-07
+  - id: nps-mammals
+    title: "National Park Service, Grand Teton National Park: Mammals"
+    url: https://www.nps.gov/grte/learn/nature/mammals.htm
+    licence: US federal government work (public domain)
+    retrieved: 2026-11-07
+    checkOnly: true
+  - id: nps-forests
+    title: "National Park Service, Grand Teton National Park: Forests (tree line)"
+    url: https://www.nps.gov/grte/learn/nature/forests.htm
+    licence: US federal government work (public domain)
+    retrieved: 2026-11-07
+  - id: wikipedia
+    title: "Wikipedia (en): Teton Crest Trail"
+    url: https://en.wikipedia.org/wiki/Teton_Crest_Trail
+    licence: CC BY-SA 4.0
+    retrieved: 2026-11-07
+    checkOnly: true
+  - id: wikimedia
+    title: "Wikimedia: page views of the trail's Wikipedia articles in every language, by people, over twelve months (Wikidata sitelinks, pageview API)"
+    url: https://wikimedia.org/api/rest_v1/
+    licence: CC0 1.0 (pageview data); Wikidata CC0
+    retrieved: 2026-11-07
+    checkOnly: true  # not on the trail page: the page views only rank the home page's popular trails
+  - id: osm
+    title: "OpenStreetMap contributors: the Teton Crest Trail relation (3895101), paths, water, shops and places to sleep along the trail (Geofabrik extract), travel hubs"
+    url: https://www.openstreetmap.org/relation/3895101
+    licence: ODbL 1.0
+    retrieved: 2026-11-07
+  - id: copdem
+    title: "Copernicus DEM GLO-30 (30 m terrain model), tiles from AWS Open Data"
+    url: https://registry.opendata.aws/copernicus-dem/
+    licence: "Copernicus WorldDEM-30 licence, free; produced using Copernicus WorldDEM-30 © DLR e.V. 2010-2014 and © Airbus Defence and Space GmbH 2014-2018 provided under COPERNICUS by the European Union and ESA; all rights reserved"
+    retrieved: 2026-11-07
+  - id: worldcover
+    title: "ESA WorldCover 2021: 10 m land cover (via AWS Open Data)"
+    url: https://esa-worldcover.org/
+    licence: "CC BY 4.0; © ESA WorldCover project 2021 / Contains modified Copernicus Sentinel data (2021) processed by ESA WorldCover consortium"
+    retrieved: 2026-11-07
+  - id: era5
+    title: "Open-Meteo open data on AWS: ERA5-Land temperature and ERA5 precipitation, snow and wind, daily 1995–2024 (reanalysis)"
+    url: https://github.com/open-meteo/open-data
+    licence: CC BY 4.0 (Open-Meteo); contains modified Copernicus Climate Change Service information
+    retrieved: 2026-11-07
+  - id: osrm
+    title: "OSRM: road routes on OpenStreetMap data (router.project-osrm.org)"
+    url: https://project-osrm.org/
+    licence: Route data © OpenStreetMap contributors (ODbL)
+    retrieved: 2026-11-07

@@ -170,7 +170,11 @@ const hood: P[] = [[400, G], [500, 268], [590, 222], [660, 178], [716, 136], [75
 const iceField: P[] = [[0, G], [60, 236], [200, 214], [380, 206], [560, 212], [760, 204], [960, 210], [1160, 202], [1360, 214], [1520, 226], [1600, G]];
 const texel: P[] = [[0, G], [60, 262], [140, 212], [200, 170], [230, 150], [250, 138], [270, 152], [300, 140], [330, 124], [352, 116], [372, 130], [410, 150], [460, 176], [520, 160], [560, 146], [590, 158], [640, 180], [720, 206], [820, 232], [920, 262], [1000, G]];
 const texelEast: P[] = [[900, G], [1000, 256], [1100, 222], [1180, 200], [1240, 188], [1300, 200], [1380, 220], [1460, 246], [1540, 276], [1600, G]];
-const mitre: P[] = [[600, G], [660, 250], [700, 180], [725, 112], [738, 92], [752, 110], [790, 190], [840, 260], [900, G]];
+const tetonGrand: P[] = [[560, G], [620, 262], [680, 220], [720, 180], [752, 136], [772, 104], [786, 80], [796, 64], [802, 58], [810, 64], [818, 84], [826, 96], [838, 92], [852, 112], [880, 150], [920, 182], [970, 212], [1030, 244], [1100, 272], [1160, G]];
+const tetonOwen: P[] = [[380, G], [450, 256], [510, 212], [550, 176], [574, 150], [588, 130], [596, 120], [604, 132], [614, 124], [626, 150], [660, 176], [720, 214], [780, 250], [840, G]];
+const tetonMiddle: P[] = [[900, G], [960, 252], [1006, 208], [1044, 172], [1070, 148], [1086, 136], [1100, 146], [1128, 170], [1176, 204], [1236, 238], [1320, G]];
+const tetonSouth: P[] = [[1120, G], [1190, 252], [1246, 218], [1290, 196], [1312, 184], [1328, 192], [1340, 186], [1360, 204], [1410, 232], [1470, 262], [1540, G]];
+const mitre: P[] =[[600, G], [660, 250], [700, 180], [725, 112], [738, 92], [752, 110], [790, 190], [840, 260], [900, G]];
 const nevis: P[] = [[1100, G], [1180, 246], [1260, 196], [1320, 172], [1380, 166], [1440, 176], [1500, 206], [1560, 250], [1600, G]];
 const montBlanc: P[] = [[0, G], [60, 304], [110, 272], [140, 226], [158, 170], [170, 122], [185, 118], [200, 124], [222, 150], [238, 136], [244, 132], [250, 144], [270, 168], [300, 180], [330, 172], [360, 180], [390, 190], [420, 188], [438, 156], [450, 180], [466, 148], [480, 176], [496, 140], [512, 170], [530, 152], [548, 182], [572, 168], [596, 114], [602, 104], [608, 104], [614, 116], [640, 136], [680, 112], [720, 98], [752, 106], [790, 94], [815, 87], [842, 96], [880, 86], [920, 76], [955, 71], [995, 74], [1040, 82], [1080, 92], [1110, 97], [1150, 92], [1188, 102], [1228, 124], [1250, 122], [1290, 132], [1325, 106], [1340, 97], [1352, 100], [1380, 136], [1430, 168], [1490, 212], [1540, 252], [1580, 292], [1600, G]];
 
@@ -2732,6 +2736,35 @@ export const SKYLINES: Record<string, Skyline> = {
       { d: water(640, 770, 304), c: "#5f8ea6" },
       { d: water(1370, 1414, 306), c: "#5f8ea6" },
     ],
+  },
+  "teton-crest-trail": {
+    view: "The Teton Range from the west, from the alpine meadows of Alaska Basin: the Grand Teton's sharp granite spire with Mount Owen beside it and the Middle and South Tetons to the south, snow on their summits, subalpine firs on the slopes, wildflower meadows and a lake in front",
+    ridge: "#5a7040",
+    ground: "#8fa860",
+    shapes: [
+      // the far peaks of the range north and south, pale with distance
+      { d: range([[0, G], [70, 250], [150, 214], [220, 196], [262, 186], [300, 196], [360, 214], [440, 238], [520, 262], [600, G]]), c: "#bcc6d0" },
+      { d: range([[1240, G], [1320, 246], [1400, 214], [1460, 200], [1500, 194], [1540, 204], [1600, 214], [1600, G]]), c: "#bcc6d0" },
+      // Mount Owen, north of the Grand, a jagged lower spire
+      { d: range(tetonOwen), c: "#a6b0bc" },
+      { d: snowOf(tetonOwen, 150), c: SNOW },
+      // the South Teton, farther south
+      { d: range(tetonSouth), c: "#a6b0bc" },
+      { d: snowOf(tetonSouth, 204), c: SNOW },
+      // the Middle Teton
+      { d: range(tetonMiddle), c: "#9aa5b2" },
+      { d: snowOf(tetonMiddle, 162), c: SNOW },
+      // the Grand Teton: the tallest spire, steep and sharp, with its shoulders
+      { d: range(tetonGrand), c: "#8a96a3" },
+      { d: snowOf(tetonGrand, 90), c: SNOW },
+      // subalpine firs on the slopes below the peaks
+      { d: hills([[200, G], [340, 266], [520, 254], [700, 262], [900, 250], [1100, 260], [1300, 252], [1460, 266], [1600, G]]), c: FIR },
+      // the wildflower meadows of the basin
+      { d: hills([[0, G], [160, 290], [380, 280], [600, 292], [760, G]]), c: "#9cbb64" },
+      { d: hills([[900, G], [1100, 288], [1320, 280], [1600, 290], [1600, G]]), c: "#9cbb64" },
+    ],
+    // a lake in the basin, at the foot of the meadows
+    front: [{ d: water(360, 860, 300), c: LAKE }],
   },
   "superior-hiking-trail": {
     view: "Minnesota's North Shore: the Sawtooth ridges above Lake Superior, birch and spruce on the rocky slopes, a waterfall dropping towards the lake and the lake's long horizon",
