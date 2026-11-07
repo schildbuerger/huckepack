@@ -2439,6 +2439,32 @@ export const SKYLINES: Record<string, Skyline> = {
     // a turquoise glacial lake below the peaks
     front: [{ d: water(560, 1080, 302), c: "#4fb3b5" }],
   },
+  "greenstone-ridge-trail": {
+    view: "Isle Royale from the lake: the long forested Greenstone Ridge along the island's spine with the Minong Ridge behind it, the Mount Ojibway fire tower on its summit, Lake Superior all round with the Canadian shore faint on the horizon, and rocky basalt points running out into the lake in front",
+    ridge: "#3f5a34",
+    ground: "#8f8478",
+    shapes: [
+      // the Canadian shore, faint far across the lake
+      { d: hills([[1180, G], [1260, 238], [1360, 230], [1460, 236], [1560, G]]), c: "#a9bdcb" },
+      // Lake Superior, wide to the horizon
+      { d: water(0, 1600, 252), c: "#5b8db0" },
+      // the Minong Ridge, a parallel ridge behind, blue with distance
+      { d: hills([[380, G], [460, 236], [640, 218], [900, 210], [1140, 218], [1300, 234], [1420, G]]), c: "#6f8c78" },
+      // the Greenstone Ridge: a long, low forested crest, highest near Mount Ojibway
+      { d: range([[220, G], [300, 252], [420, 222], [560, 204], [680, 190], [760, 178], [840, 186], [960, 198], [1100, 206], [1240, 224], [1360, 250], [1440, G]]), c: FOREST },
+      // the Mount Ojibway fire tower: a steel frame with its cab on top
+      { d: "M753,180L757,152H763L767,180Z M751,152V143H769V152Z", c: "#5a524c" },
+      { d: "M749,143L760,136L771,143Z", c: "#3a3633" },
+      // spruce spires along the crest
+      { d: "M500,214L506,192L512,214Z M522,210L529,186L536,210Z M636,198L642,176L648,198Z M886,192L892,170L898,192Z M910,194L917,172L924,194Z M1150,212L1156,190L1162,212Z", c: FIR },
+    ],
+    front: [
+      // rocky basalt points running out into the lake, with spruce on them
+      { d: hills([[60, G], [120, 292], [240, 284], [340, 290], [420, G]]), c: "#857a70" },
+      { d: hills([[1220, G], [1300, 290], [1420, 282], [1500, 288], [1580, G]]), c: "#857a70" },
+      { d: "M178,288L185,258L192,288Z M206,286L212,264L218,286Z M1366,286L1373,254L1380,286Z M1398,284L1404,262L1410,284Z", c: FIR },
+    ],
+  },
   "superior-hiking-trail": {
     view: "Minnesota's North Shore: the Sawtooth ridges above Lake Superior, birch and spruce on the rocky slopes, a waterfall dropping towards the lake and the lake's long horizon",
     ridge: "#3f5a34",

@@ -168,6 +168,8 @@ And the **Arizona National Scenic Trail** (Arizona: the Arizona Trail Associatio
 
 And the **Great Divide Trail** (Alberta and British Columbia: the Great Divide Trail Association's 1,095 km along the Continental Divide from the US border in Waterton Lakes National Park, where it meets the Continental Divide Trail, through five national parks and a string of provincial parks, over Mount Assiniboine, the Rockwall, the Skyline Trail and past Mount Robson to Kakwa Lake, in the association's seven sections A–G, signed only in parts and partly a cross-country route, 36–68 days, July to mid-September, park permits for most nights; over the OSM section relations; 2026-11-07).
 
+And the **Greenstone Ridge Trail** (Michigan: the National Park Service's "about 41.7" miles (67 km) along Isle Royale's spine in Lake Superior, from Lookout Louise over Mount Franklin, the Mount Ojibway fire tower, Ishpeming Tower and Mount Desor to Windigo, in the park's eight trail sections, 5–8 days for intermediate backpackers between first-come campgrounds on a free permit, the island reached only by ferry or seaplane from mid-May to September; over the trail's OSM relation; 2026-11-07).
+
 | # | Trail | Region | Length (approx.) | Why |
 |---|---|---|---|---|
 | 1 | Pacific Crest Trail | USA | 4,265 km | Most-hiked long trail; public US agency data; completion lists |
