@@ -420,6 +420,13 @@ const siteLd =
     font-weight: 600;
     color: var(--text);
     text-decoration: none;
+    position: relative;
+  }
+  /* a tap target of at least 44 px tall (2026-11-07, Baymard's 7 mm), the look unchanged */
+  .brand::after {
+    content: "";
+    position: absolute;
+    inset: -5px 0;
   }
   /* the cairn: an 8 × 8 pixel logo at 24 px, three screen pixels per logo pixel */
   .brand-mark {
@@ -489,7 +496,18 @@ const siteLd =
     margin-top: 12px !important;
   }
   .legal-links a {
+    position: relative;
     color: var(--muted);
+  }
+  /* tap targets of 44 px round the 22 px links (2026-11-07, Baymard's 7 mm), the look unchanged; the
+     wrapped rows 52 px apart, so the targets keep 8 px (2 mm) between them */
+  .legal-links a::after {
+    content: "";
+    position: absolute;
+    inset: -11px -4px;
+  }
+  body:not(.full) .legal-links {
+    row-gap: 30px;
   }
   .legal-links a:hover {
     color: var(--text);

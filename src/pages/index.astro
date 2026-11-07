@@ -13,7 +13,7 @@ import { searchSummary } from "../lib/search";
 import zones from "../lib/timezones.json";
 import { worldOutline } from "../lib/world-outline";
 import { inlineScript } from "../lib/inline-script";
-import { SKY_SCRIPT } from "../lib/sky";
+import { HERO_SUN_SCRIPT, SKY_SCRIPT } from "../lib/sky";
 import { readFileSync, existsSync } from "node:fs";
 
 const entries = (await getCollection("trails")).sort((a, b) => a.data.name.localeCompare(b.data.name));
@@ -135,6 +135,7 @@ const figureLine = (t: (typeof trails)[number]) =>
 const rateOf = (t: (typeof trails)[number]) => rateData(t.terrainLevel, t.effortLevel, t.climateByMonth, t.season);
 // the logbook's stamps: each recent trail's profile (80 × 28, on its own height range), the day it was
 // added, its length; a name too long for the rim is cut short there (the full name is under the stamp)
+const countriesOf = (t: (typeof trails)[number]) => t.countries.join(" · ");
 const logEntries = recent.map((t, n) => {
   const prof = t.profile ?? [];
   const lo = prof.length ? Math.min(...prof.map((p) => p[1])) : 0;
@@ -147,6 +148,10 @@ const logEntries = recent.map((t, n) => {
     n,
     spark,
     rim: t.name.length > 22 ? `${t.name.slice(0, 21)}…` : t.name,
+    // the countries round the foot at 11.5 units: with stars where they fit (26 characters), squeezed
+    // into the arc past 30
+    place: countriesOf(t).length > 26 ? countriesOf(t) : `★ ${countriesOf(t)} ★`,
+    placeFit: countriesOf(t).length > 30 ? 220 : undefined,
     stamp: added.toLocaleDateString("en-GB", { day: "numeric", month: "short", year: "numeric", timeZone: "UTC" }).toUpperCase(),
     date: addedShort(t.slug),
     km: t.lengthKm !== null ? `${fmt(t.lengthKm)} KM` : "",
@@ -241,6 +246,8 @@ const countScript = inlineScript(Astro, `// The totals on the summit flags count
 // the hero's sky follows the visitor's clock: dawn, day, dusk or night, and the sun (or the moon) on
 // its arc across the band; before the first paint, so the sky never changes in front of the visitor
 const skyScript = inlineScript(Astro, SKY_SCRIPT);
+// the sun (or moon) on that arc, kept off the hero's words (2026-11-07, Baymard #290; src/lib/sky.ts)
+const sunScript = inlineScript(Astro, HERO_SUN_SCRIPT);
 const featuredScript = inlineScript(Astro, `// A random featured trail on each page load. Runs right after the cards, before the first
 // paint, so the first trail never flashes; without JavaScript the first one stays.
 (() => {
@@ -275,7 +282,7 @@ import Explainer from "../components/Explainer.astro";
       <h1>Find your trail. <span class="nowrap">Go prepared.</span></h1>
       <!-- issue #128 (of three previews, approach A): a trip search, when first, into the results -->
       <TripSearch trails={trails} />
-      <p class="guide">Not sure yet? <a href="/trails/guide/">Help me choose <span aria-hidden="true">→</span></a></p>
+      <p class="guide">Not sure yet? <a class="hit" href="/trails/guide/">Help me choose <span aria-hidden="true">→</span></a></p>
     </section>
     <!-- no viewBox: each star's place is a share of the sky (percentages), its radius in pixels, so the
          stars stay round dots whatever the band's shape (a stretched viewBox drew them as ellipses) -->
@@ -295,7 +302,7 @@ import Explainer from "../components/Explainer.astro";
     <!-- the totals as small flags on the ridges' summits (issue #212), drifting with their ridges -->
     <HeroStats totals={{ trails: totals.trails, countries: totals.countries, km: totals.km, everests: Number(everests), taps: totals.taps }} ridges={heroRidges} />
     <script is:inline set:html={countScript} />
-
+    <script is:inline set:html={sunScript} />
   </div>
   <!-- what huckepack is and why it exists (issue #210): for a first visit, after how much there is and
        before the featured trail; unnumbered, so the sections below keep 01–07 -->
@@ -386,7 +393,8 @@ import Explainer from "../components/Explainer.astro";
             <Explain id="popular-info" icon term="About this list" title="Popular trails">
               <dl class="pop-facts">
                 <dt>Which trails</dt><dd>Those whose season takes in this month, so each is a good one to walk now</dd>
-                <dt>Ranked by</dt><dd>Reads of the trail's Wikipedia articles, in every language, {monthYear(viewsWindow.from)} to {monthYear(viewsWindow.to)} (Wikimedia's page view data)</dd>
+                <dt>Ranked by</dt><dd>Views of the trail's Wikipedia articles, in every language, by people (not bots), {monthYear(viewsWindow.from)} to {monthYear(viewsWindow.to)}</dd>
+                <dt>Source</dt><dd><a href="https://doc.wikimedia.org/generated-data-platform/aqs/analytics-api/reference/page-views.html">Wikimedia pageviews</a> (Wikimedia Foundation's Analytics API, CC0)</dd>
                 <dt>Keep in mind</dt><dd>It measures interest in a trail, not how many hike it; a trail without an article isn't ranked</dd>
               </dl>
             </Explain>
@@ -415,7 +423,7 @@ import Explainer from "../components/Explainer.astro";
                     <span class="pd-place">{t.countries.join(" · ")}</span>
                     <span class="pd-name">{t.name}</span>
                     <span class="pd-fig">{figureLine(t)}{difficultyWord(t) && <> · <span data-rate={rateOf(t)}><span class="rate-word">{difficultyWord(t)}</span></span></>}</span>
-                    <span class="pd-views">{fmt(views!)} article reads</span>
+                    <span class="pd-views">{fmt(views!)} Wikipedia views, last 12 months</span>
                   </span>
                 </a>
                 <span class="sr-only pd-rank">Rank {rank}</span>
@@ -749,7 +757,7 @@ import Explainer from "../components/Explainer.astro";
                 <circle cx="90" cy="90" r="84" class="lb-ring" />
                 <circle cx="90" cy="90" r="56" class="lb-ring2" />
                 <text class="lb-rim"><textPath href={`#lb-top-${x.n}`} startOffset="50%">{x.rim}</textPath></text>
-                <text class="lb-place"><textPath href={`#lb-bot-${x.n}`} startOffset="50%">★ {x.t.countries.join(" · ")} ★</textPath></text>
+                <text class="lb-place"><textPath href={`#lb-bot-${x.n}`} startOffset="50%" textLength={x.placeFit} lengthAdjust={x.placeFit && "spacingAndGlyphs"}>{x.place}</textPath></text>
                 <path transform="translate(50,58)" d={x.spark} class="lb-ink" />
                 <rect x="34" y="88" width="112" height="22" class="lb-ink" />
                 <text x="90" y="104" class="lb-date">{x.stamp}</text>
@@ -761,7 +769,23 @@ import Explainer from "../components/Explainer.astro";
           </li>
         ))}
       </ol>
-      <p class="log-all"><a href="/trails/?sort=newest">All {trails.length} trails, newest first →</a></p>
+      <script>
+        // touch screens: each stamp inked as it scrolls into view (the CSS under (hover: none))
+        if (matchMedia("(hover: none)").matches && "IntersectionObserver" in window) {
+          const io = new IntersectionObserver(
+            (es) => {
+              for (const e of es)
+                if (e.isIntersecting) {
+                  e.target.classList.add("inked");
+                  io.unobserve(e.target);
+                }
+            },
+            { threshold: 0.6 },
+          );
+          for (const a of document.querySelectorAll(".lb-grid a")) io.observe(a);
+        }
+      </script>
+      <p class="log-all"><a class="hit" href="/trails/?sort=newest">All {trails.length} trails, newest first →</a></p>
     </div>
   </section>
 
@@ -787,8 +811,8 @@ import Explainer from "../components/Explainer.astro";
   <div class="cta-bar" aria-hidden="true" inert>
     <span class="cta-bar-text">Find your long-distance trail</span>
     <span class="cta-bar-actions">
-      <a class="cta-bar-secondary" href="/trails/guide/">Help me choose</a>
-      <a class="button" href="/trails/">Explore the trails <span aria-hidden="true">→</span></a>
+      <a class="cta-bar-secondary hit" href="/trails/guide/">Help me choose</a>
+      <a class="button" href="/trails/">Find a trail <span aria-hidden="true">→</span></a>
     </span>
   </div>
   <script>
@@ -927,22 +951,32 @@ import Explainer from "../components/Explainer.astro";
     background: #1d2733;
   }
   /* the sun or moon switches the theme (the easter egg, issue #155, Base.astro) */
+  /* its place: SKY_SCRIPT's arc, then HERO_SUN_SCRIPT moves it off the words (src/lib/sky.ts,
+     2026-11-07); --sun-d its size, which that script reads; the moon has the same centre */
   .hb-sun {
+    --sun-d: 110px;
+    --moon-d: 70px;
     pointer-events: auto;
     left: var(--sun-x, 70%);
     top: var(--sun-y, 20%);
-    width: 110px;
-    height: 110px;
-    margin: -55px 0 0 -55px;
+    width: var(--sun-d);
+    height: var(--sun-d);
+    margin: calc(var(--sun-d) / -2) 0 0 calc(var(--sun-d) / -2);
     border-radius: 50%;
     background: #f6c453;
   }
+  @media (max-width: 719px) {
+    .hb-sun {
+      --sun-d: 84px;
+      --moon-d: 56px;
+    }
+  }
   :global(html[data-sky="night"]) .hb-sun {
-    width: 70px;
-    height: 70px;
-    margin: -35px 0 0 -35px;
+    width: var(--moon-d);
+    height: var(--moon-d);
+    margin: calc(var(--moon-d) / -2) 0 0 calc(var(--moon-d) / -2);
     background: #ecebdb;
-    box-shadow: inset -18px -6px 0 0 #1d2733;
+    box-shadow: inset calc(var(--moon-d) * -0.26) calc(var(--moon-d) * -0.09) 0 0 #1d2733;
   }
   :global(html[data-sky="night"]) .hb-stars {
     display: block;
@@ -998,9 +1032,10 @@ import Explainer from "../components/Explainer.astro";
       margin-top: 36px;
     }
   }
-  /* the page's one small label: uppercase, spaced, small (the eyebrow, "From …") */
+  /* the page's one small label: uppercase, spaced, small (the eyebrow, "From …"); 12 px, the least
+     for small uppercase words (2026-11-07, Baymard #1085; 11.5 px before) */
   .label {
-    font-size: 0.72rem;
+    font-size: 0.75rem;
     font-weight: 600;
     letter-spacing: 0.08em;
     text-transform: uppercase;
@@ -1008,6 +1043,12 @@ import Explainer from "../components/Explainer.astro";
   .eyebrow {
     margin: 0;
     color: var(--accent-text);
+  }
+  /* the smallest phones: a little less spacing, so the eyebrow keeps to one line at 12 px */
+  @media (max-width: 379px) {
+    .eyebrow {
+      letter-spacing: 0.03em;
+    }
   }
   @media (max-width: 719px) {
     .hero {
@@ -1031,6 +1072,16 @@ import Explainer from "../components/Explainer.astro";
   .guide a {
     color: var(--accent-text);
     font-weight: 600;
+  }
+  /* small text links as tap targets of at least 44 px (2026-11-07, Baymard's 7 mm): a larger hit area
+     around the words, which look and sit as before (the guide link, the sticky bar's, the logbook's) */
+  .hit {
+    position: relative;
+  }
+  .hit::after {
+    content: "";
+    position: absolute;
+    inset: -13px -6px;
   }
 
   /* the sticky call to action (issue #81): a slim bar along the bottom, sliding in */
@@ -1167,6 +1218,7 @@ import Explainer from "../components/Explainer.astro";
   .trail-list a {
     display: grid;
     grid-template-columns: 30px minmax(0, 1fr) auto;
+    min-height: 44px; /* a tap target of at least 44 px (2026-11-07) */
     align-items: baseline;
     column-gap: 14px;
     color: var(--text);
@@ -1482,6 +1534,44 @@ import Explainer from "../components/Explainer.astro";
   :global(html[data-theme="dark"]) .lb-grid a:focus-visible {
     --c: var(--ink-dark);
   }
+  /* touch screens can't point at a stamp (2026-11-07): each is stamped in its ink as it scrolls into
+     view (the script after the logbook), pressed down from a little above; in its ink from the start
+     without JavaScript, and with reduced motion, without the press */
+  @media (hover: none) {
+    :global(html:not(.js)) .lb-grid a,
+    .lb-grid a.inked {
+      --c: var(--ink);
+    }
+    :global(html[data-theme="dark"]:not(.js)) .lb-grid a,
+    :global(html[data-theme="dark"]) .lb-grid a.inked {
+      --c: var(--ink-dark);
+    }
+    .lb-grid a.inked .lb-stamp {
+      animation: lb-press 0.5s ease-out;
+    }
+  }
+  @media (hover: none) and (prefers-reduced-motion: reduce) {
+    .lb-grid a {
+      --c: var(--ink);
+    }
+    :global(html[data-theme="dark"]) .lb-grid a {
+      --c: var(--ink-dark);
+    }
+    .lb-grid a.inked .lb-stamp {
+      animation: none;
+    }
+  }
+  @keyframes lb-press {
+    from {
+      transform: rotate(var(--tilt)) scale(1.18);
+    }
+    55% {
+      transform: rotate(var(--tilt)) scale(0.97);
+    }
+    to {
+      transform: rotate(var(--tilt));
+    }
+  }
   .lb-stamp {
     width: min(168px, 100%);
     height: auto;
@@ -1521,17 +1611,19 @@ import Explainer from "../components/Explainer.astro";
     font: 700 12.5px var(--sans);
     letter-spacing: 0.08em;
   }
+  /* the small words 11.5–12 units (2026-11-07, Baymard #1085; 9–11 before): about 11 px on a stamp
+     168 px wide */
   .lb-place {
-    font: 600 9px var(--sans);
-    letter-spacing: 0.12em;
+    font: 600 11.5px var(--sans);
+    letter-spacing: 0.06em;
   }
   .lb-km {
-    font: 700 10px var(--sans);
-    letter-spacing: 0.1em;
+    font: 700 11.5px var(--sans);
+    letter-spacing: 0.08em;
   }
   .lb-date {
     fill: var(--lb-bg);
-    font: 700 11px ui-monospace, monospace;
+    font: 700 12px ui-monospace, monospace;
     letter-spacing: 0.08em;
     text-anchor: middle;
   }
