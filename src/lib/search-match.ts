@@ -4,7 +4,7 @@
 //
 // - Words match at a word's start, in any order ("west high"), accents and case aside ("tubingen").
 // - A word of 4 letters or more also matches with one typo (Damerau–Levenshtein: a letter added,
-//   dropped, changed or two swapped, "wset" → West), ranked below every exact match.
+//   dropped, changed or two swapped, "wset" → West), only when no name matches as typed.
 // - Places (continents, countries, the regions of src/lib/place-aliases.ts with their other names)
 //   come before trails, unless only typos found them and a trail matches exactly.
 // - Trails match by name, local name and aliases; their countries and places count as extra words
@@ -131,7 +131,10 @@ const compare = (a: Hit, b: Hit) => {
 export function search(cands: Candidate[], query: string): Hit[] {
   const qs = words(query);
   if (!qs.length) return [];
-  const hits = cands.map((c) => score(c, qs)).filter((h): h is Hit => h !== null).sort(compare);
+  const found = cands.map((c) => score(c, qs)).filter((h): h is Hit => h !== null).sort(compare);
+  // typos only count when nothing matches as typed (the user's decision of 2026-11-07: "alps" is
+  // the Alps alone, not the Albsteig one letter off)
+  const hits = found.some((h) => !h.typos) ? found.filter((h) => !h.typos) : found;
   const places = hits.filter((h) => h.c.kind !== "trail");
   const trails = hits.filter((h) => h.c.kind === "trail");
   // the group whose best match is clearly better goes first: an exact match before a typo, a name

@@ -87,18 +87,18 @@ test("a region holds the trails its rule names, from the records' regions or by 
   assert.deepEqual(TRAILS.filter((x) => matches(x as any, f)).map((x) => x.slug).sort(), ["adlerweg", "alpe-adria-trail", "alta-via-1", "tour-du-mont-blanc"]);
 });
 
-test("a typo still finds the trail, ranked below exact matches", () => {
-  assert.equal(labels("wset highland")[0], "West Highland Way");
-  assert.equal(labels("scotlnd")[0], "Scotland");
-  const hits = search(ALL, "west");
-  assert.ok(hits.every((h, i) => i === 0 || !(h.typos === 0 && hits[i - 1].typos > 0 && h.c.kind === hits[i - 1].c.kind)), "within a group, exact before typos");
-  assert.ok(hits.filter((h) => h.c.kind === "trail").slice(0, 3).every((h) => h.typos === 0));
-  // a place found only by a typo, a trail exactly: the trails first
-  const alsp = search(ALL, "alsp");
-  assert.deepEqual(alsp.map((h) => [h.c.label, h.typos]), [["Alps", 1]]);
+test("a typo finds a name only when nothing matches as typed", () => {
+  assert.deepEqual(labels("wset highland"), ["West Highland Way"]);
+  assert.deepEqual(labels("scotlnd"), ["Scotland"]);
+  assert.deepEqual(search(ALL, "alsp").map((h) => [h.c.label, h.typos]), [["Alps", 1]]);
+  // "alps" matches the Alps as typed: the Albsteig and the Alpe-Adria-Trail, one letter off, stay out
+  const withAlb = [...ALL, ...trailCandidates([t("albsteig", "Albsteig (HW1)", ["Germany"], ["Bavaria"])])];
+  assert.deepEqual(search(withAlb, "alps").map((h) => h.c.label), ["Alps"]);
+  // an exact trail keeps a place that is only a typo away out
   const mixed = search([...PLACES, ...trailCandidates([t("x", "Tirl Path", ["Austria"], [])])], "tirl");
-  assert.equal(mixed[0].c.label, "Tirl Path");
-  assert.equal(mixed[1].c.label, "Tyrol");
+  assert.deepEqual(mixed.map((h) => h.c.label), ["Tirl Path"]);
+  // no typo matches beside exact ones
+  assert.ok(search(ALL, "west").every((h) => h.typos === 0));
 });
 
 test("whole words rank above starts: GR finds GR 20 and GR 70 before Great …", () => {

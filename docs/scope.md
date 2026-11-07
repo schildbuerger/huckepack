@@ -662,7 +662,8 @@
   other names, and other names of countries), each a set of trails from the
   records' regions and countries or named slugs and a filter of its own
   (`where=Alps`); "hut" leads to the huts filter; one typo allowed in words of
-  four letters or more, ranked below exact matches; "Did you mean" when
+  four letters or more, only when nothing matches as typed ("alps" is the
+  Alps alone, not the Albsteig one letter off); "Did you mean" when
   nothing matches; Enter goes to the first suggestion, without any to the
   search page keeping a place one of the words names. At most 8 suggestions
   (6 on phones), then "Show all n"; the typed part bold. The Where field also

@@ -2,7 +2,7 @@
 // Search with suggestions (issue #83; the Baymard review of 2026-11-07): type a trail's name (or its
 // local or other names), a country, a continent, a region ("Alps", "Schwarzwald") or a topic ("hut").
 // The matching is src/lib/search-match.ts, shared with the trip search's Where field: words at their
-// start in any order, one typo allowed from four letters (ranked below exact matches), regions from
+// start in any order, one typo allowed from four letters (only when nothing matches as typed), regions from
 // src/lib/place-aliases.ts. Suggestions come in groups, places (to the trail search filtered to
 // them, with how many trails), filters, then trails (to the trail page); at most 8 (6 on phones),
 // then "Show all n"; the typed part of each in bold. Nothing matched: "Did you mean" with the nearest
