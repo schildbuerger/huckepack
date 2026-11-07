@@ -188,6 +188,8 @@ And the **Lone Star Hiking Trail** (Texas: the Forest Service's National Recreat
 
 And the **Mid State Trail** (Pennsylvania: the Mid State Trail Association's volunteer-built footpath, Pennsylvania's longest, mostly on DCNR state forests and game lands, from the Maryland line near Flintstone along Tussey Mountain's rocky ridge crests and through the water gaps of the Ridge-and-Valley, past State College, the Seven Mountains and Woolrich to the Pine Creek Gorge and across Tioga County to the New York line near Lawrenceville, in the association's 20 sections measured in kilometres (528.5 km), orange blazes, one-night primitive camping in the state forests, open year-round with hunting-season closures in the north; over the trail's OSM relation; 2026-11-07).
 
+And the **Caminho da Fé** (Brazil, São Paulo and Minas Gerais: the Associação dos Amigos do Caminho da Fé's pilgrimage route to the Basilica of Aparecida, on its main branch from Águas da Prata across the Serra da Mantiqueira by Andradas, Inconfidentes, Borda da Mata, Estiva, Paraisópolis and Luminosa to Campos do Jordão, then over Gomeral/Pedrinhas and Potim to Aparecida, in the operator's ten stages plus three on its map's Potim branch (its stage list's Pindamonhangaba branch isn't in OSM), about 300 km, yellow arrows and signs every 2 km, pousadas to book, walked all year; over the route's OSM relation; 2026-11-07).
+
 | # | Trail | Region | Length (approx.) | Why |
 |---|---|---|---|---|
 | 1 | Pacific Crest Trail | USA | 4,265 km | Most-hiked long trail; public US agency data; completion lists |

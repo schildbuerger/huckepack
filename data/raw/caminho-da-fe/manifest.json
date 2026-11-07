@@ -1,0 +1,121 @@
+{
+  "climate-high.json": {
+    "retrieved": "2026-11-07T06:16:28+00:00",
+    "url": "https://openmeteo.s3.us-west-2.amazonaws.com/data/copernicus_era5_land+copernicus_era5?latitude=-22.7&longitude=-45.4&elevation=1970"
+  },
+  "climate-low.json": {
+    "retrieved": "2026-11-07T06:23:13+00:00",
+    "url": "https://openmeteo.s3.us-west-2.amazonaws.com/data/copernicus_era5_land+copernicus_era5?latitude=-22.8&longitude=-45.3&elevation=530"
+  },
+  "commons-geo.json": {
+    "key": "with categories, 299.2 km, every 2.5 km, 1500 m, within 0.5 km",
+    "retrieved": "2026-11-07T06:19:14+00:00",
+    "url": "Commons geosearch along the route"
+  },
+  "commons.json": {
+    "key": "Q9675511",
+    "retrieved": "2026-11-07T06:15:02+00:00",
+    "url": "Q9675511 P18 P373"
+  },
+  "elevation-glo30.json": {
+    "retrieved": "2026-11-07T06:22:18+00:00",
+    "url": "https://copernicus-dem-30m.s3.eu-central-1.amazonaws.com/Copernicus_DSM_COG_10_S22_00_W047_00_DEM/Copernicus_DSM_COG_10_S22_00_W047_00_DEM.tif https://copernicus-dem-30m.s3.eu-central-1.amazonaws.com/Copernicus_DSM_COG_10_S23_00_W046_00_DEM/Copernicus_DSM_COG_10_S23_00_W046_00_DEM.tif https://copernicus-dem-30m.s3.eu-central-1.amazonaws.com/Copernicus_DSM_COG_10_S23_00_W047_00_DEM/Copernicus_DSM_COG_10_S23_00_W047_00_DEM.tif"
+  },
+  "landcover.json": {
+    "retrieved": "2026-11-07T06:22:19+00:00",
+    "url": "https://esa-worldcover.s3.eu-central-1.amazonaws.com/v200/2021/map/ESA_WorldCover_10m_2021_v200_\u2026_Map.tif"
+  },
+  "osm-relation.json": {
+    "retrieved": "2026-11-05T21:23:02Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-1-main.json": {
+    "key": "87e8708e81c2",
+    "retrieved": "2026-11-05T21:23:02Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-10-main.json": {
+    "key": "b06af93780c3",
+    "retrieved": "2026-11-05T21:23:02Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-11-main.json": {
+    "key": "0630e0202df4",
+    "retrieved": "2026-11-05T21:23:02Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-12-main.json": {
+    "key": "c30b56bf0f50",
+    "retrieved": "2026-11-05T21:23:02Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-13-main.json": {
+    "key": "b18c976720b3",
+    "retrieved": "2026-11-05T21:23:02Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-2-main.json": {
+    "key": "2156613b5ad4",
+    "retrieved": "2026-11-05T21:23:02Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-3-main.json": {
+    "key": "e0e028f69cd0",
+    "retrieved": "2026-11-05T21:23:02Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-4-main.json": {
+    "key": "322a4cd8ffb5",
+    "retrieved": "2026-11-05T21:23:02Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-5-main.json": {
+    "key": "09fffce4307c",
+    "retrieved": "2026-11-05T21:23:02Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-6-main.json": {
+    "key": "7e7aba87b1f9",
+    "retrieved": "2026-11-05T21:23:02Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-7-main.json": {
+    "key": "88c1312cc6a3",
+    "retrieved": "2026-11-05T21:23:02Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-8-main.json": {
+    "key": "0b99dae42192",
+    "retrieved": "2026-11-05T21:23:02Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-9-main.json": {
+    "key": "730123186aa6",
+    "retrieved": "2026-11-05T21:23:02Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-water.json": {
+    "retrieved": "2026-11-05T21:23:02Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-way-tags.json": {
+    "retrieved": "2026-11-05T21:23:02Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osrm-access-esta-o-rodovi-ria-de-guas-da-prata.json": {
+    "retrieved": "2026-11-07T06:16:28+00:00",
+    "url": "https://router.project-osrm.org/route/v1/driving/-46.71563,-21.9356;-46.71523,-21.93754?overview=false"
+  },
+  "osrm-access-s-o-paulo-guarulhos-international-airport-gru.json": {
+    "retrieved": "2026-11-07T06:16:29+00:00",
+    "url": "https://router.project-osrm.org/route/v1/driving/-46.46577,-23.43784;-46.71523,-21.93754?overview=false"
+  },
+  "osrm-access-viracopos-international-airport-campinas-vcp.json": {
+    "retrieved": "2026-11-07T06:16:28+00:00",
+    "url": "https://router.project-osrm.org/route/v1/driving/-47.13765,-23.00608;-46.71523,-21.93754?overview=false"
+  },
+  "wikimedia.json": {
+    "retrieved": "2026-11-07T06:16:29+00:00",
+    "url": "Q9675511 2025-11..2026-10"
+  }
+}

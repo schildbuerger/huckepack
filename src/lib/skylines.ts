@@ -2733,6 +2733,50 @@ export const SKYLINES: Record<string, Skyline> = {
       { d: water(1370, 1414, 306), c: "#5f8ea6" },
     ],
   },
+  "caminho-da-fe": {
+    view: "The Serra da Mantiqueira: green ridges one behind the other, coffee rows and pasture on the slopes, araucarias on the heights above Campos do Jordão, and the dome and tower of the Basilica of Aparecida in the Paraíba valley",
+    ridge: "#5f7f44",
+    ground: "#a8b870",
+    shapes: [
+      // the Mantiqueira's far ridges, blue with distance, highest in the middle towards Campos do Jordão
+      { d: range([[0, G], [80, 248], [200, 226], [320, 214], [430, 222], [560, 200], [680, 186], [780, 176], [860, 184], [960, 204], [1080, 226], [1180, 250], [1280, G]]), c: "#9aacaa" },
+      // nearer green ridges, forested
+      { d: hills([[0, G], [100, 262], [240, 246], [380, 254], [520, 238], [660, 230], [800, 220], [920, 232], [1040, 252], [1160, 272], [1260, G]]), c: "#6f8f62" },
+      // pasture hills in the foreground, and the low Paraíba valley on the right
+      { d: hills([[0, G], [140, 280], [320, 270], [500, 282], [640, 276], [760, 286], [880, G]]), c: "#9cb860" },
+      { d: hills([[1100, G], [1240, 292], [1400, 288], [1600, 292], [1600, G]]), c: "#b4c27e" },
+    ],
+    front: [
+      // coffee in rows on the slope
+      { d: orchard(160, 470, [292, 302], 16, 4), c: "#3f5a30" },
+      // the Basilica of Aparecida in the valley: the long body with its drum and dome, and the tall
+      // square tower with its pointed roof beside it
+      { d: "M1466,306V280H1480V268H1484V256H1512V268H1516V280H1530V306Z", c: "#c9a77c" },
+      { d: dome(1498, 256, 15), c: "#6f8a86" },
+      { d: "M1497,241V231H1499V241Z M1494,235H1502V237H1494Z", c: "#6f8a86" },
+      { d: "M1545,306V218H1559V306Z", c: "#c9a77c" },
+      { d: "M1543,218L1552,196L1561,218Z", c: "#6f8a86" },
+      // araucarias on the heights: straight trunks with flat, upturned crowns in tiers
+      {
+        d: [[700, 300, 92], [760, 304, 70], [990, 300, 84], [1050, 302, 58]]
+          .map(([x, y, h]) => `M${x - 2},${y}V${y - h}H${x + 2}V${y}Z`)
+          .join(" "),
+        c: "#5a4636",
+      },
+      {
+        d: [[700, 300, 92], [760, 304, 70], [990, 300, 84], [1050, 302, 58]]
+          .map(([x, y, h]) => {
+            const t = y - h;
+            const r = h * 0.34;
+            const dish = (cy: number, w: number) =>
+              `M${x - w},${cy}C${x - w * 0.6},${cy - 9} ${x + w * 0.6},${cy - 9} ${x + w},${cy}C${x + w * 0.4},${cy - 3} ${x - w * 0.4},${cy - 3} ${x - w},${cy}Z`;
+            return [dish(t + 4, r), dish(t + 14, r * 0.8)].join(" ");
+          })
+          .join(" "),
+        c: "#2f4a2c",
+      },
+    ],
+  },
   "superior-hiking-trail": {
     view: "Minnesota's North Shore: the Sawtooth ridges above Lake Superior, birch and spruce on the rocky slopes, a waterfall dropping towards the lake and the lake's long horizon",
     ridge: "#3f5a34",
