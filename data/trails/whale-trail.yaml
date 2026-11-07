@@ -153,9 +153,9 @@ notes:
   - >-
     Data check (2026-11-02): no independent source repeats the stages (SA Hikes copies CapeNature's
     figures word for word). SA Hikes' GPS track: 51.06 km against the stated 55.7 km (8 %), 1,169 m
-    up and 1,327 m down against the terrain model's 1,650 m up (41 %, in `dataCheck`: the model reads
-    the dune and fynbos surface and the track's own smoothing differs; the page marks the estimate
-    ≈). Highest point: 603 m on the terrain model against Potberg's 611 m (CapeNature). Days: 5 both.
+    up and 1,327 m down against the terrain model's 1,340 m up (GEDTM30, 2026-11-07; 15 %, in
+    `dataCheck`: the track's own smoothing differs; the page marks the estimate ≈). Highest point:
+    601 m on the terrain model against Potberg's 611 m (CapeNature). Days: 5 both.
   - >-
     Wild camping: no source found (2026-11-03); hikers stay in CapeNature's huts, and fires in the
     veld are prohibited.
@@ -167,7 +167,7 @@ dataCheck:
   date: 2026-11-02
   against: [sahikes]
   deviations:
-    - { figure: "Ascent", ours: "≈ 1,650 m (terrain model)", theirs: "1,169 m (GPS track)", source: sahikes }
+    - { figure: "Ascent", ours: "≈ 1,340 m (terrain model, GEDTM30, 2026-11-07)", theirs: "1,169 m (GPS track)", source: sahikes }
     - { figure: "Stage 3 length", ours: "8.5 km", theirs: "7.1 km (map line, along the beach)", source: osm }
 sources:
   - id: huckepack-season
@@ -201,11 +201,6 @@ sources:
     url: https://doi.org/10.5281/zenodo.18887460
     licence: "CC BY 4.0; Ho, Y.-F., Grohmann, C. H., Lindsay, J., Reuter, H. I., Parente, L., Witjes, M., Hengl, T. (2025): GEDTM30, OpenGeoHub"
     retrieved: 2026-11-07
-  - id: copdem
-    title: "Copernicus DEM GLO-30 (30 m surface model): base data of the GEDTM30 terrain model"
-    url: https://registry.opendata.aws/copernicus-dem/
-    licence: "Copernicus WorldDEM-30 licence, free; produced using Copernicus WorldDEM-30 © DLR e.V. 2010-2014 and © Airbus Defence and Space GmbH 2014-2018 provided under COPERNICUS by the European Union and ESA; all rights reserved"
-    retrieved: 2026-11-02
   - id: worldcover
     title: "ESA WorldCover 2021: 10 m land cover (via AWS Open Data)"
     url: https://esa-worldcover.org/

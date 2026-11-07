@@ -151,8 +151,9 @@ notes:
     Map line: the National Trail's GPX (2013, a route drawn from Bowness) guides the OSM matcher,
     cut at the section ends; 137.5 km against the sections' 136 km. Sections 4 and 6 are 94 %
     matched: near Newtown, west of Walton (stage 4), and along the Eden west of Carlisle near
-    Grinsdale (stage 6), the GPX and OSM's paths part for up to 320 m over about a kilometre; the map
-    follows OSM. Highest point 338 m (terrain model) against Windshield Crags' 345 m.
+    Grinsdale (stage 6), the GPX and OSM's paths part for up to 320 m over about a kilometre; the
+    map follows OSM. Highest point 337 m (terrain model, GEDTM30, 2026-11-07) against Windshield
+    Crags' 345 m.
   - >-
     Data check (2026-11-03): gov.uk's and National Trails' figures against English Wikipedia: length
     84 miles (135 km) against 84 miles, a National Trail since 2003, highest point Whinshields Crags
@@ -215,11 +216,6 @@ sources:
     url: https://doi.org/10.5281/zenodo.18887460
     licence: "CC BY 4.0; Ho, Y.-F., Grohmann, C. H., Lindsay, J., Reuter, H. I., Parente, L., Witjes, M., Hengl, T. (2025): GEDTM30, OpenGeoHub"
     retrieved: 2026-11-07
-  - id: copdem
-    title: "Copernicus DEM GLO-30 (30 m surface model): base data of the GEDTM30 terrain model"
-    url: https://registry.opendata.aws/copernicus-dem/
-    licence: "Copernicus WorldDEM-30 licence, free; produced using Copernicus WorldDEM-30 © DLR e.V. 2010-2014 and © Airbus Defence and Space GmbH 2014-2018 provided under COPERNICUS by the European Union and ESA; all rights reserved"
-    retrieved: 2026-11-03
   - id: worldcover
     title: "ESA WorldCover 2021: 10 m land cover (via AWS Open Data)"
     url: https://esa-worldcover.org/

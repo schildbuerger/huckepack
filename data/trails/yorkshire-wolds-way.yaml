@@ -143,8 +143,8 @@ notes:
     Goodmanham), cut at each section's end; every section matches at least 97 %. The map line is
     123.6 km against the sections' 130.5 km and the stated 127 km; the GPX itself is 124.3 km.
     Section 6, Sherburn to Filey Brigg, is 24.6 km on the map line and on the GPX against the stated
-    "17 miles (28 Km)"; the record keeps the stated figure. Highest point on the map line 218 m (km
-    72, beyond Thixendale; stated 215 m).
+    "17 miles (28 Km)"; the record keeps the stated figure. Highest point on the map line 217 m
+    (terrain model, GEDTM30, 2026-11-07; km 72, beyond Thixendale; stated 215 m).
   - >-
     Water and beds: (2026-11-05, within 500 m) OSM has only 3 drinking water points near the route
     (longest stretch without one 52.3 km, km 70–122) and 5 places to sleep (none for 68.8 km, km
@@ -212,11 +212,6 @@ sources:
     url: https://doi.org/10.5281/zenodo.18887460
     licence: "CC BY 4.0; Ho, Y.-F., Grohmann, C. H., Lindsay, J., Reuter, H. I., Parente, L., Witjes, M., Hengl, T. (2025): GEDTM30, OpenGeoHub"
     retrieved: 2026-11-07
-  - id: copdem
-    title: "Copernicus DEM GLO-30 (30 m surface model): base data of the GEDTM30 terrain model"
-    url: https://registry.opendata.aws/copernicus-dem/
-    licence: "Copernicus WorldDEM-30 licence, free; produced using Copernicus WorldDEM-30 © DLR e.V. 2010-2014 and © Airbus Defence and Space GmbH 2014-2018 provided under COPERNICUS by the European Union and ESA; all rights reserved"
-    retrieved: 2026-11-05
   - id: worldcover
     title: "ESA WorldCover 2021: 10 m land cover (via AWS Open Data)"
     url: https://esa-worldcover.org/

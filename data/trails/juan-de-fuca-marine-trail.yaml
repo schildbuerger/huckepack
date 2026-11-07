@@ -156,7 +156,7 @@ notes:
     Season: open all year (BC Parks); storms damage the trail every winter, and it was closed in
     2024–2025 (the government's release of 17 April 2025): check the park's advisories.
   - >-
-    Tree line: none; the route stays below 200 m (the terrain model's highest point, 198 m, see the
+    Tree line: none; the route stays below 200 m (the terrain model's highest point, 176 m, see the
     Map line note).
   - >-
     Map line (2026-11-06): the Vancouver Island Geofabrik extract (island-admreg); the trail's OSM
@@ -167,18 +167,18 @@ notes:
     is mapped in detail (a node every 14 m on average, 41 km in all), and the shortfall is even
     along the route, so it is the method: BC Parks' kilometre markers are field measurements of a
     trail that winds up and down every gully, which a map line cuts short. The record keeps BC
-    Parks' figures. Checked against the brochure's own map (2026-11-07): OSM's line follows the map's
-    trail, inland behind Sombrio Point and down to Sombrio Beach, with no shortcut. The brochure's
-    distance table runs long against its own map: its beach cut-offs at Sombrio (km 28.0, 29.6 and
-    30.2, 2.2 km apart) lie about 0.9 km apart at the map's scale, and the map line has 1.2 km there;
-    from Sombrio Beach (West) to Little Kuitsche Creek the table's 2.8 km and the map line's 3.1 km
-    agree. The table says its distances are approximate, from field measurements, rounded to the
-    kilometre. The terrain model (a surface model, treetops in this forest) puts the highest
-    point at 198 m above Chin Beach and estimates about 1,960 m of climbing; BC Parks states none.
-    Water: OSM maps no drinking water and none of the many creeks as springs, so the Water chart
-    shows none; the creeks the brochure's map shows are the water, to be treated. No shop along the
-    trail (Port Renfrew lies a few kilometres beyond Botanical Beach): carry all food. Places to
-    sleep: 13 campsites in OSM, the longest stretch without one 8.0 km.
+    Parks' figures. Checked against the brochure's own map (2026-11-07): OSM's line follows the
+    map's trail, inland behind Sombrio Point and down to Sombrio Beach, with no shortcut. The
+    brochure's distance table runs long against its own map: its beach cut-offs at Sombrio (km 28.0,
+    29.6 and 30.2, 2.2 km apart) lie about 0.9 km apart at the map's scale, and the map line has 1.2
+    km there; from Sombrio Beach (West) to Little Kuitsche Creek the table's 2.8 km and the map
+    line's 3.1 km agree. The table says its distances are approximate, from field measurements,
+    rounded to the kilometre. The terrain model (GEDTM30, 2026-11-07) puts the highest point at 176
+    m above Chin Beach and estimates about 1,320 m of climbing; BC Parks states none. Water: OSM
+    maps no drinking water and none of the many creeks as springs, so the Water chart shows none;
+    the creeks the brochure's map shows are the water, to be treated. No shop along the trail (Port
+    Renfrew lies a few kilometres beyond Botanical Beach): carry all food. Places to sleep: 13
+    campsites in OSM, the longest stretch without one 8.0 km.
   - >-
     Data check (2026-11-06, working rule 2): BC Parks' park page and trail map against the
     Encyclopedia of British Columbia (KnowBC) and the BC government's release of 10 May 2023: length
@@ -233,11 +233,6 @@ sources:
     url: https://doi.org/10.5281/zenodo.18887460
     licence: "CC BY 4.0; Ho, Y.-F., Grohmann, C. H., Lindsay, J., Reuter, H. I., Parente, L., Witjes, M., Hengl, T. (2025): GEDTM30, OpenGeoHub"
     retrieved: 2026-11-07
-  - id: copdem
-    title: "Copernicus DEM GLO-30 (30 m surface model): base data of the GEDTM30 terrain model"
-    url: https://registry.opendata.aws/copernicus-dem/
-    licence: "Copernicus WorldDEM-30 licence, free; produced using Copernicus WorldDEM-30 © DLR e.V. 2010-2014 and © Airbus Defence and Space GmbH 2014-2018 provided under COPERNICUS by the European Union and ESA; all rights reserved"
-    retrieved: 2026-11-06
   - id: worldcover
     title: "ESA WorldCover 2021: 10 m land cover (via AWS Open Data)"
     url: https://esa-worldcover.org/

@@ -130,11 +130,12 @@ notes:
     22.6 km.
   - >-
     Ascent: the stages' stated climbs sum to 2,538 m up and 2,568 m down; the terrain model gives
-    about 4,420 m along the map line, 74 % more. Its 30 m grid counts every rise of the clifftops and
-    dunes and the treetops in the 12 % of forest; the page shows the stated figures.
+    about 2,600 m along the map line (GEDTM30, 2026-11-07, +2 %; the former surface model gave 4,420
+    m, 74 % more, counting every rise of the clifftops and dunes and the treetops in the 12 % of
+    forest); the page shows the stated figures.
   - >-
-    Tree line: the route stays near sea level (highest point 158 m in the terrain model), far below
-    any tree line.
+    Tree line: the route stays near sea level (highest point 155 m in the terrain model, GEDTM30,
+    2026-11-07), far below any tree line.
   - >-
     Wildlife: no official source on the animals a walker meets on the trail was found (2026-11-03),
     so none is listed.
@@ -152,8 +153,7 @@ dataCheck:
   date: 2026-11-03
   against: [deco-proteste]
   pageAgainst: [rota-vicentina-stages]
-  deviations:
-    - { figure: ascent, ours: "about 4,420 m (terrain model)", theirs: "2,538 m (the stages' sum)", source: rota-vicentina-stages }
+  deviations: []
 sources:
   - id: rota-vicentina
     title: "Rota Vicentina: Fishermen's Trail (13 stages, 226.5 km, September to June, no wild camping)"
@@ -186,11 +186,6 @@ sources:
     url: https://doi.org/10.5281/zenodo.18887460
     licence: "CC BY 4.0; Ho, Y.-F., Grohmann, C. H., Lindsay, J., Reuter, H. I., Parente, L., Witjes, M., Hengl, T. (2025): GEDTM30, OpenGeoHub"
     retrieved: 2026-11-07
-  - id: copdem
-    title: "Copernicus DEM GLO-30 (30 m surface model): base data of the GEDTM30 terrain model"
-    url: https://registry.opendata.aws/copernicus-dem/
-    licence: "Copernicus WorldDEM-30 licence, free; produced using Copernicus WorldDEM-30 © DLR e.V. 2010-2014 and © Airbus Defence and Space GmbH 2014-2018 provided under COPERNICUS by the European Union and ESA; all rights reserved"
-    retrieved: 2026-11-03
   - id: worldcover
     title: "ESA WorldCover 2021: 10 m land cover (via AWS Open Data)"
     url: https://esa-worldcover.org/

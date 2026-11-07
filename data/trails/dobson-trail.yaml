@@ -158,10 +158,10 @@ notes:
     Map line (2026-11-06): the New Brunswick Geofabrik extract; the Dobson Trail relation (5426571,
     26 ways, its two "approach" ways left out) chains into one line from the Pine Glen Road to the
     Old Shepody Road, 100 % matched, 57.8 km at full resolution (57.2 km on the simplified map line)
-    against the stated "about 58 km" (−1 %). The terrain model gives about 1,180 m of climbing,
-    between 40 m at the Riverview trailhead and 409 m at km 40.6 (none stated). 98 % forest, 90 %
-    natural ground. Resupply: one shop near the start in Riverview, none after it (56.7 km); carry all
-    food.
+    against the stated "about 58 km" (−1 %). The terrain model gives about 780 m of climbing
+    (GEDTM30, 2026-11-07), between 33 m at the Riverview trailhead and 405 m at km 42.7 (none
+    stated). 98 % forest, 90 % natural ground. Resupply: one shop near the start in Riverview, none
+    after it (56.7 km); carry all food.
   - >-
     Water: OSM maps no drinking water or springs within 500 m of the route, so the check flags a
     dry stretch (no drinking water over 57.2 km; 34.3 km before the first campsite counted as a
@@ -244,11 +244,6 @@ sources:
     url: https://doi.org/10.5281/zenodo.18887460
     licence: "CC BY 4.0; Ho, Y.-F., Grohmann, C. H., Lindsay, J., Reuter, H. I., Parente, L., Witjes, M., Hengl, T. (2025): GEDTM30, OpenGeoHub"
     retrieved: 2026-11-07
-  - id: copdem
-    title: "Copernicus DEM GLO-30 (30 m surface model): base data of the GEDTM30 terrain model"
-    url: https://registry.opendata.aws/copernicus-dem/
-    licence: "Copernicus WorldDEM-30 licence, free; produced using Copernicus WorldDEM-30 © DLR e.V. 2010-2014 and © Airbus Defence and Space GmbH 2014-2018 provided under COPERNICUS by the European Union and ESA; all rights reserved"
-    retrieved: 2026-11-06
   - id: worldcover
     title: "ESA WorldCover 2021: 10 m land cover (via AWS Open Data)"
     url: https://esa-worldcover.org/

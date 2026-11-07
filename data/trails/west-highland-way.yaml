@@ -170,11 +170,11 @@ notes:
     group's members, the sections Milngavie – Drymen 19 km, Drymen – Rowardennan 13 + 11 km,
     Inverarnan – Tyndrum 19.5 km, Tyndrum – Kingshouse about 30 km, Kingshouse – Kinlochleven 14 km,
     Kinlochleven – Fort William 24 km) agrees within 10 %. More than 10 % apart: Rowardennan –
-    Inverarnan (22.5 km against 19.5 km) and the days (six to seven officially, "seven to eight"
-    on Wikipedia), and the ascent: Wikipedia gives 3,155 m, the official site none, and the page's
-    terrain-model estimate is ≈ 3,930 m up and ≈ 3,990 m down (the 30 m surface model adds the
-    treetops and small noise to every 100 m step, so it likely runs high). Highest point 549 m
-    from the terrain model against Wikipedia's 550 m (Devil's Staircase).
+    Inverarnan (22.5 km against 19.5 km) and the days (six to seven officially, "seven to eight" on
+    Wikipedia). Ascent: Wikipedia gives 3,155 m, the official site none; the page's terrain-model
+    estimate is ≈ 2,950 m up and ≈ 3,000 m down (GEDTM30, 2026-11-07; −6 %, within 10 %; the former
+    surface model, which read the treetops, gave ≈ 3,930 m, +25 %). Highest point 550 m from the
+    terrain model against Wikipedia's 550 m (Devil's Staircase).
   - >-
     Tree line (2026-10-30): Forestry Commission Scotland gives 250–650 m; second source: Wikipedia's
     tree line table, Scotland about 500 m (inside the range). The Way stays below 650 m, so the
@@ -186,7 +186,6 @@ dataCheck:
   deviations:
     - { figure: "Stage 3 length", ours: "22.5 km", theirs: "19.5 km", source: wikipedia }
     - { figure: "Days", ours: "6–7 days", theirs: "7–8 days", source: wikipedia }
-    - { figure: "Ascent", ours: "≈ 3,930 m (our estimate)", theirs: "3,155 m", source: wikipedia }
 sources:
   - id: hse-cattle-scotland
     title: "Health and Safety Executive: Cattle and public access in Scotland (information sheet AIS17S, with the Scottish Outdoor Access Code's advice)"
@@ -239,11 +238,6 @@ sources:
     url: https://doi.org/10.5281/zenodo.18887460
     licence: "CC BY 4.0; Ho, Y.-F., Grohmann, C. H., Lindsay, J., Reuter, H. I., Parente, L., Witjes, M., Hengl, T. (2025): GEDTM30, OpenGeoHub"
     retrieved: 2026-11-07
-  - id: copdem
-    title: "Copernicus DEM GLO-30 (30 m surface model): base data of the GEDTM30 terrain model"
-    url: https://registry.opendata.aws/copernicus-dem/
-    licence: "Copernicus WorldDEM-30 licence, free; produced using Copernicus WorldDEM-30 © DLR e.V. 2010-2014 and © Airbus Defence and Space GmbH 2014-2018 provided under COPERNICUS by the European Union and ESA; all rights reserved"
-    retrieved: 2026-10-29
   - id: worldcover
     title: "ESA WorldCover 2021: 10 m land cover (via AWS Open Data)"
     url: https://esa-worldcover.org/

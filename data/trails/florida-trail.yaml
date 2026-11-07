@@ -285,14 +285,14 @@ notes:
     Map line (2026-11-07): the Florida Geofabrik extract (2026-11-05); OSM ways matched to guide
     lines over the four OSM region relations, every stage 100 % matched without bridges over 100 m.
     The main route measures 1,767.9 km on the map line against the association's 1,287.9 miles
-    (2,072.7 km, −15 %; dataCheck.deviations) and its section miles summed with the measured
-    stages (about 1,060 miles, 1,705 km, +4 %). Stages more than 10 % off their stated miles: 1 Big
-    Cypress South +20 % (47.7 against 39.6 km), 8 Kissimmee Prairie +19 %, 10 Three Lakes −19 %, 12
-    Tosohatchee +13 %, 30 Eglin East −22 %, 33 Seashore +16 %; the association's section miles
-    seem older than the Forest Service's 2026 centerline (reroutes), and the record keeps them.
-    Highest point 87 m at km 1,598 on Eglin Air Force Base, lowest −3 m at km 1,231 by the St.
-    Marks salt marshes (terrain model, a surface model in the forest; nothing stated). The terrain
-    model gives about 5,350 m of climbing, mostly tree canopy noise; nothing is stated.
+    (2,072.7 km, −15 %; dataCheck.deviations) and its section miles summed with the measured stages
+    (about 1,060 miles, 1,705 km, +4 %). Stages more than 10 % off their stated miles: 1 Big Cypress
+    South +20 % (47.7 against 39.6 km), 8 Kissimmee Prairie +19 %, 10 Three Lakes −19 %, 12
+    Tosohatchee +13 %, 30 Eglin East −22 %, 33 Seashore +16 %; the association's section miles seem
+    older than the Forest Service's 2026 centerline (reroutes), and the record keeps them. Highest
+    point 84 m at km 1,593 on Eglin Air Force Base, lowest 0 m at km 1,231 by the St. Marks salt
+    marshes (terrain model, GEDTM30, 2026-11-07; nothing stated). The terrain model gives about
+    1,520 m of climbing; nothing is stated.
   - >-
     Water: OSM maps 19 drinking water points and 52 springs within 500 m; the longest stretch
     without clean water (drinking water or a refill at a campsite) is 190 km (km 750–940, from the
@@ -408,11 +408,6 @@ sources:
     title: "GEDTM30 v1.2: global ensemble digital terrain model, 30 m, bare earth (OpenGeoHub; Ho et al. 2025, PeerJ 13:e19673)"
     url: https://doi.org/10.5281/zenodo.18887460
     licence: "CC BY 4.0; Ho, Y.-F., Grohmann, C. H., Lindsay, J., Reuter, H. I., Parente, L., Witjes, M., Hengl, T. (2025): GEDTM30, OpenGeoHub"
-    retrieved: 2026-11-07
-  - id: copdem
-    title: "Copernicus DEM GLO-30 (30 m surface model): base data of the GEDTM30 terrain model"
-    url: https://registry.opendata.aws/copernicus-dem/
-    licence: "Copernicus WorldDEM-30 licence, free; produced using Copernicus WorldDEM-30 © DLR e.V. 2010-2014 and © Airbus Defence and Space GmbH 2014-2018 provided under COPERNICUS by the European Union and ESA; all rights reserved"
     retrieved: 2026-11-07
   - id: worldcover
     title: "ESA WorldCover 2021: 10 m land cover (via AWS Open Data)"

@@ -201,10 +201,10 @@ notes:
     between the old Boston and Maine railbed (the Presidential Range Rail Trail) and the Shore Path
     Trail at Cherry Pond, where OSM has no way. It measures 253.1 km on OSM's full geometry and
     250.1 km on the simplified map line, against the FAQ's nearly 165 miles (265.5 km, −5 to −6 %).
-    The terrain model gives a highest point of 1,362 m at km 23.2 (on the Crawford Path below Mount
-    Eisenhower; the relation takes the Mount Eisenhower Loop, not the 4,760-foot summit), a lowest
-    of 297 m at km 106.8, and about 10,090 m of climbing; the association states no ascent or
-    heights.
+    The terrain model (GEDTM30, 2026-11-07) gives a highest point of 1,360 m at km 23.2 (on the
+    Crawford Path below Mount Eisenhower; the relation takes the Mount Eisenhower Loop, not the
+    4,760-foot summit), a lowest of 298 m at km 106.8, and about 8,680 m of climbing; the
+    association states no ascent or heights.
   - >-
     Water, food and beds (the check's flags): OSM maps only six drinking water points near the trail
     (172.5 km without one from the start, 54.4 km at most between them after), though streams,
@@ -216,7 +216,7 @@ notes:
     lacks most of the association's shelters (Devil's Rest, Old Hermit, Erving's Hideaway, Panorama)
     as places to sleep.
   - >-
-    Tree line: not drawn. The route's highest point on the terrain model is 1,362 m, below the
+    Tree line: not drawn. The route's highest point on the terrain model is 1,360 m, below the
     1,500 m where these pages need one. The association's other route, by the AMC's Lakes of the
     Clouds Hut, is not on the map line.
   - >-
@@ -299,11 +299,6 @@ sources:
     title: "GEDTM30 v1.2: global ensemble digital terrain model, 30 m, bare earth (OpenGeoHub; Ho et al. 2025, PeerJ 13:e19673)"
     url: https://doi.org/10.5281/zenodo.18887460
     licence: "CC BY 4.0; Ho, Y.-F., Grohmann, C. H., Lindsay, J., Reuter, H. I., Parente, L., Witjes, M., Hengl, T. (2025): GEDTM30, OpenGeoHub"
-    retrieved: 2026-11-07
-  - id: copdem
-    title: "Copernicus DEM GLO-30 (30 m surface model): base data of the GEDTM30 terrain model"
-    url: https://registry.opendata.aws/copernicus-dem/
-    licence: "Copernicus WorldDEM-30 licence, free; produced using Copernicus WorldDEM-30 © DLR e.V. 2010-2014 and © Airbus Defence and Space GmbH 2014-2018 provided under COPERNICUS by the European Union and ESA; all rights reserved"
     retrieved: 2026-11-07
   - id: worldcover
     title: "ESA WorldCover 2021: 10 m land cover (via AWS Open Data)"

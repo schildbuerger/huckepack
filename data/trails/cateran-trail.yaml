@@ -137,26 +137,28 @@ notes:
     over the OSM relation to its end, every stage 100 % matched. The loop measures 104.9 km on the
     map line against the stated 103 km (stages 103.6 km). Stage 5, Alyth to Blairgowrie by Bridge of
     Cally, measures 26.5 km against the Trust's 24.1 km (10 % more), along the relation's ways over
-    the Hill of Alyth and Bamff; the record keeps the Trust's figure. Highest point 647 m (terrain
-    model, at km 35 between Strathardle and Glenshee), lowest 63 m in Blairgowrie. Water: OSM maps no
-    drinking water within 500 m of the route; the villages (Kirkmichael, Spittal of Glenshee,
-    Kirkton of Glenisla, Alyth, Bridge of Cally) are the places to refill. Beds: the longest stretch
-    without one in OSM, 31.8 km, runs from Spittal of Glenshee over to Kirkton of Glenisla.
-    Resupply: the longest stretch without a shop is 53.9 km, from Kirkmichael to Alyth.
+    the Hill of Alyth and Bamff; the record keeps the Trust's figure. Highest point 648 m (terrain
+    model, GEDTM30, 2026-11-07; at km 35 between Strathardle and Glenshee), lowest 60 m in
+    Blairgowrie. Water: OSM maps no drinking water within 500 m of the route; the villages
+    (Kirkmichael, Spittal of Glenshee, Kirkton of Glenisla, Alyth, Bridge of Cally) are the places
+    to refill. Beds: the longest stretch without one in OSM, 31.8 km, runs from Spittal of Glenshee
+    over to Kirkton of Glenisla. Resupply: the longest stretch without a shop is 53.9 km, from
+    Kirkmichael to Alyth.
   - >-
     Data check (2026-11-05, working rule 2): against English Wikipedia (Cateran Trail). Length 103
     km agrees; the five stages from Blairgowrie by Kirkmichael, Spittal of Glenshee, Kirkton of
-    Glenisla and Alyth agree, and stage 1's 24.9 km agrees; "4 or 5 days" fits the Trust's five;
-    the Trust as the one who established, waymarked and maintains it agrees; the highest point 653 m
-    and lowest 59 m agree with our terrain model's 647 m and 63 m; Wikipedia's ascent of 2,470 m
-    against the terrain model's estimate of about 2,700 m (9 % apart; not a record figure); its
-    season "All year" has no counterpart from the Trust. No figure in the record differs by more
-    than 10 %.
+    Glenisla and Alyth agree, and stage 1's 24.9 km agrees; "4 or 5 days" fits the Trust's five; the
+    Trust as the one who established, waymarked and maintains it agrees; the highest point 653 m and
+    lowest 59 m agree with our terrain model's 648 m and 60 m (GEDTM30, 2026-11-07); Wikipedia's
+    ascent of 2,470 m against the terrain model's estimate of about 2,140 m (13 % apart; not a
+    record figure, in dataCheck); its season "All year" has no counterpart from the Trust. No figure
+    in the record differs by more than 10 %.
 dataCheck:
   # working rule 2: English Wikipedia
   date: 2026-11-05
   against: [wikipedia-en]
-  deviations: []
+  deviations:
+    - { figure: ascent, ours: "≈2,140 m (terrain model, GEDTM30, 2026-11-07; none stated)", theirs: "2,470 m", source: wikipedia-en }
 sources:
   - id: pkct
     title: "Perth and Kinross Countryside Trust: Cateran Trail (length, days, the five stages with their distances, waymarking, livestock warning)"
@@ -189,11 +191,6 @@ sources:
     url: https://doi.org/10.5281/zenodo.18887460
     licence: "CC BY 4.0; Ho, Y.-F., Grohmann, C. H., Lindsay, J., Reuter, H. I., Parente, L., Witjes, M., Hengl, T. (2025): GEDTM30, OpenGeoHub"
     retrieved: 2026-11-07
-  - id: copdem
-    title: "Copernicus DEM GLO-30 (30 m surface model): base data of the GEDTM30 terrain model"
-    url: https://registry.opendata.aws/copernicus-dem/
-    licence: "Copernicus WorldDEM-30 licence, free; produced using Copernicus WorldDEM-30 © DLR e.V. 2010-2014 and © Airbus Defence and Space GmbH 2014-2018 provided under COPERNICUS by the European Union and ESA; all rights reserved"
-    retrieved: 2026-11-05
   - id: worldcover
     title: "ESA WorldCover 2021: 10 m land cover (via AWS Open Data)"
     url: https://esa-worldcover.org/

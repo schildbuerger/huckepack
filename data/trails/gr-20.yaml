@@ -149,12 +149,12 @@ notes:
     Data check (2026-11-02): the platform's stage times against French Wikipedia's: 14 of 16 the
     same; stage 4 8 h against 6 h (the old route through the Cirque de la Solitude, see above) and
     stage 9 6 h 05 against 6 h 50 (12 %), both in `dataCheck`. Length: 180 km (English Wikipedia)
-    against 179 km (French); our map line 178.0 km and our stage sum 183.5 km, both within 2 %. Days:
-    16 stages, as French Wikipedia ("16 étapes (recommandation de la FFRP)"; English: "about 15
-    days"). Stage distances have no second source (they are ours). Tree line: 1,750–1,800 m (Corse)
-    against "Étages de végétation en Corse": the montane forest up to 1,800 m on south slopes, 1,600 m
-    on north slopes. The terrain model's highest point, 2,595 m on stage 4's diversion, has no stated
-    counterpart.
+    against 179 km (French); our map line 178.0 km and our stage sum 183.5 km, both within 2 %.
+    Days: 16 stages, as French Wikipedia ("16 étapes (recommandation de la FFRP)"; English: "about
+    15 days"). Stage distances have no second source (they are ours). Tree line: 1,750–1,800 m
+    (Corse) against "Étages de végétation en Corse": the montane forest up to 1,800 m on south
+    slopes, 1,600 m on north slopes. The terrain model's highest point, 2,592 m on stage 4's
+    diversion (GEDTM30, 2026-11-07), has no stated counterpart.
 dataCheck:
   # working rule 2: French Wikipedia for the stage times, length and days; English for the length
   date: 2026-11-02
@@ -204,11 +204,6 @@ sources:
     url: https://doi.org/10.5281/zenodo.18887460
     licence: "CC BY 4.0; Ho, Y.-F., Grohmann, C. H., Lindsay, J., Reuter, H. I., Parente, L., Witjes, M., Hengl, T. (2025): GEDTM30, OpenGeoHub"
     retrieved: 2026-11-07
-  - id: copdem
-    title: "Copernicus DEM GLO-30 (30 m surface model): base data of the GEDTM30 terrain model"
-    url: https://registry.opendata.aws/copernicus-dem/
-    licence: "Copernicus WorldDEM-30 licence, free; produced using Copernicus WorldDEM-30 © DLR e.V. 2010-2014 and © Airbus Defence and Space GmbH 2014-2018 provided under COPERNICUS by the European Union and ESA; all rights reserved"
-    retrieved: 2026-11-02
   - id: worldcover
     title: "ESA WorldCover 2021: 10 m land cover (via AWS Open Data)"
     url: https://esa-worldcover.org/

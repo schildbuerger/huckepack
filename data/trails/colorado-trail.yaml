@@ -238,12 +238,12 @@ notes:
   - >-
     Map line (2026-11-07): the Colorado Geofabrik extract (2026-11-06); OSM's three relations on the
     Collegiate East route, chained from Waterton Canyon and cut at COTREX's 28 segment ends, every
-    stage 100 % matched. It measures 756.7 km against the Forest Service's "over 483 miles" (777
-    km, −2.6 %) and COTREX's segments (770.7 km, −1.8 %). Highest point 4,036 m at km 583 (segment
-    22; COTREX's highest on segment 22: 4,042 m), lowest 1,674 m at Waterton Canyon (COTREX's
-    segment 1: 1,679 m). The terrain model gives about 27,280 m of climbing against the Forest
-    Service's "nearly 90,000 vertical feet" (27,430 m, −0.5 %), shown as the estimate since no
-    descent is stated.
+    stage 100 % matched. It measures 756.7 km against the Forest Service's "over 483 miles" (777 km,
+    −2.6 %) and COTREX's segments (770.7 km, −1.8 %). Highest point 4,041 m at km 583 (GEDTM30,
+    2026-11-07; segment 22; COTREX's highest on segment 22: 4,042 m), lowest 1,675 m at Waterton
+    Canyon (COTREX's segment 1: 1,679 m). The terrain model gives about 24,040 m of climbing against
+    the Forest Service's "nearly 90,000 vertical feet" (27,430 m, −12 %, in dataCheck), shown as the
+    estimate since no descent is stated.
   - >-
     Stage lengths on the map line: every segment within 4 % of COTREX's length except segment 15
     (US 50 to Marshall Pass), 25.9 km on the map line against COTREX's 23.2 km (+12 %); both ends
@@ -267,19 +267,20 @@ notes:
     Canyon; Durango–La Plata County Airport serves the finish and is left out, since the access step measures to the start only.
   - >-
     Data check (2026-11-07, after the foundation's pages were dropped): against English Wikipedia.
-    Length 486 miles (782 km) against the Forest Service's over 483 miles (777 km, 0.6 %);
-    termini (Waterton Canyon and Durango), completion in 1987, the Colorado Trail Foundation and
-    the Forest Service as maintainers, the highest point (13,271 ft, 4,045 m, on Coney; COTREX
-    4,042 m), the lowest (about 5,500 ft, 1,676 m; COTREX 1,679 m) agree; its "moderate to
-    strenuous" fits the T2 estimate. Its season, "Primarily July–September", is a deviation: the
-    record has every month, since no official source other than the foundation publishes one.
-    Its "about 4 to 6 weeks (28 to 42 days)" (citing the foundation) fits the page's 28 days, one
-    per segment. It gives no segments, permits, camping rules or tree line; the 28 segments'
-    lengths on the built page were checked one by one against COTREX's segment pages, the permit
-    against the Forest Service's segment 9 page and the camping rule against the San Juan National
-    Forest's guidelines, and agree. Derived against stated: the map line is 2.6 % under the stated
-    length, the terrain model's climbing 0.5 % under the Forest Service's figure, the highest point
-    6 m under COTREX's; segment 15 is 12 % over on the map line (the "Stage lengths" note).
+    Length 486 miles (782 km) against the Forest Service's over 483 miles (777 km, 0.6 %); termini
+    (Waterton Canyon and Durango), completion in 1987, the Colorado Trail Foundation and the Forest
+    Service as maintainers, the highest point (13,271 ft, 4,045 m, on Coney; COTREX 4,042 m), the
+    lowest (about 5,500 ft, 1,676 m; COTREX 1,679 m) agree; its "moderate to strenuous" fits the T2
+    estimate. Its season, "Primarily July–September", is a deviation: the record has every month,
+    since no official source other than the foundation publishes one. Its "about 4 to 6 weeks (28 to
+    42 days)" (citing the foundation) fits the page's 28 days, one per segment. It gives no
+    segments, permits, camping rules or tree line; the 28 segments' lengths on the built page were
+    checked one by one against COTREX's segment pages, the permit against the Forest Service's
+    segment 9 page and the camping rule against the San Juan National Forest's guidelines, and
+    agree. Derived against stated: the map line is 2.6 % under the stated length, the terrain
+    model's climbing 12 % under the Forest Service's figure (GEDTM30, 2026-11-07; 0.5 % under on the
+    former model, which counted every small rise), the highest point 1 m under COTREX's; segment 15
+    is 12 % over on the map line (the "Stage lengths" note).
 dataCheck:
   # working rule 2: English Wikipedia as the second source; the segments only on COTREX's pages,
   # the permit and camping rules only on the Forest Service's, so the built page was checked
@@ -290,6 +291,7 @@ dataCheck:
   deviations:
     - { figure: season, ours: "every month (none published officially)", theirs: "Primarily July–September", source: wikipedia }
     - { figure: stage 15 length, ours: "23.2 km (COTREX)", theirs: "25.9 km on the map line", source: osm }
+    - { figure: ascent, ours: "≈24,040 m (terrain model, GEDTM30, 2026-11-07; no descent stated)", theirs: "nearly 90,000 vertical feet (27,430 m)", source: fs-sanjuan-ct }
 sources:
   - id: cotrex
     title: "Colorado Trail Explorer (COTREX, Colorado Parks and Wildlife and the Colorado Department of Natural Resources): the pages \"Colorado Trail Segment 1\" to \"28\" (lengths, elevations, managers, from the land managers' trail data) and its trailheads"
@@ -364,11 +366,6 @@ sources:
     url: https://doi.org/10.5281/zenodo.18887460
     licence: "CC BY 4.0; Ho, Y.-F., Grohmann, C. H., Lindsay, J., Reuter, H. I., Parente, L., Witjes, M., Hengl, T. (2025): GEDTM30, OpenGeoHub"
     retrieved: 2026-11-07
-  - id: copdem
-    title: "Copernicus DEM GLO-30 (30 m surface model): base data of the GEDTM30 terrain model"
-    url: https://registry.opendata.aws/copernicus-dem/
-    licence: "Copernicus WorldDEM-30 licence, free; produced using Copernicus WorldDEM-30 © DLR e.V. 2010-2014 and © Airbus Defence and Space GmbH 2014-2018 provided under COPERNICUS by the European Union and ESA; all rights reserved"
-    retrieved: 2026-11-06
   - id: worldcover
     title: "ESA WorldCover 2021: 10 m land cover (via AWS Open Data)"
     url: https://esa-worldcover.org/

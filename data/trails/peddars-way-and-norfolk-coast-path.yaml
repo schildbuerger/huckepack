@@ -168,15 +168,15 @@ notes:
     17–30 m between OSM ways bridged on stage 1. The main route measures 206.1 km on the map line
     against 218.9 km for the stated sections. Stages more than 10 % off the map line: 4 (10.0 km
     against 14.3 km) and 5 (21.6 km against 25.9 km) both count the 4 km between Holme next the Sea
-    and Hunstanton ("Sedgeford to Holme/Hunstanton", "Holme next the Sea (and Hunstanton) to
-    Burnham Overy Staithe"; National Trails' GPX measures Hunstanton to Holme at 4.0 km, so 10.0 +
-    4.0 and 21.6 + 4.0 match), while the map line runs from the Peddars Way's end at Holme; 8,
-    Weybourne to Cromer (11.6 km against 13.8 km), measures 11.7 km on National Trails' own GPX
-    too, and the record keeps the official figure; 11 is our own measure (6.9 km). Highest point
-    93 m (terrain model, on the Peddars Way in the Brecks at km 50), lowest 0 m on the beaches.
-    Water: 19 drinking-water points in OSM; the longest stretch without, 32.3 km (km 42–74, Castle
-    Acre to Sedgeford along the Peddars Way's remote northern part), where the trail passes no
-    village. Resupply: 108 shops, the longest stretch without 34.3 km from the start.
+    and Hunstanton ("Sedgeford to Holme/Hunstanton", "Holme next the Sea (and Hunstanton) to Burnham
+    Overy Staithe"; National Trails' GPX measures Hunstanton to Holme at 4.0 km, so 10.0 + 4.0 and
+    21.6 + 4.0 match), while the map line runs from the Peddars Way's end at Holme; 8, Weybourne to
+    Cromer (11.6 km against 13.8 km), measures 11.7 km on National Trails' own GPX too, and the
+    record keeps the official figure; 11 is our own measure (6.9 km). Highest point 92 m (terrain
+    model, GEDTM30, 2026-11-07; on the Peddars Way in the Brecks at km 50), lowest 0 m on the
+    beaches. Water: 19 drinking-water points in OSM; the longest stretch without, 32.3 km (km 42–74,
+    Castle Acre to Sedgeford along the Peddars Way's remote northern part), where the trail passes
+    no village. Resupply: 108 shops, the longest stretch without 34.3 km from the start.
   - >-
     Data check (2026-11-05, working rule 2): against English Wikipedia (Peddars Way, Norfolk Coast
     Path). Peddars Way 74 km (Wikipedia) against our map line from Knettishall Heath to Holme, 74.7
@@ -248,11 +248,6 @@ sources:
     url: https://doi.org/10.5281/zenodo.18887460
     licence: "CC BY 4.0; Ho, Y.-F., Grohmann, C. H., Lindsay, J., Reuter, H. I., Parente, L., Witjes, M., Hengl, T. (2025): GEDTM30, OpenGeoHub"
     retrieved: 2026-11-07
-  - id: copdem
-    title: "Copernicus DEM GLO-30 (30 m surface model): base data of the GEDTM30 terrain model"
-    url: https://registry.opendata.aws/copernicus-dem/
-    licence: "Copernicus WorldDEM-30 licence, free; produced using Copernicus WorldDEM-30 © DLR e.V. 2010-2014 and © Airbus Defence and Space GmbH 2014-2018 provided under COPERNICUS by the European Union and ESA; all rights reserved"
-    retrieved: 2026-11-05
   - id: worldcover
     title: "ESA WorldCover 2021: 10 m land cover (via AWS Open Data)"
     url: https://esa-worldcover.org/

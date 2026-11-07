@@ -110,22 +110,24 @@ notes:
   - >-
     Waymarking: the association's pages describe no waymark; OSM tags the route with blue stripes.
   - >-
-    Tree line: none; the route stays below 568 m (the terrain model; Wikipedia gives 557 m).
+    Tree line: none; the route stays below 561 m (the terrain model, GEDTM30, 2026-11-07; Wikipedia
+    gives 557 m).
   - >-
-    Map line (2026-11-06): the Minnesota and Wisconsin Geofabrik extracts; OSM's Superior Hiking Trail
-    relation (1612587), chained from the southern terminus, one segment, 100 % matched; 16 short ways
-    (1.4 km, spurs) left out. It measures 476.7 km on OSM's full geometry and 464.9 km on the map line,
-    against the association's about 300 miles (482.8 km, −4 %). The terrain model gives about 11,750 m
-    of climbing, between 181 and 568 m. Water: 13 drinking water points in OSM, the longest dry stretch
-    26.6 km (km 12.3–38.9, through Duluth); streams and lakes along the trail aren't counted. Resupply:
-    the longest stretch without a mapped shop is 155.8 km, in the north (km 309–465); the association:
-    supplies can be picked up in small towns off the trail.
+    Map line (2026-11-06): the Minnesota and Wisconsin Geofabrik extracts; OSM's Superior Hiking
+    Trail relation (1612587), chained from the southern terminus, one segment, 100 % matched; 16
+    short ways (1.4 km, spurs) left out. It measures 476.7 km on OSM's full geometry and 464.9 km on
+    the map line, against the association's about 300 miles (482.8 km, −4 %). The terrain model
+    gives about 8,370 m of climbing, between 178 and 561 m (GEDTM30, 2026-11-07). Water: 13 drinking
+    water points in OSM, the longest dry stretch 26.6 km (km 12.3–38.9, through Duluth); streams and
+    lakes along the trail aren't counted. Resupply: the longest stretch without a mapped shop is
+    155.8 km, in the north (km 309–465); the association: supplies can be picked up in small towns
+    off the trail.
   - >-
     Data check (2026-11-06, working rule 2): the association against English Wikipedia: length about
     300 miles against 310 miles (+3 %; the association's sections add up to 318.9 miles); from the
-    Minnesota–Wisconsin border to the Canadian border in both; 94 fee-free campsites in both; lowest and
-    highest point 183 and 557 m (Wikipedia) against the terrain model's 181 and 568 m. Wikipedia gives
-    no days or season; the page was checked against the association's pages for those.
+    Minnesota–Wisconsin border to the Canadian border in both; 94 fee-free campsites in both; lowest
+    and highest point 183 and 557 m (Wikipedia) against the terrain model's 178 and 561 m. Wikipedia
+    gives no days or season; the page was checked against the association's pages for those.
 dataCheck:
   # working rule 2: English Wikipedia as the second source; the OSM map line
   date: 2026-11-06
@@ -168,11 +170,6 @@ sources:
     url: https://doi.org/10.5281/zenodo.18887460
     licence: "CC BY 4.0; Ho, Y.-F., Grohmann, C. H., Lindsay, J., Reuter, H. I., Parente, L., Witjes, M., Hengl, T. (2025): GEDTM30, OpenGeoHub"
     retrieved: 2026-11-07
-  - id: copdem
-    title: "Copernicus DEM GLO-30 (30 m surface model): base data of the GEDTM30 terrain model"
-    url: https://registry.opendata.aws/copernicus-dem/
-    licence: "Copernicus WorldDEM-30 licence, free; produced using Copernicus WorldDEM-30 © DLR e.V. 2010-2014 and © Airbus Defence and Space GmbH 2014-2018 provided under COPERNICUS by the European Union and ESA; all rights reserved"
-    retrieved: 2026-11-06
   - id: worldcover
     title: "ESA WorldCover 2021: 10 m land cover (via AWS Open Data)"
     url: https://esa-worldcover.org/

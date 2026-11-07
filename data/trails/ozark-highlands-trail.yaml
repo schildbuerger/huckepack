@@ -193,9 +193,9 @@ notes:
     relation (10868744), chained from Lake Fort Smith and cut near the association's trailheads,
     every stage 100 % matched and within 10 % of its mile-marker distance (the Boston Mountains
     stages 3–7 % short on the map line). It measures 313.8 km against the association's 207 miles
-    (333 km, −5.8 %). Highest point 721 m at km 62 (the terrain model, in forest, so treetops
-    included), lowest 167 m at Dillard's Ferry on the Buffalo River; none stated. The terrain model
-    gives about 10,450 m of climbing; none is stated.
+    (333 km, −5.8 %). Highest point 712 m at km 62 (the terrain model, GEDTM30, 2026-11-07), lowest
+    158 m at km 301 near the Buffalo River; none stated. The terrain model gives about 8,020 m of
+    climbing; none is stated.
   - >-
     Water (map line): OSM maps 4 drinking water points and 4 springs near the trail; with refills at
     campgrounds the longest stretch without clean water is 98.9 km (km 29–128, White Rock Mountain to
@@ -298,11 +298,6 @@ sources:
     url: https://doi.org/10.5281/zenodo.18887460
     licence: "CC BY 4.0; Ho, Y.-F., Grohmann, C. H., Lindsay, J., Reuter, H. I., Parente, L., Witjes, M., Hengl, T. (2025): GEDTM30, OpenGeoHub"
     retrieved: 2026-11-07
-  - id: copdem
-    title: "Copernicus DEM GLO-30 (30 m surface model): base data of the GEDTM30 terrain model"
-    url: https://registry.opendata.aws/copernicus-dem/
-    licence: "Copernicus WorldDEM-30 licence, free; produced using Copernicus WorldDEM-30 © DLR e.V. 2010-2014 and © Airbus Defence and Space GmbH 2014-2018 provided under COPERNICUS by the European Union and ESA; all rights reserved"
-    retrieved: 2026-11-06
   - id: worldcover
     title: "ESA WorldCover 2021: 10 m land cover (via AWS Open Data)"
     url: https://esa-worldcover.org/

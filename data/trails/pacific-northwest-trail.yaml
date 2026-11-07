@@ -242,29 +242,29 @@ notes:
     association's FAQ points to Glacier and Olympic National Parks and the Interagency Grizzly Bear
     Committee for bear safety.
   - >-
-    Map line (2026-11-07): the Montana, Idaho and Washington Geofabrik extracts (2026-11-05); OSM ways
-    matched to the shortest way over the OSM relations' ways (01 Montana, 02 Idaho, 03 Washington
-    and the superroute's own ways, which close the Washington relation's 6 km gap on the Kettle
-    Crest near Sherman Pass). Stages 1–9 are 100 % matched. Stage 10 is 83 % matched: the
-    Washington relation is in three pieces on the coast (28 m apart at the Hoh River and 502 m
-    apart in La Push, where OSM's relation leaves out the village's streets), so the stage's joinM
-    of 520 m lets its guide cut corners of up to 500 m; the matched line follows OSM ways
-    throughout (no bridges) and covers 95.5 % of the relation's own line within 30 m. At the
-    Quillayute River's mouth the relation, and so the map line, crosses on an informal ferry way
-    (404 m, "users must ask local fishermen to ferry them across"); the Forest Service names only
-    "a crossing of the Quillayute River", so it is left in the line, not recorded as a transfer.
-    The main route measures 1,943.6 km on the map line (1,963.8 km on the full match) against the
-    FAQ's about 1,200 miles (1,931 km, +0.7 %) and the sections' 1,248 miles (2,009 km, −3.3 %).
-    Stage 1 is 212 km against 243 km (−13 %) and stage 2 182 km against 159 km (+15 %): OSM's
-    Montana relation runs a shorter way to Eureka and a longer one on to the Kootenai than the
-    sections' miles; together they agree (394 against 402 km, −2 %). Highest point 2,294 m at km
-    1,038 in the Pasayten Wilderness (section 6's stated highest point 7,580 ft, 2,310 m, −0.7 %),
-    lowest 0 m at km 1,485 on Samish Bay.
+    Map line (2026-11-07): the Montana, Idaho and Washington Geofabrik extracts (2026-11-05); OSM
+    ways matched to the shortest way over the OSM relations' ways (01 Montana, 02 Idaho, 03
+    Washington and the superroute's own ways, which close the Washington relation's 6 km gap on the
+    Kettle Crest near Sherman Pass). Stages 1–9 are 100 % matched. Stage 10 is 83 % matched: the
+    Washington relation is in three pieces on the coast (28 m apart at the Hoh River and 502 m apart
+    in La Push, where OSM's relation leaves out the village's streets), so the stage's joinM of 520
+    m lets its guide cut corners of up to 500 m; the matched line follows OSM ways throughout (no
+    bridges) and covers 95.5 % of the relation's own line within 30 m. At the Quillayute River's
+    mouth the relation, and so the map line, crosses on an informal ferry way (404 m, "users must
+    ask local fishermen to ferry them across"); the Forest Service names only "a crossing of the
+    Quillayute River", so it is left in the line, not recorded as a transfer. The main route
+    measures 1,943.6 km on the map line (1,963.8 km on the full match) against the FAQ's about 1,200
+    miles (1,931 km, +0.7 %) and the sections' 1,248 miles (2,009 km, −3.3 %). Stage 1 is 212 km
+    against 243 km (−13 %) and stage 2 182 km against 159 km (+15 %): OSM's Montana relation runs a
+    shorter way to Eureka and a longer one on to the Kootenai than the sections' miles; together
+    they agree (394 against 402 km, −2 %). Highest point 2,297 m at km 1,038 in the Pasayten
+    Wilderness (GEDTM30, 2026-11-07; section 6's stated highest point 7,580 ft, 2,310 m, −0.6 %),
+    lowest 0 m at km 1,503 on Samish Bay.
   - >-
     Ascent: the sections' gains and losses sum to 70,238 m up and 71,850 m down; the terrain model
-    gives about 54,440 m of climbing on the map line (−22 %, sampled every 500 m, which smooths
-    small climbs), and Wikipedia's infobox 205,211 ft (62,548 m) east to west. The page keeps the
-    association's figures (dataCheck.deviations).
+    gives about 52,530 m of climbing on the map line (GEDTM30, 2026-11-07; −25 %, sampled every 500
+    m and counted from 10 m, which smooths small climbs), and Wikipedia's infobox 205,211 ft (62,548
+    m) east to west. The page keeps the association's figures (dataCheck.deviations).
   - >-
     Water: OSM maps 22 drinking water points and 7 springs within 500 m; the longest stretch without
     clean water (drinking water or a refill at a campground) is 243 km (km 222–465, from Eureka
@@ -297,7 +297,7 @@ notes:
     with the FAQ (Puget Sound year-round, thru-hikers July to September). Days: only the
     association gives a figure. Permits and camping: the Forest Service's About the Trail names the
     same three national parks. Difficulty: Wikipedia "Easy to strenuous"; our T3 estimate fits the
-    association's scrambling and bushwhacking. Highest point: 2,294 m on the terrain model against
+    association's scrambling and bushwhacking. Highest point: 2,297 m on the terrain model against
     the association's 7,580 ft (2,310 m): agree. The ten sections' miles, km, gains and losses and
     ends on the built page were checked one by one against the section pages and agree. Derived
     against stated: stages 1 and 2 are 13 % and 15 % off on the map line (Map line note).
@@ -376,11 +376,6 @@ sources:
     title: "GEDTM30 v1.2: global ensemble digital terrain model, 30 m, bare earth (OpenGeoHub; Ho et al. 2025, PeerJ 13:e19673)"
     url: https://doi.org/10.5281/zenodo.18887460
     licence: "CC BY 4.0; Ho, Y.-F., Grohmann, C. H., Lindsay, J., Reuter, H. I., Parente, L., Witjes, M., Hengl, T. (2025): GEDTM30, OpenGeoHub"
-    retrieved: 2026-11-07
-  - id: copdem
-    title: "Copernicus DEM GLO-30 (30 m surface model): base data of the GEDTM30 terrain model"
-    url: https://registry.opendata.aws/copernicus-dem/
-    licence: "Copernicus WorldDEM-30 licence, free; produced using Copernicus WorldDEM-30 © DLR e.V. 2010-2014 and © Airbus Defence and Space GmbH 2014-2018 provided under COPERNICUS by the European Union and ESA; all rights reserved"
     retrieved: 2026-11-07
   - id: worldcover
     title: "ESA WorldCover 2021: 10 m land cover (via AWS Open Data)"

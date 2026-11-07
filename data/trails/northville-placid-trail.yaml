@@ -182,9 +182,10 @@ notes:
     Trail relation (4286650, operator NYSDEC), chained from Northville and cut at the ten section
     ends, every section 100 % matched and within 4 % of the chapter's miles. It measures 216.9 km
     against the chapter's "approximately 136 miles" (219 km, −1.0 %) and its sections' 137.79 miles
-    (221.7 km, −2.2 %). Highest point 931 m at km 151.9 on the ridge east of Blue Mountain (the
-    chapter: 3,008 feet, 917 m, +1.5 %), lowest 231 m at Northville. The terrain model gives about
-    5,150 m of climbing; none is stated (the FAQ: "little elevation gain or loss over its length").
+    (221.7 km, −2.2 %). Highest point 921 m at km 151.9 (GEDTM30, 2026-11-07) on the ridge east of
+    Blue Mountain (the chapter: 3,008 feet, 917 m, +0.4 %), lowest 231 m at Northville. The terrain
+    model gives about 3,540 m of climbing; none is stated (the FAQ: "little elevation gain or loss
+    over its length").
   - >-
     Water: OSM maps one drinking water point and one spring near the trail; with the refills at
     places to sleep the longest stretch without clean water is 31.1 km (km 42.6–73.7, from
@@ -282,11 +283,6 @@ sources:
     url: https://doi.org/10.5281/zenodo.18887460
     licence: "CC BY 4.0; Ho, Y.-F., Grohmann, C. H., Lindsay, J., Reuter, H. I., Parente, L., Witjes, M., Hengl, T. (2025): GEDTM30, OpenGeoHub"
     retrieved: 2026-11-07
-  - id: copdem
-    title: "Copernicus DEM GLO-30 (30 m surface model): base data of the GEDTM30 terrain model"
-    url: https://registry.opendata.aws/copernicus-dem/
-    licence: "Copernicus WorldDEM-30 licence, free; produced using Copernicus WorldDEM-30 © DLR e.V. 2010-2014 and © Airbus Defence and Space GmbH 2014-2018 provided under COPERNICUS by the European Union and ESA; all rights reserved"
-    retrieved: 2026-11-06
   - id: worldcover
     title: "ESA WorldCover 2021: 10 m land cover (via AWS Open Data)"
     url: https://esa-worldcover.org/

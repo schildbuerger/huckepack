@@ -99,11 +99,11 @@ notes:
   - >-
     Route (pipeline, 2026-11-05, Geofabrik extracts): each leg is the shortest way over OSM's
     relation (GW09, 1385146) between its ends; every leg matches 100 %. The map line is 26.3 km
-    against DOC's 32 km (18 % short): each leg comes out about 15 % under DOC's figure (7.1, 10.9 and
-    9.5 km against 8, 13 and 11), and the whole relation, Oban's roads included, is only 34.8 km, so
-    OSM maps the circuit at about 27 km and DOC's distances run long, as on the Heaphy and Paparoa
-    Tracks. The page keeps DOC's figures. Highest point 193 m (km 11, the interior between Port
-    William and North Arm).
+    against DOC's 32 km (18 % short): each leg comes out about 15 % under DOC's figure (7.1, 10.9
+    and 9.5 km against 8, 13 and 11), and the whole relation, Oban's roads included, is only 34.8
+    km, so OSM maps the circuit at about 27 km and DOC's distances run long, as on the Heaphy and
+    Paparoa Tracks. The page keeps DOC's figures. Highest point 184 m (terrain model, GEDTM30,
+    2026-11-07; km 11, the interior between Port William and North Arm).
   - >-
     Data check (2026-11-05). Second source: English Wikipedia (32 km circular, Lee Bay to Fern Gully,
     usually three days, most often anticlockwise from Lee Bay). Length, ends and days agree with
@@ -143,11 +143,6 @@ sources:
     url: https://doi.org/10.5281/zenodo.18887460
     licence: "CC BY 4.0; Ho, Y.-F., Grohmann, C. H., Lindsay, J., Reuter, H. I., Parente, L., Witjes, M., Hengl, T. (2025): GEDTM30, OpenGeoHub"
     retrieved: 2026-11-07
-  - id: copdem
-    title: "Copernicus DEM GLO-30 (30 m surface model): base data of the GEDTM30 terrain model"
-    url: https://registry.opendata.aws/copernicus-dem/
-    licence: "Copernicus WorldDEM-30 licence, free; produced using Copernicus WorldDEM-30 © DLR e.V. 2010-2014 and © Airbus Defence and Space GmbH 2014-2018 provided under COPERNICUS by the European Union and ESA; all rights reserved"
-    retrieved: 2026-11-05
   - id: worldcover
     title: "ESA WorldCover 2021: 10 m land cover (via AWS Open Data)"
     url: https://esa-worldcover.org/

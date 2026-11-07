@@ -185,15 +185,16 @@ notes:
     2026-11-07) wait for an official advice page (the Superior National Forest or Minnesota DNR). Ticks peak in May and June (Trail Conditions page) without advice, so they are not
     listed.
   - >-
-    Tree line: none; the route stays in boreal forest between 414 and 630 m (terrain model).
+    Tree line: none; the route stays in boreal forest between 409 and 619 m (terrain model, GEDTM30,
+    2026-11-07).
   - >-
     Map line (2026-11-07): the Minnesota Geofabrik extract (2026-11-05); OSM's Border Route Trail
     relation (5996078, 43 ways, one line of 106.0 km from the western terminus, no leftover ways),
     cut at the four section ends, every section 100 % matched, no bridges. It measures 104.2 km
     against the stated 65 miles (104.6 km, −0.4 %) and the sections' 65.2 miles (104.9 km, −0.7 %);
-    the sections 26.1, 22.9, 37.0 and 20.1 km against 25.7, 22.5, 36.9 and 19.8 km (all within
-    2 %). Highest point 630 m at km 56.3, lowest 414 m at km 94.1; the terrain model gives about
-    2,660 m of climbing, none is stated.
+    the sections 26.1, 22.9, 37.0 and 20.1 km against 25.7, 22.5, 36.9 and 19.8 km (all within 2 %).
+    Highest point 619 m at km 54.1, lowest 409 m at km 94.1; the terrain model gives about 1,890 m
+    of climbing (GEDTM30, 2026-11-07), none is stated.
   - >-
     Resupply: OSM maps no shop within reach of the trail (104.2 km without, the whole route): it
     runs through wilderness without towns. The association lists shuttle services from lodges and
@@ -278,11 +279,6 @@ sources:
     title: "GEDTM30 v1.2: global ensemble digital terrain model, 30 m, bare earth (OpenGeoHub; Ho et al. 2025, PeerJ 13:e19673)"
     url: https://doi.org/10.5281/zenodo.18887460
     licence: "CC BY 4.0; Ho, Y.-F., Grohmann, C. H., Lindsay, J., Reuter, H. I., Parente, L., Witjes, M., Hengl, T. (2025): GEDTM30, OpenGeoHub"
-    retrieved: 2026-11-07
-  - id: copdem
-    title: "Copernicus DEM GLO-30 (30 m surface model): base data of the GEDTM30 terrain model"
-    url: https://registry.opendata.aws/copernicus-dem/
-    licence: "Copernicus WorldDEM-30 licence, free; produced using Copernicus WorldDEM-30 © DLR e.V. 2010-2014 and © Airbus Defence and Space GmbH 2014-2018 provided under COPERNICUS by the European Union and ESA; all rights reserved"
     retrieved: 2026-11-07
   - id: worldcover
     title: "ESA WorldCover 2021: 10 m land cover (via AWS Open Data)"

@@ -173,13 +173,14 @@ notes:
     Map line (2026-11-07): the Québec Geofabrik extract; the seven section relations of OSM's
     superroute 9318808 (Forillon's five trail relations), merged, each stage the shortest way over
     them to its end; every stage 100 % matched, no bridges. The map line measures 631.2 km against
-    the guide's 650 km (−3 %): stages 47.7 (50.5), 127.0 (132.8), 106.8 (112.1), 92.6 (99.5),
-    119.4 (96.8), 93.0 (122.6) and 44.8 (45) km. Stages 5 and 6 are 23 % and 24 % off: the guide's
-    headers for them disagree with its own tables, whose distances between sites sum to 120.2 km
-    from the Mont-Jacques-Cartier campground to Grande-Vallée and 94.3 km from Grande-Vallée to
-    Route 197, close to the map line; the record keeps the headers, the operator's stated section
-    lengths. Highest point 1,275 m on Mont Jacques-Cartier by the terrain model (the guide: 1,268 m);
-    lowest at sea level on the coast. Ascent: none published; the page estimates about 24,750 m.
+    the guide's 650 km (−3 %): stages 47.7 (50.5), 127.0 (132.8), 106.8 (112.1), 92.6 (99.5), 119.4
+    (96.8), 93.0 (122.6) and 44.8 (45) km. Stages 5 and 6 are 23 % and 24 % off: the guide's headers
+    for them disagree with its own tables, whose distances between sites sum to 120.2 km from the
+    Mont-Jacques-Cartier campground to Grande-Vallée and 94.3 km from Grande-Vallée to Route 197,
+    close to the map line; the record keeps the headers, the operator's stated section lengths.
+    Highest point 1,276 m on Mont Jacques-Cartier by the terrain model (GEDTM30, 2026-11-07; the
+    guide: 1,268 m); lowest at sea level on the coast. Ascent: none published; the page estimates
+    about 21,210 m.
   - >-
     Water and resupply: OSM maps 10 drinking water points; the longest dry stretch, 46.6 km (km
     416.8–463.4, the Haute-Gaspésie section's coast between Mont-Saint-Pierre and Madeleine), has the SIA's
@@ -194,12 +195,12 @@ notes:
     Data check (2026-11-07): the length against the IAT's Québec chapter page (645 km, −1 %) and
     Rando Québec (650 km, the same); the termini (Matapédia, after the Restigouche River, to Cap
     Gaspé in Forillon) agree in both. The section lengths have no independent second source (the
-    Sépaq's pages answer 403); against the operator's website: Vallée 131.8 km (guide 132.8),
-    Matane 72 + 34.5 km (guide 112.1, −5 %, the guide counting from the Camps Tamagodi), Gaspésie
-    99.5 km and Forillon 45 km the same. Derived against stated: the map line 631.2 km against 650 km
-    (−3 %), stages 5 and 6 more than 10 % off (above, in dataCheck.deviations); the highest point
-    1,275 m against 1,268 m. The built page checked against the guide and the website: length,
-    days (35–40), season (Jun–Sep), the seven sections, start and finish, wild camping prohibited,
+    Sépaq's pages answer 403); against the operator's website: Vallée 131.8 km (guide 132.8), Matane
+    72 + 34.5 km (guide 112.1, −5 %, the guide counting from the Camps Tamagodi), Gaspésie 99.5 km
+    and Forillon 45 km the same. Derived against stated: the map line 631.2 km against 650 km (−3
+    %), stages 5 and 6 more than 10 % off (above, in dataCheck.deviations); the highest point 1,276
+    m against 1,268 m. The built page checked against the guide and the website: length, days
+    (35–40), season (Jun–Sep), the seven sections, start and finish, wild camping prohibited,
     waymarking.
   - >-
     Season: the website says mid-June to the end of September overall (some sections from
@@ -285,11 +286,6 @@ sources:
     title: "GEDTM30 v1.2: global ensemble digital terrain model, 30 m, bare earth (OpenGeoHub; Ho et al. 2025, PeerJ 13:e19673)"
     url: https://doi.org/10.5281/zenodo.18887460
     licence: "CC BY 4.0; Ho, Y.-F., Grohmann, C. H., Lindsay, J., Reuter, H. I., Parente, L., Witjes, M., Hengl, T. (2025): GEDTM30, OpenGeoHub"
-    retrieved: 2026-11-07
-  - id: copdem
-    title: "Copernicus DEM GLO-30 (30 m surface model): base data of the GEDTM30 terrain model"
-    url: https://registry.opendata.aws/copernicus-dem/
-    licence: "Copernicus WorldDEM-30 licence, free; produced using Copernicus WorldDEM-30 © DLR e.V. 2010-2014 and © Airbus Defence and Space GmbH 2014-2018 provided under COPERNICUS by the European Union and ESA; all rights reserved"
     retrieved: 2026-11-07
   - id: worldcover
     title: "ESA WorldCover 2021: 10 m land cover (via AWS Open Data)"

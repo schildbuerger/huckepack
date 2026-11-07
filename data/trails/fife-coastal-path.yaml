@@ -138,22 +138,24 @@ notes:
     Map line (2026-11-05): the Scotland Geofabrik extract (2026-10-31); the OSM relation (10841122)
     cut at the sections' ends, every section 100 % matched and within 10 % of its stated length. The
     main route measures 183.7 km on the map line against the sections' 186.4 km (stated about 188
-    km). Highest point 251 m (terrain model, at km 173 above Newburgh), lowest 0 m on the beaches.
-    Water: 15 drinking-water points in OSM; the longest stretch without, 25.8 km, is the last
-    section from Wormit Bay to Newburgh, which also has no bed or shop in OSM until Newburgh.
+    km). Highest point 240 m (terrain model, GEDTM30, 2026-11-07; at km 173 above Newburgh), lowest
+    0 m on the beaches. Water: 15 drinking-water points in OSM; the longest stretch without, 25.8
+    km, is the last section from Wormit Bay to Newburgh, which also has no bed or shop in OSM until
+    Newburgh.
   - >-
     Data check (2026-11-05, working rule 2): against English Wikipedia (Fife Coastal Path). Length
     187 km (Wikipedia) against the Trust's about 188 km and our map line's 183.7 km; Kincardine to
     Newburgh agrees; the Trust as manager and one of Scotland's Great Trails agree; Wikipedia's
     "between one week and 10 days" fits the eight sections; its season "all year" and ascent of
-    1,865 m have no counterpart from the Trust (the page estimates about 2,470 m from the terrain
-    model, which reads cliff edges and woods as climbs). No figure in the record differs by more
-    than 10 %.
+    1,865 m have no counterpart from the Trust (the page estimates about 1,100 m from the terrain
+    model, GEDTM30, 2026-11-07: 41 % under Wikipedia's figure, in dataCheck). No figure in the
+    record differs by more than 10 %.
 dataCheck:
   # working rule 2: English Wikipedia
   date: 2026-11-05
   against: [wikipedia-en]
-  deviations: []
+  deviations:
+    - { figure: ascent, ours: "≈1,100 m (terrain model, GEDTM30, 2026-11-07; none stated)", theirs: "1,865 m", source: wikipedia-en }
 sources:
   - id: fcct
     title: "Fife Coast and Countryside Trust: Fife Coastal Path (length, start and finish, the eight sections, waymarkers)"
@@ -191,11 +193,6 @@ sources:
     url: https://doi.org/10.5281/zenodo.18887460
     licence: "CC BY 4.0; Ho, Y.-F., Grohmann, C. H., Lindsay, J., Reuter, H. I., Parente, L., Witjes, M., Hengl, T. (2025): GEDTM30, OpenGeoHub"
     retrieved: 2026-11-07
-  - id: copdem
-    title: "Copernicus DEM GLO-30 (30 m surface model): base data of the GEDTM30 terrain model"
-    url: https://registry.opendata.aws/copernicus-dem/
-    licence: "Copernicus WorldDEM-30 licence, free; produced using Copernicus WorldDEM-30 © DLR e.V. 2010-2014 and © Airbus Defence and Space GmbH 2014-2018 provided under COPERNICUS by the European Union and ESA; all rights reserved"
-    retrieved: 2026-11-05
   - id: worldcover
     title: "ESA WorldCover 2021: 10 m land cover (via AWS Open Data)"
     url: https://esa-worldcover.org/

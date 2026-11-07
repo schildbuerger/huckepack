@@ -184,9 +184,9 @@ notes:
     than 10 % off; their ends sit at the conservancy's access points (Laurel Fork Falls boat access,
     the Upper Whitewater Falls and Sloan Bridge parking areas), so the gaps are the shorter OSM
     geometry in the Laurel Fork and Whitewater River valleys, not a misplaced end; the record keeps
-    the conservancy's figures. Highest point 1,087 m at km 15.0 (Sassafras Mountain; 3,553 ft,
-    1,083 m), lowest 360 m at km 41.5 near the Toxaway River and Lake Jocassee. The terrain model
-    gives about 4,480 m of climbing; none is stated.
+    the conservancy's figures. Highest point 1,079 m at km 15.0 (GEDTM30, 2026-11-07; Sassafras
+    Mountain; 3,553 ft, 1,083 m), lowest 339 m at km 41.8 near the Toxaway River and Lake Jocassee.
+    The terrain model gives about 3,800 m of climbing; none is stated.
   - >-
     Water: OSM maps no drinking water within 500 m of the trail and one spring. The conservancy:
     "There is ample water to collect along the trail at all but the dryest of conditions", reliable
@@ -208,17 +208,18 @@ notes:
   - >-
     Data check (2026-11-06): against English Wikipedia (its section-by-section distances) and South
     Carolina State Parks' Table Rock and Oconee trail pages. Length: 77 miles against Wikipedia's
-    76.2 miles (−1 %) and State Parks' "either 80 or 85 miles long, depending where you start"
-    (+3.9 % and +10.4 %). Termini (Table Rock State Park, Oconee State Park) agree in both. Sections:
+    76.2 miles (−1 %) and State Parks' "either 80 or 85 miles long, depending where you start" (+3.9
+    % and +10.4 %). Termini (Table Rock State Park, Oconee State Park) agree in both. Sections:
     eleven of thirteen agree to the tenth of a mile with Wikipedia; section 1 is 9.7 against 8.8
     miles (−9 %) and section 2 2.1 against 2.7 miles (+29 %; together 11.8 against 11.5 miles, so
     the two place the Sassafras Mountain access differently). Highest point: Sassafras Mountain in
-    both, the terrain model's 1,087 m against 3,553 ft (1,083 m). White blazes: Table Rock's page
-    ("after trail blaze turns from yellow/white to WHITE ONLY"). Camping: Table Rock's page
-    ("Camping is prohibited within the park trail system") agrees with the conservancy's FAQ.
-    Difficulty: Wikipedia "Easy to strenuous", State Parks "difficult", as the conservancy's
-    section ratings. Days and season: no second source gives them; the built page was checked
-    against the conservancy's Trail Overview (5–10 days) and Safety page (spring and autumn).
+    both, the terrain model's 1,079 m (GEDTM30, 2026-11-07) against 3,553 ft (1,083 m). White
+    blazes: Table Rock's page ("after trail blaze turns from yellow/white to WHITE ONLY"). Camping:
+    Table Rock's page ("Camping is prohibited within the park trail system") agrees with the
+    conservancy's FAQ. Difficulty: Wikipedia "Easy to strenuous", State Parks "difficult", as the
+    conservancy's section ratings. Days and season: no second source gives them; the built page was
+    checked against the conservancy's Trail Overview (5–10 days) and Safety page (spring and
+    autumn).
 dataCheck:
   # working rule 2: English Wikipedia (its section distances) and South Carolina State Parks' park
   # pages as second sources; days and season only from the conservancy, checked on the built page
@@ -293,11 +294,6 @@ sources:
     url: https://doi.org/10.5281/zenodo.18887460
     licence: "CC BY 4.0; Ho, Y.-F., Grohmann, C. H., Lindsay, J., Reuter, H. I., Parente, L., Witjes, M., Hengl, T. (2025): GEDTM30, OpenGeoHub"
     retrieved: 2026-11-07
-  - id: copdem
-    title: "Copernicus DEM GLO-30 (30 m surface model): base data of the GEDTM30 terrain model"
-    url: https://registry.opendata.aws/copernicus-dem/
-    licence: "Copernicus WorldDEM-30 licence, free; produced using Copernicus WorldDEM-30 © DLR e.V. 2010-2014 and © Airbus Defence and Space GmbH 2014-2018 provided under COPERNICUS by the European Union and ESA; all rights reserved"
-    retrieved: 2026-11-06
   - id: worldcover
     title: "ESA WorldCover 2021: 10 m land cover (via AWS Open Data)"
     url: https://esa-worldcover.org/

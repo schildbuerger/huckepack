@@ -138,9 +138,9 @@ notes:
     900 m.
   - >-
     Map line: each section follows its OSM relation; every section 100 % matched, 62.1 km against
-    the bureau's 65 km (Takijiri to Hongu 35.8 km against 38, the Kumotori routes 26.3 km against 27).
-    The stages' stated 4,040 m of climbing against about 3,950 m on the terrain model. Highest point
-    882 m on the Ogumotori-goe.
+    the bureau's 65 km (Takijiri to Hongu 35.8 km against 38, the Kumotori routes 26.3 km against
+    27). The stages' stated 4,040 m of climbing against about 3,420 m on the terrain model (GEDTM30,
+    2026-11-07; −15 %, in dataCheck). Highest point 870 m on the Ogumotori-goe.
   - >-
     Data check (2026-11-03): the bureau's figures against English Wikipedia (Kumano Kodō, Nakahechi):
     Takijiri-oji to Hongu "about 37 km", usually two days (the bureau's 17 + 21 km, 3 %); Hongu to
@@ -159,7 +159,8 @@ dataCheck:
   # working rule 2: English Wikipedia
   date: 2026-11-03
   against: [wikipedia]
-  deviations: []
+  deviations:
+    - { figure: ascent, ours: "4,040 m (sum of the stages)", theirs: "about 3,420 m from the terrain model (GEDTM30, 2026-11-07)", source: gedtm30 }
 sources:
   - id: tb
     title: "Tanabe City Kumano Tourism Bureau: the Nakahechi and its section pages (Takijiri-oji to Tsugizakura-oji, Tsugizakura-oji to Kumano Hongu Taisha, Kogumotori-goe, Ogumotori-goe) with their course data"
@@ -193,11 +194,6 @@ sources:
     url: https://doi.org/10.5281/zenodo.18887460
     licence: "CC BY 4.0; Ho, Y.-F., Grohmann, C. H., Lindsay, J., Reuter, H. I., Parente, L., Witjes, M., Hengl, T. (2025): GEDTM30, OpenGeoHub"
     retrieved: 2026-11-07
-  - id: copdem
-    title: "Copernicus DEM GLO-30 (30 m surface model): base data of the GEDTM30 terrain model"
-    url: https://registry.opendata.aws/copernicus-dem/
-    licence: "Copernicus WorldDEM-30 licence, free; produced using Copernicus WorldDEM-30 © DLR e.V. 2010-2014 and © Airbus Defence and Space GmbH 2014-2018 provided under COPERNICUS by the European Union and ESA; all rights reserved"
-    retrieved: 2026-11-03
   - id: worldcover
     title: "ESA WorldCover 2021: 10 m land cover (via AWS Open Data)"
     url: https://esa-worldcover.org/

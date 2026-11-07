@@ -155,17 +155,17 @@ notes:
     Map line (2026-11-05): the Scotland, England and Northumberland Geofabrik extracts; every stage
     at least 95 % matched (section 1, 99 %: OSM's path over the Eildon Hills runs up to 100 m from
     the GPX's line). The main route measures 100.7 km on the map line against the stated 100 km
-    (sections 100.2 km). Sections more than 10 % off the map line: 1, Melrose to Harestanes (21.3
-    km against 24 km; the site's own GPX measures 21.5 km, so the stated figure likely counts the
-    way into the Harestanes visitor centre, "only just off this section"); 3, Kirk Yetholm to Wooler
+    (sections 100.2 km). Sections more than 10 % off the map line: 1, Melrose to Harestanes (21.3 km
+    against 24 km; the site's own GPX measures 21.5 km, so the stated figure likely counts the way
+    into the Harestanes visitor centre, "only just off this section"); 3, Kirk Yetholm to Wooler
     (21.1 km against 19.2 km, along OSM's relation into Wooler's centre); 5, Fenwick to Holy Island
     (8.9 km against 10 km, to the village by the causeway's line rather than over the Pilgrims'
-    Path). The record keeps the site's figures. Highest point 364 m (terrain model, at km 45 on
-    Wideopen Hill, which the site gives as 400 m), lowest 0 m on the sands. Water: OSM maps only one
-    drinking-water point and one spring along the Way; the villages (St Boswells, Morebattle, Kirk
-    Yetholm, Wooler, Fenwick) are the places to refill. Beds: the longest stretch without one in
-    OSM, 38.5 km (km 12–51), runs from St Boswells over the hills to Kirk Yetholm, past Jedburgh
-    (off the route) and Morebattle, whose inn the site lists.
+    Path). The record keeps the site's figures. Highest point 359 m (terrain model, GEDTM30,
+    2026-11-07; at km 45 on Wideopen Hill, which the site gives as 400 m), lowest 0 m on the sands.
+    Water: OSM maps only one drinking-water point and one spring along the Way; the villages (St
+    Boswells, Morebattle, Kirk Yetholm, Wooler, Fenwick) are the places to refill. Beds: the longest
+    stretch without one in OSM, 38.5 km (km 12–51), runs from St Boswells over the hills to Kirk
+    Yetholm, past Jedburgh (off the route) and Morebattle, whose inn the site lists.
   - >-
     Data check (2026-11-05, working rule 2): against English Wikipedia (St Cuthbert's Way). Length
     100 km (62 mi) agrees with the site's 62.5 miles (100 km); Melrose (Abbey) to Lindisfarne (Holy
@@ -236,11 +236,6 @@ sources:
     url: https://doi.org/10.5281/zenodo.18887460
     licence: "CC BY 4.0; Ho, Y.-F., Grohmann, C. H., Lindsay, J., Reuter, H. I., Parente, L., Witjes, M., Hengl, T. (2025): GEDTM30, OpenGeoHub"
     retrieved: 2026-11-07
-  - id: copdem
-    title: "Copernicus DEM GLO-30 (30 m surface model): base data of the GEDTM30 terrain model"
-    url: https://registry.opendata.aws/copernicus-dem/
-    licence: "Copernicus WorldDEM-30 licence, free; produced using Copernicus WorldDEM-30 © DLR e.V. 2010-2014 and © Airbus Defence and Space GmbH 2014-2018 provided under COPERNICUS by the European Union and ESA; all rights reserved"
-    retrieved: 2026-11-05
   - id: worldcover
     title: "ESA WorldCover 2021: 10 m land cover (via AWS Open Data)"
     url: https://esa-worldcover.org/

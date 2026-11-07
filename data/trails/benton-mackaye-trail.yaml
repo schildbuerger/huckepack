@@ -233,12 +233,12 @@ notes:
     Map line (2026-11-06): the Georgia, Tennessee and North Carolina Geofabrik extracts
     (2026-11-05); OSM's relation 1675439, chained from Springer Mountain and cut at the 25 section
     ends, every stage at least 95 % matched. It measures 440.8 km against the association's 287.6
-    miles (462.8 km, −4.8 %) and its sections' 286.3 miles (460.8 km). Highest point 1,780 m at km
-    430 (Mount Sterling; the association: 5,843 ft, 1,781 m), lowest 227 m at km 169 (the Hiwassee
-    River at Reliance; the association: 765 ft, 233 m). The terrain model gave about 19,820 m of
-    climbing against the stated 54,682 ft (16,667 m, +19 %): the route is 99 % forest, and the
-    surface model (GLO-30) read the treetops; GEDTM30 with the 10 m threshold gives about 16,940 m
-    (+2 %, 2026-11-07). The page shows the stated pair.
+    miles (462.8 km, −4.8 %) and its sections' 286.3 miles (460.8 km). Highest point 1,767 m at km
+    430 (GEDTM30, 2026-11-07; Mount Sterling; the association: 5,843 ft, 1,781 m), lowest 225 m at
+    km 169 (the Hiwassee River at Reliance; the association: 765 ft, 233 m). The terrain model gave
+    about 19,820 m of climbing against the stated 54,682 ft (16,667 m, +19 %): the route is 99 %
+    forest, and the surface model (GLO-30) read the treetops; GEDTM30 with the 10 m threshold gives
+    about 16,940 m (+2 %, 2026-11-07). The page shows the stated pair.
   - >-
     Stage lengths on the map line: section 9 (Dyer Gap to Watson Gap) 6.4 km against 4.5 miles
     (7.2 km, −11 %), section 16 (Sandy Gap to Tellico River Road) 17.5 km against 14.4 miles (23.2
@@ -272,12 +272,12 @@ notes:
     the Hiwassee River) agree; its length "nearly 300 miles (480 km)" against the official 287.6
     miles (462.8 km) is within 4 %. It gives no sections, ascent, season, days, camping rules or
     difficulty; the 25 sections' miles, length, ascent and descent, season, waymarking and termini
-    on the built page were checked one by one against the association's Discover the Trail page,
-    the permit and the camping rule against the park's backcountry page, and agree. Derived against
-    stated: the map line is 4.8 % under the stated length, the highest point 1 m under, the lowest
-    6 m under, the terrain model's climbing 19 % over the stated ascent (forest, treetops; 2 % over on
-    GEDTM30 since 2026-11-07); four
-    sections are more than 10 % off on the map line (the "Stage lengths" note).
+    on the built page were checked one by one against the association's Discover the Trail page, the
+    permit and the camping rule against the park's backcountry page, and agree. Derived against
+    stated: the map line is 4.8 % under the stated length, the highest point 14 m under, the lowest
+    8 m under (GEDTM30, 2026-11-07; 1 and 6 m under on the former model), the terrain model's
+    climbing 19 % over the stated ascent (forest, treetops; 2 % over on GEDTM30 since 2026-11-07);
+    four sections are more than 10 % off on the map line (the "Stage lengths" note).
 dataCheck:
   # working rule 2: English Wikipedia as the second source; the sections only on the association's
   # pages, so the built page was checked against them
@@ -333,11 +333,6 @@ sources:
     url: https://doi.org/10.5281/zenodo.18887460
     licence: "CC BY 4.0; Ho, Y.-F., Grohmann, C. H., Lindsay, J., Reuter, H. I., Parente, L., Witjes, M., Hengl, T. (2025): GEDTM30, OpenGeoHub"
     retrieved: 2026-11-07
-  - id: copdem
-    title: "Copernicus DEM GLO-30 (30 m surface model): base data of the GEDTM30 terrain model"
-    url: https://registry.opendata.aws/copernicus-dem/
-    licence: "Copernicus WorldDEM-30 licence, free; produced using Copernicus WorldDEM-30 © DLR e.V. 2010-2014 and © Airbus Defence and Space GmbH 2014-2018 provided under COPERNICUS by the European Union and ESA; all rights reserved"
-    retrieved: 2026-11-06
   - id: worldcover
     title: "ESA WorldCover 2021: 10 m land cover (via AWS Open Data)"
     url: https://esa-worldcover.org/

@@ -149,11 +149,11 @@ notes:
     Map line (2026-11-04, Geofabrik extracts austria and nord-est): OSM ways matched to the whole
     route's GPX, cut at the huts, and stage 1 to OSM's relation "Berliner Höhenweg Etappe 1"
     (11167141, 7.0 km); every stage at least 95 % matched; the measured stages add up to 78.6 km,
-    71.6 km from the Gamshütte (Tirol: 71 km). Highest point 3,082 m on the terrain model at the Schönbichler Horn
-    (3,133 m stated), lowest 840 m in Finkenberg (1,783 m by the Schlegeis reservoir above the Gamshütte). The terrain
-    model gives about 5,710 m of climbing from the Gamshütte against Tirol's 5,300 m, and 6,780 m
-    with stage 1. Resupply: no shop on the route; every hut serves
-    meals.
+    71.6 km from the Gamshütte (Tirol: 71 km). Highest point 3,073 m on the terrain model (GEDTM30,
+    2026-11-07) at the Schönbichler Horn (3,133 m stated), lowest 839 m in Finkenberg (1,783 m by
+    the Schlegeis reservoir above the Gamshütte). The terrain model gives about 5,480 m of climbing
+    from the Gamshütte against Tirol's 5,300 m, and 6,540 m with stage 1. Resupply: no shop on the
+    route; every hut serves meals.
   - >-
     Stage 1 (2026-11-04, the user's decision): the trail starts in Finkenberg, the tour's
     "Ausgangspunkt der Wanderung: Tennisanlage Finkenberg", with Tirol's stage numbers 2–8 after it.
@@ -161,8 +161,8 @@ notes:
     down, "sieben Tage") are the GPX from the Gamshütte, so the record states no totals and the page
     sums the stages: 78.6 km in eight days, ascent and descent estimated from the terrain model.
     Stage 1 against German Wikipedia ("Finkenberg (785 m) – Gamshütte (1916 m) … Aufstieg 1000 m,
-    Gehzeit ca. 3 Stunden"): our estimate ≈1,070 m up (7 %), ≈840 → 1,910 m; no time stated by
-    Tirol, so none shown.
+    Gehzeit ca. 3 Stunden"): our estimate ≈1,070 m up (7 %), ≈840 → 1,900 m (GEDTM30, 2026-11-07);
+    no time stated by Tirol, so none shown.
   - >-
     Data check (2026-11-04): Tirol Werbung against German Wikipedia (Berliner Höhenweg). Agree:
     "etwa 70 km" (Tirol 71 km), the huts in this order, the highest point at the Schönbichler Horn
@@ -240,11 +240,6 @@ sources:
     url: https://doi.org/10.5281/zenodo.18887460
     licence: "CC BY 4.0; Ho, Y.-F., Grohmann, C. H., Lindsay, J., Reuter, H. I., Parente, L., Witjes, M., Hengl, T. (2025): GEDTM30, OpenGeoHub"
     retrieved: 2026-11-07
-  - id: copdem
-    title: "Copernicus DEM GLO-30 (30 m surface model): base data of the GEDTM30 terrain model"
-    url: https://registry.opendata.aws/copernicus-dem/
-    licence: "Copernicus WorldDEM-30 licence, free; produced using Copernicus WorldDEM-30 © DLR e.V. 2010-2014 and © Airbus Defence and Space GmbH 2014-2018 provided under COPERNICUS by the European Union and ESA; all rights reserved"
-    retrieved: 2026-11-04
   - id: worldcover
     title: "ESA WorldCover 2021: 10 m land cover (via AWS Open Data)"
     url: https://esa-worldcover.org/

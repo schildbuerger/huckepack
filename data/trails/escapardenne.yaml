@@ -105,12 +105,12 @@ notes:
   - >-
     Tree line: none; the route stays below about 600 m.
   - >-
-    Map line (2026-11-06): the Luxembourg and Belgium Geofabrik extracts (2026-10-31); the Lee Trail's
-    stages cut from its relation at their ends, the Éislek Trail's stages on their own relations; every
-    stage at least 98 % matched. The route measures 152.7 km against the stated 159 km; stages 5 and 7
-    (Clervaux to Moulin d'Asselborn, Houffalize to Nadrin) measure 18.6 and 21.3 km against 21 and 24 km
-    on OSM's relations. Ascent: the stages state 5,251 m up; the terrain model about 5,920 m (it reads
-    the treetops in the Ardennes' forests). The page keeps the stated figures.
+    Map line (2026-11-06): the Luxembourg and Belgium Geofabrik extracts (2026-10-31); the Lee
+    Trail's stages cut from its relation at their ends, the Éislek Trail's stages on their own
+    relations; every stage at least 98 % matched. The route measures 152.7 km against the stated 159
+    km; stages 5 and 7 (Clervaux to Moulin d'Asselborn, Houffalize to Nadrin) measure 18.6 and 21.3
+    km against 21 and 24 km on OSM's relations. Ascent: the stages state 5,251 m up; the terrain
+    model about 4,840 m (GEDTM30, 2026-11-07, −8 %). The page keeps the stated figures.
   - >-
     Data check (2026-11-06, working rule 2): against Dutch Wikipedia (Escapardenne Eisleck Trail). The
     Éislek Trail's 106 km from Kautenbach to La Roche-en-Ardenne against the site's five stages' 107 km
@@ -164,11 +164,6 @@ sources:
     url: https://doi.org/10.5281/zenodo.18887460
     licence: "CC BY 4.0; Ho, Y.-F., Grohmann, C. H., Lindsay, J., Reuter, H. I., Parente, L., Witjes, M., Hengl, T. (2025): GEDTM30, OpenGeoHub"
     retrieved: 2026-11-07
-  - id: copdem
-    title: "Copernicus DEM GLO-30 (30 m surface model): base data of the GEDTM30 terrain model"
-    url: https://registry.opendata.aws/copernicus-dem/
-    licence: "Copernicus WorldDEM-30 licence, free; produced using Copernicus WorldDEM-30 © DLR e.V. 2010-2014 and © Airbus Defence and Space GmbH 2014-2018 provided under COPERNICUS by the European Union and ESA; all rights reserved"
-    retrieved: 2026-11-06
   - id: worldcover
     title: "ESA WorldCover 2021: 10 m land cover (via AWS Open Data)"
     url: https://esa-worldcover.org/

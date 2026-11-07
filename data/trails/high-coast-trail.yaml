@@ -131,7 +131,7 @@ notes:
     Skuleskogen's south and north entrances and at Balesudden for the current nine stages; every
     stage 100 % matched, 135.3 km against the stages' 139.8 km. Stage 9 measures 16.8 km against
     18.8 km: OSM's relation ends at Varvsberget above the town. A gap of 832 m in the relation near
-    Skuleskogen is bridged. Highest point 293 m (terrain model) on Skuleberget.
+    Skuleskogen is bridged. Highest point 287 m (terrain model, GEDTM30, 2026-11-07) on Skuleberget.
   - >-
     Data check (2026-11-03): hogakusten.com's figures against English Wikipedia: 135 km from
     Hornöberget to Örnsköldsvik in nine sections, orange waymarks: all agree. Swedish Wikipedia
@@ -182,11 +182,6 @@ sources:
     url: https://doi.org/10.5281/zenodo.18887460
     licence: "CC BY 4.0; Ho, Y.-F., Grohmann, C. H., Lindsay, J., Reuter, H. I., Parente, L., Witjes, M., Hengl, T. (2025): GEDTM30, OpenGeoHub"
     retrieved: 2026-11-07
-  - id: copdem
-    title: "Copernicus DEM GLO-30 (30 m surface model): base data of the GEDTM30 terrain model"
-    url: https://registry.opendata.aws/copernicus-dem/
-    licence: "Copernicus WorldDEM-30 licence, free; produced using Copernicus WorldDEM-30 © DLR e.V. 2010-2014 and © Airbus Defence and Space GmbH 2014-2018 provided under COPERNICUS by the European Union and ESA; all rights reserved"
-    retrieved: 2026-11-03
   - id: worldcover
     title: "ESA WorldCover 2021: 10 m land cover (via AWS Open Data)"
     url: https://esa-worldcover.org/

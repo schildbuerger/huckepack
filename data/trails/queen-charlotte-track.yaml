@@ -120,11 +120,12 @@ notes:
     Tree line: none; the ridge reaches 470 m (Wikipedia).
   - >-
     Map line (2026-11-06): the New Zealand Geofabrik extract (2026-10-31); each section the shortest
-    way over OSM's relation (8524520) to its end, every section 100 % matched. The route measures 67.2
-    km against the site's 73.5 km (9 % under): sections 2 and 5 measure 9.9 and 11.2 km against 11.5
-    and 12.5 km (the side paths to Camp Bay and the bays' landings are not on the shortest way).
-    Ascent from the terrain model, about 2,550 m (the site gives none). Shops: OSM maps none on the
-    track; the lodges and resorts in the bays sell food, the site's section pages list them.
+    way over OSM's relation (8524520) to its end, every section 100 % matched. The route measures
+    67.2 km against the site's 73.5 km (9 % under): sections 2 and 5 measure 9.9 and 11.2 km against
+    11.5 and 12.5 km (the side paths to Camp Bay and the bays' landings are not on the shortest
+    way). Ascent from the terrain model, about 2,090 m (GEDTM30, 2026-11-07; the site gives none).
+    Shops: OSM maps none on the track; the lodges and resorts in the bays sell food, the site's
+    section pages list them.
   - >-
     Data check (2026-11-06, working rule 2): against English Wikipedia (Queen Charlotte Track). Length
     71 km against the site's 73.5 km (3 % apart); Meretoto / Ship Cove to Anakiwa agrees; 3–5 days
@@ -183,11 +184,6 @@ sources:
     url: https://doi.org/10.5281/zenodo.18887460
     licence: "CC BY 4.0; Ho, Y.-F., Grohmann, C. H., Lindsay, J., Reuter, H. I., Parente, L., Witjes, M., Hengl, T. (2025): GEDTM30, OpenGeoHub"
     retrieved: 2026-11-07
-  - id: copdem
-    title: "Copernicus DEM GLO-30 (30 m surface model): base data of the GEDTM30 terrain model"
-    url: https://registry.opendata.aws/copernicus-dem/
-    licence: "Copernicus WorldDEM-30 licence, free; produced using Copernicus WorldDEM-30 © DLR e.V. 2010-2014 and © Airbus Defence and Space GmbH 2014-2018 provided under COPERNICUS by the European Union and ESA; all rights reserved"
-    retrieved: 2026-11-06
   - id: worldcover
     title: "ESA WorldCover 2021: 10 m land cover (via AWS Open Data)"
     url: https://esa-worldcover.org/

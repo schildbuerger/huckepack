@@ -179,23 +179,24 @@ notes:
     Wildlife: black bear and cougar from the BC government's advice, which the society links; the
     society also names grizzly bears in the district and wolves, coyotes and elk along the trail.
   - >-
-    Map line (2026-11-06): the Geofabrik extract of British Columbia's Vancouver Island region (which
-    takes in the qathet region); the Sunshine Coast Trail relation (7406716, 210 ways, 196 km with its
-    spurs and alternatives, all connected), each section the shortest way over it through the huts
-    the society's routes stay at and `via` points where its line takes a longer branch (Inland Lake's
-    north end and Anthony Island, Tin Hat's East Ridge and Pipes Canyon, Mount Troubridge's summit,
-    Fairview Bay); every stage 100 % matched. The sections measure 46.6, 83.8 and 35.5 km, together
-    165.9 km (the map line, without the short out-and-back to Inland Lake West Hut, 160.8 km) against
-    the stated 180 km (−8 %; the guidebook's kilometres in Wikipedia end at 178 km, the society's own
-    trail runners' table gives 176 km, and the society warns that "distances between some kilometre
-    markers have been stretched or shortened" by re-routes). Highest point 1,285 m on Mount
-    Troubridge by the terrain model (the society: 1,300 m), lowest at sea level at Saltery Bay; about
-    8,470 m of climbing by the terrain model. Water: only 9 drinking water points in OSM, all near
-    Powell River, the longest stretch without one 107.6 km, but the society: "access to water along
-    most of the trail via creeks and lakes, except some high mountain summits" (treat it;
-    refillsUntreated). Resupply: shops in OSM in Powell River (km 45) and the Lang Bay store just off
-    the trail at the end of section 2 (km 127), 81 km apart: carry food for section 2 (the society
-    also names the shuttle's resupply service).
+    Map line (2026-11-06): the Geofabrik extract of British Columbia's Vancouver Island region
+    (which takes in the qathet region); the Sunshine Coast Trail relation (7406716, 210 ways, 196 km
+    with its spurs and alternatives, all connected), each section the shortest way over it through
+    the huts the society's routes stay at and `via` points where its line takes a longer branch
+    (Inland Lake's north end and Anthony Island, Tin Hat's East Ridge and Pipes Canyon, Mount
+    Troubridge's summit, Fairview Bay); every stage 100 % matched. The sections measure 46.6, 83.8
+    and 35.5 km, together 165.9 km (the map line, without the short out-and-back to Inland Lake West
+    Hut, 160.8 km) against the stated 180 km (−8 %; the guidebook's kilometres in Wikipedia end at
+    178 km, the society's own trail runners' table gives 176 km, and the society warns that
+    "distances between some kilometre markers have been stretched or shortened" by re-routes).
+    Highest point 1,277 m on Mount Troubridge by the terrain model (GEDTM30, 2026-11-07; the
+    society: 1,300 m), lowest at sea level at Saltery Bay; about 7,110 m of climbing by the terrain
+    model. Water: only 9 drinking water points in OSM, all near Powell River, the longest stretch
+    without one 107.6 km, but the society: "access to water along most of the trail via creeks and
+    lakes, except some high mountain summits" (treat it; refillsUntreated). Resupply: shops in OSM
+    in Powell River (km 45) and the Lang Bay store just off the trail at the end of section 2 (km
+    127), 81 km apart: carry food for section 2 (the society also names the shuttle's resupply
+    service).
   - >-
     Data check (2026-11-06, working rule 2): the society's site against Sunshine Coast Tourism and
     the guidebook's kilometres as Wikipedia lists them. Length 180 km in all three ("over 180km";
@@ -293,11 +294,6 @@ sources:
     url: https://doi.org/10.5281/zenodo.18887460
     licence: "CC BY 4.0; Ho, Y.-F., Grohmann, C. H., Lindsay, J., Reuter, H. I., Parente, L., Witjes, M., Hengl, T. (2025): GEDTM30, OpenGeoHub"
     retrieved: 2026-11-07
-  - id: copdem
-    title: "Copernicus DEM GLO-30 (30 m surface model): base data of the GEDTM30 terrain model"
-    url: https://registry.opendata.aws/copernicus-dem/
-    licence: "Copernicus WorldDEM-30 licence, free; produced using Copernicus WorldDEM-30 © DLR e.V. 2010-2014 and © Airbus Defence and Space GmbH 2014-2018 provided under COPERNICUS by the European Union and ESA; all rights reserved"
-    retrieved: 2026-11-06
   - id: worldcover
     title: "ESA WorldCover 2021: 10 m land cover (via AWS Open Data)"
     url: https://esa-worldcover.org/

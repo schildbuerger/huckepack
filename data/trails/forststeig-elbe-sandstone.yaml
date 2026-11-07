@@ -164,14 +164,14 @@ notes:
     Data check (2026-10-29), against the Tourismusverband Sächsische Schweiz's route page and its
     seven stage pages (structured data: tourLength, ROUTE_HOEHENMETER/_DESC, elevationMax/Min,
     Dauer). Within 10 %: total length (104.01 against 105 km), total ascent and descent (2,966 /
-    2,977 against 2,803 / 2,811 m from the stage sums), highest and lowest point (723 / 120 m against
-    723 / 117 m from the terrain model), stage lengths 1–4, stage climbs 3–5, start and finish, season
-    (April to October), difficulty (schwer; our estimate T3). More than 10 % apart (listed in
-    `dataCheck`): stage lengths 5–7, where the Tourismusverband agrees with
-    Sachsenforst's own GPX tracks, not with its route overview; and the climbs of stages 1, 2, 6
-    and 7, which the Tourismusverband measures along its GPS tracks. Our DIN 33466 time estimates
-    were up to a third shorter than the Tourismusverband's times (4–7 h), so the page now shows its
-    times instead (`stages.timesSource`).
+    2,977 against 2,803 / 2,811 m from the stage sums), highest and lowest point (723 / 120 m
+    against 715 / 114 m from the terrain model, GEDTM30, 2026-11-07), stage lengths 1–4, stage
+    climbs 3–5, start and finish, season (April to October), difficulty (schwer; our estimate T3).
+    More than 10 % apart (listed in `dataCheck`): stage lengths 5–7, where the Tourismusverband
+    agrees with Sachsenforst's own GPX tracks, not with its route overview; and the climbs of stages
+    1, 2, 6 and 7, which the Tourismusverband measures along its GPS tracks. Our DIN 33466 time
+    estimates were up to a third shorter than the Tourismusverband's times (4–7 h), so the page now
+    shows its times instead (`stages.timesSource`).
   - >-
     Route (pipeline, 2026-10-30): stage 1 matches only 86 % of its GPX track. OSM has paths all
     along the GPX there, but they aren't connected where the track runs: (km 9.0–11.2 of the
@@ -238,11 +238,6 @@ sources:
     url: https://doi.org/10.5281/zenodo.18887460
     licence: "CC BY 4.0; Ho, Y.-F., Grohmann, C. H., Lindsay, J., Reuter, H. I., Parente, L., Witjes, M., Hengl, T. (2025): GEDTM30, OpenGeoHub"
     retrieved: 2026-11-07
-  - id: copdem
-    title: "Copernicus DEM GLO-30 (30 m surface model): base data of the GEDTM30 terrain model"
-    url: https://registry.opendata.aws/copernicus-dem/
-    licence: "Copernicus WorldDEM-30 licence, free; produced using Copernicus WorldDEM-30 © DLR e.V. 2010-2014 and © Airbus Defence and Space GmbH 2014-2018 provided under COPERNICUS by the European Union and ESA; all rights reserved"
-    retrieved: 2026-10-27
   - id: worldcover
     title: "ESA WorldCover 2021: 10 m land cover (via AWS Open Data)"
     url: https://esa-worldcover.org/

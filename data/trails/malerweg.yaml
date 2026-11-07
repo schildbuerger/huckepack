@@ -146,11 +146,11 @@ notes:
     3 km apart. Tree line: none recorded, the Malerweg stays below about 560 m. Dogs are welcome, but
     many stretches climb steps and ladders (the Tourismusverband).
   - >-
-    Map line: the official GPX guides the OSM matcher; every stage at least 98 % matched, the map line
-    116.8 km, as the stages sum. Stage 6 crosses the Elbe by the ferry from Schmilka (the
-    matcher bridges 110 m, `maxBridgeM`). The terrain model sums about 4,540 m of climbing against
-    the stages' 3,689 m (treetops in the forest); the page keeps the stated figures. Highest point
-    559 m near the Großer Winterberg.
+    Map line: the official GPX guides the OSM matcher; every stage at least 98 % matched, the map
+    line 116.8 km, as the stages sum. Stage 6 crosses the Elbe by the ferry from Schmilka (the
+    matcher bridges 110 m, `maxBridgeM`). The terrain model sums about 3,710 m of climbing (GEDTM30,
+    2026-11-07) against the stages' 3,689 m; the page keeps the stated figures. Highest point 543 m
+    (terrain model) near the Großer Winterberg.
   - >-
     Data check (2026-11-03): the Tourismusverband's figures against German Wikipedia: length 116 km
     against 112 km (4 %), eight stages, Liebethal to Pirna, the waymark (the Malerweg sign since 2006):
@@ -221,11 +221,6 @@ sources:
     url: https://doi.org/10.5281/zenodo.18887460
     licence: "CC BY 4.0; Ho, Y.-F., Grohmann, C. H., Lindsay, J., Reuter, H. I., Parente, L., Witjes, M., Hengl, T. (2025): GEDTM30, OpenGeoHub"
     retrieved: 2026-11-07
-  - id: copdem
-    title: "Copernicus DEM GLO-30 (30 m surface model): base data of the GEDTM30 terrain model"
-    url: https://registry.opendata.aws/copernicus-dem/
-    licence: "Copernicus WorldDEM-30 licence, free; produced using Copernicus WorldDEM-30 © DLR e.V. 2010-2014 and © Airbus Defence and Space GmbH 2014-2018 provided under COPERNICUS by the European Union and ESA; all rights reserved"
-    retrieved: 2026-11-03
   - id: worldcover
     title: "ESA WorldCover 2021: 10 m land cover (via AWS Open Data)"
     url: https://esa-worldcover.org/

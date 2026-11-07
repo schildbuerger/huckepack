@@ -176,15 +176,16 @@ notes:
     and other carnivores), so only bears, with their own advice page, are listed.
   - >-
     Map line (2026-11-06): the Kootenay Geofabrik extract (kootenay-admreg, 2026-11-05); OSM's
-    Rockwall Trail relation (16227288), chained from the Paint Pots end as one segment, 100 % matched.
-    It measures 52.0 km against Parks Canada's 54.1 km (−4 %). The terrain model's highest point is
-    2,335 m at km 39.5 (Numa Pass, 2,336 m in Parks Canada's chart) and its lowest 1,322 m at km 51.5
-    (the Floe Lake trailhead, 1,337 m). Five campgrounds in OSM, the longest stretch without one
-    11.4 km; no shop on the way: carry all food.
+    Rockwall Trail relation (16227288), chained from the Paint Pots end as one segment, 100 %
+    matched. It measures 52.0 km against Parks Canada's 54.1 km (−4 %). The terrain model's highest
+    point is 2,334 m at km 39.5 (GEDTM30, 2026-11-07; Numa Pass, 2,336 m in Parks Canada's chart)
+    and its lowest 1,322 m at km 51.5 (the Floe Lake trailhead, 1,337 m). Five campgrounds in OSM,
+    the longest stretch without one 11.4 km; no shop on the way: carry all food.
   - >-
-    Ascent: Parks Canada states 3,405 m up and 3,500 m down; the terrain model sums about 2,640 m up
-    (−22 %), and the heights in Parks Canada's own chart (trailheads, campgrounds and passes) add up
-    to about 1,920 m without the ups and downs between them. The record keeps Parks Canada's figures.
+    Ascent: Parks Canada states 3,405 m up and 3,500 m down; the terrain model sums about 2,320 m up
+    (GEDTM30, 2026-11-07, −32 %; see Ascent check), and the heights in Parks Canada's own chart
+    (trailheads, campgrounds and passes) add up to about 1,920 m without the ups and downs between
+    them. The record keeps Parks Canada's figures.
   - >-
     Data check (2026-11-06, working rule 2): Parks Canada against Kootenay Rockies Tourism's Rockwall
     page: length 54.1 km against "a commanding 55-km journey" (+2 %); the campground distances (10.5,
@@ -200,6 +201,18 @@ notes:
   - >-
     Water: Parks Canada asks hikers to boil, filter or chemically treat all water; creeks run by
     every campground.
+  - >-
+    Ascent check (2026-11-07): Parks Canada gives "Elevation gain 3,405 m | Elevation loss: 3,500 m"
+    for the one-way hike north to south, explained only as "all the up … all the down you will
+    experience on a one-way hike"; it doesn't say how it was measured. GEDTM30 along the map line
+    (52.0 km against 54.1 km) gives 2,560 m up with every rise counted (−25 %), 2,450 m counting
+    climbs from 5 m and 2,320 m from 10 m (−32 %, the page's method), and 2,650 m and 2,410 m down:
+    the threshold takes only about 240 m here, as the trail climbs in long, steady grades to its
+    three passes. The heights in Parks Canada's own chart (trailheads, campgrounds, passes) add up
+    to about 1,920 m of climbing, and the net drop agrees (Parks Canada's pair −95 m, ours −90 m).
+    The likely reason is a generous official figure, perhaps from a GPS recording whose noise adds
+    up over 54 km; a 30 m model can miss short steps on moraines and switchbacks, but not a thousand
+    metres. The page shows Parks Canada's figures (dataCheck.deviations).
 dataCheck:
   # working rule 2: Kootenay Rockies Tourism (the regional tourism board) as the second source
   date: 2026-11-06
@@ -207,6 +220,7 @@ dataCheck:
   pageAgainst: [pc-backcountry]
   deviations:
     - { figure: days, ours: "3–5 days (Parks Canada)", theirs: "4–5 days", source: kootenay-rockies }
+    - { figure: ascent, ours: "3,405 m (Parks Canada)", theirs: "about 2,320 m from the terrain model (GEDTM30, 2026-11-07, 10 m threshold; 2,560 m with every rise)", source: gedtm30 }
 sources:
   - id: pc-backcountry
     title: "Parks Canada: Kootenay National Park backpacking (the Rockwall 54.1 km, 3–5 days, 3,405 m up and 3,500 m down, rating, season, campground distances and elevations, tree line, permits, camping rules)"
@@ -234,11 +248,6 @@ sources:
     url: https://doi.org/10.5281/zenodo.18887460
     licence: "CC BY 4.0; Ho, Y.-F., Grohmann, C. H., Lindsay, J., Reuter, H. I., Parente, L., Witjes, M., Hengl, T. (2025): GEDTM30, OpenGeoHub"
     retrieved: 2026-11-07
-  - id: copdem
-    title: "Copernicus DEM GLO-30 (30 m surface model): base data of the GEDTM30 terrain model"
-    url: https://registry.opendata.aws/copernicus-dem/
-    licence: "Copernicus WorldDEM-30 licence, free; produced using Copernicus WorldDEM-30 © DLR e.V. 2010-2014 and © Airbus Defence and Space GmbH 2014-2018 provided under COPERNICUS by the European Union and ESA; all rights reserved"
-    retrieved: 2026-11-06
   - id: worldcover
     title: "ESA WorldCover 2021: 10 m land cover (via AWS Open Data)"
     url: https://esa-worldcover.org/

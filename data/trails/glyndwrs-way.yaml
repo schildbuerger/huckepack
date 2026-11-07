@@ -143,8 +143,8 @@ notes:
     section but 6, which follows the OSM relation (77256): along the GPX the OSM ways from
     Machynlleth to Llanbrynmair don't connect. Section 7, Llanbrynmair to Llanwddyn, matches 94 %
     (OSM's paths there differ from the GPX in places); the others at least 96 %. The map line is
-    215.9 km against the sections' 217 km. Highest point on the map line 508 m (km 100, above
-    Dylife), lowest 13 m (km 118, by the Dyfi at Machynlleth).
+    215.9 km against the sections' 217 km. Highest point on the map line 507 m (terrain model,
+    GEDTM30, 2026-11-07; km 100, above Dylife), lowest 14 m (km 118, by the Dyfi at Machynlleth).
   - >-
     Water and beds: (2026-11-05, within 500 m) OSM has just one drinking water point near the route
     (none on the first 71.6 km, Knighton to Llanidloes) and 13 places to sleep (none for 47.5 km,
@@ -205,11 +205,6 @@ sources:
     url: https://doi.org/10.5281/zenodo.18887460
     licence: "CC BY 4.0; Ho, Y.-F., Grohmann, C. H., Lindsay, J., Reuter, H. I., Parente, L., Witjes, M., Hengl, T. (2025): GEDTM30, OpenGeoHub"
     retrieved: 2026-11-07
-  - id: copdem
-    title: "Copernicus DEM GLO-30 (30 m surface model): base data of the GEDTM30 terrain model"
-    url: https://registry.opendata.aws/copernicus-dem/
-    licence: "Copernicus WorldDEM-30 licence, free; produced using Copernicus WorldDEM-30 © DLR e.V. 2010-2014 and © Airbus Defence and Space GmbH 2014-2018 provided under COPERNICUS by the European Union and ESA; all rights reserved"
-    retrieved: 2026-11-05
   - id: worldcover
     title: "ESA WorldCover 2021: 10 m land cover (via AWS Open Data)"
     url: https://esa-worldcover.org/

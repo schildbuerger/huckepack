@@ -125,16 +125,16 @@ notes:
     Protected areas: none of the kinds these pages list; the trail crosses the Green Mountain
     National Forest, state forests and private land (the club).
   - >-
-    Map line (2026-11-06): the Vermont and Massachusetts Geofabrik extracts; OSM's Long Trail relation
-    (391736), chained from the Massachusetts line as one segment, 100 % matched, no ways left out. It
-    measures 401 km on OSM's full geometry and 394.3 km on the simplified map line, against the
-    club's 272 miles (437.7 km, −8 to −10 %); the record keeps the club's figure. The terrain model
-    gives about 20,170 m of climbing. Water, food and beds: OSM maps only a handful of springs and
-    drinking water points near the trail, and the club's lean-tos as shelters rather than places to
-    sleep, so the page's water and bed gaps (322 km without mapped drinking water, 113 km without a
-    mapped bed) overstate them: every one of the club's 70 overnight sites, roughly 5–10 miles apart,
-    has a natural water source (untreated). No shop lies within 1 km of the trail; hikers resupply in
-    the towns off it.
+    Map line (2026-11-06): the Vermont and Massachusetts Geofabrik extracts; OSM's Long Trail
+    relation (391736), chained from the Massachusetts line as one segment, 100 % matched, no ways
+    left out. It measures 401 km on OSM's full geometry and 394.3 km on the simplified map line,
+    against the club's 272 miles (437.7 km, −8 to −10 %); the record keeps the club's figure. The
+    terrain model gives about 18,090 m of climbing (GEDTM30, 2026-11-07). Water, food and beds: OSM
+    maps only a handful of springs and drinking water points near the trail, and the club's lean-tos
+    as shelters rather than places to sleep, so the page's water and bed gaps (322 km without mapped
+    drinking water, 113 km without a mapped bed) overstate them: every one of the club's 70
+    overnight sites, roughly 5–10 miles apart, has a natural water source (untreated). No shop lies
+    within 1 km of the trail; hikers resupply in the towns off it.
   - >-
     Data check (2026-11-06, working rule 2): the club against English Wikipedia: length 272 miles
     (437.7 km) against 273 miles (439 km); termini the Massachusetts state line (Clarksburg) and the
@@ -178,11 +178,6 @@ sources:
     url: https://doi.org/10.5281/zenodo.18887460
     licence: "CC BY 4.0; Ho, Y.-F., Grohmann, C. H., Lindsay, J., Reuter, H. I., Parente, L., Witjes, M., Hengl, T. (2025): GEDTM30, OpenGeoHub"
     retrieved: 2026-11-07
-  - id: copdem
-    title: "Copernicus DEM GLO-30 (30 m surface model): base data of the GEDTM30 terrain model"
-    url: https://registry.opendata.aws/copernicus-dem/
-    licence: "Copernicus WorldDEM-30 licence, free; produced using Copernicus WorldDEM-30 © DLR e.V. 2010-2014 and © Airbus Defence and Space GmbH 2014-2018 provided under COPERNICUS by the European Union and ESA; all rights reserved"
-    retrieved: 2026-11-06
   - id: worldcover
     title: "ESA WorldCover 2021: 10 m land cover (via AWS Open Data)"
     url: https://esa-worldcover.org/

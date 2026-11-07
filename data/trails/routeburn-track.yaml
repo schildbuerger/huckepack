@@ -108,10 +108,10 @@ notes:
     the last leg was destroyed by a storm in February 2020.
   - >-
     Route (pipeline, 2026-11-05, Geofabrik extracts): each leg is the shortest way over OSM's
-    relation (GW06, 1385139) between its ends; every leg matches 100 %. The map line is
-    30.6 km against DOC's 33 km. Highest point on the map line 1,306 m (km 12; the terrain model
-    runs above DOC's 1,255 m for Harris Saddle, likely on the bluffs beside the track), lowest 471 m
-    at the Routeburn Shelter.
+    relation (GW06, 1385139) between its ends; every leg matches 100 %. The map line is 30.6 km
+    against DOC's 33 km. Highest point on the map line 1,296 m (terrain model, GEDTM30, 2026-11-07;
+    km 12; the terrain model runs above DOC's 1,255 m for Harris Saddle, likely on the bluffs beside
+    the track), lowest 465 m at the Routeburn Shelter.
   - >-
     Water: OSM maps no drinking water near the route. DOC's huts and campsites have tap water, "not
     treated, boil before use"; `refillsUntreated` counts them as any water, not clean water.
@@ -154,11 +154,6 @@ sources:
     url: https://doi.org/10.5281/zenodo.18887460
     licence: "CC BY 4.0; Ho, Y.-F., Grohmann, C. H., Lindsay, J., Reuter, H. I., Parente, L., Witjes, M., Hengl, T. (2025): GEDTM30, OpenGeoHub"
     retrieved: 2026-11-07
-  - id: copdem
-    title: "Copernicus DEM GLO-30 (30 m surface model): base data of the GEDTM30 terrain model"
-    url: https://registry.opendata.aws/copernicus-dem/
-    licence: "Copernicus WorldDEM-30 licence, free; produced using Copernicus WorldDEM-30 © DLR e.V. 2010-2014 and © Airbus Defence and Space GmbH 2014-2018 provided under COPERNICUS by the European Union and ESA; all rights reserved"
-    retrieved: 2026-11-05
   - id: worldcover
     title: "ESA WorldCover 2021: 10 m land cover (via AWS Open Data)"
     url: https://esa-worldcover.org/

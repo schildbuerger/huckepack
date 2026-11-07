@@ -163,10 +163,11 @@ notes:
     Pindamonhangaba; it advises 25 to 30 km a day. The page counts one day per stage.
   - >-
     Tree line: none recorded. The Associação's profile (via Pindamonhangaba) tops out at 1,820 m at
-    Campista; on the Potim branch the terrain model has the route's highest point at about 1,970 m
-    on the crest east of Campos do Jordão (stage 11). The Serra da Mantiqueira is forested to its
-    summits, with araucaria woods and high grassland (campos de altitude) on the heights; no
-    published regional tree-line figure was found (searched 2026-11-07).
+    Campista; on the Potim branch the terrain model (GEDTM30, 2026-11-07) has the route's highest
+    point at about 1,960 m on the crest east of Campos do Jordão (stage 11). The Serra da
+    Mantiqueira is forested to its summits, with araucaria woods and high grassland (campos de
+    altitude) on the heights; no published regional tree-line figure was found (searched
+    2026-11-07).
   - >-
     Wild camping: the Associação lists pousadas, hotels and support points to book ahead and says
     nothing on camping (its FAQ, lodging, walking and route pages, 2026-11-07); none recorded.
@@ -176,29 +177,31 @@ notes:
     any; no official advice on dogs or cattle along the way found, so none is listed.
   - >-
     Map line: OSM relation 15057811 from the Geofabrik extract for Brazil's South-East (sudeste),
-    every stage 100 % matched, 297.1 km against the stages' 302.8 km (2 %). Highest point 1,966 m on
-    the terrain model (stage 11, east of Campos do Jordão), lowest 527 m in the Paraíba valley before
-    Aparecida; the operator's profile, for the Pindamonhangaba branch, gives 1,820 m at Campista and
-    about 550 m in the valley. Resupply: OSM maps no shop over 133 km between km 100 and km 233
-    (Inconfidentes to Luminosa), though every stage ends in a town or village with the Associação's
-    lodging and support points. Beds: OSM maps none for 36 km from Águas da Prata (km 0.4–36.5), past
-    stage 1's end in Andradas, where the Associação lists pousadas. Water: OSM maps 8 drinking water
-    points and one spring (the longest dry stretch 27 km in the check's terms, 154 km between
-    drinking-water taps); the Associação asks pilgrims to carry water and snacks for each stretch
-    ("É importante levar água e lanches/frutas"), and the towns at the stage ends have shops and bars.
+    every stage 100 % matched, 297.1 km against the stages' 302.8 km (2 %). Highest point 1,964 m on
+    the terrain model (GEDTM30, 2026-11-07; stage 11, east of Campos do Jordão), lowest 526 m in the
+    Paraíba valley before Aparecida; the operator's profile, for the Pindamonhangaba branch, gives
+    1,820 m at Campista and about 550 m in the valley. Resupply: OSM maps no shop over 133 km
+    between km 100 and km 233 (Inconfidentes to Luminosa), though every stage ends in a town or
+    village with the Associação's lodging and support points. Beds: OSM maps none for 36 km from
+    Águas da Prata (km 0.4–36.5), past stage 1's end in Andradas, where the Associação lists
+    pousadas. Water: OSM maps 8 drinking water points and one spring (the longest dry stretch 27 km
+    in the check's terms, 154 km between drinking-water taps); the Associação asks pilgrims to carry
+    water and snacks for each stretch ("É importante levar água e lanches/frutas"), and the towns at
+    the stage ends have shops and bars.
   - >-
-    Data check (2026-11-07): the operator's stages against its own elevation profile (kilometre posts
-    from Aparecida) and the OSM map line, the main branch and waymarking against Portuguese Wikipedia.
-    Stage 1 Águas da Prata – Andradas: 30 km against 34 km on the profile (km 322 to 288; 13 %) and
-    29.4 km on the map line; the stated figure stands. Every other stage of 1–10 is within 10 % of the
-    profile (Luminosa – Campos do Jordão 35 against 38 km, 9 %) and of the map line (Borda da Mata –
-    Tocos do Moji 18 against 16.6 km, 8 %); stages 11–12 against the map line: 32 against 33.2 km,
-    26 against 25.2 km. Total: the FAQ's 318 km and the profile's 322 km are for the Pindamonhangaba
-    branch (not recorded); our 302.8 km by Potim. Days: the FAQ's 10 days on foot for 318 km against
-    13 stages here. Termini and waymarking: Portuguese Wikipedia's main branch also runs from Águas da
-    Prata to Aparecida (by Pindamonhangaba) and is "sinalizada por setas amarelas", as the Associação
-    says. Season, sleeping and difficulty: no second source gives them. Highest point: 1,966 m on the
-    terrain model by Potim against the profile's 1,820 m by Pindamonhangaba (different branches).
+    Data check (2026-11-07): the operator's stages against its own elevation profile (kilometre
+    posts from Aparecida) and the OSM map line, the main branch and waymarking against Portuguese
+    Wikipedia. Stage 1 Águas da Prata – Andradas: 30 km against 34 km on the profile (km 322 to 288;
+    13 %) and 29.4 km on the map line; the stated figure stands. Every other stage of 1–10 is within
+    10 % of the profile (Luminosa – Campos do Jordão 35 against 38 km, 9 %) and of the map line
+    (Borda da Mata – Tocos do Moji 18 against 16.6 km, 8 %); stages 11–12 against the map line: 32
+    against 33.2 km, 26 against 25.2 km. Total: the FAQ's 318 km and the profile's 322 km are for
+    the Pindamonhangaba branch (not recorded); our 302.8 km by Potim. Days: the FAQ's 10 days on
+    foot for 318 km against 13 stages here. Termini and waymarking: Portuguese Wikipedia's main
+    branch also runs from Águas da Prata to Aparecida (by Pindamonhangaba) and is "sinalizada por
+    setas amarelas", as the Associação says. Season, sleeping and difficulty: no second source gives
+    them. Highest point: 1,964 m on the terrain model (GEDTM30, 2026-11-07) by Potim against the
+    profile's 1,820 m by Pindamonhangaba (different branches).
 dataCheck:
   # working rule 2: the operator's elevation profile for the stage distances, Portuguese Wikipedia
   # for the main branch and waymarking, the OSM map line
@@ -274,11 +277,6 @@ sources:
     title: "GEDTM30 v1.2: global ensemble digital terrain model, 30 m, bare earth (OpenGeoHub; Ho et al. 2025, PeerJ 13:e19673)"
     url: https://doi.org/10.5281/zenodo.18887460
     licence: "CC BY 4.0; Ho, Y.-F., Grohmann, C. H., Lindsay, J., Reuter, H. I., Parente, L., Witjes, M., Hengl, T. (2025): GEDTM30, OpenGeoHub"
-    retrieved: 2026-11-07
-  - id: copdem
-    title: "Copernicus DEM GLO-30 (30 m surface model): base data of the GEDTM30 terrain model"
-    url: https://registry.opendata.aws/copernicus-dem/
-    licence: "Copernicus WorldDEM-30 licence, free; produced using Copernicus WorldDEM-30 © DLR e.V. 2010-2014 and © Airbus Defence and Space GmbH 2014-2018 provided under COPERNICUS by the European Union and ESA; all rights reserved"
     retrieved: 2026-11-07
   - id: worldcover
     title: "ESA WorldCover 2021: 10 m land cover (via AWS Open Data)"

@@ -142,9 +142,9 @@ notes:
     sections 1–4 and 6, section 5 the OSM relation (8879): along the 2013 GPX the OSM ways between
     Watlington and Wendover don't connect; on the relation section 5 matches fully (corrected the
     same day: a first run kept the ways cached around the GPX and bridged a 386 m gap that isn't
-    there). Every section matches at least 96 %;
-    the map line is 138.1 km against the sections' 138.9 km. Highest point on the map line 276 m
-    (km 23, the Marlborough Downs), lowest 41 m (km 73, by the Thames at Streatley).
+    there). Every section matches at least 96 %; the map line is 138.1 km against the sections'
+    138.9 km. Highest point on the map line 275 m (terrain model, GEDTM30, 2026-11-07; km 23, the
+    Marlborough Downs), lowest 39 m (km 73, by the Thames at Streatley).
   - >-
     Water: (2026-11-05, within 500 m) OSM has 10 drinking water points near the route; the longest
     stretch without one is 41.1 km (km 97 to the end, Watlington to Ivinghoe Beacon). National
@@ -210,11 +210,6 @@ sources:
     url: https://doi.org/10.5281/zenodo.18887460
     licence: "CC BY 4.0; Ho, Y.-F., Grohmann, C. H., Lindsay, J., Reuter, H. I., Parente, L., Witjes, M., Hengl, T. (2025): GEDTM30, OpenGeoHub"
     retrieved: 2026-11-07
-  - id: copdem
-    title: "Copernicus DEM GLO-30 (30 m surface model): base data of the GEDTM30 terrain model"
-    url: https://registry.opendata.aws/copernicus-dem/
-    licence: "Copernicus WorldDEM-30 licence, free; produced using Copernicus WorldDEM-30 © DLR e.V. 2010-2014 and © Airbus Defence and Space GmbH 2014-2018 provided under COPERNICUS by the European Union and ESA; all rights reserved"
-    retrieved: 2026-11-05
   - id: worldcover
     title: "ESA WorldCover 2021: 10 m land cover (via AWS Open Data)"
     url: https://esa-worldcover.org/

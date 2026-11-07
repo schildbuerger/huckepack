@@ -181,9 +181,9 @@ notes:
     Trail" relation (7641482, 10 ways, 64.5 km), chained from Timberline Lodge round the loop as one
     segment, 100 % matched (at most 21 m off). The main route measures 62.7 km against the guide's
     41.5 miles (66.8 km, −6 %); the record keeps the Forest Service's figure. The terrain model's
-    highest point is 2,235 m at km 15.2 against the guide's 7,320 feet (2,231 m), its lowest 1,002 m
-    at km 46.0 (the Sandy River) against 3,480 feet (1,061 m, −6 %). No ascent is stated by the Forest
-    Service; the page estimates about 3,050 m from the terrain model.
+    highest point is 2,233 m at km 15.2 (GEDTM30, 2026-11-07) against the guide's 7,320 feet (2,231
+    m), its lowest 997 m at km 46.0 (the Sandy River) against 3,480 feet (1,061 m, −6 %). No ascent
+    is stated by the Forest Service; the page estimates about 2,770 m from the terrain model.
   - >-
     Resupply: OSM maps no shop within reach of the loop (the check's 62.7 km without resupply): the
     trail runs through wilderness, with Timberline Lodge (a hotel) and the Mt. Hood Meadows ski area
@@ -194,22 +194,21 @@ notes:
     Data check (2026-11-06): against English Wikipedia (the only independent second source with
     figures). Length 41.5 miles (66.8 km, the guide) against 40.7 miles (65.5 km, −2 %); days 3–4
     against "three to five days" (agrees); season July to October against "Mid-July through early
-    October" (agrees); highest point 7,320 feet (2,231 m) against Lamberson Spur 7,300 feet (2,225 m,
-    agrees); lowest 3,480 feet (1,061 m) against the Sandy River 3,240 feet (988 m, −7 %); start at
-    Timberline Lodge (agrees: "most easily accessible from Timberline Lodge"); camping outside the
-    meadows (agrees; Wikipedia adds at least 200 feet from water); difficulty from the river fords
-    and washouts (agrees); the trail "alternates above and below the timberline" (the Forest
-    Service: "at or near tree line"). Ascent: no official figure; the terrain model's ≈3,050 m is 11 %
-    over Wikipedia's 9,000 feet (2,743 m), recorded in dataCheck. The permit, camping and campfire
-    rules, season and days on the built page were checked one by one against the Forest Service's
-    page and guide and agree.
+    October" (agrees); highest point 7,320 feet (2,231 m) against Lamberson Spur 7,300 feet (2,225
+    m, agrees); lowest 3,480 feet (1,061 m) against the Sandy River 3,240 feet (988 m, −7 %); start
+    at Timberline Lodge (agrees: "most easily accessible from Timberline Lodge"); camping outside
+    the meadows (agrees; Wikipedia adds at least 200 feet from water); difficulty from the river
+    fords and washouts (agrees); the trail "alternates above and below the timberline" (the Forest
+    Service: "at or near tree line"). Ascent: no official figure; the terrain model's ≈2,770 m
+    (GEDTM30, 2026-11-07) is 1 % over Wikipedia's 9,000 feet (2,743 m; 11 % over on the former
+    model). The permit, camping and campfire rules, season and days on the built page were checked
+    one by one against the Forest Service's page and guide and agree.
 dataCheck:
   # working rule 2: English Wikipedia as the second source
   date: 2026-11-06
   against: [wikipedia]
   pageAgainst: [fs, fs-rog]
-  deviations:
-    - { figure: ascent, ours: "≈3,050 m (terrain model; no official figure)", theirs: "9,000 ft (2,743 m)", source: wikipedia }
+  deviations: []
 sources:
   - id: fs
     title: "USDA Forest Service, Mt. Hood National Forest: Timberline Trail #600 (length, days, season, permits, camping, river crossings)"
@@ -253,11 +252,6 @@ sources:
     url: https://doi.org/10.5281/zenodo.18887460
     licence: "CC BY 4.0; Ho, Y.-F., Grohmann, C. H., Lindsay, J., Reuter, H. I., Parente, L., Witjes, M., Hengl, T. (2025): GEDTM30, OpenGeoHub"
     retrieved: 2026-11-07
-  - id: copdem
-    title: "Copernicus DEM GLO-30 (30 m surface model): base data of the GEDTM30 terrain model"
-    url: https://registry.opendata.aws/copernicus-dem/
-    licence: "Copernicus WorldDEM-30 licence, free; produced using Copernicus WorldDEM-30 © DLR e.V. 2010-2014 and © Airbus Defence and Space GmbH 2014-2018 provided under COPERNICUS by the European Union and ESA; all rights reserved"
-    retrieved: 2026-11-06
   - id: worldcover
     title: "ESA WorldCover 2021: 10 m land cover (via AWS Open Data)"
     url: https://esa-worldcover.org/

@@ -113,7 +113,8 @@ notes:
     relation (10462885) between its ends; every leg matches 100 %. The map line is 50.0 km against
     DOC's 55.1 km, every leg shorter than DOC's figure (leg 3, Moonlight Tops Hut to Pororari Hut,
     17.1 against 19.1 km, 11 %), so DOC's distances likely run long. Highest point on the map line
-    1,137 m (km 14, on the tops beyond Ces Clark Hut), lowest by the sea at Punakaiki.
+    1,134 m (terrain model, GEDTM30, 2026-11-07; km 14, on the tops beyond Ces Clark Hut), lowest by
+    the sea at Punakaiki.
   - >-
     Water and food: OSM maps no drinking water and no shop along the track; DOC's huts have a water
     supply. Walkers carry all their food.
@@ -154,11 +155,6 @@ sources:
     url: https://doi.org/10.5281/zenodo.18887460
     licence: "CC BY 4.0; Ho, Y.-F., Grohmann, C. H., Lindsay, J., Reuter, H. I., Parente, L., Witjes, M., Hengl, T. (2025): GEDTM30, OpenGeoHub"
     retrieved: 2026-11-07
-  - id: copdem
-    title: "Copernicus DEM GLO-30 (30 m surface model): base data of the GEDTM30 terrain model"
-    url: https://registry.opendata.aws/copernicus-dem/
-    licence: "Copernicus WorldDEM-30 licence, free; produced using Copernicus WorldDEM-30 © DLR e.V. 2010-2014 and © Airbus Defence and Space GmbH 2014-2018 provided under COPERNICUS by the European Union and ESA; all rights reserved"
-    retrieved: 2026-11-05
   - id: worldcover
     title: "ESA WorldCover 2021: 10 m land cover (via AWS Open Data)"
     url: https://esa-worldcover.org/

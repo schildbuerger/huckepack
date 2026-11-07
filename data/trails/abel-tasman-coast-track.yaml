@@ -126,7 +126,7 @@ notes:
     Route (pipeline, 2026-11-05, Geofabrik extracts): each leg is the shortest way over OSM's
     relation (GW04, 5987159) between its ends, which takes the tidal crossings; every leg matches
     100 %. The map line is 54.4 km against DOC's 56.9 km with the low-tide crossing. Highest point
-    197 m (km 52, the saddle above Wainui Inlet).
+    186 m (terrain model, GEDTM30, 2026-11-07; km 52, the saddle above Wainui Inlet).
   - >-
     Water and food: OSM maps no drinking water and no shop along the track; DOC's huts and campsites
     have water, "not treated, boil before use" (`refillsUntreated`). Water taxis call at the main
@@ -168,11 +168,6 @@ sources:
     url: https://doi.org/10.5281/zenodo.18887460
     licence: "CC BY 4.0; Ho, Y.-F., Grohmann, C. H., Lindsay, J., Reuter, H. I., Parente, L., Witjes, M., Hengl, T. (2025): GEDTM30, OpenGeoHub"
     retrieved: 2026-11-07
-  - id: copdem
-    title: "Copernicus DEM GLO-30 (30 m surface model): base data of the GEDTM30 terrain model"
-    url: https://registry.opendata.aws/copernicus-dem/
-    licence: "Copernicus WorldDEM-30 licence, free; produced using Copernicus WorldDEM-30 © DLR e.V. 2010-2014 and © Airbus Defence and Space GmbH 2014-2018 provided under COPERNICUS by the European Union and ESA; all rights reserved"
-    retrieved: 2026-11-05
   - id: worldcover
     title: "ESA WorldCover 2021: 10 m land cover (via AWS Open Data)"
     url: https://esa-worldcover.org/

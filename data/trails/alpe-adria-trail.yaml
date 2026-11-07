@@ -227,9 +227,9 @@ notes:
     Grossglockner set the limit); the record keeps Kärnten Werbung's.
   - >-
     Tree line (2026-10-30): BFW's growth region 1.2 (upper Mölltal) puts the top of the
-    high-subalpine zone at 2,200 m, locally 2,300 m; the route's highest point, 2,358 m on stage 1,
-    is above it. Second source: German Wikipedia, "in den Alpen liegt die Grenze zwischen 1800 und
-    2200 Metern" (the upper end agrees).
+    high-subalpine zone at 2,200 m, locally 2,300 m; the route's highest point, 2,361 m on stage 1
+    (terrain model, GEDTM30, 2026-11-07), is above it. Second source: German Wikipedia, "in den
+    Alpen liegt die Grenze zwischen 1800 und 2200 Metern" (the upper end agrees).
 dataCheck:
   # working rule 2: Wikivoyage (de) as the second source; the stages also checked on the page
   date: 2026-10-30
@@ -291,11 +291,6 @@ sources:
     url: https://doi.org/10.5281/zenodo.18887460
     licence: "CC BY 4.0; Ho, Y.-F., Grohmann, C. H., Lindsay, J., Reuter, H. I., Parente, L., Witjes, M., Hengl, T. (2025): GEDTM30, OpenGeoHub"
     retrieved: 2026-11-07
-  - id: copdem
-    title: "Copernicus DEM GLO-30 (30 m surface model): base data of the GEDTM30 terrain model"
-    url: https://registry.opendata.aws/copernicus-dem/
-    licence: "Copernicus WorldDEM-30 licence, free; produced using Copernicus WorldDEM-30 © DLR e.V. 2010-2014 and © Airbus Defence and Space GmbH 2014-2018 provided under COPERNICUS by the European Union and ESA; all rights reserved"
-    retrieved: 2026-10-29
   - id: worldcover
     title: "ESA WorldCover 2021: 10 m land cover (via AWS Open Data)"
     url: https://esa-worldcover.org/

@@ -168,12 +168,13 @@ notes:
     none.
   - >-
     Data check (2026-10-31). Second source: English Wikipedia (190 miles, 306 km; 12 stages, about
-    two weeks; Kidsty Pike 780 m the highest point) agrees with the National Trail's length and days.
-    German Wikipedia (the stage source) gives the waymarked National Trail as 303 km (2026) and the
-    route as passable all year. The highest point on the terrain model is 783 m (Kidsty Pike 780 m).
-    Apart: the year. National Trails says it opened on 26 March 2026; English Wikipedia says it was
-    designated in 2022, German Wikipedia "since 2023"; the record keeps the official opening.
-    Wikipedia gives no ascent; the page's terrain-model estimate is ≈ 8,260 m.
+    two weeks; Kidsty Pike 780 m the highest point) agrees with the National Trail's length and
+    days. German Wikipedia (the stage source) gives the waymarked National Trail as 303 km (2026)
+    and the route as passable all year. The highest point on the terrain model is 784 m (GEDTM30,
+    2026-11-07; Kidsty Pike 780 m). Apart: the year. National Trails says it opened on 26 March
+    2026; English Wikipedia says it was designated in 2022, German Wikipedia "since 2023"; the
+    record keeps the official opening. Wikipedia gives no ascent; the page's terrain-model estimate
+    is ≈ 6,610 m.
 dataCheck:
   # working rule 2: English and German Wikipedia
   date: 2026-10-31
@@ -233,11 +234,6 @@ sources:
     url: https://doi.org/10.5281/zenodo.18887460
     licence: "CC BY 4.0; Ho, Y.-F., Grohmann, C. H., Lindsay, J., Reuter, H. I., Parente, L., Witjes, M., Hengl, T. (2025): GEDTM30, OpenGeoHub"
     retrieved: 2026-11-07
-  - id: copdem
-    title: "Copernicus DEM GLO-30 (30 m surface model): base data of the GEDTM30 terrain model"
-    url: https://registry.opendata.aws/copernicus-dem/
-    licence: "Copernicus WorldDEM-30 licence, free; produced using Copernicus WorldDEM-30 © DLR e.V. 2010-2014 and © Airbus Defence and Space GmbH 2014-2018 provided under COPERNICUS by the European Union and ESA; all rights reserved"
-    retrieved: 2026-10-31
   - id: worldcover
     title: "ESA WorldCover 2021: 10 m land cover (via AWS Open Data)"
     url: https://esa-worldcover.org/

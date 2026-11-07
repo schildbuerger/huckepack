@@ -171,25 +171,25 @@ notes:
     site's current notices name forest work between Bestwig and Föckinghausen, no closure.
   - >-
     Ascent: no stated total; the main stages add up to 3,671 m up. The terrain model gives about
-    5,340 m (it measures the treetops; 83 % of the route is forest).
+    3,810 m (GEDTM30, 2026-11-07, +4 %).
   - >-
     Water: (2026-11-01, within 500 m) OSM has 17 drinking water points along the main route; the longest stretch without one is 46.5 km (km 58–105, stages 4–9, from the Trinkbrunnen Steinweg on). The site names
     inns and stage towns, no water points.
   - >-
-    Tree line: none in reach. The main route tops out at about 544 m (terrain model, in the Balver
-    Wald), the Südroute at the Lörmecke-Turm (580.9 m); the Sauerland's hills are forested to the
-    top and have no natural tree line.
+    Tree line: none in reach. The main route tops out at about 540 m (terrain model, GEDTM30,
+    2026-11-07; in the Balver Wald), the Südroute at the Lörmecke-Turm (580.9 m); the Sauerland's
+    hills are forested to the top and have no natural tree line.
   - >-
-    Data check (2026-10-31). Second source: German Wikipedia (240 km, Iserlohn near the
-    Parktheater, opened 17 May 2008, the white W on green, highest point the Lörmecke-Turm 580.9 m,
-    lowest Arnsberg-Gierskämpen about 182 m, "leicht", "ganzjährig", 16 stages of 5.4–21.7 km, no
-    stage list). Agree: length 240 km, start, opening year, waymark, lowest point (182 m on the
-    terrain model too). Wikipedia's end is Warstein, where the loop begins; the site and flyer end
-    in Marsberg. The highest point lies on the Südroute (stage 19 page: 573 m). Over 10 % apart:
-    the stage count (13 against 16) and the season (Wikipedia all year; the stage pages recommend
-    March to October on every main stage, most stages all year), see dataCheck. No independent
-    source gives stage figures; the built page's stage table was checked against the site and the
-    flyer.
+    Data check (2026-10-31). Second source: German Wikipedia (240 km, Iserlohn near the Parktheater,
+    opened 17 May 2008, the white W on green, highest point the Lörmecke-Turm 580.9 m, lowest
+    Arnsberg-Gierskämpen about 182 m, "leicht", "ganzjährig", 16 stages of 5.4–21.7 km, no stage
+    list). Agree: length 240 km, start, opening year, waymark, lowest point (178 m on the terrain
+    model, GEDTM30, 2026-11-07). Wikipedia's end is Warstein, where the loop begins; the site and
+    flyer end in Marsberg. The highest point lies on the Südroute (stage 19 page: 573 m). Over 10 %
+    apart: the stage count (13 against 16) and the season (Wikipedia all year; the stage pages
+    recommend March to October on every main stage, most stages all year), see dataCheck. No
+    independent source gives stage figures; the built page's stage table was checked against the
+    site and the flyer.
   - >-
     Beds (2026-11-01): 40.4 km without a bed of the kinds counted (km 74–115, stages 6–10, from
     the Möhnesee youth hostel to the Kallenhardt campsite). Since 2026-11-01 OSM's shelters no
@@ -245,11 +245,6 @@ sources:
     url: https://doi.org/10.5281/zenodo.18887460
     licence: "CC BY 4.0; Ho, Y.-F., Grohmann, C. H., Lindsay, J., Reuter, H. I., Parente, L., Witjes, M., Hengl, T. (2025): GEDTM30, OpenGeoHub"
     retrieved: 2026-11-07
-  - id: copdem
-    title: "Copernicus DEM GLO-30 (30 m surface model): base data of the GEDTM30 terrain model"
-    url: https://registry.opendata.aws/copernicus-dem/
-    licence: "Copernicus WorldDEM-30 licence, free; produced using Copernicus WorldDEM-30 © DLR e.V. 2010-2014 and © Airbus Defence and Space GmbH 2014-2018 provided under COPERNICUS by the European Union and ESA; all rights reserved"
-    retrieved: 2026-10-31
   - id: worldcover
     title: "ESA WorldCover 2021: 10 m land cover (via AWS Open Data)"
     url: https://esa-worldcover.org/
