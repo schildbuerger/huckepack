@@ -485,10 +485,18 @@
     phones too, the eyebrow, the stamps' words; #1085); the popular cards say
     "Wikipedia views, last 12 months" and the (i) links Wikimedia's pageviews;
     the logbook's stamps are inked on touch screens as they scroll into view;
-    the sticky bar's and the film's button read "Find a trail". The popular
-    trails on phones (topic `popular`) and the film merged with "On every
-    trail page" (topic `offers`) are previews, three approaches each, on the
-    local branch `feat/home-baymard`; their decision goes here when picked.
+    the sticky bar's and the film's button read "Find a trail".
+  - 2026-11-07, the user's decisions on the review's previews: the popular
+    trails on phones are row cards (approach A of three: the route small on
+    the left, name and figures on the right), and the page views leave the
+    cards everywhere (the (i) still says they rank the list, with Wikimedia's
+    source); on wide screens the three stand in rank order, 1 2 3 from the
+    left, as they always looked (the "first in the middle" rule had never
+    applied); the explainer film and "On every trail page" stay two sections
+    (three ways of merging them were previewed), the list gaining Photos and
+    Wildlife in the trail page's order; the hero's water flag on phones reads
+    "water points" on two short lines; the smaller phone sun, low beside the
+    flags, stays.
 
 - **Explainer film (2026-11-04, the user's choices):** right after the about
   band (of three places, approach A), whose colour comes down into the film's

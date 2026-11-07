@@ -187,6 +187,7 @@ const world = worldOutline(entries.map((e) => [e.data.termini.start.lon, e.data.
 // what a trail page shows, in its order (src/pages/trails/[slug].astro)
 const features: { icon: IconName; title: string; text: string }[] = [
   { icon: "chart-column", title: "Key figures", text: "Length, ascent and descent, difficulty, days, distance per day, the season and the main landscape." },
+  { icon: "images", title: "Photos", text: "Up to eight photos along the route from Wikimedia Commons, where it has them, each with its author and licence." },
   { icon: "train-front", title: "Location", text: "Start and finish, the nearest main station and airports with the road distance, and the trail's waymark." },
   { icon: "map", title: "Map", text: "The route on an OpenStreetMap map, stage by stage, with approaches and variants." },
   { icon: "gauge", title: "Difficulty", text: "Terrain, climate and the length of the days, each rated Easy to Hard by the same rule on every trail." },
@@ -196,15 +197,8 @@ const features: { icon: IconName; title: string; text: string }[] = [
   { icon: "trees", title: "Landscape", text: "Forest, open hills, moss, rock or snow: what the trail passes through, and where." },
   { icon: "tent", title: "Sleeping", text: "Huts, campsites, hostels and rooms along the way, and whether wild camping is allowed." },
   { icon: "droplet", title: "Water", text: "Drinking water, refills and springs along the route, and the longest stretch without." },
+  { icon: "paw-print", title: "Wildlife", text: "Animals and plants worth knowing about, with what to do, in the official source's words." },
 ];
-// PREVIEW (topic "offers"): the film and "On every trail page" as one section, three ways; the list
-// adds Wildlife (the trail page has it, the old list didn't), and each item names the film's panel
-// that shows it (its index in the film's scenes), so approach B can light it up as the film plays
-const SCENE_OF: Record<string, number> = { Map: 0, Terrain: 1, Climate: 2, Water: 3, Wildlife: 4, Sleeping: 5 };
-const offers = [
-  ...features,
-  { icon: "paw-print" as IconName, title: "Wildlife", text: "Animals and plants worth knowing about, with what to do, in the official source's words." },
-].map((f) => ({ ...f, scene: SCENE_OF[f.title] }));
 
 const sources = [
   { name: "Trail operators", what: "Official stages, distances, times, seasons, waymarks and rules" },
@@ -268,8 +262,6 @@ import HeroStats from "../components/HeroStats.astro";
 import SummitPoles from "../components/SummitPoles.astro";
 import { summitFlags } from "../lib/summit-flags";
 import Explainer from "../components/Explainer.astro";
-import PreviewSwitch from "../components/PreviewSwitch.astro";
-import { DURATION } from "../lib/explainer/film";
 ---
 
 <Base
@@ -319,92 +311,9 @@ import { DURATION } from "../lib/explainer/film";
   <AboutBand />
 
   <!-- the explainer film (2026-11-04; of three places, approach A): right after the words on what
-       huckepack is, the film shows it on one trail. PREVIEW (topic "offers", 2026-11-07, Baymard review
-       item 10): the film and "On every trail page" said the same thing twice; three ways to make them
-       one section here (the list .offers, shown only in an approach; the old list after the trails near
-       you is then hidden). The wrapper is layout-neutral (display: contents) in "Now" -->
-  <div class="offers-wrap" data-offers>
-    <section class="block offers" aria-labelledby="offers-h">
-      <div class="block-head">
-        <h2 id="offers-h">On every trail page</h2>
-        <!-- C: the film in a dialog -->
-        <button type="button" class="offers-watch" data-offers-watch>
-          <span class="offers-watch-dot"><Icon name="play" size={14} /></span>Watch the film · {DURATION} s
-        </button>
-      </div>
-      <div class="offers-body">
-        <ul class="features offers-list" data-offers-list>
-          {offers.map((f) => (
-            <li data-scene={f.scene}>
-              <span class="feature-icon"><Icon name={f.icon} size={18} /></span>
-              <div>
-                <p class="feature-title">{f.title}</p>
-                <p class="feature-text">{f.text}</p>
-              </div>
-            </li>
-          ))}
-        </ul>
-        <!-- A: the film as an optional panel under the list; it opens the film's band below and plays -->
-        <div class="offers-panel">
-          <img src="/explainer/wide.svg" alt="" width="176" height="77" loading="lazy" decoding="async" />
-          <p>See it on one trail: the Tour du Mont Blanc, panel by panel, in {DURATION} seconds.</p>
-          <button type="button" class="offers-play" data-offers-play>
-            <span class="offers-watch-dot"><Icon name="play" size={14} /></span>Play the {DURATION} s film
-          </button>
-        </div>
-      </div>
-    </section>
-    <Explainer />
-    <!-- C: the dialog the film moves into while it plays -->
-    <dialog class="film-dialog" aria-label="The film: what a trail page shows" data-film-dialog>
-      <button type="button" class="film-close" aria-label="Close the film" data-film-close><Icon name="x" size={20} /></button>
-    </dialog>
-  </div>
-  <script>
-    // PREVIEW "offers": A opens the film's band under the list and plays it; B lights up the list item
-    // whose panel is playing and ticks off those already shown; C moves the film into a dialog and plays
-    // it there (back in place when closed). Nothing loads until a play button is pressed.
-    const wrap = document.querySelector<HTMLElement>("[data-offers]");
-    const film = wrap?.querySelector<HTMLElement>("[data-explainer]");
-    const approach = () => document.documentElement.dataset.previewOffers ?? "";
-    const reduced = matchMedia("(prefers-reduced-motion: reduce)").matches;
-    if (wrap && film) {
-      const start = () => {
-        if (!reduced && !film.classList.contains("playing")) film.querySelector<HTMLButtonElement>(".ex-play")?.click();
-      };
-      wrap.querySelector("[data-offers-play]")?.addEventListener("click", () => {
-        film.classList.add("open");
-        film.scrollIntoView({ behavior: reduced ? "auto" : "smooth", block: "start" });
-        start();
-      });
-      const dialog = wrap.querySelector<HTMLDialogElement>("[data-film-dialog]")!;
-      wrap.querySelector("[data-offers-watch]")?.addEventListener("click", () => {
-        dialog.append(film);
-        dialog.showModal();
-        start();
-      });
-      wrap.querySelector("[data-film-close]")?.addEventListener("click", () => dialog.close());
-      dialog.addEventListener("click", (e) => e.target === dialog && dialog.close());
-      dialog.addEventListener("close", () => {
-        const pause = film.querySelector<HTMLButtonElement>(".ex-pause");
-        if (pause && !pause.hidden && !pause.classList.contains("paused")) pause.click();
-        dialog.before(film);
-      });
-      // B: the list follows the film
-      const caption = film.querySelector<HTMLElement>(".ex-caption")!;
-      const titles = [...film.querySelectorAll(".ex-transcript li b")].map((b) => b.textContent!.replace(/\.$/, ""));
-      const items = [...wrap.querySelectorAll<HTMLElement>("[data-offers-list] li")];
-      new MutationObserver(() => {
-        if (approach() !== "b") return;
-        const now = titles.indexOf(caption.textContent ?? "");
-        for (const li of items) {
-          const s = li.dataset.scene === undefined ? -1 : Number(li.dataset.scene);
-          li.classList.toggle("lit", s === now);
-          if (s >= 0 && s <= now) li.classList.add("seen");
-        }
-      }).observe(caption, { childList: true, characterData: true, subtree: true });
-    }
-  </script>
+       huckepack is, the film shows it on one trail (kept as its own section beside "On every trail
+       page", the user's decision of 2026-11-07) -->
+  <Explainer />
 
   <!-- the featured trail (2026-11-02; of five previews after public designs, approach D, like a route
        app's): a band wall to wall with soft wave edges, the trail's real route drawn when the band comes into
@@ -495,14 +404,16 @@ import { DURATION } from "../lib/explainer/film";
           )}
         </div>
         <!-- the three most read as a podium of routes (2026-11-02), in the featured band's style: a small card
-             each with the route drawn as it comes into view, the rank as a giant number behind, the figures
-             and the article's reads; on wide screens the first in the middle -->
+             each with the route drawn as it comes into view, the rank as a giant number behind and the
+             figures (the page views left the cards on 2026-11-07, the user's decision: the (i) says what
+             ranks them); in rank order, 1 2 3 from the left (the user's decision of 2026-11-07); on
+             phones a row card each -->
         <ol class="podium" data-popular>
-          {popular.map(({ t, views, ranks }) => {
+          {popular.map(({ t, ranks }) => {
             const route = routeShape(t.slug);
             const rank = ranks[buildMonth];
             return (
-              <li class={rank ? `pd-${rank}` : undefined} hidden={!rank} data-ranks={JSON.stringify(ranks)}>
+              <li hidden={!rank} data-ranks={JSON.stringify(ranks)}>
                 <a href={`/trails/${t.slug}/`} data-draw>
                   <span class="pd-giant" aria-hidden="true">{rank}</span>
                   {route && (
@@ -517,7 +428,6 @@ import { DURATION } from "../lib/explainer/film";
                     <span class="pd-place">{t.countries.join(" · ")}</span>
                     <span class="pd-name">{t.name}</span>
                     <span class="pd-fig">{figureLine(t)}{difficultyWord(t) && <> · <span data-rate={rateOf(t)}><span class="rate-word">{difficultyWord(t)}</span></span></>}</span>
-                    <span class="pd-views">{fmt(views!)} Wikipedia views<span class="pd-w-long">, last 12 months</span><span class="pd-w-short"> (12 months)</span></span>
                   </span>
                 </a>
                 <span class="sr-only pd-rank">Rank {rank}</span>
@@ -526,7 +436,7 @@ import { DURATION } from "../lib/explainer/film";
           })}
         </ol>
         <script>
-          // the visitor's month: its three, in rank order (the podium places them by their pd- class)
+          // the visitor's month: its three, in rank order (the order on screen too)
           {
             const month = new Date().getMonth() + 1;
             const list = document.querySelector<HTMLElement>("[data-popular]");
@@ -538,10 +448,8 @@ import { DURATION } from "../lib/explainer/film";
               for (const li of items.sort((a, b) => (rankOf(a) || 9) - (rankOf(b) || 9))) {
                 const r = rankOf(li);
                 li.hidden = !r;
-                // classList, never className: that dropped Astro's scope class, and with it every style
-                // of the li (the podium's order on wide screens; fixed 2026-11-07)
-                li.classList.remove("pd-1", "pd-2", "pd-3");
-                if (r) li.classList.add(`pd-${r}`);
+                // (no className here: it dropped Astro's scope class, and with it every style of the li,
+                // until 2026-11-07)
                 li.querySelector(".pd-giant")!.textContent = r ? String(r) : "";
                 li.querySelector(".pd-rank")!.textContent = r ? `Rank ${r}` : "";
                 list.append(li);
@@ -947,30 +855,6 @@ import { DURATION } from "../lib/explainer/film";
         }).observe(footer);
     }
   </script>
-  <!-- PREVIEWS (working rule 1; local branch only): the popular trails on phones, and the film merged
-       with "On every trail page" -->
-  <div class="previews">
-    <PreviewSwitch
-      stacked
-      topic="popular"
-      label="Popular (phones)"
-      approaches={[
-        { id: "a", name: "A · Row cards", idea: "each trail a row ~120 px: the route small on the left, name and figures right; easy to scan, the route drawing small" },
-        { id: "b", name: "B · Strip", idea: "compact cards scrolled sideways, the next one peeking; one screen tall, but the 2nd and 3rd are a swipe away" },
-        { id: "c", name: "C · Ranked list", idea: "rank, mini route and name as a plain list, no cards; shortest and calmest, least of the podium's look" },
-      ]}
-    />
-    <PreviewSwitch
-      stacked
-      topic="offers"
-      label="Film + trail page list"
-      approaches={[
-        { id: "a", name: "A · List, film optional", idea: "the list is the content; a small panel plays the film, opening its band below; shortest, the film easy to miss" },
-        { id: "b", name: "B · Film beside list", idea: "film and list side by side (stacked on phones), the list lighting up panel by panel as it plays; one block, but long on phones" },
-        { id: "c", name: "C · List, film in a dialog", idea: "the list alone, 'Watch the film' at the heading opens it in a dialog; calmest page, the film one click further away" },
-      ]}
-    />
-  </div>
 </Base>
 
 <style>
@@ -1285,7 +1169,7 @@ import { DURATION } from "../lib/explainer/film";
      the hero's ridges): its wave edge rises out of it (each keeps room at its foot for it), no
      cream gap; the film's component script can stand between them in development, hence ~) */
   :global(.about) + .pair,
-  .offers-wrap ~ .pair {
+  :global(.explainer) ~ .pair {
     margin-top: 0;
   }
   .block-head {
@@ -2167,8 +2051,7 @@ import { DURATION } from "../lib/explainer/film";
     display: grid;
     gap: 4px;
   }
-  .pd-place,
-  .pd-views {
+  .pd-place {
     color: #61624c;
     font-size: 0.85rem;
   }
@@ -2181,9 +2064,6 @@ import { DURATION } from "../lib/explainer/film";
   .pd-fig {
     font-weight: 600;
   }
-  .pd-views {
-    margin-top: 4px;
-  }
   .podium a:hover .pd-name,
   .podium a:focus-visible .pd-name {
     text-decoration: underline;
@@ -2195,15 +2075,6 @@ import { DURATION } from "../lib/explainer/film";
       grid-template-columns: repeat(3, minmax(0, 1fr));
       align-items: stretch;
       gap: 18px;
-    }
-    .podium .pd-1 {
-      order: 2;
-    }
-    .podium .pd-2 {
-      order: 1;
-    }
-    .podium .pd-3 {
-      order: 3;
     }
     .podium a {
       border-radius: 20px;
@@ -2233,7 +2104,7 @@ import { DURATION } from "../lib/explainer/film";
   :global(html[data-theme="dark"]) :is(.rs-giant, .pd-giant) {
     color: #36433d;
   }
-  :global(html[data-theme="dark"]) :is(.rs-where, .rs-local, .rs-stats dt, .rs-stats dd > span:not(.rate-word), .rs-ground-text, .pd-place, .pd-views) {
+  :global(html[data-theme="dark"]) :is(.rs-where, .rs-local, .rs-stats dt, .rs-stats dd > span:not(.rate-word), .rs-ground-text, .pd-place) {
     color: #a7a78f;
   }
   /* the route's outline (drawn first, the line then traced over it): the same cream as by day (decided
@@ -2299,370 +2170,40 @@ import { DURATION } from "../lib/explainer/film";
     stroke: #a7a78f;
   }
 
-  /* ── PREVIEW "popular" (2026-11-07, Baymard review item 9): the popular trails compact on phones (under
-     760 px), three ways; desktop keeps the podium. A: a row card, the route small on the left; B: a strip
-     of compact cards scrolled sideways; C: a ranked list with mini routes, no cards ── */
-  .pd-w-short {
-    display: none;
-  }
+  /* phones (2026-11-07, Baymard review; of three previews, approach A, without the page views): each
+     popular trail a row card, the route small on the left, name and figures on the right, instead of
+     three cards ~340 px tall */
   @media (max-width: 759px) {
-    :global(html[data-preview-popular]) .pd-w-long {
-      display: none;
-    }
-    :global(html[data-preview-popular]) .pd-w-short {
-      display: inline;
-    }
-    :global(html[data-preview-popular="a"]) .podium {
+    .podium {
       gap: 12px;
     }
-    :global(html[data-preview-popular="a"]) .podium a {
+    .podium a {
       grid-template-columns: 88px minmax(0, 1fr);
       align-items: center;
       gap: 12px;
       padding: 12px 14px 12px 10px;
       border-radius: 16px;
     }
-    :global(html[data-preview-popular="a"]) .pd-route {
+    .pd-route {
       width: 88px;
       max-height: 64px;
     }
-    :global(html[data-preview-popular="a"]) .pd-giant {
+    .pd-giant {
       top: -10px;
       right: 6px;
       font-size: 5.5rem;
     }
-    :global(html[data-preview-popular="a"]) .pd-name {
+    .pd-name {
       font-size: 1.1rem;
     }
-    :global(html[data-preview-popular="a"]) .pd-fig {
+    .pd-fig {
       font-size: 0.92rem;
     }
-    :global(html[data-preview-popular="a"]) :is(.pd-place, .pd-views) {
+    .pd-place {
       font-size: 0.8rem;
     }
-    :global(html[data-preview-popular="a"]) .pd-text {
+    .pd-text {
       gap: 2px;
     }
-
-    :global(html[data-preview-popular="b"]) .podium {
-      display: flex;
-      gap: 12px;
-      margin: 0 -16px;
-      padding: 4px 16px 14px;
-      overflow-x: auto;
-      scroll-snap-type: x mandatory;
-      scroll-padding: 0 16px;
-      overscroll-behavior-x: contain;
-    }
-    :global(html[data-preview-popular="b"]) .podium li {
-      flex: 0 0 min(76%, 290px);
-      scroll-snap-align: start;
-    }
-    :global(html[data-preview-popular="b"]) .podium a {
-      gap: 8px;
-      padding: 14px 16px 16px;
-      border-radius: 16px;
-    }
-    :global(html[data-preview-popular="b"]) .pd-route {
-      max-height: 92px;
-    }
-    :global(html[data-preview-popular="b"]) .pd-giant {
-      top: -10px;
-      font-size: 6rem;
-    }
-    :global(html[data-preview-popular="b"]) .pd-name {
-      font-size: 1.2rem;
-    }
-    :global(html[data-preview-popular="b"]) :is(.pd-place, .pd-views) {
-      font-size: 0.8rem;
-    }
-
-    :global(html[data-preview-popular="c"]) .podium {
-      gap: 4px;
-    }
-    :global(html[data-preview-popular="c"]) .podium a {
-      grid-template-columns: 30px 64px minmax(0, 1fr);
-      align-items: center;
-      column-gap: 12px;
-      padding: 10px 0;
-      border-radius: 0;
-      background: transparent;
-      overflow: visible;
-    }
-    :global(html[data-preview-popular="c"]) .podium a:hover {
-      transform: none;
-    }
-    :global(html[data-preview-popular="c"]) .pd-giant {
-      position: static;
-      color: var(--accent-text);
-      font-size: 2rem;
-      text-align: center;
-    }
-    :global(html[data-preview-popular="c"][data-theme]) .pd-giant {
-      color: var(--accent-text);
-    }
-    :global(html[data-preview-popular="c"]) .pd-route {
-      width: 64px;
-      height: 46px;
-    }
-    :global(html[data-preview-popular="c"]) .pd-name {
-      font-size: 1.15rem;
-    }
-    :global(html[data-preview-popular="c"]) :is(.pd-place, .pd-views) {
-      font-size: 0.8rem;
-    }
-    :global(html[data-preview-popular="c"]) .pd-text {
-      gap: 2px;
-    }
-    :global(html[data-preview-popular="c"]) .podium a {
-      color: var(--text);
-    }
-    :global(html[data-preview-popular="c"]) :is(.pd-place, .pd-views) {
-      color: var(--muted);
-    }
-  }
-
-  /* ── PREVIEW "offers" (2026-11-07, Baymard review item 10): the film and "On every trail page" as one
-     section after the about band; the old list after the trails near you goes. A: the list, the film an
-     optional panel that opens its band; B: the film beside the list (sticky), the list lit as it plays;
-     C: the list, the film in a dialog ── */
-  .offers-wrap {
-    display: contents;
-  }
-  .offers,
-  .offers-watch,
-  .offers-panel {
-    display: none;
-  }
-  :global(html[data-preview-offers]) .offers {
-    display: block;
-    margin-top: 48px;
-  }
-  :global(html[data-preview-offers]) .after-near {
-    display: none;
-  }
-  /* the featured band after space, its wave edge on the page's colour */
-  :global(html[data-preview-offers]) .offers-wrap ~ .pair {
-    margin-top: 112px;
-  }
-  .offers-play,
-  .offers-watch {
-    align-items: center;
-    gap: 10px;
-    min-height: 44px;
-    padding: 0 18px 0 0;
-    border: 0;
-    border-radius: 999px;
-    background: #5a7526;
-    color: #f9f8f0;
-    font: 600 15px/1 var(--sans);
-    cursor: pointer;
-    white-space: nowrap;
-  }
-  .offers-play {
-    display: inline-flex;
-  }
-  .offers-watch-dot {
-    display: grid;
-    place-items: center;
-    width: 44px;
-    height: 44px;
-    border-radius: 50%;
-    background: #4c6420;
-  }
-  .offers-play:hover,
-  .offers-watch:hover,
-  .offers-play:hover .offers-watch-dot,
-  .offers-watch:hover .offers-watch-dot {
-    background: #3f5418;
-  }
-  .offers-play:focus-visible,
-  .offers-watch:focus-visible {
-    outline: 3px solid var(--accent);
-    outline-offset: 3px;
-  }
-
-  /* A: the film a panel under the list; its band opens below it */
-  :global(html[data-preview-offers="a"]) .offers-panel {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    gap: 16px 24px;
-    margin-top: 32px;
-  }
-  .offers-panel img {
-    display: block;
-    width: 176px;
-    height: auto;
-    border-radius: 12px;
-  }
-  .offers-panel p {
-    flex: 1 1 220px;
-    max-width: 420px;
-    margin: 0;
-    color: var(--muted);
-  }
-  :global(html[data-preview-offers="a"] .offers-wrap .explainer:not(.open)) {
-    display: none;
-  }
-  :global(html[data-preview-offers="a"] .offers-wrap .explainer.open) {
-    margin-top: 32px;
-  }
-  :global(html[data-preview-offers="a"]) .offers-wrap:has(:global(.explainer.open)) ~ .pair {
-    margin-top: 0;
-  }
-
-  /* B: the film beside the list, staying in view while the list scrolls past; the list lights up
-     with the film's panels */
-  :global(html[data-preview-offers="b"]) .offers-wrap {
-    display: grid;
-    gap: 20px 40px;
-    align-items: start;
-    margin-top: 48px;
-  }
-  :global(html[data-preview-offers="b"]) .offers {
-    display: contents;
-  }
-  :global(html[data-preview-offers="b"]) .offers .block-head {
-    grid-column: 1 / -1;
-    margin-bottom: 0;
-  }
-  :global(html[data-preview-offers="b"] .offers-wrap .explainer) {
-    order: 1;
-    margin: 0;
-  }
-  :global(html[data-preview-offers="b"]) .offers-body {
-    order: 2;
-  }
-  :global(html[data-preview-offers="b"] .offers-wrap :is(.ex-clouds, .ex-foot, .ex-backdrop)) {
-    display: none;
-  }
-  :global(html[data-preview-offers="b"] .offers-wrap .ex-frame) {
-    width: 100%;
-    border-radius: 20px;
-    overflow: hidden;
-  }
-  :global(html[data-preview-offers="b"] .offers-wrap .ex-intro h2) {
-    position: absolute;
-    width: 1px;
-    height: 1px;
-    overflow: hidden;
-    clip-path: inset(50%);
-    white-space: nowrap;
-  }
-  :global(html[data-preview-offers="b"] .offers-wrap .ex-caption) {
-    font-size: clamp(18px, 2vw, 28px);
-  }
-  :global(html[data-preview-offers="b"]) .offers-list {
-    grid-template-columns: minmax(0, 1fr);
-    gap: 14px;
-  }
-  @media (min-width: 960px) {
-    :global(html[data-preview-offers="b"]) .offers-wrap {
-      grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr);
-    }
-    :global(html[data-preview-offers="b"] .offers-wrap .explainer) {
-      grid-column: 1;
-      grid-row: 2;
-      position: sticky;
-      top: 24px;
-    }
-    :global(html[data-preview-offers="b"]) .offers-body {
-      grid-column: 2;
-      grid-row: 2;
-    }
-  }
-  @media (max-width: 959px) and (min-width: 560px) {
-    :global(html[data-preview-offers="b"]) .offers-list {
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-    }
-  }
-  .offers-list li {
-    transition: opacity 0.3s;
-  }
-  .offers-list li.lit .feature-icon {
-    background: var(--accent);
-    color: var(--bg);
-  }
-  .offers-list li.lit .feature-title {
-    color: var(--accent-text);
-  }
-  .offers-list li.seen .feature-title::after {
-    content: " ✓";
-    color: var(--accent-text);
-  }
-
-  /* C: the list alone, "Watch the film" at the heading's right opens it in a dialog */
-  :global(html[data-preview-offers="c"]) .offers-watch {
-    display: inline-flex;
-  }
-  :global(html[data-preview-offers="c"]) .offers .block-head {
-    align-items: center;
-  }
-  :global(html[data-preview-offers="c"] .offers-wrap > .explainer) {
-    display: none;
-  }
-  .film-dialog {
-    width: min(1100px, 100vw - 16px);
-    max-width: none;
-    max-height: calc(100dvh - 16px);
-    padding: 0;
-    border: 0;
-    border-radius: 20px;
-    overflow: auto;
-    background: var(--bg);
-  }
-  .film-dialog::backdrop {
-    background: rgb(24 25 15 / 0.75);
-  }
-  .film-dialog :global(.explainer) {
-    margin: 0;
-  }
-  .film-dialog :global(:is(.ex-clouds, .ex-foot, .ex-backdrop)) {
-    display: none;
-  }
-  .film-dialog :global(.ex-frame) {
-    width: 100%;
-  }
-  /* phones: the titles below the close button */
-  @media (max-width: 640px) {
-    .film-dialog :global(.ex-top) {
-      padding-top: 64px;
-    }
-  }
-  .film-close {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    z-index: 3;
-    display: grid;
-    place-items: center;
-    width: 44px;
-    height: 44px;
-    border: 0;
-    border-radius: 50%;
-    background: #f9f8f0e6;
-    color: #25261c;
-    cursor: pointer;
-  }
-  .film-close:focus-visible {
-    outline: 3px solid #25261c;
-    outline-offset: 2px;
-  }
-  @media (max-width: 559px) {
-    :global(html[data-preview-offers="c"]) .offers .block-head {
-      flex-wrap: wrap;
-    }
-  }
-
-  /* the two preview switches, one above the other at the bottom left */
-  .previews {
-    position: fixed;
-    z-index: 1000;
-    left: 12px;
-    bottom: 12px;
-    display: grid;
-    gap: 6px;
-    max-width: min(440px, calc(100vw - 24px));
   }
 </style>
