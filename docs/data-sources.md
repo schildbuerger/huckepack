@@ -16,6 +16,12 @@ source before using it, and record the result here.
 | Trail associations (PCTA, ATC, CDTC, Te Araroa Trust, …) | Official tracks, mileage, closures | Varies, often copyrighted | Ask for permission or use only facts |
 | National park and land agencies (NPS, USFS, DOC NZ, …) | Official trail datasets | Often public domain or open | US federal data is generally public domain |
 
+## Regions
+
+| Source | What | Licence | Notes |
+|---|---|---|---|
+| Natural Earth 1:10m, v5.1.2: "Admin 1 – States, Provinces" and "Geography regions" (polygons) | First-level subdivisions (with ISO 3166-2 codes) and natural regions (ranges, plateaus, peninsulas, deserts, islands) | Public domain ([terms of use](https://www.naturalearthdata.com/about/terms-of-use/)); no attribution required | In use since 2026-11-07: `pipeline/regions.py` downloads the GeoJSON layers once from Natural Earth's repository into `~/.cache/huckepack/naturalearth/` and writes each trail's regions (at least 20 % of its main route) to the derived data, for the searches. Coarse at 1:10m (about 1 km at borders), enough for a 20 % share; some English names are wrong in the data (taken from the label then) |
+
 ## Terrain
 
 | Source | What | Licence | Notes |

@@ -655,12 +655,8 @@
   Baymard-based review of the home page, items 1, 2, 3 and 6, tap targets and
   wording):** the header search and the trip search's Where share one
   matching (`src/lib/search-match.ts`): continents and a small curated list
-  of regions (`src/lib/place-aliases.ts`: Alps, Dolomites, Pyrenees,
-  Scotland, Wales, England, Lake District, Patagonia, Black Forest, Bavaria,
-  Tyrol, South Tyrol, New England, Pacific Northwest, Rocky Mountains,
-  Scandinavia, Fiordland, Tasmania, Corsica, Saxon Switzerland, with their
-  other names, and other names of countries), each a set of trails from the
-  records' regions and countries or named slugs and a filter of its own
+  of regions (replaced the same day by the region rule below; the
+  alias list keeps only other names), each a filter of its own
   (`where=Alps`); "hut" leads to the huts filter; one typo allowed in words of
   four letters or more, only when nothing matches as typed ("alps" is the
   Alps alone, not the Albsteig one letter off); "Did you mean" when
@@ -674,6 +670,20 @@
   are 44 px (7 mm) to tap, drawn as before. One wording for links to
   `/trails/`: "Find a trail" (the trip search's button before anything is
   picked, the Explore menu's entry, the sticky bar).
+- **Regions from open data (2026-11-07, the user's rule):** besides countries
+  and continents, trails are grouped by two kinds of region, both from open
+  data and never hand-picked: first-level subdivisions (states, provinces,
+  Länder, the UK's nations: Natural Earth's admin-1 polygons, 1:10m, public
+  domain, at ISO 3166-2's first level) and natural regions (mountain ranges,
+  plateaus, peninsulas, deserts, islands: Natural Earth's geography regions,
+  without continents and the largest islands and plains). A trail belongs to
+  a region when at least 20 % of its main route (our OSM map line) lies
+  inside, the landscape filter's rule (`pipeline/regions.py`, the derived
+  `regions`). Only regions holding a trail are offered. The alias list
+  (`src/lib/place-aliases.ts`) keeps only other names and spellings
+  (Schwarzwald, Bayern, UK) and the topics; a name with no Natural Earth
+  region (Black Forest, Dolomites, Lake District) finds nothing until one
+  exists. The records' hand-written `regions` stay what the trail page shows.
 
 ## What a trail page could show
 
