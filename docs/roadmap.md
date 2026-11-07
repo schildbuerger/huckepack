@@ -178,6 +178,8 @@ And the **Knobstone Trail** (Indiana: the Indiana Department of Natural Resource
 
 And the **Cohos Trail** (New Hampshire: the Cohos Trail Association's "nearly 165 miles" (about 265 km) without spurs through Coos County, from Notchland in Crawford Notch over the Montalban Ridge and the Presidential Range near Mount Eisenhower, through the Pondicherry refuge, the Kilkenny, the Nash Stream Forest and Dixville Notch to the Connecticut Lakes and the Canadian border at Fourth Connecticut Lake, yellow-blazed, without published sections by design (eight regions, no section ends), 12–14 days between shelters, tent sites and campgrounds, supply caches needed; no season published; over the trail's OSM relation; 2026-11-07).
 
+And the **Sentier international des Appalaches** (Québec: the SIA Québec's GR®A1, the International Appalachian Trail's Québec chapter, about 650 km across the Gaspé Peninsula from Matapédia over the Chic-Chocs (Mont Logan, Mont Albert, Mont Jacques-Cartier) and along the St. Lawrence coast to Cap Gaspé in Forillon National Park, in the operator's seven sections from its guide Le Compagnon, 35–40 days between refuges, shelters and campsites to book, blue and white SIA/IAT markers, mid-June to the end of September; over OSM's section relations; 2026-11-07).
+
 | # | Trail | Region | Length (approx.) | Why |
 |---|---|---|---|---|
 | 1 | Pacific Crest Trail | USA | 4,265 km | Most-hiked long trail; public US agency data; completion lists |

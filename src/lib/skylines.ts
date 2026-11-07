@@ -2571,6 +2571,31 @@ export const SKYLINES: Record<string, Skyline> = {
       { d: [[1210, 300], [1226, 302], [1560, 300], [1576, 302]].map(([x, y]) => `M${x - 6},${y + 6}L${x},${y - 22}L${x + 6},${y + 6}Z`).join(" "), c: FIR },
     ],
   },
+  "sentier-international-des-appalaches": {
+    view: "The Gaspé Peninsula from the trail: the Chic-Chocs' round bare summits with Mont Jacques-Cartier's tundra top and Mont Albert's flat plateau, the wide St. Lawrence estuary with the north shore low across it, and Forillon's pale limestone sea cliffs under spruce, with the lighthouse at Cap Gaspé where the trail ends",
+    ridge: "#3f5a3a",
+    ground: "#8f8a72",
+    shapes: [
+      // the north shore, low and pale across the estuary
+      { d: hills([[560, G], [640, 266], [820, 258], [1000, 262], [1140, 270], [1220, G]]), c: "#b7c4cc" },
+      // the McGerrigle summits behind, blue with distance, Mont Jacques-Cartier the highest
+      { d: range([[0, G], [0, 196], [70, 180], [150, 156], [210, 142], [260, 146], [310, 130], [350, 124], [395, 128], [450, 146], [520, 178], [600, 222], [680, 258], [740, G]]), c: "#a5b2bf" },
+      // their bare tundra tops
+      { d: snowOf([[0, G], [0, 196], [70, 180], [150, 156], [210, 142], [260, 146], [310, 130], [350, 124], [395, 128], [450, 146], [520, 178], [600, 222], [680, 258], [740, G]], 150), c: "#d4d6c6" },
+      // Mont Albert's flat plateau, nearer, forest below its bare top
+      { d: range([[80, G], [140, 248], [200, 214], [250, 196], [300, 190], [420, 188], [470, 196], [520, 222], [580, 258], [640, G]]), c: "#7d9183" },
+      // the estuary, wide to the horizon
+      { d: water(480, 1600, 272), c: "#5a8fb0" },
+      // Forillon: spruce-covered heights falling to the sea in cliffs
+      { d: range([[1080, G], [1120, 262], [1170, 226], [1230, 210], [1320, 200], [1420, 192], [1500, 198], [1560, 202], [1600, 206], [1600, G]]), c: "#4a6a44" },
+      // the pale limestone cliff face where the heights meet the sea
+      { d: "M1126,320L1132,276L1148,246L1172,226L1194,220L1202,252L1198,320Z", c: "#cfc8b6" },
+      { d: "M1150,320L1160,268L1180,236L1192,250L1188,320Z", c: "#bdb5a2" },
+      // the lighthouse at Cap Gaspé on the heights, white with a red lantern band
+      { d: lighthouse(1400, 196, 30), c: "#f4f1ea" },
+      { d: lighthouseBand(1400, 196, 30), c: "#b0352a" },
+    ],
+  },
   "superior-hiking-trail": {
     view: "Minnesota's North Shore: the Sawtooth ridges above Lake Superior, birch and spruce on the rocky slopes, a waterfall dropping towards the lake and the lake's long horizon",
     ridge: "#3f5a34",
