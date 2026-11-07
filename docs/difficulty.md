@@ -11,7 +11,7 @@ How hard a trail is, rated the same way for every trail (issue #16). The rule li
 - A dimension takes the level of its **hardest measure**. No weights, no averages: every rating
   can name the measure that set it, and the page does.
 - Only data every trail has: the record (stages, SAC grade, season), OpenStreetMap surfaces, the
-  Copernicus terrain model, ERA5 weather. A trail without some of it is rated on what it has.
+  GEDTM30 terrain model, ERA5 weather. A trail without some of it is rated on what it has.
 - It describes the trail, not how it will feel: fitness, experience, pack and the actual weather
   decide that. Thresholds are set for hikers walking with a pack, not for runners or day walks.
 

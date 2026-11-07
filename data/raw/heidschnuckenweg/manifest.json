@@ -1,11 +1,11 @@
 {
   "climate-high.json": {
-    "retrieved": "2026-11-05T23:35:49+00:00",
-    "url": "https://openmeteo.s3.us-west-2.amazonaws.com/data/copernicus_era5_land+copernicus_era5?latitude=53.2&longitude=9.9&elevation=180"
+    "retrieved": "2026-11-07T08:42:25+00:00",
+    "url": "https://openmeteo.s3.us-west-2.amazonaws.com/data/copernicus_era5_land+copernicus_era5?latitude=53.2&longitude=9.9&elevation=170"
   },
   "climate-low.json": {
-    "retrieved": "2026-11-05T23:32:31+00:00",
-    "url": "https://openmeteo.s3.us-west-2.amazonaws.com/data/copernicus_era5_land+copernicus_era5?latitude=53.5&longitude=9.8&elevation=30"
+    "retrieved": "2026-11-07T08:42:25+00:00",
+    "url": "https://openmeteo.s3.us-west-2.amazonaws.com/data/copernicus_era5_land+copernicus_era5?latitude=53.5&longitude=9.8&elevation=20"
   },
   "commons-geo.json": {
     "key": "with categories, 223.5 km, every 2.5 km, 1500 m, within 0.5 km",
@@ -17,9 +17,9 @@
     "retrieved": "2026-11-05T23:35:52+00:00",
     "url": "Q1594442 P18 P373"
   },
-  "elevation-glo30.json": {
-    "retrieved": "2026-11-05T23:28:54+00:00",
-    "url": "https://copernicus-dem-30m.s3.eu-central-1.amazonaws.com/Copernicus_DSM_COG_10_N52_00_E009_00_DEM/Copernicus_DSM_COG_10_N52_00_E009_00_DEM.tif https://copernicus-dem-30m.s3.eu-central-1.amazonaws.com/Copernicus_DSM_COG_10_N52_00_E010_00_DEM/Copernicus_DSM_COG_10_N52_00_E010_00_DEM.tif https://copernicus-dem-30m.s3.eu-central-1.amazonaws.com/Copernicus_DSM_COG_10_N53_00_E009_00_DEM/Copernicus_DSM_COG_10_N53_00_E009_00_DEM.tif https://copernicus-dem-30m.s3.eu-central-1.amazonaws.com/Copernicus_DSM_COG_10_N53_00_E010_00_DEM/Copernicus_DSM_COG_10_N53_00_E010_00_DEM.tif"
+  "elevation-gedtm30.json": {
+    "retrieved": "2026-11-07T08:29:42+00:00",
+    "url": "https://s3.opengeohub.org/global/dtm/v1.2/gedtm_rf_m_30m_s_20060101_20151231_go_epsg.4326.3855_v1.2.tif"
   },
   "landcover.json": {
     "retrieved": "2026-11-05T23:28:55+00:00",

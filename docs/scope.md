@@ -94,7 +94,25 @@
   (only when ascent and descent come from the same source, so one tile never
   mixes sources), else the stage sums, else the terrain model's estimate (≈).
   No measured ascent for comparing: the terrain model measures treetops and
-  reads 15–60 % high in forests (decided 2026-10-30).
+  reads 15–60 % high in forests (decided 2026-10-30, on the Copernicus GLO-30
+  surface model; still so with GEDTM30: an estimate stays an estimate).
+- **Terrain model: GEDTM30 with a 10 m climb threshold** (the user's decision,
+  2026-11-07): every trail's heights come from GEDTM30 v1.2, OpenGeoHub's
+  global ensemble digital terrain model (bare earth, 30 m, CC BY 4.0; Ho et al.
+  2025, PeerJ 13:e19673; derived from Copernicus GLO-30 and AW3D30, so the
+  Copernicus notice and disclaimer stay), in place of the Copernicus GLO-30
+  surface model, which reads the treetops in forests. One model for every
+  trail: a profile never mixes models. Ascent and descent summed from it count
+  a climb only once the height has risen 10 m above the last reference height,
+  a drop likewise (`CLIMB_THRESHOLD_M`, src/lib/trails.ts and pipeline/all.py;
+  per stage along the stage's own samples); gradients, steepness and the
+  profile keep the raw heights. Tested on the 34 trails with an official
+  ascent, sampled every 100 m: GLO-30 raw sums ran +22 % in the median against
+  the official figure (mean gap 27 %, 9 trails within 10 %); GEDTM30 with the
+  10 m threshold 0 % in the median (mean gap 8.2 %, 24 within 10 %); on the
+  forested German trails +1 … +11 % (GLO-30 even with 10 m: +12 … +26 %).
+  Lidar models (Saxony DGM1, ČÚZK DMR 5G) stay candidates only: national, so
+  not one model for all.
 - **Building a trail:** docs/trail-building.md is the one checklist from
   picking a trail to going live; rules for building trails go there, dated
   (decided 2026-11-04).

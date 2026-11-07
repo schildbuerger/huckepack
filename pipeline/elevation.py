@@ -5,30 +5,30 @@
 
 Needs public/routes/<slug>.geojson (pipeline.routes). Samples the main stages every SPACING_M
 along the map line (the same kilometres as the water and surface charts) and reads each
-sample's height from the Copernicus DEM GLO-30 (30 m grid; a surface model, so in forests it
-measures the canopy). Its 1° tiles come as Cloud Optimized GeoTIFFs from AWS Open Data (no
-account) and are kept in ~/.cache/huckepack/dem/ (outside the synced project; shared by all trails; 30 to 45 MB each);
-heights are interpolated bilinearly between the four nearest cells and cached in
-data/raw/<slug>/elevation-glo30.json. Writes data/derived/<slug>.json under `elevation`:
+sample's height from GEDTM30 v1.2, OpenGeoHub's global ensemble digital terrain model (30 m
+grid, bare earth: the ground under the trees, not the canopy; CC BY 4.0; since 2026-11-07,
+before the Copernicus DEM GLO-30, a surface model). It is one global Cloud Optimized GeoTIFF,
+read remotely with rasterio in windows around chunks of consecutive samples (no account, no
+tiles kept); heights are interpolated bilinearly between the four nearest cells and cached in
+data/raw/<slug>/elevation-gedtm30.json. Writes data/derived/<slug>.json under `elevation`:
 [km, metres] per sample, stage starts, and the highest and lowest points (with coordinates).
-Source id `copdem`; the licence asks for the notice in its record and a liability disclaimer
-in the legal notice.
+Source id `gedtm30`. GEDTM30 is derived from GLO-30 (and AW3D30), so the records keep the
+`copdem` source with its notice and the legal notice keeps the Copernicus liability disclaimer.
 """
 
-import http.client
 import json
 import math
-import os
 import sys
-import urllib.error
-import urllib.request
+import time
 from pathlib import Path
 
 import numpy as np
 import rasterio
+import rasterio.errors
+from rasterio.windows import Window
 
 from pipeline import osm
-from pipeline.routes import USER_AGENT, Cache
+from pipeline.routes import Cache
 
 ROOT = Path(__file__).resolve().parent.parent
 SPACING_M = 100
@@ -40,63 +40,76 @@ LONG_SPACING_M = 500
 
 def spacing_for(total_m):
     return LONG_SPACING_M if total_m > LONG_TRAIL_M else SPACING_M
-# the terrain tiles (30–45 MB each, shared by all trails) in the same local cache as the OSM extracts,
-# outside the synced project folder (HUCKEPACK_DEM names another folder; data/dem/ before 2026-11-06)
-DEM_DIR = Path(os.environ.get("HUCKEPACK_DEM", Path(os.environ.get("HUCKEPACK_CACHE", Path.home() / ".cache" / "huckepack")) / "dem"))
-TILE_URL = "https://copernicus-dem-30m.s3.eu-central-1.amazonaws.com/{name}/{name}.tif"
+# GEDTM30 v1.2 (OpenGeoHub, CC BY 4.0, decided 2026-11-07): one global Cloud Optimized GeoTIFF of
+# bare-earth heights (30 m, metres above EGM2008; the file's scale tag of 0.1 is wrong, its own
+# list says 1), read remotely: only the 2048-pixel blocks around the route, no account, nothing kept
+DTM_URL = "https://s3.opengeohub.org/global/dtm/v1.2/gedtm_rf_m_30m_s_20060101_20151231_go_epsg.4326.3855_v1.2.tif"
+CACHE_NAME = "elevation-gedtm30.json"
+SOURCE_ID = "gedtm30"
+CHUNK = 40  # consecutive samples read in one window (about 4 km at 100 m)
+MARGIN = 2  # pixels around them, so every sample has its four neighbours
+GDAL_ENV = {
+    "GDAL_DISABLE_READDIR_ON_OPEN": "EMPTY_DIR",  # don't list the bucket
+    "GDAL_HTTP_MAX_RETRY": 5,
+    "GDAL_HTTP_RETRY_DELAY": 3,
+    "GDAL_CACHEMAX": 1024,  # MB of decoded blocks: neighbouring windows share them
+    "CPL_VSIL_CURL_CACHE_SIZE": 200_000_000,
+}
 
 
-def tile_name(lon, lat):
-    """The GLO-30 tile holding a point: named after its south-west corner."""
-    ns, ew = ("N" if lat >= 0 else "S"), ("E" if lon >= 0 else "W")
-    return f"Copernicus_DSM_COG_10_{ns}{abs(math.floor(lat)):02d}_00_{ew}{abs(math.floor(lon)):03d}_00_DEM"
+def windows(pixels, chunk=CHUNK, margin=MARGIN):
+    """Read windows for samples in pixel coordinates (col, row), consecutive ones together: one
+    (first, last + 1, col0, row0, width, height) a chunk, covering each sample's four nearest cell
+    centres with `margin` pixels to spare."""
+    out = []
+    for a in range(0, len(pixels), chunk):
+        part = pixels[a : a + chunk]
+        c0 = math.floor(min(c for c, _ in part)) - margin
+        r0 = math.floor(min(r for _, r in part)) - margin
+        c1 = math.floor(max(c for c, _ in part)) + margin + 1
+        r1 = math.floor(max(r for _, r in part)) + margin + 1
+        out.append((a, a + len(part), c0, r0, c1 - c0, r1 - r0))
+    return out
 
 
-def tile(name):
-    """Path of a cached tile, downloaded first if missing; None for open sea (no tile)."""
-    path = DEM_DIR / f"{name}.tif"
-    if not path.exists():
-        DEM_DIR.mkdir(parents=True, exist_ok=True)
-        request = urllib.request.Request(TILE_URL.format(name=name), headers={"User-Agent": USER_AGENT})
-        for attempt in range(4):
-            try:
-                with urllib.request.urlopen(request, timeout=300) as response:
-                    data = response.read()
-                break
-            except urllib.error.HTTPError as error:
-                if error.code in (403, 404):  # the bucket has no tiles over the sea
-                    return None
-                raise
-            except (http.client.IncompleteRead, urllib.error.URLError):
-                if attempt == 3:
-                    raise  # cut off or unreachable: try again
-        path.write_bytes(data)
-        print(f"  downloaded {name} ({len(data) // 1_000_000} MB)")
-    return path
+def bilinear(grid, col, row, nodata=None):
+    """Height at pixel coordinates (col, row) of `grid`, bilinear between the four nearest cell
+    centres (pixel corners to centres: half a pixel); cells without data are left out and the rest
+    reweighted; None when all four lack data."""
+    rows, cols = grid.shape
+    x = min(max(col - 0.5, 0), cols - 1)
+    y = min(max(row - 0.5, 0), rows - 1)
+    x0, y0 = min(int(x), cols - 2), min(int(y), rows - 2)
+    fx, fy = x - x0, y - y0
+    q = grid[y0 : y0 + 2, x0 : x0 + 2].astype(float)
+    w = np.outer([1 - fy, fy], [1 - fx, fx])
+    valid = np.isfinite(q) if nodata is None else (np.isfinite(q) & (q != float(nodata)))
+    if not valid.any():
+        return None
+    weight = w[valid].sum()
+    return float((q[valid] * w[valid]).sum() / weight) if weight > 0 else float(q[valid].mean())
 
 
 def heights(points):
-    """Height in metres at each (lon, lat): bilinear between the four nearest cell centres."""
-    out = [0.0] * len(points)
-    by_tile = {}
-    for i, (lon, lat) in enumerate(points):
-        by_tile.setdefault(tile_name(lon, lat), []).append(i)
-    for name, idx in by_tile.items():
-        path = tile(name)
-        if path is None:
-            continue
-        with rasterio.open(path) as ds:
-            grid = ds.read(1).astype(float)
-            inverse = ~ds.transform
-        rows, cols = grid.shape
-        for i in idx:
-            col, row = inverse * points[i]
-            x = min(max(col - 0.5, 0), cols - 1)  # from pixel corners to cell centres
-            y = min(max(row - 0.5, 0), rows - 1)
-            x0, y0 = min(int(x), cols - 2), min(int(y), rows - 2)
-            fx, fy = x - x0, y - y0
-            q = grid[y0 : y0 + 2, x0 : x0 + 2]
-            out[i] = float(np.dot([1 - fy, fy], q @ [1 - fx, fx]))
+    """Height in metres at each (lon, lat) from GEDTM30, read in windows around chunks of
+    consecutive samples; None where the model has no data (open sea)."""
+    out = [None] * len(points)
+    with rasterio.Env(**GDAL_ENV), rasterio.open(DTM_URL) as ds:
+        inverse = ~ds.transform
+        nodata = np.float32(ds.nodata) if ds.nodata is not None else None
+        pixels = [inverse * p for p in points]
+        for a, b, c0, r0, w, h in windows(pixels):
+            for attempt in range(4):
+                try:
+                    grid = ds.read(1, window=Window(c0, r0, w, h))  # raw values: metres (not the scale tag)
+                    break
+                except rasterio.errors.RasterioIOError:
+                    if attempt == 3:
+                        raise
+                    time.sleep(5 * (attempt + 1))
+            for i in range(a, b):
+                col, row = pixels[i]
+                out[i] = bilinear(grid, col - c0, row - r0, nodata)
     return out
 
 
@@ -137,15 +150,19 @@ def build(slug, refresh=False):
 
     def download():
         hs = heights([(lon, lat) for _, lon, lat in samples])
-        return json.dumps({"spacingM": spacing_for(walked), "samples": len(samples), "elevation": [round(h, 1) for h in hs]}).encode()
+        return json.dumps({"spacingM": spacing_for(walked), "samples": len(samples), "elevation": [None if h is None else round(h, 1) for h in hs]}).encode()
 
     cache = Cache(slug, refresh)
-    names = sorted({tile_name(lon, lat) for _, lon, lat in samples})
-    data, _ = cache.get("elevation-glo30.json", " ".join(TILE_URL.format(name=n) for n in names), download)
+    data, _ = cache.get(CACHE_NAME, DTM_URL, download)
     data = json.loads(data)
     if data["samples"] != len(samples):
         raise SystemExit("cached elevations don't match the route; run again with --refresh")
     heights_m = data["elevation"]
+    missing = sum(h is None for h in heights_m)
+    if missing:
+        # open sea (a ferry, a causeway the model leaves out): sea level, said so in the run's output
+        print(f"  {missing} sample(s) without terrain data, taken as 0 m (sea)")
+        heights_m = [0.0 if h is None else h for h in heights_m]
 
     points = [[round(km, 2), round(h)] for (km, _, _), h in zip(samples, heights_m)]
     hi = max(range(len(points)), key=lambda i: points[i][1])
@@ -154,8 +171,8 @@ def build(slug, refresh=False):
     # with coordinates, so later steps (climate) can look up these places
     at = lambda i: {"lat": round(samples[i][2], 5), "lon": round(samples[i][1], 5)}
     elevation = {
-        "source": "copdem",
-        "retrieved": cache.manifest["elevation-glo30.json"]["retrieved"],
+        "source": SOURCE_ID,
+        "retrieved": cache.manifest[CACHE_NAME]["retrieved"],
         "spacingM": spacing_for(walked),
         "routeKm": round(walked / 1000, 1),
         "stageStarts": starts,

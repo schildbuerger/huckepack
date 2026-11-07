@@ -237,7 +237,8 @@ notes:
     1,055 m at the Old Fort Point trailhead).
   - >-
     Ascent: the association's section pages give gain and loss per section (74,273 m up and
-    74,105 m down in all); the terrain model sums about 32,550 m up (−56 %), which samples every
+    74,105 m down in all); the terrain model sums about 31,560 m up (−58 %;
+    GEDTM30 with the 10 m threshold, 2026-11-07; GLO-30 gave 32,550 m), which samples every
     500 m on this long trail and so misses most short ups and downs. No second source states the
     climbs; the record keeps the association's figures.
   - >-
@@ -266,7 +267,7 @@ notes:
     "between five and ten weeks" (35–70 days); season July to mid-September against early July to
     early September; camping (no designated campgrounds or permits on most of Section B, park
     permits nearly the whole of Section C) and the waymarking quote the same in both. The
-    terrain-model ascent (about 32,550 m) is 56 % below the association's 74,273 m (see Ascent).
+    terrain-model ascent (about 31,560 m since 2026-11-07) is 58 % below the association's 74,273 m (see Ascent).
     No second source gives a grade, the climbs or the tree line; those were checked against the
     association's and Parks Canada's own pages. The map line (1,080.7 km) is within 1 % of 1,095 km.
 dataCheck:
@@ -275,7 +276,7 @@ dataCheck:
   against: [wikipedia]
   pageAgainst: [gdta-sections, gdta-faq, pc-kootenay]
   deviations:
-    - { figure: ascent, ours: "74,273 m (the association's sections)", theirs: "about 32,550 m (terrain model)", source: copdem }
+    - { figure: ascent, ours: "74,273 m (the association's sections)", theirs: "about 31,560 m (terrain model, 2026-11-07)", source: gedtm30 }
 sources:
   - id: gdta-sections
     title: "Great Divide Trail Association: Trip Planning Resources and the section pages A–G (1,095 km in seven sections; each section's ends, distance, elevation gain and loss, days, permits, campgrounds and resupply)"
@@ -329,8 +330,13 @@ sources:
     url: https://www.openstreetmap.org/relation/8139599
     licence: ODbL 1.0
     retrieved: 2026-11-07
+  - id: gedtm30
+    title: "GEDTM30 v1.2: global ensemble digital terrain model, 30 m, bare earth (OpenGeoHub; Ho et al. 2025, PeerJ 13:e19673)"
+    url: https://doi.org/10.5281/zenodo.18887460
+    licence: "CC BY 4.0; Ho, Y.-F., Grohmann, C. H., Lindsay, J., Reuter, H. I., Parente, L., Witjes, M., Hengl, T. (2025): GEDTM30, OpenGeoHub"
+    retrieved: 2026-11-07
   - id: copdem
-    title: "Copernicus DEM GLO-30 (30 m terrain model), tiles from AWS Open Data"
+    title: "Copernicus DEM GLO-30 (30 m surface model): base data of the GEDTM30 terrain model"
     url: https://registry.opendata.aws/copernicus-dem/
     licence: "Copernicus WorldDEM-30 licence, free; produced using Copernicus WorldDEM-30 © DLR e.V. 2010-2014 and © Airbus Defence and Space GmbH 2014-2018 provided under COPERNICUS by the European Union and ESA; all rights reserved"
     retrieved: 2026-11-07

@@ -34,6 +34,7 @@ import {
   sacGrade,
   mainStages,
   stageEstimates,
+  CLIMB_THRESHOLD_M,
   stageTotals,
   trailLength,
   trailClimb,
@@ -799,8 +800,8 @@ const trailLd = JSON.stringify({
                 ) : (
                   <>
                     <dt>This trail</dt><dd>Estimated from the terrain model (≈): no source states them</dd>
-                    <dt>How</dt><dd>Every main stage's climbs and drops between samples {sampleM} m apart</dd>
-                    <dt>Keep in mind</dt><dd>In forests the model reads the treetops, so it reads high there</dd>
+                    <dt>How</dt><dd>Every main stage's climbs and drops along samples {sampleM} m apart, each counted once it reaches {CLIMB_THRESHOLD_M} m, so the model's small wobbles don't add up</dd>
+                    <dt>Keep in mind</dt><dd>A 30 m terrain model: short climbs between the samples are missed</dd>
                   </>
                 )}
                 {climb?.how === "stated total" && totals?.ascentM && totals.descentM &&
@@ -1438,7 +1439,7 @@ const trailLd = JSON.stringify({
           .map((s) => ` Stage ${s.number}${s.kind !== "main" ? ` (${s.kind})` : ""} from ${sourceShort(s.source!)}.`)}
         {(estEle || estClimb || estTime) && " ≈ marks our estimates where the source gives no figure: "}
         {(estEle || estClimb) &&
-          `${[estClimb && "ascent and descent", estEle && "heights"].filter(Boolean).join(" and ")} from the terrain model (Copernicus DEM, 30 m grid, sampled every ${sampleM} m), to the nearest 10 m`}
+          `${[estClimb && "ascent and descent", estEle && "heights"].filter(Boolean).join(" and ")} from the terrain model (GEDTM30, 30 m grid, sampled every ${sampleM} m; climbs and drops counted once they reach ${CLIMB_THRESHOLD_M} m), to the nearest 10 m`}
         {(estEle || estClimb) && estTime && "; "}
         {estTime && "walking times from each stage's distance, ascent and descent by the German hiking standard DIN 33466 (4 km/h, 300 m/h up, 500 m/h down), without breaks"}
         {(estEle || estClimb || estTime) && "."}
@@ -1594,7 +1595,7 @@ const trailLd = JSON.stringify({
           <figcaption class="chart-info">
             <Explain id="about-terrain-chart" term="About this chart" title="Terrain along the route" icon>
               <dl class="pop-facts">
-                <dt>Heights</dt><dd>Copernicus terrain model, 30 m grid, every {sampleM} m along the main route; in forests it reads the treetops</dd>
+                <dt>Heights</dt><dd>GEDTM30 terrain model (OpenGeoHub, from Copernicus and other elevation data), 30 m grid, the bare ground under the trees, every {sampleM} m along the main route</dd>
                 <dt>Colours</dt><dd>Each {barM} m by its gradient in walking direction: climbs warm, descents violet, darker when steeper (to ±{RAMP_MAX} %)</dd>
                 {surface && <><dt>Ground</dt><dd>The strip below, from OpenStreetMap; the {pct(surface.inferredShare)} without a surface tag is read from the way type (footpaths natural, tracks gravel)</dd></>}
                 {treeLine && (

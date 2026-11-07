@@ -165,7 +165,8 @@ flag of its check; each one is either fixed or explained in a note:
   the GPX is out of date, the stage can follow the OSM relation (`relation`) instead: its cached
   ways are fetched again for the new guide (2026-11-05);
 - a stage more than 10 % off the map line;
-- stated against terrain-model ascent;
+- stated against terrain-model ascent (GEDTM30, climbs counted from 10 m; within about 10 %
+  on most trails since 2026-11-07, so a bigger gap is worth a look at the stated figure and the line);
 - a dry stretch, unknown surface, hubs too far away;
 - no `treeLine` above 1,500 m, no skyline, no wildlife, no `dataCheck`, climate pending.
 
@@ -236,8 +237,8 @@ one agent per trail, each in its own git worktree, and one integrator.
   Shared files get one block each: its skyline before `"superior-hiking-trail"` in
   `src/lib/skylines.ts`, its photo exclusions at the end of `data/reference/photo-exclude.yaml`,
   its roadmap paragraph.
-- **Shared downloads:** the Geofabrik extracts and terrain tiles in `~/.cache/huckepack/` are
-  shared; one region is downloaded by one run at a time (a lock per region in
+- **Shared downloads:** the Geofabrik extracts in `~/.cache/huckepack/` are shared (the terrain
+  model is read remotely since 2026-11-07, nothing downloaded); one region is downloaded by one run at a time (a lock per region in
   `pipeline/osmlocal.py`). Keep to two or three agents: they share one address for Nominatim (one
   request a second) and Wikimedia (one request at a time).
 - **The integrator** reads each agent's report (data-check table, the check's flags, screenshots
