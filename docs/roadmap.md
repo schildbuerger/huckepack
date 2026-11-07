@@ -174,6 +174,8 @@ And the **Pacific Northwest National Scenic Trail** (Montana, Idaho and Washingt
 
 And the **Border Route Trail** (Minnesota: the Border Route Trail Association's 65 miles (105 km) with the Superior National Forest along the Canadian border, from the Gunflint Trail, where the Kekekabic Trail ends, through the Boundary Waters Canoe Area Wilderness over high cliffs above the border lakes to the Superior Hiking Trail's northern end, part of the North Country Trail since 2019, in the association's four sections, unmarked in the wilderness, designated campsites, a BWCAW permit year round; over the OSM relation; 2026-11-07).
 
+And the **Knobstone Trail** (Indiana: the Indiana Department of Natural Resources' footpath along the Knobstone Escarpment, Indiana's longest, from Deam Lake State Recreation Area through Clark State Forest, Elk Creek Public Fishing Area and Jackson-Washington State Forest to Delaney Park, in the DNR's seven sections between trailheads, 45.5 miles (73 km) by the shortest of its loop legs (the DNR's 60 miles count the loops too), steep climbs, scarce water and primitive camping away from roads; over the trail's OSM relation; 2026-11-07).
+
 | # | Trail | Region | Length (approx.) | Why |
 |---|---|---|---|---|
 | 1 | Pacific Crest Trail | USA | 4,265 km | Most-hiked long trail; public US agency data; completion lists |
