@@ -1,28 +1,24 @@
 name: Colorado Trail
 added: 2026-11-06
 aliases: [CT, The Colorado Trail]
-website: https://coloradotrail.org/
+website: https://www.fs.usda.gov/r02/sanjuan/recreation/groups/colorado-trail
 wikidata: Q5148975
 managedBy:
-  # "The Colorado Trail Foundation, in collaboration with the U.S. Forest Service, is responsible for
-  # the maintenance and administration of The Colorado Trail"; the Forest Service "own[s]" the trail
-  # and manages it (The Trail page)
+  # the Forest Service: "The trail is maintained by the Colorado Trail Foundation and the U.S. Forest
+  # Service" (Pike-San Isabel, segment 11 page); the foundation is named without its site, which
+  # refuses automated visitors (left out, decided 2026-11-07)
   - name: Colorado Trail Foundation
-    url: https://coloradotrail.org/
   - name: USDA Forest Service
     url: https://www.fs.usda.gov/
-officialGpx:
-  none: the foundation sells its guidebook, databook, map book and the FarOut app; it offers no free GPX download (checked 2026-11-06)
-  source: ctf-maps
 trailType: point-to-point
 continents: [North America]
 countries: [US]
 regions: [Colorado]
 protectedAreas: [Lost Creek Wilderness, Holy Cross Wilderness, Mount Massive Wilderness, Collegiate Peaks Wilderness, La Garita Wilderness, Weminuche Wilderness]
 termini:
-  # "the Trail's northern terminus at Waterton Canyon" and "the Junction Creek Trailhead, the CT's
-  # southern terminus about 4.5 miles from downtown Durango" (Starting Points); coordinates from OSM,
-  # on the trail's relation
+  # COTREX: "Colorado Trail Segment 1" starts at its Waterton Canyon Trailhead and "Segment 28" ends
+  # at its Junction Creek Trailhead, the San Juan National Forest's "southern most segment of the
+  # Colorado Trail"; coordinates from OSM, on the trail's relation
   start:
     name: Waterton Canyon Trailhead
     lat: 39.49097
@@ -31,29 +27,18 @@ termini:
     name: Junction Creek Trailhead (Durango)
     lat: 37.33138
     lon: -107.90308
-  source: ctf-starting
+  source: cotrex
 established:
-  # "Volunteers complete The Colorado Trail end to end … On September 4, 1987, 'Golden Spike'
-  # ceremonies are held" (Trail History)
+  # the Forest Service: "The project that was to be the Colorado Trail began in 1973 … and was
+  # completed in 1987" (Pike-San Isabel, segment 11 page)
   year: 1987
-  source: ctf-history
-waymarking:
-  # the FAQ, "Navigation"
-  text: >-
-    Considered well marked by western standards and usually fairly easy to follow, with signs and
-    cairns; signs sometimes disappear, and the foundation advises carrying one of its guides.
-  source: ctf-faq
+  source: fs-psicc-seg11
 length:
-  # The Trail page: "Those that complete the Collegiate East route conquer 486 miles"; the 28
-  # segments sum to 485.9 miles
-  - km: 782
+  # the Forest Service: "It is over 483 miles of contiguous trail. The exact mileage for the trail is
+  # ever changing" (Pike-San Isabel, segment 11 page); 777 km. COTREX's 28 segments sum to 770.7 km
+  - km: 777
     approx: true
-    source: ctf-trail
-days:
-  # the FAQ: "A thru-hike generally takes 4 to 6 weeks to complete"
-  min: 28
-  max: 42
-  source: ctf-faq
+    source: fs-psicc-seg11
 treeLine:
   # the National Park Service, Rocky Mountain National Park: "The Alpine Tundra Ecosystem starts
   # between elevations of 11,000 to 11,500 feet, depending on exposure" (the limit where trees may
@@ -62,40 +47,43 @@ treeLine:
   fromM: 3353
   source: nps-romo-tundra
 stages:
-  # the foundation's 28 segments, trailhead to trailhead, on the Collegiate East route (the one its
-  # numbered segments and its "486 miles" follow), with its miles (Segments of the CT). The
-  # Collegiate West alternative (CW01–CW05) is noted, not listed. Stage ends on the OSM relations
-  # near each segment's trailhead, pass or road
-  source: ctf-segments
+  # the 28 numbered segments of the Collegiate East route as Colorado Parks and Wildlife's Colorado
+  # Trail Explorer (COTREX) maps them ("Colorado Trail Segment 1" to "28", from the land managers'
+  # trail data), with its lengths (each segment page's length in metres, rounded to 0.1 km;
+  # segment 4 is the 26.6 km "Segment 4" place, see the notes). The Collegiate West alternative
+  # (COTREX's "Collegiate West 01" to "05") is noted, not listed. Stage names: the COTREX trailhead
+  # at each segment's end (within about 400 m), else the pass or road OSM names there; ends on the
+  # OSM relations at COTREX's segment ends
+  source: cotrex
   list:
-    - { number: "1", kind: main, from: Waterton Canyon Trailhead, to: South Platte River Trailhead, km: 27.0, end: { lat: 39.40046, lon: -105.16765 } }
+    - { number: "1", kind: main, from: Waterton Canyon Trailhead, to: South Platte River Trailhead, km: 26.0, end: { lat: 39.40046, lon: -105.16765 } }
     - { number: "2", kind: main, from: South Platte River Trailhead, to: Little Scraggy Trailhead, km: 18.5, end: { lat: 39.34477, lon: -105.25867 } }
-    - { number: "3", kind: main, from: Little Scraggy Trailhead, to: FS-560 (Wellington Lake Road) Trailhead, km: 19.6, end: { lat: 39.33833, lon: -105.40125 } }
-    - { number: "4", kind: main, from: FS-560 (Wellington Lake Road) Trailhead, to: Long Gulch, km: 26.7, end: { lat: 39.35152, lon: -105.62785 } }
-    - { number: "5", kind: main, from: Long Gulch, to: Kenosha Pass, km: 23.5, end: { lat: 39.41279, lon: -105.75733 } }
-    - { number: "6", kind: main, from: Kenosha Pass, to: Goldhill Trailhead, km: 52.9, end: { lat: 39.53892, lon: -106.05942 } }
-    - { number: "7", kind: main, from: Goldhill Trailhead, to: Copper Mountain, km: 20.6, end: { lat: 39.49878, lon: -106.15192 } }
-    - { number: "8", kind: main, from: Copper Mountain, to: Tennessee Pass Trailhead, km: 40.9, end: { lat: 39.36258, lon: -106.31137 } }
-    - { number: "9", kind: main, from: Tennessee Pass Trailhead, to: Timberline Lake Trailhead, km: 21.9, end: { lat: 39.28491, lon: -106.4468 } }
-    - { number: "10", kind: main, from: Timberline Lake Trailhead, to: Mount Massive Trailhead, km: 21.9, end: { lat: 39.15147, lon: -106.41944 } }
-    - { number: "11", kind: main, from: Mount Massive Trailhead, to: Clear Creek Road, km: 34.6, end: { lat: 39.02175, lon: -106.28291 } }
-    - { number: "12", kind: main, from: Clear Creek Road, to: Silver Creek Trailhead, km: 29.8, end: { lat: 38.86182, lon: -106.24902 } }
-    - { number: "13", kind: main, from: Silver Creek Trailhead, to: Chalk Creek Trailhead, km: 36.7, end: { lat: 38.71647, lon: -106.20026 } }
-    - { number: "14", kind: main, from: Chalk Creek Trailhead, to: US-50, km: 32.8, end: { lat: 38.54365, lon: -106.24282 } }
-    - { number: "15", kind: main, from: US-50, to: Marshall Pass Trailhead, km: 23.0, end: { lat: 38.39217, lon: -106.24671 } }
-    - { number: "16", kind: main, from: Marshall Pass Trailhead, to: Sargents Mesa, km: 24.5, end: { lat: 38.28707, lon: -106.38372 } }
+    - { number: "3", kind: main, from: Little Scraggy Trailhead, to: Rolling Creek Trailhead, km: 19.8, end: { lat: 39.33833, lon: -105.40125 } }
+    - { number: "4", kind: main, from: Rolling Creek Trailhead, to: Long Gulch Trailhead, km: 26.6, end: { lat: 39.34861, lon: -105.61899 } }
+    - { number: "5", kind: main, from: Long Gulch Trailhead, to: Kenosha Pass, km: 22.6, end: { lat: 39.41279, lon: -105.75733 } }
+    - { number: "6", kind: main, from: Kenosha Pass, to: Gold Hill Trailhead, km: 51.2, end: { lat: 39.54129, lon: -106.04246 } }
+    - { number: "7", kind: main, from: Gold Hill Trailhead, to: Copper Mountain (Corn Lot Trailhead), km: 21.7, end: { lat: 39.49738, lon: -106.13552 } }
+    - { number: "8", kind: main, from: Copper Mountain (Corn Lot Trailhead), to: Tennessee Pass Trailhead, km: 39.7, end: { lat: 39.36258, lon: -106.31137 } }
+    - { number: "9", kind: main, from: Tennessee Pass Trailhead, to: Timberline Lake Trailhead, km: 20.8, end: { lat: 39.28491, lon: -106.4468 } }
+    - { number: "10", kind: main, from: Timberline Lake Trailhead, to: Mount Massive Trailhead, km: 20.8, end: { lat: 39.15147, lon: -106.41944 } }
+    - { number: "11", kind: main, from: Mount Massive Trailhead, to: Clear Creek Road, km: 34.2, end: { lat: 39.02175, lon: -106.28291 } }
+    - { number: "12", kind: main, from: Clear Creek Road, to: Silver Creek Trailhead, km: 29.3, end: { lat: 38.86568, lon: -106.24100 } }
+    - { number: "13", kind: main, from: Silver Creek Trailhead, to: Chalk Creek Trailhead, km: 35.5, end: { lat: 38.71647, lon: -106.20026 } }
+    - { number: "14", kind: main, from: Chalk Creek Trailhead, to: US-50, km: 32.4, end: { lat: 38.54365, lon: -106.24282 } }
+    - { number: "15", kind: main, from: US-50, to: Marshall Pass Trailhead, km: 23.2, end: { lat: 38.39217, lon: -106.24671 } }
+    - { number: "16", kind: main, from: Marshall Pass Trailhead, to: Sargents Mesa, km: 24.3, end: { lat: 38.29081, lon: -106.37863 } }
     - { number: "17", kind: main, from: Sargents Mesa, to: Colorado Hwy-114, km: 32.8, end: { lat: 38.22338, lon: -106.59127 } }
-    - { number: "18", kind: main, from: Colorado Hwy-114, to: Saguache Park Road, km: 22.2, end: { lat: 38.13151, lon: -106.697 } }
-    - { number: "19", kind: main, from: Saguache Park Road, to: Eddiesville Trailhead, km: 22.0, end: { lat: 38.02569, lon: -106.836 } }
-    - { number: "20", kind: main, from: Eddiesville Trailhead, to: San Luis Pass, km: 20.4, end: { lat: 37.97166, lon: -106.97217 } }
-    - { number: "21", kind: main, from: San Luis Pass, to: Spring Creek Pass Trailhead, km: 23.7, end: { lat: 37.94007, lon: -107.15865 } }
-    - { number: "22", kind: main, from: Spring Creek Pass Trailhead, to: Carson Saddle, km: 27.7, end: { lat: 37.85593, lon: -107.36749 } }
+    - { number: "18", kind: main, from: Colorado Hwy-114, to: Saguache Park Road, km: 22.0, end: { lat: 38.13151, lon: -106.697 } }
+    - { number: "19", kind: main, from: Saguache Park Road, to: Eddiesville Trailhead, km: 22.1, end: { lat: 38.02569, lon: -106.836 } }
+    - { number: "20", kind: main, from: Eddiesville Trailhead, to: San Luis Pass, km: 19.7, end: { lat: 37.97166, lon: -106.97217 } }
+    - { number: "21", kind: main, from: San Luis Pass, to: Spring Creek Pass Trailhead, km: 23.4, end: { lat: 37.94007, lon: -107.15865 } }
+    - { number: "22", kind: main, from: Spring Creek Pass Trailhead, to: Carson Saddle, km: 27.4, end: { lat: 37.85593, lon: -107.36749 } }
     - { number: "23", kind: main, from: Carson Saddle, to: Stony Pass Trailhead, km: 25.6, end: { lat: 37.79126, lon: -107.54255 } }
-    - { number: "24", kind: main, from: Stony Pass Trailhead, to: Molas Pass, km: 33.6, end: { lat: 37.73933, lon: -107.69772 } }
-    - { number: "25", kind: main, from: Molas Pass, to: Bolam Pass Road, km: 33.6, end: { lat: 37.71305, lon: -107.90331 } }
-    - { number: "26", kind: main, from: Bolam Pass Road, to: Hotel Draw Road, km: 17.5, end: { lat: 37.64094, lon: -107.9659 } }
-    - { number: "27", kind: main, from: Hotel Draw Road, to: Kennebec Trailhead, km: 33.2, end: { lat: 37.45173, lon: -108.01171 } }
-    - { number: "28", kind: main, from: Kennebec Trailhead, to: Junction Creek Trailhead, km: 34.6, end: { lat: 37.33146, lon: -107.90316 } }
+    - { number: "24", kind: main, from: Stony Pass Trailhead, to: Molas Pass, km: 33.4, end: { lat: 37.73933, lon: -107.69772 } }
+    - { number: "25", kind: main, from: Molas Pass, to: Bolam Pass Road, km: 32.8, end: { lat: 37.71305, lon: -107.90331 } }
+    - { number: "26", kind: main, from: Bolam Pass Road, to: Hotel Draw Road, km: 19.6, end: { lat: 37.64094, lon: -107.9659 } }
+    - { number: "27", kind: main, from: Hotel Draw Road, to: Kennebec Trailhead, km: 31.0, end: { lat: 37.45173, lon: -108.01171 } }
+    - { number: "28", kind: main, from: Kennebec Trailhead, to: Junction Creek Trailhead, km: 34.3, end: { lat: 37.33146, lon: -107.90316 } }
 route:
   # built by `python -m pipeline.all colorado-trail`: OSM ways matched to the trail's OSM relations,
   # the three sections of its superroute 3445384 on the Collegiate East route (19469031 Waterton
@@ -108,44 +96,43 @@ difficulty:
   estimated:
     sac: T2
     basis: >-
-      The foundation describes a continuous, narrow path built for hikers, horses and bicycles, well
-      marked by western standards, at an average elevation over 10,300 ft (3,140 m) and up to
-      13,271 ft (4,045 m), with about 89,000 ft of climbing and much of it above tree line, exposed
-      to afternoon lightning, hail and lingering snowfields. Mountain hiking on a built trail
-      without scrambling (T2); the altitude, the weather and the length make it hard.
-    source: ctf-faq
+      The Forest Service describes a backcountry multiuse trail for hikers, mountain bikers and
+      horse riders between Denver and Durango, through the high mountain lakes and towering peaks
+      of six wilderness areas and eight mountain ranges, climbing nearly 90,000 vertical feet end to
+      end. Mountain hiking on a built trail without scrambling (T2); the altitude and the length
+      make it hard.
+    source: fs-sanjuan-ct
 season:
-  # the FAQ: "the CT 'season' is short, primarily July and August. We recommend that
-  # thru-travelers begin no earlier than late June … We also recommend finishing the Trail no later
-  # than late September before snow becomes plentiful"
-  months: [7, 8, 9]
-  text: Primarily July and August; thru-hikers should start no earlier than late June and finish by late September, before the snow
-  source: ctf-faq
+  # no season published by an official source other than the foundation, whose site is left out
+  # (searched 2026-11-07): every month, the rule for trails without one
+  months: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
+  text: "No season published; every month for now"
+  source: huckepack-season
 permit:
-  # the FAQ: no permit, except a free self-service permit at each wilderness area; a State
-  # Wildlife Area pass may be needed for the first half-mile of segment 12
+  # the Forest Service, segment 9: "Permits are required for overnight stays within the Holy Cross
+  # Wilderness"; elsewhere "Wilderness regulations apply" (segment 12)
   required: true
-  name: Free self-service wilderness permit
+  name: Wilderness permit (Holy Cross Wilderness)
   issuedBy: USDA Forest Service
   how: >-
-    No permit is needed to travel the trail except in the wilderness areas: at each one, fill out
-    the free permit at the Forest Service's self-service station, leave half there and carry the
-    other half. A State Wildlife Area pass may be required for the first half-mile of segment 12.
-  url: https://coloradotrail.org/traveling-the-ct/faq/
-  source: ctf-faq
+    Permits are required for overnight stays within the Holy Cross Wilderness (segment 9); in the
+    other wilderness areas on the trail, wilderness regulations apply.
+  url: https://www.fs.usda.gov/r02/psicc/recreation/trails/colorado-trail-1776-segment-9-tennessee-pass-trailhead
+  source: fs-psicc-seg9
 sleeping:
-  # the FAQ: camping on most of the trail, sporadic designated campsites, very few huts (10th
-  # Mountain Division huts, the Colorado Trail Friends Memorial Yurt in segment 22); motels and
-  # hostels in the towns off the trail
-  types: [campsite, hut, hostel]
-  source: ctf-faq
+  # the San Juan National Forest: dispersed camping "anywhere in the National Forest OUTSIDE of a
+  # designated campground", and its campgrounds
+  types: [campsite]
+  source: fs-sanjuan-camping
 wildCamping:
   status: allowed
   rule: >-
-    Camping is allowed on the majority of the trail, except in Waterton Canyon (segment 1) and on
-    private land near communities; most people camp near the trail on a flat, already used spot.
-    The Forest Service sets the camping rules.
-  source: ctf-faq
+    Dispersed camping is allowed anywhere in the national forest outside designated campgrounds,
+    for up to 16 days, at least 100 feet from any stream or other water source and not near
+    developed sites such as campgrounds, picnic areas or trailheads; use an existing site where
+    there is one. (The San Juan National Forest's rules; Waterton Canyon, segment 1, is closed to
+    camping, see the notes.)
+  source: fs-sanjuan-camping
 access:
   # Denver International Airport and Denver Union Station (Amtrak) for the Waterton Canyon start
   # (distances are measured to the start, so Durango–La Plata County Airport at the finish, 525 km
@@ -166,7 +153,7 @@ animals:
     - kind: bear
       name: Black bear
       level: moderate
-      basis: Black bears live along the trail; the foundation hears of bear sightings and bears eating hikers' food every year, none aggressive, and recommends a hard-sided canister.
+      basis: Black bears live in Colorado's forests and mountains and are active from mid-March to early November; Colorado Parks and Wildlife asks campers to keep a bear-safe camp, and a bear that approaches people is very rarely aggressive.
       do:
         - Set up a bear-safe camp to protect your food and avoid attracting bears
         - Stand still, stay calm and wait for the bear to leave
@@ -180,7 +167,7 @@ animals:
     - kind: big-cat
       name: Mountain lion
       level: low
-      basis: Much of Colorado is mountain lion country; the foundation gets 0–2 reports of sightings a year and none of attacks on people, and Colorado Parks and Wildlife calls attacks rare.
+      basis: Much of Colorado's foothills and mountains is prime mountain lion country, where people hike in their habitat; Colorado Parks and Wildlife calls attacks on people rare, fewer than a dozen deaths in North America in more than 100 years.
       do:
         - Walk or hike in groups, making noise to avoid surprising a lion
         - Raise your arms, open your jacket, and pick up small children or pets to make yourself appear larger
@@ -193,130 +180,153 @@ animals:
 tags: [mountains, alpine, wilderness, forest]
 notes:
   - >-
-    Stages: the foundation's 28 segments on the Collegiate East route, trailhead to trailhead, with
-    its miles (16.8, 11.5, 12.2, 16.6, 14.6, 32.9, 12.8, 25.4, 13.6, 13.6, 21.5, 18.5, 22.8, 20.4,
-    14.3, 15.2, 20.4, 13.8, 13.7, 12.7, 14.7, 17.2, 15.9, 20.9, 20.9, 10.9, 20.6 and 21.5 = 485.9
-    miles, 782.0 km) converted at 1.609344 km a mile and rounded to 0.1 km. Collegiate East is the
-    foundation's numbered route and the 486-mile thru-route; the Collegiate West alternative
-    (CW01–CW05: 9.8, 25.9, 15.9, 15.9 and 15.7 miles, 83.2 miles, from Twin Lakes in segment 11 to
-    the ridge above South Fooses Creek in segment 15, on the Continental Divide Trail) makes 491
-    miles; both together 567 miles in 33 segments. Collegiate West isn't listed as a variant.
+    Sources (2026-11-07): coloradotrail.org, the Colorado Trail Foundation's site, is left out
+    because it refuses automated visitors (a plain request gets 403, only the pipeline's own
+    User-Agent got its pages; decided 2026-11-07 to treat that as a block, never worked around).
+    The record now rests on the Forest Service's pages (Pike-San Isabel's segment pages, the San
+    Juan National Forest's Colorado Trail page and camping rules), Colorado Parks and Wildlife's
+    Colorado Trail Explorer (COTREX) and Denver Water; all read with huckepack's honest
+    User-Agent. The Colorado Tourism Office's article (colorado.com) answers 403 too and is left out.
   - >-
-    Stage ends: placed on OSM's relations where the line meets the segment's named trailhead, pass
-    or road in OSM (South Platte River Road, Little Scraggy Trailhead, Wellington Lake Road, Kenosha
-    Pass, Copper Mountain, Tennessee Pass, Timberline Lake Trailhead road, Mount Massive Trailhead,
-    Clear Creek Road, Silver Creek, Chalk Creek, US 50, Marshall Pass, Sargents Mesa, Colorado 114,
-    Saguache Park Road, CR 14D at Eddiesville, San Luis Pass, Spring Creek Pass, Carson Road at
-    Carson Saddle, Stony Pass Road, Molas Pass, Hermosa Park Road (the Bolam Pass road), Hotel Draw
-    Road, Kennebec and Junction Creek Trailheads); Long Gulch and the Goldhill Trailhead, which OSM
-    doesn't name on the line, at the foundation's cumulative mileage on it.
+    Stages: COTREX's 28 "Colorado Trail Segment" places on the Collegiate East route, with its
+    lengths in metres rounded to 0.1 km (16.1, 11.5, 12.3, 16.5, 14.1, 31.8, 13.5, 24.7, 12.9,
+    12.9, 21.2, 18.2, 22.1, 20.2, 14.4, 15.1, 20.4, 13.7, 13.8, 12.2, 14.5, 17.1, 15.9, 20.8,
+    20.4, 12.2, 19.2 and 21.3 miles; 770.7 km, 478.9 miles). COTREX maps segment 4 as two places,
+    26.6 km and a 0.4 km piece; the record takes the 26.6 km one. The Forest Service's own segment
+    pages agree where they give a length (segment 6: 32.9 miles, 11: 21.1, 12: 18.5; the Blackhawk
+    Trail, segment 26: 10.9 miles); COTREX's figures are kept since only it covers all 28.
+    COTREX also maps the Collegiate West alternative (Collegiate West 01–05: 10.7, 25.1, 15.5,
+    15.0 and 17.2 miles in its trail data), which isn't listed as a variant.
   - >-
-    Ascent: the foundation states "89000 ft Total Gain" (27,130 m; its segments' elevation gains,
-    2,830 to 5,196 ft each, sum to 89,010 ft) and no descent, so neither the total nor the
-    segments' gains are in the record (the page needs the pair) and the page estimates both from
-    the terrain model.
+    Stage ends: COTREX publishes the segments' lines but no "from–to" names, so each end is named
+    after the COTREX trailhead at it (Waterton Canyon, South Platte River, Little Scraggy, Rolling
+    Creek, Long Gulch, Kenosha Pass, Gold Hill, Corn Lot at Copper Mountain, Tennessee Pass,
+    Timberline Lake, Mount Massive, North Cottonwood–Silver Creek, Chalk Creek, Marshall Pass,
+    Eddiesville South, Spring Creek Pass, Stony Pass, Kennebec, Junction Creek), else the pass or
+    road OSM names there (US 50, Sargents Mesa, Colorado 114, Saguache Park Road, San Luis Pass,
+    Carson Saddle, Molas Pass, the Bolam Pass road and Hotel Draw Road; the Forest Service's
+    pages name Clear Creek Road, Silver Creek Trailhead, Bolam Pass and Hotel Draw Road too).
+    Ends sit on OSM's relations at COTREX's segment ends; those of segments 4, 6, 7, 12 and 16
+    moved 0.6–1.5 km to COTREX's ends on 2026-11-07.
   - >-
-    Days: "A thru-hike generally takes 4 to 6 weeks" (FAQ), recorded as 28 to 42 days.
+    Ascent: the Forest Service says end-to-end travellers "climb nearly 90,000 vertical feet"
+    (27,430 m, San Juan National Forest) and gives no descent, so the page estimates both from the
+    terrain model.
+  - >-
+    Days: no official source other than the foundation states a number of days (searched
+    2026-11-07: the Forest Service's pages, COTREX); the page counts one day per segment.
+  - >-
+    Season: none published by an official source other than the foundation (the Forest Service's
+    and COTREX's pages; searched 2026-11-07), so every month for now; the climate charts show the
+    snowy months.
+  - >-
+    Waymarking: no official description found (the Forest Service's and COTREX's pages,
+    2026-11-07); the White River National Forest's page only says to look for "the 4 x 4 wood
+    post marking the Colorado Trail" at the Camp Hale trailhead.
+  - >-
+    Wild camping: Denver Water, which manages the first 6.6 miles in Waterton Canyon (COTREX):
+    "Camping, grills, and open flames are prohibited in the canyon"; camping is "Permitted only on
+    the Colorado Trail above Strontia Springs" on Forest Service land. The record's rule is the San
+    Juan National Forest's; the other national forests on the trail set their own.
   - >-
     Tree line: the National Park Service's figure for Rocky Mountain National Park, northern
     Colorado (tundra from 11,000 to 11,500 ft, 3,353–3,505 m). No published figure for the Sawatch
-    Range or the San Juans was found (the foundation, the Forest Service, the park service;
-    2026-11-06); the foundation says "Much of the CT is above tree line".
+    Range or the San Juans was found (the Forest Service, the park service; 2026-11-06).
   - >-
-    Preflight (2026-11-06): pipeline.preflight reads the foundation's pages (200). A plain curl
-    request with its default headers was refused (403, "Access Denied"); the pipeline's own request
-    (its User-Agent and an HTML Accept header) gets the pages, so they were read that way, nothing
-    worked around. The superroute 3445384 with its children doubles the ways; its three sections
-    on the Collegiate East route chain into one line of 763 km (99 %).
+    Preflight (2026-11-06): the superroute 3445384 with its children doubles the ways; its three
+    sections on the Collegiate East route chain into one line of 763 km (99 %).
   - >-
-    Map line (2026-11-06): the Colorado Geofabrik extract (2026-11-05); OSM's three relations on the
-    Collegiate East route, chained from Waterton Canyon and cut at the 28 segment ends, every stage
-    100 % matched. It measures 756.7 km against the foundation's 486 miles (782 km, −3 %). Highest
-    point 4,037 m at km 583 (segment 22, below Coney Summit; the foundation: 13,271 ft, 4,045 m),
-    lowest 1,674 m at Waterton Canyon (the foundation: 5,520 ft, 1,682 m). The terrain model gives
-    about 27,210 m of climbing (27,280 m in the pipeline's check) against the foundation's 89,000 ft (27,130 m, +0.3 %), shown as the
-    estimate since no descent is stated.
+    Map line (2026-11-07): the Colorado Geofabrik extract (2026-11-06); OSM's three relations on the
+    Collegiate East route, chained from Waterton Canyon and cut at COTREX's 28 segment ends, every
+    stage 100 % matched. It measures 756.7 km against the Forest Service's "over 483 miles" (777
+    km, −2.6 %) and COTREX's segments (770.7 km, −1.8 %). Highest point 4,036 m at km 583 (segment
+    22; COTREX's highest on segment 22: 4,042 m), lowest 1,674 m at Waterton Canyon (COTREX's
+    segment 1: 1,679 m). The terrain model gives about 27,280 m of climbing against the Forest
+    Service's "nearly 90,000 vertical feet" (27,430 m, −0.5 %), shown as the estimate since no
+    descent is stated.
   - >-
-    Stage lengths on the map line: segment 5 (Long Gulch to Kenosha Pass) measures 20.8 km against
-    the foundation's 14.6 miles (23.5 km, −11 %), segment 15 (US 50 to Marshall Pass) 25.9 km
-    against 14.3 miles (23.0 km, +13 %), segment 26 (Bolam Pass Road to Hotel Draw Road) 19.3 km
-    against 10.9 miles (17.5 km, +10 %). Long Gulch is placed by mileage (OSM names nothing there);
-    segment 15's start is where the line crosses US 50 and segment 26's where it meets Hermosa Park
-    Road, so the trailheads the foundation measures from lie a little off those crossings. The
-    record keeps the foundation's miles.
+    Stage lengths on the map line: every segment within 4 % of COTREX's length except segment 15
+    (US 50 to Marshall Pass), 25.9 km on the map line against COTREX's 23.2 km (+12 %); both ends
+    sit within 350 m of COTREX's, so OSM's relation and COTREX's line take different ways between
+    them. The record keeps COTREX's length.
   - >-
     Water: OSM maps only 2 drinking water points near the trail (at Twin Lakes) and no springs, so
     the check's longest stretch without clean water is 119 km and without any mapped water 478 km.
-    The foundation says water sources (streams, springs, lakes) "are abundant along most of The
-    Colorado Trail", all to be treated, with three dry stretches: segments 2–3 (14.3 miles, with a
-    spigot at the North Fork fire station), 18–19 (11.1 miles) and 26–27 (about 22 miles, Straight
-    Creek to Taylor Lake); the FAQ names segments 17–19 as up to 40 miles with little water. Its
-    sources have no published coordinates, so no waterPoints are added.
+    The Forest Service's pages list "Water Available: None" on segment 12 and "No" on segment 6,
+    and on the Junction Creek Trail (segment 28) water "is scarce after leaving the canyon floor";
+    no official water points with coordinates were found, so no waterPoints are added.
   - >-
     Resupply: OSM maps 3 shops near the trail, the longest stretch without one 572 km (from Copper
-    Mountain to Durango); the trail keeps away from towns, and the foundation's segment list gives
-    the resupply towns off it (Breckenridge and Frisco 4–5 miles, Leadville 8, Twin Lakes 1, Buena
-    Vista 9.5, Salida 15, Creede 10, Lake City 17, Silverton 6 miles, and Mt. Princeton Hot Springs
-    on the trail).
+    Mountain to Durango); the trail keeps away from towns.
   - >-
     Beds: OSM maps 137 places to sleep near the trail (mostly campsites), the longest stretch without
     one 111 km (km 644–755, from Molas Pass towards Durango); camping is allowed along almost all
     of the trail.
   - >-
     Access: the travel hubs are Denver's airport and Union Station, distances measured to Waterton
-    Canyon; Durango–La Plata County Airport serves the finish (the foundation: about 20 miles from
-    town) and is left out, since the access step measures to the start only.
+    Canyon; Durango–La Plata County Airport serves the finish and is left out, since the access step measures to the start only.
   - >-
-    Data check (2026-11-06): against English Wikipedia. Length 486 miles (782 km), termini
-    (Waterton Canyon and the trailhead near Durango), highest point 13,271 ft below Coney, lowest
-    about 5,500 ft (the foundation 5,520 ft), about 89,000 ft of climbing, season "primarily
-    July–September" and 4 to 6 weeks (28 to 42 days) all agree with the record; its "moderate to
-    strenuous" fits the T2 estimate. It gives no segments, camping rules or tree line; the 28
-    segments' miles, season, permits and camping rule on the built page were checked one by one
-    against the foundation's pages and agree. Derived against stated: the map line is 3 % under
-    the stated length, the terrain model's climbing 0.3 % over the stated gain, the highest point
-    8 m under; three segments are 10–13 % off on the map line (the "Stage lengths" note).
+    Data check (2026-11-07, after the foundation's pages were dropped): against English Wikipedia.
+    Length 486 miles (782 km) against the Forest Service's over 483 miles (777 km, 0.6 %);
+    termini (Waterton Canyon and Durango), completion in 1987, the Colorado Trail Foundation and
+    the Forest Service as maintainers, the highest point (13,271 ft, 4,045 m, on Coney; COTREX
+    4,042 m), the lowest (about 5,500 ft, 1,676 m; COTREX 1,679 m) agree; its "moderate to
+    strenuous" fits the T2 estimate. Its season, "Primarily July–September", is a deviation: the
+    record has every month, since no official source other than the foundation publishes one.
+    Its "about 4 to 6 weeks (28 to 42 days)" (citing the foundation) fits the page's 28 days, one
+    per segment. It gives no segments, permits, camping rules or tree line; the 28 segments'
+    lengths on the built page were checked one by one against COTREX's segment pages, the permit
+    against the Forest Service's segment 9 page and the camping rule against the San Juan National
+    Forest's guidelines, and agree. Derived against stated: the map line is 2.6 % under the stated
+    length, the terrain model's climbing 0.5 % under the Forest Service's figure, the highest point
+    6 m under COTREX's; segment 15 is 12 % over on the map line (the "Stage lengths" note).
 dataCheck:
-  # working rule 2: English Wikipedia as the second source; the segments only on the foundation's
-  # pages, so the built page was checked against them
-  date: 2026-11-06
+  # working rule 2: English Wikipedia as the second source; the segments only on COTREX's pages,
+  # the permit and camping rules only on the Forest Service's, so the built page was checked
+  # against them (2026-11-07, coloradotrail.org left out)
+  date: 2026-11-07
   against: [wikipedia]
-  pageAgainst: [ctf-segments, ctf-faq]
+  pageAgainst: [cotrex, fs-psicc-seg11, fs-psicc-seg9, fs-sanjuan-ct, fs-sanjuan-camping]
   deviations:
-    - { figure: stage 5 length, ours: "23.5 km (14.6 miles)", theirs: "20.8 km on the map line", source: osm }
-    - { figure: stage 15 length, ours: "23.0 km (14.3 miles)", theirs: "25.9 km on the map line", source: osm }
-    - { figure: stage 26 length, ours: "17.5 km (10.9 miles)", theirs: "19.3 km on the map line", source: osm }
+    - { figure: season, ours: "every month (none published officially)", theirs: "Primarily July–September", source: wikipedia }
+    - { figure: stage 15 length, ours: "23.2 km (COTREX)", theirs: "25.9 km on the map line", source: osm }
 sources:
-  - id: ctf-trail
-    title: "Colorado Trail Foundation: The Trail (486 miles on Collegiate East, 89,000 ft total gain, highest 13,271 ft, who maintains the trail)"
-    url: https://coloradotrail.org/trail/
+  - id: cotrex
+    title: "Colorado Trail Explorer (COTREX, Colorado Parks and Wildlife and the Colorado Department of Natural Resources): the pages \"Colorado Trail Segment 1\" to \"28\" (lengths, elevations, managers, from the land managers' trail data) and its trailheads"
+    url: https://trails.colorado.gov/trails/colorado-trail-segment-6507
+    licence: Colorado state government data (facts only)
+    retrieved: 2026-11-07
+  - id: fs-psicc-seg11
+    title: "USDA Forest Service, Pike-San Isabel National Forests: Colorado Trail #1776 (Segment 11) at Mount Massive Trailhead (over 483 miles, completed 1987, maintained by the Colorado Trail Foundation and the Forest Service)"
+    url: https://www.fs.usda.gov/r02/psicc/recreation/trails/colorado-trail-1776-segment-11-mount-massive-trailhead
+    licence: US federal government work, public domain
+    retrieved: 2026-11-07
+  - id: fs-psicc-seg9
+    title: "USDA Forest Service, Pike-San Isabel National Forests: Colorado Trail #1776 (Segment 9) at Tennessee Pass Trailhead (permits for overnight stays in the Holy Cross Wilderness)"
+    url: https://www.fs.usda.gov/r02/psicc/recreation/trails/colorado-trail-1776-segment-9-tennessee-pass-trailhead
+    licence: US federal government work, public domain
+    retrieved: 2026-11-07
+  - id: fs-sanjuan-ct
+    title: "USDA Forest Service, San Juan National Forest: Colorado Trail (567 miles between Denver and Durango on both Collegiate routes, six wilderness areas, nearly 90,000 vertical feet)"
+    url: https://www.fs.usda.gov/r02/sanjuan/recreation/groups/colorado-trail
+    licence: US federal government work, public domain
+    retrieved: 2026-11-07
+  - id: fs-sanjuan-camping
+    title: "USDA Forest Service, San Juan National Forest: Dispersed Camping Guidelines"
+    url: https://www.fs.usda.gov/r02/sanjuan/recreation/dispersed-camping-guidelines
+    licence: US federal government work, public domain
+    retrieved: 2026-11-07
+  - id: denver-water
+    title: "Denver Water: Waterton Canyon and Strontia Springs Reservoir (camping only on the Colorado Trail above Strontia Springs)"
+    url: https://www.denverwater.org/recreation/waterton-canyon-strontia-springs-resevoir
     licence: All rights reserved (facts only)
-    retrieved: 2026-11-06
-  - id: ctf-segments
-    title: "Colorado Trail Foundation: Segments of the CT (28 segments and Collegiate West CW01–05, with miles and elevation gain)"
-    url: https://coloradotrail.org/trail/segments-of-the-ct/
-    licence: All rights reserved (facts only)
-    retrieved: 2026-11-06
-  - id: ctf-faq
-    title: "Colorado Trail Foundation: Trail FAQs (season, thru-hike time, camping, huts, permits, navigation, water, wildlife)"
-    url: https://coloradotrail.org/traveling-the-ct/faq/
-    licence: All rights reserved (facts only)
-    retrieved: 2026-11-06
-  - id: ctf-starting
-    title: "Colorado Trail Foundation: Starting Points (Waterton Canyon and Junction Creek termini, Collegiate East/West)"
-    url: https://coloradotrail.org/traveling-the-ct/starting-points/
-    licence: All rights reserved (facts only)
-    retrieved: 2026-11-06
-  - id: ctf-history
-    title: "Colorado Trail Foundation: Key Events in the History of The Colorado Trail"
-    url: https://coloradotrail.org/trail/trail-history/
-    licence: All rights reserved (facts only)
-    retrieved: 2026-11-06
-  - id: ctf-maps
-    title: "Colorado Trail Foundation: Maps and Guidebooks (guidebook, databook, map book, FarOut app)"
-    url: https://coloradotrail.org/trail/guidebooks-and-maps/
-    licence: All rights reserved (facts only)
-    retrieved: 2026-11-06
+    retrieved: 2026-11-07
+    checkOnly: true  # named in the notes only
+  - id: huckepack-season
+    title: "huckepack: no season published by an official source other than the Colorado Trail Foundation, whose site refuses automated visitors and is left out (the Forest Service's and COTREX's pages, searched 2026-11-07); every month for now, until one is found"
+    url: https://github.com/schildbuerger/huckepack/blob/main/docs/trail-building.md
+    licence: huckepack's own rule (decided 2026-11-05)
+    retrieved: 2026-11-07
   - id: cpw-bears
     title: "Colorado Parks and Wildlife: Living with Bears"
     url: https://cpw.state.co.us/living-bears
@@ -336,7 +346,7 @@ sources:
     title: "Wikipedia (en): Colorado Trail"
     url: https://en.wikipedia.org/wiki/Colorado_Trail
     licence: CC BY-SA 4.0
-    retrieved: 2026-11-06
+    retrieved: 2026-11-07
     checkOnly: true
   - id: wikimedia
     title: "Wikimedia: page views of the trail's Wikipedia articles in every language, by people, over twelve months (Wikidata sitelinks, pageview API)"
