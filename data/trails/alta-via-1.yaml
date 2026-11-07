@@ -178,7 +178,8 @@ notes:
     line within 10 % of the guide's "circa" figures except stage 2 (12.9 against 14 km), stage 5
     (13.2 against 11 km) and stage 12 (7.7 against 9 km). Highest point 2,722 m on the terrain
     model at Rifugio Lagazuoi (2,752 m in the guide), lowest 698 m at Case Bortòt (568 m in the
-    guide). The terrain model's ascent (about 9,360 m) runs far above the guide's 7,330 m stage
+    guide). The terrain model's ascent (about 9,360 m on GLO-30; about 8,880 m on GEDTM30 with the 10 m
+    threshold since 2026-11-07) runs far above the guide's 7,330 m stage
     sum (about 7,300 m stated): the page shows the guide's stage climbs.
   - >-
     Resupply: OSM maps three shops along the route, none in the first 67.6 km (Lago di Braies to
@@ -202,7 +203,7 @@ dataCheck:
     - { figure: "Stage 2 length (map line)", ours: "14 km", theirs: "12.9 km on the OSM map line", source: osm }
     - { figure: "Stage 5 length (map line)", ours: "11 km", theirs: "13.2 km on the OSM map line", source: osm }
     - { figure: "Stage 12 length (map line)", ours: "9 km", theirs: "7.7 km on the OSM map line", source: osm }
-    - { figure: "Ascent (terrain model)", ours: "7,330 m (stage sum)", theirs: "about 9,360 m (terrain model)", source: copdem }
+    - { figure: "Ascent (terrain model)", ours: "7,330 m (stage sum)", theirs: "about 8,880 m (terrain model, 2026-11-07)", source: gedtm30 }
 sources:
   - id: prov-bl
     title: "Provincia di Belluno, Settore Turismo: Alta Via delle Dolomiti n. 1, dal Lago di Bràies a Belluno (official guide by Italo Zandonella Callegher, 2005, reprint 2007; data sheet and twelve stages with climbs, lengths and times), hosted by the Fondazione DMO Dolomiti Bellunesi"
@@ -247,8 +248,13 @@ sources:
     url: https://www.openstreetmap.org/relation/177743
     licence: ODbL 1.0
     retrieved: 2026-11-04
+  - id: gedtm30
+    title: "GEDTM30 v1.2: global ensemble digital terrain model, 30 m, bare earth (OpenGeoHub; Ho et al. 2025, PeerJ 13:e19673)"
+    url: https://doi.org/10.5281/zenodo.18887460
+    licence: "CC BY 4.0; Ho, Y.-F., Grohmann, C. H., Lindsay, J., Reuter, H. I., Parente, L., Witjes, M., Hengl, T. (2025): GEDTM30, OpenGeoHub"
+    retrieved: 2026-11-07
   - id: copdem
-    title: "Copernicus DEM GLO-30 (30 m terrain model), tiles from AWS Open Data"
+    title: "Copernicus DEM GLO-30 (30 m surface model): base data of the GEDTM30 terrain model"
     url: https://registry.opendata.aws/copernicus-dem/
     licence: "Copernicus WorldDEM-30 licence, free; produced using Copernicus WorldDEM-30 © DLR e.V. 2010-2014 and © Airbus Defence and Space GmbH 2014-2018 provided under COPERNICUS by the European Union and ESA; all rights reserved"
     retrieved: 2026-11-04

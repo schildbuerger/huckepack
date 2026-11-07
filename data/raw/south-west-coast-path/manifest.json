@@ -4,17 +4,17 @@
     "url": "https://openmeteo.s3.us-west-2.amazonaws.com/data/copernicus_era5_land+copernicus_era5?latitude=51.2&longitude=-3.7&elevation=310&wind=51.0,-3.75"
   },
   "climate-low.json": {
-    "retrieved": "2026-11-03T21:47:47+00:00",
-    "url": "https://openmeteo.s3.us-west-2.amazonaws.com/data/copernicus_era5_land+copernicus_era5?latitude=51.1&longitude=-4.2&elevation=0"
+    "retrieved": "2026-11-07T08:55:44+00:00",
+    "url": "https://openmeteo.s3.us-west-2.amazonaws.com/data/copernicus_era5_land+copernicus_era5?latitude=50.5&longitude=-4.9&elevation=0&wind=50.5,-4.75"
   },
   "commons.json": {
     "key": "Q1631281",
     "retrieved": "2026-11-05T21:16:04+00:00",
     "url": "Q1631281 P18 P373"
   },
-  "elevation-glo30.json": {
-    "retrieved": "2026-11-03T21:58:58+00:00",
-    "url": "https://copernicus-dem-30m.s3.eu-central-1.amazonaws.com/Copernicus_DSM_COG_10_N49_00_W006_00_DEM/Copernicus_DSM_COG_10_N49_00_W006_00_DEM.tif https://copernicus-dem-30m.s3.eu-central-1.amazonaws.com/Copernicus_DSM_COG_10_N50_00_W002_00_DEM/Copernicus_DSM_COG_10_N50_00_W002_00_DEM.tif https://copernicus-dem-30m.s3.eu-central-1.amazonaws.com/Copernicus_DSM_COG_10_N50_00_W003_00_DEM/Copernicus_DSM_COG_10_N50_00_W003_00_DEM.tif https://copernicus-dem-30m.s3.eu-central-1.amazonaws.com/Copernicus_DSM_COG_10_N50_00_W004_00_DEM/Copernicus_DSM_COG_10_N50_00_W004_00_DEM.tif https://copernicus-dem-30m.s3.eu-central-1.amazonaws.com/Copernicus_DSM_COG_10_N50_00_W005_00_DEM/Copernicus_DSM_COG_10_N50_00_W005_00_DEM.tif https://copernicus-dem-30m.s3.eu-central-1.amazonaws.com/Copernicus_DSM_COG_10_N50_00_W006_00_DEM/Copernicus_DSM_COG_10_N50_00_W006_00_DEM.tif https://copernicus-dem-30m.s3.eu-central-1.amazonaws.com/Copernicus_DSM_COG_10_N51_00_W004_00_DEM/Copernicus_DSM_COG_10_N51_00_W004_00_DEM.tif https://copernicus-dem-30m.s3.eu-central-1.amazonaws.com/Copernicus_DSM_COG_10_N51_00_W005_00_DEM/Copernicus_DSM_COG_10_N51_00_W005_00_DEM.tif"
+  "elevation-gedtm30.json": {
+    "retrieved": "2026-11-07T08:31:24+00:00",
+    "url": "https://s3.opengeohub.org/global/dtm/v1.2/gedtm_rf_m_30m_s_20060101_20151231_go_epsg.4326.3855_v1.2.tif"
   },
   "landcover.json": {
     "retrieved": "2026-11-03T21:59:09+00:00",

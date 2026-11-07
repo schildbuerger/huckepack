@@ -13,6 +13,29 @@ export interface Derived<T> {
   how: string; // shown next to the figure, e.g. "sum of the 7 main stages"
 }
 
+// Ascent and descent from the terrain model count with a threshold (decided 2026-11-07,
+// docs/scope.md): a climb counts only once the height has risen CLIMB_THRESHOLD_M above the last
+// reference height, a drop likewise; the reference then moves to that height. Without it every
+// metre of the model's noise between the samples adds up (GLO-30's raw sums ran 22 % high in the
+// median against 34 official figures; GEDTM30 with 10 m: 0 %). For sums only: gradients, steepness
+// and the profile use the raw heights. Same rule as CLIMB_THRESHOLD_M in pipeline/all.py.
+export const CLIMB_THRESHOLD_M = 10;
+export function climbs(heights: number[], threshold = CLIMB_THRESHOLD_M) {
+  let ref = heights[0];
+  let up = 0;
+  let down = 0;
+  for (const h of heights.slice(1)) {
+    if (h - ref >= threshold) {
+      up += h - ref;
+      ref = h;
+    } else if (ref - h >= threshold) {
+      down += ref - h;
+      ref = h;
+    }
+  }
+  return { up, down };
+}
+
 export function mainStages(t: Trail): Stage[] {
   return t.stages?.list.filter((s) => s.kind === "main") ?? [];
 }
@@ -138,16 +161,17 @@ export function perStage(t: Trail, d?: DerivedData) {
 // hikers choose their own camps, so the page has no stages section and names kilometres, not stages.
 export const noStages = (t: Trail) => Boolean(t.stages?.none);
 
-// The whole main route's ascent and descent from the terrain model (the climbs and drops between the
-// 100 m samples, to 10 m), for a trail without stages whose source states none.
+// The whole main route's ascent and descent from the terrain model (the climbs and drops along the
+// 100 m samples with the 10 m threshold, climbs(), to 10 m), for a trail without stages whose
+// source states none.
 export function routeEstimate(d?: DerivedData) {
   const pts = d?.elevation?.points;
   if (!pts?.length) return undefined;
   const to10 = (m: number) => Math.round(m / 10) * 10;
-  const steps = pts.slice(1).map((p, k) => p[1] - pts[k][1]);
+  const c = climbs(pts.map((p) => p[1]));
   return {
-    ascentM: to10(steps.filter((x) => x > 0).reduce((a, x) => a + x, 0)),
-    descentM: to10(-steps.filter((x) => x < 0).reduce((a, x) => a + x, 0)),
+    ascentM: to10(c.up),
+    descentM: to10(c.down),
     source: d!.elevation!.source,
   };
 }
@@ -432,7 +456,8 @@ export function walkingMinutes(km: number, ascentM: number, descentM: number) {
 
 // Estimates for stage figures a trail's source doesn't publish, per stage number, from the
 // elevation profile (main stages only, the profile's extent): start and end height, and ascent
-// and descent (the climbs and drops between the 100 m samples), all to 10 m; and the walking
+// and descent (the climbs and drops along the 100 m samples with the 10 m threshold, climbs()),
+// all to 10 m; and the walking
 // time from the stage's own stated distance, ascent and descent (walkingMinutes; never from
 // estimated climbs, so a time doesn't mix sources). Published figures are never replaced; the
 // page marks these as estimates.
@@ -457,9 +482,10 @@ export function stageEstimates(t: Trail, d?: DerivedData) {
           est.endEleM = to10(pts.at(-1)![1]);
         }
         if (s.ascentM === undefined && s.descentM === undefined) {
-          const steps = pts.slice(1).map((p, k) => p[1] - pts[k][1]);
-          est.ascentM = to10(steps.filter((x) => x > 0).reduce((a, x) => a + x, 0));
-          est.descentM = to10(-steps.filter((x) => x < 0).reduce((a, x) => a + x, 0));
+          // along the stage's own samples with the 10 m threshold: each stage starts fresh
+          const c = climbs(pts.map((p) => p[1]));
+          est.ascentM = to10(c.up);
+          est.descentM = to10(c.down);
         }
       }
     }

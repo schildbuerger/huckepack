@@ -3,7 +3,7 @@
 // `npm test` (Node's test runner; Node strips the types itself).
 import { test } from "node:test";
 import assert from "node:assert/strict";
-import { barMetres, gradients, noStages, perDay, routeEstimate, sleepingCategories, trailClimb, trailLength, providerLength, measuredLength, measuredCover, compareLength, trailDays, walkingMinutes, stageTotals, STEEP_PERCENT } from "../src/lib/trails.ts";
+import { barMetres, climbs, CLIMB_THRESHOLD_M, gradients, noStages, perDay, routeEstimate, stageEstimates, sleepingCategories, trailClimb, trailLength, providerLength, measuredLength, measuredCover, compareLength, trailDays, walkingMinutes, stageTotals, STEEP_PERCENT } from "../src/lib/trails.ts";
 import { difficulty } from "../src/lib/difficulty.ts";
 import { mergeRuns, rectsPath, simplify, stripPaths, n1 } from "../src/lib/svg.ts";
 import { kmBetween, roundDistance } from "../src/lib/geo.ts";
@@ -317,8 +317,8 @@ test("no stages: averages per day as a range from the most and the fewest days",
 });
 
 test("no stages: climbs from the terrain model where none are stated", () => {
-  const d = { elevation: { source: "glo30", points: [[0, 100], [0.1, 150], [0.2, 120], [0.3, 200]] } } as any;
-  assert.deepEqual(routeEstimate(d), { ascentM: 130, descentM: 30, source: "glo30" });
+  const d = { elevation: { source: "gedtm30", points: [[0, 100], [0.1, 150], [0.2, 120], [0.3, 200]] } } as any;
+  assert.deepEqual(routeEstimate(d), { ascentM: 130, descentM: 30, source: "gedtm30" });
   const day = perDay(stageless({ ascent: [], descent: [] }), d)!;
   assert.equal(day.est, true);
   assert.deepEqual(day.ascentM, { min: 10, max: 10 });
@@ -331,4 +331,41 @@ test("no stages: Effort from an average day at the fewest days, an estimate", ()
   assert.equal(effort.by.estimate, true);
   assert.equal(effort.by.where, "an average day over 10 days");
   assert.equal(effort.by.source, "planner");
+});
+
+test("climbs: a rise or drop counts only once it reaches the 10 m threshold (2026-11-07)", () => {
+  assert.equal(CLIMB_THRESHOLD_M, 10);
+  // wobbles under 10 m add nothing, however many
+  assert.deepEqual(climbs([100, 104, 99, 105, 100, 106, 101]), { up: 0, down: 0 });
+  // a steady climb counts in steps of at least 10 m from the last reference: 100 → 112 → 124
+  assert.deepEqual(climbs([100, 106, 112, 118, 124, 127]), { up: 24, down: 0 });
+  // a drop of exactly 10 m counts, then the climb from the new low
+  assert.deepEqual(climbs([200, 190, 215]), { up: 25, down: 10 });
+  // without the threshold, every step: the raw sums
+  assert.deepEqual(climbs([100, 104, 99, 105], 0), { up: 10, down: 5 });
+  assert.deepEqual(climbs([]), { up: 0, down: 0 });
+});
+
+test("stage estimates: climbs along each stage's own samples, each stage starting fresh", () => {
+  const t = trail({
+    stages: {
+      source: "site",
+      list: [
+        { number: "1", kind: "main", from: "A", to: "B", km: 0.3 },
+        { number: "2", kind: "main", from: "B", to: "C", km: 0.3 },
+      ],
+    },
+  });
+  // stage 1 climbs 8 m (under the threshold) and stage 2 another 8 m: as one route the climb
+  // reaches 10 m (12 m counted at km 0.4), but each stage alone stays under it
+  const d = {
+    elevation: {
+      source: "gedtm30",
+      stageStarts: [{ number: "1", km: 0 }, { number: "2", km: 0.3 }],
+      points: [[0, 100], [0.1, 104], [0.2, 108], [0.3, 108], [0.4, 112], [0.5, 116]],
+    },
+  } as any;
+  const est = stageEstimates(t, d);
+  assert.deepEqual([est.get("1")!.ascentM, est.get("2")!.ascentM], [0, 0]);
+  assert.equal(routeEstimate(d)!.ascentM, 10); // 12 m, to 10 m
 });

@@ -8,7 +8,7 @@ about 71 m and 0.001° of latitude about 111 m.
 import math
 import unittest
 
-from pipeline import along, climate, era5_open_data, osm, routes, surface, water
+from pipeline import all as pipeline_all, along, climate, elevation, era5_open_data, osm, routes, surface, water
 
 LAT = 50.0
 
@@ -743,3 +743,51 @@ class AccessViaPort(unittest.TestCase):
             self.assertIn("-88.6,47.1", asked[0])  # to the port, not the island start
             hub = json.loads((root / "data" / "derived" / "isle.json").read_text())["access"]["hubs"][0]
             self.assertEqual((hub["to"], hub["roadKm"]), ("Port", 15.8))
+
+
+class ClimbThreshold(unittest.TestCase):
+    """The check's terrain-model ascent counts climbs and drops once they reach 10 m (2026-11-07),
+    as the site's climbs() in src/lib/trails.ts."""
+
+    def test_wobbles_dont_add_up(self):
+        self.assertEqual(pipeline_all.climbs([100, 104, 99, 105, 100, 106]), (0, 0))
+
+    def test_steps_from_the_last_reference(self):
+        self.assertEqual(pipeline_all.climbs([100, 106, 112, 118, 124, 127]), (24, 0))
+        self.assertEqual(pipeline_all.climbs([200, 190, 215]), (25, 10))
+
+    def test_raw_without_threshold(self):
+        self.assertEqual(pipeline_all.climbs([100, 104, 99, 105], threshold=0), (10, 5))
+        self.assertEqual(pipeline_all.CLIMB_THRESHOLD_M, 10)
+
+
+class TerrainWindows(unittest.TestCase):
+    """GEDTM30 is read in windows around chunks of consecutive samples (pipeline/elevation.py)."""
+
+    def test_chunks_cover_every_sample_with_margin(self):
+        pixels = [(10.2 + i * 3.3, 50.7 - i * 1.1) for i in range(95)]
+        wins = elevation.windows(pixels, chunk=40, margin=2)
+        self.assertEqual([(a, b) for a, b, *_ in wins], [(0, 40), (40, 80), (80, 95)])
+        for a, b, c0, r0, w, h in wins:
+            for col, row in pixels[a:b]:
+                # the four nearest cell centres are within the window, with the margin to spare
+                self.assertGreaterEqual(math.floor(col - 0.5) - c0, 1)
+                self.assertGreaterEqual(math.floor(row - 0.5) - r0, 1)
+                self.assertLess(math.floor(col - 0.5) + 1, c0 + w - 1)
+                self.assertLess(math.floor(row - 0.5) + 1, r0 + h - 1)
+
+    def test_bilinear_between_cell_centres(self):
+        import numpy as np
+
+        grid = np.array([[0.0, 10.0], [20.0, 30.0]])
+        self.assertAlmostEqual(elevation.bilinear(grid, 0.5, 0.5), 0.0)  # on the first centre
+        self.assertAlmostEqual(elevation.bilinear(grid, 1.0, 1.0), 15.0)  # between all four
+        self.assertAlmostEqual(elevation.bilinear(grid, 1.5, 0.5), 10.0)
+
+    def test_bilinear_leaves_out_cells_without_data(self):
+        import numpy as np
+
+        nodata = np.float32(3.4028234663852886e38)
+        grid = np.array([[10.0, nodata], [10.0, 10.0]], dtype=np.float32)
+        self.assertAlmostEqual(elevation.bilinear(grid, 1.0, 1.0, nodata), 10.0)
+        self.assertIsNone(elevation.bilinear(np.full((2, 2), nodata, dtype=np.float32), 1.0, 1.0, nodata))

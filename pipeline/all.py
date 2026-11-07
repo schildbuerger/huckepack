@@ -41,6 +41,22 @@ NO_BED_KM = 30  # a longer stretch without a bed: check OSM (huts, campsites), a
 UNKNOWN_SHARE = 0.10
 HUB_KM = 300
 TREE_LINE_FROM_M = 1500  # a trail this high may cross a tree line: the record should say
+# climbs and drops from the terrain model count once they reach 10 m (decided 2026-11-07,
+# docs/scope.md): the same rule as CLIMB_THRESHOLD_M and climbs() in src/lib/trails.ts
+CLIMB_THRESHOLD_M = 10
+
+
+def climbs(heights, threshold=CLIMB_THRESHOLD_M):
+    """Ascent and descent along a height series: a climb counts only once the height has risen
+    `threshold` above the last reference height, a drop likewise; the reference then moves there."""
+    up = down = 0
+    ref = heights[0] if heights else 0
+    for h in heights[1:]:
+        if h - ref >= threshold:
+            up, ref = up + h - ref, h
+        elif ref - h >= threshold:
+            down, ref = down + ref - h, h
+    return up, down
 
 
 def _photos(slug, refresh):
@@ -148,7 +164,7 @@ def check(slug):
     elevation = derived.get("elevation")
     if elevation:
         pts = elevation["points"]
-        model = sum(max(0, b[1] - a[1]) for a, b in zip(pts, pts[1:]))
+        model = climbs([p[1] for p in pts])[0]
         up = sum(s["ascentM"] for s in main) if main and all("ascentM" in s for s in main) else None
         if (whole or not up) and trail.get("ascent"):
             # the stated total: a trail without stages, or stages that state no climbs of their own
@@ -156,7 +172,7 @@ def check(slug):
             up = trail["ascent"][0]["m"]
         if up:
             msg = f"ascent: stated {up:,} m, terrain model about {round(model, -1):,.0f} m"
-            (flags if off(model, up) else fine).append(msg + (" (the model runs high in forests; check the stated figure)" if off(model, up) else ""))
+            (flags if off(model, up) else fine).append(msg + (" (check the stated figure and the map line)" if off(model, up) else ""))
         else:
             fine.append(f"ascent: none stated; the page estimates about {round(model, -1):,.0f} m from the terrain model")
         noted = any(str(n).startswith("Tree line") for n in trail.get("notes", []))

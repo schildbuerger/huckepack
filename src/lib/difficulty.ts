@@ -10,7 +10,7 @@
 //            more months, or for the months picked (src/lib/months.ts, issue #114)
 //   Effort   the longest day's walking time
 import type { CollectionEntry } from "astro:content";
-import { gradients, mainStages, noStages, perDay, sacGrade, stageEstimates, stageTotals, trailClimb, trailLength, walkingMinutes, STEEP_PERCENT } from "./trails.ts";
+import { climbs, gradients, mainStages, noStages, perDay, sacGrade, stageEstimates, stageTotals, trailClimb, trailLength, walkingMinutes, STEEP_PERCENT } from "./trails.ts";
 import { climateFor, monthsText } from "./months.ts";
 
 type Trail = CollectionEntry<"trails">["data"];
@@ -128,8 +128,7 @@ export function difficulty(t: Trail, d?: DerivedData) {
       terrain.push(measure("climb", up / km, `${round(up / km)} m per km`, totals?.ascentM?.source ?? e.source, { estimate: !totals?.ascentM }));
     else if (whole) {
       // no stated climbs: the terrain model's over the map line (≈)
-      const pts = e.points;
-      const rise = pts.slice(1).reduce((a, p, k) => a + Math.max(0, p[1] - pts[k][1]), 0);
+      const rise = climbs(e.points.map((p) => p[1])).up;
       terrain.push(measure("climb", rise / e.routeKm, `${round(rise / e.routeKm)} m per km`, e.source, { estimate: true }));
     }
     const g = gradients(e.points, e.stageStarts, e.spacingM);

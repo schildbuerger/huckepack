@@ -51,7 +51,7 @@ TOLERANCE_M = 10
 # caches that depend on the map line, dropped whenever it changes (also when this step runs on its
 # own, not only within pipeline.all; not the climate downloads: pipeline/climate.py keeps them while
 # the places stay in their grid cells)
-ROUTE_CACHES = ["osm-water.json", "osm-along.json", "osm-way-tags.json", "elevation-glo30.json", "landcover.json"]
+ROUTE_CACHES = ["osm-water.json", "osm-along.json", "osm-way-tags.json", "elevation-gedtm30.json", "landcover.json"]
 GPX_TOLERANCE_M = 2  # the downloadable line: below GPS accuracy, keeps switchbacks
 # a relation member's role for the route itself: none, as OSM's hiking relations mostly have it, or
 # "main" / "route", which some mappers write (the Fundy Footpath's nine ways, 2026-11-06)
