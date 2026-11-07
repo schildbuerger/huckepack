@@ -478,6 +478,17 @@
   - 2026-11-07: USPs removed; hero fills the first screen, title and search
     centred; eyebrow "Official long-distance trails, in data" (the user's
     request).
+  - 2026-11-07, from a review against Baymard's usability findings (the
+    user's picks): the sun or moon keeps its hour's arc but never stands on the
+    hero's words (#290); tap targets at least 44 px (7 mm) without a change in
+    look; small text at least 11–12 px (the summit flags' labels, shown on
+    phones too, the eyebrow, the stamps' words; #1085); the popular cards say
+    "Wikipedia views, last 12 months" and the (i) links Wikimedia's pageviews;
+    the logbook's stamps are inked on touch screens as they scroll into view;
+    the sticky bar's and the film's button read "Find a trail". The popular
+    trails on phones (topic `popular`) and the film merged with "On every
+    trail page" (topic `offers`) are previews, three approaches each, on the
+    local branch `feat/home-baymard`; their decision goes here when picked.
 
 - **Explainer film (2026-11-04, the user's choices):** right after the about
   band (of three places, approach A), whose colour comes down into the film's
