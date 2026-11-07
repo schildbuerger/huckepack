@@ -162,6 +162,10 @@ const LAKE = "#6f9fc0";
 const SEA = "#4f8fb8";
 
 // a few shapes reused within one drawing
+const tetonSouth: P[] = [[1120, G], [1190, 252], [1246, 218], [1290, 196], [1312, 184], [1328, 192], [1340, 186], [1360, 204], [1410, 232], [1470, 262], [1540, G]];
+const tetonMiddle: P[] = [[900, G], [960, 252], [1006, 208], [1044, 172], [1070, 148], [1086, 136], [1100, 146], [1128, 170], [1176, 204], [1236, 238], [1320, G]];
+const tetonOwen: P[] = [[380, G], [450, 256], [510, 212], [550, 176], [574, 150], [588, 130], [596, 120], [604, 132], [614, 124], [626, 150], [660, 176], [720, 214], [780, 250], [840, G]];
+const tetonGrand: P[] = [[560, G], [620, 262], [680, 220], [720, 180], [752, 136], [772, 104], [786, 80], [796, 64], [802, 58], [810, 64], [818, 84], [826, 96], [838, 92], [852, 112], [880, 150], [920, 182], [970, 212], [1030, 244], [1100, 272], [1160, G]];
 const glockner: P[] = [[0, G], [60, 262], [130, 205], [180, 160], [215, 118], [232, 96], [246, 112], [270, 140], [320, 170], [380, 196], [440, 214], [500, 232], [560, 250], [620, 270], [680, G]];
 const julian: P[] = [[880, G], [930, 262], [980, 214], [1010, 190], [1035, 170], [1050, 182], [1070, 150], [1090, 136], [1105, 124], [1118, 132], [1132, 118], [1150, 138], [1180, 160], [1210, 150], [1240, 174], [1280, 196], [1320, 220], [1360, 248], [1400, 276], [1440, G]];
 const kebnekaise: P[] = [[300, G], [380, 256], [460, 214], [520, 170], [560, 140], [590, 128], [620, 140], [660, 152], [700, 176], [760, 200], [840, 230], [920, 262], [1000, G]];
@@ -2774,6 +2778,35 @@ export const SKYLINES: Record<string, Skyline> = {
       // the white quartz-sand beach along the Gulf at Fort Pickens
       { d: hills([[1240, G], [1360, 308], [1500, 306], [1600, 307], [1600, G]]), c: "#f6f2e6" },
     ],
+  },
+  "teton-crest-trail": {
+    view: "The Teton Range from the west, from the alpine meadows of Alaska Basin: the Grand Teton's sharp granite spire with Mount Owen beside it and the Middle and South Tetons to the south, snow on their summits, subalpine firs on the slopes, wildflower meadows and a lake in front",
+    ridge: "#5a7040",
+    ground: "#8fa860",
+    shapes: [
+      // the far peaks of the range north and south, pale with distance
+      { d: range([[0, G], [70, 250], [150, 214], [220, 196], [262, 186], [300, 196], [360, 214], [440, 238], [520, 262], [600, G]]), c: "#bcc6d0" },
+      { d: range([[1240, G], [1320, 246], [1400, 214], [1460, 200], [1500, 194], [1540, 204], [1600, 214], [1600, G]]), c: "#bcc6d0" },
+      // Mount Owen, north of the Grand, a jagged lower spire
+      { d: range(tetonOwen), c: "#a6b0bc" },
+      { d: snowOf(tetonOwen, 150), c: SNOW },
+      // the South Teton, farther south
+      { d: range(tetonSouth), c: "#a6b0bc" },
+      { d: snowOf(tetonSouth, 204), c: SNOW },
+      // the Middle Teton
+      { d: range(tetonMiddle), c: "#9aa5b2" },
+      { d: snowOf(tetonMiddle, 162), c: SNOW },
+      // the Grand Teton: the tallest spire, steep and sharp, with its shoulders
+      { d: range(tetonGrand), c: "#8a96a3" },
+      { d: snowOf(tetonGrand, 90), c: SNOW },
+      // subalpine firs on the slopes below the peaks
+      { d: hills([[200, G], [340, 266], [520, 254], [700, 262], [900, 250], [1100, 260], [1300, 252], [1460, 266], [1600, G]]), c: FIR },
+      // the wildflower meadows of the basin
+      { d: hills([[0, G], [160, 290], [380, 280], [600, 292], [760, G]]), c: "#9cbb64" },
+      { d: hills([[900, G], [1100, 288], [1320, 280], [1600, 290], [1600, G]]), c: "#9cbb64" },
+    ],
+    // a lake in the basin, at the foot of the meadows
+    front: [{ d: water(360, 860, 300), c: LAKE }],
   },
   "superior-hiking-trail": {
     view: "Minnesota's North Shore: the Sawtooth ridges above Lake Superior, birch and spruce on the rocky slopes, a waterfall dropping towards the lake and the lake's long horizon",

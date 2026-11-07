@@ -1,0 +1,57 @@
+{
+  "climate-high.json": {
+    "retrieved": "2026-11-07T06:07:24+00:00",
+    "url": "https://openmeteo.s3.us-west-2.amazonaws.com/data/copernicus_era5_land+copernicus_era5?latitude=43.8&longitude=-110.8&elevation=3260"
+  },
+  "climate-low.json": {
+    "retrieved": "2026-11-07T06:07:24+00:00",
+    "url": "https://openmeteo.s3.us-west-2.amazonaws.com/data/copernicus_era5_land+copernicus_era5?latitude=43.8&longitude=-110.7&elevation=2100"
+  },
+  "commons-geo.json": {
+    "key": "with categories, 57.4 km, every 2.5 km, 1500 m, within 0.5 km",
+    "retrieved": "2026-11-07T06:06:59+00:00",
+    "url": "Commons geosearch along the route"
+  },
+  "commons.json": {
+    "key": "Q7706161",
+    "retrieved": "2026-11-07T06:06:28+00:00",
+    "url": "Q7706161 P18 P373"
+  },
+  "elevation-glo30.json": {
+    "retrieved": "2026-11-07T06:06:31+00:00",
+    "url": "https://copernicus-dem-30m.s3.eu-central-1.amazonaws.com/Copernicus_DSM_COG_10_N43_00_W111_00_DEM/Copernicus_DSM_COG_10_N43_00_W111_00_DEM.tif"
+  },
+  "landcover.json": {
+    "retrieved": "2026-11-07T06:06:32+00:00",
+    "url": "https://esa-worldcover.s3.eu-central-1.amazonaws.com/v200/2021/map/ESA_WorldCover_10m_2021_v200_\u2026_Map.tif"
+  },
+  "osm-relation.json": {
+    "retrieved": "2026-11-06T21:21:21Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-1-main.json": {
+    "key": "d49290d192e5",
+    "retrieved": "2026-11-06T21:21:21Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-water.json": {
+    "retrieved": "2026-11-06T21:21:21Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-way-tags.json": {
+    "retrieved": "2026-11-06T21:21:21Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osrm-access-idaho-falls-regional-airport-ida.json": {
+    "retrieved": "2026-11-07T06:07:24+00:00",
+    "url": "https://router.project-osrm.org/route/v1/driving/-112.07423,43.51219;-110.93199,43.54809?overview=false"
+  },
+  "osrm-access-jackson-hole-airport-jac.json": {
+    "retrieved": "2026-11-07T06:07:24+00:00",
+    "url": "https://router.project-osrm.org/route/v1/driving/-110.73641,43.60895;-110.93199,43.54809?overview=false"
+  },
+  "wikimedia.json": {
+    "retrieved": "2026-11-07T06:07:25+00:00",
+    "url": "Q7706161 2025-11..2026-10"
+  }
+}
