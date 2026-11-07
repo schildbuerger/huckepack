@@ -1,0 +1,351 @@
+name: Great Divide Trail
+added: 2026-11-07
+aliases: [GDT, The Great Divide Trail]
+website: https://greatdividetrail.com/
+wikidata: Q5599072
+managedBy:
+  # "The Great Divide Trail Association – Dedicated to maintaining, protecting and promoting the
+  # Great Divide Trail"; trail maintenance and building "is coordinated by the GDTA" (FAQ), working
+  # "closely with the parks and other land managers"
+  - name: Great Divide Trail Association
+    url: https://greatdividetrail.com/
+officialGpx:
+  none: the association's map page offers its official route as a Google My Maps KML (no GPX) and sells the route's tracks in the FarOut app (checked 2026-11-07)
+  source: gdta-maps
+trailType: point-to-point
+continents: [North America]
+countries: [CA]
+regions: [Alberta, British Columbia]
+protectedAreas:
+  # the association's "Facts and Stats": 5 national parks, 8 provincial parks, 3 wildland provincial
+  # parks, 2 wilderness areas and 2 special management areas; Beehive Natural Area and Kananaskis
+  # Country (a management area) left out
+  - Waterton Lakes National Park
+  - Banff National Park
+  - Kootenay National Park
+  - Yoho National Park
+  - Jasper National Park
+  - Akamina-Kishinena Provincial Park
+  - Castle Provincial Park
+  - Castle Wildland Provincial Park
+  - High Rock Wildland Provincial Park
+  - Elk Lakes Provincial Park
+  - Peter Lougheed Provincial Park
+  - Height of the Rockies Provincial Park
+  - Mount Assiniboine Provincial Park
+  - Don Getty Wildland Provincial Park
+  - White Goat Wilderness Area
+  - Mount Robson Provincial Park
+  - Willmore Wilderness Park
+  - Kakwa Provincial Park
+termini:
+  # "It begins in Waterton Lakes National Park at the Canada-US border (where it connects with the
+  # Continental Divide Trail) and ends 1,095 kilometres to the north in Kakwa Provincial Park"
+  # (Discover the GDT); Section A "starts on the US-Canadian border" at Boundary Bay, Section G ends
+  # at Kakwa Lake. Coordinates from OSM: the "CDT North Terminus - GDT South Terminus" trailhead
+  # node (4465674437) and the "Great Divide Trail Northern Terminus Latitude 54" sign (12648509238)
+  start:
+    name: International boundary at Boundary Bay (Waterton Lakes National Park)
+    lat: 48.99869
+    lon: -113.90612
+  end:
+    name: Northern terminus at Kakwa Lake (Kakwa Provincial Park)
+    lat: 54.0
+    lon: -120.17784
+  source: gdta-discover
+waymarking:
+  # the FAQ, "Is the trail well marked?"
+  text: >-
+    Officially signed in portions of Sections A, B, D and G; elsewhere not signed as the GDT. Much of
+    the trail in the national and provincial parks is well marked but not identified as the GDT, and
+    the route varies from a well-developed, signed trail to an unmarked, cross-country wilderness
+    route where navigation skills are required.
+  source: gdta-faq
+length:
+  # Trip Planning Resources: "The 1095 km of the Great Divide Trail are divided, from South to
+  # North, as Sections A through G"; Discover the GDT: "ends 1,095 kilometres to the north"
+  - km: 1095
+    source: gdta-sections
+days:
+  # Itineraries: "3 sample itineraries – Relaxed (68 days), Average (50 days) and Fast (36 days)"
+  min: 36
+  max: 68
+  source: gdta-itineraries
+treeLine:
+  # Parks Canada, Kootenay National Park's backcountry (the GDT's Section C runs through it on the
+  # Rockwall): "Trails above tree line (2,000 m) may be exposed to avalanche hazard"
+  m: 2000
+  source: pc-kootenay
+stages:
+  # the association's seven sections, south to north, each with its distance and elevation gain
+  # and loss as its section page states them ("Distance 145 km", "Elevation Gain/Loss 11943m /
+  # -11919m"). Stage ends at the sections' ends on OSM's section relations (the GDT superroute
+  # 8139599: one relation per section, made of the guidebook's segments)
+  source: gdta-sections
+  list:
+    - { number: "A", kind: main, from: International boundary (Boundary Bay), to: Coleman (Crowsnest Pass), km: 145, ascentM: 11943, descentM: 11919, relation: 8118381, end: { lat: 49.6366, lon: -114.5224 } }
+    - { number: "B", kind: main, from: Coleman (Crowsnest Pass), to: Elk Pass Trailhead (Kananaskis), km: 195, ascentM: 13597, descentM: 13214, relation: 8152757, end: { lat: 50.6171, lon: -115.1126 } }
+    - { number: "C", kind: main, from: Elk Pass Trailhead (Kananaskis), to: Field, km: 207, ascentM: 16092, descentM: 16564, relation: 8161720, end: { lat: 51.3972, lon: -116.4870 } }
+    - { number: "D", kind: main, from: Field, to: North Saskatchewan River Crossing, km: 106, ascentM: 5498, descentM: 5341, relation: 8164967, end: { lat: 51.9720, lon: -116.7247 } }
+    - { number: "E", kind: main, from: North Saskatchewan River Crossing, to: Jasper, km: 190, ascentM: 12375, descentM: 12720, relation: 8177628, end: { lat: 52.8714, lon: -118.0797 } }
+    - { number: "F", kind: main, from: Jasper, to: Berg Lake Trail junction (Mount Robson Provincial Park), km: 102, ascentM: 6072, descentM: 5531, relation: 8173402, end: { lat: 53.2091, lon: -119.1192 } }
+    - { number: "G", kind: main, from: Berg Lake Trail junction (Mount Robson Provincial Park), to: Kakwa Lake, km: 154, ascentM: 8696, descentM: 8816, relation: 8169669, end: { lat: 53.9978, lon: -120.17615 } }
+route:
+  # built by `python -m pipeline.all great-divide-trail`: OSM ways matched to the GDT's section
+  # relations (superroute 8139599), each stage its own section, cut at Kakwa Lake on Section G
+  source: osm
+  publishable: true
+difficulty:
+  estimated:
+    sac: T4
+    basis: >-
+      The association calls the GDT the most spectacular and challenging long-distance trail in
+      North America: steep climbs, brushy and muddy trail, navigation that can be difficult where the
+      trail is overgrown or non-existent, deep and fast glacial stream crossings and summer
+      snowstorms. It varies from a well-developed trail to an unmarked, cross-country wilderness
+      route; on Section G the high routes involve route finding without trails and some easy to
+      moderate scrambling. Alpine hiking with route finding off trail (T4).
+    source: gdta-faq
+season:
+  # FAQ: "Most people will start in late June or early July and continue into the middle of
+  # September on average. Some years you can hike snow free until the end of September but this is
+  # rare"; "the hiking season in the Canadian Rockies is deceptively short (July to mid-September)"
+  months: [7, 8, 9]
+  text: July to mid-September; most hikers start in late June or early July, and the trail is rarely snow free until the end of September
+  source: gdta-faq
+permit:
+  # FAQ, "Do I need a permit?" and "Can I just show up and hike?"; section pages
+  required: true
+  name: Park backcountry permits and the Alberta Public Lands Camping Pass
+  issuedBy: Parks Canada, Alberta Parks, BC Parks and the Government of Alberta
+  how: >-
+    Arrange all park permits and reservations in advance: Parks Canada's Discovery Pass and
+    backcountry camping permits in Waterton Lakes, Banff, Kootenay, Yoho and Jasper national parks,
+    backcountry permits in Peter Lougheed, Mount Assiniboine and Mount Robson (Berg Lake)
+    provincial parks, and an Alberta Public Lands Camping Pass for random camping on Alberta's public
+    lands (the southern half of Section B, Michele Lakes to Pinto Lake and Willmore Wilderness Park).
+    Some permits book up on opening day.
+  url: https://greatdividetrail.com/go-hiking/trip-planning-resources/permits/
+  source: gdta-faq
+sleeping:
+  # FAQ, "Where do I camp?": "There are many campgrounds along the GDT"; the section pages: B&Bs in
+  # Field, lodging and frontcountry camping in Waterton townsite, the resort at Saskatchewan Crossing
+  types: [campsite, guesthouse, hotel]
+  source: gdta-sections
+wildCamping:
+  status: restricted
+  rule: >-
+    Hikers must stay in designated campgrounds on most of the GDT in national and provincial parks;
+    random camping is authorized in some areas of the national parks (the Amiskwi valley in Yoho,
+    the Howse floodplain in Banff) with a permit, and is an acceptable alternative almost anywhere
+    outside the parks, on Alberta's public lands with a Public Lands Camping Pass.
+  source: gdta-faq
+access:
+  # Calgary International Airport for the Waterton start; no passenger railway or scheduled bus to
+  # Waterton. Coordinates from OSM; distances by pipeline/access.py
+  - kind: airport
+    name: Calgary International Airport (YYC)
+    lat: 51.12226
+    lon: -114.01354
+    source: osm
+animals:
+  # Parks Canada's "Bears in the mountain national parks" (the GDT runs through five of them; the
+  # association: "the GDT is in prime grizzly and black bear habitat"), quoted here. Level ours
+  list:
+    - kind: bear
+      name: Grizzly bear and black bear
+      level: moderate
+      basis: The Canadian Rockies are home to both grizzly and black bears, which can be met anywhere, on a busy trail close to town or in the remote backcountry; the association calls the GDT prime grizzly and black bear habitat and asks thru-hikers to carry a bear-resistant food container.
+      do:
+        - Make noise! Call out, clap hands, sing or talk loudly especially near streams, dense vegetation and berry patches
+        - Hike in a tight group of four or more; never let children wander
+        - Carry bear spray with you at all times; ensure it is easily accessible and know how to use it
+        - "If you see a bear: stop and remain calm, be ready to use bear spray, speak to the bear calmly and firmly, back away slowly"
+        - "Defensive attack: use your bear spray; if the bear makes contact, play dead, lying on your stomach with your hands crossed behind your neck"
+        - "Predatory attack (the bear stalks you or attacks at night): do not play dead; use your bear spray and fight back"
+      dont:
+        - Never run; running may trigger a pursuit
+        - Do not drop your pack; it may provide protection
+        - Do not wear ear buds while recreating in the park
+        - Bear bells are not effective
+      source: pc-bears
+tags: [mountains, wilderness, alpine-passes, glaciers, thru-hike]
+notes:
+  - >-
+    Official: the Great Divide Trail Association (founded 1975/76, re-activated in 2013) maintains
+    and promotes the trail and publishes it as seven sections, A–G, with their distances, climbs and
+    suggested days; Wikipedia adds that the GDT was officially designated on Alberta Public Lands in
+    2022–2023 and the association became its trail manager under the Alberta Trails Act.
+  - >-
+    Stages: the association's seven sections, A to G, with their distances (145, 195, 207, 106,
+    190, 102 and 154 km = 1,099 km against the stated 1,095 km) and elevation gain and loss. Section
+    F's page adds "+30 km on the Berg Lake Trail", the way out to Highway 16, which is not part of
+    the trail; Section G "does not include additional days to exit from Kakwa". Each section page
+    also recommends days (relaxed, average, fast: A 8/7/4, B 11/8/5, C 10/7/5, D 5/5/4, E 11/8/5,
+    F 5/4/3, G 8/5/4; 58/44/30 in all); the record's days are the association's whole-trail
+    itineraries (36–68 days).
+  - >-
+    Length: the association states 1,095 km (Discover the GDT, Trip Planning Resources); its "Facts
+    and Stats" on the same page give "Length: 1,123 kilometres", an older figure; the record keeps
+    1,095 km, which the sections' sum (1,099 km) supports.
+  - >-
+    Highest and lowest point: the association gives 2,590 m (8,497 ft) "at an unnamed pass above
+    Michele Lakes just south of the White Goat Wilderness Area" (Section E's page: 2,585 m) and
+    1,055 m at the Old Fort Point trailhead near Jasper.
+  - >-
+    Alternates: the association publishes alternates (Mt Rowe-Sage Pass, Barnaby Ridge, Coral
+    Pass, Northover Ridge, Kiwetinok, Amiskwi Ridge, Collie Creek, the Berg Lake Trail and Section
+    G's high and low routes); the record follows the main route only. On Section G, where the trail
+    splits into high and low routes, OSM's section relation is the route followed.
+  - >-
+    Waymarking: Section B's page mentions the original GDT's orange blazes north of North Fork
+    Pass; no mark is drawn, since the trail as a whole has none.
+  - >-
+    Season: the association's July to mid-September, recorded as July to September; Wikipedia says
+    early July to early September.
+  - >-
+    Tree line: 2,000 m, Parks Canada's figure for Kootenay National Park's backcountry, about the
+    middle of the trail. The association says the northern latitude and short growing season push
+    the tree line 450–750 m below Colorado's; no source gives one figure for the whole GDT, which
+    spans five degrees of latitude, so the line on the page is a regional guide.
+  - >-
+    Wildlife: Parks Canada's mountain national parks also have elk, wolves and cougars, and the
+    association mentions cougars and coyotes; only bears, with their own advice page, are listed.
+  - >-
+    Difficulty: no published grade; our T4 rests on the association's description of off-trail,
+    cross-country stretches with route finding and Section G's high routes with easy to moderate
+    scrambling. Much of the trail is T2–T3 on maintained park trails.
+  - >-
+    Preflight (2026-11-07): pipeline.preflight counts the superroute's ways twice (a section
+    relation's full download lists its segment relations, which are then fetched again), so it
+    reported 2,259 km and a BLOCKER; chained without the duplicates every section is one line (A
+    149.1, B 192.8, C 207.9, D 103.4, E 192.7, F 101.8, G 185.1 km, G running on 28 km past Kakwa
+    Lake on an exit route).
+  - >-
+    Map line (2026-11-07): the Alberta, Kootenay (kootenay-admreg), north British Columbia
+    (north-admreg) and Montana Geofabrik extracts (2026-11-05); each stage follows its own section
+    relation of OSM's GDT superroute (8139599), chained from where the previous section ended, and
+    every stage is 100 % matched. Sections measure 148.5, 192.1, 207.2, 102.4, 191.4, 101.5 and
+    156.2 km (stated 145, 195, 207, 106, 190, 102 and 154 km, all within 4 %); the main route's map
+    line is 1,080.7 km against the stated 1,095 km (−1 %). At Saskatchewan Crossing OSM's Section D
+    relation stops at the Mistaya Canyon end of the Howse River trail and leaves out about 3 km of
+    the Icefields Parkway (way 70195363) to the Crossing resort, where Section E begins: the map
+    line has a gap there instead of a straight bridge, and Section D measures 102.4 km against 106
+    km. Section G's relation runs on 28 km past Kakwa Lake on a way out; the stage is cut at the lake.
+    The terrain model's highest point is 2,585 m at km 652.5 (the association: 2,590 m above Michele
+    Lakes; Section E's page 2,585 m) and its lowest 1,033 m at km 822.0 near Jasper (the association:
+    1,055 m at the Old Fort Point trailhead).
+  - >-
+    Ascent: the association's section pages give gain and loss per section (74,273 m up and
+    74,105 m down in all); the terrain model sums about 32,550 m up (−56 %), which samples every
+    500 m on this long trail and so misses most short ups and downs. No second source states the
+    climbs; the record keeps the association's figures.
+  - >-
+    Water: OSM maps only 6 drinking water points and 3 springs along the route (781 km without
+    drinking water, 157.4 km without clean water once refills at places to sleep count, km
+    139.8–297.2 on Section B); the association says access to fresh water "is
+    rarely a concern on the GDT" (creeks and lakes, to be boiled, treated or filtered), with a few
+    long waterless ridges (Jutland Creek to West Castle Road over La Coulotte Ridge 14.5 km,
+    Willoughby Ridge 13 km, the High Rock Trail's 16 km).
+  - >-
+    Resupply: OSM has 10 shops near the route, the longest stretch without 290.6 km (km 532.9–823.5,
+    Field to Jasper); the association says only Waterton townsite, Coleman/Blairmore and Jasper
+    have stores with adequate food on the trail, Field has a small gas station, the Crossing a small
+    convenience store, and most hikers mail resupply boxes every 4 to 9 days; Section G needs food
+    carries of up to 10 days.
+  - >-
+    Beds: OSM has 103 places to sleep near the route, the longest stretch without 157.4 km (km
+    139.8–297.2, Section B on Alberta's public lands), where the association lists random camping
+    sites (Window Mountain Lake, North Racehorse Creek, Dutch Creek and others) that OSM doesn't map
+    as campsites; many backcountry campgrounds elsewhere are missing in OSM too.
+  - >-
+    Data check (2026-11-07, working rule 2): the association against Wikipedia's Great Divide Trail
+    article: length 1,095 km the same; the sections A–G 145, 195, 207, 106, 190, 102 and 154 km
+    against 145, 195, 207, 106, 190, about 100 and 154 km (F −2 %); termini at the Canada–US border
+    and Kakwa Lake in both; highest and lowest point 2,590 and 1,055 m in both; days 36–68 against
+    "between five and ten weeks" (35–70 days); season July to mid-September against early July to
+    early September; camping (no designated campgrounds or permits on most of Section B, park
+    permits nearly the whole of Section C) and the waymarking quote the same in both. The
+    terrain-model ascent (about 32,550 m) is 56 % below the association's 74,273 m (see Ascent).
+    No second source gives a grade, the climbs or the tree line; those were checked against the
+    association's and Parks Canada's own pages. The map line (1,080.7 km) is within 1 % of 1,095 km.
+dataCheck:
+  # working rule 2: Wikipedia's article as the second source
+  date: 2026-11-07
+  against: [wikipedia]
+  pageAgainst: [gdta-sections, gdta-faq, pc-kootenay]
+  deviations:
+    - { figure: ascent, ours: "74,273 m (the association's sections)", theirs: "about 32,550 m (terrain model)", source: copdem }
+sources:
+  - id: gdta-sections
+    title: "Great Divide Trail Association: Trip Planning Resources and the section pages A–G (1,095 km in seven sections; each section's ends, distance, elevation gain and loss, days, permits, campgrounds and resupply)"
+    url: https://greatdividetrail.com/go-hiking/trip-planning-resources/
+    licence: © Great Divide Trail Association, all rights reserved (facts only)
+    retrieved: 2026-11-07
+  - id: gdta-discover
+    title: "Great Divide Trail Association: Discover the GDT (termini, 1,095 km, parks and protected areas, facts and stats)"
+    url: https://greatdividetrail.com/discover-the-gdt/
+    licence: © Great Divide Trail Association, all rights reserved (facts only)
+    retrieved: 2026-11-07
+  - id: gdta-faq
+    title: "Great Divide Trail Association: Frequently Asked Questions (season, difficulty, waymarking, permits, camping, water, bears)"
+    url: https://greatdividetrail.com/frequently-asked-questions/
+    licence: © Great Divide Trail Association, all rights reserved (facts only)
+    retrieved: 2026-11-07
+  - id: gdta-itineraries
+    title: "Great Divide Trail Association: Itineraries (relaxed 68 days, average 50, fast 36)"
+    url: https://greatdividetrail.com/go-hiking/trip-planning-resources/itineraries/
+    licence: © Great Divide Trail Association, all rights reserved (facts only)
+    retrieved: 2026-11-07
+  - id: gdta-maps
+    title: "Great Divide Trail Association: Maps (the official route as a Google My Maps KML, the FarOut app, map sets)"
+    url: https://greatdividetrail.com/go-hiking/trip-planning-resources/maps/
+    licence: © Great Divide Trail Association, all rights reserved (facts only)
+    retrieved: 2026-11-07
+  - id: pc-kootenay
+    title: "Parks Canada: Kootenay National Park backpacking (tree line 2,000 m)"
+    url: https://parks.canada.ca/pn-np/bc/kootenay/activ/arrierepays-backcountry
+    licence: © His Majesty the King in Right of Canada, Parks Canada (facts only)
+    retrieved: 2026-11-07
+  - id: pc-bears
+    title: "Parks Canada: Safe travel in bear country, bears in the mountain national parks"
+    url: https://parks.canada.ca/pn-np/mtn/ours-bears/securite-safety/ours-humains-bears-people
+    licence: © His Majesty the King in Right of Canada, Parks Canada (facts only)
+    retrieved: 2026-11-07
+  - id: wikipedia
+    title: "Wikipedia: Great Divide Trail (1,095 km, sections A–G with their lengths, 1,055–2,590 m, season, five to ten weeks)"
+    url: https://en.wikipedia.org/wiki/Great_Divide_Trail
+    licence: CC BY-SA 4.0
+    retrieved: 2026-11-07
+    checkOnly: true
+  - id: wikimedia
+    title: "Wikimedia: page views of the trail's Wikipedia articles in every language, by people, over twelve months (Wikidata sitelinks, pageview API)"
+    url: https://wikimedia.org/api/rest_v1/
+    licence: CC0 1.0 (pageview data); Wikidata CC0
+    retrieved: 2026-11-07
+    checkOnly: true
+  - id: osm
+    title: "OpenStreetMap contributors: the Great Divide Trail's section relations (superroute 8139599), paths, water, shops and places to sleep along the trail (Geofabrik extracts), travel hubs"
+    url: https://www.openstreetmap.org/relation/8139599
+    licence: ODbL 1.0
+    retrieved: 2026-11-07
+  - id: copdem
+    title: "Copernicus DEM GLO-30 (30 m terrain model), tiles from AWS Open Data"
+    url: https://registry.opendata.aws/copernicus-dem/
+    licence: "Copernicus WorldDEM-30 licence, free; produced using Copernicus WorldDEM-30 © DLR e.V. 2010-2014 and © Airbus Defence and Space GmbH 2014-2018 provided under COPERNICUS by the European Union and ESA; all rights reserved"
+    retrieved: 2026-11-07
+  - id: worldcover
+    title: "ESA WorldCover 2021: 10 m land cover (via AWS Open Data)"
+    url: https://esa-worldcover.org/
+    licence: "CC BY 4.0; © ESA WorldCover project 2021 / Contains modified Copernicus Sentinel data (2021) processed by ESA WorldCover consortium"
+    retrieved: 2026-11-07
+  - id: era5
+    title: "Open-Meteo open data on AWS: ERA5-Land temperature and ERA5 precipitation, snow and wind, daily 1995–2024 (reanalysis)"
+    url: https://github.com/open-meteo/open-data
+    licence: CC BY 4.0 (Open-Meteo); contains modified Copernicus Climate Change Service information
+    retrieved: 2026-11-07
+  - id: osrm
+    title: "OSRM: road routes on OpenStreetMap data (router.project-osrm.org)"
+    url: https://project-osrm.org/
+    licence: Route data © OpenStreetMap contributors (ODbL)
+    retrieved: 2026-11-07

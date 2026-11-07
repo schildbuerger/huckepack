@@ -162,6 +162,8 @@ And the **Benton MacKaye Trail** (Georgia, Tennessee and North Carolina: the Ben
 
 And the **Coastal Hiking Trail** (Ontario: Parks Canada's 58.7 km in Pukaskwa National Park along Lake Superior's wild shore from Hattie Cove to the North Swallow River, one way with a boat shuttle or out and back, part of the Trans Canada Trail, without stages by design between twelve backcountry campsites booked on the permit (5–7 days by Superior Country), marked only by rock cairns, over granite headlands, cobble beaches and the White River Suspension Bridge, May 15 to October 14; over the OSM relation; 2026-11-06).
 
+And the **Great Divide Trail** (Alberta and British Columbia: the Great Divide Trail Association's 1,095 km along the Continental Divide from the US border in Waterton Lakes National Park, where it meets the Continental Divide Trail, through five national parks and a string of provincial parks, over Mount Assiniboine, the Rockwall, the Skyline Trail and past Mount Robson to Kakwa Lake, in the association's seven sections A–G, signed only in parts and partly a cross-country route, 36–68 days, July to mid-September, park permits for most nights; over the OSM section relations; 2026-11-07).
+
 | # | Trail | Region | Length (approx.) | Why |
 |---|---|---|---|---|
 | 1 | Pacific Crest Trail | USA | 4,265 km | Most-hiked long trail; public US agency data; completion lists |

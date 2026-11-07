@@ -2325,6 +2325,42 @@ export const SKYLINES: Record<string, Skyline> = {
       },
     ],
   },
+  "great-divide-trail": {
+    view: "The Continental Divide in the Canadian Rockies: pale ranges far behind, a limestone peak of tilted grey strata with a sheer face, the horn of Mount Assiniboine above its icefield, dark spruce and fir with golden larches on the slopes, alpine meadows and a turquoise glacial lake in front",
+    ridge: "#5f7f45",
+    ground: MEADOW,
+    shapes: [
+      // the far ranges along the Divide, pale with distance, snow on their tops
+      { d: range([[0, G], [50, 262], [120, 226], [170, 206], [210, 192], [250, 208], [300, 198], [350, 214], [420, 238], [500, G]]), c: "#bcc6cf" },
+      { d: snowOf([[0, G], [50, 262], [120, 226], [170, 206], [210, 192], [250, 208], [300, 198], [350, 214], [420, 238], [500, G]], 210), c: SNOW },
+      { d: range([[560, G], [640, 236], [700, 204], [740, 188], [780, 204], [830, 194], [880, 214], [960, 242], [1040, G]]), c: "#bcc6cf" },
+      { d: snowOf([[560, G], [640, 236], [700, 204], [740, 188], [780, 204], [830, 194], [880, 214], [960, 242], [1040, G]], 206), c: SNOW },
+      { d: range([[1300, G], [1380, 232], [1440, 204], [1490, 192], [1540, 208], [1600, 222], [1600, G]]), c: "#bcc6cf" },
+      // a limestone peak like those of the Front Ranges: a long dip slope of tilted strata up to the
+      // summit, then a sheer face
+      { d: range([[140, G], [220, 262], [300, 214], [380, 166], [450, 126], [505, 100], [520, 94], [540, 110], [566, 150], [600, 196], [650, 236], [720, G]]), c: "#9c9e99" },
+      // its strata, darker bands parallel to the dip slope
+      { d: "M320,222L500,122L503,129L323,229Z M340,240L520,138L523,145L343,247Z M362,258L540,156L543,163L365,265Z", c: "#7f827e" },
+      // Mount Assiniboine: the horn above its icefield, glaciers hanging on its faces
+      { d: range([[860, G], [940, 256], [1010, 200], [1060, 150], [1100, 104], [1124, 70], [1136, 58], [1150, 74], [1180, 112], [1220, 150], [1280, 196], [1360, 240], [1440, G]]), c: "#a6a7a2" },
+      { d: snowOf([[860, G], [940, 256], [1010, 200], [1060, 150], [1100, 104], [1124, 70], [1136, 58], [1150, 74], [1180, 112], [1220, 150], [1280, 196], [1360, 240], [1440, G]], 128), c: SNOW },
+      { d: "M1184,150L1262,176L1250,196L1224,206L1196,192L1180,170Z", c: "#e3ebef" },
+      { d: "M1018,196L1060,166L1078,172L1066,196L1040,212Z", c: "#e3ebef" },
+      // a nearer layered peak on the right, grey limestone over the forest
+      { d: range([[1180, G], [1260, 244], [1320, 206], [1360, 184], [1420, 176], [1470, 186], [1520, 208], [1600, 232], [1600, G]]), c: "#8f928e" },
+      { d: "M1300,224L1430,190L1432,196L1302,230Z M1320,240L1470,204L1472,210L1322,246Z", c: "#767976" },
+      // dark spruce and fir on the lower slopes
+      { d: hills([[0, G], [100, 268], [260, 256], [420, 270], [560, G]]), c: FIR },
+      { d: hills([[960, G], [1100, 266], [1260, 254], [1420, 268], [1600, 260], [1600, G]]), c: FIR },
+      // larches turning gold among them, and a few firs standing clear
+      { d: [[140, 266], [176, 262], [214, 260], [300, 262], [338, 266], [1080, 268], [1150, 262], [1196, 260], [1330, 260], [1372, 264], [1480, 262]].map(([x, y]) => `M${x - 6},${y + 6}L${x},${y - 18}L${x + 6},${y + 6}Z`).join(" "), c: "#d6a13a" },
+      { d: [[120, 268], [250, 260], [1120, 266], [1250, 258], [1440, 264]].map(([x, y]) => `M${x - 5},${y + 6}L${x},${y - 20}L${x + 5},${y + 6}Z`).join(" "), c: FIR },
+      // alpine meadows by the lake
+      { d: hills([[480, G], [600, 294], [760, 288], [900, 296], [1000, G]]), c: "#9cbb64" },
+    ],
+    // a turquoise glacial lake below the peaks
+    front: [{ d: water(560, 1080, 302), c: "#4fb3b5" }],
+  },
   "superior-hiking-trail": {
     view: "Minnesota's North Shore: the Sawtooth ridges above Lake Superior, birch and spruce on the rocky slopes, a waterfall dropping towards the lake and the lake's long horizon",
     ridge: "#3f5a34",
