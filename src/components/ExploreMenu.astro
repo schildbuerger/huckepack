@@ -118,6 +118,16 @@ const entries = pages.map((p, i) => ({
     font: 600 13px var(--sans);
     cursor: pointer;
   }
+  /* 44 px to tap (7 mm; the Baymard review of 2026-11-07), the look unchanged */
+  .ex-btn {
+    position: relative;
+  }
+  .ex-btn::before {
+    content: "";
+    position: absolute;
+    inset: -5px 0;
+    border-radius: 999px;
+  }
   /* as the search button: filled on hover and while open, the moss ring on keyboard focus */
   .ex-btn:hover,
   .open .ex-btn {
@@ -225,6 +235,16 @@ const entries = pages.map((p, i) => ({
   }
   /* pointed at or focused: the entry turns moss, steps out towards the needle and gets a soft ring;
      its icon tips a little */
+  /* each pill 44 px tall to tap (they hang 44 px apart), drawn as before */
+  .ex-pages a {
+    position: relative;
+  }
+  .ex-pages a::before {
+    content: "";
+    position: absolute;
+    inset: -5px -4px;
+    border-radius: 999px;
+  }
   .ex-pages a:hover,
   .ex-pages a:focus-visible {
     background: var(--accent);

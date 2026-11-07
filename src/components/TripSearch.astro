@@ -7,9 +7,15 @@
 // months picked. The count, the choices that would leave no trail
 // (disabled) and the URL come from the search page's filters (src/lib/filters.ts), so they agree.
 // Without JavaScript the panels don't open and the button opens the search page.
+// Where matches as the header search does (src/lib/search-match.ts, the Baymard review of
+// 2026-11-07): continents, countries and regions (src/lib/place-aliases.ts, "Alps", "Schwarzwald")
+// with their other names, one typo allowed from four letters, the typed part bold; and after the
+// places a group of trails by name (from /trails/search.json, at most 5), each an action straight to
+// its page, not a pick.
 import type { SearchTrail } from "../lib/search";
 import { places, TRIP_LENGTHS } from "../lib/filters";
 import { MONTH_ABBR } from "../lib/months";
+import { PLACE_ALIASES, isCountryName } from "../lib/place-aliases";
 
 interface Props {
   trails: SearchTrail[];
@@ -27,9 +33,17 @@ const rank = (c: string) => (top.has(c) ? byTrails.indexOf(c) : TOP_COUNTRIES);
 const countries = where
   .flatMap((p) => p.countries.map((c) => ({ name: c, continent: p.continent })))
   .sort((a, b) => rank(a.name) - rank(b.name) || a.name.localeCompare(b.name));
+// regions with trails, by name; each with its other names for the matching
+const regions = PLACE_ALIASES.filter((p) => !isCountryName(p))
+  .map((p) => ({ ...p, n: trails.filter((t) => t.places.includes(p.name)).length }))
+  .filter((p) => p.n > 0)
+  .sort((a, b) => a.name.localeCompare(b.name));
+const alsoOf = (name: string) => PLACE_ALIASES.find((p) => p.name === name)?.also ?? [];
+const names = (name: string) => [name, ...alsoOf(name)].join("|");
+const total = (test: (t: SearchTrail) => boolean) => trails.filter(test).length;
 // only what the three questions ask of a trail
 const json = JSON.stringify({
-  trails: trails.map((t) => ({ season: t.season, days: t.days, continents: t.continents, countries: t.countries })),
+  trails: trails.map((t) => ({ season: t.season, days: t.days, continents: t.continents, countries: t.countries, places: t.places })),
   places: where,
 }).replaceAll("<", "\\u003c");
 ---
@@ -54,7 +68,7 @@ const json = JSON.stringify({
       {/* a destination search, as travel sites have it: type a country or continent; before typing,
            suggestions; several places at once, shown as removable chips under the list (above it,
            each pick would push the input and the list down) */}
-      <label for="trip-where-input" class="sr-only">Country or continent</label>
+      <label for="trip-where-input" class="sr-only">Country, region, continent or trail</label>
       <div class="where-input">
         <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"></circle><path d="m20 20-3.5-3.5"></path></svg>
         <input
@@ -66,24 +80,33 @@ const json = JSON.stringify({
           aria-autocomplete="list"
           aria-expanded="true"
           aria-controls="trip-where-list"
-          placeholder="Country or continent"
+          placeholder="Country, region or trail"
         />
       </div>
-      <div class="where-list" id="trip-where-list" role="listbox" aria-multiselectable="true" aria-label="Places">
+      <div class="where-list" id="trip-where-list" role="listbox" aria-multiselectable="true" aria-label="Places and trails">
         <p class="group" role="presentation" data-group="continent">Continents</p>
         {where.map((p) => (
-          <div role="option" id={`trip-w-${p.continent.replace(/\W+/g, "-")}`} class="opt" data-where={p.continent} data-kind="continent" data-terms={p.continent.toLowerCase()} data-top aria-selected="false">
-            <span class="check" aria-hidden="true"></span><span class="name">{p.continent}</span><span class="n" data-n></span>
+          <div role="option" id={`trip-w-${p.continent.replace(/\W+/g, "-")}`} class="opt" data-where={p.continent} data-kind="continent" data-names={names(p.continent)} data-total={total((t) => t.continents.includes(p.continent))} data-top aria-selected="false">
+            <span class="check" aria-hidden="true"></span><span class="name"><span class="nm">{p.continent}</span></span><span class="n" data-n></span>
           </div>
         ))}
         <p class="group" role="presentation" data-group="country">Countries</p>
         {countries.map((c) => (
-          <div role="option" id={`trip-w-${c.name.replace(/\W+/g, "-")}`} class="opt" data-where={c.name} data-in={c.continent} data-kind="country" data-terms={c.name.toLowerCase()} data-top={top.has(c.name) ? "" : undefined} aria-selected="false">
-            <span class="check" aria-hidden="true"></span><span class="name">{c.name} <span class="in">{c.continent}</span></span><span class="n" data-n></span>
+          <div role="option" id={`trip-w-${c.name.replace(/\W+/g, "-")}`} class="opt" data-where={c.name} data-in={c.continent} data-kind="country" data-names={names(c.name)} data-total={trailsIn(c.name)} data-top={top.has(c.name) ? "" : undefined} aria-selected="false">
+            <span class="check" aria-hidden="true"></span><span class="name"><span class="nm">{c.name}</span> <span class="in">{c.continent}</span></span><span class="n" data-n></span>
           </div>
         ))}
-        <p class="none" role="presentation" hidden>No country or continent matches.</p>
+        <p class="group" role="presentation" data-group="region" hidden>Regions</p>
+        {regions.map((r) => (
+          <div role="option" id={`trip-w-${r.name.replace(/\W+/g, "-")}`} class="opt" data-where={r.name} data-kind="region" data-names={names(r.name)} data-total={r.n} aria-selected="false" hidden>
+            <span class="check" aria-hidden="true"></span><span class="name"><span class="nm">{r.name}</span></span><span class="n" data-n></span>
+          </div>
+        ))}
+        {/* trails by name, filled from /trails/search.json once the field is used: going to the trail's page */}
+        <p class="group" role="presentation" data-group="trail" hidden>Trails</p>
+        <p class="none" role="presentation" hidden><span data-none-text>No place or trail matches.</span><span data-near></span></p>
       </div>
+      <p class="sr-only" role="status" data-where-status></p>
       <div class="picked" data-picked></div>
     </div>
   </div>
@@ -102,7 +125,7 @@ const json = JSON.stringify({
   </div>
   <button type="submit" class="go">
     <span class="go-label"
-      ><span data-count>Explore trails</span><span class="sizer" aria-hidden="true">Show {trails.length} trails</span><span class="sizer" aria-hidden="true">Explore trails</span></span
+      ><span data-count>Find a trail</span><span class="sizer" aria-hidden="true">Show {trails.length} trails</span><span class="sizer" aria-hidden="true">Find a trail</span></span
     >
     <span aria-hidden="true">→</span>
   </button>
@@ -113,6 +136,8 @@ const json = JSON.stringify({
   import { DAYS, DAYS_ALL, matches, noFilters, toParams, toggleWhere, TRIP_LENGTHS, type Filters } from "../lib/filters";
   import { monthsText, runBetween } from "../lib/months";
   import type { SearchTrail } from "../lib/search";
+  import { loadTrails } from "../lib/search-data";
+  import { markHtml, nearest, search, trailCandidates, type Candidate, type Kind } from "../lib/search-match";
 
   const root = document.querySelector<HTMLFormElement>("[data-trip]");
   if (root) {
@@ -202,7 +227,7 @@ const json = JSON.stringify({
       root!.querySelector("[data-more]")!.textContent = where.length > 1 ? `+${where.length - 1}` : "";
       const n = count(filters());
       root!.querySelector("[data-count]")!.textContent =
-        months.length || where.length || days ? `Show ${n} ${n === 1 ? "trail" : "trails"}` : "Explore trails";
+        months.length || where.length || days ? `Show ${n} ${n === 1 ? "trail" : "trails"}` : "Find a trail";
     }
 
     for (const b of $<HTMLButtonElement>("[data-m]"))
@@ -212,35 +237,133 @@ const json = JSON.stringify({
         anchor = months.length === 1 ? m : months.length ? anchor : null;
         draw();
       });
-    // Where: a combobox over the places; words match at a word's start, in any order ("united k");
-    // a pick clears the text, so the suggestions come back for the next one
+    // Where: a combobox over the places, then trails (src/lib/search-match.ts: words at their start
+    // in any order, other names, one typo from four letters); a place pick clears the text, so the
+    // suggestions come back for the next one; a trail goes to its page
     const input = root.querySelector<HTMLInputElement>("#trip-where-input")!;
-    const options = $<HTMLElement>("[role=option]");
+    const options = $<HTMLElement>("[role=option]"); // the places (picks)
+    const original = [...options];
     const picked = root.querySelector<HTMLElement>("[data-picked]")!;
     const groups = $("[data-group]");
     const none = root.querySelector<HTMLElement>(".where-list .none")!;
+    const near = none.querySelector<HTMLElement>("[data-near]")!;
+    const status = root.querySelector<HTMLElement>("[data-where-status]")!;
+    const placeCands: Candidate[] = options.map((o) => ({
+      id: o.id,
+      kind: o.dataset.kind as Kind,
+      label: o.dataset.where!,
+      names: o.dataset.names!.split("|"),
+      count: Number(o.dataset.total),
+      href: "",
+    }));
+    // the trails, from /trails/search.json once the field is used (the home page loads it anyway)
+    let trailOpts: HTMLElement[] = [];
+    let trailCands: Candidate[] = [];
+    let loading: Promise<void> | undefined;
+    const byId = new Map(options.map((o) => [o.id, o]));
+    const heading = (k: string) => groups.find((g) => g.dataset.group === k)!;
+    const after = (k: string) => (k === "continent" ? heading("country") : k === "country" ? heading("region") : k === "region" ? heading("trail") : none);
+    const loadTrailOptions = () =>
+      (loading ??= loadTrails().then((ts) => {
+        trailCands = trailCandidates(ts).map((c) => ({ ...c, id: `trip-${c.id}` }));
+        trailOpts = trailCands.map((c) => {
+          const o = document.createElement("div");
+          o.setAttribute("role", "option");
+          o.id = c.id;
+          o.className = "opt trail";
+          o.dataset.kind = "trail";
+          o.dataset.where = c.label;
+          o.dataset.href = c.href;
+          o.hidden = true;
+          o.innerHTML = '<span class="arrow" aria-hidden="true">→</span><span class="name"><span class="nm"></span></span><span class="n"></span><span class="sr-only">, open the trail page</span>';
+          o.querySelector(".nm")!.textContent = c.label;
+          o.querySelector(".n")!.textContent = c.note ?? "";
+          o.addEventListener("click", () => (location.href = c.href));
+          byId.set(c.id, o);
+          return o;
+        });
+        none.before(...trailOpts);
+        if (input.value.trim()) list();
+      }));
+    const TRAILS_MAX = 5;
     let active = -1;
-    const shown = () => options.filter((o) => !o.hidden);
+    const shown = () => [...options, ...trailOpts].filter((o) => !o.hidden).sort((a, b) => (a.compareDocumentPosition(b) & Node.DOCUMENT_POSITION_FOLLOWING ? -1 : 1));
     function setActive(i: number) {
       active = i;
-      shown().forEach((o, j) => o.classList.toggle("active", j === i));
+      const vis = shown();
+      vis.forEach((o, j) => o.classList.toggle("active", j === i));
       if (i >= 0) {
-        input.setAttribute("aria-activedescendant", shown()[i].id);
-        shown()[i].scrollIntoView({ block: "nearest" });
+        input.setAttribute("aria-activedescendant", vis[i].id);
+        vis[i].scrollIntoView({ block: "nearest" });
       } else input.removeAttribute("aria-activedescendant");
     }
+    // a name with the typed part bold; screen readers read it plain
+    const label = (o: HTMLElement, q: string) => {
+      const nm = o.querySelector(".nm")!;
+      const text = o.dataset.where!;
+      if (!q) return void (nm.textContent = text);
+      nm.innerHTML = `<span aria-hidden="true">${markHtml(text, q)}</span><span class="sr-only"></span>`;
+      nm.lastElementChild!.textContent = text;
+    };
+    let say: ReturnType<typeof setTimeout> | undefined;
     function list() {
-      const words = input.value.trim().toLowerCase().split(/\s+/).filter(Boolean);
-      for (const o of options) {
-        const terms = o.dataset.terms!.split(/[\s,()-]+/);
-        o.hidden = words.length ? !words.every((w) => terms.some((t) => t.startsWith(w))) : !o.hasAttribute("data-top");
+      const q = input.value.trim();
+      const all = [...options, ...trailOpts];
+      near.replaceChildren();
+      let message = "";
+      if (!q) {
+        // before typing: the suggestions in their own order
+        for (const o of original) after(o.dataset.kind!).before(o);
+        for (const o of all) {
+          o.hidden = !o.hasAttribute("data-top");
+          label(o, "");
+        }
+      } else {
+        const hits = search([...placeCands, ...trailCands], q);
+        const placeHits = hits.filter((h) => h.c.kind !== "trail");
+        const trailHits = hits.filter((h) => h.c.kind === "trail").slice(0, TRAILS_MAX);
+        for (const o of all) o.hidden = true;
+        // each group in ranked order
+        for (const h of [...placeHits, ...trailHits]) {
+          const o = byId.get(h.c.id)!;
+          after(h.c.kind).before(o);
+          o.hidden = false;
+          label(o, q);
+        }
+        const p = placeHits.length;
+        const t = trailHits.length;
+        message = p || t ? [p && `${p} ${p === 1 ? "place" : "places"}`, t && `${t} ${t === 1 ? "trail" : "trails"}`].filter(Boolean).join(" and ") : "No place or trail matches";
+        // nothing: the nearest names, a click away
+        if (!p && !t) {
+          const close = nearest([...placeCands, ...trailCands], q);
+          if (close.length) {
+            near.append(" Did you mean ");
+            close.forEach((c, i) => {
+              const b = document.createElement("button");
+              b.type = "button";
+              b.className = "near";
+              b.textContent = c.label;
+              b.addEventListener("click", () => {
+                input.value = c.label;
+                list();
+                input.focus();
+              });
+              near.append(...(i ? [i === close.length - 1 ? " or " : ", "] : []), b);
+            });
+            near.append("?");
+            message += `. Did you mean ${close.map((c) => c.label).join(", ")}?`;
+          }
+        }
       }
-      for (const g of groups) g.hidden = !options.some((o) => !o.hidden && o.dataset.kind === g.dataset.group);
-      groups.find((g) => g.dataset.group === "country")!.textContent = words.length ? "Countries" : "Most trails";
+      for (const g of groups) g.hidden = !all.some((o) => !o.hidden && o.dataset.kind === g.dataset.group);
+      heading("country").textContent = q ? "Countries" : "Most trails";
       none.hidden = shown().length > 0;
-      setActive(words.length && shown().length ? 0 : -1);
+      setActive(q && shown().length ? 0 : -1);
+      clearTimeout(say);
+      say = setTimeout(() => (status.textContent = message), 500);
     }
     function pick(o: HTMLElement) {
+      if (o.dataset.kind === "trail") return void (location.href = o.dataset.href!);
       if (o.getAttribute("aria-disabled") === "true") return;
       where = toggleWhere(where, o.dataset.where!, places);
       input.value = "";
@@ -249,7 +372,11 @@ const json = JSON.stringify({
       input.focus();
     }
     for (const o of options) o.addEventListener("click", () => pick(o));
-    input.addEventListener("input", list);
+    input.addEventListener("focus", () => void loadTrailOptions());
+    input.addEventListener("input", () => {
+      list();
+      loadTrailOptions();
+    });
     input.addEventListener("keydown", (e) => {
       const vis = shown();
       if (e.key === "ArrowDown" && vis.length) {
@@ -259,7 +386,7 @@ const json = JSON.stringify({
         e.preventDefault();
         setActive(Math.max(active - 1, 0));
       } else if (e.key === "Enter") {
-        // Enter picks the active place, never submits the form from here
+        // Enter picks the active place (or opens the active trail), never submits the form from here
         e.preventDefault();
         if (active >= 0) pick(vis[active]);
       } else if (e.key === "Backspace" && !input.value && where.length) {
@@ -554,10 +681,11 @@ const json = JSON.stringify({
     letter-spacing: 0.06em;
     text-transform: uppercase;
   }
-  .where-list [hidden] {
+  /* global inside the list: the trails' options are made by the script */
+  .where-list :global([hidden]) {
     display: none;
   }
-  .opt {
+  .where-list :global(.opt) {
     display: flex;
     align-items: center;
     gap: 10px;
@@ -566,9 +694,12 @@ const json = JSON.stringify({
     font-size: 0.95rem;
     cursor: pointer;
   }
-  .opt:hover,
-  .opt.active {
+  .where-list :global(.opt:hover),
+  .where-list :global(.opt.active) {
     background: var(--surface);
+  }
+  .where-list :global(.opt[hidden]) {
+    display: none;
   }
   .opt[aria-selected="true"] {
     font-weight: 600;
@@ -577,12 +708,15 @@ const json = JSON.stringify({
     opacity: 0.35;
     cursor: default;
   }
-  .name {
+  .where-list :global(.name) {
     flex: 1;
     min-width: 0;
   }
+  .where-list :global(.nm b) {
+    font-weight: 700;
+  }
   .in,
-  .n {
+  .where-list :global(.n) {
     color: var(--muted);
     font-size: 0.8rem;
     font-weight: 400;
@@ -590,10 +724,36 @@ const json = JSON.stringify({
   .in {
     margin-left: 4px;
   }
+  /* a trail: an arrow where a place has its check, since it opens the trail's page */
+  .where-list :global(.arrow) {
+    flex: none;
+    width: 16px;
+    color: var(--accent-text);
+    font-weight: 700;
+    text-align: center;
+  }
+  .where-list :global(.trail .n) {
+    max-width: 45%;
+    overflow: hidden;
+    text-align: right;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
   .none {
     margin: 10px;
     color: var(--muted);
     font-size: 0.9rem;
+  }
+  .none :global(.near) {
+    padding: 2px 0;
+    border: 0;
+    background: none;
+    color: var(--accent-text);
+    font: inherit;
+    font-weight: 600;
+    cursor: pointer;
+    text-decoration: underline;
+    text-underline-offset: 2px;
   }
   /* a check box drawn in CSS: empty, checked (accent) or included through its continent (soft) */
   .check {
@@ -683,9 +843,26 @@ const json = JSON.stringify({
       box-shadow: none;
     }
   }
-  @media (pointer: coarse) {
+  /* 44 px to tap on touch screens and phones (7 mm; the Baymard review of 2026-11-07): the months,
+     lengths and list rows a little taller, the chips' hit area larger than they are drawn */
+  @media (pointer: coarse), (max-width: 719px) {
+    .months button,
+    .days button {
+      min-height: 44px;
+    }
     .months button {
       padding: 12px 0;
+    }
+    .where-list :global(.opt) {
+      min-height: 44px;
+    }
+    .picked :global(.chip) {
+      position: relative;
+    }
+    .picked :global(.chip::before) {
+      content: "";
+      position: absolute;
+      inset: -9px -3px;
     }
   }
 </style>

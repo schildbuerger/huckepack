@@ -44,7 +44,7 @@ export interface Filters {
   months: number[];
   dayLo: number;
   dayHi: number;
-  where: string[]; // continents and countries, any of them; never a continent and one of its countries
+  where: string[]; // continents, countries and regions (place-aliases.ts), any of them; never a continent and one of its countries
   sleep: string[]; // sleeping category ids, all required
   wild: "" | "some" | "allowed";
   waterMax: number; // WATER_KM.length: any
@@ -124,7 +124,8 @@ export function matches(t: SearchTrail, f: Filters) {
   // days: the trail's range overlaps the chosen one (the top stop has no upper limit)
   if (daysOn(f) && !(t.days && t.days[0] <= (f.dayHi < DAYS_ALL ? DAYS[f.dayHi] : Infinity) && t.days[1] >= DAYS[f.dayLo]))
     return false;
-  if (f.where.length && !f.where.some((w) => t.continents.includes(w) || t.countries.includes(w))) return false;
+  // a place: a continent, a country or a region of src/lib/place-aliases.ts ("Alps", the trail's `places`)
+  if (f.where.length && !f.where.some((w) => t.continents.includes(w) || t.countries.includes(w) || (t.places ?? []).includes(w))) return false;
   if (f.sleep.length && !f.sleep.every((s) => t.sleeping.includes(s))) return false;
   if (f.wild === "allowed" && t.wildCamping !== "allowed") return false;
   if (f.wild === "some" && t.wildCamping !== "allowed" && t.wildCamping !== "restricted") return false;
