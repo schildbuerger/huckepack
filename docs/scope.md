@@ -651,6 +651,29 @@
   get the nearest tagged station (Corsica: Marseille Saint-Charles by the
   ferry port).
 
+- **Searches with suggestions (2026-11-07, the user's picks from a
+  Baymard-based review of the home page, items 1, 2, 3 and 6, tap targets and
+  wording):** the header search and the trip search's Where share one
+  matching (`src/lib/search-match.ts`): continents and a small curated list
+  of regions (`src/lib/place-aliases.ts`: Alps, Dolomites, Pyrenees,
+  Scotland, Wales, England, Lake District, Patagonia, Black Forest, Bavaria,
+  Tyrol, South Tyrol, New England, Pacific Northwest, Rocky Mountains,
+  Scandinavia, Fiordland, Tasmania, Corsica, Saxon Switzerland, with their
+  other names, and other names of countries), each a set of trails from the
+  records' regions and countries or named slugs and a filter of its own
+  (`where=Alps`); "hut" leads to the huts filter; one typo allowed in words of
+  four letters or more, ranked below exact matches; "Did you mean" when
+  nothing matches; Enter goes to the first suggestion, without any to the
+  search page keeping a place one of the words names. At most 8 suggestions
+  (6 on phones), then "Show all n"; the typed part bold. The Where field also
+  suggests trails by name, each going straight to its page. On phones the
+  header search has 16 px text and a labelled × (clear, or close when
+  empty); once open, the magnifier is the search button. The header's
+  buttons and menu entries and the trip search's controls on touch screens
+  are 44 px (7 mm) to tap, drawn as before. One wording for links to
+  `/trails/`: "Find a trail" (the trip search's button before anything is
+  picked, the Explore menu's entry, the sticky bar).
+
 ## What a trail page could show
 
 - Route on a map, with sections or stages
