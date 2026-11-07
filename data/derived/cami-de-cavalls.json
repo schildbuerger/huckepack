@@ -15855,12 +15855,10 @@
       "name": "Balearic Islands",
       "kind": "natural",
       "cla": "Island group",
-      "share": 1.0
-    },
-    {
-      "name": "Islas Baleares",
-      "kind": "admin",
-      "share": 0.746
+      "share": 1.0,
+      "also": [
+        "Islas Baleares"
+      ]
     },
     {
       "name": "Menorca",

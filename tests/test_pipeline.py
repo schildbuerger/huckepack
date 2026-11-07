@@ -965,7 +965,7 @@ class Regions(unittest.TestCase):
         if hole:
             hx0, hy0, hx1, hy1 = hole
             poly.append([[hx0, hy0], [hx1, hy0], [hx1, hy1], [hx0, hy1], [hx0, hy0]])
-        r = {"name": name, "kind": kind, "polygons": [poly]}
+        r = {"id": name, "name": name, "kind": kind, "polygons": [poly]}
         r["bbox"] = regions.bbox_of(r["polygons"])
         return r
 
@@ -1005,4 +1005,34 @@ class Regions(unittest.TestCase):
         # Natural Earth's English name where it is the same place, its label where it names another
         self.assertEqual(regions.natural_name({"NAME": "PENÍNSULA IBÉRICA", "NAME_EN": "Iberian Peninsula"}), "Iberian Peninsula")
         self.assertEqual(regions.natural_name({"NAME": "Grampian Mts.", "NAME_EN": "Cruach nam Miseag"}), "Grampian Mountains")
+
+    def test_same_place_merged_under_the_admin_name(self):
+        from pipeline import regions
+
+        line = [[0.0, 0.0], [1.0, 0.0]]
+        admin = self.square("Corse", -1, -1, 2, 1, kind="admin")
+        island = self.square("Corsica", -1, -1, 2, 1)  # the same area
+        range_ = self.square("Range", 0.5, -1, 2, 1)  # half of it
+        rs = [admin, island, range_]
+        total, within, both = regions.route_km([line], rs)
+        self.assertEqual(set(both), {("Corse", "Corsica"), ("Corse", "Range")})
+        merged = regions.merges(set(both), {r["id"]: r for r in rs}, share=0.9)
+        self.assertEqual(merged, {"Corsica": "Corse"})  # the range covers half the area: not one place
+        names = lambda r: ("Corsica", ["Corse"]) if r["name"] == "Corse" else (r["name"], [])
+        found = regions.entries(total, within, {r["id"]: r for r in rs}, merged, names)
+        self.assertEqual([(e["name"], e["kind"], e.get("also")) for e in found], [("Corsica", "admin", ["Corse"]), ("Range", "natural", None)])
+        # without an English name for the admin region, the natural region's name leads
+        found = regions.entries(total, within, {r["id"]: r for r in rs}, merged, lambda r: (r["name"], []))
+        self.assertEqual(found[0]["name"], "Corsica")
+        self.assertEqual(found[0]["also"], ["Corse"])
+
+    def test_english_names_from_wikidata_keys(self):
+        from pipeline import regions
+
+        joined = {"kind": "admin", "name": "Cataluña", "hasc": "ES.CT"}
+        self.assertEqual(regions.wikidata_keys(joined), ["P8119:ES.CT", "P300:ES-CT"])
+        names = regions.namer({"P300:ES-CT": "Catalonia", "Q980": "Bavaria"})
+        self.assertEqual(names(joined), ("Catalonia", ["Cataluña"]))
+        self.assertEqual(names({"kind": "admin", "name": "Bavaria", "qid": "Q980"}), ("Bavaria", []))
+        self.assertEqual(names({"kind": "natural", "name": "Alps"}), ("Alps", []))
 

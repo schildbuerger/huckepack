@@ -3228,9 +3228,12 @@
   },
   "regions": [
     {
-      "name": "West Coast",
+      "name": "West Coast Region",
       "kind": "admin",
       "code": "NZ-WTC",
+      "also": [
+        "West Coast"
+      ],
       "share": 0.979
     }
   ]

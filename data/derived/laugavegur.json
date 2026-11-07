@@ -4651,9 +4651,12 @@
   },
   "regions": [
     {
-      "name": "Southern",
+      "name": "Southern Region",
       "kind": "admin",
       "code": "IS-8",
+      "also": [
+        "Southern"
+      ],
       "share": 1.0
     }
   ]

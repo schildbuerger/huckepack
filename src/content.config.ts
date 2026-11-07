@@ -589,6 +589,7 @@ const derived = z.object({
         kind: z.enum(["admin", "natural"]),
         code: z.string().optional(), // ISO 3166-2
         cla: z.string().optional(), // Natural Earth's class: Range/mtn, Plateau, Island …
+        also: z.array(z.string()).optional(), // other names: Natural Earth's ("Cataluña"), a merged natural region's
         share: z.number(),
       }),
     )

@@ -29472,9 +29472,12 @@
       "share": 1.0
     },
     {
-      "name": "Norrbotten",
+      "name": "Norrbotten County",
       "kind": "admin",
       "code": "SE-BD",
+      "also": [
+        "Norrbotten"
+      ],
       "share": 0.753
     },
     {
@@ -29490,9 +29493,12 @@
       "share": 0.483
     },
     {
-      "name": "Västerbotten",
+      "name": "Västerbotten County",
       "kind": "admin",
       "code": "SE-AC",
+      "also": [
+        "Västerbotten"
+      ],
       "share": 0.247
     }
   ]

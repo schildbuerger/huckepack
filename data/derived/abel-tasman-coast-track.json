@@ -4763,9 +4763,12 @@
   },
   "regions": [
     {
-      "name": "Tasman",
+      "name": "Tasman District",
       "kind": "admin",
       "code": "NZ-TAS",
+      "also": [
+        "Tasman"
+      ],
       "share": 0.835
     }
   ]

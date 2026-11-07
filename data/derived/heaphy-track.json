@@ -4737,15 +4737,21 @@
   },
   "regions": [
     {
-      "name": "Tasman",
+      "name": "Tasman District",
       "kind": "admin",
       "code": "NZ-TAS",
+      "also": [
+        "Tasman"
+      ],
       "share": 0.454
     },
     {
-      "name": "West Coast",
+      "name": "West Coast Region",
       "kind": "admin",
       "code": "NZ-WTC",
+      "also": [
+        "West Coast"
+      ],
       "share": 0.33
     }
   ]

@@ -13056,15 +13056,12 @@
   },
   "regions": [
     {
-      "name": "Corse",
+      "name": "Corsica",
       "kind": "admin",
       "code": "FR-COR",
-      "share": 1.0
-    },
-    {
-      "name": "Corsica",
-      "kind": "natural",
-      "cla": "Island",
+      "also": [
+        "Corse"
+      ],
       "share": 1.0
     }
   ]

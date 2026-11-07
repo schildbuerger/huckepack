@@ -2931,9 +2931,12 @@
   },
   "regions": [
     {
-      "name": "Hawke's Bay",
+      "name": "Hawke's Bay Region",
       "kind": "admin",
       "code": "NZ-HKB",
+      "also": [
+        "Hawke's Bay"
+      ],
       "share": 1.0
     }
   ]

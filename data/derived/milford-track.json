@@ -3215,9 +3215,12 @@
   },
   "regions": [
     {
-      "name": "Southland",
+      "name": "Southland Region",
       "kind": "admin",
       "code": "NZ-STL",
+      "also": [
+        "Southland"
+      ],
       "share": 1.0
     },
     {

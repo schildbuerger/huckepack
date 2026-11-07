@@ -14157,14 +14157,21 @@
       "share": 0.711
     },
     {
-      "name": "Diekirch",
+      "name": "Diekirch District",
       "kind": "admin",
       "code": "LU-D",
+      "also": [
+        "Diekirch"
+      ],
       "share": 0.68
     },
     {
-      "name": "Walloon Region",
+      "name": "Wallonia",
       "kind": "admin",
+      "code": "BE-WAL",
+      "also": [
+        "Walloon Region"
+      ],
       "share": 0.32
     }
   ]

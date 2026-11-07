@@ -10586,9 +10586,12 @@
   },
   "regions": [
     {
-      "name": "Västernorrland",
+      "name": "Västernorrland County",
       "kind": "admin",
       "code": "SE-Y",
+      "also": [
+        "Västernorrland"
+      ],
       "share": 0.942
     },
     {

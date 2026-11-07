@@ -2893,15 +2893,21 @@
       "share": 1.0
     },
     {
-      "name": "Waikato",
+      "name": "Waikato Region",
       "kind": "admin",
       "code": "NZ-WKO",
+      "also": [
+        "Waikato"
+      ],
       "share": 0.594
     },
     {
-      "name": "Manawatū-Whanganui",
+      "name": "Manawatū-Whanganui Region",
       "kind": "admin",
       "code": "NZ-MWT",
+      "also": [
+        "Manawatū-Whanganui"
+      ],
       "share": 0.406
     }
   ]
