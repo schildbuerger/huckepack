@@ -18,7 +18,8 @@ The check reads the record and the derived data and flags what a person should l
 the mechanical half of working rule 2: stages the OSM match covers poorly, map-line lengths more
 than 10 % off the stated ones (whole route and per stage), stated against estimated ascent,
 long stretches without drinking water, shops or beds, unknown surfaces, far travel hubs, and a missing data
-check, tree line, skyline (src/lib/skylines.ts) or wildlife (the record's animals, or a note why none).
+check, tree line, skyline (src/lib/skylines.ts) or wildlife (the record's animals, or a note why none),
+and days without a basis or a missing "Days" note (days_check).
 """
 
 import importlib
@@ -114,6 +115,33 @@ def _line_km(coords):
     lat0 = sum(c[1] for c in coords) / len(coords)
     k = math.cos(math.radians(lat0)) * 111.32
     return sum(math.hypot((b[0] - a[0]) * k, (b[1] - a[1]) * 111.32) for a, b in zip(coords, coords[1:]))
+
+
+DAYS_BASES = ("operator", "secondary", "stages")
+
+
+def days_check(trail):
+    """The record's days by the user's rule of 2026-11-07 (docs/trail-building.md): (ok, message).
+
+    Days come from the operator, else a trusted second source, else one per main stage of the
+    operator's stage list, each recorded with its `basis`; a trail that fits none has no days and a
+    note starting "Days" saying what was searched.
+    """
+    days = trail.get("days")
+    if not days:
+        if any(str(n).startswith("Days") for n in trail.get("notes", [])):
+            return True, "days: none published, with a note saying what was searched"
+        return False, "days: none and no note starting \"Days\" (search the operator, then a second source; else one per main stage of the operator's stage list)"
+    basis = days.get("basis")
+    if basis not in DAYS_BASES:
+        return False, f"days: no basis (one of {', '.join(DAYS_BASES)}: where the days come from)"
+    span = f"{days['min']}" if days["min"] == days["max"] else f"{days['min']}–{days['max']}"
+    if basis == "stages":
+        main = [s for s in (trail.get("stages") or {}).get("list", []) if s.get("kind") == "main"]
+        if days["min"] != len(main) or days["max"] != len(main):
+            return False, f"days: basis stages, but {span} days against {len(main)} main stages"
+        return True, f"days: {span}, one per main stage of {days['source']}'s list (check the list is the operator's)"
+    return True, f"days: {span}, from the {'operator' if basis == 'operator' else 'second source'} {days['source']}"
 
 
 def check(slug):
@@ -218,6 +246,9 @@ def check(slug):
 
     if not trail.get("dataCheck"):
         flags.append("data check: no dataCheck in the record yet (working rule 2)")
+
+    days_ok, days_msg = days_check(trail)
+    (fine if days_ok else flags).append(days_msg)
 
     # the page head's skyline and the Wildlife section are part of every trail (2026-11-04)
     skylines = (ROOT / "src" / "lib" / "skylines.ts").read_text()

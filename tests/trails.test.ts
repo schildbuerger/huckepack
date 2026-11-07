@@ -3,7 +3,8 @@
 // `npm test` (Node's test runner; Node strips the types itself).
 import { test } from "node:test";
 import assert from "node:assert/strict";
-import { barMetres, climbs, CLIMB_THRESHOLD_M, gradients, noStages, perDay, routeEstimate, stageEstimates, sleepingCategories, trailClimb, trailLength, providerLength, measuredLength, measuredCover, compareLength, trailDays, walkingMinutes, stageTotals, STEEP_PERCENT } from "../src/lib/trails.ts";
+import { barMetres, climbs, CLIMB_THRESHOLD_M, gradients, noStages, perDay, routeEstimate, stageEstimates, sleepingCategories, summarize, trailClimb, trailLength, providerLength, measuredLength, measuredCover, compareLength, trailDays, walkingMinutes, stageTotals, STEEP_PERCENT } from "../src/lib/trails.ts";
+import { DAYS, matches, noFilters } from "../src/lib/filters.ts";
 import { difficulty } from "../src/lib/difficulty.ts";
 import { mergeRuns, rectsPath, simplify, stripPaths, n1 } from "../src/lib/svg.ts";
 import { kmBetween, roundDistance } from "../src/lib/geo.ts";
@@ -289,7 +290,7 @@ const stageless = (over: Record<string, unknown> = {}) =>
     length: [{ km: 150, source: "nps" }],
     ascent: [{ m: 8230, source: "nps" }],
     descent: [{ m: 8230, source: "nps" }],
-    days: { min: 10, max: 14, source: "planner" },
+    days: { min: 10, max: 14, basis: "operator", source: "planner" },
     ...over,
   });
 
@@ -299,8 +300,33 @@ test("no stages: the stated totals and the suggested days, never stage sums", ()
   assert.equal(noStages(trail()), false);
   assert.equal(trailLength(t)!.value, 150);
   assert.equal(trailClimb(t)!.up, 8230);
-  assert.deepEqual(trailDays(t), { min: 10, max: 14, source: "planner", perStage: false });
+  assert.deepEqual(trailDays(t), { min: 10, max: 14, basis: "operator", source: "planner" });
   assert.equal(stageTotals(t), undefined);
+});
+
+// where the days come from (the user's rule of 2026-11-07): the record says, nothing is derived
+test("days: the record's days with their basis, and none where the record has none", () => {
+  for (const basis of ["operator", "secondary"] as const)
+    assert.deepEqual(trailDays(trail({ days: { min: 3, max: 5, basis, source: "site" } })), { min: 3, max: 5, basis, source: "site" });
+  // one per main stage only as the record states it, with the stage list's source
+  assert.deepEqual(trailDays(trail({ days: { min: 2, max: 2, basis: "stages", source: "site" } })), { min: 2, max: 2, basis: "stages", source: "site" });
+  // stages but no days: no silent one-per-stage fallback
+  assert.equal(trailDays(trail()), undefined);
+  // the search record: null, which only a days filter leaves out
+  const listed = (over: Record<string, unknown> = {}) =>
+    summarize("x", trail({ name: "X", aliases: [], continents: [], countries: [], regions: [], tags: [], termini: { start: { name: "A" }, end: { name: "C" } }, ...over }));
+  assert.equal(listed().days, null);
+  assert.deepEqual(listed({ days: { min: 3, max: 5, basis: "operator", source: "site" } }).days, [3, 5]);
+});
+
+test("days filter: a trail without days stays while no length is picked, and leaves once one is", () => {
+  const none = { season: null, days: null, continents: [], countries: [] } as any;
+  const five = { ...none, days: [5, 5] } as any;
+  const f = noFilters();
+  assert.equal(matches(none, f), true);
+  const week = { ...f, dayLo: DAYS.indexOf(4), dayHi: DAYS.indexOf(7) };
+  assert.equal(matches(none, week), false);
+  assert.equal(matches(five, week), true);
 });
 
 test("no stages: averages per day as a range from the most and the fewest days", () => {
@@ -311,7 +337,7 @@ test("no stages: averages per day as a range from the most and the fewest days",
   // the length and the days from different sources: both named
   assert.deepEqual([day.lengthSource, day.daysSource], ["nps", "planner"]);
   // one number of days: no range
-  assert.deepEqual(perDay(stageless({ days: { min: 12, max: 12, source: "planner" } }))!.km, { min: 12.5, max: 12.5 });
+  assert.deepEqual(perDay(stageless({ days: { min: 12, max: 12, basis: "operator", source: "planner" } }))!.km, { min: 12.5, max: 12.5 });
   // trails with stages keep their averages per stage
   assert.equal(perDay(trail()), undefined);
 });

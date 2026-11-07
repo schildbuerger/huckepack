@@ -122,13 +122,38 @@ schema's superRefine; the skyline by `tests/trails.test.ts`):
     publishes one, record every month for now, text "No season published; every month for now",
     with a `huckepack-season` source whose title names what was searched, and a "Season:" note
     saying the same. Replace it as soon as a source gives a season.
+  - `days` with its `basis` (the user's rule of 2026-11-07), searched in this order and taken
+    from the first that gives them:
+    1. `operator`: the trail's operator or maintainer. Look thoroughly: its site, trail and
+       stage pages, FAQs, planning, "plan your hike" and thru-hike pages, brochures and PDFs, in
+       the trail's languages.
+    2. `secondary`: a trusted second source: Wikipedia, a national or regional government or
+       tourism body, a national park service, a national trail portal (Sport Ireland's National
+       Trails Office), a recognised hiking association, an established guidebook publisher's
+       fact page (Cicerone). Hotels and tour companies are not trusted sources for days
+       (their packages count arrival and rest days), nor are blogs, apps or forums.
+    3. `stages`: one day per main stage, only where the stage list is the operator's (its
+       division; distances we measured, `huckepack-measured`, don't change that): `min` and
+       `max` the number of main stages, `source` the list's source (the build checks the
+       count).
+
+    What counts as days: a duration for the whole trail ("5–7 days", "two to three weeks",
+    "a week long walking holiday"), or stages the source itself calls a day each ("13 one-day
+    stages", "In vier Tagen", "elf Tagesetappen"). A stage count alone ("16 Etappen") is the
+    stage list, basis `stages`. A minimum only ("at least four weeks") stands for both. Days
+    for another stretch than the main stages are left out, as stated totals are. Quote the
+    source's words in the block's comment and add the source with its licence and retrieved
+    date. A trail that fits none has no `days` and a note "Days (date): …" saying what was
+    searched and why each candidate was left out; the page then shows no days, and the
+    search's How long filter leaves it out only once a length is picked.
 - **Required or explained.** Fill these from a source; where none gives one, add a note that
   starts with the field's label and says what was searched and when:
   - `wildCamping` ("Wild camping: …");
   - `waymarking` ("Waymarking: …");
   - `wikidata` ("Wikidata: …": no article, or an article on something else);
   - `length` ("Length: …", e.g. a total that covers another stretch);
-  - `days` ("Days: …"; the page then counts one day per main stage);
+  - `days` ("Days (date): …", when no source fits the order above; the page then shows no
+    days, never one per stage silently);
   - `protectedAreas` ("Protected areas: …").
 - **Only when they apply:**
   - `localName` (when it differs), `aliases`, `designation`, `established`;

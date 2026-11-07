@@ -85,7 +85,7 @@
   const STEPS = [
     { id: "when", question: "When would you like to go?", help: "Pick every month that works. Trails whose season includes any of them stay." },
     { id: "where", question: "Where would you like to hike?", help: "Pick as many places as you like. A continent includes all its countries." },
-    { id: "days", question: "How many days do you have?", help: "A trail stays if the days its managers suggest overlap yours." },
+    { id: "days", question: "How many days do you have?", help: "A trail stays if its suggested days overlap yours; trails without published days drop out once you choose." },
     { id: "terrain", question: "How demanding may the terrain be?", help: "Our terrain rating: the path grade, how much and how steeply the trail climbs, and the ground." },
     { id: "effort", question: "How long may a day be?", help: "The walking time of the trail's longest stage." },
     { id: "climate", question: "What weather can you take?", help: "Our climate rating from 30 years of weather, for the months you picked, or for each trail's best run of months in its season." },

@@ -194,8 +194,19 @@ const trail = z
     ascent: z.array(z.object({ m: z.number().int().positive(), source: sourceRef })).default([]),
     // the stated total descent; the page uses a stated ascent only together with a descent from the same source
     descent: z.array(z.object({ m: z.number().int().positive(), source: sourceRef })).default([]),
+    // The suggested days and where they come from (the user's rule of 2026-11-07, docs/scope.md), in
+    // this order: `operator`, the trail's operator or maintainer says so; `secondary`, a trusted second
+    // source does (Wikipedia, a government or tourism body, a national trail portal, a guidebook
+    // publisher's facts); `stages`, one day per main stage, only where the stage list is the operator's
+    // (`source` names that list; min and max are the number of main stages). A trail that fits none has
+    // no days and a note "Days (date): …" saying what was searched; nothing falls back silently
     days: z
-      .object({ min: z.number().int().positive(), max: z.number().int().positive(), source: sourceRef })
+      .object({
+        min: z.number().int().positive(),
+        max: z.number().int().positive(),
+        basis: z.enum(["operator", "secondary", "stages"]),
+        source: sourceRef,
+      })
       .refine((d) => d.min <= d.max, "days.min must not exceed days.max")
       .optional(),
     // the height where trees stop growing in the trail's region (issue #20), from a published
@@ -424,6 +435,13 @@ const trail = z
       if (!t.days) ctx.addIssue({ code: "custom", path: ["days"], message: "stages.none: a trail without stages needs official days (docs/scope.md)" });
     } else if (t.stages && !t.stages.list.length) {
       ctx.addIssue({ code: "custom", path: ["stages", "list"], message: "no stages listed: list them, or set stages.none where the trail has none by design" });
+    }
+    // days from the stages: one per main stage, on a trail that has stages (docs/trail-building.md)
+    if (t.days?.basis === "stages") {
+      const n = t.stages?.list.filter((s) => s.kind === "main").length ?? 0;
+      if (t.stages?.none || !n) ctx.addIssue({ code: "custom", path: ["days", "basis"], message: "days.basis stages: the trail has no stages to count" });
+      else if (t.days.min !== n || t.days.max !== n)
+        ctx.addIssue({ code: "custom", path: ["days"], message: `days.basis stages: min and max are the number of main stages (${n})` });
     }
     for (const [field, label, present] of EXPLAINED.map(([f, l, has]) => [f, l, has(t)] as const)) {
       if (!present && !t.notes.some((n) => n.startsWith(label))) {

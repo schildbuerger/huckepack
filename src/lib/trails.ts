@@ -129,12 +129,14 @@ export function compareLength(t: Trail, d?: DerivedData) {
   return trailLength(t, d)?.value ?? null;
 }
 
-// The trail's days (issue #148): the days a source suggests, else one day per main stage, so every
-// trail with stages has them; `perStage` marks the second, which the page names as such.
+// The trail's days as the record states them, with where they come from (the user's rule of
+// 2026-11-07, docs/scope.md): `operator`, `secondary`, or `stages` (one day per main stage of the
+// operator's stage list, recorded as such). Undefined where none fits: nothing is derived here, so a
+// trail without days shows none rather than a guess.
 export function trailDays(t: Trail) {
-  if (t.days) return { min: t.days.min, max: t.days.max, source: t.days.source, perStage: false };
-  const n = mainStages(t).length;
-  return t.stages && n ? { min: n, max: n, source: t.stages.source, perStage: true } : undefined;
+  if (!t.days) return undefined;
+  const { min, max, basis, source } = t.days;
+  return { min, max, basis, source };
 }
 
 // Averages per stage (issue #148, decided 2026-11-02): the main stages' totals over their number, so
@@ -256,7 +258,7 @@ export function summarize(id: string, t: Trail, d?: DerivedData) {
     lengthKm: trailLength(t, d)?.value ?? null, // measured, else the provider's (trailLength())
     compareKm: compareLength(t, d), // for sorting and totals: the same figure
     ascentM: trailClimb(t)?.up ?? null,
-    // the suggested days, else one day per main stage (trailDays)
+    // the record's days (trailDays); null where no source gives any, which only a days filter leaves out
     days: ((d) => (d ? ([d.min, d.max] as [number, number]) : null))(trailDays(t)),
     sac: sacGrade(t)?.value ?? null,
     wildCamping: t.wildCamping?.status ?? null,

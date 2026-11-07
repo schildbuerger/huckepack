@@ -389,15 +389,39 @@
   the same start and finish.
 - **Minimum figures (issue #148, 2026-11-02):** every trail shows its length,
   ascent and descent, days and averages. The ascent and descent may be the
-  terrain model's estimate (≈) where no source states them. Days are the
-  ones a source suggests, else one day per main stage (`trailDays()`, said
-  so in the tile's popover; no provider published days for the Camí de
-  Cavalls, Camino Francés, Goldsteig, Kungsleden, MacLehose Trail or
-  Országos Kéktúra). The averages are per stage (`perStage()`: the main
-  stages' totals over their number, so one source), the ascent from the
-  stages' climbs or else the terrain model's per-stage estimate (≈);
-  before, averages per day showed only where days and stages shared a
-  source.
+  terrain model's estimate (≈) where no source states them. Days: until
+  2026-11-07 the ones a source suggests, else one day per main stage
+  (`trailDays()`, said so in the tile's popover); since then by the rule
+  below (Where days come from), so a trail can have none. The averages are
+  per stage (`perStage()`: the main stages' totals over their number, so
+  one source), the ascent from the stages' climbs or else the terrain
+  model's per-stage estimate (≈); before, averages per day showed only
+  where days and stages shared a source.
+- **Where days come from (the user's rule of 2026-11-07):** a trail's
+  suggested days come, in this order, from (1) the trail's official
+  operator or maintainer, searched thoroughly (site, stage, FAQ, planning
+  and thru-hike pages, brochures, in the trail's languages); (2) a trusted
+  second source (Wikipedia, a government or tourism body, a national park
+  service, a national trail portal, a recognised hiking association, a
+  guidebook publisher's fact page; not hotels or tour companies); (3) one
+  day per main stage, only where the stage list is the operator's. A trail
+  that fits none has no days. Every record states its `days.basis`
+  (`operator`, `secondary`, `stages`; src/content.config.ts), so nothing
+  falls back silently: `trailDays()` returns the record's days only. The
+  Days key figure's popover names the source, for `stages` "one per stage
+  of <operator>'s stage list", for `secondary` that the operator suggests
+  none; a trail without days shows no Days figure, a dash on the search
+  cards, nothing in the preview, season planner and link-preview image,
+  and the search's How long filter (and the guide's and the trip search's
+  day ranges) keep it while no length is picked and leave it out once one
+  is. First applied to all 131 trails the same day (docs/trail-building.md,
+  "Required"): 89 from the operator, 14 from a second source, 27 one per
+  operator stage; the Országos Kéktúra fits none (its days 38–59 are our
+  grouping, MTSZ suggests no days, nor does a second source). Las Torres (a
+  hotel and tour company) no longer gives the O Circuit's days (Wikipedia's
+  7–9 since); the Kerry Way's and Wicklow Way's Sport Ireland days count as
+  a second source, the Alpe-Adria-Trail's and Sauerland-Waldroute's as one
+  per operator stage.
 - **Link previews for every page (issue #147, 2026-11-02):** every page has a
   1200 × 630 image (approach B of three, a picture per page): the home page
   three trails' skylines, the trail search six trails as cards, the map the

@@ -205,6 +205,8 @@ const estTime = stageView.some((s) => s.time?.est);
 const fmt = (n: number) => n.toLocaleString("en");
 // a source by the first part of its title ("Tourismusverband Sächsische Schweiz"), for inline mentions
 const sourceShort = (id: string) => t.sources.find((s) => s.id === id)?.title.split(":")[0] ?? id;
+// "National Trails'", "Tirol Werbung's"
+const possessive = (name: string) => (name.endsWith("s") ? `${name}'` : `${name}'s`);
 const hours = (min: number) => `${Math.floor(min / 60)} h ${String(min % 60).padStart(2, "0")}`;
 // a walking time, or a range of whole hours as "4–5 h"
 const timeText = (min: number, max?: number) =>
@@ -862,23 +864,22 @@ const trailLd = JSON.stringify({
       {days && (
         <div>
           <dt>
-            {stageless ? (
-              <Explain id="days-info" term="Suggested">
-                <dl class="pop-facts">
-                  <dt>No stages</dt><dd>No official stages: hikers choose their own camps</dd>
-                  <dt>Source</dt><dd>{sourceShort(days.source)}</dd>
-                </dl>
-              </Explain>
-            ) : days.perStage ? (
-              <Explain id="days-info" term="Days">
-                <dl class="pop-facts">
-                  <dt>This trail</dt><dd>{days.min} days, one per main stage</dd>
-                  <dt>Why</dt><dd>No source suggests a number of days</dd>
-                </dl>
-              </Explain>
-            ) : (
-              "Suggested"
-            )}
+            <Explain id="days-info" term={days.basis === "stages" ? "Days" : "Suggested"}>
+              <dl class="pop-facts">
+                {stageless && <><dt>No stages</dt><dd>No official stages: hikers choose their own camps</dd></>}
+                {days.basis === "stages" ? (
+                  <>
+                    <dt>This trail</dt><dd>{days.min} days, one per stage of {possessive(sourceShort(days.source))} stage list</dd>
+                    <dt>Why</dt><dd>No source suggests days for the route as listed here</dd>
+                  </>
+                ) : (
+                  <>
+                    <dt>Source</dt><dd>{sourceShort(days.source)}</dd>
+                    {days.basis === "secondary" && <><dt>Keep in mind</dt><dd>A second source: the operator suggests no number of days</dd></>}
+                  </>
+                )}
+              </dl>
+            </Explain>
           </dt>
           <dd><span class="big">{range(days.min, days.max)}</span><span class="unit">days</span></dd>
         </div>

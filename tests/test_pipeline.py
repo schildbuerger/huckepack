@@ -761,6 +761,33 @@ class ClimbThreshold(unittest.TestCase):
         self.assertEqual(pipeline_all.CLIMB_THRESHOLD_M, 10)
 
 
+class DaysCheck(unittest.TestCase):
+    """The check flags days without a basis and a trail without days or a "Days" note (the user's
+    rule of 2026-11-07)."""
+
+    stages = {"list": [{"kind": "main"}, {"kind": "main"}, {"kind": "variant"}]}
+
+    def test_operator_and_secondary_pass(self):
+        for basis in ("operator", "secondary"):
+            ok, _ = pipeline_all.days_check({"days": {"min": 3, "max": 5, "basis": basis, "source": "x"}})
+            self.assertTrue(ok)
+
+    def test_no_basis_is_flagged(self):
+        ok, msg = pipeline_all.days_check({"days": {"min": 3, "max": 5, "source": "x"}})
+        self.assertFalse(ok)
+        self.assertIn("basis", msg)
+
+    def test_stages_count_main_stages_only(self):
+        good = {"days": {"min": 2, "max": 2, "basis": "stages", "source": "x"}, "stages": self.stages}
+        self.assertTrue(pipeline_all.days_check(good)[0])
+        bad = {"days": {"min": 3, "max": 3, "basis": "stages", "source": "x"}, "stages": self.stages}
+        self.assertFalse(pipeline_all.days_check(bad)[0])
+
+    def test_no_days_needs_a_note(self):
+        self.assertFalse(pipeline_all.days_check({"notes": []})[0])
+        self.assertTrue(pipeline_all.days_check({"notes": ["Days (2026-11-07): none published"]})[0])
+
+
 class TerrainWindows(unittest.TestCase):
     """GEDTM30 is read in windows around chunks of consecutive samples (pipeline/elevation.py)."""
 

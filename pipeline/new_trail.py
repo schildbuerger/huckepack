@@ -66,9 +66,16 @@ length:
   - km: null  # the stated total; approx: true for "about". Only if it covers the same stretch as the main stages; else delete it and note the operator's figure
     source: null
 days:
-  # the suggested days for the whole trail
+  # the suggested days for the whole trail, in this order (the user's rule of 2026-11-07,
+  # docs/trail-building.md): `basis: operator` (search its site thoroughly: stage, FAQ, planning,
+  # thru-hike pages and brochures, in the trail's languages), else `secondary` (Wikipedia, a government
+  # or tourism body, a national trail portal, a guidebook publisher's facts), else `stages` (one day
+  # per main stage, only where the stage list is the operator's: min and max the number of main
+  # stages, source the list's). Quote the source's words here. None fits: delete the block and add a
+  # note "Days (<date>): …" saying what was searched
   min: null
   max: null
+  basis: null
   source: null
 treeLine:
   # the region's tree line, from a published source (forest service, literature), if the route

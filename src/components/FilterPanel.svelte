@@ -228,8 +228,9 @@
       <div class="legend" id={`${idPrefix}g-long`}>
         <Explain id={`${idPrefix}x-long`} term="How long?" title="Walking days">
           <dl class="pop-facts">
-            <dt>Days</dt><dd>As the trail's managers suggest for the whole route</dd>
+            <dt>Days</dt><dd>As the trail's managers suggest for the whole route, else a second source, else one per official stage</dd>
             <dt>Ranges</dt><dd>A range like 6–8 days matches if it overlaps yours</dd>
+            <dt>Not published</dt><dd>Trails without days show only while no length is picked</dd>
           </dl>
         </Explain>
         <span class="value">{daysText(filters)}</span>

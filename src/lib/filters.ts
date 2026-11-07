@@ -3,7 +3,7 @@
 // hold stop indexes; the last stop of days and water means "no limit", and a difficulty range
 // from Easy to Hard filters nothing.
 import type { SearchTrail } from "./search";
-import { climateFor, monthsText } from "./months";
+import { climateFor, monthsText } from "./months.ts";
 
 // the SAC grades, for the "easiest first" sort's tie-break (no longer a filter: it is part of terrain)
 export const SAC = ["T1", "T2", "T3", "T4", "T5", "T6"];
