@@ -2465,6 +2465,45 @@ export const SKYLINES: Record<string, Skyline> = {
       { d: "M178,288L185,258L192,288Z M206,286L212,264L218,286Z M1366,286L1373,254L1380,286Z M1398,284L1404,262L1410,284Z", c: FIR },
     ],
   },
+  "pacific-northwest-trail": {
+    view: "From the Rockies to the Pacific: Glacier's horn peaks with Chief Mountain's block, Mount Baker's glaciered cone behind the jagged North Cascades, the snowy Olympics over the rainforest, and Cape Alava's sea stacks in the ocean",
+    ridge: "#2f4a34",
+    ground: "#7a8a5a",
+    shapes: [
+      // the Olympics far off, pale and blue, snow on their crest
+      { d: range([[880, G], [940, 262], [1000, 220], [1050, 196], [1090, 178], [1120, 164], [1146, 172], [1176, 154], [1204, 148], [1232, 160], [1270, 176], [1310, 172], [1350, 192], [1400, 222], [1450, 256], [1510, G]]), c: "#a9b7c6" },
+      { d: snowOf([[880, G], [940, 262], [1000, 220], [1050, 196], [1090, 178], [1120, 164], [1146, 172], [1176, 154], [1204, 148], [1232, 160], [1270, 176], [1310, 172], [1350, 192], [1400, 222], [1450, 256], [1510, G]], 178), c: SNOW },
+      // Mount Baker: a broad glaciered volcano, its snow reaching far down
+      { d: range([[470, G], [540, 262], [610, 214], [670, 166], [714, 128], [744, 104], [764, 94], [786, 96], [812, 110], [850, 136], [900, 172], [960, 214], [1030, 256], [1090, G]]), c: "#9aa8b6" },
+      { d: snowOf([[470, G], [540, 262], [610, 214], [670, 166], [714, 128], [744, 104], [764, 94], [786, 96], [812, 110], [850, 136], [900, 172], [960, 214], [1030, 256], [1090, G]], 176), c: SNOW },
+      // Glacier's peaks: sharp horns carved by ice, grey rock with snow in the cirques
+      { d: range([[0, G], [40, 250], [90, 196], [130, 160], [160, 126], [178, 112], [194, 130], [214, 150], [240, 134], [262, 108], [276, 98], [292, 116], [318, 146], [350, 132], [374, 118], [392, 130], [430, 168], [480, 210], [540, 252], [600, G]]), c: ROCK },
+      { d: snowOf([[0, G], [40, 250], [90, 196], [130, 160], [160, 126], [178, 112], [194, 130], [214, 150], [240, 134], [262, 108], [276, 98], [292, 116], [318, 146], [350, 132], [374, 118], [392, 130], [430, 168], [480, 210], [540, 252], [600, G]], 136), c: SNOW },
+      // Chief Mountain: the lone block at the eastern terminus, its steep walls and flat crown
+      { d: range([[420, G], [440, 270], [470, 236], [488, 196], [494, 168], [500, 160], [536, 158], [544, 168], [552, 198], [570, 238], [600, 272], [620, G]]), c: "#7f8b98" },
+      // the North Cascades in front of Baker: dark, jagged and steep, like Shuksan's crest
+      { d: range([[560, G], [610, 262], [650, 226], [680, 200], [700, 176], [714, 160], [726, 172], [742, 156], [756, 140], [770, 152], [784, 170], [806, 158], [826, 176], [860, 206], [900, 240], [950, 270], [990, G]]), c: "#6e7a86" },
+      { d: snowOf([[560, G], [610, 262], [650, 226], [680, 200], [700, 176], [714, 160], [726, 172], [742, 156], [756, 140], [770, 152], [784, 170], [806, 158], [826, 176], [860, 206], [900, 240], [950, 270], [990, G]], 168), c: SNOW },
+      // forested foothills along the whole way
+      { d: hills([[0, G], [120, 262], [300, 248], [480, 262], [660, 250], [860, 264], [1040, 252], [1220, 266], [1340, G]]), c: FIR },
+      // the Olympic rainforest: tall spruce and hemlock spires by the coast
+      {
+        d: ([1040, 1072, 1100, 1134, 1164, 1196, 1228, 1258, 1290, 1318] as const)
+          .map((x, i) => { const top = 206 + ((i * 13) % 34); return `M${x - 10},${G}L${x},${top}L${x + 10},${G}Z`; })
+          .join(" "),
+        c: "#2c4632",
+      },
+      // the headland above Cape Alava's beach
+      { d: range([[1260, G], [1290, 286], [1340, 270], [1400, 268], [1440, 282], [1470, G]]), c: "#3d5a40" },
+    ],
+    front: [
+      { d: water(1300, 1600, 298), c: SEA },
+      // sea stacks off Cape Alava: slender rock towers with a few trees on top
+      { d: range([[1478, G], [1482, 270], [1488, 252], [1500, 246], [1510, 254], [1514, 272], [1518, G]]), c: "#4a4a44" },
+      { d: range([[1536, G], [1540, 284], [1546, 270], [1556, 266], [1562, 278], [1566, G]]), c: "#4a4a44" },
+      { d: "M1490,248L1494,232L1498,247Z M1500,247L1505,228L1510,251Z", c: "#2c4632" },
+    ],
+  },
   "superior-hiking-trail": {
     view: "Minnesota's North Shore: the Sawtooth ridges above Lake Superior, birch and spruce on the rocky slopes, a waterfall dropping towards the lake and the lake's long horizon",
     ridge: "#3f5a34",

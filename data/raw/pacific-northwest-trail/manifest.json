@@ -1,0 +1,97 @@
+{
+  "climate-high.json": {
+    "retrieved": "2026-11-07T00:11:28+00:00",
+    "url": "https://openmeteo.s3.us-west-2.amazonaws.com/data/copernicus_era5_land+copernicus_era5?latitude=49.0&longitude=-120.2&elevation=2290"
+  },
+  "climate-low.json": {
+    "retrieved": "2026-11-07T00:11:28+00:00",
+    "url": "https://openmeteo.s3.us-west-2.amazonaws.com/data/copernicus_era5_land+copernicus_era5?latitude=48.6&longitude=-122.4&elevation=0"
+  },
+  "commons.json": {
+    "key": "Q3360192",
+    "retrieved": "2026-11-07T00:11:36+00:00",
+    "url": "Q3360192 P18 P373"
+  },
+  "elevation-glo30.json": {
+    "retrieved": "2026-11-07T00:10:26+00:00",
+    "url": "https://copernicus-dem-30m.s3.eu-central-1.amazonaws.com/Copernicus_DSM_COG_10_N47_00_W123_00_DEM/Copernicus_DSM_COG_10_N47_00_W123_00_DEM.tif https://copernicus-dem-30m.s3.eu-central-1.amazonaws.com/Copernicus_DSM_COG_10_N47_00_W124_00_DEM/Copernicus_DSM_COG_10_N47_00_W124_00_DEM.tif https://copernicus-dem-30m.s3.eu-central-1.amazonaws.com/Copernicus_DSM_COG_10_N47_00_W125_00_DEM/Copernicus_DSM_COG_10_N47_00_W125_00_DEM.tif https://copernicus-dem-30m.s3.eu-central-1.amazonaws.com/Copernicus_DSM_COG_10_N48_00_W114_00_DEM/Copernicus_DSM_COG_10_N48_00_W114_00_DEM.tif https://copernicus-dem-30m.s3.eu-central-1.amazonaws.com/Copernicus_DSM_COG_10_N48_00_W115_00_DEM/Copernicus_DSM_COG_10_N48_00_W115_00_DEM.tif https://copernicus-dem-30m.s3.eu-central-1.amazonaws.com/Copernicus_DSM_COG_10_N48_00_W116_00_DEM/Copernicus_DSM_COG_10_N48_00_W116_00_DEM.tif https://copernicus-dem-30m.s3.eu-central-1.amazonaws.com/Copernicus_DSM_COG_10_N48_00_W117_00_DEM/Copernicus_DSM_COG_10_N48_00_W117_00_DEM.tif https://copernicus-dem-30m.s3.eu-central-1.amazonaws.com/Copernicus_DSM_COG_10_N48_00_W118_00_DEM/Copernicus_DSM_COG_10_N48_00_W118_00_DEM.tif https://copernicus-dem-30m.s3.eu-central-1.amazonaws.com/Copernicus_DSM_COG_10_N48_00_W119_00_DEM/Copernicus_DSM_COG_10_N48_00_W119_00_DEM.tif https://copernicus-dem-30m.s3.eu-central-1.amazonaws.com/Copernicus_DSM_COG_10_N48_00_W120_00_DEM/Copernicus_DSM_COG_10_N48_00_W120_00_DEM.tif https://copernicus-dem-30m.s3.eu-central-1.amazonaws.com/Copernicus_DSM_COG_10_N48_00_W121_00_DEM/Copernicus_DSM_COG_10_N48_00_W121_00_DEM.tif https://copernicus-dem-30m.s3.eu-central-1.amazonaws.com/Copernicus_DSM_COG_10_N48_00_W122_00_DEM/Copernicus_DSM_COG_10_N48_00_W122_00_DEM.tif https://copernicus-dem-30m.s3.eu-central-1.amazonaws.com/Copernicus_DSM_COG_10_N48_00_W123_00_DEM/Copernicus_DSM_COG_10_N48_00_W123_00_DEM.tif https://copernicus-dem-30m.s3.eu-central-1.amazonaws.com/Copernicus_DSM_COG_10_N48_00_W124_00_DEM/Copernicus_DSM_COG_10_N48_00_W124_00_DEM.tif https://copernicus-dem-30m.s3.eu-central-1.amazonaws.com/Copernicus_DSM_COG_10_N48_00_W125_00_DEM/Copernicus_DSM_COG_10_N48_00_W125_00_DEM.tif"
+  },
+  "landcover.json": {
+    "retrieved": "2026-11-07T00:10:35+00:00",
+    "url": "https://esa-worldcover.s3.eu-central-1.amazonaws.com/v200/2021/map/ESA_WorldCover_10m_2021_v200_\u2026_Map.tif"
+  },
+  "osm-relation.json": {
+    "retrieved": "2026-11-05T21:23:02Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-1-main.json": {
+    "key": "027e6e928dac",
+    "retrieved": "2026-11-05T21:23:02Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-10-main.json": {
+    "key": "d69c267eb28b",
+    "retrieved": "2026-11-05T21:23:02Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-2-main.json": {
+    "key": "88a182816ed2",
+    "retrieved": "2026-11-05T21:23:02Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-3-main.json": {
+    "key": "d15613109a07",
+    "retrieved": "2026-11-05T21:23:02Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-4-main.json": {
+    "key": "76f66fe1b91c",
+    "retrieved": "2026-11-05T21:23:02Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-5-main.json": {
+    "key": "65e1bc93724c",
+    "retrieved": "2026-11-05T21:23:02Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-6-main.json": {
+    "key": "7b82157f6d20",
+    "retrieved": "2026-11-05T21:23:02Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-7-main.json": {
+    "key": "4adb6d34cc70",
+    "retrieved": "2026-11-05T21:23:02Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-8-main.json": {
+    "key": "782841a3d47d",
+    "retrieved": "2026-11-05T21:23:02Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-stage-9-main.json": {
+    "key": "166d04647749",
+    "retrieved": "2026-11-05T21:23:02Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-water.json": {
+    "retrieved": "2026-11-05T21:23:02Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osm-way-tags.json": {
+    "retrieved": "2026-11-05T21:23:02Z",
+    "url": "https://download.geofabrik.de/"
+  },
+  "osrm-access-east-glacier-park-station-amtrak.json": {
+    "retrieved": "2026-11-07T00:11:28+00:00",
+    "url": "https://router.project-osrm.org/route/v1/driving/-113.21936,48.44223;-113.66025,48.99663?overview=false"
+  },
+  "osrm-access-glacier-park-international-airport-fca.json": {
+    "retrieved": "2026-11-07T00:11:29+00:00",
+    "url": "https://router.project-osrm.org/route/v1/driving/-114.25569,48.3108;-113.66025,48.99663?overview=false"
+  },
+  "wikimedia.json": {
+    "retrieved": "2026-11-07T00:11:30+00:00",
+    "url": "Q3360192 2025-11..2026-10"
+  }
+}
