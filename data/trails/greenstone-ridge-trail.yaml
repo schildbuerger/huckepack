@@ -1,0 +1,343 @@
+name: Greenstone Ridge Trail
+added: 2026-11-07
+aliases: [Greenstone Trail]
+website: https://www.nps.gov/tripideas/backpack-the-greenstone-ridge-trail.htm
+wikidata: Q5604582
+managedBy:
+  # the National Park Service runs the park, its campgrounds and the permits
+  - name: National Park Service, Isle Royale National Park
+    url: https://www.nps.gov/isro/
+officialGpx:
+  none: the park's pages offer maps and brochures to download and no GPX (its maps page and the trail's pages, checked 2026-11-07)
+  source: nps-trip
+trailType: point-to-point
+continents: [North America]
+countries: [US]
+regions: [Michigan]
+protectedAreas: [Isle Royale National Park]
+termini:
+  # the NPS's eight trail sections run east to west, "Greenstone Section 1: Hike from Lookout Louise
+  # to Mount Franklin" to "Feldtmann Loop Section 4 / Greenstone Ridge: Hike from Island Mine to
+  # Windigo"; the trailhead page: the trail "connects the southwest end to the northeast end of the
+  # island". Coordinates from OSM: the trail's junction with the Lookout Louise spur, and the end of
+  # the Greenstone Ridge Trail relation (20106869) above Windigo
+  start:
+    name: Lookout Louise
+    lat: 48.1633089
+    lon: -88.4813762
+  end:
+    name: Windigo
+    lat: 47.9179826
+    lon: -89.1491907
+  source: nps-trip
+length:
+  # the trailhead page: "Miles: about 41.7" (41.7 mi = 67.1 km)
+  - km: 67.1
+    approx: true
+    source: nps-windigo
+days:
+  # the trip idea, "About the Greenstone Ridge Trail": "Duration: Five to eight days"
+  min: 5
+  max: 8
+  source: nps-trip
+stages:
+  # the NPS's trail sections, listed on the trip idea "Backpack the Greenstone Ridge Trail" with
+  # their mileage ("About 5 miles" …), each with a page of its own; numbered 1 to 7, the last one
+  # titled "Feldtmann Loop Section 4 / Greenstone Ridge", kept here as section 8. Miles converted
+  # (1 mi = 1.609 km). Ends: the trail's junctions in OSM (the Mount Franklin Trail, the Mount
+  # Ojibway Trail at the tower, the East Chickenbone Lake Trail, the Hatchet Lake Trail, the
+  # Ishpeming Trail at the tower, the South Lake Desor access trail, the Island Mine Trail)
+  source: nps-trip
+  list:
+    - { number: "1", kind: main, from: Lookout Louise, to: Mount Franklin, km: 8.0, relation: 20106869, end: { name: Mount Franklin, lat: 48.1277462, lon: -88.5623802 } }
+    - { number: "2", kind: main, from: Mount Franklin, to: Mount Ojibway, km: 4.5, relation: 20106869, end: { name: Mount Ojibway, lat: 48.1085025, lon: -88.6071917 } }
+    - { number: "3", kind: main, from: Mount Ojibway, to: Chickenbone Lake, km: 9.2, relation: 20106869, end: { name: Chickenbone Lake, lat: 48.0731314, lon: -88.6930443 } }
+    - { number: "4", kind: main, from: Chickenbone Lake, to: Hatchet Lake, km: 11.6, relation: 20106869, end: { name: Hatchet Lake, lat: 48.0172914, lon: -88.8437966 } }
+    - { number: "5", kind: main, from: Hatchet Lake, to: Ishpeming Tower, km: 6.1, relation: 20106869, end: { name: Ishpeming Tower, lat: 47.994209, lon: -88.9154458 } }
+    - { number: "6", kind: main, from: Ishpeming Tower, to: South Desor, km: 5.6, relation: 20106869, end: { name: South Desor, lat: 47.9662816, lon: -88.9706883 } }
+    - { number: "7", kind: main, from: South Desor, to: Island Mine, km: 8.4, relation: 20106869, end: { name: Island Mine, lat: 47.9345733, lon: -89.0438612 } }
+    - { number: "8", kind: main, from: Island Mine, to: Windigo, km: 10.5, relation: 20106869, end: { name: Windigo, lat: 47.9179826, lon: -89.1491907 } }
+route:
+  # built by `python -m pipeline.all greenstone-ridge-trail`: OSM ways matched to the Greenstone
+  # Ridge Trail relation (20106869), each section cut out of it between its ends
+  source: osm
+  publishable: true
+difficulty:
+  # the trip idea: "Rating: Intermediate backpackers"; the section pages: "Rocks and roots on trail",
+  # "Changing trail conditions require a map, compass, and navigation skills"
+  estimated:
+    sac: T2
+    basis: >-
+      The National Park Service rates the trail for intermediate backpackers: an 18-inch-wide
+      backcountry path over rocks and roots, with plank bridges and steep inclines, along exposed
+      ridges and through forest, where changing trail conditions call for a map, compass and
+      navigation skills. Mountain hiking on a rough but clear trail (T2).
+    source: nps-trip
+season:
+  # the directions page: "The ferries and seaplane provide transportation for the public from the
+  # middle of May until September"; the park "is open every year from April 16 through October 31"
+  months: [5, 6, 7, 8, 9]
+  text: Mid-May to September, when the ferries and seaplane run; the park is open April 16 to October 31
+  source: nps-directions
+permit:
+  # the camping page: "Permits are required, regardless of group size or method of travel, for all
+  # overnight stays"; free for parties of six or fewer; daily entrance fee
+  required: true
+  name: Small-party overnight permit
+  issuedBy: National Park Service, Isle Royale National Park
+  how: >-
+    Parties of up to six get a free permit on arrival from a ranger aboard the Ranger III or at Rock
+    Harbor or Windigo (self-permit for seaplane arrivals); no reservation, the campgrounds are first
+    come, first served. Groups of seven or more need an advance group reservation. Show the permit
+    on your pack and tent, and return it before leaving the island.
+  url: https://www.nps.gov/isro/planyourvisit/permits.htm
+  source: nps-permits
+fees:
+  # the fees page: "a $7 per person daily entrance fee … This includes the day you arrive and the day
+  # you depart"; "The Isle Royale Season Pass costs $60"
+  - { name: "Daily entrance fee", amount: 7, currency: USD, per: per person and day, year: 2026, note: "children 15 and under free; card only", source: nps-fees }
+  - { name: "Isle Royale Season Pass", amount: 60, currency: USD, per: per season, year: 2026, note: "covers the holder and up to 3 adults", source: nps-fees }
+sleeping:
+  # the camping page: "Isle Royale has 36 campgrounds … All campgrounds offer tent sites, a water
+  # source, and outhouses"; the trailhead page lists nine along the trail (Washington Creek, Island
+  # Mine, South Lake Desor, Hatchet Lake, West and East Chickenbone, Daisy Farm, Three Mile, Rock
+  # Harbor)
+  types: [campsite]
+  source: nps-camping
+wildCamping:
+  # the camping page: "off-trail camping is allowed with an additional permit addendum"
+  status: restricted
+  rule: >-
+    Camp in the designated campgrounds named on your permit, first come, first served; off-trail
+    (cross-country) camping is allowed only with an additional permit addendum. Fires only in the
+    metal rings or grills of the few campgrounds that have them.
+  source: nps-camping
+refillsUntreated:
+  # the camping page's video: "it will be necessary to collect, filter, and chemically treat your
+  # own drinking water"; the safety page: "Boiling, or filtering AND chemical treatment, are now
+  # recommended"
+  text: The campgrounds' water sources are lakes and streams; boil it, or filter and chemically treat it.
+  source: nps-camping
+access:
+  # the island is reached only by ferry, seaplane or private boat from Houghton or Copper Harbor
+  # (Michigan) or Grand Portage (Minnesota), to Windigo or Rock Harbor (directions page): the
+  # nearest airports with scheduled flights on each side. No railway reaches the region; the
+  # Indian Trails bus stops at Houghton, which OSM maps no stop for. Coordinates from OSM;
+  # distances by pipeline/access.py
+  - kind: airport
+    name: Houghton County Memorial Airport (CMX)
+    lat: 47.1686
+    lon: -88.48728
+    source: osm
+  - kind: airport
+    name: Duluth International Airport (DLH)
+    lat: 46.8419
+    lon: -92.20047
+    source: osm
+  - kind: airport
+    name: Thunder Bay International Airport (YQT)
+    lat: 48.37214
+    lon: -89.32087
+    source: osm
+animals:
+  # the NPS's wolf page, "Safety in a Wolf Sanctuary", quoted here. Level ours
+  list:
+    - kind: wolf
+      name: Gray wolf
+      level: low
+      basis: Wolves live throughout the island and are usually wary of people, leaving when they hear or smell humans; they may be seen along lakeshores, open areas and hiking trails.
+      do:
+        - Stow your food properly to limit the smell
+        - Dispose of fish remains in water that is at least 50 feet deep or at least 200 feet from campgrounds, water sources, and trails
+        - "If you meet a wolf at close range (less than 25 feet) and it does not leave or is advancing: back away or make noise, but do not run away"
+        - If you observe them at more than 25 feet, leave the area but do not run
+        - If you come upon a dead moose, keep moving away from the carcass and let park staff know the location
+        - Report a wolf that shows unusual behaviour, such as lack of fear of humans, to park staff
+      dont:
+        - Provide food directly or indirectly
+        - Leave food or garbage in campsites or picnic areas
+        - Bring pets; no pets are allowed on the island
+      source: nps-wolves
+tags: [island, lake-superior, ridge, wilderness-camps, ferry]
+notes:
+  - >-
+    Stages: the NPS's own trail sections (the trip idea lists all eight with their mileage): 1
+    Lookout Louise–Mount Franklin about 5 mi, 2 Mount Franklin–Mount Ojibway 2.8, 3 Mount
+    Ojibway–Chickenbone Lake 5.7, 4 Chickenbone Lake–Hatchet Lake 7.2, 5 Hatchet Lake–Ishpeming
+    Tower 3.8, 6 Ishpeming Tower–South Desor 3.5, 7 South Desor–Island Mine 5.2, and "Feldtmann
+    Loop Section 4 / Greenstone Ridge: Island Mine to Windigo" 6.5 (shared with the Feldtmann Loop,
+    unnumbered as a Greenstone section, kept as section 8); together 39.7 mi (63.9 km). They are
+    sections between junctions, not days: the trip idea's itineraries (five to eight days) sleep at
+    the campgrounds, some on spur trails off the ridge (Daisy Farm, Chickenbone, Hatchet Lake, South
+    Lake Desor, Island Mine, Washington Creek), and many hikers start or end at Rock Harbor by the
+    Tobin Harbor or Rock Harbor Trail and the Mount Franklin Trail instead of Lookout Louise.
+  - >-
+    Start: Lookout Louise is reached "via a 1 mile hike from Hidden Lake" (by water taxi or private
+    boat from Rock Harbor Lodge); OSM's relation begins at Hidden Lake, and the record starts at the
+    trail's junction with the Lookout Louise spur, where section 1 begins.
+  - >-
+    Length: the trailhead page gives "about 41.7" miles (67.1 km), the record's figure; the trip
+    idea "Over 40 miles (including spur trails to campgrounds)"; the sections add up to 39.7 mi
+    (63.9 km).
+  - >-
+    Days: the trip idea's "Five to eight days" is for the Greenstone Ridge Trail; its itineraries
+    run between Rock Harbor (or Hidden Lake) and Windigo with the spurs to the campgrounds, a little
+    more than the sections' 39.7 mi.
+  - >-
+    Ascent: no NPS source states the climbs; the page estimates them from the terrain model.
+    Highest point: the NPS gives Mount Desor, "the tallest point on Isle Royale at about 1,362 feet
+    elevation" (415 m), passed near section 7.
+  - >-
+    Waymarking: the NPS describes no waymarks; signs stand at junctions, and the section pages warn
+    "Less trafficked trail making navigation difficult" (section 1) and that "Changing trail
+    conditions require a map, compass, and navigation skills" (searched 2026-11-07).
+  - >-
+    Tree line: none in reach; the trail stays below about 415 m (Mount Desor).
+  - >-
+    Wildlife: the NPS's moose page asks hikers to keep a safe distance from moose ("Moose are large
+    and potentially dangerous animals"; "If you unexpectedly come upon a moose, back away slowly and
+    get behind a tree or rock"; "Never get between a cow and her calf"; bulls in rut "often
+    aggressive. Give them more distance during September and October"). The site has no moose kind
+    and silhouette yet (src/content.config.ts, src/lib/animal-art.ts), so only the wolf is listed;
+    moose should be added as a new kind (PhyloPic, Alces alces) and listed here. The camping page
+    adds that mosquitoes and black flies peak in June or July and wasps are common.
+  - >-
+    Getting there: Isle Royale is closed to visitors from November 1 to April 15 and has no roads.
+    The NPS's Ranger III sails from Houghton, the Isle Royale Queen IV from Copper Harbor (both
+    Michigan) and the Voyageur II and Sea Hunter III from Grand Portage (Minnesota); Isle Royale
+    Seaplanes fly from the Houghton area; each lands at Windigo or Rock Harbor (the Voyageur II also
+    at McCargoe Cove and Malone Bay), from mid-May to September. The travel hubs' road distances
+    are to the mainland ports, not the trail.
+  - >-
+    Map line (2026-11-07): the Michigan Geofabrik extract (2026-11-05); OSM's Greenstone Ridge Trail
+    relation (20106869), each section cut out of it between its junctions, every section 100 %
+    matched with no bridge (the relation has a 419 m gap between two of its ways near Chickenbone
+    Lake, which the matcher closes over a short unrelated OSM way). The map line measures 62.4 km
+    (the full match 62.9 km) against the trailhead page's "about 41.7" miles (67.1 km, −7 %) and the
+    sections' 39.7 mi (63.9 km, −2 %). The check flags two sections more than 10 % off: section 4
+    (Chickenbone Lake–Hatchet Lake) measures 13.5 km against 7.2 mi (11.6 km), as its start is the
+    East Chickenbone junction; taken from the West Chickenbone junction 1.4 km on, section 3 would be
+    10.2 km against 9.2 and section 4 12.1 against 11.6, so the NPS may count it from there; together
+    sections 3 and 4 measure 22.4 km against 20.8 (+8 %). Section 8 (Island Mine–Windigo) measures
+    9.5 km against 6.5 mi (10.5 km), since OSM's relation ends at the junction above Washington
+    Creek, about 0.9 km short of the Windigo dock. The record keeps the NPS's figures. The terrain
+    model's highest point is 434 m at km 48.8 (near Mount Desor; the NPS gives "about 1,362 feet",
+    415 m: the surface model reads the treetops) and its lowest 198 m at Windigo (Lake Superior lies
+    at about 183 m); the page estimates about 1,200 m of climbing and 1,280 m of descent.
+  - >-
+    Water: the check flags 62.4 km without drinking water. Rightly: the NPS says "No potable water
+    is available along the trail" (trailhead page); the campgrounds have a water source to boil or
+    filter and treat (refillsUntreated), and OSM maps one tap, at Windigo. The longest stretch
+    without a campground is 11.3 km (km 22.8–34.1, the Chickenbone Lake–Hatchet Lake section).
+  - >-
+    Resupply: the check flags 62.4 km without a shop. The island has two small stores at Rock Harbor
+    and Windigo (Rock Harbor Lodge's; the fees page names "its stores in Rock Harbor and Windigo"),
+    off the trail's ends and not tagged as shops in OSM: carry all food for the crossing.
+  - >-
+    Travel hubs: the check flags Houghton County Memorial Airport (751 km by road) and Duluth
+    International Airport (399 km). The island has no roads: OSRM routes to the nearest road to
+    Lookout Louise, on the Canadian shore near Thunder Bay, so the road distances run round Lake
+    Superior and say nothing of the real journey, by ferry or seaplane from Houghton (the airport lies
+    "eight miles north of Houghton", the NPS's directions page), Copper Harbor or Grand Portage to
+    Rock Harbor or Windigo; Duluth and Thunder Bay are the airports on the Grand Portage side. No railway serves
+    the region. The page's "km by road" for these hubs is misleading for an island trail: an open
+    question for the access step (a ferry port as the road's end).
+  - >-
+    Data check (2026-11-07, working rule 2): the NPS against English Wikipedia (the second source)
+    and its own pages. Length 67.1 km (41.7 mi) against Wikipedia's 40 mi (64.4 km, −4 %; uncited
+    there); termini Lookout Louise and Windigo against Wikipedia's Windigo and Rock Harbor (the
+    Lodge): the NPS's sections end at Lookout Louise, and Rock Harbor is reached by the Tobin Harbor
+    or Rock Harbor Trail (the trip idea's itineraries); difficulty T2 from the NPS's "intermediate
+    backpackers" against Wikipedia's "Medium" (agrees); ascent: none stated by the NPS, the terrain
+    model's ≈1,200 m against Wikipedia's 1,555 m elevation gain and loss (−23 %, recorded as a
+    deviation; the page keeps its estimate); days 5–8 (trip idea) against the camping page's "usually
+    traveling six to eight miles per day" (41.7 mi in 5.2–7 days: agrees); season: the directions
+    page's ferries and seaplane mid-May to September within the hours page's park season, April 16
+    to October 31 (agrees; Wikipedia gives none); sleeping and camping (campgrounds, first come,
+    first served, off-trail camping with a permit addendum) from the camping and permits pages, the
+    trailhead page's nine campgrounds along the trail (agrees; Wikipedia gives none); highest point
+    434 m (terrain model) against the NPS's Mount Desor, about 1,362 ft (415 m, +5 %). Stage
+    distances: no second source gives the sections; the built page's stage table was checked against
+    the eight NPS section pages and the trip idea's list (5, 2.8, 5.7, 7.2, 3.8, 3.5, 5.2 and 6.5 mi,
+    converted), all as published; the map line differs by more than 10 % on sections 4 and 8 (see
+    "Map line").
+dataCheck:
+  # working rule 2: English Wikipedia as the second source; the NPS's own pages against each other
+  date: 2026-11-07
+  against: [wikipedia]
+  pageAgainst: [nps-trip, nps-windigo]
+  deviations:
+    - { figure: ascent, ours: "≈1,200 m (terrain model estimate)", theirs: "1,555 m", source: wikipedia }
+sources:
+  - id: nps-trip
+    title: "National Park Service: Backpack the Greenstone Ridge Trail (trip idea: the eight trail sections and their mileage, days, rating, itineraries)"
+    url: https://www.nps.gov/tripideas/backpack-the-greenstone-ridge-trail.htm
+    licence: US federal government work (public domain)
+    retrieved: 2026-11-07
+  - id: nps-windigo
+    title: "National Park Service: Greenstone Ridge Trailhead, Windigo (length, campgrounds along the trail)"
+    url: https://www.nps.gov/places/greenstone-ridge-trailhead-windigo.htm
+    licence: US federal government work (public domain)
+    retrieved: 2026-11-07
+  - id: nps-directions
+    title: "National Park Service: Isle Royale directions and transportation (ferries, seaplane, season)"
+    url: https://www.nps.gov/isro/planyourvisit/directions.htm
+    licence: US federal government work (public domain)
+    retrieved: 2026-11-07
+  - id: nps-camping
+    title: "National Park Service: Isle Royale backpacking and camping (campgrounds, permits, off-trail camping, water)"
+    url: https://www.nps.gov/isro/planyourvisit/camping.htm
+    licence: US federal government work (public domain)
+    retrieved: 2026-11-07
+  - id: nps-permits
+    title: "National Park Service: Isle Royale small-party permits"
+    url: https://www.nps.gov/isro/planyourvisit/permits.htm
+    licence: US federal government work (public domain)
+    retrieved: 2026-11-07
+  - id: nps-fees
+    title: "National Park Service: Isle Royale fees and passes"
+    url: https://www.nps.gov/isro/planyourvisit/fees.htm
+    licence: US federal government work (public domain)
+    retrieved: 2026-11-07
+  - id: nps-wolves
+    title: "National Park Service: Isle Royale wolves (safety in a wolf sanctuary)"
+    url: https://www.nps.gov/isro/learn/nature/wolves.htm
+    licence: US federal government work (public domain)
+    retrieved: 2026-11-07
+  - id: wikipedia
+    title: "Wikipedia (en): Greenstone Ridge Trail"
+    url: https://en.wikipedia.org/wiki/Greenstone_Ridge_Trail
+    licence: CC BY-SA 4.0
+    retrieved: 2026-11-07
+    checkOnly: true
+  - id: wikimedia
+    title: "Wikimedia: page views of the trail's Wikipedia articles in every language, by people, over twelve months (Wikidata sitelinks, pageview API)"
+    url: https://wikimedia.org/api/rest_v1/
+    licence: CC0 1.0 (pageview data); Wikidata CC0
+    retrieved: 2026-11-07
+    checkOnly: true
+  - id: osm
+    title: "OpenStreetMap contributors: paths, water, shops and places to sleep along the trail (Geofabrik extract), travel hubs"
+    url: https://www.openstreetmap.org/
+    licence: ODbL 1.0
+    retrieved: 2026-11-07
+  - id: copdem
+    title: "Copernicus DEM GLO-30 (30 m terrain model), tiles from AWS Open Data"
+    url: https://registry.opendata.aws/copernicus-dem/
+    licence: "Copernicus WorldDEM-30 licence, free; produced using Copernicus WorldDEM-30 © DLR e.V. 2010-2014 and © Airbus Defence and Space GmbH 2014-2018 provided under COPERNICUS by the European Union and ESA; all rights reserved"
+    retrieved: 2026-11-07
+  - id: worldcover
+    title: "ESA WorldCover 2021: 10 m land cover (via AWS Open Data)"
+    url: https://esa-worldcover.org/
+    licence: "CC BY 4.0; © ESA WorldCover project 2021 / Contains modified Copernicus Sentinel data (2021) processed by ESA WorldCover consortium"
+    retrieved: 2026-11-07
+  - id: era5
+    title: "Open-Meteo open data on AWS: ERA5-Land temperature and ERA5 precipitation, snow and wind, daily 1995–2024 (reanalysis)"
+    url: https://github.com/open-meteo/open-data
+    licence: CC BY 4.0 (Open-Meteo); contains modified Copernicus Climate Change Service information
+    retrieved: 2026-11-07
+  - id: osrm
+    title: "OSRM: road routes on OpenStreetMap data (router.project-osrm.org)"
+    url: https://project-osrm.org/
+    licence: Route data © OpenStreetMap contributors (ODbL)
+    retrieved: 2026-11-07

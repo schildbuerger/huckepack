@@ -166,6 +166,8 @@ And the **Rideau Trail** (Ontario: the Rideau Trail Association's roughly 325 km
 
 And the **Arizona National Scenic Trail** (Arizona: the Arizona Trail Association's 800 miles (1,287 km) with the Forest Service from the Mexican border at Coronado National Memorial over the sky islands, through the Sonoran Desert, the Superstitions and the Mazatzals to the Mogollon Rim, past the San Francisco Peaks and across the Grand Canyon to the Kaibab Plateau and Stateline on the Utah border, in the association's 43 passages (the Flagstaff Urban Route and the Pusch Ridge Wilderness Bypass as variants), 43–60 days, best in spring and autumn; passage 38 in the canyon closed since the August 2026 floods; over the passages' tracks; 2026-11-07).
 
+And the **Greenstone Ridge Trail** (Michigan: the National Park Service's "about 41.7" miles (67 km) along Isle Royale's spine in Lake Superior, from Lookout Louise over Mount Franklin, the Mount Ojibway fire tower, Ishpeming Tower and Mount Desor to Windigo, in the park's eight trail sections, 5–8 days for intermediate backpackers between first-come campgrounds on a free permit, the island reached only by ferry or seaplane from mid-May to September; over the trail's OSM relation; 2026-11-07).
+
 | # | Trail | Region | Length (approx.) | Why |
 |---|---|---|---|---|
 | 1 | Pacific Crest Trail | USA | 4,265 km | Most-hiked long trail; public US agency data; completion lists |
