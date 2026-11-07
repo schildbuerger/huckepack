@@ -33,11 +33,10 @@ established:
   # "Ruten blev officielt åbnet i juni 2016" (Wikipedia)
   year: 2016
   source: wikipedia-da
-length:
-  # "12 meget forskellige etaper, der tilsammen udgør 175 kilometers vandreglæde" (with the round trip
-  # to Farø and the two shortcuts)
-  - km: 175
-    source: cam-stages
+length: []
+  # no stated total: the site's 175 km ("12 meget forskellige etaper, der tilsammen udgør 175
+  # kilometers vandreglæde") adds the Farø round trip and two shortcuts to the loop; the page shows
+  # the loop's stage sum (decided 2026-11-07)
 stages:
   # the site's stages round the loop from Møns Museum; the Surf stage (a round trip to Farø) and the two
   # shortcuts (Genvejen ved Borre, ved Elmelunde) are not drawn. The OSM relation (2839163) guides the
@@ -100,6 +99,10 @@ access:
     source: osm
 tags: [island, cliffs, coast, biosphere-reserve]
 notes:
+  - >-
+    Length (2026-11-07): the site's 175 km adds the Farø round trip and two shortcuts to the loop; a total over more than the route walked is no length to compare
+    by, so the record states none and the page shows the main stages' sum (the user's rule: variants
+    and alternate sections never count).
   - >-
     Stages: the site's 12 stages include the Surf stage (Bogø Mølle to Farø and back, 8.7 km) and two
     shortcuts (by Borre, 7 km; by Elmelunde, 5 km), not drawn. The nine stages round the loop add up to

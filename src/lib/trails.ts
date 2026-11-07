@@ -20,14 +20,20 @@ export function mainStages(t: Trail): Stage[] {
 export function stageTotals(t: Trail) {
   const main = mainStages(t);
   if (!t.stages || main.length === 0) return undefined;
+  // side trips the trail includes, walked there and back (`outAndBack`, the W Trek's valleys): their
+  // km is one way, so they count twice, and their climbs both ways (up out and down back, and the
+  // other way round) (2026-11-07)
+  const back = t.stages.list.filter((s) => s.outAndBack);
   const sum = (f: (s: Stage) => number) => main.reduce((a, s) => a + f(s), 0);
-  const how = `sum of the ${main.length} main stages`;
-  // ascent and descent only when every main stage states them (some sources give neither)
-  const climbs = main.every((s) => s.ascentM !== undefined && s.descentM !== undefined);
+  const how = `sum of the ${main.length} main stages${back.length ? ` and ${back.length} side trip${back.length > 1 ? "s" : ""} there and back` : ""}`;
+  const km = sum((s) => s.km) + back.reduce((a, s) => a + 2 * s.km, 0);
+  // ascent and descent only when every stage counted states them (some sources give neither)
+  const climbs = [...main, ...back].every((s) => s.ascentM !== undefined && s.descentM !== undefined);
+  const backClimb = back.reduce((a, s) => a + (s.ascentM ?? 0) + (s.descentM ?? 0), 0);
   return {
-    km: { value: Math.round(sum((s) => s.km) * 10) / 10, source: t.stages.source, how },
-    ascentM: climbs ? { value: sum((s) => s.ascentM!), source: t.stages.source, how } : undefined,
-    descentM: climbs ? { value: sum((s) => s.descentM!), source: t.stages.source, how } : undefined,
+    km: { value: Math.round(km * 10) / 10, source: t.stages.source, how },
+    ascentM: climbs ? { value: sum((s) => s.ascentM!) + backClimb, source: t.stages.source, how } : undefined,
+    descentM: climbs ? { value: sum((s) => s.descentM!) + backClimb, source: t.stages.source, how } : undefined,
   };
 }
 

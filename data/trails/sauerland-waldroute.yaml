@@ -38,11 +38,9 @@ waymarking:
   text: A white W on a green square; access and loop paths a green W on white
   symbol: white-w-on-green
   source: swr
-length:
-  # "Auf über 240 km verbindet die Sauerland-Waldroute …"; the flyer: "240 km". The whole route,
-  # both halves of the loop included (see notes)
-  - km: 240
-    source: swr
+length: []
+  # no stated total: the site's and the flyer's 240 km count both halves of the loop, the Südroute
+  # a variant here; the page shows the main route's stage sum (decided 2026-11-07)
 days:
   # the flyer: "Von Iserlohn nach Marsberg in 13 Etappen"
   min: 13
@@ -144,6 +142,10 @@ animals:
       source: bzga-borreliose
 tags: [sauerland, forests, lakes, caves, legends]
 notes:
+  - >-
+    Length (2026-11-07): the site's "über 240 km" and the flyer's 240 km count both halves of the loop; a total over more than the route walked is no length to compare
+    by, so the record states none and the page shows the main stages' sum (the user's rule: variants
+    and alternate sections never count).
   - >-
     Layout: from Iserlohn to the Bilsteintal near Warstein (stages 1–8), then a loop: the
     Nordroute to Marsberg (9–13) and the Südroute back from Marsberg to the Bilsteintal (14–19).

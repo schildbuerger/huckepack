@@ -51,6 +51,16 @@ test("stage sums leave out the climbs when a main stage lacks them", () => {
   assert.equal(stageTotals(t)!.km.value, 22.3);
 });
 
+test("stage sums count a side trip walked there and back twice, other variants never", () => {
+  const t = trail();
+  t.stages.list.push({ number: "V1", kind: "variant", outAndBack: true, from: "C", to: "Peak", km: 4, ascentM: 300, descentM: 0 });
+  const totals = stageTotals(t)!;
+  assert.equal(totals.km.value, 30.3); // 22.3 + 2 × 4; the 30 km variant left out
+  assert.equal(totals.ascentM!.value, 800); // 500 + 300 up out + 0 up back
+  assert.equal(totals.descentM!.value, 800);
+  assert.match(totals.km.how, /1 side trip there and back/);
+});
+
 test("walking time by DIN 33466, to 15 minutes", () => {
   assert.equal(walkingMinutes(12, 0, 0), 180); // 3 h on the flat
   assert.equal(walkingMinutes(8, 600, 0), 180); // 2 h flat, 2 h up: 2 + 1 h

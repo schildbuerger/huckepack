@@ -40,10 +40,9 @@ waymarking:
   # Zubringern und alternativen Routen" (a logo: no symbol drawn)
   text: A yellow S (main route); a blue S on loops, access paths and alternatives
   source: gs
-length:
-  # "Gesamtlänge 660 km", both routes together
-  - km: 660
-    source: gs
+length: []
+  # no stated total: the operator's "Gesamtlänge 660 km" adds the Nordroute and the Südroute, which
+  # no one walks both of; the page shows the main route's stage sum (decided 2026-11-07)
 stages:
   # the 38 stage pages of goldsteig-wandern.de (length and time, rounded; no climbs): 1–7 in the
   # Oberpfälzer Wald, then the Nordroute (N8–N23, the "Gipfelroute", here the main route) and the
@@ -162,6 +161,10 @@ animals:
       source: bzga-borreliose
 tags: [bavarian-forest, national-park, summits, granite, cross-border]
 notes:
+  - >-
+    Length (2026-11-07): the operator's "Gesamtlänge 660 km" counts both routes together; a total over more than the route walked is no length to compare
+    by, so the record states none and the page shows the main stages' sum (the user's rule: variants
+    and alternate sections never count).
   - >-
     Lengths: "Gesamtlänge 660 km" for both routes; the stage pages give rounded lengths and times
     only: stages 1–7 add up to 125.2 km, the Nordroute N8–N23 to 292.5 km, the Südroute S8–S22 to
