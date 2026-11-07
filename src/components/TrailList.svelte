@@ -313,7 +313,7 @@
         <p class="range">{firstShown}–{lastShown} of {trails.length ? shown.length : total}</p>
         <ol>
           <li class="step">
-            {#if page > 1}<a href={pageHref(page - 1)} rel="prev" onclick={(e) => goTo(page - 1, e)}><span aria-hidden="true">←</span> Previous</a>{:else}<span class="off" aria-hidden="true">← Previous</span>{/if}
+            {#if page > 1}<a href={pageHref(page - 1)} rel="prev" onclick={(e) => goTo(page - 1, e)}><span aria-hidden="true">←</span> Previous</a>{:else}<span class="off" aria-hidden="true"><span>←</span> Previous</span>{/if}
           </li>
           {#each pageList as n}
             <li>
@@ -323,7 +323,7 @@
             </li>
           {/each}
           <li class="step">
-            {#if page < pages}<a href={pageHref(page + 1)} rel="next" onclick={(e) => goTo(page + 1, e)}>Next <span aria-hidden="true">→</span></a>{:else}<span class="off" aria-hidden="true">Next →</span>{/if}
+            {#if page < pages}<a href={pageHref(page + 1)} rel="next" onclick={(e) => goTo(page + 1, e)}>Next <span aria-hidden="true">→</span></a>{:else}<span class="off" aria-hidden="true">Next <span>→</span></span>{/if}
           </li>
         </ol>
       </nav>
@@ -340,6 +340,9 @@
 <style>
   /* the compare table's columns, shared by the header here and the rows (TrailCards.astro) */
   .results {
+    /* the table's rows fold into cards where this column is narrower than the table
+       (TrailCards.astro and the header below ask the container, not the window) */
+    container: results / inline-size;
     --cols: minmax(220px, 3fr) 60px 44px 70px 112px 80px minmax(100px, 1.1fr);
     --col-gap: 14px;
   }
@@ -396,8 +399,9 @@
     opacity: 1;
     color: var(--accent-text);
   }
-  /* phones: no header row (the rows fold into cards and label their figures); the sort menu instead */
-  @media (max-width: 759px) {
+  /* a column narrower than the table: no header row (the rows fold into cards and label their
+     figures); the sort menu instead */
+  @container results (max-width: 799px) {
     .thead {
       display: none;
     }
@@ -670,9 +674,23 @@
       font-size: 0;
       padding: 0;
     }
+    /* only the arrows show, the inactive step's too (its words took 90 px and pushed the page wider) */
     .pager .step a span,
-    .pager .step .off {
+    .pager .step .off span {
       font-size: 0.9rem;
+    }
+  }
+  /* the smallest phones: slimmer numbers, so nine of them (first, last, gaps, steps) fit 288 px */
+  @media (max-width: 399px) {
+    .pager ol {
+      gap: 2px;
+    }
+    .pager a,
+    .pager .now,
+    .pager .off,
+    .pager .gap {
+      min-width: 28px;
+      padding: 0 4px;
     }
   }
   .empty {
